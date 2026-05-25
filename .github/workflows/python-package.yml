@@ -32,7 +32,8 @@ jobs:
             libpango1.0-dev libcairo2-dev libgirepository1.0-dev pkg-config \
             libgl1-mesa-dev libegl1-mesa-dev libx11-dev \
             xvfb \
-            ffmpeg
+            ffmpeg \
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvisvgm
 
       - name: Install dependencies
         run: |
