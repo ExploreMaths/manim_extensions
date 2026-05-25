@@ -1,4 +1,5 @@
 from manim import *
+from manim.typing import Point3D, Vector3DLike
 import numpy as np
 
 
@@ -88,6 +89,14 @@ class LabelDot(VGroup):
         dot = Dot().move_to(dot_pos)
         label = MathTex(dot_label).next_to(dot, label_pos, buff=buff)
         self.add(dot, label)
+        self.dot = dot
+        self.dot_pos = dot_pos
+
+    def get_center(self) -> Point3D:
+        return self.dot.get_center()
+
+    def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
+        return self.dot.get_center()
 
 
 class MathTexLine(VGroup):
