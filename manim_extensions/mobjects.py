@@ -1,6 +1,7 @@
 from manim import *
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
+from typing import Any, Union
 
 
 class ChineseMathTex(MathTex):
@@ -176,6 +177,43 @@ class MathTexDoublearrow(VGroup):
         self.add(doublearrow, tex)
 
 
+class PerpendicularLine(Line):
+    """过指定点作线段所在直线的垂线段。
+
+    自动计算给定点在目标线段所在直线上的垂足，并创建从该点到垂足的线段。
+
+    Args:
+        point: 给定点坐标或 Mobject。
+        line: 目标线段。
+        **kwargs: 传递给 ``Line`` 的其他关键字参数。
+    """
+
+    def __init__(
+        self,
+        point: Union[np.ndarray, tuple, list, Mobject],
+        line: Line,
+        **kwargs: Any,
+    ) -> None:
+        if isinstance(point, Mobject):
+            self.point = point.get_center()
+        else:
+            self.point = np.array(point)
+        self.target_line = line
+        self.foot = self._compute_foot()
+        super().__init__(self.point, self.foot, **kwargs)
+
+    def _compute_foot(self) -> np.ndarray:
+        a = self.target_line.get_start()
+        b = self.target_line.get_end()
+        ab = b - a
+        ap = self.point - a
+        ab_dot_ab = np.dot(ab, ab)
+        if ab_dot_ab < 1e-12:
+            return a
+        t = np.dot(ap, ab) / ab_dot_ab
+        return a + t * ab
+
+
 class ExtendedLine(Line):
     """可延长的线段。
 
@@ -200,3 +238,133 @@ class ExtendedLine(Line):
             new_end_point = end_point + extend_distance * unit_direction_vector
             super().__init__(new_start_point, new_end_point, **kwargs)
         self.match_style(line)
+
+
+class PerpendicularSign(VGroup):
+    """垂直符号（直角折角）。
+
+    在两条线的交点处绘制一个直角符号，表示两线垂直。
+    符号由两条短线段组成，形成一个L形折角。
+
+    Args:
+        line1: 第一条线。
+        line2: 第二条线。
+        length: 折角每段的长度。默认为 0.25。
+        corner_direction: 指定折角画在哪一侧的方向向量。
+            折角会放置在该方向对应的象限中。若不指定，则自动选择
+            指向两条线段较近端点的那一侧。
+        **kwargs: 传递给 ``VGroup`` 的其他关键字参数。
+    """
+
+    def __init__(
+        self,
+        line1: Line,
+        line2: Line,
+        length: float = 0.25,
+        corner_direction: Union[np.ndarray, tuple, list, None] = None,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(**kwargs)
+
+        # 计算两线交点
+        intersection = self._compute_intersection(line1, line2)
+        if intersection is None:
+            return
+
+        # 获取两线各自两侧的单位方向向量
+        dirs1 = self._get_both_directions(line1, intersection)
+        dirs2 = self._get_both_directions(line2, intersection)
+
+        # 选择最佳的组合
+        d1, d2 = self._select_directions(
+            dirs1, dirs2, corner_direction
+        )
+
+        # 折角的三个顶点
+        corner1 = intersection + length * d1
+        corner2 = intersection + length * d2
+        # 内角顶点：沿两个方向的和的方向移动
+        inner = intersection + length * d1 + length * d2
+
+        # 组成折角的两条线段
+        leg1 = Line(corner1, inner, **kwargs)
+        leg2 = Line(corner2, inner, **kwargs)
+
+        self.add(leg1, leg2)
+        self.intersection = intersection
+
+    def _compute_intersection(
+        self, line1: Line, line2: Line
+    ) -> Union[np.ndarray, None]:
+        a1 = line1.get_start()
+        b1 = line1.get_end()
+        a2 = line2.get_start()
+        b2 = line2.get_end()
+
+        d1 = b1 - a1
+        d2 = b2 - a2
+
+        # Use full 3D vectors for cross product to avoid NumPy 2.0 deprecation
+        cross = np.cross(d1, d2)
+        if abs(cross[2]) < 1e-12:
+            return None
+
+        t = np.cross(a2 - a1, d2)[2] / cross[2]
+        return a1 + t * d1
+
+    def _get_both_directions(
+        self, line: Line, point: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """返回从交点指向线段两个端点的单位方向向量。"""
+        start = line.get_start()
+        end = line.get_end()
+        d1 = start - point
+        d2 = end - point
+        d1_len = np.linalg.norm(d1)
+        d2_len = np.linalg.norm(d2)
+
+        if d1_len > 1e-12:
+            d1 = d1 / d1_len
+        else:
+            d1 = np.array([0.0, 0.0, 0.0])
+
+        if d2_len > 1e-12:
+            d2 = d2 / d2_len
+        else:
+            d2 = np.array([0.0, 0.0, 0.0])
+
+        return d1, d2
+
+    def _select_directions(
+        self,
+        dirs1: tuple[np.ndarray, np.ndarray],
+        dirs2: tuple[np.ndarray, np.ndarray],
+        corner_direction: Union[np.ndarray, tuple, list, None],
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """根据 corner_direction 选择最佳的两侧方向。"""
+        candidates = []
+        for d1 in dirs1:
+            for d2 in dirs2:
+                inner_dir = d1 + d2
+                norm = np.linalg.norm(inner_dir)
+                if norm < 1e-12:
+                    continue
+                candidates.append((d1, d2, inner_dir / norm))
+
+        if not candidates:
+            return dirs1[0], dirs2[0]
+
+        if corner_direction is None:
+            # 默认：选择指向较近端点的组合（即 inner_dir 模长最大的）
+            best = max(candidates, key=lambda c: np.linalg.norm(c[0] + c[1]))
+            return best[0], best[1]
+
+        corner_direction = np.array(corner_direction)
+        corner_direction = corner_direction / np.linalg.norm(corner_direction)
+
+        # 选择与 corner_direction 点积最大的组合
+        best = max(
+            candidates,
+            key=lambda c: np.dot(c[2], corner_direction),
+        )
+        return best[0], best[1]

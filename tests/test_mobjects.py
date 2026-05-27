@@ -1,6 +1,7 @@
 import shutil
 import subprocess
 
+import numpy as np
 import pytest
 from manim import MathTex, VGroup, Line, LEFT, RIGHT, UP, DOWN, ORIGIN
 
@@ -11,6 +12,8 @@ from manim_extensions.mobjects import (
     MathTexBrace,
     MathTexDoublearrow,
     ExtendedLine,
+    PerpendicularLine,
+    PerpendicularSign,
 )
 
 _HAS_XELATEX = shutil.which("xelatex") is not None
@@ -79,3 +82,82 @@ class TestExtendedLine:
         original = Line(ORIGIN, ORIGIN)
         extended = ExtendedLine(original, extend_distance=1.0)
         assert isinstance(extended, Line)
+
+
+class TestPerpendicularLine:
+    def test_basic_perpendicular(self):
+        line = Line(LEFT, RIGHT)
+        perp = PerpendicularLine(UP, line)
+        assert isinstance(perp, Line)
+        start, end = perp.get_start(), perp.get_end()
+        assert np.allclose(start, UP) or np.allclose(end, UP)
+        foot = perp.foot
+        assert np.allclose(foot, ORIGIN)
+
+    def test_with_mobject_point(self):
+        line = Line(LEFT, RIGHT)
+        dot = LabelDot("P", UP * 2)
+        perp = PerpendicularLine(dot, line)
+        assert isinstance(perp, Line)
+        assert np.allclose(perp.foot, ORIGIN)
+
+    def test_degenerate_line(self):
+        line = Line(ORIGIN, ORIGIN)
+        perp = PerpendicularLine(UP, line)
+        assert isinstance(perp, Line)
+        # Falls back to the degenerate point
+        assert np.allclose(perp.foot, ORIGIN)
+
+
+class TestPerpendicularSign:
+    def test_creation(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        sign = PerpendicularSign(line1, line2, length=0.2)
+        assert isinstance(sign, VGroup)
+        assert len(sign.submobjects) == 2
+
+    def test_intersection_at_origin(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        sign = PerpendicularSign(line1, line2, length=0.2)
+        # The sign should be created and its intersection should be near origin
+        assert np.allclose(sign.intersection, ORIGIN, atol=1e-6)
+
+    def test_parallel_lines(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(UP, UP + RIGHT)
+        sign = PerpendicularSign(line1, line2, length=0.2)
+        # Parallel lines have no intersection, so sign should be empty
+        assert len(sign.submobjects) == 0
+
+    def test_different_lengths(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        sign = PerpendicularSign(line1, line2, length=0.5)
+        assert isinstance(sign, VGroup)
+        assert len(sign.submobjects) == 2
+
+    def test_corner_direction_ur(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        # 指定折角画在右上（第一象限）
+        sign = PerpendicularSign(line1, line2, length=0.2, corner_direction=[1, 1, 0])
+        assert isinstance(sign, VGroup)
+        assert len(sign.submobjects) == 2
+        # 内角顶点应该在第一象限
+        inner = sign.submobjects[0].get_end()
+        assert inner[0] > 0
+        assert inner[1] > 0
+
+    def test_corner_direction_dl(self):
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        # 指定折角画在左下（第三象限）
+        sign = PerpendicularSign(line1, line2, length=0.2, corner_direction=[-1, -1, 0])
+        assert isinstance(sign, VGroup)
+        assert len(sign.submobjects) == 2
+        # 内角顶点应该在第三象限
+        inner = sign.submobjects[0].get_end()
+        assert inner[0] < 0
+        assert inner[1] < 0
