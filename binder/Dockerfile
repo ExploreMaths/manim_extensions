@@ -17,7 +17,9 @@ RUN if ! id -u "${NB_USER}" >/dev/null 2>&1; then \
       fi; \
     fi
 
-USER ${NB_USER}
-
 COPY --chown=${NB_USER}:${NB_USER} . /manim
-RUN pip install --user /manim
+
+# Install as root into the image's virtual environment so the notebook user can import it.
+RUN pip install /manim
+
+USER ${NB_USER}
