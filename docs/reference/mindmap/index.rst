@@ -84,100 +84,13 @@ The ``layout_type`` argument of the animation classes accepts:
 - ``LayoutType.TimeLine`` – timeline layout.
 - ``LayoutType.Catalog`` – top-down catalog / directory layout.
 
-API reference
--------------
+.. toctree::
+   :hidden:
 
-Nodes
-^^^^^
-
-.. autoclass:: manim_extensions.mindmap.Node
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.NodeStyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autofunction:: manim_extensions.mindmap.bfs_walker
-.. autofunction:: manim_extensions.mindmap.dfs_walker
-
-Mind maps
-^^^^^^^^^
-
-.. autoclass:: manim_extensions.mindmap.MindMap
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.StandardMap
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.CatalogMap
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.TimeLine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-Animations
-^^^^^^^^^^
-
-.. autoclass:: manim_extensions.mindmap.LayoutAnimation
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.InsertNode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.RemoveNode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.AlterNode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.ScaleNode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-Layout
-^^^^^^
-
-.. autoclass:: manim_extensions.mindmap.LayoutConfig
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
-
-.. autoclass:: manim_extensions.mindmap.LayoutType
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   nodes
+   maps
+   animations
+   layout
 
 See the `original README <https://github.com/jj-math/manim-mindmap/blob/main/README.md>`_
 for full animated demos and the complete API.

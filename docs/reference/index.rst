@@ -5,6 +5,6 @@ Reference Manual
    :maxdepth: 2
 
    ../api/index
-   gearbox
-   mindmap
-   compass
+   gearbox/index
+   mindmap/index
+   compass/index
