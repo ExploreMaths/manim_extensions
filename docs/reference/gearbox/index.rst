@@ -89,5 +89,5 @@ Inner ring gear
    classes
    functions
 
-See the `original README <https://github.com/GarryBGoode/manim-GearBox/blob/main/README.md>`_
+See the `original README <https://github.com/GarryBGoode/manim-GearBox/blob/master/README.md>`_
 for animated examples and further details.
