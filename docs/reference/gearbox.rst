@@ -86,10 +86,28 @@ Inner ring gear
 API reference
 -------------
 
-.. automodule:: manim_extensions.gearbox
+Classes
+^^^^^^^
+
+.. autoclass:: manim_extensions.gearbox.Gear
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.gearbox.Rack
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Functions
+^^^^^^^^^
+
+.. autofunction:: manim_extensions.gearbox.involute_func
+.. autofunction:: manim_extensions.gearbox.involute_deriv_func
+.. autofunction:: manim_extensions.gearbox.involute_height_func
+.. autofunction:: manim_extensions.gearbox.involute_point_gen
 
 See the `original README <https://github.com/GarryBGoode/manim-GearBox/blob/main/README.md>`_
 for animated examples and further details.

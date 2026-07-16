@@ -77,10 +77,121 @@ example.
 API reference
 -------------
 
-.. automodule:: manim_extensions.compass
+Mobjects
+^^^^^^^^
+
+.. autoclass:: manim_extensions.compass.Compass
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.Pencil
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.Ruler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Scene helper
+^^^^^^^^^^^^
+
+.. autoclass:: manim_extensions.compass.CompassScene
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Compass animations
+^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: manim_extensions.compass.MoveNiddleTipTo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.RotateCompass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.SplitCompass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.PutCompass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.PutCompassAway
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.DrawArc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Pencil animations
+^^^^^^^^^^^^^^^^^
+
+.. autoclass:: manim_extensions.compass.MovePencilTipTo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.PutPencilAway
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.MovePencilAlongPath
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.DrawPath
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Ruler animations
+^^^^^^^^^^^^^^^^
+
+.. autoclass:: manim_extensions.compass.PutRuler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.compass.PutRulerAway
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+
+Utilities
+^^^^^^^^^
+
+.. autofunction:: manim_extensions.compass.get_arc
 
 See the `original README <https://github.com/jj-math/manim-compass/blob/main/README.md>`_
 for full animated examples and further details.
