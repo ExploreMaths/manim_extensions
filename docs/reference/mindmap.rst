@@ -7,10 +7,10 @@ manim-mindmap
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``manim-mindmap`` adds mind-map, timeline, and catalog / organisation-chart
-diagrams to Manim. It is included as a Git submodule under
-``third_party/manim-mindmap``. The submodule points to an ExploreMaths fork that
-adds extra docstrings to the original code while keeping all logic unchanged.
+``manim-mindmap`` brings mind-map, timeline, and catalog / organisation-chart
+diagrams to Manim. It is bundled inside ``manim_extensions`` as the
+``manim_extensions.mindmap`` subpackage and is also kept as a Git submodule
+under ``third_party/manim-mindmap``.
 
 Features
 --------
@@ -23,31 +23,15 @@ Features
   ``ScaleNode``, ``AlterNode``.
 - Styling / layout options: ``NodeStyle``, ``LayoutType``, ``LayoutConfig``.
 
-Installation
-------------
-
-Install from PyPI:
-
-.. code-block:: bash
-
-   pip install manim-mindmap
-
-Or use the local submodule:
-
-.. code-block:: bash
-
-   git submodule update --init third_party/manim-mindmap
-   pip install -e third_party/manim-mindmap
-
 Quick start
 -----------
 
-Import the plugin in your scene:
+Import directly from ``manim_extensions``:
 
 .. code-block:: python
 
    from manim import *
-   from manim_mindmap import *
+   from manim_extensions.mindmap import *
 
 Inserting nodes into a mind map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -103,7 +87,7 @@ The ``layout_type`` argument of the animation classes accepts:
 API reference
 -------------
 
-.. automodule:: manim_mindmap
+.. automodule:: manim_extensions.mindmap
    :members:
    :undoc-members:
    :show-inheritance:

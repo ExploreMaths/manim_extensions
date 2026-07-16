@@ -9,9 +9,9 @@ manim-compass
 
 ``manim-compass`` provides compass-and-straightedge construction tools for
 Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
-animation classes. The code is included as a Git submodule under
-``third_party/manim-compass``. The submodule points to an ExploreMaths fork that
-adds extra docstrings to the original code while keeping all logic unchanged.
+animation classes. The code is bundled inside ``manim_extensions`` as the
+``manim_extensions.compass`` subpackage and is also kept as a Git submodule
+under ``third_party/manim-compass``.
 
 Features
 --------
@@ -26,31 +26,15 @@ Features
 - ``CompassScene`` – a convenience ``Scene`` subclass pre-equipped with a
   compass, ruler, and pencil.
 
-Installation
-------------
-
-Install from PyPI:
-
-.. code-block:: bash
-
-   pip install manim-compass
-
-Or use the local submodule:
-
-.. code-block:: bash
-
-   git submodule update --init third_party/manim-compass
-   pip install -e third_party/manim-compass
-
 Quick start
 -----------
 
-Import the plugin:
+Import directly from ``manim_extensions``:
 
 .. code-block:: python
 
    from manim import *
-   from manim_compass import *
+   from manim_extensions.compass import *
 
 Compass example
 ^^^^^^^^^^^^^^^
@@ -93,7 +77,7 @@ example.
 API reference
 -------------
 
-.. automodule:: manim_compass
+.. automodule:: manim_extensions.compass
    :members:
    :undoc-members:
    :show-inheritance:

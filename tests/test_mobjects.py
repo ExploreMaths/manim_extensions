@@ -51,7 +51,7 @@ class TestMathTexLine:
 
 class TestMathTexBrace:
     def test_creation(self):
-        formula = MathTex("\\Delta x")
+        formula = MathTex(r"\Delta x")
         target = Line(LEFT, RIGHT)
         obj = MathTexBrace(target, formula, direction=UP, buff=0.3)
         assert isinstance(obj, VGroup)
@@ -60,7 +60,7 @@ class TestMathTexBrace:
 
 class TestMathTexDoublearrow:
     def test_creation(self):
-        formula = MathTex("\\Leftrightarrow")
+        formula = MathTex(r"\Leftrightarrow")
         obj = MathTexDoublearrow(formula, direction=DOWN, buff=0.4)
         assert isinstance(obj, VGroup)
         assert len(obj.submobjects) == 2

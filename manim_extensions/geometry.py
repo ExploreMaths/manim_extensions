@@ -7,15 +7,32 @@ from typing import Optional, Tuple, Union
 def CircleInt(
     circle1: Circle, circle2: Circle
 ) -> Optional[Tuple[list[float], list[float]]]:
-    """计算两个圆的交点。
+    """Compute the intersection points of two circles.
 
-    Args:
-        circle1: 第一个圆。
-        circle2: 第二个圆。
+    Solves the geometric intersection of two circles in the XY‑plane.
 
-    Returns:
-        若两圆相交，返回包含两个交点坐标的元组，每个坐标为 ``[x, y, 0]``；
-        若不相交，返回 ``None``。
+    Parameters
+    ----------
+    circle1 : :class:`manim.Circle`
+        The first circle.
+    circle2 : :class:`manim.Circle`
+        The second circle.
+
+    Returns
+    -------
+    Optional[Tuple[list[float], list[float]]]
+        A tuple ``(point1, point2)`` where each point is ``[x, y, 0]`` if the
+        circles intersect; otherwise ``None``.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import CircleInt
+
+        c1 = Circle(radius=2).shift(LEFT)
+        c2 = Circle(radius=2).shift(RIGHT)
+        result = CircleInt(c1, c2)  # ([x1, y1, 0], [x2, y2, 0]) or None
     """
     circle1_center = circle1.get_center()
     circle1_radius = circle1.radius
@@ -40,18 +57,36 @@ def CircleInt(
 def LineCircleInt(
     line: Line, circle: Circle
 ) -> Optional[Union[Tuple[np.ndarray, np.ndarray], np.ndarray]]:
-    """计算线段与圆的交点。
+    """Compute the intersection points of a line segment and a circle.
 
-    仅返回落在线段参数范围 ``[0, 1]`` 内的交点。
+    Only points that lie within the segment parameter range ``[0, 1]``
+    are returned.
 
-    Args:
-        line: 线段。
-        circle: 圆。
+    Parameters
+    ----------
+    line : :class:`manim.Line`
+        The line segment.
+    circle : :class:`manim.Circle`
+        The circle.
 
-    Returns:
-        若有两个交点，返回两个交点坐标的元组；
-        若有一个交点，返回该交点坐标；
-        若无交点，返回 ``None``。
+    Returns
+    -------
+    Optional[Union[Tuple[numpy.ndarray, numpy.ndarray], numpy.ndarray]]
+        * Two intersection points as a tuple if the segment cuts the circle
+          twice.
+        * A single :class:`numpy.ndarray` if the segment is tangent to the
+          circle.
+        * ``None`` if there is no intersection.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import LineCircleInt
+
+        line = Line(LEFT * 3, RIGHT * 3)
+        circle = Circle(radius=1)
+        result = LineCircleInt(line, circle)
     """
     p1 = line.get_start()
     p2 = line.get_end()
@@ -82,18 +117,33 @@ def LineCircleInt(
 
 
 def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
-    """计算两条线段的交点。
+    """Compute the intersection of two (infinitely extended) lines.
 
-    在二维平面上计算两条无限延长线段的交点
-    （返回结果不限制在线段端点范围内）。
+    Calculates the intersection point in the 2‑D plane.  The result is
+    **not** restricted to the segment endpoints.
 
-    Args:
-        line1: 第一条线段。
-        line2: 第二条线段。
+    Parameters
+    ----------
+    line1 : :class:`manim.Line`
+        The first line.
+    line2 : :class:`manim.Line`
+        The second line.
 
-    Returns:
-        若两直线相交，返回交点坐标 ``[x, y, 0]``；
-        若平行，返回 ``None``。
+    Returns
+    -------
+    Optional[list[float]]
+        The intersection point ``[x, y, 0]`` if the lines are not parallel;
+        otherwise ``None``.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import LineInt
+
+        l1 = Line(LEFT, RIGHT)
+        l2 = Line(DOWN, UP)
+        result = LineInt(l1, l2)  # [0.0, 0.0, 0] or None
     """
 
     def det(a: tuple[float, float], b: tuple[float, float]) -> float:
@@ -117,16 +167,35 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
 def LineArcInt(
     line: Line, arc: Arc
 ) -> Optional[Union[Tuple[list[float], list[float]], list[float]]]:
-    """计算线段与圆弧的交点。
+    """Compute the intersection points of a line segment and an arc.
 
-    Args:
-        line: 线段。
-        arc: 圆弧。
+    The function checks whether each candidate intersection point actually
+    lies within the angular span of the arc.
 
-    Returns:
-        若有两个交点，返回两个交点坐标的元组；
-        若有一个交点，返回该交点坐标列表；
-        若无交点，返回 ``None``。
+    Parameters
+    ----------
+    line : :class:`manim.Line`
+        The line segment.
+    arc : :class:`manim.Arc`
+        The arc.
+
+    Returns
+    -------
+    Optional[Union[Tuple[list[float], list[float]], list[float]]]
+        * A tuple of two points ``([x1, y1, 0], [x2, y2, 0])`` for two
+          intersections.
+        * A single point ``[x, y, 0]`` for one intersection.
+        * ``None`` if there is no intersection.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import LineArcInt
+
+        line = Line(LEFT, RIGHT)
+        arc = Arc(start_angle=0, angle=np.pi, radius=1)
+        result = LineArcInt(line, arc)
     """
     # 获取线段起点和终点（仅x,y坐标）
     p1 = line.start[:2]
@@ -225,17 +294,39 @@ def TangentPoint(
     line_start: Union[np.ndarray, tuple, list],
     line_end: Union[np.ndarray, tuple, list],
 ) -> Optional[np.ndarray]:
-    """计算以两点为圆上点且与线段相切的切点坐标。
+    """Compute the tangent point of a circle through two points and a line.
 
-    Args:
-        p1: 圆上的第一个点，格式为 ``(x, y)`` 或 ``(x, y, z)``。
-        p2: 圆上的第二个点，格式为 ``(x, y)`` 或 ``(x, y, z)``。
-        line_start: 线段的起点，格式为 ``(x, y)`` 或 ``(x, y, z)``。
-        line_end: 线段的终点，格式为 ``(x, y)`` 或 ``(x, y, z)``。
+    Given two points *p1* and *p2* that lie on a circle, and a line segment
+    defined by *line_start* and *line_end*, this function finds the point
+    on the line segment where the circle is tangent to the line.
 
-    Returns:
-        切点坐标 ``(x, y, 0)`` 的 numpy 数组；
-        若无法计算则返回 ``None``。
+    Parameters
+    ----------
+    p1 : Union[numpy.ndarray, tuple, list]
+        First point on the circle, as ``(x, y)`` or ``(x, y, z)``.
+    p2 : Union[numpy.ndarray, tuple, list]
+        Second point on the circle, as ``(x, y)`` or ``(x, y, z)``.
+    line_start : Union[numpy.ndarray, tuple, list]
+        Start point of the line segment, as ``(x, y)`` or ``(x, y, z)``.
+    line_end : Union[numpy.ndarray, tuple, list]
+        End point of the line segment, as ``(x, y)`` or ``(x, y, z)``.
+
+    Returns
+    -------
+    Optional[numpy.ndarray]
+        The tangent point ``(x, y, 0)`` as a :class:`numpy.ndarray`, or
+        ``None`` if no valid tangent point exists.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import TangentPoint
+
+        p = TangentPoint(
+            [1, 0, 0], [-1, 0, 0],
+            line_start=[0, -2, 0], line_end=[0, 2, 0]
+        )
     """
 
     def to_3d(point: Union[np.ndarray, tuple, list]) -> np.ndarray:

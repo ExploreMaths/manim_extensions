@@ -11,47 +11,29 @@ manim-GearBox
 mechanisms. The geometry is based on the `tec-science involute gear article
 <https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
 
-The code is included in this repository as a Git submodule under
-``third_party/manim-GearBox``. The submodule points to an ExploreMaths fork that
-adds extra docstrings to the original code while keeping all logic unchanged.
+The code is bundled inside ``manim_extensions`` as the ``manim_extensions.gearbox``
+subpackage and is also kept as a Git submodule under ``third_party/manim-GearBox``.
 
 Features
 --------
 
-- Basic spur gears (:class:`Gear`)
+- Basic spur gears (:class:`~manim_extensions.gearbox.Gear`)
 - Inside ring-gears (``inner_teeth=True``)
-- Basic rack (:class:`Rack`)
+- Basic rack (:class:`~manim_extensions.gearbox.Rack`)
 - Undercutting for gears with fewer than 17 teeth
 - Profile-shifted gears
-- Meshing calculation with distance variation via :meth:`Gear.mesh_to`
-
-Installation
-------------
-
-Install from PyPI:
-
-.. code-block:: bash
-
-   pip install manim-gearbox
-
-Or use the local submodule:
-
-.. code-block:: bash
-
-   git submodule update --init third_party/manim-GearBox
-   pip install -e third_party/manim-GearBox
-
-Both methods require Manim and SciPy.
+- Meshing calculation with distance variation via :meth:`~manim_extensions.gearbox.Gear.mesh_to`
 
 Quick start
 -----------
 
-Import Manim and the plugin at the top of your scene:
+Because the module is included in ``manim_extensions``, you can import it
+directly:
 
 .. code-block:: python
 
    from manim import *
-   from manim_gearbox import *
+   from manim_extensions.gearbox import *
 
 A common rendering style is ``stroke_opacity=0`` and ``fill_opacity=1``,
 because the stroke slightly enlarges the gear and can look like interference.
@@ -104,7 +86,7 @@ Inner ring gear
 API reference
 -------------
 
-.. automodule:: manim_gearbox
+.. automodule:: manim_extensions.gearbox
    :members:
    :undoc-members:
    :show-inheritance:

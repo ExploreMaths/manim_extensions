@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "manim_extensions"
-version = "1.0.1"
+version = "1.0.2"
 description = "A package for tools and extensions in Manim"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "Zhu Chongjing", email = "zhuchongjing_pypi@163.com"},
+    {name = "ExploreMaths"},
 ]
 keywords = ["manim", "animation", "math", "latex", "geometry"]
 classifiers = [
@@ -35,10 +35,17 @@ dependencies = [
 dev = [
     "pytest>=7.0",
 ]
+docs = [
+    "sphinx>=7.0",
+    "furo>=2024.0",
+    "sphinx-autodoc-typehints>=2.0",
+]
 
 [project.urls]
-Homepage = "https://github.com/zhuchongjing/manim_extensions"
-Issues = "https://github.com/zhuchongjing/manim_extensions/issues"
+Homepage = "https://github.com/ExploreMaths/manim_extensions"
+Issues = "https://github.com/ExploreMaths/manim_extensions/issues"
 
-[tool.setuptools]
-packages = ["manim_extensions"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["manim_extensions*"]
+exclude = ["tests*"]

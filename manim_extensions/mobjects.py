@@ -5,17 +5,39 @@ from typing import Any, Union
 
 
 class ChineseMathTex(MathTex):
-    """支持中文显示的 MathTex 类。
+    r"""A :class:`manim.MathTex` subclass that supports Chinese characters.
 
-    自动将输入文本中的中文字符用 ``\\text{}`` 包裹，
-    并配置 ``xelatex`` 与 ``xeCJK`` 宏包以支持中文字体渲染。
+    Automatically wraps Chinese characters in ``\text{}`` and configures
+    ``xelatex`` with the ``xeCJK`` package so that CJK fonts are rendered
+    correctly.
 
-    Args:
-        *texts: 要渲染的 LaTeX 文本字符串。
-        font: 中文字体名称。默认为 ``"SimSun"``。
-        tex_to_color_map: 文本到颜色的映射字典。默认为 ``{}``。
-        **kwargs: 传递给 ``MathTex`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.ChineseMathTex
+       :parts: 1
+
+    Parameters
+    ----------
+    *texts : str
+        LaTeX text strings to render.
+    font : str, optional
+        Name of the Chinese font to use. Defaults to ``"SimSun"``.
+    tex_to_color_map : dict, optional
+        Mapping from text substrings to colours. Defaults to ``{}``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.MathTex`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import ChineseMathTex
+
+        formula = ChineseMathTex(
+            r"\frac{1}{2} + \text{你好} = x",
+            font="SimSun",
+            tex_to_color_map={r"\text{你好}": RED},
+        )
     """
+
 
     def __init__(
         self,
@@ -66,16 +88,41 @@ class ChineseMathTex(MathTex):
 
 
 class LabelDot(VGroup):
-    """带标签的圆点。
+    """A dot with a :class:`manim.MathTex` label.
 
-    在指定位置创建一个圆点，并在其旁边添加 MathTex 标签。
+    Creates a :class:`manim.Dot` at the given position and places a
+    :class:`manim.MathTex` label next to it.
 
-    Args:
-        dot_label: 标签文本内容。
-        dot_pos: 圆点的位置坐标。
-        label_pos: 标签相对圆点的方向。默认为 ``DOWN``。
-        buff: 标签与圆点之间的间距。默认为 0.1。
-        **kwargs: 传递给 ``VGroup`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.LabelDot
+       :parts: 1
+
+    Parameters
+    ----------
+    dot_label : str
+        Text content of the label.
+    dot_pos : numpy.ndarray
+        Position of the dot.
+    label_pos : numpy.ndarray, optional
+        Direction of the label relative to the dot. Defaults to ``DOWN``.
+    buff : float, optional
+        Buffer between the label and the dot. Defaults to ``0.1``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.VGroup`.
+
+    Attributes
+    ----------
+    dot : :class:`manim.Dot`
+        The underlying dot mobject.
+    dot_pos : numpy.ndarray
+        The position of the dot.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import LabelDot
+
+        dot = LabelDot("A", [1, 2, 0], label_pos=UP, buff=0.2)
     """
 
     def __init__(
@@ -101,15 +148,32 @@ class LabelDot(VGroup):
 
 
 class MathTexLine(VGroup):
-    """带 MathTex 公式的线段。
+    """A line segment paired with a :class:`manim.MathTex` formula.
 
-    创建一条线段，并在其指定方向旁放置一个 MathTex 公式。
+    Creates a :class:`manim.Line` and places a :class:`manim.MathTex`
+    formula next to it in the specified direction.
 
-    Args:
-        formula: 要放置的 MathTex 公式对象。
-        direction: 公式相对线段的方向。默认为 ``UP``。
-        buff: 公式与线段之间的间距。默认为 0.5。
-        **kwargs: 传递给 ``Line`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.MathTexLine
+       :parts: 1
+
+    Parameters
+    ----------
+    formula : :class:`manim.MathTex`
+        The formula to place beside the line.
+    direction : numpy.ndarray, optional
+        Direction of the formula relative to the line. Defaults to ``UP``.
+    buff : float, optional
+        Buffer between the formula and the line. Defaults to ``0.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.Line`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import MathTexLine
+
+        line = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE)
     """
 
     def __init__(
@@ -126,16 +190,36 @@ class MathTexLine(VGroup):
 
 
 class MathTexBrace(VGroup):
-    """带 MathTex 公式的花括号。
+    r"""A brace with a :class:`manim.MathTex` formula.
 
-    为指定对象创建一个花括号，并在其旁边放置一个 MathTex 公式。
+    Creates a :class:`manim.Brace` around a target mobject and places a
+    :class:`manim.MathTex` formula next to the brace.
 
-    Args:
-        target: 要被花括号标注的目标对象（如线段、矩形等）。
-        formula: 要放置的 MathTex 公式对象。
-        direction: 公式与花括号相对目标的方向。默认为 ``UP``。
-        buff: 公式与花括号之间的间距。默认为 0.5。
-        **kwargs: 传递给 ``Brace`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.MathTexBrace
+       :parts: 1
+
+    Parameters
+    ----------
+    target : :class:`manim.mobject.mobject.Mobject`
+        The mobject to be braced (e.g. a line, rectangle, etc.).
+    formula : :class:`manim.MathTex`
+        The formula to place beside the brace.
+    direction : numpy.ndarray, optional
+        Direction of the brace and formula relative to the target.
+        Defaults to ``UP``.
+    buff : float, optional
+        Buffer between the formula and the brace. Defaults to ``0.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.Brace`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import MathTexBrace
+
+        line = Line(LEFT, RIGHT)
+        brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
     """
 
     def __init__(
@@ -153,15 +237,33 @@ class MathTexBrace(VGroup):
 
 
 class MathTexDoublearrow(VGroup):
-    """带 MathTex 公式的双向箭头。
+    r"""A double arrow with a :class:`manim.MathTex` formula.
 
-    创建一个双向箭头，并在其指定方向旁放置一个 MathTex 公式。
+    Creates a :class:`manim.DoubleArrow` and places a :class:`manim.MathTex`
+    formula next to it in the specified direction.
 
-    Args:
-        formula: 要放置的 MathTex 公式对象。
-        direction: 公式相对双向箭头的方向。默认为 ``UP``。
-        buff: 公式与双向箭头之间的间距。默认为 0.5。
-        **kwargs: 传递给 ``DoubleArrow`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.MathTexDoublearrow
+       :parts: 1
+
+    Parameters
+    ----------
+    formula : :class:`manim.MathTex`
+        The formula to place beside the double arrow.
+    direction : numpy.ndarray, optional
+        Direction of the formula relative to the double arrow.
+        Defaults to ``UP``.
+    buff : float, optional
+        Buffer between the formula and the double arrow. Defaults to ``0.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.DoubleArrow`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import MathTexDoublearrow
+
+        arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN)
     """
 
     def __init__(
@@ -178,14 +280,41 @@ class MathTexDoublearrow(VGroup):
 
 
 class PerpendicularLine(Line):
-    """过指定点作线段所在直线的垂线段。
+    """A perpendicular line segment from a point to a given line.
 
-    自动计算给定点在目标线段所在直线上的垂足，并创建从该点到垂足的线段。
+    Computes the foot of the perpendicular from *point* onto *line* and
+    creates a :class:`manim.Line` from *point* to that foot.
 
-    Args:
-        point: 给定点坐标或 Mobject。
-        line: 目标线段。
-        **kwargs: 传递给 ``Line`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularLine
+       :parts: 1
+
+    Parameters
+    ----------
+    point : Union[numpy.ndarray, tuple, list, :class:`manim.mobject.mobject.Mobject`]
+        The point from which the perpendicular is dropped.  If an
+        :class:`manim.Mobject` is given, its centre is used.
+    line : :class:`manim.Line`
+        The target line.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.Line`.
+
+    Attributes
+    ----------
+    point : numpy.ndarray
+        The 3‑D point from which the perpendicular is drawn.
+    target_line : :class:`manim.Line`
+        The line onto which the perpendicular is dropped.
+    foot : numpy.ndarray
+        The foot of the perpendicular on *target_line*.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import PerpendicularLine
+
+        line = Line(LEFT, RIGHT)
+        perp = PerpendicularLine(UP, line)
     """
 
     def __init__(
@@ -215,14 +344,32 @@ class PerpendicularLine(Line):
 
 
 class ExtendedLine(Line):
-    """可延长的线段。
+    """A line segment extended at both ends.
 
-    基于一条已有的 ``Line``，在其两端按原方向各延长指定距离。
+    Takes an existing :class:`manim.Line` and extends it by
+    *extend_distance* along its original direction on both sides.
+    The style of the original line is preserved.
 
-    Args:
-        line: 作为基准的原始线段。
-        extend_distance: 两端各延长的距离。
-        **kwargs: 传递给 ``Line`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.ExtendedLine
+       :parts: 1
+
+    Parameters
+    ----------
+    line : :class:`manim.Line`
+        The original line segment to extend.
+    extend_distance : float
+        Distance to extend at each end.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.Line`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import ExtendedLine
+
+        original = Line(LEFT, RIGHT)
+        extended = ExtendedLine(original, extend_distance=1.0, color=RED)
     """
 
     def __init__(self, line: Line, extend_distance: float, **kwargs) -> None:
@@ -241,19 +388,46 @@ class ExtendedLine(Line):
 
 
 class PerpendicularSign(VGroup):
-    """垂直符号（直角折角）。
+    """A right‑angle (perpendicular) sign.
 
-    在两条线的交点处绘制一个直角符号，表示两线垂直。
-    符号由两条短线段组成，形成一个L形折角。
+    Draws a small L‑shaped corner at the intersection of two lines to
+    indicate that they are perpendicular.  The sign consists of two short
+    line segments.
 
-    Args:
-        line1: 第一条线。
-        line2: 第二条线。
-        length: 折角每段的长度。默认为 0.25。
-        corner_direction: 指定折角画在哪一侧的方向向量。
-            折角会放置在该方向对应的象限中。若不指定，则自动选择
-            指向两条线段较近端点的那一侧。
-        **kwargs: 传递给 ``VGroup`` 的其他关键字参数。
+    .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularSign
+       :parts: 1
+
+    Parameters
+    ----------
+    line1 : :class:`manim.Line`
+        The first line.
+    line2 : :class:`manim.Line`
+        The second line.
+    length : float, optional
+        Length of each leg of the corner. Defaults to ``0.25``.
+    corner_direction : Union[numpy.ndarray, tuple, list, None], optional
+        A direction vector that selects on which side of the intersection
+        the corner is drawn.  If ``None`` (the default), the side that
+        points toward the nearer endpoints of the two lines is chosen
+        automatically.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.VGroup`.
+
+    Attributes
+    ----------
+    intersection : numpy.ndarray
+        The 3‑D intersection point of the two lines.  If the lines are
+        parallel this attribute is not set.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions import PerpendicularSign
+
+        line1 = Line(LEFT, RIGHT)
+        line2 = Line(DOWN, UP)
+        sign = PerpendicularSign(line1, line2, length=0.2)
     """
 
     def __init__(
@@ -315,7 +489,7 @@ class PerpendicularSign(VGroup):
     def _get_both_directions(
         self, line: Line, point: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray]:
-        """返回从交点指向线段两个端点的单位方向向量。"""
+        """Return the two unit direction vectors from *point* toward the line's endpoints."""
         start = line.get_start()
         end = line.get_end()
         d1 = start - point
@@ -341,7 +515,7 @@ class PerpendicularSign(VGroup):
         dirs2: tuple[np.ndarray, np.ndarray],
         corner_direction: Union[np.ndarray, tuple, list, None],
     ) -> tuple[np.ndarray, np.ndarray]:
-        """根据 corner_direction 选择最佳的两侧方向。"""
+        """Select the best pair of directions based on *corner_direction*."""
         candidates = []
         for d1 in dirs1:
             for d2 in dirs2:
