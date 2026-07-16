@@ -12,7 +12,8 @@ mechanisms. The geometry is based on the `tec-science involute gear article
 <https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
 
 The code is included in this repository as a Git submodule under
-``third_party/manim-GearBox``.
+``third_party/manim-GearBox``. The submodule points to an ExploreMaths fork that
+adds extra docstrings to the original code while keeping all logic unchanged.
 
 Features
 --------

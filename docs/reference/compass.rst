@@ -10,7 +10,8 @@ manim-compass
 ``manim-compass`` provides compass-and-straightedge construction tools for
 Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
 animation classes. The code is included as a Git submodule under
-``third_party/manim-compass``.
+``third_party/manim-compass``. The submodule points to an ExploreMaths fork that
+adds extra docstrings to the original code while keeping all logic unchanged.
 
 Features
 --------

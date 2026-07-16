@@ -9,7 +9,8 @@ manim-mindmap
 
 ``manim-mindmap`` adds mind-map, timeline, and catalog / organisation-chart
 diagrams to Manim. It is included as a Git submodule under
-``third_party/manim-mindmap``.
+``third_party/manim-mindmap``. The submodule points to an ExploreMaths fork that
+adds extra docstrings to the original code while keeping all logic unchanged.
 
 Features
 --------
