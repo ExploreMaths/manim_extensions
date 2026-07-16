@@ -1,0 +1,9 @@
+[submodule "third_party/manim-GearBox"]
+	path = third_party/manim-GearBox
+	url = https://github.com/GarryBGoode/manim-GearBox.git
+[submodule "third_party/manim-mindmap"]
+	path = third_party/manim-mindmap
+	url = https://github.com/jj-math/manim-mindmap.git
+[submodule "third_party/manim-compass"]
+	path = third_party/manim-compass
+	url = https://github.com/jj-math/manim-compass.git
