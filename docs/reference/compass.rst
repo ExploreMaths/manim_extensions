@@ -5,9 +5,25 @@ manim-compass
 
 **Source repository:** https://github.com/jj-math/manim-compass
 
-This plugin provides compass-and-straightedge construction tools for Manim:
-``Compass``, ``Ruler``, ``Pencil`` mobjects plus matching animation classes. It
-is included in this repository as a Git submodule for reference and easy access.
+**License:** MIT (see the upstream repository for the full license text)
+
+``manim-compass`` provides compass-and-straightedge construction tools for
+Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
+animation classes. The code is included as a Git submodule under
+``third_party/manim-compass``.
+
+Features
+--------
+
+- ``Compass`` mobject and compass animations:
+  ``MoveNiddleTipTo``, ``RotateCompass``, ``SplitCompass``, ``PutCompass``,
+  ``PutCompassAway``, ``DrawArc``.
+- ``Pencil`` mobject and pencil animations:
+  ``MovePencilTipTo``, ``PutPencilAway``, ``MovePencilAlongPath``, ``DrawPath``.
+- ``Ruler`` mobject and ruler animations:
+  ``PutRuler``, ``PutRulerAway``.
+- ``CompassScene`` – a convenience ``Scene`` subclass pre-equipped with a
+  compass, ruler, and pencil.
 
 Installation
 ------------
@@ -18,26 +34,25 @@ Install from PyPI:
 
    pip install manim-compass
 
-Import in your scene:
+Or use the local submodule:
+
+.. code-block:: bash
+
+   git submodule update --init third_party/manim-compass
+   pip install -e third_party/manim-compass
+
+Quick start
+-----------
+
+Import the plugin:
 
 .. code-block:: python
 
+   from manim import *
    from manim_compass import *
 
-Compass animations
-------------------
-
-- ``MoveNiddleTipTo(compass, point)`` – move the compass so its needle tip lands
-  at ``point``.
-- ``RotateCompass(compass, angle)`` – rotate around the needle tip.
-- ``SplitCompass(compass, span)`` – open/close the compass to ``span``.
-- ``PutCompass(compass, niddle_pos, pen_pos)`` – place both tips at given
-  positions.
-- ``PutCompassAway(compass, point, span_buff)`` – put the compass away.
-- ``DrawArc(compass, arc)`` – draw an arc with the compass.
-
-Example: moving and opening a compass
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Compass example
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -48,17 +63,8 @@ Example: moving and opening a compass
            self.play(SplitCompass(compass, 2))
            self.play(RotateCompass(compass, PI / 2))
 
-Pencil and ruler animations
----------------------------
-
-- ``MovePencilTipTo(pencil, point)`` – move the pencil by its tip.
-- ``MovePencilAlongPath(pencil, path)`` – slide the pencil tip along a path.
-- ``DrawPath(pencil, path)`` – draw a path with the pencil.
-- ``PutRuler(ruler, start, end)`` – align a ruler between two points.
-- ``PutRulerAway(ruler, point, is_flat)`` – put the ruler away.
-
-Example: drawing a line with ruler and pencil
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Drawing a line with ruler and pencil
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -74,13 +80,22 @@ Example: drawing a line with ruler and pencil
            )
            self.play(DrawPath(pencil, path))
 
-``CompassScene``
-----------------
+Using ``CompassScene``
+^^^^^^^^^^^^^^^^^^^^^^
 
-For complete construction scenes, the plugin also provides ``CompassScene``, a
-subclass of ``Scene`` that pre-loads a compass, ruler, and pencil and exposes
-convenience methods such as ``draw_arc`` and ``draw_line``. See the demo file in
-the upstream repository for a full example.
+For more involved constructions, inherit from ``CompassScene`` instead of
+``Scene``. It exposes ready-to-use ``compass``, ``ruler`` and ``pencil``
+attributes plus helper methods such as ``draw_arc`` and ``draw_line``. See the
+``demo/compass_scene_demo.py`` file in the upstream repository for a complete
+example.
+
+API reference
+-------------
+
+.. automodule:: manim_compass
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 See the `original README <https://github.com/jj-math/manim-compass/blob/main/README.md>`_
-for full details and animated examples.
+for full animated examples and further details.

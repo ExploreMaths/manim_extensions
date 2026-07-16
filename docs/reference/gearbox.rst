@@ -5,47 +5,58 @@ manim-GearBox
 
 **Source repository:** https://github.com/GarryBGoode/manim-GearBox
 
-This plugin adds realistic-looking involute gears and mechanisms to Manim.
-It is included in this repository as a Git submodule for reference and easy
-access.
+**License:** MIT (see the upstream repository for the full license text)
+
+``manim-GearBox`` is a Manim plugin for drawing realistic involute gears and
+mechanisms. The geometry is based on the `tec-science involute gear article
+<https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
+
+The code is included in this repository as a Git submodule under
+``third_party/manim-GearBox``.
 
 Features
 --------
 
-- Basic spur gears
-- Inside ring-gears
-- Basic rack
-- Undercutting (gears with fewer than 17 teeth)
+- Basic spur gears (:class:`Gear`)
+- Inside ring-gears (``inner_teeth=True``)
+- Basic rack (:class:`Rack`)
+- Undercutting for gears with fewer than 17 teeth
 - Profile-shifted gears
-- Meshing calculation with distance variation
+- Meshing calculation with distance variation via :meth:`Gear.mesh_to`
 
 Installation
 ------------
 
-The package is available on PyPI:
+Install from PyPI:
 
 .. code-block:: bash
 
    pip install manim-gearbox
 
-It depends on Manim and SciPy.
+Or use the local submodule:
 
-Usage
------
+.. code-block:: bash
 
-Import both Manim and the plugin at the top of your scene file:
+   git submodule update --init third_party/manim-GearBox
+   pip install -e third_party/manim-GearBox
+
+Both methods require Manim and SciPy.
+
+Quick start
+-----------
+
+Import Manim and the plugin at the top of your scene:
 
 .. code-block:: python
 
    from manim import *
    from manim_gearbox import *
 
-Create ``Gear`` objects and use ``mesh_to()`` to position two gears into mesh.
-A common rendering style is to set ``stroke_opacity=0`` and ``fill_opacity=1``,
+A common rendering style is ``stroke_opacity=0`` and ``fill_opacity=1``,
 because the stroke slightly enlarges the gear and can look like interference.
 
-Example: two meshing gears
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Two meshing gears
+^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -63,8 +74,8 @@ Example: two meshing gears
                run_time=4,
            )
 
-Example: inner ring gear
-^^^^^^^^^^^^^^^^^^^^^^^^
+Inner ring gear
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -89,5 +100,13 @@ Example: inner ring gear
                run_time=10,
            )
 
+API reference
+-------------
+
+.. automodule:: manim_gearbox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 See the `original README <https://github.com/GarryBGoode/manim-GearBox/blob/main/README.md>`_
-for full details and animated examples.
+for animated examples and further details.

@@ -5,8 +5,22 @@ manim-mindmap
 
 **Source repository:** https://github.com/jj-math/manim-mindmap
 
-This plugin brings mind-map, timeline, and catalog diagrams to Manim. It is
-included in this repository as a Git submodule for reference and easy access.
+**License:** MIT (see the upstream repository for the full license text)
+
+``manim-mindmap`` adds mind-map, timeline, and catalog / organisation-chart
+diagrams to Manim. It is included as a Git submodule under
+``third_party/manim-mindmap``.
+
+Features
+--------
+
+- ``Node`` – the basic tree-node class.
+- ``MindMap`` / ``StandardMap`` – mind-map classes with multiple layout directions.
+- ``CatalogMap`` – organisation / directory-structure diagrams.
+- ``TimeLine`` – timeline diagrams.
+- Animation helpers: ``LayoutAnimation``, ``InsertNode``, ``RemoveNode``,
+  ``ScaleNode``, ``AlterNode``.
+- Styling / layout options: ``NodeStyle``, ``LayoutType``, ``LayoutConfig``.
 
 Installation
 ------------
@@ -17,24 +31,25 @@ Install from PyPI:
 
    pip install manim-mindmap
 
-Then import it in your Manim scene:
+Or use the local submodule:
+
+.. code-block:: bash
+
+   git submodule update --init third_party/manim-mindmap
+   pip install -e third_party/manim-mindmap
+
+Quick start
+-----------
+
+Import the plugin in your scene:
 
 .. code-block:: python
 
+   from manim import *
    from manim_mindmap import *
 
-Main classes
-------------
-
-- ``Node`` – the basic node class.
-- ``MindMap`` / ``StandardMap`` – mind-map classes with several layout directions.
-- ``CatalogMap`` – organisation / directory-structure diagrams.
-- ``TimeLine`` – timeline diagrams.
-- ``LayoutAnimation``, ``InsertNode``, ``RemoveNode``, ``ScaleNode``, ``AlterNode`` – layout and animation helpers.
-- ``NodeStyle``, ``LayoutType``, ``LayoutConfig`` – styling and layout options.
-
-Example: inserting nodes into a mind map
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Inserting nodes into a mind map
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -42,20 +57,18 @@ Example: inserting nodes into a mind map
        def construct(self):
            self.camera.frame.set_width(25).move_to(RIGHT)
 
-           root = Node(Tex("球体积").to_edge(LEFT))
-           a1 = Node(Tex("公元前3世纪"))
-           a2 = Node(Tex("公元3世纪"))
-           a3 = Node(Tex("公元5世纪"))
-           a4 = Node(Tex("公元17世纪"))
-           a5 = Node(Tex("公元18世纪"))
+           root = Node(Tex("Root").to_edge(LEFT))
+           a1 = Node(Tex("A1"))
+           a2 = Node(Tex("A2"))
+           a3 = Node(Tex("A3"))
 
            self.play(
-               InsertNode(self, {root: [a1, a2, a3, a4, a5]}),
+               InsertNode(self, {root: [a1, a2, a3]}),
                run_time=2,
            )
 
-Example: building a tree with ``LayoutAnimation``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building a tree with ``LayoutAnimation``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -63,20 +76,36 @@ Example: building a tree with ``LayoutAnimation``
        def construct(self):
            self.camera.frame.set_width(25).move_to(RIGHT)
 
-           root = Node(Tex("球体积").to_edge(LEFT))
-           a1 = Node(Tex("公元前3世纪"))
-           a2 = Node(Tex("公元3世纪"))
-           a3 = Node(Tex("公元5世纪"))
+           root = Node(Tex("Root").to_edge(LEFT))
+           a1 = Node(Tex("A1"))
+           a2 = Node(Tex("A2"))
+           a21 = Node(Tex("A2-1"))
+           a22 = Node(Tex("A2-2"))
 
-           for a in [a1, a2, a3]:
-               root.add_child(a)
-
-           a21 = Node(Tex("《九章算术》"))
-           a22 = Node(Tex("刘徽：牟合方盖"))
+           root.add_child(a1)
+           root.add_child(a2)
            a2.add_child(a21)
            a2.add_child(a22)
 
            self.play(LayoutAnimation(self, root))
 
-For the full API, layout types, and animated demos, see the
-`original README <https://github.com/jj-math/manim-mindmap/blob/main/README.md>`_.
+Layout types
+^^^^^^^^^^^^
+
+The ``layout_type`` argument of the animation classes accepts:
+
+- ``LayoutType.MindMap`` – default mind-map layout.
+- ``LayoutType.Standard`` – left/right or top/bottom two-sided layout.
+- ``LayoutType.TimeLine`` – timeline layout.
+- ``LayoutType.Catalog`` – top-down catalog / directory layout.
+
+API reference
+-------------
+
+.. automodule:: manim_mindmap
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+See the `original README <https://github.com/jj-math/manim-mindmap/blob/main/README.md>`_
+for full animated demos and the complete API.
