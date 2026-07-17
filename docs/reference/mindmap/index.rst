@@ -36,16 +36,18 @@ Import directly from ``manim_extensions``:
 Inserting nodes into a mind map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. manim:: MindMapInsertExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.mindmap import Node, InsertNode
 
    class MindMapInsertExample(Scene):
        def construct(self):
-           self.camera.frame.set_width(25).move_to(RIGHT)
-
-           root = Node(Tex("Root").to_edge(LEFT))
-           a1 = Node(Tex("A1"))
-           a2 = Node(Tex("A2"))
-           a3 = Node(Tex("A3"))
+           root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+           a1 = Node(MathTex("A1", font_size=36))
+           a2 = Node(MathTex("A2", font_size=36))
+           a3 = Node(MathTex("A3", font_size=36))
 
            self.play(
                InsertNode(self, {root: [a1, a2, a3]}),
@@ -55,17 +57,19 @@ Inserting nodes into a mind map
 Building a tree with ``LayoutAnimation``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. manim:: LayoutAnimationExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.mindmap import Node, LayoutAnimation
 
    class LayoutAnimationExample(Scene):
        def construct(self):
-           self.camera.frame.set_width(25).move_to(RIGHT)
-
-           root = Node(Tex("Root").to_edge(LEFT))
-           a1 = Node(Tex("A1"))
-           a2 = Node(Tex("A2"))
-           a21 = Node(Tex("A2-1"))
-           a22 = Node(Tex("A2-2"))
+           root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+           a1 = Node(MathTex("A1", font_size=36))
+           a2 = Node(MathTex("A2", font_size=36))
+           a21 = Node(MathTex("A2-1", font_size=36))
+           a22 = Node(MathTex("A2-2", font_size=36))
 
            root.add_child(a1)
            root.add_child(a2)

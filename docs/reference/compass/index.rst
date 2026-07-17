@@ -39,7 +39,11 @@ Import directly from ``manim_extensions``:
 Compass example
 ^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. manim:: CompassExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.compass import Compass, MoveNiddleTipTo, SplitCompass, RotateCompass
 
    class CompassExample(Scene):
        def construct(self):
@@ -51,7 +55,11 @@ Compass example
 Drawing a line with ruler and pencil
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. manim:: DrawLineExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.compass import Ruler, Pencil, PutRuler, MovePencilTipTo, DrawPath
 
    class DrawLineExample(Scene):
        def construct(self):
