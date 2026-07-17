@@ -1,14 +1,13 @@
 Reference Manual
 ================
 
-The reference manual contains the complete API for ``manim_extensions`` and
-the bundled third-party plugins.
+The reference manual contains the complete API for ``manim_extensions``.
 
-Core API
---------
+Basic
+-----
 
-The :doc:`../api/index` section documents the classes and functions exported
-directly from ``manim_extensions``:
+These modules form the core of the package and are imported directly from
+``manim_extensions``.
 
 * :doc:`../api/mobjects` – annotated mobjects such as ``LabelDot``,
   ``MathTexLine``, ``ExtendedLine``, and ``PerpendicularSign``.
@@ -17,11 +16,12 @@ directly from ``manim_extensions``:
 * :doc:`../api/animations` – reusable animations such as ``VisDrawArc`` and
   ``TypeWriter``.
 
-Bundled plugins
----------------
+Other Modules
+-------------
 
-The following subpackages are included as Git submodules and are re-exported
-through ``manim_extensions`` for convenience:
+The following subpackages are popular Manim plugins that are bundled inside
+``manim_extensions`` as Git submodules. They can be imported directly from the
+``manim_extensions`` namespace.
 
 * :doc:`gearbox/index` – involute gears and gear trains from
   `manim-GearBox <https://github.com/GarryBGoode/manim-GearBox>`_.
