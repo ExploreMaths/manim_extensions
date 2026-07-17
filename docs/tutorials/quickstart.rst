@@ -73,13 +73,17 @@ Geometry helpers
 The geometry module provides analytic-geometry functions that return plain
 points, so you can use them with any Manim mobject:
 
-.. code-block:: python
+.. manim:: QuickstartGeometry
+   :save_last_frame:
 
    from manim import *
-   from manim_extensions import LineInt, PerpendicularLine
+   from manim_extensions import LineInt, PerpendicularLine, LabelDot
 
-   line = Line(LEFT, RIGHT)
-   perp = PerpendicularLine(UP, line)
+   class QuickstartGeometry(Scene):
+       def construct(self):
+           line = Line(LEFT * 3, RIGHT * 3)
+           perp = PerpendicularLine(UP * 1.5, line, color=YELLOW)
+           self.add(line, perp)
 
 Animations
 ----------
@@ -113,16 +117,26 @@ in the :doc:`../reference/index` section:
 
 For example, a gear pair can be created with:
 
-.. code-block:: python
+.. manim:: QuickstartGear
 
+   from manim import *
    from manim_extensions.gearbox import Gear
 
-   gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-   gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
-   gear1.shift(-gear1.rp * 1.5 * RIGHT)
-   gear2.mesh_to(gear1)
+   class QuickstartGear(Scene):
+       def construct(self):
+           gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
+           gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
+           gear1.shift(-gear1.rp * 1.5 * RIGHT)
+           gear2.mesh_to(gear1)
 
-See :doc:`../reference/gearbox/index` for a rendered animation.
+           self.add(gear1, gear2)
+           self.play(
+               Rotate(gear1, gear1.pitch_angle, rate_func=linear),
+               Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
+               run_time=4,
+           )
+
+See :doc:`../reference/gearbox/index` for more details.
 
 Next steps
 ----------

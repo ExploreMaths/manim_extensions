@@ -28,15 +28,9 @@ Quick start
 -----------
 
 Because the module is included in ``manim_extensions``, you can import it
-directly:
-
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.gearbox import *
-
-A common rendering style is ``stroke_opacity=0`` and ``fill_opacity=1``,
-because the stroke slightly enlarges the gear and can look like interference.
+directly (``from manim_extensions.gearbox import *``). A common rendering
+style is ``stroke_opacity=0`` and ``fill_opacity=1``, because the stroke
+slightly enlarges the gear and can look like interference.
 
 Two meshing gears
 ^^^^^^^^^^^^^^^^^

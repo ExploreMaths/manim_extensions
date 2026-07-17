@@ -26,12 +26,7 @@ Features
 Quick start
 -----------
 
-Import directly from ``manim_extensions``:
-
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.mindmap import *
+Import directly from ``manim_extensions`` (``from manim_extensions.mindmap import *``).
 
 Inserting nodes into a mind map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

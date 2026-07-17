@@ -27,15 +27,20 @@ class ChineseMathTex(MathTex):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ChineseMathTexDocExample
+       :save_last_frame:
 
-        from manim_extensions import ChineseMathTex
+       from manim import *
+       from manim_extensions import ChineseMathTex
 
-        formula = ChineseMathTex(
-            r"\frac{1}{2} + \text{hello} = x",
-            font="SimSun",
-            tex_to_color_map={r"\text{hello}": RED},
-        )
+       class ChineseMathTexDocExample(Scene):
+           def construct(self):
+               formula = ChineseMathTex(
+                   r"\frac{1}{2} + \text{hello} = x",
+                   font="SimSun",
+                   tex_to_color_map={r"\text{hello}": RED},
+               )
+               self.add(formula)
     """
 
 
