@@ -37,7 +37,6 @@ Inserting nodes into a mind map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: MindMapInsertExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.mindmap import Node, InsertNode
@@ -58,7 +57,6 @@ Building a tree with ``LayoutAnimation``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: LayoutAnimationExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.mindmap import Node, LayoutAnimation

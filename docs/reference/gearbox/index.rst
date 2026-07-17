@@ -42,7 +42,6 @@ Two meshing gears
 ^^^^^^^^^^^^^^^^^
 
 .. manim:: GearExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.gearbox import Gear
@@ -55,12 +54,16 @@ Two meshing gears
            gear2.mesh_to(gear1)
 
            self.add(gear1, gear2)
+           self.play(
+               Rotate(gear1, gear1.pitch_angle, rate_func=linear),
+               Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
+               run_time=4,
+           )
 
 Inner ring gear
 ^^^^^^^^^^^^^^^
 
 .. manim:: InnerGearExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.gearbox import Gear
@@ -80,6 +83,11 @@ Inner ring gear
            gear2.mesh_to(gear1, offset=0.15, bias=False)
 
            self.add(gear1, gear2)
+           self.play(
+               Rotate(gear1, gear1.pitch_angle, rate_func=linear),
+               Rotate(gear2, gear2.pitch_angle, rate_func=linear),
+               run_time=4,
+           )
 
 .. toctree::
    :hidden:

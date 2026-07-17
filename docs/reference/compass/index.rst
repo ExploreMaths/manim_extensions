@@ -40,7 +40,6 @@ Compass example
 ^^^^^^^^^^^^^^^
 
 .. manim:: CompassExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.compass import Compass, MoveNiddleTipTo, SplitCompass, RotateCompass
@@ -56,7 +55,6 @@ Drawing a line with ruler and pencil
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: DrawLineExample
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.compass import Ruler, Pencil, PutRuler, MovePencilTipTo, DrawPath
