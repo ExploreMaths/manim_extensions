@@ -164,6 +164,7 @@ class ManimDirective(Directive):
     option_spec = {
         "hide_source": bool,
         "no_autoplay": bool,
+        "no_title": bool,
         "quality": lambda arg: directives.choice(
             arg,
             ("low", "medium", "high", "fourk"),
@@ -222,6 +223,7 @@ class ManimDirective(Directive):
 
         hide_source = "hide_source" in self.options
         no_autoplay = "no_autoplay" in self.options
+        no_title = "no_title" in self.options
         save_as_gif = "save_as_gif" in self.options
         save_last_frame = "save_last_frame" in self.options
         assert not (save_as_gif and save_last_frame)
@@ -344,6 +346,7 @@ class ManimDirective(Directive):
             hide_source=hide_source,
             filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),  # type: ignore[attr-defined]
             no_autoplay=no_autoplay,
+            no_title=no_title,
             output_file=output_file,
             save_last_frame=save_last_frame,
             save_as_gif=save_as_gif,
@@ -444,7 +447,9 @@ TEMPLATE = r"""
 .. raw:: html
 
     <div id="{{ clsname_lowercase }}" class="admonition admonition-manim-example">
+{% if not no_title %}
     <p class="admonition-title">Example: {{ clsname }} <a class="headerlink" href="#{{ clsname_lowercase }}">¶</a></p>
+{% endif %}
 
 {% endif %}
 
