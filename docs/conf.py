@@ -112,15 +112,18 @@ inheritance_graph_attrs = {
 }
 
 inheritance_node_attrs = {
-    "penwidth": 0,
+    "penwidth": 1,
     "shape": "box",
     "width": 0.05,
     "height": 0.05,
     "margin": 0.05,
+    "fillcolor": "white",
+    "style": "filled",
 }
 
 inheritance_edge_attrs = {
     "penwidth": 1,
+    "color": '"#1c00e3"',
 }
 
 graphviz_output_format = "svg"
