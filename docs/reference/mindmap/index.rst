@@ -1,5 +1,5 @@
-manim-mindmap
-=============
+MindMap
+=======
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
 
@@ -7,7 +7,7 @@ manim-mindmap
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``manim-mindmap`` brings mind-map, timeline, and catalog / organisation-chart
+``MindMap`` brings mind-map, timeline, and catalog / organisation-chart
 diagrams to Manim. It is bundled inside ``manim_extensions`` as the
 ``manim_extensions.mindmap`` subpackage and is also kept as a Git submodule
 under ``third_party/manim-mindmap``.

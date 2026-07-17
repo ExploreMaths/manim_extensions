@@ -1,5 +1,5 @@
-manim-GearBox
-=============
+GearBox
+=======
 
 **Original author:** `GarryBGoode <https://github.com/GarryBGoode>`_
 
@@ -7,7 +7,7 @@ manim-GearBox
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``manim-GearBox`` is a Manim plugin for drawing realistic involute gears and
+``GearBox`` is a Manim plugin for drawing realistic involute gears and
 mechanisms. The geometry is based on the `tec-science involute gear article
 <https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
 

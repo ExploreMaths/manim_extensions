@@ -17,9 +17,9 @@ Dependency: `manim`
 | `mobjects` | Mobject class extensions, including Chinese formulas, labeled dots, extendable lines, etc. |
 | `geometry` | Pure geometric calculation functions for finding intersections, tangent points, etc. |
 | `animations` | Animation effects, such as visualized arc drawing and typewriter effects |
-| `gearbox` | Involute gears and racks (from `manim-GearBox`) |
-| `mindmap` | Mind maps, timelines, and catalog diagrams (from `manim-mindmap`) |
-| `compass` | Compass-and-straightedge construction tools (from `manim-compass`) |
+| `gearbox` | Involute gears and racks (from `GearBox`) |
+| `mindmap` | Mind maps, timelines, and catalog diagrams (from `MindMap`) |
+| `compass` | Compass-and-straightedge construction tools (from `Compass`) |
 
 ---
 

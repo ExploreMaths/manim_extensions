@@ -1,5 +1,5 @@
-manim-compass
-=============
+Compass
+=======
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
 
@@ -7,7 +7,7 @@ manim-compass
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``manim-compass`` provides compass-and-straightedge construction tools for
+``Compass`` provides compass-and-straightedge construction tools for
 Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
 animation classes. The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.compass`` subpackage and is also kept as a Git submodule
