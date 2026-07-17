@@ -22,6 +22,7 @@
 
 .admonition-manim-example .highlight {
     border-radius: 0;
+    border: none;
 }
 
 .admonition-manim-example .highlight pre {
