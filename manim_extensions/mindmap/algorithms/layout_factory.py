@@ -8,14 +8,14 @@ from .alg_time_line import TimeLineLayout
 from .alg_catalog import CatalogLayout
 
 class LayoutFactory:
-    '''布局算法工厂'''
+    '''Factory for layout algorithms.'''
     @staticmethod
     def create_layout(
         layout_type: LayoutType,
         root,
         layout_config:LayoutConfig
     ):
-        """根据布局类型创建对应的布局算法实例"""
+        """Create the appropriate layout algorithm instance for the given layout type."""
         match layout_type:
             case LayoutType.MindMap:
                 kwargs = layout_config.mindmap

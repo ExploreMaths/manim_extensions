@@ -4,7 +4,7 @@ __all__ = [
 from typing import Any
 
 class Layout:
-    """布局算法基类"""
+    """Base class for layout algorithms."""
     def layout(self) -> Any:
-        """执行布局计算并返回根节点"""
+        """Run the layout computation and return the root node."""
         raise NotImplementedError

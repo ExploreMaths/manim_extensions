@@ -41,21 +41,21 @@ def VisDrawArc(
                 arc = Arc(start_angle=0, angle=PI, radius=2)
                 VisDrawArc(self, arc, axis=OUT, run_time=2)
     """
-    # 获取弧线的起点、终点和圆心
+    # Get the start point, end point, and centre of the arc
     start_point = arc.point_from_proportion(0)
     end_point = arc.point_from_proportion(1)
     center = arc.get_arc_center()
 
-    # 根据轴方向确定旋转的起始点和方向
-    if np.array_equal(axis, OUT):  # 逆时针
-        draw_arc = arc  # 使用原始弧线
+    # Determine rotation start point and direction from the axis
+    if np.array_equal(axis, OUT):  # counter-clockwise
+        draw_arc = arc  # use the original arc
         rotation_start = start_point
         total_angle = arc.get_angle()
-    else:  # 顺时针 (axis=IN)
-        # 创建一个与原弧线方向相反的新弧线
+    else:  # clockwise (axis=IN)
+        # Create a new arc with the opposite direction
         draw_arc = Arc(
             start_angle=angle_of_vector(end_point - center),
-            angle=-arc.get_angle(),  # 负角度表示相反方向
+            angle=-arc.get_angle(),  # negative angle means opposite direction
             radius=np.linalg.norm(end_point - center),
             arc_center=center,
             color=arc.get_color(),
@@ -64,20 +64,20 @@ def VisDrawArc(
         rotation_start = end_point
         total_angle = -arc.get_angle()
 
-    # 创建移动点的标记
+    # Create the moving-dot marker
     moving_dot = Dot(point=rotation_start)
 
-    # 创建从圆心到移动点的虚线
+    # Create a dashed line from the centre to the moving dot
     radius_line = DashedLine(center, rotation_start)
 
-    # 计算实际弧线的半径和起始角度
+    # Compute the actual arc radius and start angle
     r = np.linalg.norm(rotation_start - center)
     start_angle = angle_of_vector(rotation_start - center)
 
-    # 创建一个跟踪旋转进度的变量
+    # Create a progress tracker
     progress = ValueTracker(0)
 
-    # 更新移动点的位置
+    # Update the moving-dot position
     moving_dot.add_updater(
         lambda d: d.move_to(
             center
@@ -92,27 +92,27 @@ def VisDrawArc(
         )
     )
 
-    # 更新半径线
+    # Update the radius line
     radius_line.add_updater(
         lambda l: l.become(DashedLine(center, moving_dot.get_center()))
     )
 
-    # 添加所有元素到场景
+    # Add all elements to the scene
     scene.add(moving_dot, radius_line)
 
-    # 同步执行弧线绘制和点的旋转动画（1秒持续时间）
+    # Play the arc creation and dot rotation in sync
     scene.play(
-        Create(draw_arc, rate_func=linear),  # 使用调整后的弧线
+        Create(draw_arc, rate_func=linear),  # use the adjusted arc
         progress.animate.set_value(1),
         run_time=run_time,
         rate_func=linear,
     )
 
-    # 清除更新器
+    # Clear updaters
     moving_dot.clear_updaters()
     radius_line.clear_updaters()
 
-    # 移除临时元素
+    # Remove temporary elements
     scene.remove(moving_dot, radius_line)
 
 
@@ -161,7 +161,7 @@ class TypeWriter(Animation):
         self.interval = interval
         self.char_count = len(mobject.submobjects)
 
-        # 自动计算run_time
+        # Automatically compute run_time
         if "run_time" not in kwargs:
             kwargs["run_time"] = self.char_count * self.interval
 

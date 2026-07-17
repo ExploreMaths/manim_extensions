@@ -24,7 +24,7 @@ from ..algorithms import LayoutFactory,LayoutType,LayoutConfig
 from ..nodes import Node,bfs_walker,NodeSate,NodeStyle
 
 def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
-    '''FadeOut指定节点及其子树'''
+    '''FadeOut the given nodes and their subtrees.'''
     mobjs = []
     for node in nodes:
         for node_ in bfs_walker(node):
@@ -44,7 +44,7 @@ def animate_of_create(
     node_styles:Dict,
     layout_type:LayoutType
 ) -> List[Animation]:
-    '''创建节点动画'''
+    '''Create-node animation.'''
     anims = []
     node.set_connector(layout_type,direction,**line_styles)
     if isinstance(node.vmobject,ImageMobject):
@@ -82,7 +82,7 @@ def animate_of_display(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''已经显示在scene中的节点,更新位置和样式的动画'''
+    '''Animation for a node already on the scene: update its position and style.'''
     anims =[
         node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
@@ -106,7 +106,7 @@ def animate_of_scale(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''已经显示在scene中的节点,放大或缩小的动画'''
+    '''Animation for a node already on the scene: scale it up or down.'''
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
@@ -131,7 +131,7 @@ def animate_of_alter(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''已经显示在scene中的节点,更换 vmobject 的动画'''
+    '''Animation for a node already on the scene: replace its vmobject.'''
     anims = [
         node.vmobject.animate.become(
             node.alter_vmobject.move_to(pos)
@@ -158,7 +158,7 @@ def animate_of_node(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''获取 node 的动画'''
+    '''Return the appropriate animation for node based on its state.'''
     args = (node,pos,direction,line_styles,node_styles,layout_type)
     match node.node_state:
         case NodeSate.INSERT:
@@ -173,12 +173,12 @@ def animate_of_node(
 
 def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     '''
-    判断是否替换了布局算法
+    Check whether the layout algorithm has changed.
     
     Args:
-        root (Node): 根节点(初次布局,或已经应用过布局)
-        layout_type (LayoutType): 将要采用的布局方法
-    Returns (bool):是否更换布局算法
+        root (Node): The root node (before first layout, or after a layout has been applied)
+        layout_type (LayoutType): The layout method to be used
+    Returns (bool): Whether the layout algorithm has changed
     '''
     origin_layout = getattr(root,'layout_type',None)
     if origin_layout is not None:
@@ -187,12 +187,12 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
 
 def is_direction_change(root: Node, direction = RIGHT) -> bool:
     '''
-    判断是否更换了布局方向
+    Check whether the layout direction has changed.
 
     Args:
-        root (Node): 根节点(初次布局,或已经应用过布局)
-        direction: 将要采用的布局方向
-    Returns (bool):是否更换布局方向
+        root (Node): The root node (before first layout, or after a layout has been applied)
+        direction: The layout direction to be used
+    Returns (bool): Whether the layout direction has changed
     '''
     origin_dir = getattr(root,'direction',None)
     if origin_dir is not None:
@@ -206,7 +206,7 @@ def animate_of_layout(
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
 ) -> List[Animation]:
-    """动画的核心方法: 完整的 Layout 布局算法并生成动画"""
+    """Core animation method: run the full Layout algorithm and generate animations."""
     direction = layout_config.direction
     change_dir = is_direction_change(root,direction)
     change_layout = is_layout_change(root,layout_type)
@@ -241,7 +241,7 @@ def animate_of_layout(
     return anims
     
 class AbstractLayoutAnimation(AnimationGroup):
-    """布局动画的抽象基类: 收集节点状态并生成完整布局动画"""
+    """Abstract base class for layout animations: collect node states and generate the full layout animation."""
     def __init__(
         self,
         scene:Scene,
@@ -252,14 +252,14 @@ class AbstractLayoutAnimation(AnimationGroup):
         **kwargs
     ):
         '''
-        对树的节点执行操作后,再执行完整的 Layout 布局算法并生成动画
+        After operating on the tree nodes, run the full Layout algorithm and generate the animation.
         
         Args:
-            scene (Scene): 当前场景
-            root (Node): 根节点
-            layout_type (LayoutType, optional): 布局类型. Defaults to LayoutType.MindMap.
-            layout_config (LayoutConfig, optional): 布局参数. Defaults to LayoutConfig().
-            node_style (NodeStyle, optional): 布局和节点样式. Defaults to NodeStyle().
+            scene (Scene): The current scene
+            root (Node): The root node
+            layout_type (LayoutType, optional): Layout type. Defaults to LayoutType.MindMap.
+            layout_config (LayoutConfig, optional): Layout parameters. Defaults to LayoutConfig().
+            node_style (NodeStyle, optional): Layout and node styles. Defaults to NodeStyle().
         '''
         self.scene = scene  
         self.root = root
@@ -270,7 +270,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         super().__init__(*anims,**kwargs)
 
     def _check_node_state(self) -> List[Node]:
-        '''检查各个节点的状态,并返回需要移除的节点'''
+        '''Check the state of each node and return the nodes to be removed.'''
         remove_nodes = []
         for node in bfs_walker(self.root):
             if node.vmobject not in self.scene.get_mobject_family_members():
@@ -295,7 +295,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                             remove_nodes.append(node)
                             continue
                         try:
-                            idx = parent.children.index(node) # TODO: 优化，匹配到第一个为止,修改 __eq__?
+                            idx = parent.children.index(node) # TODO: optimise; match only up to the first occurrence, modify __eq__?
                             if (child_num := len(parent.children)) > 1:
                                 if idx == 0:
                                     parent.children[1].neighbor = None
@@ -311,11 +311,11 @@ class AbstractLayoutAnimation(AnimationGroup):
         return remove_nodes
 
     def collect_animations(self) -> List[Animation]:
-        '''收集动画: 子类必须实现'''
+        '''Collect animations: must be implemented by subclasses.'''
         raise NotImplementedError
     
     def get_common_root(self, nodes: List[Node]) -> Node:
-        '''获取 nodes 的公共根节点'''
+        '''Return the common root of nodes.'''
         root = nodes[0].get_root()
         if len(nodes) == 1:
             return root
@@ -324,7 +324,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         return root
     
 class LayoutAnimation(AbstractLayoutAnimation):
-    """通用布局动画: 对整棵树应用布局并播放所有变化动画"""
+    """General layout animation: apply a layout to the whole tree and play all change animations."""
     def __init__(
         self,
         scene:Scene,
@@ -354,7 +354,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
         )
     
 class RemoveNode(LayoutAnimation):
-    '''移除以 nodes 为根的树或子树, nodes 可以是一个节点,也可以是一个节点列表'''
+    '''Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.'''
     def __init__(
         self,
         scene:Scene,
@@ -404,7 +404,7 @@ class RemoveNode(LayoutAnimation):
         return group
 
 class InsertNode(LayoutAnimation):
-    """向思维导图中插入一个或多个子节点"""
+    """Insert one or more child nodes into the mind map."""
     def __init__(
         self,
         scene:Scene,
@@ -415,10 +415,10 @@ class InsertNode(LayoutAnimation):
         **kwargs
     ):
         '''
-        插入子节点(列表)插入到指定父节点下
+        Insert a child node (or list of child nodes) under the specified parent nodes.
 
-        参数:
-            father_children: 字典,键是父节点,值是子节点列表
+        Parameters:
+            father_children: dictionary mapping parent nodes to lists of child nodes
         '''
         root = None
         self.father_children = father_children
@@ -448,7 +448,7 @@ class InsertNode(LayoutAnimation):
         return super().collect_animations()
     
 class ScaleNode(LayoutAnimation):
-    """放缩思维导图中一个或多个节点"""
+    """Scale one or more nodes in the mind map."""
     def __init__(
         self,
         scene:Scene,
@@ -459,10 +459,10 @@ class ScaleNode(LayoutAnimation):
         **kwargs
     ):
         """
-        放大或缩小节点
+        Scale nodes up or down.
 
-        参数:
-            node_scale: 字典,键是 Node 节点,值是缩放比例值(float)
+        Parameters:
+            node_scale: dictionary mapping Node instances to scale factors (float)
         """
         for node, scale in node_scale.items():
             node.scale(scale)
@@ -477,7 +477,7 @@ class ScaleNode(LayoutAnimation):
         )
 
 class AlterNode(LayoutAnimation):
-    """替换思维导图中节点内容"""
+    """Replace the content of one or more nodes in the mind map."""
     def __init__(
         self,
         scene:Scene,
@@ -488,10 +488,10 @@ class AlterNode(LayoutAnimation):
         **kwargs
     ):
         """
-        更换节点的vmobject
+        Replace a node's vmobject.
 
-        参数:
-            node_vmobject: 字典,键是 Node 节点,值是待更换的 VMobject
+        Parameters:
+            node_vmobject: dictionary mapping Node instances to the replacement VMobjects
         """
         for node, scale in node_vmobject.items():
             node.alter_content(scale)

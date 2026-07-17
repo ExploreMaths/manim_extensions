@@ -18,12 +18,12 @@ class PutRuler(ApplyMethod):
         **kwargs
     ):
         '''
-        尺规作图动画类：将直尺 ruler 旋转 angle 度,使其与 start - end 平行
+        Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
 
         Args:
-            ruler: 直尺
-            start: 起始点
-            end: 终止点
+            ruler: The ruler.
+            start: The start point.
+            end: The end point.
         '''
         super().__init__(
             ruler.set_ruler,
@@ -41,12 +41,12 @@ class PutRulerAway(PutRuler):
         **kwargs
     ):
         '''
-        收起直尺动画类：将直尺 ruler 收起至 point 位置
+        Put the ruler away: move the ruler to point.
 
         Args:
-            ruler: 直尺
-            point: 放置位置
-            is_flat: 水平(竖直)放置
+            ruler: The ruler.
+            point: The placement position.
+            is_flat: Whether to place it horizontally (or vertically).
         '''
         if is_flat:
             start = point + LEFT

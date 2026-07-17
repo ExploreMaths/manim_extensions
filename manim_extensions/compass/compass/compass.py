@@ -17,7 +17,7 @@ from ..utils.geometry_method import (
 )
 
 class Compass(VGroup):
-    '''圆规类'''
+    '''Compass mobject.'''
     def __init__(
         self,
         span = 1.5,
@@ -83,34 +83,34 @@ class Compass(VGroup):
         return self
 
     def get_niddle_tip(self):
-        '''获取针尖坐标'''
+        '''Return the coordinates of the needle tip.'''
         return self.niddle_tip.get_vertices()[1]
 
     def get_pen_tip(self):
-        '''获取笔尖坐标'''
+        '''Return the coordinates of the pen tip.'''
         return self.pen_tip.get_vertices()[1]
     
     def get_niddle2pen_vec(self):
-        '''获取针尖到笔尖的向量'''
+        '''Return the vector from the needle tip to the pen tip.'''
         return Line(
             self.get_niddle_tip(),
             self.get_pen_tip()
         ).get_unit_vector()
     
     def get_span(self):
-        '''获取圆规的跨度:笔尖与针尖的距离'''
+        '''Return the compass span: distance between pen tip and needle tip.'''
         return get_distance(
             self.get_pen_tip(),
             self.get_niddle_tip()
         )
 
     def move_niddle_tip_to(self, pos:Point):
-        '''将圆规以针尖为参照,整体移动到指定 pos 位置'''
+        '''Move the compass as a whole so that the needle tip is at pos.'''
         self.shift(pos - self.get_niddle_tip())
         return self
 
     def rotate_about_niddle_tip(self, angle = PI/2):
-        '''以圆规的针尖为圆心,整体旋转指定角度'''
+        '''Rotate the compass as a whole around the needle tip by angle.'''
         self.rotate(
             angle = angle,
             about_point = self.get_niddle_tip()
@@ -118,7 +118,7 @@ class Compass(VGroup):
         return self
 
     def reverse_tip(self):
-        '''镜像翻转针尖和笔尖'''
+        '''Mirror-flip the needle tip and pen tip.'''
         self.flip(
             axis = self.head[0].get_end() - self.head[0].get_start(),
             about_point = self.c.get_center()
@@ -126,7 +126,7 @@ class Compass(VGroup):
         return self
 
     def split_copass_with_gain_angle(self,angle:float):
-        '''将圆规的两脚,再张开 angle 角度'''
+        '''Open the two compass legs by an additional angle.'''
         self.niddle_tip.rotate(
             angle = -angle,
             about_point = self.c.get_center()
@@ -142,20 +142,20 @@ class Compass(VGroup):
         angle:float,
         niddle_tip_pos:Point
     ):
-        '''针尖固定,将圆规的两脚,再张开 angle 角度'''
+        '''Keep the needle tip fixed and open the two compass legs by angle.'''
         self.split_copass_with_gain_angle(angle = angle)
         self.move_niddle_tip_to(niddle_tip_pos)
         return self
     
     def get_compass_rotate_angle_direction(self)->bool:
-        '''判断圆规两支脚间，是顺时针还是逆时针'''
+        '''Return whether the two compass legs are counter-clockwise from each other.'''
         return is_counter_clockwise(
             self.get_niddle_tip() - self.c.get_center(),
             self.get_pen_tip() - self.c.get_center()
         )
 
     def get_compass_rotate_angle_with_span(self,span:float)->float:
-        '''将圆规两脚张成 span 时, 返回两脚的夹角'''
+        '''Return the angle between the two legs when the compass is opened to span.'''
         L = self.leg_length
         distance = self.get_span()
         span_start = 2*L if distance > 2*L else distance
@@ -170,7 +170,7 @@ class Compass(VGroup):
         rotate_angle:float,
         niddle_tip_pos:Point
     ):
-        '''设置圆规的跨度、旋转角度和针尖位置'''
+        '''Set the compass span, rotation angle, and needle tip position.'''
         self.split_compass_with_niddle_tip_fixed(span_angle,niddle_tip_pos)
         self.rotate(
             angle = rotate_angle,

@@ -9,14 +9,14 @@ import numpy as np
 from manim.constants import LEFT, RIGHT, UP, DOWN,PI
 
 class LayoutDirection(Enum):
-    '''布局方向'''
+    '''Layout direction.'''
     LeftToRight = 'left to right'
     RightToLeft = 'right to left'
     TopToBottom = 'top to bottom'
     BottomToTop = 'bottom to top'
 
 class LayoutType(Enum):
-    '''布局算法'''
+    '''Layout algorithm.'''
     MindMap = 'tidytree'
     TimeLine = 'timeline'
     Standard = 'standard'
@@ -30,13 +30,13 @@ class LayoutConfig:
         level_spacing:float = 0.5,
         sides:np.ndarray | List[np.ndarray] = (UP,DOWN)
     ):
-        '''布局参数
+        '''Layout parameters
         
         Args:
-            direction (np.ndarray, optional): 布局方向. Defaults to RIGHT.
-            node_spacing (float, optional): 节点间距. Defaults to 0.5.
-            level_spacing (float, optional): 层间距. Defaults to 0.5.
-            sides (np.ndarray | List[np.ndarray], optional): 时序图交替排列的两侧,只设置单值,则单侧显示. Defaults to (UP,DOWN).
+            direction (np.ndarray, optional): Layout direction. Defaults to RIGHT.
+            node_spacing (float, optional): Spacing between nodes. Defaults to 0.5.
+            level_spacing (float, optional): Spacing between layers. Defaults to 0.5.
+            sides (np.ndarray | List[np.ndarray], optional): Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
         '''
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f'direction must be one of {LEFT,RIGHT,UP,DOWN}')
@@ -53,7 +53,7 @@ class LayoutConfig:
         self.direction = direction
 
     def get_layout_direction(self,direction:np.ndarray) -> LayoutDirection:
-        """将方向向量转换为 LayoutDirection 枚举"""
+        """Convert a direction vector to a LayoutDirection enum."""
         string = None
         if np.array_equal(direction,UP):
             string = LayoutDirection.BottomToTop

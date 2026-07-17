@@ -1,7 +1,7 @@
 manim-compass
 =============
 
-**Original author:** `jj-math <https://github.com/jj-math>`_ (B站博主“**究尽数学**”)
+**Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
 
 **Source repository:** https://github.com/jj-math/manim-compass
 

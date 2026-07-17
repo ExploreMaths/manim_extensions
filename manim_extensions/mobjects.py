@@ -32,9 +32,9 @@ class ChineseMathTex(MathTex):
         from manim_extensions import ChineseMathTex
 
         formula = ChineseMathTex(
-            r"\frac{1}{2} + \text{你好} = x",
+            r"\frac{1}{2} + \text{hello} = x",
             font="SimSun",
-            tex_to_color_map={r"\text{你好}": RED},
+            tex_to_color_map={r"\text{hello}": RED},
         )
     """
 
@@ -440,27 +440,27 @@ class PerpendicularSign(VGroup):
     ) -> None:
         super().__init__(**kwargs)
 
-        # 计算两线交点
+        # Compute the intersection of the two lines
         intersection = self._compute_intersection(line1, line2)
         if intersection is None:
             return
 
-        # 获取两线各自两侧的单位方向向量
+        # Get unit direction vectors on both sides of each line
         dirs1 = self._get_both_directions(line1, intersection)
         dirs2 = self._get_both_directions(line2, intersection)
 
-        # 选择最佳的组合
+        # Select the best pair of directions
         d1, d2 = self._select_directions(
             dirs1, dirs2, corner_direction
         )
 
-        # 折角的三个顶点
+        # Three vertices of the corner
         corner1 = intersection + length * d1
         corner2 = intersection + length * d2
-        # 内角顶点：沿两个方向的和的方向移动
+        # Inner vertex: move along the sum of the two directions
         inner = intersection + length * d1 + length * d2
 
-        # 组成折角的两条线段
+        # Two line segments that form the corner
         leg1 = Line(corner1, inner, **kwargs)
         leg2 = Line(corner2, inner, **kwargs)
 
@@ -529,14 +529,15 @@ class PerpendicularSign(VGroup):
             return dirs1[0], dirs2[0]
 
         if corner_direction is None:
-            # 默认：选择指向较近端点的组合（即 inner_dir 模长最大的）
+            # Default: choose the pair pointing toward the nearer endpoints
+            # (the pair with the largest norm of inner_dir)
             best = max(candidates, key=lambda c: np.linalg.norm(c[0] + c[1]))
             return best[0], best[1]
 
         corner_direction = np.array(corner_direction)
         corner_direction = corner_direction / np.linalg.norm(corner_direction)
 
-        # 选择与 corner_direction 点积最大的组合
+        # Select the pair with the largest dot product with corner_direction
         best = max(
             candidates,
             key=lambda c: np.dot(c[2], corner_direction),

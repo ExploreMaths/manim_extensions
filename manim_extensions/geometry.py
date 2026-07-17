@@ -197,39 +197,39 @@ def LineArcInt(
         arc = Arc(start_angle=0, angle=np.pi, radius=1)
         result = LineArcInt(line, arc)
     """
-    # 获取线段起点和终点（仅x,y坐标）
+    # Get line start and end (x,y only)
     p1 = line.start[:2]
     p2 = line.end[:2]
 
-    # 处理线段退化为点的情况
+    # Handle degenerate line (a single point)
     direction = p2 - p1
     length = np.linalg.norm(direction)
     if length < 1e-8:
         return None
 
-    # 获取圆弧参数（关键修正：使用ManimCE的正确属性）
-    center = arc.arc_center[:2]  # 圆弧中心（x,y）
-    radius = arc.radius  # 半径
-    start_angle = arc.start_angle  # 起始角度（弧度）
-    angle = arc.angle  # 角度跨度（弧度，正=逆时针，负=顺时针）
+    # Get arc parameters (use ManimCE's correct attributes)
+    center = arc.arc_center[:2]  # arc centre (x,y)
+    radius = arc.radius  # radius
+    start_angle = arc.start_angle  # start angle (radians)
+    angle = arc.angle  # angular span (positive = counter-clockwise, negative = clockwise)
 
-    # 线段参数方程转换（以圆弧中心为原点）
+    # Shift line coordinates to the arc centre
     p1_centered = p1 - center
     p2_centered = p2 - center
     dx = p2_centered[0] - p1_centered[0]
     dy = p2_centered[1] - p1_centered[1]
 
-    # 联立线段与圆的方程（二次方程）
+    # Solve the line-circle intersection (quadratic equation)
     a = dx**2 + dy**2
     b = 2 * (p1_centered[0] * dx + p1_centered[1] * dy)
     c = p1_centered[0] ** 2 + p1_centered[1] ** 2 - radius**2
     discriminant = b**2 - 4 * a * c
 
-    # 无实根（直线与圆无交点）
+    # No real roots (line and circle do not intersect)
     if discriminant < 0:
         return None
 
-    # 计算t值（线段参数）
+    # Compute t values (segment parameters)
     sqrt_d = np.sqrt(discriminant)
     t1 = (-b + sqrt_d) / (2 * a)
     t2 = (-b - sqrt_d) / (2 * a)
@@ -238,21 +238,21 @@ def LineArcInt(
         if 0 <= t <= 1 and (len(t_values) == 0 or abs(t - t_values[0]) > 1e-8):
             t_values.append(t)
 
-    # 检查交点是否在圆弧范围内（关键修正：角度判断+容差）
+    # Check whether intersections lie within the arc's angular range (with tolerance)
     intersections = []
-    TOLERANCE = 1e-6  # 角度容差（弧度）
+    TOLERANCE = 1e-6  # angular tolerance (radians)
     for t in t_values:
-        # 计算交点相对圆弧中心的坐标
+        # Compute intersection coordinates relative to the arc centre
         x = p1_centered[0] + t * dx
         y = p1_centered[1] + t * dy
-        theta = np.arctan2(y, x) % (2 * np.pi)  # 交点角度（0~2π弧度）
+        theta = np.arctan2(y, x) % (2 * np.pi)  # intersection angle (0..2π)
 
-        # 圆弧的角度范围（模2π处理）
+        # Arc angular range (modulo 2π)
         start_angle_mod = start_angle % (2 * np.pi)
         end_angle_mod = (start_angle + angle) % (2 * np.pi)
 
-        # 判断角度是否在圆弧范围内（带容差）
-        if angle > 0:  # 逆时针圆弧
+        # Decide whether theta lies on the arc (with tolerance)
+        if angle > 0:  # counter-clockwise arc
             if start_angle_mod < end_angle_mod:
                 valid = (
                     start_angle_mod - TOLERANCE
@@ -263,7 +263,7 @@ def LineArcInt(
                 valid = (theta >= start_angle_mod - TOLERANCE) or (
                     theta <= end_angle_mod + TOLERANCE
                 )
-        else:  # 顺时针圆弧
+        else:  # clockwise arc
             if end_angle_mod < start_angle_mod:
                 valid = (
                     end_angle_mod - TOLERANCE
@@ -276,7 +276,7 @@ def LineArcInt(
                 )
 
         if valid:
-            # 转换为绝对坐标（添加z=0）
+            # Convert back to absolute coordinates (add z=0)
             intersection = [x + center[0], y + center[1], 0.0]
             intersections.append(intersection)
     try:
@@ -339,13 +339,13 @@ def TangentPoint(
     line_start = to_3d(line_start)
     line_end = to_3d(line_end)
 
-    # 计算线段方向向量
+    # Compute the line direction vector
     line_direction = line_end - line_start
     line_length = np.linalg.norm(line_direction)
 
-    # 处理线段退化为点的情况
+    # Handle degenerate line (a single point)
     if line_length < 1e-8:
-        # 检查线段端点是否在圆上
+        # Check whether the segment endpoint lies on the circle
         dist_p1 = np.linalg.norm(line_start - p1)
         dist_p2 = np.linalg.norm(line_start - p2)
         if abs(dist_p1 - dist_p2) < 1e-8:
@@ -354,23 +354,23 @@ def TangentPoint(
 
     line_direction = line_direction / line_length
 
-    # 计算线段p1-p2的中点
+    # Compute the midpoint of segment p1-p2
     midpoint = (p1 + p2) / 2
 
-    # 计算线段p1-p2的方向向量
+    # Compute the direction vector of segment p1-p2
     p1p2_direction = p2 - p1
     p1p2_length = np.linalg.norm(p1p2_direction)
 
     if p1p2_length < 1e-8:
-        # p1和p2重合，无法确定唯一的圆
+        # p1 and p2 coincide; a unique circle cannot be determined
         return None
 
     p1p2_direction = p1p2_direction / p1p2_length
 
-    # 计算线段p1-p2的垂直向量（在二维平面上）
+    # Compute the perpendicular vector to segment p1-p2 (in 2D)
     perpendicular_dir = np.array([-p1p2_direction[1], p1p2_direction[0], 0.0])
 
-    # 构建线性方程组求解圆心c = midpoint + t * perpendicular_dir
+    # Build a linear system to solve for centre c = midpoint + t * perpendicular_dir
     cross_perp_line = np.cross(perpendicular_dir, line_direction)
     cross_mid_line = np.cross(midpoint - line_start, line_direction)
 
@@ -385,49 +385,49 @@ def TangentPoint(
         cross_mid_line, cross_mid_line
     )
 
-    # 处理a接近零的特殊情况（退化为一次方程）
+    # Special case: a is near zero (degenerate linear equation)
     if abs(a) < 1e-8:
         if abs(b) < 1e-8:
-            return None  # 无解或无穷多解
+            return None  # no solution or infinitely many solutions
         t = -c / b
         centers = [midpoint + t * perpendicular_dir]
     else:
-        # 计算判别式
+        # Compute the discriminant
         discriminant = b**2 - 4 * a * c
 
         if discriminant < 0:
-            # 无实数解
+            # No real solution
             return None
 
-        # 求解t
+        # Solve for t
         sqrt_d = np.sqrt(discriminant)
         t1 = (-b + sqrt_d) / (2 * a)
         t2 = (-b - sqrt_d) / (2 * a)
 
-        # 计算可能的圆心
+        # Compute candidate circle centres
         centers = [midpoint + t * perpendicular_dir for t in [t1, t2]]
 
-    # 计算对应的切点（在直线上）
+    # Compute corresponding tangent points (on the line)
     valid_tangents = []
     for center in centers:
-        # 计算从line_start到center的向量在直线方向上的投影
+        # Project vector from line_start to center onto the line direction
         projection = np.dot(center - line_start, line_direction)
 
-        # 检查投影是否在线段范围内 [0, line_length]
+        # Check whether the projection lies within [0, line_length]
         if 0 <= projection <= line_length:
-            # 计算切点
+            # Compute the tangent point
             tangent_point = line_start + projection * line_direction
 
-            # 验证切点到圆心的距离是否等于圆心到p1的距离
+            # Verify that the distance from centre to tangent point equals the radius
             radius = np.linalg.norm(center - p1)
             dist_to_tangent = np.linalg.norm(center - tangent_point)
 
             if abs(radius - dist_to_tangent) < 1e-6:
                 valid_tangents.append(tangent_point)
 
-    # 选择距离p1和p2较近的解
+    # Choose the solution closest to p1 and p2
     if not valid_tangents:
         return None
 
-    # 如果有多个解，选择第一个
+    # If multiple solutions exist, return the first one
     return valid_tangents[0]

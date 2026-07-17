@@ -19,7 +19,7 @@ from ..nodes import Node,NodeStyle,bfs_walker,dfs_walker
 from ..algorithms import Layout
 
 class NodeMobject:
-    """思维导图节点的组成部分包装类"""
+    """Wrapper for the components of a mind-map node."""
     __slots__ = ['vmobject','surr_rect','connector','text']
     def __init__(
         self,
@@ -39,8 +39,9 @@ def generate_tree(
     buff:float = 0.2
 ) -> Node:
     """
-    递归的遍历Map: 生成树的根节点
-    text: 为讲解文字，可用于合成语言
+    Recursively traverse *Map* and return the root node of the generated tree.
+
+    ``text``: narration text that can be used for text-to-speech synthesis.
     """
     def _generate_tree(ID=(0,), current_map:Dict = None) -> Node:
         level = len(ID)
@@ -57,7 +58,7 @@ def generate_tree(
         return current_node
 
     def _generate_node(Mobj,level = 1) -> Mobject:
-        """生成节点"""
+        """Generate a node mobject."""
         if isinstance(Mobj,str):
             Mobj = Tex(
                 Mobj,
@@ -69,7 +70,7 @@ def generate_tree(
     return _generate_tree(ID=(0,), current_map = Map)
 
 class AbstractMap(Group):
-    """抽象基类：思维导图、时序图等"""
+    """Abstract base class for mind maps, timelines, etc."""
     def __init__(
         self,
         layout_method:Layout = Layout()
@@ -90,36 +91,36 @@ class AbstractMap(Group):
             self._set_node_position(child)
     
     def _set_connectors(self):
-        """设置连接线"""
+        """Set connection lines."""
         raise NotImplementedError
         
     def get_node_component(self,ID) -> NodeMobject:
-        """获取指定 ID 节点的完整组成对象"""
+        """Return the full component object of the node with the given ID."""
         return self.node_data_dict.get(ID,None)
 
     def get_node(self,ID) -> Group:
-        """获取指定 ID 节点的 VMobject 和边框"""
+        """Return the VMobject and surrounding rectangle of the node with the given ID."""
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return Group(node.vmobject,node.surr_rect)
         return None
 
     def get_text(self,ID) -> str:
-        """获取指定 ID 节点的讲解文本"""
+        """Return the narration text of the node with the given ID."""
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return node.text
         return None
     
     def get_connector(self,ID) -> Line:
-        """获取指定 ID 节点的连接线"""
+        """Return the connector line of the node with the given ID."""
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return node.connector
         return None
     
     def get_all_mindmap(self) -> Group:
-        """获取思维导图中所有节点和连线对象"""
+        """Return all node and connector mobjects in the mind map."""
         all_mobjects = Group()
         for node in self.node_data_dict.values():
             if node.connector is not None:
@@ -129,40 +130,40 @@ class AbstractMap(Group):
         return all_mobjects
     
     def bfs_walker(self) -> Generator:
-        """广度优先遍历"""
+        """Breadth-first traversal."""
         for node in bfs_walker(self.root):
             yield self.node_data_dict[node.ID]
 
     def dfs_walker(self) -> Generator:
-        """深度优先遍历"""
+        """Depth-first traversal."""
         for node in dfs_walker(self.root):
             yield self.node_data_dict[node.ID]
 
     def custom_walker(self,id_list: List[tuple]) -> Generator:
-        """自定义遍历"""
+        """Custom traversal."""
         for id in id_list:
             yield self.node_data_dict.get(id,None)
 
     def _get_origin_node(self,ID) -> Node:
-        """根据 ID 在原始树中查找节点"""
+        """Find the node with the given ID in the original tree."""
         for node in dfs_walker(self.root):
             if node.ID == ID:
                 return node
         return None
     
     def _get_connector_style(self,level:int) -> dict:
-        """获取指定层级的连线样式"""
+        """Return the line style for the given level."""
         return self.node_style.get_line_style(level=level)
 
     def get_children(self,ID) -> Group:
-        '''获取节点的子节点'''
+        '''Return the child nodes of the node with the given ID.'''
         node = self._get_origin_node(ID)
         if node is None:
             return Group()
         return node.get_children_mobjects()
     
     def get_submindmap(self,ID) -> Group:
-        '''获取以节点 ID 为根的子树'''
+        '''Return the subtree rooted at the node with the given ID.'''
         node = self._get_origin_node(ID)
         mondmap = Group()
         if node is None:
@@ -175,7 +176,7 @@ class AbstractMap(Group):
         return mondmap
 
     def get_descendants(self,ID) -> Group:
-        '''获取节点的后代'''
+        '''Return the descendants of the node with the given ID.'''
         node = self._get_origin_node(ID)
         if node is None:
             return Group()

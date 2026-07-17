@@ -12,7 +12,7 @@ import numpy as np
 from ..utils.geometry_method import get_vecs_angle
 
 class Ruler(VGroup):
-    '''直尺类'''
+    '''Ruler mobject.'''
     def __init__(
         self,
         length = 12,
@@ -36,42 +36,42 @@ class Ruler(VGroup):
         self.add(self.ruler)
 
     def get_vecs_of_ruler(self):
-        '''获取直尺的延伸、宽度的方向'''
+        '''Return the extension and width directions of the ruler.'''
         A,B,C,_ = self.ruler.get_vertices()
         return Line(B,A).get_unit_vector(),Line(B,C).get_unit_vector()
     
     def get_direction_vector_of_ruler(self):
-        '''获取直尺延伸的方向'''
+        '''Return the extension direction of the ruler.'''
         s,e,*_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
     
     def get_width_vector_of_ruler(self):
-        '''获取直尺宽度的方向'''
+        '''Return the width direction of the ruler.'''
         _,s,e,_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
         
     def get_start_and_end(self):
-        '''获取直尺的始点和终点'''
+        '''Return the start and end points of the ruler.'''
         E,S,*_ = self.ruler.get_vertices()
         return S,E
     
     def get_middle_point(self):
-        '''获取直尺的中点'''
+        '''Return the midpoint of the ruler.'''
         S,E = self.get_start_and_end()
         return (S+E)/2
     
     def get_length_of_ruler(self):
-        '''获取直尺的长度'''
+        '''Return the length of the ruler.'''
         S,E = self.get_start_and_end()
         return np.linalg.norm(E-S)
 
     def set_ruler(self,start = LEFT,end = RIGHT):
         '''
-        放置直尺,使直尺的一边对齐start和end两点
+        Place the ruler so that one of its edges aligns with start and end.
 
         args
-            start:直尺放置的起始点
-            end:直尺放置的终点
+            start: start point of the ruler placement
+            end: end point of the ruler placement
         '''
         direction = end - start
         current_pos = self.get_middle_point()
@@ -87,7 +87,7 @@ class Ruler(VGroup):
         return self
     
     def put_ruler_flat(self):
-        '''将直尺放平'''
+        '''Lay the ruler flat.'''
         self.rotate(
             angle = get_vecs_angle(
                 self.get_direction_vector_of_ruler(),

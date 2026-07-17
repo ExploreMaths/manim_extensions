@@ -15,7 +15,7 @@ from manim.animation.transform import ApplyMethod
 from ..compass.pencil import Pencil
 
 class MovePencilAlongPath(MoveAlongPath):
-    '''铅笔笔头沿着指定路径移动的动画效果'''
+    '''Animation of the pencil nib moving along a given path.'''
     def __init__(
         self,
         mobject: Pencil,
@@ -24,12 +24,12 @@ class MovePencilAlongPath(MoveAlongPath):
         **kwargs
     ) -> None:
         '''
-        移动铅笔的动画类：以笔尖为参考点,使铅笔沿着指定 path 移动
+        Move the pencil along the given path, using the nib as the reference point.
 
         Args:
-            mobject: 铅笔
-            path: 指定的路径
-            suspend_mobject_updating: 是否暂停 mobject 的更新
+            mobject: The pencil.
+            path: The target path.
+            suspend_mobject_updating: Whether to suspend mobject updating.
         '''
         start = path.get_start()
         path = path.copy().shift(mobject.get_center() - start)
@@ -43,11 +43,11 @@ class MovePencilTipTo(ApplyMethod):
         **kwargs
     ):
         '''
-        移动铅笔 pencil 以笔尖为参考点,整体移到指定 point 点
+        Move the pencil so that its nib is placed at point.
 
         Args:
-            pencil: 铅笔
-            point: 指定点
+            pencil: The pencil.
+            point: The target point.
         '''
         super().__init__(
             pencil.move_nid_to,
@@ -63,11 +63,11 @@ class DrawPath(AnimationGroup):
         **kwargs
     ):
         '''
-        铅笔笔头沿着指定路径移动,同时绘制路径的动画效果
+        Animation of the pencil nib moving along the path while drawing it.
         
         Args:
-            pencil: 铅笔
-            path:路径
+            pencil: The pencil.
+            path: The path.
         '''
         super().__init__(
             Create(path),
@@ -83,10 +83,10 @@ class PutPencilAway(MovePencilTipTo):
         **kwargs
     ):
         '''
-        收起铅笔动画类：将铅笔 pencil 收起至 point 位置
+        Put the pencil away: move the pencil to point.
 
         Args:
-            pencil: 铅笔
-            point: 放置位置
+            pencil: The pencil.
+            point: The placement position.
         '''
         super().__init__(pencil,point,**kwargs)

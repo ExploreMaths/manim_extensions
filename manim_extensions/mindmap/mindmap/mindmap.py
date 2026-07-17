@@ -22,74 +22,59 @@ from ..algorithms import (
     
 class MindMap(AbstractMap):
     """
-    思维导图类: 解析如下格式的思维导图数据,并生成对应的思维导图对象
+    Mind map class: parses mind-map data in the following format and builds
+    the corresponding mind-map object.
 
-    mindmap = {
-        'node':r'球体积',
-        'text':'用于TTS讲解的文本',
-        'child':[
-            {
-                'node':r'公元前3世纪',#或者为VMobject、Mobject对象
-                'child':[
-                    {
-                        'node':r'阿基米德平衡法',
-                    }
-                ]
-            },
-            {
-                'node':r'公元3世纪',
-                'child':[
-                    {
-                        'node':r'《九章算术》',
-                    },
-                    {
-                        'node':r'刘徽：牟合方盖',
-                        'child':[
-                            {
-                                'node':r'球与牟合方盖的关系',
-                            },
-                            {
-                                'node':r'牟合方盖体积？',
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                'node':r'公元5世纪',
-                'child':[
-                    {
-                        'node':r'祖暅：开立圆术',
-                    }
-                ]
-            },
-            {
-                'node':r'公元17世纪',
-                'child':[
-                    {
-                        'node':r'开普勒',
-                    },
-                    {
-                        'node':r'卡瓦列里原理',
-                    }
-                ]
-            },
-            {
-                'node':r'公元18世纪',
-                'child':[
-                    {
-                        'node':r'松永良弼：会玉术',
-                    }
-                ]
-            }
-        ]
-    }
+    Example::
 
-    mind = MindMap(mindmap)
-    mind.scale_to_fit_width(12)
-    self.play(
-        FadeIn(mind)
-    )
+        mindmap = {
+            'node': r'Sphere volume',
+            'text': 'Text used for TTS narration',
+            'child': [
+                {
+                    'node': r'3rd century BC',  # or a VMobject / Mobject
+                    'child': [
+                        {'node': r'Archimedes: method of exhaustion'}
+                    ]
+                },
+                {
+                    'node': r'3rd century AD',
+                    'child': [
+                        {'node': r'Nine Chapters on the Mathematical Art'},
+                        {
+                            'node': r'Liu Hui: Mouhefanggai',
+                            'child': [
+                                {'node': r'Sphere and Mouhefanggai'},
+                                {'node': r'Volume of Mouhefanggai?'}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    'node': r'5th century AD',
+                    'child': [
+                        {'node': r'Zu Geng: Cavalieri principle'}
+                    ]
+                },
+                {
+                    'node': r'17th century AD',
+                    'child': [
+                        {'node': r'Kepler'},
+                        {'node': r'Cavalieri principle'}
+                    ]
+                },
+                {
+                    'node': r'18th century AD',
+                    'child': [
+                        {'node': r'Matsunaga Yoshisuke'}
+                    ]
+                }
+            ]
+        }
+
+        mind = MindMap(mindmap)
+        mind.scale_to_fit_width(12)
+        self.play(FadeIn(mind))
     """
     def __init__(
         self,
@@ -117,16 +102,15 @@ class MindMap(AbstractMap):
             ]
         )
     ):
-        '''
-        思维导图类构造函数
-        
-        参数说明:
-            map: 思维导图数据
-            buff: 节点内容和节点边框间距
-            direction: 节点布局方向
-            level_spacing: 层间距
-            node_spacing: 节点间距
-            node_style: 节点样式
+        '''Constructor for the mind-map class.
+
+        Parameters:
+            map: mind-map data
+            buff: padding between node content and node border
+            direction: node layout direction
+            level_spacing: spacing between layers
+            node_spacing: spacing between nodes
+            node_style: node style
         '''
         self.node_style = node_style
         self.direction = direction
@@ -146,7 +130,7 @@ class MindMap(AbstractMap):
         )
     
     def _set_connectors(self):
-        """设置连接线"""
+        """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
                 LayoutType.MindMap,
@@ -163,15 +147,16 @@ class MindMap(AbstractMap):
 
 class TimeLine(AbstractMap):
     """
-    时序图:数据格式与 MindMap 相同
-    
-    参数说明:
-        map: 时序图数据
-        buff: 节点内容和节点边框间距
-        sides: 节点布局方向,以二级节点为根的子树发延伸方向
-        level_spacing: 层间距
-        node_spacing: 节点间距
-        node_style: 节点样式
+    Timeline: data format is the same as :class:`MindMap`.
+
+    Parameters:
+        map: timeline data
+        buff: padding between node content and node border
+        sides: node layout direction; growth direction of subtrees rooted at
+            second-level nodes
+        level_spacing: spacing between layers
+        node_spacing: spacing between nodes
+        node_style: node style
     """
     def __init__(
         self,
@@ -216,7 +201,7 @@ class TimeLine(AbstractMap):
         )
 
     def _set_connectors(self):
-        """设置连接线"""
+        """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
                 LayoutType.TimeLine,
@@ -233,15 +218,15 @@ class TimeLine(AbstractMap):
 
 class StandardMap(AbstractMap):
     """
-    两侧布局的思维导图:数据格式与 MindMap 相同
-    
-    参数说明:
-        map: 导图数据
-        buff: 节点内容和节点边框间距
-        direction: 布局方向
-        level_spacing: 层间距
-        node_spacing: 节点间距
-        node_style: 节点样式
+    Two-sided mind map: data format is the same as :class:`MindMap`.
+
+    Parameters:
+        map: mind-map data
+        buff: padding between node content and node border
+        direction: layout direction
+        level_spacing: spacing between layers
+        node_spacing: spacing between nodes
+        node_style: node style
     """
     def __init__(
         self,
@@ -286,7 +271,7 @@ class StandardMap(AbstractMap):
         )
 
     def _set_connectors(self):
-        """设置连接线"""
+        """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
                 LayoutType.Standard,
@@ -303,14 +288,15 @@ class StandardMap(AbstractMap):
 
 class CatalogMap(AbstractMap):
     """
-    目录组织结构图:数据格式与 MindMap 相同,布局方向向下
-    
-    参数说明:
-        map: 目录数据
-        buff: 节点内容和节点边框间距
-        level_spacing: 层间距
-        node_spacing: 节点间距
-        node_style: 节点样式
+    Catalog / organisation-chart: data format is the same as :class:`MindMap`,
+    layout direction is downwards.
+
+    Parameters:
+        map: catalog data
+        buff: padding between node content and node border
+        level_spacing: spacing between layers
+        node_spacing: spacing between nodes
+        node_style: node style
     """
     def __init__(
         self,
@@ -353,7 +339,7 @@ class CatalogMap(AbstractMap):
         )
 
     def _set_connectors(self):
-        """设置连接线"""
+        """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
                 LayoutType.Catalog,

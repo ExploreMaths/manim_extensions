@@ -32,12 +32,14 @@ class DrawArc(AnimationGroup):
         **kwargs
     ):
         '''
-        尺规作图动画类：画圆弧
-        注意：该动画之前,需要先移动圆规 compass 的针尖(niddle_tip)到 arc 的圆心,再移动圆规 compass 的笔尖(pen_tip)放到圆弧的起点
+        Compass-and-straightedge animation: draw an arc.
+        Note: before this animation, move the compass needle tip (niddle_tip)
+        to the centre of the arc, and move the compass pen tip to the start
+        of the arc.
         
         Args:
-            compass: 圆规
-            arc: 圆弧
+            compass: The compass.
+            arc: The arc to draw.
         '''
         super().__init__(
             Create(arc),
@@ -53,12 +55,13 @@ class SplitCompass(AnimationGroup):
         **kwargs
     ):
         '''
-        尺规作图动画类：将圆规 compass 的两脚, 均匀的向外(内)旋转, 使得张开的距离为 span;
-        同时 niddle_tip 不动
+        Compass-and-straightedge animation: rotate the two legs of the compass
+        uniformly outward (or inward) so that the distance between the tips is span.
+        The niddle_tip stays fixed.
         
         Args:
-            compass: 圆规
-            span: 圆规两脚张开的距离
+            compass: The compass.
+            span: The distance between the two compass tips.
         '''
         theta_new, theta_old = np.arcsin(span/2/compass.leg_length), compass.theta
         compass.theta = theta_new
@@ -90,11 +93,11 @@ class RotateCompass(Rotate):
         **kwargs
     ):
         '''
-        尺规作图动画类：将圆规 compass 绕其针尖旋转 angle 度
+        Compass-and-straightedge animation: rotate the compass around its needle tip by angle.
 
         Args:
-            compass: 圆规
-            angle: 旋转角度
+            compass: The compass.
+            angle: The rotation angle.
         '''
         super().__init__(
             compass,
@@ -111,11 +114,11 @@ class MoveNiddleTipTo(ApplyMethod):
         **kwargs
     ):
         '''
-        尺规作图动画类：移动圆规 compass 以尖为参考点,整体移到指定 point 点
+        Compass-and-straightedge animation: move the compass so that its needle tip is placed at point.
 
         Args:
-            compass: 圆规
-            point: 指定点
+            compass: The compass.
+            point: The target point.
         '''
         super().__init__(
             compass.move_niddle_tip_to,
@@ -132,16 +135,16 @@ class PutCompass(ApplyMethod):
         **kwargs
     ):
         '''
-        尺规作图动画类：移动圆规 compass 的 niddle_tip 和 pen_tip 放到指定位置
+        Compass-and-straightedge animation: place the compass's niddle_tip and pen_tip at the given positions.
 
         Args:
-            compass: 圆规
-            niddle_pos: niddle_tip的放置点
-            pen_pos: pen_tip的放置点
+            compass: The compass.
+            niddle_pos: Position for niddle_tip.
+            pen_pos: Position for pen_tip.
         '''
         arc_radius = get_distance(niddle_pos,pen_pos)
         if arc_radius > compass.leg_length*2:
-            raise ValueError("超出了圆规的画图范围")
+            raise ValueError("The span exceeds the compass drawing range.")
             
         span_angle = compass.get_compass_rotate_angle_with_span(arc_radius)
         rotate_angle = get_vecs_angle(
@@ -165,12 +168,12 @@ class PutCompassAway(PutCompass):
         **kwargs
     ):
         '''
-        尺规作图动画类：将圆规 compass 放置到 point 点, 使得合并两脚的距离为 span_buff
+        Compass-and-straightedge animation: put the compass aside at point, with the two tips separated by span_buff.
 
         Args:
-            compass: 圆规
-            point: 圆规放置点
-            span_buff: 合并两脚的距离
+            compass: The compass.
+            point: Position to place the compass.
+            span_buff: Distance between the two tips when placed aside.
         '''
         r = 0.5*compass.leg_length
         vec = r*DOWN if compass.get_compass_rotate_angle_direction() else r*UP

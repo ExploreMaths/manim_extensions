@@ -14,17 +14,17 @@ def get_arc(
     **kwargs
 )-> Arc:
     '''
-    根据圆心和起点构造圆弧
+    Construct an arc from its centre and starting point.
 
     Args:
-        niddle_pos: 圆弧的圆心
-        pen_pos: 圆弧的起点
-        angle: 圆弧的圆心角
-        color: 圆弧的颜色
-        kwargs: 圆弧的其他关键词参数
+        niddle_pos: centre of the arc
+        pen_pos: starting point of the arc
+        angle: central angle of the arc
+        color: colour of the arc
+        kwargs: other keyword arguments for the arc
 
     Returns:
-        构造的 Arc 实例
+        The constructed Arc instance
     '''
     arc_radius = get_distance(niddle_pos,pen_pos)
     vec_s = pen_pos - niddle_pos
@@ -41,14 +41,14 @@ def get_distance(
     point_start:np.ndarray,
     point_end:np.ndarray
 )-> float:
-    """计算两点距离"""
+    """Compute the distance between two points."""
     return np.linalg.norm(point_start - point_end)
 
 def is_counter_clockwise(
     vector_start:np.ndarray,
     vector_end:np.ndarray
 )-> bool:
-    """判断向量 vector_end 是否在 vector_start 的逆时针方向"""
+    """Return whether vector_end is counter-clockwise from vector_start."""
     return np.cross(vector_start,vector_end)[-1] > 0
 
 def get_vecs_angle(
@@ -56,12 +56,12 @@ def get_vecs_angle(
     vec_e:np.ndarray
 )-> float:
     """
-    计算向量 vec_s = (x1,y1) 到 vec_e = (x2,y2) 的夹角:
+    Compute the angle from vector vec_s = (x1,y1) to vec_e = (x2,y2).
 
-    区分顺、逆时针(sign = x1*y2 - x2*y1):
-        sign > 0, vec_e 在 vec_s 的逆时针方向;
-        sign < 0,为顺时针方向;
-        sign = 0,共线
+    Distinguishes clockwise vs counter-clockwise (sign = x1*y2 - x2*y1):
+        sign > 0: vec_e is counter-clockwise from vec_s;
+        sign < 0: clockwise;
+        sign = 0: collinear
     """
     angle = np.arccos(
         np.true_divide(

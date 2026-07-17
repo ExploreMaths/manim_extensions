@@ -25,7 +25,8 @@ from ..utils.geometry_method import (
 
 class CompassScene(MovingCameraScene):
     '''
-    带有圆规、直尺、铅笔的场景类,主要实现：圆规的放置、画圆弧等操作；直尺和铅笔的动画
+    A scene equipped with a compass, ruler, and pencil. Mainly implements
+    compass placement, arc drawing, and ruler/pencil animations.
     '''
     def setup(self):
         self.compass = Compass(span = 0.5).to_edge(LEFT)
@@ -33,7 +34,7 @@ class CompassScene(MovingCameraScene):
         self.pencil = Pencil().to_corner(UR)
 
     def compass_move_niddle_tip_to(self,pos = ORIGIN,run_time = 1):
-        '''将圆规的niddle_tip移动到pos'''
+        '''Move the compass needle tip to pos.'''
         self.play(
             self.compass.animate.move_niddle_tip_to(pos),
             # MoveNiddleTipTo(self.compass,pos),
@@ -48,7 +49,7 @@ class CompassScene(MovingCameraScene):
         **kwargs
     ):
         '''
-        以圆规的针脚niddle_tip为圆心, 旋转angle
+        Rotate angle around the compass needle tip (niddle_tip).
         '''
         anims = [
             Rotate(
@@ -65,7 +66,7 @@ class CompassScene(MovingCameraScene):
         self.play(*anims, **kwargs)
 
     def compass_split_span(self,span = 3,run_time = 1):
-        '''将圆规的两脚, 均匀的向外、向内旋转, 使得张开的距离为span'''
+        '''Rotate the two compass legs uniformly outward/inward so the opened distance equals span.'''
         self.play(
             SplitCompass(self.compass,span = span),
             run_time = run_time,
@@ -74,7 +75,7 @@ class CompassScene(MovingCameraScene):
 
     def split_cmpass_span(self,span = 1,run_time = 1):
         '''
-        固定niddle_tip后, 在niddle_tip和pen_tip的连线上, 移动pen_tip,达到指定的宽度
+        Fix niddle_tip, then move pen_tip along the line through niddle_tip and pen_tip to reach the given span.
         '''
         angle = self.compass.get_compass_rotate_angle_with_span(span)
         self.play(
@@ -92,11 +93,11 @@ class CompassScene(MovingCameraScene):
         run_time:float = 1.0
     ):
         '''
-        将圆规放到指定的位置上: niddle_tip 移到 niddle_pos,pen_tip 移到 pen_pos
+        Place the compass at the specified positions: move niddle_tip to niddle_pos and pen_tip to pen_pos.
 
         args
-            niddle_pos: 圆规的支脚尖(niddle_tip)指向的位置
-            pen_pos: 圆规的笔头(pen_tip)指向的位置
+            niddle_pos: target position for the compass needle tip (niddle_tip)
+            pen_pos: target position for the compass pen tip (pen_tip)
         '''
         self.play(
             PutCompass(
@@ -119,19 +120,19 @@ class CompassScene(MovingCameraScene):
         **kwargs
     )-> Arc:
         '''
-        使用圆规画圆弧: 通过 niddle_point 和 pen_point 计算圆弧半径
+        Draw an arc with the compass. The arc radius is computed from niddle_point and pen_point.
 
         args
-            niddle_point : 圆弧的圆心
-            pen_point : 圆弧的起始点
-            angle : 圆弧的圆心角
-            move_time : 移动圆规的时间
-            run_time : 画圆弧的时间
-            wait_time : 两个动画之间的等待时间
-            arc_color : 圆弧的颜色
-            kwargs : 圆弧的其他关键词参数
+            niddle_point : centre of the arc
+            pen_point : starting point of the arc
+            angle : central angle of the arc
+            move_time : time to move the compass into position
+            run_time : time to draw the arc
+            wait_time : wait time between the two animations
+            arc_color : colour of the arc
+            kwargs : other keyword arguments for the arc
         return
-            返回所画的圆弧
+            The drawn arc
         '''
         self.set_compass(
             niddle_point,
@@ -159,7 +160,7 @@ class CompassScene(MovingCameraScene):
         return arc
     
     def flip_compass(self,run_time = 1):
-        '''翻转圆规'''
+        '''Flip the compass.'''
         self.play(
             self.compass.animate.reverse_tip(),
             run_time = run_time
@@ -172,12 +173,12 @@ class CompassScene(MovingCameraScene):
         run_time:float = 1.0
     ):
         '''
-        将圆规放置于一边
+        Put the compass aside.
 
         args
-            aside_pos:圆规放置的位置
-            span_buff:放置圆规时,圆规的两脚距离
-            run_time:放置需要的时间
+            aside_pos: position to place the compass
+            span_buff: distance between the two compass tips when placed aside
+            run_time: time required to place the compass
         '''
         r = 0.5*self.compass.leg_length
         vec = r*DOWN if self.compass.get_compass_rotate_angle_direction() else r*UP
@@ -196,14 +197,14 @@ class CompassScene(MovingCameraScene):
         with_pencil:bool = True
     ):
         '''
-        放置直尺,使直尺的一边对齐start和end两点
+        Place the ruler so that one of its edges aligns with start and end.
 
         args
-            start:直尺放置的起始点
-            end:直尺放置的终点
-            lag_ratio:直尺和铅笔的放置动画的延迟比例
-            run_time:放置直尺的时间
-            with_pencil:是否同时放置铅笔
+            start: start point of the ruler placement
+            end: end point of the ruler placement
+            lag_ratio: lag ratio between the ruler and pencil placement animations
+            run_time: time to place the ruler
+            with_pencil: whether to place the pencil at the same time
         '''
         if with_pencil:
             self.play(
@@ -221,7 +222,7 @@ class CompassScene(MovingCameraScene):
             )
 
     def set_pencil(self,pos,run_time = 1.0):
-        '''将铅笔笔尖移动到指定位置'''
+        '''Move the pencil nib to the specified position.'''
         self.play(
             self.pencil.animate.move_nid_to(pos),
             # MovePencilTipTo(self.pencil,pos),
@@ -237,7 +238,7 @@ class CompassScene(MovingCameraScene):
         color = YELLOW,
         **kwargs
     )-> Line:
-        '''用直尺画直线'''
+        '''Draw a straight line using the ruler.'''
         self.set_ruler(start = start,end = end,run_time = 0.5*run_time,with_pencil = with_pencil)
         line = Line(start,end,color = color,**kwargs)
         if with_pencil:
@@ -253,7 +254,7 @@ class CompassScene(MovingCameraScene):
         return line
     
     def put_pencil_away(self,pos = 3*DOWN,run_time = 1):
-        '''将铅笔整体平移到指定位置'''
+        '''Translate the pencil as a whole to the specified position.'''
         curr_pos = self.pencil.get_center()
         self.play(
             self.pencil.animate.shift(pos - curr_pos),
@@ -267,12 +268,12 @@ class CompassScene(MovingCameraScene):
         run_time:float = 1.0
     ):
         '''
-        将直尺放置到aside_pos
+        Put the ruler aside at aside_pos.
 
         args
-            aside_pos:直尺将要放置的位置
-            horizontal_or_vertical:是否水平放置
-            run_time:放置所需时间
+            aside_pos: position where the ruler will be placed
+            horizontal_or_vertical: whether to place it horizontally
+            run_time: time required to place the ruler
         '''
         vec_w = self.ruler.get_direction_vector_of_ruler()
         vec = RIGHT if horizontal_or_vertical else DOWN

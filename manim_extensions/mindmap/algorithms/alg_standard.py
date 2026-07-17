@@ -8,7 +8,7 @@ from .layout_config import LayoutDirection
 from .layout import Layout
 
 class TreeNode:
-    """StandardLayout 内部使用的树节点包装类"""
+    """Internal tree-node wrapper used by StandardLayout."""
     __slots__ = ('height','width','children','parent','x','y','level','is_flip')
     def __init__(
         self,
@@ -25,7 +25,7 @@ class TreeNode:
         self.parent:'TreeNode' = None
 
     def add_child(self, child: 'TreeNode'):
-        """添加子节点并设置父子关系"""
+        """Add a child node and set the parent-child relationship."""
         self.children.append(child)
         child.parent = self
 
@@ -46,11 +46,11 @@ def split_integer(n:int):
 
 def sync_copy_bfs(src: TreeNode, dst: Any):
     """
-    同步递归遍历，将 src 的数据复制到 dst。
+    Synchronously traverse two trees and copy data from src to dst.
     
     Args:
-        src: 源树（数据提供者）
-        dst: 目标树（数据接收者）
+        src: Source tree (data provider)
+        dst: Destination tree (data receiver)
     """
     queue = deque([(src, dst)])
     
@@ -60,22 +60,22 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
         if s_node is None and d_node is None:
             continue
         if s_node is None or d_node is None:
-            raise ValueError("结构不一致")
+            raise ValueError("Tree structures do not match")
         if len(s_node.children) != len(d_node.children):
-            raise ValueError("子节点数量不一致")
+            raise ValueError("Child node counts do not match")
         
-        # 复制数据
+        # Copy data
         d_node.x = s_node.x
         d_node.y = s_node.y
         d_node.level = s_node.level
         d_node.is_flip = s_node.is_flip
         
-        # 同步入队
+        # Synchronously enqueue children
         for s_child, d_child in zip(s_node.children, d_node.children):
             queue.append((s_child, d_child))
 
 class StandardLayout(Layout):
-    """两侧布局的思维导图布局算法:将子节点分成左右(或上下)两侧分别布局"""
+    """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides."""
     def __init__(
         self,
         root:Any,
@@ -90,7 +90,7 @@ class StandardLayout(Layout):
         self.level_spacing = level_spacing
 
     def _flip_direction(self, direction: LayoutDirection) -> LayoutDirection:
-        """返回给定方向的反方向"""
+        """Return the opposite of the given direction."""
         match direction:
             case LayoutDirection.LeftToRight:
                 return LayoutDirection.RightToLeft
@@ -102,7 +102,7 @@ class StandardLayout(Layout):
                 return LayoutDirection.TopToBottom
             
     def _split(self):
-        """将根节点的子节点分成左右(或上下)两部分"""
+        """Split the root's children into left/right (or top/bottom) parts."""
         self.left = TreeNode(self.root.height, self.root.width)
         if (number := len(self.root.children)) > 0:
             m,n = split_integer(number)
@@ -118,7 +118,7 @@ class StandardLayout(Layout):
                     self.right.add_child(child)
 
     def layout(self):
-        """执行两侧布局计算并返回原始根节点"""
+        """Run the two-sided layout and return the original root node."""
         self._split()
         self.left = TidyTreeLayout(
             self.left,
@@ -141,7 +141,7 @@ class StandardLayout(Layout):
         return self.root
     
     def _offset(self,node:Any, x:float, y:float):
-        """平移右侧(或下侧)子树并标记为翻转"""
+        """Translate the right (or bottom) subtree and mark it as flipped."""
         node.x += x
         node.y += y
         node.is_flip = True
@@ -149,6 +149,6 @@ class StandardLayout(Layout):
             self._offset(child,x,y)
 
     def _merge(self):
-        """将右侧(或下侧)子树合并到左侧树中"""
+        """Merge the right (or bottom) subtree into the left tree."""
         for child in self.right.children:
             self.left.add_child(child) 

@@ -20,15 +20,15 @@ import numpy as np
 from ..algorithms import LayoutType,LayoutDirection
     
 class NodeSate(Enum):
-    """节点状态"""
-    INSERT = 0  # 新插入
-    REMOVE = 1  # 待移除
-    DISPLAY = 2  # 已显示
-    SCALE = 3  # 待放大
-    ALTER = 4  # 替换节点中的内容
+    """Node state."""
+    INSERT = 0  # newly inserted
+    REMOVE = 1  # pending removal
+    DISPLAY = 2  # already displayed
+    SCALE = 3  # pending scale
+    ALTER = 4  # replace node content
 
 class NodeStyle:
-    '''整体布局参数,以及节点样式字典列表,按节点层级索引'''
+    '''Overall layout parameters and a list of node-style dicts indexed by node level.'''
     def __init__(
         self,
         node_style:List[Dict] = [
@@ -72,25 +72,25 @@ class NodeStyle:
             self.text_num = 1
 
     def get_node_style(self,level:int) -> Dict:
-        """获取指定层级的节点样式"""
+        """Return the node style for the given level."""
         if level < self.node_num:
             return self.node_style[level]
         return self.node_style[-1]
     
     def get_line_style(self,level:int) -> Dict:
-        """获取指定层级的连线样式"""
+        """Return the line style for the given level."""
         if level < self.line_num:
             return self.line_style[level]
         return self.line_style[-1]
     
     def get_text_style(self,level:int) -> Dict:
-        """获取指定层级的文本样式"""
+        """Return the text style for the given level."""
         if level < self.text_num:
             return self.text_style[level]
         return self.text_style[-1]
 
 def dfs_walker(root: 'Node') -> Generator:
-    """深度优先,前序遍历:后进先出,用栈"""
+    """Depth-first, pre-order traversal: last-in-first-out using a stack."""
     if not root:
         return []
     stack = [root]
@@ -101,7 +101,7 @@ def dfs_walker(root: 'Node') -> Generator:
             stack.append(child)
 
 def bfs_walker(root: 'Node') -> Generator:
-    """广度优先,层序遍历:先进先出,用队列"""
+    """Breadth-first, level-order traversal: first-in-first-out using a queue."""
     if not root:
         return []
     queue = deque([root])
@@ -112,7 +112,7 @@ def bfs_walker(root: 'Node') -> Generator:
             queue.append(child)
 
 class Node:
-    """树节点类"""
+    """Tree-node class."""
     def __init__(
         self,
         vmobject:VMobject = None,
@@ -132,20 +132,20 @@ class Node:
         self.y = 0
         self.level = 0
         self.parent = None
-        self.neighbor = None  # 邻居节点
+        self.neighbor = None  # neighbouring node
         self.children = []
-        self.node_state = NodeSate.INSERT  # 节点状态
+        self.node_state = NodeSate.INSERT  # node state
         self.side = None
     
     def scale(self, scale_factor: float):
-        """缩放节点"""
+        """Scale the node."""
         self.node_state = NodeSate.SCALE
         self.scale_factor = scale_factor
         self.width *= scale_factor
         self.height *= scale_factor
     
     def add_child(self, child: 'Node'):
-        """添加子节点"""
+        """Add a child node."""
         if self.children:
             child.neighbor = self.children[-1]
             child.node_state = NodeSate.INSERT
@@ -153,20 +153,20 @@ class Node:
         child.parent = self
 
     def remove_child(self, child: 'Node'):
-        """删除子节点"""
+        """Remove a child node."""
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
         child.node_state = NodeSate.REMOVE
 
     def alter_content(self, vmobject: VMobject):
-        """替换节点内容"""
+        """Replace the node content."""
         self.node_state = NodeSate.ALTER
         self.alter_vmobject = vmobject
         self.width = self.alter_vmobject.width + 2*self.buff
         self.height = self.alter_vmobject.height + 2*self.buff
 
     def _get_mindmap_connector(self, direction: np.ndarray, **kwargs) -> Line:
-        """获取思维导图节点连接线"""
+        """Return the connector line for a mind-map node."""
         if np.array_equal(direction,UP):
             start,end = self.parent.surr_rect.get_top(),self.surr_rect.get_bottom()
         elif np.array_equal(direction,DOWN):
@@ -179,7 +179,7 @@ class Node:
         return Line(start,start+vec,**kwargs).add_line_to(end-vec).add_line_to(end)
         
     def _get_timeline_connector(self,**kwargs) -> Line:
-        """获取时序图节点连接线"""
+        """Return the connector line for a timeline node."""
         if self.level == 1:
             if (neighbor:=self.neighbor) is not None:
                 start = neighbor.surr_rect.get_right()
@@ -198,7 +198,7 @@ class Node:
         return Line(start,middle,**kwargs).add_line_to(end)
     
     def _get_catalog_connector(self,**kwargs) -> Line:
-        """获取目录图节点连接线"""
+        """Return the connector line for a catalog node."""
         start = self.parent.surr_rect.get_bottom()
         if self.level == 1:
             end = self.surr_rect.get_top()
@@ -210,7 +210,7 @@ class Node:
         return Line(start,middle,**kwargs).add_line_to(end)
 
     def get_connector(self,layout_type,direction,**kwargs) -> Line:
-        """根据布局类型获取当前节点到父节点的连接线"""
+        """Return the connector from this node to its parent based on layout type."""
         match layout_type:
             case LayoutType.MindMap:
                 return self._get_mindmap_connector(direction,**kwargs)
@@ -226,7 +226,7 @@ class Node:
             
     
     def set_connector(self,layout_type,direction = RIGHT,**kwargs):
-        """设置连接线"""
+        """Set the connector line."""
         if self.parent is not None and not hasattr(self,'connector'):
             self.connector_style = kwargs
             self.connector = self.get_connector(layout_type,direction,**kwargs)
@@ -244,7 +244,7 @@ class Node:
         direction:np.ndarray = RIGHT,
         **kwargs
     ):
-        """改变连接线"""
+        """Change the connector line."""
         current_style = getattr(self, 'connector_style', None)
         if hasattr(self,'connector') and (
             change_layout or change_dir or kwargs != current_style
@@ -258,7 +258,7 @@ class Node:
             )
 
     def get_node_and_line_without_updater(self) -> Group:
-        """获取节点及其连接线对象,并移除连接线的 updater"""
+        """Return the node and its connector, removing the connector updater."""
         node_mobj = Group(self.surr_rect,self.vmobject)
         if hasattr(self,'connector'):
             self.connector.remove_updater(*self.connector.get_updaters())
@@ -267,11 +267,11 @@ class Node:
         return node_mobj
     
     def get_children(self) -> List['Node']:
-        """获取所有子节点"""
+        """Return all child nodes."""
         return self.children
     
     def get_descendants(self) -> List['Node']:
-        """获取所有子孙节点"""
+        """Return all descendant nodes."""
         def descendants_of_node(
             node: Node,
             descendants: list[Node] = []
@@ -284,14 +284,14 @@ class Node:
         return descendants_of_node(self)
     
     def get_children_mobjects(self) -> Group:
-        """获取所有子节点对象"""
+        """Return mobjects for all child nodes."""
         group = Group()
         for node in self.children:
             group.add(node.vmobject,node.surr_rect)
         return group
     
     def get_descendants_mobjects(self) -> Group:
-        """获取所有子孙节点对象"""
+        """Return mobjects for all descendant nodes."""
         def descendants_mobjects_of_node(
             node: Node,
             descendants: Group = Group()
@@ -303,7 +303,7 @@ class Node:
         return descendants_mobjects_of_node(self)
     
     def get_root(self) -> 'Node':
-        """获取根节点"""
+        """Return the root node."""
         if self.parent is None:
             return self
         return self.parent.get_root()

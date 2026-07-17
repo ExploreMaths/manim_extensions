@@ -1,4 +1,4 @@
-"""Timeline 布局算法 - Python 实现"""
+"""Timeline layout algorithm - Python implementation."""
 __all__ = [
     'TimeLineLayout',
 ]
@@ -11,15 +11,15 @@ from .layout_config import LayoutDirection
 @dataclass
 class TimelineNode:
     """
-    时间轴布局节点
+    Timeline layout node.
 
-    输入属性（必需）：
-        width, height: 节点尺寸
-        children: 子节点列表
-        side_dir: 生长方向（二级节点为根的子树向上或向下）
+    Input attributes (required):
+        width, height: node dimensions
+        children: list of child nodes
+        side_dir: growth direction (subtrees rooted at second-level nodes grow upward or downward)
 
-    输出属性（算法填充）：
-        x, y: 节点在画布中的左上角坐标
+    Output attributes (filled by the algorithm):
+        x, y: top-left coordinates of the node on the canvas
     """
     node: Any = None
     width: float = 0.0
@@ -27,25 +27,25 @@ class TimelineNode:
     children: List["TimelineNode"] = field(default_factory=list)
     side_dir: LayoutDirection = None
 
-    # 布局结果坐标
+    # Layout result coordinates
     x: float = 0.0
     y: float = 0.0
 
-    # 内部运行时属性（无需用户设置）
+    # Internal runtime attributes (do not set manually)
     _is_root: bool = False
     _parent: Optional["TimelineNode"] = None
-    _layer_index: int = 0         # 层级深度（根为0）
-    _index: int = 0               # 在兄弟中的索引
+    _layer_index: int = 0         # layer depth (root is 0)
+    _index: int = 0               # index among siblings
 
     @classmethod
     def from_node(cls, node) -> 'TimelineNode':
-        """从原始节点创建包装树"""
+        """Create a wrapper tree from the original node."""
         tl = cls()
         tl.node = node
-        # 复制尺寸
+        # Copy dimensions
         tl.width = float(getattr(node, 'width', 0))
         tl.height = float(getattr(node, 'height', 0))
-        # 递归创建子节点
+        # Recursively create children
         children = getattr(node, 'children', [])
         tl.children = [cls.from_node(child) for child in children]
         return tl
@@ -60,28 +60,28 @@ def walk(
     index: int = 0
 ):
     """
-    树遍历工具函数
+    Tree traversal utility.
 
-    支持先序回调（before_callback）和后序回调（after_callback）
-    before_callback 返回 True 时跳过该节点的子节点遍历
+    Supports pre-order (before_callback) and post-order (after_callback) callbacks.
+    If before_callback returns True, traversal of that node's children is skipped.
     """
-    # 先序回调
+    # Pre-order callback
     if before_callback:
         result = before_callback(node, parent, is_root, layer_index, index)
         if result is True:
             return
 
-    # 遍历子节点
+    # Traverse children
     if node.children:
         for i, child in enumerate(node.children):
             walk(child, node, before_callback, after_callback,False, layer_index + 1, i)
 
-    # 后序回调
+    # Post-order callback
     if after_callback:
         after_callback(node, parent, is_root, layer_index, index)
 
 class TimeLineLayout(Layout):
-    """Timeline 布局引擎"""
+    """Timeline layout engine."""
     def __init__(
         self,
         root: Any,
@@ -98,18 +98,18 @@ class TimeLineLayout(Layout):
         self.sides = sides
         self.is_two_sides = (len(sides) == 2)
 
-    # ==================== 对外接口 ====================
+    # ==================== Public API ====================
     def layout(self) -> Any:
-        """执行三阶段布局算法"""
+        """Run the three-stage layout algorithm."""
         self._compute_base()
         self._compute_coords()
         self._adjust()
         self._apply_coords(self.root)
         return self.root.node
 
-    # ==================== 阶段1：基础值计算 ====================
+    # ==================== Stage 1: base-value computation ====================
     def _compute_base(self):
-        """先序遍历：创建节点、计算根节点位置、计算二级节点的 top 值"""
+        """Pre-order traversal: create nodes, set root position, compute second-level top values."""
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
@@ -124,27 +124,27 @@ class TimeLineLayout(Layout):
             if is_root:
                 node._is_root = True
             else:
-                # 非根节点,时间轴交替显示
+                # Non-root nodes: alternate sides on the timeline
                 if self.is_two_sides:
-                    # 三级及以下节点以上级为准
+                    # Third-level and deeper nodes inherit from their parent
                     if parent and parent.side_dir and not parent._is_root:
                         node.side_dir = parent.side_dir
                     else:
-                        # 节点生长方向：二级节点交替
+                        # Growth direction: second-level nodes alternate
                         node.side_dir = self.sides[index % 2]
                 else:
                     node.side_dir = self.sides[0]
 
-                # 二级节点（根的直接子节点）与根节点垂直居中对齐
+                # Second-level nodes (direct children of the root) are vertically centred with the root
                 if parent and parent._is_root:
                     node.y = parent.y + (parent.height - node.height) / 2
             return False
 
         walk(self.root, None, before_callback, None, True, 0)
 
-    # ==================== 阶段2：精确坐标计算 ====================
+    # ==================== Stage 2: precise coordinate computation ====================
     def _compute_coords(self):
-        """先序遍历：计算节点的 left(x)、top(y)"""
+        """Pre-order traversal: compute node left (x) and top (y)."""
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
@@ -159,7 +159,7 @@ class TimeLineLayout(Layout):
             node_spacing = self.node_spacing
 
             if is_root:
-                # 根节点的子节点是和根节点同一水平线排列
+                # Children of the root are arranged on the same horizontal line as the root
                 left = node.x + node.width
                 total_left = left + level_spacing
                 for cur in node.children:
@@ -175,9 +175,9 @@ class TimeLineLayout(Layout):
 
         walk(self.root, None, before_callback, None, True, 0)
 
-    # ==================== 阶段3：碰撞调整 ====================
+    # ==================== Stage 3: collision adjustment ====================
     def _adjust(self):
-        """先序+后序遍历：调整节点 left、top"""
+        """Pre-order + post-order traversal: adjust node left and top."""
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
@@ -202,14 +202,14 @@ class TimeLineLayout(Layout):
             layer_index: int,
             index: int
         ):
-            # 特殊处理：向上生长的分支镜像翻转
+            # Special handling: mirror-flip upward-growing branches
             if (
                 parent and
                 parent._is_root and
                 node.side_dir == LayoutDirection.BottomToTop and
                 node.children
             ):
-                # 遍历二级节点的子节点，整体镜像翻转到父节点上方
+                # Mirror the children of the second-level node to above the parent
                 for item in node.children:
                     total_height = self._get_node_area_height(item)
                     _top = item.y
@@ -218,14 +218,14 @@ class TimeLineLayout(Layout):
 
         walk(self.root, None, before_callback, after_callback, True, 0)
 
-    # ==================== 碰撞调整核心算法 ====================
+    # ==================== Core collision-adjustment algorithms ====================
     def _update_brothers_left(self, node: TimelineNode):
         """
-        调整兄弟节点的 left（x 坐标）
+        Adjust siblings' left (x coordinate).
 
-        逻辑：遍历根节点的子节点（二级节点），如果某个节点的子树
-        实际占用的宽度大于节点自身宽度，则其后面的所有兄弟节点
-        需要向右平移，避免重叠。
+        Logic: traverse the root's children (second-level nodes). If a node's subtree
+        actually occupies more width than the node itself, all following siblings
+        must shift right to avoid overlap.
         """
         children_list = node.children
         total_add_width = 0.0
@@ -243,10 +243,10 @@ class TimeLineLayout(Layout):
 
     def _update_brothers_top(self, node: TimelineNode, add_height: float):
         """
-        调整兄弟节点的 top（y 坐标）
+        Adjust siblings' top (y coordinate).
 
-        逻辑：当前节点的子树很高，导致其在父节点子节点列表中后面的
-        兄弟节点需要向下平移。然后递归向上传播到父链。
+        Logic: the current node's subtree is tall, so following siblings in the parent's
+        child list must shift down. Then propagate upward along the parent chain.
         """
         if node._parent and not node._parent._is_root:
             children_list = node._parent.children
@@ -257,24 +257,24 @@ class TimeLineLayout(Layout):
 
             for _index, item in enumerate(children_list):
                 _offset = 0.0
-                # 下面的节点往下移
+                # Nodes below shift down
                 if _index > idx:
                     _offset = add_height
                 item.y += _offset
-                # 同步更新子节点的位置
+                # Synchronously update child positions
                 if item.children:
                     self._update_children(item.children, "y", _offset)
 
-            # 更新父节点的位置
+            # Update parent position
             self._update_brothers_top(node._parent, add_height)
 
-    # ==================== 辅助工具方法 ====================
+    # ==================== Helper methods ====================
     def _get_node_act_children_length(self, node: TimelineNode) -> int:
-        """获取节点实际存在几个子节点"""
+        """Return the actual number of children of the node."""
         return len(node.children)
 
     def _get_node_area_height(self, node: TimelineNode) -> float:
-        """递归计算节点的区域高度"""
+        """Recursively compute the area height of the node."""
         total_height = 0.0
 
         def loop(n: TimelineNode):
@@ -288,7 +288,7 @@ class TimeLineLayout(Layout):
         return total_height
 
     def _get_node_boundaries(self, node: TimelineNode, dir: str) -> Dict[str, float]:
-        """获取节点的边界值"""
+        """Return the boundary values of the node."""
         def walk_tree(root: TimelineNode):
             _left = float("inf")
             _right = float("-inf")
@@ -319,16 +319,16 @@ class TimeLineLayout(Layout):
         return walk_tree(node)
 
     def _update_children(self, children: List[TimelineNode], prop: str, offset: float):
-        """更新子节点属性"""
+        """Update a child-node attribute."""
         for item in children:
             current = getattr(item, prop)
             setattr(item, prop, current + offset)
             if item.children:
                 self._update_children(item.children, prop, offset)
 
-    # ==================== 坐标回写 ====================
+    # ==================== Coordinate write-back ====================
     def _apply_coords(self, node: TimelineNode):
-        """将计算好的坐标应用到原始节点"""
+        """Apply the computed coordinates to the original node."""
         if node.node:
             node.node.x = node.x + node.width / 2
             node.node.y = - node.y - node.height / 2
