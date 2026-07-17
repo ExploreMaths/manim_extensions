@@ -99,52 +99,84 @@ def involute_point_gen(t,r,**kwargs):
 
 
 class Gear(VMobject):
-    '''A Manim mobject representing an involute gear.
+    """A Manim mobject representing an involute gear.
 
     The gear is constructed from involute curves and can mesh with other
-    Gear objects (or Rack objects) using :meth:`mesh_to`.
+    :class:`Gear` objects (or :class:`Rack` objects) using :meth:`mesh_to`.
 
-    .. manim:: GearExample
-        :save_last_frame:
+    Two gears mesh correctly when they share the same *module* and *alpha*
+    (pressure angle). The pitch-circle radius of a gear is
+    ``module * num_of_teeth / 2``.
 
-        from manim_extensions.gearbox import Gear
+    .. inheritance-diagram:: manim_extensions.gearbox.Gear
+       :parts: 1
 
-        class GearExample(Scene):
-            def construct(self):
-                gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-                gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
-                gear1.shift(-gear1.rp * 1.5 * RIGHT)
-                gear2.mesh_to(gear1)
+    Parameters
+    ----------
+    num_of_teeth : int
+        Number of gear teeth.
+    module : float, optional
+        Standard size scaling parameter. ``diameter = module * num_of_teeth``.
+        Defaults to ``0.2``.
+    alpha : float, optional
+        Pressure angle in degrees. Affects tooth curvature. Suggested values
+        are between ``10`` and ``30``. Defaults to ``20``.
+    h_a : float, optional
+        Addendum coefficient (tooth height above the pitch circle).
+        Defaults to ``1``.
+    h_f : float, optional
+        Dedendum coefficient (tooth height below the pitch circle).
+        Defaults to ``1.2``.
+    inner_teeth : bool, optional
+        If ``True``, generate a ring gear with teeth pointing inward.
+        Defaults to ``False``.
+    profile_shift : float, optional
+        Profile-shift coefficient. Changes the tooth shape and diameter
+        slightly and reduces undercut. Defaults to ``0``.
+    cutout_teeth_num : int, optional
+        Number of teeth to omit. Defaults to ``0``.
+    nppc : int, optional
+        Number of points per involute curve. One tooth is built from four to
+        six curve pieces depending on undercut. Defaults to ``5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`manim.VMobject`.
 
-                self.add(gear1, gear2)
-    '''
-    def __init__(self,
-                 num_of_teeth,
-                 module=0.2,
-                 alpha=20,
-                 h_a=1,
-                 h_f=1.2,
-                 inner_teeth=False,
-                 profile_shift=0,
-                 cutout_teeth_num=0,
-                 nppc=5,
-                 **kwargs):
-        '''
-        Basic involute gear. 2 gears need to have the same module and alpha parameters to mesh properly.
-        h_a and h_f may be slightly different but should be close.
+    Examples
+    --------
+    .. manim:: GearDocExample
 
-        Parameters
-        ----------
-        num_of_teeth: number of gear teeth.
-        module: standard size scaling parameter. Diameter = module * num_of_teeth.
-        alpha: pressure angle in degrees, affects tooth curvature. Suggested values between 10-30
-        h_a: addendum / module coefficient (tooth height above pitch circle)
-        h_f: dedendum / module coefficient (tooth height below pitch circle)
-        inner_teeth: generate gear where the teeth point inward (for example for planetary gear setup)
-        profile_shift: profile shift coefficient x. Changes shape and diameter slightly, reduces undercut.
-        cutout_teeth_num: number of teeth not realized
-        nppc: number of points per curve. 1 tooth is constructed from 4~6 curve pieces depending on undercut.
-        '''
+       from manim import *
+       from manim_extensions.gearbox import Gear
+
+       class GearDocExample(Scene):
+           def construct(self):
+               gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
+               gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
+               gear1.shift(-gear1.rp * 1.5 * RIGHT)
+               gear2.mesh_to(gear1)
+
+               self.add(gear1, gear2)
+               self.play(
+                   Rotate(gear1, gear1.pitch_angle, rate_func=linear),
+                   Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
+                   run_time=4,
+               )
+    """
+
+    def __init__(
+        self,
+        num_of_teeth,
+        module=0.2,
+        alpha=20,
+        h_a=1,
+        h_f=1.2,
+        inner_teeth=False,
+        profile_shift=0,
+        cutout_teeth_num=0,
+        nppc=5,
+        **kwargs,
+    ):
+        """Create an involute gear. See the class docstring for parameter details."""
         self.z = num_of_teeth
         self.z_cut = cutout_teeth_num
         self.m = module

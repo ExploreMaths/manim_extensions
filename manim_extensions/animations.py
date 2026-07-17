@@ -32,15 +32,17 @@ def VisDrawArc(
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: VisDrawArcDocExample
 
-        from manim_extensions import VisDrawArc
+       from manim import *
+       from manim_extensions import VisDrawArc
 
-        class MyScene(Scene):
-            def construct(self):
-                arc = Arc(start_angle=0, angle=PI, radius=2)
-                VisDrawArc(self, arc, axis=OUT, run_time=2)
+       class VisDrawArcDocExample(Scene):
+           def construct(self):
+               arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
+               VisDrawArc(self, arc, axis=OUT, run_time=2)
     """
+
     # Get the start point, end point, and centre of the arc
     start_point = arc.point_from_proportion(0)
     end_point = arc.point_from_proportion(1)
@@ -146,14 +148,15 @@ class TypeWriter(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TypeWriterDocExample
 
-        from manim_extensions import TypeWriter
+       from manim import *
+       from manim_extensions import TypeWriter
 
-        class MyScene(Scene):
-            def construct(self):
-                text = Text("Hello World")
-                self.play(TypeWriter(text, interval=0.1))
+       class TypeWriterDocExample(Scene):
+           def construct(self):
+               text = Text("Hello World")
+               self.play(TypeWriter(text, interval=0.1))
     """
 
     def __init__(self, mobject: Text, interval: float = 2, **kwargs) -> None:

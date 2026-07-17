@@ -26,13 +26,22 @@ def CircleInt(
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: CircleIntDocExample
+       :save_last_frame:
 
-        from manim_extensions import CircleInt
+       from manim import *
+       from manim_extensions import CircleInt, LabelDot
 
-        c1 = Circle(radius=2).shift(LEFT)
-        c2 = Circle(radius=2).shift(RIGHT)
-        result = CircleInt(c1, c2)  # ([x1, y1, 0], [x2, y2, 0]) or None
+       class CircleIntDocExample(Scene):
+           def construct(self):
+               c1 = Circle(radius=2, color=BLUE).shift(LEFT)
+               c2 = Circle(radius=2, color=GREEN).shift(RIGHT)
+               pts = CircleInt(c1, c2)
+
+               self.add(c1, c2)
+               if pts:
+                   for i, p in enumerate(pts):
+                       self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
     """
     circle1_center = circle1.get_center()
     circle1_radius = circle1.radius
@@ -80,13 +89,22 @@ def LineCircleInt(
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: LineCircleIntDocExample
+       :save_last_frame:
 
-        from manim_extensions import LineCircleInt
+       from manim import *
+       from manim_extensions import LineCircleInt, LabelDot
 
-        line = Line(LEFT * 3, RIGHT * 3)
-        circle = Circle(radius=1)
-        result = LineCircleInt(line, circle)
+       class LineCircleIntDocExample(Scene):
+           def construct(self):
+               line = Line(LEFT * 3, RIGHT * 3)
+               circle = Circle(radius=1, color=BLUE)
+               pts = LineCircleInt(line, circle)
+
+               self.add(line, circle)
+               if pts:
+                   for p in (pts if isinstance(pts, tuple) else [pts]):
+                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
     """
     p1 = line.get_start()
     p2 = line.get_end()
@@ -137,13 +155,21 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: LineIntDocExample
+       :save_last_frame:
 
-        from manim_extensions import LineInt
+       from manim import *
+       from manim_extensions import LineInt, LabelDot
 
-        l1 = Line(LEFT, RIGHT)
-        l2 = Line(DOWN, UP)
-        result = LineInt(l1, l2)  # [0.0, 0.0, 0] or None
+       class LineIntDocExample(Scene):
+           def construct(self):
+               l1 = Line(LEFT * 3, RIGHT * 3)
+               l2 = Line(DOWN * 2, UP * 2)
+               p = LineInt(l1, l2)
+
+               self.add(l1, l2)
+               if p is not None:
+                   self.add(LabelDot("P", p, label_pos=UR, buff=0.1))
     """
 
     def det(a: tuple[float, float], b: tuple[float, float]) -> float:
@@ -189,13 +215,22 @@ def LineArcInt(
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: LineArcIntDocExample
+       :save_last_frame:
 
-        from manim_extensions import LineArcInt
+       from manim import *
+       from manim_extensions import LineArcInt, LabelDot
 
-        line = Line(LEFT, RIGHT)
-        arc = Arc(start_angle=0, angle=np.pi, radius=1)
-        result = LineArcInt(line, arc)
+       class LineArcIntDocExample(Scene):
+           def construct(self):
+               line = Line(LEFT * 2, RIGHT * 2)
+               arc = Arc(start_angle=PI/4, angle=PI, radius=1.5, color=BLUE)
+               pts = LineArcInt(line, arc)
+
+               self.add(line, arc)
+               if pts:
+                   for p in (pts if isinstance(pts, tuple) else [pts]):
+                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
     """
     # Get line start and end (x,y only)
     p1 = line.start[:2]
@@ -319,14 +354,25 @@ def TangentPoint(
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TangentPointDocExample
+       :save_last_frame:
 
-        from manim_extensions import TangentPoint
+       from manim import *
+       from manim_extensions import TangentPoint, LabelDot
 
-        p = TangentPoint(
-            [1, 0, 0], [-1, 0, 0],
-            line_start=[0, -2, 0], line_end=[0, 2, 0]
-        )
+       class TangentPointDocExample(Scene):
+           def construct(self):
+               p1 = Dot([1, 0, 0], color=BLUE)
+               p2 = Dot([-1, 0, 0], color=BLUE)
+               line = Line([0, -2, 0], [0, 2, 0])
+               tangent = TangentPoint(
+                   p1.get_center(), p2.get_center(),
+                   line.get_start(), line.get_end(),
+               )
+
+               self.add(p1, p2, line)
+               if tangent is not None:
+                   self.add(LabelDot("T", tangent, label_pos=RIGHT, buff=0.1))
     """
 
     def to_3d(point: Union[np.ndarray, tuple, list]) -> np.ndarray:

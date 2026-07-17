@@ -118,11 +118,15 @@ class LabelDot(VGroup):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: LabelDotDocExample
+       :save_last_frame:
 
-        from manim_extensions import LabelDot
+       from manim_extensions import LabelDot
 
-        dot = LabelDot("A", [1, 2, 0], label_pos=UP, buff=0.2)
+       class LabelDotDocExample(Scene):
+           def construct(self):
+               dot = LabelDot("A", [0, 0, 0], label_pos=UP, buff=0.2)
+               self.add(dot)
     """
 
     def __init__(
@@ -169,11 +173,15 @@ class MathTexLine(VGroup):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: MathTexLineDocExample
+       :save_last_frame:
 
-        from manim_extensions import MathTexLine
+       from manim_extensions import MathTexLine
 
-        line = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE)
+       class MathTexLineDocExample(Scene):
+           def construct(self):
+               line = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE)
+               self.add(line)
     """
 
     def __init__(
@@ -214,12 +222,16 @@ class MathTexBrace(VGroup):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: MathTexBraceDocExample
+       :save_last_frame:
 
-        from manim_extensions import MathTexBrace
+       from manim_extensions import MathTexBrace
 
-        line = Line(LEFT, RIGHT)
-        brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
+       class MathTexBraceDocExample(Scene):
+           def construct(self):
+               line = Line(LEFT * 2, RIGHT * 2)
+               brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
+               self.add(line, brace)
     """
 
     def __init__(
@@ -259,11 +271,15 @@ class MathTexDoublearrow(VGroup):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: MathTexDoublearrowDocExample
+       :save_last_frame:
 
-        from manim_extensions import MathTexDoublearrow
+       from manim_extensions import MathTexDoublearrow
 
-        arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN)
+       class MathTexDoublearrowDocExample(Scene):
+           def construct(self):
+               arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=UP)
+               self.add(arrow)
     """
 
     def __init__(
@@ -309,12 +325,16 @@ class PerpendicularLine(Line):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: PerpendicularLineDocExample
+       :save_last_frame:
 
-        from manim_extensions import PerpendicularLine
+       from manim_extensions import PerpendicularLine
 
-        line = Line(LEFT, RIGHT)
-        perp = PerpendicularLine(UP, line)
+       class PerpendicularLineDocExample(Scene):
+           def construct(self):
+               base = Line(LEFT * 3, RIGHT * 3)
+               perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
+               self.add(base, perp)
     """
 
     def __init__(
@@ -364,12 +384,16 @@ class ExtendedLine(Line):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ExtendedLineDocExample
+       :save_last_frame:
 
-        from manim_extensions import ExtendedLine
+       from manim_extensions import ExtendedLine
 
-        original = Line(LEFT, RIGHT)
-        extended = ExtendedLine(original, extend_distance=1.0, color=RED)
+       class ExtendedLineDocExample(Scene):
+           def construct(self):
+               base = Line(LEFT, RIGHT, color=BLUE)
+               extended = ExtendedLine(base, extend_distance=1.0, color=RED)
+               self.add(base, extended)
     """
 
     def __init__(self, line: Line, extend_distance: float, **kwargs) -> None:
@@ -421,13 +445,17 @@ class PerpendicularSign(VGroup):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: PerpendicularSignDocExample
+       :save_last_frame:
 
-        from manim_extensions import PerpendicularSign
+       from manim_extensions import PerpendicularLine, PerpendicularSign
 
-        line1 = Line(LEFT, RIGHT)
-        line2 = Line(DOWN, UP)
-        sign = PerpendicularSign(line1, line2, length=0.2)
+       class PerpendicularSignDocExample(Scene):
+           def construct(self):
+               base = Line(LEFT * 3, RIGHT * 3)
+               perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
+               sign = PerpendicularSign(base, perp, length=0.25, color=WHITE)
+               self.add(base, perp, sign)
     """
 
     def __init__(

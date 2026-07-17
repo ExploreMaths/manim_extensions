@@ -1,6 +1,9 @@
 Quick Start
 ===========
 
+This guide walks through the main parts of ``manim_extensions`` and shows how
+to use them in a Manim scene.
+
 Installation
 ------------
 
@@ -12,12 +15,11 @@ Install the latest stable release from PyPI:
 
 The only runtime dependency is `manim <https://pypi.org/project/manim/>`_.
 
-If you want to use :class:`~manim_extensions.mobjects.ChineseMathTex`,
-make sure ``xelatex`` and the ``xeCJK`` LaTeX package are available on your
-system.
+If you want to use :class:`~manim_extensions.mobjects.ChineseMathTex`, make
+sure ``xelatex`` and the ``xeCJK`` LaTeX package are available on your system.
 
-Basic Usage
------------
+Basic import
+------------
 
 Import the public API directly from ``manim_extensions``:
 
@@ -41,48 +43,90 @@ Import the public API directly from ``manim_extensions``:
        TypeWriter,
    )
 
-Mobjects Example
-~~~~~~~~~~~~~~~~
+Annotated mobjects
+------------------
 
-.. code-block:: python
+:func:`~manim_extensions.geometry.CircleInt` and
+:class:`~manim_extensions.mobjects.LabelDot` are useful when you want to label
+key points or show intersections:
+
+.. manim:: QuickstartAnnotatedScene
+   :save_last_frame:
 
    from manim import *
-   from manim_extensions import LabelDot, ExtendedLine
+   from manim_extensions import CircleInt, LabelDot
 
-   class Demo(Scene):
+   class QuickstartAnnotatedScene(Scene):
        def construct(self):
-           dot = LabelDot("A", [1, 2, 0], label_pos=UP, buff=0.2)
-           base = Line(LEFT, RIGHT)
-           extended = ExtendedLine(base, extend_distance=1.0, color=RED)
-           self.add(dot, extended)
+           c1 = Circle(radius=2, color=BLUE).shift(LEFT)
+           c2 = Circle(radius=2, color=GREEN).shift(RIGHT)
+           pts = CircleInt(c1, c2)
 
-Geometry Example
-~~~~~~~~~~~~~~~~
+           self.add(c1, c2)
+           if pts:
+               for p in pts:
+                   self.add(LabelDot("P", p, label_pos=UP, buff=0.15))
+
+Geometry helpers
+----------------
+
+The geometry module provides analytic-geometry functions that return plain
+points, so you can use them with any Manim mobject:
 
 .. code-block:: python
 
    from manim import *
-   from manim_extensions import CircleInt
+   from manim_extensions import LineInt, PerpendicularLine
 
-   c1 = Circle(radius=2).shift(LEFT)
-   c2 = Circle(radius=2).shift(RIGHT)
-   result = CircleInt(c1, c2)
-   if result:
-       p1, p2 = result
-       print(f"Intersections: {p1}, {p2}")
+   line = Line(LEFT, RIGHT)
+   perp = PerpendicularLine(UP, line)
 
-Animation Example
-~~~~~~~~~~~~~~~~~
+Animations
+----------
 
-.. code-block:: python
+:func:`~manim_extensions.animations.VisDrawArc` draws an arc while showing a
+moving radius, and :class:`~manim_extensions.animations.TypeWriter` reveals
+:class:`~manim.Text` character by character:
+
+.. manim:: QuickstartAnimations
 
    from manim import *
    from manim_extensions import VisDrawArc, TypeWriter
 
-   class Demo(Scene):
+   class QuickstartAnimations(Scene):
        def construct(self):
-           arc = Arc(start_angle=0, angle=PI, radius=2)
+           arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
            VisDrawArc(self, arc, axis=OUT, run_time=2)
 
-           text = Text("Hello World")
+           text = Text("Hello Extensions").shift(DOWN * 2)
            self.play(TypeWriter(text, interval=0.1))
+
+Bundled plugins
+---------------
+
+``manim_extensions`` also ships three ready-to-use plugins. Each is documented
+in the :doc:`../reference/index` section:
+
+* :doc:`../reference/gearbox/index` – involute gears and gear trains.
+* :doc:`../reference/compass/index` – compass, ruler, and pencil animations.
+* :doc:`../reference/mindmap/index` – mind maps, timelines, and catalog trees.
+
+For example, a gear pair can be created with:
+
+.. code-block:: python
+
+   from manim_extensions.gearbox import Gear
+
+   gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
+   gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
+   gear1.shift(-gear1.rp * 1.5 * RIGHT)
+   gear2.mesh_to(gear1)
+
+See :doc:`../reference/gearbox/index` for a rendered animation.
+
+Next steps
+----------
+
+* Browse the :doc:`../examples/index` gallery for more rendered snippets.
+* Read the :doc:`../reference/index` for the complete API.
+* Check the :doc:`../installation/index` page for development setup.
