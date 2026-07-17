@@ -130,24 +130,6 @@ class Gear(VMobject):
         profile_shift: profile shift coefficient x. Changes shape and diameter slightly, reduces undercut.
         cutout_teeth_num: number of teeth not realized
         nppc: number of points per curve. 1 tooth is constructed from 4~6 curve pieces depending on undercut.
-
-        Examples
-        --------
-        class gear_example(Scene):
-            def construct(self):
-                # small gear
-                gear1=Gear(15, stroke_opacity=0, fill_color=WHITE,fill_opacity=1)
-                # larger gear
-                gear2=Gear(25,  stroke_opacity=0, fill_color=RED, fill_opacity=1)
-                # shifting gear1 away from center
-                gear1.shift(-gear1.rp * 1.5 * RIGHT)
-                # position gear2 next to gear1 so that they mesh together
-                gear2.mesh_to(gear1)
-
-                self.add(gear1, gear2)
-                self.play(Rotate(gear1, gear1.pitch_angle, rate_func=linear),
-                          Rotate(gear2, - gear2.pitch_angle, rate_func=linear),
-                          run_time=4)
         '''
         self.z = num_of_teeth
         self.z_cut = cutout_teeth_num
@@ -480,19 +462,6 @@ class Rack(VMobject):
         alpha: pressure angle in degrees, affects tooth curvature. Suggested values between 10-30
         h_a: addendum / module coefficient (tooth height above pitch circle)
         h_f: dedendum / module coefficient (tooth height below pitch circle)
-
-        Examples
-        --------
-        class test_Rack(Scene):
-            def construct(self):
-                rack1 = Rack(10,module=1, h_a=1.17, stroke_opacity=0,fill_opacity=1,fill_color=RED)
-                gear1 = Gear(10, module=1,stroke_opacity=0,fill_opacity=1,fill_color=WHITE)
-                gear1.shift(RIGHT*gear1.rp)
-                rack1.shift(UP*rack1.pitch*0.5)
-                self.add(gear1,rack1)
-                self.play(Rotate(gear1, gear1.pitch_angle * 2),
-                          rack1.animate.shift(DOWN*rack1.pitch * 2),
-                          rate_func=linear, run_time=10)
         '''
         self.z = num_of_teeth
         self.m = module
