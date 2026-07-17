@@ -112,21 +112,20 @@ inheritance_graph_attrs = {
 }
 
 inheritance_node_attrs = {
-    "penwidth": 1,
+    "penwidth": 0,
     "shape": "box",
     "width": 0.05,
     "height": 0.05,
     "margin": 0.05,
-    "fillcolor": "white",
-    "style": "filled",
 }
 
 inheritance_edge_attrs = {
     "penwidth": 1,
-    "color": '"#1c00e3"',
 }
 
 graphviz_output_format = "svg"
+
+html_js_files = ["responsiveSvg.js"]
 
 # intersphinx
 intersphinx_mapping = {
