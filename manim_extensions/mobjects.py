@@ -5,7 +5,7 @@ from typing import Any, Union
 
 
 class ChineseMathTex(MathTex):
-    r"""A :class:`manim.MathTex` subclass that supports Chinese characters.
+    r"""A :class:`~manim.mobject.text.tex_mobject.MathTex` subclass that supports Chinese characters.
 
     Automatically wraps Chinese characters in ``\text{}`` and configures
     ``xelatex`` with the ``xeCJK`` package so that CJK fonts are rendered
@@ -23,7 +23,7 @@ class ChineseMathTex(MathTex):
     tex_to_color_map : dict, optional
         Mapping from text substrings to colours. Defaults to ``{}``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.MathTex`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.text.tex_mobject.MathTex`.
 
     Examples
     --------
@@ -94,10 +94,10 @@ class ChineseMathTex(MathTex):
 
 
 class LabelDot(VGroup):
-    """A dot with a :class:`manim.MathTex` label.
+    """A dot with a :class:`~manim.mobject.text.tex_mobject.MathTex` label.
 
-    Creates a :class:`manim.Dot` at the given position and places a
-    :class:`manim.MathTex` label next to it.
+    Creates a :class:`~manim.mobject.geometry.Dot` at the given position and places a
+    :class:`~manim.mobject.text.tex_mobject.MathTex` label next to it.
 
     .. inheritance-diagram:: manim_extensions.mobjects.LabelDot
        :parts: 1
@@ -113,11 +113,11 @@ class LabelDot(VGroup):
     buff : float, optional
         Buffer between the label and the dot. Defaults to ``0.1``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.VGroup`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Attributes
     ----------
-    dot : :class:`manim.Dot`
+    dot : :class:`~manim.mobject.geometry.Dot`
         The underlying dot mobject.
     dot_pos : numpy.ndarray
         The position of the dot.
@@ -159,9 +159,9 @@ class LabelDot(VGroup):
 
 
 class MathTexLine(VGroup):
-    """A line segment paired with a :class:`manim.MathTex` formula.
+    """A line segment paired with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`manim.Line` and places a :class:`manim.MathTex`
+    Creates a :class:`~manim.mobject.geometry.Line` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexLine
@@ -169,14 +169,14 @@ class MathTexLine(VGroup):
 
     Parameters
     ----------
-    formula : :class:`manim.MathTex`
+    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
         The formula to place beside the line.
     direction : numpy.ndarray, optional
         Direction of the formula relative to the line. Defaults to ``UP``.
     buff : float, optional
         Buffer between the formula and the line. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
 
     Examples
     --------
@@ -206,19 +206,19 @@ class MathTexLine(VGroup):
 
 
 class MathTexBrace(VGroup):
-    r"""A brace with a :class:`manim.MathTex` formula.
+    r"""A brace with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`manim.Brace` around a target mobject and places a
-    :class:`manim.MathTex` formula next to the brace.
+    Creates a :class:`~manim.mobject.geometry.Brace` around a target mobject and places a
+    :class:`~manim.mobject.text.tex_mobject.MathTex` formula next to the brace.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexBrace
        :parts: 1
 
     Parameters
     ----------
-    target : :class:`manim.mobject.mobject.Mobject`
+    target : :class:`~manim.mobject.mobject.Mobject`
         The mobject to be braced (e.g. a line, rectangle, etc.).
-    formula : :class:`manim.MathTex`
+    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
         The formula to place beside the brace.
     direction : numpy.ndarray, optional
         Direction of the brace and formula relative to the target.
@@ -226,7 +226,7 @@ class MathTexBrace(VGroup):
     buff : float, optional
         Buffer between the formula and the brace. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.Brace`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Brace`.
 
     Examples
     --------
@@ -258,9 +258,9 @@ class MathTexBrace(VGroup):
 
 
 class MathTexDoublearrow(VGroup):
-    r"""A double arrow with a :class:`manim.MathTex` formula.
+    r"""A double arrow with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`manim.DoubleArrow` and places a :class:`manim.MathTex`
+    Creates a :class:`~manim.mobject.geometry.DoubleArrow` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexDoublearrow
@@ -268,7 +268,7 @@ class MathTexDoublearrow(VGroup):
 
     Parameters
     ----------
-    formula : :class:`manim.MathTex`
+    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
         The formula to place beside the double arrow.
     direction : numpy.ndarray, optional
         Direction of the formula relative to the double arrow.
@@ -276,7 +276,7 @@ class MathTexDoublearrow(VGroup):
     buff : float, optional
         Buffer between the formula and the double arrow. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.DoubleArrow`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.DoubleArrow`.
 
     Examples
     --------
@@ -309,26 +309,26 @@ class PerpendicularLine(Line):
     """A perpendicular line segment from a point to a given line.
 
     Computes the foot of the perpendicular from *point* onto *line* and
-    creates a :class:`manim.Line` from *point* to that foot.
+    creates a :class:`~manim.mobject.geometry.Line` from *point* to that foot.
 
     .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularLine
        :parts: 1
 
     Parameters
     ----------
-    point : Union[numpy.ndarray, tuple, list, :class:`manim.mobject.mobject.Mobject`]
+    point : Union[numpy.ndarray, tuple, list, :class:`~manim.mobject.mobject.Mobject`]
         The point from which the perpendicular is dropped.  If an
-        :class:`manim.Mobject` is given, its centre is used.
-    line : :class:`manim.Line`
+        :class:`~manim.mobject.mobject.Mobject` is given, its centre is used.
+    line : :class:`~manim.mobject.geometry.Line`
         The target line.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
 
     Attributes
     ----------
     point : numpy.ndarray
         The 3‑D point from which the perpendicular is drawn.
-    target_line : :class:`manim.Line`
+    target_line : :class:`~manim.mobject.geometry.Line`
         The line onto which the perpendicular is dropped.
     foot : numpy.ndarray
         The foot of the perpendicular on *target_line*.
@@ -377,7 +377,7 @@ class PerpendicularLine(Line):
 class ExtendedLine(Line):
     """A line segment extended at both ends.
 
-    Takes an existing :class:`manim.Line` and extends it by
+    Takes an existing :class:`~manim.mobject.geometry.Line` and extends it by
     *extend_distance* along its original direction on both sides.
     The style of the original line is preserved.
 
@@ -386,12 +386,12 @@ class ExtendedLine(Line):
 
     Parameters
     ----------
-    line : :class:`manim.Line`
+    line : :class:`~manim.mobject.geometry.Line`
         The original line segment to extend.
     extend_distance : float
         Distance to extend at each end.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
 
     Examples
     --------
@@ -435,9 +435,9 @@ class PerpendicularSign(VGroup):
 
     Parameters
     ----------
-    line1 : :class:`manim.Line`
+    line1 : :class:`~manim.mobject.geometry.Line`
         The first line.
-    line2 : :class:`manim.Line`
+    line2 : :class:`~manim.mobject.geometry.Line`
         The second line.
     length : float, optional
         Length of each leg of the corner. Defaults to ``0.25``.
@@ -447,7 +447,7 @@ class PerpendicularSign(VGroup):
         points toward the nearer endpoints of the two lines is chosen
         automatically.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.VGroup`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Attributes
     ----------

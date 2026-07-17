@@ -139,7 +139,7 @@ class Gear(VMobject):
         Number of points per involute curve. One tooth is built from four to
         six curve pieces depending on undercut. Defaults to ``5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.VMobject`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------

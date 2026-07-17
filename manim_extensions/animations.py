@@ -20,9 +20,9 @@ def VisDrawArc(
 
     Parameters
     ----------
-    scene : :class:`manim.scene.scene.Scene`
+    scene : :class:`~manim.scene.scene.Scene`
         The Manim scene in which the animation is played.
-    arc : :class:`manim.Arc`
+    arc : :class:`~manim.mobject.geometry.Arc`
         The arc to draw.
     axis : numpy.ndarray, optional
         Rotation axis. ``OUT`` gives counter‑clockwise motion, ``IN`` gives
@@ -122,7 +122,7 @@ def VisDrawArc(
 class TypeWriter(Animation):
     """Typewriter effect animation.
 
-    Reveals the content of a :class:`manim.Text` object character by
+    Reveals the content of a :class:`~manim.mobject.text.text_mobject.Text` object character by
     character, simulating a typewriter.  The total run time is automatically
     calculated from the character count and *interval* unless an explicit
     ``run_time`` is passed in ``kwargs``.
@@ -132,13 +132,13 @@ class TypeWriter(Animation):
 
     Parameters
     ----------
-    mobject : :class:`manim.Text`
+    mobject : :class:`~manim.mobject.text.text_mobject.Text`
         The ``Text`` object to animate.
     interval : float, optional
         Display interval between consecutive characters in seconds.
         Defaults to ``2``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`manim.Animation`.
+        Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
     Attributes
     ----------

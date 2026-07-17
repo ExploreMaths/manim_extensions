@@ -13,9 +13,9 @@ def CircleInt(
 
     Parameters
     ----------
-    circle1 : :class:`manim.Circle`
+    circle1 : :class:`~manim.mobject.geometry.Circle`
         The first circle.
-    circle2 : :class:`manim.Circle`
+    circle2 : :class:`~manim.mobject.geometry.Circle`
         The second circle.
 
     Returns
@@ -74,9 +74,9 @@ def LineCircleInt(
 
     Parameters
     ----------
-    line : :class:`manim.Line`
+    line : :class:`~manim.mobject.geometry.Line`
         The line segment.
-    circle : :class:`manim.Circle`
+    circle : :class:`~manim.mobject.geometry.Circle`
         The circle.
 
     Returns
@@ -144,9 +144,9 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
 
     Parameters
     ----------
-    line1 : :class:`manim.Line`
+    line1 : :class:`~manim.mobject.geometry.Line`
         The first line.
-    line2 : :class:`manim.Line`
+    line2 : :class:`~manim.mobject.geometry.Line`
         The second line.
 
     Returns
@@ -203,9 +203,9 @@ def LineArcInt(
 
     Parameters
     ----------
-    line : :class:`manim.Line`
+    line : :class:`~manim.mobject.geometry.Line`
         The line segment.
-    arc : :class:`manim.Arc`
+    arc : :class:`~manim.mobject.geometry.Arc`
         The arc.
 
     Returns
