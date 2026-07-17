@@ -3,7 +3,7 @@ GearBox
 
 **Original author:** `GarryBGoode <https://github.com/GarryBGoode>`_
 
-**Source repository:** https://github.com/GarryBGoode/manim-GearBox
+**Source repository:** `GitHub <https://github.com/GarryBGoode/manim-GearBox>`_
 
 **License:** MIT (see the upstream repository for the full license text)
 
@@ -12,7 +12,7 @@ mechanisms. The geometry is based on the `tec-science involute gear article
 <https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
 
 The code is bundled inside ``manim_extensions`` as the ``manim_extensions.gearbox``
-subpackage and is also kept as a Git submodule under ``third_party/manim-GearBox``.
+subpackage and is also kept as a Git submodule under ``third_party/``.
 
 Features
 --------

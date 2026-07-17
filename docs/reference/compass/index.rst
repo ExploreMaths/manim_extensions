@@ -3,7 +3,7 @@ Compass
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
 
-**Source repository:** https://github.com/jj-math/manim-compass
+**Source repository:** `GitHub <https://github.com/jj-math/manim-compass>`_
 
 **License:** MIT (see the upstream repository for the full license text)
 
@@ -11,7 +11,7 @@ Compass
 Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
 animation classes. The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.compass`` subpackage and is also kept as a Git submodule
-under ``third_party/manim-compass``.
+under ``third_party/``.
 
 Features
 --------
