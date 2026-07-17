@@ -25,56 +25,25 @@ class MindMap(AbstractMap):
     Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
 
-    Example::
+    .. manim:: MindMapExample
+        :save_last_frame:
 
-        mindmap = {
-            'node': r'Sphere volume',
-            'text': 'Text used for TTS narration',
-            'child': [
-                {
-                    'node': r'3rd century BC',  # or a VMobject / Mobject
+        from manim import *
+        from manim_extensions.mindmap import MindMap
+
+        class MindMapExample(Scene):
+            def construct(self):
+                data = {
+                    'node': MathTex(r"Calculus"),
                     'child': [
-                        {'node': r'Archimedes: method of exhaustion'}
-                    ]
-                },
-                {
-                    'node': r'3rd century AD',
-                    'child': [
-                        {'node': r'Nine Chapters on the Mathematical Art'},
-                        {
-                            'node': r'Liu Hui: Mouhefanggai',
-                            'child': [
-                                {'node': r'Sphere and Mouhefanggai'},
-                                {'node': r'Volume of Mouhefanggai?'}
-                            ]
-                        }
-                    ]
-                },
-                {
-                    'node': r'5th century AD',
-                    'child': [
-                        {'node': r'Zu Geng: Cavalieri principle'}
-                    ]
-                },
-                {
-                    'node': r'17th century AD',
-                    'child': [
-                        {'node': r'Kepler'},
-                        {'node': r'Cavalieri principle'}
-                    ]
-                },
-                {
-                    'node': r'18th century AD',
-                    'child': [
-                        {'node': r'Matsunaga Yoshisuke'}
+                        {'node': MathTex(r"Limits")},
+                        {'node': MathTex(r"Derivatives")},
+                        {'node': MathTex(r"Integrals")},
                     ]
                 }
-            ]
-        }
-
-        mind = MindMap(mindmap)
-        mind.scale_to_fit_width(12)
-        self.play(FadeIn(mind))
+                mind_map = MindMap(data)
+                mind_map.scale_to_fit_width(12)
+                self.add(mind_map)
     """
     def __init__(
         self,

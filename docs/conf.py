@@ -142,3 +142,37 @@ html_css_files = ["custom.css"]
 
 latex_engine = "lualatex"
 
+
+# -- autodoc: skip inherited Mobject attributes --------------------------------
+
+import inspect
+
+
+def _manim_mobject_attribute_names():
+    """Return public, non-callable attribute names inherited from Manim Mobjects."""
+    try:
+        from manim.mobject.mobject import Mobject
+        from manim.mobject.types.vectorized_mobject import VMobject
+
+        attrs = set()
+        for cls in (Mobject, VMobject):
+            try:
+                instance = cls()
+                for name in dir(instance):
+                    if name.startswith("_"):
+                        continue
+                    value = getattr(instance, name, None)
+                    if not callable(value) and not inspect.isroutine(value):
+                        attrs.add(name)
+            except Exception:
+                pass
+        return attrs
+    except Exception:
+        return set()
+
+
+_MANIM_MOBJECT_ATTRS = _manim_mobject_attribute_names()
+
+# Update autodoc defaults to hide inherited Manim attributes (e.g. background_stroke_color).
+autodoc_default_options["exclude-members"] = ",".join(sorted(_MANIM_MOBJECT_ATTRS))
+

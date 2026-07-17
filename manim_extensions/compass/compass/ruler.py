@@ -12,7 +12,18 @@ import numpy as np
 from ..utils.geometry_method import get_vecs_angle
 
 class Ruler(VGroup):
-    '''Ruler mobject.'''
+    '''Ruler mobject.
+
+    .. manim:: RulerExample
+        :save_last_frame:
+
+        from manim_extensions.compass import Ruler
+
+        class RulerExample(Scene):
+            def construct(self):
+                ruler = Ruler()
+                self.add(ruler)
+    '''
     def __init__(
         self,
         length = 12,

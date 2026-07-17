@@ -17,7 +17,18 @@ from ..utils.geometry_method import (
 )
 
 class Compass(VGroup):
-    '''Compass mobject.'''
+    '''Compass mobject.
+
+    .. manim:: CompassExample
+        :save_last_frame:
+
+        from manim_extensions.compass import Compass
+
+        class CompassExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.add(compass)
+    '''
     def __init__(
         self,
         span = 1.5,
