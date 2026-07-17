@@ -444,6 +444,7 @@ TEMPLATE = r"""
 .. raw:: html
 
     <div id="{{ clsname_lowercase }}" class="admonition admonition-manim-example">
+    <p class="admonition-title">Example: {{ clsname }} <a class="headerlink" href="#{{ clsname_lowercase }}">¶</a></p>
 
 {% endif %}
 
