@@ -1,5 +1,5 @@
-``manim_extensions.animations``
-===============================
+Animation
+=========
 
 .. module:: manim_extensions.animations
 

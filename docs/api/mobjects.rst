@@ -1,5 +1,5 @@
-``manim_extensions.mobjects``
-=============================
+Mobjects
+========
 
 .. module:: manim_extensions.mobjects
 

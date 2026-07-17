@@ -1,5 +1,5 @@
-``manim_extensions.geometry``
-=============================
+Geometry
+========
 
 .. module:: manim_extensions.geometry
 
