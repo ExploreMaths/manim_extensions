@@ -117,13 +117,10 @@ inheritance_node_attrs = {
     "width": 0.05,
     "height": 0.05,
     "margin": 0.05,
-    "fillcolor": '"#ffffff"',
-    "fontcolor": '"#e07a5f"',
 }
 
 inheritance_edge_attrs = {
     "penwidth": 1,
-    "color": '"#413c3c"',
 }
 
 graphviz_output_format = "svg"
