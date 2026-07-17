@@ -252,15 +252,30 @@ class ManimDirective(Directive):
         if not dest_dir.exists():
             dest_dir.mkdir(parents=True, exist_ok=True)
 
+        user_code = list(self.content)
+        if user_code[0].startswith(">>> "):  # check whether block comes from doctest
+            user_code = [
+                line[4:] for line in user_code if line.startswith((">>> ", "... "))
+            ]
+
+        has_manim_import = any(
+            line.strip() == "from manim import *" for line in user_code
+        )
+
         source_block_in = [
             ".. code-block:: python",
             "",
-            "    from manim import *\n",
+            *(
+                ["    from manim import *\n"] if not has_manim_import else []
+            ),
             *("    " + line for line in self.content),
             "",
             ".. raw:: html",
             "",
             f'    <pre data-manim-binder data-manim-classname="{clsname}">',
+            *(
+                ["    from manim import *"] if not has_manim_import else []
+            ),
             *("    " + line for line in self.content),
             "",
             "    </pre>",
@@ -289,14 +304,8 @@ class ManimDirective(Directive):
         if save_as_gif:
             example_config["format"] = "gif"
 
-        user_code = list(self.content)
-        if user_code[0].startswith(">>> "):  # check whether block comes from doctest
-            user_code = [
-                line[4:] for line in user_code if line.startswith((">>> ", "... "))
-            ]
-
         code = [
-            "from manim import *",
+            *([] if has_manim_import else ["from manim import *"]),
             *user_code,
             f"{clsname}().render()",
         ]
