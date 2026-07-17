@@ -208,10 +208,14 @@ class TidyTreeLayout(Layout):
         """
         Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.
 
-        Parameters:
-            t (WrappedTree): parent node
-            i (int): index of the current subtree
-            ih (Optional[IYLNode]): preceding subtrees whose right contour may still collide with the current subtree
+        Parameters
+        ----------
+        t : WrappedTree
+            parent node
+        i : int
+            index of the current subtree
+        ih : Optional[IYLNode]
+            preceding subtrees whose right contour may still collide with the current subtree
         """
         sr = t.children[i - 1]   # current right-contour node, initially the immediate left sibling
         mssr = sr.mod            # sum of mod values from t.children[i-1] to sr
@@ -309,8 +313,10 @@ class TidyTreeLayout(Layout):
         Second traversal:
         Accumulate prelim and mod into the final absolute non-layered x or y coordinate.
 
-        Parameters:
-            modsum: sum of all ancestor mod values on the path from the root to the current node
+        Parameters
+        ----------
+        modsum : float
+            sum of all ancestor mod values on the path from the root to the current node
         """
         modsum += t.mod
         if self.is_horizontal:

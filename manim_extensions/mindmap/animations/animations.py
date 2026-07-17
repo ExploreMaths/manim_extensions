@@ -414,12 +414,14 @@ class InsertNode(LayoutAnimation):
         node_style:NodeStyle = NodeStyle(),
         **kwargs
     ):
-        '''
+        """
         Insert a child node (or list of child nodes) under the specified parent nodes.
 
-        Parameters:
-            father_children: dictionary mapping parent nodes to lists of child nodes
-        '''
+        Parameters
+        ----------
+        father_children : dict
+            dictionary mapping parent nodes to lists of child nodes
+        """
         root = None
         self.father_children = father_children
         super().__init__(
@@ -461,8 +463,10 @@ class ScaleNode(LayoutAnimation):
         """
         Scale nodes up or down.
 
-        Parameters:
-            node_scale: dictionary mapping Node instances to scale factors (float)
+        Parameters
+        ----------
+        node_scale : dict
+            dictionary mapping Node instances to scale factors (float)
         """
         for node, scale in node_scale.items():
             node.scale(scale)
@@ -490,8 +494,10 @@ class AlterNode(LayoutAnimation):
         """
         Replace a node's vmobject.
 
-        Parameters:
-            node_vmobject: dictionary mapping Node instances to the replacement VMobjects
+        Parameters
+        ----------
+        node_vmobject : dict
+            dictionary mapping Node instances to the replacement VMobjects
         """
         for node, scale in node_vmobject.items():
             node.alter_content(scale)

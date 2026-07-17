@@ -71,16 +71,23 @@ class MindMap(AbstractMap):
             ]
         )
     ):
-        '''Constructor for the mind-map class.
+        """Constructor for the mind-map class.
 
-        Parameters:
-            map: mind-map data
-            buff: padding between node content and node border
-            direction: node layout direction
-            level_spacing: spacing between layers
-            node_spacing: spacing between nodes
-            node_style: node style
-        '''
+        Parameters
+        ----------
+        map : dict
+            mind-map data
+        buff : float
+            padding between node content and node border
+        direction
+            node layout direction
+        level_spacing : float
+            spacing between layers
+        node_spacing : float
+            spacing between nodes
+        node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+            node style
+        """
         self.node_style = node_style
         self.direction = direction
         super().__init__(
@@ -118,14 +125,21 @@ class TimeLine(AbstractMap):
     """
     Timeline: data format is the same as :class:`MindMap`.
 
-    Parameters:
-        map: timeline data
-        buff: padding between node content and node border
-        sides: node layout direction; growth direction of subtrees rooted at
-            second-level nodes
-        level_spacing: spacing between layers
-        node_spacing: spacing between nodes
-        node_style: node style
+    Parameters
+    ----------
+    map : dict
+        timeline data
+    buff : float
+        padding between node content and node border
+    sides
+        node layout direction; growth direction of subtrees rooted at
+        second-level nodes
+    level_spacing : float
+        spacing between layers
+    node_spacing : float
+        spacing between nodes
+    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+        node style
     """
     def __init__(
         self,
@@ -189,13 +203,20 @@ class StandardMap(AbstractMap):
     """
     Two-sided mind map: data format is the same as :class:`MindMap`.
 
-    Parameters:
-        map: mind-map data
-        buff: padding between node content and node border
-        direction: layout direction
-        level_spacing: spacing between layers
-        node_spacing: spacing between nodes
-        node_style: node style
+    Parameters
+    ----------
+    map : dict
+        mind-map data
+    buff : float
+        padding between node content and node border
+    direction
+        layout direction
+    level_spacing : float
+        spacing between layers
+    node_spacing : float
+        spacing between nodes
+    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+        node style
     """
     def __init__(
         self,
@@ -260,12 +281,18 @@ class CatalogMap(AbstractMap):
     Catalog / organisation-chart: data format is the same as :class:`MindMap`,
     layout direction is downwards.
 
-    Parameters:
-        map: catalog data
-        buff: padding between node content and node border
-        level_spacing: spacing between layers
-        node_spacing: spacing between nodes
-        node_style: node style
+    Parameters
+    ----------
+    map : dict
+        catalog data
+    buff : float
+        padding between node content and node border
+    level_spacing : float
+        spacing between layers
+    node_spacing : float
+        spacing between nodes
+    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+        node style
     """
     def __init__(
         self,
