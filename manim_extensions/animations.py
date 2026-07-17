@@ -34,7 +34,6 @@ def VisDrawArc(
     --------
 
     .. manim:: VisDrawArcDocExample
-       :no_title:
 
        from manim import *
        from manim_extensions import VisDrawArc
@@ -152,7 +151,6 @@ class TypeWriter(Animation):
     --------
 
     .. manim:: TypeWriterDocExample
-       :no_title:
 
        from manim import *
        from manim_extensions import TypeWriter

@@ -29,7 +29,6 @@ class ChineseMathTex(MathTex):
     --------
 
     .. manim:: ChineseMathTexDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
@@ -127,7 +126,6 @@ class LabelDot(VGroup):
     --------
 
     .. manim:: LabelDotDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import LabelDot
@@ -184,7 +182,6 @@ class MathTexLine(VGroup):
     --------
 
     .. manim:: MathTexLineDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import MathTexLine
@@ -235,7 +232,6 @@ class MathTexBrace(VGroup):
     --------
 
     .. manim:: MathTexBraceDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import MathTexBrace
@@ -286,7 +282,6 @@ class MathTexDoublearrow(VGroup):
     --------
 
     .. manim:: MathTexDoublearrowDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import MathTexDoublearrow
@@ -342,7 +337,6 @@ class PerpendicularLine(Line):
     --------
 
     .. manim:: PerpendicularLineDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import PerpendicularLine
@@ -403,7 +397,6 @@ class ExtendedLine(Line):
     --------
 
     .. manim:: ExtendedLineDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import ExtendedLine
@@ -466,7 +459,6 @@ class PerpendicularSign(VGroup):
     --------
 
     .. manim:: PerpendicularSignDocExample
-       :no_title:
        :save_last_frame:
 
        from manim_extensions import PerpendicularLine, PerpendicularSign

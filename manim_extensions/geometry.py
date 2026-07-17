@@ -28,7 +28,6 @@ def CircleInt(
     --------
 
     .. manim:: CircleIntDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
@@ -93,7 +92,6 @@ def LineCircleInt(
     --------
 
     .. manim:: LineCircleIntDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
@@ -161,7 +159,6 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
     --------
 
     .. manim:: LineIntDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
@@ -223,7 +220,6 @@ def LineArcInt(
     --------
 
     .. manim:: LineArcIntDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
@@ -364,7 +360,6 @@ def TangentPoint(
     --------
 
     .. manim:: TangentPointDocExample
-       :no_title:
        :save_last_frame:
 
        from manim import *
