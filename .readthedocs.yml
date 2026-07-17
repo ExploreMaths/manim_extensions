@@ -6,6 +6,7 @@ build:
     python: "3.12"
   apt_packages:
     - ffmpeg
+    - graphviz
     - libcairo2-dev
     - libpango1.0-dev
     - libffi-dev
