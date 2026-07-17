@@ -1,14 +1,31 @@
-
 window.addEventListener("load", function () {
-    const styleElements = []
     const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const diagrams = document.querySelectorAll("object.inheritance.graphviz");
 
-    for (let diagram of diagrams) {
-        style = document.createElement('style');
-        styleElements.push(style);
-        console.log(diagram);
-        diagram.contentDocument.firstElementChild.appendChild(style);
+    function injectStyle(diagram) {
+        const svgRoot = diagram.contentDocument && diagram.contentDocument.firstElementChild;
+        if (!svgRoot) {
+            return null;
+        }
+        const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+        svgRoot.appendChild(style);
+        return style;
+    }
+
+    const styleElements = [];
+    for (const diagram of diagrams) {
+        let style = injectStyle(diagram);
+        if (!style) {
+            diagram.addEventListener("load", function () {
+                style = injectStyle(diagram);
+                if (style) {
+                    styleElements.push(style);
+                    setColorScheme(colorSchemeQuery);
+                }
+            });
+        } else {
+            styleElements.push(style);
+        }
     }
 
     function setColorScheme(e) {
@@ -35,8 +52,8 @@ window.addEventListener("load", function () {
             }
             `
         }
-        for (let style of styleElements) {
-            style.innerHTML = `
+        for (const style of styleElements) {
+            style.textContent = `
                 svg {
                     background-color: ${colors.background};
                 }
