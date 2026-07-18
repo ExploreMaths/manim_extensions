@@ -127,6 +127,7 @@ class LayoutConfig:
     ):
         self.node_spacing = timeline.get('node_spacing',0.5)
         self.level_spacing = timeline.get('level_spacing',0.5)
+        sides = timeline.get('sides',(UP,DOWN))
         if not isinstance(sides, (list,tuple)):
             sides = (sides,)
         for side in sides:
