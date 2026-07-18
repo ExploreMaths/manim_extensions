@@ -11,13 +11,16 @@ v1.0.3
 What's Changed
 ^^^^^^^^^^^^^^
 
-### Added
+**Added**
+
 * Added ``GearBox``, ``MindMap`` and ``Compass`` submodules from third-party Manim extensions.
 
-### Changed
+**Changed**
+
 * Documentation rebuilt with Furo theme, inheritance diagrams and interactive Manim examples matching Manim Community's official docs.
 
-### Fixed
+**Fixed**
+
 * Fixed CJK font fallback for ``ChineseMathTex`` on Linux/ReadTheDocs.
 
 v1.0.2
@@ -30,7 +33,8 @@ v1.0.2
 What's Changed
 ^^^^^^^^^^^^^^
 
-### Changed
+**Changed**
+
 * Documentation theme switched to Furo, matching Manim Community's official documentation style.
 
 v1.0.1
@@ -43,7 +47,8 @@ v1.0.1
 What's Changed
 ^^^^^^^^^^^^^^
 
-### Fixed
+**Fixed**
+
 * Fixed ``LabelDot`` center point calculation.
 
 v1.0.0
@@ -56,5 +61,6 @@ v1.0.0
 What's Changed
 ^^^^^^^^^^^^^^
 
-### Added
+**Added**
+
 * Initial release with ``mobjects``, ``geometry`` and ``animations`` modules.
