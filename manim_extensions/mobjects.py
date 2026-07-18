@@ -1,7 +1,13 @@
 from manim import *
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
+import platform
 from typing import Any, Union
+
+
+DEFAULT_CJK_FONT = (
+    "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
+)
 
 
 class ChineseMathTex(MathTex):
@@ -38,7 +44,6 @@ class ChineseMathTex(MathTex):
            def construct(self):
                formula = ChineseMathTex(
                    r"\frac{1}{2} + \text{hello} = x",
-                   font="SimSun",
                    tex_to_color_map={r"\text{hello}": RED},
                )
                self.add(formula)
@@ -48,7 +53,7 @@ class ChineseMathTex(MathTex):
     def __init__(
         self,
         *texts: str,
-        font: str = "SimSun",
+        font: str = DEFAULT_CJK_FONT,
         tex_to_color_map: dict = {},
         **kwargs,
     ) -> None:
