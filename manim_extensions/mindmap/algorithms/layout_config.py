@@ -67,11 +67,16 @@ class LayoutConfig:
     ):
         '''Layout parameters
         
-        Args:
-            direction (np.ndarray, optional): Layout direction. Defaults to RIGHT.
-            node_spacing (float, optional): Spacing between nodes. Defaults to 0.5.
-            level_spacing (float, optional): Spacing between layers. Defaults to 0.5.
-            sides (np.ndarray | List[np.ndarray], optional): Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
+        Parameters
+        ----------
+        direction : np.ndarray, optional
+            Layout direction. Defaults to RIGHT.
+        node_spacing : float, optional
+            Spacing between nodes. Defaults to 0.5.
+        level_spacing : float, optional
+            Spacing between layers. Defaults to 0.5.
+        sides : np.ndarray | List[np.ndarray], optional
+            Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
         '''
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f'direction must be one of {LEFT,RIGHT,UP,DOWN}')

@@ -16,12 +16,18 @@ def get_arc(
     '''
     Construct an arc from its centre and starting point.
 
-    Args:
-        niddle_pos: centre of the arc
-        pen_pos: starting point of the arc
-        angle: central angle of the arc
-        color: colour of the arc
-        kwargs: other keyword arguments for the arc
+    Parameters
+    ----------
+    niddle_pos : np.ndarray
+        centre of the arc
+    pen_pos : np.ndarray
+        starting point of the arc
+    angle : float
+        central angle of the arc
+    color
+        colour of the arc
+    kwargs
+        other keyword arguments for the arc
 
     Returns:
         The constructed Arc instance

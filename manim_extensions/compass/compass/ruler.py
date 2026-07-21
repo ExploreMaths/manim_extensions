@@ -160,9 +160,12 @@ class Ruler(VGroup):
         '''
         Place the ruler so that one of its edges aligns with start and end.
 
-        args
-            start: start point of the ruler placement
-            end: end point of the ruler placement
+        Parameters
+        ----------
+        start
+            start point of the ruler placement
+        end
+            end point of the ruler placement
 
         .. manim:: SetRulerDocExample
             :save_last_frame:

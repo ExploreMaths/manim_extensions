@@ -163,9 +163,12 @@ class CompassScene(MovingCameraScene):
         '''
         Place the compass at the specified positions: move niddle_tip to niddle_pos and pen_tip to pen_pos.
 
-        args
-            niddle_pos: target position for the compass needle tip (niddle_tip)
-            pen_pos: target position for the compass pen tip (pen_tip)
+        Parameters
+        ----------
+        niddle_pos : Point
+            target position for the compass needle tip (niddle_tip)
+        pen_pos : Point
+            target position for the compass pen tip (pen_tip)
 
         .. manim:: CompassSceneSetCompassDocExample
 
@@ -200,15 +203,24 @@ class CompassScene(MovingCameraScene):
         '''
         Draw an arc with the compass. The arc radius is computed from niddle_point and pen_point.
 
-        args
-            niddle_point : centre of the arc
-            pen_point : starting point of the arc
-            angle : central angle of the arc
-            move_time : time to move the compass into position
-            run_time : time to draw the arc
-            wait_time : wait time between the two animations
-            arc_color : colour of the arc
-            kwargs : other keyword arguments for the arc
+        Parameters
+        ----------
+        niddle_point
+            centre of the arc
+        pen_point
+            starting point of the arc
+        angle
+            central angle of the arc
+        move_time
+            time to move the compass into position
+        run_time
+            time to draw the arc
+        wait_time
+            wait time between the two animations
+        arc_color
+            colour of the arc
+        kwargs
+            other keyword arguments for the arc
         return
             The drawn arc
 
@@ -274,10 +286,14 @@ class CompassScene(MovingCameraScene):
         '''
         Put the compass aside.
 
-        args
-            aside_pos: position to place the compass
-            span_buff: distance between the two compass tips when placed aside
-            run_time: time required to place the compass
+        Parameters
+        ----------
+        aside_pos : Point
+            position to place the compass
+        span_buff : float
+            distance between the two compass tips when placed aside
+        run_time : float
+            time required to place the compass
 
         .. manim:: PutCompassAsideDocExample
 
@@ -308,12 +324,18 @@ class CompassScene(MovingCameraScene):
         '''
         Place the ruler so that one of its edges aligns with start and end.
 
-        args
-            start: start point of the ruler placement
-            end: end point of the ruler placement
-            lag_ratio: lag ratio between the ruler and pencil placement animations
-            run_time: time to place the ruler
-            with_pencil: whether to place the pencil at the same time
+        Parameters
+        ----------
+        start : Point
+            start point of the ruler placement
+        end : Point
+            end point of the ruler placement
+        lag_ratio : float
+            lag ratio between the ruler and pencil placement animations
+        run_time : float
+            time to place the ruler
+        with_pencil : bool
+            whether to place the pencil at the same time
 
         .. manim:: CompassSceneSetRulerDocExample
 
@@ -422,10 +444,14 @@ class CompassScene(MovingCameraScene):
         '''
         Put the ruler aside at aside_pos.
 
-        args
-            aside_pos: position where the ruler will be placed
-            horizontal_or_vertical: whether to place it horizontally
-            run_time: time required to place the ruler
+        Parameters
+        ----------
+        aside_pos : Point
+            position where the ruler will be placed
+        horizontal_or_vertical : bool
+            whether to place it horizontally
+        run_time : float
+            time required to place the ruler
 
         .. manim:: PutRulerAsideDocExample
 

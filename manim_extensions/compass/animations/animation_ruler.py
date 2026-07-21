@@ -33,10 +33,14 @@ class PutRuler(ApplyMethod):
         '''
         Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
 
-        Args:
-            ruler: The ruler.
-            start: The start point.
-            end: The end point.
+        Parameters
+        ----------
+        ruler : Ruler
+            The ruler.
+        start : Point
+            The start point.
+        end : Point
+            The end point.
         '''
         super().__init__(
             ruler.set_ruler,
@@ -69,10 +73,14 @@ class PutRulerAway(PutRuler):
         '''
         Put the ruler away: move the ruler to point.
 
-        Args:
-            ruler: The ruler.
-            point: The placement position.
-            is_flat: Whether to place it horizontally (or vertically).
+        Parameters
+        ----------
+        ruler : Ruler
+            The ruler.
+        point : Point
+            The placement position.
+        is_flat : bool
+            Whether to place it horizontally (or vertically).
         '''
         if is_flat:
             start = point + LEFT

@@ -52,9 +52,12 @@ class DrawArc(AnimationGroup):
         to the centre of the arc, and move the compass pen tip to the start
         of the arc.
         
-        Args:
-            compass: The compass.
-            arc: The arc to draw.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        arc : Arc
+            The arc to draw.
         '''
         super().__init__(
             Create(arc),
@@ -87,9 +90,12 @@ class SplitCompass(AnimationGroup):
         uniformly outward (or inward) so that the distance between the tips is span.
         The niddle_tip stays fixed.
         
-        Args:
-            compass: The compass.
-            span: The distance between the two compass tips.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        span : float
+            The distance between the two compass tips.
         '''
         theta_new, theta_old = np.arcsin(span/2/compass.leg_length), compass.theta
         compass.theta = theta_new
@@ -136,9 +142,12 @@ class RotateCompass(Rotate):
         '''
         Compass-and-straightedge animation: rotate the compass around its needle tip by angle.
 
-        Args:
-            compass: The compass.
-            angle: The rotation angle.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        angle : float
+            The rotation angle.
         '''
         super().__init__(
             compass,
@@ -170,9 +179,12 @@ class MoveNiddleTipTo(ApplyMethod):
         '''
         Compass-and-straightedge animation: move the compass so that its needle tip is placed at point.
 
-        Args:
-            compass: The compass.
-            point: The target point.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        point : Point
+            The target point.
         '''
         super().__init__(
             compass.move_niddle_tip_to,
@@ -204,10 +216,14 @@ class PutCompass(ApplyMethod):
         '''
         Compass-and-straightedge animation: place the compass's niddle_tip and pen_tip at the given positions.
 
-        Args:
-            compass: The compass.
-            niddle_pos: Position for niddle_tip.
-            pen_pos: Position for pen_tip.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        niddle_pos : Point
+            Position for niddle_tip.
+        pen_pos : Point
+            Position for pen_tip.
         '''
         arc_radius = get_distance(niddle_pos,pen_pos)
         if arc_radius > compass.leg_length*2:
@@ -250,10 +266,14 @@ class PutCompassAway(PutCompass):
         '''
         Compass-and-straightedge animation: put the compass aside at point, with the two tips separated by span_buff.
 
-        Args:
-            compass: The compass.
-            point: Position to place the compass.
-            span_buff: Distance between the two tips when placed aside.
+        Parameters
+        ----------
+        compass : Compass
+            The compass.
+        point : Point
+            Position to place the compass.
+        span_buff : float
+            Distance between the two tips when placed aside.
         '''
         r = 0.5*compass.leg_length
         vec = r*DOWN if compass.get_compass_rotate_angle_direction() else r*UP

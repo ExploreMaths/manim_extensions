@@ -304,9 +304,12 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     '''
     Check whether the layout algorithm has changed.
     
-    Args:
-        root (Node): The root node (before first layout, or after a layout has been applied)
-        layout_type (LayoutType): The layout method to be used
+    Parameters
+    ----------
+    root : Node
+        The root node (before first layout, or after a layout has been applied)
+    layout_type : LayoutType
+        The layout method to be used
     Returns (bool): Whether the layout algorithm has changed
     
 
@@ -333,9 +336,12 @@ def is_direction_change(root: Node, direction = RIGHT) -> bool:
     '''
     Check whether the layout direction has changed.
 
-    Args:
-        root (Node): The root node (before first layout, or after a layout has been applied)
-        direction: The layout direction to be used
+    Parameters
+    ----------
+    root : Node
+        The root node (before first layout, or after a layout has been applied)
+    direction
+        The layout direction to be used
     Returns (bool): Whether the layout direction has changed
     
 
@@ -446,12 +452,18 @@ class AbstractLayoutAnimation(AnimationGroup):
         '''
         After operating on the tree nodes, run the full Layout algorithm and generate the animation.
         
-        Args:
-            scene (Scene): The current scene
-            root (Node): The root node
-            layout_type (LayoutType, optional): Layout type. Defaults to LayoutType.MindMap.
-            layout_config (LayoutConfig, optional): Layout parameters. Defaults to LayoutConfig().
-            node_style (NodeStyle, optional): Layout and node styles. Defaults to NodeStyle().
+        Parameters
+        ----------
+        scene : Scene
+            The current scene
+        root : Node
+            The root node
+        layout_type : LayoutType, optional
+            Layout type. Defaults to LayoutType.MindMap.
+        layout_config : LayoutConfig, optional
+            Layout parameters. Defaults to LayoutConfig().
+        node_style : NodeStyle, optional
+            Layout and node styles. Defaults to NodeStyle().
         '''
         self.scene = scene  
         self.root = root

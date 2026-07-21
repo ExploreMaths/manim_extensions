@@ -90,9 +90,12 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
     """
     Synchronously traverse two trees and copy data from src to dst.
     
-    Args:
-        src: Source tree (data provider)
-        dst: Destination tree (data receiver)
+    Parameters
+    ----------
+    src
+        Source tree (data provider)
+    dst
+        Destination tree (data receiver)
     
 
     .. manim:: SyncCopyBfsDocExample

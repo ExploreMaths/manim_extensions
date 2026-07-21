@@ -92,10 +92,14 @@ class CatalogLayout(Layout):
         level_spacing: float = 0.5
     ):
         """
-        Args:
-            root: The root node.
-            node_spacing: Vertical distance from root to second-level nodes, and horizontal spacing among second-level nodes.
-            level_spacing: Vertical spacing among third-level and deeper nodes.
+        Parameters
+        ----------
+        root
+            The root node.
+        node_spacing
+            Vertical distance from root to second-level nodes, and horizontal spacing among second-level nodes.
+        level_spacing
+            Vertical spacing among third-level and deeper nodes.
         """
         self.root = CatalogNode.from_data(root)
         self.margin_root_child = node_spacing
