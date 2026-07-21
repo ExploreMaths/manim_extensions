@@ -344,9 +344,10 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
 
     Returns
     -------
-    Optional[list]
-        A list of intersection points (each a 3-D point), or ``None`` if the
-        objects do not intersect or the combination is not supported.
+    list
+        A list of all intersection points (each a 3-D point). Returns an empty
+        list if the objects do not intersect or the combination is not
+        supported.
 
     Examples
     --------
@@ -377,6 +378,8 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
             return []
         if isinstance(result, tuple):
             return [np.array(p) for p in result]
+        if isinstance(result, list):
+            return [np.array(p) for p in result]
         return [np.array(result)]
 
     if isinstance(mob1, Circle) and isinstance(mob2, Circle):
@@ -392,7 +395,7 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
     if isinstance(mob1, Arc) and isinstance(mob2, Line):
         return _to_list(LineArcInt(mob2, mob1))
 
-    return None
+    return []
 
 
 def TangentPoint(
