@@ -59,18 +59,6 @@ def get_distance(
     point_end:np.ndarray
 )-> float:
     """Compute the distance between two points.
-
-    .. manim:: GetDistanceDocExample
-        :save_last_frame:
-
-        from manim import *
-        from manim_extensions.compass import get_distance
-
-        class GetDistanceDocExample(Scene):
-            def construct(self):
-                d = get_distance(ORIGIN, RIGHT)
-                label = Text(f"distance={d:.2f}")
-                self.add(Dot(ORIGIN), Dot(RIGHT), Line(ORIGIN, RIGHT), label)
     """
     return np.linalg.norm(point_start - point_end)
 
@@ -79,18 +67,6 @@ def is_counter_clockwise(
     vector_end:np.ndarray
 )-> bool:
     """Return whether vector_end is counter-clockwise from vector_start.
-
-    .. manim:: IsCounterClockwiseDocExample
-        :save_last_frame:
-
-        from manim import *
-        from manim_extensions.compass import is_counter_clockwise
-
-        class IsCounterClockwiseDocExample(Scene):
-            def construct(self):
-                result = is_counter_clockwise(RIGHT, UP)
-                label = Text(f"ccw={result}")
-                self.add(Arrow(ORIGIN, RIGHT), Arrow(ORIGIN, UP), label)
     """
     return np.cross(vector_start,vector_end)[-1] > 0
 
@@ -105,18 +81,6 @@ def get_vecs_angle(
         sign > 0: vec_e is counter-clockwise from vec_s;
         sign < 0: clockwise;
         sign = 0: collinear
-
-    .. manim:: GetVecsAngleDocExample
-        :save_last_frame:
-
-        from manim import *
-        from manim_extensions.compass import get_vecs_angle
-
-        class GetVecsAngleDocExample(Scene):
-            def construct(self):
-                angle = get_vecs_angle(RIGHT, UP)
-                label = Text(f"angle={angle:.2f}")
-                self.add(Arrow(ORIGIN, RIGHT), Arrow(ORIGIN, UP), label)
     """
     angle = np.arccos(
         np.true_divide(

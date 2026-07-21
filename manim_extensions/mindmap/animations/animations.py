@@ -313,19 +313,6 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     Returns (bool): Whether the layout algorithm has changed
     
 
-    .. manim:: IsLayoutChangeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms import LayoutType
-        from manim_extensions.mindmap.animations.animations import is_layout_change
-        
-        class IsLayoutChangeDocExample(Scene):
-            def construct(self):
-                root = Node(MathTex("Root", font_size=36))
-                result = is_layout_change(root, LayoutType.MindMap)
-                self.add(Text(f"layout changed: {result}", font_size=36))
     '''
     origin_layout = getattr(root,'layout_type',None)
     if origin_layout is not None:
@@ -345,18 +332,6 @@ def is_direction_change(root: Node, direction = RIGHT) -> bool:
     Returns (bool): Whether the layout direction has changed
     
 
-    .. manim:: IsDirectionChangeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.animations.animations import is_direction_change
-        
-        class IsDirectionChangeDocExample(Scene):
-            def construct(self):
-                root = Node(MathTex("Root", font_size=36))
-                result = is_direction_change(root, RIGHT)
-                self.add(Text(f"direction changed: {result}", font_size=36))
     '''
     origin_dir = getattr(root,'direction',None)
     if origin_dir is not None:

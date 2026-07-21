@@ -21,18 +21,6 @@ from ..algorithms import Layout
 class NodeMobject:
     """Wrapper for the components of a mind-map node.
 
-    .. manim:: NodeMobjectDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.mindmap.base import NodeMobject
-        
-        class NodeMobjectDocExample(Scene):
-            def construct(self):
-                node = Node(MathTex("Hello", font_size=36))
-                nm = NodeMobject(node.vmobject, node.surr_rect, None, "hello")
-                self.add(nm.vmobject, nm.surr_rect)
     """
     __slots__ = ['vmobject','surr_rect','connector','text']
     def __init__(
@@ -58,19 +46,6 @@ def generate_tree(
     ``text``: narration text that can be used for text-to-speech synthesis.
     
 
-    .. manim:: GenerateTreeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.mindmap.base import generate_tree
-        
-        class GenerateTreeDocExample(Scene):
-            def construct(self):
-                root = generate_tree({
-                    'node': MathTex("Root", font_size=36),
-                    'child': [{'node': MathTex("Child", font_size=36)}]
-                })
-                self.add(root.vmobject, root.surr_rect)
     """
     def _generate_tree(ID=(0,), current_map:Dict = None) -> Node:
         level = len(ID)
@@ -101,29 +76,6 @@ def generate_tree(
 class AbstractMap(Group):
     """Abstract base class for mind maps, timelines, etc.
 
-    .. manim:: AbstractMapDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms import Layout
-        from manim_extensions.mindmap.mindmap.base import AbstractMap
-        
-        class AbstractMapDocExample(Scene):
-            def construct(self):
-                class FixedLayout(Layout):
-                    def __init__(self, root):
-                        self.root = root
-                    def layout(self):
-                        return self.root
-        
-                class DemoMap(AbstractMap):
-                    def _set_connectors(self):
-                        pass
-        
-                root = Node(MathTex("Root", font_size=36))
-                root.add_child(Node(MathTex("A", font_size=36)))
-                self.add(DemoMap(FixedLayout(root)))
     """
     def __init__(
         self,

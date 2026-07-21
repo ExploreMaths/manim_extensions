@@ -161,18 +161,6 @@ class LabelDot(VGroup):
 
         Examples
         --------
-
-        .. manim:: LabelDotGetCenterDocExample
-           :save_last_frame:
-
-           from manim import *
-           from manim_extensions import LabelDot
-
-           class LabelDotGetCenterDocExample(Scene):
-               def construct(self):
-                   dot = LabelDot("A", [1, 1, 0])
-                   origin_dot = Dot(ORIGIN, color=RED)
-                   self.add(dot, origin_dot, Line(origin_dot.get_center(), dot.get_center()))
         """
         return self.dot.get_center()
 
@@ -181,18 +169,6 @@ class LabelDot(VGroup):
 
         Examples
         --------
-
-        .. manim:: LabelDotGetBoundaryPointDocExample
-           :save_last_frame:
-
-           from manim import *
-           from manim_extensions import LabelDot
-
-           class LabelDotGetBoundaryPointDocExample(Scene):
-               def construct(self):
-                   dot = LabelDot("A", ORIGIN)
-                   target = Dot(2 * RIGHT, color=RED)
-                   self.add(dot, target, Line(dot.get_boundary_point(RIGHT), target.get_center()))
         """
         return self.dot.get_center()
 

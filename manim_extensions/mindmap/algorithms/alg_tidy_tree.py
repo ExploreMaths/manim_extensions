@@ -16,18 +16,6 @@ from .layout import Layout
 class WrappedTree:
     """Wrapper tree node used during layout computation.
 
-    .. manim:: WrappedTreeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree
-        
-        class WrappedTreeDocExample(Scene):
-            def construct(self):
-                root = Node(Text("Root", font_size=24))
-                wt = WrappedTree.from_node(root, is_horizontal=True)
-                self.add(Text(f"WrappedTree width={wt.width:.2f}", font_size=36))
     """
     # Reference to the original node
     node: Any = None
@@ -91,16 +79,6 @@ class IYLNode:
     so the current subtree can never collide with them first.
     
 
-    .. manim:: IYLNodeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import IYLNode
-        
-        class IYLNodeDocExample(Scene):
-            def construct(self):
-                head = IYLNode(low=0.0, index=0)
-                self.add(Text(f"IYLNode low={head.low}", font_size=36))
     """
     low: float                       # low end of the subtree's right contour in the orthogonal direction
     index: int                       # index of the subtree among its siblings
@@ -109,17 +87,6 @@ class IYLNode:
 def move_right(node, move: float, is_horizontal: bool):
     """Move a node and all its children to the right (or downward).
 
-    .. manim:: MoveRightDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree, move_right
-        
-        class MoveRightDocExample(Scene):
-            def construct(self):
-                wt = WrappedTree(x=0.0, y=0.0)
-                move_right(wt, 2.0, is_horizontal=False)
-                self.add(Text(f"Moved to x={wt.x:.1f}", font_size=36))
     """
     if is_horizontal:
         node.y += move
@@ -131,17 +98,6 @@ def move_right(node, move: float, is_horizontal: bool):
 def get_min(node, is_horizontal: bool) -> float:
     """Return the minimum coordinate value in the node tree.
 
-    .. manim:: GetMinDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree, get_min
-        
-        class GetMinDocExample(Scene):
-            def construct(self):
-                wt = WrappedTree(x=1.0, y=2.0)
-                wt.children.append(WrappedTree(x=-1.0, y=0.0))
-                self.add(Text(f"min x = {get_min(wt, False):.1f}", font_size=36))
     """
     res = node.y if is_horizontal else node.x
     for child in node.children:
@@ -151,17 +107,6 @@ def get_min(node, is_horizontal: bool) -> float:
 def normalize(node, is_horizontal: bool):
     """Normalise coordinates: align the minimum coordinate to 0 so the layout starts at the origin.
 
-    .. manim:: NormalizeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree, normalize
-        
-        class NormalizeDocExample(Scene):
-            def construct(self):
-                wt = WrappedTree(x=-3.0, y=0.0)
-                normalize(wt, False)
-                self.add(Text(f"normalized x = {wt.x:.1f}", font_size=36))
     """
     min_val = get_min(node, is_horizontal)
     move_right(node, -min_val, is_horizontal)
@@ -169,20 +114,6 @@ def normalize(node, is_horizontal: bool):
 def convert_back(converted: WrappedTree, root, is_horizontal: bool):
     """Write the computed result back to the original node: copy WrappedTree.x to the original node's x or y (depending on direction).
 
-    .. manim:: ConvertBackDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree, convert_back
-        
-        class ConvertBackDocExample(Scene):
-            def construct(self):
-                root = Node(Text("Root", font_size=24))
-                wt = WrappedTree.from_node(root, is_horizontal=False)
-                wt.x = 1.5
-                convert_back(wt, root, False)
-                self.add(Text(f"root x = {root.x:.1f}", font_size=36))
     """
     if is_horizontal:
         root.y = converted.x
@@ -196,21 +127,6 @@ def convert_back(converted: WrappedTree, root, is_horizontal: bool):
 def layer(node, direction,level_spacing):
     """Set the layer (depth) coordinate.
 
-    .. manim:: LayerDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import layer
-        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
-        
-        class LayerDocExample(Scene):
-            def construct(self):
-                root = Node(Text("Root", font_size=24))
-                child = Node(Text("Child", font_size=24))
-                root.add_child(child)
-                layer(root, LayoutDirection.LeftToRight, level_spacing=1.0)
-                self.add(Text(f"child level = {child.level}", font_size=36))
     """
     if (parent := node.parent) is not None:
         node.level = parent.level + 1
@@ -229,21 +145,6 @@ def layer(node, direction,level_spacing):
 class TidyTreeLayout(Layout):
     """Non-layered tidy tree layout algorithm.
 
-    .. manim:: TidyTreeLayoutDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout
-        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
-        
-        class TidyTreeLayoutDocExample(Scene):
-            def construct(self):
-                root = Node(Text("Root", font_size=24))
-                root.add_child(Node(Text("A", font_size=24)))
-                root.add_child(Node(Text("B", font_size=24)))
-                TidyTreeLayout(root, LayoutDirection.LeftToRight).layout()
-                self.add(Text("TidyTreeLayout applied", font_size=36))
     """
     def __init__(
         self,

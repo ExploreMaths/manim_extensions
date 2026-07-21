@@ -10,18 +10,6 @@ from .alg_catalog import CatalogLayout
 class LayoutFactory:
     '''Factory for layout algorithms.
 
-    .. manim:: LayoutFactoryDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node, LayoutConfig
-        from manim_extensions.mindmap.algorithms import LayoutFactory, LayoutType
-        
-        class LayoutFactoryDocExample(Scene):
-            def construct(self):
-                root = Node(Text("Root", font_size=24))
-                layout = LayoutFactory.create_layout(LayoutType.MindMap, root, LayoutConfig())
-                self.add(Text(f"Created {type(layout).__name__}", font_size=36))
     '''
     @staticmethod
     def create_layout(

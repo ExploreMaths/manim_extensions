@@ -22,15 +22,6 @@ from ..algorithms import LayoutType,LayoutDirection
 class NodeSate(Enum):
     """Node state.
 
-    .. manim:: NodeSateDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.nodes import NodeSate
-        
-        class NodeSateDocExample(Scene):
-            def construct(self):
-                self.add(Text(str(NodeSate.INSERT), font_size=36))
     """
     INSERT = 0  # newly inserted
     REMOVE = 1  # pending removal
@@ -41,16 +32,6 @@ class NodeSate(Enum):
 class NodeStyle:
     '''Overall layout parameters and a list of node-style dicts indexed by node level.
 
-    .. manim:: NodeStyleDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import NodeStyle
-        
-        class NodeStyleDocExample(Scene):
-            def construct(self):
-                style = NodeStyle()
-                self.add(Text(f"levels: {style.node_num}", font_size=36))
     '''
     def __init__(
         self,
@@ -115,19 +96,6 @@ class NodeStyle:
 def dfs_walker(root: 'Node') -> Generator:
     """Depth-first, pre-order traversal: last-in-first-out using a stack.
 
-    .. manim:: DfsWalkerDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node, dfs_walker
-        
-        class DfsWalkerDocExample(Scene):
-            def construct(self):
-                root = Node(MathTex("Root", font_size=36))
-                root.add_child(Node(MathTex("A", font_size=36)))
-                root.add_child(Node(MathTex("B", font_size=36)))
-                order = [n.vmobject.tex_string for n in dfs_walker(root)]
-                self.add(Text(", ".join(order), font_size=36))
     """
     if not root:
         return []
@@ -141,19 +109,6 @@ def dfs_walker(root: 'Node') -> Generator:
 def bfs_walker(root: 'Node') -> Generator:
     """Breadth-first, level-order traversal: first-in-first-out using a queue.
 
-    .. manim:: BfsWalkerDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import Node, bfs_walker
-        
-        class BfsWalkerDocExample(Scene):
-            def construct(self):
-                root = Node(MathTex("Root", font_size=36))
-                root.add_child(Node(MathTex("A", font_size=36)))
-                root.add_child(Node(MathTex("B", font_size=36)))
-                order = [n.vmobject.tex_string for n in bfs_walker(root)]
-                self.add(Text(", ".join(order), font_size=36))
     """
     if not root:
         return []

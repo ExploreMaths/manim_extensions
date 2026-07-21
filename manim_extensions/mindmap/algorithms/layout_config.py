@@ -11,15 +11,6 @@ from manim.constants import LEFT, RIGHT, UP, DOWN,PI
 class LayoutDirection(Enum):
     '''Layout direction.
 
-    .. manim:: LayoutDirectionDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap.algorithms import LayoutDirection
-        
-        class LayoutDirectionDocExample(Scene):
-            def construct(self):
-                self.add(Text(str(LayoutDirection.LeftToRight), font_size=36))
     '''
     LeftToRight = 'left to right'
     RightToLeft = 'right to left'
@@ -29,15 +20,6 @@ class LayoutDirection(Enum):
 class LayoutType(Enum):
     '''Layout algorithm.
 
-    .. manim:: LayoutTypeDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import LayoutType
-        
-        class LayoutTypeDocExample(Scene):
-            def construct(self):
-                self.add(Text(LayoutType.MindMap.value, font_size=36))
     '''
     MindMap = 'tidytree'
     TimeLine = 'timeline'
@@ -46,16 +28,6 @@ class LayoutType(Enum):
 
 class LayoutConfig:
     """
-    .. manim:: LayoutConfigDocExample
-        :save_last_frame:
-        
-        from manim import *
-        from manim_extensions.mindmap import LayoutConfig
-        
-        class LayoutConfigDocExample(Scene):
-            def construct(self):
-                cfg = LayoutConfig(direction=RIGHT, node_spacing=0.6, level_spacing=0.8)
-                self.add(Text(f"spacing: {cfg.node_spacing}, {cfg.level_spacing}", font_size=36))
     """
 
     def __init__(

@@ -182,17 +182,6 @@ class TypeWriter(Animation):
 
         Examples
         --------
-
-        .. manim:: TypeWriterInterpolateDocExample
-
-           from manim import *
-           from manim_extensions import TypeWriter
-
-           class TypeWriterInterpolateDocExample(Scene):
-               def construct(self):
-                   text = Text("TypeWriter").scale(1.5)
-                   self.play(TypeWriter(text, interval=0.05))
-                   self.wait()
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):

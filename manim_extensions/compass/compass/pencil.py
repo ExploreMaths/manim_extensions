@@ -32,36 +32,11 @@ class Pencil(SVGMobject):
 
     def get_nib(self):
         '''Return the position of the nib.
-
-        .. manim:: GetNibDocExample
-            :save_last_frame:
-
-            from manim import *
-            from manim_extensions.compass import Pencil
-
-            class GetNibDocExample(Scene):
-                def construct(self):
-                    pencil = Pencil().to_edge(LEFT)
-                    dot = Dot(pencil.get_nib())
-                    self.add(pencil, dot)
         '''
         return self._nib.get_all_points()[7]
     
     def get_nid_vector(self):
         '''Return the direction of the pencil body.
-
-        .. manim:: GetNidVectorDocExample
-            :save_last_frame:
-
-            from manim import *
-            from manim_extensions.compass import Pencil
-
-            class GetNidVectorDocExample(Scene):
-                def construct(self):
-                    pencil = Pencil().to_edge(LEFT)
-                    v = pencil.get_nid_vector()
-                    arrow = Arrow(pencil.get_nib(), pencil.get_nib() + v)
-                    self.add(pencil, arrow)
         '''
         return Line(
             self.get_nib(),

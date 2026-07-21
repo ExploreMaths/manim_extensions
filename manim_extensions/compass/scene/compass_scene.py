@@ -27,33 +27,9 @@ class CompassScene(MovingCameraScene):
     '''
     A scene equipped with a compass, ruler, and pencil. Mainly implements
     compass placement, arc drawing, and ruler/pencil animations.
-
-    .. manim:: CompassSceneDocExample
-
-        from manim import *
-        from manim_extensions.compass import CompassScene
-
-        class CompassSceneDocExample(CompassScene):
-            def construct(self):
-                self.draw_arc(ORIGIN, RIGHT, PI / 2)
-                self.wait()
     '''
     def setup(self):
         '''CompassScene.setup example.
-
-        .. manim:: CompassSceneSetupDocExample
-            :save_last_frame:
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSceneSetupDocExample(CompassScene):
-                def setup(self):
-                    super().setup()
-                    self.compass.move_to(ORIGIN)
-
-                def construct(self):
-                    self.wait()
         '''
         self.compass = Compass(span = 0.5).to_edge(LEFT)
         self.ruler = Ruler().to_edge(DOWN)
@@ -61,16 +37,6 @@ class CompassScene(MovingCameraScene):
 
     def compass_move_niddle_tip_to(self,pos = ORIGIN,run_time = 1):
         '''Move the compass needle tip to pos.
-
-        .. manim:: CompassSceneMoveNiddleTipToDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSceneMoveNiddleTipToDocExample(CompassScene):
-                def construct(self):
-                    self.compass_move_niddle_tip_to(ORIGIN)
-                    self.wait()
         '''
         self.play(
             self.compass.animate.move_niddle_tip_to(pos),
@@ -87,16 +53,6 @@ class CompassScene(MovingCameraScene):
     ):
         '''
         Rotate angle around the compass needle tip (niddle_tip).
-
-        .. manim:: RotateCompassAboutNiddleTipDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class RotateCompassAboutNiddleTipDocExample(CompassScene):
-                def construct(self):
-                    self.rotate_compass_about_niddle_tip(PI / 2)
-                    self.wait()
         '''
         anims = [
             Rotate(
@@ -114,16 +70,6 @@ class CompassScene(MovingCameraScene):
 
     def compass_split_span(self,span = 3,run_time = 1):
         '''Rotate the two compass legs uniformly outward/inward so the opened distance equals span.
-
-        .. manim:: CompassSplitSpanDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSplitSpanDocExample(CompassScene):
-                def construct(self):
-                    self.compass_split_span(2)
-                    self.wait()
         '''
         self.play(
             SplitCompass(self.compass,span = span),
@@ -134,16 +80,6 @@ class CompassScene(MovingCameraScene):
     def split_cmpass_span(self,span = 1,run_time = 1):
         '''
         Fix niddle_tip, then move pen_tip along the line through niddle_tip and pen_tip to reach the given span.
-
-        .. manim:: SplitCmpassSpanDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class SplitCmpassSpanDocExample(CompassScene):
-                def construct(self):
-                    self.split_cmpass_span(2)
-                    self.wait()
         '''
         angle = self.compass.get_compass_rotate_angle_with_span(span)
         self.play(
@@ -169,16 +105,6 @@ class CompassScene(MovingCameraScene):
             target position for the compass needle tip (niddle_tip)
         pen_pos : Point
             target position for the compass pen tip (pen_tip)
-
-        .. manim:: CompassSceneSetCompassDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSceneSetCompassDocExample(CompassScene):
-                def construct(self):
-                    self.set_compass(ORIGIN, 2 * RIGHT)
-                    self.wait()
         '''
         self.play(
             PutCompass(
@@ -223,16 +149,6 @@ class CompassScene(MovingCameraScene):
             other keyword arguments for the arc
         return
             The drawn arc
-
-        .. manim:: CompassSceneDrawArcDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSceneDrawArcDocExample(CompassScene):
-                def construct(self):
-                    self.draw_arc(ORIGIN, RIGHT, PI / 2)
-                    self.wait()
         '''
         self.set_compass(
             niddle_point,
@@ -261,16 +177,6 @@ class CompassScene(MovingCameraScene):
     
     def flip_compass(self,run_time = 1):
         '''Flip the compass.
-
-        .. manim:: FlipCompassDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class FlipCompassDocExample(CompassScene):
-                def construct(self):
-                    self.flip_compass()
-                    self.wait()
         '''
         self.play(
             self.compass.animate.reverse_tip(),
@@ -294,16 +200,6 @@ class CompassScene(MovingCameraScene):
             distance between the two compass tips when placed aside
         run_time : float
             time required to place the compass
-
-        .. manim:: PutCompassAsideDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class PutCompassAsideDocExample(CompassScene):
-                def construct(self):
-                    self.put_compass_aside(2 * RIGHT)
-                    self.wait()
         '''
         r = 0.5*self.compass.leg_length
         vec = r*DOWN if self.compass.get_compass_rotate_angle_direction() else r*UP
@@ -336,16 +232,6 @@ class CompassScene(MovingCameraScene):
             time to place the ruler
         with_pencil : bool
             whether to place the pencil at the same time
-
-        .. manim:: CompassSceneSetRulerDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassSceneSetRulerDocExample(CompassScene):
-                def construct(self):
-                    self.set_ruler(LEFT, RIGHT, with_pencil=False)
-                    self.wait()
         '''
         if with_pencil:
             self.play(
@@ -364,16 +250,6 @@ class CompassScene(MovingCameraScene):
 
     def set_pencil(self,pos,run_time = 1.0):
         '''Move the pencil nib to the specified position.
-
-        .. manim:: SetPencilDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class SetPencilDocExample(CompassScene):
-                def construct(self):
-                    self.set_pencil(ORIGIN)
-                    self.wait()
         '''
         self.play(
             self.pencil.animate.move_nid_to(pos),
@@ -391,16 +267,6 @@ class CompassScene(MovingCameraScene):
         **kwargs
     )-> Line:
         '''Draw a straight line using the ruler.
-
-        .. manim:: DrawLineDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class DrawLineDocExample(CompassScene):
-                def construct(self):
-                    self.draw_line(LEFT, RIGHT)
-                    self.wait()
         '''
         self.set_ruler(start = start,end = end,run_time = 0.5*run_time,with_pencil = with_pencil)
         line = Line(start,end,color = color,**kwargs)
@@ -418,16 +284,6 @@ class CompassScene(MovingCameraScene):
     
     def put_pencil_away(self,pos = 3*DOWN,run_time = 1):
         '''Translate the pencil as a whole to the specified position.
-
-        .. manim:: CompassScenePutPencilAwayDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class CompassScenePutPencilAwayDocExample(CompassScene):
-                def construct(self):
-                    self.put_pencil_away(2 * DOWN)
-                    self.wait()
         '''
         curr_pos = self.pencil.get_center()
         self.play(
@@ -452,16 +308,6 @@ class CompassScene(MovingCameraScene):
             whether to place it horizontally
         run_time : float
             time required to place the ruler
-
-        .. manim:: PutRulerAsideDocExample
-
-            from manim import *
-            from manim_extensions.compass import CompassScene
-
-            class PutRulerAsideDocExample(CompassScene):
-                def construct(self):
-                    self.put_ruler_aside(2 * DOWN)
-                    self.wait()
         '''
         vec_w = self.ruler.get_direction_vector_of_ruler()
         vec = RIGHT if horizontal_or_vertical else DOWN
