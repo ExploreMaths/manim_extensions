@@ -327,6 +327,74 @@ def LineArcInt(
             return None
 
 
+def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
+    """Compute all intersection points between two mobjects.
+
+    This convenience dispatcher calls the specialised intersection helpers
+    based on the concrete types of *mob1* and *mob2*.  Supported combinations
+    are ``Circle``–``Circle``, ``Line``–``Circle``, ``Line``–``Line`` and
+    ``Line``–``Arc`` (and their symmetric variants).
+
+    Parameters
+    ----------
+    mob1 : :class:`~manim.mobject.mobject.Mobject`
+        First mobject.
+    mob2 : :class:`~manim.mobject.mobject.Mobject`
+        Second mobject.
+
+    Returns
+    -------
+    Optional[list]
+        A list of intersection points (each a 3-D point), or ``None`` if the
+        objects do not intersect or the combination is not supported.
+
+    Examples
+    --------
+
+    .. manim:: MobjectIntDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import MobjectInt, LabelDot
+
+       class MobjectIntDocExample(Scene):
+           def construct(self):
+               c1 = Circle(radius=1.5, color=BLUE).shift(LEFT)
+               c2 = Circle(radius=1.5, color=GREEN).shift(RIGHT)
+               line = Line(UP * 2, DOWN * 2, color=RED)
+
+               pts = []
+               pts.extend(MobjectInt(c1, c2) or [])
+               pts.extend(MobjectInt(c1, line) or [])
+
+               self.add(c1, c2, line)
+               for i, p in enumerate(pts):
+                   self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
+    """
+
+    def _to_list(result):
+        if result is None:
+            return []
+        if isinstance(result, tuple):
+            return [np.array(p) for p in result]
+        return [np.array(result)]
+
+    if isinstance(mob1, Circle) and isinstance(mob2, Circle):
+        return _to_list(CircleInt(mob1, mob2))
+    if isinstance(mob1, Line) and isinstance(mob2, Circle):
+        return _to_list(LineCircleInt(mob1, mob2))
+    if isinstance(mob1, Circle) and isinstance(mob2, Line):
+        return _to_list(LineCircleInt(mob2, mob1))
+    if isinstance(mob1, Line) and isinstance(mob2, Line):
+        return _to_list(LineInt(mob1, mob2))
+    if isinstance(mob1, Line) and isinstance(mob2, Arc):
+        return _to_list(LineArcInt(mob1, mob2))
+    if isinstance(mob1, Arc) and isinstance(mob2, Line):
+        return _to_list(LineArcInt(mob2, mob1))
+
+    return None
+
+
 def TangentPoint(
     p1: Union[np.ndarray, tuple, list],
     p2: Union[np.ndarray, tuple, list],
