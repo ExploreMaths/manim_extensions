@@ -21,6 +21,7 @@ class PutRuler(ApplyMethod):
             def construct(self):
                 ruler = Ruler().to_edge(LEFT)
                 self.play(PutRuler(ruler, LEFT, RIGHT))
+                self.wait()
     '''
     def __init__(
         self,
@@ -56,6 +57,7 @@ class PutRulerAway(PutRuler):
             def construct(self):
                 ruler = Ruler().to_edge(LEFT)
                 self.play(PutRulerAway(ruler, 2 * DOWN))
+                self.wait()
     '''
     def __init__(
         self,

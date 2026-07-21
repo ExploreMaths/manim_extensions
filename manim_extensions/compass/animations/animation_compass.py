@@ -38,6 +38,7 @@ class DrawArc(AnimationGroup):
                 compass = Compass().to_edge(LEFT)
                 arc = Arc(arc_center=ORIGIN, radius=1, angle=PI / 2)
                 self.play(DrawArc(compass, arc))
+                self.wait()
     '''
     def __init__(
         self,
@@ -73,6 +74,7 @@ class SplitCompass(AnimationGroup):
             def construct(self):
                 compass = Compass().to_edge(LEFT)
                 self.play(SplitCompass(compass, 2))
+                self.wait()
     '''
     def __init__(
         self,
@@ -123,6 +125,7 @@ class RotateCompass(Rotate):
             def construct(self):
                 compass = Compass().to_edge(LEFT)
                 self.play(RotateCompass(compass, PI / 2))
+                self.wait()
     '''
     def __init__(
         self,
@@ -156,6 +159,7 @@ class MoveNiddleTipTo(ApplyMethod):
             def construct(self):
                 compass = Compass().to_edge(LEFT)
                 self.play(MoveNiddleTipTo(compass, ORIGIN))
+                self.wait()
     '''
     def __init__(
         self,
@@ -188,6 +192,7 @@ class PutCompass(ApplyMethod):
             def construct(self):
                 compass = Compass().to_edge(LEFT)
                 self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
+                self.wait()
     '''
     def __init__(
         self,
@@ -233,6 +238,7 @@ class PutCompassAway(PutCompass):
             def construct(self):
                 compass = Compass().to_edge(LEFT)
                 self.play(PutCompassAway(compass, 2 * RIGHT))
+                self.wait()
     '''
     def __init__(
         self,

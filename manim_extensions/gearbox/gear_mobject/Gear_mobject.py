@@ -254,6 +254,7 @@ class Gear(VMobject):
                    Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
                    run_time=4,
                )
+               self.wait()
     """
 
     def __init__(

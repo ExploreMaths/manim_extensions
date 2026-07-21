@@ -27,6 +27,7 @@ class MovePencilAlongPath(MoveAlongPath):
                 pencil = Pencil().to_edge(LEFT)
                 path = Line(LEFT, RIGHT)
                 self.play(MovePencilAlongPath(pencil, path))
+                self.wait()
     '''
     def __init__(
         self,
@@ -59,6 +60,7 @@ class MovePencilTipTo(ApplyMethod):
             def construct(self):
                 pencil = Pencil().to_edge(LEFT)
                 self.play(MovePencilTipTo(pencil, ORIGIN))
+                self.wait()
     '''
     def __init__(
         self,
@@ -92,6 +94,7 @@ class DrawPath(AnimationGroup):
                 pencil = Pencil().to_edge(LEFT)
                 path = Line(LEFT, RIGHT)
                 self.play(DrawPath(pencil, path))
+                self.wait()
     '''
     def __init__(
         self,
@@ -124,6 +127,7 @@ class PutPencilAway(MovePencilTipTo):
             def construct(self):
                 pencil = Pencil().to_edge(LEFT)
                 self.play(PutPencilAway(pencil, 2 * DOWN))
+                self.wait()
     '''
     def __init__(
         self,

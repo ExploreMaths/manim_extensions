@@ -39,6 +39,7 @@ def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
                 root.add_child(a1)
                 self.play(InsertNode(self, {root: [a1]}))
                 self.play(fadeout_of_subtrees([a1]))
+                self.wait()
     '''
     mobjs = []
     for node in nodes:
@@ -78,6 +79,7 @@ def animate_of_create(
                     LayoutType.MindMap
                 )
                 self.play(*anims)
+                self.wait()
     '''
     anims = []
     node.set_connector(layout_type,direction,**line_styles)
@@ -138,6 +140,7 @@ def animate_of_display(
                     LayoutType.MindMap, False, False
                 )
                 self.play(*anims)
+                self.wait()
     '''
     anims =[
         node.vmobject.animate.move_to(pos),
@@ -186,6 +189,7 @@ def animate_of_scale(
                     LayoutType.MindMap, False, False
                 )
                 self.play(*anims)
+                self.wait()
     '''
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
@@ -235,6 +239,7 @@ def animate_of_alter(
                     LayoutType.MindMap, False, False
                 )
                 self.play(*anims)
+                self.wait()
     '''
     anims = [
         node.vmobject.animate.become(
@@ -281,6 +286,7 @@ def animate_of_node(
                     LayoutType.MindMap, False, False
                 )
                 self.play(*anims)
+                self.wait()
     '''
     args = (node,pos,direction,line_styles,node_styles,layout_type)
     match node.node_state:
@@ -374,6 +380,7 @@ def animate_of_layout(
                 root.add_child(a1)
                 anims = animate_of_layout(root, layout_type=LayoutType.MindMap, layout_config=LayoutConfig())
                 self.play(*anims)
+                self.wait()
     """
     direction = layout_config.direction
     change_dir = is_direction_change(root,direction)
@@ -425,6 +432,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         
                 root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
                 self.play(DemoAnimation(self, root))
+                self.wait()
     """
     def __init__(
         self,
@@ -523,6 +531,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
                 root.add_child(a1)
                 root.add_child(a2)
                 self.play(LayoutAnimation(self, root))
+                self.wait()
     """
     def __init__(
         self,
@@ -567,6 +576,7 @@ class RemoveNode(LayoutAnimation):
                 a2 = Node(MathTex("A2", font_size=36))
                 self.play(InsertNode(self, {root: [a1, a2]}))
                 self.play(RemoveNode(self, [a1, a2]))
+                self.wait()
     '''
     def __init__(
         self,
@@ -630,6 +640,7 @@ class InsertNode(LayoutAnimation):
                 a1 = Node(MathTex("A1", font_size=36))
                 a2 = Node(MathTex("A2", font_size=36))
                 self.play(InsertNode(self, {root: [a1, a2]}))
+                self.wait()
     """
     def __init__(
         self,
@@ -689,6 +700,7 @@ class ScaleNode(LayoutAnimation):
                 a1 = Node(MathTex("A1", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
                 self.play(ScaleNode(self, {a1: 1.5}))
+                self.wait()
     """
     def __init__(
         self,
@@ -733,6 +745,7 @@ class AlterNode(LayoutAnimation):
                 a1 = Node(MathTex("A1", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
                 self.play(AlterNode(self, {a1: MathTex("Updated", font_size=36)}))
+                self.wait()
     """
     def __init__(
         self,

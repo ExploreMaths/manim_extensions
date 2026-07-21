@@ -42,6 +42,7 @@ def VisDrawArc(
            def construct(self):
                arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
                VisDrawArc(self, arc, axis=OUT, run_time=2)
+               self.wait()
     """
 
     # Get the start point, end point, and centre of the arc
@@ -159,6 +160,7 @@ class TypeWriter(Animation):
            def construct(self):
                text = Text("Hello World")
                self.play(TypeWriter(text, interval=0.1))
+               self.wait()
     """
 
     def __init__(self, mobject: Text, interval: float = 2, **kwargs) -> None:
@@ -190,6 +192,7 @@ class TypeWriter(Animation):
                def construct(self):
                    text = Text("TypeWriter").scale(1.5)
                    self.play(TypeWriter(text, interval=0.05))
+                   self.wait()
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
