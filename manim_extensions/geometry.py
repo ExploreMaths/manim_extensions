@@ -327,13 +327,13 @@ def LineArcInt(
             return None
 
 
-def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
+def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
     """Compute all intersection points between two mobjects.
 
-    This convenience dispatcher calls the specialised intersection helpers
-    based on the concrete types of *mob1* and *mob2*.  Supported combinations
-    are ``Circle``–``Circle``, ``Line``–``Circle``, ``Line``–``Line`` and
-    ``Line``–``Arc`` (and their symmetric variants).
+    Exact formulas are used for ``Circle``, ``Line`` and ``Arc`` combinations.
+    For arbitrary ``VMobject`` instances, the boundary is approximated by a
+    polygonal chain and segment–segment intersections are reported.  Groups and
+    ``VGroup`` instances are processed recursively over their submobjects.
 
     Parameters
     ----------
@@ -346,8 +346,7 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
     -------
     list
         A list of all intersection points (each a 3-D point). Returns an empty
-        list if the objects do not intersect or the combination is not
-        supported.
+        list if the objects do not intersect.
 
     Examples
     --------
@@ -365,8 +364,8 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
                line = Line(UP * 2, DOWN * 2, color=RED)
 
                pts = []
-               pts.extend(MobjectInt(c1, c2) or [])
-               pts.extend(MobjectInt(c1, line) or [])
+               pts.extend(MobjectInt(c1, c2))
+               pts.extend(MobjectInt(c1, line))
 
                self.add(c1, c2, line)
                for i, p in enumerate(pts):
@@ -382,6 +381,7 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
             return [np.array(p) for p in result]
         return [np.array(result)]
 
+    # Exact analytic cases ----------------------------------------------------
     if isinstance(mob1, Circle) and isinstance(mob2, Circle):
         return _to_list(CircleInt(mob1, mob2))
     if isinstance(mob1, Line) and isinstance(mob2, Circle):
@@ -395,7 +395,63 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> Optional[list]:
     if isinstance(mob1, Arc) and isinstance(mob2, Line):
         return _to_list(LineArcInt(mob2, mob1))
 
-    return []
+    # Generic VMobject sampling ----------------------------------------------
+    def _segment_intersection(a1, a2, b1, b2):
+        x1, y1 = a1[:2]
+        x2, y2 = a2[:2]
+        x3, y3 = b1[:2]
+        x4, y4 = b2[:2]
+        denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+        if abs(denom) < 1e-9:
+            return None
+        t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denom
+        u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denom
+        if 0 <= t <= 1 and 0 <= u <= 1:
+            x = x1 + t * (x2 - x1)
+            y = y1 + t * (y2 - y1)
+            return np.array([x, y, 0.0])
+        return None
+
+    def _sample_cubic_bezier(p0, p1, p2, p3, n=25):
+        t = np.linspace(0, 1, n)
+        return (
+            (1 - t) ** 3 * p0[:, None]
+            + 3 * (1 - t) ** 2 * t * p1[:, None]
+            + 3 * (1 - t) * t**2 * p2[:, None]
+            + t**3 * p3[:, None]
+        ).T
+
+    def _collect_segments(mob, samples=25):
+        segments = []
+        if hasattr(mob, "submobjects") and mob.submobjects:
+            for sub in mob.submobjects:
+                segments.extend(_collect_segments(sub, samples))
+        if isinstance(mob, VMobject) and len(mob.points) >= 4:
+            pts = mob.points
+            i = 0
+            while i + 3 < len(pts):
+                if np.any(np.isnan(pts[i])):
+                    i += 1
+                    continue
+                curve = _sample_cubic_bezier(pts[i], pts[i + 1], pts[i + 2], pts[i + 3], samples)
+                for j in range(len(curve) - 1):
+                    segments.append((curve[j], curve[j + 1]))
+                i += 3
+        return segments
+
+    segs1 = _collect_segments(mob1)
+    segs2 = _collect_segments(mob2)
+
+    intersections = []
+    for a1, a2 in segs1:
+        for b1, b2 in segs2:
+            p = _segment_intersection(a1, a2, b1, b2)
+            if p is not None:
+                # Deduplicate near-duplicate points (common at curve joins).
+                if not any(np.linalg.norm(p - q) < 1e-6 for q in intersections):
+                    intersections.append(p)
+
+    return intersections
 
 
 def TangentPoint(
