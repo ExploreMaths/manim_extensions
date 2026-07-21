@@ -140,6 +140,27 @@ class TimeLine(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
+    
+
+    .. manim:: TimeLineDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import TimeLine
+        
+        class TimeLineDocExample(Scene):
+            def construct(self):
+                data = {
+                    'node': MathTex(r"History"),
+                    'child': [
+                        {'node': MathTex(r"2022")},
+                        {'node': MathTex(r"2023")},
+                        {'node': MathTex(r"2024")},
+                    ]
+                }
+                timeline = TimeLine(data)
+                timeline.scale_to_fit_width(12)
+                self.add(timeline)
     """
     def __init__(
         self,
@@ -217,6 +238,26 @@ class StandardMap(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
+    
+
+    .. manim:: StandardMapDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import StandardMap
+        
+        class StandardMapDocExample(Scene):
+            def construct(self):
+                data = {
+                    'node': MathTex(r"Root"),
+                    'child': [
+                        {'node': MathTex(r"Left")},
+                        {'node': MathTex(r"Right")},
+                    ]
+                }
+                mind_map = StandardMap(data)
+                mind_map.scale_to_fit_width(12)
+                self.add(mind_map)
     """
     def __init__(
         self,
@@ -293,6 +334,26 @@ class CatalogMap(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
+    
+
+    .. manim:: CatalogMapDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import CatalogMap
+        
+        class CatalogMapDocExample(Scene):
+            def construct(self):
+                data = {
+                    'node': MathTex(r"Company"),
+                    'child': [
+                        {'node': MathTex(r"Engineering")},
+                        {'node': MathTex(r"Sales")},
+                    ]
+                }
+                catalog = CatalogMap(data)
+                catalog.scale_to_fit_width(12)
+                self.add(catalog)
     """
     def __init__(
         self,

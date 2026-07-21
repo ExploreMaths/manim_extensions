@@ -15,7 +15,19 @@ from manim.animation.transform import ApplyMethod
 from ..compass.pencil import Pencil
 
 class MovePencilAlongPath(MoveAlongPath):
-    '''Animation of the pencil nib moving along a given path.'''
+    '''Animation of the pencil nib moving along a given path.
+
+    .. manim:: MovePencilAlongPathDocExample
+
+        from manim import *
+        from manim_extensions.compass import Pencil, MovePencilAlongPath
+
+        class MovePencilAlongPathDocExample(Scene):
+            def construct(self):
+                pencil = Pencil().to_edge(LEFT)
+                path = Line(LEFT, RIGHT)
+                self.play(MovePencilAlongPath(pencil, path))
+    '''
     def __init__(
         self,
         mobject: Pencil,
@@ -36,6 +48,18 @@ class MovePencilAlongPath(MoveAlongPath):
         super().__init__(mobject, path, suspend_mobject_updating, **kwargs)
 
 class MovePencilTipTo(ApplyMethod):
+    '''Move the pencil so that its nib is placed at point.
+
+    .. manim:: MovePencilTipToDocExample
+
+        from manim import *
+        from manim_extensions.compass import Pencil, MovePencilTipTo
+
+        class MovePencilTipToDocExample(Scene):
+            def construct(self):
+                pencil = Pencil().to_edge(LEFT)
+                self.play(MovePencilTipTo(pencil, ORIGIN))
+    '''
     def __init__(
         self,
         pencil: Pencil,
@@ -56,6 +80,19 @@ class MovePencilTipTo(ApplyMethod):
         )
 
 class DrawPath(AnimationGroup):
+    '''Animation of the pencil nib moving along the path while drawing it.
+
+    .. manim:: DrawPathDocExample
+
+        from manim import *
+        from manim_extensions.compass import Pencil, DrawPath
+
+        class DrawPathDocExample(Scene):
+            def construct(self):
+                pencil = Pencil().to_edge(LEFT)
+                path = Line(LEFT, RIGHT)
+                self.play(DrawPath(pencil, path))
+    '''
     def __init__(
         self,
         pencil:Pencil,
@@ -76,6 +113,18 @@ class DrawPath(AnimationGroup):
         )
 
 class PutPencilAway(MovePencilTipTo):
+    '''Put the pencil away: move the pencil to point.
+
+    .. manim:: PutPencilAwayDocExample
+
+        from manim import *
+        from manim_extensions.compass import Pencil, PutPencilAway
+
+        class PutPencilAwayDocExample(Scene):
+            def construct(self):
+                pencil = Pencil().to_edge(LEFT)
+                self.play(PutPencilAway(pencil, 2 * DOWN))
+    '''
     def __init__(
         self,
         pencil:Pencil,

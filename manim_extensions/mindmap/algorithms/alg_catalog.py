@@ -29,6 +29,19 @@ class CatalogNode:
         layer_index: layer index (root is 0)
         parent: reference to the parent node
         children_area_width: total width of the root's children (used for horizontal arrangement)
+    
+
+    .. manim:: CatalogNodeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogNode
+        
+        class CatalogNodeDocExample(Scene):
+            def construct(self):
+                node = CatalogNode(width=2.0, height=1.0)
+                info = Text(f"CatalogNode {node.width:.1f}x{node.height:.1f}", font_size=36)
+                self.add(info)
     """
     data: Any = None
     width: float = 0.0
@@ -55,7 +68,23 @@ class CatalogNode:
         return org_node
 
 class CatalogLayout(Layout):
-    """Organisation-chart layout algorithm."""
+    """Organisation-chart layout algorithm.
+
+    .. manim:: CatalogLayoutDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout
+        
+        class CatalogLayoutDocExample(Scene):
+            def construct(self):
+                root = Node(Text("Root", font_size=24))
+                root.add_child(Node(Text("A", font_size=24)))
+                root.add_child(Node(Text("B", font_size=24)))
+                CatalogLayout(root).layout()
+                self.add(Text("CatalogLayout applied", font_size=36))
+    """
     def __init__(
         self,
         root: Any,

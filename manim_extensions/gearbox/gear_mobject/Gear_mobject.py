@@ -20,9 +20,32 @@ __all__ = [
 def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
     '''
     Returns the x-y-z values of the involute function.
-    t: input angle
-    r: base circle radius
-    a: offset angle
+
+    Parameters
+    ----------
+    t: input angle or sequence of angles.
+    r: base circle radius.
+    a: offset angle.
+    rad_offs: radial offset.
+    tan_offs: tangential offset.
+
+    Examples
+    --------
+    .. manim:: InvoluteFuncDocExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox import involute_func
+
+        class InvoluteFuncDocExample(Scene):
+            def construct(self):
+                r = 2
+                t = np.linspace(0, 1.5, 100)
+                points = involute_func(t, r)
+                curve = VMobject(stroke_color=WHITE)
+                curve.set_points_as_corners(points)
+                base = Circle(radius=r, color=BLUE, stroke_opacity=0.5)
+                self.add(base, curve)
     '''
     def involute_val(val):
         x = r * (np.cos(val) + (val - a) * np.sin(val - a)) + \
@@ -51,6 +74,26 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
     a: offset angle.
     rad_offs: radial offset.
     tan_offs: tangential offset.
+
+    Examples
+    --------
+    .. manim:: InvoluteDerivFuncDocExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox import involute_func, involute_deriv_func
+
+        class InvoluteDerivFuncDocExample(Scene):
+            def construct(self):
+                r = 2
+                t_curve = np.linspace(0, 1.5, 100)
+                t_samples = np.linspace(0.2, 1.5, 8)
+                curve = VMobject(stroke_color=WHITE)
+                curve.set_points_as_corners(involute_func(t_curve, r))
+                self.add(curve)
+                for p, d in zip(involute_func(t_samples, r), involute_deriv_func(t_samples, r)):
+                    direction = 0.5 * d / np.linalg.norm(d)
+                    self.add(Arrow(p, p + direction, buff=0, color=YELLOW))
     '''
     def diff_val(val):
         x = r * (-np.sin(val) + (val - a) * np.cos(val - a) + np.sin(val - a)) - \
@@ -73,6 +116,32 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
 def involute_height_func(k, r, **kwargs):
     '''
     Returns the radial height of the involute compared to the base circle.
+
+    Parameters
+    ----------
+    k: angle or sequence of angles.
+    r: base circle radius.
+    **kwargs: forwarded to :func:`involute_func`.
+
+    Examples
+    --------
+    .. manim:: InvoluteHeightFuncDocExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox import involute_func, involute_height_func
+
+        class InvoluteHeightFuncDocExample(Scene):
+            def construct(self):
+                r = 2
+                t = np.array([0.5, 1.0, 1.5])
+                points = involute_func(t, r)
+                base = Circle(radius=r, color=BLUE, stroke_opacity=0.5)
+                self.add(base)
+                for p in points:
+                    self.add(Dot(p, color=YELLOW))
+                    base_point = r * p / np.linalg.norm(p)
+                    self.add(Line(base_point, p, color=GREEN))
     '''
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
@@ -83,6 +152,30 @@ def involute_point_gen(t,r,**kwargs):
     Output is compatible with Mobject.points.
     Input t is a list where the involute shall be evaluated, it can be unevenly spaced.
     Anchors are added automatically.
+
+    Parameters
+    ----------
+    t: sequence of angles at which to evaluate the involute.
+    r: base circle radius.
+    **kwargs: forwarded to :func:`involute_func` and :func:`involute_deriv_func`.
+
+    Examples
+    --------
+    .. manim:: InvolutePointGenDocExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox import involute_point_gen
+
+        class InvolutePointGenDocExample(Scene):
+            def construct(self):
+                r = 2
+                t = np.linspace(0, 1.5, 6)
+                points = involute_point_gen(t, r)
+                curve = VMobject(stroke_color=WHITE)
+                curve.points = points
+                base = Circle(radius=r, color=BLUE, stroke_opacity=0.5)
+                self.add(base, curve)
     '''
     end_points = involute_func(t,r,**kwargs)
     diff_points = involute_deriv_func(t,r,**kwargs)

@@ -173,6 +173,24 @@ class TypeWriter(Animation):
         super().__init__(mobject, **kwargs)
 
     def interpolate_mobject(self, alpha: float) -> Text:
+        """Set the visible characters based on the animation progress *alpha*.
+
+        This method is called internally by Manim during the animation.  It
+        reveals characters one by one as *alpha* goes from ``0`` to ``1``.
+
+        Examples
+        --------
+
+        .. manim:: TypeWriterInterpolateDocExample
+
+           from manim import *
+           from manim_extensions import TypeWriter
+
+           class TypeWriterInterpolateDocExample(Scene):
+               def construct(self):
+                   text = Text("TypeWriter").scale(1.5)
+                   self.play(TypeWriter(text, interval=0.05))
+        """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
             char.set_opacity(1 if i < current_index else 0)

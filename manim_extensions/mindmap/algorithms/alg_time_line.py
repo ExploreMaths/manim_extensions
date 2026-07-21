@@ -20,6 +20,20 @@ class TimelineNode:
 
     Output attributes (filled by the algorithm):
         x, y: top-left coordinates of the node on the canvas
+    
+
+    .. manim:: TimelineNodeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode
+        
+        class TimelineNodeDocExample(Scene):
+            def construct(self):
+                root = Node(Text("Root", font_size=24))
+                tl = TimelineNode.from_node(root)
+                self.add(Text(f"TimelineNode width={tl.width:.2f}", font_size=36))
     """
     node: Any = None
     width: float = 0.0
@@ -64,6 +78,23 @@ def walk(
 
     Supports pre-order (before_callback) and post-order (after_callback) callbacks.
     If before_callback returns True, traversal of that node's children is skipped.
+    
+
+    .. manim:: WalkDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode, walk
+        
+        class WalkDocExample(Scene):
+            def construct(self):
+                root = Node(Text("Root", font_size=24))
+                root.add_child(Node(Text("A", font_size=24)))
+                tl = TimelineNode.from_node(root)
+                visited = []
+                walk(tl, lambda n, *_: visited.append(1), None)
+                self.add(Text(f"visited {len(visited)} nodes", font_size=36))
     """
     # Pre-order callback
     if before_callback:
@@ -81,7 +112,23 @@ def walk(
         after_callback(node, parent, is_root, layer_index, index)
 
 class TimeLineLayout(Layout):
-    """Timeline layout engine."""
+    """Timeline layout engine.
+
+    .. manim:: TimeLineLayoutDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout
+        
+        class TimeLineLayoutDocExample(Scene):
+            def construct(self):
+                root = Node(Text("Root", font_size=24))
+                root.add_child(Node(Text("2023", font_size=24)))
+                root.add_child(Node(Text("2024", font_size=24)))
+                TimeLineLayout(root).layout()
+                self.add(Text("TimeLineLayout applied", font_size=36))
+    """
     def __init__(
         self,
         root: Any,

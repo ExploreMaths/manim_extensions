@@ -47,32 +47,112 @@ class Ruler(VGroup):
         self.add(self.ruler)
 
     def get_vecs_of_ruler(self):
-        '''Return the extension and width directions of the ruler.'''
+        '''Return the extension and width directions of the ruler.
+
+        .. manim:: GetVecsOfRulerDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetVecsOfRulerDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    u, v = ruler.get_vecs_of_ruler()
+                    center = ruler.get_middle_point()
+                    self.add(ruler, Arrow(center, center + u), Arrow(center, center + v))
+        '''
         A,B,C,_ = self.ruler.get_vertices()
         return Line(B,A).get_unit_vector(),Line(B,C).get_unit_vector()
     
     def get_direction_vector_of_ruler(self):
-        '''Return the extension direction of the ruler.'''
+        '''Return the extension direction of the ruler.
+
+        .. manim:: GetDirectionVectorOfRulerDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetDirectionVectorOfRulerDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    v = ruler.get_direction_vector_of_ruler()
+                    center = ruler.get_middle_point()
+                    self.add(ruler, Arrow(center, center + v))
+        '''
         s,e,*_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
     
     def get_width_vector_of_ruler(self):
-        '''Return the width direction of the ruler.'''
+        '''Return the width direction of the ruler.
+
+        .. manim:: GetWidthVectorOfRulerDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetWidthVectorOfRulerDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    v = ruler.get_width_vector_of_ruler()
+                    center = ruler.get_middle_point()
+                    self.add(ruler, Arrow(center, center + v))
+        '''
         _,s,e,_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
         
     def get_start_and_end(self):
-        '''Return the start and end points of the ruler.'''
+        '''Return the start and end points of the ruler.
+
+        .. manim:: GetStartAndEndDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetStartAndEndDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    start, end = ruler.get_start_and_end()
+                    self.add(ruler, Dot(start), Dot(end))
+        '''
         E,S,*_ = self.ruler.get_vertices()
         return S,E
     
     def get_middle_point(self):
-        '''Return the midpoint of the ruler.'''
+        '''Return the midpoint of the ruler.
+
+        .. manim:: GetMiddlePointDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetMiddlePointDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    self.add(ruler, Dot(ruler.get_middle_point()))
+        '''
         S,E = self.get_start_and_end()
         return (S+E)/2
     
     def get_length_of_ruler(self):
-        '''Return the length of the ruler.'''
+        '''Return the length of the ruler.
+
+        .. manim:: GetLengthOfRulerDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class GetLengthOfRulerDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().to_edge(LEFT)
+                    label = Text(f"length={ruler.get_length_of_ruler():.2f}").to_edge(UP)
+                    self.add(ruler, label)
+        '''
         S,E = self.get_start_and_end()
         return np.linalg.norm(E-S)
 
@@ -83,6 +163,17 @@ class Ruler(VGroup):
         args
             start: start point of the ruler placement
             end: end point of the ruler placement
+
+        .. manim:: SetRulerDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class SetRulerDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().set_ruler(LEFT, RIGHT)
+                    self.add(ruler)
         '''
         direction = end - start
         current_pos = self.get_middle_point()
@@ -98,7 +189,19 @@ class Ruler(VGroup):
         return self
     
     def put_ruler_flat(self):
-        '''Lay the ruler flat.'''
+        '''Lay the ruler flat.
+
+        .. manim:: PutRulerFlatDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Ruler
+
+            class PutRulerFlatDocExample(Scene):
+                def construct(self):
+                    ruler = Ruler().put_ruler_flat()
+                    self.add(ruler)
+        '''
         self.rotate(
             angle = get_vecs_angle(
                 self.get_direction_vector_of_ruler(),

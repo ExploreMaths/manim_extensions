@@ -16,4 +16,6 @@ for analytic geometry tasks inside a :class:`~manim.scene.scene.Scene`.
 
 .. autofunction:: manim_extensions.geometry.LineArcInt
 
+.. autofunction:: manim_extensions.geometry.MobjectInt
+
 .. autofunction:: manim_extensions.geometry.TangentPoint

@@ -10,6 +10,18 @@ from manim.constants import RIGHT, LEFT, UP, DOWN
 from ..compass.ruler import Ruler
 
 class PutRuler(ApplyMethod):
+    '''Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
+
+    .. manim:: PutRulerDocExample
+
+        from manim import *
+        from manim_extensions.compass import Ruler, PutRuler
+
+        class PutRulerDocExample(Scene):
+            def construct(self):
+                ruler = Ruler().to_edge(LEFT)
+                self.play(PutRuler(ruler, LEFT, RIGHT))
+    '''
     def __init__(
         self,
         ruler:Ruler,
@@ -33,6 +45,18 @@ class PutRuler(ApplyMethod):
         )
 
 class PutRulerAway(PutRuler):
+    '''Put the ruler away: move the ruler to point.
+
+    .. manim:: PutRulerAwayDocExample
+
+        from manim import *
+        from manim_extensions.compass import Ruler, PutRulerAway
+
+        class PutRulerAwayDocExample(Scene):
+            def construct(self):
+                ruler = Ruler().to_edge(LEFT)
+                self.play(PutRulerAway(ruler, 2 * DOWN))
+    '''
     def __init__(
         self,
         ruler:Ruler,

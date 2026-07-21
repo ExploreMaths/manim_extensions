@@ -24,7 +24,22 @@ from ..algorithms import LayoutFactory,LayoutType,LayoutConfig
 from ..nodes import Node,bfs_walker,NodeSate,NodeStyle
 
 def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
-    '''FadeOut the given nodes and their subtrees.'''
+    '''FadeOut the given nodes and their subtrees.
+
+    .. manim:: FadeoutOfSubtreesDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode
+        from manim_extensions.mindmap.animations.animations import fadeout_of_subtrees
+        
+        class FadeoutOfSubtreesDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                root.add_child(a1)
+                self.play(InsertNode(self, {root: [a1]}))
+                self.play(fadeout_of_subtrees([a1]))
+    '''
     mobjs = []
     for node in nodes:
         for node_ in bfs_walker(node):
@@ -44,7 +59,26 @@ def animate_of_create(
     node_styles:Dict,
     layout_type:LayoutType
 ) -> List[Animation]:
-    '''Create-node animation.'''
+    '''Create-node animation.
+
+    .. manim:: AnimateOfCreateDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_create
+        
+        class AnimateOfCreateDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                anims = animate_of_create(
+                    root, root.vmobject.get_center(), RIGHT,
+                    {'color': WHITE, 'stroke_width': 4},
+                    {'color': BLUE, 'stroke_width': 2},
+                    LayoutType.MindMap
+                )
+                self.play(*anims)
+    '''
     anims = []
     node.set_connector(layout_type,direction,**line_styles)
     if isinstance(node.vmobject,ImageMobject):
@@ -82,7 +116,29 @@ def animate_of_display(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: update its position and style.'''
+    '''Animation for a node already on the scene: update its position and style.
+
+    .. manim:: AnimateOfDisplayDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.nodes import NodeSate
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_display
+        
+        class AnimateOfDisplayDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                self.add(root.vmobject, root.surr_rect)
+                root.node_state = NodeSate.DISPLAY
+                anims = animate_of_display(
+                    root, root.vmobject.get_center() + RIGHT, RIGHT,
+                    {'color': WHITE, 'stroke_width': 4},
+                    {'color': BLUE, 'stroke_width': 2},
+                    LayoutType.MindMap, False, False
+                )
+                self.play(*anims)
+    '''
     anims =[
         node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
@@ -106,7 +162,31 @@ def animate_of_scale(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: scale it up or down.'''
+    '''Animation for a node already on the scene: scale it up or down.
+
+    .. manim:: AnimateOfScaleDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode
+        from manim_extensions.mindmap.nodes import NodeSate
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_scale
+        
+        class AnimateOfScaleDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                self.play(InsertNode(self, {root: [a1]}))
+                a1.node_state = NodeSate.SCALE
+                a1.scale(1.5)
+                anims = animate_of_scale(
+                    a1, a1.vmobject.get_center(), RIGHT,
+                    {'color': WHITE, 'stroke_width': 4},
+                    {'color': BLUE, 'stroke_width': 2},
+                    LayoutType.MindMap, False, False
+                )
+                self.play(*anims)
+    '''
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
@@ -131,7 +211,31 @@ def animate_of_alter(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: replace its vmobject.'''
+    '''Animation for a node already on the scene: replace its vmobject.
+
+    .. manim:: AnimateOfAlterDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode
+        from manim_extensions.mindmap.nodes import NodeSate
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_alter
+        
+        class AnimateOfAlterDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                self.play(InsertNode(self, {root: [a1]}))
+                a1.node_state = NodeSate.ALTER
+                a1.alter_content(MathTex("Updated", font_size=36))
+                anims = animate_of_alter(
+                    a1, a1.vmobject.get_center(), RIGHT,
+                    {'color': WHITE, 'stroke_width': 4},
+                    {'color': BLUE, 'stroke_width': 2},
+                    LayoutType.MindMap, False, False
+                )
+                self.play(*anims)
+    '''
     anims = [
         node.vmobject.animate.become(
             node.alter_vmobject.move_to(pos)
@@ -158,7 +262,26 @@ def animate_of_node(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Return the appropriate animation for node based on its state.'''
+    '''Return the appropriate animation for node based on its state.
+
+    .. manim:: AnimateOfNodeDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_node
+        
+        class AnimateOfNodeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                anims = animate_of_node(
+                    root, root.vmobject.get_center(), RIGHT,
+                    {'color': WHITE, 'stroke_width': 4},
+                    {'color': BLUE, 'stroke_width': 2},
+                    LayoutType.MindMap, False, False
+                )
+                self.play(*anims)
+    '''
     args = (node,pos,direction,line_styles,node_styles,layout_type)
     match node.node_state:
         case NodeSate.INSERT:
@@ -179,6 +302,21 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
         root (Node): The root node (before first layout, or after a layout has been applied)
         layout_type (LayoutType): The layout method to be used
     Returns (bool): Whether the layout algorithm has changed
+    
+
+    .. manim:: IsLayoutChangeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms import LayoutType
+        from manim_extensions.mindmap.animations.animations import is_layout_change
+        
+        class IsLayoutChangeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36))
+                result = is_layout_change(root, LayoutType.MindMap)
+                self.add(Text(f"layout changed: {result}", font_size=36))
     '''
     origin_layout = getattr(root,'layout_type',None)
     if origin_layout is not None:
@@ -193,6 +331,20 @@ def is_direction_change(root: Node, direction = RIGHT) -> bool:
         root (Node): The root node (before first layout, or after a layout has been applied)
         direction: The layout direction to be used
     Returns (bool): Whether the layout direction has changed
+    
+
+    .. manim:: IsDirectionChangeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.animations.animations import is_direction_change
+        
+        class IsDirectionChangeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36))
+                result = is_direction_change(root, RIGHT)
+                self.add(Text(f"direction changed: {result}", font_size=36))
     '''
     origin_dir = getattr(root,'direction',None)
     if origin_dir is not None:
@@ -206,7 +358,23 @@ def animate_of_layout(
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
 ) -> List[Animation]:
-    """Core animation method: run the full Layout algorithm and generate animations."""
+    """Core animation method: run the full Layout algorithm and generate animations.
+
+    .. manim:: AnimateOfLayoutDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms import LayoutConfig, LayoutType
+        from manim_extensions.mindmap.animations.animations import animate_of_layout
+        
+        class AnimateOfLayoutDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                root.add_child(a1)
+                anims = animate_of_layout(root, layout_type=LayoutType.MindMap, layout_config=LayoutConfig())
+                self.play(*anims)
+    """
     direction = layout_config.direction
     change_dir = is_direction_change(root,direction)
     change_layout = is_layout_change(root,layout_type)
@@ -241,7 +409,23 @@ def animate_of_layout(
     return anims
     
 class AbstractLayoutAnimation(AnimationGroup):
-    """Abstract base class for layout animations: collect node states and generate the full layout animation."""
+    """Abstract base class for layout animations: collect node states and generate the full layout animation.
+
+    .. manim:: AbstractLayoutAnimationDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.animations.animations import AbstractLayoutAnimation
+        
+        class AbstractLayoutAnimationDocExample(Scene):
+            def construct(self):
+                class DemoAnimation(AbstractLayoutAnimation):
+                    def collect_animations(self):
+                        return []
+        
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                self.play(DemoAnimation(self, root))
+    """
     def __init__(
         self,
         scene:Scene,
@@ -324,7 +508,22 @@ class AbstractLayoutAnimation(AnimationGroup):
         return root
     
 class LayoutAnimation(AbstractLayoutAnimation):
-    """General layout animation: apply a layout to the whole tree and play all change animations."""
+    """General layout animation: apply a layout to the whole tree and play all change animations.
+
+    .. manim:: LayoutAnimationDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, LayoutAnimation
+        
+        class LayoutAnimationDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                a2 = Node(MathTex("A2", font_size=36))
+                root.add_child(a1)
+                root.add_child(a2)
+                self.play(LayoutAnimation(self, root))
+    """
     def __init__(
         self,
         scene:Scene,
@@ -354,7 +553,21 @@ class LayoutAnimation(AbstractLayoutAnimation):
         )
     
 class RemoveNode(LayoutAnimation):
-    '''Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.'''
+    '''Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
+
+    .. manim:: RemoveNodeDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode, RemoveNode
+        
+        class RemoveNodeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                a2 = Node(MathTex("A2", font_size=36))
+                self.play(InsertNode(self, {root: [a1, a2]}))
+                self.play(RemoveNode(self, [a1, a2]))
+    '''
     def __init__(
         self,
         scene:Scene,
@@ -404,7 +617,20 @@ class RemoveNode(LayoutAnimation):
         return group
 
 class InsertNode(LayoutAnimation):
-    """Insert one or more child nodes into the mind map."""
+    """Insert one or more child nodes into the mind map.
+
+    .. manim:: InsertNodeDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode
+        
+        class InsertNodeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                a2 = Node(MathTex("A2", font_size=36))
+                self.play(InsertNode(self, {root: [a1, a2]}))
+    """
     def __init__(
         self,
         scene:Scene,
@@ -450,7 +676,20 @@ class InsertNode(LayoutAnimation):
         return super().collect_animations()
     
 class ScaleNode(LayoutAnimation):
-    """Scale one or more nodes in the mind map."""
+    """Scale one or more nodes in the mind map.
+
+    .. manim:: ScaleNodeDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode, ScaleNode
+        
+        class ScaleNodeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                self.play(InsertNode(self, {root: [a1]}))
+                self.play(ScaleNode(self, {a1: 1.5}))
+    """
     def __init__(
         self,
         scene:Scene,
@@ -481,7 +720,20 @@ class ScaleNode(LayoutAnimation):
         )
 
 class AlterNode(LayoutAnimation):
-    """Replace the content of one or more nodes in the mind map."""
+    """Replace the content of one or more nodes in the mind map.
+
+    .. manim:: AlterNodeDocExample
+        
+        from manim import *
+        from manim_extensions.mindmap import Node, InsertNode, AlterNode
+        
+        class AlterNodeDocExample(Scene):
+            def construct(self):
+                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex("A1", font_size=36))
+                self.play(InsertNode(self, {root: [a1]}))
+                self.play(AlterNode(self, {a1: MathTex("Updated", font_size=36)}))
+    """
     def __init__(
         self,
         scene:Scene,

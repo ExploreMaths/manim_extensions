@@ -25,6 +25,20 @@ from ..utils.geometry_method import (
 )
 
 class DrawArc(AnimationGroup):
+    '''Compass-and-straightedge animation: draw an arc.
+
+    .. manim:: DrawArcDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, DrawArc
+        from manim.mobject.geometry.arc import Arc
+
+        class DrawArcDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                arc = Arc(arc_center=ORIGIN, radius=1, angle=PI / 2)
+                self.play(DrawArc(compass, arc))
+    '''
     def __init__(
         self,
         compass:Compass,
@@ -48,6 +62,18 @@ class DrawArc(AnimationGroup):
         )
 
 class SplitCompass(AnimationGroup):
+    '''Compass-and-straightedge animation: rotate the two legs of the compass
+
+    .. manim:: SplitCompassDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, SplitCompass
+
+        class SplitCompassDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.play(SplitCompass(compass, 2))
+    '''
     def __init__(
         self,
         compass:Compass,
@@ -86,6 +112,18 @@ class SplitCompass(AnimationGroup):
         )
 
 class RotateCompass(Rotate):
+    '''Compass-and-straightedge animation: rotate the compass around its needle tip by angle.
+
+    .. manim:: RotateCompassDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, RotateCompass
+
+        class RotateCompassDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.play(RotateCompass(compass, PI / 2))
+    '''
     def __init__(
         self,
         compass:Compass,
@@ -107,6 +145,18 @@ class RotateCompass(Rotate):
         )
 
 class MoveNiddleTipTo(ApplyMethod):
+    '''Compass-and-straightedge animation: move the compass so that its needle tip is placed at point.
+
+    .. manim:: MoveNiddleTipToDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, MoveNiddleTipTo
+
+        class MoveNiddleTipToDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.play(MoveNiddleTipTo(compass, ORIGIN))
+    '''
     def __init__(
         self,
         compass:Compass,
@@ -127,6 +177,18 @@ class MoveNiddleTipTo(ApplyMethod):
         )
 
 class PutCompass(ApplyMethod):
+    '''Compass-and-straightedge animation: place the compass's niddle_tip and pen_tip at the given positions.
+
+    .. manim:: PutCompassDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, PutCompass
+
+        class PutCompassDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
+    '''
     def __init__(
         self,
         compass:Compass,
@@ -160,6 +222,18 @@ class PutCompass(ApplyMethod):
         )
 
 class PutCompassAway(PutCompass):
+    '''Compass-and-straightedge animation: put the compass aside at point, with the two tips separated by span_buff.
+
+    .. manim:: PutCompassAwayDocExample
+
+        from manim import *
+        from manim_extensions.compass import Compass, PutCompassAway
+
+        class PutCompassAwayDocExample(Scene):
+            def construct(self):
+                compass = Compass().to_edge(LEFT)
+                self.play(PutCompassAway(compass, 2 * RIGHT))
+    '''
     def __init__(
         self,
         compass:Compass,

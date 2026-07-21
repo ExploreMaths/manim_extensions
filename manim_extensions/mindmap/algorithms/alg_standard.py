@@ -8,7 +8,20 @@ from .layout_config import LayoutDirection
 from .layout import Layout
 
 class TreeNode:
-    """Internal tree-node wrapper used by StandardLayout."""
+    """Internal tree-node wrapper used by StandardLayout.
+
+    .. manim:: TreeNodeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
+        
+        class TreeNodeDocExample(Scene):
+            def construct(self):
+                root = TreeNode(height=1.0, width=2.0)
+                root.add_child(TreeNode(height=0.5, width=1.0))
+                self.add(Text(f"TreeNode with {len(root.children)} child", font_size=36))
+    """
     __slots__ = ('height','width','children','parent','x','y','level','is_flip')
     def __init__(
         self,
@@ -30,6 +43,22 @@ class TreeNode:
         child.parent = self
 
 def copy_node(node:Any) -> 'TreeNode':
+    """
+    .. manim:: CopyNodeDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_standard import copy_node
+        
+        class CopyNodeDocExample(Scene):
+            def construct(self):
+                root = Node(Text("A", font_size=24))
+                root.add_child(Node(Text("B", font_size=24)))
+                copied = copy_node(root)
+                self.add(Text(f"Copied tree has {len(copied.children)} child", font_size=36))
+    """
+
     if node is None:
         return None
     root = TreeNode(node.height, node.width)
@@ -38,6 +67,19 @@ def copy_node(node:Any) -> 'TreeNode':
     return root
 
 def split_integer(n:int):
+    """
+    .. manim:: SplitIntegerDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_standard import split_integer
+        
+        class SplitIntegerDocExample(Scene):
+            def construct(self):
+                a, b = split_integer(5)
+                self.add(Text(f"split_integer(5) = ({a}, {b})", font_size=36))
+    """
+
     if (n & 1):
         k = (n - 1) // 2
         return k + 1,k
@@ -51,6 +93,22 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
     Args:
         src: Source tree (data provider)
         dst: Destination tree (data receiver)
+    
+
+    .. manim:: SyncCopyBfsDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode, copy_node, sync_copy_bfs
+        
+        class SyncCopyBfsDocExample(Scene):
+            def construct(self):
+                src = TreeNode(height=1.0, width=2.0)
+                src.add_child(TreeNode(height=0.5, width=1.0))
+                dst = TreeNode(height=1.0, width=2.0)
+                dst.add_child(TreeNode(height=0.5, width=1.0))
+                sync_copy_bfs(src, dst)
+                self.add(Text(f"sync_copy_bfs copied x={dst.x:.1f}", font_size=36))
     """
     queue = deque([(src, dst)])
     
@@ -75,7 +133,24 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
             queue.append((s_child, d_child))
 
 class StandardLayout(Layout):
-    """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides."""
+    """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides.
+
+    .. manim:: StandardLayoutDocExample
+        :save_last_frame:
+        
+        from manim import *
+        from manim_extensions.mindmap import Node
+        from manim_extensions.mindmap.algorithms.alg_standard import StandardLayout
+        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
+        
+        class StandardLayoutDocExample(Scene):
+            def construct(self):
+                root = Node(Text("Root", font_size=24))
+                for label in ["A", "B", "C", "D"]:
+                    root.add_child(Node(Text(label, font_size=24)))
+                StandardLayout(root, LayoutDirection.LeftToRight).layout()
+                self.add(Text("StandardLayout applied", font_size=36))
+    """
     def __init__(
         self,
         root:Any,

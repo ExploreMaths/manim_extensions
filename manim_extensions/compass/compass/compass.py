@@ -94,34 +94,111 @@ class Compass(VGroup):
         return self
 
     def get_niddle_tip(self):
-        '''Return the coordinates of the needle tip.'''
+        '''Return the coordinates of the needle tip.
+
+        .. manim:: GetNiddleTipDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetNiddleTipDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    dot = Dot(compass.get_niddle_tip())
+                    self.add(compass, dot)
+        '''
         return self.niddle_tip.get_vertices()[1]
 
     def get_pen_tip(self):
-        '''Return the coordinates of the pen tip.'''
+        '''Return the coordinates of the pen tip.
+
+        .. manim:: GetPenTipDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetPenTipDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    dot = Dot(compass.get_pen_tip())
+                    self.add(compass, dot)
+        '''
         return self.pen_tip.get_vertices()[1]
     
     def get_niddle2pen_vec(self):
-        '''Return the vector from the needle tip to the pen tip.'''
+        '''Return the vector from the needle tip to the pen tip.
+
+        .. manim:: GetNiddle2PenVecDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetNiddle2PenVecDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    v = compass.get_niddle2pen_vec()
+                    arrow = Arrow(compass.get_niddle_tip(), compass.get_niddle_tip() + v)
+                    self.add(compass, arrow)
+        '''
         return Line(
             self.get_niddle_tip(),
             self.get_pen_tip()
         ).get_unit_vector()
     
     def get_span(self):
-        '''Return the compass span: distance between pen tip and needle tip.'''
+        '''Return the compass span: distance between pen tip and needle tip.
+
+        .. manim:: GetSpanDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetSpanDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    label = Text(f"span={compass.get_span():.2f}").to_edge(UP)
+                    self.add(compass, label)
+        '''
         return get_distance(
             self.get_pen_tip(),
             self.get_niddle_tip()
         )
 
     def move_niddle_tip_to(self, pos:Point):
-        '''Move the compass as a whole so that the needle tip is at pos.'''
+        '''Move the compass as a whole so that the needle tip is at pos.
+
+        .. manim:: CompassMoveNiddleTipToDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class CompassMoveNiddleTipToDocExample(Scene):
+                def construct(self):
+                    compass = Compass().move_niddle_tip_to(ORIGIN)
+                    self.add(compass)
+        '''
         self.shift(pos - self.get_niddle_tip())
         return self
 
     def rotate_about_niddle_tip(self, angle = PI/2):
-        '''Rotate the compass as a whole around the needle tip by angle.'''
+        '''Rotate the compass as a whole around the needle tip by angle.
+
+        .. manim:: RotateAboutNiddleTipDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class RotateAboutNiddleTipDocExample(Scene):
+                def construct(self):
+                    compass = Compass().rotate_about_niddle_tip(PI / 4)
+                    self.add(compass)
+        '''
         self.rotate(
             angle = angle,
             about_point = self.get_niddle_tip()
@@ -129,7 +206,19 @@ class Compass(VGroup):
         return self
 
     def reverse_tip(self):
-        '''Mirror-flip the needle tip and pen tip.'''
+        '''Mirror-flip the needle tip and pen tip.
+
+        .. manim:: ReverseTipDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class ReverseTipDocExample(Scene):
+                def construct(self):
+                    compass = Compass().reverse_tip()
+                    self.add(compass)
+        '''
         self.flip(
             axis = self.head[0].get_end() - self.head[0].get_start(),
             about_point = self.c.get_center()
@@ -137,7 +226,19 @@ class Compass(VGroup):
         return self
 
     def split_copass_with_gain_angle(self,angle:float):
-        '''Open the two compass legs by an additional angle.'''
+        '''Open the two compass legs by an additional angle.
+
+        .. manim:: SplitCompassWithGainAngleDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class SplitCompassWithGainAngleDocExample(Scene):
+                def construct(self):
+                    compass = Compass().split_copass_with_gain_angle(PI / 6)
+                    self.add(compass)
+        '''
         self.niddle_tip.rotate(
             angle = -angle,
             about_point = self.c.get_center()
@@ -153,20 +254,58 @@ class Compass(VGroup):
         angle:float,
         niddle_tip_pos:Point
     ):
-        '''Keep the needle tip fixed and open the two compass legs by angle.'''
+        '''Keep the needle tip fixed and open the two compass legs by angle.
+
+        .. manim:: SplitCompassWithNiddleTipFixedDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class SplitCompassWithNiddleTipFixedDocExample(Scene):
+                def construct(self):
+                    compass = Compass().split_compass_with_niddle_tip_fixed(PI / 6, ORIGIN)
+                    self.add(compass)
+        '''
         self.split_copass_with_gain_angle(angle = angle)
         self.move_niddle_tip_to(niddle_tip_pos)
         return self
     
     def get_compass_rotate_angle_direction(self)->bool:
-        '''Return whether the two compass legs are counter-clockwise from each other.'''
+        '''Return whether the two compass legs are counter-clockwise from each other.
+
+        .. manim:: GetCompassRotateAngleDirectionDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetCompassRotateAngleDirectionDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    label = Text(f"ccw={compass.get_compass_rotate_angle_direction()}")
+                    self.add(compass, label)
+        '''
         return is_counter_clockwise(
             self.get_niddle_tip() - self.c.get_center(),
             self.get_pen_tip() - self.c.get_center()
         )
 
     def get_compass_rotate_angle_with_span(self,span:float)->float:
-        '''Return the angle between the two legs when the compass is opened to span.'''
+        '''Return the angle between the two legs when the compass is opened to span.
+
+        .. manim:: GetCompassRotateAngleWithSpanDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class GetCompassRotateAngleWithSpanDocExample(Scene):
+                def construct(self):
+                    compass = Compass().to_edge(LEFT)
+                    label = Text(f"angle={compass.get_compass_rotate_angle_with_span(2):.2f}")
+                    self.add(compass, label)
+        '''
         L = self.leg_length
         distance = self.get_span()
         span_start = 2*L if distance > 2*L else distance
@@ -181,7 +320,19 @@ class Compass(VGroup):
         rotate_angle:float,
         niddle_tip_pos:Point
     ):
-        '''Set the compass span, rotation angle, and needle tip position.'''
+        '''Set the compass span, rotation angle, and needle tip position.
+
+        .. manim:: SetCompassDocExample
+            :save_last_frame:
+
+            from manim import *
+            from manim_extensions.compass import Compass
+
+            class SetCompassDocExample(Scene):
+                def construct(self):
+                    compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
+                    self.add(compass)
+        '''
         self.split_compass_with_niddle_tip_fixed(span_angle,niddle_tip_pos)
         self.rotate(
             angle = rotate_angle,
