@@ -599,3 +599,144 @@ class PerpendicularSign(VGroup):
             key=lambda c: np.dot(c[2], corner_direction),
         )
         return best[0], best[1]
+
+
+class FileTree(Code):
+    """An ASCII file tree generated from a nested dictionary.
+
+    Directories are automatically suffixed with ``/``.  Highlighting is
+    performed by dynamically slicing each line based on physical coordinates,
+    compatible with Manim 0.19.1 (spaces have no submobjects).
+
+    .. inheritance-diagram:: manim_extensions.mobjects.FileTree
+       :parts: 1
+
+    Parameters
+    ----------
+    tree_dict : dict[str, dict | None]
+        Nested dictionary representing the tree.  ``None`` or ``{}`` denotes
+        an empty directory; a non-empty ``dict`` denotes a directory with
+        children.
+    font_size : float, optional
+        Font size of the rendered text.  Defaults to ``DEFAULT_FONT_SIZE``.
+    color : :class:`~manim.utils.color.ParsableManimColor`, optional
+        Default colour of the tree text.  Defaults to ``WHITE``.
+    **kwargs
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.text.code_mobject.Code`.
+
+    Examples
+    --------
+
+    .. manim:: FileTreeDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import FileTree
+
+       class FileTreeDocExample(Scene):
+           def construct(self):
+               tree = FileTree({
+                   "src": {
+                       "main.py": None,
+                       "utils": {
+                           "helpers.py": None,
+                       },
+                   },
+                   "README.md": None,
+               })
+               self.add(tree)
+    """
+
+    def __init__(
+        self,
+        tree_dict: dict[str, dict | None],
+        font_size: float = DEFAULT_FONT_SIZE,
+        color: ParsableManimColor = WHITE,
+        **kwargs,
+    ) -> None:
+        if not isinstance(tree_dict, dict):
+            raise TypeError(
+                f"tree_dict must be a dict, got {type(tree_dict).__name__}"
+            )
+        self._tree = self._build_tree(tree_dict)
+        super().__init__(
+            code_string="\n".join(self._tree),
+            language="text",
+            add_line_numbers=False,
+            paragraph_config={
+                "font": "Cascadia Code",
+                "font_size": font_size,
+                "color": color,
+                "line_spacing": 1,
+            },
+            **kwargs,
+        )
+        del self.submobjects[0]
+
+    def highlight(
+        self, line: int, color: ParsableManimColor = WHITE
+    ) -> AnimationGroup:
+        """Highlight the content of a specific line (excluding tree prefixes).
+
+        Parameters
+        ----------
+        line : int
+            Zero-based line index.
+        color : :class:`~manim.utils.color.ParsableManimColor`, optional
+            Highlight colour.  Defaults to ``WHITE``.
+
+        Returns
+        -------
+        :class:`~manim.animation.composition.AnimationGroup`
+            An animation that colours the line content.
+        """
+        if not self.submobjects:
+            raise ValueError("Cannot highlight an empty tree.")
+        if not (0 <= line < len(self.submobjects[0])):
+            raise ValueError(
+                f"Line index {line} out of range "
+                f"[0, {len(self.submobjects[0]) - 1}]"
+            )
+
+        this_line = self._tree[line]
+        content_start = len(this_line) - len(this_line.lstrip("─├└│ "))
+        prefix = this_line[:content_start]
+        begin_index = len(prefix.replace(" ", ""))
+
+        if not self.submobjects[0]:
+            return Wait(0)
+
+        return AnimationGroup(
+            VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(
+                color
+            )
+        )
+
+    @staticmethod
+    def _build_tree(
+        data, prefix: str = "", is_root: bool = True
+    ) -> list[str]:
+        """Recursively build ASCII tree lines from a nested dictionary."""
+        lines: list[str] = []
+        if not isinstance(data, dict):
+            return lines
+        items = list(data.items())
+        count = len(items)
+        for i, (name, value) in enumerate(items):
+            is_last = i == count - 1
+            is_dir = isinstance(value, dict)
+            display_name = name + ("/" if is_dir else "")
+            if is_root:
+                lines.append(display_name)
+                if is_dir:
+                    lines.extend(FileTree._build_tree(value, "", False))
+            else:
+                connector = "└── " if is_last else "├── "
+                lines.append(prefix + connector + display_name)
+                if is_dir:
+                    extension = "    " if is_last else "│   "
+                    lines.extend(
+                        FileTree._build_tree(value, prefix + extension, False)
+                    )
+        return lines

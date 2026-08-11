@@ -27,6 +27,8 @@ The library is organised into four areas:
       :class:`~manim_extensions.mobjects.PerpendicularLine`,
       :class:`~manim_extensions.mobjects.PerpendicularSign` – construction-style
       line helpers.
+    * :class:`~manim_extensions.mobjects.FileTree` – ASCII file-tree rendering
+      from a nested dictionary.
     * :func:`~manim_extensions.geometry.CircleInt`,
       :func:`~manim_extensions.geometry.LineCircleInt`,
       :func:`~manim_extensions.geometry.LineInt`,

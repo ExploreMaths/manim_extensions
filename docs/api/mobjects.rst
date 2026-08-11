@@ -58,3 +58,9 @@ and geometric construction helpers.
    :members:
    :undoc-members:
    :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.FileTree
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__

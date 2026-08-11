@@ -3,7 +3,7 @@ import subprocess
 
 import numpy as np
 import pytest
-from manim import MathTex, VGroup, Line, LEFT, RIGHT, UP, DOWN, ORIGIN
+from manim import MathTex, VGroup, Line, LEFT, RIGHT, UP, DOWN, ORIGIN, RED, Code
 
 from manim_extensions.mobjects import (
     ChineseMathTex,
@@ -14,6 +14,7 @@ from manim_extensions.mobjects import (
     ExtendedLine,
     PerpendicularLine,
     PerpendicularSign,
+    FileTree,
 )
 
 _HAS_XELATEX = shutil.which("xelatex") is not None
@@ -107,6 +108,67 @@ class TestPerpendicularLine:
         assert isinstance(perp, Line)
         # Falls back to the degenerate point
         assert np.allclose(perp.foot, ORIGIN)
+
+
+class TestFileTree:
+    def test_is_code_subclass(self):
+        tree = FileTree({"src": {"main.py": None}})
+        assert isinstance(tree, Code)
+
+    def test_creation(self):
+        tree = FileTree(
+            {
+                "src": {
+                    "main.py": None,
+                    "utils": {
+                        "helpers.py": None,
+                    },
+                },
+                "README.md": None,
+            }
+        )
+        assert isinstance(tree, Code)
+        # The first submobject (the line numbers) is removed
+        assert len(tree.submobjects) == 1
+
+    def test_invalid_tree_dict(self):
+        with pytest.raises(TypeError):
+            FileTree("not a dict")
+
+    def test_build_tree(self):
+        lines = FileTree._build_tree(
+            {
+                "src": {
+                    "main.py": None,
+                    "utils": {
+                        "helpers.py": None,
+                    },
+                },
+                "README.md": None,
+            }
+        )
+        assert lines[0] == "src/"
+        assert "├── main.py" in lines
+        assert "└── utils/" in lines
+        assert "    └── helpers.py" in lines
+        assert "README.md" in lines
+
+    def test_highlight(self):
+        tree = FileTree(
+            {
+                "src": {
+                    "main.py": None,
+                },
+                "README.md": None,
+            }
+        )
+        anim = tree.highlight(1, color=RED)
+        assert anim is not None
+
+    def test_highlight_out_of_range(self):
+        tree = FileTree({"src": {"main.py": None}})
+        with pytest.raises(ValueError):
+            tree.highlight(10)
 
 
 class TestPerpendicularSign:

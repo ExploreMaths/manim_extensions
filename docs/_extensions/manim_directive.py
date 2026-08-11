@@ -239,7 +239,7 @@ class ManimDirective(Directive):
         if "quality" in self.options:
             quality = f"{self.options['quality']}_quality"
         else:
-            quality = "example_quality"
+            quality = "high_quality"
         frame_rate = QUALITIES[quality]["frame_rate"]
         pixel_height = QUALITIES[quality]["pixel_height"]
         pixel_width = QUALITIES[quality]["pixel_width"]

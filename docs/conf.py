@@ -124,6 +124,18 @@ inheritance_edge_attrs = {
 
 graphviz_output_format = "svg"
 
+# Locate the Graphviz ``dot`` executable.  On Windows it is often installed
+# outside the PATH (e.g. ``C:\Program Files\Graphviz\bin``); on Linux /
+# ReadTheDocs the system package installs it into the PATH as ``dot``.
+import shutil
+
+_dot_candidates = [
+    shutil.which("dot"),
+    r"C:\Program Files\Graphviz\bin\dot.exe",
+    r"C:\Program Files (x86)\Graphviz\bin\dot.exe",
+]
+graphviz_dot = next((p for p in _dot_candidates if p and os.path.isfile(p)), "dot")
+
 html_js_files = ["responsiveSvg.js"]
 
 # intersphinx
