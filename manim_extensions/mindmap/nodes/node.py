@@ -120,7 +120,7 @@ def bfs_walker(root: 'Node') -> Generator:
             queue.append(child)
 
 class Node:
-    """Tree-node class.
+    r"""Tree-node class.
 
     .. manim:: NodeDocExample
         :save_last_frame:
@@ -130,8 +130,8 @@ class Node:
         
         class NodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36))
-                root.add_child(Node(MathTex("Child", font_size=36)))
+                root = Node(MathTex(r"\text{Root}", font_size=36))
+                root.add_child(Node(MathTex(r"\text{Child}", font_size=36)))
                 self.add(root.vmobject, root.surr_rect)
     """
     def __init__(

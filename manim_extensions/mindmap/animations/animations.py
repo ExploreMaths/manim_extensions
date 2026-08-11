@@ -24,7 +24,7 @@ from ..algorithms import LayoutFactory,LayoutType,LayoutConfig
 from ..nodes import Node,bfs_walker,NodeSate,NodeStyle
 
 def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
-    '''FadeOut the given nodes and their subtrees.
+    r'''FadeOut the given nodes and their subtrees.
 
     .. manim:: FadeoutOfSubtreesDocExample
         
@@ -34,8 +34,8 @@ def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
         
         class FadeoutOfSubtreesDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 root.add_child(a1)
                 self.play(InsertNode(self, {root: [a1]}))
                 self.play(fadeout_of_subtrees([a1]))
@@ -60,7 +60,7 @@ def animate_of_create(
     node_styles:Dict,
     layout_type:LayoutType
 ) -> List[Animation]:
-    '''Create-node animation.
+    r'''Create-node animation.
 
     .. manim:: AnimateOfCreateDocExample
         
@@ -71,7 +71,7 @@ def animate_of_create(
         
         class AnimateOfCreateDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                 anims = animate_of_create(
                     root, root.vmobject.get_center(), RIGHT,
                     {'color': WHITE, 'stroke_width': 4},
@@ -118,7 +118,7 @@ def animate_of_display(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: update its position and style.
+    r'''Animation for a node already on the scene: update its position and style.
 
     .. manim:: AnimateOfDisplayDocExample
         
@@ -130,7 +130,7 @@ def animate_of_display(
         
         class AnimateOfDisplayDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                 self.add(root.vmobject, root.surr_rect)
                 root.node_state = NodeSate.DISPLAY
                 anims = animate_of_display(
@@ -165,7 +165,7 @@ def animate_of_scale(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: scale it up or down.
+    r'''Animation for a node already on the scene: scale it up or down.
 
     .. manim:: AnimateOfScaleDocExample
         
@@ -177,8 +177,8 @@ def animate_of_scale(
         
         class AnimateOfScaleDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
                 a1.node_state = NodeSate.SCALE
                 a1.scale(1.5)
@@ -215,7 +215,7 @@ def animate_of_alter(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Animation for a node already on the scene: replace its vmobject.
+    r'''Animation for a node already on the scene: replace its vmobject.
 
     .. manim:: AnimateOfAlterDocExample
         
@@ -227,11 +227,11 @@ def animate_of_alter(
         
         class AnimateOfAlterDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
                 a1.node_state = NodeSate.ALTER
-                a1.alter_content(MathTex("Updated", font_size=36))
+                a1.alter_content(MathTex(r"\text{Updated}", font_size=36))
                 anims = animate_of_alter(
                     a1, a1.vmobject.get_center(), RIGHT,
                     {'color': WHITE, 'stroke_width': 4},
@@ -267,7 +267,7 @@ def animate_of_node(
     change_dir:bool,
     change_layout:bool
 ) -> List[Animation]:
-    '''Return the appropriate animation for node based on its state.
+    r'''Return the appropriate animation for node based on its state.
 
     .. manim:: AnimateOfNodeDocExample
         
@@ -278,7 +278,7 @@ def animate_of_node(
         
         class AnimateOfNodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                 anims = animate_of_node(
                     root, root.vmobject.get_center(), RIGHT,
                     {'color': WHITE, 'stroke_width': 4},
@@ -345,7 +345,7 @@ def animate_of_layout(
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
 ) -> List[Animation]:
-    """Core animation method: run the full Layout algorithm and generate animations.
+    r"""Core animation method: run the full Layout algorithm and generate animations.
 
     .. manim:: AnimateOfLayoutDocExample
         
@@ -356,8 +356,8 @@ def animate_of_layout(
         
         class AnimateOfLayoutDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 root.add_child(a1)
                 anims = animate_of_layout(root, layout_type=LayoutType.MindMap, layout_config=LayoutConfig())
                 self.play(*anims)
@@ -397,7 +397,7 @@ def animate_of_layout(
     return anims
     
 class AbstractLayoutAnimation(AnimationGroup):
-    """Abstract base class for layout animations: collect node states and generate the full layout animation.
+    r"""Abstract base class for layout animations: collect node states and generate the full layout animation.
 
     .. manim:: AbstractLayoutAnimationDocExample
         
@@ -411,7 +411,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                     def collect_animations(self):
                         return []
         
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                 self.play(DemoAnimation(self, root))
                 self.wait()
     """
@@ -503,7 +503,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         return root
     
 class LayoutAnimation(AbstractLayoutAnimation):
-    """General layout animation: apply a layout to the whole tree and play all change animations.
+    r"""General layout animation: apply a layout to the whole tree and play all change animations.
 
     .. manim:: LayoutAnimationDocExample
         
@@ -512,9 +512,9 @@ class LayoutAnimation(AbstractLayoutAnimation):
         
         class LayoutAnimationDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
-                a2 = Node(MathTex("A2", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
+                a2 = Node(MathTex(r"\text{A2}", font_size=36))
                 root.add_child(a1)
                 root.add_child(a2)
                 self.play(LayoutAnimation(self, root))
@@ -549,7 +549,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
         )
     
 class RemoveNode(LayoutAnimation):
-    '''Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
+    r'''Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
     .. manim:: RemoveNodeDocExample
         
@@ -558,9 +558,9 @@ class RemoveNode(LayoutAnimation):
         
         class RemoveNodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
-                a2 = Node(MathTex("A2", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
+                a2 = Node(MathTex(r"\text{A2}", font_size=36))
                 self.play(InsertNode(self, {root: [a1, a2]}))
                 self.play(RemoveNode(self, [a1, a2]))
                 self.wait()
@@ -614,7 +614,7 @@ class RemoveNode(LayoutAnimation):
         return group
 
 class InsertNode(LayoutAnimation):
-    """Insert one or more child nodes into the mind map.
+    r"""Insert one or more child nodes into the mind map.
 
     .. manim:: InsertNodeDocExample
         
@@ -623,9 +623,9 @@ class InsertNode(LayoutAnimation):
         
         class InsertNodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
-                a2 = Node(MathTex("A2", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
+                a2 = Node(MathTex(r"\text{A2}", font_size=36))
                 self.play(InsertNode(self, {root: [a1, a2]}))
                 self.wait()
     """
@@ -674,7 +674,7 @@ class InsertNode(LayoutAnimation):
         return super().collect_animations()
     
 class ScaleNode(LayoutAnimation):
-    """Scale one or more nodes in the mind map.
+    r"""Scale one or more nodes in the mind map.
 
     .. manim:: ScaleNodeDocExample
         
@@ -683,8 +683,8 @@ class ScaleNode(LayoutAnimation):
         
         class ScaleNodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
                 self.play(ScaleNode(self, {a1: 1.5}))
                 self.wait()
@@ -719,7 +719,7 @@ class ScaleNode(LayoutAnimation):
         )
 
 class AlterNode(LayoutAnimation):
-    """Replace the content of one or more nodes in the mind map.
+    r"""Replace the content of one or more nodes in the mind map.
 
     .. manim:: AlterNodeDocExample
         
@@ -728,10 +728,10 @@ class AlterNode(LayoutAnimation):
         
         class AlterNodeDocExample(Scene):
             def construct(self):
-                root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-                a1 = Node(MathTex("A1", font_size=36))
+                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+                a1 = Node(MathTex(r"\text{A1}", font_size=36))
                 self.play(InsertNode(self, {root: [a1]}))
-                self.play(AlterNode(self, {a1: MathTex("Updated", font_size=36)}))
+                self.play(AlterNode(self, {a1: MathTex(r"\text{Updated}", font_size=36)}))
                 self.wait()
     """
     def __init__(

@@ -38,10 +38,10 @@ Inserting nodes into a mind map
 
    class MindMapInsertExample(Scene):
        def construct(self):
-           root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex("A1", font_size=36))
-           a2 = Node(MathTex("A2", font_size=36))
-           a3 = Node(MathTex("A3", font_size=36))
+           root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+           a1 = Node(MathTex(r"\text{A1}", font_size=36))
+           a2 = Node(MathTex(r"\text{A2}", font_size=36))
+           a3 = Node(MathTex(r"\text{A3}", font_size=36))
 
            self.play(
                InsertNode(self, {root: [a1, a2, a3]}),
@@ -58,11 +58,11 @@ Building a tree with ``LayoutAnimation``
 
    class LayoutAnimationExample(Scene):
        def construct(self):
-           root = Node(MathTex("Root", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex("A1", font_size=36))
-           a2 = Node(MathTex("A2", font_size=36))
-           a21 = Node(MathTex("A2-1", font_size=36))
-           a22 = Node(MathTex("A2-2", font_size=36))
+           root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+           a1 = Node(MathTex(r"\text{A1}", font_size=36))
+           a2 = Node(MathTex(r"\text{A2}", font_size=36))
+           a21 = Node(MathTex(r"\text{A2-1}", font_size=36))
+           a22 = Node(MathTex(r"\text{A2-2}", font_size=36))
 
            root.add_child(a1)
            root.add_child(a2)

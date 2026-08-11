@@ -21,7 +21,7 @@ from ..algorithms import (
 )
     
 class MindMap(AbstractMap):
-    """
+    r"""
     Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
 
@@ -34,11 +34,11 @@ class MindMap(AbstractMap):
         class MindMapExample(Scene):
             def construct(self):
                 data = {
-                    'node': MathTex(r"Calculus"),
+                    'node': MathTex(r"\text{Calculus}"),
                     'child': [
-                        {'node': MathTex(r"Limits")},
-                        {'node': MathTex(r"Derivatives")},
-                        {'node': MathTex(r"Integrals")},
+                        {'node': MathTex(r"\text{Limits}")},
+                        {'node': MathTex(r"\text{Derivatives}")},
+                        {'node': MathTex(r"\text{Integrals}")},
                     ]
                 }
                 mind_map = MindMap(data)
@@ -122,7 +122,7 @@ class MindMap(AbstractMap):
             )
 
 class TimeLine(AbstractMap):
-    """
+    r"""
     Timeline: data format is the same as :class:`MindMap`.
 
     Parameters
@@ -151,7 +151,7 @@ class TimeLine(AbstractMap):
         class TimeLineDocExample(Scene):
             def construct(self):
                 data = {
-                    'node': MathTex(r"History"),
+                    'node': MathTex(r"\text{History}"),
                     'child': [
                         {'node': MathTex(r"2022")},
                         {'node': MathTex(r"2023")},
@@ -221,7 +221,7 @@ class TimeLine(AbstractMap):
             )
 
 class StandardMap(AbstractMap):
-    """
+    r"""
     Two-sided mind map: data format is the same as :class:`MindMap`.
 
     Parameters
@@ -249,10 +249,10 @@ class StandardMap(AbstractMap):
         class StandardMapDocExample(Scene):
             def construct(self):
                 data = {
-                    'node': MathTex(r"Root"),
+                    'node': MathTex(r"\text{Root}"),
                     'child': [
-                        {'node': MathTex(r"Left")},
-                        {'node': MathTex(r"Right")},
+                        {'node': MathTex(r"\text{Left}")},
+                        {'node': MathTex(r"\text{Right}")},
                     ]
                 }
                 mind_map = StandardMap(data)
@@ -318,7 +318,7 @@ class StandardMap(AbstractMap):
             )
 
 class CatalogMap(AbstractMap):
-    """
+    r"""
     Catalog / organisation-chart: data format is the same as :class:`MindMap`,
     layout direction is downwards.
 
@@ -345,10 +345,10 @@ class CatalogMap(AbstractMap):
         class CatalogMapDocExample(Scene):
             def construct(self):
                 data = {
-                    'node': MathTex(r"Company"),
+                    'node': MathTex(r"\text{Company}"),
                     'child': [
-                        {'node': MathTex(r"Engineering")},
-                        {'node': MathTex(r"Sales")},
+                        {'node': MathTex(r"\text{Engineering}")},
+                        {'node': MathTex(r"\text{Sales}")},
                     ]
                 }
                 catalog = CatalogMap(data)
