@@ -8,9 +8,8 @@ from PIL import Image, ImageChops, ImageDraw
 import cv2
 
 
-DEFAULT_CJK_FONT = (
-    "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
-)
+DEFAULT_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
+DEFAULT_MONO_FONT = "Cascadia Code" if platform.system() == "Windows" else "Ubuntu Mono"
 
 
 class ChineseMathTex(MathTex):
@@ -668,7 +667,7 @@ class FileTree(Code):
             language="text",
             add_line_numbers=False,
             paragraph_config={
-                "font": "Cascadia Code",
+                "font": DEFAULT_MONO_FONT,
                 "font_size": font_size,
                 "color": color,
                 "line_spacing": 1,
