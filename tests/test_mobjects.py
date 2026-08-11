@@ -3,7 +3,20 @@ import subprocess
 
 import numpy as np
 import pytest
-from manim import MathTex, VGroup, Line, LEFT, RIGHT, UP, DOWN, ORIGIN, RED, Code
+from manim import (
+    MathTex,
+    VGroup,
+    Line,
+    LEFT,
+    RIGHT,
+    UP,
+    DOWN,
+    ORIGIN,
+    RED,
+    Code,
+    ImageMobject,
+)
+from PIL import Image
 
 from manim_extensions.mobjects import (
     ChineseMathTex,
@@ -15,9 +28,16 @@ from manim_extensions.mobjects import (
     PerpendicularLine,
     PerpendicularSign,
     FileTree,
+    CropImageMobject,
+    VideoMobject,
 )
 
 _HAS_XELATEX = shutil.which("xelatex") is not None
+
+try:
+    import cv2
+except ImportError:
+    cv2 = None
 
 
 @pytest.mark.skipif(not _HAS_XELATEX, reason="xelatex not installed")
@@ -169,6 +189,87 @@ class TestFileTree:
         tree = FileTree({"src": {"main.py": None}})
         with pytest.raises(ValueError):
             tree.highlight(10)
+
+
+class TestCropImageMobject:
+    def test_is_image_mobject_subclass(self):
+        arr = np.zeros((64, 64, 3), dtype=np.uint8)
+        mob = CropImageMobject(arr)
+        assert isinstance(mob, ImageMobject)
+
+    def test_from_numpy_array(self):
+        arr = np.zeros((64, 64, 3), dtype=np.uint8)
+        arr[:] = (255, 0, 0)
+        mob = CropImageMobject(arr)
+        # RGBA conversion adds an alpha channel
+        assert mob.pixel_array.shape[2] == 4
+
+    def test_from_pil_image(self):
+        img = Image.new("RGB", (64, 64), (0, 255, 0))
+        mob = CropImageMobject(img)
+        assert isinstance(mob, ImageMobject)
+        assert mob.pixel_array.shape[2] == 4
+
+    def test_corner_radius_pixel_value(self):
+        arr = np.zeros((100, 100, 3), dtype=np.uint8)
+        mob = CropImageMobject(arr, corner_radius=20)
+        assert isinstance(mob, ImageMobject)
+
+
+@pytest.mark.skipif(cv2 is None, reason="opencv-python not installed")
+class TestVideoMobject:
+    @staticmethod
+    def _make_video(path) -> None:
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        out = cv2.VideoWriter(str(path), fourcc, 30.0, (64, 64))
+        for _ in range(30):
+            out.write(np.zeros((64, 64, 3), dtype=np.uint8))
+        out.release()
+
+    def test_is_image_mobject_subclass(self, tmp_path):
+        video_path = tmp_path / "video.mp4"
+        self._make_video(video_path)
+        mob = VideoMobject(str(video_path))
+        assert isinstance(mob, ImageMobject)
+
+    def test_duration(self, tmp_path):
+        video_path = tmp_path / "video.mp4"
+        self._make_video(video_path)
+        mob = VideoMobject(str(video_path), rate=2.0)
+        assert mob.duration == mob._duration / 2.0
+
+    def test_invalid_file_raises(self):
+        with pytest.raises(ValueError):
+            VideoMobject("does_not_exist.mp4")
+
+    def test_play_and_stop(self, tmp_path):
+        video_path = tmp_path / "video.mp4"
+        self._make_video(video_path)
+        mob = VideoMobject(str(video_path))
+        mob.play()
+        assert mob._playing
+        mob.stop()
+        assert not mob._playing
+        assert mob._updater_ref not in mob.updaters
+
+    def test_reset(self, tmp_path):
+        video_path = tmp_path / "video.mp4"
+        self._make_video(video_path)
+        mob = VideoMobject(str(video_path))
+        mob._frame_idx = 10
+        mob._elapsed = 0.5
+        mob._finished = True
+        mob.reset()
+        assert mob._frame_idx == 0
+        assert mob._elapsed == 0.0
+        assert not mob._finished
+
+    def test_seek(self, tmp_path):
+        video_path = tmp_path / "video.mp4"
+        self._make_video(video_path)
+        mob = VideoMobject(str(video_path))
+        mob.seek(0.2)
+        assert mob._frame_idx >= 0
 
 
 class TestPerpendicularSign:

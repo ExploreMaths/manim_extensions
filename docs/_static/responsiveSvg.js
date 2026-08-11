@@ -1,13 +1,34 @@
 window.addEventListener("load", function () {
-    const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const diagrams = document.querySelectorAll("object.inheritance.graphviz");
 
+    // Determine the currently-active color scheme. Furo stores its theme choice
+    // in localStorage["theme"] ("auto" | "dark" | "light") and reflects the
+    // effective value on <body data-theme="...">. Prefer the real state over the
+    // OS-level prefers-color-scheme so manual theme toggles are honoured.
+    function getDark() {
+        const bodyTheme =
+            document.body && document.body.getAttribute("data-theme");
+        if (bodyTheme === "dark") return true;
+        if (bodyTheme === "light") return false;
+
+        const stored = localStorage.getItem("theme");
+        if (stored === "dark") return true;
+        if (stored === "light") return false;
+
+        // auto (or unset) -> follow the OS preference.
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
     function injectStyle(diagram) {
-        const svgRoot = diagram.contentDocument && diagram.contentDocument.firstElementChild;
+        const svgRoot =
+            diagram.contentDocument && diagram.contentDocument.firstElementChild;
         if (!svgRoot) {
             return null;
         }
-        const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+        const style = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "style"
+        );
         svgRoot.appendChild(style);
         return style;
     }
@@ -20,7 +41,7 @@ window.addEventListener("load", function () {
                 style = injectStyle(diagram);
                 if (style) {
                     styleElements.push(style);
-                    setColorScheme(colorSchemeQuery);
+                    setColorScheme();
                 }
             });
         } else {
@@ -28,9 +49,9 @@ window.addEventListener("load", function () {
         }
     }
 
-    function setColorScheme(e) {
+    function setColorScheme() {
         let colors, additions = "";
-        if (e.matches) {
+        if (getDark()) {
             // Dark
             colors = {
                 text: "#e07a5f",
@@ -50,7 +71,7 @@ window.addEventListener("load", function () {
             .node polygon {
                 filter: drop-shadow(0 1px 3px #0002);
             }
-            `
+            `;
         }
         for (const style of styleElements) {
             style.textContent = `
@@ -79,6 +100,19 @@ window.addEventListener("load", function () {
         }
     }
 
-    setColorScheme(colorSchemeQuery);
-    colorSchemeQuery.addEventListener("change", setColorScheme);
+    setColorScheme();
+
+    // React to Furo's manual theme toggle (sets / removes data-theme on <body>).
+    if (document.body) {
+        const observer = new MutationObserver(setColorScheme);
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ["data-theme"],
+        });
+    }
+    // React to OS-level auto-theme changes.
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", setColorScheme);
 });
+

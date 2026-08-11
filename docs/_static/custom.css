@@ -114,3 +114,16 @@ h4, h5, h6{
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
 }
+
+/* Inheritance diagrams: center and keep them inside the content column,
+   with a subtle rounded corner so they blend with both color schemes. */
+.graphviz {
+    text-align: center;
+}
+
+.graphviz object.inheritance {
+    display: inline-block;
+    max-width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+}

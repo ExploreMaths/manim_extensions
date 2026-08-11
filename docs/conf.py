@@ -143,6 +143,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "manim": ("https://docs.manim.community/en/stable/", None),
+    "pillow": ("https://pillow.readthedocs.io/en/stable/", None),
 }
 
 # -- Custom roles ------------------------------------------------------------

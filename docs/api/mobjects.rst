@@ -64,3 +64,15 @@ and geometric construction helpers.
    :members:
    :undoc-members:
    :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.CropImageMobject
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.VideoMobject
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__

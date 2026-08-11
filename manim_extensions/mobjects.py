@@ -2,7 +2,10 @@ from manim import *
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
-from typing import Any, Union
+from typing import Any, Optional, Union
+
+from PIL import Image, ImageChops, ImageDraw
+import cv2
 
 
 DEFAULT_CJK_FONT = (
@@ -740,3 +743,249 @@ class FileTree(Code):
                         FileTree._build_tree(value, prefix + extension, False)
                     )
         return lines
+
+
+class CropImageMobject(ImageMobject):
+    """An :class:`~manim.mobject.types.image_mobject.ImageMobject` with rounded-corner
+    cropping applied through an alpha mask.
+
+    Accepts a file path, a NumPy array, or a PIL image as input.
+
+    .. inheritance-diagram:: manim_extensions.mobjects.CropImageMobject
+       :parts: 1
+
+    Parameters
+    ----------
+    filename_or_array : Union[str, numpy.ndarray, :class:`~PIL.Image.Image`]
+        The image source: a path to an image file, a NumPy array, or a PIL image.
+    corner_radius : Union[int, float], optional
+        Radius of the rounded corners.  A value in ``(0, 1]`` is interpreted as
+        a fraction of the smaller image dimension; larger values are treated as
+        pixel radii.  Defaults to ``0.1``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+    """
+
+    def __init__(
+        self,
+        filename_or_array: Union[str, np.ndarray, Image.Image],
+        corner_radius: Union[int, float] = 0.1,
+        **kwargs: Any
+    ) -> None:
+        if isinstance(filename_or_array, str):
+            img = Image.open(filename_or_array)
+        elif isinstance(filename_or_array, np.ndarray):
+            img = Image.fromarray(filename_or_array)
+        elif isinstance(filename_or_array, Image.Image):
+            img = filename_or_array
+        else:
+            super().__init__(filename_or_array, **kwargs)
+            return
+
+        img = img.convert("RGBA")
+        if isinstance(corner_radius, (int, float)):
+            if 0 < corner_radius <= 1.0:
+                radius = int(min(img.size) * corner_radius)
+            else:
+                radius = int(corner_radius)
+        else:
+            radius = 0
+
+        mask = Image.new("L", img.size, 0)
+        if radius > 0:
+            draw = ImageDraw.Draw(mask)
+            draw.rounded_rectangle(
+                (0, 0, img.size[0], img.size[1]),
+                radius=radius,
+                fill=255
+            )
+        else:
+            mask.paste(255, (0, 0, img.size[0], img.size[1]))
+
+        r, g, b, a = img.split()
+        a = ImageChops.multiply(a, mask)
+        img = Image.merge("RGBA", (r, g, b, a))
+        super().__init__(np.array(img), **kwargs)
+
+
+class VideoMobject(ImageMobject):
+    """An :class:`~manim.mobject.types.image_mobject.ImageMobject` that plays a video
+    file via OpenCV.
+
+    The video can be looped, rate-changed, and controlled with ``play``,
+    ``pause``, ``stop``, ``seek``, and ``reset``.
+
+    .. inheritance-diagram:: manim_extensions.mobjects.VideoMobject
+       :parts: 1
+
+    Parameters
+    ----------
+    filename : str
+        Path to the video file.
+    loop : bool, optional
+        Whether the video loops once it reaches the end.  Defaults to ``False``.
+    rate : float, optional
+        Playback speed multiplier.  Defaults to ``1.0``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+
+    Attributes
+    ----------
+    filename : str
+        Path to the video file.
+    """
+
+    def __init__(
+        self,
+        filename: str,
+        loop: bool = False,
+        rate: float = 1.0,
+        **kwargs: Any
+    ) -> None:
+        self.filename = filename
+        self.loop = loop
+        self.rate = float(rate)
+
+        cap = cv2.VideoCapture(filename)
+        ret, frame = cap.read()
+        cap.release()
+        if not ret:
+            raise ValueError(f"Cannot read video file: {filename}")
+
+        first_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        super().__init__(first_frame, **kwargs)
+
+        self._cap = cv2.VideoCapture(filename)
+        self._fps = self._cap.get(cv2.CAP_PROP_FPS) or 30.0
+        self._total_frames = int(self._cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        self._duration = (
+            self._total_frames / self._fps if self._fps > 0 else 0.0
+        )
+
+        self._frame_idx = 0
+        self._elapsed = 0.0
+        self._finished = False
+        self._playing = False
+        self._updater_ref = lambda mob, dt: self._video_updater(mob, dt)
+
+    @property
+    def duration(self) -> float:
+        """Total playback duration in seconds, adjusted by the rate."""
+        return self._duration / self.rate if self.rate > 0 else 0.0
+
+    def _video_updater(self, mob: "VideoMobject", dt: float) -> None:
+        """Internal updater that advances the video frame on each render step."""
+        if not self._playing or self._finished:
+            return
+
+        self._elapsed += dt
+        target_idx = int(self._elapsed * self._fps * self.rate)
+
+        while self._frame_idx < target_idx:
+            ret, frame = self._cap.read()
+            if not ret:
+                if self.loop:
+                    self._cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                    self._frame_idx = 0
+                    self._elapsed = 0.0
+                    target_idx = int(self._elapsed * self._fps * self.rate)
+                    continue
+                else:
+                    self._finished = True
+                    self._playing = False
+                    self.remove_updater(self._updater_ref)
+                    return
+
+            self._frame_idx += 1
+            self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+
+    def __deepcopy__(self, memo: dict) -> "VideoMobject":
+        """Deep-copy the mobject, reopening the video capture for the clone."""
+        cap = self._cap
+        self._cap = None
+        try:
+            result = super().__deepcopy__(memo)
+        finally:
+            self._cap = cap
+
+        result._cap = cv2.VideoCapture(self.filename)
+        result._frame_idx = self._frame_idx
+        result._elapsed = self._elapsed
+        result._finished = self._finished
+        result._playing = False
+        result._updater_ref = lambda mob, dt: result._video_updater(mob, dt)
+        return result
+
+    def play(self, scene: Optional[Scene] = None) -> "VideoMobject":
+        """Start video playback and optionally block the scene for its duration.
+
+        Args:
+            scene: If given, the scene waits for the full video duration.
+
+        Returns:
+            The :class:`VideoMobject` instance for chaining.
+        """
+        if self._finished:
+            self.reset()
+        self._playing = True
+        if self._updater_ref not in self.updaters:
+            self.add_updater(self._updater_ref)
+        if scene is not None:
+            scene.wait(self.duration)
+        return self
+
+    def pause(self) -> "VideoMobject":
+        """Pause playback without removing the updater."""
+        self._playing = False
+        return self
+
+    def resume(self) -> "VideoMobject":
+        """Resume paused playback."""
+        self._playing = True
+        return self
+
+    def stop(self) -> "VideoMobject":
+        """Stop playback and remove the updater."""
+        self._playing = False
+        if self._updater_ref in self.updaters:
+            self.remove_updater(self._updater_ref)
+        return self
+
+    def reset(self) -> "VideoMobject":
+        """Seek to the first frame and reset all playback state."""
+        if self._cap.isOpened():
+            self._cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        self._frame_idx = 0
+        self._elapsed = 0.0
+        self._finished = False
+        return self
+
+    def seek(self, time: float) -> "VideoMobject":
+        """Seek to a specific timestamp in seconds.
+
+        Args:
+            time: Target time in seconds, clamped to ``[0, duration]``.
+
+        Returns:
+            The :class:`VideoMobject` instance for chaining.
+        """
+        if not self._cap.isOpened():
+            return self
+        frame_idx = int(np.clip(time, 0, self._duration) * self._fps)
+        self._cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
+        self._frame_idx = frame_idx
+        self._elapsed = time
+        ret, frame = self._cap.read()
+        if ret:
+            self._frame_idx += 1
+            self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        return self
+
+    def __del__(self) -> None:
+        """Release the OpenCV capture on garbage collection."""
+        if (
+            hasattr(self, "_cap")
+            and self._cap is not None
+            and self._cap.isOpened()
+        ):
+            self._cap.release()

@@ -29,6 +29,10 @@ The library is organised into four areas:
       line helpers.
     * :class:`~manim_extensions.mobjects.FileTree` – ASCII file-tree rendering
       from a nested dictionary.
+    * :class:`~manim_extensions.mobjects.CropImageMobject` – image mobject with
+      rounded-corner cropping via an alpha mask.
+    * :class:`~manim_extensions.mobjects.VideoMobject` – video playback mobject
+      built on OpenCV.
     * :func:`~manim_extensions.geometry.CircleInt`,
       :func:`~manim_extensions.geometry.LineCircleInt`,
       :func:`~manim_extensions.geometry.LineInt`,

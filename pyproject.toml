@@ -29,6 +29,8 @@ classifiers = [
 ]
 dependencies = [
     "manim",
+    "Pillow",
+    "opencv-python",
 ]
 
 [project.optional-dependencies]
