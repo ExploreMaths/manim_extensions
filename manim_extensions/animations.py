@@ -383,8 +383,6 @@ class WriteRandom(LaggedStart):
         The mobject whose submobjects are written.
     lag_ratio : float, optional
         Delay between consecutive submobjects.  Defaults to ``0.1``.
-    run_time : float, optional
-        Total run time in seconds.  Defaults to ``2.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -400,16 +398,15 @@ class WriteRandom(LaggedStart):
            def construct(self):
                text = Text("Hello").scale(2)
                self.add(text)
-               self.play(WriteRandom(text, run_time=2))
+               self.play(WriteRandom(text))
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.5, **kwargs):
+    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
             *[Write(mobject[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
-            run_time=run_time,
             **kwargs,
         )
 
@@ -429,8 +426,6 @@ class ReversedWrite(LaggedStart):
         The mobject whose submobjects are written.
     lag_ratio : float, optional
         Delay between consecutive submobjects.  Defaults to ``0.1``.
-    run_time : float, optional
-        Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -446,57 +441,17 @@ class ReversedWrite(LaggedStart):
        class ReversedWriteDocExample(Scene):
            def construct(self):
                mob = Text("Hello")
-               self.play(ReversedWrite(mob, run_time=3))
+               self.play(ReversedWrite(mob))
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
+    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
         indices = list(range(len(mobject.submobjects) - 1, -1, -1))
         super().__init__(
             *[Write(mobject[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
-            run_time=run_time,
             **kwargs,
         )
-
-
-class UnWrite(Write):
-    """Reverse a :class:`~manim.animation.creation.Write`, then remove the mobject.
-
-    .. note::
-
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw.
-
-    Parameters
-    ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
-        The mobject to un-write.
-    **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.animation.creation.Write`.
-
-    Examples
-    --------
-
-
-    .. manim:: UnWriteDocExample
-
-       from manim import *
-       from manim_extensions import UnWrite
-
-       class UnWriteDocExample(Scene):
-           def construct(self):
-               mob = Text("Hello")
-               self.play(Write(mob))
-               self.play(UnWrite(mob))
-               self.wait()
-    """
-
-    def __init__(self, mobject, **kwargs):
-        kwargs.setdefault("rate_func", lambda t: smooth(1 - t))
-        kwargs.setdefault("remover", True)
-        super().__init__(mobject, **kwargs)
 
 
 class FadeInRandom(LaggedStart):
@@ -514,8 +469,6 @@ class FadeInRandom(LaggedStart):
         The mobject whose submobjects are faded in.
     lag_ratio : float, optional
         Delay between consecutive submobjects.  Defaults to ``0.08``.
-    run_time : float, optional
-        Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -531,17 +484,16 @@ class FadeInRandom(LaggedStart):
        class FadeInRandomDocExample(Scene):
            def construct(self):
                mob = Text("Hello")
-               self.play(FadeInRandom(mob, run_time=3))
+               self.play(FadeInRandom(mob))
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
+    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
             *[FadeIn(mobject[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
-            run_time=run_time,
             **kwargs,
         )
 
@@ -561,8 +513,6 @@ class FadeOutRandom(LaggedStart):
         The mobject whose submobjects are faded out.
     lag_ratio : float, optional
         Delay between consecutive submobjects.  Defaults to ``0.08``.
-    run_time : float, optional
-        Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -579,17 +529,16 @@ class FadeOutRandom(LaggedStart):
            def construct(self):
                mob = Text("Hello")
                self.add(mob)
-               self.play(FadeOutRandom(mob, run_time=2))
+               self.play(FadeOutRandom(mob))
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
+    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
             *[FadeOut(mobject[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
-            run_time=run_time,
             **kwargs,
         )
 
@@ -609,8 +558,6 @@ class GrowRandom(LaggedStart):
         The mobject whose submobjects are grown.
     lag_ratio : float, optional
         Delay between consecutive submobjects.  Defaults to ``0.1``.
-    run_time : float, optional
-        Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -626,17 +573,16 @@ class GrowRandom(LaggedStart):
        class GrowRandomDocExample(Scene):
            def construct(self):
                mob = Text("Hello")
-               self.play(GrowRandom(mob, run_time=2))
+               self.play(GrowRandom(mob))
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
+    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
             *[GrowFromCenter(mobject[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
-            run_time=run_time,
             **kwargs,
         )
 
@@ -663,8 +609,6 @@ class PassingRectangle(Animation):
         Extra width/height around *mobject*.  Defaults to ``0.05``.
     fill_opacity : float, optional
         Fill opacity of the sweep.  Defaults to ``0.6``.
-    run_time : float, optional
-        Duration in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -680,7 +624,7 @@ class PassingRectangle(Animation):
            def construct(self):
                rect = SurroundingRectangle(Text("Hi").scale(2))
                self.add(rect)
-               self.play(PassingRectangle(rect, run_time=2))
+               self.play(PassingRectangle(rect))
     """
 
     def __init__(
@@ -689,7 +633,6 @@ class PassingRectangle(Animation):
         color=RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
-        run_time: float = 1.5,
         **kwargs,
     ):
         self.mob_left = mobject.get_left() + buff * LEFT
@@ -704,7 +647,7 @@ class PassingRectangle(Animation):
             fill_opacity=fill_opacity,
         )
         rect.move_to((self.mob_left + self.mob_right) / 2)
-        super().__init__(rect, run_time=run_time, rate_func=linear, **kwargs)
+        super().__init__(rect, rate_func=linear, **kwargs)
 
     def interpolate_mobject(self, alpha: float) -> None:
         """Slide and resize the sweep rectangle based on *alpha*."""
@@ -739,8 +682,6 @@ class LaggedCreation(Animation):
         Fraction of the mobject revealed per unit time.  Defaults to ``1.0``.
     start_ratio : float, optional
         Fraction of the mobject visible at the start.  Defaults to ``1/6``.
-    run_time : float, optional
-        Duration in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -756,7 +697,7 @@ class LaggedCreation(Animation):
        class LaggedCreationDocExample(Scene):
            def construct(self):
                mob = Text("Hello")
-               self.play(LaggedCreation(mob, run_time=3))
+               self.play(LaggedCreation(mob))
                self.wait()
     """
 
@@ -765,12 +706,11 @@ class LaggedCreation(Animation):
         mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
-        run_time: float = 1.5,
         **kwargs,
     ):
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
-        super().__init__(mobject, run_time=run_time, rate_func=linear, **kwargs)
+        super().__init__(mobject, rate_func=linear, **kwargs)
 
     def get_bounds(self, alpha: float):
         ratio = self.start_ratio
@@ -806,8 +746,6 @@ class HighLightWithLines(AnimationGroup):
         Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
     rec_opacity : float, optional
         Fill opacity of the rectangle.  Defaults to ``0.5``.
-    run_time : float, optional
-        Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -824,7 +762,7 @@ class HighLightWithLines(AnimationGroup):
            def construct(self):
                mob = Text("Hello", color=WHITE)
                self.add(mob)
-               self.play(HighLightWithLines(mob, run_time=2))
+               self.play(HighLightWithLines(mob))
                self.wait()
     """
 
@@ -834,7 +772,6 @@ class HighLightWithLines(AnimationGroup):
         color=RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        run_time: float = 1.0,
         **kwargs,
     ):
         line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
@@ -852,7 +789,6 @@ class HighLightWithLines(AnimationGroup):
         super().__init__(
             Create(self.lines, lag_ratio=0),
             Restore(rectangle),
-            run_time=run_time,
             **kwargs,
         )
 
@@ -876,8 +812,6 @@ class UnHighLightWithLines(AnimationGroup):
         Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
     rec_opacity : float, optional
         Fill opacity of the rectangle.  Defaults to ``0.5``.
-    run_time : float, optional
-        Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -894,7 +828,7 @@ class UnHighLightWithLines(AnimationGroup):
            def construct(self):
                mob = Text("Hello", color=WHITE)
                self.add(mob)
-               self.play(UnHighLightWithLines(mob, run_time=2))
+               self.play(UnHighLightWithLines(mob))
                self.wait()
     """
 
@@ -904,7 +838,6 @@ class UnHighLightWithLines(AnimationGroup):
         color=RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        run_time: float = 1.0,
         **kwargs,
     ):
         line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
@@ -920,6 +853,5 @@ class UnHighLightWithLines(AnimationGroup):
         super().__init__(
             Uncreate(lines, lag_ratio=0),
             FadeOut(rectangle),
-            run_time=run_time,
             **kwargs,
         )

@@ -763,10 +763,9 @@ class CropImageMobject(ImageMobject):
         pixel radii.  Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+
     Examples
     --------
-
-
     .. manim:: CropImageMobjectDocExample
        :save_last_frame:
 
@@ -848,28 +847,21 @@ class VideoMobject(ImageMobject):
     ----------
     filename : str
         Path to the video file.
+
     Examples
     --------
-
-
     .. manim:: VideoMobjectDocExample
-       :save_last_frame:
 
        from manim import *
-       import numpy as np
-       import imageio.v2 as imageio
+       from pathlib import Path
        from manim_extensions import VideoMobject
 
        class VideoMobjectDocExample(Scene):
            def construct(self):
-               path = "video_preview.mp4"
-               frames = [np.zeros((64, 64, 3), dtype=np.uint8) for _ in range(30)]
-               for f in frames:
-                   f[:32, :, 1] = 250
-               imageio.mimsave(path, frames, fps=10)
+               path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
                vid = VideoMobject(path)
                self.add(vid)
-               self.wait(2)
+               vid.play(self)
     """
 
     def __init__(
@@ -1158,7 +1150,7 @@ class Trail(VGroup):
                dot = Dot(color=BLUE).shift(LEFT * 2)
                trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
                self.add(trail)
-               self.play(Rotating(dot, about_point=ORIGIN, run_time=3, rate_func=linear))
+               self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear))
     """
 
     def __init__(
@@ -1274,7 +1266,7 @@ class ShadowAround(VGroup):
        class ShadowAroundDocExample(Scene):
            def construct(self):
                c = Circle(radius=1.2, fill_color=TEAL, fill_opacity=1, stroke_width=0)
-               self.add(ShadowAround(c, blur_width=0.4, shadow_color=BLACK))
+               self.add(ShadowAround(c, blur_width=0.4, shadow_color=WHITE))
                self.add(c)
     """
 

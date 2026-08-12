@@ -34,7 +34,6 @@ from manim_extensions.animations import (
     easeOutElastic,
     WriteRandom,
     ReversedWrite,
-    UnWrite,
     FadeInRandom,
     FadeOutRandom,
     GrowRandom,
@@ -60,7 +59,7 @@ class TestRateFunctions:
         assert easeInBounce(0.5) == pytest.approx(1.0 - easeOutBounce(0.5))
 
 
-_RANDOM_ANIMS = [WriteRandom, ReversedWrite, UnWrite, FadeInRandom, FadeOutRandom, GrowRandom]
+_RANDOM_ANIMS = [WriteRandom, ReversedWrite, FadeInRandom, FadeOutRandom, GrowRandom]
 
 
 class TestRandomAnimations:

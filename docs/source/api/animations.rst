@@ -37,12 +37,6 @@ inside a :class:`~manim.scene.scene.Scene`.
    :undoc-members:
    :special-members: __init__
 
-.. autoclass:: manim_extensions.animations.UnWrite
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   :special-members: __init__
-
 .. autoclass:: manim_extensions.animations.FadeInRandom
    :show-inheritance:
    :members:
