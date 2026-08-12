@@ -82,7 +82,6 @@ from __future__ import annotations
 
 import csv
 import itertools as it
-import os
 import re
 import shutil
 import sys
@@ -409,10 +408,9 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> SetupMetadata:
-    # On ReadTheDocs the heavy Manim video rendering is skipped and the
-    # placeholders are emitted instead, so builds stay within the time limit.
-    if os.environ.get("READTHEDOCS"):
-        app.tags.add("skip-manim")
+    # Render ``.. manim::`` blocks into actual preview videos/images on Read
+    # the Docs, instead of emitting placeholder blocks. Rendering requires
+    # Manim system deps (cairo/pango, ffmpeg, graphviz, CJK fonts); see .readthedocs.yml.
 
     app.add_node(
         SkipManimNode,
