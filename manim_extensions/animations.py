@@ -219,6 +219,7 @@ def easeOutBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+
     Examples
     --------
 
@@ -262,6 +263,7 @@ def easeInBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+
     Examples
     --------
 
@@ -295,6 +297,7 @@ def easeInOutBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+
     Examples
     --------
 
@@ -334,6 +337,7 @@ def easeOutElastic(t: float) -> float:
 
     Returns:
         The eased value, which may exceed ``1`` near the end.
+
     Examples
     --------
 
@@ -429,6 +433,7 @@ class ReversedWrite(LaggedStart):
         Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+
     Examples
     --------
 
@@ -470,6 +475,7 @@ class UnWrite(Write):
         The mobject to un-write.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.creation.Write`.
+
     Examples
     --------
 
@@ -512,6 +518,7 @@ class FadeInRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+
     Examples
     --------
 
@@ -558,6 +565,7 @@ class FadeOutRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+
     Examples
     --------
 
@@ -605,6 +613,7 @@ class GrowRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+
     Examples
     --------
 
@@ -734,6 +743,7 @@ class LaggedCreation(Animation):
         Duration in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
+
     Examples
     --------
 
@@ -800,6 +810,7 @@ class HighLightWithLines(AnimationGroup):
         Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+
     Examples
     --------
 
@@ -869,6 +880,7 @@ class UnHighLightWithLines(AnimationGroup):
         Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+
     Examples
     --------
 
