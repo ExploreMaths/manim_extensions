@@ -51,7 +51,6 @@ Annotated mobjects
 key points or show intersections:
 
 .. manim:: QuickstartAnnotatedScene
-   :save_last_frame:
 
    from manim import *
    from manim_extensions import CircleInt, LabelDot
@@ -74,7 +73,6 @@ The geometry module provides analytic-geometry functions that return plain
 points, so you can use them with any Manim mobject:
 
 .. manim:: QuickstartGeometry
-   :save_last_frame:
 
    from manim import *
    from manim_extensions import LineInt, PerpendicularLine, LabelDot
