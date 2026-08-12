@@ -988,3 +988,558 @@ class VideoMobject(ImageMobject):
             and self._cap.isOpened()
         ):
             self._cap.release()
+
+
+# ---------------------------------------------------------------------------
+# Ported from manim-kindergarten/manim_sandbox
+#   <https://github.com/manim-kindergarten/manim_sandbox>
+# Individual original authors are noted on each class.
+# ---------------------------------------------------------------------------
+
+
+class ColorText(Text):
+    r"""A :class:`~manim.mobject.text.text_mobject.Text` that renders a colour as a code snippet.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ColorText.py``).
+        Original author: @鹤翔万里.
+
+    When a colour is passed it is displayed as an ``np.array([r,~g,~b])`` snippet in which
+    the red, green and blue values are colour-coded and the ``~`` separators use
+    *background_color*.
+
+    Parameters
+    ----------
+    color : sequence[float] or str
+        The colour to display.  Either a Manim colour (name / hex string) or an RGB
+        sequence with values either normalized to ``[0, 1]`` or in ``[0, 255]``.
+    name : str, optional
+        If given, display this exact text coloured with *color* instead of the
+        ``np.array`` snippet.
+    background_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour used for the ``~`` separator glyphs.  Defaults to ``WHITE``.
+    font : str, optional
+        Font used for the snippet.  Defaults to ``"Consolas"``.
+    font_size : float, optional
+        Font size in Manim units.  Defaults to ``28``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`.
+
+    Examples
+    --------
+
+    .. manim:: ColorTextDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ColorText
+
+       class ColorTextDocExample(Scene):
+           def construct(self):
+               self.add(ColorText([150, 60, 200]).scale(0.9))
+    """
+
+    def __init__(
+        self,
+        color,
+        name=None,
+        background_color=WHITE,
+        font="Consolas",
+        font_size=28,
+        **kwargs,
+    ) -> None:
+        if name is not None:
+            super().__init__(str(name), color=color, font=font, font_size=font_size, **kwargs)
+            return
+
+        c = [float(v) for v in color]
+        if max(c) > 1.0:
+            r, g, b = str(int(round(c[0]))), str(int(round(c[1]))), str(int(round(c[2])))
+            fill = rgb_to_color([c[0] / 255.0, c[1] / 255.0, c[2] / 255.0])
+        else:
+            r, g, b = f"{c[0]:.2f}", f"{c[1]:.2f}", f"{c[2]:.2f}"
+            fill = rgb_to_color(c)
+
+        snippet = f"np.array([{r},~{g},~{b}])"
+        super().__init__(snippet, color=fill, font=font, font_size=font_size, **kwargs)
+
+        r_start = len("np.array([")
+        g_start = r_start + len(r) + 2
+        b_start = g_start + len(g) + 2
+        for i in range(r_start, r_start + len(r)):
+            self[i].set_color(RED)
+        for i in range(g_start, g_start + len(g)):
+            self[i].set_color(GREEN)
+        for i in range(b_start, b_start + len(b)):
+            self[i].set_color(BLUE)
+        for i, ch in enumerate(snippet):
+            if ch == "~":
+                self[i].set_color(background_color)
+
+
+class Trail(VGroup):
+    r"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Trail.py``).
+        Original author: @cigar666.
+
+    Wraps *mob*; once :meth:`start_trace` is called, line segments are appended following
+    the mobject's centre and older segments fade out according to :attr:`rate_func`.
+
+    Parameters
+    ----------
+    mob : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to trace.
+    max_width : float, optional
+        Stroke width of the newest segment.  Defaults to ``5``.
+    nums : int, optional
+        Maximum number of stored segments.  Defaults to ``500``.
+    trail_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour of the trail.  Defaults to ``BLUE_B``.
+    rate_func : callable, optional
+        Fading function mapping a proportion in ``[0, 1]`` to opacity/width.
+        Defaults to ``lambda t: t ** 1.25``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+
+    .. manim:: TrailDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import Trail
+
+       class TrailDocExample(Scene):
+           def construct(self):
+               dot = Dot(color=BLUE).shift(LEFT * 2)
+               trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
+               self.add(trail)
+               self.play(Rotating(dot, about_point=ORIGIN, run_time=3, rate_func=linear))
+    """
+
+    def __init__(
+        self,
+        mob,
+        max_width: float = 5,
+        nums: int = 500,
+        trail_color=BLUE_B,
+        rate_func=None,
+        **kwargs,
+    ) -> None:
+        super().__init__(**kwargs)
+        self.max_width = max_width
+        self.nums = nums
+        self.trail_color = trail_color
+        self.rate_func = rate_func if rate_func is not None else (lambda t: t ** 1.25)
+        self.add(mob)
+        self.trail = VGroup()
+        self.path_xyz = []
+        self.add(self.trail)
+        self.pos_old = self[0].get_center()
+
+    def get_path_xyz(self, err: float = 1e-4) -> None:
+        """Record the latest centre position if the mobject has moved.
+
+        Args:
+            err: Minimum displacement required to record a new point.
+        """
+        pos_new = self[0].get_center()
+        pos_old = self.pos_old
+        if sum(abs(pos_new - pos_old)) > err:
+            self.path_xyz.append(pos_new)
+        self.pos_old = pos_new
+        while len(self.path_xyz) > self.nums:
+            self.path_xyz.pop(0)
+
+    def create_path(self) -> "VGroup":
+        """Build the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of fading trail segments."""
+        path = VGroup()
+        self.get_path_xyz()
+        n = len(self.path_xyz)
+        for i in range(n - 1):
+            rate = self.rate_func(i / max(n, 1))
+            path.add(
+                Line(
+                    self.path_xyz[i],
+                    self.path_xyz[i + 1],
+                    color=self.trail_color,
+                    stroke_width=self.max_width * rate,
+                    stroke_opacity=rate,
+                )
+            )
+        return path
+
+    def update_path(self, trail) -> None:
+        """Updater: replace *trail* by the freshly created path."""
+        trail.become(self.create_path())
+
+    def start_trace(self) -> "Trail":
+        """Attach the trail updater and return ``self`` for chaining."""
+        self.trail.add_updater(self.update_path)
+        return self
+
+    def stop_trace(self) -> "Trail":
+        """Remove the trail updater."""
+        self.trail.remove_updater(self.update_path)
+        return self
+
+
+class ShadowAround(VGroup):
+    r"""A soft, blurred shadow surrounding the outline of a mobject.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Shadow_around.py``).
+        Original author: @cigar666.
+
+    The shadow is built from *layer_num* concentric scaled copies whose stroke width and
+    opacity fade outwards (or inwards when ``shadow_out=False``).
+
+    Parameters
+    ----------
+    mob_or_points : :class:`~manim.mobject.mobject.Mobject` or list[Sequence[float]]
+        Either a mobject whose outline is shadowed, or a list of points used to build a
+        :class:`~manim.mobject.geometry.Polygon`.
+    shadow_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour of the shadow.  Defaults to ``DARK_GRAY``.
+    shadow_opacity : float, optional
+        Maximum opacity of the shadow layers.  Defaults to ``0.6``.
+    blur_width : float, optional
+        Total width of the blurred band.  Defaults to ``0.25``.
+    layer_num : int, optional
+        Number of concentric layers used for the blur.  Defaults to ``40``.
+    scale_factor : float, optional
+        Overall scale applied to the shadow.  Defaults to ``1.0``.
+    shadow_out : bool, optional
+        If ``True`` the shadow grows outwards, otherwise inwards.  Defaults to ``True``.
+    show_basic_shape : bool, optional
+        Whether to keep the solid inner shape visible.  Defaults to ``True``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+
+    .. manim:: ShadowAroundDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ShadowAround
+
+       class ShadowAroundDocExample(Scene):
+           def construct(self):
+               c = Circle(radius=1.2, fill_color=TEAL, fill_opacity=1, stroke_width=0)
+               self.add(ShadowAround(c, blur_width=0.4, shadow_color=BLACK))
+               self.add(c)
+    """
+
+    def __init__(
+        self,
+        mob_or_points,
+        shadow_color=DARK_GRAY,
+        shadow_opacity: float = 0.6,
+        blur_width: float = 0.25,
+        layer_num: int = 40,
+        scale_factor: float = 1.0,
+        shadow_out: bool = True,
+        show_basic_shape: bool = True,
+        **kwargs,
+    ) -> None:
+        super().__init__(**kwargs)
+        self.shadow_color = shadow_color
+        self.shadow_opacity = shadow_opacity
+        self.blur_width = blur_width
+        self.layer_num = layer_num
+        self.shadow_out = shadow_out
+
+        if isinstance(mob_or_points, list):
+            self.shape = Polygon(*mob_or_points, stroke_width=0)
+        else:
+            self.shape = mob_or_points.copy().set_stroke(width=0)
+
+        inner_opacity = shadow_opacity if show_basic_shape else 0
+        self.shape.set_fill(color=shadow_color, opacity=inner_opacity).scale(scale_factor)
+
+        self.blur_outline = VGroup()
+        s = (self.shape.get_height() + self.shape.get_width()) / 2
+        if blur_width > 1e-4:
+            for i in range(layer_num):
+                sign = 1.0 if shadow_out else -1.0
+                frac = i / layer_num
+                layer = self.shape.copy()
+                layer.set_stroke(
+                    color=shadow_color,
+                    width=51 * blur_width / layer_num,
+                    opacity=shadow_opacity * (1 - frac ** 0.5),
+                )
+                layer.set_fill(opacity=0)
+                layer.scale((s + sign * blur_width / layer_num * (i + 0.5)) / s)
+                self.blur_outline.add(layer)
+        self.add(self.shape, self.blur_outline)
+
+
+class ObjectBorder(VGroup):
+    r"""A border (and optional corner markers) that surrounds a mobject.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Object_Border.py``).
+        Original author: widcardw.
+
+    If *track* is ``True`` the border continuously follows *obj* through an updater, so it
+    stays aligned while *obj* moves or resizes.
+
+    Parameters
+    ----------
+    obj : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to surround.
+    buff : float, optional
+        Gap between *obj* and the border.  Defaults to ``0.08``.
+    add_corner : bool, optional
+        Whether to draw a marker dot at each corner.  Defaults to ``True``.
+    track : bool, optional
+        Whether the border follows *obj* with an updater.  Defaults to ``True``.
+    border_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Stroke colour of the border.  Defaults to ``WHITE``.
+    corner_radius : float, optional
+        Radius of the corner marker dots.  Defaults to ``0.06``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+
+    .. manim:: ObjectBorderDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ObjectBorder
+
+       class ObjectBorderDocExample(Scene):
+           def construct(self):
+               t = Text("Hi").scale(2)
+               self.add(t, ObjectBorder(t))
+    """
+
+    def __init__(
+        self,
+        obj,
+        buff: float = 0.08,
+        add_corner: bool = True,
+        track: bool = True,
+        border_color=WHITE,
+        corner_radius: float = 0.06,
+        **kwargs,
+    ) -> None:
+        super().__init__(**kwargs)
+        self.obj = obj
+        self.buff = buff
+        self.add_corner = add_corner
+        self.border_color = border_color
+        self.corner_radius = corner_radius
+
+        self.border = VGroup()
+        self._rebuild()
+        self.add(self.border)
+        if track:
+            self.add_updater(lambda m: self._rebuild())
+
+    def _rebuild(self) -> None:
+        """Recreate the border and corner markers around the current position of *obj*."""
+        border = Rectangle(
+            width=self.obj.get_width() + 2 * self.buff,
+            height=self.obj.get_height() + 2 * self.buff,
+            stroke_color=self.border_color,
+            stroke_width=1,
+        ).move_to(self.obj.get_center())
+        if self.add_corner:
+            corners = VGroup(
+                *[
+                    Dot(radius=self.corner_radius, color=BLACK, stroke_color=self.border_color).move_to(v)
+                    for v in border.get_vertices()
+                ]
+            )
+            new = VGroup(border, corners)
+        else:
+            new = VGroup(border)
+        self.border.become(new)
+
+
+class ThreeDVector(VGroup):
+    r"""A 3D vector drawn as a cylindrical body with a conical tip.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ThreeDVector.py``).
+        Original author: @魔与方.
+
+    The direction and length are given by *vector* and the base of the vector sits at
+    *position* (i.e. the tip is at ``position + vector``).
+
+    Parameters
+    ----------
+    vector : Sequence[float], optional
+        Direction (and length) of the vector.  Defaults to ``RIGHT``.
+    position : Sequence[float], optional
+        Base point of the vector.  Defaults to ``ORIGIN``.
+    radius : float, optional
+        Radius of the body and of the base of the tip.  Defaults to ``0.12``.
+    color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour of the vector.  Defaults to ``BLUE``.
+    tip_fraction : float, optional
+        Fraction of the total length used for the conical tip.  Defaults to ``0.25``.
+    fill_opacity : float, optional
+        Opacity of the body and tip.  Defaults to ``0.9``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+
+    .. manim:: ThreeDVectorDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ThreeDVector
+
+       class ThreeDVectorDocExample(ThreeDScene):
+           def construct(self):
+               self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
+               self.add(ThreeDAxes())
+               self.add(ThreeDVector([2, 1, 1.5], color=YELLOW))
+    """
+
+    def __init__(
+        self,
+        vector=RIGHT,
+        position=ORIGIN,
+        radius: float = 0.12,
+        color=BLUE,
+        tip_fraction: float = 0.25,
+        fill_opacity: float = 0.9,
+        **kwargs,
+    ) -> None:
+        super().__init__(**kwargs)
+        self.radius = radius
+        self.color = color
+
+        vec = np.asarray(vector, dtype=float)
+        length = float(np.linalg.norm(vec))
+        if length < 1e-8:
+            return
+        tip_len = min(length * tip_fraction, 0.4)
+        body_len = max(length - tip_len, 1e-6)
+
+        body = Cylinder(
+            radius=radius, height=body_len, color=color, fill_opacity=fill_opacity, stroke_width=0
+        )
+        tip = Cone(
+            base_radius=radius, height=tip_len, color=color, fill_opacity=fill_opacity, stroke_width=0
+        )
+        body.shift(OUT * body_len / 2)
+        tip.shift(OUT * (body_len + tip_len / 2))
+        vgroup = VGroup(body, tip)
+
+        start_axis = np.array([0.0, 0.0, 1.0])
+        unit = vec / length
+        axis = np.cross(start_axis, unit)
+        angle = np.arccos(np.clip(float(np.dot(start_axis, unit)), -1.0, 1.0))
+        if np.linalg.norm(axis) > 1e-9:
+            vgroup.rotate(angle, axis=axis, about_point=ORIGIN)
+        vgroup.shift(position)
+        self.add(vgroup)
+
+
+class TreeDiagram(VGroup):
+    r"""A recursive tree diagram built from a nested dictionary.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/tree_diagram.py``;
+        the original source file does not record its author).
+
+    Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
+    labels.  Leaf groups are wrapped with a :class:`~manim.mobject.geometry.shape_matchers.Brace`.
+
+    Parameters
+    ----------
+    tree : Mapping
+        The nested structure to render.
+    branch_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour of the braces.  Defaults to ``GREY``.
+    branch_opacity : float, optional
+        Opacity of the braces.  Defaults to ``1``.
+    item_v_buff : float, optional
+        Vertical spacing between items.  Defaults to ``0.3``.
+    item_scale : float, optional
+        Scale applied to labels.  Defaults to ``0.7``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+
+    .. manim:: TreeDiagramDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import TreeDiagram
+
+       class TreeDiagramDocExample(Scene):
+           def construct(self):
+               tree = {"A": {"B": {"D", "E"}, "C": {"F", "G"}}}
+               self.add(TreeDiagram(tree).shift(LEFT * 2))
+    """
+
+    def __init__(
+        self,
+        tree,
+        branch_color=GREY,
+        branch_opacity: float = 1,
+        item_v_buff: float = 0.3,
+        item_scale: float = 0.7,
+        **kwargs,
+    ) -> None:
+        super().__init__(**kwargs)
+        self.branch_color = branch_color
+        self.branch_opacity = branch_opacity
+        self.item_v_buff = item_v_buff
+        self.item_scale = item_scale
+        self.tree = tree
+        self.add(self._generate(tree)[1])
+
+    def _lowest(self, leaves) -> "VGroup":
+        vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
+        return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
+
+    def _generate(self, tree):
+        if isinstance(tree, (set, list, tuple)):
+            a = self._lowest(tree)
+            brace = Brace(a, LEFT).set_stroke(color=self.branch_color, width=2).set_fill(
+                opacity=self.branch_opacity
+            )
+            return VGroup(brace, a)
+        vg = VGroup()
+        for label, child in tree.items():
+            b = self._generate(child)
+            node = VGroup(
+                Text(str(label)).scale(self.item_scale).next_to(b[0], LEFT, buff=0.1), b
+            )
+            vg.add(node)
+        vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
+        to_be_braced = VGroup(*[i[0] for i in vg])
+        brace = Brace(to_be_braced, LEFT).set_stroke(color=self.branch_color, width=2).set_fill(
+            opacity=self.branch_opacity
+        )
+        return VGroup(brace, vg)

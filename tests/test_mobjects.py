@@ -324,3 +324,85 @@ class TestPerpendicularSign:
         inner = sign.submobjects[0].get_end()
         assert inner[0] < 0
         assert inner[1] < 0
+
+
+# --- Ported from manim-kindergarten/manim_sandbox -------------------
+
+from manim import Text, Circle, Dot, tempconfig
+from manim_extensions.mobjects import (
+    ColorText,
+    Trail,
+    ShadowAround,
+    ObjectBorder,
+    ThreeDVector,
+    TreeDiagram,
+)
+
+
+class TestColorText:
+    def test_is_text_subclass(self):
+        ct = ColorText([150, 60, 200])
+        assert isinstance(ct, Text)
+
+    def test_normalized_values(self):
+        ct = ColorText([0.5, 0.2, 0.8])
+        assert isinstance(ct, Text)
+
+    def test_named_text(self):
+        ct = ColorText("blue", name="colour")
+        assert isinstance(ct, Text)
+
+
+class TestTrail:
+    def test_creation(self):
+        trail = Trail(Dot())
+        assert isinstance(trail, VGroup)
+
+    def test_start_stop_trace(self):
+        trail = Trail(Dot())
+        trail.start_trace()
+        assert trail.trail.updaters
+        trail.stop_trace()
+        assert not trail.trail.updaters
+
+
+class TestShadowAround:
+    def test_with_circle(self):
+        shadow = ShadowAround(Circle(radius=1))
+        assert isinstance(shadow, VGroup)
+        assert len(shadow.blur_outline.submobjects) > 0
+
+    def test_with_points(self):
+        shadow = ShadowAround([[0, 0, 0], [1, 0, 0], [1, 1, 0]])
+        assert isinstance(shadow, VGroup)
+
+
+class TestObjectBorder:
+    def test_creation(self):
+        border = ObjectBorder(Text("Hi"))
+        assert isinstance(border, VGroup)
+
+    def test_no_track(self):
+        border = ObjectBorder(Text("Hi"), track=False)
+        assert not border.updaters
+
+
+class TestThreeDVector:
+    def test_creation(self):
+        vec = ThreeDVector([2, 1, 1.5])
+        assert isinstance(vec, VGroup)
+
+    def test_zero_vector_empty(self):
+        vec = ThreeDVector([0, 0, 0])
+        assert isinstance(vec, VGroup)
+
+
+class TestTreeDiagram:
+    def test_creation(self):
+        tree = {"A": {"B": {"D", "E"}, "C": {"F", "G"}}}
+        diagram = TreeDiagram(tree)
+        assert isinstance(diagram, VGroup)
+
+    def test_simple_tree(self):
+        diagram = TreeDiagram({"root": {"a", "b"}})
+        assert isinstance(diagram, VGroup)

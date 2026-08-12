@@ -76,3 +76,39 @@ and geometric construction helpers.
    :members:
    :undoc-members:
    :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.ColorText
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.Trail
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.ShadowAround
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.ObjectBorder
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.ThreeDVector
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__
+
+.. autoclass:: manim_extensions.mobjects.TreeDiagram
+   :show-inheritance:
+   :members:
+   :undoc-members:
+   :special-members: __init__

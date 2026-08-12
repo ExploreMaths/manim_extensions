@@ -187,3 +187,553 @@ class TypeWriter(Animation):
         for i, char in enumerate(self.mobject.submobjects):
             char.set_opacity(1 if i < current_index else 0)
         return self.mobject
+
+
+# ---------------------------------------------------------------------------
+# Ported from manim-kindergarten/manim_sandbox
+#   <https://github.com/manim-kindergarten/manim_sandbox>
+# Individual original authors are noted on each function / class.
+# ---------------------------------------------------------------------------
+
+import random
+
+from manim.animation.transform import Restore
+from manim.utils.bezier import interpolate
+from manim.utils.rate_functions import smooth, linear, rush_into
+
+
+# --- Rate functions ------------------------------------------------
+
+
+def easeOutBounce(t: float) -> float:
+    """Bounce easing that starts fast and bounces as it approaches ``1``.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+        Original author: @pdcxs.
+
+    Args:
+        t: Progress in ``[0, 1]``.
+
+    Returns:
+        The eased value in ``[0, 1]``.
+    """
+    if t < 1 / 2.75:
+        return 7.5625 * t * t
+    elif t < 2 / 2.75:
+        c = t - 1.5 / 2.75
+        return 7.5625 * c * c + 0.75
+    elif t < 2.5 / 2.75:
+        c = t - 2.25 / 2.75
+        return 7.5625 * c * c + 0.9375
+    else:
+        c = t - 2.625 / 2.75
+        return 7.5625 * c * c + 0.984375
+
+
+def easeInBounce(t: float) -> float:
+    """Bounce easing that accelerates into the bounce.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+        Original author: @pdcxs.
+
+    Args:
+        t: Progress in ``[0, 1]``.
+
+    Returns:
+        The eased value in ``[0, 1]``.
+    """
+    return 1 - easeOutBounce(1 - t)
+
+
+def easeInOutBounce(t: float) -> float:
+    """Mirrored ease-in/out bounce.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+        Original author: @pdcxs.
+
+    Args:
+        t: Progress in ``[0, 1]``.
+
+    Returns:
+        The eased value in ``[0, 1]``.
+    """
+    if t < 0.5:
+        return easeInBounce(2 * t)
+    return easeOutBounce(2 * t - 1)
+
+
+def easeOutElastic(t: float) -> float:
+    """Elastic easing that overshoots and oscillates towards ``1``.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+        Original author: @pdcxs.
+
+        Because this function can return values greater than ``1`` it should not be
+        used with animations that sample ``points_from_proportion`` (e.g.
+        ``MoveAlongPath``).
+
+    Args:
+        t: Progress in ``[0, 1]``.
+
+    Returns:
+        The eased value, which may exceed ``1`` near the end.
+    """
+    s, a = 1.70158, 1
+    if t == 0 or t == 1:
+        return t
+    p = 0.3
+    if a < 1:
+        a, s = 1, p / 4
+    else:
+        s = p / (2 * np.pi) * np.arcsin(1 / a)
+    return a * pow(2, -10 * t) * np.sin((t - s) * (2 * np.pi) / p) + 1
+
+
+# --- Random-order animations ---------------------------------------
+
+
+class WriteRandom(LaggedStart):
+    """Write the submobjects of *mobject* one by one in random order.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw (style popularised by @贝多芬).
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose submobjects are written.
+    lag_ratio : float, optional
+        Delay between consecutive submobjects.  Defaults to ``0.1``.
+    run_time : float, optional
+        Total run time in seconds.  Defaults to ``2.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+
+    Examples
+    --------
+
+    .. manim:: WriteRandomDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import WriteRandom
+
+       class WriteRandomDocExample(Scene):
+           def construct(self):
+               text = Text("Hello").scale(2)
+               self.add(text)
+               self.play(WriteRandom(text, run_time=2))
+    """
+
+    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.5, **kwargs):
+        indices = list(range(len(mobject.submobjects)))
+        random.shuffle(indices)
+        super().__init__(
+            *[Write(mobject[i], rate_func=linear) for i in indices],
+            lag_ratio=lag_ratio,
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+class ReversedWrite(LaggedStart):
+    """Write the submobjects of *mobject* in reverse order.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw (style popularised by @贝多芬).
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose submobjects are written.
+    lag_ratio : float, optional
+        Delay between consecutive submobjects.  Defaults to ``0.1``.
+    run_time : float, optional
+        Total run time in seconds.  Defaults to ``2.0``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    """
+
+    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
+        indices = list(range(len(mobject.submobjects) - 1, -1, -1))
+        super().__init__(
+            *[Write(mobject[i], rate_func=linear) for i in indices],
+            lag_ratio=lag_ratio,
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+class UnWrite(Write):
+    """Reverse a :class:`~manim.animation.creation.Write`, then remove the mobject.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to un-write.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.creation.Write`.
+    """
+
+    def __init__(self, mobject, **kwargs):
+        kwargs.setdefault("rate_func", lambda t: smooth(1 - t))
+        kwargs.setdefault("remover", True)
+        super().__init__(mobject, **kwargs)
+
+
+class FadeInRandom(LaggedStart):
+    """Fade in the submobjects of *mobject* one by one in random order.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose submobjects are faded in.
+    lag_ratio : float, optional
+        Delay between consecutive submobjects.  Defaults to ``0.08``.
+    run_time : float, optional
+        Total run time in seconds.  Defaults to ``1.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    """
+
+    def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
+        indices = list(range(len(mobject.submobjects)))
+        random.shuffle(indices)
+        super().__init__(
+            *[FadeIn(mobject[i], rate_func=linear) for i in indices],
+            lag_ratio=lag_ratio,
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+class FadeOutRandom(LaggedStart):
+    """Fade out the submobjects of *mobject* one by one in random order.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose submobjects are faded out.
+    lag_ratio : float, optional
+        Delay between consecutive submobjects.  Defaults to ``0.08``.
+    run_time : float, optional
+        Total run time in seconds.  Defaults to ``1.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    """
+
+    def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
+        indices = list(range(len(mobject.submobjects)))
+        random.shuffle(indices)
+        super().__init__(
+            *[FadeOut(mobject[i], rate_func=linear) for i in indices],
+            lag_ratio=lag_ratio,
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+class GrowRandom(LaggedStart):
+    """Grow the submobjects of *mobject* from their centres in random order.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+        Original author: widcardw.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose submobjects are grown.
+    lag_ratio : float, optional
+        Delay between consecutive submobjects.  Defaults to ``0.1``.
+    run_time : float, optional
+        Total run time in seconds.  Defaults to ``2.0``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    """
+
+    def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
+        indices = list(range(len(mobject.submobjects)))
+        random.shuffle(indices)
+        super().__init__(
+            *[GrowFromCenter(mobject[i], rate_func=linear) for i in indices],
+            lag_ratio=lag_ratio,
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+# --- Emphasis animations -------------------------------------------
+
+
+class PassingRectangle(Animation):
+    """A filled rectangle that sweeps across *mobject* from left to right.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+        Original author: @鹤翔万里.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject the rectangle sweeps across.
+    color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Fill colour of the sweep.  Defaults to ``RED``.
+    buff : float, optional
+        Extra width/height around *mobject*.  Defaults to ``0.05``.
+    fill_opacity : float, optional
+        Fill opacity of the sweep.  Defaults to ``0.6``.
+    run_time : float, optional
+        Duration in seconds.  Defaults to ``1.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+
+    .. manim:: PassingRectangleDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import PassingRectangle
+
+       class PassingRectangleDocExample(Scene):
+           def construct(self):
+               rect = SurroundingRectangle(Text("Hi").scale(2))
+               self.add(rect)
+               self.play(PassingRectangle(rect, run_time=2))
+    """
+
+    def __init__(
+        self,
+        mobject,
+        color=RED,
+        buff: float = 0.05,
+        fill_opacity: float = 0.6,
+        run_time: float = 1.5,
+        **kwargs,
+    ):
+        self.mob_left = mobject.get_left() + buff * LEFT
+        self.mob_right = mobject.get_right() + buff * RIGHT
+        self.height = mobject.get_height() + 2 * buff
+        self.color = color
+        self.fill_opacity = fill_opacity
+        rect = Rectangle(
+            width=float(np.linalg.norm(self.mob_right - self.mob_left)),
+            height=self.height,
+            color=color,
+            fill_opacity=fill_opacity,
+        )
+        rect.move_to((self.mob_left + self.mob_right) / 2)
+        super().__init__(rect, run_time=run_time, rate_func=linear, **kwargs)
+
+    def interpolate_mobject(self, alpha: float) -> None:
+        """Slide and resize the sweep rectangle based on *alpha*."""
+        a_left = rush_into(alpha)
+        a_right = 1 - rush_into(1 - alpha)
+        left = interpolate(self.mob_left, self.mob_right, a_left)
+        right = interpolate(self.mob_left, self.mob_right, a_right)
+        self.mobject.become(
+            Rectangle(
+                width=float(np.linalg.norm(right - left)),
+                height=self.height,
+                color=self.color,
+                fill_opacity=self.fill_opacity,
+            ).move_to((left + right) / 2)
+        )
+
+
+class LaggedCreation(Animation):
+    """Create a mobject with a custom start/end partial-reveal lag.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+        Original author: @鹤翔万里.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to reveal.
+    lag_ratio : float, optional
+        Fraction of the mobject revealed per unit time.  Defaults to ``1.0``.
+    start_ratio : float, optional
+        Fraction of the mobject visible at the start.  Defaults to ``1/6``.
+    run_time : float, optional
+        Duration in seconds.  Defaults to ``1.5``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
+    """
+
+    def __init__(
+        self,
+        mobject,
+        lag_ratio: float = 1.0,
+        start_ratio: float = 1 / 6,
+        run_time: float = 1.5,
+        **kwargs,
+    ):
+        self.lag_ratio = lag_ratio
+        self.start_ratio = start_ratio
+        super().__init__(mobject, run_time=run_time, rate_func=linear, **kwargs)
+
+    def get_bounds(self, alpha: float):
+        ratio = self.start_ratio
+        a = interpolate((1 - ratio) / 4, 1 / 2 + ratio / 4, alpha)
+        b = interpolate((1 - ratio) / 4, 3 / 2 + ratio / 4, alpha)
+        return a, b
+
+    def interpolate_submobject(self, submobject, starting_submobject, alpha: float) -> None:
+        """Reveal *submobject* between the computed partial bounds."""
+        a, b = self.get_bounds(alpha)
+        submobject.pointwise_become_partial(starting_submobject, a, b)
+        if b > 1:
+            left_part = starting_submobject.copy().pointwise_become_partial(starting_submobject, 0, b - 1)
+            submobject.append_points(left_part.get_points())
+
+
+class HighLightWithLines(AnimationGroup):
+    """Draw two horizontal lines and expand a rectangle around *mobject*.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+        Original author: @鹤翔万里.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to highlight.
+    color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour of the lines and rectangle.  Defaults to ``RED``.
+    buff : float, optional
+        Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
+    rec_opacity : float, optional
+        Fill opacity of the rectangle.  Defaults to ``0.5``.
+    run_time : float, optional
+        Duration in seconds.  Defaults to ``1.0``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+    """
+
+    def __init__(
+        self,
+        mobject,
+        color=RED,
+        buff: float = 0.05,
+        rec_opacity: float = 0.5,
+        run_time: float = 1.0,
+        **kwargs,
+    ):
+        line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_up.next_to(mobject, UP, buff=buff)
+        line_down = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_down.next_to(mobject, DOWN, buff=buff)
+        self.lines = VGroup(line_up, line_down)
+
+        rectangle = SurroundingRectangle(
+            mobject, color=color, fill_opacity=rec_opacity, stroke_width=0, buff=buff
+        )
+        rectangle.save_state()
+        rectangle.stretch(0, 0, about_edge=LEFT).set_fill(opacity=0)
+
+        super().__init__(
+            Create(self.lines, lag_ratio=0),
+            Restore(rectangle),
+            run_time=run_time,
+            **kwargs,
+        )
+
+
+class UnHighLightWithLines(AnimationGroup):
+    """Undo :class:`HighLightWithLines`: fade out the lines and rectangle.
+
+    .. note::
+
+        Adapted from `manim_sandbox
+        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+        Original author: @鹤翔万里.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        The mobject whose highlight is removed.
+    color : :class:`~manim.utils.color.core.ManimColor`, optional
+        Colour used for the lines and rectangle.  Defaults to ``RED``.
+    buff : float, optional
+        Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
+    rec_opacity : float, optional
+        Fill opacity of the rectangle.  Defaults to ``0.5``.
+    run_time : float, optional
+        Duration in seconds.  Defaults to ``1.0``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+    """
+
+    def __init__(
+        self,
+        mobject,
+        color=RED,
+        buff: float = 0.05,
+        rec_opacity: float = 0.5,
+        run_time: float = 1.0,
+        **kwargs,
+    ):
+        line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_up.next_to(mobject, UP, buff=buff)
+        line_down = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_down.next_to(mobject, DOWN, buff=buff)
+        lines = VGroup(line_up, line_down)
+
+        rectangle = SurroundingRectangle(
+            mobject, color=color, fill_opacity=rec_opacity, stroke_width=0, buff=buff
+        )
+
+        super().__init__(
+            Uncreate(lines, lag_ratio=0),
+            FadeOut(rectangle),
+            run_time=run_time,
+            **kwargs,
+        )
