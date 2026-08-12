@@ -4,11 +4,11 @@ import os
 import sys
 
 # -- Path setup --------------------------------------------------------------
-sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("_extensions"))
-sys.path.insert(0, os.path.abspath("../third_party/manim-GearBox/src"))
-sys.path.insert(0, os.path.abspath("../third_party/manim-mindmap/src"))
-sys.path.insert(0, os.path.abspath("../third_party/manim-compass/src"))
+sys.path.insert(0, os.path.abspath("../../third_party/manim-GearBox/src"))
+sys.path.insert(0, os.path.abspath("../../third_party/manim-mindmap/src"))
+sys.path.insert(0, os.path.abspath("../../third_party/manim-compass/src"))
 
 # -- Project information -----------------------------------------------------
 project = "manim_extensions"
@@ -30,7 +30,7 @@ extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "furo"
@@ -42,7 +42,7 @@ html_short_title = "manim_extensions"
 html_theme_options = {
     "source_repository": "https://github.com/ExploreMaths/manim_extensions/",
     "source_branch": "main",
-    "source_directory": "docs/",
+    "source_directory": "docs/source/",
     "light_logo": "logo.svg",
     "dark_logo": "logo-dark.svg",
     "sidebar_hide_name": False,

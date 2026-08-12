@@ -82,6 +82,7 @@ from __future__ import annotations
 
 import csv
 import itertools as it
+import os
 import re
 import shutil
 import sys
@@ -94,8 +95,6 @@ import jinja2
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-
-from manim import QUALITIES
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
@@ -211,7 +210,7 @@ class ManimDirective(Directive):
             )
             return [node]
 
-        from manim import config, tempconfig
+        from manim import QUALITIES, config, tempconfig
 
         global classnamedict
 
@@ -288,7 +287,7 @@ class ManimDirective(Directive):
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         output_file = f"{clsname}-{classnamedict[clsname]}"
-        config.assets_dir = Path("_static")
+        config.assets_dir = Path(setup.confdir) / "_static"
         config.progress_bar = "none"
         config.verbosity = "WARNING"
 
@@ -410,6 +409,11 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> SetupMetadata:
+    # On ReadTheDocs the heavy Manim video rendering is skipped and the
+    # placeholders are emitted instead, so builds stay within the time limit.
+    if os.environ.get("READTHEDOCS"):
+        app.tags.add("skip-manim")
+
     app.add_node(
         SkipManimNode,
         html=(visit, depart),

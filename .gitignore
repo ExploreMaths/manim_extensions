@@ -5,5 +5,5 @@ dist
 .pytest_cache
 media
 update.bat
-docs/_build
+docs/build
 rendering_times.csv

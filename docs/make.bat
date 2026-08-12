@@ -1,22 +1,35 @@
-#!/usr/bin/env bash
-# Simple make wrapper for Sphinx documentation.
-# Run from the docs/ directory: ./make clean && ./make html
+@ECHO OFF
 
-set -e
+pushd %~dp0
 
-export PATH="/c/Program Files/Graphviz/bin:$PATH"
+REM Command file for Sphinx documentation
 
-case "${1:-html}" in
-  clean)
-    rm -rf _build/html
-    echo "Cleaned _build/html"
-    ;;
-  html)
-    rm -rf _build/html
-    sphinx-build -b html . _build/html
-    ;;
-  *)
-    echo "Usage: $0 {clean|html}"
-    exit 1
-    ;;
-esac
+if "%SPHINXBUILD%" == "" (
+	set SPHINXBUILD=sphinx-build
+)
+set SOURCEDIR=source
+set BUILDDIR=build
+
+%SPHINXBUILD% >NUL 2>NUL
+if errorlevel 9009 (
+	echo.
+	echo.The 'sphinx-build' command was not found. Make sure you have Sphinx
+	echo.installed, then set the SPHINXBUILD environment variable to point
+	echo.to the full path of the 'sphinx-build' executable. Alternatively you
+	echo.may add the Sphinx directory to PATH.
+	echo.
+	echo.If you don't have Sphinx installed, grab it from
+	echo.https://www.sphinx-doc.org/
+	exit /b 1
+)
+
+if "%1" == "" goto help
+
+%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+goto end
+
+:help
+%SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+
+:end
+popd

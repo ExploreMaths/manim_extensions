@@ -64,7 +64,12 @@ The documentation uses Sphinx and a custom Manim directive. Build it with:
 .. code-block:: bash
 
    cd docs
-   ./make clean
-   ./make html
+   make clean     # Linux/macOS (uses the Makefile)
+   make html
 
-The generated HTML will be in ``docs/_build/html/``.
+.. code-block:: doscon
+
+   make.bat clean   # Windows
+   make.bat html
+
+The generated HTML will be in ``docs/build/html/``.

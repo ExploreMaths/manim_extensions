@@ -1,0 +1,25 @@
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+version: 2
+
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+  # System libraries that Manim (manimpango/pycairo) and Graphviz need.
+  apt_packages:
+    - graphviz
+    - ffmpeg
+    - libpango-1.0-0
+    - libpangocairo-1.0-0
+    - libcairo2
+
+sphinx:
+  configuration: docs/source/conf.py
+
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .
