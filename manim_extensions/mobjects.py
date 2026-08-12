@@ -763,6 +763,22 @@ class CropImageMobject(ImageMobject):
         pixel radii.  Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+    Examples
+    --------
+
+
+    .. manim:: CropImageMobjectDocExample
+       :save_last_frame:
+
+       from manim import *
+       import numpy as np
+       from manim_extensions import CropImageMobject
+
+       class CropImageMobjectDocExample(Scene):
+           def construct(self):
+               img = np.random.randint(0, 255, (120, 120, 3), dtype=np.uint8)
+               logo = CropImageMobject(img, corner_radius=0.2)
+               self.add(logo)
     """
 
     def __init__(
@@ -832,6 +848,28 @@ class VideoMobject(ImageMobject):
     ----------
     filename : str
         Path to the video file.
+    Examples
+    --------
+
+
+    .. manim:: VideoMobjectDocExample
+       :save_last_frame:
+
+       from manim import *
+       import numpy as np
+       import imageio.v2 as imageio
+       from manim_extensions import VideoMobject
+
+       class VideoMobjectDocExample(Scene):
+           def construct(self):
+               path = "video_preview.mp4"
+               frames = [np.zeros((64, 64, 3), dtype=np.uint8) for _ in range(30)]
+               for f in frames:
+                   f[:32, :, 1] = 250
+               imageio.mimsave(path, frames, fps=10)
+               vid = VideoMobject(path)
+               self.add(vid)
+               self.wait(2)
     """
 
     def __init__(
@@ -1111,7 +1149,6 @@ class Trail(VGroup):
     --------
 
     .. manim:: TrailDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import Trail

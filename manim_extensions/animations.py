@@ -219,6 +219,21 @@ def easeOutBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+    Examples
+    --------
+
+
+    .. manim:: EaseOutBounceExample
+
+       from manim import *
+       from manim_extensions import easeOutBounce
+
+       class EaseOutBounceExample(Scene):
+           def construct(self):
+               dot = Dot()
+               self.add(dot)
+               self.play(dot.animate(rate_func=easeOutBounce).shift(RIGHT * 5), run_time=3)
+               self.wait()
     """
     if t < 1 / 2.75:
         return 7.5625 * t * t
@@ -247,6 +262,21 @@ def easeInBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+    Examples
+    --------
+
+
+    .. manim:: EaseInBounceExample
+
+       from manim import *
+       from manim_extensions import easeInBounce
+
+       class EaseInBounceExample(Scene):
+           def construct(self):
+               dot = Dot()
+               self.add(dot)
+               self.play(dot.animate(rate_func=easeInBounce).shift(RIGHT * 5), run_time=3)
+               self.wait()
     """
     return 1 - easeOutBounce(1 - t)
 
@@ -265,6 +295,21 @@ def easeInOutBounce(t: float) -> float:
 
     Returns:
         The eased value in ``[0, 1]``.
+    Examples
+    --------
+
+
+    .. manim:: EaseInOutBounceExample
+
+       from manim import *
+       from manim_extensions import easeInOutBounce
+
+       class EaseInOutBounceExample(Scene):
+           def construct(self):
+               dot = Dot()
+               self.add(dot)
+               self.play(dot.animate(rate_func=easeInOutBounce).shift(RIGHT * 5), run_time=3)
+               self.wait()
     """
     if t < 0.5:
         return easeInBounce(2 * t)
@@ -289,6 +334,21 @@ def easeOutElastic(t: float) -> float:
 
     Returns:
         The eased value, which may exceed ``1`` near the end.
+    Examples
+    --------
+
+
+    .. manim:: EaseOutElasticExample
+
+       from manim import *
+       from manim_extensions import easeOutElastic
+
+       class EaseOutElasticExample(Scene):
+           def construct(self):
+               dot = Dot()
+               self.add(dot)
+               self.play(dot.animate(rate_func=easeOutElastic).shift(RIGHT * 5), run_time=3)
+               self.wait()
     """
     s, a = 1.70158, 1
     if t == 0 or t == 1:
@@ -328,7 +388,6 @@ class WriteRandom(LaggedStart):
     --------
 
     .. manim:: WriteRandomDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import WriteRandom
@@ -370,6 +429,20 @@ class ReversedWrite(LaggedStart):
         Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    Examples
+    --------
+
+
+    .. manim:: ReversedWriteDocExample
+
+       from manim import *
+       from manim_extensions import ReversedWrite
+
+       class ReversedWriteDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.play(ReversedWrite(mob, run_time=3))
+               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
@@ -397,6 +470,21 @@ class UnWrite(Write):
         The mobject to un-write.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.creation.Write`.
+    Examples
+    --------
+
+
+    .. manim:: UnWriteDocExample
+
+       from manim import *
+       from manim_extensions import UnWrite
+
+       class UnWriteDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.play(Write(mob))
+               self.play(UnWrite(mob))
+               self.wait()
     """
 
     def __init__(self, mobject, **kwargs):
@@ -424,6 +512,20 @@ class FadeInRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    Examples
+    --------
+
+
+    .. manim:: FadeInRandomDocExample
+
+       from manim import *
+       from manim_extensions import FadeInRandom
+
+       class FadeInRandomDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.play(FadeInRandom(mob, run_time=3))
+               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
@@ -456,6 +558,21 @@ class FadeOutRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    Examples
+    --------
+
+
+    .. manim:: FadeOutRandomDocExample
+
+       from manim import *
+       from manim_extensions import FadeOutRandom
+
+       class FadeOutRandomDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.add(mob)
+               self.play(FadeOutRandom(mob, run_time=2))
+               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.08, run_time: float = 1.5, **kwargs):
@@ -488,6 +605,20 @@ class GrowRandom(LaggedStart):
         Total run time in seconds.  Defaults to ``2.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
+    Examples
+    --------
+
+
+    .. manim:: GrowRandomDocExample
+
+       from manim import *
+       from manim_extensions import GrowRandom
+
+       class GrowRandomDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.play(GrowRandom(mob, run_time=2))
+               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, run_time: float = 2.0, **kwargs):
@@ -532,7 +663,6 @@ class PassingRectangle(Animation):
     --------
 
     .. manim:: PassingRectangleDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import PassingRectangle
@@ -604,6 +734,20 @@ class LaggedCreation(Animation):
         Duration in seconds.  Defaults to ``1.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
+    Examples
+    --------
+
+
+    .. manim:: LaggedCreationDocExample
+
+       from manim import *
+       from manim_extensions import LaggedCreation
+
+       class LaggedCreationDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello")
+               self.play(LaggedCreation(mob, run_time=3))
+               self.wait()
     """
 
     def __init__(
@@ -656,6 +800,21 @@ class HighLightWithLines(AnimationGroup):
         Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+    Examples
+    --------
+
+
+    .. manim:: HighLightWithLinesDocExample
+
+       from manim import *
+       from manim_extensions import HighLightWithLines
+
+       class HighLightWithLinesDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello", color=WHITE)
+               self.add(mob)
+               self.play(HighLightWithLines(mob, run_time=2))
+               self.wait()
     """
 
     def __init__(
@@ -710,6 +869,21 @@ class UnHighLightWithLines(AnimationGroup):
         Duration in seconds.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+    Examples
+    --------
+
+
+    .. manim:: UnHighLightWithLinesDocExample
+
+       from manim import *
+       from manim_extensions import UnHighLightWithLines
+
+       class UnHighLightWithLinesDocExample(Scene):
+           def construct(self):
+               mob = Text("Hello", color=WHITE)
+               self.add(mob)
+               self.play(UnHighLightWithLines(mob, run_time=2))
+               self.wait()
     """
 
     def __init__(

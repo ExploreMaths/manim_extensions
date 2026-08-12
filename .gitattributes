@@ -1,0 +1,7 @@
+# Keep the Sphinx build helpers on LF line endings so they execute
+# identically on Linux/ReadTheDocs and on Windows bash shells (make / sh).
+# `docs/make.bat` was converted from a Windows batch file into a bash script,
+# so it must stay LF; forcing eol=lf overrides any local core.autocrlf setting.
+docs/Makefile     text eol=lf
+docs/make.sh      text eol=lf
+docs/make.bat     text eol=lf
