@@ -7,13 +7,13 @@ from manim.constants import RIGHT
 from manim.utils.color.manim_colors import YELLOW
 
 def get_arc(
-    niddle_pos:np.ndarray,
-    pen_pos:np.ndarray,
-    angle:float,
-    color = YELLOW,
-    **kwargs
-)-> Arc:
-    '''
+    niddle_pos: np.ndarray,
+    pen_pos: np.ndarray,
+    angle: float,
+    color: object = YELLOW,
+    **kwargs: object,
+) -> Arc:
+    """
     Construct an arc from its centre and starting point.
 
     Parameters
@@ -42,7 +42,7 @@ def get_arc(
             def construct(self):
                 arc = get_arc(ORIGIN, RIGHT, PI / 2)
                 self.add(arc)
-    '''
+    """
     arc_radius = get_distance(niddle_pos,pen_pos)
     vec_s = pen_pos - niddle_pos
     return Arc(
@@ -55,32 +55,59 @@ def get_arc(
     )
 
 def get_distance(
-    point_start:np.ndarray,
-    point_end:np.ndarray
-)-> float:
+    point_start: np.ndarray,
+    point_end: np.ndarray,
+) -> float:
     """Compute the distance between two points.
+
+    Parameters
+    ----------
+    point_start : np.ndarray
+    The point used by the operation.
+    point_end : np.ndarray
+    The point used by the operation.
     """
     return np.linalg.norm(point_start - point_end)
 
 def is_counter_clockwise(
-    vector_start:np.ndarray,
-    vector_end:np.ndarray
-)-> bool:
+    vector_start: np.ndarray,
+    vector_end: np.ndarray,
+) -> bool:
     """Return whether vector_end is counter-clockwise from vector_start.
+
+    Parameters
+    ----------
+    vector_start : np.ndarray
+        Starting vector used as the reference direction for the orientation test.
+    vector_end : np.ndarray
+        Ending vector whose orientation relative to the starting vector is evaluated.
     """
     return np.cross(vector_start,vector_end)[-1] > 0
 
 def get_vecs_angle(
-    vec_s:np.ndarray,
-    vec_e:np.ndarray
-)-> float:
-    """
-    Compute the angle from vector vec_s = (x1,y1) to vec_e = (x2,y2).
+    vec_s: np.ndarray,
+    vec_e: np.ndarray,
+) -> float:
+    """Compute the signed angle from *vec_s* to *vec_e*.
 
-    Distinguishes clockwise vs counter-clockwise (sign = x1*y2 - x2*y1):
-        sign > 0: vec_e is counter-clockwise from vec_s;
-        sign < 0: clockwise;
-        sign = 0: collinear
+    The sign is determined by the cross product
+    :math:`\\text{sign} = x_1 y_2 - x_2 y_1`:
+
+    * ``> 0``: *vec_e* is counter-clockwise from *vec_s*.
+    * ``< 0``: clockwise.
+    * ``= 0``: collinear.
+
+    Parameters
+    ----------
+    vec_s : np.ndarray
+        Source vector ``(x1, y1)``.
+    vec_e : np.ndarray
+        Target vector ``(x2, y2)``.
+
+    Returns
+    -------
+    float
+        Signed angle in radians (positive counter-clockwise).
     """
     angle = np.arccos(
         np.true_divide(

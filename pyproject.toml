@@ -28,9 +28,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "manim",
+    "manim>=0.19.1",
     "Pillow",
     "opencv-python",
+    "pymunk",
+    "kociemba",
+    "shapely",
+    "trimesh",
 ]
 
 [project.optional-dependencies]
@@ -51,3 +55,9 @@ Issues = "https://github.com/ExploreMaths/manim_extensions/issues"
 where = ["."]
 include = ["manim_extensions*"]
 exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

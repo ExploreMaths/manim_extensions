@@ -94,6 +94,9 @@ import jinja2
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
+from sphinx.util import logging as sphinx_logging
+
+logger = sphinx_logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
@@ -253,10 +256,12 @@ class ManimDirective(Directive):
             dest_dir.mkdir(parents=True, exist_ok=True)
 
         user_code = list(self.content)
-        if user_code[0].startswith(">>> "):  # check whether block comes from doctest
+        if user_code and user_code[0].startswith(">>> "):  # check whether block comes from doctest
             user_code = [
                 line[4:] for line in user_code if line.startswith((">>> ", "... "))
             ]
+        else:
+            user_code = textwrap.dedent("\n".join(user_code)).splitlines()
 
         has_manim_import = any(
             line.strip() == "from manim import *" for line in user_code
@@ -316,7 +321,39 @@ class ManimDirective(Directive):
                 video_dir = config.get_dir("video_dir")
                 images_dir = config.get_dir("images_dir")
         except Exception as e:
-            raise RuntimeError(f"Error while rendering example {clsname}") from e
+            # A broken example embedded in a docstring should not fail the whole
+            # documentation build: warn about it and fall back to a placeholder
+            # that still shows the source code (and the binder hook).
+            logger.warning(
+                "manim example %r could not be rendered (%s); "
+                "showing the source code instead. [%s]",
+                clsname,
+                e,
+                self.state.document.settings.env.docname,
+            )
+            placeholder = SkipManimNode()
+            self.state.nested_parse(
+                StringList(
+                    [
+                        f"**Example ``{clsname}``** — rendering failed; source shown instead.",
+                        "",
+                        ".. code-block:: python",
+                        "",
+                    ]
+                    + ["    " + line for line in self.content]
+                    + [
+                        "",
+                        ".. raw:: html",
+                        "",
+                        f'    <pre data-manim-binder data-manim-classname="{clsname}">',
+                    ]
+                    + ["    " + line for line in self.content]
+                    + ["    </pre>"],
+                ),
+                self.content_offset,
+                placeholder,
+            )
+            return [placeholder]
 
         _write_rendering_stats(
             clsname,

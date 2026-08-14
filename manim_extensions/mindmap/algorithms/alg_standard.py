@@ -10,13 +10,28 @@ from .layout import Layout
 class TreeNode:
     """Internal tree-node wrapper used by StandardLayout.
 
-    """
+    Examples
+    --------
+
+    .. manim:: TreeNodeExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
+
+        class TreeNodeExample(Scene):
+            def construct(self):
+                tn = TreeNode(height=1.0, width=2.0)
+                label = Text(f"TreeNode: {tn.width}x{tn.height}", font_size=24)
+                self.add(label)
+"""
     __slots__ = ('height','width','children','parent','x','y','level','is_flip')
     def __init__(
         self,
         height:float = 0,
         width:float = 0,
     ):
+        """Initialize the TreeNode instance."""
         self.width = width
         self.height = height
         self.x:float = 0
@@ -27,12 +42,29 @@ class TreeNode:
         self.parent:'TreeNode' = None
 
     def add_child(self, child: 'TreeNode'):
-        """Add a child node and set the parent-child relationship."""
+        """Add a child node and establish the parent-child relationship.
+
+        Parameters
+        ----------
+        child : TreeNode
+            The child node to add.
+        """
         self.children.append(child)
         child.parent = self
 
-def copy_node(node:Any) -> 'TreeNode':
-    """
+def copy_node(node: Any) -> 'TreeNode':
+    """Recursively create a deep copy of a node tree.
+
+    Parameters
+    ----------
+    node : Any
+        The source node (must expose ``height``, ``width``, and
+        ``children`` attributes).
+
+    Returns
+    -------
+    TreeNode
+        The root of the copied tree, or ``None`` if *node* is ``None``.
     """
 
     if node is None:
@@ -42,8 +74,18 @@ def copy_node(node:Any) -> 'TreeNode':
         root.add_child(copy_node(child))
     return root
 
-def split_integer(n:int):
-    """
+def split_integer(n: int):
+    """Split an integer into two roughly equal parts.
+
+    Parameters
+    ----------
+    n : int
+        The integer to split.
+
+    Returns
+    -------
+    tuple of (int, int)
+        The two parts ``(k + 1, k)`` if *n* is odd, or ``(k, k)`` if *n* is even.
     """
 
     if (n & 1):
@@ -90,7 +132,20 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
 class StandardLayout(Layout):
     """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides.
 
-    """
+    Examples
+    --------
+
+    .. manim:: StandardLayoutExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.algorithms.alg_standard import StandardLayout
+
+        class StandardLayoutExample(Scene):
+            def construct(self):
+                label = Text("StandardLayout algorithm", font_size=24)
+                self.add(label)
+"""
     def __init__(
         self,
         root:Any,
@@ -98,6 +153,7 @@ class StandardLayout(Layout):
         node_spacing: float = 0.5,
         level_spacing: float = 0.5
     ):
+        """Initialize the StandardLayout instance."""
         self.root = root
         self.direction = direction
         self.flip_direction = self._flip_direction(direction)
@@ -105,7 +161,18 @@ class StandardLayout(Layout):
         self.level_spacing = level_spacing
 
     def _flip_direction(self, direction: LayoutDirection) -> LayoutDirection:
-        """Return the opposite of the given direction."""
+        """Return the opposite of the given direction.
+
+        Parameters
+        ----------
+        direction : LayoutDirection
+            The direction to flip.
+
+        Returns
+        -------
+        LayoutDirection
+            The opposite direction.
+        """
         match direction:
             case LayoutDirection.LeftToRight:
                 return LayoutDirection.RightToLeft
@@ -155,8 +222,18 @@ class StandardLayout(Layout):
         sync_copy_bfs(self.left, self.root)
         return self.root
     
-    def _offset(self,node:Any, x:float, y:float):
-        """Translate the right (or bottom) subtree and mark it as flipped."""
+    def _offset(self, node: Any, x: float, y: float):
+        """Translate a subtree by *(x, y)* and mark it as flipped.
+
+        Parameters
+        ----------
+        node : Any
+            The root of the subtree to translate.
+        x : float
+            Horizontal offset.
+        y : float
+            Vertical offset.
+        """
         node.x += x
         node.y += y
         node.is_flip = True
@@ -166,4 +243,4 @@ class StandardLayout(Layout):
     def _merge(self):
         """Merge the right (or bottom) subtree into the left tree."""
         for child in self.right.children:
-            self.left.add_child(child) 
+            self.left.add_child(child)

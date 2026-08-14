@@ -1,3 +1,25 @@
+"""Reusable Manim mobjects and convenience wrappers.
+
+This module provides small reusable building blocks for common educational and
+visualisation scenes, including labels, braces, dots, and LaTeX-wrapped
+objects.
+
+    Examples
+    --------
+
+.. manim:: MobjectsModuleDocExample
+      :save_last_frame:
+
+   from manim import *
+   from manim_extensions import LabelDot, MathTexLine
+
+   class MobjectsModuleDocExample(Scene):
+       def construct(self):
+           dot = LabelDot("A", [0, 0, 0], label_pos=UP)
+           line = MathTexLine(MathTex("y = x"), direction=UP)
+           self.add(dot, line)
+"""
+
 from manim import *
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
@@ -59,6 +81,7 @@ class ChineseMathTex(MathTex):
         tex_to_color_map: dict = {},
         **kwargs,
     ) -> None:
+        """Initialize the ChineseMathTex instance."""
         tex_template = TexTemplate(tex_compiler="xelatex", output_format=".xdv")
         tex_template.add_to_preamble(r"\usepackage{amsmath}")
         tex_template.add_to_preamble(r"\usepackage{xeCJK}")
@@ -135,6 +158,7 @@ class LabelDot(VGroup):
     .. manim:: LabelDotDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import LabelDot
 
        class LabelDotDocExample(Scene):
@@ -151,6 +175,7 @@ class LabelDot(VGroup):
         buff: float = 0.1,
         **kwargs,
     ) -> None:
+        """Initialize the LabelDot instance."""
         super().__init__(**kwargs)
         dot = Dot().move_to(dot_pos)
         label = MathTex(dot_label).next_to(dot, label_pos, buff=buff)
@@ -159,18 +184,16 @@ class LabelDot(VGroup):
         self.dot_pos = dot_pos
 
     def get_center(self) -> Point3D:
-        """Return the center of the underlying dot.
-
-        Examples
-        --------
-        """
+        """Return the center of the underlying dot."""
         return self.dot.get_center()
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
         """Return the center of the underlying dot (boundary approximation).
 
-        Examples
-        --------
+        Parameters
+        ----------
+        direction : Vector3DLike
+            The direction of the operation.
         """
         return self.dot.get_center()
 
@@ -201,6 +224,7 @@ class MathTexLine(VGroup):
     .. manim:: MathTexLineDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import MathTexLine
 
        class MathTexLineDocExample(Scene):
@@ -216,6 +240,7 @@ class MathTexLine(VGroup):
         buff: float = 0.5,
         **kwargs,
     ) -> None:
+        """Initialize the MathTexLine instance."""
         super().__init__()
         line = Line(**kwargs)
         tex = formula.next_to(line, direction, buff=buff)
@@ -251,6 +276,7 @@ class MathTexBrace(VGroup):
     .. manim:: MathTexBraceDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import MathTexBrace
 
        class MathTexBraceDocExample(Scene):
@@ -268,6 +294,7 @@ class MathTexBrace(VGroup):
         buff: float = 0.5,
         **kwargs,
     ) -> None:
+        """Initialize the MathTexBrace instance."""
         super().__init__()
         brace = Brace(target, direction=direction, **kwargs)
         tex = formula.next_to(brace, direction, buff=buff)
@@ -301,6 +328,7 @@ class MathTexDoublearrow(VGroup):
     .. manim:: MathTexDoublearrowDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import MathTexDoublearrow
 
        class MathTexDoublearrowDocExample(Scene):
@@ -316,6 +344,7 @@ class MathTexDoublearrow(VGroup):
         buff: float = 0.5,
         **kwargs,
     ) -> None:
+        """Initialize the MathTexDoublearrow instance."""
         super().__init__()
         doublearrow = DoubleArrow(**kwargs)
         tex = formula.next_to(doublearrow, direction, buff=buff)
@@ -356,6 +385,7 @@ class PerpendicularLine(Line):
     .. manim:: PerpendicularLineDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import PerpendicularLine
 
        class PerpendicularLineDocExample(Scene):
@@ -371,6 +401,7 @@ class PerpendicularLine(Line):
         line: Line,
         **kwargs: Any,
     ) -> None:
+        """Initialize the PerpendicularLine instance."""
         if isinstance(point, Mobject):
             self.point = point.get_center()
         else:
@@ -380,6 +411,14 @@ class PerpendicularLine(Line):
         super().__init__(self.point, self.foot, **kwargs)
 
     def _compute_foot(self) -> np.ndarray:
+        """Compute the foot of the perpendicular from *point* onto *target_line*.
+
+        Returns
+        -------
+        numpy.ndarray
+            The 3-D coordinates of the perpendicular foot.  If the target line
+            is degenerate (start and end coincide), the start point is returned.
+        """
         a = self.target_line.get_start()
         b = self.target_line.get_end()
         ab = b - a
@@ -416,6 +455,7 @@ class ExtendedLine(Line):
     .. manim:: ExtendedLineDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import ExtendedLine
 
        class ExtendedLineDocExample(Scene):
@@ -426,6 +466,7 @@ class ExtendedLine(Line):
     """
 
     def __init__(self, line: Line, extend_distance: float, **kwargs) -> None:
+        """Initialize the ExtendedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
@@ -478,6 +519,7 @@ class PerpendicularSign(VGroup):
     .. manim:: PerpendicularSignDocExample
        :save_last_frame:
 
+       from manim import *
        from manim_extensions import PerpendicularLine, PerpendicularSign
 
        class PerpendicularSignDocExample(Scene):
@@ -496,6 +538,7 @@ class PerpendicularSign(VGroup):
         corner_direction: Union[np.ndarray, tuple, list, None] = None,
         **kwargs: Any,
     ) -> None:
+        """Initialize the PerpendicularSign instance."""
         super().__init__(**kwargs)
 
         # Compute the intersection of the two lines
@@ -528,6 +571,21 @@ class PerpendicularSign(VGroup):
     def _compute_intersection(
         self, line1: Line, line2: Line
     ) -> Union[np.ndarray, None]:
+        """Compute the intersection point of two lines.
+
+        Parameters
+        ----------
+        line1 : Line
+            First line.
+        line2 : Line
+            Second line.
+
+        Returns
+        -------
+        numpy.ndarray or None
+            The 3-D coordinates of the intersection, or ``None`` if the lines
+            are parallel.
+        """
         a1 = line1.get_start()
         b1 = line1.get_end()
         a2 = line2.get_start()
@@ -547,7 +605,15 @@ class PerpendicularSign(VGroup):
     def _get_both_directions(
         self, line: Line, point: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray]:
-        """Return the two unit direction vectors from *point* toward the line's endpoints."""
+        """Return the two unit direction vectors from *point* toward the line's endpoints.
+
+    Parameters
+    ----------
+    line : Line
+    The geometric object involved in the operation.
+    point : np.ndarray
+    The point used by the operation.
+    """
         start = line.get_start()
         end = line.get_end()
         d1 = start - point
@@ -573,7 +639,19 @@ class PerpendicularSign(VGroup):
         dirs2: tuple[np.ndarray, np.ndarray],
         corner_direction: Union[np.ndarray, tuple, list, None],
     ) -> tuple[np.ndarray, np.ndarray]:
-        """Select the best pair of directions based on *corner_direction*."""
+        """Select the best pair of directions based on *corner_direction*.
+
+        Parameters
+        ----------
+        dirs1 : tuple[np.ndarray, np.ndarray]
+            First pair of candidate directions.
+        dirs2 : tuple[np.ndarray, np.ndarray]
+            Second pair of candidate directions.
+        corner_direction : Union[np.ndarray, tuple, list, None]
+            Desired corner direction; pairs pointing toward it are favoured.
+            When ``None`` the pair pointing toward the nearer endpoints is
+            selected.
+        """
         candidates = []
         for d1 in dirs1:
             for d2 in dirs2:
@@ -657,6 +735,7 @@ class FileTree(Code):
         color: ParsableManimColor = WHITE,
         **kwargs,
     ) -> None:
+        """Initialize the FileTree instance."""
         if not isinstance(tree_dict, dict):
             raise TypeError(
                 f"tree_dict must be a dict, got {type(tree_dict).__name__}"
@@ -719,7 +798,22 @@ class FileTree(Code):
     def _build_tree(
         data, prefix: str = "", is_root: bool = True
     ) -> list[str]:
-        """Recursively build ASCII tree lines from a nested dictionary."""
+        """Recursively build ASCII tree lines from a nested dictionary.
+
+        Parameters
+        ----------
+        data
+            The (sub)tree node — either a dict or a leaf value.
+        prefix : str
+            Indentation prefix already accumulated for the current depth.
+        is_root : bool
+            Whether *data* is the root node (no connector prefix).
+
+        Returns
+        -------
+        list[str]
+            A list of ASCII-art lines representing the tree.
+        """
         lines: list[str] = []
         if not isinstance(data, dict):
             return lines
@@ -786,6 +880,7 @@ class CropImageMobject(ImageMobject):
         corner_radius: Union[int, float] = 0.1,
         **kwargs: Any
     ) -> None:
+        """Initialize the CropImageMobject instance."""
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
@@ -852,6 +947,7 @@ class VideoMobject(ImageMobject):
     --------
     .. manim:: VideoMobjectDocExample
 
+   :save_last_frame:
        from manim import *
        from pathlib import Path
        from manim_extensions import VideoMobject
@@ -861,8 +957,7 @@ class VideoMobject(ImageMobject):
                path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
                vid = VideoMobject(path)
                self.add(vid)
-               vid.play(self)
-    """
+               vid.play(self)    """
 
     def __init__(
         self,
@@ -871,6 +966,7 @@ class VideoMobject(ImageMobject):
         rate: float = 1.0,
         **kwargs: Any
     ) -> None:
+        """Initialize the VideoMobject instance."""
         self.filename = filename
         self.loop = loop
         self.rate = float(rate)
@@ -903,7 +999,15 @@ class VideoMobject(ImageMobject):
         return self._duration / self.rate if self.rate > 0 else 0.0
 
     def _video_updater(self, mob: "VideoMobject", dt: float) -> None:
-        """Internal updater that advances the video frame on each render step."""
+        """Internal updater that advances the video frame on each render step.
+
+        Parameters
+        ----------
+        mob : VideoMobject
+            The mobject this updater is attached to.
+        dt : float
+            Elapsed time (in seconds) since the last frame.
+        """
         if not self._playing or self._finished:
             return
 
@@ -929,7 +1033,19 @@ class VideoMobject(ImageMobject):
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
     def __deepcopy__(self, memo: dict) -> "VideoMobject":
-        """Deep-copy the mobject, reopening the video capture for the clone."""
+        """Deep-copy the mobject, reopening the video capture for the clone.
+
+        Parameters
+        ----------
+        memo : dict
+            Memo dictionary used by :func:`copy.deepcopy` to track already
+            copied objects.
+
+        Returns
+        -------
+        VideoMobject
+            A new instance with its own video capture handle.
+        """
         cap = self._cap
         self._cap = None
         try:
@@ -1080,6 +1196,7 @@ class ColorText(Text):
         font_size=28,
         **kwargs,
     ) -> None:
+        """Initialize the ColorText instance."""
         if name is not None:
             super().__init__(str(name), color=color, font=font, font_size=font_size, **kwargs)
             return
@@ -1162,6 +1279,7 @@ class Trail(VGroup):
         rate_func=None,
         **kwargs,
     ) -> None:
+        """Initialize the Trail instance."""
         super().__init__(**kwargs)
         self.max_width = max_width
         self.nums = nums
@@ -1206,7 +1324,14 @@ class Trail(VGroup):
         return path
 
     def update_path(self, trail) -> None:
-        """Updater: replace *trail* by the freshly created path."""
+        """Updater: replace *trail* by the freshly created path.
+
+        Parameters
+        ----------
+        trail
+            The trail mobject to update (typically a :class:`Trail` instance
+            with a custom shape).
+        """
         trail.become(self.create_path())
 
     def start_trace(self) -> "Trail":
@@ -1282,6 +1407,7 @@ class ShadowAround(VGroup):
         show_basic_shape: bool = True,
         **kwargs,
     ) -> None:
+        """Initialize the ShadowAround instance."""
         super().__init__(**kwargs)
         self.shadow_color = shadow_color
         self.shadow_opacity = shadow_opacity
@@ -1298,7 +1424,7 @@ class ShadowAround(VGroup):
         self.shape.set_fill(color=shadow_color, opacity=inner_opacity).scale(scale_factor)
 
         self.blur_outline = VGroup()
-        s = (self.shape.get_height() + self.shape.get_width()) / 2
+        s = (self.shape.height + self.shape.width) / 2
         if blur_width > 1e-4:
             for i in range(layer_num):
                 sign = 1.0 if shadow_out else -1.0
@@ -1369,6 +1495,7 @@ class ObjectBorder(VGroup):
         corner_radius: float = 0.06,
         **kwargs,
     ) -> None:
+        """Initialize the ObjectBorder instance."""
         super().__init__(**kwargs)
         self.obj = obj
         self.buff = buff
@@ -1385,8 +1512,8 @@ class ObjectBorder(VGroup):
     def _rebuild(self) -> None:
         """Recreate the border and corner markers around the current position of *obj*."""
         border = Rectangle(
-            width=self.obj.get_width() + 2 * self.buff,
-            height=self.obj.get_height() + 2 * self.buff,
+            width=self.obj.width + 2 * self.buff,
+            height=self.obj.height + 2 * self.buff,
             stroke_color=self.border_color,
             stroke_width=1,
         ).move_to(self.obj.get_center())
@@ -1458,6 +1585,7 @@ class ThreeDVector(VGroup):
         fill_opacity: float = 0.9,
         **kwargs,
     ) -> None:
+        """Initialize the ThreeDVector instance."""
         super().__init__(**kwargs)
         self.radius = radius
         self.color = color
@@ -1540,6 +1668,7 @@ class TreeDiagram(VGroup):
         item_scale: float = 0.7,
         **kwargs,
     ) -> None:
+        """Initialize the TreeDiagram instance."""
         super().__init__(**kwargs)
         self.branch_color = branch_color
         self.branch_opacity = branch_opacity
@@ -1549,10 +1678,35 @@ class TreeDiagram(VGroup):
         self.add(self._generate(tree)[1])
 
     def _lowest(self, leaves) -> "VGroup":
+        """Create a vertical group of text mobjects for the leaf nodes.
+
+        Parameters
+        ----------
+        leaves : iterable
+            Leaf node values to display as text.
+
+        Returns
+        -------
+        VGroup
+            A vertically arranged group of scaled :class:`~manim.mobject.text.text_mobject.Text` mobjects.
+        """
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
         return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
 
     def _generate(self, tree):
+        """Recursively build the tree diagram mobject.
+
+        Parameters
+        ----------
+        tree : dict or list or set
+            Tree structure defined as nested dictionaries (internal nodes) or
+            iterables (leaf nodes).
+
+        Returns
+        -------
+        VGroup
+            The composed tree diagram with braces and labels.
+        """
         if isinstance(tree, (set, list, tuple)):
             a = self._lowest(tree)
             brace = Brace(a, LEFT).set_stroke(color=self.branch_color, width=2).set_fill(

@@ -7,3 +7,4 @@ media
 update.bat
 docs/build
 rendering_times.csv
+.vscode

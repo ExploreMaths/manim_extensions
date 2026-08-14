@@ -21,8 +21,7 @@ from ..algorithms import (
 )
     
 class MindMap(AbstractMap):
-    r"""
-    Mind map class: parses mind-map data in the following format and builds
+    """Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
 
     .. manim:: MindMapExample
@@ -44,15 +43,29 @@ class MindMap(AbstractMap):
                 mind_map = MindMap(data)
                 mind_map.scale_to_fit_width(12)
                 self.add(mind_map)
-    """
+
+    Parameters
+    ----------
+        map : dict
+            mind-map data
+        buff : float
+            padding between node content and node border
+        direction
+            node layout direction
+        level_spacing : float
+            spacing between layers
+        node_spacing : float
+            spacing between nodes
+        node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+            node style"""
     def __init__(
         self,
-        map:Dict = {},
-        buff:float = 0.2,
-        direction = RIGHT,
-        level_spacing = 1.0,
-        node_spacing = 0.5,
-        node_style :NodeStyle = NodeStyle(
+        map: Dict = {},
+        buff: float = 0.2,
+        direction: object = RIGHT,
+        level_spacing: float = 1.0,
+        node_spacing: float = 0.5,
+        node_style: NodeStyle = NodeStyle(
             node_style = [
                 {'color':WHITE,'stroke_width':8},
                 {'color':WHITE,'stroke_width':6},
@@ -71,23 +84,7 @@ class MindMap(AbstractMap):
             ]
         )
     ):
-        """Constructor for the mind-map class.
-
-        Parameters
-        ----------
-        map : dict
-            mind-map data
-        buff : float
-            padding between node content and node border
-        direction
-            node layout direction
-        level_spacing : float
-            spacing between layers
-        node_spacing : float
-            spacing between nodes
-        node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-            node style
-        """
+        """Initialize MindMap."""
         self.node_style = node_style
         self.direction = direction
         super().__init__(
@@ -105,7 +102,7 @@ class MindMap(AbstractMap):
             )
         )
     
-    def _set_connectors(self):
+    def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
@@ -164,12 +161,12 @@ class TimeLine(AbstractMap):
     """
     def __init__(
         self,
-        map:Dict = {},
-        buff:float = 0.2,
-        sides = (UP,DOWN),
-        level_spacing = 1.0,
-        node_spacing = 0.5,
-        node_style :NodeStyle = NodeStyle(
+        map: Dict = {},
+        buff: float = 0.2,
+        sides: tuple[object, object] = (UP, DOWN),
+        level_spacing: float = 1.0,
+        node_spacing: float = 0.5,
+        node_style: NodeStyle = NodeStyle(
             node_style = [
                 {'color':WHITE,'stroke_width':8},
                 {'color':WHITE,'stroke_width':6},
@@ -188,6 +185,7 @@ class TimeLine(AbstractMap):
             ]
         )
     ):
+        """Initialize the TimeLine instance."""
         self.node_style = node_style
         super().__init__(
             layout_method = TimeLineLayout(
@@ -204,7 +202,7 @@ class TimeLine(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
@@ -261,12 +259,12 @@ class StandardMap(AbstractMap):
     """
     def __init__(
         self,
-        map:Dict = {},
-        buff:float = 0.2,
-        direction = RIGHT,
-        level_spacing = 1.0,
-        node_spacing = 0.5,
-        node_style :NodeStyle = NodeStyle(
+        map: Dict = {},
+        buff: float = 0.2,
+        direction: object = RIGHT,
+        level_spacing: float = 1.0,
+        node_spacing: float = 0.5,
+        node_style: NodeStyle = NodeStyle(
             node_style = [
                 {'color':WHITE,'stroke_width':8},
                 {'color':WHITE,'stroke_width':6},
@@ -285,6 +283,7 @@ class StandardMap(AbstractMap):
             ]
         )
     ):
+        """Initialize the StandardMap instance."""
         self.node_style = node_style
         super().__init__(
             layout_method = StandardLayout(
@@ -301,7 +300,7 @@ class StandardMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(
@@ -357,11 +356,11 @@ class CatalogMap(AbstractMap):
     """
     def __init__(
         self,
-        map:Dict = {},
-        buff:float = 0.2,
-        level_spacing = 1.0,
-        node_spacing = 0.5,
-        node_style :NodeStyle = NodeStyle(
+        map: Dict = {},
+        buff: float = 0.2,
+        level_spacing: float = 1.0,
+        node_spacing: float = 0.5,
+        node_style: NodeStyle = NodeStyle(
             node_style = [
                 {'color':WHITE,'stroke_width':8},
                 {'color':WHITE,'stroke_width':6},
@@ -380,6 +379,7 @@ class CatalogMap(AbstractMap):
             ]
         )
     ):
+        """Initialize the CatalogMap instance."""
         self.node_style = node_style
         super().__init__(
             layout_method = CatalogLayout(
@@ -395,7 +395,7 @@ class CatalogMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = node.get_connector(

@@ -18,7 +18,7 @@ __all__ = [
 
 
 def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
-    '''
+    """
     Returns the x-y-z values of the involute function.
 
     Parameters
@@ -31,8 +31,33 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
 
     Examples
     --------
-    '''
+    .. manim:: InvoluteFuncExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_func
+
+        class InvoluteFuncExample(Scene):
+            def construct(self):
+                t = np.linspace(0, np.pi, 50)
+                points = involute_func(t, 1.0)
+                dot = Dot(point=points[-1], color=YELLOW)
+                label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
+                self.add(dot, label)
+    """
     def involute_val(val):
+        """Compute a single point on the involute tooth profile.
+
+        Parameters
+        ----------
+        val : float
+            The involute parameter angle.
+
+        Returns
+        -------
+        numpy.ndarray
+            A 3-D point ``(x, y, 0)`` on the involute curve.
+        """
         x = r * (np.cos(val) + (val - a) * np.sin(val - a)) + \
             rad_offs * np.cos(val) - tan_offs*np.sin(val)
         y = r * (np.sin(val) - (val - a) * np.cos(val - a)) + \
@@ -50,7 +75,7 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
         return involute_val(t)
 
 def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
-    '''Return the derivative of the involute function at angle t.
+    """Return the derivative of the involute function at angle t.
 
     Parameters
     ----------
@@ -62,8 +87,35 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
 
     Examples
     --------
-    '''
+    .. manim:: InvoluteDerivFuncExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_deriv_func
+
+        class InvoluteDerivFuncExample(Scene):
+            def construct(self):
+                t = np.linspace(0, np.pi / 2, 20)
+                derivs = involute_deriv_func(t, 1.0)
+                label = Text(f"Derivative vectors: {len(derivs)}", font_size=24).to_edge(UP)
+                self.add(label)
+                for d in derivs[::5]:
+                    vec = Arrow(ORIGIN, d, buff=0, color=YELLOW)
+                    self.add(vec)
+    """
     def diff_val(val):
+        """Compute the derivative of the involute profile at a given parameter.
+
+        Parameters
+        ----------
+        val : float
+            The involute parameter angle.
+
+        Returns
+        -------
+        numpy.ndarray
+            A 3-D derivative vector ``(dx, dy, 0)``.
+        """
         x = r * (-np.sin(val) + (val - a) * np.cos(val - a) + np.sin(val - a)) - \
             rad_offs * np.sin(val) - tan_offs * np.cos(val)
         y = r * (np.cos(val) + (val - a) * np.sin(val - a) - np.cos(val - a)) + \
@@ -82,7 +134,7 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
 
 
 def involute_height_func(k, r, **kwargs):
-    '''
+    """
     Returns the radial height of the involute compared to the base circle.
 
     Parameters
@@ -93,12 +145,24 @@ def involute_height_func(k, r, **kwargs):
 
     Examples
     --------
-    '''
+    .. manim:: InvoluteHeightFuncExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_height_func
+
+        class InvoluteHeightFuncExample(Scene):
+            def construct(self):
+                k_val = np.pi / 4
+                height = involute_height_func(k_val, 1.0)
+                label = Text(f"Height at pi/4: {height:.3f}", font_size=24).to_edge(UP)
+                self.add(label)
+    """
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
 def involute_point_gen(t,r,**kwargs):
-    '''
+    """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
     Input t is a list where the involute shall be evaluated, it can be unevenly spaced.
@@ -112,7 +176,21 @@ def involute_point_gen(t,r,**kwargs):
 
     Examples
     --------
-    '''
+    .. manim:: InvolutePointGenExample
+        :save_last_frame:
+
+        from manim import *
+        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_point_gen
+
+        class InvolutePointGenExample(Scene):
+            def construct(self):
+                t = np.linspace(0, np.pi / 2, 10)
+                points = involute_point_gen(t, 1.0)
+                curve = VMobject()
+                curve.points = points
+                curve.set_stroke(YELLOW, 3)
+                self.add(curve)
+    """
     end_points = involute_func(t,r,**kwargs)
     diff_points = involute_deriv_func(t,r,**kwargs)
     out_points = np.empty((0,3))
@@ -268,10 +346,16 @@ class Gear(VMobject):
         color=None,
         **kwargs
     ):
-        '''
-        Override set_stroke to avoid revealing the line which is used for tracking center and angle.
+        """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
         If family is specified, it will still do it.
-        '''
+
+    Parameters
+    ----------
+    color
+    The color to apply.
+    kwargs
+    Kwargs processed by this operation.
+    """
         if 'family' in kwargs:
             super().set_stroke(color,**kwargs)
         else:
@@ -279,7 +363,7 @@ class Gear(VMobject):
             super().set_stroke(color,family=False, **kwargs)
 
     def generate_points(self):
-        '''Build the gear outline from involute curves, fillets, and arcs.'''
+        """Build the gear outline from involute curves, fillets, and arcs."""
 
         # involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle
         angle_base = fsolve(lambda u: involute_height_func(u, self.rb) - (self.rp - self.rb), self.alpha * DEGREES,
@@ -299,7 +383,20 @@ class Gear(VMobject):
 
         # find t-range for the involute that lies inside the rf-ra range
         def invo_cross_diff(t):
-            # rotate involute into a position where the tooth would be symmetrically on the x axis
+            """Compute the y-coordinate where two involute flanks intersect.
+
+            Used to find the maximum involute height before the tooth tip.
+
+            Parameters
+            ----------
+            t : float
+                The involute parameter angle.
+
+            Returns
+            -------
+            float
+                The y-coordinate of the rotated involute point.
+            """
             p1 = rotate_vector(involute_func(t[0], self.rb),self.pitch_angle/4+self.angle_ofs)
             # when y coordinate is 0, the 2 involutes of the tooth would intersect because of the symmetry
             return p1[1]
@@ -326,6 +423,18 @@ class Gear(VMobject):
         tan_ucut = ofs_vector[1]
 
         def undercut_func(t):
+            """Compute a point on the undercut (radial) curve at parameter ``t``.
+
+            Parameters
+            ----------
+            t : float
+                The involute parameter angle.
+
+            Returns
+            -------
+            numpy.ndarray
+                A point on the undercut curve.
+            """
             return involute_func(t, self.rp, rad_offs=rad_ucut, tan_offs=tan_ucut)
 
         # undercut happening according to standard criteria OR
@@ -335,6 +444,18 @@ class Gear(VMobject):
             undercut = True
 
             def diff_val_func(t):
+                """Compute the 2-D distance between undercut and involute curves.
+
+                Parameters
+                ----------
+                t : list of float
+                    ``[t_undercut, t_involute]`` parameter values.
+
+                Returns
+                -------
+                numpy.ndarray
+                    The ``(x, y)`` difference vector.
+                """
                 invo_val = rotate_vector(involute_func(-np.abs(t[1]), self.rb), - self.alpha * DEGREES)
                 ucut_val = undercut_func(t[0])
                 diff = ucut_val - invo_val
@@ -385,6 +506,15 @@ class Gear(VMobject):
 
         involute_curve.reverse_direction()
         def smooth_curve_joint(curve1: VMobject, curve2: VMobject):
+            """Smoothly join two curves by inserting a midpoint between their ends.
+
+            Parameters
+            ----------
+            curve1 : VMobject
+                The first curve (modified in place).
+            curve2 : VMobject
+                The second curve (modified in place).
+            """
             mid_point = (curve2.points[1, :] + curve1.points[-2, :]) / 2
             curve2.points[0, :] = mid_point
             curve1.points[-1, :] = mid_point
@@ -421,14 +551,14 @@ class Gear(VMobject):
             self.append_points(Outer_ring.points)
 
     def mesh_to(self, gear2: 'Gear', offset: float = 0, bias = 1):
-        ''' This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
+        """ This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
         ----------
         gear2: the other gear this gear (self) will mesh to. gear2 will not move due to meshing, only the 'self'.
         offset: axial distance offset coefficient. The gears will be offset*module further apart than default.
         positive_bias: When offset is used, there will play between gears. If positive_bias= True,
-            this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.'''
+            this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'."""
 
         # get the basic distance vector
         # remember: diff vect points towards self
@@ -512,7 +642,18 @@ class Gear(VMobject):
             about_point: Optional[Sequence[float]] = None,
             **kwargs,
             ):
-        '''Override of original rotate function so that if about_point is not specified, use the gear center'''
+        """Rotate the gear around its centre by default.
+
+        Parameters
+        ----------
+        angle : float
+            Rotation angle in radians.
+        axis : np.ndarray, optional
+            Rotation axis (default ``OUT``).
+        about_point : sequence of float or None, optional
+            Centre point for the rotation.  If ``None`` the gear's own
+            centre is used.
+        """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
         else:
@@ -521,7 +662,7 @@ class Gear(VMobject):
 
 
 class Rack(VMobject):
-    '''A Manim mobject representing a rack for involute gears.
+    """A Manim mobject representing a rack for involute gears.
 
     The rack must use the same module and pressure angle as the mating gear
     for proper meshing.
@@ -529,6 +670,7 @@ class Rack(VMobject):
     .. manim:: RackExample
         :save_last_frame:
 
+        from manim import *
         from manim_extensions.gearbox import Gear, Rack
 
         class RackExample(Scene):
@@ -539,20 +681,25 @@ class Rack(VMobject):
                 rack.shift(UP * rack.pitch * 0.5)
 
                 self.add(gear, rack)
-    '''
+    Parameters
+    ----------
+    num_of_teeth : int
+        Number of teeth on the rack.
+    module : float, optional
+        Standard size scaling parameter.  Defaults to ``0.2``.
+    alpha : float, optional
+        Pressure angle in degrees.  Defaults to ``20``.
+    h_a : float, optional
+        Addendum coefficient (tooth height above the pitch line).
+        Defaults to ``1``.
+    h_f : float, optional
+        Dedendum coefficient (tooth height below the pitch line).
+        Defaults to ``1.17``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+    """
     def __init__(self, num_of_teeth, module=0.2, alpha=20, h_a=1, h_f=1.17, **kwargs):
-        '''
-        Basic rack for involute gears (pinion-rack connection).
-        Must have the same module and alpha as the gear for proper meshing.
-
-        Parameters
-        ----------
-        num_of_teeth: number of gear teeth.
-        module: standard size scaling parameter. Diameter = module * num_of_teeth.
-        alpha: pressure angle in degrees, affects tooth curvature. Suggested values between 10-30
-        h_a: addendum / module coefficient (tooth height above pitch circle)
-        h_f: dedendum / module coefficient (tooth height below pitch circle)
-        '''
+        """Initialize Rack."""
         self.z = num_of_teeth
         self.m = module
 
@@ -574,7 +721,7 @@ class Rack(VMobject):
         self.submobjects.append(Line(start=ORIGIN, end=UP, stroke_opacity=0, fill_opacity=0))
 
     def generate_points(self):
-        '''Build the rack outline from trapezoidal teeth.'''
+        """Build the rack outline from trapezoidal teeth."""
 
         h_amax = self.pitch / 4 / np.tan(self.alpha*DEGREES)
         da = self.pitch/4*(h_amax-self.h_a*self.m)/h_amax
@@ -619,7 +766,18 @@ class Rack(VMobject):
             about_point: Optional[Sequence[float]] = None,
             **kwargs,
             ):
-        '''Override of original rotate function so that if about_point is not specified, use the gear center'''
+        """Rotate the rack around its centre by default.
+
+        Parameters
+        ----------
+        angle : float
+            Rotation angle in radians.
+        axis : np.ndarray, optional
+            Rotation axis (default ``OUT``).
+        about_point : sequence of float or None, optional
+            Centre point for the rotation.  If ``None`` the rack's own
+            centre is used.
+        """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
         else:

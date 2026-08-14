@@ -15,7 +15,7 @@ from manim.animation.transform import ApplyMethod
 from ..compass.pencil import Pencil
 
 class MovePencilAlongPath(MoveAlongPath):
-    '''Animation of the pencil nib moving along a given path.
+    """Animation of the pencil nib moving along a given path.
 
     .. manim:: MovePencilAlongPathDocExample
 
@@ -28,7 +28,15 @@ class MovePencilAlongPath(MoveAlongPath):
                 path = Line(LEFT, RIGHT)
                 self.play(MovePencilAlongPath(pencil, path))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        mobject : Pencil
+            The pencil.
+        path : VMobject
+            The target path.
+        suspend_mobject_updating : Union[bool, None]
+            Whether to suspend mobject updating."""
     def __init__(
         self,
         mobject: Pencil,
@@ -36,24 +44,13 @@ class MovePencilAlongPath(MoveAlongPath):
         suspend_mobject_updating: Union[bool, None] = False,
         **kwargs
     ) -> None:
-        '''
-        Move the pencil along the given path, using the nib as the reference point.
-
-        Parameters
-        ----------
-        mobject : Pencil
-            The pencil.
-        path : VMobject
-            The target path.
-        suspend_mobject_updating : Union[bool, None]
-            Whether to suspend mobject updating.
-        '''
+        """Initialize MovePencilAlongPath."""
         start = path.get_start()
         path = path.copy().shift(mobject.get_center() - start)
         super().__init__(mobject, path, suspend_mobject_updating, **kwargs)
 
 class MovePencilTipTo(ApplyMethod):
-    '''Move the pencil so that its nib is placed at point.
+    """Move the pencil so that its nib is placed at point.
 
     .. manim:: MovePencilTipToDocExample
 
@@ -65,23 +62,20 @@ class MovePencilTipTo(ApplyMethod):
                 pencil = Pencil().to_edge(LEFT)
                 self.play(MovePencilTipTo(pencil, ORIGIN))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        point : Point
+            The target point."""
     def __init__(
         self,
         pencil: Pencil,
         point:Point = None,
         **kwargs
     ):
-        '''
-        Move the pencil so that its nib is placed at point.
-
-        Parameters
-        ----------
-        pencil : Pencil
-            The pencil.
-        point : Point
-            The target point.
-        '''
+        """Initialize MovePencilTipTo."""
         super().__init__(
             pencil.move_nid_to,
             point,
@@ -89,7 +83,7 @@ class MovePencilTipTo(ApplyMethod):
         )
 
 class DrawPath(AnimationGroup):
-    '''Animation of the pencil nib moving along the path while drawing it.
+    """Animation of the pencil nib moving along the path while drawing it.
 
     .. manim:: DrawPathDocExample
 
@@ -102,23 +96,20 @@ class DrawPath(AnimationGroup):
                 path = Line(LEFT, RIGHT)
                 self.play(DrawPath(pencil, path))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        path : VMobject
+            The path."""
     def __init__(
         self,
         pencil:Pencil,
         path: VMobject = None,
         **kwargs
     ):
-        '''
-        Animation of the pencil nib moving along the path while drawing it.
-        
-        Parameters
-        ----------
-        pencil : Pencil
-            The pencil.
-        path : VMobject
-            The path.
-        '''
+        """Initialize DrawPath."""
         super().__init__(
             Create(path),
             MovePencilAlongPath(pencil,path),
@@ -126,7 +117,7 @@ class DrawPath(AnimationGroup):
         )
 
 class PutPencilAway(MovePencilTipTo):
-    '''Put the pencil away: move the pencil to point.
+    """Put the pencil away: move the pencil to point.
 
     .. manim:: PutPencilAwayDocExample
 
@@ -138,21 +129,18 @@ class PutPencilAway(MovePencilTipTo):
                 pencil = Pencil().to_edge(LEFT)
                 self.play(PutPencilAway(pencil, 2 * DOWN))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        point : Point
+            The placement position."""
     def __init__(
         self,
         pencil:Pencil,
         point:Point = None,
         **kwargs
     ):
-        '''
-        Put the pencil away: move the pencil to point.
-
-        Parameters
-        ----------
-        pencil : Pencil
-            The pencil.
-        point : Point
-            The placement position.
-        '''
+        """Initialize PutPencilAway."""
         super().__init__(pencil,point,**kwargs)

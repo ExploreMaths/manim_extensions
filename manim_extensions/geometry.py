@@ -1,3 +1,24 @@
+"""Geometric helper functions for Manim scenes.
+
+This module collects common intersection routines used to position and analyse
+primitives such as circles, lines, and arcs within Manim visualisations.
+
+    Examples
+    --------
+
+.. manim:: GeometryModuleDocExample
+      :save_last_frame:
+
+   from manim import *
+   from manim_extensions import CircleInt, LineInt
+
+   class GeometryModuleDocExample(Scene):
+       def construct(self):
+           c1 = Circle(radius=1.4, color=BLUE)
+           c2 = Circle(radius=1.4, color=RED).shift(RIGHT * 1.2)
+           self.add(c1, c2)
+"""
+
 from manim import *
 import math
 import numpy as np
@@ -175,7 +196,22 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
                    self.add(LabelDot("P", p, label_pos=UR, buff=0.1))
     """
 
+    @staticmethod
     def det(a: tuple[float, float], b: tuple[float, float]) -> float:
+        """Compute the 2-D cross product (determinant) of two vectors.
+
+        Parameters
+        ----------
+        a : tuple of float
+            First 2-D vector.
+        b : tuple of float
+            Second 2-D vector.
+
+        Returns
+        -------
+        float
+            The determinant ``a[0]*b[1] - a[1]*b[0]``.
+        """
         return a[0] * b[1] - a[1] * b[0]
 
     p1 = line1.get_start()[:2]
@@ -372,7 +408,21 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
                    self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
     """
 
+    @staticmethod
     def _to_list(result):
+        """Normalise an intersection result into a list of numpy arrays.
+
+        Parameters
+        ----------
+        result
+            Raw intersection result — may be ``None``, a tuple/list of
+            points, or a single point.
+
+        Returns
+        -------
+        list of numpy.ndarray
+            Intersection points as 3-D arrays.
+        """
         if result is None:
             return []
         if isinstance(result, tuple):
@@ -396,7 +446,23 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
         return _to_list(LineArcInt(mob2, mob1))
 
     # Generic VMobject sampling ----------------------------------------------
+    @staticmethod
     def _segment_intersection(a1, a2, b1, b2):
+        """Compute the intersection point of two 2-D line segments.
+
+        Parameters
+        ----------
+        a1, a2 : numpy.ndarray
+            Endpoints of the first segment.
+        b1, b2 : numpy.ndarray
+            Endpoints of the second segment.
+
+        Returns
+        -------
+        numpy.ndarray or None
+            The 3-D intersection point, or ``None`` if the segments do not
+            intersect.
+        """
         x1, y1 = a1[:2]
         x2, y2 = a2[:2]
         x3, y3 = b1[:2]
@@ -412,7 +478,22 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
             return np.array([x, y, 0.0])
         return None
 
+    @staticmethod
     def _sample_cubic_bezier(p0, p1, p2, p3, n=25):
+        """Sample points along a cubic Bezier curve defined by four control points.
+
+        Parameters
+        ----------
+        p0, p1, p2, p3 : numpy.ndarray
+            Control points of the cubic Bezier curve.
+        n : int
+            Number of sample points.
+
+        Returns
+        -------
+        numpy.ndarray
+            Array of shape ``(n, 3)`` with the sampled points.
+        """
         t = np.linspace(0, 1, n)
         return (
             (1 - t) ** 3 * p0[:, None]
@@ -421,7 +502,22 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
             + t**3 * p3[:, None]
         ).T
 
+    @staticmethod
     def _collect_segments(mob, samples=25):
+        """Recursively collect line segments from a VMobject's cubic Bezier curves.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The mobject to sample.
+        samples : int
+            Number of sample points per cubic Bezier segment.
+
+        Returns
+        -------
+        list of tuple
+            Pairs of numpy arrays representing line segments.
+        """
         segments = []
         if hasattr(mob, "submobjects") and mob.submobjects:
             for sub in mob.submobjects:
@@ -507,7 +603,21 @@ def TangentPoint(
                    self.add(LabelDot("T", tangent, label_pos=RIGHT, buff=0.1))
     """
 
+    @staticmethod
     def to_3d(point: Union[np.ndarray, tuple, list]) -> np.ndarray:
+        """Convert a 2-D or 3-D point into a 3-D numpy array.
+
+        Parameters
+        ----------
+        point : numpy.ndarray, tuple, or list
+            Point coordinates (2-D or 3-D).
+
+        Returns
+        -------
+        numpy.ndarray
+            3-D point as a ``float64`` array.  If the input is 2-D the
+            z-coordinate is set to ``0.0``.
+        """
         if len(point) == 2:
             return np.array([point[0], point[1], 0.0])
         return np.array(point[:3])

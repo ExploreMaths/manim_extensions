@@ -22,7 +22,21 @@ from ..algorithms import LayoutType,LayoutDirection
 class NodeSate(Enum):
     """Node state.
 
-    """
+    Examples
+    --------
+
+    .. manim:: NodeSateExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.nodes.node import NodeSate
+
+        class NodeSateExample(Scene):
+            def construct(self):
+                state = NodeSate.DISPLAY
+                label = Text(f"State: {state.name}", font_size=24)
+                self.add(label)
+"""
     INSERT = 0  # newly inserted
     REMOVE = 1  # pending removal
     DISPLAY = 2  # already displayed
@@ -30,30 +44,45 @@ class NodeSate(Enum):
     ALTER = 4  # replace node content
 
 class NodeStyle:
-    '''Overall layout parameters and a list of node-style dicts indexed by node level.
+    """Overall layout parameters and a list of node-style dicts indexed by node level.
 
-    '''
+    Examples
+    --------
+
+    .. manim:: NodeStyleExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.nodes.node import NodeStyle
+
+        class NodeStyleExample(Scene):
+            def construct(self):
+                style = NodeStyle()
+                label = Text("NodeStyle with default colors", font_size=24)
+                self.add(label)
+"""
     def __init__(
         self,
-        node_style:List[Dict] = [
-            {'color':RED, 'stroke_width':8},
-            {'color':BLUE, 'stroke_width':6},
-            {'color':YELLOW, 'stroke_width':4},
-            {'color':GREEN, 'stroke_width':4}
+        node_style: List[Dict[str, object]] | None = [
+            {'color': RED, 'stroke_width': 8},
+            {'color': BLUE, 'stroke_width': 6},
+            {'color': YELLOW, 'stroke_width': 4},
+            {'color': GREEN, 'stroke_width': 4}
         ],
-        line_style:List[Dict] = [
-            {'color':RED, 'stroke_width':8},
-            {'color':BLUE, 'stroke_width':6},
-            {'color':YELLOW, 'stroke_width':4},
-            {'color':GREEN, 'stroke_width':4}
+        line_style: List[Dict[str, object]] | None = [
+            {'color': RED, 'stroke_width': 8},
+            {'color': BLUE, 'stroke_width': 6},
+            {'color': YELLOW, 'stroke_width': 4},
+            {'color': GREEN, 'stroke_width': 4}
         ],
-        text_style = [
-            {'color':RED,'font_size':64},
-            {'color':YELLOW,'font_size':56},
-            {'color':GREEN,'font_size':48},
-            {'color':WHITE,'font_size':36}
-        ]
-    ):
+        text_style: List[Dict[str, object]] | None = [
+            {'color': RED, 'font_size': 64},
+            {'color': YELLOW, 'font_size': 56},
+            {'color': GREEN, 'font_size': 48},
+            {'color': WHITE, 'font_size': 36}
+        ],
+    ) -> None:
+        """Initialize the NodeStyle instance."""
         self.node_num = len(node_style)
         if self.node_num:
             self.node_style = node_style
@@ -76,26 +105,48 @@ class NodeStyle:
             self.text_num = 1
 
     def get_node_style(self,level:int) -> Dict:
-        """Return the node style for the given level."""
+        """Return the style dictionary for the requested node level.
+
+        Parameters
+        ----------
+        level : int
+            Hierarchy level whose style definition should be returned.
+        """
         if level < self.node_num:
             return self.node_style[level]
         return self.node_style[-1]
     
     def get_line_style(self,level:int) -> Dict:
-        """Return the line style for the given level."""
+        """Return the line style for the requested hierarchy level.
+
+        Parameters
+        ----------
+        level : int
+            Hierarchy level whose connector style should be returned.
+        """
         if level < self.line_num:
             return self.line_style[level]
         return self.line_style[-1]
     
     def get_text_style(self,level:int) -> Dict:
-        """Return the text style for the given level."""
+        """Return the text style for the requested hierarchy level.
+
+        Parameters
+        ----------
+        level : int
+            Hierarchy level whose text style should be returned.
+        """
         if level < self.text_num:
             return self.text_style[level]
         return self.text_style[-1]
 
 def dfs_walker(root: 'Node') -> Generator:
-    """Depth-first, pre-order traversal: last-in-first-out using a stack.
+    """Yield the tree in depth-first pre-order using a stack.
 
+    Parameters
+    ----------
+    root : 'Node'
+        Root node of the tree to traverse.
     """
     if not root:
         return []
@@ -107,8 +158,12 @@ def dfs_walker(root: 'Node') -> Generator:
             stack.append(child)
 
 def bfs_walker(root: 'Node') -> Generator:
-    """Breadth-first, level-order traversal: first-in-first-out using a queue.
+    """Yield the tree in breadth-first level order using a queue.
 
+    Parameters
+    ----------
+    root : 'Node'
+        Root node of the tree to traverse.
     """
     if not root:
         return []
@@ -136,10 +191,11 @@ class Node:
     """
     def __init__(
         self,
-        vmobject:VMobject = None,
+        vmobject: VMobject | None = None,
         buff: float = 0.2,
-        **kwargs
-    ):
+        **kwargs: object,
+    ) -> None:
+        """Initialize the Node instance."""
         self.vmobject = vmobject
         self.height = self.vmobject.height + 2*buff
         self.width = self.vmobject.width + 2*buff
@@ -158,36 +214,66 @@ class Node:
         self.node_state = NodeSate.INSERT  # node state
         self.side = None
     
-    def scale(self, scale_factor: float):
-        """Scale the node."""
+    def scale(self, scale_factor: float) -> None:
+        """Scale the node around its current center.
+
+        Parameters
+        ----------
+        scale_factor : float
+            Uniform scaling factor applied to the node dimensions.
+        """
         self.node_state = NodeSate.SCALE
         self.scale_factor = scale_factor
         self.width *= scale_factor
         self.height *= scale_factor
     
-    def add_child(self, child: 'Node'):
-        """Add a child node."""
+    def add_child(self, child: 'Node') -> None:
+        """Attach a child node to the current node.
+
+        Parameters
+        ----------
+        child : 'Node'
+            Child node to insert beneath the current parent.
+        """
         if self.children:
             child.neighbor = self.children[-1]
             child.node_state = NodeSate.INSERT
         self.children.append(child)
         child.parent = self
 
-    def remove_child(self, child: 'Node'):
-        """Remove a child node."""
+    def remove_child(self, child: 'Node') -> None:
+        """Mark a child node for removal from the current node.
+
+        Parameters
+        ----------
+        child : 'Node'
+            Child node scheduled for removal from the tree.
+        """
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
         child.node_state = NodeSate.REMOVE
 
-    def alter_content(self, vmobject: VMobject):
-        """Replace the node content."""
+    def alter_content(self, vmobject: VMobject) -> None:
+        """Replace the displayed content of the node.
+
+        Parameters
+        ----------
+        vmobject : VMobject
+            New mobject used to render the node content.
+        """
         self.node_state = NodeSate.ALTER
         self.alter_vmobject = vmobject
         self.width = self.alter_vmobject.width + 2*self.buff
         self.height = self.alter_vmobject.height + 2*self.buff
 
-    def _get_mindmap_connector(self, direction: np.ndarray, **kwargs) -> Line:
-        """Return the connector line for a mind-map node."""
+    def _get_mindmap_connector(self, direction: np.ndarray, **kwargs: object) -> Line:
+        """Return the connector line for a mind-map node.
+
+    Parameters
+    ----------
+    direction : np.ndarray
+    The direction of the operation.
+    """
         if np.array_equal(direction,UP):
             start,end = self.parent.surr_rect.get_top(),self.surr_rect.get_bottom()
         elif np.array_equal(direction,DOWN):
@@ -199,8 +285,14 @@ class Node:
         vec = np.dot(end - start,direction) * direction*0.5
         return Line(start,start+vec,**kwargs).add_line_to(end-vec).add_line_to(end)
         
-    def _get_timeline_connector(self,**kwargs) -> Line:
-        """Return the connector line for a timeline node."""
+    def _get_timeline_connector(self, **kwargs: object) -> Line:
+        """Return the connector line for a timeline node.
+
+    Parameters
+    ----------
+    kwargs
+    Kwargs processed by this operation.
+    """
         if self.level == 1:
             if (neighbor:=self.neighbor) is not None:
                 start = neighbor.surr_rect.get_right()
@@ -218,8 +310,14 @@ class Node:
         middle = np.array([start[0],end[1],0])
         return Line(start,middle,**kwargs).add_line_to(end)
     
-    def _get_catalog_connector(self,**kwargs) -> Line:
-        """Return the connector line for a catalog node."""
+    def _get_catalog_connector(self, **kwargs: object) -> Line:
+        """Return the connector line for a catalog node.
+
+    Parameters
+    ----------
+    kwargs
+    Kwargs processed by this operation.
+    """
         start = self.parent.surr_rect.get_bottom()
         if self.level == 1:
             end = self.surr_rect.get_top()
@@ -230,8 +328,23 @@ class Node:
         middle = np.array([start[0],end[1],0])
         return Line(start,middle,**kwargs).add_line_to(end)
 
-    def get_connector(self,layout_type,direction,**kwargs) -> Line:
-        """Return the connector from this node to its parent based on layout type."""
+    def get_connector(
+        self,
+        layout_type: LayoutType,
+        direction: np.ndarray,
+        **kwargs: object,
+    ) -> Line:
+        """Return the connector from this node to its parent based on layout type.
+
+    Parameters
+    ----------
+    layout_type
+    Layout type parameter for this operation.
+    direction
+    The direction of the operation.
+    kwargs
+    Kwargs processed by this operation.
+    """
         match layout_type:
             case LayoutType.MindMap:
                 return self._get_mindmap_connector(direction,**kwargs)
@@ -246,8 +359,18 @@ class Node:
                 return self._get_catalog_connector(**kwargs)
             
     
-    def set_connector(self,layout_type,direction = RIGHT,**kwargs):
-        """Set the connector line."""
+    def set_connector(self, layout_type: LayoutType, direction: np.ndarray = RIGHT, **kwargs: object) -> None:
+        """Set the connector line.
+
+    Parameters
+    ----------
+    layout_type
+    Layout type parameter for this operation.
+    direction
+    The direction of the operation.
+    kwargs
+    Kwargs processed by this operation.
+    """
         if self.parent is not None and not hasattr(self,'connector'):
             self.connector_style = kwargs
             self.connector = self.get_connector(layout_type,direction,**kwargs)
@@ -259,13 +382,25 @@ class Node:
     
     def change_connector(
         self,
-        change_dir:bool,
-        change_layout:bool,
+        change_dir: bool,
+        change_layout: bool,
         layout_type: LayoutType,
-        direction:np.ndarray = RIGHT,
-        **kwargs
-    ):
-        """Change the connector line."""
+        direction: np.ndarray = RIGHT,
+        **kwargs: object,
+    ) -> None:
+        """Change the connector line.
+
+    Parameters
+    ----------
+    change_dir : bool
+    Change dir parameter for this operation.
+    change_layout : bool
+    Change layout parameter for this operation.
+    layout_type : LayoutType
+    Layout type parameter for this operation.
+    direction : np.ndarray
+    The direction of the operation.
+    """
         current_style = getattr(self, 'connector_style', None)
         if hasattr(self,'connector') and (
             change_layout or change_dir or kwargs != current_style
@@ -297,6 +432,20 @@ class Node:
             node: Node,
             descendants: list[Node] = []
         ) -> list[Node]:
+            """Recursively collect all descendant nodes of a given node.
+
+            Parameters
+            ----------
+            node : Node
+                The starting node.
+            descendants : list of Node
+                Accumulator list for the result (mutated in place).
+
+            Returns
+            -------
+            list of Node
+                All descendant nodes (children, grandchildren, ...).
+            """
             if node.children:
                 descendants.extend(node.children)
             for node_ in node.children:
@@ -317,6 +466,20 @@ class Node:
             node: Node,
             descendants: Group = Group()
         ) -> Group:
+            """Recursively collect all mobjects for descendants of a given node.
+
+            Parameters
+            ----------
+            node : Node
+                The starting node.
+            descendants : Group
+                Accumulator group for the result (mutated in place).
+
+            Returns
+            -------
+            Group
+                A group containing the mobjects of all descendant nodes.
+            """
             for node_ in node.children:
                 descendants.add(node_.vmobject,node_.surr_rect)
                 descendants_mobjects_of_node(node_,descendants)

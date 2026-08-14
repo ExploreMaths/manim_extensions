@@ -21,7 +21,23 @@ from ..algorithms import Layout
 class NodeMobject:
     """Wrapper for the components of a mind-map node.
 
-    """
+    Examples
+    --------
+
+    .. manim:: NodeMobjectExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.mindmap.base import NodeMobject
+
+        class NodeMobjectExample(Scene):
+            def construct(self):
+                rect = Rectangle()
+                line = Line(LEFT, RIGHT)
+                tex = Tex("x")
+                nm = NodeMobject(rect, rect, line, "x")
+                self.add(rect)
+"""
     __slots__ = ['vmobject','surr_rect','connector','text']
     def __init__(
         self,
@@ -30,6 +46,7 @@ class NodeMobject:
         connector:Line,
         text:str
     ):
+        """Initialize the NodeMobject instance."""
         self.vmobject = vmobject
         self.surr_rect = surr_rect
         self.connector = connector
@@ -40,14 +57,32 @@ def generate_tree(
     node_style :NodeStyle = NodeStyle(),
     buff:float = 0.2
 ) -> Node:
-    """
-    Recursively traverse *Map* and return the root node of the generated tree.
+    """Recursively traverse *Map* and return the root node of the generated tree.
 
     ``text``: narration text that can be used for text-to-speech synthesis.
-    
 
+    Parameters
+    ----------
+    node_style : NodeStyle
+    Node style parameter for this operation.
+    buff : float
+    Buff parameter for this operation.
     """
     def _generate_tree(ID=(0,), current_map:Dict = None) -> Node:
+        """Recursively build a :class:`Node` tree from a dictionary map.
+
+        Parameters
+        ----------
+        ID : tuple of int
+            Hierarchical index tuple for the current node.
+        current_map : Dict
+            Dictionary describing the node and its children.
+
+        Returns
+        -------
+        Node
+            The root of the generated subtree.
+        """
         level = len(ID)
         mobj = _generate_node(Mobj=current_map['node'], level=level)
         current_node = Node(mobj, buff, **node_style.get_node_style(level=level))
@@ -62,7 +97,15 @@ def generate_tree(
         return current_node
 
     def _generate_node(Mobj,level = 1) -> Mobject:
-        """Generate a node mobject."""
+        """Generate a node mobject.
+
+    Parameters
+    ----------
+    Mobj
+    Mobj parameter for this operation.
+    level
+    Level parameter for this operation.
+    """
         if isinstance(Mobj,str):
             Mobj = Tex(
                 Mobj,
@@ -76,11 +119,25 @@ def generate_tree(
 class AbstractMap(Group):
     """Abstract base class for mind maps, timelines, etc.
 
-    """
+    Examples
+    --------
+
+    .. manim:: AbstractMapExample
+      :save_last_frame:
+
+        from manim import *
+        from manim_extensions.mindmap.mindmap.base import AbstractMap
+
+        class AbstractMapExample(Scene):
+            def construct(self):
+                label = Text("AbstractMap base class", font_size=24)
+                self.add(label)
+"""
     def __init__(
         self,
         layout_method:Layout = Layout()
     ):
+        """Initialize the AbstractMap instance."""
         super().__init__()
         self.node_data_dict = {}
         self.root = layout_method.layout()
@@ -90,6 +147,13 @@ class AbstractMap(Group):
         self.move_to(ORIGIN)
     
     def _set_node_position(self,node:Node):
+        """Recursively position a node and all its descendants.
+
+        Parameters
+        ----------
+        node : Node
+            The root of the subtree to position.
+        """
         pos = np.array([node.x, node.y, 0])
         node.vmobject.move_to(pos)
         node.surr_rect.move_to(pos)
@@ -101,25 +165,49 @@ class AbstractMap(Group):
         raise NotImplementedError
         
     def get_node_component(self,ID) -> NodeMobject:
-        """Return the full component object of the node with the given ID."""
+        """Return the full component object of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         return self.node_data_dict.get(ID,None)
 
     def get_node(self,ID) -> Group:
-        """Return the VMobject and surrounding rectangle of the node with the given ID."""
+        """Return the VMobject and surrounding rectangle of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return Group(node.vmobject,node.surr_rect)
         return None
 
     def get_text(self,ID) -> str:
-        """Return the narration text of the node with the given ID."""
+        """Return the narration text of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return node.text
         return None
     
     def get_connector(self,ID) -> Line:
-        """Return the connector line of the node with the given ID."""
+        """Return the connector line of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self.node_data_dict.get(ID,None)
         if node is not None:
             return node.connector
@@ -146,30 +234,60 @@ class AbstractMap(Group):
             yield self.node_data_dict[node.ID]
 
     def custom_walker(self,id_list: List[tuple]) -> Generator:
-        """Custom traversal."""
+        """Custom traversal.
+
+    Parameters
+    ----------
+    id_list : List[tuple]
+    Id list parameter for this operation.
+    """
         for id in id_list:
             yield self.node_data_dict.get(id,None)
 
     def _get_origin_node(self,ID) -> Node:
-        """Find the node with the given ID in the original tree."""
+        """Find the node with the given ID in the original tree.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         for node in dfs_walker(self.root):
             if node.ID == ID:
                 return node
         return None
     
     def _get_connector_style(self,level:int) -> dict:
-        """Return the line style for the given level."""
+        """Return the line style for the given level.
+
+    Parameters
+    ----------
+    level : int
+    Level parameter for this operation.
+    """
         return self.node_style.get_line_style(level=level)
 
     def get_children(self,ID) -> Group:
-        '''Return the child nodes of the node with the given ID.'''
+        """Return the child nodes of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self._get_origin_node(ID)
         if node is None:
             return Group()
         return node.get_children_mobjects()
     
     def get_submindmap(self,ID) -> Group:
-        '''Return the subtree rooted at the node with the given ID.'''
+        """Return the subtree rooted at the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self._get_origin_node(ID)
         mondmap = Group()
         if node is None:
@@ -182,7 +300,13 @@ class AbstractMap(Group):
         return mondmap
 
     def get_descendants(self,ID) -> Group:
-        '''Return the descendants of the node with the given ID.'''
+        """Return the descendants of the node with the given ID.
+
+    Parameters
+    ----------
+    ID
+    Id parameter for this operation.
+    """
         node = self._get_origin_node(ID)
         if node is None:
             return Group()

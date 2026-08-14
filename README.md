@@ -20,6 +20,7 @@
 - **Geometry helpers** — circle / line / arc intersections and tangent points
 - **Common animations** — typewriting, random / reverse writes, highlights, sweep effects, and extra easing functions
 - **Bundled toolkits** — involute **gears**, **mind maps** / timelines / catalog diagrams, and **compass-and-straightedge** construction scenes
+- **Third-party integrations** — selected Manim plugin repositories tracked as Git submodules and exposed through `manim_extensions` namespace shims
 
 ## Modules
 
@@ -31,6 +32,33 @@
 | `manim_extensions.gearbox`    | Involute gears and racks |
 | `manim_extensions.mindmap`    | Mind maps, timelines, catalog diagrams |
 | `manim_extensions.compass`    | Compass, ruler, pencil, and construction animations |
+| `manim_extensions.algorithm`  | Third-party algorithm visualisation helpers |
+| `manim_extensions.automata`   | Third-party automata visualisation helpers |
+| `manim_extensions.circuit`    | Third-party circuit diagram animations |
+| `manim_extensions.data_structures` | Third-party data structure animations |
+| `manim_extensions.meshes`     | Third-party mesh and geometry visualisation |
+| `manim_extensions.neural_network` | Third-party neural-network visualisation |
+| `manim_extensions.physics`    | Third-party physics simulation helpers |
+| `manim_extensions.rubikscube` | Third-party Rubik's Cube animation toolkit |
+| `manim_extensions.sequence_diagram` | Third-party sequence diagram animations |
+| `manim_extensions.tikz`       | Third-party TikZ import helpers |
+
+## Third-party submodules
+
+The project maintains the following third-party plugin repositories as Git submodules under `third_party/`:
+
+- `manim-algorithm`
+- `manim-automata`
+- `manim-circuit`
+- `manim-data-structures`
+- `manim-meshes`
+- `manim-neural-network`
+- `manim-physics`
+- `manim-rubikscube`
+- `manim-sequence-diagram`
+- `manim-tikz`
+
+Each one is exposed as a light import shim under the `manim_extensions` package, while the original implementation remains in the corresponding submodule directory for source provenance and updates.
 
 ## Documentation
 

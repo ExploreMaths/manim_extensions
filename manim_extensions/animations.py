@@ -34,7 +34,6 @@ def VisDrawArc(
     --------
 
     .. manim:: VisDrawArcDocExample
-
        from manim import *
        from manim_extensions import VisDrawArc
 
@@ -42,8 +41,7 @@ def VisDrawArc(
            def construct(self):
                arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
                VisDrawArc(self, arc, axis=OUT, run_time=2)
-               self.wait()
-    """
+               self.wait()    """
 
     # Get the start point, end point, and centre of the arc
     start_point = arc.point_from_proportion(0)
@@ -164,6 +162,7 @@ class TypeWriter(Animation):
     """
 
     def __init__(self, mobject: Text, interval: float = 2, **kwargs) -> None:
+        """Initialize the TypeWriter instance."""
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
         self.char_count = len(mobject.submobjects)
@@ -180,8 +179,10 @@ class TypeWriter(Animation):
         This method is called internally by Manim during the animation.  It
         reveals characters one by one as *alpha* goes from ``0`` to ``1``.
 
-        Examples
-        --------
+        Parameters
+        ----------
+        alpha : float
+            Animation progress from ``0`` to ``1``.
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
@@ -218,7 +219,7 @@ def easeOutBounce(t: float) -> float:
         t: Progress in ``[0, 1]``.
 
     Returns:
-        The eased value in ``[0, 1]``.
+        Eased value used in this operation. in ``[0, 1]``.
 
     Examples
     --------
@@ -262,7 +263,7 @@ def easeInBounce(t: float) -> float:
         t: Progress in ``[0, 1]``.
 
     Returns:
-        The eased value in ``[0, 1]``.
+        Eased value used in this operation. in ``[0, 1]``.
 
     Examples
     --------
@@ -296,7 +297,7 @@ def easeInOutBounce(t: float) -> float:
         t: Progress in ``[0, 1]``.
 
     Returns:
-        The eased value in ``[0, 1]``.
+        Eased value used in this operation. in ``[0, 1]``.
 
     Examples
     --------
@@ -336,7 +337,7 @@ def easeOutElastic(t: float) -> float:
         t: Progress in ``[0, 1]``.
 
     Returns:
-        The eased value, which may exceed ``1`` near the end.
+        Eased value used in this operation., which may exceed ``1`` near the end.
 
     Examples
     --------
@@ -402,6 +403,7 @@ class WriteRandom(LaggedStart):
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+        """Initialize the WriteRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -446,6 +448,7 @@ class ReversedWrite(LaggedStart):
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+        """Initialize the ReversedWrite instance."""
         indices = list(range(len(mobject.submobjects) - 1, -1, -1))
         super().__init__(
             *[Write(mobject[i], rate_func=linear) for i in indices],
@@ -489,6 +492,7 @@ class FadeInRandom(LaggedStart):
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+        """Initialize the FadeInRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -534,6 +538,7 @@ class FadeOutRandom(LaggedStart):
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+        """Initialize the FadeOutRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -578,6 +583,7 @@ class GrowRandom(LaggedStart):
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+        """Initialize the GrowRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -635,9 +641,10 @@ class PassingRectangle(Animation):
         fill_opacity: float = 0.6,
         **kwargs,
     ):
+        """Initialize the PassingRectangle instance."""
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
-        self.height = mobject.get_height() + 2 * buff
+        self.height = mobject.height + 2 * buff
         self.color = color
         self.fill_opacity = fill_opacity
         rect = Rectangle(
@@ -650,7 +657,13 @@ class PassingRectangle(Animation):
         super().__init__(rect, rate_func=linear, **kwargs)
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """Slide and resize the sweep rectangle based on *alpha*."""
+        """Slide and resize the sweep rectangle based on *alpha*.
+
+        Parameters
+        ----------
+        alpha : float
+            Animation progress from ``0`` to ``1``.
+        """
         a_left = rush_into(alpha)
         a_right = 1 - rush_into(1 - alpha)
         left = interpolate(self.mob_left, self.mob_right, a_left)
@@ -708,18 +721,42 @@ class LaggedCreation(Animation):
         start_ratio: float = 1 / 6,
         **kwargs,
     ):
+        """Initialize the LaggedCreation instance."""
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
         super().__init__(mobject, rate_func=linear, **kwargs)
 
     def get_bounds(self, alpha: float):
+        """Compute the start and end fractions for the reveal at progress *alpha*.
+
+        Parameters
+        ----------
+        alpha : float
+            Animation progress between ``0`` and ``1``.
+
+        Returns
+        -------
+        tuple of float
+            The ``(start, end)`` fractions in ``[0, 1]`` that define the
+            revealed portion of the submobject.
+        """
         ratio = self.start_ratio
         a = interpolate((1 - ratio) / 4, 1 / 2 + ratio / 4, alpha)
         b = interpolate((1 - ratio) / 4, 3 / 2 + ratio / 4, alpha)
         return a, b
 
     def interpolate_submobject(self, submobject, starting_submobject, alpha: float) -> None:
-        """Reveal *submobject* between the computed partial bounds."""
+        """Reveal *submobject* between the computed partial bounds.
+
+        Parameters
+        ----------
+        submobject
+            The submobject being animated.
+        starting_submobject
+            The initial state of the submobject.
+        alpha : float
+            Animation progress from ``0`` to ``1``.
+        """
         a, b = self.get_bounds(alpha)
         submobject.pointwise_become_partial(starting_submobject, a, b)
         if b > 1:
@@ -774,9 +811,12 @@ class HighLightWithLines(AnimationGroup):
         rec_opacity: float = 0.5,
         **kwargs,
     ):
-        line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        """Initialize the HighLightWithLines instance."""
+        line_up = Line(color=color, stroke_width=2)
+        line_up.width = config.frame_width
         line_up.next_to(mobject, UP, buff=buff)
-        line_down = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_down = Line(color=color, stroke_width=2)
+        line_down.width = config.frame_width
         line_down.next_to(mobject, DOWN, buff=buff)
         self.lines = VGroup(line_up, line_down)
 
@@ -840,9 +880,12 @@ class UnHighLightWithLines(AnimationGroup):
         rec_opacity: float = 0.5,
         **kwargs,
     ):
-        line_up = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        """Initialize the UnHighLightWithLines instance."""
+        line_up = Line(color=color, stroke_width=2)
+        line_up.width = config.frame_width
         line_up.next_to(mobject, UP, buff=buff)
-        line_down = Line(color=color, stroke_width=2).set_width(config.frame_width)
+        line_down = Line(color=color, stroke_width=2)
+        line_down.width = config.frame_width
         line_down.next_to(mobject, DOWN, buff=buff)
         lines = VGroup(line_up, line_down)
 

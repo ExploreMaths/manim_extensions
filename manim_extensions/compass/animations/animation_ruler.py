@@ -10,7 +10,7 @@ from manim.constants import RIGHT, LEFT, UP, DOWN
 from ..compass.ruler import Ruler
 
 class PutRuler(ApplyMethod):
-    '''Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
+    """Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
 
     .. manim:: PutRulerDocExample
 
@@ -22,7 +22,15 @@ class PutRuler(ApplyMethod):
                 ruler = Ruler().to_edge(LEFT)
                 self.play(PutRuler(ruler, LEFT, RIGHT))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        ruler : Ruler
+            The ruler.
+        start : Point
+            The start point.
+        end : Point
+            The end point."""
     def __init__(
         self,
         ruler:Ruler,
@@ -30,18 +38,7 @@ class PutRuler(ApplyMethod):
         end:Point = None,
         **kwargs
     ):
-        '''
-        Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
-
-        Parameters
-        ----------
-        ruler : Ruler
-            The ruler.
-        start : Point
-            The start point.
-        end : Point
-            The end point.
-        '''
+        """Initialize PutRuler."""
         super().__init__(
             ruler.set_ruler,
             start,
@@ -50,7 +47,7 @@ class PutRuler(ApplyMethod):
         )
 
 class PutRulerAway(PutRuler):
-    '''Put the ruler away: move the ruler to point.
+    """Put the ruler away: move the ruler to point.
 
     .. manim:: PutRulerAwayDocExample
 
@@ -62,7 +59,15 @@ class PutRulerAway(PutRuler):
                 ruler = Ruler().to_edge(LEFT)
                 self.play(PutRulerAway(ruler, 2 * DOWN))
                 self.wait()
-    '''
+
+    Parameters
+    ----------
+        ruler : Ruler
+            The ruler.
+        point : Point
+            The placement position.
+        is_flat : bool
+            Whether to place it horizontally (or vertically)."""
     def __init__(
         self,
         ruler:Ruler,
@@ -70,18 +75,7 @@ class PutRulerAway(PutRuler):
         is_flat:bool = True,
         **kwargs
     ):
-        '''
-        Put the ruler away: move the ruler to point.
-
-        Parameters
-        ----------
-        ruler : Ruler
-            The ruler.
-        point : Point
-            The placement position.
-        is_flat : bool
-            Whether to place it horizontally (or vertically).
-        '''
+        """Initialize PutRulerAway."""
         if is_flat:
             start = point + LEFT
             end = point + RIGHT

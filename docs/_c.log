@@ -1,0 +1,693 @@
+Removing everything under 'build'...
+[01mÕýÔÚÔËÐÐ Sphinx v9.1.0[39;49;00m
+[01mÕýÔÚ¼ÓÔØ·­Òë [en]¡­[39;49;00mÍê³É
+[01mÕýÔÚ´´½¨Êä³öÄ¿Â¼... [39;49;00mÍê³É
+[×Ô¶¯ÕªÒª] ÕýÔÚÉú³É×Ô¶¯ÕªÒª£ºapi\animations.rst, api\geometry.rst, api\mobjects.rst, changelog.rst, code_of_conduct.rst, contributing.rst, examples\index.rst, index.rst, installation\index.rst, reference\algorithm\api.rst, ..., reference\physics\index.rst, reference\rubikscube\api.rst, reference\rubikscube\index.rst, reference\sequence_diagram\api.rst, reference\sequence_diagram\index.rst, reference\tikz\api.rst, reference\tikz\index.rst, tutorials\faq.rst, tutorials\index.rst, tutorials\quickstart.rst
+ÕýÔÚ¼ÓÔØ Sphinx »¥ÁªÇåµ¥¡°python¡±£¬À´×Ô https://docs.python.org/3/objects.inv¡­¡­
+ÕýÔÚ¼ÓÔØ Sphinx »¥ÁªÇåµ¥¡°manim¡±£¬À´×Ô https://docs.manim.community/en/stable/objects.inv¡­¡­
+ÕýÔÚ¼ÓÔØ Sphinx »¥ÁªÇåµ¥¡°numpy¡±£¬À´×Ô https://numpy.org/doc/stable/objects.inv¡­¡­
+ÕýÔÚ¼ÓÔØ Sphinx »¥ÁªÇåµ¥¡°pillow¡±£¬À´×Ô https://pillow.readthedocs.io/en/stable/objects.inv¡­¡­
+[01mÕýÔÚ¹¹½¨ [mo]£º [39;49;00m0 ¸ö po ÎÄ¼þµÄÄ¿±êÎÄ¼þÒÑ¹ýÆÚ
+[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m
+[01mÕýÔÚ¹¹½¨ [html]£º [39;49;00m49 ¸öÔ´ÎÄ¼þµÄÄ¿±êÎÄ¼þÒÑ¹ýÆÚ
+[01mÕýÔÚ¸üÐÂ»·¾³£º[39;49;00m[ÐÂÅäÖÃ] ÓÐ 49 ¸öÐÂÔöÎÄ¼þ£¬ÓÐ 0 ¸öÎÄ¼þÒÑ±»ÐÞ¸Ä£¬ÓÐ 0 ¸öÎÄ¼þÒÑ±»ÒÆ³ý
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[  2%] [35mapi/animations[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[  4%] [35mapi/geometry[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[  6%] [35mapi/mobjects[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[  8%] [35mchangelog[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 10%] [35mcode_of_conduct[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 12%] [35mcontributing[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 14%] [35mexamples/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 16%] [35mindex[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 18%] [35minstallation/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 20%] [35mreference/algorithm/api[39;49;00m[2026/8/14 9:01:58] WARNING  manim example               manim_directive.py:327
+                             'UpdateValueExample' could                        
+                             not be rendered (cannot                           
+                             import name 'UpdateValue'                         
+                             from                                              
+                             'manim_extensions.algorithm                       
+                             .node'                                            
+                             (C:\Users\kylez\Desktop\Man                       
+                             im\manim_extensions\manim_e                       
+                             xtensions\algorithm\node.py                       
+                             )); showing the source code                       
+                             instead.                                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'MoveAndOverWriteExample'                         
+                             could not be rendered                             
+                             (cannot import name                               
+                             'MoveAndOverWrite' from                           
+                             'manim_extensions.algorithm                       
+                             .node'                                            
+                             (C:\Users\kylez\Desktop\Man                       
+                             im\manim_extensions\manim_e                       
+                             xtensions\algorithm\node.py                       
+                             )); showing the source code                       
+                             instead.                                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'CopyAndOverWriteExample'                         
+                             could not be rendered (name                       
+                             'CopyAndOverWriteExample'                         
+                             is not defined); showing                          
+                             the source code instead.                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'SwapAndOverWriteExample'                         
+                             could not be rendered (name                       
+                             'SwapAndOverWriteExample'                         
+                             is not defined); showing                          
+                             the source code instead.                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'NodeConfigExample' could                         
+                             not be rendered                                   
+                             ('NodeConfig' object has no                       
+                             attribute 'submobjects');                         
+                             showing the source code                           
+                             instead.                                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'NodeSoltExample' could not                       
+                             be rendered ('NodeSolt'                           
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'ArrayExample' could not be                       
+                             rendered (Array.__init__()                        
+                             missing 1 required                                
+                             positional argument:                              
+                             'data'); showing the source                       
+                             code instead.                                     
+                             [reference/algorithm/api]                         
+[2026/8/14 9:01:59] WARNING  manim example               manim_directive.py:327
+                             'QueueExample' could not be                       
+                             rendered (Queue.__init__()                        
+                             missing 1 required                                
+                             positional argument:                              
+                             'capacity'); showing the                          
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'EnqueueExample' could not                        
+                             be rendered (name                                 
+                             'EnqueueExample' is not                           
+                             defined); showing the                             
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'DequeueExample' could not                        
+                             be rendered (name                                 
+                             'DequeueExample' is not                           
+                             defined); showing the                             
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example 'CodeExample' manim_directive.py:327
+                             could not be rendered                             
+                             (Either a code file or a                          
+                             code string must be                               
+                             specified.); showing the                          
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'PythonCodeExample' could                         
+                             not be rendered (Either a                         
+                             code file or a code string                        
+                             must be specified.);                              
+                             showing the source code                           
+                             instead.                                          
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'JavaCodeExample' could not                       
+                             be rendered (Either a code                        
+                             file or a code string must                        
+                             be specified.); showing the                       
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+                    WARNING  manim example               manim_directive.py:327
+                             'CppCodeExample' could not                        
+                             be rendered (Either a code                        
+                             file or a code string must                        
+                             be specified.); showing the                       
+                             source code instead.                              
+                             [reference/algorithm/api]                         
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 22%] [35mreference/algorithm/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 24%] [35mreference/automata/api[39;49;00m[2026/8/14 9:02:00] WARNING  manim example               manim_directive.py:327
+                             'ManimStateExample' could                         
+                             not be rendered                                   
+                             (ManimState.__init__()                            
+                             missing 4 required                                
+                             positional arguments:                             
+                             'name', 'x', 'y', and                             
+                             'animation_style'); showing                       
+                             the source code instead.                          
+                             [reference/automata/api]                          
+[2026/8/14 9:02:01] WARNING  manim example               manim_directive.py:327
+                             'ManimPushDownAutomatonTran                       
+                             sitionExample' could not be                       
+                             rendered                                          
+                             (ManimPushDownAutomatonTran                       
+                             sition.__init__() missing 5                       
+                             required positional                               
+                             arguments:                                        
+                             'transition_from',                                
+                             'transition_to', 'rules',                         
+                             'parent_automaton', and                           
+                             'animation_style'); showing                       
+                             the source code instead.                          
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'PushDownAutomatonRuleExamp                       
+                             le' could not be rendered                         
+                             (PushDownAutomatonRule.__in                       
+                             it__() missing 3 required                         
+                             positional arguments:                             
+                             'read_symbol', 'pop', and                         
+                             'push'); showing the source                       
+                             code instead.                                     
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'ManimTuringMachineExample'                       
+                             could not be rendered (Not                        
+                             implemented!); showing the                        
+                             source code instead.                              
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'TokenExample' could not be                       
+                             rendered (Token.__init__()                        
+                             missing 2 required                                
+                             positional arguments:                             
+                             'token_symbol' and                                
+                             'spacing'); showing the                           
+                             source code instead.                              
+                             [reference/automata/api]                          
+[2026/8/14 9:02:02] WARNING  manim example               manim_directive.py:327
+                             'ManimAnimationsExample'                          
+                             could not be rendered                             
+                             ('ManimAnimations' object                         
+                             has no attribute                                  
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'FiniteStateAutomatonExampl                       
+                             e' could not be rendered                          
+                             ('FiniteStateAutomaton'                           
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'PushDownAutomatonExample'                        
+                             could not be rendered                             
+                             ('PushDownAutomaton' object                       
+                             has no attribute                                  
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'StateExample' could not be                       
+                             rendered (State.__init__()                        
+                             missing 1 required                                
+                             positional argument:                              
+                             'name'); showing the source                       
+                             code instead.                                     
+                             [reference/automata/api]                          
+                    WARNING  manim example               manim_directive.py:327
+                             'TransitionExample' could                         
+                             not be rendered                                   
+                             (Transition.__init__()                            
+                             missing 2 required                                
+                             positional arguments:                             
+                             'transition_from' and                             
+                             'transition_to'); showing                         
+                             the source code instead.                          
+                             [reference/automata/api]                          
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 27%] [35mreference/automata/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 29%] [35mreference/basic/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 31%] [35mreference/circuit/api[39;49;00m[2026/8/14 9:02:06] WARNING  manim example               manim_directive.py:327
+                             'SourceExample' could not                         
+                             be rendered                                       
+                             (Source.__init__() missing                        
+                             3 required positional                             
+                             arguments: 'mobject_group',                       
+                             'letter', and 'value');                           
+                             showing the source code                           
+                             instead.                                          
+                             [reference/circuit/api]                           
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 33%] [35mreference/circuit/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 35%] [35mreference/compass/compass_animations[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 37%] [35mreference/compass/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 39%] [35mreference/compass/mobjects[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 41%] [35mreference/compass/pencil_animations[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 43%] [35mreference/compass/ruler_animations[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 45%] [35mreference/compass/scene[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 47%] [35mreference/compass/utilities[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 49%] [35mreference/data_structures/api[39;49;00m[2026/8/14 9:02:16] WARNING  manim example               manim_directive.py:327
+                             'MArrayExample' could not                         
+                             be rendered                                       
+                             (MArray.__init__() missing                        
+                             1 required positional                             
+                             argument: 'scene'); showing                       
+                             the source code instead.                          
+                             [reference/data_structures/                       
+                             api]                                              
+                    WARNING  manim example               manim_directive.py:327
+                             'MArrayElementExample'                            
+                             could not be rendered                             
+                             (MArrayElement.__init__()                         
+                             missing 1 required                                
+                             positional argument:                              
+                             'scene'); showing the                             
+                             source code instead.                              
+                             [reference/data_structures/                       
+                             api]                                              
+                    WARNING  manim example               manim_directive.py:327
+                             'MArrayPointerExample'                            
+                             could not be rendered                             
+                             (MArrayPointer.__init__()                         
+                             missing 2 required                                
+                             positional arguments:                             
+                             'scene' and 'arr'); showing                       
+                             the source code instead.                          
+                             [reference/data_structures/                       
+                             api]                                              
+                    WARNING  manim example               manim_directive.py:327
+                             'MArraySlidingWindowExample                       
+                             ' could not be rendered                           
+                             (MArraySlidingWindow.__init                       
+                             __() missing 2 required                           
+                             positional arguments:                             
+                             'scene' and 'arr'); showing                       
+                             the source code instead.                          
+                             [reference/data_structures/                       
+                             api]                                              
+[2026/8/14 9:02:17] WARNING  manim example               manim_directive.py:327
+                             'MArrayDirectionExample'                          
+                             could not be rendered                             
+                             (EnumType.__call__()                              
+                             missing 1 required                                
+                             positional argument:                              
+                             'value'); showing the                             
+                             source code instead.                              
+                             [reference/data_structures/                       
+                             api]                                              
+                    WARNING  manim example               manim_directive.py:327
+                             'MArrayElementCompExample'                        
+                             could not be rendered                             
+                             (EnumType.__call__()                              
+                             missing 1 required                                
+                             positional argument:                              
+                             'value'); showing the                             
+                             source code instead.                              
+                             [reference/data_structures/                       
+                             api]                                              
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 51%] [35mreference/data_structures/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 53%] [35mreference/gearbox/classes[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 55%] [35mreference/gearbox/functions[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 57%] [35mreference/gearbox/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 59%] [35mreference/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 61%] [35mreference/meshes/api[39;49;00m:7: (WARNING/2) Definition list ends without a blank line; unexpected unindent.
+[2026/8/14 9:02:21] WARNING  manim example 'MeshExample' manim_directive.py:327
+                             could not be rendered                             
+                             (Mesh.__init__() missing 2                        
+                             required positional                               
+                             arguments: 'vertices' and                         
+                             'faces'); showing the                             
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'InvalidMeshExceptionExampl                       
+                             e' could not be rendered                          
+                             ('InvalidMeshException'                           
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'InvalidRequestExceptionExa                       
+                             mple' could not be rendered                       
+                             ('InvalidRequestException'                        
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'MeshIndexExceptionExample'                       
+                             could not be rendered                             
+                             ('MeshIndexException'                             
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'InvalidTypeExceptionExampl                       
+                             e' could not be rendered                          
+                             ('InvalidTypeException'                           
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'InvalidMeshDimensionsExcep                       
+                             tionExample' could not be                         
+                             rendered                                          
+                             (InvalidMeshDimensionsExcep                       
+                             tion.__init__() missing 2                         
+                             required positional                               
+                             arguments: 'actual' and                           
+                             'expected'); showing the                          
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'InvalidShapeExceptionExamp                       
+                             le' could not be rendered                         
+                             (InvalidShapeException.__in                       
+                             it__() missing 3 required                         
+                             positional arguments:                             
+                             'name', 'actual', and                             
+                             'expected'); showing the                          
+                             source code instead.                              
+                             [reference/meshes/api]                            
+[2026/8/14 9:02:22] WARNING  manim example               manim_directive.py:327
+                             'BadParameterExceptionExamp                       
+                             le' could not be rendered                         
+                             ('BadParameterException'                          
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+                    WARNING  manim example               manim_directive.py:327
+                             'FaultyVarArrayExceptionExa                       
+                             mple' could not be rendered                       
+                             ('FaultyVarArrayException'                        
+                             object has no attribute                           
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/meshes/api]                            
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 63%] [35mreference/meshes/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 65%] [35mreference/mindmap/animations[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 67%] [35mreference/mindmap/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 69%] [35mreference/mindmap/layout[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 71%] [35mreference/mindmap/maps[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 73%] [35mreference/mindmap/nodes[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 76%] [35mreference/neural_network/api[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 78%] [35mreference/neural_network/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 80%] [35mreference/physics/api[39;49;00m[2026/8/14 9:02:35] WARNING  manim example 'WireExample' manim_directive.py:327
+                             could not be rendered                             
+                             (Wire.__init__() missing 1                        
+                             required positional                               
+                             argument: 'stroke');                              
+                             showing the source code                           
+                             instead.                                          
+                             [reference/physics/api]                           
+[2026/8/14 9:02:37] WARNING  manim example 'LensExample' manim_directive.py:327
+                             could not be rendered                             
+                             (Lens.__init__() missing 2                        
+                             required positional                               
+                             arguments: 'f' and 'd');                          
+                             showing the source code                           
+                             instead.                                          
+                             [reference/physics/api]                           
+                    WARNING  manim example 'RayExample'  manim_directive.py:327
+                             could not be rendered                             
+                             (Ray.__init__() missing 2                         
+                             required positional                               
+                             arguments: 'start' and                            
+                             'direction'); showing the                         
+                             source code instead.                              
+                             [reference/physics/api]                           
+[2026/8/14 9:02:38] WARNING  manim example               manim_directive.py:327
+                             'MultiPendulumExample'                            
+                             could not be rendered (list                       
+                             index out of range);                              
+                             showing the source code                           
+                             instead.                                          
+                             [reference/physics/api]                           
+                    WARNING  manim example               manim_directive.py:327
+                             'SpaceSceneExample' could                         
+                             not be rendered                                   
+                             ('SpaceScene' object has no                       
+                             attribute 'submobjects');                         
+                             showing the source code                           
+                             instead.                                          
+                             [reference/physics/api]                           
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 82%] [35mreference/physics/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 84%] [35mreference/rubikscube/api[39;49;00m[2026/8/14 9:02:43] WARNING  manim example               manim_directive.py:327
+                             'CubeMoveExample' could not                       
+                             be rendered                                       
+                             (CubeMove.__init__()                              
+                             missing 2 required                                
+                             positional arguments:                             
+                             'mobject' and 'face');                            
+                             showing the source code                           
+                             instead.                                          
+                             [reference/rubikscube/api]                        
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 86%] [35mreference/rubikscube/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 88%] [35mreference/sequence_diagram/api[39;49;00m                    WARNING  manim example               manim_directive.py:327
+                             'SeqActorExample' could not                       
+                             be rendered                                       
+                             (SeqActor.__init__()                              
+                             missing 1 required                                
+                             positional argument:                              
+                             'name'); showing the source                       
+                             code instead.                                     
+                             [reference/sequence_diagram                       
+                             /api]                                             
+                    WARNING  manim example               manim_directive.py:327
+                             'SeqObjectExample' could                          
+                             not be rendered                                   
+                             (SeqObject.__init__()                             
+                             missing 1 required                                
+                             positional argument:                              
+                             'name'); showing the source                       
+                             code instead.                                     
+                             [reference/sequence_diagram                       
+                             /api]                                             
+[2026/8/14 9:02:44] WARNING  manim example               manim_directive.py:327
+                             'SeqActionExample' could                          
+                             not be rendered                                   
+                             ('SeqAction' object has no                        
+                             attribute 'submobjects');                         
+                             showing the source code                           
+                             instead.                                          
+                             [reference/sequence_diagram                       
+                             /api]                                             
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 90%] [35mreference/sequence_diagram/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 92%] [35mreference/tikz/api[39;49;00m<unknown>:39: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+                    WARNING  manim example               manim_directive.py:327
+                             'ManimTikzExample' could                          
+                             not be rendered (name                             
+                             'Tikz' is not defined);                           
+                             showing the source code                           
+                             instead.                                          
+                             [reference/tikz/api]                              
+                    WARNING  manim example               manim_directive.py:327
+                             'TikzTemplateExample' could                       
+                             not be rendered                                   
+                             ('TikzTemplate' object has                        
+                             no attribute                                      
+                             'submobjects'); showing the                       
+                             source code instead.                              
+                             [reference/tikz/api]                              
+[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 94%] [35mreference/tikz/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 96%] [35mtutorials/faq[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[ 98%] [35mtutorials/index[39;49;00m[2K[01mÕýÔÚ¶ÁÈ¡Ô´ÎÄ¼þ¡­¡­[39;49;00m[100%] [35mtutorials/quickstart[39;49;00m
+[91mWARNING: ÔÚ¸ñÊ½»¯ manim_extensions.algorithm.node.Node.Select µÄÇ©ÃûÊ±·¢Éú´íÎó£ºÊÂ¼þ´¦Àíº¯Êý <function process_signature at 0x00000193308631C0> ÔÚ´¦ÀíÊÂ¼þ 'autodoc-process-signature' Ê±Å×³öÁËÒì³£ (exception: name 'List' is not defined) [autodoc][39;49;00m
+[91mWARNING: ÔÚ¸ñÊ½»¯ manim_extensions.algorithm.node.Node.Unselect µÄÇ©ÃûÊ±·¢Éú´íÎó£ºÊÂ¼þ´¦Àíº¯Êý <function process_signature at 0x00000193308631C0> ÔÚ´¦ÀíÊÂ¼þ 'autodoc-process-signature' Ê±Å×³öÁËÒì³£ (exception: name 'List' is not defined) [autodoc][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.UpdateValue:7: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.MoveAndOverWrite:10: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.CopyAndOverWrite:10: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.CopyAndOverWrite:13: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.SwapAndOverWrite:10: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\node.py:docstring of manim_extensions.algorithm.node.Node.SwapAndOverWrite:13: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\queue.py:docstring of manim_extensions.algorithm.queue.Queue.Enqueue:4: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\queue.py:docstring of manim_extensions.algorithm.queue.Queue.Enqueue:7: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\queue.py:docstring of manim_extensions.algorithm.queue.Queue.Dequeue:4: ERROR: Unexpected section title.
+
+Examples
+-------- [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\queue.py:docstring of manim_extensions.algorithm.queue.Queue.Dequeue:7: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\code.py:docstring of manim_extensions.algorithm.code.Code.__init__:19: WARNING: Inline literal start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\code.py:docstring of manim_extensions.algorithm.code.Code.__init__:27: WARNING: Inline literal start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\code.py:docstring of manim_extensions.algorithm.code.Code.__init__:29: WARNING: Inline literal start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\code.py:docstring of manim_extensions.algorithm.code.Code.__init__:43: WARNING: Inline literal start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\algorithm\code.py:docstring of manim_extensions.algorithm.code.Code.__init__:52: WARNING: Inline interpreted text or phrase reference start-string without end-string. [docutils][39;49;00m
+[91mWARNING: ÔÚ¸ñÊ½»¯ manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.determine_input µÄÇ©ÃûÊ±·¢Éú´íÎó£ºÊÂ¼þ´¦Àíº¯Êý <function process_signature at 0x00000193308631C0> ÔÚ´¦ÀíÊÂ¼þ 'autodoc-process-signature' Ê±Å×³öÁËÒì³£ (exception: unsupported operand type(s) for |: 'type' and 'str') [autodoc][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1341: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArray.animate_elem" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1398: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArray.animate_elem_index" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1360: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArray.animate_elem_square" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1379: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArray.animate_elem_value" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mWARNING: ÔÚ¸ñÊ½»¯ manim_extensions.data_structures.m_array.MArray.append_elem µÄÇ©ÃûÊ±·¢Éú´íÎó£ºÊÂ¼þ´¦Àíº¯Êý <function process_signature at 0x00000193308631C0> ÔÚ´¦ÀíÊÂ¼þ 'autodoc-process-signature' Ê±Å×³öÁËÒì³£ (exception: name 'Any' is not defined) [autodoc][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:519: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayElement.animate_mob_index" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:530: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayElement.animate_mob_label" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:497: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayElement.animate_mob_square" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:508: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayElement.animate_mob_value" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1962: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayPointer.animate_mob_arrow" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:1973: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArrayPointer.animate_mob_label" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:docstring of manim_extensions.data_structures.m_array.MArrayPointer:102: WARNING: Inline interpreted text or phrase reference start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:2476: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArraySlidingWindow.animate_mob_label" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:2465: WARNING: Cannot resolve forward reference in type annotations of "manim_extensions.data_structures.m_array.MArraySlidingWindow.animate_mob_window" (module manim_extensions.data_structures.m_array): name '_AnimationBuilder' is not defined [sphinx_autodoc_typehints.forward_reference][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\data_structures\m_array.py:docstring of manim_extensions.data_structures.m_array.MArraySlidingWindow:94: WARNING: Inline interpreted text or phrase reference start-string without end-string. [docutils][39;49;00m
+[91mWARNING: ÔÚ¸ñÊ½»¯ manim_extensions.data_structures.m_variable.MVariable µÄÇ©ÃûÊ±·¢Éú´íÎó£ºÊÂ¼þ´¦Àíº¯Êý <function process_signature at 0x00000193308631C0> ÔÚ´¦ÀíÊÂ¼þ 'autodoc-process-signature' Ê±Å×³öÁËÒì³£ (exception: name 'Any' is not defined) [autodoc][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\meshes\models\data_models\mesh.py:docstring of manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid:7: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[31mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\physics\optics\rays.py:docstring of manim_extensions.physics.optics.rays.Ray:24: ERROR: Unexpected indentation. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\physics\optics\rays.py:docstring of manim_extensions.physics.optics.rays.Ray:20: WARNING: Inline strong start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\physics\optics\rays.py:docstring of manim_extensions.physics.optics.rays.Ray:20: WARNING: Inline strong start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\physics\optics\rays.py:docstring of manim_extensions.physics.optics.rays.Ray:26: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\physics\optics\rays.py:docstring of manim_extensions.physics.optics.rays.Ray:26: WARNING: Inline emphasis start-string without end-string. [docutils][39;49;00m
+[91mC:\Users\kylez\Desktop\Manim\manim_extensions\manim_extensions\rubikscube\cubie.py:docstring of numpy.array:1: WARNING: Inline emphasis start-string without end-string. [docutils][39;49;00m
+[01mÕýÔÚ²éÕÒµ±Ç°ÒÑ¹ýÆÚµÄÎÄ¼þ¡­¡­[39;49;00mÃ»ÓÐÕÒµ½ÒÑ¹ýÆÚÎÄ¼þ
+[01mÕýÔÚ Pickle ÐòÁÐ»¯»·¾³... [39;49;00mÍê³É
+[01mÕýÔÚÐ£ÑéÒ»ÖÂÐÔ... [39;49;00mÍê³É
+[01mÕýÔÚ×¼±¸Ð´ÈëÎÄµµ... [39;49;00mÍê³É
+[01mÕýÔÚ¸´ÖÆ×Ê²úÎÄ¼þ... [39;49;00m
+[01mÕýÔÚ¸´ÖÆ¾²Ì¬ÎÄ¼þ... [39;49;00m
+ÕýÔÚ°ÑÒÑÇóÖµµÄÄ£°å½á¹ûÐ´Èë C:\Users\kylez\Desktop\Manim\manim_extensions\docs\build\html\_static\basic.css
+ÕýÔÚ°ÑÒÑÇóÖµµÄÄ£°å½á¹ûÐ´Èë C:\Users\kylez\Desktop\Manim\manim_extensions\docs\build\html\_static\documentation_options.js
+ÕýÔÚ°ÑÒÑÇóÖµµÄÄ£°å½á¹ûÐ´Èë C:\Users\kylez\Desktop\Manim\manim_extensions\docs\build\html\_static\language_data.js
+[01mÕýÔÚ¸´ÖÆ¾²Ì¬ÎÄ¼þ: [39;49;00mÍê³É
+[01mÕýÔÚ¸´ÖÆ¶îÍâÎÄ¼þ... [39;49;00m
+[01mÕýÔÚ¸´ÖÆ¶îÍâÎÄ¼þ: [39;49;00mÍê³É
+[01mÕýÔÚ¸´ÖÆ×Ê²úÎÄ¼þ: [39;49;00mÍê³É
+[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[  2%] [32mapi/animations[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[  4%] [32mapi/geometry[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[  6%] [32mapi/mobjects[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[  8%] [32mchangelog[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 10%] [32mcode_of_conduct[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 12%] [32mcontributing[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 14%] [32mexamples/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 16%] [32mindex[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 18%] [32minstallation/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 20%] [32mreference/algorithm/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 22%] [32mreference/algorithm/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 24%] [32mreference/automata/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 27%] [32mreference/automata/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 29%] [32mreference/basic/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 31%] [32mreference/circuit/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 33%] [32mreference/circuit/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 35%] [32mreference/compass/compass_animations[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 37%] [32mreference/compass/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 39%] [32mreference/compass/mobjects[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 41%] [32mreference/compass/pencil_animations[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 43%] [32mreference/compass/ruler_animations[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 45%] [32mreference/compass/scene[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 47%] [32mreference/compass/utilities[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 49%] [32mreference/data_structures/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 51%] [32mreference/data_structures/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 53%] [32mreference/gearbox/classes[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 55%] [32mreference/gearbox/functions[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 57%] [32mreference/gearbox/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 59%] [32mreference/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 61%] [32mreference/meshes/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 63%] [32mreference/meshes/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 65%] [32mreference/mindmap/animations[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 67%] [32mreference/mindmap/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 69%] [32mreference/mindmap/layout[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 71%] [32mreference/mindmap/maps[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 73%] [32mreference/mindmap/nodes[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 76%] [32mreference/neural_network/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 78%] [32mreference/neural_network/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 80%] [32mreference/physics/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 82%] [32mreference/physics/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 84%] [32mreference/rubikscube/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 86%] [32mreference/rubikscube/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 88%] [32mreference/sequence_diagram/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 90%] [32mreference/sequence_diagram/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 92%] [32mreference/tikz/api[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 94%] [32mreference/tikz/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 96%] [32mtutorials/faq[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[ 98%] [32mtutorials/index[39;49;00m[2K[01mÕýÔÚÐ´ÈëÊä³ö¡­¡­[39;49;00m[100%] [32mtutorials/quickstart[39;49;00m
+[01mÕýÔÚÉú³ÉË÷Òý... [39;49;00mgenindex py-modindex Íê³É
+[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[  2%] [94mitertools[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[  3%] [94mmanim_extensions.algorithm.array[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[  5%] [94mmanim_extensions.algorithm.code[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[  7%] [94mmanim_extensions.algorithm.node[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[  8%] [94mmanim_extensions.algorithm.queue[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 10%] [94mmanim_extensions.algorithm.utils.debug[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 11%] [94mmanim_extensions.algorithm.utils.numpy_helper[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 13%] [94mmanim_extensions.animations[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 15%] [94mmanim_extensions.automata.mobjects.automata_dependencies.automata[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 16%] [94mmanim_extensions.automata.mobjects.automata_dependencies.state[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 18%] [94mmanim_extensions.automata.mobjects.automata_dependencies.transitition[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 20%] [94mmanim_extensions.automata.mobjects.automata_dependencies.xml_parser[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 21%] [94mmanim_extensions.automata.mobjects.manim_animations[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 23%] [94mmanim_extensions.automata.mobjects.manim_automaton[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 25%] [94mmanim_extensions.automata.mobjects.manim_automaton_input[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 26%] [94mmanim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 28%] [94mmanim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 30%] [94mmanim_extensions.automata.mobjects.manim_pushdown_automaton[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 31%] [94mmanim_extensions.automata.mobjects.manim_state[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 33%] [94mmanim_extensions.automata.mobjects.manim_transition[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 34%] [94mmanim_extensions.automata.mobjects.manim_turing_machine[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 36%] [94mmanim_extensions.circuit.mobjects[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 38%] [94mmanim_extensions.circuit.utils[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 39%] [94mmanim_extensions.compass.animations.animation_compass[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 41%] [94mmanim_extensions.compass.animations.animation_pencil[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 43%] [94mmanim_extensions.compass.animations.animation_ruler[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 44%] [94mmanim_extensions.compass.compass.compass[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 46%] [94mmanim_extensions.compass.compass.pencil[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 48%] [94mmanim_extensions.compass.compass.ruler[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 49%] [94mmanim_extensions.compass.scene.compass_scene[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 51%] [94mmanim_extensions.compass.utils.geometry_method[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 52%] [94mmanim_extensions.data_structures.m_array[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 54%] [94mmanim_extensions.data_structures.m_enum[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 56%] [94mmanim_extensions.gearbox.gear_mobject.Gear_mobject[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 57%] [94mmanim_extensions.geometry[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 59%] [94mmanim_extensions.meshes.decorators[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 61%] [94mmanim_extensions.meshes.exceptions[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 62%] [94mmanim_extensions.meshes.helpers[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 64%] [94mmanim_extensions.meshes.models.data_models.mesh[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 66%] [94mmanim_extensions.mindmap.algorithms.layout_config[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 67%] [94mmanim_extensions.mindmap.animations.animations[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 69%] [94mmanim_extensions.mindmap.mindmap.mindmap[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 70%] [94mmanim_extensions.mindmap.nodes.node[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 72%] [94mmanim_extensions.mobjects[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 74%] [94mmanim_extensions.neural_network.neural_network[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 75%] [94mmanim_extensions.physics.electromagnetism.electrostatics[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 77%] [94mmanim_extensions.physics.electromagnetism.magnetostatics[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 79%] [94mmanim_extensions.physics.optics.lenses[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 80%] [94mmanim_extensions.physics.optics.rays[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 82%] [94mmanim_extensions.physics.rigid_mechanics.pendulum[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 84%] [94mmanim_extensions.physics.rigid_mechanics.rigid_mechanics[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 85%] [94mmanim_extensions.physics.wave[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 87%] [94mmanim_extensions.rubikscube.cube[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 89%] [94mmanim_extensions.rubikscube.cube_animations[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 90%] [94mmanim_extensions.rubikscube.cube_utils[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 92%] [94mmanim_extensions.rubikscube.cubie[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 93%] [94mmanim_extensions.sequence_diagram.seq_action[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 95%] [94mmanim_extensions.sequence_diagram.seq_actor[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 97%] [94mmanim_extensions.sequence_diagram.seq_object[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[ 98%] [94mmanim_extensions.tikz.template[39;49;00m[2K[01mÕýÔÚ¸ßÁÁÄ£¿é´úÂë¡­¡­[39;49;00m[100%] [94mmanim_extensions.tikz.tikz[39;49;00m
+[01mÕýÔÚÐ´Èë¸½¼ÓÒ³Ãæ... [39;49;00msearch Íê³É
+[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  1%] [33mmedia/images/VisDrawArcDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  2%] [33mmedia/images/CircleIntDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  4%] [33mmedia/images/LineCircleIntDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  5%] [33mmedia/images/LineIntDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  6%] [33mmedia/images/LineArcIntDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  7%] [33mmedia/images/MobjectIntDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[  9%] [33mmedia/images/TangentPointDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 10%] [33mmedia/images/ChineseMathTexDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 11%] [33mmedia/images/LabelDotDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 12%] [33mmedia/images/MathTexLineDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 13%] [33mmedia/images/MathTexBraceDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 15%] [33mmedia/images/MathTexDoublearrowDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 16%] [33mmedia/images/PerpendicularLineDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 17%] [33mmedia/images/ExtendedLineDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 18%] [33mmedia/images/PerpendicularSignDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 20%] [33mmedia/images/FileTreeDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 21%] [33mmedia/images/CropImageMobjectDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 22%] [33mmedia/images/ColorTextDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 23%] [33mmedia/images/ShadowAroundDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 24%] [33mmedia/images/ObjectBorderDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 26%] [33mmedia/images/ThreeDVectorDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 27%] [33mmedia/images/TreeDiagramDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 28%] [33mmedia/images/LabelDotExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 29%] [33mmedia/images/MathTexLineExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 30%] [33mmedia/images/MathTexBraceExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 32%] [33mmedia/images/ExtendedLineExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 33%] [33mmedia/images/PerpendicularExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 34%] [33mmedia/images/CircleIntExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 35%] [33mmedia/images/NodeExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 37%] [33mmedia/images/AlgorithmLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 38%] [33mmedia/images/ManimTransitionDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 39%] [33mmedia/images/ManimDeterminsticFiniteAutomatonExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 40%] [33mmedia/images/ManimNonDeterminsticFiniteAutomatonExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 41%] [33mmedia/images/ManimPushDownAutomatonExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 43%] [33mmedia/images/ManimAutomataInputExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 44%] [33mmedia/images/AutomataLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 45%] [33mmedia/images/ResistorExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 46%] [33mmedia/images/CapacitorExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 48%] [33mmedia/images/InductorExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 49%] [33mmedia/images/VoltageSourceExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 50%] [33mmedia/images/CurrentSourceExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 51%] [33mmedia/images/GroundExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 52%] [33mmedia/images/OpampExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 54%] [33mmedia/images/CircuitExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 55%] [33mmedia/images/NodeExample-2.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 56%] [33mmedia/images/CircuitLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 57%] [33mmedia/images/CompassExample-2.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 59%] [33mmedia/images/CompassMoveNiddleTipToDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 60%] [33mmedia/images/RotateAboutNiddleTipDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 61%] [33mmedia/images/ReverseTipDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 62%] [33mmedia/images/SplitCompassWithGainAngleDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 63%] [33mmedia/images/SplitCompassWithNiddleTipFixedDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 65%] [33mmedia/images/SetCompassDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 66%] [33mmedia/images/PencilDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 67%] [33mmedia/images/MoveNidToDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 68%] [33mmedia/images/RulerExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 70%] [33mmedia/images/PutRulerFlatDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 71%] [33mmedia/images/DataStructureLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 72%] [33mmedia/images/RackExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 73%] [33mmedia/images/MindMapExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 74%] [33mmedia/images/StandardMapDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 76%] [33mmedia/images/CatalogMapDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 77%] [33mmedia/images/TimeLineDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 78%] [33mmedia/images/NodeDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 79%] [33mmedia/images/NeuralNetworkMobjectDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 80%] [33mmedia/images/NeuralNetworkLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 82%] [33mmedia/images/ChargeExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 83%] [33mmedia/images/ElectricFieldExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 84%] [33mmedia/images/MagneticFieldExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 85%] [33mmedia/images/PendulumExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 87%] [33mmedia/images/SpaceExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 88%] [33mmedia/images/LinearWaveExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 89%] [33mmedia/images/RadialWaveExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 90%] [33mmedia/images/StandingWaveExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 91%] [33mmedia/images/PhysicsLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 93%] [33mmedia/images/RubiksCubeDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 94%] [33mmedia/images/CubieDocExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 95%] [33mmedia/images/RubiksCubeLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 96%] [33mmedia/images/SequenceDiagramLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 98%] [33mmedia/images/TikzLibraryExample-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[ 99%] [33mmedia/images/QuickstartAnnotatedScene-1.png[39;49;00m[2K[01mÕýÔÚ¸´ÖÆÍ¼ÏñÎÄ¼þ¡­¡­[39;49;00m[100%] [33mmedia/images/QuickstartGeometry-1.png[39;49;00m
+[01mÕýÔÚµ¼³ö English (code: en) µÄËÑË÷Ë÷Òý... [39;49;00mÍê³É
+[01mÕýÔÚµ¼³ö¶ÔÏóÇåµ¥... [39;49;00mÍê³É
+
+Rendering Summary
+-----------------
+
+api/animations..............26.403s  => 15 EXAMPLES
+                             0.477s VisDrawArcDocExample
+                             1.180s TypeWriterDocExample
+                             0.217s EaseInBounceExample
+                             0.225s EaseOutBounceExample
+                             0.169s EaseInOutBounceExample
+                             0.258s EaseOutElasticExample
+                             4.485s WriteRandomDocExample
+                             0.506s ReversedWriteDocExample
+                             6.535s FadeInRandomDocExample
+                             4.491s FadeOutRandomDocExample
+                             6.079s GrowRandomDocExample
+                             0.220s PassingRectangleDocExample
+                             0.515s LaggedCreationDocExample
+                             0.501s HighLightWithLinesDocExample
+                             0.545s UnHighLightWithLinesDocExample
+api/geometry.................1.561s  => 6 EXAMPLES
+                             0.335s CircleIntDocExample
+                             0.245s LineCircleIntDocExample
+                             0.186s LineIntDocExample
+                             0.224s LineArcIntDocExample
+                             0.379s MobjectIntDocExample
+                             0.192s TangentPointDocExample
+api/mobjects................13.341s  => 17 EXAMPLES
+                             0.272s ChineseMathTexDocExample
+                             0.193s LabelDotDocExample
+                             0.235s MathTexLineDocExample
+                             0.202s MathTexBraceDocExample
+                             0.231s MathTexDoublearrowDocExample
+                             0.175s PerpendicularLineDocExample
+                             0.168s ExtendedLineDocExample
+                             0.165s PerpendicularSignDocExample
+                             3.587s FileTreeDocExample
+                             0.302s CropImageMobjectDocExample
+                             1.440s VideoMobjectDocExample
+                             0.318s ColorTextDocExample
+                             0.109s TrailDocExample
+                             0.286s ShadowAroundDocExample
+                             0.199s ObjectBorderDocExample
+                             5.066s ThreeDVectorDocExample
+                             0.393s TreeDiagramDocExample
+examples/index...............1.573s  => 8 EXAMPLES
+                             0.142s LabelDotExample
+                             0.148s MathTexLineExample
+                             0.174s MathTexBraceExample
+                             0.143s ExtendedLineExample
+                             0.134s PerpendicularExample
+                             0.245s CircleIntExample
+                             0.402s TypeWriterExample
+                             0.185s VisDrawArcExample
+algorithm/api................0.130s NodeExample
+algorithm/index..............0.217s AlgorithmLibraryExample
+automata/api.................0.550s  => 5 EXAMPLES
+                             0.130s ManimTransitionDocExample
+                             0.118s ManimDeterminsticFiniteAutomatonExample
+                             0.090s ManimNonDeterminsticFiniteAutomatonExample
+                             0.076s ManimPushDownAutomatonExample
+                             0.136s ManimAutomataInputExample
+automata/index...............0.166s AutomataLibraryExample
+circuit/api..................2.047s  => 9 EXAMPLES
+                             0.160s ResistorExample
+                             0.150s CapacitorExample
+                             0.639s InductorExample
+                             0.219s VoltageSourceExample
+                             0.217s CurrentSourceExample
+                             0.156s GroundExample
+                             0.203s OpampExample
+                             0.143s CircuitExample
+                             0.160s NodeExample
+circuit/index................0.174s CircuitLibraryExample
+compass/compass_animations...1.427s  => 6 EXAMPLES
+                             0.224s MoveNiddleTipToDocExample
+                             0.222s RotateCompassDocExample
+                             0.233s SplitCompassDocExample
+                             0.243s PutCompassDocExample
+                             0.266s PutCompassAwayDocExample
+                             0.239s DrawArcDocExample
+compass/index................0.619s  => 2 EXAMPLES
+                             0.294s CompassExample
+                             0.325s DrawLineExample
+compass/mobjects.............1.951s  => 11 EXAMPLES
+                             0.175s CompassExample
+                             0.160s CompassMoveNiddleTipToDocExample
+                             0.155s RotateAboutNiddleTipDocExample
+                             0.169s ReverseTipDocExample
+                             0.177s SplitCompassWithGainAngleDocExample
+                             0.176s SplitCompassWithNiddleTipFixedDocExample
+                             0.172s SetCompassDocExample
+                             0.163s PencilDocExample
+                             0.238s MoveNidToDocExample
+                             0.177s RulerExample
+                             0.189s PutRulerFlatDocExample
+compass/pencil_animations....1.058s  => 4 EXAMPLES
+                             0.240s MovePencilTipToDocExample
+                             0.291s PutPencilAwayDocExample
+                             0.303s MovePencilAlongPathDocExample
+                             0.224s DrawPathDocExample
+compass/ruler_animations.....0.340s  => 2 EXAMPLES
+                             0.153s PutRulerDocExample
+                             0.187s PutRulerAwayDocExample
+compass/scene................0.364s CompassSceneExample
+data_structures/index........0.194s DataStructureLibraryExample
+gearbox/classes..............0.530s  => 2 EXAMPLES
+                             0.302s GearDocExample
+                             0.228s RackExample
+gearbox/index................0.374s  => 2 EXAMPLES
+                             0.190s GearExample
+                             0.184s InnerGearExample
+mindmap/animations...........4.818s  => 5 EXAMPLES
+                             0.589s LayoutAnimationDocExample
+                             0.883s InsertNodeDocExample
+                             0.946s RemoveNodeDocExample
+                             1.426s AlterNodeDocExample
+                             0.974s ScaleNodeDocExample
+mindmap/index................0.966s  => 2 EXAMPLES
+                             0.460s MindMapInsertExample
+                             0.506s LayoutAnimationExample
+mindmap/maps.................1.598s  => 4 EXAMPLES
+                             0.518s MindMapExample
+                             0.312s StandardMapDocExample
+                             0.466s CatalogMapDocExample
+                             0.302s TimeLineDocExample
+mindmap/nodes................0.159s NodeDocExample
+neural_network/api...........0.184s NeuralNetworkMobjectDocExample
+neural_network/index.........0.200s NeuralNetworkLibraryExample
+physics/api..................7.239s  => 8 EXAMPLES
+                             0.481s ChargeExample
+                             2.290s ElectricFieldExample
+                             2.079s MagneticFieldExample
+                             0.125s PendulumExample
+                             0.090s SpaceExample
+                             0.823s LinearWaveExample
+                             1.132s RadialWaveExample
+                             0.219s StandingWaveExample
+physics/index................0.221s PhysicsLibraryExample
+rubikscube/api...............1.090s  => 2 EXAMPLES
+                             0.735s RubiksCubeDocExample
+                             0.355s CubieDocExample
+rubikscube/index.............0.352s RubiksCubeLibraryExample
+sequence_diagram/index.......0.222s SequenceDiagramLibraryExample
+tikz/index...................0.150s TikzLibraryExample
+tutorials/quickstart.........0.937s  => 4 EXAMPLES
+                             0.166s QuickstartAnnotatedScene
+                             0.091s QuickstartGeometry
+                             0.506s QuickstartAnimations
+                             0.174s QuickstartGear
+
+[01m¹¹½¨³É¹¦£¬41 Ìõ¾¯¸æ¡£[39;49;00m
+
+HTML Ò³Ãæ±£´æÔÚ build\html Ä¿Â¼¡£

@@ -7,3 +7,33 @@
 [submodule "third_party/manim-compass"]
 	path = third_party/manim-compass
 	url = https://github.com/ExploreMaths/manim-compass.git
+[submodule "third_party/manim-automata"]
+	path = third_party/manim-automata
+	url = https://github.com/SeanNelsonIO/manim-automata.git
+[submodule "third_party/manim-data-structures"]
+	path = third_party/manim-data-structures
+	url = https://github.com/drageelr/manim-data-structures.git
+[submodule "third_party/manim-sequence-diagram"]
+	path = third_party/manim-sequence-diagram
+	url = https://github.com/foxnewsnetwork/manim-sequence-diagram.git
+[submodule "third_party/manim-neural-network"]
+	path = third_party/manim-neural-network
+	url = https://github.com/JPM2002/manim-neural-network.git
+[submodule "third_party/manim-physics"]
+	path = third_party/manim-physics
+	url = https://github.com/Matheart/manim-physics.git
+[submodule "third_party/manim-algorithm"]
+	path = third_party/manim-algorithm
+	url = https://github.com/sinianluoye/manim-algorithm.git
+[submodule "third_party/manim-circuit"]
+	path = third_party/manim-circuit
+	url = https://github.com/Mr-FuzzyPenguin/manim-circuit.git
+[submodule "third_party/manim-meshes"]
+	path = third_party/manim-meshes
+	url = https://github.com/bmmtstb/manim-meshes.git
+[submodule "third_party/manim-tikz"]
+	path = third_party/manim-tikz
+	url = https://github.com/ralphieraccoon/manim-tikz.git
+[submodule "third_party/manim-rubikscube"]
+	path = third_party/manim-rubikscube
+	url = https://github.com/WampyCakes/manim-rubikscube.git

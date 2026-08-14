@@ -12,18 +12,19 @@ import numpy as np
 from ..utils.geometry_method import get_vecs_angle
 
 class Ruler(VGroup):
-    '''Ruler mobject.
+    """Ruler mobject.
 
     .. manim:: RulerExample
         :save_last_frame:
 
+        from manim import *
         from manim_extensions.compass import Ruler
 
         class RulerExample(Scene):
             def construct(self):
                 ruler = Ruler()
                 self.add(ruler)
-    '''
+    """
     def __init__(
         self,
         length = 12,
@@ -33,6 +34,7 @@ class Ruler(VGroup):
         fill_opacity = 0.4,
         **kwargs
     ):
+        """Initialize the Ruler instance."""
         super().__init__(**kwargs)
         self.ruler_length = length
         self.ruler_width = width
@@ -47,43 +49,43 @@ class Ruler(VGroup):
         self.add(self.ruler)
 
     def get_vecs_of_ruler(self):
-        '''Return the extension and width directions of the ruler.
-        '''
+        """Return the extension and width directions of the ruler.
+        """
         A,B,C,_ = self.ruler.get_vertices()
         return Line(B,A).get_unit_vector(),Line(B,C).get_unit_vector()
     
     def get_direction_vector_of_ruler(self):
-        '''Return the extension direction of the ruler.
-        '''
+        """Return the extension direction of the ruler.
+        """
         s,e,*_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
     
     def get_width_vector_of_ruler(self):
-        '''Return the width direction of the ruler.
-        '''
+        """Return the width direction of the ruler.
+        """
         _,s,e,_ = self.ruler.get_vertices()
         return Line(e,s).get_unit_vector()
         
     def get_start_and_end(self):
-        '''Return the start and end points of the ruler.
-        '''
+        """Return the start and end points of the ruler.
+        """
         E,S,*_ = self.ruler.get_vertices()
         return S,E
     
     def get_middle_point(self):
-        '''Return the midpoint of the ruler.
-        '''
+        """Return the midpoint of the ruler.
+        """
         S,E = self.get_start_and_end()
         return (S+E)/2
     
     def get_length_of_ruler(self):
-        '''Return the length of the ruler.
-        '''
+        """Return the length of the ruler.
+        """
         S,E = self.get_start_and_end()
         return np.linalg.norm(E-S)
 
     def set_ruler(self,start = LEFT,end = RIGHT):
-        '''
+        """
         Place the ruler so that one of its edges aligns with start and end.
 
         Parameters
@@ -103,7 +105,7 @@ class Ruler(VGroup):
                 def construct(self):
                     ruler = Ruler().set_ruler(LEFT, RIGHT)
                     self.add(ruler)
-        '''
+        """
         direction = end - start
         current_pos = self.get_middle_point()
         target_pos = (start + end)/2
@@ -118,7 +120,7 @@ class Ruler(VGroup):
         return self
     
     def put_ruler_flat(self):
-        '''Lay the ruler flat.
+        """Lay the ruler flat.
 
         .. manim:: PutRulerFlatDocExample
             :save_last_frame:
@@ -130,7 +132,7 @@ class Ruler(VGroup):
                 def construct(self):
                     ruler = Ruler().put_ruler_flat()
                     self.add(ruler)
-        '''
+        """
         self.rotate(
             angle = get_vecs_angle(
                 self.get_direction_vector_of_ruler(),

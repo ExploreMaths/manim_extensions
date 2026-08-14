@@ -51,4 +51,16 @@ Module Index
    :maxdepth: 3
 
    basic/index
-   other/index
+   algorithm/index
+   automata/index
+   circuit/index
+   compass/index
+   data_structures/index
+   gearbox/index
+   meshes/index
+   mindmap/index
+   neural_network/index
+   physics/index
+   rubikscube/index
+   sequence_diagram/index
+   tikz/index

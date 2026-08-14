@@ -1,0 +1,70 @@
+Sequence diagram
+================
+
+**Original author:** `Thomas Chen <https://github.com/foxnewsnetwork>`_
+
+**Source repository:** `GitHub <https://github.com/foxnewsnetwork/manim-sequence-diagram>`_
+
+**License:** MIT (see the upstream repository for the full license text)
+
+``manim-sequence-diagram`` adds UML-like sequence-diagram primitives to Manim.
+It is meant for software architecture explanations, API flow demos, and
+message-order visualisations.
+
+The code is bundled inside ``manim_extensions`` as the
+``manim_extensions.sequence_diagram`` subpackage and is also kept as a Git
+submodule under ``third_party/``.
+
+Features
+--------
+
+- ``SeqActor`` – participant or lifeline object.
+- ``SeqObject`` – object or system boundary in the sequence.
+- ``SeqAction`` – action or message entry in the timeline.
+- simple composition for actor-to-actor communication flows.
+- diagrams for software engineering and protocol explanations.
+
+Quick start
+-----------
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.sequence_diagram import SeqActor, SeqObject
+
+   class SequenceDiagramExample(Scene):
+       def construct(self):
+           actor = SeqActor("User")
+           obj = SeqObject("Service")
+           self.add(actor, obj)
+           self.wait(0.5)
+
+A simple sequence diagram scene
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. manim:: SequenceDiagramLibraryExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.sequence_diagram import SeqActor, SeqObject
+
+   class SequenceDiagramLibraryExample(Scene):
+       def construct(self):
+           actor = SeqActor("User")
+           obj = SeqObject("Service")
+           self.add(actor, obj)
+           self.wait(0.5)
+
+This library is especially useful when explaining:
+
+* API request / response flows,
+* lifecycle and event sequences,
+* software interaction diagrams and protocol walkthroughs.
+
+See the `original project <https://github.com/foxnewsnetwork/manim-sequence-diagram>`_
+for more complete sequence examples and output samples.
+
+.. toctree::
+   :hidden:
+
+   api
