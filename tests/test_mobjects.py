@@ -1,5 +1,6 @@
 import shutil
 import subprocess
+import platform
 
 import numpy as np
 import pytest
@@ -34,6 +35,8 @@ from manim_extensions.mobjects import (
 
 _HAS_XELATEX = shutil.which("xelatex") is not None
 
+_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
+
 try:
     import cv2
 except ImportError:
@@ -47,7 +50,7 @@ class TestChineseMathTex:
         assert isinstance(tex, MathTex)
 
     def test_font_parameter(self):
-        tex = ChineseMathTex("x = 1", font="SimSun")
+        tex = ChineseMathTex("x = 1", font=_CJK_FONT)
         assert isinstance(tex, MathTex)
 
 

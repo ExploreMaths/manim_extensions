@@ -7,7 +7,7 @@ name = "manim_extensions"
 version = "1.0.3"
 description = "A package for tools and extensions in Manim"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
     {name = "ExploreMaths"},
