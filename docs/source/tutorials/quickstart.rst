@@ -108,12 +108,22 @@ moving radius, and :class:`~manim_extensions.animations.TypeWriter` reveals
 Bundled plugins
 ---------------
 
-``manim_extensions`` also ships three ready-to-use plugins. Each is documented
+``manim_extensions`` also ships several ready-to-use plugins. Each is documented
 in the :doc:`../reference/index` section:
 
 * :doc:`../reference/gearbox/index` – involute gears and gear trains.
 * :doc:`../reference/compass/index` – compass, ruler, and pencil animations.
 * :doc:`../reference/mindmap/index` – mind maps, timelines, and catalog trees.
+* :doc:`../reference/algorithm/index` – algorithm visualization toolkit.
+* :doc:`../reference/automata/index` – finite-state, pushdown, and Turing automata.
+* :doc:`../reference/circuit/index` – circuit elements and diagrams.
+* :doc:`../reference/data_structures/index` – array and variable visualization.
+* :doc:`../reference/meshes/index` – 2D/3D mesh data structures and visualization.
+* :doc:`../reference/neural_network/index` – neural network mobjects.
+* :doc:`../reference/physics/index` – waves, mechanics, optics, and electromagnetism.
+* :doc:`../reference/rubikscube/index` – Rubik's cube mobject and animations.
+* :doc:`../reference/sequence_diagram/index` – UML sequence diagram helpers.
+* :doc:`../reference/tikz/index` – TikZ diagram integration.
 
 For example, a gear pair can be created with:
 

@@ -32,8 +32,8 @@ You can also run the test suite locally:
 Development install
 -------------------
 
-To work on ``manim_extensions`` itself, clone the repository with its
-submodules and install in editable mode:
+To work on ``manim_extensions`` itself, clone the repository and install
+in editable mode:
 
 .. code-block:: bash
 

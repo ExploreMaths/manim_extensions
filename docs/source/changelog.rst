@@ -1,6 +1,25 @@
 Changelog
 =========
 
+v1.0.4 (Unreleased)
+--------------------
+
+**Changed**
+
+* Updated documentation: added per-module index pages with individual ``:doc:``
+  links in the main index (matching the ``Compass`` style), added inheritance
+  diagrams for all bundled modules, and removed references to the deleted
+  ``third_party/`` directory and Git submodules.
+* Updated Python version requirement to ``>=3.11`` across ``pyproject.toml``,
+  GitHub Actions workflow, and documentation.
+
+**Fixed**
+
+* Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
+  in TikZ docstrings, and CJK font detection on Linux.
+* Fixed ``TypeError`` for ``str | None`` union syntax in Python 3.10–3.13
+  environments by adding ``from __future__ import annotations``.
+
 v1.0.3
 ------
 
@@ -13,7 +32,10 @@ What's Changed
 
 **Added**
 
-* Added ``GearBox``, ``MindMap`` and ``Compass`` submodules from third-party Manim extensions.
+* Added bundled subpackages: ``GearBox``, ``MindMap``, ``Compass``, ``Algorithm``,
+  ``Automata``, ``Circuit``, ``Data Structures``, ``Meshes``, ``Neural Network``,
+  ``Physics``, ``Rubik's Cube``, ``Sequence Diagram`` and ``TikZ`` from third-party
+  Manim extensions.
 
 **Changed**
 

@@ -11,7 +11,7 @@ without additional LaTeX packages.
 Which Python versions are supported?
 ------------------------------------
 
-``manim_extensions`` supports Python 3.10 through 3.14.
+``manim_extensions`` supports Python 3.11 through 3.14.
 
 Can I use the bundled plugins without installing ``manim_extensions``?
 ----------------------------------------------------------------------

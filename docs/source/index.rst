@@ -44,7 +44,7 @@ The library is organised into four areas:
       animations.
 
 **Bundled plugins**
-    Several popular Manim plugins are included as subpackages and Git submodules,
+    Several popular Manim plugins are included as subpackages,
     with full API documentation and attribution to the original authors:
 
     * :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "manim_extensions"
-version = "1.0.3"
+version = "1.0.4"
 description = "A package for tools and extensions in Manim"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,7 +18,6 @@ classifiers = [
     "Intended Audience :: Education",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",

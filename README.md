@@ -19,8 +19,7 @@
 - **Reusable mobjects** — labelled dots, braces and arrows tied to formulas, file trees, motion trails, shadows, 3D vectors, tree diagrams, and more
 - **Geometry helpers** — circle / line / arc intersections and tangent points
 - **Common animations** — typewriting, random / reverse writes, highlights, sweep effects, and extra easing functions
-- **Bundled toolkits** — involute **gears**, **mind maps** / timelines / catalog diagrams, and **compass-and-straightedge** construction scenes
-- **Third-party integrations** — selected Manim plugin repositories tracked as Git submodules and exposed through `manim_extensions` namespace shims
+- **Bundled toolkits** — involute **gears**, **mind maps** / timelines / catalog diagrams, **compass-and-straightedge** constructions, algorithm visualisation, automata, circuits, data structures, meshes, neural networks, physics, Rubik's cube, sequence diagrams, and TikZ integration
 
 ## Modules
 
@@ -32,33 +31,37 @@
 | `manim_extensions.gearbox`    | Involute gears and racks |
 | `manim_extensions.mindmap`    | Mind maps, timelines, catalog diagrams |
 | `manim_extensions.compass`    | Compass, ruler, pencil, and construction animations |
-| `manim_extensions.algorithm`  | Third-party algorithm visualisation helpers |
-| `manim_extensions.automata`   | Third-party automata visualisation helpers |
-| `manim_extensions.circuit`    | Third-party circuit diagram animations |
-| `manim_extensions.data_structures` | Third-party data structure animations |
-| `manim_extensions.meshes`     | Third-party mesh and geometry visualisation |
-| `manim_extensions.neural_network` | Third-party neural-network visualisation |
-| `manim_extensions.physics`    | Third-party physics simulation helpers |
-| `manim_extensions.rubikscube` | Third-party Rubik's Cube animation toolkit |
-| `manim_extensions.sequence_diagram` | Third-party sequence diagram animations |
-| `manim_extensions.tikz`       | Third-party TikZ import helpers |
+| `manim_extensions.algorithm`  | Algorithm visualisation helpers |
+| `manim_extensions.automata`   | Automata visualisation helpers |
+| `manim_extensions.circuit`    | Circuit diagram animations |
+| `manim_extensions.data_structures` | Data structure animations |
+| `manim_extensions.meshes`     | Mesh and geometry visualisation |
+| `manim_extensions.neural_network` | Neural-network visualisation |
+| `manim_extensions.physics`    | Physics simulation helpers |
+| `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
+| `manim_extensions.sequence_diagram` | Sequence diagram animations |
+| `manim_extensions.tikz`       | TikZ import helpers |
 
-## Third-party submodules
+## Bundled plugins
 
-The project maintains the following third-party plugin repositories as Git submodules under `third_party/`:
+The following third-party Manim plugins are bundled directly as subpackages
+inside `manim_extensions`:
 
-- `manim-algorithm`
-- `manim-automata`
-- `manim-circuit`
-- `manim-data-structures`
-- `manim-meshes`
-- `manim-neural-network`
-- `manim-physics`
-- `manim-rubikscube`
-- `manim-sequence-diagram`
-- `manim-tikz`
+- `manim-algorithm` → `manim_extensions.algorithm`
+- `manim-automata` → `manim_extensions.automata`
+- `manim-circuit` → `manim_extensions.circuit`
+- `manim-data-structures` → `manim_extensions.data_structures`
+- `manim-meshes` → `manim_extensions.meshes`
+- `manim-neural-network` → `manim_extensions.neural_network`
+- `manim-physics` → `manim_extensions.physics`
+- `manim-rubikscube` → `manim_extensions.rubikscube`
+- `manim-sequence-diagram` → `manim_extensions.sequence_diagram`
+- `manim-tikz` → `manim_extensions.tikz`
 
-Each one is exposed as a light import shim under the `manim_extensions` package, while the original implementation remains in the corresponding submodule directory for source provenance and updates.
+Installing `manim_extensions` lets you import them directly from the package
+namespace and guarantees compatible versions. See the
+[documentation](https://manim-extensions.readthedocs.io/) for details and
+attribution to the original authors.
 
 ## Documentation
 
