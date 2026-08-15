@@ -3,11 +3,10 @@
 The module exposes the main cube model and related animation utilities for
 visualising cube states in Manim scenes.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: RubiksCubePackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube

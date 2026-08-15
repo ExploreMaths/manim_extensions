@@ -13,18 +13,17 @@ class LayoutDirection(Enum):
 
     Examples
     --------
-
     .. manim:: LayoutDirectionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
+       from manim import *
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
-        class LayoutDirectionExample(Scene):
-            def construct(self):
-                direction = LayoutDirection.LeftToRight
-                label = Text(f"Direction: {direction.value}", font_size=24)
-                self.add(label)
+       class LayoutDirectionExample(Scene):
+           def construct(self):
+               direction = LayoutDirection.LeftToRight
+               label = Text(f"Direction: {direction.value}", font_size=24)
+               self.add(label)
 """
     LeftToRight = 'left to right'
     RightToLeft = 'right to left'
@@ -36,18 +35,17 @@ class LayoutType(Enum):
 
     Examples
     --------
-
     .. manim:: LayoutTypeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.layout_config import LayoutType
+       from manim import *
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutType
 
-        class LayoutTypeExample(Scene):
-            def construct(self):
-                layout = LayoutType.Standard
-                label = Text(f"Layout: {layout.value}", font_size=24)
-                self.add(label)
+       class LayoutTypeExample(Scene):
+           def construct(self):
+               layout = LayoutType.Standard
+               label = Text(f"Layout: {layout.value}", font_size=24)
+               self.add(label)
 """
     MindMap = 'tidytree'
     TimeLine = 'timeline'
@@ -59,18 +57,17 @@ class LayoutConfig:
 
     Examples
     --------
-
     .. manim:: LayoutConfigExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig
+       from manim import *
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig
 
-        class LayoutConfigExample(Scene):
-            def construct(self):
-                config = LayoutConfig()
-                label = Text("LayoutConfig with defaults", font_size=24)
-                self.add(label)
+       class LayoutConfigExample(Scene):
+           def construct(self):
+               config = LayoutConfig()
+               label = Text("LayoutConfig with defaults", font_size=24)
+               self.add(label)
     Parameters
     ----------
         direction : np.ndarray, optional

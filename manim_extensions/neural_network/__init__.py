@@ -2,11 +2,10 @@
 
 This package provides mobjects for constructing stylised neural network diagrams.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: NeuralNetworkPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.neural_network import NeuralNetworkMobject

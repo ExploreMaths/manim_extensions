@@ -2,7 +2,7 @@ import manim
 from .utils.debug import index_code_labels
 
 class Code(manim.Code):
-    """Visual code block with built-in line labels and helper utilities.
+    r"""Visual code block with built-in line labels and helper utilities.
 
     This wrapper keeps the functionality of Manim's built-in code renderer but
     exposes additional utility objects such as the background, line numbers, and
@@ -10,19 +10,18 @@ class Code(manim.Code):
 
     Examples
     --------
-
     .. manim:: CodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.code import Code
+       from manim import *
+       from manim_extensions.algorithm.code import Code
 
-        class CodeExample(Scene):
-            def construct(self):
-                code_src = "def hello():\n    print('Hello, Manim!')\n"
-                code = Code(code=code_src, language="python")
-                self.add(code)
-"""
+       class CodeExample(Scene):
+           def construct(self):
+               code_src = "def hello():\n    print('Hello, Manim!')\n"
+               code = Code(code=code_src, language="python")
+               self.add(code)
+    """
 
     def __init__(self, *args, **kwargs):
         """Initialize the Code block.
@@ -51,7 +50,7 @@ class Code(manim.Code):
         super().__init__(*args, **kwargs)
     
     def generate_index_labels(self, label_height: float = 0.1, **kwargs) -> manim.VGroup:
-        """Generate index labels for each displayed character in the code block.
+        r"""Generate index labels for each displayed character in the code block.
 
         This is useful for pointing at specific characters during an
         explanation. The returned :class:`~manim.VGroup` is organised as a
@@ -60,7 +59,7 @@ class Code(manim.Code):
         line.
 
         Parameters
-        ----------
+        -----------
         label_height : float
             Height of the generated index labels. Defaults to ``0.1``.
         **kwargs
@@ -76,47 +75,45 @@ class Code(manim.Code):
 
         Examples
         --------
-
         .. manim:: GenerateIndexLabelsExample
-          :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.algorithm.code import PythonCode
+           from manim import *
+           from manim_extensions.algorithm.code import PythonCode
 
-            class GenerateIndexLabelsExample(Scene):
-                def construct(self):
-                    src = "x = 1\\ny = x + 2\\n"
-                    code = PythonCode(code=src).to_edge(LEFT)
-                    labels = code.generate_index_labels(label_height=0.08)
-                    labels.next_to(code, DOWN, buff=0.8)
-                    self.add(code, labels)
+           class GenerateIndexLabelsExample(Scene):
+               def construct(self):
+                   src = "x = 1\\ny = x + 2\\n"
+                   code = PythonCode(code=src).to_edge(LEFT)
+                   labels = code.generate_index_labels(label_height=0.08)
+                   labels.next_to(code, DOWN, buff=0.8)
+                   self.add(code, labels)
         """
         return index_code_labels(self, label_height=label_height, **kwargs)
 
 class PythonCode(Code):
-    """Convenience code block configured for Python source listings.
+    r"""Convenience code block configured for Python source listings.
 
     Examples
     --------
-
     .. manim:: PythonCodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.code import PythonCode
+       from manim import *
+       from manim_extensions.algorithm.code import PythonCode
 
-        class PythonCodeExample(Scene):
-            def construct(self):
-                code_src = (
-                    "def fib(n):\n"
-                    "    a, b = 0, 1\n"
-                    "    for _ in range(n):\n"
-                    "        a, b = b, a + b\n"
-                    "    return a\n"
-                )
-                code = PythonCode(code=code_src)
-                self.add(code)
-"""
+       class PythonCodeExample(Scene):
+           def construct(self):
+               code_src = (
+                   "def fib(n):\n"
+                   "    a, b = 0, 1\n"
+                   "    for _ in range(n):\n"
+                   "        a, b = b, a + b\n"
+                   "    return a\n"
+               )
+               code = PythonCode(code=code_src)
+               self.add(code)
+    """
 
     def __init__(self, *args, **kwargs):
         """Initialize the PythonCode instance."""
@@ -125,29 +122,28 @@ class PythonCode(Code):
         super().__init__(*args, **kwargs)
 
 class JavaCode(Code):
-    """Convenience code block configured for Java source listings.
+    r"""Convenience code block configured for Java source listings.
 
     Examples
     --------
-
     .. manim:: JavaCodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.code import JavaCode
+       from manim import *
+       from manim_extensions.algorithm.code import JavaCode
 
-        class JavaCodeExample(Scene):
-            def construct(self):
-                code_src = (
-                    "public class Main {\n"
-                    "    public static void main(String[] args) {\n"
-                    "        System.out.println(\"Hello, Manim!\");\n"
-                    "    }\n"
-                    "}\n"
-                )
-                code = JavaCode(code=code_src)
-                self.add(code)
-"""
+       class JavaCodeExample(Scene):
+           def construct(self):
+               code_src = (
+                   "public class Main {\n"
+                   "    public static void main(String[] args) {\n"
+                   "        System.out.println(\"Hello, Manim!\");\n"
+                   "    }\n"
+                   "}\n"
+               )
+               code = JavaCode(code=code_src)
+               self.add(code)
+    """
 
     def __init__(self, *args, **kwargs):
         """Initialize the JavaCode instance."""
@@ -156,29 +152,28 @@ class JavaCode(Code):
         super().__init__(*args, **kwargs)
 
 class CppCode(Code):
-    """Convenience code block configured for C++ source listings.
+    r"""Convenience code block configured for C++ source listings.
 
     Examples
     --------
-
     .. manim:: CppCodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.code import CppCode
+       from manim import *
+       from manim_extensions.algorithm.code import CppCode
 
-        class CppCodeExample(Scene):
-            def construct(self):
-                code_src = (
-                    "#include <iostream>\n"
-                    "int main() {\n"
-                    "    std::cout << \"Hello, Manim!\" << std::endl;\n"
-                    "    return 0;\n"
-                    "}\n"
-                )
-                code = CppCode(code=code_src)
-                self.add(code)
-"""
+       class CppCodeExample(Scene):
+           def construct(self):
+               code_src = (
+                   "#include <iostream>\n"
+                   "int main() {\n"
+                   "    std::cout << \"Hello, Manim!\" << std::endl;\n"
+                   "    return 0;\n"
+                   "}\n"
+               )
+               code = CppCode(code=code_src)
+               self.add(code)
+    """
 
     def __init__(self, *args, **kwargs):
         """Initialize the CppCode instance."""

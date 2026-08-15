@@ -3,11 +3,10 @@ r"""TikZ integration helpers for Manim.
 This package exposes the core TikZ mobject wrapper and templating support for
 creating diagrammatic scenes based on TikZ input.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: TikzPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.tikz import Tikz

@@ -46,27 +46,19 @@ class FiniteStateAutomaton():
     the automaton.  It can be constructed from a JSON dictionary or parsed
     from an XML file (e.g. JFLAP format).
 
-    Attributes
-    ----------
-    states : list[State]
-        The set of states in the automaton.
-    transitions : list[Transition]
-        The set of transitions between states.
-
     Examples
     --------
-
     .. manim:: FiniteStateAutomatonExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.automata_dependencies.automata import FiniteStateAutomaton
+       from manim import *
+       from manim_extensions.automata.mobjects.automata_dependencies.automata import FiniteStateAutomaton
 
-        class FiniteStateAutomatonExample(Scene):
-            def construct(self):
-                fa = FiniteStateAutomaton()
-                label = Text(f"States: {len(fa.states)}", font_size=24)
-                self.add(label)
+       class FiniteStateAutomatonExample(Scene):
+           def construct(self):
+               fa = FiniteStateAutomaton()
+               label = Text(f"States: {len(fa.states)}", font_size=24)
+               self.add(label)
 """
     id_iter = itertools.count()
 
@@ -208,18 +200,17 @@ class PushDownAutomaton(FiniteStateAutomaton):
 
     Examples
     --------
-
     .. manim:: PushDownAutomatonExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.automata_dependencies.automata import PushDownAutomaton
+       from manim import *
+       from manim_extensions.automata.mobjects.automata_dependencies.automata import PushDownAutomaton
 
-        class PushDownAutomatonExample(Scene):
-            def construct(self):
-                pda = PushDownAutomaton()
-                label = Text(f"States: {len(pda.states)}", font_size=24)
-                self.add(label)
+       class PushDownAutomatonExample(Scene):
+           def construct(self):
+               pda = PushDownAutomaton()
+               label = Text(f"States: {len(pda.states)}", font_size=24)
+               self.add(label)
 """
     def __init__(self) -> None:
         """Initialize the PushDownAutomaton instance."""

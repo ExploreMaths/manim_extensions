@@ -3,11 +3,10 @@
 The classes in this module generate charge objects and electric-field vector
 fields suitable for teaching and demonstration scenes in Manim.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: ElectrostaticsModuleDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.physics.electromagnetism import Charge, ElectricField
@@ -55,18 +54,17 @@ class Charge(VGroup):
 
     Examples
     --------
-
     .. manim:: ChargeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.electromagnetism.electrostatics import Charge
+       from manim import *
+       from manim_extensions.physics.electromagnetism.electrostatics import Charge
 
-        class ChargeExample(Scene):
-            def construct(self):
-                pos = Charge(1, LEFT + DOWN)
-                neg = Charge(-1, RIGHT + DOWN)
-                self.add(pos, neg)
+       class ChargeExample(Scene):
+           def construct(self):
+               pos = Charge(1, LEFT + DOWN)
+               neg = Charge(-1, RIGHT + DOWN)
+               self.add(pos, neg)
 """
 
     def __init__(
@@ -133,21 +131,20 @@ class ElectricField(ArrowVectorField):
 
     Examples
     --------
-
     .. manim:: ElectricFieldExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.electromagnetism.electrostatics import (
-            Charge, ElectricField,
-        )
+       from manim import *
+       from manim_extensions.physics.electromagnetism.electrostatics import (
+           Charge, ElectricField,
+       )
 
-        class ElectricFieldExample(Scene):
-            def construct(self):
-                q1 = Charge(1, LEFT + DOWN)
-                q2 = Charge(-1, RIGHT + DOWN)
-                field = ElectricField(q1, q2)
-                self.add(q1, q2, field)
+       class ElectricFieldExample(Scene):
+           def construct(self):
+               q1 = Charge(1, LEFT + DOWN)
+               q2 = Charge(-1, RIGHT + DOWN)
+               field = ElectricField(q1, q2)
+               self.add(q1, q2, field)
 """
 
     def __init__(self, *charges: Charge, **kwargs) -> None:

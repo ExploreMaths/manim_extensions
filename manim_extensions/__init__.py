@@ -3,11 +3,10 @@
 This package bundles small utility functions and reusable Manim mobjects for
 common geometry, animation, and visualisation tasks.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: PackageOverviewDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions import CircleInt, LabelDot

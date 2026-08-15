@@ -33,15 +33,15 @@ def get_arc(
         The constructed Arc instance
 
     .. manim:: GetArcDocExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.compass import get_arc
+       from manim import *
+       from manim_extensions.compass import get_arc
 
-        class GetArcDocExample(Scene):
-            def construct(self):
-                arc = get_arc(ORIGIN, RIGHT, PI / 2)
-                self.add(arc)
+       class GetArcDocExample(Scene):
+           def construct(self):
+               arc = get_arc(ORIGIN, RIGHT, PI / 2)
+               self.add(arc)
     """
     arc_radius = get_distance(niddle_pos,pen_pos)
     vec_s = pen_pos - niddle_pos

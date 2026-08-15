@@ -25,17 +25,16 @@ class ManimAutomataInput(VGroup):
 
     Examples
     --------
-
     .. manim:: ManimAutomataInputExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_automaton_input import ManimAutomataInput
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_automaton_input import ManimAutomataInput
 
-        class ManimAutomataInputExample(Scene):
-            def construct(self):
-                inp = ManimAutomataInput("0101", animation_style={})
-                self.add(inp)
+       class ManimAutomataInputExample(Scene):
+           def construct(self):
+               inp = ManimAutomataInput("0101", animation_style={})
+               self.add(inp)
     """
     def __init__(self, input_string: str, animation_style: dict[str, Any], font_size: int = 100, **kwargs: Any) -> None:
 
@@ -93,17 +92,16 @@ class Token(MathTex):
 
     Examples
     --------
-
     .. manim:: TokenExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_automaton_input import Token
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_automaton_input import Token
 
-        class TokenExample(Scene):
-            def construct(self):
-                token = Token("a", 0)
-                self.add(token)
+       class TokenExample(Scene):
+           def construct(self):
+               token = Token("a", 0)
+               self.add(token)
 """
     id_iter = itertools.count()
 

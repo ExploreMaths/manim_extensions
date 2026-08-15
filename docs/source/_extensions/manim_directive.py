@@ -10,9 +10,9 @@ looks as follows::
 
     .. manim:: MyScene
 
-        class MyScene(Scene):
-            def construct(self):
-                ...
+       class MyScene(Scene):
+           def construct(self):
+               ...
 
 It is required to pass the name of the class representing the
 scene to be rendered to the directive.
@@ -21,15 +21,15 @@ As a second application, the directive can also be used to
 render scenes that are defined within doctests, for example::
 
     .. manim:: DirectiveDoctestExample
-        :ref_classes: Dot
+       :ref_classes: Dot
 
-        >>> from manim import Create, Dot, RED, Scene
-        >>> dot = Dot(color=RED)
-        >>> dot.color
-        ManimColor('#FC6255')
-        >>> class DirectiveDoctestExample(Scene):
-        ...     def construct(self):
-        ...         self.play(Create(dot))
+       >>> from manim import Create, Dot, RED, Scene
+       >>> dot = Dot(color=RED)
+       >>> dot.color
+       ManimColor('#FC6255')
+       >>> class DirectiveDoctestExample(Scene):
+       ...     def construct(self):
+       ...         self.play(Create(dot))
 
 
 Options

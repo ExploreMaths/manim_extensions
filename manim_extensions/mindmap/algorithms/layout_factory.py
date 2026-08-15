@@ -12,17 +12,16 @@ class LayoutFactory:
 
     Examples
     --------
-
     .. manim:: LayoutFactoryExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
+       from manim import *
+       from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
 
-        class LayoutFactoryExample(Scene):
-            def construct(self):
-                label = Text("LayoutFactory creates layout algorithms", font_size=24)
-                self.add(label)
+       class LayoutFactoryExample(Scene):
+           def construct(self):
+               label = Text("LayoutFactory creates layout algorithms", font_size=24)
+               self.add(label)
 """
     @staticmethod
     def create_layout(

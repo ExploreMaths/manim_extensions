@@ -29,16 +29,16 @@ class DrawArc(AnimationGroup):
 
     .. manim:: DrawArcDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, DrawArc
-        from manim.mobject.geometry.arc import Arc
+       from manim import *
+       from manim_extensions.compass import Compass, DrawArc
+       from manim.mobject.geometry.arc import Arc
 
-        class DrawArcDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                arc = Arc(arc_center=ORIGIN, radius=1, angle=PI / 2)
-                self.play(DrawArc(compass, arc))
-                self.wait()
+       class DrawArcDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               arc = Arc(arc_center=ORIGIN, radius=1, angle=PI / 2)
+               self.play(DrawArc(compass, arc))
+               self.wait()
 
     Parameters
     ----------
@@ -64,14 +64,14 @@ class SplitCompass(AnimationGroup):
 
     .. manim:: SplitCompassDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, SplitCompass
+       from manim import *
+       from manim_extensions.compass import Compass, SplitCompass
 
-        class SplitCompassDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.play(SplitCompass(compass, 2))
-                self.wait()
+       class SplitCompassDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.play(SplitCompass(compass, 2))
+               self.wait()
 
     Parameters
     ----------
@@ -113,14 +113,14 @@ class RotateCompass(Rotate):
 
     .. manim:: RotateCompassDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, RotateCompass
+       from manim import *
+       from manim_extensions.compass import Compass, RotateCompass
 
-        class RotateCompassDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.play(RotateCompass(compass, PI / 2))
-                self.wait()
+       class RotateCompassDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.play(RotateCompass(compass, PI / 2))
+               self.wait()
 
     Parameters
     ----------
@@ -147,14 +147,14 @@ class MoveNiddleTipTo(ApplyMethod):
 
     .. manim:: MoveNiddleTipToDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, MoveNiddleTipTo
+       from manim import *
+       from manim_extensions.compass import Compass, MoveNiddleTipTo
 
-        class MoveNiddleTipToDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.play(MoveNiddleTipTo(compass, ORIGIN))
-                self.wait()
+       class MoveNiddleTipToDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.play(MoveNiddleTipTo(compass, ORIGIN))
+               self.wait()
 
     Parameters
     ----------
@@ -180,14 +180,14 @@ class PutCompass(ApplyMethod):
 
     .. manim:: PutCompassDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, PutCompass
+       from manim import *
+       from manim_extensions.compass import Compass, PutCompass
 
-        class PutCompassDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
-                self.wait()
+       class PutCompassDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
+               self.wait()
 
     Parameters
     ----------
@@ -227,14 +227,14 @@ class PutCompassAway(PutCompass):
 
     .. manim:: PutCompassAwayDocExample
 
-        from manim import *
-        from manim_extensions.compass import Compass, PutCompassAway
+       from manim import *
+       from manim_extensions.compass import Compass, PutCompassAway
 
-        class PutCompassAwayDocExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.play(PutCompassAway(compass, 2 * RIGHT))
-                self.wait()
+       class PutCompassAwayDocExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.play(PutCompassAway(compass, 2 * RIGHT))
+               self.wait()
 
     Parameters
     ----------

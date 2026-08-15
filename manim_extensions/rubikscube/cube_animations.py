@@ -23,19 +23,20 @@ class CubeMove(Animation):
 
     Examples
     --------
-
     .. manim:: CubeMoveExample
-        from manim import *
-        from manim_extensions.rubikscube import RubiksCube
-        from manim_extensions.rubikscube.cube_animations import CubeMove
 
-        class CubeMoveExample(Scene):
-            def construct(self):
-                cube = RubiksCube(dim=3).scale(0.5)
-                self.add(cube)
-                self.play(CubeMove(cube, "R"))
-                self.wait(1)
-"""
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+       from manim_extensions.rubikscube.cube_animations import CubeMove
+
+       class CubeMoveExample(Scene):
+           def construct(self):
+               cube = RubiksCube(dim=3).scale(0.5)
+               self.add(cube)
+               self.play(CubeMove(cube, "R"))
+               self.wait(1)
+    """
+
     def __init__(self, mobject, face, **kwargs):
         """Initialize the CubeMove instance."""
         self.axis = get_axis_from_face(face[0])

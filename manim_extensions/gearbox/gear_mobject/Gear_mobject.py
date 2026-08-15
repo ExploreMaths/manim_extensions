@@ -32,18 +32,18 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
     Examples
     --------
     .. manim:: InvoluteFuncExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_func
+       from manim import *
+       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_func
 
-        class InvoluteFuncExample(Scene):
-            def construct(self):
-                t = np.linspace(0, np.pi, 50)
-                points = involute_func(t, 1.0)
-                dot = Dot(point=points[-1], color=YELLOW)
-                label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
-                self.add(dot, label)
+       class InvoluteFuncExample(Scene):
+           def construct(self):
+               t = np.linspace(0, np.pi, 50)
+               points = involute_func(t, 1.0)
+               dot = Dot(point=points[-1], color=YELLOW)
+               label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
+               self.add(dot, label)
     """
     def involute_val(val):
         """Compute a single point on the involute tooth profile.
@@ -88,20 +88,20 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
     Examples
     --------
     .. manim:: InvoluteDerivFuncExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_deriv_func
+       from manim import *
+       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_deriv_func
 
-        class InvoluteDerivFuncExample(Scene):
-            def construct(self):
-                t = np.linspace(0, np.pi / 2, 20)
-                derivs = involute_deriv_func(t, 1.0)
-                label = Text(f"Derivative vectors: {len(derivs)}", font_size=24).to_edge(UP)
-                self.add(label)
-                for d in derivs[::5]:
-                    vec = Arrow(ORIGIN, d, buff=0, color=YELLOW)
-                    self.add(vec)
+       class InvoluteDerivFuncExample(Scene):
+           def construct(self):
+               t = np.linspace(0, np.pi / 2, 20)
+               derivs = involute_deriv_func(t, 1.0)
+               label = Text(f"Derivative vectors: {len(derivs)}", font_size=24).to_edge(UP)
+               self.add(label)
+               for d in derivs[::5]:
+                   vec = Arrow(ORIGIN, d, buff=0, color=YELLOW)
+                   self.add(vec)
     """
     def diff_val(val):
         """Compute the derivative of the involute profile at a given parameter.
@@ -146,17 +146,17 @@ def involute_height_func(k, r, **kwargs):
     Examples
     --------
     .. manim:: InvoluteHeightFuncExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_height_func
+       from manim import *
+       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_height_func
 
-        class InvoluteHeightFuncExample(Scene):
-            def construct(self):
-                k_val = np.pi / 4
-                height = involute_height_func(k_val, 1.0)
-                label = Text(f"Height at pi/4: {height:.3f}", font_size=24).to_edge(UP)
-                self.add(label)
+       class InvoluteHeightFuncExample(Scene):
+           def construct(self):
+               k_val = np.pi / 4
+               height = involute_height_func(k_val, 1.0)
+               label = Text(f"Height at pi/4: {height:.3f}", font_size=24).to_edge(UP)
+               self.add(label)
     """
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
@@ -177,19 +177,19 @@ def involute_point_gen(t,r,**kwargs):
     Examples
     --------
     .. manim:: InvolutePointGenExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_point_gen
+       from manim import *
+       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_point_gen
 
-        class InvolutePointGenExample(Scene):
-            def construct(self):
-                t = np.linspace(0, np.pi / 2, 10)
-                points = involute_point_gen(t, 1.0)
-                curve = VMobject()
-                curve.points = points
-                curve.set_stroke(YELLOW, 3)
-                self.add(curve)
+       class InvolutePointGenExample(Scene):
+           def construct(self):
+               t = np.linspace(0, np.pi / 2, 10)
+               points = involute_point_gen(t, 1.0)
+               curve = VMobject()
+               curve.points = points
+               curve.set_stroke(YELLOW, 3)
+               self.add(curve)
     """
     end_points = involute_func(t,r,**kwargs)
     diff_points = involute_deriv_func(t,r,**kwargs)
@@ -668,19 +668,19 @@ class Rack(VMobject):
     for proper meshing.
 
     .. manim:: RackExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.gearbox import Gear, Rack
+       from manim import *
+       from manim_extensions.gearbox import Gear, Rack
 
-        class RackExample(Scene):
-            def construct(self):
-                gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-                rack = Rack(12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1)
-                gear.shift(RIGHT * gear.rp)
-                rack.shift(UP * rack.pitch * 0.5)
+       class RackExample(Scene):
+           def construct(self):
+               gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
+               rack = Rack(12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1)
+               gear.shift(RIGHT * gear.rp)
+               rack.shift(UP * rack.pitch * 0.5)
 
-                self.add(gear, rack)
+               self.add(gear, rack)
     Parameters
     ----------
     num_of_teeth : int

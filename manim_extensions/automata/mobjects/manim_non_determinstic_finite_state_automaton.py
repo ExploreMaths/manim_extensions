@@ -23,17 +23,16 @@ class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-
     .. manim:: ManimNonDeterminsticFiniteAutomatonExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton import ManimNonDeterminsticFiniteAutomaton
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton import ManimNonDeterminsticFiniteAutomaton
 
-        class ManimNonDeterminsticFiniteAutomatonExample(Scene):
-            def construct(self):
-                ndfa = ManimNonDeterminsticFiniteAutomaton()
-                self.add(ndfa)
+       class ManimNonDeterminsticFiniteAutomatonExample(Scene):
+           def construct(self):
+               ndfa = ManimNonDeterminsticFiniteAutomaton()
+               self.add(ndfa)
 """
     nda_builder = False
 

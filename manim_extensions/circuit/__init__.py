@@ -3,11 +3,10 @@
 This package exposes helper mobjects and utilities for circuit-style diagrams
 in Manim scenes.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: CircuitPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.circuit import VoltageSource, Resistor, Capacitor

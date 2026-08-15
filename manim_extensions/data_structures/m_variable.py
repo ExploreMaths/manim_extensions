@@ -1,8 +1,27 @@
-"""Contains classes to construct variable."""
+"""Contains classes to construct variable.
+
+Examples
+--------
+
+.. manim:: MVariableModuleDocExample
+
+   from manim import *
+   from manim_extensions.data_structures import MVariable
+
+   class MVariableModuleDocExample(Scene):
+       def construct(self):
+           var = MVariable(self, value=0, index="x", label="count")
+           var.to_edge(UP)
+           self.play(Write(var))
+           self.wait(0.5)
+           var.update_value(42)
+           self.wait(0.5)
+"""
 
 from __future__ import annotations
 
 from manim import *
+from typing import Any, Union
 
 from .m_array import MArrayElement
 
@@ -31,11 +50,31 @@ class MVariable(MArrayElement):
     **kwargs
         Forwarded to constructor of the parent.
 
+    Examples
+    --------
+    .. manim:: MVariableDocExample
+
+       from manim import *
+       from manim_extensions.data_structures import MVariable
+
+       class MVariableDocExample(Scene):
+           def construct(self):
+               var = MVariable(self, value=0, index="x", label="count")
+               var.to_edge(UP)
+               self.play(Write(var))
+               self.wait(0.5)
+               var.update_value(5)
+               self.wait(0.5)
+               var.update_value(10)
+               self.wait(0.5)
+               var.update_label("total")
+               self.wait(0.5)
+
     Attributes
     ----------
-    __value : Any
+    __value : :class:`~typing.Any`
         The value of the variable.
-    __index : :data:`~typing.Union`\0[:class:`str`, :class:`int`]
+    __index : :data:`~typing.Union` [:class:`str`, :class:`int`]
         The value of the index.
     __label : :class:`str`
         The value of the label.
@@ -45,7 +84,7 @@ class MVariable(MArrayElement):
         self,
         scene: Scene,
         value: Any = "",
-        index: typing.Union[str, int] = "",
+        index: Union[str, int] = "",
         label: str = "",
         mob_square_args: dict = {},
         mob_value_args: dict = {},
@@ -78,7 +117,7 @@ class MVariable(MArrayElement):
         """
 
         self.__value: Any = value
-        self.__index: typing.Union[str, int] = index
+        self.__index: Union[str, int] = index
         self.__label: str = label
 
         mob_value_args["text"] = value
@@ -99,18 +138,18 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        Any
+        :class:`~typing.Any`
             :attr:`__value`.
         """
 
         return self.__value
 
-    def fetch_index(self) -> typing.Union[str, int]:
+    def fetch_index(self) -> Union[str, int]:
         """Fetches the index of the variable.
 
         Returns
         -------
-        :data:`~typing.Union`\0[:class:`str`, :class:`int`]
+        :data:`~typing.Union` [:class:`str`, :class:`int`]
             :attr:`__index`.
         """
 
@@ -151,7 +190,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -167,7 +206,7 @@ class MVariable(MArrayElement):
 
     def update_index(
         self,
-        index: typing.Union[str, int],
+        index: Union[str, int],
         mob_index_args: dict = {},
         update_anim: Animation = Indicate,
         update_anim_args: dict = {},
@@ -189,7 +228,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -227,7 +266,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------

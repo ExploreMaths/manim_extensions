@@ -7,6 +7,7 @@ from manim import *
 from .manim_non_determinstic_finite_state_automaton import ManimNonDeterminsticFiniteAutomaton
 from .manim_state import ManimState, State
 from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
+from .manim_automaton_input import ManimAutomataInput
 
 from typing import Union
 
@@ -15,17 +16,16 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
 
     Examples
     --------
-
     .. manim:: ManimPushDownAutomatonExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
 
-        class ManimPushDownAutomatonExample(Scene):
-            def construct(self):
-                pda = ManimPushDownAutomaton()
-                self.add(pda)
+       class ManimPushDownAutomatonExample(Scene):
+           def construct(self):
+               pda = ManimPushDownAutomaton()
+               self.add(pda)
 """
 
     stack: list
@@ -219,18 +219,17 @@ class PushDownAutomatonRule():
 
     Examples
     --------
-
     .. manim:: PushDownAutomatonRuleExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_pushdown_automaton import PushDownAutomatonRule
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_pushdown_automaton import PushDownAutomatonRule
 
-        class PushDownAutomatonRuleExample(Scene):
-            def construct(self):
-                rule = PushDownAutomatonRule("a", "X", "XY")
-                label = Text(f"Rule: read={rule.read_symbol}, pop={rule.pop}, push={rule.push}", font_size=20)
-                self.add(label)
+       class PushDownAutomatonRuleExample(Scene):
+           def construct(self):
+               rule = PushDownAutomatonRule("a", "X", "XY")
+               label = Text(f"Rule: read={rule.read_symbol}, pop={rule.pop}, push={rule.push}", font_size=20)
+               self.add(label)
 """
 
     read_symbol: str

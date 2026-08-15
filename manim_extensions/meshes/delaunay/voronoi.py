@@ -16,26 +16,25 @@ class VoronoiDelaunay:
 
     Examples
     --------
-
     .. manim:: VoronoiDelaunayExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.models.data_models.mesh import Mesh
-        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
-        from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
+       from manim import *
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+       from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
 
-        class VoronoiDelaunayExample(Scene):
-            def construct(self):
-                import numpy as np
-                pts = np.random.RandomState(42).rand(10, 3)
-                pts[:, 2] = 0
-                vertices = pts.tolist()
-                faces = []
-                mesh_data = Mesh(vertices, faces)
-                tm = TriangleManim2DMesh(mesh_data)
-                self.add(tm)
-                vd = VoronoiDelaunay(self, tm)
+       class VoronoiDelaunayExample(Scene):
+           def construct(self):
+               import numpy as np
+               pts = np.random.RandomState(42).rand(10, 3)
+               pts[:, 2] = 0
+               vertices = pts.tolist()
+               faces = []
+               mesh_data = Mesh(vertices, faces)
+               tm = TriangleManim2DMesh(mesh_data)
+               self.add(tm)
+               vd = VoronoiDelaunay(self, tm)
 """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:

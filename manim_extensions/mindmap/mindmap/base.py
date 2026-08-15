@@ -23,20 +23,19 @@ class NodeMobject:
 
     Examples
     --------
-
     .. manim:: NodeMobjectExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.mindmap.base import NodeMobject
+       from manim import *
+       from manim_extensions.mindmap.mindmap.base import NodeMobject
 
-        class NodeMobjectExample(Scene):
-            def construct(self):
-                rect = Rectangle()
-                line = Line(LEFT, RIGHT)
-                tex = Tex("x")
-                nm = NodeMobject(rect, rect, line, "x")
-                self.add(rect)
+       class NodeMobjectExample(Scene):
+           def construct(self):
+               rect = Rectangle()
+               line = Line(LEFT, RIGHT)
+               tex = Tex("x")
+               nm = NodeMobject(rect, rect, line, "x")
+               self.add(rect)
 """
     __slots__ = ['vmobject','surr_rect','connector','text']
     def __init__(
@@ -121,17 +120,16 @@ class AbstractMap(Group):
 
     Examples
     --------
-
     .. manim:: AbstractMapExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.mindmap.base import AbstractMap
+       from manim import *
+       from manim_extensions.mindmap.mindmap.base import AbstractMap
 
-        class AbstractMapExample(Scene):
-            def construct(self):
-                label = Text("AbstractMap base class", font_size=24)
-                self.add(label)
+       class AbstractMapExample(Scene):
+           def construct(self):
+               label = Text("AbstractMap base class", font_size=24)
+               self.add(label)
 """
     def __init__(
         self,

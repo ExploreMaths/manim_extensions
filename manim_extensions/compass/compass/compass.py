@@ -20,15 +20,15 @@ class Compass(VGroup):
     """Compass mobject.
 
     .. manim:: CompassExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.compass import Compass
+       from manim import *
+       from manim_extensions.compass import Compass
 
-        class CompassExample(Scene):
-            def construct(self):
-                compass = Compass().to_edge(LEFT)
-                self.add(compass)
+       class CompassExample(Scene):
+           def construct(self):
+               compass = Compass().to_edge(LEFT)
+               self.add(compass)
     """
     def __init__(
         self,
@@ -132,15 +132,15 @@ class Compass(VGroup):
         """Move the compass as a whole so that the needle tip is at pos.
 
         .. manim:: CompassMoveNiddleTipToDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class CompassMoveNiddleTipToDocExample(Scene):
-                def construct(self):
-                    compass = Compass().move_niddle_tip_to(ORIGIN)
-                    self.add(compass)
+           class CompassMoveNiddleTipToDocExample(Scene):
+               def construct(self):
+                   compass = Compass().move_niddle_tip_to(ORIGIN)
+                   self.add(compass)
 
         Parameters
         ----------
@@ -154,15 +154,15 @@ class Compass(VGroup):
         """Rotate the compass as a whole around the needle tip by angle.
 
         .. manim:: RotateAboutNiddleTipDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class RotateAboutNiddleTipDocExample(Scene):
-                def construct(self):
-                    compass = Compass().rotate_about_niddle_tip(PI / 4)
-                    self.add(compass)
+           class RotateAboutNiddleTipDocExample(Scene):
+               def construct(self):
+                   compass = Compass().rotate_about_niddle_tip(PI / 4)
+                   self.add(compass)
 
         Parameters
         ----------
@@ -179,15 +179,15 @@ class Compass(VGroup):
         """Mirror-flip the needle tip and pen tip.
 
         .. manim:: ReverseTipDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class ReverseTipDocExample(Scene):
-                def construct(self):
-                    compass = Compass().reverse_tip()
-                    self.add(compass)
+           class ReverseTipDocExample(Scene):
+               def construct(self):
+                   compass = Compass().reverse_tip()
+                   self.add(compass)
         """
         self.flip(
             axis = self.head[0].get_end() - self.head[0].get_start(),
@@ -199,15 +199,15 @@ class Compass(VGroup):
         """Open the two compass legs by an additional angle.
 
         .. manim:: SplitCompassWithGainAngleDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class SplitCompassWithGainAngleDocExample(Scene):
-                def construct(self):
-                    compass = Compass().split_copass_with_gain_angle(PI / 6)
-                    self.add(compass)
+           class SplitCompassWithGainAngleDocExample(Scene):
+               def construct(self):
+                   compass = Compass().split_copass_with_gain_angle(PI / 6)
+                   self.add(compass)
 
         Parameters
         ----------
@@ -232,15 +232,15 @@ class Compass(VGroup):
         """Keep the needle tip fixed and open the two compass legs by angle.
 
         .. manim:: SplitCompassWithNiddleTipFixedDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class SplitCompassWithNiddleTipFixedDocExample(Scene):
-                def construct(self):
-                    compass = Compass().split_compass_with_niddle_tip_fixed(PI / 6, ORIGIN)
-                    self.add(compass)
+           class SplitCompassWithNiddleTipFixedDocExample(Scene):
+               def construct(self):
+                   compass = Compass().split_compass_with_niddle_tip_fixed(PI / 6, ORIGIN)
+                   self.add(compass)
 
         Parameters
         ----------
@@ -286,15 +286,15 @@ class Compass(VGroup):
         """Set the compass span, rotation angle, and needle tip position.
 
         .. manim:: SetCompassDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-            class SetCompassDocExample(Scene):
-                def construct(self):
-                    compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
-                    self.add(compass)
+           class SetCompassDocExample(Scene):
+               def construct(self):
+                   compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
+                   self.add(compass)
 
     Parameters
     ----------

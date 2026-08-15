@@ -25,24 +25,24 @@ class MindMap(AbstractMap):
     the corresponding mind-map object.
 
     .. manim:: MindMapExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap import MindMap
+       from manim import *
+       from manim_extensions.mindmap import MindMap
 
-        class MindMapExample(Scene):
-            def construct(self):
-                data = {
-                    'node': MathTex(r"\text{Calculus}"),
-                    'child': [
-                        {'node': MathTex(r"\text{Limits}")},
-                        {'node': MathTex(r"\text{Derivatives}")},
-                        {'node': MathTex(r"\text{Integrals}")},
-                    ]
-                }
-                mind_map = MindMap(data)
-                mind_map.scale_to_fit_width(12)
-                self.add(mind_map)
+       class MindMapExample(Scene):
+           def construct(self):
+               data = {
+                   'node': MathTex(r"\text{Calculus}"),
+                   'child': [
+                       {'node': MathTex(r"\text{Limits}")},
+                       {'node': MathTex(r"\text{Derivatives}")},
+                       {'node': MathTex(r"\text{Integrals}")},
+                   ]
+               }
+               mind_map = MindMap(data)
+               mind_map.scale_to_fit_width(12)
+               self.add(mind_map)
 
     Parameters
     ----------
@@ -140,24 +140,24 @@ class TimeLine(AbstractMap):
     
 
     .. manim:: TimeLineDocExample
-        :save_last_frame:
+       :save_last_frame:
         
-        from manim import *
-        from manim_extensions.mindmap import TimeLine
-        
-        class TimeLineDocExample(Scene):
-            def construct(self):
-                data = {
-                    'node': MathTex(r"\text{History}"),
-                    'child': [
-                        {'node': MathTex(r"2022")},
-                        {'node': MathTex(r"2023")},
-                        {'node': MathTex(r"2024")},
-                    ]
-                }
-                timeline = TimeLine(data)
-                timeline.scale_to_fit_width(12)
-                self.add(timeline)
+       from manim import *
+       from manim_extensions.mindmap import TimeLine
+
+       class TimeLineDocExample(Scene):
+           def construct(self):
+               data = {
+                   'node': MathTex(r"\text{History}"),
+                   'child': [
+                       {'node': MathTex(r"2022")},
+                       {'node': MathTex(r"2023")},
+                       {'node': MathTex(r"2024")},
+                   ]
+               }
+               timeline = TimeLine(data)
+               timeline.scale_to_fit_width(12)
+               self.add(timeline)
     """
     def __init__(
         self,
@@ -239,23 +239,23 @@ class StandardMap(AbstractMap):
     
 
     .. manim:: StandardMapDocExample
-        :save_last_frame:
+       :save_last_frame:
         
-        from manim import *
-        from manim_extensions.mindmap import StandardMap
-        
-        class StandardMapDocExample(Scene):
-            def construct(self):
-                data = {
-                    'node': MathTex(r"\text{Root}"),
-                    'child': [
-                        {'node': MathTex(r"\text{Left}")},
-                        {'node': MathTex(r"\text{Right}")},
-                    ]
-                }
-                mind_map = StandardMap(data)
-                mind_map.scale_to_fit_width(12)
-                self.add(mind_map)
+       from manim import *
+       from manim_extensions.mindmap import StandardMap
+
+       class StandardMapDocExample(Scene):
+           def construct(self):
+               data = {
+                   'node': MathTex(r"\text{Root}"),
+                   'child': [
+                       {'node': MathTex(r"\text{Left}")},
+                       {'node': MathTex(r"\text{Right}")},
+                   ]
+               }
+               mind_map = StandardMap(data)
+               mind_map.scale_to_fit_width(12)
+               self.add(mind_map)
     """
     def __init__(
         self,
@@ -336,23 +336,23 @@ class CatalogMap(AbstractMap):
     
 
     .. manim:: CatalogMapDocExample
-        :save_last_frame:
+       :save_last_frame:
         
-        from manim import *
-        from manim_extensions.mindmap import CatalogMap
-        
-        class CatalogMapDocExample(Scene):
-            def construct(self):
-                data = {
-                    'node': MathTex(r"\text{Company}"),
-                    'child': [
-                        {'node': MathTex(r"\text{Engineering}")},
-                        {'node': MathTex(r"\text{Sales}")},
-                    ]
-                }
-                catalog = CatalogMap(data)
-                catalog.scale_to_fit_width(12)
-                self.add(catalog)
+       from manim import *
+       from manim_extensions.mindmap import CatalogMap
+
+       class CatalogMapDocExample(Scene):
+           def construct(self):
+               data = {
+                   'node': MathTex(r"\text{Company}"),
+                   'child': [
+                       {'node': MathTex(r"\text{Engineering}")},
+                       {'node': MathTex(r"\text{Sales}")},
+                   ]
+               }
+               catalog = CatalogMap(data)
+               catalog.scale_to_fit_width(12)
+               self.add(catalog)
     """
     def __init__(
         self,

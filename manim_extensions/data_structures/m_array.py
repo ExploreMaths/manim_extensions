@@ -1,4 +1,25 @@
-"""Contains classes to construct an array."""
+"""Contains classes to construct an array.
+
+Examples
+--------
+
+.. manim:: MArrayModuleDocExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.data_structures import (
+       MArray, MArrayPointer, MArrayDirection
+   )
+
+   class MArrayModuleDocExample(Scene):
+       def construct(self):
+           arr = MArray(self, [10, 20, 30, 40, 50], label="data")
+           ptr = MArrayPointer(
+               self, arr, index=2, label="i",
+               pointer_pos=MArrayDirection.UP
+           )
+           self.add(arr, ptr)
+"""
 
 from copy import deepcopy
 
@@ -38,8 +59,27 @@ class MArrayElement(VGroup):
     next_to_dir
         Specifies the direction of placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
 
+    Examples
+    --------
+    .. manim:: MArrayElementDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures import MArrayElement
+
+       class MArrayElementDocExample(Scene):
+           def construct(self):
+               elem = MArrayElement(
+                   self,
+                   mob_value_args={"text": "42"},
+                   mob_index_args={"text": "i"},
+                   mob_label_args={"text": "x"},
+               )
+               self.add(elem)
+
     Attributes
     ----------
+
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
     __mob_square_props : :class:`dict`
@@ -50,11 +90,11 @@ class MArrayElement(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
     __mob_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
-    __index_pos : :class:`np.ndarray`
+    __index_pos : :class:`numpy.ndarray`
         The position of :attr:`__mob_index` w.r.t :attr:`__mob_square`
     __index_gap : :class:`float`
         The distance between :attr:`__mob_index` and :attr:`__mob_square`.
-    __label_pos : :class:`np.ndarray`
+    __label_pos : :class:`numpy.ndarray`
         The position of :attr:`__mob_label` w.r.t :attr:`__mob_square`.
     __label_gap : :class:`float`
         The distance between :attr:`__mob_label` and :attr:`__mob_square`.
@@ -352,7 +392,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -396,7 +436,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -440,7 +480,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -544,8 +584,39 @@ class MArray(VGroup):
     **kwargs
         Forwarded to constructor of the parent.
 
+    Examples
+    --------
+    .. manim:: MArrayDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures import MArray
+
+       class MArrayDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [3, 1, 4, 1, 5, 9, 2, 6], label="arr")
+               self.add(arr)
+
+    .. manim:: MArrayInsertRemoveDocExample
+
+       from manim import *
+       from manim_extensions.data_structures import MArray
+
+       class MArrayInsertRemoveDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [1, 3, 5, 7], label="arr")
+               self.play(Write(arr))
+               self.wait(0.5)
+               arr.append_elem(2)
+               self.wait(0.5)
+               arr.append_elem(4)
+               self.wait(0.5)
+               arr.remove_elem(index=1)
+               self.wait(0.5)
+
     Attributes
     ----------
+
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
     __arr : :class:`list`
@@ -568,7 +639,7 @@ class MArray(VGroup):
         The distance between :attr:`__mob_arr_label` and :attr:`__mob_arr`.
     __mob_arr_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-    __mob_arr : :class:`~typing.List`\0[:class:`MArrayElement`]
+    __mob_arr : :class:`~typing.List` [:class:`MArrayElement`]
         Represents the array.
     __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the array label.
@@ -580,7 +651,7 @@ class MArray(VGroup):
         {"arr": RIGHT, "index": UP},
         {"arr": LEFT, "index": UP},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`np.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
 
     def __sum_elem_len(self, index_start: int, index_end: int) -> int:
         """Sums the side_length of all elements' square mobject present in the array between the specified range.
@@ -595,7 +666,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`int`
-            Sum of `side_length`\0s of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`__mob_arr` in the specified range.
+            Sum of ``side_length`` of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`__mob_arr` in the specified range.
         """
 
         if (
@@ -618,7 +689,7 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.geometry.polygram.Square`
             Square mobject next to which the array label is positioned.
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             The relative position of the array label.
         """
 
@@ -666,7 +737,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`~typing.Union`\0[:class:`int`, :class:`str`]
+        :data:`~typing.Union` [:class:`int`, :class:`str`]
             Displayable index.
         """
 
@@ -685,7 +756,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             Index position.
         """
 
@@ -755,7 +826,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`typing.List`\0[:class:`~manim.animation.animation.Animation`]
+        :data:`typing.List` [:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -824,8 +895,8 @@ class MArray(VGroup):
         -------
         :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable`\0[[:class:`bool`], :class:`~typing.List`\0[:class:`~manim.animation.animation.Animation`]]
-            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\0(s).
+        :data:`~typing.Callable` [[:class:`bool`], :class:`~typing.List` [:class:`~manim.animation.animation.Animation`]]
+            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation` (s).
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -860,10 +931,11 @@ class MArray(VGroup):
         def update_indices(
             play_anim: bool = True, play_anim_args: dict = {}
         ) -> List[Animation]:
-            """Updates the indices of :class:`MArrayElement`(s) that occur after the removal.
+            """Updates the indices of :class:`MArrayElement` (s) that occur after the removal.
 
             Parameters
             ----------
+
             play_anim : :class:`bool`, default: `True`
                 Specifies whether to play the update :class:`manim.Animation`.
             play_anim_args : :class:`dict`, default: `{}`
@@ -871,6 +943,7 @@ class MArray(VGroup):
 
             Returns
             -------
+
             List[:class:`manim.Animation`]
                 Represents :class:`Animation` for indices update.
             """
@@ -1172,7 +1245,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1216,7 +1289,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1256,7 +1329,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1390,11 +1463,11 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
-        :class:`typing.List`\0[:class:`~manim.animation.animation.Animation`]
+        :class:`typing.List` [:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -1448,14 +1521,14 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable`\0[[:class:`bool`], :class:`~typing.List`\0[:class:`~manim.animation.animation.Animation`]]
-            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\0(s).
+        :data:`~typing.Callable` [[:class:`bool`], :class:`~typing.List` [:class:`~manim.animation.animation.Animation`]]
+            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation` (s).
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1508,11 +1581,30 @@ class MArrayPointer(VGroup):
     **kwargs
         Forwarded to constructor of the parent.
 
+    Examples
+    --------
+    .. manim:: MArrayPointerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures import (
+           MArray, MArrayPointer, MArrayDirection
+       )
+
+       class MArrayPointerDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [10, 20, 30, 40, 50], label="data")
+               ptr = MArrayPointer(
+                   self, arr, index=2, label="i",
+                   pointer_pos=MArrayDirection.UP
+               )
+               self.add(arr, ptr)
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List`\0[:class:`MArrayElement`]
+    __arr : :class:`~typing.List` [:class:`MArrayElement`]
         The array to which the pointer is attached to.
     __index : :class:`int`
         The index of the element to which the pointer is attached to.
@@ -1524,7 +1616,7 @@ class MArrayPointer(VGroup):
         The distance between :attr:`__mob_arrow` and :attr:`__arr`.
     __label_gap : :class:`float`
         The distance between :attr:`__mob_arrow` and :attr:`__mob_label`.
-    __pointer_pos : :class:`.m_enum.MArrayDirection`
+    __pointer_pos : :class:`~manim_extensions.data_structures.m_enum.MArrayDirection`
         The position of the pointer w.r.t to :attr:`__arr`.
     __mob_arrow_props : :class:`dict`
         Arguments for :class:`~manim.mobject.geometry.line.Arrow` that represents the pointer arrow.
@@ -1534,7 +1626,7 @@ class MArrayPointer(VGroup):
         Represents the arrow of the element.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the element.
-    __updater_pos : :data:`typing.Callable`\0[[], None]
+    __updater_pos : :data:`~typing.Callable` [[], None]
         The updater function that keeps the pointer intact with the array.
     """
 
@@ -1544,14 +1636,14 @@ class MArrayPointer(VGroup):
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
         {"np": LEFT, "dir": MArrayDirection.LEFT},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`np.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
 
     def __calc_arrow_pos(self) -> np.ndarray:
         """Calculates direction vector for the arrow mobject.
 
         Returns
         -------
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             Position vector for :attr:`__mob_arrow`.
         """
 
@@ -1591,7 +1683,7 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             A vector that represents how much the pointer should shift.
         """
 
@@ -1849,7 +1941,7 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1908,7 +2000,7 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1946,7 +2038,7 @@ class MArrayPointer(VGroup):
 
 
 class MArraySlidingWindow(VGroup):
-    """A class that represents a sliding window
+    """A class that represents a sliding window.
 
     Parameters
     ----------
@@ -1971,11 +2063,30 @@ class MArraySlidingWindow(VGroup):
     **kwargs
         Forwarded to constructor of the parent.
 
+    Examples
+    --------
+    .. manim:: MArraySlidingWindowDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures import (
+           MArray, MArraySlidingWindow, MArrayDirection
+       )
+
+       class MArraySlidingWindowDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [7, 2, 5, 1, 8, 3, 6, 4], label="nums")
+               window = MArraySlidingWindow(
+                   self, arr, index=1, size=3, label="window",
+                   label_pos=MArrayDirection.UP
+               )
+               self.add(arr, window)
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List`\0[:class:`MArrayElement`]
+    __arr : :class:`~typing.List` [:class:`MArrayElement`]
         The array to which the sliding window is to be attached.
     __index : :class:`int`
         The index of the element to which the sliding window is to be attached.
@@ -1985,7 +2096,7 @@ class MArraySlidingWindow(VGroup):
         The value of the sliding window label.
     __label_gap : :class:`float`
         The distance between :attr:`__mob_label` and :attr:`__mob_window`.
-    __label_pos : :class:`.m_enum.MArrayDirection`
+    __label_pos : :class:`~.m_enum.MArrayDirection`
         The position of the pointer w.r.t to :attr:`__mob_window`.
     __mob_window_props : :class:`dict`
         Arguments for :class:`~manim.mobject.geometry.polygram.Rectangle` that represents the window.
@@ -1995,7 +2106,7 @@ class MArraySlidingWindow(VGroup):
         Represents the window of the sliding window.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the sliding window.
-    __updater_pos : :data:`typing.Callable`\0[[], None]
+    __updater_pos : :data:`typing.Callable` [[], None]
         The updater function that keeps the sliding window intact with the array.
     """
 
@@ -2005,7 +2116,7 @@ class MArraySlidingWindow(VGroup):
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
         {"np": LEFT, "dir": MArrayDirection.LEFT},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`np.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
 
     def __calc_window_dim(self) -> Tuple[float, float]:
         """Calculates dimensions of window mobject.
@@ -2033,9 +2144,9 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             Position vector for :attr:`__mob_window`
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             Align vector for :attr:`__mob_window`
         """
 
@@ -2068,7 +2179,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`np.ndarray`
+        :class:`numpy.ndarray`
             Position vector for :attr:`__mob_label`
         """
 
@@ -2325,7 +2436,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2384,7 +2495,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2431,7 +2542,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :py:meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2454,6 +2565,7 @@ class MArraySlidingWindow(VGroup):
 
             Returns
             -------
+
             :class:`MArraySlidingWindow`
                 Represents the modified mobject.
             """

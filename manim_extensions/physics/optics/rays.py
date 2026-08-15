@@ -38,17 +38,16 @@ class Ray(Line):
 
     Examples
     --------
-
     .. manim:: RayExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.optics.rays import Ray
+       from manim import *
+       from manim_extensions.physics.optics.rays import Ray
 
-        class RayExample(Scene):
-            def construct(self):
-                ray = Ray(start=LEFT * 3 + UP, direction=RIGHT, init_length=4)
-                self.add(ray)
+       class RayExample(Scene):
+           def construct(self):
+               ray = Ray(start=LEFT * 3 + UP, direction=RIGHT, init_length=4)
+               self.add(ray)
 """
     def __init__(
         self,

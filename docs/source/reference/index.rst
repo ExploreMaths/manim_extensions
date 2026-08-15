@@ -136,10 +136,10 @@ Physics
    manim_extensions.physics.rigid_mechanics.pendulum.Pendulum
    manim_extensions.physics.optics.rays.Ray
    manim_extensions.physics.optics.lenses.Lens
-   manim_extensions.physics.electromagnetics.magnetostatics.Wire
-   manim_extensions.physics.electromagnetics.magnetostatics.MagneticField
-   manim_extensions.physics.electromagnetics.electrostatics.Charge
-   manim_extensions.physics.electromagnetics.electrostatics.ElectricField
+   manim_extensions.physics.electromagnetism.magnetostatics.Wire
+   manim_extensions.physics.electromagnetism.magnetostatics.MagneticField
+   manim_extensions.physics.electromagnetism.electrostatics.Charge
+   manim_extensions.physics.electromagnetism.electrostatics.ElectricField
    :parts: 1
    :top-classes: manim.mobject.mobject.Mobject
 

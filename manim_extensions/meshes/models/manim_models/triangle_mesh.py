@@ -30,21 +30,20 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-
     .. manim:: TriangleManim2DMeshExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.models.data_models.mesh import Mesh
-        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+       from manim import *
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
 
-        class TriangleManim2DMeshExample(Scene):
-            def construct(self):
-                vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-                faces = [[0, 1, 2]]
-                mesh_data = Mesh(vertices, faces)
-                tm = TriangleManim2DMesh(mesh_data)
-                self.add(tm)
+       class TriangleManim2DMeshExample(Scene):
+           def construct(self):
+               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
+               faces = [[0, 1, 2]]
+               mesh_data = Mesh(vertices, faces)
+               tm = TriangleManim2DMesh(mesh_data)
+               self.add(tm)
 """
 
     # pylint:disable=abstract-method

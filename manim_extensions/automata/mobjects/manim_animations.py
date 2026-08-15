@@ -15,18 +15,17 @@ class ManimAnimations():
 
     Examples
     --------
-
     .. manim:: ManimAnimationsExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
 
-        class ManimAnimationsExample(Scene):
-            def construct(self):
-                anim = ManimAnimations()
-                circle = Circle()
-                self.add(circle)
+       class ManimAnimationsExample(Scene):
+           def construct(self):
+               anim = ManimAnimations()
+               circle = Circle()
+               self.add(circle)
 """
     def __init__(self) -> None:
         """Initialize the ManimAnimations instance."""

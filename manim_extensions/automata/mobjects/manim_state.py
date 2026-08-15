@@ -15,6 +15,7 @@ class ManimState(State, VGroup):
 
     Attributes
     ----------
+
     state
         Reference to a State instance.
     circle
@@ -24,22 +25,21 @@ class ManimState(State, VGroup):
 
     Examples
     --------
-
     .. manim:: ManimStateExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_state import ManimState
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_state import ManimState
 
-        class ManimStateExample(Scene):
-            def construct(self):
-                style = {
-                    "highlight_state": {"color": YELLOW},
-                    "animate_transition": {"animation_function": FadeToColor, "accept_color": YELLOW, "reject_color": RED, "run_time": 0.5, "time_width": 2},
-                    "token_highlight": {"animation_function": FadeToColor, "color": YELLOW},
-                }
-                state = ManimState("q0", 0, 0, style, initial=True)
-                self.add(state)
+       class ManimStateExample(Scene):
+           def construct(self):
+               style = {
+                   "highlight_state": {"color": YELLOW},
+                   "animate_transition": {"animation_function": FadeToColor, "accept_color": YELLOW, "reject_color": RED, "run_time": 0.5, "time_width": 2},
+                   "token_highlight": {"animation_function": FadeToColor, "color": YELLOW},
+               }
+               state = ManimState("q0", 0, 0, style, initial=True)
+               self.add(state)
 """
     def __init__(self, name: str, x: float, y: float, animation_style: dict[str, object], initial: bool | None = None, final: bool | None = None, scaling: float = 10, id: int | None = None, **kwargs: object) -> None:
         """Initialize the ManimState instance."""

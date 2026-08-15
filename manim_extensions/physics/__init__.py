@@ -3,11 +3,10 @@
 This package contains tools for optics, electromagnetism, rigid mechanics, and
 wave visualisations, all designed to be used directly in scene code.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: PhysicsPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.physics import Lens

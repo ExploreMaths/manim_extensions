@@ -26,18 +26,17 @@ class Queue(VMobject):
 
     Examples
     --------
-
     .. manim:: QueueExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.queue import Queue
+       from manim import *
+       from manim_extensions.algorithm.queue import Queue
 
-        class QueueExample(Scene):
-            def construct(self):
-                q = Queue(capacity=5, init_data=[1, 2, 3], total_width=8)
-                self.add(q)
-"""
+       class QueueExample(Scene):
+           def construct(self):
+               q = Queue(capacity=5, init_data=[1, 2, 3], total_width=8)
+               self.add(q)
+    """
 
     def __init__(self, capacity:int, init_data:List[Node]=None,
                  total_width:int=12, font_size:int=48, box_type=Square, bound_color=RED, **kwargs):
@@ -77,19 +76,20 @@ class Queue(VMobject):
 
         Examples
         --------
-
         .. manim:: EnqueueExample
-            from manim import *
-            from manim_extensions.algorithm.queue import Queue
-            from manim_extensions.algorithm.node import Node
 
-            class EnqueueExample(Scene):
-                def construct(self):
-                    q = Queue(capacity=4, init_data=[1, 2], total_width=8)
-                    item = Node("3").next_to(q, RIGHT, buff=1.5)
-                    self.add(q, item)
-                    self.play(Queue.Enqueue(q, item))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.queue import Queue
+           from manim_extensions.algorithm.node import Node
+
+           class EnqueueExample(Scene):
+               def construct(self):
+                   q = Queue(capacity=4, init_data=[1, 2], total_width=8)
+                   item = Node("3").next_to(q, RIGHT, buff=1.5)
+                   self.add(q, item)
+                   self.play(Queue.Enqueue(q, item))
+                   self.wait(0.5)
+        """
 
         def __init__(self, queue:'Queue', item:Node, **kwargs):
             """Initialize the Enqueue instance."""
@@ -123,18 +123,19 @@ class Queue(VMobject):
 
         Examples
         --------
-
         .. manim:: DequeueExample
-            from manim import *
-            from manim_extensions.algorithm.queue import Queue
 
-            class DequeueExample(Scene):
-                def construct(self):
-                    q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)
-                    self.add(q)
-                    self.wait(0.5)
-                    self.play(Queue.Dequeue(q))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.queue import Queue
+
+           class DequeueExample(Scene):
+               def construct(self):
+                   q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)
+                   self.add(q)
+                   self.wait(0.5)
+                   self.play(Queue.Dequeue(q))
+                   self.wait(0.5)
+        """
 
         def __init__(self, queue:'Queue', target_pos:Point3D=None, **kwargs):
             """Initialize the Dequeue instance."""

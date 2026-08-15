@@ -25,26 +25,27 @@ class Array(VMobject):
 
     Examples
     --------
-
     .. manim:: ArrayExample
-        from manim import *
-        from manim_extensions.algorithm.array import Array
-        from manim_extensions.algorithm.node import Node
 
-        class ArrayExample(Scene):
-            def construct(self):
-                data = [10, -5, 3.14, "x"]
-                arr = Array(data, total_width=10)
-                circle_arr = Array(
-                    data, total_width=10, box_type=Circle,
-                    box_color=YELLOW, text_scale=1.2,
-                ).next_to(arr, DOWN, buff=1)
-                self.add(arr, circle_arr)
-                self.play(Node.Select(arr[1]))
-                self.wait(0.5)
-                self.play(Node.Unselect(arr[1]))
-                self.play(Node.UpdateValue(arr[0], 42))
-                self.wait(1)"""
+       from manim import *
+       from manim_extensions.algorithm.array import Array
+       from manim_extensions.algorithm.node import Node
+
+       class ArrayExample(Scene):
+           def construct(self):
+               data = [10, -5, 3.14, "x"]
+               arr = Array(data, total_width=10)
+               circle_arr = Array(
+                   data, total_width=10, box_type=Circle,
+                   box_color=YELLOW, text_scale=1.2,
+               ).next_to(arr, DOWN, buff=1)
+               self.add(arr, circle_arr)
+               self.play(Node.Select(arr[1]))
+               self.wait(0.5)
+               self.play(Node.Unselect(arr[1]))
+               self.play(Node.UpdateValue(arr[0], 42))
+               self.wait(1)
+       """
 
     def __init__(
         self,

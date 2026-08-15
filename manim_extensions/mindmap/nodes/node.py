@@ -24,18 +24,17 @@ class NodeSate(Enum):
 
     Examples
     --------
-
     .. manim:: NodeSateExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.nodes.node import NodeSate
+       from manim import *
+       from manim_extensions.mindmap.nodes.node import NodeSate
 
-        class NodeSateExample(Scene):
-            def construct(self):
-                state = NodeSate.DISPLAY
-                label = Text(f"State: {state.name}", font_size=24)
-                self.add(label)
+       class NodeSateExample(Scene):
+           def construct(self):
+               state = NodeSate.DISPLAY
+               label = Text(f"State: {state.name}", font_size=24)
+               self.add(label)
 """
     INSERT = 0  # newly inserted
     REMOVE = 1  # pending removal
@@ -48,18 +47,17 @@ class NodeStyle:
 
     Examples
     --------
-
     .. manim:: NodeStyleExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.nodes.node import NodeStyle
+       from manim import *
+       from manim_extensions.mindmap.nodes.node import NodeStyle
 
-        class NodeStyleExample(Scene):
-            def construct(self):
-                style = NodeStyle()
-                label = Text("NodeStyle with default colors", font_size=24)
-                self.add(label)
+       class NodeStyleExample(Scene):
+           def construct(self):
+               style = NodeStyle()
+               label = Text("NodeStyle with default colors", font_size=24)
+               self.add(label)
 """
     def __init__(
         self,
@@ -178,16 +176,16 @@ class Node:
     r"""Tree-node class.
 
     .. manim:: NodeDocExample
-        :save_last_frame:
+       :save_last_frame:
         
-        from manim import *
-        from manim_extensions.mindmap import Node
-        
-        class NodeDocExample(Scene):
-            def construct(self):
-                root = Node(MathTex(r"\text{Root}", font_size=36))
-                root.add_child(Node(MathTex(r"\text{Child}", font_size=36)))
-                self.add(root.vmobject, root.surr_rect)
+       from manim import *
+       from manim_extensions.mindmap import Node
+
+       class NodeDocExample(Scene):
+           def construct(self):
+               root = Node(MathTex(r"\text{Root}", font_size=36))
+               root.add_child(Node(MathTex(r"\text{Child}", font_size=36)))
+               self.add(root.vmobject, root.surr_rect)
     """
     def __init__(
         self,

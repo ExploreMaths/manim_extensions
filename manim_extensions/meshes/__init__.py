@@ -3,11 +3,10 @@
 This package contains mesh generation and related helper structures used in
 visual educational scenes.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: MeshPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.meshes.models.data_models.mesh import Mesh

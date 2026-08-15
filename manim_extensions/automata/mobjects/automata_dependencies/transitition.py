@@ -28,21 +28,20 @@ class Transition:
 
     Examples
     --------
-
     .. manim:: TransitionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.automata_dependencies.state import State
-        from manim_extensions.automata.mobjects.automata_dependencies.transitition import Transition
+       from manim import *
+       from manim_extensions.automata.mobjects.automata_dependencies.state import State
+       from manim_extensions.automata.mobjects.automata_dependencies.transitition import Transition
 
-        class TransitionExample(Scene):
-            def construct(self):
-                s1 = State("q0")
-                s2 = State("q1")
-                trans = Transition(s1, s2)
-                label = Text(f"Transition: {trans.transition_from.name} -> {trans.transition_to.name}", font_size=24)
-                self.add(label)
+       class TransitionExample(Scene):
+           def construct(self):
+               s1 = State("q0")
+               s2 = State("q1")
+               trans = Transition(s1, s2)
+               label = Text(f"Transition: {trans.transition_from.name} -> {trans.transition_to.name}", font_size=24)
+               self.add(label)
 """
     id_iter = itertools.count()
 

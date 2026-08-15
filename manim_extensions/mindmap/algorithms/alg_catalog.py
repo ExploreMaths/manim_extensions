@@ -31,18 +31,17 @@ class CatalogNode:
 
     Examples
     --------
-
     .. manim:: CatalogNodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogNode
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_catalog import CatalogNode
 
-        class CatalogNodeExample(Scene):
-            def construct(self):
-                cn = CatalogNode()
-                label = Text(f"CatalogNode: {cn.width}x{cn.height}", font_size=24)
-                self.add(label)
+       class CatalogNodeExample(Scene):
+           def construct(self):
+               cn = CatalogNode()
+               label = Text(f"CatalogNode: {cn.width}x{cn.height}", font_size=24)
+               self.add(label)
 """
     data: Any = None
     width: float = 0.0
@@ -88,17 +87,16 @@ class CatalogLayout(Layout):
 
     Examples
     --------
-
     .. manim:: CatalogLayoutExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout
 
-        class CatalogLayoutExample(Scene):
-            def construct(self):
-                label = Text("CatalogLayout algorithm", font_size=24)
-                self.add(label)
+       class CatalogLayoutExample(Scene):
+           def construct(self):
+               label = Text("CatalogLayout algorithm", font_size=24)
+               self.add(label)
     """
     def __init__(
         self,

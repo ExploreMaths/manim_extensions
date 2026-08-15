@@ -15,15 +15,15 @@ class Ruler(VGroup):
     """Ruler mobject.
 
     .. manim:: RulerExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.compass import Ruler
+       from manim import *
+       from manim_extensions.compass import Ruler
 
-        class RulerExample(Scene):
-            def construct(self):
-                ruler = Ruler()
-                self.add(ruler)
+       class RulerExample(Scene):
+           def construct(self):
+               ruler = Ruler()
+               self.add(ruler)
     """
     def __init__(
         self,
@@ -96,15 +96,15 @@ class Ruler(VGroup):
             end point of the ruler placement
 
         .. manim:: SetRulerDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Ruler
+           from manim import *
+           from manim_extensions.compass import Ruler
 
-            class SetRulerDocExample(Scene):
-                def construct(self):
-                    ruler = Ruler().set_ruler(LEFT, RIGHT)
-                    self.add(ruler)
+           class SetRulerDocExample(Scene):
+               def construct(self):
+                   ruler = Ruler().set_ruler(LEFT, RIGHT)
+                   self.add(ruler)
         """
         direction = end - start
         current_pos = self.get_middle_point()
@@ -123,15 +123,15 @@ class Ruler(VGroup):
         """Lay the ruler flat.
 
         .. manim:: PutRulerFlatDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Ruler
+           from manim import *
+           from manim_extensions.compass import Ruler
 
-            class PutRulerFlatDocExample(Scene):
-                def construct(self):
-                    ruler = Ruler().put_ruler_flat()
-                    self.add(ruler)
+           class PutRulerFlatDocExample(Scene):
+               def construct(self):
+                   ruler = Ruler().put_ruler_flat()
+                   self.add(ruler)
         """
         self.rotate(
             angle = get_vecs_angle(

@@ -105,24 +105,18 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
     **kwargs
         Additional parameters forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
-    Attributes
-    ----------
-    C : tuple of numpy.ndarray
-        Centers of curvature of the two lens surfaces.
-
     Examples
     --------
-
     .. manim:: LensExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.optics.lenses import Lens
+       from manim import *
+       from manim_extensions.physics.optics.lenses import Lens
 
-        class LensExample(Scene):
-            def construct(self):
-                lens = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
-                self.add(lens)
+       class LensExample(Scene):
+           def construct(self):
+               lens = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
+               self.add(lens)
 """
     def __init__(self, f: float, d: float, n: float = 1.52, **kwargs) -> None:
         """Initialize Lens."""

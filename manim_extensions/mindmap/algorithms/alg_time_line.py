@@ -22,18 +22,17 @@ class TimelineNode:
 
     Examples
     --------
-
     .. manim:: TimelineNodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode
 
-        class TimelineNodeExample(Scene):
-            def construct(self):
-                tn = TimelineNode()
-                label = Text(f"TimelineNode: {tn.width}x{tn.height}", font_size=24)
-                self.add(label)
+       class TimelineNodeExample(Scene):
+           def construct(self):
+               tn = TimelineNode()
+               label = Text(f"TimelineNode: {tn.width}x{tn.height}", font_size=24)
+               self.add(label)
 """
     node: Any = None
     width: float = 0.0
@@ -133,17 +132,16 @@ class TimeLineLayout(Layout):
 
     Examples
     --------
-
     .. manim:: TimeLineLayoutExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout
 
-        class TimeLineLayoutExample(Scene):
-            def construct(self):
-                label = Text("TimeLineLayout algorithm", font_size=24)
-                self.add(label)
+       class TimeLineLayoutExample(Scene):
+           def construct(self):
+               label = Text("TimeLineLayout algorithm", font_size=24)
+               self.add(label)
 """
     def __init__(
         self,

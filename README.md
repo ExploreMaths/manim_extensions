@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-# manim_extensions
+# Manim Extensions
 
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 

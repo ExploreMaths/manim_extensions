@@ -18,17 +18,16 @@ class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-
     .. manim:: ManimDeterminsticFiniteAutomatonExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import ManimDeterminsticFiniteAutomaton
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import ManimDeterminsticFiniteAutomaton
 
-        class ManimDeterminsticFiniteAutomatonExample(Scene):
-            def construct(self):
-                dfa = ManimDeterminsticFiniteAutomaton()
-                self.add(dfa)
+       class ManimDeterminsticFiniteAutomatonExample(Scene):
+           def construct(self):
+               dfa = ManimDeterminsticFiniteAutomaton()
+               self.add(dfa)
 """
     def __init__(
         self,

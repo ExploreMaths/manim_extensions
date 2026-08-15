@@ -68,6 +68,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     Attributes
     ----------
+
     automaton : FiniteStateAutomaton
         The underlying formal automaton model.
     initial_state : State
@@ -79,19 +80,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     Examples
     --------
-
     .. manim:: ManimAutomatonDocExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import (
-            ManimDeterminsticFiniteAutomaton,
-        )
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import (
+           ManimDeterminsticFiniteAutomaton,
+       )
 
-        class ManimAutomatonDocExample(Scene):
-            def construct(self):
-                dfa = ManimDeterminsticFiniteAutomaton()
-                self.add(dfa)
+       class ManimAutomatonDocExample(Scene):
+           def construct(self):
+               dfa = ManimDeterminsticFiniteAutomaton()
+               self.add(dfa)
     """
 
     def __init__(self, json_template: dict[str, object] | None = None, xml_file: str | None = None, camera_follow: bool = False, animation_style: dict[str, object] = default_animation_style, manim_animations: object | None = None, cli: bool = False, **kwargs: object) -> None:

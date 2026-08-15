@@ -32,8 +32,8 @@ def VisDrawArc(
 
     Examples
     --------
-
     .. manim:: VisDrawArcDocExample
+
        from manim import *
        from manim_extensions import VisDrawArc
 
@@ -41,7 +41,8 @@ def VisDrawArc(
            def construct(self):
                arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
                VisDrawArc(self, arc, axis=OUT, run_time=2)
-               self.wait()    """
+               self.wait()
+    """
 
     # Get the start point, end point, and centre of the arc
     start_point = arc.point_from_proportion(0)
@@ -148,7 +149,6 @@ class TypeWriter(Animation):
 
     Examples
     --------
-
     .. manim:: TypeWriterDocExample
 
        from manim import *
@@ -224,7 +224,6 @@ def easeOutBounce(t: float) -> float:
     Examples
     --------
 
-
     .. manim:: EaseOutBounceExample
 
        from manim import *
@@ -268,7 +267,6 @@ def easeInBounce(t: float) -> float:
     Examples
     --------
 
-
     .. manim:: EaseInBounceExample
 
        from manim import *
@@ -301,7 +299,6 @@ def easeInOutBounce(t: float) -> float:
 
     Examples
     --------
-
 
     .. manim:: EaseInOutBounceExample
 
@@ -341,7 +338,6 @@ def easeOutElastic(t: float) -> float:
 
     Examples
     --------
-
 
     .. manim:: EaseOutElasticExample
 
@@ -389,7 +385,6 @@ class WriteRandom(LaggedStart):
 
     Examples
     --------
-
     .. manim:: WriteRandomDocExample
 
        from manim import *
@@ -434,7 +429,6 @@ class ReversedWrite(LaggedStart):
     Examples
     --------
 
-
     .. manim:: ReversedWriteDocExample
 
        from manim import *
@@ -477,7 +471,6 @@ class FadeInRandom(LaggedStart):
 
     Examples
     --------
-
 
     .. manim:: FadeInRandomDocExample
 
@@ -523,7 +516,6 @@ class FadeOutRandom(LaggedStart):
     Examples
     --------
 
-
     .. manim:: FadeOutRandomDocExample
 
        from manim import *
@@ -568,7 +560,6 @@ class GrowRandom(LaggedStart):
 
     Examples
     --------
-
 
     .. manim:: GrowRandomDocExample
 
@@ -620,7 +611,6 @@ class PassingRectangle(Animation):
 
     Examples
     --------
-
     .. manim:: PassingRectangleDocExample
 
        from manim import *
@@ -700,7 +690,6 @@ class LaggedCreation(Animation):
 
     Examples
     --------
-
 
     .. manim:: LaggedCreationDocExample
 
@@ -789,7 +778,6 @@ class HighLightWithLines(AnimationGroup):
     Examples
     --------
 
-
     .. manim:: HighLightWithLinesDocExample
 
        from manim import *
@@ -857,7 +845,6 @@ class UnHighLightWithLines(AnimationGroup):
 
     Examples
     --------
-
 
     .. manim:: UnHighLightWithLinesDocExample
 

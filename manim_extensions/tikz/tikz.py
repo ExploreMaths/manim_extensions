@@ -29,20 +29,19 @@ class Tikz(SVGMobject):
 
     Examples
     --------
-
     .. manim:: ManimTikzExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.tikz import Tikz
+       from manim import *
+       from manim_extensions.tikz import Tikz
 
-        class ManimTikzExample(Scene):
-            def construct(self):
-                tikz_example = Tikz(
-                    r"\draw[magenta, line width=10mm, fill=blue] (0,0) rectangle(1,1);",
-                    use_pdf=False,
-                )
-                self.add(tikz_example)
+       class ManimTikzExample(Scene):
+           def construct(self):
+               tikz_example = Tikz(
+                   r"\draw[magenta, line width=10mm, fill=blue] (0,0) rectangle(1,1);",
+                   use_pdf=False,
+               )
+               self.add(tikz_example)
     """
 
     def __init__(

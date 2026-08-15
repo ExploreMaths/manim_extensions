@@ -7,7 +7,7 @@ Examples
 --------
 
 .. manim:: RubiksCubeDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
@@ -47,9 +47,8 @@ class RubiksCube(VMobject):
 
     Examples
     --------
-
     .. manim:: RubiksCubeDocExample
-      :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube

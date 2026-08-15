@@ -18,9 +18,8 @@ class Cubie(VGroup):
 
     Examples
     --------
-
     .. manim:: CubieDocExample
-      :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
@@ -30,9 +29,6 @@ class Cubie(VGroup):
                cube = RubiksCube(dim=3).scale(0.5)
                self.add(cube)
     """
-
-    position = np.array
-    # old_position = np.array
 
     def __init__(self, x, y, z, dim, colors):#, **kwargs):
         """Initialize the Cubie instance."""

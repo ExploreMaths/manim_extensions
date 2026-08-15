@@ -21,20 +21,19 @@ class Mesh:
 
     Examples
     --------
-
     .. manim:: MeshExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim import *
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
 
-        class MeshExample(Scene):
-            def construct(self):
-                vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-                faces = [[0, 1, 2]]
-                mesh = Mesh(vertices, faces)
-                label = Text(f"Mesh: {len(mesh.vertices)} verts, {len(mesh.faces)} faces", font_size=24)
-                self.add(label)
+       class MeshExample(Scene):
+           def construct(self):
+               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
+               faces = [[0, 1, 2]]
+               mesh = Mesh(vertices, faces)
+               label = Text(f"Mesh: {len(mesh.vertices)} verts, {len(mesh.faces)} faces", font_size=24)
+               self.add(label)
 """
 
     @dangling_vert_decorator()

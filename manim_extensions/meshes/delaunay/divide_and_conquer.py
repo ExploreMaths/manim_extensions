@@ -71,26 +71,25 @@ class DivideAndConquer:
 
     Examples
     --------
-
     .. manim:: DivideAndConquerExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.models.data_models.mesh import Mesh
-        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
-        from manim_extensions.meshes.delaunay.divide_and_conquer import DivideAndConquer
+       from manim import *
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+       from manim_extensions.meshes.delaunay.divide_and_conquer import DivideAndConquer
 
-        class DivideAndConquerExample(Scene):
-            def construct(self):
-                import numpy as np
-                pts = np.random.RandomState(42).rand(10, 3)
-                pts[:, 2] = 0
-                vertices = pts.tolist()
-                faces = []
-                mesh_data = Mesh(vertices, faces)
-                tm = TriangleManim2DMesh(mesh_data)
-                self.add(tm)
-                dc = DivideAndConquer(self, tm)
+       class DivideAndConquerExample(Scene):
+           def construct(self):
+               import numpy as np
+               pts = np.random.RandomState(42).rand(10, 3)
+               pts[:, 2] = 0
+               vertices = pts.tolist()
+               faces = []
+               mesh_data = Mesh(vertices, faces)
+               tm = TriangleManim2DMesh(mesh_data)
+               self.add(tm)
+               dc = DivideAndConquer(self, tm)
     """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:

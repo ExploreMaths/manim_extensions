@@ -10,20 +10,19 @@ class InvalidMeshException(Exception):
 
     Examples
     --------
-
     .. manim:: InvalidMeshExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import InvalidMeshException
+       from manim import *
+       from manim_extensions.meshes.exceptions import InvalidMeshException
 
-        class InvalidMeshExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise InvalidMeshException("Demo error")
-                except InvalidMeshException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class InvalidMeshExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise InvalidMeshException("Demo error")
+               except InvalidMeshException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
 
 
@@ -32,20 +31,19 @@ class InvalidRequestException(InvalidMeshException):
 
     Examples
     --------
-
     .. manim:: InvalidRequestExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import InvalidRequestException
+       from manim import *
+       from manim_extensions.meshes.exceptions import InvalidRequestException
 
-        class InvalidRequestExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise InvalidRequestException("Invalid request demo")
-                except InvalidRequestException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class InvalidRequestExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise InvalidRequestException("Invalid request demo")
+               except InvalidRequestException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
 
 
@@ -54,20 +52,19 @@ class MeshIndexException(IndexError):
 
     Examples
     --------
-
     .. manim:: MeshIndexExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import MeshIndexException
+       from manim import *
+       from manim_extensions.meshes.exceptions import MeshIndexException
 
-        class MeshIndexExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise MeshIndexException("Invalid index demo")
-                except MeshIndexException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class MeshIndexExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise MeshIndexException("Invalid index demo")
+               except MeshIndexException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
 
 
@@ -76,20 +73,19 @@ class InvalidTypeException(TypeError):
 
     Examples
     --------
-
     .. manim:: InvalidTypeExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import InvalidTypeException
+       from manim import *
+       from manim_extensions.meshes.exceptions import InvalidTypeException
 
-        class InvalidTypeExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise InvalidTypeException("Invalid type demo")
-                except InvalidTypeException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class InvalidTypeExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise InvalidTypeException("Invalid type demo")
+               except InvalidTypeException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
 
 
@@ -98,20 +94,19 @@ class InvalidMeshDimensionsException(Exception):
 
     Examples
     --------
-
     .. manim:: InvalidMeshDimensionsExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException
+       from manim import *
+       from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException
 
-        class InvalidMeshDimensionsExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise InvalidMeshDimensionsException(3, 2, "test")
-                except InvalidMeshDimensionsException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class InvalidMeshDimensionsExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise InvalidMeshDimensionsException(3, 2, "test")
+               except InvalidMeshDimensionsException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
     def __init__(self, actual: Union[int, Tuple[Any, Any]], expected: Union[int, Tuple[Any, Any]], name: str = ""):
         """Initialize the InvalidMeshDimensionsException instance."""
@@ -126,20 +121,19 @@ class InvalidShapeException(Exception):
 
     Examples
     --------
-
     .. manim:: InvalidShapeExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import InvalidShapeException
+       from manim import *
+       from manim_extensions.meshes.exceptions import InvalidShapeException
 
-        class InvalidShapeExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise InvalidShapeException("vertices", 3, 2)
-                except InvalidShapeException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class InvalidShapeExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise InvalidShapeException("vertices", 3, 2)
+               except InvalidShapeException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
     def __init__(self, name: str, actual: int, expected: int):
         """Initialize the InvalidShapeException instance."""
@@ -151,20 +145,19 @@ class BadParameterException(Exception):
 
     Examples
     --------
-
     .. manim:: BadParameterExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import BadParameterException
+       from manim import *
+       from manim_extensions.meshes.exceptions import BadParameterException
 
-        class BadParameterExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise BadParameterException("Bad parameter demo")
-                except BadParameterException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class BadParameterExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise BadParameterException("Bad parameter demo")
+               except BadParameterException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """
 
 
@@ -173,18 +166,17 @@ class FaultyVarArrayException(Exception):
 
     Examples
     --------
-
     .. manim:: FaultyVarArrayExceptionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.exceptions import FaultyVarArrayException
+       from manim import *
+       from manim_extensions.meshes.exceptions import FaultyVarArrayException
 
-        class FaultyVarArrayExceptionExample(Scene):
-            def construct(self):
-                try:
-                    raise FaultyVarArrayException("Faulty VarArray demo")
-                except FaultyVarArrayException as e:
-                    label = Text(str(e), font_size=24).to_edge(UP)
-                    self.add(label)
+       class FaultyVarArrayExceptionExample(Scene):
+           def construct(self):
+               try:
+                   raise FaultyVarArrayException("Faulty VarArray demo")
+               except FaultyVarArrayException as e:
+                   label = Text(str(e), font_size=24).to_edge(UP)
+                   self.add(label)
 """

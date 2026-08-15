@@ -32,23 +32,98 @@ Quick start
 
    class ArrayExample(Scene):
        def construct(self):
-           arr = MArray([8, 7, 6, 5])
+           arr = MArray(self, [8, 7, 6, 5])
            self.add(arr)
            self.wait(0.5)
 
-A simple array scene
-^^^^^^^^^^^^^^^^^^^^
+Displaying an array
+^^^^^^^^^^^^^^^^^^^
 
-.. manim:: DataStructureLibraryExample
+.. manim:: DataStructureArrayExample
    :save_last_frame:
 
    from manim import *
    from manim_extensions.data_structures import MArray
 
-   class DataStructureLibraryExample(Scene):
+   class DataStructureArrayExample(Scene):
        def construct(self):
-           arr = MArray([8, 7, 6, 5])
+           arr = MArray(self, [3, 1, 4, 1, 5, 9, 2, 6], label="arr")
            self.add(arr)
+
+Attaching a pointer
+^^^^^^^^^^^^^^^^^^^
+
+.. manim:: DataStructurePointerExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.data_structures import MArray, MArrayPointer, MArrayDirection
+
+   class DataStructurePointerExample(Scene):
+       def construct(self):
+           arr = MArray(self, [10, 20, 30, 40, 50], label="data")
+           ptr = MArrayPointer(self, arr, index=2, label="i", pointer_pos=MArrayDirection.UP)
+           self.add(arr, ptr)
+
+Sliding window
+^^^^^^^^^^^^^^
+
+.. manim:: DataStructureSlidingWindowExample
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.data_structures import (
+       MArray, MArraySlidingWindow, MArrayDirection
+   )
+
+   class DataStructureSlidingWindowExample(Scene):
+       def construct(self):
+           arr = MArray(self, [7, 2, 5, 1, 8, 3, 6, 4], label="nums")
+           window = MArraySlidingWindow(
+               self, arr, index=1, size=3, label="window",
+               label_pos=MArrayDirection.UP
+           )
+           self.add(arr, window)
+
+Updating a variable
+^^^^^^^^^^^^^^^^^^^^
+
+.. manim:: DataStructureVariableExample
+
+   from manim import *
+   from manim_extensions.data_structures import MVariable
+
+   class DataStructureVariableExample(Scene):
+       def construct(self):
+           var = MVariable(self, value=0, index="x", label="count")
+           var.to_edge(UP)
+           self.play(Write(var))
+           self.wait(0.5)
+           var.update_value(5)
+           self.wait(0.5)
+           var.update_value(10)
+           self.wait(0.5)
+           var.update_label("total")
+           self.wait(0.5)
+
+Insert and remove elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. manim:: DataStructureInsertRemoveExample
+
+   from manim import *
+   from manim_extensions.data_structures import MArray
+
+   class DataStructureInsertRemoveExample(Scene):
+       def construct(self):
+           arr = MArray(self, [1, 3, 5, 7], label="arr")
+           self.play(Write(arr))
+           self.wait(0.5)
+           arr.append_elem(2)
+           self.wait(0.5)
+           arr.append_elem(4)
+           self.wait(0.5)
+           arr.remove_elem(index=1)
            self.wait(0.5)
 
 This library is ideal for:

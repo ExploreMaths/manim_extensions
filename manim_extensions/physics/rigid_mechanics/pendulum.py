@@ -51,22 +51,21 @@ class MultiPendulum(VGroup):
 
     Examples
     --------
-
     .. manim:: MultiPendulumExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.rigid_mechanics.pendulum import (
-            MultiPendulum,
-        )
+       from manim import *
+       from manim_extensions.physics.rigid_mechanics.pendulum import (
+           MultiPendulum,
+       )
 
-        class MultiPendulumExample(Scene):
-            def construct(self):
-                pendulum = MultiPendulum(
-                    DOWN * 2 + RIGHT,
-                    DOWN * 3 + LEFT,
-                )
-                self.add(pendulum)
+       class MultiPendulumExample(Scene):
+           def construct(self):
+               pendulum = MultiPendulum(
+                   DOWN * 2 + RIGHT,
+                   DOWN * 3 + LEFT,
+               )
+               self.add(pendulum)
 """
     def __init__(
         self,
@@ -186,17 +185,16 @@ class Pendulum(MultiPendulum):
 
     Examples
     --------
-
     .. manim:: PendulumExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.rigid_mechanics.pendulum import Pendulum
+       from manim import *
+       from manim_extensions.physics.rigid_mechanics.pendulum import Pendulum
 
-        class PendulumExample(Scene):
-            def construct(self):
-                pendulum = Pendulum(length=3, initial_theta=0.3)
-                self.add(pendulum)
+       class PendulumExample(Scene):
+           def construct(self):
+               pendulum = Pendulum(length=3, initial_theta=0.3)
+               self.add(pendulum)
 """
     def __init__(
         self,

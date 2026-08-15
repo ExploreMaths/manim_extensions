@@ -36,17 +36,16 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-
     .. manim:: WireExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.electromagnetism.magnetostatics import Wire
+       from manim import *
+       from manim_extensions.physics.electromagnetism.magnetostatics import Wire
 
-        class WireExample(Scene):
-            def construct(self):
-                wire = Wire(Circle(2).rotate(PI / 2, UP))
-                self.add(wire)
+       class WireExample(Scene):
+           def construct(self):
+               wire = Wire(Circle(2).rotate(PI / 2, UP))
+               self.add(wire)
 """
 
     def __init__(
@@ -77,20 +76,20 @@ class MagneticField(ArrowVectorField):
     Example
     -------
     .. manim:: MagneticFieldExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim_extensions.physics import *
+       from manim_extensions.physics import *
 
-        class MagneticFieldExample(ThreeDScene):
-            def construct(self):
-                wire = Wire(Circle(2).rotate(PI / 2, UP))
-                mag_field = MagneticField(
-                    wire,
-                    x_range=[-4, 4],
-                    y_range=[-4, 4],
-                )
-                self.set_camera_orientation(PI / 3, PI / 4)
-                self.add(wire, mag_field)
+       class MagneticFieldExample(ThreeDScene):
+           def construct(self):
+               wire = Wire(Circle(2).rotate(PI / 2, UP))
+               mag_field = MagneticField(
+                   wire,
+                   x_range=[-4, 4],
+                   y_range=[-4, 4],
+               )
+               self.set_camera_orientation(PI / 3, PI / 4)
+               self.add(wire, mag_field)
 
     """
 

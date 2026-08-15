@@ -19,15 +19,15 @@ class MovePencilAlongPath(MoveAlongPath):
 
     .. manim:: MovePencilAlongPathDocExample
 
-        from manim import *
-        from manim_extensions.compass import Pencil, MovePencilAlongPath
+       from manim import *
+       from manim_extensions.compass import Pencil, MovePencilAlongPath
 
-        class MovePencilAlongPathDocExample(Scene):
-            def construct(self):
-                pencil = Pencil().to_edge(LEFT)
-                path = Line(LEFT, RIGHT)
-                self.play(MovePencilAlongPath(pencil, path))
-                self.wait()
+       class MovePencilAlongPathDocExample(Scene):
+           def construct(self):
+               pencil = Pencil().to_edge(LEFT)
+               path = Line(LEFT, RIGHT)
+               self.play(MovePencilAlongPath(pencil, path))
+               self.wait()
 
     Parameters
     ----------
@@ -54,14 +54,14 @@ class MovePencilTipTo(ApplyMethod):
 
     .. manim:: MovePencilTipToDocExample
 
-        from manim import *
-        from manim_extensions.compass import Pencil, MovePencilTipTo
+       from manim import *
+       from manim_extensions.compass import Pencil, MovePencilTipTo
 
-        class MovePencilTipToDocExample(Scene):
-            def construct(self):
-                pencil = Pencil().to_edge(LEFT)
-                self.play(MovePencilTipTo(pencil, ORIGIN))
-                self.wait()
+       class MovePencilTipToDocExample(Scene):
+           def construct(self):
+               pencil = Pencil().to_edge(LEFT)
+               self.play(MovePencilTipTo(pencil, ORIGIN))
+               self.wait()
 
     Parameters
     ----------
@@ -87,15 +87,15 @@ class DrawPath(AnimationGroup):
 
     .. manim:: DrawPathDocExample
 
-        from manim import *
-        from manim_extensions.compass import Pencil, DrawPath
+       from manim import *
+       from manim_extensions.compass import Pencil, DrawPath
 
-        class DrawPathDocExample(Scene):
-            def construct(self):
-                pencil = Pencil().to_edge(LEFT)
-                path = Line(LEFT, RIGHT)
-                self.play(DrawPath(pencil, path))
-                self.wait()
+       class DrawPathDocExample(Scene):
+           def construct(self):
+               pencil = Pencil().to_edge(LEFT)
+               path = Line(LEFT, RIGHT)
+               self.play(DrawPath(pencil, path))
+               self.wait()
 
     Parameters
     ----------
@@ -121,14 +121,14 @@ class PutPencilAway(MovePencilTipTo):
 
     .. manim:: PutPencilAwayDocExample
 
-        from manim import *
-        from manim_extensions.compass import Pencil, PutPencilAway
+       from manim import *
+       from manim_extensions.compass import Pencil, PutPencilAway
 
-        class PutPencilAwayDocExample(Scene):
-            def construct(self):
-                pencil = Pencil().to_edge(LEFT)
-                self.play(PutPencilAway(pencil, 2 * DOWN))
-                self.wait()
+       class PutPencilAwayDocExample(Scene):
+           def construct(self):
+               pencil = Pencil().to_edge(LEFT)
+               self.play(PutPencilAway(pencil, 2 * DOWN))
+               self.wait()
 
     Parameters
     ----------

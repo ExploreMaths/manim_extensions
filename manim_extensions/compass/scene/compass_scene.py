@@ -29,18 +29,18 @@ class CompassScene(MovingCameraScene):
 
     Examples
     --------
-
     .. manim:: CompassSceneExample
+       :save_last_frame:
 
-   :save_last_frame:
-        from manim import *
-        from manim_extensions.compass import CompassScene
+       from manim import *
+       from manim_extensions.compass import CompassScene
 
-        class CompassSceneExample(CompassScene):
-            def construct(self):
-                self.compass_move_niddle_tip_to(ORIGIN)
-                self.compass_split_span(2)
-"""
+       class CompassSceneExample(CompassScene):
+           def construct(self):
+               self.compass_move_niddle_tip_to(ORIGIN)
+               self.compass_split_span(2)
+    """
+
     def setup(self) -> None:
         """CompassScene.setup example.
         """

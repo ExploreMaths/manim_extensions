@@ -12,15 +12,15 @@ class Pencil(SVGMobject):
     """Pencil mobject.
 
     .. manim:: PencilDocExample
-        :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.compass import Pencil
+       from manim import *
+       from manim_extensions.compass import Pencil
 
-        class PencilDocExample(Scene):
-            def construct(self):
-                pencil = Pencil().to_edge(LEFT)
-                self.add(pencil)
+       class PencilDocExample(Scene):
+           def construct(self):
+               pencil = Pencil().to_edge(LEFT)
+               self.add(pencil)
     """
     def __init__(self, height = 2,angle = PI/4):
         """Initialize the Pencil instance."""
@@ -48,15 +48,15 @@ class Pencil(SVGMobject):
         """Translate the pencil so that the nib moves to point.
 
         .. manim:: MoveNidToDocExample
-            :save_last_frame:
+           :save_last_frame:
 
-            from manim import *
-            from manim_extensions.compass import Pencil
+           from manim import *
+           from manim_extensions.compass import Pencil
 
-            class MoveNidToDocExample(Scene):
-                def construct(self):
-                    pencil = Pencil().move_nid_to(ORIGIN)
-                    self.add(pencil)
+           class MoveNidToDocExample(Scene):
+               def construct(self):
+                   pencil = Pencil().move_nid_to(ORIGIN)
+                   self.add(pencil)
 
         Parameters
         ----------

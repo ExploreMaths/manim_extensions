@@ -38,21 +38,20 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-
     .. manim:: RadialWaveExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.wave import RadialWave
+       from manim import *
+       from manim_extensions.physics.wave import RadialWave
 
-        class RadialWaveExample(Scene):
-            def construct(self):
-                wave = RadialWave(
-                    ORIGIN + UP * 2,
-                    wavelength=2,
-                    amplitude=0.3,
-                )
-                self.add(wave)
+       class RadialWaveExample(Scene):
+           def construct(self):
+               wave = RadialWave(
+                   ORIGIN + UP * 2,
+                   wavelength=2,
+                   amplitude=0.3,
+               )
+               self.add(wave)
 """
 
     def __init__(
@@ -155,17 +154,16 @@ class LinearWave(RadialWave):
 
     Examples
     --------
-
     .. manim:: LinearWaveExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.wave import LinearWave
+       from manim import *
+       from manim_extensions.physics.wave import LinearWave
 
-        class LinearWaveExample(Scene):
-            def construct(self):
-                wave = LinearWave(wavelength=2, amplitude=0.3)
-                self.add(wave)
+       class LinearWaveExample(Scene):
+           def construct(self):
+               wave = LinearWave(wavelength=2, amplitude=0.3)
+               self.add(wave)
 """
 
     def __init__(
@@ -228,17 +226,16 @@ class StandingWave(ParametricFunction):
 
     Examples
     --------
-
     .. manim:: StandingWaveExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.physics.wave import StandingWave
+       from manim import *
+       from manim_extensions.physics.wave import StandingWave
 
-        class StandingWaveExample(Scene):
-            def construct(self):
-                wave = StandingWave(n=3, length=6, amplitude=0.5)
-                self.add(wave)
+       class StandingWaveExample(Scene):
+           def construct(self):
+               wave = StandingWave(n=3, length=6, amplitude=0.5)
+               self.add(wave)
 """
 
     def __init__(

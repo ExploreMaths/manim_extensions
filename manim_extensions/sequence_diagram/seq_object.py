@@ -12,18 +12,17 @@ class SeqObject(VGroup):
 
     Examples
     --------
-
     .. manim:: SeqObjectExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.sequence_diagram.seq_object import SeqObject
+       from manim import *
+       from manim_extensions.sequence_diagram.seq_object import SeqObject
 
-        class SeqObjectExample(Scene):
-            def construct(self):
-                obj = SeqObject("MyService")
-                self.add(obj)
-                """
+       class SeqObjectExample(Scene):
+           def construct(self):
+               obj = SeqObject("MyService")
+               self.add(obj)
+               """
 
     def __init__(
         self,

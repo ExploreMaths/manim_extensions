@@ -12,18 +12,17 @@ class TreeNode:
 
     Examples
     --------
-
     .. manim:: TreeNodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
 
-        class TreeNodeExample(Scene):
-            def construct(self):
-                tn = TreeNode(height=1.0, width=2.0)
-                label = Text(f"TreeNode: {tn.width}x{tn.height}", font_size=24)
-                self.add(label)
+       class TreeNodeExample(Scene):
+           def construct(self):
+               tn = TreeNode(height=1.0, width=2.0)
+               label = Text(f"TreeNode: {tn.width}x{tn.height}", font_size=24)
+               self.add(label)
 """
     __slots__ = ('height','width','children','parent','x','y','level','is_flip')
     def __init__(
@@ -134,17 +133,16 @@ class StandardLayout(Layout):
 
     Examples
     --------
-
     .. manim:: StandardLayoutExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_standard import StandardLayout
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import StandardLayout
 
-        class StandardLayoutExample(Scene):
-            def construct(self):
-                label = Text("StandardLayout algorithm", font_size=24)
-                self.add(label)
+       class StandardLayoutExample(Scene):
+           def construct(self):
+               label = Text("StandardLayout algorithm", font_size=24)
+               self.add(label)
 """
     def __init__(
         self,

@@ -7,22 +7,21 @@ class Source(VMobject):
 
     Examples
     --------
-
     .. manim:: SourceExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.utils import Source
+       from manim import *
+       from manim_extensions.circuit.utils import Source
 
-        class SourceExample(Scene):
-            def construct(self):
-                markings = VGroup(
-                    Line(DOWN * 0.3, UP * 0.3).shift(UP * 0.5),
-                    Line(LEFT * 0.3, RIGHT * 0.3).shift(UP * 0.5),
-                    Line(LEFT * 0.3, RIGHT * 0.3).shift(DOWN * 0.5),
-                )
-                src = Source(markings, letter="V", value=5)
-                self.add(src)
+       class SourceExample(Scene):
+           def construct(self):
+               markings = VGroup(
+                   Line(DOWN * 0.3, UP * 0.3).shift(UP * 0.5),
+                   Line(LEFT * 0.3, RIGHT * 0.3).shift(UP * 0.5),
+                   Line(LEFT * 0.3, RIGHT * 0.3).shift(DOWN * 0.5),
+               )
+               src = Source(markings, letter="V", value=5)
+               self.add(src)
 """
 
     def __init__(
@@ -125,18 +124,17 @@ class Circuit(VMobject):
 
     Examples
     --------
-
     .. manim:: CircuitExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.utils import Circuit
+       from manim import *
+       from manim_extensions.circuit.utils import Circuit
 
-        class CircuitExample(Scene):
-            def construct(self):
-                circuit = Circuit()
-                circuit.add_wire(LEFT * 3, RIGHT * 3)
-                self.add(circuit)
+       class CircuitExample(Scene):
+           def construct(self):
+               circuit = Circuit()
+               circuit.add_wire(LEFT * 3, RIGHT * 3)
+               self.add(circuit)
 """
 
     def __init__(self, **kwargs):
@@ -278,18 +276,17 @@ class Node(VMobject):
 
     Examples
     --------
-
     .. manim:: NodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.utils import Node
+       from manim import *
+       from manim_extensions.circuit.utils import Node
 
-        class NodeExample(Scene):
-            def construct(self):
-                node = Node()
-                node.add_wire([LEFT * 2, ORIGIN, UP * 2])
-                self.add(node)
+       class NodeExample(Scene):
+           def construct(self):
+               node = Node()
+               node.add_wire([LEFT * 2, ORIGIN, UP * 2])
+               self.add(node)
 """
 
     def __init__(self, **kwargs):

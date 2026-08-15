@@ -13,18 +13,17 @@ class SeqActor(VGroup):
 
     Examples
     --------
-
     .. manim:: SeqActorExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.sequence_diagram.seq_actor import SeqActor
+       from manim import *
+       from manim_extensions.sequence_diagram.seq_actor import SeqActor
 
-        class SeqActorExample(Scene):
-            def construct(self):
-                actor = SeqActor("Alice")
-                self.add(actor)
-                """
+       class SeqActorExample(Scene):
+           def construct(self):
+               actor = SeqActor("Alice")
+               self.add(actor)
+               """
 
     all_actors = list()
 

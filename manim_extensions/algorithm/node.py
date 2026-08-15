@@ -17,37 +17,24 @@ class NodeConfig:
     default appearance of *all* subsequently created nodes, which is the natural
     way to switch the overall look of an algorithm scene.
 
-    .. attribute:: WIDTH
-        Default width, in scene units, of a node box.
-    .. attribute:: BOX_TYPE
-        Default box shape; either a :class:`~manim.mobject.geometry.Square`
-        or a :class:`~manim.mobject.geometry.Circle`.
-    .. attribute:: BOX_COLOR
-        Default fill color of a node box.
-    .. attribute:: SELECT_COLOR
-        Color applied while a node is highlighted (selected).
-    .. attribute:: SELECT_OPACITY
-        Opacity used together with :attr:`SELECT_COLOR`.
+    .. rubric:: See Also
 
-    See Also
-    --------
     :class:`Node`
 
     Examples
     --------
-
     .. manim:: NodeConfigExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.node import Node, NodeConfig
+       from manim import *
+       from manim_extensions.algorithm.node import Node, NodeConfig
 
-        class NodeConfigExample(Scene):
-            def construct(self):
-                default_node = Node("default")
-                selection_node = Node("selected", box_color=NodeConfig.SELECT_COLOR)
-                group = VGroup(default_node, selection_node).arrange(RIGHT, buff=1)
-                self.add(group)
+       class NodeConfigExample(Scene):
+           def construct(self):
+               default_node = Node("default")
+               selection_node = Node("selected", box_color=NodeConfig.SELECT_COLOR)
+               group = VGroup(default_node, selection_node).arrange(RIGHT, buff=1)
+               self.add(group)
     """
     WIDTH = 2
     BOX_TYPE = Square
@@ -61,22 +48,20 @@ class NodeSolt:
 
     Examples
     --------
-
     .. manim:: NodeSoltExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.node import Node, NodeSolt
+       from manim import *
+       from manim_extensions.algorithm.node import Node, NodeSolt
 
-        class NodeSoltExample(Scene):
-            def construct(self):
-                node = Node("A")
-                self.add(node)
-                # NodeSolt only stores coordinate conventions; mark one slot.
-                direction, _ = NodeSolt.DOWN_MID
-                tip = Dot(node.get_critical_point(direction), color=YELLOW)
-                self.add(tip)
-"""
+       class NodeSoltExample(Scene):
+           def construct(self):
+               node = Node("A")
+               self.add(node)
+               direction, _ = NodeSolt.DOWN_MID
+               tip = Dot(node.get_critical_point(direction), color=YELLOW)
+               self.add(tip)
+    """
 
     SPLIT_PARTS = 12
     MID = SPLIT_PARTS // 2
@@ -125,20 +110,19 @@ class Node(VMobject):
 
     Examples
     --------
-
     .. manim:: NodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.algorithm.node import Node
+       from manim import *
+       from manim_extensions.algorithm.node import Node
 
-        class NodeExample(Scene):
-            def construct(self):
-                square_node = Node("42")
-                circle_node = Node("?", box_type=Circle, box_color=YELLOW)
-                empty_node = Node(None, box_color=BLUE)
-                group = VGroup(square_node, circle_node, empty_node).arrange(RIGHT, buff=1)
-                self.add(group)
+       class NodeExample(Scene):
+           def construct(self):
+               square_node = Node("42")
+               circle_node = Node("?", box_type=Circle, box_color=YELLOW)
+               empty_node = Node(None, box_color=BLUE)
+               group = VGroup(square_node, circle_node, empty_node).arrange(RIGHT, buff=1)
+               self.add(group)
     """
 
     def __init__(
@@ -328,18 +312,19 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: SelectExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class SelectExample(Scene):
-                def construct(self):
-                    a = Node("1")
-                    b = Node("2").next_to(a, RIGHT)
-                    self.add(a, b)
-                    self.play(Node.Select(a, b, color=YELLOW, opacity=0.6))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class SelectExample(Scene):
+               def construct(self):
+                   a = Node("1")
+                   b = Node("2").next_to(a, RIGHT)
+                   self.add(a, b)
+                   self.play(Node.Select(a, b, color=YELLOW, opacity=0.6))
+                   self.wait(0.5)
+        """
 
         def __init__(
             self,
@@ -365,19 +350,20 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: UnselectExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class UnselectExample(Scene):
-                def construct(self):
-                    a = Node("1")
-                    b = Node("2").next_to(a, RIGHT)
-                    self.add(a, b)
-                    self.play(Node.Select(a, b))
-                    self.play(Node.Unselect(a))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class UnselectExample(Scene):
+               def construct(self):
+                   a = Node("1")
+                   b = Node("2").next_to(a, RIGHT)
+                   self.add(a, b)
+                   self.play(Node.Select(a, b))
+                   self.play(Node.Unselect(a))
+                   self.wait(0.5)
+        """
 
         def __init__(self, *nodes: List["Node"], **kwargs):
             """Clear the highlight from one or more nodes.
@@ -399,17 +385,18 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: UpdateValueExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class UpdateValueExample(Scene):
-                def construct(self):
-                    node = Node("1")
-                    self.add(node)
-                    self.play(Node.UpdateValue(node, "9"))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class UpdateValueExample(Scene):
+               def construct(self):
+                   node = Node("1")
+                   self.add(node)
+                   self.play(Node.UpdateValue(node, "9"))
+                   self.wait(0.5)
+        """
 
         def __init__(self, node: "Node", value: NodeValue, **kwargs):
             """Initialize UpdateValue."""
@@ -436,18 +423,19 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: MoveAndOverWriteExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class MoveAndOverWriteExample(Scene):
-                def construct(self):
-                    a = Node("1")
-                    b = Node("2").next_to(a, RIGHT)
-                    self.add(a, b)
-                    self.play(Node.MoveAndOverWrite(a, b))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class MoveAndOverWriteExample(Scene):
+               def construct(self):
+                   a = Node("1")
+                   b = Node("2").next_to(a, RIGHT)
+                   self.add(a, b)
+                   self.play(Node.MoveAndOverWrite(a, b))
+                   self.wait(0.5)
+        """
 
         def __init__(self, node: "Node", target: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
             """Initialize MoveAndOverWrite."""
@@ -485,18 +473,19 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: CopyAndOverWriteExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class CopyAndOverWriteExample(Scene):
-                def construct(self):
-                    a = Node("1")
-                    b = Node("2").next_to(a, RIGHT)
-                    self.add(a, b)
-                    self.play(Node.CopyAndOverWrite(a, b))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class CopyAndOverWriteExample(Scene):
+               def construct(self):
+                   a = Node("1")
+                   b = Node("2").next_to(a, RIGHT)
+                   self.add(a, b)
+                   self.play(Node.CopyAndOverWrite(a, b))
+                   self.wait(0.5)
+        """
 
         def __init__(self, node: "Node", target: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
             """Initialize CopyAndOverWrite."""
@@ -528,18 +517,19 @@ class Node(VMobject):
 
         Examples
         --------
-
         .. manim:: SwapAndOverWriteExample
-            from manim import *
-            from manim_extensions.algorithm.node import Node
 
-            class SwapAndOverWriteExample(Scene):
-                def construct(self):
-                    a = Node("1")
-                    b = Node("2").next_to(a, RIGHT)
-                    self.add(a, b)
-                    self.play(Node.SwapAndOverWrite(a, b))
-                    self.wait(0.5)        """
+           from manim import *
+           from manim_extensions.algorithm.node import Node
+
+           class SwapAndOverWriteExample(Scene):
+               def construct(self):
+                   a = Node("1")
+                   b = Node("2").next_to(a, RIGHT)
+                   self.add(a, b)
+                   self.play(Node.SwapAndOverWrite(a, b))
+                   self.wait(0.5)
+        """
 
         def __init__(self, node1: "Node", node2: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
             """Initialize SwapAndOverWrite."""

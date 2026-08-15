@@ -3,11 +3,10 @@
 This module exports the actors, actions, and objects used for sequence-diagram
 style visualisations in Manim.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: SequenceDiagramPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.sequence_diagram import SeqActor, SeqObject

@@ -33,18 +33,17 @@ class State:
 
     Examples
     --------
-
     .. manim:: StateExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.automata_dependencies.state import State
+       from manim import *
+       from manim_extensions.automata.mobjects.automata_dependencies.state import State
 
-        class StateExample(Scene):
-            def construct(self):
-                state = State("q0", initial=True)
-                label = Text(f"State: {state.name}", font_size=24)
-                self.add(label)
+       class StateExample(Scene):
+           def construct(self):
+               state = State("q0", initial=True)
+               label = Text(f"State: {state.name}", font_size=24)
+               self.add(label)
 """
 
     id_iter = itertools.count()

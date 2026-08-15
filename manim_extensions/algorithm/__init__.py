@@ -3,11 +3,10 @@
 This package provides structural helpers for visualising algorithmic concepts,
 including nodes, arrays, queues, and code-like blocks in Manim scenes.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: AlgorithmPackageDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.algorithm import Node, Array

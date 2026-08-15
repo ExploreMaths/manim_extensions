@@ -17,9 +17,8 @@ class NeuralNetworkMobject(VGroup):
 
     Examples
     --------
-
     .. manim:: NeuralNetworkMobjectDocExample
-      :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.neural_network import NeuralNetworkMobject

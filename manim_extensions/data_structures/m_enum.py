@@ -4,7 +4,7 @@ from enum import Enum
 
 
 class MArrayElementComp(Enum):
-    """Refers to individual component :class:`~manim.mobject.mobject.Mobject`\0s of :class:`~.m_array.MArrayElement`."""
+    """Refers to individual component :class:`~manim.mobject.mobject.Mobject`s of :class:`~.m_array.MArrayElement`."""
 
     BODY = 0
     """:class:`~manim.mobject.geometry.polygram.Square` that represents the body."""

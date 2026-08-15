@@ -28,21 +28,20 @@ class FastManimMesh(OpenGLMobject):
 
     Examples
     --------
-
     .. manim:: FastManimMeshExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.meshes.models.data_models.mesh import Mesh
-        from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh
+       from manim import *
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh
 
-        class FastManimMeshExample(Scene):
-            def construct(self):
-                vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-                faces = [[0, 1, 2]]
-                mesh_data = Mesh(vertices, faces)
-                fm = FastManimMesh(mesh_data)
-                self.add(fm)
+       class FastManimMeshExample(Scene):
+           def construct(self):
+               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
+               faces = [[0, 1, 2]]
+               mesh_data = Mesh(vertices, faces)
+               fm = FastManimMesh(mesh_data)
+               self.add(fm)
 """
 
     shader_dtype = [

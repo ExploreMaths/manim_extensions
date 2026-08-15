@@ -7,17 +7,16 @@ class VoltageSource(Source):
 
     Examples
     --------
-
     .. manim:: VoltageSourceExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import VoltageSource
+       from manim import *
+       from manim_extensions.circuit.mobjects import VoltageSource
 
-        class VoltageSourceExample(Scene):
-            def construct(self):
-                vs = VoltageSource(value=5, direction=LEFT)
-                self.add(vs)
+       class VoltageSourceExample(Scene):
+           def construct(self):
+               vs = VoltageSource(value=5, direction=LEFT)
+               self.add(vs)
 """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
@@ -43,17 +42,16 @@ class CurrentSource(Source):
 
     Examples
     --------
-
     .. manim:: CurrentSourceExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import CurrentSource
+       from manim import *
+       from manim_extensions.circuit.mobjects import CurrentSource
 
-        class CurrentSourceExample(Scene):
-            def construct(self):
-                cs = CurrentSource(value=2, direction=RIGHT)
-                self.add(cs)
+       class CurrentSourceExample(Scene):
+           def construct(self):
+               cs = CurrentSource(value=2, direction=RIGHT)
+               self.add(cs)
 """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
@@ -75,17 +73,16 @@ class Inductor(VMobject):
 
     Examples
     --------
-
     .. manim:: InductorExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import Inductor
+       from manim import *
+       from manim_extensions.circuit.mobjects import Inductor
 
-        class InductorExample(Scene):
-            def construct(self):
-                inductor = Inductor(label="10mH")
-                self.add(inductor)
+       class InductorExample(Scene):
+           def construct(self):
+               inductor = Inductor(label="10mH")
+               self.add(inductor)
 """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
@@ -187,17 +184,16 @@ class Resistor(VMobject):
 
     Examples
     --------
-
     .. manim:: ResistorExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import Resistor
+       from manim import *
+       from manim_extensions.circuit.mobjects import Resistor
 
-        class ResistorExample(Scene):
-            def construct(self):
-                resistor = Resistor(label="4.7k")
-                self.add(resistor)
+       class ResistorExample(Scene):
+           def construct(self):
+               resistor = Resistor(label="4.7k")
+               self.add(resistor)
 """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
@@ -307,17 +303,16 @@ class Capacitor(VMobject):
 
     Examples
     --------
-
     .. manim:: CapacitorExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import Capacitor
+       from manim import *
+       from manim_extensions.circuit.mobjects import Capacitor
 
-        class CapacitorExample(Scene):
-            def construct(self):
-                cap = Capacitor(label="100n", polarized=True)
-                self.add(cap)
+       class CapacitorExample(Scene):
+           def construct(self):
+               cap = Capacitor(label="100n", polarized=True)
+               self.add(cap)
 """
 
     def __init__(self, label=None, direction=DOWN, polarized=False, **kwargs):
@@ -419,17 +414,16 @@ class Ground(VMobject):
 
     Examples
     --------
-
     .. manim:: GroundExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import Ground
+       from manim import *
+       from manim_extensions.circuit.mobjects import Ground
 
-        class GroundExample(Scene):
-            def construct(self):
-                gnd = Ground(ground_type="earth")
-                self.add(gnd)
+       class GroundExample(Scene):
+           def construct(self):
+               gnd = Ground(ground_type="earth")
+               self.add(gnd)
 """
 
     def __init__(self, ground_type="ground", label=None, **kwargs):
@@ -484,17 +478,16 @@ class Opamp(VMobject):
 
     Examples
     --------
-
     .. manim:: OpampExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.circuit.mobjects import Opamp
+       from manim import *
+       from manim_extensions.circuit.mobjects import Opamp
 
-        class OpampExample(Scene):
-            def construct(self):
-                opamp = Opamp(bias_supply="both", label=True)
-                self.add(opamp)
+       class OpampExample(Scene):
+           def construct(self):
+               opamp = Opamp(bias_supply="both", label=True)
+               self.add(opamp)
 """
 
     def __init__(self, bias_supply=None, label=False, **kwargs):

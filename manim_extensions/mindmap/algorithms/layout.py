@@ -8,18 +8,17 @@ class Layout:
 
     Examples
     --------
-
     .. manim:: LayoutExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.layout import Layout
+       from manim import *
+       from manim_extensions.mindmap.algorithms.layout import Layout
 
-        class LayoutExample(Scene):
-            def construct(self):
-                layout = Layout()
-                label = Text("Layout base class", font_size=24)
-                self.add(label)
+       class LayoutExample(Scene):
+           def construct(self):
+               layout = Layout()
+               label = Text("Layout base class", font_size=24)
+               self.add(label)
 """
     def layout(self) -> Any:
         """Run the layout computation and return the root node."""

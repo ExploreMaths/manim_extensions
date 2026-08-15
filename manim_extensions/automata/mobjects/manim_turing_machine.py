@@ -12,20 +12,19 @@ class ManimTuringMachine(VGroup):
 
     Examples
     --------
-
     .. manim:: ManimTuringMachineExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_turing_machine import ManimTuringMachine
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_turing_machine import ManimTuringMachine
 
-        class ManimTuringMachineExample(Scene):
-            def construct(self):
-                try:
-                    tm = ManimTuringMachine()
-                except NotImplementedError as e:
-                    label = Text(str(e), font_size=24)
-                    self.add(label)
+       class ManimTuringMachineExample(Scene):
+           def construct(self):
+               try:
+                   tm = ManimTuringMachine()
+               except NotImplementedError as e:
+                   label = Text(str(e), font_size=24)
+                   self.add(label)
 """
     def __init__(self) -> None:
         """Initialize the ManimTuringMachine instance."""

@@ -25,16 +25,15 @@ class ManimAutomataCLI():
 
     Examples
     --------
-
     .. manim:: ManimAutomataCLIExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.automata.mobjects.manim_cli import ManimAutomataCLI
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_cli import ManimAutomataCLI
 
-        class ManimAutomataCLIExample(Scene):
-            def construct(self):
-                cli = ManimAutomataCLI()
+       class ManimAutomataCLIExample(Scene):
+           def construct(self):
+               cli = ManimAutomataCLI()
 """
     def __init__(self) -> None:
         """Initialize the ManimAutomataCLI instance."""

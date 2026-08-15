@@ -3,11 +3,12 @@
 This module collects common intersection routines used to position and analyse
 primitives such as circles, lines, and arcs within Manim visualisations.
 
-    Examples
-    --------
+Examples
+
+--------
 
 .. manim:: GeometryModuleDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions import CircleInt, LineInt
@@ -47,7 +48,6 @@ def CircleInt(
 
     Examples
     --------
-
     .. manim:: CircleIntDocExample
        :save_last_frame:
 
@@ -111,7 +111,6 @@ def LineCircleInt(
 
     Examples
     --------
-
     .. manim:: LineCircleIntDocExample
        :save_last_frame:
 
@@ -121,7 +120,7 @@ def LineCircleInt(
        class LineCircleIntDocExample(Scene):
            def construct(self):
                line = Line(LEFT * 3, RIGHT * 3)
-               circle = Circle(radius=1, color=BLUE)
+               circle = Circle(radius=2, color=BLUE)
                pts = LineCircleInt(line, circle)
 
                self.add(line, circle)
@@ -178,7 +177,6 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
 
     Examples
     --------
-
     .. manim:: LineIntDocExample
        :save_last_frame:
 
@@ -254,7 +252,6 @@ def LineArcInt(
 
     Examples
     --------
-
     .. manim:: LineArcIntDocExample
        :save_last_frame:
 
@@ -386,7 +383,6 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
 
     Examples
     --------
-
     .. manim:: MobjectIntDocExample
        :save_last_frame:
 
@@ -581,7 +577,6 @@ def TangentPoint(
 
     Examples
     --------
-
     .. manim:: TangentPointDocExample
        :save_last_frame:
 

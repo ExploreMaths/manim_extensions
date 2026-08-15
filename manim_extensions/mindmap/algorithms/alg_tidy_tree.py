@@ -18,18 +18,17 @@ class WrappedTree:
 
     Examples
     --------
-
     .. manim:: WrappedTreeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree
 
-        class WrappedTreeExample(Scene):
-            def construct(self):
-                wt = WrappedTree()
-                label = Text(f"WrappedTree: x={wt.x}, y={wt.y}", font_size=24)
-                self.add(label)
+       class WrappedTreeExample(Scene):
+           def construct(self):
+               wt = WrappedTree()
+               label = Text(f"WrappedTree: x={wt.x}, y={wt.y}", font_size=24)
+               self.add(label)
 """
     # Reference to the original node
     node: Any = None
@@ -113,18 +112,17 @@ class IYLNode:
 
     Examples
     --------
-
     .. manim:: IYLNodeExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import IYLNode
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_tidy_tree import IYLNode
 
-        class IYLNodeExample(Scene):
-            def construct(self):
-                iyl = IYLNode(low=0.0, index=0)
-                label = Text(f"IYLNode: low={iyl.low}, idx={iyl.index}", font_size=24)
-                self.add(label)
+       class IYLNodeExample(Scene):
+           def construct(self):
+               iyl = IYLNode(low=0.0, index=0)
+               label = Text(f"IYLNode: low={iyl.low}, idx={iyl.index}", font_size=24)
+               self.add(label)
 """
     low: float                       # low end of the subtree's right contour in the orthogonal direction
     index: int                       # index of the subtree among its siblings
@@ -240,17 +238,16 @@ class TidyTreeLayout(Layout):
 
     Examples
     --------
-
     .. manim:: TidyTreeLayoutExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout
+       from manim import *
+       from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout
 
-        class TidyTreeLayoutExample(Scene):
-            def construct(self):
-                label = Text("TidyTreeLayout algorithm", font_size=24)
-                self.add(label)
+       class TidyTreeLayoutExample(Scene):
+           def construct(self):
+               label = Text("TidyTreeLayout algorithm", font_size=24)
+               self.add(label)
 """
     def __init__(
         self,

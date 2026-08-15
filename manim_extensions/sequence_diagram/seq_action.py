@@ -7,19 +7,18 @@ class SeqAction(AnimationGroup):
 
     Examples
     --------
-
     .. manim:: SeqActionExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.sequence_diagram.seq_actor import SeqActor
-        from manim_extensions.sequence_diagram.seq_action import SeqAction
+       from manim import *
+       from manim_extensions.sequence_diagram.seq_actor import SeqActor
+       from manim_extensions.sequence_diagram.seq_action import SeqAction
 
-        class SeqActionExample(Scene):
-            def construct(self):
-                a1 = SeqActor("Alice").shift(LEFT * 2)
-                a2 = SeqActor("Bob").shift(RIGHT * 2)
-                self.add(a1, a2)
+       class SeqActionExample(Scene):
+           def construct(self):
+               a1 = SeqActor("Alice").shift(LEFT * 2)
+               a2 = SeqActor("Bob").shift(RIGHT * 2)
+               self.add(a1, a2)
 """
 
     @classmethod

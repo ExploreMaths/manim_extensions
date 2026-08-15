@@ -26,20 +26,19 @@ class TikzTemplate(TexTemplate):
 
     Examples
     --------
-
     .. manim:: TikzTemplateExample
-      :save_last_frame:
+       :save_last_frame:
 
-        from manim import *
-        from manim_extensions.tikz import Tikz
+       from manim import *
+       from manim_extensions.tikz import Tikz
 
-        class TikzTemplateExample(Scene):
-            def construct(self):
-                tikz = Tikz(
-                    r"\draw[fill=yellow, draw=red, thick] (0,0) circle (1);",
-                    use_pdf=False,
-                )
-                self.add(tikz)
+       class TikzTemplateExample(Scene):
+           def construct(self):
+               tikz = Tikz(
+                   r"\draw[fill=yellow, draw=red, thick] (0,0) circle (1);",
+                   use_pdf=False,
+               )
+               self.add(tikz)
 """
 
     _DEFAULT_PREAMBLE = (

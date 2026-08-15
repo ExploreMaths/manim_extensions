@@ -4,11 +4,10 @@ This module provides small reusable building blocks for common educational and
 visualisation scenes, including labels, braces, dots, and LaTeX-wrapped
 objects.
 
-    Examples
-    --------
-
+Examples
+--------
 .. manim:: MobjectsModuleDocExample
-      :save_last_frame:
+   :save_last_frame:
 
    from manim import *
    from manim_extensions import LabelDot, MathTexLine
@@ -57,7 +56,6 @@ class ChineseMathTex(MathTex):
 
     Examples
     --------
-
     .. manim:: ChineseMathTexDocExample
        :save_last_frame:
 
@@ -71,6 +69,7 @@ class ChineseMathTex(MathTex):
                    tex_to_color_map={r"\text{hello}": RED},
                )
                self.add(formula)
+
     """
 
 
@@ -147,6 +146,7 @@ class LabelDot(VGroup):
 
     Attributes
     ----------
+
     dot : :class:`~manim.mobject.geometry.Dot`
         The underlying dot mobject.
     dot_pos : numpy.ndarray
@@ -154,7 +154,6 @@ class LabelDot(VGroup):
 
     Examples
     --------
-
     .. manim:: LabelDotDocExample
        :save_last_frame:
 
@@ -220,7 +219,6 @@ class MathTexLine(VGroup):
 
     Examples
     --------
-
     .. manim:: MathTexLineDocExample
        :save_last_frame:
 
@@ -272,7 +270,6 @@ class MathTexBrace(VGroup):
 
     Examples
     --------
-
     .. manim:: MathTexBraceDocExample
        :save_last_frame:
 
@@ -324,7 +321,6 @@ class MathTexDoublearrow(VGroup):
 
     Examples
     --------
-
     .. manim:: MathTexDoublearrowDocExample
        :save_last_frame:
 
@@ -372,6 +368,7 @@ class PerpendicularLine(Line):
 
     Attributes
     ----------
+
     point : numpy.ndarray
         The 3‑D point from which the perpendicular is drawn.
     target_line : :class:`~manim.mobject.geometry.Line`
@@ -381,7 +378,6 @@ class PerpendicularLine(Line):
 
     Examples
     --------
-
     .. manim:: PerpendicularLineDocExample
        :save_last_frame:
 
@@ -451,7 +447,6 @@ class ExtendedLine(Line):
 
     Examples
     --------
-
     .. manim:: ExtendedLineDocExample
        :save_last_frame:
 
@@ -509,13 +504,13 @@ class PerpendicularSign(VGroup):
 
     Attributes
     ----------
+
     intersection : numpy.ndarray
         The 3‑D intersection point of the two lines.  If the lines are
         parallel this attribute is not set.
 
     Examples
     --------
-
     .. manim:: PerpendicularSignDocExample
        :save_last_frame:
 
@@ -707,7 +702,6 @@ class FileTree(Code):
 
     Examples
     --------
-
     .. manim:: FileTreeDocExample
        :save_last_frame:
 
@@ -940,6 +934,7 @@ class VideoMobject(ImageMobject):
 
     Attributes
     ----------
+
     filename : str
         Path to the video file.
 
@@ -947,7 +942,6 @@ class VideoMobject(ImageMobject):
     --------
     .. manim:: VideoMobjectDocExample
 
-   :save_last_frame:
        from manim import *
        from pathlib import Path
        from manim_extensions import VideoMobject
@@ -957,7 +951,8 @@ class VideoMobject(ImageMobject):
                path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
                vid = VideoMobject(path)
                self.add(vid)
-               vid.play(self)    """
+               vid.play(self)
+    """
 
     def __init__(
         self,
@@ -1175,7 +1170,6 @@ class ColorText(Text):
 
     Examples
     --------
-
     .. manim:: ColorTextDocExample
        :save_last_frame:
 
@@ -1256,7 +1250,6 @@ class Trail(VGroup):
 
     Examples
     --------
-
     .. manim:: TrailDocExample
 
        from manim import *
@@ -1381,7 +1374,6 @@ class ShadowAround(VGroup):
 
     Examples
     --------
-
     .. manim:: ShadowAroundDocExample
        :save_last_frame:
 
@@ -1472,7 +1464,6 @@ class ObjectBorder(VGroup):
 
     Examples
     --------
-
     .. manim:: ObjectBorderDocExample
        :save_last_frame:
 
@@ -1561,7 +1552,6 @@ class ThreeDVector(VGroup):
 
     Examples
     --------
-
     .. manim:: ThreeDVectorDocExample
        :save_last_frame:
 
@@ -1646,7 +1636,6 @@ class TreeDiagram(VGroup):
 
     Examples
     --------
-
     .. manim:: TreeDiagramDocExample
        :save_last_frame:
 
