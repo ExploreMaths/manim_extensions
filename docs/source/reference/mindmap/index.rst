@@ -9,8 +9,7 @@ MindMap
 
 ``MindMap`` brings mind-map, timeline, and catalog / organisation-chart
 diagrams to Manim. It is bundled inside ``manim_extensions`` as the
-``manim_extensions.mindmap`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.mindmap`` subpackage.
 
 Features
 --------

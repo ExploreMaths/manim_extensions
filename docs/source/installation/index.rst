@@ -37,16 +37,11 @@ submodules and install in editable mode:
 
 .. code-block:: bash
 
-   git clone --recurse-submodules https://github.com/ExploreMaths/manim_extensions.git
+   git clone https://github.com/ExploreMaths/manim_extensions.git
    cd manim_extensions
    pip install -e .
 
-The bundled plugins live under ``third_party/`` as Git submodules. If you
-already cloned without ``--recurse-submodules``, fetch them with:
-
-.. code-block:: bash
-
-   git submodule update --init --recursive
+The bundled plugins are included directly as Python subpackages.
 
 LaTeX requirements
 ------------------

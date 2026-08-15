@@ -17,7 +17,7 @@ Can I use the bundled plugins without installing ``manim_extensions``?
 ----------------------------------------------------------------------
 
 Yes. The plugins are also available from their original repositories and are
-kept as Git submodules under ``third_party/``. However, installing
+kept as subpackages within ``manim_extensions``. However, installing
 ``manim_extensions`` lets you import them directly from the package namespace
 and guarantees compatible versions.
 

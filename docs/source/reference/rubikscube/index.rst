@@ -12,8 +12,7 @@ It is designed for puzzle demonstrations, cube-state tutorials, and move-by-move
 explanations inside scene code.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.rubikscube`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.rubikscube`` subpackage.
 
 Features
 --------

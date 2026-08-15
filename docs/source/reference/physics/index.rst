@@ -12,8 +12,7 @@ rigid mechanics, and electromagnetism in a form that is convenient for lecture
 and demonstration scenes.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.physics`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.physics`` subpackage.
 
 Features
 --------

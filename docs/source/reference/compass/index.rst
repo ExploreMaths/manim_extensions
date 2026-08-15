@@ -10,8 +10,7 @@ Compass
 ``Compass`` provides compass-and-straightedge construction tools for
 Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
 animation classes. The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.compass`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.compass`` subpackage.
 
 Features
 --------

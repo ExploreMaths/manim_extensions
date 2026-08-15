@@ -12,8 +12,7 @@ for Manim. It is aimed at teaching ML architecture layouts and layer structure
 without requiring a full custom scene-building pipeline.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.neural_network`` subpackage and is also kept as a Git
-submodule under ``third_party/``.
+``manim_extensions.neural_network`` subpackage.
 
 Features
 --------

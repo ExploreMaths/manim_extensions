@@ -50,12 +50,16 @@ The library is organised into four areas:
     * :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.
     * :doc:`reference/compass/index` – compass-and-straightedge constructions.
     * :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
-    * Third-party submodule shims exposed through ``manim_extensions.algorithm``,
-      ``manim_extensions.automata``, ``manim_extensions.circuit``,
-      ``manim_extensions.data_structures``, ``manim_extensions.meshes``,
-      ``manim_extensions.neural_network``, ``manim_extensions.physics``,
-      ``manim_extensions.rubikscube``, ``manim_extensions.sequence_diagram``,
-      and ``manim_extensions.tikz``.
+    * :doc:`reference/algorithm/index` – algorithm visualization toolkit.
+    * :doc:`reference/automata/index` – finite-state, pushdown, and Turing automata.
+    * :doc:`reference/circuit/index` – circuit elements and diagrams.
+    * :doc:`reference/data_structures/index` – array and variable visualization.
+    * :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
+    * :doc:`reference/neural_network/index` – neural network mobjects.
+    * :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
+    * :doc:`reference/rubikscube/index` – Rubik's cube mobject and animations.
+    * :doc:`reference/sequence_diagram/index` – UML sequence diagram helpers.
+    * :doc:`reference/tikz/index` – TikZ diagram integration.
 
 Quick Links
 ===========

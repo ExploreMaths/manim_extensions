@@ -12,8 +12,7 @@ It is meant for software architecture explanations, API flow demos, and
 message-order visualisations.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.sequence_diagram`` subpackage and is also kept as a Git
-submodule under ``third_party/``.
+``manim_extensions.sequence_diagram`` subpackage.
 
 Features
 --------

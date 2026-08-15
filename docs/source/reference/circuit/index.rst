@@ -11,8 +11,7 @@ Circuit
 basic circuit diagrams can be built and animated directly inside a scene.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.circuit`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.circuit`` subpackage.
 
 Features
 --------

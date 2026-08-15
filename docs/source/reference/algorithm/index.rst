@@ -12,8 +12,7 @@ provides algorithmic objects such as nodes, arrays, queues, and code blocks that
 can be used directly in classroom or tutorial scenes.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.algorithm`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.algorithm`` subpackage.
 
 Features
 --------

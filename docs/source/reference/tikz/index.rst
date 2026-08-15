@@ -12,8 +12,7 @@ existing LaTeX/TikZ diagrams can be reused in a scene without manually rebuildin
 all shapes in Python.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.tikz`` subpackage and is also kept as a Git submodule under
-``third_party/``.
+``manim_extensions.tikz`` subpackage.
 
 Features
 --------

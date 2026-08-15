@@ -12,8 +12,7 @@ for teaching automata, machine execution, and state transitions in a clear,
 scene-ready format.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.automata`` subpackage and is also kept as a Git submodule
-under ``third_party/``.
+``manim_extensions.automata`` subpackage.
 
 Features
 --------
