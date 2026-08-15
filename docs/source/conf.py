@@ -6,9 +6,6 @@ import sys
 # -- Path setup --------------------------------------------------------------
 sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("_extensions"))
-sys.path.insert(0, os.path.abspath("../../third_party/manim-GearBox/src"))
-sys.path.insert(0, os.path.abspath("../../third_party/manim-mindmap/src"))
-sys.path.insert(0, os.path.abspath("../../third_party/manim-compass/src"))
 
 # -- Project information -----------------------------------------------------
 project = "manim_extensions"
@@ -189,4 +186,3 @@ _MANIM_MOBJECT_ATTRS = _manim_mobject_attribute_names()
 
 # Update autodoc defaults to hide inherited Manim attributes (e.g. background_stroke_color).
 autodoc_default_options["exclude-members"] = ",".join(sorted(_MANIM_MOBJECT_ATTRS))
-
