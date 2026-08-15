@@ -1,3 +1,7 @@
+"""Contains pushdown automaton."""
+
+from __future__ import annotations
+
 from manim import *
 
 from .manim_non_determinstic_finite_state_automaton import ManimNonDeterminsticFiniteAutomaton
