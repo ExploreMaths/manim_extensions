@@ -58,11 +58,11 @@ class Pencil(SVGMobject):
                     pencil = Pencil().move_nid_to(ORIGIN)
                     self.add(pencil)
 
-    Parameters
-    ----------
-    point
-    The point used by the operation.
-    """
+        Parameters
+        ----------
+        point
+        The point used by the operation.
+        """
         self.shift(
             point - self.get_nib()
         )
