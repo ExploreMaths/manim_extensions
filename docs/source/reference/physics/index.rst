@@ -65,4 +65,7 @@ for the full physics API and additional examples.
 .. toctree::
    :hidden:
 
-   api
+   electromagnetism
+   optics
+   mechanics
+   waves

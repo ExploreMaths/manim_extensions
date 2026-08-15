@@ -64,4 +64,4 @@ for examples and implementation notes.
 .. toctree::
    :hidden:
 
-   api
+   classes

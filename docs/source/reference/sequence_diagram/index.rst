@@ -66,4 +66,4 @@ for more complete sequence examples and output samples.
 .. toctree::
    :hidden:
 
-   api
+   classes

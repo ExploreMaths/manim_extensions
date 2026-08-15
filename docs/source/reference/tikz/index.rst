@@ -63,4 +63,4 @@ for implementation details and more advanced TikZ conversion examples.
 .. toctree::
    :hidden:
 
-   api
+   classes

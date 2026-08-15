@@ -65,4 +65,6 @@ for more advanced wiring examples and circuit layouts.
 .. toctree::
    :hidden:
 
-   api
+   mobjects
+   helpers
+   functions

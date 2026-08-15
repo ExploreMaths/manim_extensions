@@ -138,4 +138,5 @@ for more detailed examples and the full API.
 .. toctree::
    :hidden:
 
-   api
+   classes
+   enums

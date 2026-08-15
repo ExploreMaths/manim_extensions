@@ -70,4 +70,6 @@ for details on the mesh model and more advanced examples.
 .. toctree::
    :hidden:
 
-   api
+   data_model
+   helpers
+   exceptions

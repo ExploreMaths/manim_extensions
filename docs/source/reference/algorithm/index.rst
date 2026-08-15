@@ -72,4 +72,5 @@ for more complete examples and API details.
 .. toctree::
    :hidden:
 
-   api
+   classes
+   functions

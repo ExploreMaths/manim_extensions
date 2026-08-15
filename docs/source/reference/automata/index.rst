@@ -67,4 +67,7 @@ for more complete examples and API walkthroughs.
 .. toctree::
    :hidden:
 
-   api
+   mobjects
+   animations
+   dependencies
+   functions

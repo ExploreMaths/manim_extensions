@@ -20,8 +20,6 @@ Examples
            self.add(tikz)
 """
 
-__version__ = '0.1.0'
-
 from manim import *
 
 from .tikz import Tikz

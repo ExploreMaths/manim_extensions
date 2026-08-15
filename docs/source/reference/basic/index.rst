@@ -7,6 +7,6 @@ from the package namespace.
 .. toctree::
    :maxdepth: 2
 
-   ../../api/mobjects
-   ../../api/geometry
-   ../../api/animations
+   mobjects
+   geometry
+   animations

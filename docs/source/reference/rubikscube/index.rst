@@ -64,4 +64,6 @@ for the full spec, examples, and documentation.
 .. toctree::
    :hidden:
 
-   api
+   classes
+   animations
+   functions

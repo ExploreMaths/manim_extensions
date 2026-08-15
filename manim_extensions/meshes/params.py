@@ -7,13 +7,7 @@ from typing import Any
 import manim as m
 import moderngl
 
-try:
-    from colour import Color
-except ImportError:
-    try:
-        from manim.utils.color.core import ManimColor as Color
-    except ImportError:
-        from manim import ManimColor as Color
+from manim.utils.color.core import ManimColor
 # local imports
 from manim_extensions.meshes.exceptions import BadParameterException
 from manim_extensions.meshes.types import DefaultParameters, Parameters
@@ -28,11 +22,11 @@ BM3DM: DefaultParameters = {
     "clear_vertices":                             (bool, True),
     "clear_edges":                                (bool, True),
     "clear_faces":                                (bool, True),
-    "edges_color":                                (Color, Color(m.BLUE)),
+    "edges_color":                                (ManimColor, ManimColor(m.BLUE)),
     "edges_width":                                (float, 0.1),
-    "faces_color":                                (Color, Color(m.BLUE_D)),
+    "faces_color":                                (ManimColor, ManimColor(m.BLUE_D)),
     "faces_opacity":                              (float, 0.4),
-    "verts_color":                                (Color, Color(m.GREEN)),
+    "verts_color":                                (ManimColor, ManimColor(m.GREEN)),
     "verts_size":                                 (float, 0.04),
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
@@ -45,18 +39,18 @@ BM2DM: DefaultParameters = {
     "clear_vertices":                             (bool, True),
     "clear_edges":                                (bool, True),
     "clear_faces":                                (bool, True),
-    "edges_color":                                (Color, Color(m.LIGHT_GREY)),
+    "edges_color":                                (ManimColor, ManimColor(m.LIGHT_GREY)),
     "edges_width":                                (float, 1.5),
-    "faces_color":                                (Color, Color(m.BLUE_E)),
+    "faces_color":                                (ManimColor, ManimColor(m.BLUE_E)),
     "faces_opacity":                              (float, 1.),
-    "verts_color":                                (Color, Color(m.GREEN)),
+    "verts_color":                                (ManimColor, ManimColor(m.GREEN)),
     "verts_size":                                 (float, 0.02),
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
 
 # opengl_mesh_default_params
 OGLM: DefaultParameters = {
-    "color": (Color, Color(m.GREY)),
+    "color": (ManimColor, ManimColor(m.GREY)),
     "depth_test": (bool, True),
     "gloss": (float, 0.3),
     "opacity": (float, 1.0),

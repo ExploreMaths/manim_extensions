@@ -17,8 +17,6 @@ Examples
            self.add(lens)
 """
 
-__version__ = "0.2.3"
-
 from manim import *
 
 from .electromagnetism.electrostatics import *

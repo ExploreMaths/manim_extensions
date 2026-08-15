@@ -19,13 +19,3 @@ Examples
 
 from .cube import *
 from .cube_animations import *
-
-try:
-    import importlib.metadata as importlib_metadata
-except ModuleNotFoundError:  # pragma: no cover
-    import importlib_metadata
-
-try:
-    __version__ = importlib_metadata.version(__name__)
-except importlib_metadata.PackageNotFoundError:
-    __version__ = "0.0.0"
