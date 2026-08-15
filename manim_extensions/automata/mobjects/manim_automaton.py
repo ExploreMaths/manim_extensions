@@ -1,3 +1,7 @@
+"""Contains classes for Manim automaton."""
+
+from __future__ import annotations
+
 from manim import *
 from .automata_dependencies.automata import FiniteStateAutomaton
 from .manim_state import ManimState, State
