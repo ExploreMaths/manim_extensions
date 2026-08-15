@@ -1,4 +1,4 @@
-"""TikZ integration helpers for Manim.
+r"""TikZ integration helpers for Manim.
 
 This package exposes the core TikZ mobject wrapper and templating support for
 creating diagrammatic scenes based on TikZ input.

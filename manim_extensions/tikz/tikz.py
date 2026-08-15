@@ -6,7 +6,7 @@ from manim.utils.tex_file_writing import tex_to_svg_file
 
 
 class Tikz(SVGMobject):
-    """Convert TikZ markup into an SVG-based mobject for use in Manim.
+    r"""Convert TikZ markup into an SVG-based mobject for use in Manim.
 
     Parameters
     ----------
@@ -14,11 +14,11 @@ class Tikz(SVGMobject):
         The TikZ markup to convert into a rendered SVG.
     packages : list[str] | None, optional
         Additional LaTeX packages to include in the preamble, such as
-        ``\\usepackage{...}`` definitions.
+        ``\usepackage{...}`` definitions.
     libraries : list[str] | None, optional
         TikZ libraries to load, such as ``arrows.meta`` or ``calc``.
     tikzset : list[str] | None, optional
-        Custom TikZ style definitions to inject through ``\\tikzset{...}``.
+        Custom TikZ style definitions to inject through ``\tikzset{...}``.
     preamble : str | None, optional
         Extra LaTeX code appended directly to the document preamble.
     use_pdf : bool, optional
