@@ -3,10 +3,9 @@
 from copy import deepcopy
 
 import numpy as np
-import typing
 from manim import *
 from manim.mobject.mobject import _AnimationBuilder
-from typing import Any
+from typing import Any, Callable, List, Tuple, Union
 
 from .m_enum import MArrayDirection, MArrayElementComp
 
@@ -612,7 +611,7 @@ class MArray(VGroup):
             total_len += self.__mob_arr[i].fetch_mob_square().side_length
         return total_len
 
-    def __calc_label_pos_and_mob(self) -> typing.Tuple[Square, np.ndarray]:
+    def __calc_label_pos_and_mob(self) -> Tuple[Square, np.ndarray]:
         """Calculates the position of the array label relative to one of the element's square mobjects.
 
         Returns
@@ -657,7 +656,7 @@ class MArray(VGroup):
                 * ((len_after - len_before) / 2),
             )
 
-    def __calc_index(self, index: int) -> typing.Union[int, str]:
+    def __calc_index(self, index: int) -> Union[int, str]:
         """Calculates the displayable index of the specified element based on attributes set at initialization.
 
         Parameters
@@ -732,7 +731,7 @@ class MArray(VGroup):
         mob_square_args: dict = {},
         mob_value_args: dict = {},
         mob_index_args: dict = {},
-    ) -> typing.List[Animation]:
+    ) -> List[Animation]:
         """Creates and inserts a new element in the array.
 
         Parameters
@@ -801,7 +800,7 @@ class MArray(VGroup):
         update_anim_args: dict = {},
         removal_anim_target: MArrayElementComp = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
-    ) -> typing.Tuple[Succession, typing.Callable[[bool], typing.List[Animation]]]:
+    ) -> Tuple[Succession, Callable[[bool], List[Animation]]]:
         """Removes the element from the array at the specified index.
 
         Parameters
@@ -860,7 +859,7 @@ class MArray(VGroup):
 
         def update_indices(
             play_anim: bool = True, play_anim_args: dict = {}
-        ) -> typing.List[Animation]:
+        ) -> List[Animation]:
             """Updates the indices of :class:`MArrayElement`(s) that occur after the removal.
 
             Parameters
@@ -949,9 +948,9 @@ class MArray(VGroup):
             "font_size": 38,
         }
         self.__scene: Scene = scene
-        self.__arr: typing.List[Any] = arr
+        self.__arr: List[Any] = arr
         self.__label: str = label
-        self.__mob_arr: typing.List[MArrayElement] = []
+        self.__mob_arr: List[MArrayElement] = []
         self.__index_offset: int = index_offset
         self.__index_start: int = index_start
         self.__index_hex_display: bool = index_hex_display
@@ -1113,7 +1112,7 @@ class MArray(VGroup):
 
         return self.__arr
 
-    def fetch_mob_arr(self) -> typing.List[MArrayElement]:
+    def fetch_mob_arr(self) -> List[MArrayElement]:
         """Fetches the mobject array.
 
         Returns
@@ -1369,7 +1368,7 @@ class MArray(VGroup):
         mob_index_args: dict = {},
         play_anim: bool = True,
         play_anim_args: dict = {},
-    ) -> typing.List[Animation]:
+    ) -> List[Animation]:
         """Creates and inserts a new element in the array.
 
         Parameters
@@ -1427,7 +1426,7 @@ class MArray(VGroup):
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
         play_anim: bool = True,
         play_anim_args: dict = {},
-    ) -> typing.Tuple[Succession, typing.Callable[[bool], typing.List[Animation]]]:
+    ) -> Tuple[Succession, Callable[[bool], List[Animation]]]:
         """Removes the element from the array at the specified index.
 
         Parameters
@@ -2008,7 +2007,7 @@ class MArraySlidingWindow(VGroup):
     ]
     """Maps :class:`~.m_enum.MArrayDirection` to :class:`np.ndarray`."""
 
-    def __calc_window_dim(self) -> typing.Tuple[float, float]:
+    def __calc_window_dim(self) -> Tuple[float, float]:
         """Calculates dimensions of window mobject.
 
         Returns
@@ -2029,7 +2028,7 @@ class MArraySlidingWindow(VGroup):
 
         return (height, width)
 
-    def __calc_window_pos_np(self) -> typing.Tuple[np.ndarray, np.ndarray]:
+    def __calc_window_pos_np(self) -> Tuple[np.ndarray, np.ndarray]:
         """Calculates position vector and align vector for the window mobject.
 
         Returns

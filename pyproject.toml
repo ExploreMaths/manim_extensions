@@ -35,6 +35,7 @@ dependencies = [
     "kociemba",
     "shapely",
     "trimesh",
+    "xmltodict",
 ]
 
 [project.optional-dependencies]

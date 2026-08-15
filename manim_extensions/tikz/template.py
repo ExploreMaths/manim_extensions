@@ -3,7 +3,7 @@ from typing import List
 
 
 class TikzTemplate(TexTemplate):
-    """A custom :class:`~manim.utils.tex.TexTemplate` for rendering TikZ diagrams.
+    r"""A custom :class:`~manim.utils.tex.TexTemplate` for rendering TikZ diagrams.
 
     This template configures a standalone LaTeX document with the ``tikz``
     package loaded and provides hooks for injecting additional packages,
@@ -16,7 +16,7 @@ class TikzTemplate(TexTemplate):
     libraries : list[str], optional
         TikZ libraries to load (e.g. ``["arrows.meta", "calc"]``).
     tikzset : list[str], optional
-        Custom TikZ style definitions passed through ``\\tikzset{...}``.
+        Custom TikZ style definitions passed through ``\tikzset{...}``.
     preamble : str, optional
         Extra raw LaTeX code appended to the preamble.
     use_pdf : bool, optional
@@ -43,10 +43,10 @@ class TikzTemplate(TexTemplate):
 """
 
     _DEFAULT_PREAMBLE = (
-        "\\usepackage[english]{babel}\n"
-        "\\usepackage{amsmath}\n"
-        "\\usepackage{amssymb}\n"
-        "\\usepackage{tikz}\n"
+        r"\usepackage[english]{babel}" "\n"
+        r"\usepackage{amsmath}" "\n"
+        r"\usepackage{amssymb}" "\n"
+        r"\usepackage{tikz}" "\n"
     )
 
     def __init__(
@@ -62,18 +62,18 @@ class TikzTemplate(TexTemplate):
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (
             default_preamble
-            + ("\n\\usepackage{" + ", ".join(packages) + "}\n" if packages else "")
+            + ("\n" + r"\usepackage{" + ", ".join(packages) + "}\n" if packages else "")
             + (
-                "\n\\usetikzlibrary{" + ", ".join(libraries) + "}\n"
+                "\n" + r"\usetikzlibrary{" + ", ".join(libraries) + "}\n"
                 if libraries
                 else ""
             )
-            + ("\n\\tikzset{" + ",\n".join(tikzset) + "}\n" if tikzset else "")
+            + ("\n" + r"\tikzset{" + ",\n".join(tikzset) + "}\n" if tikzset else "")
             + ("\n" + preamble if preamble else "")
         )
         super().__init__(
             tex_compiler="latex",
-            documentclass="\\documentclass[preview, tikz]{standalone}",
+            documentclass=r"\documentclass[preview, tikz]{standalone}",
             output_format=".pdf" if use_pdf else ".dvi",
             preamble=merged_preamble,
             **kwargs,

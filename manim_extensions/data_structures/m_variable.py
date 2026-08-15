@@ -1,5 +1,7 @@
 """Contains classes to construct variable."""
 
+from __future__ import annotations
+
 from manim import *
 
 from .m_array import MArrayElement
