@@ -1,9 +1,11 @@
 version = 1
 
-[[file]]
+[[annotations]]
 path = ".readthedocs.yaml"
-copyright = "2026 ExploreMaths"
-license = "MIT"
+SPDX-FileCopyrightText = [
+    "2026 ExploreMaths"
+]
+SPDX-License-Identifier = "MIT"
 
 [[file]]
 path = "binder/Dockerfile"
