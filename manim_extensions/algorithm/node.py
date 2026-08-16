@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 sinianluoye
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from typing import List, TypeAlias
 from manim import *
 from manim.typing import ManimFloat, Point3D, Vector3D

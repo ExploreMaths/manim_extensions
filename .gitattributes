@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 # Keep the Sphinx build helpers on LF line endings so they execute
 # identically on Linux/ReadTheDocs and on Windows bash shells (make / sh).
 # `docs/make.bat` was converted from a Windows batch file into a bash script,

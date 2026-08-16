@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 sinianluoye
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 import manim
 from .utils.debug import index_code_labels
 

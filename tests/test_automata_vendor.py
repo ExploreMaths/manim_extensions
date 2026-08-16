@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim import Circle
 
 from manim_extensions.automata import ManimAutomaton, ManimNonDeterminsticFiniteAutomaton

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 __pycache__
 build
 dist
@@ -8,6 +11,10 @@ update.bat
 docs/build
 rendering_times.csv
 .vscode
+.gitattributes
+.DS_Store
+docs/_c.log
+docs/_v.log
 workflow/_refs_report.json
 workflow/_validate_result.txt
 workflow/_inline_refs_data.json

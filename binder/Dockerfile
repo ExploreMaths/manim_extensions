@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Manim Community
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 FROM manimcommunity/manim:v0.20.1
 
 USER root

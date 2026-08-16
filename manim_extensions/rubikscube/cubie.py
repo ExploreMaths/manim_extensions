@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2021 KingWampy
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Individual cubie used by the Rubik's Cube mobject."""
 
 from manim.mobject.types.vectorized_mobject import VGroup

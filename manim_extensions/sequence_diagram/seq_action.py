@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2023 Thomas Chen
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim import *
 from .seq_actor import SeqActor
 from .seq_object import SeqObject

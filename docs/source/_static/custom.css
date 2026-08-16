@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2026 ExploreMaths
+ * SPDX-License-Identifier: MIT
+ */
+
 @media (prefers-color-scheme: dark) {
     span.nc {
         text-decoration: none !important;

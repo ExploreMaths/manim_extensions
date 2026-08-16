@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 name: "Setup Manim Environment"
 description: "Install system dependencies and manim_extensions in editable mode"
 

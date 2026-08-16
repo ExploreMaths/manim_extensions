@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 Hammad Nasir
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Contains classes to construct an array.
 
 Examples

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 sinianluoye
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Algorithm visualisation helpers.
 
 This package provides structural helpers for visualising algorithmic concepts,

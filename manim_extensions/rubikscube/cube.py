@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2021 KingWampy
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Rubik's Cube mobject built from Manim primitives.
 
 This module exposes a 3D-styled cube model that is useful for puzzles,

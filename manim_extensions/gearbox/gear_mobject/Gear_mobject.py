@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2020 GarryBGoode
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 import numpy as np
 from manim import *
 from typing import Optional, Sequence, Union

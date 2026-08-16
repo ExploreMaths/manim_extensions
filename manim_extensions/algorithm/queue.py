@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 sinianluoye
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from typing import List
 from .node import Node
 from manim import VMobject, Square, RED, Line, LEFT, UP, RIGHT, DOWN, Succession, MoveAlongPath, linear, AnimationGroup, FadeOut

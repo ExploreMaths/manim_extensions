@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim import Code as ManimCode
 
 from manim_extensions.algorithm import Array, Code, Node, NodeConfig, NodeSolt, PythonCode

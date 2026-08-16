@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 sinianluoye
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from .node import *
 from typing import List, Iterable, Union
 

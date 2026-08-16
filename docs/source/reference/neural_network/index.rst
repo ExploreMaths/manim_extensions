@@ -1,3 +1,7 @@
+.. SPDX-FileCopyrightText: 2024 Javier Pozo Miranda
+.. SPDX-FileCopyrightText: 2026 ExploreMaths
+.. SPDX-License-Identifier: MIT
+
 Neural network
 ==============
 

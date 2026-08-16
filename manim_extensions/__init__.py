@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Public entry point for the Manim extensions package.
 
 This package bundles small utility functions and reusable Manim mobjects for

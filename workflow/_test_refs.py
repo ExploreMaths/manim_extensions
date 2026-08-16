@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 """Test script to verify fix_refs.py handles the various scenarios correctly."""
 import json
 import sys

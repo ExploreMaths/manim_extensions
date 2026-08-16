@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-FileCopyrightText: 2024 Manim Community
+# SPDX-License-Identifier: MIT
+
 r"""
 A directive for including Manim videos in a Sphinx document
 ===========================================================

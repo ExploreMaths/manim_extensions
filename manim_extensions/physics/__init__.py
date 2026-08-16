@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Matheart
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Physics utilities for Manim scenes.
 
 This package contains tools for optics, electromagnetism, rigid mechanics, and

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 Sean Nelson
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 
 cli_logo = r"""
   __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ 

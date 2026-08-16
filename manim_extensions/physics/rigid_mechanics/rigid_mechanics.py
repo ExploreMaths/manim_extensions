@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Matheart
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """A gravity simulation space.
 
 Most objects can be made into a rigid body (moves according to gravity

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2023 Ralphie Raccoon
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim.utils.tex import TexTemplate
 from typing import List
 

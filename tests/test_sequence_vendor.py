@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim_extensions.sequence_diagram import SeqAction, SeqActor, SeqObject
 
 

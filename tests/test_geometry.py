@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 import numpy as np
 import pytest
 from manim import Circle, Line, Arc, LEFT, RIGHT, UP, DOWN, ORIGIN

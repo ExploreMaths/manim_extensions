@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Matheart
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Rays of light. Refracted by Lenses."""
 
 from __future__ import annotations

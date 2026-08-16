@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 jj-math
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from .layout_factory import LayoutFactory
 from .layout_config import *
 from .alg_tidy_tree import *

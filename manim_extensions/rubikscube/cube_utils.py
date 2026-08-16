@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2021 KingWampy
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim.constants import *
 
 def get_axis_from_face(face):

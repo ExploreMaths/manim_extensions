@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2023 Ralphie Raccoon
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from .template import TikzTemplate
 
 from typing import List, Optional

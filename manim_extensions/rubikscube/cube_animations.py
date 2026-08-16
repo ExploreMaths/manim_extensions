@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2021 KingWampy
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from manim.animation.animation import Animation
 from manim.constants import PI
 from manim.mobject.types.vectorized_mobject import VGroup

@@ -1,4 +1,9 @@
-﻿<div align="center">
+﻿<!--
+SPDX-FileCopyrightText: 2026 ExploreMaths
+SPDX-License-Identifier: MIT
+-->
+
+<div align="center">
 
 # Manim Extensions
 

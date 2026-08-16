@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-FileCopyrightText: 2020 manim-kindergarten
+# SPDX-License-Identifier: MIT
+
+
 """Reusable Manim mobjects and convenience wrappers.
 
 This module provides small reusable building blocks for common educational and

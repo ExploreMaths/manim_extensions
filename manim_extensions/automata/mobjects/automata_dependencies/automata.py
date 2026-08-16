@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 Sean Nelson
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 from asyncio import constants
 from .xml_parser import parse_xml_file
 

@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2026 ExploreMaths
+ * SPDX-License-Identifier: MIT
+ */
+
 window.addEventListener("load", function () {
     const diagrams = document.querySelectorAll("object.inheritance.graphviz");
 
@@ -115,4 +120,3 @@ window.addEventListener("load", function () {
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", setColorScheme);
 });
-

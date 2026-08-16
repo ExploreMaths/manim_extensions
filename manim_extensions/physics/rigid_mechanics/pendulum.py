@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Matheart
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 r"""Pendulums.
 
 :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum` and :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` both stem from the

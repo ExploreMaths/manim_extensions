@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """
 manim models for mesh objects
 contains a 3D and a 2D version

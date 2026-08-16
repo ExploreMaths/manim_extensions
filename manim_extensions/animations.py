@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-FileCopyrightText: 2020 manim-kindergarten
+# SPDX-License-Identifier: MIT
+
+
 from manim import *
 import numpy as np
 

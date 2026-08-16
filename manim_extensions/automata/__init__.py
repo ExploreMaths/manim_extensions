@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 Sean Nelson
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Automata visualisation package.
 
 This package exposes animated finite-state and pushdown automaton mobjects for

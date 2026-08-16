@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Matheart
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Magnetostatics module"""
 
 from __future__ import annotations

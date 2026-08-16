@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """
 2D triangle manim mesh with functionality useful for delaunay meshes
 """

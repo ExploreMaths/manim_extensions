@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+
 """Validate `:save_last_frame:` usage in manim directive blocks.
 
 Rules:
