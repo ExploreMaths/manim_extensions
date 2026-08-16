@@ -16,9 +16,9 @@ v1.0.4 (Unreleased)
   all public classes across ``algorithm``, ``circuit``, ``compass``, ``meshes``,
   ``mindmap``, ``physics``, and ``rubikscube`` modules, documenting every
   ``__init__`` parameter in class-level docstrings.
-* Split the combined ``validate-directives.yml`` GitHub Actions workflow into
-  three separate jobs (``validate-manim-directives``, ``validate-param-docs``,
-  ``validate-refs``) within a single ``validate.yml`` workflow file.
+* Added ``validate.yml`` GitHub Actions workflow with three separate jobs
+  (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
+  and their corresponding Python validation scripts.
 
 **Fixed**
 
@@ -30,6 +30,9 @@ v1.0.4 (Unreleased)
   by adding PDA-specific default templates and defensive ``.get()`` lookups.
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
+* Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
+  (converted bare ``LEFT``, ``DOWN``, and ``LayoutDirection.LeftToRight``
+  inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
   in TikZ docstrings, and CJK font detection on Linux.
 * Fixed ``TypeError`` for ``str | None`` union syntax in Python 3.10–3.13
