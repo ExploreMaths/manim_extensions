@@ -30,9 +30,6 @@ Quick start
 
 Import directly from ``manim_extensions`` (``from manim_extensions.compass import *``).
 
-Compass example
-^^^^^^^^^^^^^^^
-
 .. manim:: CompassExample
 
    from manim import *
@@ -44,9 +41,6 @@ Compass example
            self.play(MoveNiddleTipTo(compass, ORIGIN))
            self.play(SplitCompass(compass, 2))
            self.play(RotateCompass(compass, PI / 2))
-
-Drawing a line with ruler and pencil
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: DrawLineExample
 

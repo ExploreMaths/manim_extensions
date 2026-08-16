@@ -25,21 +25,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.circuit.mobjects import Resistor, Capacitor
-
-   class CircuitExample(Scene):
-       def construct(self):
-           r = Resistor().shift(LEFT)
-           c = Capacitor().shift(RIGHT)
-           self.add(r, c)
-           self.wait(0.5)
-
-A simple circuit scene
-^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: CircuitLibraryExample
    :save_last_frame:
 

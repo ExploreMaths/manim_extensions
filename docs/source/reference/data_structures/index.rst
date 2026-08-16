@@ -25,20 +25,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.data_structures import MArray
-
-   class ArrayExample(Scene):
-       def construct(self):
-           arr = MArray(self, [8, 7, 6, 5])
-           self.add(arr)
-           self.wait(0.5)
-
-Displaying an array
-^^^^^^^^^^^^^^^^^^^
-
 .. manim:: DataStructureArrayExample
    :save_last_frame:
 
@@ -49,9 +35,6 @@ Displaying an array
        def construct(self):
            arr = MArray(self, [3, 1, 4, 1, 5, 9, 2, 6], label="arr")
            self.add(arr)
-
-Attaching a pointer
-^^^^^^^^^^^^^^^^^^^
 
 .. manim:: DataStructurePointerExample
    :save_last_frame:
@@ -64,9 +47,6 @@ Attaching a pointer
            arr = MArray(self, [10, 20, 30, 40, 50], label="data")
            ptr = MArrayPointer(self, arr, index=2, label="i", pointer_pos=MArrayDirection.UP)
            self.add(arr, ptr)
-
-Sliding window
-^^^^^^^^^^^^^^
 
 .. manim:: DataStructureSlidingWindowExample
    :save_last_frame:
@@ -85,9 +65,6 @@ Sliding window
            )
            self.add(arr, window)
 
-Updating a variable
-^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: DataStructureVariableExample
 
    from manim import *
@@ -105,9 +82,6 @@ Updating a variable
            self.wait(0.5)
            var.update_label("total")
            self.wait(0.5)
-
-Insert and remove elements
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: DataStructureInsertRemoveExample
 

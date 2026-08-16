@@ -27,9 +27,6 @@ Quick start
 
 Import directly from ``manim_extensions`` (``from manim_extensions.mindmap import *``).
 
-Inserting nodes into a mind map
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: MindMapInsertExample
 
    from manim import *
@@ -46,9 +43,6 @@ Inserting nodes into a mind map
                InsertNode(self, {root: [a1, a2, a3]}),
                run_time=2,
            )
-
-Building a tree with :class:`~manim_extensions.mindmap.animations.animations.LayoutAnimation`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: LayoutAnimationExample
 

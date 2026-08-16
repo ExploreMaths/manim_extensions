@@ -26,21 +26,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.sequence_diagram import SeqActor, SeqObject
-
-   class SequenceDiagramExample(Scene):
-       def construct(self):
-           actor = SeqActor("User")
-           obj = SeqObject("Service")
-           self.add(actor, obj)
-           self.wait(0.5)
-
-A simple sequence diagram scene
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: SequenceDiagramLibraryExample
    :save_last_frame:
 

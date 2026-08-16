@@ -1,0 +1,42 @@
+name: "Setup Manim Environment"
+description: "Install system dependencies and manim_extensions in editable mode"
+
+inputs:
+  python-version:
+    description: "Python version to install"
+    required: false
+    default: "3.14"
+  install-full-deps:
+    description: "Install full system dependencies (TeX, ffmpeg, xvfb, etc.) for test/lint workflows"
+    required: false
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libpango1.0-dev libcairo2-dev libgirepository1.0-dev pkg-config
+        if [ "${{ inputs.install-full-deps }}" = "true" ]; then
+          sudo apt-get install -y \
+            libgl1-mesa-dev libegl1-mesa-dev libx11-dev \
+            xvfb \
+            ffmpeg \
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvisvgm texlive-xetex texlive-lang-chinese \
+            fonts-noto-cjk
+        fi
+      shell: bash
+
+    - name: Install Python dependencies
+      run: |
+        pip install --upgrade pip
+        pip install opencv-python-headless
+        pip install -e ".[dev]"
+      shell: bash

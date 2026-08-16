@@ -26,22 +26,6 @@ Features
 Quick start
 -----------
 
-Import the package directly from the vendored namespace:
-
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.automata import ManimAutomaton
-
-   class AutomataExample(Scene):
-       def construct(self):
-           automaton = ManimAutomaton()
-           self.add(automaton)
-           self.wait(0.5)
-
-A simple automaton scene
-^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: AutomataLibraryExample
    :save_last_frame:
 

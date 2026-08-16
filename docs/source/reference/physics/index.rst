@@ -26,20 +26,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.physics import Lens
-
-   class PhysicsExample(Scene):
-       def construct(self):
-           lens = Lens(f=1.0, d=0.4)
-           self.add(lens)
-           self.wait(0.5)
-
-A simple optics scene
-^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: PhysicsLibraryExample
    :save_last_frame:
 

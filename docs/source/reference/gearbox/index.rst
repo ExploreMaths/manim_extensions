@@ -32,9 +32,6 @@ directly (``from manim_extensions.gearbox import *``). A common rendering
 style is ``stroke_opacity=0`` and ``fill_opacity=1``, because the stroke
 slightly enlarges the gear and can look like interference.
 
-Two meshing gears
-^^^^^^^^^^^^^^^^^
-
 .. manim:: GearExample
 
    from manim import *
@@ -53,9 +50,6 @@ Two meshing gears
                Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
                run_time=4,
            )
-
-Inner ring gear
-^^^^^^^^^^^^^^^
 
 .. manim:: InnerGearExample
 

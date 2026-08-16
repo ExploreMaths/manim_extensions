@@ -27,24 +27,6 @@ Features
 Quick start
 -----------
 
-Import the package directly from the vendored namespace:
-
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.algorithm import Node, Queue
-
-   class AlgorithmExample(Scene):
-       def construct(self):
-           left = Node("A")
-           right = Node("B")
-           queue = Queue(capacity=3, init_data=[left, right])
-           self.add(queue)
-           self.wait(0.5)
-
-A simple algorithm scene
-^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: AlgorithmLibraryExample
    :save_last_frame:
 

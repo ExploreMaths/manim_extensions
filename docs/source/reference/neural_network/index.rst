@@ -26,20 +26,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.neural_network import NeuralNetworkMobject
-
-   class NeuralNetworkExample(Scene):
-       def construct(self):
-           network = NeuralNetworkMobject([3, 5, 2])
-           self.add(network)
-           self.wait(0.5)
-
-A simple neural network scene
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. manim:: NeuralNetworkLibraryExample
    :save_last_frame:
 

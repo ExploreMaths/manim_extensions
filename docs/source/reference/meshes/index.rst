@@ -28,21 +28,6 @@ Quick start
 
 Import the package directly from the vendored namespace:
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.meshes.models.data_models.mesh import Mesh
-   from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
-
-   class MeshExample(Scene):
-       def construct(self):
-           mesh = Mesh(
-               vertices=[[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0]],
-               faces=[[0, 1, 2], [1, 3, 2]],
-           )
-           self.add(ManimMesh(mesh))
-           self.wait(0.5)
-
 Building a mesh structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

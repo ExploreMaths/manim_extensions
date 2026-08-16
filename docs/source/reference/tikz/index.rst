@@ -25,20 +25,6 @@ Features
 Quick start
 -----------
 
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.tikz import Tikz
-
-   class TikzExample(Scene):
-       def construct(self):
-           tikz = Tikz(r"\draw[magenta] (0,0) rectangle (1,1);")
-           self.add(tikz)
-           self.wait(0.5)
-
-A simple TikZ scene
-^^^^^^^^^^^^^^^^^^^
-
 .. manim:: TikzLibraryExample
    :save_last_frame:
 
