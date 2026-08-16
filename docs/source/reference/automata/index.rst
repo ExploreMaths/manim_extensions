@@ -44,7 +44,7 @@ This library is most useful for:
 * parsing and acceptance demonstrations,
 * visual explanations of nondeterministic and stack-like transitions.
 
-See the `original README <https://github.com/SeanNelsonIO/manim-automata/blob/main/README.md>`_
+See the `original README <https://github.com/SeanNelsonIO/manim-automata>`_
 for more complete examples and API walkthroughs.
 
 .. toctree::

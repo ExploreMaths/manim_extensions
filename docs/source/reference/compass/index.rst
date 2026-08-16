@@ -78,5 +78,5 @@ example.
    ruler_animations
    utilities
 
-See the `original README <https://github.com/jj-math/manim-compass/blob/main/README.md>`_
+See the `original README <https://github.com/jj-math/manim-compass>`_
 for full animated examples and further details.

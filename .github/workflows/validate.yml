@@ -10,6 +10,7 @@ jobs:
   validate-manim-directives:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
       - name: Run manim directive validator
         run: python workflow/validate_manim_directives.py
@@ -17,6 +18,7 @@ jobs:
   validate-param-docs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
       - name: Run parameter docs validator
         run: python workflow/validate_param_docs.py
@@ -24,6 +26,7 @@ jobs:
   validate-refs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
       - name: Run reference validator
         run: python workflow/validate_refs.py

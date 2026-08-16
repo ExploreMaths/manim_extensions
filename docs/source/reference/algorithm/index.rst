@@ -47,7 +47,7 @@ The library is most useful when explaining:
 * algorithmic state updates and pointer movement,
 * code-plus-visual narration during lectures.
 
-See the `original README <https://github.com/sinianluoye/manim-algorithm/blob/main/README.md>`_
+See the `original README <https://github.com/sinianluoye/manim-algorithm>`_
 for more complete examples and API details.
 
 .. toctree::

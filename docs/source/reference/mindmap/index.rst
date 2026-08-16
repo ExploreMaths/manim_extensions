@@ -82,5 +82,5 @@ The ``layout_type`` argument of the animation classes accepts:
    animations
    layout
 
-See the `original README <https://github.com/jj-math/manim-mindmap/blob/main/README.md>`_
+See the `original README <https://github.com/jj-math/manim-mindmap>`_
 for full animated demos and the complete API.

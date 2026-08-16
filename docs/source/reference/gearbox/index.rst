@@ -83,5 +83,5 @@ slightly enlarges the gear and can look like interference.
    classes
    functions
 
-See the `original README <https://github.com/GarryBGoode/manim-GearBox/blob/master/README.md>`_
+See the `original README <https://github.com/GarryBGoode/manim-GearBox>`_
 for animated examples and further details.
