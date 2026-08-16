@@ -15,9 +15,11 @@ build:
     - libpango1.0-dev
     - libffi-dev
     - pkg-config
+  timeout: 900
 
 sphinx:
   configuration: docs/source/conf.py
+  fail_on_warning: false
 
 python:
   install:
