@@ -12,7 +12,7 @@ class VoltageSource(Source):
     label : bool, optional
         Whether to display the value label. Defaults to ``True``.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``LEFT``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
     dependent : bool, optional
         Whether the source is dependent. Defaults to ``True``.
     **kwargs
@@ -60,7 +60,7 @@ class CurrentSource(Source):
     label : bool, optional
         Whether to display the value label. Defaults to ``True``.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``LEFT``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
     dependent : bool, optional
         Whether the source is dependent. Defaults to ``True``.
     **kwargs
@@ -102,7 +102,7 @@ class Inductor(VMobject):
     label : str or None, optional
         Text label displayed next to the inductor (e.g. ``"10mH"``). Defaults to ``None``.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``DOWN``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -222,7 +222,7 @@ class Resistor(VMobject):
     label : str or None, optional
                Text label displayed next to the resistor. Defaults to ``None``.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``DOWN``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -350,7 +350,7 @@ class Capacitor(VMobject):
     label : str or None, optional
         Text label displayed next to the capacitor. Defaults to ``None``.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``DOWN``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     polarized : bool, optional
         Whether the capacitor is polarized (shows an arc symbol). Defaults to ``False``.
     **kwargs

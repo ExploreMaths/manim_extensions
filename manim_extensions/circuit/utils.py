@@ -14,7 +14,7 @@ class Source(VMobject):
     value : int or float
         Numeric value displayed next to the source.
     direction : np.ndarray, optional
-        Direction in which the label is placed. Defaults to ``LEFT``.
+        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
     label : bool, optional
         Whether to display the value/letter label. Defaults to ``True``.
     dependent : bool, optional
