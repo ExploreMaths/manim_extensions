@@ -7,20 +7,20 @@ MindMap
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``MindMap`` brings mind-map, timeline, and catalog / organisation-chart
+:attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap` brings mind-map, timeline, and catalog / organisation-chart
 diagrams to Manim. It is bundled inside ``manim_extensions`` as the
 ``manim_extensions.mindmap`` subpackage.
 
 Features
 --------
 
-- ``Node`` – the basic tree-node class.
-- ``MindMap`` / ``StandardMap`` – mind-map classes with multiple layout directions.
-- ``CatalogMap`` – organisation / directory-structure diagrams.
-- ``TimeLine`` – timeline diagrams.
-- Animation helpers: ``LayoutAnimation``, ``InsertNode``, ``RemoveNode``,
-  ``ScaleNode``, ``AlterNode``.
-- Styling / layout options: ``NodeStyle``, ``LayoutType``, ``LayoutConfig``.
+- :class:`~manim_extensions.mindmap.nodes.node.Node` – the basic tree-node class.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap` / :class:`~manim_extensions.mindmap.mindmap.mindmap.StandardMap` – mind-map classes with multiple layout directions.
+- :class:`~manim_extensions.mindmap.mindmap.mindmap.CatalogMap` – organisation / directory-structure diagrams.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.TimeLine` – timeline diagrams.
+- Animation helpers: :class:`~manim_extensions.mindmap.animations.animations.LayoutAnimation`, :class:`~manim_extensions.mindmap.animations.animations.InsertNode`, :class:`~manim_extensions.mindmap.animations.animations.RemoveNode`,
+  :class:`~manim_extensions.mindmap.animations.animations.ScaleNode`, :class:`~manim_extensions.mindmap.animations.animations.AlterNode`.
+- Styling / layout options: :class:`~manim_extensions.mindmap.nodes.node.NodeStyle`, :class:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType`, :class:`~manim_extensions.mindmap.algorithms.layout_config.LayoutConfig`.
 
 Quick start
 -----------
@@ -47,8 +47,8 @@ Inserting nodes into a mind map
                run_time=2,
            )
 
-Building a tree with ``LayoutAnimation``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building a tree with :class:`~manim_extensions.mindmap.animations.animations.LayoutAnimation`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. manim:: LayoutAnimationExample
 
@@ -75,10 +75,10 @@ Layout types
 
 The ``layout_type`` argument of the animation classes accepts:
 
-- ``LayoutType.MindMap`` – default mind-map layout.
-- ``LayoutType.Standard`` – left/right or top/bottom two-sided layout.
-- ``LayoutType.TimeLine`` – timeline layout.
-- ``LayoutType.Catalog`` – top-down catalog / directory layout.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap` – default mind-map layout.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.Standard` – left/right or top/bottom two-sided layout.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.TimeLine` – timeline layout.
+- :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.Catalog` – top-down catalog / directory layout.
 
 .. toctree::
    :hidden:

@@ -11,7 +11,7 @@ Mesh
 
 .. note::
 
-   The manim-side renderers (``ManimMesh``, ``Manim2DMesh``, ``TriangleManim2DMesh``
-   and the OpenGL ``FastManimMesh``) as well as the Delaunay helpers depend on the
+   The manim-side renderers (:class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`, :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh`, :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh`
+   and the OpenGL :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh`) as well as the Delaunay helpers depend on the
    optional ``colour`` / ``moderngl`` packages and are therefore not importable in
    this environment.

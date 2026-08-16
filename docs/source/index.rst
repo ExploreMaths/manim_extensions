@@ -39,8 +39,7 @@ The library is organised into four areas:
       :func:`~manim_extensions.geometry.LineArcInt`,
       :func:`~manim_extensions.geometry.TangentPoint` – analytic geometry
       utilities.
-    * :func:`~manim_extensions.animations.VisDrawArc` and
-      :class:`~manim_extensions.animations.TypeWriter` – ready-to-use
+    * :class:`~manim_extensions.animations.TypeWriter` – ready-to-use
       animations.
 
 **Bundled plugins**

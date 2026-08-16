@@ -11,6 +11,13 @@ from manim.constants import PI,ORIGIN
 class Pencil(SVGMobject):
     """Pencil mobject.
 
+    Parameters
+    ----------
+    height : float, optional
+        Height of the pencil SVG. Defaults to ``2``.
+    angle : float, optional
+        Rotation angle of the pencil (in radians). Defaults to ``PI/4``.
+
     .. manim:: PencilDocExample
        :save_last_frame:
 

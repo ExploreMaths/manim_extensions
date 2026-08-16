@@ -4,9 +4,9 @@ from manim.mobject.types.vectorized_mobject import VGroup
 from .cube_utils import get_axis_from_face
 
 class CubeMove(Animation):
-    """Animate a single face turn on a :class:`RubiksCube`.
+    """Animate a single face turn on a :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 
-    ``CubeMove`` is a :class:`~manim.animation.animation.Animation` subclass
+    :class:`~manim_extensions.rubikscube.cube_animations.CubeMove` is a :class:`~manim.animation.animation.Animation` subclass
     that rotates the cubies of one face around the appropriate axis by
     ``90°`` or ``180°``, clockwise or counter-clockwise depending on the
     face notation.
@@ -29,12 +29,17 @@ class CubeMove(Animation):
        from manim_extensions.rubikscube import RubiksCube
        from manim_extensions.rubikscube.cube_animations import CubeMove
 
-       class CubeMoveExample(Scene):
+       class CubeMoveExample(ThreeDScene):
            def construct(self):
-               cube = RubiksCube(dim=3).scale(0.5)
-               self.add(cube)
-               self.play(CubeMove(cube, "R"))
-               self.wait(1)
+               cube = RubiksCube().scale(0.6)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               self.wait()
+               self.play(CubeMove(cube, "F"))
+               self.play(CubeMove(cube, "U2"), run_time=2)
+               self.play(CubeMove(cube, "R'"))
+               self.wait()
     """
 
     def __init__(self, mobject, face, **kwargs):

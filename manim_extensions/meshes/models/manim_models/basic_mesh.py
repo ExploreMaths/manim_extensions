@@ -24,6 +24,16 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     """another Mesh implementation, a bit faster + looks better
 
     inspired by manim class 'Surface'
+
+    Parameters
+    ----------
+    mesh : Mesh
+        The mesh data model containing vertices, faces, and parts.
+    args
+        Positional arguments forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.Group`.
+    **kwargs
+        Additional keyword arguments controlling display options (see below).
+
     possible kwargs: [see BM3DM]
         display_vertices: whether to display the vertices
         display_edges: whether to display the edges
@@ -264,7 +274,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Returns
         -------
         m.Mobject
-            The vertex mobject (e.g. ``Sphere`` or ``Dot``).
+            The vertex mobject (e.g. :class:`~manim.mobject.three_d.three_dimensions.Sphere` or :class:`~manim.mobject.geometry.arc.Dot`).
         """
         return self.vertices.submobjects[vertex_idx]
 
@@ -279,7 +289,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Returns
         -------
         m.Mobject
-            The face mobject (a ``ThreeDVMobject``).
+            The face mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.faces.submobjects[face_idx]
 
@@ -294,7 +304,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Returns
         -------
         m.Mobject
-            The edge mobject (a ``ThreeDVMobject``).
+            The edge mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.edges.submobjects[edge_idx]
 
@@ -384,7 +394,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         scale_factor : float
             The uniform scale factor to apply.
         **kwargs
-            Forwarded to the parent :meth:`Mobject.scale`.
+            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
         """
         about_point = self.get_bounding_box_point(m.ORIGIN)[:self.mesh.dim]
         self.mesh.scale_mesh(scale_factor, about_point)
@@ -400,7 +410,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         dim : int
             The axis index to stretch (0 = x, 1 = y, 2 = z).
         **kwargs
-            Forwarded to the parent :meth:`Mobject.stretch`.
+            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.stretch`.
 
         Raises
         ------
@@ -434,7 +444,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         about_point : np.ndarray, optional
             Pivot point for the rotation; defaults to the mesh centre.
         **kwargs
-            Forwarded to the parent :meth:`Mobject.rotate`.
+            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
         """
         if about_point is None:
             about_point = self.get_bounding_box_point(m.ORIGIN)
@@ -455,9 +465,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         axis : np.ndarray
-            Axis about which to flip (default ``UP``).
+            Axis about which to flip (default :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`).
         **kwargs
-            Forwarded to the parent :meth:`Mobject.flip`.
+            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
 
         Raises
         ------
@@ -536,7 +546,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         new_positions : np.ndarray
             Target positions for every vertex (same shape as ``self.mesh.vertices``).
         **kwargs
-            Forwarded to :meth:`shift_vertices`.
+            Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertices`.
 
         Raises
         ------
@@ -560,7 +570,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         pos : np.ndarray
             Target position for the vertex (must match ``mesh.dim``).
         **kwargs
-            Forwarded to :meth:`shift_vertex`.
+            Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertex`.
 
         Raises
         ------
@@ -580,8 +590,8 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         ) -> None:
         """Animate vertices snapping to a regular grid.
 
-        Uses :meth:`Mesh.snap_to_grid` to compute the target positions and
-        then animates the transition via :meth:`move_vertices_to`.
+        Uses :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid` to compute the target positions and
+        then animates the transition via :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
 
         Parameters
         ----------
@@ -594,7 +604,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         nof_steps : int
             Number of intermediate snap steps (default ``1``).
         **kwargs
-            Forwarded to :meth:`move_vertices_to`.
+            Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
         """
         # to be able to show the movement, the update needs to be calculated on a dummy mesh first
         new_verts = self.mesh.snap_to_grid(grid_sizes, threshold, steps=nof_steps, update_verts=False)
@@ -611,6 +621,15 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
     This mesh is mainly for Educational purposes and has a few functions we needed for drawing basic
     mesh functionalities. It is performant up to a point and should not be used for large meshes.
+
+    Parameters
+    ----------
+    mesh : Mesh
+        The mesh data model containing vertices and faces.
+    args
+        Positional arguments forwarded to the parent :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`.
+    **kwargs
+        Additional keyword arguments controlling display options (see below).
 
     possible kwargs:
     display_vertices: whether to display the vertices
@@ -678,7 +697,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
         return self.vertices
 
     def get_dots(self, indices) -> List[m.Dot]:
-        """Return Manim ``Dot`` objects that track the specified vertices.
+        """Return Manim :class:`~manim.mobject.geometry.arc.Dot` objects that track the specified vertices.
 
         Each dot is automatically updated via an updater so that it stays at
         the current vertex position whenever the underlying mesh changes.
@@ -691,7 +710,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
         Returns
         -------
         list[m.Dot]
-            A list of ``Dot`` mobjects bound to the requested vertices.
+            A list of :class:`~manim.mobject.geometry.arc.Dot` mobjects bound to the requested vertices.
         """
         dots = []
         vertices = self.mesh.get_3d_vertices()

@@ -17,8 +17,8 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``ManimAutomaton`` – main automaton display object.
-- ``State`` and ``Transition`` helpers for state and edge rendering.
+- :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` – main automaton display object.
+- :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` and :class:`~manim_extensions.automata.mobjects.automata_dependencies.transitition.Transition` helpers for state and edge rendering.
 - finite-state, nondeterministic, and pushdown examples.
 - input token and machine-step rendering for state execution demos.
 - animation helpers for demonstrating transitions and accepted strings.
@@ -52,7 +52,6 @@ A simple automaton scene
        def construct(self):
            automaton = ManimAutomaton()
            self.add(automaton)
-           self.wait(0.5)
 
 This library is most useful for:
 

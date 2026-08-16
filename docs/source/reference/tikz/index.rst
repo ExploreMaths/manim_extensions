@@ -17,8 +17,8 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``Tikz`` wrapper for converting TikZ code into an ``SVGMobject``.
-- ``TikzTemplate`` support for reusable LaTeX/TikZ templates.
+- :class:`~manim_extensions.tikz.tikz.Tikz` wrapper for converting TikZ code into an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
+- :class:`~manim_extensions.tikz.template.TikzTemplate` support for reusable LaTeX/TikZ templates.
 - integration for drawings that already exist in TikZ format.
 - suitable for academic slides and diagram-heavy explanatory scenes.
 
@@ -49,7 +49,6 @@ A simple TikZ scene
        def construct(self):
            tikz = Tikz(r"\draw[magenta] (0,0) rectangle (1,1);")
            self.add(tikz)
-           self.wait(0.5)
 
 This package is best for:
 

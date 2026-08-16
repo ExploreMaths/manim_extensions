@@ -17,7 +17,7 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``NeuralNetworkMobject`` – main layered network display.
+- :class:`~manim_extensions.neural_network.neural_network.NeuralNetworkMobject` – main layered network display.
 - input/output and hidden-layer layout helpers.
 - connection lines between adjacent layers.
 - simple styling options for neuron groups and edge placement.
@@ -50,7 +50,6 @@ A simple neural network scene
        def construct(self):
            network = NeuralNetworkMobject([3, 5, 2])
            self.add(network)
-           self.wait(0.5)
 
 This library is best suited for:
 

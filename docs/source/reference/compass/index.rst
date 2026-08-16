@@ -7,22 +7,22 @@ Compass
 
 **License:** MIT (see the upstream repository for the full license text)
 
-``Compass`` provides compass-and-straightedge construction tools for
-Manim. It includes ``Compass``, ``Ruler`` and ``Pencil`` mobjects plus matching
+:class:`~manim_extensions.compass.compass.compass.Compass` provides compass-and-straightedge construction tools for
+Manim. It includes :class:`~manim_extensions.compass.compass.compass.Compass`, :class:`~manim_extensions.compass.compass.ruler.Ruler` and :class:`~manim_extensions.compass.compass.pencil.Pencil` mobjects plus matching
 animation classes. The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.compass`` subpackage.
 
 Features
 --------
 
-- ``Compass`` mobject and compass animations:
-  ``MoveNiddleTipTo``, ``RotateCompass``, ``SplitCompass``, ``PutCompass``,
-  ``PutCompassAway``, ``DrawArc``.
-- ``Pencil`` mobject and pencil animations:
-  ``MovePencilTipTo``, ``PutPencilAway``, ``MovePencilAlongPath``, ``DrawPath``.
-- ``Ruler`` mobject and ruler animations:
-  ``PutRuler``, ``PutRulerAway``.
-- ``CompassScene`` – a convenience ``Scene`` subclass pre-equipped with a
+- :class:`~manim_extensions.compass.compass.compass.Compass` mobject and compass animations:
+  :class:`~manim_extensions.compass.animations.animation_compass.MoveNiddleTipTo`, :class:`~manim_extensions.compass.animations.animation_compass.RotateCompass`, :class:`~manim_extensions.compass.animations.animation_compass.SplitCompass`, :class:`~manim_extensions.compass.animations.animation_compass.PutCompass`,
+  :class:`~manim_extensions.compass.animations.animation_compass.PutCompassAway`, :class:`~manim_extensions.compass.animations.animation_compass.DrawArc`.
+- :class:`~manim_extensions.compass.compass.pencil.Pencil` mobject and pencil animations:
+  :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilTipTo`, :class:`~manim_extensions.compass.animations.animation_pencil.PutPencilAway`, :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilAlongPath`, :class:`~manim_extensions.compass.animations.animation_pencil.DrawPath`.
+- :class:`~manim_extensions.compass.compass.ruler.Ruler` mobject and ruler animations:
+  :class:`~manim_extensions.compass.animations.animation_ruler.PutRuler`, :class:`~manim_extensions.compass.animations.animation_ruler.PutRulerAway`.
+- :class:`~manim_extensions.compass.scene.compass_scene.CompassScene` – a convenience :class:`~manim.scene.scene.Scene` subclass pre-equipped with a
   compass, ruler, and pencil.
 
 Quick start
@@ -65,11 +65,11 @@ Drawing a line with ruler and pencil
            )
            self.play(DrawPath(pencil, path))
 
-Using ``CompassScene``
-^^^^^^^^^^^^^^^^^^^^^^
+Using :class:`~manim_extensions.compass.scene.compass_scene.CompassScene`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For more involved constructions, inherit from ``CompassScene`` instead of
-``Scene``. It exposes ready-to-use ``compass``, ``ruler`` and ``pencil``
+For more involved constructions, inherit from :class:`~manim_extensions.compass.scene.compass_scene.CompassScene` instead of
+:class:`~manim.scene.scene.Scene`. It exposes ready-to-use ``compass``, ``ruler`` and ``pencil``
 attributes plus helper methods such as ``draw_arc`` and ``draw_line``. See the
 ``demo/compass_scene_demo.py`` file in the upstream repository for a complete
 example.

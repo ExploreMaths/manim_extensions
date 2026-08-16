@@ -111,7 +111,7 @@ def get_faces_of_cubie(dim, position):
     Returns
     -------
     list of numpy.ndarray
-        A list of direction vectors (e.g. ``LEFT``, ``RIGHT``, ``UP``, ``DOWN``,
+        A list of direction vectors (e.g. :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`,
         ``IN``, ``OUT``) indicating which faces of the cubie are exposed on the
         cube's surface.
     """

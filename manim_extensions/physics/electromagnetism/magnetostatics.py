@@ -15,24 +15,24 @@ __all__ = ["Wire", "MagneticField"]
 
 class Wire(VMobject, metaclass=ConvertToOpenGL):
     """An abstract class denoting a current carrying wire to produce a
-    :class:`~MagneticField`.
+    :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`.
 
     Parameters
     ----------
     stroke
-        The original wire ``VMobject``. The resulting wire takes its form.
+        The original wire :class:`~manim.mobject.types.vectorized_mobject.VMobject`. The resulting wire takes its form.
     current
         The magnitude of current flowing in the wire.
     samples
         The number of segments of the wire used to create the
-        :class:`~MagneticField`.
+        :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`.
     kwargs
-        Additional parameters passed to ``VMobject``.
+        Additional parameters passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
 
     .. note::
 
-        See :class:`~MagneticField` for examples.
+        See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
 
     Examples
     --------
@@ -71,7 +71,7 @@ class MagneticField(ArrowVectorField):
     wires
         All wires contributing to the total field.
     kwargs
-        Additional parameters to be passed to ``ArrowVectorField``.
+        Additional parameters to be passed to :class:`~manim.mobject.vector_field.ArrowVectorField`.
 
     Example
     -------

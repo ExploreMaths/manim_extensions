@@ -3,7 +3,7 @@
 Most objects can be made into a rigid body (moves according to gravity
 and collision) or a static body (stays still within the scene).
 
-To use this feature, the :class:`~SpaceScene` must be used, to access
+To use this feature, the :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene` must be used, to access
 the specific functions of the space.
 
 .. note::
@@ -81,8 +81,8 @@ __all__ = [
 class Space(Mobject, metaclass=ConvertToOpenGL):
     """Physics space that manages a pymunk simulation.
 
-    The ``Space`` object wraps a :class:`pymunk.Space` and is automatically
-    added to every :class:`SpaceScene`.  It owns the gravity configuration and
+    The :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object wraps a :class:`pymunk.Space` and is automatically
+    added to every :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene`.  It owns the gravity configuration and
     the simulation step that is called each frame.
 
     Parameters
@@ -116,16 +116,23 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
 class SpaceScene(Scene):
     """Scene with built-in pymunk rigid-body physics.
 
-    ``SpaceScene`` is the base scene class for all rigid-mechanics
-    animations.  It creates a :class:`Space` instance and sets up the
+    :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene` is the base scene class for all rigid-mechanics
+    animations.  It creates a :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` instance and sets up the
     simulation updater so that any mobject registered via
-    :meth:`make_rigid_body` or :meth:`make_static_body` participates in the
+    :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body` or :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body` participates in the
     physics simulation.
+
+    Parameters
+    ----------
+    renderer : str or None, optional
+        Renderer name forwarded to the parent :class:`~manim.Scene`.
+    **kwargs
+        Forwarded to the parent :class:`~manim.Scene`.
 
     .. note::
 
         The gravity vector can be customised by overriding the class
-        attribute ``GRAVITY`` before instantiation.
+        attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
 
     Examples
     --------
@@ -179,7 +186,7 @@ class SpaceScene(Scene):
         friction: float = 0.8,
     ):
         """Make any mobject movable by gravity.
-        Equivalent to ``Scene``'s ``add`` function.
+        Equivalent to :class:`~manim.scene.scene.Scene`'s ``add`` function.
 
         Parameters
         ----------

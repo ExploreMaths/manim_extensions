@@ -45,6 +45,17 @@ class NodeSate(Enum):
 class NodeStyle:
     """Overall layout parameters and a list of node-style dicts indexed by node level.
 
+    Parameters
+    ----------
+    node_style : list of dict or None, optional
+        List of style dictionaries for node boxes, indexed by level.
+        Each dict may contain keys like ``'color'`` and ``'stroke_width'``.
+    line_style : list of dict or None, optional
+        List of style dictionaries for connector lines, indexed by level.
+    text_style : list of dict or None, optional
+        List of style dictionaries for node text, indexed by level.
+        Each dict may contain keys like ``'color'`` and ``'font_size'``.
+
     Examples
     --------
     .. manim:: NodeStyleExample

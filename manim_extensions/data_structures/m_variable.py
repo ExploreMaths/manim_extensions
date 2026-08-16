@@ -139,7 +139,7 @@ class MVariable(MArrayElement):
         Returns
         -------
         :class:`~typing.Any`
-            :attr:`__value`.
+            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
         """
 
         return self.__value
@@ -150,7 +150,7 @@ class MVariable(MArrayElement):
         Returns
         -------
         :data:`~typing.Union` [:class:`str`, :class:`int`]
-            :attr:`__index`.
+            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
         """
 
         return self.__index
@@ -161,7 +161,7 @@ class MVariable(MArrayElement):
         Returns
         -------
         :class:`str`
-            :attr:`__label`.
+            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
         """
 
         return self.__label
@@ -190,12 +190,12 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__value`.
+            Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
         """
 
         self.__value = value
@@ -228,12 +228,12 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__index`.
+            Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
         """
 
         self.__index = index
@@ -266,12 +266,12 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__label`.
+            Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
         """
 
         self.__label = label

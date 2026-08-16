@@ -46,6 +46,11 @@ class FiniteStateAutomaton():
     the automaton.  It can be constructed from a JSON dictionary or parsed
     from an XML file (e.g. JFLAP format).
 
+    Parameters
+    ----------
+    json_template : dict, optional
+        JSON dictionary describing the automaton states and transitions.
+
     Examples
     --------
     .. manim:: FiniteStateAutomatonExample
@@ -62,12 +67,17 @@ class FiniteStateAutomaton():
 """
     id_iter = itertools.count()
 
-    def __init__(self) -> None:
+    def __init__(self, json_template: dict | None = None) -> None:
         """Initialize the FiniteStateAutomaton instance."""
         self.id = next(self.id_iter)
         self.states: list[State] = []
         self.transitions: list[Transition] = []
-    
+        self.origin_offset_x = 0.0
+        self.origin_offset_y = 0.0
+
+        if json_template:
+            self.construct_from_json(json_template)
+
     def process_xml(self, xml_file: str) -> None:
         """Construct the automaton from an XML file.
 
@@ -79,9 +89,6 @@ class FiniteStateAutomaton():
         self.construct_from_json(parse_xml_file(xml_file))
 
     def construct_from_json(self, json_dictionary: dict) -> None:
-        #validate json
-        #Function HERE
-        #construction
         """Construct the automaton from a JSON-like dictionary.
 
         Parameters
@@ -91,9 +98,44 @@ class FiniteStateAutomaton():
         """
         states = json_dictionary["structure"]["automaton"]["state"]
         transitions = json_dictionary["structure"]["automaton"]["transition"]
-        
+
         self.construct_states(states)
         self.construct_transitions(transitions)
+
+    def construct_states(self, states: list[dict[str, object]]) -> None:
+        """Construct state objects from a list of state dictionaries.
+
+        Parameters
+        ----------
+        states : list of dict
+            State definitions from JSON or XML parsing.
+        """
+        for state_data in states:
+            initial = state_data.get('initial') is not None
+            final = state_data.get('final') is not None
+            state_id = int(state_data.get('@id', 0))
+            name = state_data.get('@name', str(state_id))
+            self.states.append(State(name, initial=initial, final=final, id=state_id))
+
+    def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
+        """Construct transition objects from a list of transition dictionaries.
+
+        Parameters
+        ----------
+        transitions : list of dict
+            Transition definitions from JSON or XML parsing.
+        """
+        for trans_data in transitions:
+            from_id = int(trans_data['from'])
+            to_id = int(trans_data['to'])
+            read = trans_data.get('read')
+            from_state = self.get_state_by_id(from_id)
+            to_state = self.get_state_by_id(to_id)
+            if from_state and to_state:
+                transition = Transition(from_state, to_state)
+                transition.read_symbols = [read] if read else []
+                self.transitions.append(transition)
+                from_state.add_transition_to_state(transition)
     
 
     #State Methods
@@ -194,7 +236,7 @@ class FiniteStateAutomaton():
 class PushDownAutomaton(FiniteStateAutomaton):
     """Formal pushdown automaton model.
 
-    Extends :class:`FiniteStateAutomaton` with stack-based computation.
+    Extends :class:`~manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton` with stack-based computation.
     Pushdown automata can be constructed from JSON templates or XML files
     and support non-deterministic branching via the CLI builder.
 

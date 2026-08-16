@@ -13,19 +13,21 @@ class State:
 
     Parameters
     ----------
-    name
-        The class' name.
-    initial
-        The class' state type, in terms of initial state.
-    final
-        the class' state type, in terms of final state.
+    name : str
+        The state's name (e.g. ``"q0"``).
+    initial : bool, optional
+        If ``True``, mark this state as the initial state.
+    final : bool, optional
+        If ``True``, mark this state as a final (accepting) state.
+    id : int, optional
+        Numeric identifier matching the JFLAP XML state id.
 
     Attributes
     ----------
     id
         The instance's id.
     name
-        The class' name.
+        The state's name.
     initial
         If the instance is an initial state or not.
     final

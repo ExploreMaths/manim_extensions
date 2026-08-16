@@ -125,7 +125,7 @@ class ChineseMathTex(MathTex):
 class LabelDot(VGroup):
     """A dot with a :class:`~manim.mobject.text.tex_mobject.MathTex` label.
 
-    Creates a :class:`~manim.mobject.geometry.Dot` at the given position and places a
+    Creates a :class:`~manim.mobject.geometry.arc.Dot` at the given position and places a
     :class:`~manim.mobject.text.tex_mobject.MathTex` label next to it.
 
     .. inheritance-diagram:: manim_extensions.mobjects.LabelDot
@@ -138,7 +138,7 @@ class LabelDot(VGroup):
     dot_pos : numpy.ndarray
         Position of the dot.
     label_pos : numpy.ndarray, optional
-        Direction of the label relative to the dot. Defaults to ``DOWN``.
+        Direction of the label relative to the dot. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     buff : float, optional
         Buffer between the label and the dot. Defaults to ``0.1``.
     **kwargs
@@ -147,7 +147,7 @@ class LabelDot(VGroup):
     Attributes
     ----------
 
-    dot : :class:`~manim.mobject.geometry.Dot`
+    dot : :class:`~manim.mobject.geometry.arc.Dot`
         The underlying dot mobject.
     dot_pos : numpy.ndarray
         The position of the dot.
@@ -200,7 +200,7 @@ class LabelDot(VGroup):
 class MathTexLine(VGroup):
     """A line segment paired with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`~manim.mobject.geometry.Line` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
+    Creates a :class:`~manim.mobject.geometry.line.Line` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexLine
@@ -211,11 +211,11 @@ class MathTexLine(VGroup):
     formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
         The formula to place beside the line.
     direction : numpy.ndarray, optional
-        Direction of the formula relative to the line. Defaults to ``UP``.
+        Direction of the formula relative to the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
     buff : float, optional
         Buffer between the formula and the line. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
 
     Examples
     --------
@@ -248,7 +248,7 @@ class MathTexLine(VGroup):
 class MathTexBrace(VGroup):
     r"""A brace with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`~manim.mobject.geometry.Brace` around a target mobject and places a
+    Creates a :class:`~manim.mobject.svg.brace.Brace` around a target mobject and places a
     :class:`~manim.mobject.text.tex_mobject.MathTex` formula next to the brace.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexBrace
@@ -262,11 +262,11 @@ class MathTexBrace(VGroup):
         The formula to place beside the brace.
     direction : numpy.ndarray, optional
         Direction of the brace and formula relative to the target.
-        Defaults to ``UP``.
+        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
     buff : float, optional
         Buffer between the formula and the brace. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Brace`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.svg.brace.Brace`.
 
     Examples
     --------
@@ -301,7 +301,7 @@ class MathTexBrace(VGroup):
 class MathTexDoublearrow(VGroup):
     r"""A double arrow with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula.
 
-    Creates a :class:`~manim.mobject.geometry.DoubleArrow` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
+    Creates a :class:`~manim.mobject.geometry.line.DoubleArrow` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
     .. inheritance-diagram:: manim_extensions.mobjects.MathTexDoublearrow
@@ -313,11 +313,11 @@ class MathTexDoublearrow(VGroup):
         The formula to place beside the double arrow.
     direction : numpy.ndarray, optional
         Direction of the formula relative to the double arrow.
-        Defaults to ``UP``.
+        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
     buff : float, optional
         Buffer between the formula and the double arrow. Defaults to ``0.5``.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.DoubleArrow`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.DoubleArrow`.
 
     Examples
     --------
@@ -351,7 +351,7 @@ class PerpendicularLine(Line):
     """A perpendicular line segment from a point to a given line.
 
     Computes the foot of the perpendicular from *point* onto *line* and
-    creates a :class:`~manim.mobject.geometry.Line` from *point* to that foot.
+    creates a :class:`~manim.mobject.geometry.line.Line` from *point* to that foot.
 
     .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularLine
        :parts: 1
@@ -361,17 +361,17 @@ class PerpendicularLine(Line):
     point : Union[numpy.ndarray, tuple, list, :class:`~manim.mobject.mobject.Mobject`]
         The point from which the perpendicular is dropped.  If an
         :class:`~manim.mobject.mobject.Mobject` is given, its centre is used.
-    line : :class:`~manim.mobject.geometry.Line`
+    line : :class:`~manim.mobject.geometry.line.Line`
         The target line.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
 
     Attributes
     ----------
 
     point : numpy.ndarray
         The 3‑D point from which the perpendicular is drawn.
-    target_line : :class:`~manim.mobject.geometry.Line`
+    target_line : :class:`~manim.mobject.geometry.line.Line`
         The line onto which the perpendicular is dropped.
     foot : numpy.ndarray
         The foot of the perpendicular on *target_line*.
@@ -429,7 +429,7 @@ class PerpendicularLine(Line):
 class ExtendedLine(Line):
     """A line segment extended at both ends.
 
-    Takes an existing :class:`~manim.mobject.geometry.Line` and extends it by
+    Takes an existing :class:`~manim.mobject.geometry.line.Line` and extends it by
     *extend_distance* along its original direction on both sides.
     The style of the original line is preserved.
 
@@ -438,12 +438,12 @@ class ExtendedLine(Line):
 
     Parameters
     ----------
-    line : :class:`~manim.mobject.geometry.Line`
+    line : :class:`~manim.mobject.geometry.line.Line`
         The original line segment to extend.
     extend_distance : float
         Distance to extend at each end.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.Line`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
 
     Examples
     --------
@@ -488,9 +488,9 @@ class PerpendicularSign(VGroup):
 
     Parameters
     ----------
-    line1 : :class:`~manim.mobject.geometry.Line`
+    line1 : :class:`~manim.mobject.geometry.line.Line`
         The first line.
-    line2 : :class:`~manim.mobject.geometry.Line`
+    line2 : :class:`~manim.mobject.geometry.line.Line`
         The second line.
     length : float, optional
         Length of each leg of the corner. Defaults to ``0.25``.
@@ -1063,7 +1063,7 @@ class VideoMobject(ImageMobject):
             scene: If given, the scene waits for the full video duration.
 
         Returns:
-            The :class:`VideoMobject` instance for chaining.
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         if self._finished:
             self.reset()
@@ -1107,7 +1107,7 @@ class VideoMobject(ImageMobject):
             time: Target time in seconds, clamped to ``[0, duration]``.
 
         Returns:
-            The :class:`VideoMobject` instance for chaining.
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         if not self._cap.isOpened():
             return self
@@ -1229,8 +1229,8 @@ class Trail(VGroup):
         <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Trail.py``).
         Original author: @cigar666.
 
-    Wraps *mob*; once :meth:`start_trace` is called, line segments are appended following
-    the mobject's centre and older segments fade out according to :attr:`rate_func`.
+    Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
+    the mobject's centre and older segments fade out according to :attr:`~manim_extensions.mobjects.Trail.rate_func`.
 
     Parameters
     ----------
@@ -1322,7 +1322,7 @@ class Trail(VGroup):
         Parameters
         ----------
         trail
-            The trail mobject to update (typically a :class:`Trail` instance
+            The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance
             with a custom shape).
         """
         trail.become(self.create_path())
@@ -1354,7 +1354,7 @@ class ShadowAround(VGroup):
     ----------
     mob_or_points : :class:`~manim.mobject.mobject.Mobject` or list[Sequence[float]]
         Either a mobject whose outline is shadowed, or a list of points used to build a
-        :class:`~manim.mobject.geometry.Polygon`.
+        :class:`~manim.mobject.geometry.polygram.Polygon`.
     shadow_color : :class:`~manim.utils.color.core.ManimColor`, optional
         Colour of the shadow.  Defaults to ``DARK_GRAY``.
     shadow_opacity : float, optional
@@ -1536,7 +1536,7 @@ class ThreeDVector(VGroup):
     Parameters
     ----------
     vector : Sequence[float], optional
-        Direction (and length) of the vector.  Defaults to ``RIGHT``.
+        Direction (and length) of the vector.  Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
     position : Sequence[float], optional
         Base point of the vector.  Defaults to ``ORIGIN``.
     radius : float, optional
@@ -1617,7 +1617,7 @@ class TreeDiagram(VGroup):
         the original source file does not record its author).
 
     Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
-    labels.  Leaf groups are wrapped with a :class:`~manim.mobject.geometry.shape_matchers.Brace`.
+    labels.  Leaf groups are wrapped with a :class:`~manim.mobject.svg.brace.Brace`.
 
     Parameters
     ----------

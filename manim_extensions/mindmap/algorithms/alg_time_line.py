@@ -52,7 +52,7 @@ class TimelineNode:
 
     @classmethod
     def from_node(cls, node) -> 'TimelineNode':
-        """Create a :class:`TimelineNode` tree wrapper from the original node.
+        """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references
         from the source node tree.
@@ -129,6 +129,18 @@ def walk(
 
 class TimeLineLayout(Layout):
     """Timeline layout engine.
+
+    Parameters
+    ----------
+    root : Any
+        Root node of the tree to lay out.
+    sides : tuple of LayoutDirection, optional
+        Directions for the two sides of the timeline. Defaults to
+        ``(LayoutDirection.TopToBottom, LayoutDirection.BottomToTop)``.
+    level_spacing : float, optional
+        Spacing between tree levels. Defaults to ``0.5``.
+    node_spacing : float, optional
+        Spacing between sibling nodes. Defaults to ``0.5``.
 
     Examples
     --------
@@ -528,7 +540,7 @@ class TimeLineLayout(Layout):
         """Write computed layout coordinates back to the original node tree.
 
         Sets ``x``, ``y``, ``side``, and ``level`` on the wrapped
-        :attr:`TimelineNode.node` and recurses into children.
+        :attr:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.node` and recurses into children.
 
         Parameters
         ----------

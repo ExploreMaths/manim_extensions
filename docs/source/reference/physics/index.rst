@@ -17,7 +17,7 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``Lens`` / ray helpers for geometrical optics.
+- :class:`~manim_extensions.physics.optics.lenses.Lens` / ray helpers for geometrical optics.
 - wave models such as linear, radial, and standing waves.
 - pendulum and rigid-body mechanisms for mechanics scenes.
 - electrostatics and magnetostatics helpers.
@@ -50,7 +50,6 @@ A simple optics scene
        def construct(self):
            lens = Lens(f=1.0, d=0.4)
            self.add(lens)
-           self.wait(0.5)
 
 This library is useful for:
 

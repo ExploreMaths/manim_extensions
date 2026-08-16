@@ -1,7 +1,7 @@
 r"""Pendulums.
 
-:class:`~MultiPendulum` and :class:`~Pendulum` both stem from the
-:py:mod:`~rigid_mechanics` feature.
+:class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum` and :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` both stem from the
+:py:mod:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics` feature.
 
 """
 
@@ -30,7 +30,7 @@ class MultiPendulum(VGroup):
     """A multi-segment pendulum driven by pymunk physics.
 
     The pendulum is constructed from one or more bobs connected by rigid
-    rods to a fixed pivot point.  When :meth:`start_swinging` is called the
+    rods to a fixed pivot point.  When :meth:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum.start_swinging` is called the
     bobs are turned into pymunk rigid bodies and the scene's simulation
     updater drives the motion.
 
@@ -164,7 +164,7 @@ class MultiPendulum(VGroup):
 class Pendulum(MultiPendulum):
     """A simple single-bob pendulum driven by pymunk physics.
 
-    This is a convenience subclass of :class:`MultiPendulum` that creates a
+    This is a convenience subclass of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum` that creates a
     single-bob pendulum from a length and initial deflection angle.
 
     Parameters

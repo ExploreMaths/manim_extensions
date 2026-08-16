@@ -5,6 +5,23 @@ import math
 class Source(VMobject):
     """Base symbol used by circuit sources such as voltage or current sources.
 
+    Parameters
+    ----------
+    mobject_group : VGroup
+        Group of markings (symbols) displayed on the source.
+    letter : str
+        Letter label for the source (e.g. ``"V"`` or ``"A"``).
+    value : int or float
+        Numeric value displayed next to the source.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``LEFT``.
+    label : bool, optional
+        Whether to display the value/letter label. Defaults to ``True``.
+    dependent : bool, optional
+        Whether the source is dependent (uses a diamond symbol). Defaults to ``True``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
     Examples
     --------
     .. manim:: SourceExample
@@ -121,6 +138,11 @@ class Source(VMobject):
 
 class Circuit(VMobject):
     """A circuit layout object composed of components and connecting wires.
+
+    Parameters
+    ----------
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -273,6 +295,11 @@ class Circuit(VMobject):
 
 class Node(VMobject):
     """Junction node used to join circuit wires and terminals.
+
+    Parameters
+    ----------
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------

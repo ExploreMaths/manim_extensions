@@ -83,12 +83,14 @@ class Token(MathTex):
 
     Parameters
     ----------
-    symbol : str
+    token_symbol : str
         The character or symbol to display.
-    spacing : float
+    spacing : int
         Horizontal offset applied when positioning the token.
     font_size : int, optional
         Font size for the token text.  Defaults to ``100``.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.MathTex`.
 
     Examples
     --------

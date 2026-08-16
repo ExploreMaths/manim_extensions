@@ -16,10 +16,10 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``MArray`` – array-style container for indexed values.
-- ``MVariable`` – variable display for value updates.
-- ``MArrayElement`` / ``MArrayPointer`` – element and pointer visual helpers.
-- ``MArraySlidingWindow`` – windowed array layout for algorithms.
+- :class:`~manim_extensions.data_structures.m_array.MArray` – array-style container for indexed values.
+- :class:`~manim_extensions.data_structures.m_variable.MVariable` – variable display for value updates.
+- :class:`~manim_extensions.data_structures.m_array.MArrayElement` / :class:`~manim_extensions.data_structures.m_array.MArrayPointer` – element and pointer visual helpers.
+- :class:`~manim_extensions.data_structures.m_array.MArraySlidingWindow` – windowed array layout for algorithms.
 - directional helpers for array traversal and highlighting.
 
 Quick start

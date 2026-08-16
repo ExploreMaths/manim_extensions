@@ -21,6 +21,17 @@ from ..algorithms import Layout
 class NodeMobject:
     """Wrapper for the components of a mind-map node.
 
+    Parameters
+    ----------
+    vmobject : VMobject
+        The main visual mobject for the node.
+    surr_rect : Rectangle
+        Surrounding rectangle for the node.
+    connector : Line
+        Connector line to the parent node.
+    text : str
+        Text content of the node.
+
     Examples
     --------
     .. manim:: NodeMobjectExample
@@ -68,7 +79,7 @@ def generate_tree(
     Buff parameter for this operation.
     """
     def _generate_tree(ID=(0,), current_map:Dict = None) -> Node:
-        """Recursively build a :class:`Node` tree from a dictionary map.
+        """Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.
 
         Parameters
         ----------
@@ -117,6 +128,11 @@ def generate_tree(
 
 class AbstractMap(Group):
     """Abstract base class for mind maps, timelines, etc.
+
+    Parameters
+    ----------
+    layout_method : Layout, optional
+        Layout algorithm used to position nodes. Defaults to ``Layout()``.
 
     Examples
     --------

@@ -39,7 +39,6 @@ Import the public API directly from ``manim_extensions``:
        LineInt,
        LineArcInt,
        TangentPoint,
-       VisDrawArc,
        TypeWriter,
    )
 
@@ -88,20 +87,16 @@ points, so you can use them with any Manim mobject:
 Animations
 ----------
 
-:func:`~manim_extensions.animations.VisDrawArc` draws an arc while showing a
-moving radius, and :class:`~manim_extensions.animations.TypeWriter` reveals
+:class:`~manim_extensions.animations.TypeWriter` reveals
 :class:`~manim.Text` character by character:
 
 .. manim:: QuickstartAnimations
 
    from manim import *
-   from manim_extensions import VisDrawArc, TypeWriter
+   from manim_extensions import TypeWriter
 
    class QuickstartAnimations(Scene):
        def construct(self):
-           arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
-           VisDrawArc(self, arc, axis=OUT, run_time=2)
-
            text = Text("Hello Extensions").shift(DOWN * 2)
            self.play(TypeWriter(text, interval=0.1))
 

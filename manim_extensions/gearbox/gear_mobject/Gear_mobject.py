@@ -141,7 +141,7 @@ def involute_height_func(k, r, **kwargs):
     ----------
     k: angle or sequence of angles.
     r: base circle radius.
-    **kwargs: forwarded to :func:`involute_func`.
+    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_func`.
 
     Examples
     --------
@@ -172,7 +172,7 @@ def involute_point_gen(t,r,**kwargs):
     ----------
     t: sequence of angles at which to evaluate the involute.
     r: base circle radius.
-    **kwargs: forwarded to :func:`involute_func` and :func:`involute_deriv_func`.
+    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_func` and :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_deriv_func`.
 
     Examples
     --------
@@ -209,7 +209,7 @@ class Gear(VMobject):
     """A Manim mobject representing an involute gear.
 
     The gear is constructed from involute curves and can mesh with other
-    :class:`Gear` objects (or :class:`Rack` objects) using :meth:`mesh_to`.
+    :class:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Rack` objects) using :meth:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Gear.mesh_to`.
 
     Two gears mesh correctly when they share the same *module* and *alpha*
     (pressure angle). The pitch-circle radius of a gear is

@@ -6,19 +6,23 @@ visual demonstrations, and algorithm walkthroughs.
 Examples
 --------
 
-.. manim:: RubiksCubeDocExample
-   :save_last_frame:
+.. manim:: RubiksCubeModuleExample
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class RubiksCubeDocExample(Scene):
+   class RubiksCubeModuleExample(ThreeDScene):
        def construct(self):
-           cube = RubiksCube(dim=3).scale(0.5)
-           self.add(cube)
+           cube = RubiksCube().scale(0.6)
+           self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                            frame_center=cube.get_center())
+           self.play(FadeIn(cube))
+           self.begin_ambient_camera_rotation(rate=0.5)
+           self.wait(8)
 """
 
 from manim.utils.color import *
+from manim.constants import ORIGIN
 from manim.mobject.mobject import Mobject
 from manim.mobject.types.vectorized_mobject import VMobject
 import numpy as np
@@ -31,7 +35,7 @@ sv = kociemba
 class RubiksCube(VMobject):
     """A Manim-backed Rubik's Cube model.
 
-    The cube is represented as a 3D voxel grid of :class:`Cubie` objects.
+    The cube is represented as a 3D voxel grid of :class:`~manim_extensions.rubikscube.cubie.Cubie` objects.
     The coordinate convention matches the project's original API: the cube is
     oriented so that X goes front-to-back, Y goes right-to-left, and Z goes
     down-to-up.
@@ -42,21 +46,28 @@ class RubiksCube(VMobject):
         Cube dimension. Must be at least 2.
     colors : list, optional
         Face colours in the order Up, Right, Front, Down, Left, Back.
-    x_offset, y_offset, z_offset : float, optional
-        Spatial offsets used to lay out the cubies.
+    x_offset : float, optional
+        Spatial offset along the X axis used to lay out the cubies.
+    y_offset : float, optional
+        Spatial offset along the Y axis used to lay out the cubies.
+    z_offset : float, optional
+        Spatial offset along the Z axis used to lay out the cubies.
 
     Examples
     --------
     .. manim:: RubiksCubeDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeDocExample(Scene):
+       class RubiksCubeDocExample(ThreeDScene):
            def construct(self):
-               cube = RubiksCube(dim=3).scale(0.5)
-               self.add(cube)
+               cube = RubiksCube().scale(0.6)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               self.begin_ambient_camera_rotation(rate=0.5)
+               self.wait(8)
     """
 
     #If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up 
@@ -81,6 +92,20 @@ class RubiksCube(VMobject):
         self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
         self.generate_cubies()#**kwargs)
     
+    def get_center(self):
+        """Return the geometric center of the cube's bounding box.
+
+        Returns
+        -------
+        numpy.ndarray
+            The (x, y, z) center of the cube computed from the actual
+            bounding box of all cubie points.
+        """
+        all_points = self.get_all_points()
+        if len(all_points) == 0:
+            return np.zeros(3)
+        return (all_points.min(axis=0) + all_points.max(axis=0)) / 2
+
     def generate_cubies(self):#, **kwargs):
         """Populate the cube with its cubies and apply offsets.
 
@@ -98,6 +123,7 @@ class RubiksCube(VMobject):
                     self.transform_cubie(z, self.z_offset, cubie)
                     self.add(cubie)
                     self.cubies[x, y, z] = cubie
+        self.move_to(ORIGIN)
 
     def set_state(self, positions):
         """Apply a colour state to each cube face.

@@ -15,6 +15,15 @@ from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
 class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     """2D Mesh implementation that has additional methods especially for triangles
 
+    Parameters
+    ----------
+    mesh : Mesh
+        The mesh data model. Must consist only of triangles.
+    args
+        Positional arguments forwarded to the parent :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh`.
+    **kwargs
+        Additional keyword arguments forwarded to the parent class.
+
     possible kwargs:
     display_vertices: whether to display the vertices
     display_edges: whether to display the edges
@@ -74,7 +83,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         face_idx_2 : int
             Index of the second triangle face (must share an edge with the first).
         **kwargs
-            Forwarded to :meth:`Scene.play` / ``animate`` (e.g. ``run_time``).
+            Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).
         """
         face_arr_1 = self.mesh.faces[face_idx_1]
         face_arr_2 = self.mesh.faces[face_idx_2]

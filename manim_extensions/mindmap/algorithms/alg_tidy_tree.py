@@ -61,7 +61,7 @@ class WrappedTree:
 
     @classmethod
     def from_node(cls, node, is_horizontal: bool, level: int = 0) -> 'WrappedTree':
-        """Create a :class:`WrappedTree` wrapper tree from the original node.
+        """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
         *is_horizontal* is ``True``, width/height and x/y are swapped so that
@@ -183,7 +183,7 @@ def normalize(node, is_horizontal: bool):
 def convert_back(converted: WrappedTree, root, is_horizontal: bool):
     """Write computed coordinates back to the original node tree.
 
-    Copies :attr:`WrappedTree.x` to the original node's ``x`` or ``y``
+    Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
     (depending on *is_horizontal*) and recurses into children.
 
     Parameters
@@ -235,6 +235,17 @@ def layer(node, direction, level_spacing):
 
 class TidyTreeLayout(Layout):
     """Non-layered tidy tree layout algorithm.
+
+    Parameters
+    ----------
+    root : Any
+        Root node of the tree to lay out.
+    direction : LayoutDirection, optional
+        Primary layout direction. Defaults to ``LayoutDirection.LeftToRight``.
+    node_spacing : float, optional
+        Spacing between sibling nodes. Defaults to ``0.5``.
+    level_spacing : float, optional
+        Spacing between tree levels. Defaults to ``0.5``.
 
     Examples
     --------
@@ -338,7 +349,7 @@ class TidyTreeLayout(Layout):
     def update_iyl(self, low: float, index: int, ih: Optional[IYLNode]) -> IYLNode:
         """Prune the IYL list and prepend a new node.
 
-        Removes any existing :class:`IYLNode` whose ``low`` is less than or
+        Removes any existing :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode` whose ``low`` is less than or
         equal to *low*, then returns a new head node for the current subtree.
 
         Parameters

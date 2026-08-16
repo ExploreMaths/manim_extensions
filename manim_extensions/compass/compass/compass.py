@@ -19,6 +19,27 @@ from ..utils.geometry_method import (
 class Compass(VGroup):
     """Compass mobject.
 
+    Parameters
+    ----------
+    span : float, optional
+        Span of the compass legs. Defaults to ``1.5``.
+    head_color : ManimColor, optional
+        Color of the compass head. Defaults to ``WHITE``.
+    niddle_color : ManimColor, optional
+        Color of the compass needle. Defaults to ``RED``.
+    pen_color : ManimColor, optional
+        Color of the compass pen. Defaults to ``YELLOW``.
+    stroke_width : float, optional
+        Stroke width of the compass lines. Defaults to ``2``.
+    leg_length : float, optional
+        Length of the compass legs. Defaults to ``3.1``.
+    leg_width : float, optional
+        Width of the compass legs. Defaults to ``0.12``.
+    r : float, optional
+        Radius of the compass head circle. Defaults to ``0.2``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
     .. manim:: CompassExample
        :save_last_frame:
 

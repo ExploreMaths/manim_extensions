@@ -9,11 +9,6 @@ inside a :class:`~manim.scene.scene.Scene`.
 .. inheritance-diagram:: manim_extensions.animations
    :parts: 1
 
-VisDrawArc
-----------
-
-.. autofunction:: manim_extensions.animations.VisDrawArc
-
 TypeWriter
 ----------
 

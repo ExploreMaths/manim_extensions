@@ -8,3 +8,7 @@ update.bat
 docs/build
 rendering_times.csv
 .vscode
+workflow/_refs_report.json
+workflow/_validate_result.txt
+workflow/_inline_refs_data.json
+workflow/_inline_refs_result.txt

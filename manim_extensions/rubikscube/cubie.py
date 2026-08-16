@@ -14,20 +14,37 @@ class Cubie(VGroup):
     """One small cube element composing a larger Rubik's Cube.
 
     Each cubie carries the six face tiles used to represent the cube state and
-    owns its own 3D orientation within the parent :class:`~rubikscube.cube.RubiksCube`.
+    owns its own 3D orientation within the parent :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
+
+    Parameters
+    ----------
+    x : int
+        X coordinate of the cubie within the cube grid.
+    y : int
+        Y coordinate of the cubie within the cube grid.
+    z : int
+        Z coordinate of the cubie within the cube grid.
+    dim : int
+        Dimension of the parent cube (e.g. 3 for a 3x3x3 cube).
+    colors : list
+        Face colours in the order Up, Right, Front, Down, Left, Back.
 
     Examples
     --------
     .. manim:: CubieDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class CubieDocExample(Scene):
+       class CubieDocExample(ThreeDScene):
            def construct(self):
-               cube = RubiksCube(dim=3).scale(0.5)
-               self.add(cube)
+               cube = RubiksCube().scale(0.6)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               self.wait()
+               self.play(Indicate(cube.cubies[0, 0, 0]))
+               self.wait()
     """
 
     def __init__(self, x, y, z, dim, colors):#, **kwargs):

@@ -92,6 +92,15 @@ class InvalidTypeException(TypeError):
 class InvalidMeshDimensionsException(Exception):
     """Something with the Mesh Dimensions is not as expected
 
+    Parameters
+    ----------
+    actual : int or tuple
+        The actual dimension value that was found.
+    expected : int or tuple
+        The expected dimension value.
+    name : str, optional
+        Optional name of the parameter whose dimensions are invalid.
+
     Examples
     --------
     .. manim:: InvalidMeshDimensionsExceptionExample
@@ -118,6 +127,15 @@ class InvalidMeshDimensionsException(Exception):
 
 class InvalidShapeException(Exception):
     """A new parameter has invalid shape
+
+    Parameters
+    ----------
+    name : str
+        Name of the parameter with the invalid shape.
+    actual : int
+        The actual size that was found.
+    expected : int
+        The expected size.
 
     Examples
     --------

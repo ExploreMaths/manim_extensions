@@ -59,9 +59,9 @@ class NeuralNetworkMobject(VGroup):
     def get_nn_fill_color(self, index):
         """Return the stroke colour for the layer at the given index.
 
-        The first layer uses :attr:`input_neuron_color`, the last layer
-        uses :attr:`output_neuron_color`, and every layer in between uses
-        :attr:`hidden_layer_neuron_color`.
+        The first layer uses :attr:`~manim_extensions.neural_network.neural_network.NeuralNetworkMobject.input_neuron_color`, the last layer
+        uses :attr:`~manim_extensions.neural_network.neural_network.NeuralNetworkMobject.output_neuron_color`, and every layer in between uses
+        :attr:`~manim_extensions.neural_network.neural_network.NeuralNetworkMobject.hidden_layer_neuron_color`.
 
         Parameters
         ----------
@@ -84,7 +84,7 @@ class NeuralNetworkMobject(VGroup):
         """Create a single layer containing *size* neurons arranged vertically.
 
         Each neuron is drawn as a circle with the layer-specific stroke
-        colour returned by :meth:`get_nn_fill_color`.
+        colour returned by :meth:`~manim_extensions.neural_network.neural_network.NeuralNetworkMobject.get_nn_fill_color`.
 
         Parameters
         ----------

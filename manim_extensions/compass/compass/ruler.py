@@ -14,6 +14,21 @@ from ..utils.geometry_method import get_vecs_angle
 class Ruler(VGroup):
     """Ruler mobject.
 
+    Parameters
+    ----------
+    length : float, optional
+        Length of the ruler. Defaults to ``12``.
+    width : float, optional
+        Width (height) of the ruler. Defaults to ``0.8``.
+    ruler_color : ManimColor, optional
+        Fill color of the ruler. Defaults to ``WHITE``.
+    stroke_width : float, optional
+        Stroke width of the ruler border. Defaults to ``2``.
+    fill_opacity : float, optional
+        Fill opacity of the ruler. Defaults to ``0.4``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
     .. manim:: RulerExample
        :save_last_frame:
 

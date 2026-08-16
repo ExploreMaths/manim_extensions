@@ -47,17 +47,17 @@ class MArrayElement(VGroup):
     mob_label_args
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
     index_pos
-        Specifies the position of :attr:`__mob_index` w.r.t :attr:`__mob_square`
+        Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
     index_gap
-        Specifies the distance between :attr:`__mob_index` and :attr:`__mob_square`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     label_pos
-        Specifies the position of :attr:`__mob_label` w.r.t :attr:`__mob_square`.
+        Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     label_gap
-        Specifies the distance between :attr:`__mob_label` and :attr:`__mob_square`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     next_to_mob
-        Specifies the placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+        Specifies the placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
     next_to_dir
-        Specifies the direction of placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+        Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
 
     Examples
     --------
@@ -91,13 +91,13 @@ class MArrayElement(VGroup):
     __mob_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
     __index_pos : :class:`numpy.ndarray`
-        The position of :attr:`__mob_index` w.r.t :attr:`__mob_square`
+        The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
     __index_gap : :class:`float`
-        The distance between :attr:`__mob_index` and :attr:`__mob_square`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __label_pos : :class:`numpy.ndarray`
-        The position of :attr:`__mob_label` w.r.t :attr:`__mob_square`.
+        The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __label_gap : :class:`float`
-        The distance between :attr:`__mob_label` and :attr:`__mob_square`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __mob_square : :class:`~manim.mobject.geometry.polygram.Square`
         Represents the body of the element.
     __mob_value : :class:`~manim.mobject.text.text_mobject.Text`
@@ -123,13 +123,13 @@ class MArrayElement(VGroup):
         scene
             Specifies the scene where the object is to be rendered.
         index_pos
-            Specifies the position of :attr:`__mob_index` w.r.t :attr:`__mob_square`
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
         index_gap
-            Specifies the distance between :attr:`__mob_index` and :attr:`__mob_square`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         label_pos
-            Specifies the position of :attr:`__mob_label` w.r.t :attr:`__mob_square`.
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         label_gap
-            Specifies the distance between :attr:`__mob_label` and :attr:`__mob_square`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
         self.__mob_square_props: dict = {
@@ -196,17 +196,17 @@ class MArrayElement(VGroup):
         Parameters
         ----------
         init_square
-            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Square` and assigns it to :attr:`__mob_square`.
+            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Square` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         init_value
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_value`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         init_index
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_index`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_label`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         next_to_mob
-            Specifies placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+            Specifies placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         next_to_dir
-            Specifies direction of placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+            Specifies direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         """
 
         if init_square:
@@ -279,17 +279,17 @@ class MArrayElement(VGroup):
         mob_label_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
         index_pos
-            Specifies the position of :attr:`__mob_index` w.r.t :attr:`__mob_square`
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
         index_gap
-            Specifies the distance between :attr:`__mob_index` and :attr:`__mob_square`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         label_pos
-            Specifies the position of :attr:`__mob_label` w.r.t :attr:`__mob_square`.
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         label_gap
-            Specifies the distance between :attr:`__mob_label` and :attr:`__mob_square`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         next_to_mob
-            Specifies the placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+            Specifies the placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         next_to_dir
-            Specifies the direction of placement for :attr:`__mob_square` w.r.t another :class:`MArrayElement`.
+            Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         """
 
         super().__init__(**kwargs)
@@ -308,7 +308,7 @@ class MArrayElement(VGroup):
         Returns
         -------
         :class:`~manim.mobject.geometry.polygram.Square`
-            :attr:`__mob_square`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
         return self.__mob_square
@@ -319,7 +319,7 @@ class MArrayElement(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_value`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
         return self.__mob_value
@@ -330,7 +330,7 @@ class MArrayElement(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_index`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
         return self.__mob_index
@@ -341,7 +341,7 @@ class MArrayElement(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_label`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
         return self.__mob_label
@@ -386,18 +386,18 @@ class MArrayElement(VGroup):
         mob_value_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element value.
         update_anim
-            Animation to be applied to the updated :attr:`__mob_value`.
+            Animation to be applied to the updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_value`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
         self.__update_props(mob_value_args=mob_value_args)
@@ -430,18 +430,18 @@ class MArrayElement(VGroup):
         mob_index_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
         update_anim
-            Animation to be applied to the updated :attr:`__mob_index`.
+            Animation to be applied to the updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_index`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
         self.__update_props(mob_index_args=mob_index_args)
@@ -474,18 +474,18 @@ class MArrayElement(VGroup):
         mob_label_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
         update_anim
-            Animation to be applied to the updated :attr:`__mob_label`.
+            Animation to be applied to the updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_label`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
         self.__update_props(mob_label_args=mob_label_args)
@@ -508,8 +508,8 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_square`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
         return self.__mob_square.animate
@@ -519,8 +519,8 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_value`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
         return self.__mob_value.animate
@@ -530,8 +530,8 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_index`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
         return self.__mob_index.animate
@@ -541,8 +541,8 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_label`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
         return self.__mob_label.animate
@@ -570,9 +570,9 @@ class MArray(VGroup):
     arr_dir
         Specifies the growth direction of the array.
     arr_label_pos
-        Specifies the position of :attr:`__mob_arr_label` w.r.t :attr:`__mob_arr`.
+        Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     arr_label_gap
-        Specifies the distance between :attr:`__mob_arr_label` and :attr:`__mob_arr`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     mob_arr_label_args
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
     mob_square_args
@@ -634,12 +634,12 @@ class MArray(VGroup):
     __arr_dir : :class:`~.m_enum.MArrayDirection`
         The growth direction of the array.
     __arr_label_pos : :class:`~.m_enum.MArrayDirection`
-        The position of :attr:`__mob_arr_label` w.r.t :attr:`__mob_arr`.
+        The position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     __arr_label_gap : :class:`float`
-        The distance between :attr:`__mob_arr_label` and :attr:`__mob_arr`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     __mob_arr_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-    __mob_arr : :class:`~typing.List` [:class:`MArrayElement`]
+    __mob_arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         Represents the array.
     __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the array label.
@@ -666,7 +666,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`int`
-            Sum of ``side_length`` of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`__mob_arr` in the specified range.
+            Sum of ``side_length`` of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr` in the specified range.
         """
 
         if (
@@ -777,7 +777,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`float`
-            Factor by which to shift the :attr:`__mob_arr_label`.
+            Factor by which to shift the :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         if np.array_equal(
@@ -810,13 +810,13 @@ class MArray(VGroup):
         value
             Specifies the value of the new element.
         shift_label
-            If `True`, shifts the :attr:`__mob_arr_label` to center of the array.
+            If `True`, shifts the :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` to center of the array.
         append_anim
             Animation to be applied to the new element.
         append_anim_args
             Arguments for append :class:`~manim.animation.animation.Animation`.
         append_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the append :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the append :class:`~manim.animation.animation.Animation` is to be played.
         mob_square_args
             Arguments for :class:`~manim.mobject.geometry.polygram.Square` that represents the element body.
         mob_value_args
@@ -887,9 +887,9 @@ class MArray(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         removal_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the removal :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the removal :class:`~manim.animation.animation.Animation` is to be played.
         update_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the update :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the update :class:`~manim.animation.animation.Animation` is to be played.
 
         Returns
         -------
@@ -931,7 +931,7 @@ class MArray(VGroup):
         def update_indices(
             play_anim: bool = True, play_anim_args: dict = {}
         ) -> List[Animation]:
-            """Updates the indices of :class:`MArrayElement` (s) that occur after the removal.
+            """Updates the indices of :class:`~manim_extensions.data_structures.m_array.MArrayElement` (s) that occur after the removal.
 
             Parameters
             ----------
@@ -945,7 +945,7 @@ class MArray(VGroup):
             -------
 
             List[:class:`manim.Animation`]
-                Represents :class:`Animation` for indices update.
+                Represents :class:`~manim.animation.animation.Animation` for indices update.
             """
 
             anims_index = []
@@ -1010,9 +1010,9 @@ class MArray(VGroup):
         arr_dir
             Specifies the growth direction of the array.
         arr_label_pos
-            Specifies the position of :attr:`__mob_arr_label` w.r.t :attr:`__mob_arr`.
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         arr_label_gap
-            Specifies the distance between :attr:`__mob_arr_label` and :attr:`__mob_arr`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         """
 
         self.__mob_arr_label_props: dict = {
@@ -1060,7 +1060,7 @@ class MArray(VGroup):
         Parameters
         ----------
         init_arr_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_arr_label`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         if init_arr_label:
@@ -1130,9 +1130,9 @@ class MArray(VGroup):
         arr_dir
             Specifies the growth direction of the array.
         arr_label_pos
-            Specifies the position of :attr:`__mob_arr_label` w.r.t :attr:`__mob_arr`.
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         arr_label_gap
-            Specifies the distance between :attr:`__mob_arr_label` and :attr:`__mob_arr`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         mob_arr_label_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
         mob_square_args
@@ -1180,7 +1180,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`list`
-            :attr:`__arr`.
+            :attr:`~manim_extensions.data_structures.m_array.MArray.__arr`.
         """
 
         return self.__arr
@@ -1191,7 +1191,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`~typing.List`
-            :attr:`__mob_arr`.
+            :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         """
 
         return self.__mob_arr
@@ -1202,7 +1202,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_arr_label`.
+            :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         return self.__mob_arr_label
@@ -1213,7 +1213,7 @@ class MArray(VGroup):
         Returns
         -------
         :class:`~.m_enum.MArrayDirection`
-            :attr:`__arr_dir`.
+            :attr:`~manim_extensions.data_structures.m_array.MArray.__arr_dir`.
         """
 
         return self.__arr_dir
@@ -1245,7 +1245,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1289,7 +1289,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1329,12 +1329,12 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_arr_label`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         self.__label = label
@@ -1364,8 +1364,8 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :class:`MArrayElement`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1383,7 +1383,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
+        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.geometry.polygram.Square`.
         """
 
@@ -1402,7 +1402,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
+        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
         """
 
@@ -1421,7 +1421,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
+        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
         """
 
@@ -1453,7 +1453,7 @@ class MArray(VGroup):
         append_anim_args
             Arguments for append :class:`~manim.animation.animation.Animation`.
         append_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the append :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the append :class:`~manim.animation.animation.Animation` is to be played.
         mob_square_args
             Arguments for :class:`~manim.mobject.geometry.polygram.Square` that represents the element body.
         mob_value_args
@@ -1463,7 +1463,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1515,13 +1515,13 @@ class MArray(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         removal_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the removal :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the removal :class:`~manim.animation.animation.Animation` is to be played.
         update_anim_target
-            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`MArrayElement` on which the update :class:`~manim.animation.animation.Animation` is to be played.
+            Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the update :class:`~manim.animation.animation.Animation` is to be played.
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -1567,13 +1567,13 @@ class MArrayPointer(VGroup):
     label
         Specifies the value of the pointer label.
     arrow_len
-        Specifies the length of :attr:`__mob_arrow`.
+        Specifies the length of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
     arrow_gap
-        Specifies the distance between :attr:`__mob_arrow` and :attr:`__arr`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
     label_gap
-        Specifies the distance between :attr:`__mob_arrow` and :attr:`__mob_label`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
     pointer_pos
-        Specifies the position of the pointer w.r.t to :attr:`__arr`.
+        Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
     mob_arrow_args
         Arguments for :class:`~manim.mobject.geometry.line.Arrow` that represents the pointer arrow.
     mob_label_args
@@ -1604,20 +1604,20 @@ class MArrayPointer(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List` [:class:`MArrayElement`]
+    __arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the pointer is attached to.
     __index : :class:`int`
         The index of the element to which the pointer is attached to.
     __label : :class:`str`
         The value of the pointer label.
     __arrow_len : :class:`float`
-        The length of :attr:`__mob_arrow`.
+        The length of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
     __arrow_gap : :class:`float`
-        The distance between :attr:`__mob_arrow` and :attr:`__arr`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
     __label_gap : :class:`float`
-        The distance between :attr:`__mob_arrow` and :attr:`__mob_label`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
     __pointer_pos : :class:`~manim_extensions.data_structures.m_enum.MArrayDirection`
-        The position of the pointer w.r.t to :attr:`__arr`.
+        The position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
     __mob_arrow_props : :class:`dict`
         Arguments for :class:`~manim.mobject.geometry.line.Arrow` that represents the pointer arrow.
     __mob_label_props : :class:`dict`
@@ -1644,7 +1644,7 @@ class MArrayPointer(VGroup):
         Returns
         -------
         :class:`numpy.ndarray`
-            Position vector for :attr:`__mob_arrow`.
+            Position vector for :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
         arr_dir_np = self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
@@ -1731,13 +1731,13 @@ class MArrayPointer(VGroup):
         label
             Specifies the value of the pointer label.
         arrow_len
-            Specifies the length of :attr:`__mob_arrow`.
+            Specifies the length of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         arrow_gap
-            Specifies the distance between :attr:`__mob_arrow` and :attr:`__arr`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
         label_gap
-            Specifies the distance between :attr:`__mob_arrow` and :attr:`__mob_label`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         pointer_pos
-            Specifies the position of the pointer w.r.t to :attr:`__arr`.
+            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
         """
 
         self.__mob_arrow_props: dict = {"color": GOLD_D}
@@ -1779,9 +1779,9 @@ class MArrayPointer(VGroup):
         Parameters
         ----------
         init_arrow
-            If `True`, instantiates a :class:`~manim.mobject.geometry.line.Arrow` and assigns it to :attr:`__mob_arrow`.
+            If `True`, instantiates a :class:`~manim.mobject.geometry.line.Arrow` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_label`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         if init_arrow:
@@ -1857,13 +1857,13 @@ class MArrayPointer(VGroup):
         label
             Specifies the value of the pointer label.
         arrow_len
-            Specifies the length of :attr:`__mob_arrow`.
+            Specifies the length of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         arrow_gap
-            Specifies the distance between :attr:`__mob_arrow` and :attr:`__arr`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
         label_gap
-            Specifies the distance between :attr:`__mob_arrow` and :attr:`__mob_label`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         pointer_pos
-            Specifies the position of the pointer w.r.t to :attr:`__arr`.
+            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
         mob_arrow_args
             Arguments for :class:`~manim.mobject.geometry.line.Arrow` that represents the pointer arrow.
         mob_label_args
@@ -1890,7 +1890,7 @@ class MArrayPointer(VGroup):
         Returns
         -------
         :class:`~manim.mobject.geometry.line.Arrow`
-            :attr:`__mob_arrow`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
         return self.__mob_arrow
@@ -1901,7 +1901,7 @@ class MArrayPointer(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_label`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         return self.__mob_label
@@ -1912,7 +1912,7 @@ class MArrayPointer(VGroup):
         Returns
         -------
         :class:`int`
-            :attr:`__index`.
+            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__index`.
         """
 
         return self.__index
@@ -1941,12 +1941,12 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_label`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         self.__label = label
@@ -1971,8 +1971,8 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_arrow`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
         return self.__mob_arrow.animate
@@ -1982,8 +1982,8 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_label`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         return self.__mob_label.animate
@@ -2000,7 +2000,7 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2053,9 +2053,9 @@ class MArraySlidingWindow(VGroup):
     label
         Specifies the value of the sliding window label.
     label_gap
-        Specifies the distance between :attr:`__mob_label` and :attr:`__mob_window`.
+        Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
     label_pos
-        Specifies the position of the pointer w.r.t to :attr:`__mob_window`.
+        Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
     mob_window_args
         Arguments for :class:`~manim.mobject.geometry.polygram.Rectangle` that represents the window.
     mob_label_args
@@ -2086,7 +2086,7 @@ class MArraySlidingWindow(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List` [:class:`MArrayElement`]
+    __arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the sliding window is to be attached.
     __index : :class:`int`
         The index of the element to which the sliding window is to be attached.
@@ -2095,9 +2095,9 @@ class MArraySlidingWindow(VGroup):
     __label : :class:`str`
         The value of the sliding window label.
     __label_gap : :class:`float`
-        The distance between :attr:`__mob_label` and :attr:`__mob_window`.
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
     __label_pos : :class:`~.m_enum.MArrayDirection`
-        The position of the pointer w.r.t to :attr:`__mob_window`.
+        The position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
     __mob_window_props : :class:`dict`
         Arguments for :class:`~manim.mobject.geometry.polygram.Rectangle` that represents the window.
     __mob_label_props : :class:`dict`
@@ -2124,9 +2124,9 @@ class MArraySlidingWindow(VGroup):
         Returns
         -------
         :class:`float`
-            Height of :attr:`__mob_window`.
+            Height of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         :class:`float`
-            Width of :attr:`__mob_window`.
+            Width of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
         height = self.__arr.fetch_mob_arr()[self.__index].fetch_mob_square().side_length
@@ -2145,9 +2145,9 @@ class MArraySlidingWindow(VGroup):
         Returns
         -------
         :class:`numpy.ndarray`
-            Position vector for :attr:`__mob_window`
+            Position vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`
         :class:`numpy.ndarray`
-            Align vector for :attr:`__mob_window`
+            Align vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`
         """
 
         point_np = (
@@ -2180,7 +2180,7 @@ class MArraySlidingWindow(VGroup):
         Returns
         -------
         :class:`numpy.ndarray`
-            Position vector for :attr:`__mob_label`
+            Position vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`
         """
 
         arr_dir = self.__arr.fetch_arr_dir()
@@ -2204,9 +2204,9 @@ class MArraySlidingWindow(VGroup):
         Parameters
         ----------
         pos_window
-            If `True`, correctly positions :attr:`__mob_window`.
+            If `True`, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         pos_label
-            If `True`, correctly positions :attr:`__mob_label`.
+            If `True`, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         if pos_window:
@@ -2260,9 +2260,9 @@ class MArraySlidingWindow(VGroup):
         label
             Specifies the value of the sliding window label.
         label_gap
-            Specifies the distance between :attr:`__mob_label` and :attr:`__mob_window`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         label_pos
-            Specifies the position of the pointer w.r.t to :attr:`__mob_window`.
+            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
         self.__mob_window_props: dict = {"color": RED_D, "stroke_width": 10}
@@ -2305,9 +2305,9 @@ class MArraySlidingWindow(VGroup):
         Parameters
         ----------
         init_arrow
-            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Rectangle` and assigns it to :attr:`__mob_window`.
+            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Rectangle` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`__mob_label`.
+            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         if init_window:
@@ -2369,9 +2369,9 @@ class MArraySlidingWindow(VGroup):
         label
             Specifies the value of the sliding window label.
         label_gap
-            Specifies the distance between :attr:`__mob_label` and :attr:`__mob_window`.
+            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         label_pos
-            Specifies the position of the pointer w.r.t to :attr:`__mob_window`.
+            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         mob_window_args
             Arguments for :class:`~manim.mobject.geometry.polygram.Rectangle` that represents the window.
         mob_label_args
@@ -2396,7 +2396,7 @@ class MArraySlidingWindow(VGroup):
         Returns
         -------
         :class:`~manim.mobject.geometry.polygram.Rectangle`
-            :attr:`__mob_window`.
+            :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
         return self.__mob_window
@@ -2407,7 +2407,7 @@ class MArraySlidingWindow(VGroup):
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            :attr:`__mob_label`.
+            :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         return self.__mob_label
@@ -2436,12 +2436,12 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
-            Updated :attr:`__mob_label`.
+            Updated :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         self.__label = label
@@ -2466,8 +2466,8 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_window`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
         return self.__mob_window.animate
@@ -2477,8 +2477,8 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`_AnimationBuilder`
-            Animate property of :attr:`__mob_label`.
+        :class:`~manim.mobject.mobject._AnimationBuilder`
+            Animate property of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         return self.__mob_label.animate
@@ -2495,7 +2495,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2542,7 +2542,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
 
         Returns
         -------
@@ -2566,7 +2566,7 @@ class MArraySlidingWindow(VGroup):
             Returns
             -------
 
-            :class:`MArraySlidingWindow`
+            :class:`~manim_extensions.data_structures.m_array.MArraySlidingWindow`
                 Represents the modified mobject.
             """
 

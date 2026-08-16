@@ -16,8 +16,8 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``Resistor`` / ``Inductor`` / ``Capacitor`` components.
-- ``VoltageSource`` and ``CurrentSource`` objects.
+- :class:`~manim_extensions.circuit.mobjects.Resistor` / :class:`~manim_extensions.circuit.mobjects.Inductor` / :class:`~manim_extensions.circuit.mobjects.Capacitor` components.
+- :class:`~manim_extensions.circuit.mobjects.VoltageSource` and :class:`~manim_extensions.circuit.mobjects.CurrentSource` objects.
 - terminal-based connection points for wiring diagrams.
 - labeled component support and circuit assembly helpers.
 - educational scene objects for engineering and electronics demos.
@@ -51,7 +51,6 @@ A simple circuit scene
            r = Resistor().shift(LEFT)
            c = Capacitor().shift(RIGHT)
            self.add(r, c)
-           self.wait(0.5)
 
 This library is especially useful for:
 

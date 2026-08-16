@@ -21,18 +21,22 @@ class ManimTransition(Transition, VGroup):
 
     Parameters
     ----------
-    transition_from
+    transition_from : ManimState
         State at which the transition starts.
-    transition_to
+    transition_to : ManimState
         State at which the transition ends.
-    read_symbols
+    read_symbols : sequence of str
         Symbols associated with the transition.
-    parent_automaton
+    parent_automaton : ManimAutomaton
         Parent automaton owning the transition.
-    animation_style
+    animation_style : dict
         Styling configuration used for animation playback.
-    kwargs
-        Additional parameters for ``VMobject``.
+    font_size : int, optional
+        Font size for the read-symbol labels.  Defaults to ``100``.
+    buffer : int, optional
+        Spacing buffer for label positioning.  Defaults to ``1``.
+    **kwargs
+        Additional parameters for :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -46,6 +50,15 @@ class ManimTransition(Transition, VGroup):
            def construct(self):
                dfa = ManimDeterminsticFiniteAutomaton()
                self.add(dfa)
+               transition = dfa.transitions[0]
+               start = transition.transition_from.name
+               end = transition.transition_to.name
+               label = Text(
+                   f"Transition {start} -> {end}",
+                   font_size=20,
+               )
+               label.next_to(dfa, DOWN, buff=1.5)
+               self.add(label)
     """
     def __init__(
         self,
@@ -350,7 +363,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
 
     """Visual transition arrow for pushdown automata.
 
-    Extends :class:`ManimTransition` to support stack-operation rules in
+    Extends :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` to support stack-operation rules in
     addition to input symbols.  When the source and target states are
     identical, a reflexive loop is drawn; when a reverse transition already
     exists, both arrows are rendered as curved paths.
@@ -371,6 +384,8 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         Font size for the rule labels.
     buffer : int, optional
         Spacing buffer for label positioning.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------

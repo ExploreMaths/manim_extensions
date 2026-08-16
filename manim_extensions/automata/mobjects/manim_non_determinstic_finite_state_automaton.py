@@ -1,25 +1,53 @@
 from manim import *
 
 from .manim_automaton import ManimAutomaton
-# from .manim_state import ManimState, State
-# from .manim_automaton_input import ManimAutomataInput
-# from .manim_transition import ManimTransition
 
-# from typing import Union
-
-# import json
-# import pprint
-
-# import itertools
+nfa_automaton_json = {
+    'structure': {
+        'type': 'nfa',
+        'automaton': {
+            'state': [
+                {'@id': '0', '@name': 'q0', 'x': '84.0', 'y': '122.0', 'initial': None},
+                {'@id': '1', '@name': 'q1', 'x': '218.0', 'y': '175.0'},
+                {'@id': '2', '@name': 'q2', 'x': '386.0', 'y': '131.0', 'final': None},
+                {'@id': '3', '@name': 'q3', 'x': '227.0', 'y': '36.0'}
+            ],
+            'transition': [
+                {'from': '0', 'to': '1', 'read': '0'},
+                {'from': '0', 'to': '1', 'read': '1'},
+                {'from': '0', 'to': '2', 'read': None},
+                {'from': '2', 'to': '3', 'read': '0'},
+                {'from': '1', 'to': '2', 'read': '1'},
+                {'from': '3', 'to': '0', 'read': '1'},
+                {'from': '3', 'to': '0', 'read': '0'}
+            ]
+        }
+    }
+}
 
 class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
 
     """A non-deterministic finite automaton (NFA) with Manim visualisation.
 
-    This subclass of :class:`ManimAutomaton` represents an NFA where states
+    This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents an NFA where states
     may have multiple outgoing transitions for the same input symbol, including
     epsilon (``\\epsilon``) transitions.  It supports the CLI path-builder for
     interactively exploring accepting paths through the automaton.
+
+    Parameters
+    ----------
+    json_template : dict, optional
+        JSON dictionary describing the automaton states and transitions.
+    xml_file : str, optional
+        Path to an XML file (e.g. JFLAP format) describing the automaton.
+    camera_follow : bool, optional
+        If ``True``, the camera follows the active state during playback.
+    animation_style : dict, optional
+        Style configuration for state and transition animations.
+    cli : bool, optional
+        If ``True``, launch the interactive CLI for building NDA paths.
+    **kwargs
+        Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
@@ -46,6 +74,8 @@ class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
         **kwargs: object,
     ) -> None:
         """Initialize the ManimNonDeterminsticFiniteAutomaton instance."""
+        if json_template is None and xml_file is None:
+            json_template = nfa_automaton_json
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:

@@ -5,6 +5,19 @@ from .utils import *
 class VoltageSource(Source):
     """Voltage source symbol for circuit diagrams.
 
+    Parameters
+    ----------
+    value : int or float, optional
+        Voltage value displayed next to the source. Defaults to ``1``.
+    label : bool, optional
+        Whether to display the value label. Defaults to ``True``.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``LEFT``.
+    dependent : bool, optional
+        Whether the source is dependent. Defaults to ``True``.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
+
     Examples
     --------
     .. manim:: VoltageSourceExample
@@ -40,6 +53,19 @@ class VoltageSource(Source):
 class CurrentSource(Source):
     """Current source symbol for circuit diagrams.
 
+    Parameters
+    ----------
+    value : int or float, optional
+        Current value displayed next to the source. Defaults to ``1``.
+    label : bool, optional
+        Whether to display the value label. Defaults to ``True``.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``LEFT``.
+    dependent : bool, optional
+        Whether the source is dependent. Defaults to ``True``.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
+
     Examples
     --------
     .. manim:: CurrentSourceExample
@@ -70,6 +96,15 @@ class CurrentSource(Source):
 
 class Inductor(VMobject):
     """Inductor component used in circuit visualisations.
+
+    Parameters
+    ----------
+    label : str or None, optional
+        Text label displayed next to the inductor (e.g. ``"10mH"``). Defaults to ``None``.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``DOWN``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -165,7 +200,7 @@ class Inductor(VMobject):
         angle : float
             Rotation angle in radians.
         *args, **kwargs
-            Additional arguments forwarded to :meth:`VMobject.rotate`.
+            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------
@@ -181,6 +216,15 @@ class Inductor(VMobject):
 
 class Resistor(VMobject):
     """Resistor component shown as a zig-zag path.
+
+    Parameters
+    ----------
+    label : str or None, optional
+               Text label displayed next to the resistor. Defaults to ``None``.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``DOWN``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -284,7 +328,7 @@ class Resistor(VMobject):
         angle : float
             Rotation angle in radians.
         *args, **kwargs
-            Additional arguments forwarded to :meth:`VMobject.rotate`.
+            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------
@@ -300,6 +344,17 @@ class Resistor(VMobject):
 
 class Capacitor(VMobject):
     """Capacitor component for circuit diagrams.
+
+    Parameters
+    ----------
+    label : str or None, optional
+        Text label displayed next to the capacitor. Defaults to ``None``.
+    direction : np.ndarray, optional
+        Direction in which the label is placed. Defaults to ``DOWN``.
+    polarized : bool, optional
+        Whether the capacitor is polarized (shows an arc symbol). Defaults to ``False``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -395,7 +450,7 @@ class Capacitor(VMobject):
         angle : float
             Rotation angle in radians.
         *args, **kwargs
-            Additional arguments forwarded to :meth:`VMobject.rotate`.
+            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------
@@ -411,6 +466,15 @@ class Capacitor(VMobject):
 
 class Ground(VMobject):
     """Ground symbol used in circuit diagrams.
+
+    Parameters
+    ----------
+    ground_type : str, optional
+        Type of ground symbol (``"ground"`` or ``"earth"``). Defaults to ``"ground"``.
+    label : str or None, optional
+        Optional label for the ground (e.g. ``"D"`` or ``"A"``). Defaults to ``None``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------
@@ -475,6 +539,15 @@ class Ground(VMobject):
 
 class Opamp(VMobject):
     """Operational amplifier symbol for electrical diagram animations.
+
+    Parameters
+    ----------
+    bias_supply : str or None, optional
+        Bias supply configuration (e.g. ``"both"``). Defaults to ``None``.
+    label : bool, optional
+        Whether to display the op-amp label. Defaults to ``False``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Examples
     --------

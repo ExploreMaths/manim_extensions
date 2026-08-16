@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from manim import *
-from .automata_dependencies.automata import FiniteStateAutomaton
+from .automata_dependencies.automata import FiniteStateAutomaton, automaton_json
 from .manim_state import ManimState, State
 from .manim_automaton_input import ManimAutomataInput
 from .manim_transition import ManimTransition
@@ -45,9 +45,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     .. note::
 
         This is an abstract base class.  Use one of the concrete subclasses
-        :class:`ManimDeterminsticFiniteAutomaton`,
-        :class:`ManimNonDeterminsticFiniteAutomaton`, or
-        :class:`ManimPushDownAutomaton` instead.
+        :class:`~manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton.ManimDeterminsticFiniteAutomaton`,
+        :class:`~manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton.ManimNonDeterminsticFiniteAutomaton`, or
+        :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton` instead.
 
     Parameters
     ----------
@@ -60,7 +60,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     animation_style : dict, optional
         Style configuration for state and transition animations.
     manim_animations : ManimAnimations, optional
-        Custom animation strategy.  Defaults to :class:`ManimAnimations`.
+        Custom animation strategy.  Defaults to :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations`.
     cli : bool, optional
         If ``True``, launch the interactive CLI for building NDA paths.
     **kwargs
@@ -95,12 +95,15 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     """
 
     def __init__(self, json_template: dict[str, object] | None = None, xml_file: str | None = None, camera_follow: bool = False, animation_style: dict[str, object] = default_animation_style, manim_animations: object | None = None, cli: bool = False, **kwargs: object) -> None:
+        if json_template is None and xml_file is None:
+            json_template = automaton_json
+
         FiniteStateAutomaton.__init__(self)
 
         self.animation_style = animation_style
         self.camera_follow = camera_follow
 
-        if manim_animations is None: #if user doesn't provide their own class set to default
+        if manim_animations is None:
             self.manim_animations = ManimAnimations()
         else:
             self.manim_animations = manim_animations
@@ -110,22 +113,19 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.cli = ManimAutomataCLI()
             self.nda_builder = True
         else: self.nda_builder = False
-        # default animation style
-        # and allow users to pass in functions that replace some of the functionality such as play_accept..
-        
+
         VGroup.__init__(self, **kwargs)
 
         if json_template:
-            self.automaton = FiniteStateAutomaton(json_template==json_template)
-            self.construct_manim_states()
-            self.construct_manim_transitions()
+            self.construct_from_json(json_template)
         elif xml_file:
             self.process_xml(xml_file)
 
-
-        #add manim_states to screen/renderer
         self.add(*self.states)
         self.add(*self.transitions)
+
+        if self.states:
+            self.center()
 
 
     def add_manim_state(self, manim_state: ManimState) -> None:
@@ -133,15 +133,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         #adds an already existing manim_state to automaton
         self.append(manim_state)
 
-    def construct_state(self, state: dict[str, object]) -> None: #creates a new manim_state instance
-        #check if initial is set in state
+    def construct_state(self, state: dict[str, object], scaling: float = 10) -> None:
         initial = False
         final = False
         if 'initial' in state.keys():
             initial = True 
-            #check to see if there is already another initial state
             for state_object in self.states:
-                if state_object.initial == True: #If there already exists an initial state set back to False and keep first initial state
+                if state_object.initial == True:
                     initial = False
             
         if 'final' in state.keys():
@@ -149,20 +147,41 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         new_x = float(state["x"]) - self.origin_offset_x
         new_y = float(state["y"]) - self.origin_offset_y
-        #check if final exist in state
-        self.states.append(ManimState(state["@name"], new_x, new_y, animation_style=self.animation_style, initial=initial, final=final, id=state["@id"]))
+        self.states.append(ManimState(state["@name"], new_x, new_y, animation_style=self.animation_style, initial=initial, final=final, id=state["@id"], scaling=scaling))
 
     def construct_states(self, states: list[dict[str, object]]) -> None:
-        #gets first initial state to calculate offset
         for state in states:
             if 'initial' in state.keys():
-                #store original values, used to normalise coordinates
                 self.origin_offset_x = float(state["x"])
                 self.origin_offset_y = float(state["y"])
                 break
-        
+
+        coords = []
         for state in states:
-            self.construct_state(state)
+            x = float(state["x"]) - self.origin_offset_x
+            y = float(state["y"]) - self.origin_offset_y
+            coords.append((x, y))
+
+        auto_scaling = 10.0
+        if coords:
+            xs = [c[0] for c in coords]
+            ys = [c[1] for c in coords]
+            width = max(xs) - min(xs)
+            height = max(ys) - min(ys)
+            if width > 0 or height > 0:
+                target_width = 7.0
+                target_height = 4.0
+                scale_x = width / target_width if width > 0 else 1.0
+                scale_y = height / target_height if height > 0 else 1.0
+                auto_scaling = max(scale_x, scale_y, 1.0)
+
+        for state in states:
+            self.construct_state(state, scaling=auto_scaling)
+
+        if auto_scaling > 10.0:
+            size_factor = 10.0 / auto_scaling
+            for state_obj in self.states:
+                state_obj.scale(size_factor)
             
     def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
         # counts the number of transitions between two states

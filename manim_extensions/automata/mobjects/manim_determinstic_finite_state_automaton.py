@@ -12,9 +12,24 @@ class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
 
     """A deterministic finite automaton (DFA) with Manim visualisation.
 
-    This subclass of :class:`ManimAutomaton` represents a DFA where each
+    This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents a DFA where each
     state has exactly one outgoing transition for every input symbol.  It
     can be constructed from a JSON template or an XML file (JFLAP format).
+
+    Parameters
+    ----------
+    json_template : dict, optional
+        JSON dictionary describing the automaton states and transitions.
+    xml_file : str, optional
+        Path to an XML file (e.g. JFLAP format) describing the automaton.
+    camera_follow : bool, optional
+        If ``True``, the camera follows the active state during playback.
+    animation_style : dict, optional
+        Style configuration for state and transition animations.
+    cli : bool, optional
+        If ``True``, launch the interactive CLI for building NDA paths.
+    **kwargs
+        Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------

@@ -14,12 +14,12 @@ def index_paragraph_labels(
     label_height : float
         Height of each label mobject.
     **kwargs
-        Additional keyword arguments forwarded to :class:`Integer`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.text.numbers.Integer`.
 
     Returns
     -------
     VGroup
-        A group of :class:`Integer` labels, one per paragraph line.
+        A group of :class:`~manim.mobject.text.numbers.Integer` labels, one per paragraph line.
     """
     labels = VGroup()
     idx = 0
@@ -46,12 +46,12 @@ def index_code_labels(
     label_height : float
         Height of each label mobject.
     **kwargs
-        Additional keyword arguments forwarded to :class:`Integer`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.text.numbers.Integer`.
 
     Returns
     -------
     VGroup
-        A group of :class:`Integer` labels, one per code line.
+        A group of :class:`~manim.mobject.text.numbers.Integer` labels, one per code line.
     """
     ret = VGroup()
     code_paragraph = (

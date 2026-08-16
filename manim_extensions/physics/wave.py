@@ -34,7 +34,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
     y_range
         The y-domain range used to construct the surface.
     kwargs
-        Additional keyword arguments passed to :class:`~manim.mobject.three_dimensions.Surface`.
+        Additional keyword arguments passed to :class:`~manim.mobject.three_d.three_dimensions.Surface`.
 
     Examples
     --------
@@ -150,7 +150,7 @@ class LinearWave(RadialWave):
     y_range
         The y-domain range used to construct the surface.
     kwargs
-        Additional keyword arguments passed to :class:`~manim.mobject.three_dimensions.Surface`.
+        Additional keyword arguments passed to :class:`~manim.mobject.three_d.three_dimensions.Surface`.
 
     Examples
     --------
@@ -222,7 +222,7 @@ class StandingWave(ParametricFunction):
     amplitude
         The maximum vertical displacement of the wave.
     kwargs
-        Additional keyword arguments passed to :class:`~manim.mobject.types.parametric_curve.ParametricFunction`.
+        Additional keyword arguments passed to :class:`~manim.mobject.graphing.functions.ParametricFunction`.
 
     Examples
     --------

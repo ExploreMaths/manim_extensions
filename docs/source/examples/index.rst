@@ -6,7 +6,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: LabelDotExample
    :save_last_frame:
-   :no_title:
    :ref_classes: LabelDot
 
    from manim_extensions import LabelDot
@@ -18,7 +17,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: MathTexHelpersExample
    :save_last_frame:
-   :no_title:
    :ref_classes: MathTexLine MathTexBrace MathTexDoublearrow
 
    from manim import *
@@ -34,7 +32,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: GeometryHelpersExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ExtendedLine PerpendicularLine PerpendicularSign
 
    from manim import *
@@ -50,8 +47,8 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: CircleIntExample
    :save_last_frame:
-   :no_title:
-   :ref_classes: CircleInt
+   :ref_classes: LabelDot
+   :ref_functions: CircleInt
 
    from manim import *
    from manim_extensions import CircleInt, LabelDot
@@ -68,7 +65,6 @@ inline. Each example demonstrates one of the core extension modules.
                    self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
 
 .. manim:: TextAnimationsExample
-   :no_title:
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
 
    from manim import *
@@ -86,7 +82,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: ColorTextExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ColorText
 
    from manim import *
@@ -98,7 +93,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: FileTreeExample
    :save_last_frame:
-   :no_title:
    :ref_classes: FileTree
 
    from manim import *
@@ -122,7 +116,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: TreeDiagramExample
    :save_last_frame:
-   :no_title:
    :ref_classes: TreeDiagram
 
    from manim import *
@@ -134,7 +127,6 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(TreeDiagram(tree).shift(LEFT * 2))
 
 .. manim:: HighlightAnimationsExample
-   :no_title:
    :ref_classes: PassingRectangle HighLightWithLines
 
    from manim import *
@@ -151,7 +143,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: DecorationHelpersExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ShadowAround ObjectBorder
 
    from manim import *
@@ -166,7 +157,6 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(t, ObjectBorder(t))
 
 .. manim:: TrailExample
-   :no_title:
    :ref_classes: Trail
 
    from manim import *
@@ -179,21 +169,8 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(trail)
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear))
 
-.. manim:: VisDrawArcExample
-   :no_title:
-   :ref_functions: VisDrawArc
-
-   from manim import *
-   from manim_extensions import VisDrawArc
-
-   class VisDrawArcExample(Scene):
-       def construct(self):
-           arc = Arc(start_angle=0, angle=PI, radius=2, color=YELLOW)
-           VisDrawArc(self, arc, axis=OUT, run_time=2)
-
 .. manim:: ChineseMathTexExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ChineseMathTex
 
    from manim import *
@@ -201,12 +178,11 @@ inline. Each example demonstrates one of the core extension modules.
 
    class ChineseMathTexExample(Scene):
        def construct(self):
-           tex = ChineseMathTex(r"$E = mc^2$").scale(1.5)
+           tex = ChineseMathTex(r"勾股定理：a^{2} + b^{2} = c^{2}").scale(1.5)
            self.add(tex)
 
 .. manim:: ThreeDVectorExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ThreeDVector
 
    from manim import *
@@ -219,8 +195,7 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(ThreeDVector([2, 1, 1.5], color=YELLOW))
 
 .. manim:: MoreAnimationsExample
-   :no_title:
-   :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation UnHighLightWithLines
+   :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation
 
    from manim import *
    from manim_extensions import ReversedWrite, FadeInRandom, GrowRandom, LaggedCreation
@@ -236,8 +211,7 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: AlgorithmExample
    :save_last_frame:
-   :no_title:
-   :ref_classes: Node Array Queue
+   :ref_classes: manim_extensions.algorithm.node.Node Array Queue
 
    from manim import *
    from manim_extensions.algorithm import Node, Array, Queue
@@ -249,12 +223,11 @@ inline. Each example demonstrates one of the core extension modules.
                Node("1"), Node("2"), Node("3")
            ).arrange(RIGHT, buff=0.5).next_to(title, DOWN, buff=1)
            arr = Array([10, 20, 30, 40], total_width=6).next_to(nodes, DOWN, buff=1)
-           q = Queue([Square(side_length=0.3, fill_color=BLUE, fill_opacity=0.8) for _ in range(3)]).next_to(arr, DOWN, buff=1)
+           q = Queue(5, init_data=[1, 2, 3], total_width=6).next_to(arr, DOWN, buff=1)
            self.add(title, nodes, arr, q)
 
 .. manim:: CircuitExample
    :save_last_frame:
-   :no_title:
    :ref_classes: VoltageSource Resistor Capacitor Ground
 
    from manim import *
@@ -270,7 +243,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: CompassExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Compass Pencil Ruler
 
    from manim import *
@@ -285,7 +257,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: DataStructuresExample
    :save_last_frame:
-   :no_title:
    :ref_classes: MArray MVariable
 
    from manim import *
@@ -293,13 +264,12 @@ inline. Each example demonstrates one of the core extension modules.
 
    class DataStructuresExample(Scene):
        def construct(self):
-           arr = MArray([1, 2, 3, 4, 5])
-           var = MVariable("x", value="42").next_to(arr, DOWN, buff=1)
+           arr = MArray(self, [1, 2, 3, 4, 5], label="arr")
+           var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1)
            self.add(arr, var)
 
 .. manim:: GearboxExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Gear Rack
 
    from manim import *
@@ -307,13 +277,12 @@ inline. Each example demonstrates one of the core extension modules.
 
    class GearboxExample(Scene):
        def construct(self):
-           gear = Gear(teeth=12, radius=1, color=BLUE).shift(LEFT * 2)
-           rack = Rack(teeth=10, length=4, color=RED).next_to(gear, RIGHT, buff=1)
+           gear = Gear(12, stroke_opacity=0, fill_color=BLUE, fill_opacity=1).shift(LEFT * 2)
+           rack = Rack(10, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1).next_to(gear, RIGHT, buff=1)
            self.add(gear, rack)
 
 .. manim:: NeuralNetworkExample
    :save_last_frame:
-   :no_title:
    :ref_classes: NeuralNetworkMobject
 
    from manim import *
@@ -326,8 +295,7 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: MeshesExample
    :save_last_frame:
-   :no_title:
-   :ref_classes: ManimMesh
+   :ref_classes: Mesh ManimMesh
 
    from manim import *
    from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -343,7 +311,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: MindMapExample
    :save_last_frame:
-   :no_title:
    :ref_classes: MindMap
 
    from manim import *
@@ -351,12 +318,19 @@ inline. Each example demonstrates one of the core extension modules.
 
    class MindMapExample(Scene):
        def construct(self):
-           mm = MindMap()
+           data = {
+               'node': MathTex(r"\text{Root}"),
+               'child': [
+                   {'node': MathTex(r"\text{Branch 1}")},
+                   {'node': MathTex(r"\text{Branch 2}")},
+               ]
+           }
+           mm = MindMap(data)
+           mm.scale_to_fit_width(8)
            self.add(mm)
 
 .. manim:: SequenceDiagramExample
    :save_last_frame:
-   :no_title:
    :ref_classes: SeqActor SeqObject
 
    from manim import *
@@ -364,14 +338,13 @@ inline. Each example demonstrates one of the core extension modules.
 
    class SequenceDiagramExample(Scene):
        def construct(self):
-           actor1 = SeqActor("Client", side=LEFT)
-           actor2 = SeqActor("Server", side=RIGHT)
+           actor1 = SeqActor("Client")
+           actor2 = SeqActor("Server")
            obj = SeqObject("Request").next_to(actor1, RIGHT, buff=2)
            self.add(actor1, actor2, obj)
 
 .. manim:: TikzExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Tikz
 
    from manim import *
@@ -387,7 +360,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: PhysicsOpticsExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Lens Ray
 
    from manim import *
@@ -396,12 +368,11 @@ inline. Each example demonstrates one of the core extension modules.
    class PhysicsOpticsExample(Scene):
        def construct(self):
            lens = Lens(f=1.0, d=0.4)
-           ray = Ray(start=LEFT * 3, end=RIGHT * 3, color=YELLOW)
+           ray = Ray(start=LEFT * 3 + UP, direction=RIGHT, init_length=4, color=YELLOW)
            self.add(lens, ray)
 
 .. manim:: PhysicsWavesExample
    :save_last_frame:
-   :no_title:
    :ref_classes: StandingWave
 
    from manim import *
@@ -414,7 +385,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: PhysicsEMExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Charge ElectricField
 
    from manim import *
@@ -429,7 +399,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: PhysicsMechanicsExample
    :save_last_frame:
-   :no_title:
    :ref_classes: Pendulum
 
    from manim import *
@@ -442,7 +411,6 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: AutomataExample
    :save_last_frame:
-   :no_title:
    :ref_classes: ManimDeterminsticFiniteAutomaton
 
    from manim import *
@@ -452,16 +420,3 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            dfa = ManimDeterminsticFiniteAutomaton()
            self.add(dfa)
-
-.. manim:: RubiksCubeExample
-   :save_last_frame:
-   :no_title:
-   :ref_classes: RubiksCube
-
-   from manim import *
-   from manim_extensions.rubikscube import RubiksCube
-
-   class RubiksCubeExample(Scene):
-       def construct(self):
-           cube = RubiksCube(dim=3).scale(0.5)
-           self.add(cube)

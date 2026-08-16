@@ -92,7 +92,7 @@ class ManimAutomataCLI():
         .. note::
 
             This method is not yet implemented and raises
-            :class:`NotImplementedError`.
+            :class:`~builtins.NotImplementedError`.
         """
         raise NotImplementedError("Not yet implemented")
 

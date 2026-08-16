@@ -62,10 +62,18 @@ def get_counter_clockwise_angle(a, b) -> float:
 class DivideAndConquer:
     """Visualise the divide-and-conquer algorithm for Delaunay triangulation.
 
-    The class operates on a :class:`TriangleManim2DMesh` that has already
+    The class operates on a :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh` that has already
     been added to a scene and contains only vertices (no faces yet).  It
     animates the recursive splitting, triangulation of base cases, and
     merging steps described by Guibas and Stolfi.
+
+    Parameters
+    ----------
+    scene : m.Scene
+        The scene in which the triangulation will be animated.
+    triangle_mesh : TriangleManim2DMesh
+        A triangle mesh containing only vertices (no faces) that has
+        already been added to *scene*.
 
     Algorithm based on http://www.geom.uiuc.edu/~samuelp/del_project.html
 
@@ -93,16 +101,7 @@ class DivideAndConquer:
     """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:
-        """Initialise the divide-and-conquer visualisation helper.
-
-        Parameters
-        ----------
-        scene : m.Scene
-            The scene in which the triangulation will be animated.
-        triangle_mesh : TriangleManim2DMesh
-            A triangle mesh containing only vertices (no faces) that has
-            already been added to *scene*.
-        """
+        """Initialise the divide-and-conquer visualisation helper."""
         self.scene: m.Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
@@ -236,7 +235,7 @@ class DivideAndConquer:
     def _left_candidate(self, base_lr, ll_edges, speed: float = 1.0):
         """Find the best left-side candidate vertex for the merge step.
 
-        Mirror of :meth:`_right_candidate` for the left side.  Evaluates
+        Mirror of :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate` for the left side.  Evaluates
         left-side vertices connected to the base edge and returns the
         first one satisfying the Incircle criterion, removing conflicting
         LL edges when necessary.
@@ -288,7 +287,7 @@ class DivideAndConquer:
         """Merge two Delaunay-triangulated vertex sets into a combined triangulation.
 
         The method removes the split separator line, locates the base edge
-        between the two sets via :meth:`_find_base_lr`, and iteratively
+        between the two sets via :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._find_base_lr`, and iteratively
         adds new triangles by selecting the best left/right candidates
         until the merge is complete.
 
@@ -299,7 +298,7 @@ class DivideAndConquer:
         indices_right : list of int
             Indices of the vertices in the right set.
         split_line : m.DashedLine
-            The separator line drawn during :meth:`split_points`; it is
+            The separator line drawn during :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points`; it is
             removed as part of the merge animation.
         speed : float, optional
             Animation speed multiplier.

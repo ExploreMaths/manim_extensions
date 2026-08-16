@@ -18,9 +18,9 @@ __all__ = [
 class Ray(Line):
     """A light ray that can be refracted through lenses.
 
-    A ``Ray`` extends :class:`~manim.mobject.geometry.line.Line` with
-    refraction logic based on Snell's law.  When a list of :class:`Lens`
-    objects is passed to the constructor or :meth:`propagate`, the ray
+    A :class:`~manim_extensions.physics.optics.rays.Ray` extends :class:`~manim.mobject.geometry.line.Line` with
+    refraction logic based on Snell's law.  When a list of :class:`~manim_extensions.physics.optics.lenses.Lens`
+    objects is passed to the constructor or :meth:`~manim_extensions.physics.optics.rays.Ray.propagate`, the ray
     automatically bends as it passes through each lens surface.
 
     Parameters

@@ -10,6 +10,13 @@ from .layout import Layout
 class TreeNode:
     """Internal tree-node wrapper used by StandardLayout.
 
+    Parameters
+    ----------
+    height : float, optional
+        Height of the tree node. Defaults to ``0``.
+    width : float, optional
+        Width of the tree node. Defaults to ``0``.
+
     Examples
     --------
     .. manim:: TreeNodeExample
@@ -130,6 +137,17 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
 
 class StandardLayout(Layout):
     """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides.
+
+    Parameters
+    ----------
+    root : Any
+        Root node of the tree to lay out.
+    direction : LayoutDirection, optional
+        Primary layout direction. Defaults to ``LayoutDirection.LeftToRight``.
+    node_spacing : float, optional
+        Spacing between sibling nodes. Defaults to ``0.5``.
+    level_spacing : float, optional
+        Spacing between tree levels. Defaults to ``0.5``.
 
     Examples
     --------

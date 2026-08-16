@@ -8,10 +8,24 @@ class ManimState(State, VGroup):
 
     Parameters
     ----------
-    state
-        State instance that the Mobject is modelled from.
+    name : str
+        Name of the state (e.g. ``"q0"``).
+    x : float
+        X coordinate of the state in the automaton layout.
+    y : float
+        Y coordinate of the state in the automaton layout.
+    animation_style : dict
+        Styling configuration for state and transition animations.
+    initial : bool, optional
+        If ``True``, mark this state as the initial state.
+    final : bool, optional
+        If ``True``, mark this state as a final (accepting) state.
+    scaling : float, optional
+        Coordinate-scaling factor applied to the state position.
+    id : int, optional
+        Numeric identifier matching the JFLAP XML state id.
     **kwargs
-        Key words arguments for the VGroup.
+        Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Attributes
     ----------

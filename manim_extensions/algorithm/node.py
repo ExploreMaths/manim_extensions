@@ -12,14 +12,14 @@ class NodeConfig:
     """Default visual settings shared by algorithm nodes.
 
     These class attributes hold the default visual configuration that every
-    :class:`Node` (and the data structures built on top of it) reads when an
+    :class:`~manim_extensions.mindmap.nodes.node.Node` (and the data structures built on top of it) reads when an
     argument is not supplied explicitly.  Changing an attribute here changes the
     default appearance of *all* subsequently created nodes, which is the natural
     way to switch the overall look of an algorithm scene.
 
     .. rubric:: See Also
 
-    :class:`Node`
+    :class:`~manim_extensions.mindmap.nodes.node.Node`
 
     Examples
     --------
@@ -99,14 +99,16 @@ class Node(VMobject):
     text_scale : float, optional
         Scale factor applied to the displayed text. Defaults to ``1.0``.
     box_type : type, optional
-        Shape used for the node box. Must be ``Square`` or ``Circle``.
+        Shape used for the node box. Must be :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
     box_color : ManimColor, optional
         Fill color of the node box. Defaults to ``WHITE``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
     Raises
     ------
     ValueError
-        Raised when the provided ``box_type`` is not ``Square`` or ``Circle``.
+        Raised when the provided ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
 
     Examples
     --------
@@ -151,10 +153,10 @@ class Node(VMobject):
         Parameters
         ----------
         box_type : type
-            Box shape, either :class:`~manim.mobject.geometry.Square`
-            or :class:`~manim.mobject.geometry.Circle`.
+            Box shape, either :class:`~manim.mobject.geometry.polygram.Square`
+            or :class:`~manim.mobject.geometry.arc.Circle`.
         width : float
-            Width of the box (diameter for ``Circle``).
+            Width of the box (diameter for :class:`~manim.mobject.geometry.arc.Circle`).
         color : ManimColor
             Fill colour applied to the box.
 
@@ -166,7 +168,7 @@ class Node(VMobject):
         Raises
         ------
         ValueError
-            If *box_type* is not ``Square`` or ``Circle``.
+            If *box_type* is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
         """
         if hasattr(self, 'box'):
             self.remove(self.box)
@@ -240,16 +242,16 @@ class Node(VMobject):
         """Return a point on the node's boundary at the given slot index.
 
         The slot numbering scheme divides each edge of the box into
-        :attr:`NodeSolt.SPLIT_PARTS` (12) equal segments, numbered
-        clockwise from ``0`` to ``SPLIT_PARTS``.  For circular boxes
+        :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS` (12) equal segments, numbered
+        clockwise from ``0`` to :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS`.  For circular boxes
         the same mapping is applied to the corresponding quarter-arc.
 
         Parameters
         ----------
         direction : Vector3D
-            One of ``LEFT``, ``RIGHT``, ``UP``, or ``DOWN``.
+            One of :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`, or :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
         index : int
-            Slot number in the range ``0`` to ``SPLIT_PARTS``.
+            Slot number in the range ``0`` to :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS`.
 
         Returns
         -------
@@ -302,13 +304,13 @@ class Node(VMobject):
         Parameters
         ----------
         *nodes : Node
-            One or more :class:`Node` instances to highlight.
+            One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to highlight.
         color : ManimColor, optional
             Fill color used for highlighting. Defaults to
-            :attr:`NodeConfig.SELECT_COLOR` (``RED``).
+            :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_COLOR` (``RED``).
         opacity : float, optional
             Opacity applied to the highlight color. Defaults to
-            :attr:`NodeConfig.SELECT_OPACITY` (``0.5``).
+            :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_OPACITY` (``0.5``).
 
         Examples
         --------
@@ -346,7 +348,7 @@ class Node(VMobject):
         Parameters
         ----------
         *nodes : Node
-            One or more :class:`Node` instances to unselect.
+            One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to unselect.
 
         Examples
         --------
@@ -369,7 +371,7 @@ class Node(VMobject):
             """Clear the highlight from one or more nodes.
 
             Restores each node's original fill colour with zero opacity,
-            effectively undoing a previous :class:`Select` animation.
+            effectively undoing a previous :class:`~manim_extensions.algorithm.node.Node.Select` animation.
             """
             super().__init__(AnimationGroup(*[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]), **kwargs)
 
@@ -456,7 +458,7 @@ class Node(VMobject):
     class CopyAndOverWrite(Succession):
         """Copy a node into a target location and overwrite its value.
 
-        Unlike :class:`MoveAndOverWrite`, the source node remains in place:
+        Unlike :class:`~manim_extensions.algorithm.node.Node.MoveAndOverWrite`, the source node remains in place:
         a copy is created, animated to the target, and then used to
         overwrite the target's value before fading out.
 

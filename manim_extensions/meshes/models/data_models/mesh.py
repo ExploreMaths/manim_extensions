@@ -19,6 +19,25 @@ from manim_extensions.meshes.types import Edge, VarArray, Vertex, Vertices, Face
 class Mesh:
     """Basic mesh structure based on vertices and faces. For 3D objects parts is additionally used.
 
+    Faces and parts are stored as :class:`~manim_extensions.meshes.types.VarArray` objects so that
+    each entry may contain a variable number of elements (e.g. a mix
+    of triangles and quadrilaterals).
+
+    Parameters
+    ----------
+    vertices : array-like
+        List of vertices, all with the same dimensionality
+        (shape ``[N, d]``).
+    faces : 2D array-like or None
+        List of faces, each face being a list of vertex indices.
+        Entries may have different lengths.
+    parts : 2D array-like or None, optional
+        List of parts (3D objects), each part being a list of face
+        indices. Cannot be set when *faces* is ``None``.
+    dangling : bool, optional
+        If ``True``, check and warn about dangling vertices and faces
+        after initialisation. Defaults to ``False``.
+
     Examples
     --------
     .. manim:: MeshExample
@@ -39,33 +58,7 @@ class Mesh:
     @dangling_vert_decorator()
     @dangling_face_decorator()
     def __init__(self, vertices, faces, parts=None, dangling: bool = False):
-        """Initialize mesh with the correct internal structure for all variables.
-
-        Faces and parts are stored as :class:`VarArray` objects so that
-        each entry may contain a variable number of elements (e.g. a mix
-        of triangles and quadrilaterals).
-
-        Parameters
-        ----------
-        vertices : array-like
-            List of vertices, all with the same dimensionality
-            (shape ``[N, d]``).
-        faces : 2D array-like or None
-            List of faces, each face being a list of vertex indices.
-            Entries may have different lengths.
-        parts : 2D array-like or None
-            List of parts (3D objects), each part being a list of face
-            indices.  Cannot be set when *faces* is ``None``.
-        dangling : bool, optional
-            If ``True``, check and warn about dangling vertices and faces
-            after each operation (default ``False``).
-
-        Raises
-        ------
-        InvalidMeshException
-            If *faces* or *parts* have incorrect nested structure, or
-            if *parts* is provided without *faces*.
-        """
+        """Initialize mesh with the correct internal structure for all variables."""
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
             raise InvalidMeshException("Faces have to be twice nested enumerates.")
@@ -107,7 +100,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`Mesh`.
+            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             self.add_to_mesh(other)
@@ -130,7 +123,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`Mesh`.
+            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             self.add_to_mesh(other)
@@ -157,7 +150,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`Mesh`.
+            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
 
         def replace_part_ids_with_vertex_ids(parts: Parts, faces: Faces, vertices: Vertices) -> VarArray:
@@ -234,7 +227,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`Mesh`.
+            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             return not self.__eq__(other)
@@ -946,15 +939,15 @@ class Mesh:
         ----------
         grid_sizes : tuple of float
             Grid resolution in every axis direction (length must equal
-            :attr:`dim`).
+            :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
         threshold : tuple of float
             Maximum allowed movement per axis to snap into the next grid
-            position (length must equal :attr:`dim`).
+            position (length must equal :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
         steps : int, optional
             Number of intermediate steps to the grid position (useful for
             animations).  Must be positive.
         update_verts : bool, optional
-            If ``True``, :attr:`_vertices` is updated in-place and
+            If ``True``, :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh._vertices` is updated in-place and
             duplicates are removed.
         precision : int, optional
             Decimal places used for rounding the result (default ``10``).
@@ -1084,7 +1077,7 @@ class Mesh:
         Parameters
         ----------
         precision : int, optional
-            Decimal places passed to :meth:`remove_duplicate_vertices`
+            Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`
             (default ``10``).
         """
         self.remove_duplicate_vertices(precision=precision)

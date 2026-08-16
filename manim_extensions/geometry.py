@@ -35,9 +35,9 @@ def CircleInt(
 
     Parameters
     ----------
-    circle1 : :class:`~manim.mobject.geometry.Circle`
+    circle1 : :class:`~manim.mobject.geometry.arc.Circle`
         The first circle.
-    circle2 : :class:`~manim.mobject.geometry.Circle`
+    circle2 : :class:`~manim.mobject.geometry.arc.Circle`
         The second circle.
 
     Returns
@@ -95,9 +95,9 @@ def LineCircleInt(
 
     Parameters
     ----------
-    line : :class:`~manim.mobject.geometry.Line`
+    line : :class:`~manim.mobject.geometry.line.Line`
         The line segment.
-    circle : :class:`~manim.mobject.geometry.Circle`
+    circle : :class:`~manim.mobject.geometry.arc.Circle`
         The circle.
 
     Returns
@@ -164,9 +164,9 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
 
     Parameters
     ----------
-    line1 : :class:`~manim.mobject.geometry.Line`
+    line1 : :class:`~manim.mobject.geometry.line.Line`
         The first line.
-    line2 : :class:`~manim.mobject.geometry.Line`
+    line2 : :class:`~manim.mobject.geometry.line.Line`
         The second line.
 
     Returns
@@ -237,9 +237,9 @@ def LineArcInt(
 
     Parameters
     ----------
-    line : :class:`~manim.mobject.geometry.Line`
+    line : :class:`~manim.mobject.geometry.line.Line`
         The line segment.
-    arc : :class:`~manim.mobject.geometry.Arc`
+    arc : :class:`~manim.mobject.geometry.arc.Arc`
         The arc.
 
     Returns
@@ -363,10 +363,10 @@ def LineArcInt(
 def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
     """Compute all intersection points between two mobjects.
 
-    Exact formulas are used for ``Circle``, ``Line`` and ``Arc`` combinations.
-    For arbitrary ``VMobject`` instances, the boundary is approximated by a
+    Exact formulas are used for :class:`~manim.mobject.geometry.arc.Circle`, :class:`~manim.mobject.geometry.line.Line` and :class:`~manim.mobject.geometry.arc.Arc` combinations.
+    For arbitrary :class:`~manim.mobject.types.vectorized_mobject.VMobject` instances, the boundary is approximated by a
     polygonal chain and segment–segment intersections are reported.  Groups and
-    ``VGroup`` instances are processed recursively over their submobjects.
+    :class:`~manim.mobject.types.vectorized_mobject.VGroup` instances are processed recursively over their submobjects.
 
     Parameters
     ----------

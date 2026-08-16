@@ -8,7 +8,7 @@ class ManimTuringMachine(VGroup):
 
         This class is a placeholder.  The Turing machine visualisation has
         not been implemented yet.  Instantiating it raises
-        :class:`NotImplementedError`.
+        :class:`~builtins.NotImplementedError`.
 
     Examples
     --------

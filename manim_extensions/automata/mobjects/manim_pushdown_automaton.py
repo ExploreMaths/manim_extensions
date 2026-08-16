@@ -11,8 +11,43 @@ from .manim_automaton_input import ManimAutomataInput
 
 from typing import Union
 
+pushdown_automaton_json = {
+    'structure': {
+        'type': 'pda',
+        'automaton': {
+            'state': [
+                {'@id': '0', '@name': 'q0', 'x': '84.0', 'y': '122.0', 'initial': None},
+                {'@id': '1', '@name': 'q1', 'x': '218.0', 'y': '175.0'},
+                {'@id': '2', '@name': 'q2', 'x': '386.0', 'y': '131.0', 'final': None},
+                {'@id': '3', '@name': 'q3', 'x': '227.0', 'y': '36.0'}
+            ],
+            'transition': [
+                {'from': '0', 'to': '1', 'read': '0', 'pop': 'Z', 'push': 'XZ'},
+                {'from': '0', 'to': '1', 'read': '1', 'pop': 'Z', 'push': 'XZ'},
+                {'from': '2', 'to': '3', 'read': '0', 'pop': 'X', 'push': ''},
+                {'from': '1', 'to': '2', 'read': '1', 'pop': 'X', 'push': 'XX'},
+                {'from': '3', 'to': '0', 'read': '1', 'pop': 'X', 'push': ''},
+                {'from': '3', 'to': '0', 'read': '0', 'pop': 'X', 'push': ''}
+            ]
+        }
+    }
+}
+
 class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
     """Pushdown automaton that also tracks a stack during simulation.
+
+    Parameters
+    ----------
+    json_template : dict, optional
+        JSON dictionary describing the automaton states and transitions.
+    xml_file : str, optional
+        Path to an XML file (e.g. JFLAP format) describing the automaton.
+    camera_follow : bool, optional
+        If ``True``, the camera follows the active state during playback.
+    animation_style : dict, optional
+        Style configuration for state and transition animations.
+    **kwargs
+        Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
@@ -32,6 +67,8 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
 
     def __init__(self, json_template: dict[str, object] | None = None, xml_file: str | None = None, camera_follow: bool = False, animation_style: dict[str, object] | None = None, **kwargs: object) -> None:
         """Initialize the ManimPushDownAutomaton instance."""
+        if json_template is None and xml_file is None:
+            json_template = pushdown_automaton_json
         super().__init__(json_template, xml_file, camera_follow, animation_style, **kwargs)
         #initialise stack - Z is the bottom stack symbol
         self.stack = ["Z"]
@@ -54,14 +91,13 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
             dictionary key."""
             state_key = (transition['from'], transition['to'])
             
-            transition_group = transition_counter.setdefault(state_key, [])#if key doesn't exist then create new key list pair
+            transition_group = transition_counter.setdefault(state_key, [])
 
-            #if symbol already exists then skip
-            # if transition['read'] not in transition_group:
-            #     transition_group.append(transition['read']) #append transition read value to transition[state_key]
-
-            #create a pushdown automaton rule
-            rule = PushDownAutomatonRule(transition['read'], transition['pop'], transition['push'])
+            rule = PushDownAutomatonRule(
+                transition.get('read'),
+                transition.get('pop', ''),
+                transition.get('push', ''),
+            )
 
             transition_group.append(rule)
 
@@ -216,6 +252,17 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
 
 class PushDownAutomatonRule():
     """A single pushdown-automaton transition rule.
+
+    Parameters
+    ----------
+    read_symbol : str
+        Input symbol consumed by this rule.
+    pop : str
+        Symbol popped from the stack.
+    push : str
+        Symbol pushed onto the stack.
+    empty_transition : str, optional
+        Symbol used when ``read_symbol`` is ``None``.  Defaults to ``"\\epsilon"``.
 
     Examples
     --------

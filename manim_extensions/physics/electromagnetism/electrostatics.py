@@ -127,7 +127,7 @@ class ElectricField(ArrowVectorField):
         charges
             The charges affecting the electric field.
         kwargs
-            Additional parameters to be passed to ``ArrowVectorField``.
+            Additional parameters to be passed to :class:`~manim.mobject.vector_field.ArrowVectorField`.
 
     Examples
     --------

@@ -17,10 +17,10 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``Mesh`` data model for mesh topology and operations.
-- ``ManimMesh`` / ``Manim2DMesh`` for mesh rendering.
-- ``TriangleManim2DMesh`` for triangle-based geometric structures.
-- ``FastManimMesh`` for faster scene rendering when available.
+- :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` data model for mesh topology and operations.
+- :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` / :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` for mesh rendering.
+- :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh` for triangle-based geometric structures.
+- :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh` for faster scene rendering when available.
 - Delaunay and Voronoi-related tooling in the bundled mesh utilities.
 
 Quick start
@@ -53,7 +53,7 @@ or combine meshes before rendering.
 
 .. note::
 
-   The manim-side renderers (``ManimMesh`` and the 2D / triangle / OpenGL
+   The manim-side renderers (:class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` and the 2D / triangle / OpenGL
    variants) require the optional ``colour`` and ``moderngl`` dependencies.  When
    those are not installed, the :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`
    data model is still fully importable and usable for computing mesh structures.

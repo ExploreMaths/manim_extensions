@@ -17,9 +17,9 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- ``SeqActor`` – participant or lifeline object.
-- ``SeqObject`` – object or system boundary in the sequence.
-- ``SeqAction`` – action or message entry in the timeline.
+- :class:`~manim_extensions.sequence_diagram.seq_actor.SeqActor` – participant or lifeline object.
+- :class:`~manim_extensions.sequence_diagram.seq_object.SeqObject` – object or system boundary in the sequence.
+- :class:`~manim_extensions.sequence_diagram.seq_action.SeqAction` – action or message entry in the timeline.
 - simple composition for actor-to-actor communication flows.
 - diagrams for software engineering and protocol explanations.
 
@@ -52,7 +52,6 @@ A simple sequence diagram scene
            actor = SeqActor("User")
            obj = SeqObject("Service")
            self.add(actor, obj)
-           self.wait(0.5)
 
 This library is especially useful when explaining:
 

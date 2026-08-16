@@ -14,6 +14,14 @@ class VoronoiDelaunay:
     """Class providing methods to visualize the voronoi diagram of a 2D point set and its dual
     delaunay triangulation
 
+    Parameters
+    ----------
+    scene : m.Scene
+        The scene in which the Voronoi/Delaunay diagrams will be drawn.
+    triangle_mesh : TriangleManim2DMesh
+        A triangle mesh whose vertices are used to build the Voronoi
+        diagram. The mesh must already have been added to *scene*.
+
     Examples
     --------
     .. manim:: VoronoiDelaunayExample
@@ -38,16 +46,7 @@ class VoronoiDelaunay:
 """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:
-        """Initialise the Voronoi-Delaunay visualisation helper.
-
-        Parameters
-        ----------
-        scene : m.Scene
-            The scene in which the Voronoi/Delaunay diagrams will be drawn.
-        triangle_mesh : TriangleManim2DMesh
-            A triangle mesh whose vertices are used to build the Voronoi
-            diagram. The mesh must already have been added to *scene*.
-        """
+        """Initialise the Voronoi-Delaunay visualisation helper."""
         self.scene: m.Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
         verts = self.triangle_mesh.mesh.get_3d_vertices()
@@ -57,7 +56,7 @@ class VoronoiDelaunay:
         """Build the Voronoi diagram for the mesh vertices and return it as Manim groups.
 
         The diagram is constructed from the :class:`scipy.spatial.Voronoi`
-        computation stored in :attr:`voronoi`.  Both finite and infinite
+        computation stored in :attr:`~manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.voronoi`.  Both finite and infinite
         ridge segments are converted to :class:`~manim.mobject.geometry.line.Line`
         objects, and Voronoi vertices become :class:`~manim.mobject.geometry.arc.Dot`
         objects.

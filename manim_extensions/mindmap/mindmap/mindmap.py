@@ -120,7 +120,7 @@ class MindMap(AbstractMap):
 
 class TimeLine(AbstractMap):
     r"""
-    Timeline: data format is the same as :class:`MindMap`.
+    Timeline: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
     ----------
@@ -220,7 +220,7 @@ class TimeLine(AbstractMap):
 
 class StandardMap(AbstractMap):
     r"""
-    Two-sided mind map: data format is the same as :class:`MindMap`.
+    Two-sided mind map: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
     ----------
@@ -318,7 +318,7 @@ class StandardMap(AbstractMap):
 
 class CatalogMap(AbstractMap):
     r"""
-    Catalog / organisation-chart: data format is the same as :class:`MindMap`,
+    Catalog / organisation-chart: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`,
     layout direction is downwards.
 
     Parameters
