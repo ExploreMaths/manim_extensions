@@ -31,7 +31,7 @@ v1.0.4 (Unreleased)
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
 * Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
-  (converted bare ``LEFT``, ``DOWN``, and ``LayoutDirection.LeftToRight``
+  (:attr:`~manim.constants.LEFT`, :attr:`~manim.constants.DOWN`, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
   inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
   in TikZ docstrings, and CJK font detection on Linux.

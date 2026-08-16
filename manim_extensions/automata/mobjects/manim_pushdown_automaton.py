@@ -293,8 +293,8 @@ class PushDownAutomatonRule():
         self.pop = pop
         self.push = []
 
-        if push is None:
-            self.push = empty_transition
+        if not push:
+            self.push = [empty_transition]
         else:
             for push_item in push:
                 self.push.append(push_item)
