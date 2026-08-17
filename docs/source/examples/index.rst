@@ -29,7 +29,7 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            line = Line(LEFT * 3, RIGHT * 3)
            self.add(line)
-           self.add(MathTexLine(MathTex("y = x"), direction=UP, color=BLUE).next_to(line, UP, buff=1.0))
+           self.add(MathTexLine(MathTex("y = x"), direction=UP, color=BLUE).next_to(line, UP*2, buff=1.0))
            self.add(MathTexBrace(line, MathTex(r"\Delta x"), direction=UP))
            self.add(MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0))
 

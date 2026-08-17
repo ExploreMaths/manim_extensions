@@ -1,8 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2024 Manim Community
-SPDX-FileCopyrightText: 2026 ExploreMaths
-SPDX-License-Identifier: MIT
--->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <rect width="100" height="100" rx="14" fill="#ffffff"/>
   <g transform="translate(-46, 5) scale(1.2)">

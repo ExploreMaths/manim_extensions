@@ -1,8 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2026 ExploreMaths
- * SPDX-License-Identifier: MIT
- */
-
 window.addEventListener("load", function () {
     const diagrams = document.querySelectorAll("object.inheritance.graphviz");
 

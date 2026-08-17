@@ -1,11 +1,6 @@
-﻿<!--
-SPDX-FileCopyrightText: 2026 ExploreMaths
-SPDX-License-Identifier: MIT
--->
+﻿<div align="center">
 
-<div align="center">
-
-# Manim Extensions
+# <img src="docs/source/_static/favicon.svg" align="top" width=45> Manim Extensions
 
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 

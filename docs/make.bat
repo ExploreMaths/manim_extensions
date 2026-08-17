@@ -1,6 +1,3 @@
-REM SPDX-FileCopyrightText: 2026 ExploreMaths
-REM SPDX-License-Identifier: MIT
-
 @ECHO OFF
 
 pushd %~dp0
