@@ -238,14 +238,6 @@ SPDX-FileCopyrightText = [
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "docs/source/_static/manim-binder.min.js.LICENSE.txt"
-SPDX-FileCopyrightText = [
-    "2014-2017 Jon Schlinkert",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
 path = "docs/source/conf.py"
 SPDX-FileCopyrightText = [
     "2026 ExploreMaths"
