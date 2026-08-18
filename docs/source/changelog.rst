@@ -72,6 +72,17 @@ v1.0.4 (Unreleased)
   by adjusting scales, shifts, and using ``scale_to_fit_width()``.
 * Removed gray text / titles from :class:`~manim_extensions.compass.scene.compass_scene.CompassExample`
   and ensured all geometry elements are centered.
+* Fixed ``check_redundant_imports.py`` false positives: no longer flags
+  explicitly-imported names (e.g. ``ConvertToOpenGL``) when ``from manim import *``
+  is absent and those names are not covered by star exports.
+* Fixed ``validate_refs.py`` false positives: separated project class map
+  (``manim_extensions``) from installed ``manim`` so that manim-internal names
+  like ``Code`` no longer trigger inline-code suggestions in changelog/docs.
+* Fixed ``flake8-unused-imports`` CI job by correcting the ``--exclude``
+  glob pattern (``*__init__.py*``) so that all ``__init__.py`` files are
+  properly excluded from the F401 check.
+* Added SPDX license header to ``CONTRIBUTING.md`` to restore REUSE 3.3
+  compliance.
 
 v1.0.3
 ------
