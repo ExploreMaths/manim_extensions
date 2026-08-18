@@ -4,13 +4,16 @@
 
 
 from typing import List, TypeAlias
+
 from manim import *
-from manim.typing import ManimFloat, Point3D, Vector3D
-from manim.utils.color import ManimColor
+from manim.typing import ManimFloat, Point3D as ManimPoint3D
+from manim.typing import Vector3DLike
 from .utils.numpy_helper import NumpyHelper
 
 NodeValue: TypeAlias = str | int | float | None
 NodeBoxType: TypeAlias = type[Square] | type[Circle]
+Vector3D: TypeAlias = Vector3DLike
+Point3D: TypeAlias = ManimPoint3D
 
 
 class NodeConfig:
@@ -64,7 +67,7 @@ class NodeSolt:
                node = Node("A")
                self.add(node)
                direction, _ = NodeSolt.DOWN_MID
-               tip = Dot(node.get_critical_point(direction), color=YELLOW)
+               tip = Dot(node.get_critical_point(direction), color=PURE_YELLOW)
                self.add(tip)
     """
 
@@ -126,7 +129,7 @@ class Node(VMobject):
        class NodeExample(Scene):
            def construct(self):
                square_node = Node("42")
-               circle_node = Node("?", box_type=Circle, box_color=YELLOW)
+               circle_node = Node("?", box_type=Circle, box_color=PURE_YELLOW)
                empty_node = Node(None, box_color=BLUE)
                group = VGroup(square_node, circle_node, empty_node).arrange(RIGHT, buff=1)
                self.add(group)
@@ -329,7 +332,7 @@ class Node(VMobject):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
                    self.add(a, b)
-                   self.play(Node.Select(a, b, color=YELLOW, opacity=0.6))
+                   self.play(Node.Select(a, b, color=PURE_YELLOW, opacity=0.6))
                    self.wait(0.5)
         """
 

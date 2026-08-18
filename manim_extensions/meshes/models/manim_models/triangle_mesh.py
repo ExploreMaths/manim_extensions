@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""2D triangle manim mesh with functionality useful for delaunay meshes."""
 
-"""
-2D triangle manim mesh with functionality useful for delaunay meshes
-"""
+from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+
 # python imports
 # third-party imports
 import manim as m
-from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 # local imports
 from manim_extensions.meshes.exceptions import InvalidMeshException

@@ -3,22 +3,13 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'CompassScene'
 ]
 # from manim import *
 from typing import List
 
-from manim.mobject.geometry.line import Line
-from manim.mobject.geometry.arc import Arc
-from manim.mobject.types.point_cloud_mobject import Point
-from manim.animation.animation import Animation
-from manim.animation.composition import AnimationGroup
-from manim.animation.rotation import Rotate
-from manim.animation.creation import Create
-from manim.scene.moving_camera_scene import MovingCameraScene
-from manim.utils.rate_functions import linear
-from manim.utils.color.manim_colors import YELLOW
 from manim.constants import *
 
 from ..compass import Compass,Ruler,Pencil
@@ -35,7 +26,6 @@ class CompassScene(MovingCameraScene):
     Examples
     --------
     .. manim:: CompassSceneExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.compass import CompassScene
@@ -321,7 +311,7 @@ class CompassScene(MovingCameraScene):
         end: Point | None = None,
         run_time: float = 1.0,
         with_pencil: bool = True,
-        color: object = YELLOW,
+        color: object = PURE_YELLOW,
         **kwargs: object,
     ) -> Line:
         """Draw a straight line using the ruler and pencil.

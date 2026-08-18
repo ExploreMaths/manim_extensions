@@ -84,7 +84,7 @@ points, so you can use them with any Manim mobject:
    class QuickstartGeometry(Scene):
        def construct(self):
            line = Line(LEFT * 3, RIGHT * 3)
-           perp = PerpendicularLine(UP * 1.5, line, color=YELLOW)
+           perp = PerpendicularLine(UP * 1.5, line, color=PURE_YELLOW)
            self.add(line, perp)
 
 Animations

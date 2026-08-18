@@ -45,9 +45,6 @@ class ChineseMathTex(MathTex):
     ``xelatex`` with the ``xeCJK`` package so that CJK fonts are rendered
     correctly.
 
-    .. inheritance-diagram:: manim_extensions.mobjects.ChineseMathTex
-       :parts: 1
-
     Parameters
     ----------
     *texts : str
@@ -133,9 +130,6 @@ class LabelDot(VGroup):
     Creates a :class:`~manim.mobject.geometry.arc.Dot` at the given position and places a
     :class:`~manim.mobject.text.tex_mobject.MathTex` label next to it.
 
-    .. inheritance-diagram:: manim_extensions.mobjects.LabelDot
-       :parts: 1
-
     Parameters
     ----------
     dot_label : str
@@ -208,9 +202,6 @@ class MathTexLine(VGroup):
     Creates a :class:`~manim.mobject.geometry.line.Line` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
-    .. inheritance-diagram:: manim_extensions.mobjects.MathTexLine
-       :parts: 1
-
     Parameters
     ----------
     formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
@@ -255,9 +246,6 @@ class MathTexBrace(VGroup):
 
     Creates a :class:`~manim.mobject.svg.brace.Brace` around a target mobject and places a
     :class:`~manim.mobject.text.tex_mobject.MathTex` formula next to the brace.
-
-    .. inheritance-diagram:: manim_extensions.mobjects.MathTexBrace
-       :parts: 1
 
     Parameters
     ----------
@@ -309,9 +297,6 @@ class MathTexDoublearrow(VGroup):
     Creates a :class:`~manim.mobject.geometry.line.DoubleArrow` and places a :class:`~manim.mobject.text.tex_mobject.MathTex`
     formula next to it in the specified direction.
 
-    .. inheritance-diagram:: manim_extensions.mobjects.MathTexDoublearrow
-       :parts: 1
-
     Parameters
     ----------
     formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
@@ -357,9 +342,6 @@ class PerpendicularLine(Line):
 
     Computes the foot of the perpendicular from *point* onto *line* and
     creates a :class:`~manim.mobject.geometry.line.Line` from *point* to that foot.
-
-    .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularLine
-       :parts: 1
 
     Parameters
     ----------
@@ -436,10 +418,8 @@ class ExtendedLine(Line):
 
     Takes an existing :class:`~manim.mobject.geometry.line.Line` and extends it by
     *extend_distance* along its original direction on both sides.
-    The style of the original line is preserved.
-
-    .. inheritance-diagram:: manim_extensions.mobjects.ExtendedLine
-       :parts: 1
+    The style (color, stroke width, etc.) of the original line is automatically
+    copied via :meth:`~manim.mobject.types.vectorized_mobject.VMobject.match_style`.
 
     Parameters
     ----------
@@ -447,8 +427,6 @@ class ExtendedLine(Line):
         The original line segment to extend.
     extend_distance : float
         Distance to extend at each end.
-    **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
 
     Examples
     --------
@@ -461,23 +439,23 @@ class ExtendedLine(Line):
        class ExtendedLineDocExample(Scene):
            def construct(self):
                base = Line(LEFT, RIGHT, color=BLUE)
-               extended = ExtendedLine(base, extend_distance=1.0, color=RED)
+               extended = ExtendedLine(base, extend_distance=1.0)
                self.add(base, extended)
     """
 
-    def __init__(self, line: Line, extend_distance: float, **kwargs) -> None:
+    def __init__(self, line: Line, extend_distance: float) -> None:
         """Initialize the ExtendedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
         vector_length = np.linalg.norm(direction_vector)
         if vector_length < 1e-8:
-            super().__init__(start_point, end_point, **kwargs)
+            super().__init__(start_point, end_point)
         else:
             unit_direction_vector = direction_vector / vector_length
             new_start_point = start_point - extend_distance * unit_direction_vector
             new_end_point = end_point + extend_distance * unit_direction_vector
-            super().__init__(new_start_point, new_end_point, **kwargs)
+            super().__init__(new_start_point, new_end_point)
         self.match_style(line)
 
 
@@ -487,9 +465,6 @@ class PerpendicularSign(VGroup):
     Draws a small L‑shaped corner at the intersection of two lines to
     indicate that they are perpendicular.  The sign consists of two short
     line segments.
-
-    .. inheritance-diagram:: manim_extensions.mobjects.PerpendicularSign
-       :parts: 1
 
     Parameters
     ----------
@@ -688,9 +663,6 @@ class FileTree(Code):
     performed by dynamically slicing each line based on physical coordinates,
     compatible with Manim 0.19.1 (spaces have no submobjects).
 
-    .. inheritance-diagram:: manim_extensions.mobjects.FileTree
-       :parts: 1
-
     Parameters
     ----------
     tree_dict : dict[str, dict | None]
@@ -843,9 +815,6 @@ class CropImageMobject(ImageMobject):
 
     Accepts a file path, a NumPy array, or a PIL image as input.
 
-    .. inheritance-diagram:: manim_extensions.mobjects.CropImageMobject
-       :parts: 1
-
     Parameters
     ----------
     filename_or_array : Union[str, numpy.ndarray, :class:`~PIL.Image.Image`]
@@ -922,9 +891,6 @@ class VideoMobject(ImageMobject):
 
     The video can be looped, rate-changed, and controlled with ``play``,
     ``pause``, ``stop``, ``seek``, and ``reset``.
-
-    .. inheritance-diagram:: manim_extensions.mobjects.VideoMobject
-       :parts: 1
 
     Parameters
     ----------

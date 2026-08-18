@@ -86,9 +86,6 @@ class TypeWriter(Animation):
 
 import random
 
-from manim.animation.transform import Restore
-from manim.utils.bezier import interpolate
-from manim.utils.rate_functions import smooth, linear, rush_into
 
 
 # --- Rate functions ------------------------------------------------

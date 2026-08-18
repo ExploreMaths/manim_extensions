@@ -26,10 +26,8 @@ Examples
            self.wait(8)
 """
 
+from manim import *
 from manim.utils.color import *
-from manim.constants import ORIGIN
-from manim.mobject.mobject import Mobject
-from manim.mobject.types.vectorized_mobject import VMobject
 import numpy as np
 from .cubie import Cubie
 import kociemba

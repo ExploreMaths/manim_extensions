@@ -2,19 +2,19 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Manim models for mesh objects.
 
+Contains a 3D and a 2D version. Additionally there is the mesh for only
+triangles in triangle_mesh.py.
 """
-manim models for mesh objects
-contains a 3D and a 2D version
 
-additionally there is the mesh for only triangles in triangle_mesh.py
-"""
+from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+
 # python imports
 import copy
 from typing import List, Tuple
 # third-party imports
 import manim as m
-from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 # local imports
 from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException, InvalidMeshException, InvalidShapeException

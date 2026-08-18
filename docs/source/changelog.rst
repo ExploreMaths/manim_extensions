@@ -7,8 +7,24 @@ Changelog
 v1.0.4 (Unreleased)
 --------------------
 
+**Added**
+
+* Added :func:`~manim_extensions.geometry.ArcInt` to the Basic geometry module
+  and its documentation in ``geometry.rst`` for computing arc-arc intersections.
+* Added ``reuse-lint`` and ``flake8-unused-imports`` jobs to the GitHub Actions
+  workflow for license compliance and unused import detection.
+
 **Changed**
 
+* Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (#FFFF00)
+  across the entire codebase (58 occurrences, 20 files), matching the original
+  bright yellow that Manim's ``YELLOW`` constant used to represent.
+* Simplified :class:`~manim_extensions.mobjects.ExtendedLine` by removing the
+  ``**kwargs`` parameter — the class now automatically copies the source line's
+  style via ``match_style()``; updated the docstring to document this behavior.
+* Removed all ``.. inheritance-diagram::`` directives from ``mobjects.py``
+  docstrings (previously present for 11 classes).
+* Updated documentation logo size to 208px width (matching Manim Community docs).
 * Updated documentation: added per-module index pages with individual ``:doc:``
   links in the main index (matching the :class:`~manim_extensions.compass.compass.compass.Compass` style), added inheritance
   diagrams for all bundled modules, and removed references to the deleted
@@ -22,6 +38,13 @@ v1.0.4 (Unreleased)
 * Added ``validate.yml`` GitHub Actions workflow with three separate jobs
   (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
   and their corresponding Python validation scripts.
+
+**Removed**
+
+* Deleted ``Code``, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
+  from the ``algorithm`` module (unused code block classes).
+* Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
+  (was only used by the deleted ``Code`` class).
 
 **Fixed**
 
@@ -40,6 +63,15 @@ v1.0.4 (Unreleased)
   in TikZ docstrings, and CJK font detection on Linux.
 * Fixed ``TypeError`` for ``str | None`` union syntax in Python 3.10–3.13
   environments by adding ``from __future__ import annotations``.
+* Fixed :func:`~manim_extensions.geometry.ArcInt` division-by-zero error for
+  concentric circles by adding a ``d <= 1e-9`` guard.
+* Fixed :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh`
+  ``AttributeError`` by initialising ``triangle_indices`` before ``super().__init__()``.
+* Fixed Example Gallery frame overflow and centering for multiple examples
+  (``CircuitExample``, ``GearboxExample``, ``NeuralNetworkExample``, etc.)
+  by adjusting scales, shifts, and using ``scale_to_fit_width()``.
+* Removed gray text / titles from :class:`~manim_extensions.compass.scene.compass_scene.CompassExample`
+  and ensured all geometry elements are centered.
 
 v1.0.3
 ------

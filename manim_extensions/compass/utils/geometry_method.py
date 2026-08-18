@@ -3,19 +3,17 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ =[
     "get_arc",
 ]
 import numpy as np
-from manim.mobject.geometry.arc import Arc
-from manim.constants import RIGHT
-from manim.utils.color.manim_colors import YELLOW
 
 def get_arc(
     niddle_pos: np.ndarray,
     pen_pos: np.ndarray,
     angle: float,
-    color: object = YELLOW,
+    color: object = PURE_YELLOW,
     **kwargs: object,
 ) -> Arc:
     """

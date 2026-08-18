@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-import json
 import xmltodict
 
 def parse_xml_file(file_name: str) -> dict[str, object]:

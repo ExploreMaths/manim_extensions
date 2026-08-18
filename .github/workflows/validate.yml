@@ -33,3 +33,29 @@ jobs:
       - uses: ./.github/actions/setup-manim-env
       - name: Run reference validator
         run: python workflow/validate_refs.py
+
+  validate-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+      - name: Run import style checker
+        run: python workflow/check_redundant_imports.py
+
+  reuse-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install reuse
+        run: pip install reuse
+      - name: Run reuse lint
+        run: reuse lint
+
+  flake8-unused-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install flake8
+        run: pip install flake8
+      - name: Check unused imports
+        run: flake8 manim_extensions --select F401 --exclude "__init__.py,test,examples"

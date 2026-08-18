@@ -2,25 +2,13 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import shutil
 import subprocess
 import platform
 
 import numpy as np
 import pytest
-from manim import (
-    MathTex,
-    VGroup,
-    Line,
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    ORIGIN,
-    RED,
-    Code,
-    ImageMobject,
-)
 from PIL import Image
 
 from manim_extensions.mobjects import (
@@ -335,7 +323,6 @@ class TestPerpendicularSign:
 
 # --- Ported from manim-kindergarten/manim_sandbox -------------------
 
-from manim import Text, Circle, Dot, tempconfig
 from manim_extensions.mobjects import (
     ColorText,
     Trail,

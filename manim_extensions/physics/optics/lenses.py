@@ -8,12 +8,7 @@
 from __future__ import annotations
 from typing import Iterable, Tuple
 
-from manim import config
-from manim.constants import LEFT, RIGHT
-from manim.mobject.geometry.arc import Circle
-from manim.mobject.geometry.boolean_ops import Difference, Intersection
-from manim.mobject.geometry.polygram import Square
-from manim.mobject.types.vectorized_mobject import VMobject, VectorizedPoint
+from manim import *
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 from shapely import geometry as gm

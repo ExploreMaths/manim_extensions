@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import Text, Animation
 
+from manim import *
 from manim_extensions.animations import TypeWriter
 
 
@@ -29,7 +29,6 @@ class TestTypeWriter:
 # --- Ported from manim-kindergarten/manim_sandbox -------------------
 
 import pytest
-from manim import Square, tempconfig
 
 from manim_extensions.animations import (
     easeInBounce,

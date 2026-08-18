@@ -4,14 +4,12 @@
 
 
 # from manim import *
+from manim import *
 __all__ = [
     'Pencil',
 ]
 from pathlib import Path
 
-from manim.mobject.svg.svg_mobject import SVGMobject
-from manim.mobject.geometry.line import Line
-from manim.constants import PI,ORIGIN
 
 class Pencil(SVGMobject):
     """Pencil mobject.

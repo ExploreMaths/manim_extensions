@@ -32,6 +32,11 @@ LineArcInt
 
 .. autofunction:: manim_extensions.geometry.LineArcInt
 
+ArcInt
+------
+
+.. autofunction:: manim_extensions.geometry.ArcInt
+
 MobjectInt
 ----------
 

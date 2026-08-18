@@ -2,9 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import Code as ManimCode
-
-from manim_extensions.algorithm import Array, Code, Node, NodeConfig, NodeSolt, PythonCode
+from manim import *
+from manim_extensions.algorithm import Array, Node, NodeConfig, NodeSolt
 
 
 def test_algorithm_objects_and_helpers():
@@ -22,9 +21,3 @@ def test_algorithm_objects_and_helpers():
     assert len(arr) == 3
     assert arr.values == [1, 2, 3]
     assert arr[1].get_value() == 2
-
-    code = Code(code="print('hi')")
-    assert isinstance(code, ManimCode)
-
-    py = PythonCode(code="x = 1")
-    assert py is not None

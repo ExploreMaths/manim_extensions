@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import numpy as np
-from manim import PI, RIGHT, WHITE, RED, YELLOW
 
 from manim_extensions.compass import Compass
 
@@ -14,7 +14,7 @@ def test_compass_constructor_and_fields():
     assert compass.span == 1.5
     assert compass.head_color == WHITE
     assert compass.niddle_color == RED
-    assert compass.pen_color == YELLOW
+    assert compass.pen_color == PURE_YELLOW
     assert compass.leg_length == 3.1
     assert compass.leg_width == 0.12
     assert compass.r == 0.2

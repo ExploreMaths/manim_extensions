@@ -54,10 +54,6 @@ Algorithm
    manim_extensions.algorithm.node.Node
    manim_extensions.algorithm.array.Array
    manim_extensions.algorithm.queue.Queue
-   manim_extensions.algorithm.code.Code
-   manim_extensions.algorithm.code.PythonCode
-   manim_extensions.algorithm.code.JavaCode
-   manim_extensions.algorithm.code.CppCode
    :parts: 1
    :top-classes: manim.mobject.mobject.Mobject
 

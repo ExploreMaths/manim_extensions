@@ -30,5 +30,4 @@ Examples
 
 from .node import *
 from .array import *
-from .code import *
 from .queue import *

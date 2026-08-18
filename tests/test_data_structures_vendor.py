@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import numpy as np
 import pytest
-from manim import Scene
 
 from manim_extensions.data_structures import (
     MArrayElement,

@@ -21,7 +21,7 @@ class NodeScene(Scene):
             self.play(
                 Node.Select(
                     item,
-                    color=[RED, BLUE, GREEN, YELLOW, PINK][i],
+                    color=[RED, BLUE, GREEN, PURE_YELLOW, PINK][i],
                     opacity=0.8 - i * 0.1,
                 ),
                 Node.UpdateValue(

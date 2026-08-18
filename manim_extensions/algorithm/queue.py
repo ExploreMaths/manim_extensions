@@ -4,9 +4,9 @@
 
 
 from typing import List
-from .node import Node
-from manim import VMobject, Square, RED, Line, LEFT, UP, RIGHT, DOWN, Succession, MoveAlongPath, linear, AnimationGroup, FadeOut
+from manim import *
 from manim.typing import Point3D
+from .node import Node
 
 
 class Queue(VMobject):

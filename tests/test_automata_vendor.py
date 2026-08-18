@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import Circle
 
+from manim import *
 from manim_extensions.automata import ManimAutomaton, ManimNonDeterminsticFiniteAutomaton
 from manim_extensions.automata.mobjects.automata_dependencies.state import State
 from manim_extensions.automata.mobjects.automata_dependencies.transitition import Transition

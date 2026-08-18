@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from asyncio import constants
 from .xml_parser import parse_xml_file
 
 

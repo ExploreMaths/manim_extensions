@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import *  # noqa: F401
 
 from .manim_automaton import ManimAutomaton
 
@@ -111,7 +111,7 @@ class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
 #         #Points to the current state
 #         state_pointer = self.get_initial_state()
 #         #Highlight current state with yellow
-#         # list_of_animations.append([FadeToColor(state_pointer, color=YELLOW)])
+#         # list_of_animations.append([FadeToColor(state_pointer, color=PURE_YELLOW)])
 
 #         return list_of_animations
 
@@ -136,7 +136,7 @@ class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
 #                         #check the transition has a read symbol that matches the input token
 #                         if transition.check_transition_read_symbols(token):
 #                             #generate animations
-#                             # list_of_animations.append([FadeToColor(token, color=YELLOW)]) #highlights the current token
+#                             # list_of_animations.append([FadeToColor(token, color=PURE_YELLOW)]) #highlights the current token
 #                             state_pointer = self.play_predetermined_sequence(token, state_pointer, list_of_animations, predetermined_transition=transition)
 #                             list_of_animations.append([token.animate.set_opacity(0.5)]) #animates that the token has been used
 #                             break
@@ -161,7 +161,7 @@ class ManimNonDeterminsticFiniteAutomaton(ManimAutomaton):
 #         next_neighbour_state = predetermined_transition.transition_to
 
 #         list_of_animations.append([FadeToColor(state_pointer, color=BLUE)])
-#         list_of_animations.append([FadeToColor(next_neighbour_state, color=YELLOW)])
+#         list_of_animations.append([FadeToColor(next_neighbour_state, color=PURE_YELLOW)])
 
 #         next_state = next_neighbour_state
 

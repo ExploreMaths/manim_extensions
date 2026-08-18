@@ -27,17 +27,17 @@ __all__ = ["ManimAutomaton"]
 default_animation_style = {
     "animate_transition": {
         "animation_function": FadeToColor,
-        "accept_color": YELLOW,
+        "accept_color": PURE_YELLOW,
         "reject_color": RED,
         "run_time": 0.5,
         "time_width": 2
     },
     "highlight_state": {
-        "color": YELLOW
+        "color": PURE_YELLOW
     },
     "token_highlight": {
         "animation_function": FadeToColor,
-        "color": YELLOW
+        "color": PURE_YELLOW
     }
 }
 
@@ -467,7 +467,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return list_of_animations
 
     def highlight_initial_state(self, initial_state: ManimState) -> list[object]:
-        new_subscript_object = Tex(1, color=YELLOW)
+        new_subscript_object = Tex(1, color=PURE_YELLOW)
         new_subscript_object.set_x(initial_state.subscript.get_x())
         new_subscript_object.set_y(initial_state.subscript.get_y())
         
@@ -578,7 +578,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         
         for state in self.states:
             if state.id in state_counter:
-                new_subscript_object = Tex(state_counter[state.id], color=YELLOW)
+                new_subscript_object = Tex(state_counter[state.id], color=PURE_YELLOW)
                 new_subscript_object.set_x(state.subscript.get_x())
                 new_subscript_object.set_y(state.subscript.get_y())
                 animations.append(self.manim_animations.animate_transform_to_new_subscript_object(state.subscript,  new_subscript_object))

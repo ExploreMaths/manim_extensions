@@ -251,8 +251,6 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
     #need to probably animate which transition rule it takes too
 
 
-    
-
 
 
 class PushDownAutomatonRule():

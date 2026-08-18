@@ -3,13 +3,11 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'Ruler',
 ]
 # from manim import *
-from manim.mobject.geometry.polygram import Rectangle
-from manim.mobject.geometry.line import Line
-from manim.mobject.types.vectorized_mobject import VGroup
 from manim.utils.color import *
 from manim.constants import *
 import numpy as np

@@ -6,13 +6,13 @@
 """
 Parameters can get out of hand for the meshes, store defaults and casting in separate functions
 """
+from manim import *
 # python imports
 from typing import Any
 # third-party imports
 import manim as m
 import moderngl
 
-from manim.utils.color.core import ManimColor
 # local imports
 from manim_extensions.meshes.exceptions import BadParameterException
 from manim_extensions.meshes.types import DefaultParameters, Parameters

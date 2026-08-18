@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 r"""Pendulums.
 
 :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum` and :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` both stem from the
@@ -13,12 +12,8 @@ r"""Pendulums.
 from __future__ import annotations
 from typing import Iterable
 
-from manim.constants import DOWN, RIGHT, UP
-from manim.mobject.geometry.arc import Circle
-from manim.mobject.geometry.line import Line
-from manim.mobject.mobject import Mobject
-from manim.mobject.types.vectorized_mobject import VGroup
-from manim.utils.color import ORANGE
+from manim import *
+
 import numpy as np
 import pymunk
 

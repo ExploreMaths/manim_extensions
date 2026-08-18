@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import Circle, Scene
 
+from manim import *
 from manim_extensions.circuit.mobjects import (
     Capacitor,
     CurrentSource,

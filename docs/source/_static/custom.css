@@ -1,3 +1,8 @@
+.sidebar-brand img {
+    width: 208px !important;
+    height: auto !important;
+}
+
 @media (prefers-color-scheme: dark) {
     span.nc {
         text-decoration: none !important;

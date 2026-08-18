@@ -2,6 +2,9 @@
 # SPDX-FileCopyrightText: 2024 Manim Community
 # SPDX-License-Identifier: MIT
 
+from __future__ import annotations
+
+from manim import *
 r"""
 A directive for including Manim videos in a Sphinx document
 ===========================================================
@@ -81,8 +84,6 @@ directive:
         that is rendered in a reference block after the source code.
 
 """
-
-from __future__ import annotations
 
 import csv
 import itertools as it
@@ -216,7 +217,6 @@ class ManimDirective(Directive):
             )
             return [node]
 
-        from manim import QUALITIES, config, tempconfig
 
         global classnamedict
 

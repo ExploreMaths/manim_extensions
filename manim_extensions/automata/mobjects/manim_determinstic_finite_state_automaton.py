@@ -3,15 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import *  # noqa: F401
 
 from .manim_automaton import ManimAutomaton
-from .manim_state import ManimState, State
-from .manim_automaton_input import ManimAutomataInput
-from .manim_transition import ManimTransition
 
-
-from typing import Union
 
 class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
 

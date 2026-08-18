@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
+from manim.utils.tex_file_writing import tex_to_svg_file
 from .template import TikzTemplate
 
 from typing import List, Optional
-from manim.mobject.svg.svg_mobject import SVGMobject
-from manim.utils.tex_file_writing import tex_to_svg_file
 
 
 class Tikz(SVGMobject):

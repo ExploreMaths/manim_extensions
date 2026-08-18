@@ -43,38 +43,6 @@ Queue
    :undoc-members:
    :show-inheritance:
 
-Code
-----
-
-.. autoclass:: manim_extensions.algorithm.code.Code
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-PythonCode
-----------
-
-.. autoclass:: manim_extensions.algorithm.code.PythonCode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-JavaCode
---------
-
-.. autoclass:: manim_extensions.algorithm.code.JavaCode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-CppCode
--------
-
-.. autoclass:: manim_extensions.algorithm.code.CppCode
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 NumpyHelper
 -----------
 

@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'Node',
     'NodeSate',
@@ -14,11 +15,6 @@ from enum import Enum
 from collections import deque
 from typing import Generator,List,Dict
 
-from manim.mobject.mobject import Group
-from manim.mobject.types.vectorized_mobject import VMobject,VGroup
-from manim.mobject.geometry.line import Line
-from manim.mobject.geometry.polygram import Rectangle
-from manim.constants import LEFT, RIGHT, UP, DOWN
 from manim.utils.color import *
 import numpy as np
 
@@ -80,18 +76,18 @@ class NodeStyle:
         node_style: List[Dict[str, object]] | None = [
             {'color': RED, 'stroke_width': 8},
             {'color': BLUE, 'stroke_width': 6},
-            {'color': YELLOW, 'stroke_width': 4},
+            {'color': PURE_YELLOW, 'stroke_width': 4},
             {'color': GREEN, 'stroke_width': 4}
         ],
         line_style: List[Dict[str, object]] | None = [
             {'color': RED, 'stroke_width': 8},
             {'color': BLUE, 'stroke_width': 6},
-            {'color': YELLOW, 'stroke_width': 4},
+            {'color': PURE_YELLOW, 'stroke_width': 4},
             {'color': GREEN, 'stroke_width': 4}
         ],
         text_style: List[Dict[str, object]] | None = [
             {'color': RED, 'font_size': 64},
-            {'color': YELLOW, 'font_size': 56},
+            {'color': PURE_YELLOW, 'font_size': 56},
             {'color': GREEN, 'font_size': 48},
             {'color': WHITE, 'font_size': 36}
         ],
@@ -101,21 +97,21 @@ class NodeStyle:
         if self.node_num:
             self.node_style = node_style
         else:
-            self.node_style = [{'color':YELLOW, 'stroke_width':4}]
+            self.node_style = [{'color':PURE_YELLOW, 'stroke_width':4}]
             self.node_num = 1
 
         self.line_num = len(line_style)
         if self.line_num:
             self.line_style = line_style
         else:
-            self.line_style = [{'color':YELLOW, 'stroke_width':4}]
+            self.line_style = [{'color':PURE_YELLOW, 'stroke_width':4}]
             self.line_num = 1
 
         self.text_num = len(text_style)
         if self.text_num: 
             self.text_style = text_style
         else:
-            self.text_style = [{'color':YELLOW, 'font_size':36}]
+            self.text_style = [{'color':PURE_YELLOW, 'font_size':36}]
             self.text_num = 1
 
     def get_node_style(self,level:int) -> Dict:

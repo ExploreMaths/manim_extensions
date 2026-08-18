@@ -3,16 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ =[
     'Compass',
 ]
 # from manim import *
 import numpy as np
-from manim.mobject.geometry.line import Line
-from manim.mobject.geometry.arc import Circle
-from manim.mobject.geometry.polygram import Polygon,Rectangle
-from manim.mobject.types.point_cloud_mobject import Point
-from manim.mobject.types.vectorized_mobject import VGroup
 from manim.utils.color import *
 from manim.constants import *
 
@@ -33,7 +29,7 @@ class Compass(VGroup):
     niddle_color : ManimColor, optional
         Color of the compass needle. Defaults to ``RED``.
     pen_color : ManimColor, optional
-        Color of the compass pen. Defaults to ``YELLOW``.
+        Color of the compass pen. Defaults to ``PURE_YELLOW``.
     stroke_width : float, optional
         Stroke width of the compass lines. Defaults to ``2``.
     leg_length : float, optional
@@ -61,7 +57,7 @@ class Compass(VGroup):
         span: float = 1.5,
         head_color: object = WHITE,
         niddle_color: object = RED,
-        pen_color: object = YELLOW,
+        pen_color: object = PURE_YELLOW,
         stroke_width: float = 2,
         leg_length: float = 3.1,
         leg_width: float = 0.12,

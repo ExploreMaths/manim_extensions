@@ -364,6 +364,137 @@ def LineArcInt(
             return None
 
 
+def _angle_in_arc(
+    theta: float,
+    start_angle: float,
+    angle: float,
+    tolerance: float = 1e-6,
+) -> bool:
+    """Check whether an angle lies within an arc's angular span.
+
+    Parameters
+    ----------
+    theta : float
+        The angle to test (radians, 0..2π).
+    start_angle : float
+        Start angle of the arc (radians).
+    angle : float
+        Angular span of the arc (positive = counter-clockwise,
+        negative = clockwise).
+    tolerance : float
+        Angular tolerance in radians.
+
+    Returns
+    -------
+    bool
+        ``True`` if *theta* lies within the arc, ``False`` otherwise.
+    """
+    start_mod = start_angle % (2 * np.pi)
+    end_mod = (start_angle + angle) % (2 * np.pi)
+    if angle > 0:
+        if start_mod < end_mod:
+            return start_mod - tolerance <= theta <= end_mod + tolerance
+        return theta >= start_mod - tolerance or theta <= end_mod + tolerance
+    else:
+        if end_mod < start_mod:
+            return end_mod - tolerance <= theta <= start_mod + tolerance
+        return theta <= start_mod + tolerance or theta >= end_mod - tolerance
+
+
+def ArcInt(
+    arc1: Arc, arc2: Arc
+) -> Optional[Union[Tuple[list[float], list[float]], list[float]]]:
+    """Compute the intersection points of two arcs.
+
+    First computes the intersection points of the two full circles defined by
+    the arcs, then filters to keep only points that lie within the angular
+    span of both arcs.
+
+    Parameters
+    ----------
+    arc1 : :class:`~manim.mobject.geometry.arc.Arc`
+        The first arc.
+    arc2 : :class:`~manim.mobject.geometry.arc.Arc`
+        The second arc.
+
+    Returns
+    -------
+    Optional[Union[Tuple[list[float], list[float]], list[float]]]
+        * A tuple of two points ``([x1, y1, 0], [x2, y2, 0])`` for two
+          intersections.
+        * A single point ``[x, y, 0]`` for one intersection.
+        * ``None`` if there is no intersection.
+
+    Examples
+    --------
+    .. manim:: ArcIntDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ArcInt, LabelDot
+
+       class ArcIntDocExample(Scene):
+           def construct(self):
+               arc1 = Arc(radius=2, start_angle=PI*3/4, angle=PI/2, color=BLUE).shift(LEFT)
+               arc2 = Arc(radius=2, start_angle=PI/4, angle=PI/2, color=GREEN).shift(RIGHT)
+               pts = ArcInt(arc1, arc2)
+
+               self.add(arc1, arc2)
+               if pts:
+                   for p in (pts if isinstance(pts, tuple) else [pts]):
+                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
+    """
+    center1 = arc1.arc_center
+    radius1 = arc1.radius
+    center2 = arc2.arc_center
+    radius2 = arc2.radius
+
+    x1, y1, _ = center1
+    x2, y2, _ = center2
+    d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    if d <= 1e-9 or d > radius1 + radius2 or d < abs(radius1 - radius2):
+        return None
+
+    a = (radius1**2 - radius2**2 + d**2) / (2 * d)
+    h = math.sqrt(max(0, radius1**2 - a**2))
+    xm = x1 + a * (x2 - x1) / d
+    ym = y1 + a * (y2 - y1) / d
+    xs1 = xm + h * (y2 - y1) / d
+    xs2 = xm - h * (y2 - y1) / d
+    ys1 = ym - h * (x2 - x1) / d
+    ys2 = ym + h * (x2 - x1) / d
+
+    candidates = [[xs1, ys1, 0], [xs2, ys2, 0]]
+
+    start1 = arc1.start_angle
+    angle1 = arc1.angle
+    start2 = arc2.start_angle
+    angle2 = arc2.angle
+
+    TOL = 1e-6
+    intersections = []
+    for pt in candidates:
+        dx1 = pt[0] - x1
+        dy1 = pt[1] - y1
+        theta1 = math.atan2(dy1, dx1) % (2 * math.pi)
+        if not _angle_in_arc(theta1, start1, angle1, TOL):
+            continue
+        dx2 = pt[0] - x2
+        dy2 = pt[1] - y2
+        theta2 = math.atan2(dy2, dx2) % (2 * math.pi)
+        if not _angle_in_arc(theta2, start2, angle2, TOL):
+            continue
+        intersections.append(pt)
+
+    try:
+        return intersections[0], intersections[1]
+    except Exception:
+        try:
+            return intersections[0]
+        except Exception:
+            return None
+
+
 def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
     """Compute all intersection points between two mobjects.
 
@@ -444,6 +575,8 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
         return _to_list(LineArcInt(mob1, mob2))
     if isinstance(mob1, Arc) and isinstance(mob2, Line):
         return _to_list(LineArcInt(mob2, mob1))
+    if isinstance(mob1, Arc) and isinstance(mob2, Arc):
+        return _to_list(ArcInt(mob1, mob2))
 
     # Generic VMobject sampling ----------------------------------------------
     @staticmethod

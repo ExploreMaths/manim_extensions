@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import numpy as np
-from manim import LEFT, MathTex, RIGHT
 
 from manim_extensions.mindmap import (
     CatalogMap,

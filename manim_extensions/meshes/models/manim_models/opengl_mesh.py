@@ -2,22 +2,20 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""
 
-"""
-faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently
-"""
+from manim import *  # noqa: F401
+from manim.mobject.opengl.opengl_mobject import OpenGLMobject
+
 # FIXME: actually please the linter by correctly implementing everything
 # pylint: skip-file
 # pylint: disable-all
 
 import numpy as np
-import manim as m
-from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
 from manim_extensions.meshes.helpers import remove_keys_from_dict
 from manim_extensions.meshes.models.data_models.mesh import Mesh
 from manim_extensions.meshes.params import get_param_or_default, OGLM
-from manim_extensions.meshes.templates import create_model
 
 
 class FastManimMesh(OpenGLMobject):
@@ -38,24 +36,7 @@ class FastManimMesh(OpenGLMobject):
     NOTE: requires to manipulate the manim lib
         -> copy directory 'mesh' (under manim_extensions.meshes/shaders/) to manim/renderer/shaders/
 
-        HINT: the mesh must only consist of triangles
-
-    Examples
-    --------
-    .. manim:: FastManimMeshExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions.meshes.models.data_models.mesh import Mesh
-       from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh
-
-       class FastManimMeshExample(Scene):
-           def construct(self):
-               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-               faces = [[0, 1, 2]]
-               mesh_data = Mesh(vertices, faces)
-               fm = FastManimMesh(mesh_data)
-               self.add(fm)
+    HINT: the mesh must only consist of triangles
 """
 
     shader_dtype = [
@@ -74,6 +55,7 @@ class FastManimMesh(OpenGLMobject):
         if any(len(face) != 3 for face in mesh.faces):
             raise ValueError("mesh must only consist of triangles!")
         self.mesh = mesh
+        self.triangle_indices = np.hstack(mesh.faces)
         super().__init__(
             shader_folder=shader_folder if shader_folder is not None else "mesh",
             # default params
@@ -81,7 +63,6 @@ class FastManimMesh(OpenGLMobject):
             # regular kwargs
             **remove_keys_from_dict(kwargs, list(OGLM.keys())),
         )
-        self.triangle_indices = np.hstack(mesh.faces)
 
     def init_points(self) -> None:
         """Set the mesh vertices as the mobject's points."""

@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim.animation.animation import Animation
-from manim.constants import PI
-from manim.mobject.types.vectorized_mobject import VGroup
+from manim import *
 from .cube_utils import get_axis_from_face
 
 class CubeMove(Animation):

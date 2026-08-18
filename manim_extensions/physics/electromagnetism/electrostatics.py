@@ -27,14 +27,9 @@ Examples
 from __future__ import annotations
 from typing import Iterable
 
-from manim import normalize
-from manim.constants import ORIGIN, TAU
-from manim.mobject.geometry.arc import Arc, Dot
-from manim.mobject.geometry.polygram import Rectangle
-from manim.mobject.types.vectorized_mobject import VGroup
-from manim.mobject.vector_field import ArrowVectorField
-from manim.utils.color import BLUE, RED, RED_A, RED_D, color_gradient
 import numpy as np
+
+from manim import *
 
 
 __all__ = [

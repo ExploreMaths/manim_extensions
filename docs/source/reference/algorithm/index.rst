@@ -24,8 +24,6 @@ Features
 - :class:`~manim_extensions.mindmap.nodes.node.Node` – node-like visual block for algorithm state display.
 - :class:`~manim_extensions.algorithm.array.Array` – array-like structures for indexed values.
 - :class:`~manim_extensions.algorithm.queue.Queue` – queue animation helpers and visual containers.
-- :class:`~manim_extensions.algorithm.code.Code` / :class:`~manim_extensions.algorithm.code.PythonCode` / :class:`~manim_extensions.algorithm.code.JavaCode` / :class:`~manim_extensions.algorithm.code.CppCode` – code blocks with
-  syntax-oriented styling.
 - animation helpers for selection, overwrite, update, and value transitions.
 
 Quick start

@@ -5,11 +5,10 @@
 
 import numpy as np
 from manim import *
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence
 from scipy.optimize import fsolve
-from scipy.optimize import root
-from scipy.optimize import fmin
-from scipy.optimize import fmin_powell
+from scipy.optimize import least_squares
+import warnings
 
 __all__ = [
     "involute_func",
@@ -46,7 +45,7 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
            def construct(self):
                t = np.linspace(0, np.pi, 50)
                points = involute_func(t, 1.0)
-               dot = Dot(point=points[-1], color=YELLOW)
+               dot = Dot(point=points[-1], color=PURE_YELLOW)
                label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
                self.add(dot, label)
     """
@@ -105,7 +104,7 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
                label = Text(f"Derivative vectors: {len(derivs)}", font_size=24).to_edge(UP)
                self.add(label)
                for d in derivs[::5]:
-                   vec = Arrow(ORIGIN, d, buff=0, color=YELLOW)
+                   vec = Arrow(ORIGIN, d, buff=0, color=PURE_YELLOW)
                    self.add(vec)
     """
     def diff_val(val):
@@ -193,7 +192,7 @@ def involute_point_gen(t,r,**kwargs):
                points = involute_point_gen(t, 1.0)
                curve = VMobject()
                curve.points = points
-               curve.set_stroke(YELLOW, 3)
+               curve.set_stroke(PURE_YELLOW, 3)
                self.add(curve)
     """
     end_points = involute_func(t,r,**kwargs)
@@ -371,8 +370,13 @@ class Gear(VMobject):
         """Build the gear outline from involute curves, fillets, and arcs."""
 
         # involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle
-        angle_base = fsolve(lambda u: involute_height_func(u, self.rb) - (self.rp - self.rb), self.alpha * DEGREES,
-                            xtol=1e-10)
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                angle_base = fsolve(lambda u: involute_height_func(u, self.rb) - (self.rp - self.rb), self.alpha * DEGREES,
+                                    xtol=1e-10)
+        except Exception:
+            angle_base = np.array([self.alpha * DEGREES])
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES
 
         # from tec-science article
@@ -406,16 +410,31 @@ class Gear(VMobject):
             # when y coordinate is 0, the 2 involutes of the tooth would intersect because of the symmetry
             return p1[1]
         # find max height
-        t_hmax = fsolve(invo_cross_diff,angle_base[0]*2)
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                t_hmax = fsolve(invo_cross_diff, angle_base[0] * 2)
+        except Exception:
+            t_hmax = np.array([angle_base[0] * 2])
         hmax=involute_height_func(t_hmax[0],self.rb)
 
         undercut = False
         if self.ra > self.rb+hmax:
             self.ra = self.rb+hmax
-        res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.ra-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.ra-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+        except Exception:
+            res = np.array([self.alpha * DEGREES])
         tmax = res[0]
         if(self.rf>self.rb):
-            res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.rf-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+            try:
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.rf-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+            except Exception:
+                res = np.array([self.alpha * DEGREES])
             tmin = res[0]
         else:
             tmin=0
@@ -466,15 +485,62 @@ class Gear(VMobject):
                 diff = ucut_val - invo_val
                 return diff[0:2]
 
-            tres_ucut = fsolve(diff_val_func,np.array([0.01,0.05]))
+            def _solve_undercut_intersection():
+                """Find the intersection of undercut and involute curves robustly."""
+                candidates = [
+                    np.array([0.01, 0.05]),
+                    np.array([0.005, 0.025]),
+                    np.array([0.02, 0.1]),
+                    np.array([0.001, 0.01]),
+                ]
+                best_result = None
+                best_cost = np.inf
+                for x0 in candidates:
+                    try:
+                        with warnings.catch_warnings():
+                            warnings.simplefilter("ignore")
+                            sol, info, ier, msg = fsolve(
+                                diff_val_func, x0, full_output=True, maxfev=1000
+                            )
+                        residual = np.linalg.norm(diff_val_func(sol))
+                        if ier == 1 and residual < best_cost:
+                            best_cost = residual
+                            best_result = sol
+                        elif residual < best_cost:
+                            best_cost = residual
+                            best_result = sol
+                    except Exception:
+                        continue
+                if best_result is not None:
+                    return best_result
+                try:
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        res = least_squares(
+                            lambda t: diff_val_func([t[0], t[1]]),
+                            x0=np.array([0.01, 0.05]),
+                            bounds=([-np.pi, -np.pi], [np.pi, np.pi]),
+                        )
+                    return res.x
+                except Exception:
+                    return np.array([0.01, 0.05])
+
+            tres_ucut = _solve_undercut_intersection()
             tmin = tres_ucut[1]
-            # turn around the possible false-root
-            if tmin<0:
+            if tmin < 0:
                 tmin = -tmin
             tmax_ucut = tres_ucut[0]
 
-            # find where the undercut goes down to the root
-            [tmin_ucut] = fsolve(lambda t: np.linalg.norm(undercut_func(t))-self.rf,0)
+            try:
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    sol_ucut, info_ucut, ier_ucut, _ = fsolve(
+                        lambda t: np.linalg.norm(undercut_func(t)) - self.rf,
+                        0.0, full_output=True, xtol=1e-12
+                    )
+                tmin_ucut = sol_ucut[0]
+            except Exception:
+                tmin_ucut = 0.0
             t_range_ucut = np.linspace(tmin_ucut,tmax_ucut,self.nppc)
             undercut_curve = VMobject()
             undercut_curve.points = involute_point_gen(t_range_ucut,self.rp,rad_offs=rad_ucut, tan_offs=tan_ucut)
@@ -595,17 +661,37 @@ class Gear(VMobject):
         if offset != 0 or gear2.X != 0 or self.X != 0:
             # find the invo roll-angle where the curve goes as high (out) as the pitch point
             if self.inner_teeth:
-                invo_offset_1 = fsolve(lambda t: involute_height_func(t,self.rb) - (rp1 - self.rb),
-                                       self.angle_ofs + self.alpha*DEGREES)
+                try:
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        invo_offset_1 = fsolve(lambda t: involute_height_func(t,self.rb) - (rp1 - self.rb),
+                                               self.angle_ofs + self.alpha*DEGREES)
+                except Exception:
+                    invo_offset_1 = np.array([self.angle_ofs + self.alpha * DEGREES])
             else:
-                invo_offset_1 = fsolve(lambda t: involute_height_func(t, self.rb) - (rp1 - self.rb),
-                                       self.angle_ofs + self.alpha * DEGREES)
+                try:
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        invo_offset_1 = fsolve(lambda t: involute_height_func(t, self.rb) - (rp1 - self.rb),
+                                               self.angle_ofs + self.alpha * DEGREES)
+                except Exception:
+                    invo_offset_1 = np.array([self.angle_ofs + self.alpha * DEGREES])
             if gear2.inner_teeth:
-                invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
-                                       gear2.angle_ofs + gear2.alpha * DEGREES)
+                try:
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
+                                               gear2.angle_ofs + gear2.alpha * DEGREES)
+                except Exception:
+                    invo_offset_2 = np.array([gear2.angle_ofs + gear2.alpha * DEGREES])
             else:
-                invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
-                                       gear2.angle_ofs + gear2.alpha*DEGREES)
+                try:
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
+                                               gear2.angle_ofs + gear2.alpha*DEGREES)
+                except Exception:
+                    invo_offset_2 = np.array([gear2.angle_ofs + gear2.alpha * DEGREES])
             invo_point_1 = involute_func(invo_offset_1[0], self.rb)
             invo_point_2 = involute_func(invo_offset_2[0], gear2.rb)
             angle_offset_1 = bias * (np.arctan2(invo_point_1[1], invo_point_1[0]) - self.angle_ofs)

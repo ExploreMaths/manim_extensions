@@ -3,10 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim.utils.tex import TexTemplate
 from typing import List
 
 
+from manim import *
 class TikzTemplate(TexTemplate):
     r"""A custom :class:`~manim.utils.tex.TexTemplate` for rendering TikZ diagrams.
 

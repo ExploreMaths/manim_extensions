@@ -4,6 +4,7 @@
 
 """Sphinx configuration for manim_extensions documentation."""
 
+from manim import *
 import os
 import sys
 
@@ -27,6 +28,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
+    "myst_parser",
     "manim_directive",
 ]
 
@@ -165,8 +167,6 @@ import inspect
 def _manim_mobject_attribute_names():
     """Return public, non-callable attribute names inherited from Manim Mobjects."""
     try:
-        from manim.mobject.mobject import Mobject
-        from manim.mobject.types.vectorized_mobject import VMobject
 
         attrs = set()
         for cls in (Mobject, VMobject):

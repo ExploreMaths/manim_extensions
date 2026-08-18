@@ -8,9 +8,7 @@
 from __future__ import annotations
 from typing import Iterable
 
-from manim import config
-from manim.mobject.geometry.line import Line
-from manim.utils.space_ops import angle_of_vector, rotate_vector
+from manim import *
 import numpy as np
 
 from .lenses import Lens, antisnell, intersection, snell

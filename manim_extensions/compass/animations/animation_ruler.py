@@ -3,14 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'PutRuler',
     'PutRulerAway'
 ]
 # from manim import *
-from manim.mobject.types.point_cloud_mobject import Point
-from manim.animation.transform import ApplyMethod
-from manim.constants import RIGHT, LEFT, UP, DOWN
 
 from ..compass.ruler import Ruler
 

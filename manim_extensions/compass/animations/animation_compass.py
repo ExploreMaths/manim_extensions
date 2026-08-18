@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'DrawArc',
     'MoveNiddleTipTo',
@@ -13,14 +14,6 @@ __all__ = [
 ]
 # from manim import *
 import numpy as np
-from manim.mobject.geometry.arc import Arc
-from manim.mobject.geometry.line import Line
-from manim.mobject.types.point_cloud_mobject import Point
-from manim.animation.composition import AnimationGroup
-from manim.animation.transform import ApplyMethod
-from manim.animation.rotation import Rotate
-from manim.animation.creation import Create
-from manim.constants import RIGHT, LEFT, UP, DOWN
 
 from ..compass import Compass
 from ..utils.geometry_method import (

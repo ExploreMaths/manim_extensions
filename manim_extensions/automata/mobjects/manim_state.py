@@ -53,9 +53,9 @@ class ManimState(State, VGroup):
        class ManimStateExample(Scene):
            def construct(self):
                style = {
-                   "highlight_state": {"color": YELLOW},
-                   "animate_transition": {"animation_function": FadeToColor, "accept_color": YELLOW, "reject_color": RED, "run_time": 0.5, "time_width": 2},
-                   "token_highlight": {"animation_function": FadeToColor, "color": YELLOW},
+                   "highlight_state": {"color": PURE_YELLOW},
+                   "animate_transition": {"animation_function": FadeToColor, "accept_color": PURE_YELLOW, "reject_color": RED, "run_time": 0.5, "time_width": 2},
+                   "token_highlight": {"animation_function": FadeToColor, "color": PURE_YELLOW},
                }
                state = ManimState("q0", 0, 0, style, initial=True)
                self.add(state)

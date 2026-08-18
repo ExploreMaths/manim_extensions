@@ -17,7 +17,6 @@ __all__ = [
 ]
 from dataclasses import dataclass, field
 from typing import List, Optional, Any, Callable, Tuple
-from .layout_config import LayoutDirection
 from .layout import Layout
 
 @dataclass

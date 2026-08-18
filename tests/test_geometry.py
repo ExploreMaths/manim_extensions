@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import numpy as np
 import pytest
-from manim import Circle, Line, Arc, LEFT, RIGHT, UP, DOWN, ORIGIN
 
 from manim_extensions.geometry import (
     CircleInt,

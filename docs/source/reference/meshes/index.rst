@@ -60,5 +60,6 @@ for details on the mesh model and more advanced examples.
    :hidden:
 
    data_model
+   mobjects
    helpers
    exceptions

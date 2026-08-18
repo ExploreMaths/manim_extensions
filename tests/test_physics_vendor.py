@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import shutil
 
 import numpy as np
-from manim import ORIGIN
 
 from manim_extensions.physics.optics.lenses import Lens
 from manim_extensions.physics.rigid_mechanics.pendulum import MultiPendulum, Pendulum

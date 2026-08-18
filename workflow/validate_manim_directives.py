@@ -25,6 +25,10 @@ ANIMATION_PATTERNS = [
     re.compile(r'\bself\.animate\s*\('),
     re.compile(r'\bself\.animate\.value_tracker\b'),
     re.compile(r'\.play\s*\(\s*self\s*\)'),
+    re.compile(r'\bself\.compass_\w+\s*\('),
+    re.compile(r'\bself\.draw_(arc|line)\s*\('),
+    re.compile(r'\bself\.put_(compass_aside|pencil_away|ruler_aside)\s*\('),
+    re.compile(r'\bself\.rotate_compass_about_niddle_tip\s*\('),
 ]
 
 WAIT_PATTERN = re.compile(r'\bself\.wait\s*\(')

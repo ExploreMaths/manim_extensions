@@ -37,7 +37,7 @@ Examples
 
            rect = Square().shift(UP)
            rect.rotate(PI / 4)
-           rect.set_fill(YELLOW_A, 1)
+           rect.set_fill(PURE_YELLOW_A, 1)
            rect.shift(UP * 2)
            rect.scale(0.5)
 
@@ -60,17 +60,11 @@ Examples
 from __future__ import annotations
 from typing import Tuple
 
-from manim.constants import RIGHT, UP
-from manim.mobject.geometry.arc import Circle
-from manim.mobject.geometry.line import Line
-from manim.mobject.geometry.polygram import Polygon, Polygram, Rectangle
-from manim.mobject.mobject import Group, Mobject
-from manim.mobject.types.vectorized_mobject import VGroup, VMobject
-from manim.scene.scene import Scene
-from manim.utils.space_ops import angle_between_vectors
-from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 import pymunk
+
+from manim import *
+from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 __all__ = [
     "Space",

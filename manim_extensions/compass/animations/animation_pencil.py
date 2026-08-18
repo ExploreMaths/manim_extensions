@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'MovePencilAlongPath',
     'MovePencilTipTo',
@@ -10,12 +11,6 @@ __all__ = [
     'PutPencilAway'
 ]
 from typing import Union
-from manim.mobject.types.vectorized_mobject import VMobject
-from manim.mobject.types.point_cloud_mobject import Point
-from manim.animation.movement import MoveAlongPath
-from manim.animation.composition import AnimationGroup
-from manim.animation.creation import Create
-from manim.animation.transform import ApplyMethod
 
 from ..compass.pencil import Pencil
 

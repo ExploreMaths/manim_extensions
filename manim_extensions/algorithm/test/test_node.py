@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 import pytest
 import numpy as np
 from numpy.testing import assert_array_almost_equal
@@ -12,27 +13,10 @@ import os
 
 
 
-from manim import config as global_config
 
 
 from ..node import Node, NodeConfig
 from ..utils.numpy_helper import NumpyHelper
-from manim import (
-    Square,
-    Circle,
-    Tex,
-    VMobject,
-    WHITE,
-    RED,
-    BLUE,
-    GREEN,
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    Scene,
-    Dot
-)
 import shutil
 
 
@@ -41,7 +25,7 @@ class TestNode:
     TEST_MEDIA_DIR = os.path.join(os.path.dirname(__file__), "__test_media_dir__")
 
     def setup_method(self):
-        global_config.media_dir = self.TEST_MEDIA_DIR
+        config.media_dir = self.TEST_MEDIA_DIR
         os.makedirs(self.TEST_MEDIA_DIR)
 
     def teardown_method(self):

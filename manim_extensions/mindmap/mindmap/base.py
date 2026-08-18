@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'NodeMobject',
     'generate_tree',
@@ -12,13 +13,7 @@ from typing import Generator,List,Dict
 
 import numpy as np
 from manim.constants import *
-from manim.utils.tex_templates import TexTemplateLibrary
 from manim.utils.color import *
-from manim.mobject.mobject import Group,Mobject
-from manim.mobject.geometry.line import Line
-from manim.mobject.geometry.polygram import Rectangle
-from manim.mobject.types.vectorized_mobject import VMobject
-from manim.mobject.text.tex_mobject import Tex
 
 from ..nodes import Node,NodeStyle,bfs_walker,dfs_walker
 from ..algorithms import Layout

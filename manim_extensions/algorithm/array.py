@@ -4,7 +4,7 @@
 
 
 from .node import *
-from typing import List, Iterable, Union
+from typing import List, Union
 
 class Array(VMobject):
     """A horizontal array of nodes rendered as a single Manim mobject.
@@ -42,7 +42,7 @@ class Array(VMobject):
                arr = Array(data, total_width=10)
                circle_arr = Array(
                    data, total_width=10, box_type=Circle,
-                   box_color=YELLOW, text_scale=1.2,
+                   box_color=PURE_YELLOW, text_scale=1.2,
                ).next_to(arr, DOWN, buff=1)
                self.add(arr, circle_arr)
                self.play(Node.Select(arr[1]))

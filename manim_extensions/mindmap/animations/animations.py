@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from manim import *
 __all__ = [
     'LayoutAnimation',
     'RemoveNode',
@@ -12,15 +13,6 @@ __all__ = [
 ]
 from typing import List,Dict
 
-from manim.scene.scene import Scene
-from manim.mobject.types.image_mobject import ImageMobject
-from manim.mobject.mobject import Group
-from manim.mobject.types.vectorized_mobject import VMobject
-from manim.mobject.text.tex_mobject import Tex,MathTex
-from manim.mobject.geometry.polygram import Rectangle
-from manim.animation.creation import Animation,Create,Write
-from manim.animation.composition import AnimationGroup
-from manim.animation.fading import FadeIn,FadeOut
 from manim.utils.color import *
 from manim.constants import *
 import numpy as np

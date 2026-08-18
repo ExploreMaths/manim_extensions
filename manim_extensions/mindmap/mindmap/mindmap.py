@@ -15,7 +15,7 @@ from manim.constants import *
 from manim.utils.color import *
 
 from .base import NodeMobject,AbstractMap,generate_tree
-from ..nodes import Node,NodeStyle,bfs_walker
+from ..nodes import NodeStyle,bfs_walker
 from ..algorithms import (
     TidyTreeLayout,
     TimeLineLayout,
@@ -83,7 +83,7 @@ class MindMap(AbstractMap):
             ],
             text_style = [
                 {'color':RED,'font_size':64},
-                {'color':YELLOW,'font_size':56},
+                {'color':PURE_YELLOW,'font_size':56},
                 {'color':GREEN,'font_size':48},
                 {'color':WHITE,'font_size':36}
             ]
@@ -184,7 +184,7 @@ class TimeLine(AbstractMap):
             ],
             text_style = [
                 {'color':RED,'font_size':64},
-                {'color':YELLOW,'font_size':56},
+                {'color':PURE_YELLOW,'font_size':56},
                 {'color':GREEN,'font_size':48},
                 {'color':WHITE,'font_size':36}
             ]
@@ -282,7 +282,7 @@ class StandardMap(AbstractMap):
             ],
             text_style = [
                 {'color':RED,'font_size':64},
-                {'color':YELLOW,'font_size':56},
+                {'color':PURE_YELLOW,'font_size':56},
                 {'color':GREEN,'font_size':48},
                 {'color':WHITE,'font_size':36}
             ]
@@ -378,7 +378,7 @@ class CatalogMap(AbstractMap):
             ],
             text_style = [
                 {'color':RED,'font_size':64},
-                {'color':YELLOW,'font_size':56},
+                {'color':PURE_YELLOW,'font_size':56},
                 {'color':GREEN,'font_size':48},
                 {'color':WHITE,'font_size':36}
             ]

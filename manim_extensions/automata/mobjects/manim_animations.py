@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import Animation, Mobject, Transform, FadeToColor, RED, BLUE, WHITE, YELLOW, FadeIn
 
 
+from manim import *
 class ManimAnimations():
 
     """Default animation strategy for automata visualisation.
@@ -65,7 +65,7 @@ class ManimAnimations():
         state
             State mobject to highlight during a transition or match.
         """
-        return FadeToColor(state, color=YELLOW)
+        return FadeToColor(state, color=PURE_YELLOW)
 
     #transition animations
     def animate_transition_to_default_color(self, transition: Mobject) -> Animation:
@@ -86,7 +86,7 @@ class ManimAnimations():
         transition
             Transition mobject to emphasize during a successful match.
         """
-        return FadeToColor(transition, color=YELLOW)
+        return FadeToColor(transition, color=PURE_YELLOW)
 
     #input animations
     def animate_input_token_spent(self, token: Mobject) -> Animation:
@@ -107,7 +107,7 @@ class ManimAnimations():
         token
             Input token mobject to highlight during processing.
         """
-        return FadeToColor(token, color=YELLOW)
+        return FadeToColor(token, color=PURE_YELLOW)
 
     def animate_display_input(self, input: Mobject) -> Animation:
         """Return an animation that reveals the input display.

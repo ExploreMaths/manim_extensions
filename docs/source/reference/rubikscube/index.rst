@@ -65,7 +65,7 @@ The ``colors`` parameter accepts a list of six colours in the order
 
    class ColorExample(ThreeDScene):
        def construct(self):
-           cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, YELLOW, PINK, "#00FF00"]).scale(0.6)
+           cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, PURE_YELLOW, PINK, "#00FF00"]).scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
@@ -470,7 +470,7 @@ Putting it All Together
 
    class AllTogetherExample(ThreeDScene):
        def construct(self):
-           cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, YELLOW, PINK, "#00FF00"]).scale(0.6)
+           cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, PURE_YELLOW, PINK, "#00FF00"]).scale(0.6)
 
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
