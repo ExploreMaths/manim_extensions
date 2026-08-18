@@ -14,7 +14,7 @@ third-party plugins to help you create mathematical animations more efficiently.
 What is in this package?
 ========================
 
-The library is organised into four areas:
+The library is organised into two areas:
 
 **Core extensions** (``manim_extensions``)
     Additional mobjects and helpers built directly on top of Manim:
