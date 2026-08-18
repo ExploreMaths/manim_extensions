@@ -134,3 +134,45 @@ h4, h5, h6{
     border-radius: 6px;
     overflow: hidden;
 }
+
+.inheritance-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-content-foreground);
+}
+
+.inheritance-legend .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.inheritance-legend .legend-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.inheritance-legend .manim-swatch {
+    background-color: #EBF5FB;
+    border-color: #1A5276;
+}
+
+.inheritance-legend .extensions-swatch {
+    background-color: #D5F5E3;
+    border-color: #1E8449;
+}
+
+.inheritance-legend .python-swatch {
+    background-color: #F5F5F5;
+    border-color: #9E9E9E;
+}
+
+.inheritance-legend .legend-label {
+    font-weight: 500;
+}

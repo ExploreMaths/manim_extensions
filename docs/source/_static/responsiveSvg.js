@@ -1,6 +1,64 @@
 window.addEventListener("load", function () {
     const diagrams = document.querySelectorAll("object.inheritance.graphviz");
 
+    function hasPythonNodes(diagram) {
+        const svgDoc = diagram.contentDocument;
+        if (!svgDoc) return false;
+        const polygons = svgDoc.getElementsByTagNameNS("http://www.w3.org/2000/svg", "polygon");
+        for (const p of polygons) {
+            const fill = (p.getAttribute("fill") || "").toLowerCase();
+            if (fill === "#ffffff" || fill === "#fff" || fill === "white") {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function addLegend(diagram, includePython) {
+        if (!diagram.parentNode || diagram.parentNode.querySelector(".inheritance-legend")) return;
+        const legend = document.createElement("div");
+        legend.className = "inheritance-legend";
+        const pythonItem = includePython ? `
+            <span class="legend-item">
+                <span class="legend-swatch python-swatch"></span>
+                <span class="legend-label">Python</span>
+            </span>
+        ` : "";
+        legend.innerHTML = `
+            ${pythonItem}
+            <span class="legend-item">
+                <span class="legend-swatch manim-swatch"></span>
+                <span class="legend-label">Manim</span>
+            </span>
+            <span class="legend-item">
+                <span class="legend-swatch extensions-swatch"></span>
+                <span class="legend-label">Manim Extensions</span>
+            </span>
+        `;
+        diagram.parentNode.insertBefore(legend, diagram);
+    }
+
+    function updateLegend(diagram) {
+        const existing = diagram.parentNode ? diagram.parentNode.querySelector(".inheritance-legend") : null;
+        if (!existing) {
+            addLegend(diagram, hasPythonNodes(diagram));
+            return;
+        }
+        if (hasPythonNodes(diagram) && !existing.querySelector(".python-swatch")) {
+            const pythonItem = document.createElement("span");
+            pythonItem.className = "legend-item";
+            pythonItem.innerHTML = `
+                <span class="legend-swatch python-swatch"></span>
+                <span class="legend-label">Python</span>
+            `;
+            existing.insertBefore(pythonItem, existing.firstChild);
+        }
+    }
+
+    for (const diagram of diagrams) {
+        addLegend(diagram, false);
+    }
+
     // Determine the currently-active color scheme. Furo stores its theme choice
     // in localStorage["theme"] ("auto" | "dark" | "light") and reflects the
     // effective value on <body data-theme="...">. Prefer the real state over the
@@ -43,27 +101,23 @@ window.addEventListener("load", function () {
                     styleElements.push(style);
                     setColorScheme();
                 }
+                updateLegend(diagram);
             });
         } else {
             styleElements.push(style);
+            updateLegend(diagram);
         }
     }
 
     function setColorScheme() {
         let colors, additions = "";
         if (getDark()) {
-            // Dark
             colors = {
-                text: "#e07a5f",
-                box: "#383838",
                 edge: "#d0d0d0",
                 background: "#131416"
             };
         } else {
-            // Light
             colors = {
-                text: "#e07a5f",
-                box: "#fff",
                 edge: "#413c3c",
                 background: "#ffffff"
             };
@@ -77,14 +131,6 @@ window.addEventListener("load", function () {
             style.textContent = `
                 svg {
                     background-color: ${colors.background};
-                }
-
-                .node text {
-                    fill: ${colors.text};
-                }
-
-                .node polygon {
-                    fill: ${colors.box};
                 }
 
                 .edge polygon {

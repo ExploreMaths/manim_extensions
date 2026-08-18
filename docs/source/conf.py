@@ -30,6 +30,7 @@ extensions = [
     "sphinx_autodoc_typehints",
     "myst_parser",
     "manim_directive",
+    "inheritance_colors",
 ]
 
 templates_path = ["_templates"]

@@ -38,8 +38,8 @@ Quick start
 
    class SequenceDiagramLibraryExample(Scene):
        def construct(self):
-           actor = SeqActor("User")
-           obj = SeqObject("Service")
+           actor = SeqActor("User").shift(LEFT)
+           obj = SeqObject("Service").shift(RIGHT)
            self.add(actor, obj)
 
 This library is especially useful when explaining:

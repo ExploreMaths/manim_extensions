@@ -16,12 +16,9 @@ inline. Each example demonstrates one of the core extension modules.
 
    class LabelDotExample(Scene):
        def construct(self):
-           axes = Axes(x_range=[-3, 5], y_range=[-2, 4], x_length=7, y_length=5)
-           self.add(axes)
-
-           a = LabelDot("A", [-2, -1, 0], label_pos=DOWN, buff=0.2, color=RED).scale(1.3)
-           b = LabelDot("B", [1, 2, 0], label_pos=UP, buff=0.2, color=GREEN).scale(1.3)
-           c = LabelDot("C", [3, -1, 0], label_pos=DOWN, buff=0.2, color=BLUE).scale(1.3)
+           a = LabelDot("A", [-2, -1, 0], label_pos=DOWN, buff=0.2, color=RED)
+           b = LabelDot("B", [1, 2, 0], label_pos=UP, buff=0.2, color=GREEN)
+           c = LabelDot("C", [3, -1, 0], label_pos=DOWN, buff=0.2, color=BLUE)
 
            triangle = Polygon(
                a.get_center(), b.get_center(), c.get_center(),
@@ -42,9 +39,9 @@ inline. Each example demonstrates one of the core extension modules.
            line = Line(LEFT * 3, RIGHT * 3)
            self.add(line)
 
-           slope = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE).next_to(line, UP*2, buff=1.0).scale(1.2)
-           brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP).scale(1.2)
-           arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0).scale(1.2)
+           slope = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE).next_to(line, UP*2, buff=1.0)
+           brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
+           arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0)
 
            self.add(slope, brace, arrow)
 
@@ -79,13 +76,11 @@ inline. Each example demonstrates one of the core extension modules.
            pts = CircleInt(c1, c2)
 
            self.add(c1, c2)
-           if pts:
-               for i, p in enumerate(pts):
-                   self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1).scale(1.2))
+           self.add(LabelDot("P_1", pts[1], label_pos=UP, buff=0.1))
+           self.add(LabelDot("P_2", pts[0], label_pos=DOWN, buff=0.1))
 
-           line = Line(pts[0], pts[1], color=PURE_YELLOW, stroke_width=2) if pts and len(pts) >= 2 else None
-           if line:
-               self.add(line)
+           line = Line(pts[0], pts[1], color=PURE_YELLOW, stroke_width=2)
+           self.add(line)
 
 .. manim:: TextAnimationsExample
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
@@ -95,16 +90,16 @@ inline. Each example demonstrates one of the core extension modules.
 
    class TextAnimationsExample(Scene):
        def construct(self):
-           t1 = Text("Hello World").scale(1.5).shift(UP * 1.5)
+           t1 = Text("Hello World").shift(UP * 1.5)
            self.play(TypeWriter(t1, interval=0.08))
            self.wait(0.5)
 
-           t2 = Text("Fade Me Out").scale(1.5)
+           t2 = Text("Fade Me Out")
            self.add(t2)
            self.play(FadeOutRandom(t2))
            self.wait(0.5)
 
-           t3 = Text("Random Write!").scale(1.5).shift(DOWN * 1.5)
+           t3 = Text("Random Write!").shift(DOWN * 1.5)
            self.play(WriteRandom(t3))
            self.wait(1)
 
@@ -117,9 +112,9 @@ inline. Each example demonstrates one of the core extension modules.
 
    class ColorTextExample(Scene):
        def construct(self):
-           t1 = ColorText([255, 80, 80]).scale(1.2).shift(UP * 2)
-           t2 = ColorText([80, 200, 255]).scale(1.2)
-           t3 = ColorText([150, 255, 100]).scale(1.2).shift(DOWN * 2)
+           t1 = ColorText([255, 80, 80]).shift(UP * 2)
+           t2 = ColorText([80, 200, 255])
+           t3 = ColorText([150, 255, 100]).shift(DOWN * 2)
 
            self.add(t1, t2, t3)
 
@@ -143,7 +138,7 @@ inline. Each example demonstrates one of the core extension modules.
                "tests": {
                    "test_main.py": None,
                },
-           }).scale(1.1)
+           })
 
            self.add(tree)
 
@@ -176,7 +171,7 @@ inline. Each example demonstrates one of the core extension modules.
 
    class HighlightAnimationsExample(Scene):
        def construct(self):
-           mob = Text("Hello World").scale(1.8)
+           mob = Text("Hello World")
            self.add(mob)
 
            box = SurroundingRectangle(mob, color=PURE_YELLOW)
@@ -229,8 +224,8 @@ inline. Each example demonstrates one of the core extension modules.
 
    class ChineseMathTexExample(Scene):
        def construct(self):
-           tex1 = ChineseMathTex(r"勾股定理：a^{2} + b^{2} = c^{2}").scale(1.4).shift(UP * 1.5)
-           tex2 = ChineseMathTex(r"二次方程：x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}").scale(1.2).shift(DOWN * 1.5)
+           tex1 = ChineseMathTex(r"勾股定理：a^{2} + b^{2} = c^{2}").shift(UP * 1.5)
+           tex2 = ChineseMathTex(r"二次方程：x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}").shift(DOWN * 1.5)
 
            self.add(tex1)
            self.add(tex2)
@@ -249,13 +244,13 @@ inline. Each example demonstrates one of the core extension modules.
            axes = ThreeDAxes(x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3])
            self.add(axes)
 
-           v1 = ThreeDVector([2, 1, 1.5], color=PURE_YELLOW).scale(1.3)
-           v2 = ThreeDVector([-1, 2, 2], color=RED).scale(1.3)
-           v3 = ThreeDVector([1, -1, 1], color=GREEN).scale(1.3)
+           v1 = ThreeDVector([2, 1, 1.5], color=PURE_YELLOW)
+           v2 = ThreeDVector([-1, 2, 2], color=RED)
+           v3 = ThreeDVector([1, -1, 1], color=GREEN)
 
-           l1 = MathTex(r"\mathbf{v}_1", color=PURE_YELLOW).scale(1.3).next_to([2, 1, 1.5], UP + RIGHT, buff=0.3)
-           l2 = MathTex(r"\mathbf{v}_2", color=RED).scale(1.3).next_to([-1, 2, 2], UP + LEFT, buff=0.3)
-           l3 = MathTex(r"\mathbf{v}_3", color=GREEN).scale(1.3).next_to([1, -1, 1], DOWN + RIGHT, buff=0.3)
+           l1 = MathTex(r"\mathbf{v}_1", color=PURE_YELLOW).next_to([2, 1, 1.5], UP + RIGHT, buff=0.3)
+           l2 = MathTex(r"\mathbf{v}_2", color=RED).next_to([-1, 2, 2], UP + LEFT, buff=0.3)
+           l3 = MathTex(r"\mathbf{v}_3", color=GREEN).next_to([1, -1, 1], DOWN + RIGHT, buff=0.3)
 
            self.add(v1, v2, v3)
            self.add_fixed_in_frame_mobjects(l1, l2, l3)
@@ -268,7 +263,7 @@ inline. Each example demonstrates one of the core extension modules.
 
    class MoreAnimationsExample(Scene):
        def construct(self):
-           text = Text("Animation").scale(2)
+           text = Text("Animation")
            self.add(text)
 
            self.play(ReversedWrite(text))
@@ -315,10 +310,10 @@ inline. Each example demonstrates one of the core extension modules.
 
    class CircuitExample(Scene):
        def construct(self):
-           vs = VoltageSource(value=10).shift(LEFT * 3 + UP * 0.5).scale(1.1)
-           r1 = Resistor(label="10k").next_to(vs, RIGHT, buff=3.0).scale(1.1)
-           r2 = Resistor(label="20k").next_to(r1, DOWN, buff=2.2).scale(1.1)
-           g = Ground().next_to(r2, DOWN, buff=1.3).scale(1.1)
+           vs = VoltageSource(value=10).shift(LEFT * 3 + UP * 0.5)
+           r1 = Resistor(label="10k").next_to(vs, RIGHT, buff=3.0)
+           r2 = Resistor(label="20k").next_to(r1, DOWN, buff=2.2)
+           g = Ground().next_to(r2, DOWN, buff=1.3)
 
            circuit = Circuit()
            circuit.add_components(vs, r1, r2, g)
@@ -383,8 +378,8 @@ inline. Each example demonstrates one of the core extension modules.
 
    class DataStructuresExample(Scene):
        def construct(self):
-           arr = MArray(self, [10, 20, 30, 40, 50], label="arr").scale(1.2)
-           var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5).scale(1.2)
+           arr = MArray(self, [10, 20, 30, 40, 50], label="arr")
+           var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5)
 
            self.add(arr, var)
 
@@ -439,9 +434,9 @@ inline. Each example demonstrates one of the core extension modules.
            mesh_data = Mesh(vertices, faces)
            manim_mesh = Manim2DMesh(mesh_data)
 
-           v0 = LabelDot("V0", [0, 0, 0], label_pos=DOWN + LEFT, buff=0.1).set_color(PURE_YELLOW).scale(1.2)
-           v1 = LabelDot("V1", [3, 0, 0], label_pos=DOWN + RIGHT, buff=0.1).set_color(PURE_YELLOW).scale(1.2)
-           v2 = LabelDot("V2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW).scale(1.2)
+           v0 = LabelDot("V0", [0, 0, 0], label_pos=DOWN + LEFT, buff=0.1).set_color(PURE_YELLOW)
+           v1 = LabelDot("V1", [3, 0, 0], label_pos=DOWN + RIGHT, buff=0.1).set_color(PURE_YELLOW)
+           v2 = LabelDot("V2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW)
 
            self.add(manim_mesh)
            self.add(v0, v1, v2)
@@ -494,11 +489,11 @@ inline. Each example demonstrates one of the core extension modules.
 
    class SequenceDiagramExample(Scene):
        def construct(self):
-           client = SeqActor("Client").shift(LEFT * 4).scale(1.2)
-           server = SeqActor("Server").shift(RIGHT * 4).scale(1.2)
+           client = SeqActor("Client").shift(LEFT * 4)
+           server = SeqActor("Server").shift(RIGHT * 4)
 
-           request = SeqObject("HTTP Request").scale(1.2)
-           response = SeqObject("HTTP Response").scale(1.2)
+           request = SeqObject("HTTP Request")
+           response = SeqObject("HTTP Response")
 
            self.play(*SeqAction.introduce_actors(client, server))
            self.wait(0.5)
@@ -528,7 +523,7 @@ inline. Each example demonstrates one of the core extension modules.
                \node at (1.5, 2.5) {Diagram};
                """,
                use_pdf=False,
-           ).scale(1.3)
+           )
            self.add(tikz)
 
 .. manim:: PhysicsOpticsExample
@@ -540,7 +535,7 @@ inline. Each example demonstrates one of the core extension modules.
 
    class PhysicsOpticsExample(Scene):
        def construct(self):
-           lens = Lens(f=1.5, d=0.4).scale(1.5)
+           lens = Lens(f=1.5, d=0.4)
            object = Triangle(color=RED).scale(0.45).shift(LEFT * 3 + DOWN * 0.5)
            rays = VGroup(
                Ray(start=LEFT * 3 + UP * 0.5, direction=RIGHT, init_length=5, color=PURE_YELLOW),
@@ -559,7 +554,7 @@ inline. Each example demonstrates one of the core extension modules.
 
    class PhysicsWavesExample(Scene):
        def construct(self):
-           wave = StandingWave().scale(1.5)
+           wave = StandingWave()
 
            self.add(wave)
 
@@ -572,8 +567,8 @@ inline. Each example demonstrates one of the core extension modules.
 
    class PhysicsEMExample(Scene):
        def construct(self):
-           c1 = Charge(+1).shift(LEFT).scale(1.3)
-           c2 = Charge(-1).shift(RIGHT).scale(1.3)
+           c1 = Charge(+1).shift(LEFT)
+           c2 = Charge(-1).shift(RIGHT)
            field = ElectricField(c1, c2)
 
            self.add(c1, c2, field)
@@ -587,7 +582,7 @@ inline. Each example demonstrates one of the core extension modules.
 
    class PhysicsMechanicsExample(Scene):
        def construct(self):
-           p = Pendulum(length=3, initial_theta=0.4).scale(1.2)
+           p = Pendulum(length=3, initial_theta=0.4)
 
            self.add(p)
 
@@ -617,5 +612,5 @@ inline. Each example demonstrates one of the core extension modules.
                    }
                }
            }
-           dfa = ManimDeterminsticFiniteAutomaton(json_template=dfa_json).scale(1.3)
+           dfa = ManimDeterminsticFiniteAutomaton(json_template=dfa_json)
            self.add(dfa)

@@ -13,6 +13,14 @@ v1.0.4 (Unreleased)
   and its documentation in ``geometry.rst`` for computing arc-arc intersections.
 * Added ``reuse-lint`` and ``flake8-unused-imports`` jobs to the GitHub Actions
   workflow for license compliance and unused import detection.
+* Added custom Sphinx extension ``inheritance_colors`` that color-codes
+  inheritance diagram nodes by module origin — Manim nodes in green
+  (#87C2A5), Manim Extensions nodes in teal (#4DB8D4), with dark
+  foreground (#1E1E2E) for both, and uncolored Python nodes in gray —
+  with a dynamic legend auto-generated above each diagram.
+* Added legend display above inheritance diagrams with color swatches for
+  Manim, Manim Extensions, and Python (auto-detected when third-party
+  nodes appear in a diagram).
 
 **Changed**
 
@@ -38,6 +46,8 @@ v1.0.4 (Unreleased)
 * Added ``validate.yml`` GitHub Actions workflow with three separate jobs
   (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
   and their corresponding Python validation scripts.
+* Removed module-level ``.. manim::`` directive examples from 16 Python files
+  (the rendering engine does not display module-level manim examples).
 
 **Removed**
 
@@ -95,6 +105,9 @@ v1.0.4 (Unreleased)
 * Fixed ``validate_refs.py`` false positives for filenames like
   ``CONTRIBUTING.md`` by skipping tokens ending in common file extensions
   (``.md``, ``.rst``, ``.py``, etc.).
+* Fixed inheritance diagram node colors being overwritten / flashing on
+  page load by updating ``responsiveSvg.js`` to preserve custom fill colors
+  injected by the ``inheritance_colors`` extension.
 
 v1.0.3
 ------

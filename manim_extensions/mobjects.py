@@ -9,19 +9,6 @@ This module provides small reusable building blocks for common educational and
 visualisation scenes, including labels, braces, dots, and LaTeX-wrapped
 objects.
 
-Examples
---------
-.. manim:: MobjectsModuleDocExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions import LabelDot, MathTexLine
-
-   class MobjectsModuleDocExample(Scene):
-       def construct(self):
-           dot = LabelDot("A", [0, 0, 0], label_pos=UP)
-           line = MathTexLine(MathTex("y = x"), direction=UP)
-           self.add(dot, line)
 """
 
 from manim import *

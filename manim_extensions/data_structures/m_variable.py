@@ -5,22 +5,6 @@
 
 """Contains classes to construct variable.
 
-Examples
---------
-
-.. manim:: MVariableModuleDocExample
-
-   from manim import *
-   from manim_extensions.data_structures import MVariable
-
-   class MVariableModuleDocExample(Scene):
-       def construct(self):
-           var = MVariable(self, value=0, index="x", label="count")
-           var.to_edge(UP)
-           self.play(Write(var))
-           self.wait(0.5)
-           var.update_value(42)
-           self.wait(0.5)
 """
 
 from __future__ import annotations

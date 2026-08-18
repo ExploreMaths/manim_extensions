@@ -65,9 +65,8 @@ key points or show intersections:
            pts = CircleInt(c1, c2)
 
            self.add(c1, c2)
-           if pts:
-               for p in pts:
-                   self.add(LabelDot("P", p, label_pos=UP, buff=0.15))
+           self.add(LabelDot("P_1", pts[0], label_pos=UP, buff=0.1))
+           self.add(LabelDot("P_2", pts[1], label_pos=DOWN, buff=0.1))
 
 Geometry helpers
 ----------------

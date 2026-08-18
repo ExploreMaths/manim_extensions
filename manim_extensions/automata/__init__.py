@@ -8,18 +8,6 @@
 This package exposes animated finite-state and pushdown automaton mobjects for
 building teaching and algorithm visualisations in Manim.
 
-Examples
---------
-.. manim:: AutomataPackageDocExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.automata import ManimDeterminsticFiniteAutomaton
-
-   class AutomataPackageDocExample(Scene):
-       def construct(self):
-           dfa = ManimDeterminsticFiniteAutomaton()
-           self.add(dfa)
 """
 
 from .mobjects.manim_automaton import *

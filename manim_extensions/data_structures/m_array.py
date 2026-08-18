@@ -5,25 +5,6 @@
 
 """Contains classes to construct an array.
 
-Examples
---------
-
-.. manim:: MArrayModuleDocExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.data_structures import (
-       MArray, MArrayPointer, MArrayDirection
-   )
-
-   class MArrayModuleDocExample(Scene):
-       def construct(self):
-           arr = MArray(self, [10, 20, 30, 40, 50], label="data")
-           ptr = MArrayPointer(
-               self, arr, index=2, label="i",
-               pointer_pos=MArrayDirection.UP
-           )
-           self.add(arr, ptr)
 """
 
 from copy import deepcopy

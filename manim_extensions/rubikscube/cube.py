@@ -8,22 +8,6 @@
 This module exposes a 3D-styled cube model that is useful for puzzles,
 visual demonstrations, and algorithm walkthroughs.
 
-Examples
---------
-
-.. manim:: RubiksCubeModuleExample
-
-   from manim import *
-   from manim_extensions.rubikscube import RubiksCube
-
-   class RubiksCubeModuleExample(ThreeDScene):
-       def construct(self):
-           cube = RubiksCube().scale(0.6)
-           self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
-                            frame_center=cube.get_center())
-           self.play(FadeIn(cube))
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(8)
 """
 
 from manim import *
