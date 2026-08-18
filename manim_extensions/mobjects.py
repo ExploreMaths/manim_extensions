@@ -35,7 +35,7 @@ import cv2
 
 
 DEFAULT_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
-DEFAULT_MONO_FONT = "Cascadia Code" if platform.system() == "Windows" else "DejaVu Sans Mono"
+DEFAULT_MONO_FONT = "Cascadia Code" if platform.system() == "Windows" else "JetBrains Mono"
 
 
 class ChineseMathTex(MathTex):

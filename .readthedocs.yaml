@@ -6,6 +6,7 @@ build:
     python: "3.12"
   apt_packages:
     - ffmpeg
+    - fonts-jetbrains-mono
     - fonts-noto-cjk
     - graphviz
     - libcairo2-dev
