@@ -301,8 +301,7 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: CircuitExample
    :save_last_frame:
-   :ref_classes: VoltageSource Resistor Ground
-   :ref_modules: manim_extensions.circuit.utils
+   :ref_classes: VoltageSource Resistor Ground Circuit
 
    from manim import *
    from manim_extensions.circuit import VoltageSource, Resistor, Ground
