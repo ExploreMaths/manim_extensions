@@ -26,6 +26,11 @@ Examples
            self.add(manim_mesh)
 """
 
+from . import data
+from . import delaunay
+from . import models
+from . import shaders
+
 __authors__ = "Martin Steinborn, Vicky Hagemeister"
 __license__ = "MIT"
 __status__ = "Prototype"

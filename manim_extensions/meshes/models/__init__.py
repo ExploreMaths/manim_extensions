@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 
+from . import data_models
+from . import manim_models
+
 """
 all the model classes
 """

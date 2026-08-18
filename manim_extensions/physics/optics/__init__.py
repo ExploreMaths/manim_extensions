@@ -8,3 +8,6 @@
 Currently only shows refraction in lenses and not
 total internal reflection.
 """
+
+from . import lenses
+from . import rays

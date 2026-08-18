@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 ExploreMaths
+SPDX-License-Identifier: MIT
+-->
+
 # Contributing
 
 Contributions are welcome! Please open issues or pull requests on the

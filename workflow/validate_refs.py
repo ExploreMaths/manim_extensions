@@ -34,6 +34,9 @@ ROOT = Path(__file__).parent.parent
 SRC = ROOT / "manim_extensions"
 DOCS = ROOT / "docs"
 
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 REF_PATTERN = re.compile(
     r'(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`'
 )
@@ -173,12 +176,13 @@ def _mod_path_for(py_file: Path, base: Path) -> str:
 
 def build_name_maps():
     """Scan ``manim_extensions`` + installed ``manim`` and return
-    ``(classes_map, functions_map, attr_map, contexts)``."""
+    ``(classes_map, functions_map, attr_map, contexts, project_classes_map)``."""
 
     classes_map: dict[str, str] = {}
     functions_map: dict[str, str] = {}
     attr_map: dict[str, str] = {}
     contexts: dict[str, dict[int, dict[str, str]]] = {}
+    project_classes_map: dict[str, str] = {}
 
     # --- manim_extensions (highest priority) ---
     for py_file in _iter_py_files(SRC):
@@ -192,6 +196,7 @@ def build_name_maps():
         visitor = _ClassVisitor(mod_path)
         visitor.visit(tree)
         classes_map.update(visitor.classes)
+        project_classes_map.update(visitor.classes)
         functions_map.update(visitor.functions)
 
         attr_collector = _AttrCollector(mod_path)
@@ -233,7 +238,7 @@ def build_name_maps():
             for k, v in attr_collector.attrs.items():
                 attr_map.setdefault(k, v)
 
-    return classes_map, functions_map, attr_map, contexts
+    return classes_map, functions_map, attr_map, contexts, project_classes_map
 
 
 # ---------------------------------------------------------------------------
@@ -384,7 +389,7 @@ def _find_inline_code(
 
 def main() -> int:
     print("Building name maps...")
-    classes_map, functions_map, attr_map, contexts = build_name_maps()
+    classes_map, functions_map, attr_map, contexts, project_classes_map = build_name_maps()
     print(f"  Classes: {len(classes_map)}")
     print(f"  Functions/Methods: {len(functions_map)}")
     print(f"  Class attributes: {len(attr_map)}")
@@ -430,7 +435,7 @@ def main() -> int:
             short_xrefs.append({"file": rel, **item})
 
         # --- inline code ---
-        for item in _find_inline_code(filepath, classes_map, attr_map):
+        for item in _find_inline_code(filepath, project_classes_map, attr_map):
             inline_code.append({"file": rel, **item})
 
     # --- write JSON report ---

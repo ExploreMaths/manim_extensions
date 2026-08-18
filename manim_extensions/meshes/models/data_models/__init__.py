@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from . import mesh
+
 """
 classes for the underlying mesh structure
 """

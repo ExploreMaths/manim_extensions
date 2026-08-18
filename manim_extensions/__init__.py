@@ -32,17 +32,7 @@ except PackageNotFoundError:
 from .mobjects import *
 from .geometry import *
 from .animations import *
-
-from .algorithm import *
-from .automata import *
-from .circuit import *
-from .compass import *
-from .data_structures import *
-from .gearbox import *
-from .meshes import *
-from .mindmap import *
-from .neural_network import *
-from .physics import *
-from .rubikscube import *
-from .sequence_diagram import *
-from .tikz import *
+from . import meshes
+from . import physics
+from . import neural_network
+from . import rubikscube

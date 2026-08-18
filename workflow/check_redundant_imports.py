@@ -108,7 +108,7 @@ def find_issues_in_file(filepath: Path):
     if has_star:
         result["needs_fix"] = any(b["covered"] for b in blocks)
     else:
-        result["needs_fix"] = any(b["covered"] or b["uncovered"] for b in blocks)
+        result["needs_fix"] = any(b["covered"] for b in blocks)
 
     return result
 
