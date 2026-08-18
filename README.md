@@ -8,6 +8,7 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/manim-extensions.svg)](https://pypi.org/project/manim-extensions/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python package](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml)
+[![Validate](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml)
 [![Docs](https://readthedocs.org/projects/manim-extensions/badge/?version=latest)](https://manim-extensions.readthedocs.io/en/latest/)
 
 </div>
