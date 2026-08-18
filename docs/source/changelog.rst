@@ -83,6 +83,18 @@ v1.0.4 (Unreleased)
   properly excluded from the F401 check.
 * Added SPDX license header to ``CONTRIBUTING.md`` to restore REUSE 3.3
   compliance.
+* Fixed ``pyproject.toml`` TOML parse error on Python 3.13 / pip by replacing
+  an invalid tuple (``(...)``) with an array (``[...]``) in the
+  ``[tool.flake8]`` section.
+* Added ``myst-parser`` to the ``docs`` optional dependencies so ReadTheDocs
+  can build the documentation with the included ``CONTRIBUTING.md``.
+* Fixed :class:`~manim_extensions.mobjects.FileTree` box-drawing characters
+  not connecting on Linux / ReadTheDocs by switching the Linux fallback font
+  from ``DejaVu Sans Mono`` to ``JetBrains Mono``, and installing
+  ``fonts-jetbrains-mono`` in the ReadTheDocs build environment.
+* Fixed ``validate_refs.py`` false positives for filenames like
+  ``CONTRIBUTING.md`` by skipping tokens ending in common file extensions
+  (``.md``, ``.rst``, ``.py``, etc.).
 
 v1.0.3
 ------
