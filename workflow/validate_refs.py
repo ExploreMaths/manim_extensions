@@ -53,6 +53,8 @@ SKIP_NAMES = frozenset({
     "object",
 })
 
+SKIP_SUFFIXES = (".md", ".rst", ".py", ".toml", ".yml", ".yaml", ".cfg", ".ini", ".txt")
+
 SKIP_PREFIXES = (
     "~typing.", "~numpy.", "~matplotlib.", "~collections.",
     "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.",
@@ -368,6 +370,8 @@ def _find_inline_code(
                 if full.startswith("~"):
                     continue
                 if full in SKIP_NAMES:
+                    continue
+                if any(full.endswith(suf) for suf in SKIP_SUFFIXES):
                     continue
                 # Include if:
                 #   - contains dots (qualified-looking name), or
