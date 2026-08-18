@@ -35,6 +35,9 @@ dependencies = [
     "shapely",
     "trimesh",
     "xmltodict",
+    "numpy>=2.0",
+    "scipy",
+    "moderngl",
 ]
 
 [project.optional-dependencies]
