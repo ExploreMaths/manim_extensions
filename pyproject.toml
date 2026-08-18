@@ -64,7 +64,7 @@ python_functions = ["test_*"]
 
 [tool.flake8]
 per-file-ignores = [
-    ("**/__init__.py", "F401 F403"),
+    ["**/__init__.py", "F401 F403"],
 ]
 exclude = [
     "docs",
