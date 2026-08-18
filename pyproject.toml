@@ -45,6 +45,7 @@ docs = [
     "sphinx>=7.0",
     "furo>=2024.0",
     "sphinx-autodoc-typehints>=2.0",
+    "myst-parser>=3.0",
 ]
 
 [project.urls]
