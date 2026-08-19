@@ -631,6 +631,35 @@ class Gear(VMobject):
         positive_bias: When offset is used, there will play between gears. If positive_bias= True,
             this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'."""
 
+        # -- Rack branch -----------------------------------------------------------
+        if isinstance(gear2, Rack):
+            rack_center = gear2.get_center()
+            rack_angle = gear2.get_angle()
+
+            # Rack pitch line direction (along the rack's length) and its normal
+            pitch_dir = np.array([np.cos(rack_angle), np.sin(rack_angle), 0])
+            pitch_normal = np.array([-np.sin(rack_angle), np.cos(rack_angle), 0])
+
+            diff_vect = self.get_center() - rack_center
+            distance = np.linalg.norm(diff_vect)
+            if distance != 0:
+                diff_vect = diff_vect / distance
+            else:
+                diff_vect = pitch_normal
+
+            # Pitch distance for external gear-rack meshing
+            pitch_dist = self.rp + offset * self.m + self.X
+
+            self.shift(diff_vect * (-distance + pitch_dist))
+
+            # Rotate gear so its teeth mesh with the rack's teeth.
+            # For a rack the tooth phase is linear; the gear must rotate so that
+            # a gear tooth aligns with a rack tooth gap at the pitch point.
+            diff_angle = np.arctan2(diff_vect[1], diff_vect[0])
+            mod1 = (self.get_angle() - diff_angle - PI) % self.pitch_angle / self.pitch_angle
+            self.rotate((-mod1 + 0.5) * self.pitch_angle)
+            return
+
         # get the basic distance vector
         # remember: diff vect points towards self
         diff_vect = self.get_center() - gear2.get_center()
