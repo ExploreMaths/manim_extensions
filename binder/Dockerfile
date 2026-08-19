@@ -91,4 +91,9 @@ WORKDIR ${HOME}
 RUN chown -R ${NB_USER}:${NB_USER} ${HOME} && chmod 777 ${HOME}
 USER ${NB_USER}
 
+COPY binder/postBuild /usr/local/bin/postBuild
+COPY binder/start-notebook.sh /usr/local/bin/start-notebook.sh
+USER root && chmod +x /usr/local/bin/postBuild /usr/local/bin/start-notebook.sh && USER ${NB_USER}
+
+ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--port", "8888"]

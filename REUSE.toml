@@ -24,6 +24,20 @@ SPDX-FileCopyrightText = [
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "binder/postBuild"
+SPDX-FileCopyrightText = [
+    "2026 ExploreMaths"
+]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "binder/start-notebook.sh"
+SPDX-FileCopyrightText = [
+    "2026 ExploreMaths"
+]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = ".dockerignore"
 SPDX-FileCopyrightText = [
     "2026 ExploreMaths"
