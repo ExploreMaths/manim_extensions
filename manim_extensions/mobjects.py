@@ -446,6 +446,53 @@ class ExtendedLine(Line):
         self.match_style(line)
 
 
+class ShortenedLine(Line):
+    """A line segment shortened at both ends.
+
+    Takes an existing :class:`~manim.mobject.geometry.line.Line` and shortens it by
+    *shorten_distance* along its original direction on both sides.
+    The style (color, stroke width, etc.) of the original line is automatically
+    copied via :meth:`~manim.mobject.types.vectorized_mobject.VMobject.match_style`.
+
+    Parameters
+    ----------
+    line : :class:`~manim.mobject.geometry.line.Line`
+        The original line segment to shorten.
+    shorten_distance : float
+        Distance to shorten at each end.
+
+    Examples
+    --------
+    .. manim:: ShortenedLineDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions import ShortenedLine
+
+       class ShortenedLineDocExample(Scene):
+           def construct(self):
+               base = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+               shortened = ShortenedLine(base, shorten_distance=1.0)
+               self.add(base, shortened)
+    """
+
+    def __init__(self, line: Line, shorten_distance: float) -> None:
+        """Initialize the ShortenedLine instance."""
+        start_point = line.get_start()
+        end_point = line.get_end()
+        direction_vector = end_point - start_point
+        vector_length = np.linalg.norm(direction_vector)
+        if vector_length < 1e-8 or shorten_distance * 2 >= vector_length:
+            mid_point = (start_point + end_point) / 2
+            super().__init__(mid_point, mid_point)
+        else:
+            unit_direction_vector = direction_vector / vector_length
+            new_start_point = start_point + shorten_distance * unit_direction_vector
+            new_end_point = end_point - shorten_distance * unit_direction_vector
+            super().__init__(new_start_point, new_end_point)
+        self.match_style(line)
+
+
 class PerpendicularSign(VGroup):
     """A right‑angle (perpendicular) sign.
 
