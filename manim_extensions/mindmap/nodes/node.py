@@ -412,10 +412,12 @@ class Node:
     The direction of the operation.
     """
         current_style = getattr(self, 'connector_style', None)
-        if hasattr(self,'connector') and (
+        if hasattr(self,'connector') and self.connector is not None and (
             change_layout or change_dir or kwargs != current_style
         ):
-            self.connector.remove_updater(*self.connector.get_updaters())
+            updaters = self.connector.get_updaters()
+            if updaters:
+                self.connector.remove_updater(*updaters)
             self.connector_style = kwargs
             self.connector.add_updater(
                 lambda m: m.become(
@@ -426,8 +428,10 @@ class Node:
     def get_node_and_line_without_updater(self) -> Group:
         """Return the node and its connector, removing the connector updater."""
         node_mobj = Group(self.surr_rect,self.vmobject)
-        if hasattr(self,'connector'):
-            self.connector.remove_updater(*self.connector.get_updaters())
+        if hasattr(self,'connector') and self.connector is not None:
+            updaters = self.connector.get_updaters()
+            if updaters:
+                self.connector.remove_updater(*updaters)
             node_mobj.add(self.connector)
             del self.connector
         return node_mobj
