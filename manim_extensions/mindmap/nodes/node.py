@@ -415,9 +415,7 @@ class Node:
         if hasattr(self,'connector') and self.connector is not None and (
             change_layout or change_dir or kwargs != current_style
         ):
-            updaters = self.connector.get_updaters()
-            if updaters:
-                self.connector.remove_updater(*updaters)
+            self.connector.clear_updaters()
             self.connector_style = kwargs
             self.connector.add_updater(
                 lambda m: m.become(
@@ -429,9 +427,7 @@ class Node:
         """Return the node and its connector, removing the connector updater."""
         node_mobj = Group(self.surr_rect,self.vmobject)
         if hasattr(self,'connector') and self.connector is not None:
-            updaters = self.connector.get_updaters()
-            if updaters:
-                self.connector.remove_updater(*updaters)
+            self.connector.clear_updaters()
             node_mobj.add(self.connector)
             del self.connector
         return node_mobj
