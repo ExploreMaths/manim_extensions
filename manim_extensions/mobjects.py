@@ -173,14 +173,14 @@ class LabelDot(VGroup):
         return self.dot.get_center()
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
-        """Return the center of the underlying dot (boundary approximation).
+        """Return a point on the boundary of the underlying dot in the given direction.
 
         Parameters
         ----------
         direction : Vector3DLike
-            The direction of the operation.
+            The direction from the center towards the boundary.
         """
-        return self.dot.get_center()
+        return self.dot.get_boundary_point(direction)
 
 
 class MathTexLine(VGroup):
