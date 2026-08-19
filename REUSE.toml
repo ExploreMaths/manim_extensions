@@ -16,6 +16,21 @@ SPDX-FileCopyrightText = [
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "binder/texlive-profile.txt"
+SPDX-FileCopyrightText = [
+    "2024 Manim Community",
+    "2026 ExploreMaths"
+]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ".dockerignore"
+SPDX-FileCopyrightText = [
+    "2026 ExploreMaths"
+]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = "docs/Makefile"
 SPDX-FileCopyrightText = [
     "2026 ExploreMaths"
