@@ -3,13 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
 __all__ = [
     'PutRuler',
     'PutRulerAway'
 ]
-# from manim import *
 
+from manim import *
 from ..compass.ruler import Ruler
 
 class PutRuler(ApplyMethod):
