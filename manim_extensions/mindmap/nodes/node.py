@@ -284,6 +284,8 @@ class Node:
     direction : np.ndarray
     The direction of the operation.
     """
+        if self.parent is None:
+            raise ValueError("root node has no parent to connect to")
         if np.array_equal(direction,UP):
             start,end = self.parent.surr_rect.get_top(),self.surr_rect.get_bottom()
         elif np.array_equal(direction,DOWN):
@@ -303,6 +305,8 @@ class Node:
     kwargs
     Kwargs processed by this operation.
     """
+        if self.parent is None:
+            raise ValueError("root node has no parent to connect to")
         if self.level == 1:
             if (neighbor:=self.neighbor) is not None:
                 start = neighbor.surr_rect.get_right()
@@ -315,6 +319,8 @@ class Node:
             start = self.parent.surr_rect.get_top()
         elif self.side == LayoutDirection.TopToBottom:
             start = self.parent.surr_rect.get_bottom()
+        else:
+            start = self.parent.surr_rect.get_right()
         start +=  0.25*self.parent.width*LEFT
         end = self.surr_rect.get_left()
         middle = np.array([start[0],end[1],0])
@@ -328,6 +334,8 @@ class Node:
     kwargs
     Kwargs processed by this operation.
     """
+        if self.parent is None:
+            raise ValueError("root node has no parent to connect to")
         start = self.parent.surr_rect.get_bottom()
         if self.level == 1:
             end = self.surr_rect.get_top()
