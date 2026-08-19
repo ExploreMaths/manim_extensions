@@ -35,7 +35,11 @@ def CircleInt(
 ) -> Optional[Tuple[list[float], list[float]]]:
     """Compute the intersection points of two circles.
 
-    Solves the geometric intersection of two circles in the XY‑plane.
+    Solves the geometric intersection of two circles (or spheres in 3-D).
+    When both circles are coplanar (z‑coordinates match) the classic 2‑D
+    circle–circle formula is used.  Otherwise the circles are treated as
+    spheres and the two points on the resulting intersection circle closest
+    to the line joining the sphere centres are returned.
 
     Parameters
     ----------
@@ -47,8 +51,8 @@ def CircleInt(
     Returns
     -------
     Optional[Tuple[list[float], list[float]]]
-        A tuple ``(point1, point2)`` where each point is ``[x, y, 0]`` if the
-        circles intersect; otherwise ``None``.
+        A tuple ``(point1, point2)`` where each point is a 3‑D coordinate
+        ``[x, y, z]`` if the circles intersect; otherwise ``None``.
 
     Examples
     --------
@@ -69,30 +73,44 @@ def CircleInt(
                    for i, p in enumerate(pts):
                        self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
     """
-    circle1_center = circle1.get_center()
-    circle1_radius = circle1.radius
-    circle2_center = circle2.get_center()
-    circle2_radius = circle2.radius
-    x1, y1, _ = circle1_center
-    x2, y2, _ = circle2_center
-    d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-    if d > circle1_radius + circle2_radius or d < abs(circle1_radius - circle2_radius):
+    c1 = np.asarray(circle1.get_center(), dtype=float)
+    r1 = circle1.radius
+    c2 = np.asarray(circle2.get_center(), dtype=float)
+    r2 = circle2.radius
+
+    d_vec = c2 - c1
+    d = np.linalg.norm(d_vec)
+    if d > r1 + r2 + 1e-9 or d < abs(r1 - r2) - 1e-9:
         return None
-    a = (circle1_radius**2 - circle2_radius**2 + d**2) / (2 * d)
-    h = math.sqrt(circle1_radius**2 - a**2)
-    xm = x1 + a * (x2 - x1) / d
-    ym = y1 + a * (y2 - y1) / d
-    xs1 = xm + h * (y2 - y1) / d
-    xs2 = xm - h * (y2 - y1) / d
-    ys1 = ym - h * (x2 - x1) / d
-    ys2 = ym + h * (x2 - x1) / d
-    return [xs1, ys1, 0], [xs2, ys2, 0]
+
+    a = (r1**2 - r2**2 + d**2) / (2 * d)
+    h_sq = r1**2 - a**2
+    if h_sq < 0:
+        return None
+    h = math.sqrt(h_sq)
+
+    mid = c1 + a * d_vec / d
+    normal = d_vec / d
+
+    if abs(normal[0]) < 0.9:
+        u = np.array([1.0, 0.0, 0.0])
+    else:
+        u = np.array([0.0, 1.0, 0.0])
+    v = np.cross(normal, u)
+    v = v / np.linalg.norm(v)
+    u = np.cross(v, normal)
+    u = u / np.linalg.norm(u)
+
+    pt1 = mid + h * u
+    pt2 = mid - h * u
+
+    return pt1.tolist(), pt2.tolist()
 
 
 def LineCircleInt(
     line: Line, circle: Circle
 ) -> Optional[Union[Tuple[np.ndarray, np.ndarray], np.ndarray]]:
-    """Compute the intersection points of a line segment and a circle.
+    """Compute the intersection points of a line segment and a circle (sphere in 3-D).
 
     Only points that lie within the segment parameter range ``[0, 1]``
     are returned.
@@ -107,10 +125,10 @@ def LineCircleInt(
     Returns
     -------
     Optional[Union[Tuple[numpy.ndarray, numpy.ndarray], numpy.ndarray]]
-        * Two intersection points as a tuple if the segment cuts the circle
+        * Two intersection points as a tuple if the segment cuts the sphere
           twice.
         * A single :class:`numpy.ndarray` if the segment is tangent to the
-          circle.
+          sphere.
         * ``None`` if there is no intersection.
 
     Examples
@@ -132,24 +150,25 @@ def LineCircleInt(
                    for p in (pts if isinstance(pts, tuple) else [pts]):
                        self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
     """
-    p1 = line.get_start()
-    p2 = line.get_end()
-    c = circle.get_center()
+    p1 = np.asarray(line.get_start(), dtype=float)
+    p2 = np.asarray(line.get_end(), dtype=float)
+    c = np.asarray(circle.get_center(), dtype=float)
     r = circle.radius
-    dx, dy, _ = p2 - p1
-    cx, cy, _ = p1 - c
-    a = dx**2 + dy**2
-    b = 2 * (dx * cx + dy * cy)
-    c = cx**2 + cy**2 - r**2
-    discriminant = b**2 - 4 * a * c
+    d = p2 - p1
+    f = p1 - c
+    a = np.dot(d, d)
+    b = 2.0 * np.dot(f, d)
+    c_ = np.dot(f, f) - r**2
+    discriminant = b**2 - 4 * a * c_
     if discriminant < 0:
         return None
-    t1 = (-b + math.sqrt(discriminant)) / (2 * a)
-    t2 = (-b - math.sqrt(discriminant)) / (2 * a)
+    sqrt_d = math.sqrt(discriminant)
+    t1 = (-b + sqrt_d) / (2 * a)
+    t2 = (-b - sqrt_d) / (2 * a)
     intersections = []
     for t in [t1, t2]:
         if 0 <= t <= 1:
-            intersection = p1 + t * (p2 - p1)
+            intersection = p1 + t * d
             intersections.append(intersection)
     try:
         return intersections[0], intersections[1]
@@ -163,8 +182,8 @@ def LineCircleInt(
 def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
     """Compute the intersection of two (infinitely extended) lines.
 
-    Calculates the intersection point in the 2‑D plane.  The result is
-    **not** restricted to the segment endpoints.
+    Calculates the intersection point in 3‑D space.  Returns ``None``
+    if the lines are parallel or skew.
 
     Parameters
     ----------
@@ -176,7 +195,7 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
     Returns
     -------
     Optional[list[float]]
-        The intersection point ``[x, y, 0]`` if the lines are not parallel;
+        The intersection point ``[x, y, z]`` if the lines intersect;
         otherwise ``None``.
 
     Examples
@@ -197,38 +216,24 @@ def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
                if p is not None:
                    self.add(LabelDot("P", p, label_pos=UR, buff=0.1))
     """
+    p1 = np.asarray(line1.get_start(), dtype=float)
+    p2 = np.asarray(line1.get_end(), dtype=float)
+    p3 = np.asarray(line2.get_start(), dtype=float)
+    p4 = np.asarray(line2.get_end(), dtype=float)
 
-    @staticmethod
-    def det(a: tuple[float, float], b: tuple[float, float]) -> float:
-        """Compute the 2-D cross product (determinant) of two vectors.
+    d1 = p2 - p1
+    d2 = p4 - p3
 
-        Parameters
-        ----------
-        a : tuple of float
-            First 2-D vector.
-        b : tuple of float
-            Second 2-D vector.
-
-        Returns
-        -------
-        float
-            The determinant ``a[0]*b[1] - a[1]*b[0]``.
-        """
-        return a[0] * b[1] - a[1] * b[0]
-
-    p1 = line1.get_start()[:2]
-    p2 = line1.get_end()[:2]
-    p3 = line2.get_start()[:2]
-    p4 = line2.get_end()[:2]
-    xdiff = (p1[0] - p2[0], p3[0] - p4[0])
-    ydiff = (p1[1] - p2[1], p3[1] - p4[1])
-    div = det(xdiff, ydiff)
-    if div == 0:
+    normal = np.cross(d1, d2)
+    norm_sq = np.dot(normal, normal)
+    if norm_sq < 1e-18:
         return None
-    d = (det(p1, p2), det(p3, p4))
-    x = det(d, xdiff) / div
-    y = det(d, ydiff) / div
-    return [x, y, 0]
+
+    if abs(np.dot(p3 - p1, normal)) > 1e-9:
+        return None
+
+    t = np.dot(np.cross(p3 - p1, d2), normal) / norm_sq
+    return (p1 + t * d1).tolist()
 
 
 def LineArcInt(
@@ -237,7 +242,8 @@ def LineArcInt(
     """Compute the intersection points of a line segment and an arc.
 
     The function checks whether each candidate intersection point actually
-    lies within the angular span of the arc.
+    lies within the angular span of the arc.  The circle containing the arc
+    is treated as a sphere in 3‑D.
 
     Parameters
     ----------
@@ -249,9 +255,9 @@ def LineArcInt(
     Returns
     -------
     Optional[Union[Tuple[list[float], list[float]], list[float]]]
-        * A tuple of two points ``([x1, y1, 0], [x2, y2, 0])`` for two
+        * A tuple of two points ``([x1, y1, z1], [x2, y2, z2])`` for two
           intersections.
-        * A single point ``[x, y, 0]`` for one intersection.
+        * A single point ``[x, y, z]`` for one intersection.
         * ``None`` if there is no intersection.
 
     Examples
@@ -273,40 +279,32 @@ def LineArcInt(
                    for p in (pts if isinstance(pts, tuple) else [pts]):
                        self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
     """
-    # Get line start and end (x,y only)
-    p1 = line.start[:2]
-    p2 = line.end[:2]
+    p1 = np.asarray(line.get_start(), dtype=float)
+    p2 = np.asarray(line.get_end(), dtype=float)
 
-    # Handle degenerate line (a single point)
     direction = p2 - p1
     length = np.linalg.norm(direction)
     if length < 1e-8:
         return None
 
-    # Get arc parameters (use ManimCE's correct attributes)
-    center = arc.arc_center[:2]  # arc centre (x,y)
-    radius = arc.radius  # radius
-    start_angle = arc.start_angle  # start angle (radians)
-    angle = arc.angle  # angular span (positive = counter-clockwise, negative = clockwise)
+    center = np.asarray(arc.arc_center, dtype=float)
+    radius = arc.radius
+    start_angle = arc.start_angle
+    angle = arc.angle
 
-    # Shift line coordinates to the arc centre
     p1_centered = p1 - center
     p2_centered = p2 - center
-    dx = p2_centered[0] - p1_centered[0]
-    dy = p2_centered[1] - p1_centered[1]
+    dx = p2_centered - p1_centered
 
-    # Solve the line-circle intersection (quadratic equation)
-    a = dx**2 + dy**2
-    b = 2 * (p1_centered[0] * dx + p1_centered[1] * dy)
-    c = p1_centered[0] ** 2 + p1_centered[1] ** 2 - radius**2
-    discriminant = b**2 - 4 * a * c
+    a = np.dot(dx, dx)
+    b = 2.0 * np.dot(p1_centered, dx)
+    c_ = np.dot(p1_centered, p1_centered) - radius**2
+    discriminant = b**2 - 4 * a * c_
 
-    # No real roots (line and circle do not intersect)
     if discriminant < 0:
         return None
 
-    # Compute t values (segment parameters)
-    sqrt_d = np.sqrt(discriminant)
+    sqrt_d = math.sqrt(discriminant)
     t1 = (-b + sqrt_d) / (2 * a)
     t2 = (-b - sqrt_d) / (2 * a)
     t_values = []
@@ -314,47 +312,36 @@ def LineArcInt(
         if 0 <= t <= 1 and (len(t_values) == 0 or abs(t - t_values[0]) > 1e-8):
             t_values.append(t)
 
-    # Check whether intersections lie within the arc's angular range (with tolerance)
     intersections = []
-    TOLERANCE = 1e-6  # angular tolerance (radians)
+    TOLERANCE = 1e-6
     for t in t_values:
-        # Compute intersection coordinates relative to the arc centre
-        x = p1_centered[0] + t * dx
-        y = p1_centered[1] + t * dy
-        theta = np.arctan2(y, x) % (2 * np.pi)  # intersection angle (0..2π)
+        pt = p1 + t * dx
+        rel = pt - center
+        x = rel[0]
+        y = rel[1]
+        theta = math.atan2(y, x) % (2 * math.pi)
 
-        # Arc angular range (modulo 2π)
-        start_angle_mod = start_angle % (2 * np.pi)
-        end_angle_mod = (start_angle + angle) % (2 * np.pi)
+        start_angle_mod = start_angle % (2 * math.pi)
+        end_angle_mod = (start_angle + angle) % (2 * math.pi)
 
-        # Decide whether theta lies on the arc (with tolerance)
-        if angle > 0:  # counter-clockwise arc
+        if angle > 0:
             if start_angle_mod < end_angle_mod:
-                valid = (
-                    start_angle_mod - TOLERANCE
-                    <= theta
-                    <= end_angle_mod + TOLERANCE
-                )
+                valid = start_angle_mod - TOLERANCE <= theta <= end_angle_mod + TOLERANCE
             else:
                 valid = (theta >= start_angle_mod - TOLERANCE) or (
                     theta <= end_angle_mod + TOLERANCE
                 )
-        else:  # clockwise arc
+        else:
             if end_angle_mod < start_angle_mod:
-                valid = (
-                    end_angle_mod - TOLERANCE
-                    <= theta
-                    <= start_angle_mod + TOLERANCE
-                )
+                valid = end_angle_mod - TOLERANCE <= theta <= start_angle_mod + TOLERANCE
             else:
                 valid = (theta <= start_angle_mod + TOLERANCE) or (
                     theta >= end_angle_mod - TOLERANCE
                 )
 
         if valid:
-            # Convert back to absolute coordinates (add z=0)
-            intersection = [x + center[0], y + center[1], 0.0]
-            intersections.append(intersection)
+            intersections.append(pt.tolist())
+
     try:
         return intersections[0], intersections[1]
     except Exception:
@@ -406,7 +393,7 @@ def ArcInt(
 ) -> Optional[Union[Tuple[list[float], list[float]], list[float]]]:
     """Compute the intersection points of two arcs.
 
-    First computes the intersection points of the two full circles defined by
+    First computes the intersection points of the two full spheres defined by
     the arcs, then filters to keep only points that lie within the angular
     span of both arcs.
 
@@ -420,9 +407,9 @@ def ArcInt(
     Returns
     -------
     Optional[Union[Tuple[list[float], list[float]], list[float]]]
-        * A tuple of two points ``([x1, y1, 0], [x2, y2, 0])`` for two
+        * A tuple of two points ``([x1, y1, z1], [x2, y2, z2])`` for two
           intersections.
-        * A single point ``[x, y, 0]`` for one intersection.
+        * A single point ``[x, y, z]`` for one intersection.
         * ``None`` if there is no intersection.
 
     Examples
@@ -444,27 +431,35 @@ def ArcInt(
                    for p in (pts if isinstance(pts, tuple) else [pts]):
                        self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
     """
-    center1 = arc1.arc_center
-    radius1 = arc1.radius
-    center2 = arc2.arc_center
-    radius2 = arc2.radius
+    c1 = np.asarray(arc1.arc_center, dtype=float)
+    r1 = arc1.radius
+    c2 = np.asarray(arc2.arc_center, dtype=float)
+    r2 = arc2.radius
 
-    x1, y1, _ = center1
-    x2, y2, _ = center2
-    d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-    if d <= 1e-9 or d > radius1 + radius2 or d < abs(radius1 - radius2):
+    d_vec = c2 - c1
+    d = np.linalg.norm(d_vec)
+    if d <= 1e-9 or d > r1 + r2 or d < abs(r1 - r2):
         return None
 
-    a = (radius1**2 - radius2**2 + d**2) / (2 * d)
-    h = math.sqrt(max(0, radius1**2 - a**2))
-    xm = x1 + a * (x2 - x1) / d
-    ym = y1 + a * (y2 - y1) / d
-    xs1 = xm + h * (y2 - y1) / d
-    xs2 = xm - h * (y2 - y1) / d
-    ys1 = ym - h * (x2 - x1) / d
-    ys2 = ym + h * (x2 - x1) / d
+    a = (r1**2 - r2**2 + d**2) / (2 * d)
+    h_sq = r1**2 - a**2
+    if h_sq < 0:
+        return None
+    h = math.sqrt(h_sq)
 
-    candidates = [[xs1, ys1, 0], [xs2, ys2, 0]]
+    mid = c1 + a * d_vec / d
+    normal = d_vec / d
+
+    if abs(normal[0]) < 0.9:
+        u = np.array([1.0, 0.0, 0.0])
+    else:
+        u = np.array([0.0, 1.0, 0.0])
+    v = np.cross(normal, u)
+    v = v / np.linalg.norm(v)
+    u = np.cross(v, normal)
+    u = u / np.linalg.norm(u)
+
+    candidates = [mid + h * u, mid - h * u]
 
     start1 = arc1.start_angle
     angle1 = arc1.angle
@@ -474,17 +469,17 @@ def ArcInt(
     TOL = 1e-6
     intersections = []
     for pt in candidates:
-        dx1 = pt[0] - x1
-        dy1 = pt[1] - y1
+        dx1 = pt[0] - c1[0]
+        dy1 = pt[1] - c1[1]
         theta1 = math.atan2(dy1, dx1) % (2 * math.pi)
         if not _angle_in_arc(theta1, start1, angle1, TOL):
             continue
-        dx2 = pt[0] - x2
-        dy2 = pt[1] - y2
+        dx2 = pt[0] - c2[0]
+        dy2 = pt[1] - c2[1]
         theta2 = math.atan2(dy2, dx2) % (2 * math.pi)
         if not _angle_in_arc(theta2, start2, angle2, TOL):
             continue
-        intersections.append(pt)
+        intersections.append(pt.tolist())
 
     try:
         return intersections[0], intersections[1]
@@ -581,7 +576,7 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
     # Generic VMobject sampling ----------------------------------------------
     @staticmethod
     def _segment_intersection(a1, a2, b1, b2):
-        """Compute the intersection point of two 2-D line segments.
+        """Compute the intersection point of two 3-D line segments.
 
         Parameters
         ----------
@@ -596,19 +591,29 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
             The 3-D intersection point, or ``None`` if the segments do not
             intersect.
         """
-        x1, y1 = a1[:2]
-        x2, y2 = a2[:2]
-        x3, y3 = b1[:2]
-        x4, y4 = b2[:2]
-        denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
-        if abs(denom) < 1e-9:
+        a1 = np.asarray(a1, dtype=float)
+        a2 = np.asarray(a2, dtype=float)
+        b1 = np.asarray(b1, dtype=float)
+        b2 = np.asarray(b2, dtype=float)
+
+        d1 = a2 - a1
+        d2 = b2 - b1
+
+        normal = np.cross(d1, d2)
+        norm_sq = np.dot(normal, normal)
+        if norm_sq < 1e-18:
             return None
-        t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denom
-        u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denom
-        if 0 <= t <= 1 and 0 <= u <= 1:
-            x = x1 + t * (x2 - x1)
-            y = y1 + t * (y2 - y1)
-            return np.array([x, y, 0.0])
+
+        if abs(np.dot(b1 - a1, normal)) > 1e-9:
+            return None
+
+        t = np.dot(np.cross(b1 - a1, d2), normal) / norm_sq
+        u = np.dot(np.cross(b1 - a1, d1), normal) / norm_sq
+
+        if -1e-9 <= t <= 1 + 1e-9 and -1e-9 <= u <= 1 + 1e-9:
+            t = max(0.0, min(1.0, t))
+            u = max(0.0, min(1.0, u))
+            return a1 + t * d1
         return None
 
     @staticmethod
@@ -787,8 +792,12 @@ def TangentPoint(
 
     p1p2_direction = p1p2_direction / p1p2_length
 
-    # Compute the perpendicular vector to segment p1-p2 (in 2D)
-    perpendicular_dir = np.array([-p1p2_direction[1], p1p2_direction[0], 0.0])
+    if abs(p1p2_direction[2]) < 0.9:
+        up = np.array([0.0, 0.0, 1.0])
+    else:
+        up = np.array([1.0, 0.0, 0.0])
+    perpendicular_dir = np.cross(p1p2_direction, up)
+    perpendicular_dir = perpendicular_dir / np.linalg.norm(perpendicular_dir)
 
     # Build a linear system to solve for centre c = midpoint + t * perpendicular_dir
     cross_perp_line = np.cross(perpendicular_dir, line_direction)
