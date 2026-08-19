@@ -9,7 +9,7 @@ functions to create delaunay meshes by divide and conquer
 # python imports
 from typing import List
 # third-party imports
-import manim as m
+from manim import Scene, DashedLine, Create, FadeOut, Uncreate
 import numpy as np
 # TODO will most likely be moved in the future
 from scipy.spatial import ConvexHull  # pylint: disable=no-name-in-module
@@ -74,7 +74,7 @@ class DivideAndConquer:
 
     Parameters
     ----------
-    scene : m.Scene
+    scene : :class:`~manim.scene.scene.Scene`
         The scene in which the triangulation will be animated.
     triangle_mesh : TriangleManim2DMesh
         A triangle mesh containing only vertices (no faces) that has
@@ -105,9 +105,9 @@ class DivideAndConquer:
                dc = DivideAndConquer(self, tm)
     """
 
-    def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:
+    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
         """Initialise the divide-and-conquer visualisation helper."""
-        self.scene: m.Scene = scene
+        self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
     def split_points(self, vert_indices, dash_length=0.2, line_width=1, speed=1.):
@@ -148,9 +148,9 @@ class DivideAndConquer:
         x_mid = (sorted_verts[split_index - 1][0] + sorted_verts[split_index][0]) / 2.
         y_max = np.max(verts_3d[:, 1])
         y_min = np.min(verts_3d[:, 1])
-        split_line = m.DashedLine(start=np.array([x_mid, y_min, 0.]), end=np.array([x_mid, y_max, 0.]),
+        split_line = DashedLine(start=np.array([x_mid, y_min, 0.]), end=np.array([x_mid, y_max, 0.]),
                                   stroke_width=line_width, dash_length=dash_length)
-        self.scene.play(m.Create(split_line, run_time=1. * speed))
+        self.scene.play(Create(split_line, run_time=1. * speed))
         self.scene.wait(0.3 * speed)
 
         # return indices of resulting sets
@@ -233,7 +233,7 @@ class DivideAndConquer:
                         break
                 face, edges = self.triangle_mesh.remove_face(face_idx_to_delete)
                 rr_edges.remove(tuple(sorted((base_lr[1], potential_candidate))))
-                self.scene.play(m.FadeOut(face, *edges, run_time=1. * speed))
+                self.scene.play(FadeOut(face, *edges, run_time=1. * speed))
                 self.scene.wait(0.3 * speed)
         return None
 
@@ -284,11 +284,11 @@ class DivideAndConquer:
                         break
                 face, edges = self.triangle_mesh.remove_face(face_idx_to_delete)
                 ll_edges.remove(tuple(sorted((base_lr[0], potential_candidate))))
-                self.scene.play(m.FadeOut(face, *edges, run_time=0.5 * speed))
+                self.scene.play(FadeOut(face, *edges, run_time=0.5 * speed))
                 self.scene.wait(0.3 * speed)
         return None
 
-    def merge_sets(self, indices_left: List, indices_right: List, split_line: m.DashedLine, speed: float = 1.0):
+    def merge_sets(self, indices_left: List, indices_right: List, split_line: DashedLine, speed: float = 1.0):
         """Merge two Delaunay-triangulated vertex sets into a combined triangulation.
 
         The method removes the split separator line, locates the base edge
@@ -315,7 +315,7 @@ class DivideAndConquer:
         """
 
         # remove split line
-        self.scene.play(m.Uncreate(split_line), run_time=1. * speed)
+        self.scene.play(Uncreate(split_line), run_time=1. * speed)
         self.scene.wait(0.3 * speed)
 
         base_lr = self._find_base_lr(indices_left, indices_right)
