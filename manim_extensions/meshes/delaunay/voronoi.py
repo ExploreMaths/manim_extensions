@@ -68,7 +68,7 @@ class VoronoiDelaunay:
 
         Returns
         -------
-        tuple[VGroup, VGroup]
+        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, :class:`~manim.mobject.types.vectorized_mobject.VGroup`]
             A pair of :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             containers holding the Voronoi vertices (dots) and the connecting
             ridge lines, respectively.
@@ -130,7 +130,7 @@ class VoronoiDelaunay:
 
         Returns
         -------
-        m.Circle or None
+        :class:`~manim.mobject.geometry.arc.Circle` or None
             A :class:`~manim.mobject.geometry.arc.Circle` representing the
             circumscribed circle, or ``None`` if the vertex index does not
             belong to any triangle ridge.

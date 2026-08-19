@@ -130,7 +130,7 @@ class DivideAndConquer:
 
         Returns
         -------
-        tuple[list[int], list[int], m.DashedLine]
+        tuple[list[int], list[int], :class:`~manim.mobject.geometry.line.DashedLine`]
             Left vertex indices, right vertex indices, and the separator
             line mobject.
         """
@@ -302,7 +302,7 @@ class DivideAndConquer:
             Indices of the vertices in the left set.
         indices_right : list of int
             Indices of the vertices in the right set.
-        split_line : m.DashedLine
+        split_line : :class:`~manim.mobject.geometry.line.DashedLine`
             The separator line drawn during :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points`; it is
             removed as part of the merge animation.
         speed : float, optional

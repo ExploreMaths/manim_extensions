@@ -37,21 +37,22 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     args
         Positional arguments forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.Group`.
     **kwargs
-        Additional keyword arguments controlling display options (see below).
+        Additional keyword arguments controlling display options.
 
-    possible kwargs: [see BM3DM]
-        display_vertices: whether to display the vertices
-        display_edges: whether to display the edges
-        display_faces: whether to display the faces
-        clear_vertices: whether to clear the vertices after WHAT?
-        clear_edges: whether to clear the edges after WHAT?
-        clear_faces: whether to clear the faces after WHAT?
-        edges_color: color of the edges
-        edges_width: width of the lines of the edges
-        faces_color: color of the faces
-        faces_opacity: opacity of the faces
-        verts_color: color of the vertices
-        pre_function_handle_to_anchor_scale_factor: ?
+        Possible keyword arguments (see :data:`~manim_extensions.meshes.params.BM3DM`):
+
+        * ``display_vertices``: whether to display the vertices
+        * ``display_edges``: whether to display the edges
+        * ``display_faces``: whether to display the faces
+        * ``clear_vertices``: whether to clear the vertices after WHAT?
+        * ``clear_edges``: whether to clear the edges after WHAT?
+        * ``clear_faces``: whether to clear the faces after WHAT?
+        * ``edges_color``: color of the edges
+        * ``edges_width``: width of the lines of the edges
+        * ``faces_color``: color of the faces
+        * ``faces_opacity``: opacity of the faces
+        * ``verts_color``: color of the vertices
+        * ``pre_function_handle_to_anchor_scale_factor``: ?
 
     Examples
     --------
@@ -107,7 +108,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.Group
+        :class:`~manim.mobject.types.vectorized_mobject.Group`
             Group containing the vertex sphere mobjects.
         """
         # clear previous work if wanted
@@ -123,7 +124,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.VGroup
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             Vector group containing the edge mobjects.
         """
         # clear previous work if wanted
@@ -156,7 +157,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.VGroup
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             Vector group containing the face mobjects.
         """
         # clear previous work if wanted
@@ -197,7 +198,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        tuple[m.VGroup, list[m.VGroup]]
+        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, list[:class:`~manim.mobject.types.vectorized_mobject.VGroup`]]
             The newly created face mobject and a list of newly created edge mobjects.
         """
         if color is None:
@@ -252,7 +253,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        tuple[m.VGroup, list[m.VGroup]]
+        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, list[:class:`~manim.mobject.types.vectorized_mobject.VGroup`]]
             The removed face mobject and a list of removed edge mobjects.
         """
         old_edges = self.mesh.edges
@@ -268,7 +269,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
                 self.edges.remove(removed_edge)
         return removed_face, removed_edges
 
-    def get_vertex(self, vertex_idx: int) -> m.mobject:
+    def get_vertex(self, vertex_idx: int) -> m.Mobject:
         """Return the Manim mobject for the vertex at *vertex_idx*.
 
         Parameters
@@ -278,12 +279,12 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.Mobject
+        :class:`~manim.mobject.mobject.Mobject`
             The vertex mobject (e.g. :class:`~manim.mobject.three_d.three_dimensions.Sphere` or :class:`~manim.mobject.geometry.arc.Dot`).
         """
         return self.vertices.submobjects[vertex_idx]
 
-    def get_face(self, face_idx: int) -> m.mobject:
+    def get_face(self, face_idx: int) -> m.Mobject:
         """Return the Manim mobject for the face at *face_idx*.
 
         Parameters
@@ -293,12 +294,12 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.Mobject
+        :class:`~manim.mobject.mobject.Mobject`
             The face mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.faces.submobjects[face_idx]
 
-    def get_edge(self, edge_idx: int) -> m.mobject:
+    def get_edge(self, edge_idx: int) -> m.Mobject:
         """Return the Manim mobject for the edge at *edge_idx*.
 
         Parameters
@@ -308,7 +309,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.Mobject
+        :class:`~manim.mobject.mobject.Mobject`
             The edge mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.edges.submobjects[edge_idx]
@@ -634,20 +635,21 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     args
         Positional arguments forwarded to the parent :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`.
     **kwargs
-        Additional keyword arguments controlling display options (see below).
+        Additional keyword arguments controlling display options.
 
-    possible kwargs:
-    display_vertices: whether to display the vertices
-    display_edges: whether to display the edges
-    display_faces: whether to display the faces
-    clear_vertices: whether to clear the vertices after WHAT?
-    clear_edges: whether to clear the edges after WHAT?
-    clear_faces: whether to clear the faces after WHAT?
-    edges_color: color of the edges
-    edges_width: width of the lines of the edges
-    faces_color: color of the faces
-    faces_opacity: opacity of the faces
-    verts_color: color of the vertices
+        Possible keyword arguments (see :data:`~manim_extensions.meshes.params.BM2DM`):
+
+        * ``display_vertices``: whether to display the vertices
+        * ``display_edges``: whether to display the edges
+        * ``display_faces``: whether to display the faces
+        * ``clear_vertices``: whether to clear the vertices after WHAT?
+        * ``clear_edges``: whether to clear the edges after WHAT?
+        * ``clear_faces``: whether to clear the faces after WHAT?
+        * ``edges_color``: color of the edges
+        * ``edges_width``: width of the lines of the edges
+        * ``faces_color``: color of the faces
+        * ``faces_opacity``: opacity of the faces
+        * ``verts_color``: color of the vertices
 
     Examples
     --------
@@ -690,7 +692,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        m.Group
+        :class:`~manim.mobject.types.vectorized_mobject.Group`
             Group containing the vertex mobjects.
         """
         # clear previous work if wanted
@@ -714,7 +716,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        list[m.Dot]
+        list[:class:`~manim.mobject.geometry.arc.Dot`]
             A list of :class:`~manim.mobject.geometry.arc.Dot` mobjects bound to the requested vertices.
         """
         dots = []

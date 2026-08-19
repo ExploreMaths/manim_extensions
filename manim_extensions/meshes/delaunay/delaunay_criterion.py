@@ -62,7 +62,7 @@ def get_circum_circle(triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwarg
 
     Returns
     -------
-    m.Circle
+    :class:`~manim.mobject.geometry.arc.Circle`
         A Manim circle mobject positioned at the circumscribed centre.
     """
     face = triangle_mesh.mesh.faces[face_idx]

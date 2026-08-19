@@ -28,18 +28,19 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     **kwargs
         Additional keyword arguments forwarded to the parent class.
 
-    possible kwargs:
-    display_vertices: whether to display the vertices
-    display_edges: whether to display the edges
-    display_faces: whether to display the faces
-    clear_vertices: whether to clear the vertices after WHAT?
-    clear_edges: whether to clear the edges after WHAT?
-    clear_faces: whether to clear the faces after WHAT?
-    edges_color: color of the edges
-    edges_width: width of the lines of the edges
-    faces_color: color of the faces
-    faces_opacity: opacity of the faces
-    verts_color: color of the vertices
+        Possible keyword arguments (see :data:`~manim_extensions.meshes.params.BM2DM`):
+
+        * ``display_vertices``: whether to display the vertices
+        * ``display_edges``: whether to display the edges
+        * ``display_faces``: whether to display the faces
+        * ``clear_vertices``: whether to clear the vertices after WHAT?
+        * ``clear_edges``: whether to clear the edges after WHAT?
+        * ``clear_faces``: whether to clear the faces after WHAT?
+        * ``edges_color``: color of the edges
+        * ``edges_width``: width of the lines of the edges
+        * ``faces_color``: color of the faces
+        * ``faces_opacity``: opacity of the faces
+        * ``verts_color``: color of the vertices
 
     Examples
     --------
