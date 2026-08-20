@@ -87,6 +87,7 @@ directive:
 
 import csv
 import itertools as it
+import os
 import re
 import shutil
 import sys
@@ -186,10 +187,14 @@ class ManimDirective(Directive):
 
     def run(self) -> list[nodes.Element]:
         # Rendering is skipped if the tag skip-manim is present,
-        # or if we are making the pot-files
+        # or if we are making the pot-files,
+        # or if we are building on ReadTheDocs (no GPU/headless env)
+        app = self.state.document.settings.env.app
         should_skip = (
-            "skip-manim" in self.state.document.settings.env.app.builder.tags
-            or self.state.document.settings.env.app.builder.name == "gettext"
+            "skip-manim" in app.builder.tags
+            or "skip-manim" in app.tags
+            or app.builder.name == "gettext"
+            or os.environ.get("READTHEDOCS") == "True"
         )
         if should_skip:
             clsname = self.arguments[0]
