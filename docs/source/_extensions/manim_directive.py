@@ -473,7 +473,27 @@ def setup(app: Sphinx) -> SetupMetadata:
         None,
         body=textwrap.dedent(
             """\
-                window.initManimBinder({repo: "ExploreMaths/manim_extensions", branch: "main", storage_expire: 0})
+                (function() {
+                    console.log('[manim-ext] Initializing MyBinder integration...');
+                    console.log('[manim-ext] Repo: ExploreMaths/manim_extensions, Branch: main');
+                    console.log('[manim-ext] Calling initManimBinder...');
+                    try {
+                        var result = window.initManimBinder({
+                            repo: "ExploreMaths/manim_extensions",
+                            branch: "main",
+                            storage_expire: 0
+                        });
+                        console.log('[manim-ext] initManimBinder returned:', result);
+                    } catch(e) {
+                        console.error('[manim-ext] initManimBinder FAILED:', e);
+                    }
+                    console.log('[manim-ext] Looking for binder elements...');
+                    var binders = document.querySelectorAll('[data-manim-binder]');
+                    console.log('[manim-ext] Found ' + binders.length + ' binder elements');
+                    binders.forEach(function(el, i) {
+                        console.log('[manim-ext] Binder #' + i + ': classname=' + el.getAttribute('data-manim-classname'));
+                    });
+                })();
             """
         ).strip(),
     )
