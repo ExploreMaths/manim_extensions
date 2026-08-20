@@ -47,6 +47,11 @@ RUN apt-get update -qq \
         fontconfig \
         librsvg2-utils \
         ca-certificates \
+        xvfb \
+        mesa-utils \
+        libgl1-mesa-dri \
+        libgl1-mesa-glx \
+        ffmpeg \
     && rm -rf /var/lib/apt/lists/* \
     && fc-cache -fv
 
@@ -65,6 +70,8 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir \
         manim>=0.19.1 \
         notebook \
+        jupyterlab \
+        ipykernel \
         pymunk \
         moderngl \
         moderngl-window \
@@ -93,7 +100,9 @@ USER ${NB_USER}
 
 COPY binder/postBuild /usr/local/bin/postBuild
 COPY binder/start-notebook.sh /usr/local/bin/start-notebook.sh
-USER root && chmod +x /usr/local/bin/postBuild /usr/local/bin/start-notebook.sh && USER ${NB_USER}
+USER root
+RUN chmod +x /usr/local/bin/postBuild /usr/local/bin/start-notebook.sh
+USER ${NB_USER}
 
 ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--port", "8888"]

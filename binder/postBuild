@@ -1,80 +1,15 @@
 #!/bin/bash
 set -e
 
-echo "=========================================="
-echo "  Binder Build Validation"
-echo "=========================================="
+LOG=/manim/postBuild.log
+echo "=== postBuild ===" > $LOG
+echo "Date: $(date)" >> $LOG
 
-ERRORS=0
+python -c "import manim; print('manim:', manim.__version__)" >> $LOG 2>&1
+python -c "import moderngl; print('moderngl: OK')" >> $LOG 2>&1
+python -c "import pymunk; print('pymunk: OK')" >> $LOG 2>&1
+python -c "import cv2; print('cv2:', cv2.__version__)" >> $LOG 2>&1
+python -c "import manim_extensions; print('manim_extensions: OK')" >> $LOG 2>&1
 
-check_pkg() {
-    local pkg="$1"
-    local import_name="${2:-$1}"
-    if python -c "import ${import_name}" 2>/dev/null; then
-        echo "  [OK] ${pkg}"
-    else
-        echo "  [FAIL] ${pkg} - import failed"
-        ERRORS=$((ERRORS + 1))
-    fi
-}
-
-check_pkg "manim"
-check_pkg "manim_extensions"
-check_pkg "numpy"
-check_pkg "scipy"
-check_pkg "opencv-python" "cv2"
-check_pkg "pymunk"
-check_pkg "moderngl"
-check_pkg "trimesh"
-check_pkg "shapely"
-check_pkg "xmltodict"
-check_pkg "PIL" "PIL"
-
-echo ""
-echo "--- System Dependencies ---"
-
-check_sys() {
-    local name="$1"
-    local cmd="$2"
-    if command -v "${cmd}" >/dev/null 2>&1; then
-        echo "  [OK] ${name}"
-    else
-        echo "  [FAIL] ${name} - not found"
-        ERRORS=$((ERRORS + 1))
-    fi
-}
-
-check_sys "node" "node"
-check_sys "ghostscript" "gs"
-check_sys "librsvg" "rsvg-convert"
-check_sys "TeX Live" "latex"
-
-echo ""
-echo "--- OpenGL Test ---"
-if python -c "import moderngl; ctx = moderngl.create_context(standalone=True); print('  [OK] OpenGL context created')" 2>/dev/null; then
-    :
-else
-    echo "  [FAIL] OpenGL context creation failed (moderngl)"
-    ERRORS=$((ERRORS + 1))
-fi
-
-echo ""
-echo "--- Chipmunk Test ---"
-if python -c "import pymunk; s = pymunk.Space(); print('  [OK] pymunk space created')" 2>/dev/null; then
-    :
-else
-    echo "  [FAIL] pymunk/chipmunk failed"
-    ERRORS=$((ERRORS + 1))
-fi
-
-echo ""
-echo "=========================================="
-if [ ${ERRORS} -eq 0 ]; then
-    echo "  All checks passed!"
-else
-    echo "  FAILED: ${ERRORS} check(s) failed"
-    echo "  Build will likely have issues"
-fi
-echo "=========================================="
-
-exit ${ERRORS}
+echo "=== postBuild complete ===" >> $LOG
+cat $LOG

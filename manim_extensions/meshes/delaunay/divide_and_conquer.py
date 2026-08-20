@@ -6,10 +6,10 @@
 """
 functions to create delaunay meshes by divide and conquer
 """
+from manim import *
 # python imports
 from typing import List
 # third-party imports
-from manim import Scene, DashedLine, Create, FadeOut, Uncreate
 import numpy as np
 # TODO will most likely be moved in the future
 from scipy.spatial import ConvexHull  # pylint: disable=no-name-in-module
