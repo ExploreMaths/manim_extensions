@@ -203,14 +203,6 @@ class ManimDirective(Directive):
                         "",
                     ]
                     + ["    " + line for line in self.content]
-                    + [
-                        "",
-                        ".. raw:: html",
-                        "",
-                        f'    <pre data-manim-binder data-manim-classname="{clsname}">',
-                    ]
-                    + ["    " + line for line in self.content]
-                    + ["    </pre>"],
                 ),
                 self.content_offset,
                 node,
@@ -278,16 +270,6 @@ class ManimDirective(Directive):
                 ["    from manim import *\n"] if not has_manim_import else []
             ),
             *("    " + line for line in self.content),
-            "",
-            ".. raw:: html",
-            "",
-            f'    <pre data-manim-binder data-manim-classname="{clsname}">',
-            *(
-                ["    from manim import *"] if not has_manim_import else []
-            ),
-            *("    " + line for line in self.content),
-            "",
-            "    </pre>",
         ]
         source_block = "\n".join(source_block_in)
 
@@ -327,7 +309,7 @@ class ManimDirective(Directive):
         except Exception as e:
             # A broken example embedded in a docstring should not fail the whole
             # documentation build: warn about it and fall back to a placeholder
-            # that still shows the source code (and the binder hook).
+            # that still shows the source code.
             logger.warning(
                 "manim example %r could not be rendered (%s); "
                 "showing the source code instead. [%s]",
@@ -345,14 +327,6 @@ class ManimDirective(Directive):
                         "",
                     ]
                     + ["    " + line for line in self.content]
-                    + [
-                        "",
-                        ".. raw:: html",
-                        "",
-                        f'    <pre data-manim-binder data-manim-classname="{clsname}">',
-                    ]
-                    + ["    " + line for line in self.content]
-                    + ["    </pre>"],
                 ),
                 self.content_offset,
                 placeholder,
@@ -463,16 +437,6 @@ def setup(app: Sphinx) -> SetupMetadata:
 
     app.connect("builder-inited", _delete_rendering_times)
     app.connect("build-finished", _log_rendering_times)
-
-    app.add_js_file("manim-binder.min.js")
-    app.add_js_file(
-        None,
-        body=textwrap.dedent(
-            """\
-            window.initManimBinder({repo: "ExploreMaths/manim_extensions", branch: "main", storage_expire: 0})
-            """
-        ).strip(),
-    )
 
     metadata: SetupMetadata = {
         "parallel_read_safe": False,

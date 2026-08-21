@@ -8,43 +8,6 @@ SPDX-FileCopyrightText = [
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "binder/Dockerfile"
-SPDX-FileCopyrightText = [
-    "2024 Manim Community",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "binder/texlive-profile.txt"
-SPDX-FileCopyrightText = [
-    "2024 Manim Community",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "binder/postBuild"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "binder/start-notebook.sh"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = ".dockerignore"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
 path = "docs/Makefile"
 SPDX-FileCopyrightText = [
     "2026 ExploreMaths"
@@ -254,14 +217,6 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = "docs/source/_static/responsiveSvg.js"
 SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "docs/source/_static/manim-binder.min.js"
-SPDX-FileCopyrightText = [
-    "2014-2017 Jon Schlinkert",
     "2026 ExploreMaths"
 ]
 SPDX-License-Identifier = "MIT"

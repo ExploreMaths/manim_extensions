@@ -91,25 +91,6 @@ h4, h5, h6{
     display: table-cell;
 }
 
-.manim-binder-button {
-    text-transform: capitalize;
-    padding: 10px 20px;
-    margin: 10px 0;
-}
-
-.manim-binder-wrapper {
-    background-color: var(--color-code-background);
-    color: var(--color-code-foreground);
-}
-
-.manim-binder-title {
-    margin-top: 0;
-}
-
-.manim-binder-button-wrapper {
-    margin: 0px 10px;
-}
-
 .content h2 {
     line-height: 1.5;
     margin-top: 2rem;
