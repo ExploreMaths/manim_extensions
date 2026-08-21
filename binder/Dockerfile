@@ -2,7 +2,10 @@ FROM manimcommunity/manim:v0.20.1
 
 USER root
 
-RUN pip install --no-cache-dir notebook jupyterlab ipykernel
+RUN apt-get update -qq \
+    && apt-get install --no-install-recommends -y xvfb libgl1-mesa-dri libgl1-mesa-glx libegl1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir notebook jupyterlab ipykernel
 
 ARG NB_USER=manimuser
 ARG NB_UID=1000
@@ -22,3 +25,5 @@ COPY --chown=${NB_USER}:${NB_USER} . /manim
 RUN pip install --no-cache-dir /manim
 
 USER ${NB_USER}
+
+CMD ["xvfb-run", "--auto-servernum", "jupyter", "notebook", "--ip", "0.0.0.0", "--port", "8888"]
