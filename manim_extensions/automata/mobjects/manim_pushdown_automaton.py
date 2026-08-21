@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from manim import *
 
-from .manim_non_determinstic_finite_state_automaton import ManimNonDeterminsticFiniteAutomaton
+from .manim_non_deterministic_finite_state_automaton import ManimNondeterministicFiniteAutomaton
 from .manim_state import ManimState, State
 from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
 from .manim_automaton_input import ManimAutomataInput
@@ -38,7 +38,7 @@ pushdown_automaton_json = {
     }
 }
 
-class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
+class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     """Pushdown automaton that also tracks a stack during simulation.
 
     Parameters
@@ -89,8 +89,6 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
     """
         # counts the number of transitions between two states
         transition_counter = {}
-        # for transition in self.automaton.transitions:
-        #if 2 or more transitions exist between states then this will merge them together in one transition.
         for transition in transitions:
             """put from and to states into tuple to be used as
             dictionary key."""
@@ -156,7 +154,7 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
             return None
         return self.stack.pop()
 
-    #pushdown automata can accept if the stack is empty or if it falls on a final state TODO
+    #pushdown automata can accept if the stack is empty or if it falls on a final state
     #overriden
     def play_string(self, input: Union[str, "ManimAutomataInput"], automaton_path_name: str | None = None, accept_on_final_state: bool = True) -> list:
         """Animate the pushdown automaton processing an input string.
@@ -188,11 +186,6 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
         history = self.run_input_through_automaton(input)
 
         list_of_animations = self.generate_history_animations(history)
-
-                    # if self.check_automaton_result([state_pointer]): #if the automaton has an active accepting state
-                    #     list_of_animations.append(self.generate_accept_animations()) #THIS IS GENERATED BEFORE ALL BRANCHES HAVE FINISHED
-                    # else: #if there is no final state then the machine is not accepted.
-                    #     list_of_animations.append(self.generate_reject_animations())
 
         return list_of_animations
 
@@ -229,7 +222,7 @@ class ManimPushDownAutomaton(ManimNonDeterminsticFiniteAutomaton):
                     next_states.append(transition.transition_to)
                     transitions.append(transition)
 
-                    #some code for stack too - TODO
+                    #some code for stack too
 
 
         if len(next_states) != 0:

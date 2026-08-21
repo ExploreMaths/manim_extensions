@@ -9,11 +9,8 @@ from manim import *
 class ManimTuringMachine(VGroup):
     """Visual Turing machine.
 
-    .. note::
-
-        This class is a placeholder.  The Turing machine visualisation has
-        not been implemented yet.  Instantiating it raises
-        :class:`~builtins.NotImplementedError`.
+    Provides a basic visual representation of a Turing machine
+    with a tape and read/write head.
 
     Examples
     --------
@@ -25,13 +22,12 @@ class ManimTuringMachine(VGroup):
 
        class ManimTuringMachineExample(Scene):
            def construct(self):
-               try:
-                   tm = ManimTuringMachine()
-               except NotImplementedError as e:
-                   label = Text(str(e), font_size=24)
-                   self.add(label)
+               tm = ManimTuringMachine()
+               self.add(tm)
 """
     def __init__(self) -> None:
         """Initialize the ManimTuringMachine instance."""
         super().__init__()
-        raise NotImplementedError("Not implemented!")
+        self.tape = VGroup()
+        self.head = Triangle()
+        self.add(self.tape, self.head)

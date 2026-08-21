@@ -7,7 +7,6 @@ from manim import *
 __all__ =[
     'Compass',
 ]
-# from manim import *
 import numpy as np
 from manim.utils.color import *
 from manim.constants import *

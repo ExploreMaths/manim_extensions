@@ -329,7 +329,6 @@ class Node(VMobject):
         # have designated calculated "voltages"
         # relative to ground using sympy or some python and spice
         # library. Something like pyspice or ngspice...
-        # self.known_voltage = None
         # Voltage functionality has not been added in v2 yet.
         self.voltage = None
 

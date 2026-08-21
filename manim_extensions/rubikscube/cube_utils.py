@@ -30,11 +30,6 @@ def get_axis_from_face(face):
 def get_direction_from_face(face):
     """Return the rotation direction for a given face.
 
-    .. note::
-
-        This function is a placeholder and currently returns ``None``.
-        Clockwise/counterclockwise mapping for each face is not yet implemented.
-
     Parameters
     ----------
     face : str
@@ -42,10 +37,13 @@ def get_direction_from_face(face):
 
     Returns
     -------
-    None
-        Direction value. Not yet implemented.
+    int
+        ``1`` for clockwise, ``-1`` for counter-clockwise rotation
+        when viewed from the face's perspective.
     """
-    return
+    if face in ("F", "U", "L"):
+        return 1
+    return -1
 
 def get_cubie_colors_from_state(state):
     """Extract individual cubie colours from a cube state string.

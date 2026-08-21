@@ -3,4 +3,4 @@
 # SPDX-License-Identifier: MIT
 
 
-from .Gear_mobject import *
+from .gear_mobject import *

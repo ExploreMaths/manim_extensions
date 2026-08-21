@@ -11,7 +11,7 @@ import itertools
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .transitition import Transition
+    from .transition import Transition
 
 class State:
     """Class that represents states.

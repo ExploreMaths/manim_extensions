@@ -7,7 +7,7 @@ from .xml_parser import parse_xml_file
 
 
 from .state import State
-from .transitition import Transition
+from .transition import Transition
 
 import itertools
 
@@ -33,11 +33,7 @@ automaton_json = {
         }
     }
 }
-# class PushdownAutomaton(Automaton): TODO
-#     def __init__(self) -> None:
-#         pass
-
-#create error message here - need to look up standard. TODO
+#create error message here - need to look up standard.
 
 
 #this class manages states and transitions, including simulation
@@ -262,7 +258,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
         """Initialize the PushDownAutomaton instance."""
         super().__init__()
 
-    def automaton_step(self, token: str, state_pointer: State, determinstic: bool = True) -> tuple[bool, list[State], list[int]]:
+    def automaton_step(self, token: str, state_pointer: State, deterministic: bool = True) -> tuple[bool, list[State], list[int]]:
         """Perform one step of the automaton on the given token.
 
         Parameters
@@ -271,7 +267,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
             The input token to process.
         state_pointer : State
             The current state.
-        determinstic : bool
+        deterministic : bool
             If ``True``, return as soon as the first matching transition is found.
 
         Returns
@@ -292,7 +288,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
                 if read_symbol.tex_string == token.tex_string:
                     next_states.append(transition.transition_to)
                     transition_ids.append(transition.id)
-                    if determinstic: #pick the first valid transition and next state then returns.
+                    if deterministic: #pick the first valid transition and next state then returns.
                         return True, next_states, transition_ids #the token matches the transition's input
 
         if len(next_states) != 0:

@@ -129,8 +129,6 @@ class RubiksCube(VMobject):
             "B": self.colors[5],
         }
         positions = list(positions)
-        # TODO: Try/except in case a color was not given
-        # try:
         for cubie in np.rot90(self.get_face("U", False), 2).flatten():
             cubie.get_face("U").set_fill(colors[positions.pop(0)], 1)
 
@@ -148,8 +146,6 @@ class RubiksCube(VMobject):
         
         for cubie in np.rot90(np.flip(self.get_face("B", False), (0, 1)), -1).flatten():
             cubie.get_face("B").set_fill(colors[positions.pop(0)], 1)
-        # except:
-            # return
 
     def solve_by_kociemba(self, state):
         """Solve a cube state using the kociemba solver.
@@ -229,7 +225,6 @@ class RubiksCube(VMobject):
     def set_indices(self):
         """Build the position-to-cubie index map for the current cube state."""
         for c in self.cubies.flatten():
-            # self.indices[c.get_position()] = c.get_position()
             self.indices[c.get_rounded_center()] = c.position
 
     def adjust_indices(self, cubies):

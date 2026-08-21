@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-# from manim import *
 from manim import *
 __all__ = [
     'Pencil',

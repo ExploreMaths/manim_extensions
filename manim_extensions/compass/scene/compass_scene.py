@@ -7,7 +7,6 @@ from manim import *
 __all__ = [
     'CompassScene'
 ]
-# from manim import *
 from typing import List
 
 from manim.constants import *

@@ -4,9 +4,9 @@
 
 
 from manim import *
-from manim_extensions.automata import ManimAutomaton, ManimNonDeterminsticFiniteAutomaton
+from manim_extensions.automata import ManimAutomaton, ManimNondeterministicFiniteAutomaton
 from manim_extensions.automata.mobjects.automata_dependencies.state import State
-from manim_extensions.automata.mobjects.automata_dependencies.transitition import Transition
+from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
 from manim_extensions.automata.mobjects.manim_state import ManimState
 from manim_extensions.automata.mobjects.manim_transition import ManimTransition
 
@@ -43,5 +43,5 @@ def test_automata_core_api():
     assert trans.transition_to is end
     assert len(trans.read_symbols) == 1
 
-    nda = ManimNonDeterminsticFiniteAutomaton()
+    nda = ManimNondeterministicFiniteAutomaton()
     assert hasattr(nda, "nda_builder")

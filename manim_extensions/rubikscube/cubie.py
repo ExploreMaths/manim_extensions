@@ -50,16 +50,13 @@ class Cubie(VGroup):
                self.wait()
     """
 
-    def __init__(self, x, y, z, dim, colors):#, **kwargs):
+    def __init__(self, x, y, z, dim, colors):
         """Initialize the Cubie instance."""
         self.dimensions = dim
         self.colors = colors
         self.position = np.array([x, y, z])
         self.faces = {}
-        # self.arguments = dict(kwargs)
-        #TODO: Be able to pass args from RubiksCube to Cubie that apply to the Squares, such as stroke_width
         super().__init__()
-        # self.old_position = self.position
 
     def get_position(self):
         """Return the cubie's current position in 3-D space.
@@ -70,13 +67,6 @@ class Cubie(VGroup):
             The (x, y, z) position of the cubie.
         """
         return self.position
-
-    # def get_old_position(self):
-    #     return self.old_position
-
-    # def update_position(self, position):
-    #     self.old_position = self.position
-    #     self.position = position
 
     def get_rounded_center(self):
         """Return the cubie's position with coordinates rounded to 3 decimal places.
@@ -93,7 +83,7 @@ class Cubie(VGroup):
         faces = np.array(get_faces_of_cubie(self.dimensions, (self.position[0], self.position[1], self.position[2]))).tolist()
         i = 0
         for vect in OUT, DOWN, LEFT, IN, UP, RIGHT:
-            face = Square(side_length=2, shade_in_3d=True, stroke_width=3)#(**self.dict)
+            face = Square(side_length=2, shade_in_3d=True, stroke_width=3)
             if vect.tolist() in faces:
                 face.set_fill(self.colors[i], 1)
             else:

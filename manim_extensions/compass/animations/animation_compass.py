@@ -12,7 +12,6 @@ __all__ = [
     'PutCompass',
     'PutCompassAway'
 ]
-# from manim import *
 import numpy as np
 
 from ..compass import Compass

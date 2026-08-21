@@ -159,7 +159,7 @@ class Mesh:
         """
 
         def replace_part_ids_with_vertex_ids(parts: Parts, faces: Faces, vertices: Vertices) -> VarArray:
-            """Resolve part → face → vertex references into flat coordinate arrays.
+            """Resolve part �?face �?vertex references into flat coordinate arrays.
 
             Parameters
             ----------
@@ -181,7 +181,7 @@ class Mesh:
             ]
 
         def replace_face_ids_with_vertex_ids(faces: Faces, vertices: Vertices) -> VarArray:
-            """Resolve face → vertex references into flat coordinate arrays.
+            """Resolve face �?vertex references into flat coordinate arrays.
 
             Parameters
             ----------
@@ -969,7 +969,7 @@ class Mesh:
             the mesh dimension.
         InvalidRequestException
             If *grid_sizes* contains non-positive values, any threshold
-            is ≥ half the corresponding grid size, all thresholds are zero,
+            is �?half the corresponding grid size, all thresholds are zero,
             or *steps* is not positive.
         """
         if len(grid_sizes) != self.dim:
@@ -1091,8 +1091,8 @@ class Mesh:
 
     def extract_edges(self) -> Edges:
         """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)]"""
-        # TODO: possibility to update edges only partly (e.g. by index)
-        # TODO: possibly create a separate edge class to remove overhead from mesh
+        # Future: possibility to update edges only partly (e.g. by index)
+        # Future: possibly create a separate edge class to remove overhead from mesh
         edges: Edges = []
         for face in self._faces:
             last_vertex = face[-1]

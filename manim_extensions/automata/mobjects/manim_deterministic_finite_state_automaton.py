@@ -8,7 +8,7 @@ from manim import *  # noqa: F401
 from .manim_automaton import ManimAutomaton
 
 
-class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
+class ManimdeterministicFiniteAutomaton(ManimAutomaton):
 
     """A deterministic finite automaton (DFA) with Manim visualisation.
 
@@ -33,15 +33,15 @@ class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-    .. manim:: ManimDeterminsticFiniteAutomatonExample
+    .. manim:: ManimdeterministicFiniteAutomatonExample
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import ManimDeterminsticFiniteAutomaton
+       from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimdeterministicFiniteAutomaton
 
-       class ManimDeterminsticFiniteAutomatonExample(Scene):
+       class ManimdeterministicFiniteAutomatonExample(Scene):
            def construct(self):
-               dfa = ManimDeterminsticFiniteAutomaton()
+               dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
 """
     def __init__(
@@ -53,7 +53,7 @@ class ManimDeterminsticFiniteAutomaton(ManimAutomaton):
         cli: bool = False,
         **kwargs: object,
     ) -> None:
-        """Initialize the ManimDeterminsticFiniteAutomaton instance."""
+        """Initialize the ManimdeterministicFiniteAutomaton instance."""
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:

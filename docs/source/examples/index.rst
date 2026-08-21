@@ -587,10 +587,10 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: AutomataExample
    :save_last_frame:
-   :ref_classes: ManimDeterminsticFiniteAutomaton
+   :ref_classes: ManimdeterministicFiniteAutomaton
 
    from manim import *
-   from manim_extensions.automata import ManimDeterminsticFiniteAutomaton
+   from manim_extensions.automata import ManimdeterministicFiniteAutomaton
 
    class AutomataExample(Scene):
        def construct(self):
@@ -611,5 +611,5 @@ inline. Each example demonstrates one of the core extension modules.
                    }
                }
            }
-           dfa = ManimDeterminsticFiniteAutomaton(json_template=dfa_json)
+           dfa = ManimdeterministicFiniteAutomaton(json_template=dfa_json)
            self.add(dfa)

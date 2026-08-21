@@ -98,7 +98,7 @@ def get_point_indices_violating_delaunay(triangle_mesh: TriangleManim2DMesh, fac
     face = triangle_mesh.mesh.faces[face_id]
     center, radius = get_triangle_circum_circle_params(*[triangle_mesh.mesh.get_3d_vertices()[i] for i in face])
 
-    # TODO: [improve to be faster] don't loop all vertices, only loop ones that are "close", how?
+    # Future: [improve to be faster] don't loop all vertices, only loop ones that are "close", how?
     #  should be possible to do using numpy functions, should be faster and more readable
     for idx, point in enumerate(triangle_mesh.mesh.get_3d_vertices()):
         if idx not in face:

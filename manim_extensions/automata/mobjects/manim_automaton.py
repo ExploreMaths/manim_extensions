@@ -50,8 +50,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     .. note::
 
         This is an abstract base class.  Use one of the concrete subclasses
-        :class:`~manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton.ManimDeterminsticFiniteAutomaton`,
-        :class:`~manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton.ManimNonDeterminsticFiniteAutomaton`, or
+        :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+        :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`, or
         :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton` instead.
 
     Parameters
@@ -89,13 +89,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton import (
-           ManimDeterminsticFiniteAutomaton,
+       from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
+           ManimdeterministicFiniteAutomaton,
        )
 
        class ManimAutomatonDocExample(Scene):
            def construct(self):
-               dfa = ManimDeterminsticFiniteAutomaton()
+               dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
     """
 
@@ -134,7 +134,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
 
     def add_manim_state(self, manim_state: ManimState) -> None:
-        #maybe need validation TODO
+        #maybe need validation
         #adds an already existing manim_state to automaton
         self.append(manim_state)
 
@@ -191,8 +191,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[object]] = {}
-        # for transition in self.automaton.transitions:
-        #if 2 or more transitions exist between states then this will merge them together in one transition.
         for transition in transitions:
             """put from and to states into tuple to be used as
             dictionary key."""
@@ -279,13 +277,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 self.recorded_path.append((transition.transition_from.name, transition.transition_to.name))
 
                 transition_ids = [transition.id] #There is now only one transition that the state_pointer can take
-                next_neighbour_states = [transition.transition_to] #There is now only one state that the state_pointer can go to
+                next_neighbour_states = [transition.transition_to]
 
-            #if step result is False then there are no more steps, check for final state and highlight state pointer as finished.
-            # for transition in transitions:
-            #     list_of_animations.append(self.step(transition, token, state_pointer, step_result)) # self.step returns a list of animations for that step
-            
-            #if successful point to the next state
             if step_result is True:
                 if len(next_neighbour_states) > 0:
                     next_states = next_states + next_neighbour_states
@@ -297,12 +290,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             if iteration["result"] == True:
                 sequence_result = True
                 break
-
-            # if len(next_neighbour_states) == 0: #if there are no more states or transitions left
-            #     if self.check_automaton_result(state_pointers): #if the automaton has an active accepting state
-            #         list_of_animations.append(self.generate_accept_animations())
-            #     else: #if there is no final state then the machine is not accepted.
-            #         list_of_animations.append(self.generate_reject_animations())
 
         return next_states, sequence_result
               
@@ -397,11 +384,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         list_of_animations = self.generate_history_animations(history)
 
-                    # if self.check_automaton_result([state_pointer]): #if the automaton has an active accepting state
-                    #     list_of_animations.append(self.generate_accept_animations()) #THIS IS GENERATED BEFORE ALL BRANCHES HAVE FINISHED
-                    # else: #if there is no final state then the machine is not accepted.
-                    #     list_of_animations.append(self.generate_reject_animations())
-
         return list_of_animations
 
     def generate_history_animations(self, history: dict[str, object]) -> list[object]:
@@ -434,7 +416,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                     list_of_animations = list_of_animations + self.animate_step_history(step_history) 
 
                    
-                animate_subscripts = True #temp variable, TODO: intergrate into the api for user to choose
+                animate_subscripts = True #temp variable, Future: integrate into the api for user to choose
                 if animate_subscripts == True:
                     list_of_animations.append(self.animate_subscripts(iteration_history))
                     
@@ -563,9 +545,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         animations: list[object] = []
         #record the number of branches that end on each states
         state_counter = {}
-        # for state in self.states:
-        #     state_counter[state.id] = 0
-            
+        
         for step_history in iteration_history:
             next_neighbour_states = step_history["next_neighbour_states"]
             

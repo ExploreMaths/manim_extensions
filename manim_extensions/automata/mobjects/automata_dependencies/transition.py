@@ -38,7 +38,7 @@ class Transition:
 
        from manim import *
        from manim_extensions.automata.mobjects.automata_dependencies.state import State
-       from manim_extensions.automata.mobjects.automata_dependencies.transitition import Transition
+       from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
 
        class TransitionExample(Scene):
            def construct(self):

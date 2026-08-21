@@ -22,7 +22,7 @@ GearBox
 *******
 
 .. inheritance-diagram::
-   manim_extensions.gearbox.gear_mobject.Gear_mobject
+   manim_extensions.gearbox.gear_mobjects.gear_mobject
    :parts: 1
    :top-classes: manim.mobject.types.vectorized_mobject.VMobject
 
@@ -62,8 +62,8 @@ Automata
 
 .. inheritance-diagram::
    manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton
-   manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton.ManimDeterminsticFiniteAutomaton
-   manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton.ManimNonDeterminsticFiniteAutomaton
+   manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
+   manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton
    manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton
    manim_extensions.automata.mobjects.manim_state.ManimState
    manim_extensions.automata.mobjects.manim_transition.ManimTransition

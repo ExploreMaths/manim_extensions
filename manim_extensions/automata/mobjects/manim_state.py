@@ -118,5 +118,4 @@ class ManimState(State, VGroup):
     def set_to_initial_state(self) -> None:
         """Add an incoming arrow to mark this state as the initial state."""
         arrow = Arrow(start=LEFT * 5, end=self, color=BLUE, buff=0.1, tip_style={'stroke_width': 5})
-        # self.manim_state = VGroup(arrow, self.manim_state)
         self.add(arrow)

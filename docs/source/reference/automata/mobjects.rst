@@ -37,18 +37,18 @@ ManimPushDownAutomatonTransition
    :undoc-members:
    :show-inheritance:
 
-ManimDeterminsticFiniteAutomaton
+ManimdeterministicFiniteAutomaton
 --------------------------------
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_determinstic_finite_state_automaton.ManimDeterminsticFiniteAutomaton
+.. autoclass:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
    :members:
    :undoc-members:
    :show-inheritance:
 
-ManimNonDeterminsticFiniteAutomaton
+ManimNondeterministicFiniteAutomaton
 -----------------------------------
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_non_determinstic_finite_state_automaton.ManimNonDeterminsticFiniteAutomaton
+.. autoclass:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton
    :members:
    :undoc-members:
    :show-inheritance:

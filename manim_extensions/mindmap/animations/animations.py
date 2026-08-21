@@ -577,7 +577,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                             remove_nodes.append(node)
                             continue
                         try:
-                            idx = parent.children.index(node) # TODO: optimise; match only up to the first occurrence, modify __eq__?
+                            idx = parent.children.index(node) # Future: optimise; match only up to the first occurrence, modify __eq__?
                             if (child_num := len(parent.children)) > 1:
                                 if idx == 0:
                                     parent.children[1].neighbor = None

@@ -49,11 +49,11 @@ class ManimTransition(Transition, VGroup):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata import ManimDeterminsticFiniteAutomaton
+       from manim_extensions.automata import ManimdeterministicFiniteAutomaton
 
        class ManimTransitionDocExample(Scene):
            def construct(self):
-               dfa = ManimDeterminsticFiniteAutomaton()
+               dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
                transition = dfa.transitions[0]
                start = transition.transition_from.name
@@ -88,7 +88,7 @@ class ManimTransition(Transition, VGroup):
         self.buffer = buffer
 
         self.parent_automaton = parent_automaton
-        #create manim read symbols for transitition
+        #create manim read symbols for transition
         for read_symbol in read_symbols:
             #Create mobjects of read_symbol
             self.read_symbols.append(MathTex(read_symbol, font_size=font_size))
@@ -107,30 +107,12 @@ class ManimTransition(Transition, VGroup):
 
         else: #transition_from ----> transition_to
             self.arrow = Arrow(transition_from, transition_to, buff=0)
-            # self.arrow.scale(2, scale_tips=True, **kwargs)
-            self.position_text(self.buffer) #- this is causing errors
+            self.position_text(self.buffer)
 
         
         self.rotate_symbols_parallel_to_arrow()
       
         VGroup.__init__(self, self.arrow, *self.read_symbols, **kwargs)
-
-       
-
-    # def animate__transition(self, transition_result: bool):
-    #     """Animates the arrow of a ManimTransition, color depends on if the transition
-    #     accepts the input token """
-    #     animation_function = self.animation_style["animate_transition"]["animation_function"]
-    #     run_time = self.animation_style["animate_transition"]["run_time"]
-    #     time_width = self.animation_style["animate_transition"]["time_width"]
-
-    #     if transition_result: 
-    #         color = self.animation_style["animate_transition"]["accept_color"]
-    #     else:
-    #         color = self.animation_style["animate_transition"]["reject_color"]
-            
-
-    #     return animation_function(self.arrow.copy().set_color(color), run_time=run_time, time_width=time_width)
 
     def animate_transition(self, transition_result: bool) -> Animation:
         """Animate the transition using the configured style.
@@ -340,7 +322,6 @@ class ManimTransition(Transition, VGroup):
             slope = self.calculate_slope_of_line()
     
             angle_between_slope_and_x_axis = math.atan(slope)
-            # print(angle_between_slope_and_x_axis)
             read_symbol.rotate(angle_between_slope_and_x_axis)
 
     def calculate_slope_of_line(self) -> float:
@@ -428,7 +409,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
 
         self.buffer = buffer
 
-        #create manim read symbols for transitition
+        #create manim read symbols for transition
         for rule in rules:
             #Create mobjects of read_symbol
             self.read_symbols.append(MathTex(rule.__str__(), font_size=font_size))

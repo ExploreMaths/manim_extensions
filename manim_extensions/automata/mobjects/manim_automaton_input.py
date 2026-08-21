@@ -121,5 +121,3 @@ class Token(MathTex):
 
         self.set_x(0 + spacing)
         self.set_y(0)
-
-        # self.text

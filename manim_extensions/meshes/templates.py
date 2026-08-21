@@ -225,7 +225,7 @@ def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
     #     # u, v, w = areas[0][2], areas[1][2], areas[2][2]
     #     # faces = [... for k in range(w - 1) for j in range(v - 1) for i in range(u - 1)]
     #     # parts = None
-    #     # TODO fully implement 3D grid
+    #     # Future: fully implement 3D grid
     #     raise NotImplementedError("3D grid generation is not yet implemented")
     else:
         raise NotImplementedError("Only 1D, 2D meshes implemented.")

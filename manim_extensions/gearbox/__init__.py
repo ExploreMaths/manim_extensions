@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from .gear_mobject.Gear_mobject import *
+from .gear_mobjects.gear_mobject import *
 
 __all__ = [
     "Gear",

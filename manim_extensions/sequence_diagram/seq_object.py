@@ -42,7 +42,7 @@ class SeqObject(VGroup):
             height=obj_label.height + 0.5,
             width=obj_label.width + 0.4
         )
-        # TODO: figure out a way to show json data
+        # Future: figure out a way to show json data
         # or alternatively code snippets
         obj_label.align_to(obj_ctn, ORIGIN)
         super().__init__(obj_ctn, obj_label)

@@ -7,7 +7,6 @@ from manim import *
 __all__ = [
     'Ruler',
 ]
-# from manim import *
 from manim.utils.color import *
 from manim.constants import *
 import numpy as np

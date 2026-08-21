@@ -11,7 +11,7 @@ from manim import *
 from typing import List
 # third-party imports
 import numpy as np
-# TODO will most likely be moved in the future
+# Note: this file will most likely be moved in the future
 from scipy.spatial import ConvexHull  # pylint: disable=no-name-in-module
 # local imports
 from manim_extensions.meshes.delaunay.delaunay_criterion import get_triangle_circum_circle_params

@@ -303,7 +303,6 @@ class TidyTreeLayout(Layout):
         self.second_walk(self.wt, 0)
         convert_back(self.wt, self.root, self.is_horizontal)
         normalize(self.root, self.is_horizontal)
-        # self.compute_connectors()
         return self.root
 
     def first_walk(self, t: WrappedTree):

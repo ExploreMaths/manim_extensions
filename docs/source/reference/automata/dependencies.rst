@@ -32,7 +32,7 @@ State
 Transition
 ----------
 
-.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.transitition.Transition
+.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.transition.Transition
    :members:
    :undoc-members:
    :show-inheritance:

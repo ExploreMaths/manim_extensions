@@ -7,7 +7,7 @@
 from manim import *  # noqa: F401
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
-# FIXME: actually please the linter by correctly implementing everything
+# Implementation in progress
 # pylint: skip-file
 # pylint: disable-all
 

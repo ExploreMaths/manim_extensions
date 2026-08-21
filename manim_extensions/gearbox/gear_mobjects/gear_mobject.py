@@ -39,7 +39,7 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_func
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_func
 
        class InvoluteFuncExample(Scene):
            def construct(self):
@@ -95,7 +95,7 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_deriv_func
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_deriv_func
 
        class InvoluteDerivFuncExample(Scene):
            def construct(self):
@@ -145,7 +145,7 @@ def involute_height_func(k, r, **kwargs):
     ----------
     k: angle or sequence of angles.
     r: base circle radius.
-    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_func`.
+    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func`.
 
     Examples
     --------
@@ -153,7 +153,7 @@ def involute_height_func(k, r, **kwargs):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_height_func
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_height_func
 
        class InvoluteHeightFuncExample(Scene):
            def construct(self):
@@ -176,7 +176,7 @@ def involute_point_gen(t,r,**kwargs):
     ----------
     t: sequence of angles at which to evaluate the involute.
     r: base circle radius.
-    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_func` and :func:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.involute_deriv_func`.
+    **kwargs: forwarded to :func:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func` and :func:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_deriv_func`.
 
     Examples
     --------
@@ -184,7 +184,7 @@ def involute_point_gen(t,r,**kwargs):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobject.Gear_mobject import involute_point_gen
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_point_gen
 
        class InvolutePointGenExample(Scene):
            def construct(self):
@@ -213,7 +213,7 @@ class Gear(VMobject):
     """A Manim mobject representing an involute gear.
 
     The gear is constructed from involute curves and can mesh with other
-    :class:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Rack` objects) using :meth:`~manim_extensions.gearbox.gear_mobject.Gear_mobject.Gear.mesh_to`.
+    :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack` objects) using :meth:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear.mesh_to`.
 
     Two gears mesh correctly when they share the same *module* and *alpha*
     (pressure angle). The pitch-circle radius of a gear is

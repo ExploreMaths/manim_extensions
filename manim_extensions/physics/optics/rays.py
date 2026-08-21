@@ -76,7 +76,7 @@ class Ray(Line):
         lenses
             All the lenses for the ray to propagate through
         """
-        # TODO: make modular(?) Clean up logic
+        # Future: make modular(?) Clean up logic
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:
             intersects = intersection(lens, self)

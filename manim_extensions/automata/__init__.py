@@ -11,9 +11,9 @@ building teaching and algorithm visualisations in Manim.
 """
 
 from .mobjects.manim_automaton import *
-from .mobjects.manim_determinstic_finite_state_automaton import *
-from .mobjects.manim_non_determinstic_finite_state_automaton import *
+from .mobjects.manim_deterministic_finite_state_automaton import *
+from .mobjects.manim_non_deterministic_finite_state_automaton import *
 from .mobjects.manim_animations import *
 from .mobjects.manim_pushdown_automaton import *
 
-__all__ = ["ManimAutomaton", "ManimDeterminsticFiniteAutomaton", "ManimNonDeterminsticFiniteAutomaton", "ManimAnimations", "ManimPushDownAutomaton"]
+__all__ = ["ManimAutomaton", "ManimdeterministicFiniteAutomaton", "ManimNondeterministicFiniteAutomaton", "ManimAnimations", "ManimPushDownAutomaton"]
