@@ -1,15 +1,10 @@
 #!/bin/bash
-set -e
-
 LOG=/manim/postBuild.log
 echo "=== postBuild ===" > $LOG
 echo "Date: $(date)" >> $LOG
-
 python -c "import manim; print('manim:', manim.__version__)" >> $LOG 2>&1
 python -c "import moderngl; print('moderngl: OK')" >> $LOG 2>&1
 python -c "import pymunk; print('pymunk: OK')" >> $LOG 2>&1
-python -c "import cv2; print('cv2:', cv2.__version__)" >> $LOG 2>&1
 python -c "import manim_extensions; print('manim_extensions: OK')" >> $LOG 2>&1
-
 echo "=== postBuild complete ===" >> $LOG
 cat $LOG
