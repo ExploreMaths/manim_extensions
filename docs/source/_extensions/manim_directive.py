@@ -465,6 +465,14 @@ def setup(app: Sphinx) -> SetupMetadata:
     app.connect("build-finished", _log_rendering_times)
 
     app.add_js_file("manim-binder.min.js")
+    app.add_js_file(
+        None,
+        body=textwrap.dedent(
+            """\
+            window.initManimBinder({repo: "ExploreMaths/manim_extensions", branch: "main", storage_expire: 0})
+            """
+        ).strip(),
+    )
 
     metadata: SetupMetadata = {
         "parallel_read_safe": False,

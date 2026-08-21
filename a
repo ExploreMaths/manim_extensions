@@ -1,0 +1,20 @@
+[33mf543287[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Restore working Dockerfile approach (from commit 8e29801)
+[33m97580bb[m Remove binder-debug.js and cancel RTD skip-manim
+[33m4755305[m Remove postBuild and start-notebook.sh, simplify Dockerfile
+[33meea940a[m Simplify Dockerfile: use manimcommunity/manim base, remove Xvfb
+[33m72c9f39[m Simplify Dockerfile: use manimcommunity/manim base image
+[33m393b707[m Fix skip-manim detection for RTD builds
+[33m1847e81[m Add standalone binder-debug.js for browser console diagnostics
+[33mf5b7c13[m Fix CRLF in shell scripts and add browser console diagnostics
+[33ma072b5f[m Fix Dockerfile syntax error and add headless OpenGL support for MyBinder
+[33m900ec9a[m Fix #10: LabelDot.get_boundary_point ignores direction
+[33m76e3823[m Fix #9: Add parent guards and missing else branch in Node connector methods
+[33m37f02c4[m Fix #8: Implement Rack support in Gear.mesh_to
+[33m8e50928[m Reorganize imports in animation_ruler.py
+[33mde98b43[m Remove 'import manim as m' from divide_and_conquer.py
+[33m72ab11e[m Fix #6: Fix docstring errors in meshes module
+[33m6dcf2ca[m Fix #5: Add 3-D support to intersection tools in geometry module
+[33mef943a7[m Fix #4: Add ShortenedLine class
+[33mbc6e93b[m Fix #3: Replace remove_updater(*get_updaters()) with clear_updaters()
+[33m26ad05b[m Fix #2: MindMap layout animations crash when root connector is None
+[33me510d97[m Add Binder diagnostics: postBuild validation and startup health check
