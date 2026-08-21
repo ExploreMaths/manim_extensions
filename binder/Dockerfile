@@ -2,10 +2,6 @@ FROM manimcommunity/manim:v0.20.1
 
 USER root
 
-RUN apt-get update -qq \
-    && apt-get install --no-install-recommends -y xvfb mesa-utils libgl1-mesa-dri libgl1-mesa-glx \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN pip install --no-cache-dir notebook jupyterlab ipykernel
 
 ARG NB_USER=manimuser
