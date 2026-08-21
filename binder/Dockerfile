@@ -14,11 +14,6 @@ WORKDIR ${HOME}
 COPY --chown=${NB_USER}:${NB_USER} . ${HOME}
 RUN pip install --no-cache-dir --user ${HOME}
 
-COPY binder/postBuild /usr/local/bin/postBuild
-COPY binder/start-notebook.sh /usr/local/bin/start-notebook.sh
-RUN chmod +x /usr/local/bin/postBuild /usr/local/bin/start-notebook.sh
-
 USER ${NB_USER}
 
-ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--port", "8888"]
