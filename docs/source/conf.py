@@ -139,7 +139,7 @@ _dot_candidates = [
 ]
 graphviz_dot = next((p for p in _dot_candidates if p and os.path.isfile(p)), "dot")
 
-html_js_files = ["responsiveSvg.js", "binder-debug.js"]
+html_js_files = ["responsiveSvg.js"]
 
 # intersphinx
 intersphinx_mapping = {
