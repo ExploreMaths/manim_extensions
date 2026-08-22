@@ -13,7 +13,7 @@ from typing import Any, Dict, List, Tuple, Union
 # third-party imports
 import numpy as np
 
-from manim_extensions.meshes.types import Edges, VarArray
+from .types import Edges, VarArray
 
 
 def is_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True) -> bool:

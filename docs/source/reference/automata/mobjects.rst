@@ -22,7 +22,7 @@ ManimState
    :show-inheritance:
 
 ManimTransition
----------------
+----------------
 
 .. autoclass:: manim_extensions.automata.mobjects.manim_transition.ManimTransition
    :members:
@@ -38,7 +38,7 @@ ManimPushDownAutomatonTransition
    :show-inheritance:
 
 ManimdeterministicFiniteAutomaton
---------------------------------
+----------------------------------
 
 .. autoclass:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
    :members:
@@ -46,7 +46,7 @@ ManimdeterministicFiniteAutomaton
    :show-inheritance:
 
 ManimNondeterministicFiniteAutomaton
------------------------------------
+------------------------------------
 
 .. autoclass:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton
    :members:

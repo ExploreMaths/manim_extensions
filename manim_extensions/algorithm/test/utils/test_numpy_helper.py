@@ -12,7 +12,7 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "../.."))
 
-from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
+from ...utils.numpy_helper import NumpyHelper
 
 
 class TestNumpyHelper:

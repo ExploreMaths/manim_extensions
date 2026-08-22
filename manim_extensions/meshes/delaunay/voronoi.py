@@ -15,7 +15,7 @@ from scipy.spatial import Voronoi  # pylint: disable=no-name-in-module
 import manim as m
 
 # local imports
-from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
 

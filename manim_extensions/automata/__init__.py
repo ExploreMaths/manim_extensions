@@ -15,6 +15,10 @@ from .mobjects.manim_deterministic_finite_state_automaton import *
 from .mobjects.manim_non_deterministic_finite_state_automaton import *
 from .mobjects.manim_animations import *
 from .mobjects.manim_pushdown_automaton import *
+from .mobjects.manim_turing_machine import *
+from .mobjects.manim_state import *
+from .mobjects.manim_transition import *
+from .mobjects.manim_automaton_input import *
 
 __all__ = [
     "ManimAutomaton",
@@ -22,4 +26,11 @@ __all__ = [
     "ManimNondeterministicFiniteAutomaton",
     "ManimAnimations",
     "ManimPushDownAutomaton",
+    "ManimTuringMachine",
+    "ManimState",
+    "ManimTransition",
+    "ManimPushDownAutomatonTransition",
+    "ManimAutomataInput",
+    "Token",
+    "PushDownAutomatonRule",
 ]

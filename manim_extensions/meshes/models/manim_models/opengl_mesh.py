@@ -13,9 +13,9 @@ from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
 import numpy as np
 
-from manim_extensions.meshes.helpers import remove_keys_from_dict
-from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.params import get_param_or_default, OGLM
+from ...helpers import remove_keys_from_dict
+from ..data_models.mesh import Mesh
+from ...params import get_param_or_default, OGLM
 
 
 class FastManimMesh(OpenGLMobject):

@@ -16,7 +16,7 @@ import manim as m
 
 # local imports
 
-from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
 

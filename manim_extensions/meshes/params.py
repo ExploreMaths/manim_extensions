@@ -17,8 +17,8 @@ import manim as m
 import moderngl
 
 # local imports
-from manim_extensions.meshes.exceptions import BadParameterException
-from manim_extensions.meshes.types import DefaultParameters, Parameters
+from .exceptions import BadParameterException
+from .types import DefaultParameters, Parameters
 
 # map from param name to type and default value
 

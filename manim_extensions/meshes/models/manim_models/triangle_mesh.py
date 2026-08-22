@@ -12,9 +12,9 @@ import manim as m
 import numpy as np
 
 # local imports
-from manim_extensions.meshes.exceptions import InvalidMeshException
-from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
+from ...exceptions import InvalidMeshException
+from ..data_models.mesh import Mesh
+from .basic_mesh import Manim2DMesh
 
 
 class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):

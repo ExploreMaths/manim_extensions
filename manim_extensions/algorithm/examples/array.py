@@ -9,8 +9,8 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from manim import *
-from manim_extensions.algorithm.array import Array
-from manim_extensions.algorithm.node import Node
+from ..array import Array
+from ..node import Node
 
 
 class ArrayScene(Scene):

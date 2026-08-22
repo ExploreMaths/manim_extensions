@@ -19,15 +19,15 @@ import manim as m
 import numpy as np
 
 # local imports
-from manim_extensions.meshes.exceptions import (
+from ...exceptions import (
     InvalidMeshDimensionsException,
     InvalidMeshException,
     InvalidShapeException,
 )
-from manim_extensions.meshes.helpers import remove_keys_from_dict
-from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.params import get_param_or_default, BM2DM, BM3DM
-from manim_extensions.meshes.types import Vertices
+from ...helpers import remove_keys_from_dict
+from ..data_models.mesh import Mesh
+from ...params import get_param_or_default, BM2DM, BM3DM
+from ...types import Vertices
 
 
 # pylint: disable=too-many-instance-attributes

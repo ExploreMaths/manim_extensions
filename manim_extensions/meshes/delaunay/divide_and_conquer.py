@@ -19,10 +19,10 @@ import numpy as np
 from scipy.spatial import ConvexHull  # pylint: disable=no-name-in-module
 
 # local imports
-from manim_extensions.meshes.delaunay.delaunay_criterion import (
+from .delaunay_criterion import (
     get_triangle_circum_circle_params,
 )
-from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
 

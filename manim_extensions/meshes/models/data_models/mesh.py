@@ -17,24 +17,24 @@ import numpy as np
 # local imports
 from scipy.spatial.transform import Rotation
 
-from manim_extensions.meshes.decorators import (
+from ...decorators import (
     dangling_face_decorator,
     dangling_vert_decorator,
 )
-from manim_extensions.meshes.exceptions import (
+from ...exceptions import (
     InvalidMeshDimensionsException,
     InvalidMeshException,
     InvalidRequestException,
     InvalidTypeException,
     MeshIndexException,
 )
-from manim_extensions.meshes.helpers import (
+from ...helpers import (
     find_in_vararray,
     is_vararray_equal,
     fix_references,
     is_twice_nested_iterable,
 )
-from manim_extensions.meshes.types import (
+from ...types import (
     Edge,
     VarArray,
     Vertex,
