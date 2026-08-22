@@ -109,14 +109,21 @@ v1.0.4 (Unreleased)
   page load by updating ``responsiveSvg.js`` to preserve custom fill colors
   injected by the ``inheritance_colors`` extension.
 * Fixed missing module exports in ``automata/__init__.py`` and
-  ``automata/mobjects/__init__.py`` — added ``ManimTuringMachine``,
-  ``ManimState``, ``ManimTransition``, ``ManimPushDownAutomatonTransition``,
-  ``ManimAutomataInput``, ``Token``, and ``PushDownAutomatonRule`` to
-  ``__all__`` so they are importable via ``from manim_extensions.automata import ...``.
+  ``automata/mobjects/__init__.py`` — added
+  :class:`~manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine`,
+  :class:`~manim_extensions.automata.mobjects.manim_state.ManimState`,
+  :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
+  :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton_transition.ManimPushDownAutomatonTransition`,
+  :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput`,
+  :class:`~manim_extensions.automata.mobjects.token.Token`, and
+  :class:`~manim_extensions.automata.mobjects.pushdown_automaton_rule.PushDownAutomatonRule`
+  to ``__all__`` so they are importable via ``from manim_extensions.automata import ...``.
 * Fixed Sphinx "Title underline too short" warnings in
   ``docs/source/reference/automata/mobjects.rst`` by extending underlines
-  for ``ManimTransition``, ``ManimdeterministicFiniteAutomaton``, and
-  ``ManimNondeterministicFiniteAutomaton`` headings.
+  for :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_automaton.ManimdeterministicFiniteAutomaton`,
+  and :class:`~manim_extensions.automata.mobjects.manim_nondeterministic_finite_automaton.ManimNondeterministicFiniteAutomaton`
+  headings.
 
 **Changed**
 
