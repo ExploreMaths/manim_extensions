@@ -108,6 +108,33 @@ v1.0.4 (Unreleased)
 * Fixed inheritance diagram node colors being overwritten / flashing on
   page load by updating ``responsiveSvg.js`` to preserve custom fill colors
   injected by the ``inheritance_colors`` extension.
+* Fixed missing module exports in ``automata/__init__.py`` and
+  ``automata/mobjects/__init__.py`` — added ``ManimTuringMachine``,
+  ``ManimState``, ``ManimTransition``, ``ManimPushDownAutomatonTransition``,
+  ``ManimAutomataInput``, ``Token``, and ``PushDownAutomatonRule`` to
+  ``__all__`` so they are importable via ``from manim_extensions.automata import ...``.
+* Fixed Sphinx "Title underline too short" warnings in
+  ``docs/source/reference/automata/mobjects.rst`` by extending underlines
+  for ``ManimTransition``, ``ManimdeterministicFiniteAutomaton``, and
+  ``ManimNondeterministicFiniteAutomaton`` headings.
+
+**Changed**
+
+* Converted all absolute ``from manim_extensions.xxx`` imports to relative
+  imports across 12 files in ``meshes/`` and ``algorithm/`` subpackages
+  (``params.py``, ``templates.py``, ``helpers.py``, ``basic_mesh.py``,
+  ``opengl_mesh.py``, ``triangle_mesh.py``, ``mesh.py``, ``voronoi.py``,
+  ``divide_and_conquer.py``, ``delaunay_criterion.py``, ``array.py``,
+  ``test_numpy_helper.py``) to follow PEP 8 and reduce coupling.
+* Added ``package_data`` configuration in ``pyproject.toml`` to ensure
+  mesh model data files (``*.ply``, ``*.stl``) are included in
+  ``sdist`` and ``wheel`` distributions.
+* Added minimum version constraints to all third-party dependencies in
+  ``pyproject.toml`` — most importantly ``shapely>=2.0`` (required for
+  the new ``from shapely import geometry`` API used in optics),
+  plus ``Pillow>=9.0``, ``opencv-python>=4.5``, ``pymunk>=6.0``,
+  ``kociemba>=1.2``, ``trimesh>=4.0``, ``scipy>=1.9``,
+  and ``moderngl>=5.0``.
 
 v1.0.3
 ------

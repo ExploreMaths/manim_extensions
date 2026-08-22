@@ -28,16 +28,16 @@ classifiers = [
 ]
 dependencies = [
     "manim>=0.19.1",
-    "Pillow",
-    "opencv-python",
-    "pymunk",
-    "kociemba",
-    "shapely",
-    "trimesh",
+    "Pillow>=9.0",
+    "opencv-python>=4.5",
+    "pymunk>=6.0",
+    "kociemba>=1.2",
+    "shapely>=2.0",
+    "trimesh>=4.0",
     "xmltodict",
     "numpy>=2.0",
-    "scipy",
-    "moderngl",
+    "scipy>=1.9",
+    "moderngl>=5.0",
 ]
 
 [project.optional-dependencies]
