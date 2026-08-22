@@ -60,6 +60,9 @@ where = ["."]
 include = ["manim_extensions*"]
 exclude = ["tests*"]
 
+[tool.setuptools.package-data]
+"manim_extensions.meshes" = ["data/models/*.ply", "data/models/*.stl"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
