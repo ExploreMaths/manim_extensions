@@ -66,7 +66,8 @@ class MultiPendulum(VGroup):
                    DOWN * 3 + LEFT,
                )
                self.add(pendulum)
-"""
+    """
+
     def __init__(
         self,
         *bobs: Iterable[np.ndarray],
@@ -195,7 +196,8 @@ class Pendulum(MultiPendulum):
            def construct(self):
                pendulum = Pendulum(length=3, initial_theta=0.3)
                self.add(pendulum)
-"""
+    """
+
     def __init__(
         self,
         length=3.5,

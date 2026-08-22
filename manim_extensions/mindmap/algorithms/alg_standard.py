@@ -4,13 +4,14 @@
 
 
 __all__ = [
-    'StandardLayout',
+    "StandardLayout",
 ]
-from typing import List,Any
+from typing import List, Any
 from collections import deque
 from .alg_tidy_tree import TidyTreeLayout
 from .layout_config import LayoutDirection
 from .layout import Layout
+
 
 class TreeNode:
     """Internal tree-node wrapper used by StandardLayout.
@@ -35,24 +36,26 @@ class TreeNode:
                tn = TreeNode(height=1.0, width=2.0)
                label = Text(f"TreeNode: {tn.width}x{tn.height}", font_size=24)
                self.add(label)
-"""
-    __slots__ = ('height','width','children','parent','x','y','level','is_flip')
+    """
+
+    __slots__ = ("height", "width", "children", "parent", "x", "y", "level", "is_flip")
+
     def __init__(
         self,
-        height:float = 0,
-        width:float = 0,
+        height: float = 0,
+        width: float = 0,
     ):
         """Initialize the TreeNode instance."""
         self.width = width
         self.height = height
-        self.x:float = 0
-        self.y:float = 0
-        self.level:int = 0
-        self.is_flip:bool = False
-        self.children: List['TreeNode'] = []
-        self.parent:'TreeNode' = None
+        self.x: float = 0
+        self.y: float = 0
+        self.level: int = 0
+        self.is_flip: bool = False
+        self.children: List["TreeNode"] = []
+        self.parent: "TreeNode" = None
 
-    def add_child(self, child: 'TreeNode'):
+    def add_child(self, child: "TreeNode"):
         """Add a child node and establish the parent-child relationship.
 
         Parameters
@@ -63,7 +66,8 @@ class TreeNode:
         self.children.append(child)
         child.parent = self
 
-def copy_node(node: Any) -> 'TreeNode':
+
+def copy_node(node: Any) -> "TreeNode":
     """Recursively create a deep copy of a node tree.
 
     Parameters
@@ -85,6 +89,7 @@ def copy_node(node: Any) -> 'TreeNode':
         root.add_child(copy_node(child))
     return root
 
+
 def split_integer(n: int):
     """Split an integer into two roughly equal parts.
 
@@ -99,46 +104,48 @@ def split_integer(n: int):
         The two parts ``(k + 1, k)`` if *n* is odd, or ``(k, k)`` if *n* is even.
     """
 
-    if (n & 1):
+    if n & 1:
         k = (n - 1) // 2
-        return k + 1,k
+        return k + 1, k
     k = n // 2
-    return k,k
+    return k, k
+
 
 def sync_copy_bfs(src: TreeNode, dst: Any):
     """
     Synchronously traverse two trees and copy data from src to dst.
-    
+
     Parameters
     ----------
     src
         Source tree (data provider)
     dst
         Destination tree (data receiver)
-    
+
 
     """
     queue = deque([(src, dst)])
-    
+
     while queue:
         s_node, d_node = queue.popleft()
-        
+
         if s_node is None and d_node is None:
             continue
         if s_node is None or d_node is None:
             raise ValueError("Tree structures do not match")
         if len(s_node.children) != len(d_node.children):
             raise ValueError("Child node counts do not match")
-        
+
         # Copy data
         d_node.x = s_node.x
         d_node.y = s_node.y
         d_node.level = s_node.level
         d_node.is_flip = s_node.is_flip
-        
+
         # Synchronously enqueue children
         for s_child, d_child in zip(s_node.children, d_node.children):
             queue.append((s_child, d_child))
+
 
 class StandardLayout(Layout):
     """Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides.
@@ -166,13 +173,14 @@ class StandardLayout(Layout):
            def construct(self):
                label = Text("StandardLayout algorithm", font_size=24)
                self.add(label)
-"""
+    """
+
     def __init__(
         self,
-        root:Any,
+        root: Any,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
-        level_spacing: float = 0.5
+        level_spacing: float = 0.5,
     ):
         """Initialize the StandardLayout instance."""
         self.root = root
@@ -203,15 +211,13 @@ class StandardLayout(Layout):
                 return LayoutDirection.BottomToTop
             case LayoutDirection.BottomToTop:
                 return LayoutDirection.TopToBottom
-            
+
     def _split(self):
         """Split the root's children into left/right (or top/bottom) parts."""
         self.left = TreeNode(self.root.height, self.root.width)
         if (number := len(self.root.children)) > 0:
-            m,n = split_integer(number)
-            children = [
-                copy_node(child) for child in self.root.children
-            ]
+            m, n = split_integer(number)
+            children = [copy_node(child) for child in self.root.children]
             for child in children[0:m]:
                 self.left.add_child(child)
             self.right = None
@@ -224,17 +230,11 @@ class StandardLayout(Layout):
         """Run the two-sided layout and return the original root node."""
         self._split()
         self.left = TidyTreeLayout(
-            self.left,
-            self.direction,
-            self.node_spacing,
-            self.level_spacing
+            self.left, self.direction, self.node_spacing, self.level_spacing
         ).layout()
         if self.right is not None:
             self.right = TidyTreeLayout(
-                self.right,
-                self.flip_direction,
-                self.node_spacing,
-                self.level_spacing
+                self.right, self.flip_direction, self.node_spacing, self.level_spacing
             ).layout()
             x = self.left.x - self.right.x
             y = self.left.y - self.right.y
@@ -242,7 +242,7 @@ class StandardLayout(Layout):
             self._merge()
         sync_copy_bfs(self.left, self.root)
         return self.root
-    
+
     def _offset(self, node: Any, x: float, y: float):
         """Translate a subtree by *(x, y)* and mark it as flipped.
 
@@ -259,7 +259,7 @@ class StandardLayout(Layout):
         node.y += y
         node.is_flip = True
         for child in node.children:
-            self._offset(child,x,y)
+            self._offset(child, x, y)
 
     def _merge(self):
         """Merge the right (or bottom) subtree into the left tree."""

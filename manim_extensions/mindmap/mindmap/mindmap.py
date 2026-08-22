@@ -3,19 +3,14 @@
 # SPDX-License-Identifier: MIT
 
 
-__all__ = [
-    'MindMap',
-    'TimeLine',
-    'StandardMap',
-    'CatalogMap'
-]
+__all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 from typing import Dict
 
 from manim.constants import *
 from manim.utils.color import *
 
-from .base import NodeMobject,AbstractMap,generate_tree
-from ..nodes import NodeStyle,bfs_walker
+from .base import NodeMobject, AbstractMap, generate_tree
+from ..nodes import NodeStyle, bfs_walker
 from ..algorithms import (
     TidyTreeLayout,
     TimeLineLayout,
@@ -24,7 +19,8 @@ from ..algorithms import (
     LayoutConfig,
     LayoutType,
 )
-    
+
+
 class MindMap(AbstractMap):
     """Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
@@ -63,6 +59,7 @@ class MindMap(AbstractMap):
             spacing between nodes
         node_style : :class:`~manim_extensions.mindmap.NodeStyle`
             node style"""
+
     def __init__(
         self,
         map: Dict = {},
@@ -71,57 +68,58 @@ class MindMap(AbstractMap):
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
-            node_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            node_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            line_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            line_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            text_style = [
-                {'color':RED,'font_size':64},
-                {'color':PURE_YELLOW,'font_size':56},
-                {'color':GREEN,'font_size':48},
-                {'color':WHITE,'font_size':36}
-            ]
-        )
+            text_style=[
+                {"color": RED, "font_size": 64},
+                {"color": PURE_YELLOW, "font_size": 56},
+                {"color": GREEN, "font_size": 48},
+                {"color": WHITE, "font_size": 36},
+            ],
+        ),
     ):
         """Initialize MindMap."""
         self.node_style = node_style
         self.direction = direction
         super().__init__(
-            layout_method = TidyTreeLayout(
-                root = generate_tree(
-                    Map = map,
-                    node_style = node_style,
-                    buff = buff
-                ),
+            layout_method=TidyTreeLayout(
+                root=generate_tree(Map=map, node_style=node_style, buff=buff),
                 **LayoutConfig(
-                    direction = direction,
-                    node_spacing = node_spacing,
-                    level_spacing = level_spacing
-                ).mindmap
+                    direction=direction,
+                    node_spacing=node_spacing,
+                    level_spacing=level_spacing,
+                ).mindmap,
             )
         )
-    
+
     def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
-            node.connector = node.get_connector(
-                LayoutType.MindMap,
-                direction = self.direction,
-                **self._get_connector_style(level = len(node.ID))
-            ) if node.parent is not None else None
+            node.connector = (
+                node.get_connector(
+                    LayoutType.MindMap,
+                    direction=self.direction,
+                    **self._get_connector_style(level=len(node.ID)),
+                )
+                if node.parent is not None
+                else None
+            )
 
             self.node_data_dict[node.ID] = NodeMobject(
-                vmobject = node.vmobject,
-                surr_rect = node.surr_rect,
-                connector = node.connector,
-                text = node.text
+                vmobject=node.vmobject,
+                surr_rect=node.surr_rect,
+                connector=node.connector,
+                text=node.text,
             )
+
 
 class TimeLine(AbstractMap):
     r"""
@@ -142,11 +140,11 @@ class TimeLine(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
-    
+
 
     .. manim:: TimeLineDocExample
        :save_last_frame:
-        
+
        from manim import *
        from manim_extensions.mindmap import TimeLine
 
@@ -164,6 +162,7 @@ class TimeLine(AbstractMap):
                timeline.scale_to_fit_width(12)
                self.add(timeline)
     """
+
     def __init__(
         self,
         map: Dict = {},
@@ -172,56 +171,55 @@ class TimeLine(AbstractMap):
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
-            node_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            node_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            line_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            line_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            text_style = [
-                {'color':RED,'font_size':64},
-                {'color':PURE_YELLOW,'font_size':56},
-                {'color':GREEN,'font_size':48},
-                {'color':WHITE,'font_size':36}
-            ]
-        )
+            text_style=[
+                {"color": RED, "font_size": 64},
+                {"color": PURE_YELLOW, "font_size": 56},
+                {"color": GREEN, "font_size": 48},
+                {"color": WHITE, "font_size": 36},
+            ],
+        ),
     ):
         """Initialize the TimeLine instance."""
         self.node_style = node_style
         super().__init__(
-            layout_method = TimeLineLayout(
-                root = generate_tree(
-                    Map = map,
-                    node_style = node_style,
-                    buff = buff
-                ),
+            layout_method=TimeLineLayout(
+                root=generate_tree(Map=map, node_style=node_style, buff=buff),
                 **LayoutConfig(
-                    node_spacing = node_spacing,
-                    level_spacing = level_spacing,
-                    sides = sides
-                ).timeline
+                    node_spacing=node_spacing, level_spacing=level_spacing, sides=sides
+                ).timeline,
             )
         )
 
     def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
-            node.connector = node.get_connector(
-                LayoutType.TimeLine,
-                direction = RIGHT,
-                **self._get_connector_style(level = len(node.ID))
-            ) if node.parent is not None else None
+            node.connector = (
+                node.get_connector(
+                    LayoutType.TimeLine,
+                    direction=RIGHT,
+                    **self._get_connector_style(level=len(node.ID)),
+                )
+                if node.parent is not None
+                else None
+            )
 
             self.node_data_dict[node.ID] = NodeMobject(
-                vmobject = node.vmobject,
-                surr_rect = node.surr_rect,
-                connector = node.connector,
-                text = node.text
+                vmobject=node.vmobject,
+                surr_rect=node.surr_rect,
+                connector=node.connector,
+                text=node.text,
             )
+
 
 class StandardMap(AbstractMap):
     r"""
@@ -241,11 +239,11 @@ class StandardMap(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
-    
+
 
     .. manim:: StandardMapDocExample
        :save_last_frame:
-        
+
        from manim import *
        from manim_extensions.mindmap import StandardMap
 
@@ -262,6 +260,7 @@ class StandardMap(AbstractMap):
                mind_map.scale_to_fit_width(12)
                self.add(mind_map)
     """
+
     def __init__(
         self,
         map: Dict = {},
@@ -270,56 +269,57 @@ class StandardMap(AbstractMap):
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
-            node_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            node_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            line_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            line_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            text_style = [
-                {'color':RED,'font_size':64},
-                {'color':PURE_YELLOW,'font_size':56},
-                {'color':GREEN,'font_size':48},
-                {'color':WHITE,'font_size':36}
-            ]
-        )
+            text_style=[
+                {"color": RED, "font_size": 64},
+                {"color": PURE_YELLOW, "font_size": 56},
+                {"color": GREEN, "font_size": 48},
+                {"color": WHITE, "font_size": 36},
+            ],
+        ),
     ):
         """Initialize the StandardMap instance."""
         self.node_style = node_style
         super().__init__(
-            layout_method = StandardLayout(
-                root = generate_tree(
-                    Map = map,
-                    node_style = node_style,
-                    buff = buff
-                ),
+            layout_method=StandardLayout(
+                root=generate_tree(Map=map, node_style=node_style, buff=buff),
                 **LayoutConfig(
-                    direction = direction,
-                    node_spacing = node_spacing,
-                    level_spacing = level_spacing,
-                ).mindmap
+                    direction=direction,
+                    node_spacing=node_spacing,
+                    level_spacing=level_spacing,
+                ).mindmap,
             )
         )
 
     def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
-            node.connector = node.get_connector(
-                LayoutType.Standard,
-                direction = RIGHT,
-                **self._get_connector_style(level = len(node.ID))
-            ) if node.parent is not None else None
+            node.connector = (
+                node.get_connector(
+                    LayoutType.Standard,
+                    direction=RIGHT,
+                    **self._get_connector_style(level=len(node.ID)),
+                )
+                if node.parent is not None
+                else None
+            )
 
             self.node_data_dict[node.ID] = NodeMobject(
-                vmobject = node.vmobject,
-                surr_rect = node.surr_rect,
-                connector = node.connector,
-                text = node.text
+                vmobject=node.vmobject,
+                surr_rect=node.surr_rect,
+                connector=node.connector,
+                text=node.text,
             )
+
 
 class CatalogMap(AbstractMap):
     r"""
@@ -338,11 +338,11 @@ class CatalogMap(AbstractMap):
         spacing between nodes
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         node style
-    
+
 
     .. manim:: CatalogMapDocExample
        :save_last_frame:
-        
+
        from manim import *
        from manim_extensions.mindmap import CatalogMap
 
@@ -359,6 +359,7 @@ class CatalogMap(AbstractMap):
                catalog.scale_to_fit_width(12)
                self.add(catalog)
     """
+
     def __init__(
         self,
         map: Dict = {},
@@ -366,52 +367,52 @@ class CatalogMap(AbstractMap):
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
-            node_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            node_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            line_style = [
-                {'color':WHITE,'stroke_width':8},
-                {'color':WHITE,'stroke_width':6},
-                {'color':WHITE,'stroke_width':4}
+            line_style=[
+                {"color": WHITE, "stroke_width": 8},
+                {"color": WHITE, "stroke_width": 6},
+                {"color": WHITE, "stroke_width": 4},
             ],
-            text_style = [
-                {'color':RED,'font_size':64},
-                {'color':PURE_YELLOW,'font_size':56},
-                {'color':GREEN,'font_size':48},
-                {'color':WHITE,'font_size':36}
-            ]
-        )
+            text_style=[
+                {"color": RED, "font_size": 64},
+                {"color": PURE_YELLOW, "font_size": 56},
+                {"color": GREEN, "font_size": 48},
+                {"color": WHITE, "font_size": 36},
+            ],
+        ),
     ):
         """Initialize the CatalogMap instance."""
         self.node_style = node_style
         super().__init__(
-            layout_method = CatalogLayout(
-                root = generate_tree(
-                    Map = map,
-                    node_style = node_style,
-                    buff = buff
-                ),
+            layout_method=CatalogLayout(
+                root=generate_tree(Map=map, node_style=node_style, buff=buff),
                 **LayoutConfig(
-                    node_spacing = node_spacing,
-                    level_spacing = level_spacing,
-                ).catalog
+                    node_spacing=node_spacing,
+                    level_spacing=level_spacing,
+                ).catalog,
             )
         )
 
     def _set_connectors(self) -> None:
         """Set connection lines."""
         for node in bfs_walker(self.root):
-            node.connector = node.get_connector(
-                LayoutType.Catalog,
-                direction = RIGHT,
-                **self._get_connector_style(level = len(node.ID))
-            ) if node.parent is not None else None
+            node.connector = (
+                node.get_connector(
+                    LayoutType.Catalog,
+                    direction=RIGHT,
+                    **self._get_connector_style(level=len(node.ID)),
+                )
+                if node.parent is not None
+                else None
+            )
 
             self.node_data_dict[node.ID] = NodeMobject(
-                vmobject = node.vmobject,
-                surr_rect = node.surr_rect,
-                connector = node.connector,
-                text = node.text
+                vmobject=node.vmobject,
+                surr_rect=node.surr_rect,
+                connector=node.connector,
+                text=node.text,
             )

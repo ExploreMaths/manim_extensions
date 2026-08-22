@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 
-__all__ = [
-    'Layout'
-]
+__all__ = ["Layout"]
 from typing import Any
+
 
 class Layout:
     """Base class for layout algorithms.
@@ -24,7 +23,8 @@ class Layout:
                layout = Layout()
                label = Text("Layout base class", font_size=24)
                self.add(label)
-"""
+    """
+
     def layout(self) -> Any:
         """Run the layout computation and return the root node."""
         raise NotImplementedError

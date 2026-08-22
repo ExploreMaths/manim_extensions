@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-
 cli_logo = r"""
   __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ 
  |  \/  |   /\   | \ | |_   _|  \/  |     /\  | |  | |__   __/ __ \|  \/  |   /\|__   __|/\      / ____| |    |_   _|
@@ -15,12 +14,7 @@ cli_logo = r"""
 """
 
 
-
-
-
-class ManimAutomataCLI():
-
-
+class ManimAutomataCLI:
     """Interactive command-line assistant for building automata paths.
 
     When activated via the ``cli=True`` flag on an automaton constructor,
@@ -39,14 +33,19 @@ class ManimAutomataCLI():
        class ManimAutomataCLIExample(Scene):
            def construct(self):
                cli = ManimAutomataCLI()
-"""
+    """
+
     def __init__(self) -> None:
         """Initialize the ManimAutomataCLI instance."""
         print(cli_logo)
 
     def creation_menu(self) -> None:
         """Prompt the user to choose an automaton type and schema file path."""
-        options = ["Deterministic Finite Automaton", "Non-deterministic Finite Automaton", "Pushdown Automaton"]
+        options = [
+            "Deterministic Finite Automaton",
+            "Non-deterministic Finite Automaton",
+            "Pushdown Automaton",
+        ]
         self.creation_option = self.display_options(options)
         self.file_path = input("Schema File Path: ")
 

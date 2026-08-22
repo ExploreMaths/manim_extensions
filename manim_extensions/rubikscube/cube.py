@@ -57,14 +57,21 @@ class RubiksCube(VMobject):
                self.wait(8)
     """
 
-    #If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up 
-    #Each coordinate starts at 0 and goes to (Dimensions - 1)
+    # If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up
+    # Each coordinate starts at 0 and goes to (Dimensions - 1)
 
     cubies = np.ndarray
     indices = {}
 
     # Colors are in the order Up, Right, Front, Down, Left, Back
-    def __init__(self, dim=3, colors=[WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"], x_offset=2.1, y_offset=2.1, z_offset=2.1):#, **kwargs):
+    def __init__(
+        self,
+        dim=3,
+        colors=[WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"],
+        x_offset=2.1,
+        y_offset=2.1,
+        z_offset=2.1,
+    ):  # , **kwargs):
         """Initialize the RubiksCube instance."""
         if not (dim >= 2):
             raise Exception("Dimension must be >= 2")
@@ -77,8 +84,8 @@ class RubiksCube(VMobject):
         self.z_offset = [[Mobject.shift, [0, 0, z_offset]]]
 
         self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
-        self.generate_cubies()#**kwargs)
-    
+        self.generate_cubies()  # **kwargs)
+
     def get_center(self):
         """Return the geometric center of the cube's bounding box.
 
@@ -93,7 +100,7 @@ class RubiksCube(VMobject):
             return np.zeros(3)
         return (all_points.min(axis=0) + all_points.max(axis=0)) / 2
 
-    def generate_cubies(self):#, **kwargs):
+    def generate_cubies(self):  # , **kwargs):
         """Populate the cube with its cubies and apply offsets.
 
         Returns
@@ -104,7 +111,7 @@ class RubiksCube(VMobject):
         for x in range(self.dimensions):
             for y in range(self.dimensions):
                 for z in range(self.dimensions):
-                    cubie = Cubie(x, y, z, self.dimensions, self.colors)#, **kwargs)
+                    cubie = Cubie(x, y, z, self.dimensions, self.colors)  # , **kwargs)
                     self.transform_cubie(x, self.x_offset, cubie)
                     self.transform_cubie(y, self.y_offset, cubie)
                     self.transform_cubie(z, self.z_offset, cubie)
@@ -134,16 +141,16 @@ class RubiksCube(VMobject):
 
         for cubie in np.rot90(np.flip(self.get_face("R", False), (0, 1)), -1).flatten():
             cubie.get_face("R").set_fill(colors[positions.pop(0)], 1)
-        
+
         for cubie in np.rot90(np.flip(self.get_face("F", False), 0)).flatten():
             cubie.get_face("F").set_fill(colors[positions.pop(0)], 1)
-        
+
         for cubie in np.rot90(np.flip(self.get_face("D", False), 0), 2).flatten():
             cubie.get_face("D").set_fill(colors[positions.pop(0)], 1)
-        
+
         for cubie in np.rot90(np.flip(self.get_face("L", False), 0)).flatten():
             cubie.get_face("L").set_fill(colors[positions.pop(0)], 1)
-        
+
         for cubie in np.rot90(np.flip(self.get_face("B", False), (0, 1)), -1).flatten():
             cubie.get_face("B").set_fill(colors[positions.pop(0)], 1)
 
@@ -207,13 +214,13 @@ class RubiksCube(VMobject):
         if face == "F":
             face = self.cubies[0, :, :]
         elif face == "B":
-            face = self.cubies[self.dimensions-1, :, :]
+            face = self.cubies[self.dimensions - 1, :, :]
         elif face == "U":
-            face = self.cubies[:, :, self.dimensions-1]
+            face = self.cubies[:, :, self.dimensions - 1]
         elif face == "D":
             face = self.cubies[:, :, 0]
         elif face == "L":
-            face = self.cubies[:, self.dimensions-1, :]
+            face = self.cubies[:, self.dimensions - 1, :]
         elif face == "R":
             face = self.cubies[:, 0, :]
 
@@ -221,7 +228,7 @@ class RubiksCube(VMobject):
             return face.flatten()
         else:
             return face
-    
+
     def set_indices(self):
         """Build the position-to-cubie index map for the current cube state."""
         for c in self.cubies.flatten():

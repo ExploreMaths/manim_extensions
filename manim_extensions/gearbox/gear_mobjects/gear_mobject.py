@@ -16,12 +16,11 @@ __all__ = [
     "involute_height_func",
     "involute_point_gen",
     "Gear",
-    "Rack"
+    "Rack",
 ]
 
 
-
-def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
+def involute_func(t, r, a=0, rad_offs=0, tan_offs=0):
     """
     Returns the x-y-z values of the involute function.
 
@@ -49,6 +48,7 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
                label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
                self.add(dot, label)
     """
+
     def involute_val(val):
         """Compute a single point on the involute tooth profile.
 
@@ -62,23 +62,31 @@ def involute_func(t, r, a=0, rad_offs=0,tan_offs=0):
         numpy.ndarray
             A 3-D point ``(x, y, 0)`` on the involute curve.
         """
-        x = r * (np.cos(val) + (val - a) * np.sin(val - a)) + \
-            rad_offs * np.cos(val) - tan_offs*np.sin(val)
-        y = r * (np.sin(val) - (val - a) * np.cos(val - a)) + \
-            rad_offs * np.sin(val) + tan_offs*np.cos(val)
+        x = (
+            r * (np.cos(val) + (val - a) * np.sin(val - a))
+            + rad_offs * np.cos(val)
+            - tan_offs * np.sin(val)
+        )
+        y = (
+            r * (np.sin(val) - (val - a) * np.cos(val - a))
+            + rad_offs * np.sin(val)
+            + tan_offs * np.cos(val)
+        )
         z = 0
-        return np.array((x,y,z))
-    if hasattr(t, '__iter__'):
-        ret = np.empty((0,3))
+        return np.array((x, y, z))
+
+    if hasattr(t, "__iter__"):
+        ret = np.empty((0, 3))
         for u in t:
             point = involute_val(u)
-            point = np.reshape(point,(1,3))
-            ret = np.concatenate((ret,point),0)
+            point = np.reshape(point, (1, 3))
+            ret = np.concatenate((ret, point), 0)
         return ret
     else:
         return involute_val(t)
 
-def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
+
+def involute_deriv_func(t, r, a=0, rad_offs=0, tan_offs=0):
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -107,6 +115,7 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
                    vec = Arrow(ORIGIN, d, buff=0, color=PURE_YELLOW)
                    self.add(vec)
     """
+
     def diff_val(val):
         """Compute the derivative of the involute profile at a given parameter.
 
@@ -120,18 +129,25 @@ def involute_deriv_func(t,r,a=0,rad_offs=0,tan_offs=0):
         numpy.ndarray
             A 3-D derivative vector ``(dx, dy, 0)``.
         """
-        x = r * (-np.sin(val) + (val - a) * np.cos(val - a) + np.sin(val - a)) - \
-            rad_offs * np.sin(val) - tan_offs * np.cos(val)
-        y = r * (np.cos(val) + (val - a) * np.sin(val - a) - np.cos(val - a)) + \
-            rad_offs * np.cos(val) - tan_offs * np.sin(val)
+        x = (
+            r * (-np.sin(val) + (val - a) * np.cos(val - a) + np.sin(val - a))
+            - rad_offs * np.sin(val)
+            - tan_offs * np.cos(val)
+        )
+        y = (
+            r * (np.cos(val) + (val - a) * np.sin(val - a) - np.cos(val - a))
+            + rad_offs * np.cos(val)
+            - tan_offs * np.sin(val)
+        )
         z = 0
-        return np.array((x,y,z))
-    if hasattr(t, '__iter__'):
+        return np.array((x, y, z))
+
+    if hasattr(t, "__iter__"):
         ret = np.empty((0, 3))
         for u in t:
             point = diff_val(u)
-            point = np.reshape(point,(1,3))
-            ret = np.concatenate((ret,point),0)
+            point = np.reshape(point, (1, 3))
+            ret = np.concatenate((ret, point), 0)
         return ret
     else:
         return diff_val(t)
@@ -165,7 +181,7 @@ def involute_height_func(k, r, **kwargs):
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t,r,**kwargs):
+def involute_point_gen(t, r, **kwargs):
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
@@ -195,16 +211,20 @@ def involute_point_gen(t,r,**kwargs):
                curve.set_stroke(PURE_YELLOW, 3)
                self.add(curve)
     """
-    end_points = involute_func(t,r,**kwargs)
-    diff_points = involute_deriv_func(t,r,**kwargs)
-    out_points = np.empty((0,3))
-    for i in range(len(t)-1):
-        t_ratio =  (t[i+1]-t[i]) / 3
-        point1 = end_points[i,:]
-        point2 = end_points[i+1,:]
-        anchor_1 = point1 + diff_points[i,:] * t_ratio
-        anchor_2 = point2 - diff_points[i+1,:] * t_ratio
-        out_points = np.append(out_points,[end_points[i,:],anchor_1,anchor_2, end_points[i+1,:]],axis=0)
+    end_points = involute_func(t, r, **kwargs)
+    diff_points = involute_deriv_func(t, r, **kwargs)
+    out_points = np.empty((0, 3))
+    for i in range(len(t) - 1):
+        t_ratio = (t[i + 1] - t[i]) / 3
+        point1 = end_points[i, :]
+        point2 = end_points[i + 1, :]
+        anchor_1 = point1 + diff_points[i, :] * t_ratio
+        anchor_2 = point2 - diff_points[i + 1, :] * t_ratio
+        out_points = np.append(
+            out_points,
+            [end_points[i, :], anchor_1, anchor_2, end_points[i + 1, :]],
+            axis=0,
+        )
 
     return out_points
 
@@ -295,18 +315,18 @@ class Gear(VMobject):
 
         # rp = pitch circle
         # when 2 gears mesh, their pitch circles need to be tangent
-        self.rp = module*self.z/2
+        self.rp = module * self.z / 2
         # pressure angle
         self.alpha = alpha
         # tooth height
-        self.h = (h_a+h_f)*self.m
+        self.h = (h_a + h_f) * self.m
         # addendum and dedendum coefficients
         self.h_a = h_a
         self.h_f = h_f
         # arc length of a tooth-period
         self.pitch = self.m * PI
         # base circle of involute function
-        self.rb = self.rp * np.cos(self.alpha*DEGREES)
+        self.rb = self.rp * np.cos(self.alpha * DEGREES)
         self.X = profile_shift * module
 
         # for inner teeth, the top / bottom extensions are reversed
@@ -331,40 +351,39 @@ class Gear(VMobject):
         super().__init__(**kwargs)
 
         # this submobject is used for tracking the center and reference angle of the gear
-        self.submobjects.append(Line(start=ORIGIN,end=RIGHT,stroke_opacity=0,fill_opacity=0))
+        self.submobjects.append(
+            Line(start=ORIGIN, end=RIGHT, stroke_opacity=0, fill_opacity=0)
+        )
+
     def get_center(self):
         """Return the geometric center of the gear."""
-        return self.submobjects[0].points[0,:].copy()
+        return self.submobjects[0].points[0, :].copy()
 
     def get_angle_vector(self):
         """Return the internal reference vector used to track rotation."""
-        return self.submobjects[0].points[1,:]-self.submobjects[0].points[0,:]
+        return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
     def get_angle(self):
         """Return the current rotation angle of the gear in radians."""
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
 
-    def set_stroke(
-        self,
-        color=None,
-        **kwargs
-    ):
+    def set_stroke(self, color=None, **kwargs):
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
-        If family is specified, it will still do it.
+            If family is specified, it will still do it.
 
-    Parameters
-    ----------
-    color
-    The color to apply.
-    kwargs
-    Kwargs processed by this operation.
-    """
-        if 'family' in kwargs:
-            super().set_stroke(color,**kwargs)
+        Parameters
+        ----------
+        color
+        The color to apply.
+        kwargs
+        Kwargs processed by this operation.
+        """
+        if "family" in kwargs:
+            super().set_stroke(color, **kwargs)
         else:
-            kwargs.pop('family')
-            super().set_stroke(color,family=False, **kwargs)
+            kwargs.pop("family")
+            super().set_stroke(color, family=False, **kwargs)
 
     def generate_points(self):
         """Build the gear outline from involute curves, fillets, and arcs."""
@@ -373,8 +392,11 @@ class Gear(VMobject):
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                angle_base = fsolve(lambda u: involute_height_func(u, self.rb) - (self.rp - self.rb), self.alpha * DEGREES,
-                                    xtol=1e-10)
+                angle_base = fsolve(
+                    lambda u: involute_height_func(u, self.rb) - (self.rp - self.rb),
+                    self.alpha * DEGREES,
+                    xtol=1e-10,
+                )
         except Exception:
             angle_base = np.array([self.alpha * DEGREES])
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES
@@ -384,9 +406,9 @@ class Gear(VMobject):
         # thicknes of the tooth on the pitch circle
         s0 = self.pitch / 2 + 2 * self.X * np.tan(self.alpha * DEGREES)
         # increment due to profile shift
-        ds = s0-self.pitch/2
+        ds = s0 - self.pitch / 2
         # angle change from profile shift
-        da = ds/2 / self.rp
+        da = ds / 2 / self.rp
 
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES + da
 
@@ -406,9 +428,12 @@ class Gear(VMobject):
             float
                 The y-coordinate of the rotated involute point.
             """
-            p1 = rotate_vector(involute_func(t[0], self.rb),self.pitch_angle/4+self.angle_ofs)
+            p1 = rotate_vector(
+                involute_func(t[0], self.rb), self.pitch_angle / 4 + self.angle_ofs
+            )
             # when y coordinate is 0, the 2 involutes of the tooth would intersect because of the symmetry
             return p1[1]
+
         # find max height
         try:
             with warnings.catch_warnings():
@@ -416,30 +441,39 @@ class Gear(VMobject):
                 t_hmax = fsolve(invo_cross_diff, angle_base[0] * 2)
         except Exception:
             t_hmax = np.array([angle_base[0] * 2])
-        hmax=involute_height_func(t_hmax[0],self.rb)
+        hmax = involute_height_func(t_hmax[0], self.rb)
 
         undercut = False
-        if self.ra > self.rb+hmax:
-            self.ra = self.rb+hmax
+        if self.ra > self.rb + hmax:
+            self.ra = self.rb + hmax
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.ra-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+                res = fsolve(
+                    lambda u: involute_height_func(u, self.rb) - (self.ra - self.rb),
+                    self.alpha * DEGREES,
+                    xtol=1e-9,
+                )
         except Exception:
             res = np.array([self.alpha * DEGREES])
         tmax = res[0]
-        if(self.rf>self.rb):
+        if self.rf > self.rb:
             try:
                 with warnings.catch_warnings():
                     warnings.simplefilter("ignore")
-                    res = fsolve(lambda u: involute_height_func(u,self.rb)-(self.rf-self.rb) , self.alpha * DEGREES,xtol=1e-9)
+                    res = fsolve(
+                        lambda u: involute_height_func(u, self.rb)
+                        - (self.rf - self.rb),
+                        self.alpha * DEGREES,
+                        xtol=1e-9,
+                    )
             except Exception:
                 res = np.array([self.alpha * DEGREES])
             tmin = res[0]
         else:
-            tmin=0
+            tmin = 0
 
-        ucut_amount = (self.rf / np.cos(self.alpha * DEGREES) - self.rb)
+        ucut_amount = self.rf / np.cos(self.alpha * DEGREES) - self.rb
         v_loc = (self.rb + ucut_amount) * RIGHT
         v_loc_2 = rotate_vector(v_loc, -self.alpha * DEGREES)
         ofs_vector = -self.rp * RIGHT + v_loc_2
@@ -480,7 +514,9 @@ class Gear(VMobject):
                 numpy.ndarray
                     The ``(x, y)`` difference vector.
                 """
-                invo_val = rotate_vector(involute_func(-np.abs(t[1]), self.rb), - self.alpha * DEGREES)
+                invo_val = rotate_vector(
+                    involute_func(-np.abs(t[1]), self.rb), -self.alpha * DEGREES
+                )
                 ucut_val = undercut_func(t[0])
                 diff = ucut_val - invo_val
                 return diff[0:2]
@@ -536,46 +572,59 @@ class Gear(VMobject):
                     warnings.simplefilter("ignore")
                     sol_ucut, info_ucut, ier_ucut, _ = fsolve(
                         lambda t: np.linalg.norm(undercut_func(t)) - self.rf,
-                        0.0, full_output=True, xtol=1e-12
+                        0.0,
+                        full_output=True,
+                        xtol=1e-12,
                     )
                 tmin_ucut = sol_ucut[0]
             except Exception:
                 tmin_ucut = 0.0
-            t_range_ucut = np.linspace(tmin_ucut,tmax_ucut,self.nppc)
+            t_range_ucut = np.linspace(tmin_ucut, tmax_ucut, self.nppc)
             undercut_curve = VMobject()
-            undercut_curve.points = involute_point_gen(t_range_ucut,self.rp,rad_offs=rad_ucut, tan_offs=tan_ucut)
+            undercut_curve.points = involute_point_gen(
+                t_range_ucut, self.rp, rad_offs=rad_ucut, tan_offs=tan_ucut
+            )
 
-        trange_invo = np.linspace(-tmax,-tmin,self.nppc)
+        trange_invo = np.linspace(-tmax, -tmin, self.nppc)
         involute_curve = VMobject()
-        involute_curve.points = involute_point_gen(trange_invo,self.rb)
-        involute_curve.rotate_about_origin(-self.alpha*DEGREES)
+        involute_curve.points = involute_point_gen(trange_invo, self.rb)
+        involute_curve.rotate_about_origin(-self.alpha * DEGREES)
 
         if undercut:
             undercut_curve.reverse_direction()
-            mid_point = (undercut_curve.points[1,:] + involute_curve.points[-2,:])/2
+            mid_point = (undercut_curve.points[1, :] + involute_curve.points[-2, :]) / 2
             undercut_curve.points[0, :] = mid_point
             involute_curve.points[-1, :] = mid_point
             involute_curve.append_points(undercut_curve.points)
 
         # rotate to construction position
-        involute_curve.rotate(angle=self.pitch_angle/4 + self.angle_ofs + self.alpha*DEGREES,
-                              about_point=ORIGIN)
+        involute_curve.rotate(
+            angle=self.pitch_angle / 4 + self.angle_ofs + self.alpha * DEGREES,
+            about_point=ORIGIN,
+        )
 
         involute_curve2 = involute_curve.copy().flip(axis=RIGHT, about_point=ORIGIN)
 
         angle_bot_point = involute_curve.points[-1]
-        angle_bot = np.arctan2(angle_bot_point[1],angle_bot_point[0])
-        arc_bot_1 = Arc(radius=self.rf,
-                        start_angle=angle_bot,
-                        angle= self.pitch_angle/2-angle_bot, num_components=self.nppc//2+1)
+        angle_bot = np.arctan2(angle_bot_point[1], angle_bot_point[0])
+        arc_bot_1 = Arc(
+            radius=self.rf,
+            start_angle=angle_bot,
+            angle=self.pitch_angle / 2 - angle_bot,
+            num_components=self.nppc // 2 + 1,
+        )
         arc_bot_2 = arc_bot_1.copy().flip(axis=RIGHT, about_point=ORIGIN)
         arc_bot_1.reverse_points()
-        arc_top = ArcBetweenPoints(radius=self.rf,
-                                   start=involute_curve2.points[0],
-                                   end=involute_curve.points[0], num_components=self.nppc)
+        arc_top = ArcBetweenPoints(
+            radius=self.rf,
+            start=involute_curve2.points[0],
+            end=involute_curve.points[0],
+            num_components=self.nppc,
+        )
         arc_top.reverse_points()
 
         involute_curve.reverse_direction()
+
         def smooth_curve_joint(curve1: VMobject, curve2: VMobject):
             """Smoothly join two curves by inserting a midpoint between their ends.
 
@@ -590,46 +639,53 @@ class Gear(VMobject):
             curve2.points[0, :] = mid_point
             curve1.points[-1, :] = mid_point
 
-        smooth_curve_joint(arc_bot_1,involute_curve)
+        smooth_curve_joint(arc_bot_1, involute_curve)
         smooth_curve_joint(involute_curve, arc_top)
-        smooth_curve_joint(arc_top,involute_curve2)
-        smooth_curve_joint(involute_curve2,arc_bot_2)
+        smooth_curve_joint(arc_top, involute_curve2)
+        smooth_curve_joint(involute_curve2, arc_bot_2)
 
-        tooth_curve_points = np.concatenate((
-            arc_bot_1.points,
-            involute_curve.points,
-            arc_top.points,
-            involute_curve2.points,
-            arc_bot_2.points
-        ))
+        tooth_curve_points = np.concatenate(
+            (
+                arc_bot_1.points,
+                involute_curve.points,
+                arc_top.points,
+                involute_curve2.points,
+                arc_bot_2.points,
+            )
+        )
 
-        self.points = np.empty((0,3))
-        for k in range(self.z-self.z_cut):
-            self.points = np.concatenate((self.points,tooth_curve_points),0)
+        self.points = np.empty((0, 3))
+        for k in range(self.z - self.z_cut):
+            self.points = np.concatenate((self.points, tooth_curve_points), 0)
             self.rotate(self.pitch / self.rp, about_point=ORIGIN)
 
-        if self.z_cut!=0:
-            self.rotate(-self.pitch_angle*(self.z-self.z_cut+1)/2,about_point=ORIGIN)
-            arc_patch = Arc(start_angle=np.arctan2(self.points[-1,1],self.points[-1,0]),
-                            angle=-self.z_cut*self.pitch_angle,
-                            radius=self.rf,
-                            arc_center=ORIGIN)
+        if self.z_cut != 0:
+            self.rotate(
+                -self.pitch_angle * (self.z - self.z_cut + 1) / 2, about_point=ORIGIN
+            )
+            arc_patch = Arc(
+                start_angle=np.arctan2(self.points[-1, 1], self.points[-1, 0]),
+                angle=-self.z_cut * self.pitch_angle,
+                radius=self.rf,
+                arc_center=ORIGIN,
+            )
 
             self.append_points(arc_patch.points)
 
         if self.inner_teeth:
-            Outer_ring = Circle(radius=self.ra*1.1)
+            Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
 
-    def mesh_to(self, gear2: 'Gear', offset: float = 0, bias = 1):
-        """ This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
+    def mesh_to(self, gear2: "Gear", offset: float = 0, bias=1):
+        """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
         ----------
         gear2: the other gear this gear (self) will mesh to. gear2 will not move due to meshing, only the 'self'.
         offset: axial distance offset coefficient. The gears will be offset*module further apart than default.
         positive_bias: When offset is used, there will play between gears. If positive_bias= True,
-            this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'."""
+            this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
+        """
 
         # -- Rack branch -----------------------------------------------------------
         if isinstance(gear2, Rack):
@@ -656,7 +712,11 @@ class Gear(VMobject):
             # For a rack the tooth phase is linear; the gear must rotate so that
             # a gear tooth aligns with a rack tooth gap at the pitch point.
             diff_angle = np.arctan2(diff_vect[1], diff_vect[0])
-            mod1 = (self.get_angle() - diff_angle - PI) % self.pitch_angle / self.pitch_angle
+            mod1 = (
+                (self.get_angle() - diff_angle - PI)
+                % self.pitch_angle
+                / self.pitch_angle
+            )
             self.rotate((-mod1 + 0.5) * self.pitch_angle)
             return
 
@@ -673,17 +733,17 @@ class Gear(VMobject):
         # calculate necessary axial distance. Inside-gears complicate things, as usual.
         # The pitch point is not in the middle between pitch circles. The calculation is based on triangle relations.
         if gear2.inner_teeth:
-            pitch_dist = ( gear2.rp - self.rp - offset * self.m - self.X + gear2.X)
+            pitch_dist = gear2.rp - self.rp - offset * self.m - self.X + gear2.X
             rp1 = self.rb * pitch_dist / (-self.rb + gear2.rb)
             rp2 = gear2.rb * pitch_dist / (-self.rb + gear2.rb)
         elif self.inner_teeth:
-            pitch_dist = (-gear2.rp + self.rp - offset * self.m + self.X - gear2.X)
+            pitch_dist = -gear2.rp + self.rp - offset * self.m + self.X - gear2.X
             rp1 = self.rb * pitch_dist / (self.rb - gear2.rb)
             rp2 = gear2.rb * pitch_dist / (self.rb - gear2.rb)
         else:
-            pitch_dist = (self.rp+gear2.rp + offset * self.m + self.X + gear2.X)
-            rp1 = self.rb * pitch_dist / (self.rb+gear2.rb)
-            rp2 = gear2.rb * pitch_dist / (self.rb+gear2.rb)
+            pitch_dist = self.rp + gear2.rp + offset * self.m + self.X + gear2.X
+            rp1 = self.rb * pitch_dist / (self.rb + gear2.rb)
+            rp2 = gear2.rb * pitch_dist / (self.rb + gear2.rb)
 
         self.shift(diff_vect * (-distance + pitch_dist))
 
@@ -693,38 +753,54 @@ class Gear(VMobject):
                 try:
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
-                        invo_offset_1 = fsolve(lambda t: involute_height_func(t,self.rb) - (rp1 - self.rb),
-                                               self.angle_ofs + self.alpha*DEGREES)
+                        invo_offset_1 = fsolve(
+                            lambda t: involute_height_func(t, self.rb)
+                            - (rp1 - self.rb),
+                            self.angle_ofs + self.alpha * DEGREES,
+                        )
                 except Exception:
                     invo_offset_1 = np.array([self.angle_ofs + self.alpha * DEGREES])
             else:
                 try:
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
-                        invo_offset_1 = fsolve(lambda t: involute_height_func(t, self.rb) - (rp1 - self.rb),
-                                               self.angle_ofs + self.alpha * DEGREES)
+                        invo_offset_1 = fsolve(
+                            lambda t: involute_height_func(t, self.rb)
+                            - (rp1 - self.rb),
+                            self.angle_ofs + self.alpha * DEGREES,
+                        )
                 except Exception:
                     invo_offset_1 = np.array([self.angle_ofs + self.alpha * DEGREES])
             if gear2.inner_teeth:
                 try:
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
-                        invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
-                                               gear2.angle_ofs + gear2.alpha * DEGREES)
+                        invo_offset_2 = fsolve(
+                            lambda t: involute_height_func(t, gear2.rb)
+                            - (rp2 - gear2.rb),
+                            gear2.angle_ofs + gear2.alpha * DEGREES,
+                        )
                 except Exception:
                     invo_offset_2 = np.array([gear2.angle_ofs + gear2.alpha * DEGREES])
             else:
                 try:
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
-                        invo_offset_2 = fsolve(lambda t: involute_height_func(t, gear2.rb) - (rp2 - gear2.rb),
-                                               gear2.angle_ofs + gear2.alpha*DEGREES)
+                        invo_offset_2 = fsolve(
+                            lambda t: involute_height_func(t, gear2.rb)
+                            - (rp2 - gear2.rb),
+                            gear2.angle_ofs + gear2.alpha * DEGREES,
+                        )
                 except Exception:
                     invo_offset_2 = np.array([gear2.angle_ofs + gear2.alpha * DEGREES])
             invo_point_1 = involute_func(invo_offset_1[0], self.rb)
             invo_point_2 = involute_func(invo_offset_2[0], gear2.rb)
-            angle_offset_1 = bias * (np.arctan2(invo_point_1[1], invo_point_1[0]) - self.angle_ofs)
-            angle_offset_2 = bias * (np.arctan2(invo_point_2[1], invo_point_2[0]) - gear2.angle_ofs)
+            angle_offset_1 = bias * (
+                np.arctan2(invo_point_1[1], invo_point_1[0]) - self.angle_ofs
+            )
+            angle_offset_2 = bias * (
+                np.arctan2(invo_point_2[1], invo_point_2[0]) - gear2.angle_ofs
+            )
 
         else:
             angle_offset_1 = 0
@@ -739,14 +815,38 @@ class Gear(VMobject):
         # In some places -PI is involved due to diff vector pointing towards or away from the pitch point
         # (and sometimes added PI due to experimentation)
         if self.inner_teeth:
-            mod1 = (self.get_angle() - diff_angle - PI - angle_offset_1) % self.pitch_angle / self.pitch_angle
-            mod2 = (gear2.get_angle() - diff_angle - PI - angle_offset_2) % gear2.pitch_angle / gear2.pitch_angle
+            mod1 = (
+                (self.get_angle() - diff_angle - PI - angle_offset_1)
+                % self.pitch_angle
+                / self.pitch_angle
+            )
+            mod2 = (
+                (gear2.get_angle() - diff_angle - PI - angle_offset_2)
+                % gear2.pitch_angle
+                / gear2.pitch_angle
+            )
         elif gear2.inner_teeth:
-            mod1 = (self.get_angle() - diff_angle - angle_offset_1) % self.pitch_angle / self.pitch_angle
-            mod2 = (gear2.get_angle() - diff_angle - angle_offset_2) % gear2.pitch_angle / gear2.pitch_angle
+            mod1 = (
+                (self.get_angle() - diff_angle - angle_offset_1)
+                % self.pitch_angle
+                / self.pitch_angle
+            )
+            mod2 = (
+                (gear2.get_angle() - diff_angle - angle_offset_2)
+                % gear2.pitch_angle
+                / gear2.pitch_angle
+            )
         else:
-            mod1 = (self.get_angle() - diff_angle - PI - angle_offset_1) % self.pitch_angle / self.pitch_angle
-            mod2 = (gear2.get_angle() - diff_angle - angle_offset_2) % gear2.pitch_angle / gear2.pitch_angle
+            mod1 = (
+                (self.get_angle() - diff_angle - PI - angle_offset_1)
+                % self.pitch_angle
+                / self.pitch_angle
+            )
+            mod2 = (
+                (gear2.get_angle() - diff_angle - angle_offset_2)
+                % gear2.pitch_angle
+                / gear2.pitch_angle
+            )
 
         # with inside gears, the tooth goes into a tooth-hole, they overlap
         if self.inner_teeth or gear2.inner_teeth:
@@ -756,12 +856,12 @@ class Gear(VMobject):
             self.rotate((-mod2 - mod1 + 0.5) * self.pitch_angle)
 
     def rotate(
-            self,
-            angle: float,
-            axis: np.ndarray = OUT,
-            about_point: Optional[Sequence[float]] = None,
-            **kwargs,
-            ):
+        self,
+        angle: float,
+        axis: np.ndarray = OUT,
+        about_point: Optional[Sequence[float]] = None,
+        **kwargs,
+    ):
         """Rotate the gear around its centre by default.
 
         Parameters
@@ -818,6 +918,7 @@ class Rack(VMobject):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
     """
+
     def __init__(self, num_of_teeth, module=0.2, alpha=20, h_a=1, h_f=1.17, **kwargs):
         """Initialize Rack."""
         self.z = num_of_teeth
@@ -838,41 +939,46 @@ class Rack(VMobject):
 
         # these submobjects are a bit of a hack
         # they are used to track the center and angular position of the gear
-        self.submobjects.append(Line(start=ORIGIN, end=UP, stroke_opacity=0, fill_opacity=0))
+        self.submobjects.append(
+            Line(start=ORIGIN, end=UP, stroke_opacity=0, fill_opacity=0)
+        )
 
     def generate_points(self):
         """Build the rack outline from trapezoidal teeth."""
 
-        h_amax = self.pitch / 4 / np.tan(self.alpha*DEGREES)
-        da = self.pitch/4*(h_amax-self.h_a*self.m)/h_amax
+        h_amax = self.pitch / 4 / np.tan(self.alpha * DEGREES)
+        da = self.pitch / 4 * (h_amax - self.h_a * self.m) / h_amax
         h_fmax = h_amax
-        df = self.pitch / 4 * (h_fmax - self.h_f*self.m) / h_amax
+        df = self.pitch / 4 * (h_fmax - self.h_f * self.m) / h_amax
 
-        tooth_points = [UP*(self.pitch/2)+LEFT*self.h,
-                        UP*(self.pitch/2-df)+LEFT*self.h,
-                        UP*da, ORIGIN, DOWN*da,
-                        DOWN * (self.pitch / 2 - df) + LEFT * self.h,
-                        DOWN * (self.pitch / 2) + LEFT * self.h
-                        ]
+        tooth_points = [
+            UP * (self.pitch / 2) + LEFT * self.h,
+            UP * (self.pitch / 2 - df) + LEFT * self.h,
+            UP * da,
+            ORIGIN,
+            DOWN * da,
+            DOWN * (self.pitch / 2 - df) + LEFT * self.h,
+            DOWN * (self.pitch / 2) + LEFT * self.h,
+        ]
 
         self.set_points_as_corners(tooth_points)
-        for k in range(self.z-1):
+        for k in range(self.z - 1):
             self.shift(UP * self.pitch)
             self.add_points_as_corners(tooth_points)
 
-        self.shift(DOWN*self.pitch*(self.z-1)/2+RIGHT*self.h_a*self.m)
-        point2 = LEFT * self.h/2 + self.points[-1, :]
+        self.shift(DOWN * self.pitch * (self.z - 1) / 2 + RIGHT * self.h_a * self.m)
+        point2 = LEFT * self.h / 2 + self.points[-1, :]
         self.add_line_to(point2)
-        self.add_line_to(self.points[0, :]+LEFT*self.h/2)
+        self.add_line_to(self.points[0, :] + LEFT * self.h / 2)
         self.add_line_to(self.points[0, :])
 
     def get_center(self):
         """Return the geometric center of the rack."""
-        return self.submobjects[0].points[0,:].copy()
+        return self.submobjects[0].points[0, :].copy()
 
     def get_angle_vector(self):
         """Return the internal reference vector used to track orientation."""
-        return self.submobjects[0].points[1,:] - self.submobjects[0].points[0,:]
+        return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
     def get_angle(self):
         """Return the current orientation angle of the rack in radians."""
@@ -880,12 +986,12 @@ class Rack(VMobject):
         return np.arctan2(v[1], v[0])
 
     def rotate(
-            self,
-            angle: float,
-            axis: np.ndarray = OUT,
-            about_point: Optional[Sequence[float]] = None,
-            **kwargs,
-            ):
+        self,
+        angle: float,
+        axis: np.ndarray = OUT,
+        about_point: Optional[Sequence[float]] = None,
+        **kwargs,
+    ):
         """Rotate the rack around its centre by default.
 
         Parameters

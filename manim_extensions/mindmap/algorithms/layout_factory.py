@@ -4,13 +4,14 @@
 
 
 __all__ = [
-    'LayoutFactory',
+    "LayoutFactory",
 ]
-from .layout_config import LayoutType,LayoutConfig
+from .layout_config import LayoutType, LayoutConfig
 from .alg_tidy_tree import TidyTreeLayout
 from .alg_standard import StandardLayout
 from .alg_time_line import TimeLineLayout
 from .alg_catalog import CatalogLayout
+
 
 class LayoutFactory:
     """Factory for layout algorithms.
@@ -27,13 +28,10 @@ class LayoutFactory:
            def construct(self):
                label = Text("LayoutFactory creates layout algorithms", font_size=24)
                self.add(label)
-"""
+    """
+
     @staticmethod
-    def create_layout(
-        layout_type: LayoutType,
-        root,
-        layout_config: LayoutConfig
-    ):
+    def create_layout(layout_type: LayoutType, root, layout_config: LayoutConfig):
         """Create the appropriate layout algorithm instance.
 
         Parameters

@@ -6,6 +6,7 @@
 """
 custom exceptions
 """
+
 # python imports
 from typing import Any, Tuple, Union
 
@@ -28,7 +29,7 @@ class InvalidMeshException(Exception):
                except InvalidMeshException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
 
 
 class InvalidRequestException(InvalidMeshException):
@@ -49,7 +50,7 @@ class InvalidRequestException(InvalidMeshException):
                except InvalidRequestException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
 
 
 class MeshIndexException(IndexError):
@@ -70,7 +71,7 @@ class MeshIndexException(IndexError):
                except MeshIndexException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
 
 
 class InvalidTypeException(TypeError):
@@ -91,7 +92,7 @@ class InvalidTypeException(TypeError):
                except InvalidTypeException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
 
 
 class InvalidMeshDimensionsException(Exception):
@@ -121,13 +122,23 @@ class InvalidMeshDimensionsException(Exception):
                except InvalidMeshDimensionsException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
-    def __init__(self, actual: Union[int, Tuple[Any, Any]], expected: Union[int, Tuple[Any, Any]], name: str = ""):
+    """
+
+    def __init__(
+        self,
+        actual: Union[int, Tuple[Any, Any]],
+        expected: Union[int, Tuple[Any, Any]],
+        name: str = "",
+    ):
         """Initialize the InvalidMeshDimensionsException instance."""
         if name == "":
-            super().__init__(f'Dimensions is expected to be {expected} but was {actual}.')
+            super().__init__(
+                f"Dimensions is expected to be {expected} but was {actual}."
+            )
         else:
-            super().__init__(f'Dimensions of {name} is expected to be {expected} but was {actual}.')
+            super().__init__(
+                f"Dimensions of {name} is expected to be {expected} but was {actual}."
+            )
 
 
 class InvalidShapeException(Exception):
@@ -157,10 +168,13 @@ class InvalidShapeException(Exception):
                except InvalidShapeException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
+
     def __init__(self, name: str, actual: int, expected: int):
         """Initialize the InvalidShapeException instance."""
-        super().__init__(f'Size of {name} is expected to be {expected} but was {actual}.')
+        super().__init__(
+            f"Size of {name} is expected to be {expected} but was {actual}."
+        )
 
 
 class BadParameterException(Exception):
@@ -181,7 +195,7 @@ class BadParameterException(Exception):
                except BadParameterException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """
 
 
 class FaultyVarArrayException(Exception):
@@ -202,4 +216,4 @@ class FaultyVarArrayException(Exception):
                except FaultyVarArrayException as e:
                    label = Text(str(e), font_size=24).to_edge(UP)
                    self.add(label)
-"""
+    """

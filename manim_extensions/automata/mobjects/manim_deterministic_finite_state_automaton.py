@@ -9,7 +9,6 @@ from .manim_automaton import ManimAutomaton
 
 
 class ManimdeterministicFiniteAutomaton(ManimAutomaton):
-
     """A deterministic finite automaton (DFA) with Manim visualisation.
 
     This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents a DFA where each
@@ -43,7 +42,8 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
-"""
+    """
+
     def __init__(
         self,
         json_template: dict[str, object] | None = None,
@@ -57,9 +57,18 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:
-            super().__init__(json_template, xml_file, camera_follow,  animation_style, cli=cli, **kwargs)
+            super().__init__(
+                json_template,
+                xml_file,
+                camera_follow,
+                animation_style,
+                cli=cli,
+                **kwargs,
+            )
 
-        if cli: #if cli exist display options to user
+        if cli:  # if cli exist display options to user
             self.cli.display_nda_options()
-            if self.cli.nda_option == 0: #check the settings of the cli (what the user wants to do)
+            if (
+                self.cli.nda_option == 0
+            ):  # check the settings of the cli (what the user wants to do)
                 self.nda_builder = True

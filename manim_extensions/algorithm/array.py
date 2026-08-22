@@ -6,6 +6,7 @@
 from .node import *
 from typing import List, Union
 
+
 class Array(VMobject):
     """A horizontal array of nodes rendered as a single Manim mobject.
 
@@ -50,25 +51,31 @@ class Array(VMobject):
                self.play(Node.Unselect(arr[1]))
                self.play(Node.UpdateValue(arr[0], 42))
                self.wait(1)
-       """
+    """
 
     def __init__(
         self,
-        data:List[NodeValue],
-        total_width:float|Node=None,
+        data: List[NodeValue],
+        total_width: float | Node = None,
         box_type=NodeConfig.BOX_TYPE,
         box_color=NodeConfig.BOX_COLOR,
-        text_scale:float = 1.0,
-        **kwargs
+        text_scale: float = 1.0,
+        **kwargs,
     ):
         """Initialize Array."""
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)
-   
+
         item_width = total_width / len(data)
         self.array = [
-            Node(item, width=item_width, text_scale=text_scale, box_type=box_type, box_color=box_color)
+            Node(
+                item,
+                width=item_width,
+                text_scale=text_scale,
+                box_type=box_type,
+                box_color=box_color,
+            )
             for item in data
         ]
         self.add(*self.array)

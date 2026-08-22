@@ -6,13 +6,18 @@
 """
 functions to display voronoi diagram and create delaunay meshes as its dual
 """
+
 # python imports
 import numpy as np
+
 # third-party imports
 from scipy.spatial import Voronoi  # pylint: disable=no-name-in-module
 import manim as m
+
 # local imports
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 
 class VoronoiDelaunay:
@@ -48,7 +53,7 @@ class VoronoiDelaunay:
                tm = TriangleManim2DMesh(mesh_data)
                self.add(tm)
                vd = VoronoiDelaunay(self, tm)
-"""
+    """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:
         """Initialise the Voronoi-Delaunay visualisation helper."""
@@ -86,11 +91,17 @@ class VoronoiDelaunay:
         voronoi_vertices = np.pad(self.voronoi.vertices, ((0, 0), (0, 1)))
 
         # add voronoi lines
-        for point_indices, segment in zip(self.voronoi.ridge_points, self.voronoi.ridge_vertices):
+        for point_indices, segment in zip(
+            self.voronoi.ridge_points, self.voronoi.ridge_vertices
+        ):
             segment = np.asarray(segment)
             if np.all(segment >= 0):  # finite segment
-                line = m.Line(voronoi_vertices[segment[0]], voronoi_vertices[segment[1]],
-                              stroke_width=self.triangle_mesh.edges_width, color=m.WHITE)
+                line = m.Line(
+                    voronoi_vertices[segment[0]],
+                    voronoi_vertices[segment[1]],
+                    stroke_width=self.triangle_mesh.edges_width,
+                    color=m.WHITE,
+                )
                 line_group.add(line)
             else:  # infinite segment
                 i = segment[segment >= 0][0]  # finite end
@@ -103,8 +114,12 @@ class VoronoiDelaunay:
                 direction = np.sign(np.dot(midpoint - center, n)) * n
                 far_point = voronoi_vertices[i] + direction * ptp_bound.max()
 
-                line = m.Line(voronoi_vertices[i], far_point,
-                              stroke_width=self.triangle_mesh.edges_width, color=m.WHITE)
+                line = m.Line(
+                    voronoi_vertices[i],
+                    far_point,
+                    stroke_width=self.triangle_mesh.edges_width,
+                    color=m.WHITE,
+                )
                 line_group.add(line)
 
         # add voronoi vertices
@@ -137,11 +152,15 @@ class VoronoiDelaunay:
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         voronoi_vertices = np.pad(self.voronoi.vertices, ((0, 0), (0, 1)))
-        for point_indices, segment in zip(self.voronoi.ridge_points, self.voronoi.ridge_vertices):
+        for point_indices, segment in zip(
+            self.voronoi.ridge_points, self.voronoi.ridge_vertices
+        ):
             if voronoi_vertex_index in segment:
                 vert_a = voronoi_vertices[voronoi_vertex_index]
                 vert_b = verts[point_indices[0]]
-                circle = m.Circle(radius=np.linalg.norm(vert_b - vert_a), stroke_width=2, color=color)
+                circle = m.Circle(
+                    radius=np.linalg.norm(vert_b - vert_a), stroke_width=2, color=color
+                )
                 circle.shift(vert_a)
                 return circle
         return None  # should never get here
@@ -159,7 +178,9 @@ class VoronoiDelaunay:
         """
 
         triangle_indices = set()
-        for point_indices, segment in zip(self.voronoi.ridge_points, self.voronoi.ridge_vertices):
+        for point_indices, segment in zip(
+            self.voronoi.ridge_points, self.voronoi.ridge_vertices
+        ):
             if voronoi_vertex_index in segment:
                 triangle_indices.add(point_indices[0])
                 triangle_indices.add(point_indices[1])

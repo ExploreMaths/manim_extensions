@@ -3,8 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 
-
 from manim import *
+
+
 def index_paragraph_labels(
     paragraph: Paragraph,
     label_height: float = 0.1,
@@ -29,7 +30,7 @@ def index_paragraph_labels(
     labels = VGroup()
     idx = 0
     for i in range(len(paragraph)):
-        if not isinstance(paragraph[i], Dot): 
+        if not isinstance(paragraph[i], Dot):
             label = Integer(i, **kwargs)
             idx += 1
             label.height = label_height

@@ -24,7 +24,8 @@ class ManimTuringMachine(VGroup):
            def construct(self):
                tm = ManimTuringMachine()
                self.add(tm)
-"""
+    """
+
     def __init__(self) -> None:
         """Initialize the ManimTuringMachine instance."""
         super().__init__()

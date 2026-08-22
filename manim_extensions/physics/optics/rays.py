@@ -51,7 +51,8 @@ class Ray(Line):
            def construct(self):
                ray = Ray(start=LEFT * 3 + UP, direction=RIGHT, init_length=4)
                self.add(ray)
-"""
+    """
+
     def __init__(
         self,
         start: Iterable[float],
@@ -76,7 +77,6 @@ class Ray(Line):
         lenses
             All the lenses for the ray to propagate through
         """
-        # Future: make modular(?) Clean up logic
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:
             intersects = intersection(lens, self)

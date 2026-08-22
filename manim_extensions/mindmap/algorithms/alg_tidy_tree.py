@@ -9,13 +9,13 @@ Used to compute node positions for tree structures.
 
 Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
-__all__ = [
-    'TidyTreeLayout'
-]
+
+__all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
 from typing import List, Optional, Any
 from .layout_config import LayoutDirection
 from .layout import Layout
+
 
 @dataclass
 class WrappedTree:
@@ -34,7 +34,8 @@ class WrappedTree:
                wt = WrappedTree()
                label = Text(f"WrappedTree: x={wt.x}, y={wt.y}", font_size=24)
                self.add(label)
-"""
+    """
+
     # Reference to the original node
     node: Any = None
     # Basic attributes
@@ -44,28 +45,36 @@ class WrappedTree:
     height: float = 0.0
     level: int = 0  # node depth
     # Children
-    children: List['WrappedTree'] = field(default_factory=list)
+    children: List["WrappedTree"] = field(default_factory=list)
     child_number: int = 0
 
     # === Core layout attributes ===
-    prelim: float = 0.0  # preliminary position of the node relative to its parent, before overlap correction
-    mod: float = 0.0     # extra shift to apply to the whole subtree rooted at this node
-    shift: float = 0.0   # spacing share to distribute over subsequent sibling subtrees
-    change: float = 0.0  # one-time correction at the end of a distribution chain to eliminate accumulated error
+    prelim: float = (
+        0.0  # preliminary position of the node relative to its parent, before overlap correction
+    )
+    mod: float = 0.0  # extra shift to apply to the whole subtree rooted at this node
+    shift: float = 0.0  # spacing share to distribute over subsequent sibling subtrees
+    change: float = (
+        0.0  # one-time correction at the end of a distribution chain to eliminate accumulated error
+    )
 
     # === Subtree contour tracking for overlap detection ===
-    extreme_left: Optional['WrappedTree'] = None  # leftmost extreme node
-    extreme_right: Optional['WrappedTree'] = None  # rightmost extreme node
-    mod_sum_extreme_left: float = 0.0   # sum of mod values along the path from leftmost extreme to root
-    mod_sum_extreme_right: float = 0.0  # sum of mod values along the path from rightmost extreme to root
+    extreme_left: Optional["WrappedTree"] = None  # leftmost extreme node
+    extreme_right: Optional["WrappedTree"] = None  # rightmost extreme node
+    mod_sum_extreme_left: float = (
+        0.0  # sum of mod values along the path from leftmost extreme to root
+    )
+    mod_sum_extreme_right: float = (
+        0.0  # sum of mod values along the path from rightmost extreme to root
+    )
 
     # Threads for contour traversal: when two subtrees have different heights,
     # the shorter subtree links to a neighbouring subtree's contour when exhausted
-    thread_left: Optional['WrappedTree'] = None
-    thread_right: Optional['WrappedTree'] = None
+    thread_left: Optional["WrappedTree"] = None
+    thread_right: Optional["WrappedTree"] = None
 
     @classmethod
-    def from_node(cls, node, is_horizontal: bool, level: int = 0) -> 'WrappedTree':
+    def from_node(cls, node, is_horizontal: bool, level: int = 0) -> "WrappedTree":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
@@ -93,19 +102,20 @@ class WrappedTree:
         level += 1
         # Copy dimensions
         if is_horizontal:
-            wt.width = getattr(node, 'height', 0)
-            wt.height = getattr(node, 'width', 0)
-            wt.x = getattr(node, 'x', 0)
+            wt.width = getattr(node, "height", 0)
+            wt.height = getattr(node, "width", 0)
+            wt.x = getattr(node, "x", 0)
         else:
-            wt.width = getattr(node, 'width', 0)
-            wt.height = getattr(node, 'height', 0)
-            wt.y = getattr(node, 'y', 0)
+            wt.width = getattr(node, "width", 0)
+            wt.height = getattr(node, "height", 0)
+            wt.y = getattr(node, "y", 0)
 
         # Recursively create children
-        children = getattr(node, 'children', [])
+        children = getattr(node, "children", [])
         wt.children = [cls.from_node(child, is_horizontal, level) for child in children]
         wt.child_number = len(wt.children)
         return wt
+
 
 @dataclass
 class IYLNode:
@@ -128,10 +138,14 @@ class IYLNode:
                iyl = IYLNode(low=0.0, index=0)
                label = Text(f"IYLNode: low={iyl.low}, idx={iyl.index}", font_size=24)
                self.add(label)
-"""
-    low: float                       # low end of the subtree's right contour in the orthogonal direction
-    index: int                       # index of the subtree among its siblings
-    nxt: Optional['IYLNode'] = None  # next node in the list (with a strictly larger low value)
+    """
+
+    low: float  # low end of the subtree's right contour in the orthogonal direction
+    index: int  # index of the subtree among its siblings
+    nxt: Optional["IYLNode"] = (
+        None  # next node in the list (with a strictly larger low value)
+    )
+
 
 def move_right(node, move: float, is_horizontal: bool):
     """Move a node and all its descendants by *move* in the non-layered direction.
@@ -151,6 +165,7 @@ def move_right(node, move: float, is_horizontal: bool):
         node.x += move
     for child in node.children:
         move_right(child, move, is_horizontal)
+
 
 def get_min(node, is_horizontal: bool) -> float:
     """Return the minimum non-layered coordinate in a subtree.
@@ -172,6 +187,7 @@ def get_min(node, is_horizontal: bool) -> float:
         res = min(get_min(child, is_horizontal), res)
     return res
 
+
 def normalize(node, is_horizontal: bool):
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
@@ -184,6 +200,7 @@ def normalize(node, is_horizontal: bool):
     """
     min_val = get_min(node, is_horizontal)
     move_right(node, -min_val, is_horizontal)
+
 
 def convert_back(converted: WrappedTree, root, is_horizontal: bool):
     """Write computed coordinates back to the original node tree.
@@ -208,6 +225,7 @@ def convert_back(converted: WrappedTree, root, is_horizontal: bool):
     for i, child in enumerate(converted.children):
         if i < len(root.children):
             convert_back(child, root.children[i], is_horizontal)
+
 
 def layer(node, direction, level_spacing):
     """Set the layer (depth) coordinate for each node in the tree.
@@ -236,7 +254,8 @@ def layer(node, direction, level_spacing):
             node.y = parent.y - (parent.height + node.height) / 2 - level_spacing
 
     for child in node.children:
-        layer(child, direction,level_spacing)
+        layer(child, direction, level_spacing)
+
 
 class TidyTreeLayout(Layout):
     """Non-layered tidy tree layout algorithm.
@@ -264,13 +283,14 @@ class TidyTreeLayout(Layout):
            def construct(self):
                label = Text("TidyTreeLayout algorithm", font_size=24)
                self.add(label)
-"""
+    """
+
     def __init__(
         self,
         root,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
-        level_spacing: float = 0.5
+        level_spacing: float = 0.5,
     ):
         """Initialize the TidyTreeLayout instance."""
         self.root = root
@@ -280,7 +300,7 @@ class TidyTreeLayout(Layout):
         self.level_spacing = level_spacing
         self.wt = None
 
-    def _is_horizontal(self,direction):
+    def _is_horizontal(self, direction):
         """Check whether the given layout direction is horizontal.
 
         Parameters
@@ -297,7 +317,7 @@ class TidyTreeLayout(Layout):
 
     def layout(self):
         """Run the layout computation."""
-        layer(self.root, self.direction,self.level_spacing)
+        layer(self.root, self.direction, self.level_spacing)
         self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
         self.first_walk(self.wt)
         self.second_walk(self.wt, 0)
@@ -387,10 +407,14 @@ class TidyTreeLayout(Layout):
         ih : Optional[IYLNode]
             preceding subtrees whose right contour may still collide with the current subtree
         """
-        sr = t.children[i - 1]   # current right-contour node, initially the immediate left sibling
-        mssr = sr.mod            # sum of mod values from t.children[i-1] to sr
-        cl = t.children[i]       # current left-contour node, initially the current subtree root
-        mscl = cl.mod            # sum of mod values from t.children[i] to cl
+        sr = t.children[
+            i - 1
+        ]  # current right-contour node, initially the immediate left sibling
+        mssr = sr.mod  # sum of mod values from t.children[i-1] to sr
+        cl = t.children[
+            i
+        ]  # current left-contour node, initially the current subtree root
+        mscl = cl.mod  # sum of mod values from t.children[i] to cl
 
         while sr is not None and cl is not None:
             # Skip preceding subtrees that are completely hidden
@@ -399,7 +423,13 @@ class TidyTreeLayout(Layout):
                 # Skip this preceding subtree and compare with the next higher one
                 ih = ih.nxt
 
-            dist = mssr + sr.prelim + self.node_spacing + (sr.width + cl.width)/2 - (mscl + cl.prelim)
+            dist = (
+                mssr
+                + sr.prelim
+                + self.node_spacing
+                + (sr.width + cl.width) / 2
+                - (mscl + cl.prelim)
+            )
             if dist > 0:
                 mscl += dist
                 si = ih.index if ih is not None else i - 1
@@ -506,8 +536,8 @@ class TidyTreeLayout(Layout):
             The extent used for contour comparison.
         """
         if self.is_horizontal:
-            return t.height/2 + abs(t.x)
-        return abs(t.y) + t.height/2
+            return t.height / 2 + abs(t.x)
+        return abs(t.y) + t.height / 2
 
     def set_left_thread(self, t: WrappedTree, i: int, cl: WrappedTree, modsumcl: float):
         """Set the left thread for a subtree whose left contour is exhausted.
@@ -531,7 +561,9 @@ class TidyTreeLayout(Layout):
         t.children[0].extreme_left = t.children[i].extreme_left
         t.children[0].mod_sum_extreme_left = t.children[i].mod_sum_extreme_left
 
-    def set_right_thread(self, t: WrappedTree, i: int, sr: WrappedTree, modsumsr: float):
+    def set_right_thread(
+        self, t: WrappedTree, i: int, sr: WrappedTree, modsumsr: float
+    ):
         """Set the right thread for a subtree whose right contour is exhausted.
 
         Parameters
@@ -562,7 +594,10 @@ class TidyTreeLayout(Layout):
             The subtree root.
         """
         t.prelim = (
-            t.children[0].prelim + t.children[0].mod + t.children[-1].mod + t.children[-1].prelim 
+            t.children[0].prelim
+            + t.children[0].mod
+            + t.children[-1].mod
+            + t.children[-1].prelim
         ) / 2
 
     def second_walk(self, t: WrappedTree, modsum: float):
@@ -602,7 +637,8 @@ class TidyTreeLayout(Layout):
 
     def compute_connectors(self):
         """Compute connectors."""
-        def compute_node(node:Any):
+
+        def compute_node(node: Any):
             """Compute the connector path from a node to its parent.
 
             Parameters
@@ -618,21 +654,41 @@ class TidyTreeLayout(Layout):
             parent = node.parent
             match self.direction:
                 case LayoutDirection.TopToBottom:
-                    xs,ys = parent.x, parent.y - parent.height/2
-                    xe,ye = node.x, node.y + node.height/2
-                    points = ((xs, ys),(xs, (ys + ye) / 2),(xe, (ys + ye) / 2),(xe, ye))
+                    xs, ys = parent.x, parent.y - parent.height / 2
+                    xe, ye = node.x, node.y + node.height / 2
+                    points = (
+                        (xs, ys),
+                        (xs, (ys + ye) / 2),
+                        (xe, (ys + ye) / 2),
+                        (xe, ye),
+                    )
                 case LayoutDirection.BottomToTop:
-                    xs,ys = parent.x, parent.y + parent.height/2
-                    xe,ye = node.x, node.y - node.height/2
-                    points = ((xs, ys),(xs, (ys + ye) / 2),(xe, (ys + ye) / 2),(xe, ye))
+                    xs, ys = parent.x, parent.y + parent.height / 2
+                    xe, ye = node.x, node.y - node.height / 2
+                    points = (
+                        (xs, ys),
+                        (xs, (ys + ye) / 2),
+                        (xe, (ys + ye) / 2),
+                        (xe, ye),
+                    )
                 case LayoutDirection.LeftToRight:
-                    xs,ys = parent.x + parent.width/2, parent.y
-                    xe,ye = node.x - node.width/2, node.y
-                    points = ((xs, ys),((xs + xe) / 2, ys),((xs + xe) / 2, ye),(xe, ye))
+                    xs, ys = parent.x + parent.width / 2, parent.y
+                    xe, ye = node.x - node.width / 2, node.y
+                    points = (
+                        (xs, ys),
+                        ((xs + xe) / 2, ys),
+                        ((xs + xe) / 2, ye),
+                        (xe, ye),
+                    )
                 case LayoutDirection.RightToLeft:
-                    xs,ys = parent.x - parent.width/2, parent.y
-                    xe,ye = node.x + node.width/2, node.y
-                    points = ((xs, ys),((xs + xe) / 2, ys),((xs + xe) / 2, ye),(xe, ye))
+                    xs, ys = parent.x - parent.width / 2, parent.y
+                    xe, ye = node.x + node.width / 2, node.y
+                    points = (
+                        (xs, ys),
+                        ((xs + xe) / 2, ys),
+                        ((xs + xe) / 2, ye),
+                        (xe, ye),
+                    )
             node.connector_points = points
 
             for child in node.children:

@@ -9,6 +9,7 @@ import itertools
 
 from .state import State
 
+
 class Transition:
     """Class that represents transitions between states.
 
@@ -47,9 +48,9 @@ class Transition:
                trans = Transition(s1, s2)
                label = Text(f"Transition: {trans.transition_from.name} -> {trans.transition_to.name}", font_size=24)
                self.add(label)
-"""
-    id_iter = itertools.count()
+    """
 
+    id_iter = itertools.count()
 
     def __init__(self, transition_from: State, transition_to: State) -> None:
         """Initialize the Transition instance."""

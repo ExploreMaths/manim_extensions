@@ -35,7 +35,7 @@ class VoltageSource(Source):
            def construct(self):
                vs = VoltageSource(value=5, direction=LEFT)
                self.add(vs)
-"""
+    """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
         # + and -
@@ -83,7 +83,7 @@ class CurrentSource(Source):
            def construct(self):
                cs = CurrentSource(value=2, direction=RIGHT)
                self.add(cs)
-"""
+    """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
         # Arrow
@@ -123,7 +123,7 @@ class Inductor(VMobject):
            def construct(self):
                inductor = Inductor(label="10mH")
                self.add(inductor)
-"""
+    """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
         # initialize the vmobject
@@ -243,7 +243,7 @@ class Resistor(VMobject):
            def construct(self):
                resistor = Resistor(label="4.7k")
                self.add(resistor)
-"""
+    """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
         # initialize the vmobject
@@ -373,7 +373,7 @@ class Capacitor(VMobject):
            def construct(self):
                cap = Capacitor(label="100n", polarized=True)
                self.add(cap)
-"""
+    """
 
     def __init__(self, label=None, direction=DOWN, polarized=False, **kwargs):
         # initialize the vmobject
@@ -493,7 +493,7 @@ class Ground(VMobject):
            def construct(self):
                gnd = Ground(ground_type="earth")
                self.add(gnd)
-"""
+    """
 
     def __init__(self, ground_type="ground", label=None, **kwargs):
         # initialize the vmobject
@@ -566,7 +566,7 @@ class Opamp(VMobject):
            def construct(self):
                opamp = Opamp(bias_supply="both", label=True)
                self.add(opamp)
-"""
+    """
 
     def __init__(self, bias_supply=None, label=False, **kwargs):
         # initialize the vmobject

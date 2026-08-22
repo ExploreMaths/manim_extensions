@@ -5,6 +5,7 @@
 
 from manim.constants import *
 
+
 def get_axis_from_face(face):
     """Return the rotation axis corresponding to a Rubik's cube face.
 
@@ -27,6 +28,7 @@ def get_axis_from_face(face):
     else:
         return Y_AXIS
 
+
 def get_direction_from_face(face):
     """Return the rotation direction for a given face.
 
@@ -44,6 +46,7 @@ def get_direction_from_face(face):
     if face in ("F", "U", "L"):
         return 1
     return -1
+
 
 def get_cubie_colors_from_state(state):
     """Extract individual cubie colours from a cube state string.
@@ -63,6 +66,7 @@ def get_cubie_colors_from_state(state):
     """
     pass
 
+
 def get_all_states(cube):
     """Return the current state of every cubie in the cube.
 
@@ -77,6 +81,7 @@ def get_all_states(cube):
         Concatenated face-state string for all cubies.
     """
     pass
+
 
 def get_type_of_cubie(dim, position):
     """Classify a cubie by its position within the cube.
@@ -94,12 +99,15 @@ def get_type_of_cubie(dim, position):
         One of ``"corner"``, ``"edge"``, or ``"center"`` depending on the
         cubie's location.
     """
-    if (position[1] == 0 or position[1] == dim-1) and (position[2] == 0 or position[2] == dim-1):
+    if (position[1] == 0 or position[1] == dim - 1) and (
+        position[2] == 0 or position[2] == dim - 1
+    ):
         return "corner"
-    elif position[1] == 0 or position[1] == dim-1:
+    elif position[1] == 0 or position[1] == dim - 1:
         return "edge"
     else:
         return "center"
+
 
 def get_faces_of_cubie(dim, position):
     """Return the outward-facing directions for a cubie at a given position.
@@ -118,15 +126,15 @@ def get_faces_of_cubie(dim, position):
         ``IN``, ``OUT``) indicating which faces of the cubie are exposed on the
         cube's surface.
     """
-    dim = dim-1
+    dim = dim - 1
     try:
         faces = {
-            #Front corners
+            # Front corners
             (0, 0, 0): [LEFT, DOWN, IN],
             (0, 0, dim): [LEFT, DOWN, OUT],
             (0, dim, 0): [LEFT, UP, IN],
             (0, dim, dim): [LEFT, UP, OUT],
-            #Back corners
+            # Back corners
             (dim, 0, 0): [RIGHT, DOWN, IN],
             (dim, 0, dim): [RIGHT, DOWN, OUT],
             (dim, dim, 0): [RIGHT, UP, IN],

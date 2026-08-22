@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-"""Contains classes to construct variable.
-
-"""
+"""Contains classes to construct variable."""
 
 from __future__ import annotations
 
@@ -79,7 +77,7 @@ class MVariable(MArrayElement):
         mob_value_args: dict = {},
         mob_index_args: dict = {},
         mob_label_args: dict = {},
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initializes the class.
 
@@ -119,7 +117,7 @@ class MVariable(MArrayElement):
             mob_value_args=mob_value_args,
             mob_index_args=mob_index_args,
             mob_label_args=mob_label_args,
-            **kwargs
+            **kwargs,
         )
 
     def fetch_value(self) -> Any:

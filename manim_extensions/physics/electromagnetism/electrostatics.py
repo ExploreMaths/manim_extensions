@@ -17,7 +17,6 @@ import numpy as np
 
 from manim import *
 
-
 __all__ = [
     "Charge",
     "ElectricField",
@@ -51,7 +50,7 @@ class Charge(VGroup):
                pos = Charge(1, LEFT + DOWN)
                neg = Charge(-1, RIGHT + DOWN)
                self.add(pos, neg)
-"""
+    """
 
     def __init__(
         self,
@@ -131,7 +130,7 @@ class ElectricField(ArrowVectorField):
                q2 = Charge(-1, RIGHT + DOWN)
                field = ElectricField(q1, q2)
                self.add(q1, q2, field)
-"""
+    """
 
     def __init__(self, *charges: Charge, **kwargs) -> None:
         """Initialize ElectricField."""

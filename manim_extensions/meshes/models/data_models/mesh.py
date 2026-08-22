@@ -6,19 +6,45 @@
 """
 Mesh structure
 """
+
 # python imports
 from copy import deepcopy
+
 # third-party imports
 from typing import List, Set, Tuple, Union
 import numpy as np
+
 # local imports
 from scipy.spatial.transform import Rotation
 
-from manim_extensions.meshes.decorators import dangling_face_decorator, dangling_vert_decorator
-from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException, InvalidMeshException, InvalidRequestException, \
-    InvalidTypeException, MeshIndexException
-from manim_extensions.meshes.helpers import find_in_vararray, is_vararray_equal, fix_references, is_twice_nested_iterable
-from manim_extensions.meshes.types import Edge, VarArray, Vertex, Vertices, Face, Faces, Part, Parts, Edges
+from manim_extensions.meshes.decorators import (
+    dangling_face_decorator,
+    dangling_vert_decorator,
+)
+from manim_extensions.meshes.exceptions import (
+    InvalidMeshDimensionsException,
+    InvalidMeshException,
+    InvalidRequestException,
+    InvalidTypeException,
+    MeshIndexException,
+)
+from manim_extensions.meshes.helpers import (
+    find_in_vararray,
+    is_vararray_equal,
+    fix_references,
+    is_twice_nested_iterable,
+)
+from manim_extensions.meshes.types import (
+    Edge,
+    VarArray,
+    Vertex,
+    Vertices,
+    Face,
+    Faces,
+    Part,
+    Parts,
+    Edges,
+)
 
 
 class Mesh:
@@ -58,7 +84,7 @@ class Mesh:
                mesh = Mesh(vertices, faces)
                label = Text(f"Mesh: {len(mesh.vertices)} verts, {len(mesh.faces)} faces", font_size=24)
                self.add(label)
-"""
+    """
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
@@ -70,26 +96,36 @@ class Mesh:
         if parts is not None and faces is None:
             raise InvalidMeshException("Parts can not be defined while faces is None.")
         if parts is not None and not is_twice_nested_iterable(parts, min_lens=(1, 1)):
-            raise InvalidMeshException("Parts have to be twice nested enumerates or None.")
+            raise InvalidMeshException(
+                "Parts have to be twice nested enumerates or None."
+            )
 
         # indirectly check vertices
         try:
             conv_vertices = np.array(vertices, dtype=float)
             # if array or inner array could not be broadcast, one of the exceptions should be raised
             if len(conv_vertices.shape) != 2:
-                raise InvalidMeshException("Could not broadcast vertices to np.array of shape 2. Dimensional mismatch "
-                                           "for vertices. All vertices should have the same number of dimensions.")
+                raise InvalidMeshException(
+                    "Could not broadcast vertices to np.array of shape 2. Dimensional mismatch "
+                    "for vertices. All vertices should have the same number of dimensions."
+                )
         except (TypeError, ValueError) as e:
-            raise InvalidMeshException("Dimensional mismatch for vertices. All vertices should have the same number of "
-                                       "dimensions.") from e
+            raise InvalidMeshException(
+                "Dimensional mismatch for vertices. All vertices should have the same number of "
+                "dimensions."
+            ) from e
         # set class variables
         self._vertices: Vertices = conv_vertices
-        self._faces: Faces = [np.array(f, dtype=int) for f in faces] if faces is not None else []
-        self._parts: Parts = [np.array(p, dtype=int) for p in parts] if parts is not None else []
+        self._faces: Faces = (
+            [np.array(f, dtype=int) for f in faces] if faces is not None else []
+        )
+        self._parts: Parts = (
+            [np.array(p, dtype=int) for p in parts] if parts is not None else []
+        )
         self._edges = self.extract_edges()
         self.test_for_dangling = dangling
 
-    def __add__(self, other: 'Mesh') -> 'Mesh':
+    def __add__(self, other: "Mesh") -> "Mesh":
         """Concatenate *other* mesh into this mesh (``mesh + other``).
 
         Parameters
@@ -112,7 +148,7 @@ class Mesh:
             return self
         raise NotImplementedError
 
-    def __iadd__(self, other: 'Mesh') -> 'Mesh':
+    def __iadd__(self, other: "Mesh") -> "Mesh":
         """Concatenate *other* mesh in-place (``mesh += other``).
 
         Parameters
@@ -135,7 +171,7 @@ class Mesh:
             return self
         raise NotImplementedError
 
-    def __eq__(self, other: 'Mesh') -> bool:
+    def __eq__(self, other: "Mesh") -> bool:
         """Check whether two meshes are equal.
 
         Two meshes are considered equal when their vertex coordinates
@@ -158,7 +194,9 @@ class Mesh:
             If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
 
-        def replace_part_ids_with_vertex_ids(parts: Parts, faces: Faces, vertices: Vertices) -> VarArray:
+        def replace_part_ids_with_vertex_ids(
+            parts: Parts, faces: Faces, vertices: Vertices
+        ) -> VarArray:
             """Resolve part �?face �?vertex references into flat coordinate arrays.
 
             Parameters
@@ -176,11 +214,18 @@ class Mesh:
                 A list of coordinate arrays, one per part.
             """
             return [
-                np.hstack([np.hstack([vertices[vert_idx] for vert_idx in faces[face_idx]])
-                          for face_idx in part]) for part in parts
+                np.hstack(
+                    [
+                        np.hstack([vertices[vert_idx] for vert_idx in faces[face_idx]])
+                        for face_idx in part
+                    ]
+                )
+                for part in parts
             ]
 
-        def replace_face_ids_with_vertex_ids(faces: Faces, vertices: Vertices) -> VarArray:
+        def replace_face_ids_with_vertex_ids(
+            faces: Faces, vertices: Vertices
+        ) -> VarArray:
             """Resolve face �?vertex references into flat coordinate arrays.
 
             Parameters
@@ -195,28 +240,40 @@ class Mesh:
             VarArray
                 A list of coordinate arrays, one per face.
             """
-            return [np.hstack([vertices[vert_idx] for vert_idx in face]) for face in faces]
+            return [
+                np.hstack([vertices[vert_idx] for vert_idx in face]) for face in faces
+            ]
 
         if isinstance(other, Mesh):
             # vertex array contain every other vertex, coordinates must be exact equal, no rolling
             # faces reference the same coordinates
             # parts reference the same coordinates
-            if is_vararray_equal(list(self.vertices), list(other.vertices), rolling=False) and \
-                    is_vararray_equal(
-                        replace_face_ids_with_vertex_ids(self.faces, self.vertices),
-                        replace_face_ids_with_vertex_ids(other.faces, other.vertices),
-                        rolling=True,
-                    ) and \
-                    is_vararray_equal(
-                        replace_part_ids_with_vertex_ids(self.parts, self.faces, self.vertices),
-                        replace_part_ids_with_vertex_ids(other.parts, other.faces, other.vertices),
-                        rolling=True,
-                    ):
+            if (
+                is_vararray_equal(
+                    list(self.vertices), list(other.vertices), rolling=False
+                )
+                and is_vararray_equal(
+                    replace_face_ids_with_vertex_ids(self.faces, self.vertices),
+                    replace_face_ids_with_vertex_ids(other.faces, other.vertices),
+                    rolling=True,
+                )
+                and is_vararray_equal(
+                    replace_part_ids_with_vertex_ids(
+                        self.parts, self.faces, self.vertices
+                    ),
+                    replace_part_ids_with_vertex_ids(
+                        other.parts, other.faces, other.vertices
+                    ),
+                    rolling=True,
+                )
+            ):
                 return True
             return False
-        raise NotImplementedError(f'Not equal is not defined for mesh and {type(other)}')
+        raise NotImplementedError(
+            f"Not equal is not defined for mesh and {type(other)}"
+        )
 
-    def __ne__(self, other: 'Mesh') -> bool:
+    def __ne__(self, other: "Mesh") -> bool:
         """Check whether two meshes are not equal.
 
         Parameters
@@ -236,7 +293,9 @@ class Mesh:
         """
         if isinstance(other, Mesh):
             return not self.__eq__(other)
-        raise NotImplementedError(f'Not equal is not defined for mesh and {type(other)}')
+        raise NotImplementedError(
+            f"Not equal is not defined for mesh and {type(other)}"
+        )
 
     @property
     def dim(self) -> int:
@@ -269,7 +328,9 @@ class Mesh:
             return np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
         if self.dim == 3:
             return self._vertices
-        raise InvalidRequestException(f'Can not Broadcast from {self.dim}-D Mesh to 3D Mesh.')
+        raise InvalidRequestException(
+            f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
+        )
 
     def get_edge_index(self, edge: Edge) -> int:
         """Return the index of the given edge in the internal edge list.
@@ -329,7 +390,9 @@ class Mesh:
         if self.dim < 3:
             self._vertices = np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
         elif self.dim > 3:
-            raise InvalidRequestException(f'Can not Broadcast from {self.dim}-D Mesh to 3D Mesh.')
+            raise InvalidRequestException(
+                f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
+            )
 
     def find_vertex(self, vertex: np.ndarray, start: int = 0) -> List[int]:
         """Return all vertex indices whose coordinates match *vertex*.
@@ -349,8 +412,11 @@ class Mesh:
         """
         if len(vertex) != self.dim:
             return []
-        return [i for i, v in enumerate(self._vertices[start:], start=start)
-                if np.array_equal(vertex, v)]
+        return [
+            i
+            for i, v in enumerate(self._vertices[start:], start=start)
+            if np.array_equal(vertex, v)
+        ]
 
     def find_face(self, face: np.ndarray, start: int = 0) -> List[int]:
         """Return all face indices that match the given face.
@@ -405,10 +471,11 @@ class Mesh:
             If the shape of *new_vertices* does not match the mesh dimension.
         """
         if not isinstance(new_vertices, np.ndarray):
-            raise InvalidMeshException(f'new_vertices has invalid type {new_vertices}')
+            raise InvalidMeshException(f"new_vertices has invalid type {new_vertices}")
         if len(new_vertices.shape) != 2 or new_vertices.shape[1] != self.dim:
             raise InvalidMeshDimensionsException(
-                actual=new_vertices.shape, expected=("N", self.dim), name="new_vertices")
+                actual=new_vertices.shape, expected=("N", self.dim), name="new_vertices"
+            )
         self._vertices = np.vstack([self._vertices, new_vertices])
 
     def remove_vertices(self, indices: Union[np.ndarray, List[int]]) -> None:
@@ -426,7 +493,7 @@ class Mesh:
             If any index is out of range.
         """
         if any(len(self._vertices) <= idx or idx < 0 for idx in indices):
-            raise MeshIndexException('Vertex index out of range')
+            raise MeshIndexException("Vertex index out of range")
         # use indices to update self._faces
         faces_to_remove = fix_references(self._faces, indices)
         # remove vertices at all the indices
@@ -456,17 +523,25 @@ class Mesh:
             If the coordinate dimension does not match the mesh.
         """
         if len(self._vertices) <= idx or idx < 0:
-            raise MeshIndexException(f'Vertex index {idx} out of range for vertices of length {len(self._vertices)}')
+            raise MeshIndexException(
+                f"Vertex index {idx} out of range for vertices of length {len(self._vertices)}"
+            )
         if isinstance(new_vert, np.ndarray) and len(new_vert.shape) != 1:
-            raise InvalidTypeException(f'Vertex {new_vert} has incorrect shape, expected 1D-like array.')
+            raise InvalidTypeException(
+                f"Vertex {new_vert} has incorrect shape, expected 1D-like array."
+            )
         if self._vertices.shape[1] != len(new_vert):
-            raise InvalidMeshException(f'Current indices have dimension {self._vertices.shape[1]}, while '
-                                       f'new vertex has dimension {len(new_vert)} .')
+            raise InvalidMeshException(
+                f"Current indices have dimension {self._vertices.shape[1]}, while "
+                f"new vertex has dimension {len(new_vert)} ."
+            )
         try:
             self._vertices[idx] = np.array(new_vert)
         except (TypeError, ValueError) as e:
-            raise InvalidMeshException("Could not update Vertex. Dimensional mismatch for vertices."
-                                       "All vertices should have the same number of dimensions.") from e
+            raise InvalidMeshException(
+                "Could not update Vertex. Dimensional mismatch for vertices."
+                "All vertices should have the same number of dimensions."
+            ) from e
 
     @dangling_face_decorator()
     def add_faces(self, new_faces: Faces) -> None:
@@ -491,7 +566,7 @@ class Mesh:
         # check for out of bound indices
         for new_face in new_faces:
             if any(v < 0 or v >= len(self._vertices) for v in new_face):
-                raise MeshIndexException('Vertex index not defined')
+                raise MeshIndexException("Vertex index not defined")
         # add to self._faces depending on type
         if isinstance(new_faces, list):
             self._faces += new_faces
@@ -499,7 +574,7 @@ class Mesh:
             for val in new_faces:
                 self._faces.append(val)
         else:
-            raise InvalidTypeException(f'unknown type for new_face {type(new_faces)}')
+            raise InvalidTypeException(f"unknown type for new_face {type(new_faces)}")
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
@@ -520,7 +595,7 @@ class Mesh:
             If any index is out of range.
         """
         if any(len(self._faces) <= idx or idx < 0 for idx in indices):
-            raise MeshIndexException('Face index out of range')
+            raise MeshIndexException("Face index out of range")
 
         # use indices to update self._parts
         fix_references(self._parts, indices)
@@ -549,11 +624,13 @@ class Mesh:
             If *new_face* has an unexpected shape.
         """
         if len(self._faces) <= idx or idx < 0:
-            raise MeshIndexException(f'Face index {idx} out of range.')
+            raise MeshIndexException(f"Face index {idx} out of range.")
         if isinstance(new_face, np.ndarray) and len(new_face.shape) != 1:
-            raise InvalidTypeException(f'Face {new_face} has incorrect shape, expected 1D-like array.')
+            raise InvalidTypeException(
+                f"Face {new_face} has incorrect shape, expected 1D-like array."
+            )
         if any(0 > v_idx or v_idx >= len(self._vertices) for v_idx in new_face):
-            raise MeshIndexException('Vertex index out of range.')
+            raise MeshIndexException("Vertex index out of range.")
         # update face
         self._faces[idx] = np.array(new_face)
         # edges may be changed # Fixme: update only partly
@@ -578,11 +655,13 @@ class Mesh:
         """
         # validate array type
         if not is_twice_nested_iterable(new_parts, min_lens=(1, 1)):
-            raise InvalidMeshException('new_parts is not a valid nested iterable')
+            raise InvalidMeshException("new_parts is not a valid nested iterable")
         # validate face indices
         for new_part in new_parts:
             if any(0 > f or f >= len(self._faces) for f in new_part):
-                raise MeshIndexException(f'Face index out of range for new part: {new_part}')
+                raise MeshIndexException(
+                    f"Face index out of range for new part: {new_part}"
+                )
         # add new to existing based on type
         if isinstance(new_parts, list):
             self._parts += [np.array(part) for part in new_parts]
@@ -590,7 +669,7 @@ class Mesh:
             for val in new_parts:
                 self._parts.append(np.array(val))
         else:
-            raise InvalidTypeException(f'unknown type for new_part {type(new_parts)}')
+            raise InvalidTypeException(f"unknown type for new_part {type(new_parts)}")
 
     @dangling_face_decorator()
     def remove_parts(self, indices: Union[np.ndarray, List[int]]) -> None:
@@ -608,7 +687,7 @@ class Mesh:
             If any index is out of range.
         """
         if any(len(self._parts) <= idx or idx < 0 for idx in indices):
-            raise MeshIndexException('Part index out of range')
+            raise MeshIndexException("Part index out of range")
         # remove indices back to front
         indices[:] = list(set(indices))
         indices.sort(reverse=True)
@@ -634,17 +713,19 @@ class Mesh:
             If *new_part* has an unexpected shape.
         """
         if len(self._parts) <= idx or idx < 0:
-            raise MeshIndexException(f'Part index {idx} out of range.')
+            raise MeshIndexException(f"Part index {idx} out of range.")
         if isinstance(new_part, np.ndarray) and len(new_part.shape) != 1:
-            raise InvalidTypeException(f'Part {new_part} has incorrect shape, expected 1D-like array.')
+            raise InvalidTypeException(
+                f"Part {new_part} has incorrect shape, expected 1D-like array."
+            )
         if any(0 > f_idx or f_idx >= len(self._faces) for f_idx in new_part):
-            raise MeshIndexException('Face index out of range.')
+            raise MeshIndexException("Face index out of range.")
         # update part
         self._parts[idx] = np.array(new_part)
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def add_to_mesh(self, other: 'Mesh') -> None:
+    def add_to_mesh(self, other: "Mesh") -> None:
         """Merge another mesh into this one by shifting its indices.
 
         The vertices, faces and parts of *other* are appended with
@@ -666,7 +747,9 @@ class Mesh:
         # Mesh has to be a correct mesh therefore many checks can be omitted
         # check if vertices have the same dimension
         if self._vertices.shape[1] != other.vertices.shape[1]:
-            raise InvalidMeshException("Can not concatenate meshes with vertices of different dimensionality.")
+            raise InvalidMeshException(
+                "Can not concatenate meshes with vertices of different dimensionality."
+            )
 
         # save shift factor
         pre_nof_vertices = len(self.vertices)
@@ -688,7 +771,7 @@ class Mesh:
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
-    def split_mesh_into_objects(self) -> List['Mesh']:
+    def split_mesh_into_objects(self) -> List["Mesh"]:
         """
         given a mesh, return a list of independent meshes that are not interconnected
         returns list of meshes with updated indices and references, does not change current mesh
@@ -709,7 +792,9 @@ class Mesh:
             set of int
                 Indices of entries that contain at least one reference to *ids*.
             """
-            return {i for i, nest in enumerate(nested) if any(_id in nest for _id in ids)}
+            return {
+                i for i, nest in enumerate(nested) if any(_id in nest for _id in ids)
+            }
 
         def get_ids_from_references(ids: Set[int], referenced: VarArray) -> Set[int]:
             """Return the union of all references made by *ids* inside *referenced*.
@@ -730,11 +815,16 @@ class Mesh:
                 return set(np.unique(np.stack([referenced[_id] for _id in ids])))
             return set()
 
-        new_meshes: List['Mesh'] = []
+        new_meshes: List["Mesh"] = []
         analyzed_verts: Set[int] = set()
         while any(vert not in analyzed_verts for vert in range(len(self._vertices))):
             # get first value not in analyzed or 0
-            obj_vert_ids: Set[int] = {next((i for i in range(len(self._vertices)) if i not in analyzed_verts), 0)}
+            obj_vert_ids: Set[int] = {
+                next(
+                    (i for i in range(len(self._vertices)) if i not in analyzed_verts),
+                    0,
+                )
+            }
             prev_iter: Set[int] = set()
             face_ids: Set[int] = set()
             part_ids: Set[int] = set()
@@ -752,13 +842,29 @@ class Mesh:
             # make sure to update all the references to zero indexed lists
             new_ids: List[int] = sorted(list(int(_id) for _id in obj_vert_ids))
             new_faces: List[int] = sorted(list(face_ids))
-            new_meshes.append(Mesh(
-                vertices=np.vstack([self._vertices[_id] for _id in new_ids]),
-                faces=[np.array([new_ids.index(old_vertex_id) for old_vertex_id in self._faces[f_id]])
-                       for f_id in face_ids],
-                parts=[np.array([new_faces.index(old_face_id) for old_face_id in self._parts[p_id]])
-                       for p_id in part_ids],
-            ))
+            new_meshes.append(
+                Mesh(
+                    vertices=np.vstack([self._vertices[_id] for _id in new_ids]),
+                    faces=[
+                        np.array(
+                            [
+                                new_ids.index(old_vertex_id)
+                                for old_vertex_id in self._faces[f_id]
+                            ]
+                        )
+                        for f_id in face_ids
+                    ],
+                    parts=[
+                        np.array(
+                            [
+                                new_faces.index(old_face_id)
+                                for old_face_id in self._parts[p_id]
+                            ]
+                        )
+                        for p_id in part_ids
+                    ],
+                )
+            )
             # update analyzed vertices
             analyzed_verts.update(obj_vert_ids)
         return new_meshes
@@ -810,10 +916,10 @@ class Mesh:
         """
         if about_point is not None:
             self._vertices -= about_point
-            self._vertices[:,dim] *= float(factor)
+            self._vertices[:, dim] *= float(factor)
             self._vertices += about_point
         else:
-            self._vertices[:,dim] *= float(factor)
+            self._vertices[:, dim] *= float(factor)
 
     def translate_mesh(self, translation: np.ndarray) -> None:
         """Translate (shift) all vertices by the given vector.
@@ -832,9 +938,13 @@ class Mesh:
             If the length of *translation* does not match the mesh dimension.
         """
         if not isinstance(translation, np.ndarray):
-            raise InvalidTypeException(f'Translation should be a np.ndarray, but was a {type(translation)} instead')
+            raise InvalidTypeException(
+                f"Translation should be a np.ndarray, but was a {type(translation)} instead"
+            )
         if len(translation.shape) != 1 or translation.shape[0] != self.dim:
-            raise InvalidMeshDimensionsException(name="Translation", expected=self.dim, actual=translation.shape)
+            raise InvalidMeshDimensionsException(
+                name="Translation", expected=self.dim, actual=translation.shape
+            )
         self._vertices += np.array(translation)
 
     def translate_vertex(self, v_id: int, translation: np.ndarray) -> None:
@@ -858,14 +968,22 @@ class Mesh:
             If the length of *translation* does not match the mesh dimension.
         """
         if 0 > v_id or v_id >= len(self._vertices):
-            raise MeshIndexException(f'Index {v_id} out of bounds for vertices of shape {self._vertices.shape}')
+            raise MeshIndexException(
+                f"Index {v_id} out of bounds for vertices of shape {self._vertices.shape}"
+            )
         if not isinstance(translation, np.ndarray):
-            raise InvalidTypeException(f'Translation should be a np.ndarray, but was a {type(translation)} instead')
+            raise InvalidTypeException(
+                f"Translation should be a np.ndarray, but was a {type(translation)} instead"
+            )
         if len(translation.shape) != 1 or translation.shape[0] != self.dim:
-            raise InvalidMeshDimensionsException(name="Translation", expected=self.dim, actual=translation.shape)
+            raise InvalidMeshDimensionsException(
+                name="Translation", expected=self.dim, actual=translation.shape
+            )
         self._vertices[v_id] += translation
 
-    def apply_rotation(self, angle: float, axis: np.ndarray = np.array([0, 0, 1]), about_point=None) -> None:
+    def apply_rotation(
+        self, angle: float, axis: np.ndarray = np.array([0, 0, 1]), about_point=None
+    ) -> None:
         """Rotate all vertices around a given axis.
 
         Only 2D and 3D rotations are supported.  For 2D meshes the
@@ -888,8 +1006,8 @@ class Mesh:
         """
 
         def rotation_matrix(
-                angle: float,
-                axis: np.ndarray,
+            angle: float,
+            axis: np.ndarray,
         ) -> np.ndarray:
             """Compute a 3D rotation matrix for *angle* radians around *axis*.
 
@@ -906,31 +1024,42 @@ class Mesh:
                 A 3×3 rotation matrix.
             """
             rot_mat = Rotation.from_rotvec(
-                angle * np.array(axis)/np.linalg.norm(np.array(axis))
+                angle * np.array(axis) / np.linalg.norm(np.array(axis))
             ).as_matrix()
             return rot_mat
 
         # define basic rotation matrix
-        rot_2d = np.array([[np.cos(angle), -np.sin(angle)],
-                           [np.sin(angle), np.cos(angle)]])
+        rot_2d = np.array(
+            [[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]]
+        )
 
         if about_point is not None:
             self._vertices -= about_point
 
         if self.dim == 2:
-            self._vertices = self._vertices @ rot_2d.T  # transposed because we got row vectors not col vecs
+            self._vertices = (
+                self._vertices @ rot_2d.T
+            )  # transposed because we got row vectors not col vecs
         elif self.dim == 3:  # 3d uses the 2D matrix in different columns
             rot_matrix = rotation_matrix(angle, axis)
-            self._vertices = np.dot(self._vertices, rot_matrix.T)  # transposed because we got row vectors not col vecs
+            self._vertices = np.dot(
+                self._vertices, rot_matrix.T
+            )  # transposed because we got row vectors not col vecs
         else:
-            raise NotImplementedError("No implementation for n-Dimensional vector rotation")
+            raise NotImplementedError(
+                "No implementation for n-Dimensional vector rotation"
+            )
 
         if about_point is not None:
             self._vertices += about_point
 
     def snap_to_grid(
-            self, grid_sizes: Tuple[float, ...], threshold: Tuple[float, ...], steps: int = 1,
-            update_verts: bool = False, precision: int = 10
+        self,
+        grid_sizes: Tuple[float, ...],
+        threshold: Tuple[float, ...],
+        steps: int = 1,
+        update_verts: bool = False,
+        precision: int = 10,
     ) -> np.ndarray:
         """Snap vertices to grid positions when they are sufficiently close.
 
@@ -973,17 +1102,27 @@ class Mesh:
             or *steps* is not positive.
         """
         if len(grid_sizes) != self.dim:
-            raise InvalidMeshDimensionsException(name="Grid sizes", actual=len(grid_sizes), expected=self.dim)
+            raise InvalidMeshDimensionsException(
+                name="Grid sizes", actual=len(grid_sizes), expected=self.dim
+            )
         if len(threshold) != self.dim:
-            raise InvalidMeshDimensionsException(name="Threshold", actual=len(threshold), expected=self.dim)
+            raise InvalidMeshDimensionsException(
+                name="Threshold", actual=len(threshold), expected=self.dim
+            )
         if any(v <= 0 for v in grid_sizes):
-            raise InvalidRequestException("invalid value for grid_sizes. Has to be greater than zero.")
+            raise InvalidRequestException(
+                "invalid value for grid_sizes. Has to be greater than zero."
+            )
         if any(2 * threshold[i] >= grid_sizes[i] for i in range(self.dim)):
-            raise InvalidRequestException("threshold can not be bigger than half of grid_size for same dimension.")
+            raise InvalidRequestException(
+                "threshold can not be bigger than half of grid_size for same dimension."
+            )
         if all(t == 0 for t in threshold):
             raise InvalidRequestException("one value in threshold has to be != 0")
         if steps <= 0:
-            raise InvalidRequestException(f'steps has to be a positive integer, but was {steps}')
+            raise InvalidRequestException(
+                f"steps has to be a positive integer, but was {steps}"
+            )
         vertices = np.zeros_like(self._vertices)
         # look at every dimension separately
         for d in range(self.dim):
@@ -995,7 +1134,7 @@ class Mesh:
             differences = np.where(
                 (differences > 0) & (differences >= grid_sizes[d] - threshold[d]),
                 grid_sizes[d] - differences,
-                differences
+                differences,
             )
             # set everything that is bigger than Threshold to zero
             differences = np.where(differences > threshold[d], 0, differences)
@@ -1020,14 +1159,18 @@ class Mesh:
         """
         old_vertices = deepcopy(self._vertices)
         # get unique vertices, indices, and the inverse references
-        unique_verts, indices = np.unique(np.around(self._vertices, decimals=precision), axis=0, return_index=True)
+        unique_verts, indices = np.unique(
+            np.around(self._vertices, decimals=precision), axis=0, return_index=True
+        )
         # sort indices, to keep current sorting for faces, then set unique vertices
         permutation = indices.argsort()
         self._vertices = unique_verts[permutation]
         # switch index of every face that contains a value that is duplicate
         for old_idx, old_vert in enumerate(old_vertices):
             # skip if index of vertex in current list is the same as the old one
-            new_idx = np.argwhere(np.all(np.abs(self._vertices - old_vert) <= pow(0.1, precision), axis=1))[0, 0]
+            new_idx = np.argwhere(
+                np.all(np.abs(self._vertices - old_vert) <= pow(0.1, precision), axis=1)
+            )[0, 0]
             if new_idx != old_idx:
                 for f_i, face in enumerate(self._faces):
                     np.place(self._faces[f_i], face == old_idx, new_idx)
@@ -1091,15 +1234,14 @@ class Mesh:
 
     def extract_edges(self) -> Edges:
         """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)]"""
-        # Future: possibility to update edges only partly (e.g. by index)
-        # Future: possibly create a separate edge class to remove overhead from mesh
         edges: Edges = []
         for face in self._faces:
             last_vertex = face[-1]
             for _, vertex_idx in enumerate(face):
-                # Fixme: sorted edge for "if edge in edges", but removes possibility to iterate around face
-                edge: Edge = (min(last_vertex, vertex_idx), max(last_vertex, vertex_idx))
-                # edge: Edge = tuple(sorted([int(last_vertex), int(vertex_idx)]))
+                edge: Edge = (
+                    min(last_vertex, vertex_idx),
+                    max(last_vertex, vertex_idx),
+                )
                 last_vertex = vertex_idx
                 if edge not in edges:
                     edges.append(edge)

@@ -4,27 +4,29 @@
 
 
 from manim import *
+
 __all__ = [
-    'LayoutAnimation',
-    'RemoveNode',
-    'InsertNode',
-    'ScaleNode',
-    'AlterNode',
+    "LayoutAnimation",
+    "RemoveNode",
+    "InsertNode",
+    "ScaleNode",
+    "AlterNode",
 ]
-from typing import List,Dict
+from typing import List, Dict
 
 from manim.utils.color import *
 from manim.constants import *
 import numpy as np
 
-from ..algorithms import LayoutFactory,LayoutType,LayoutConfig
-from ..nodes import Node,bfs_walker,NodeSate,NodeStyle
+from ..algorithms import LayoutFactory, LayoutType, LayoutConfig
+from ..nodes import Node, bfs_walker, NodeSate, NodeStyle
+
 
 def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
     """FadeOut the given nodes and their subtrees.
 
     .. manim:: FadeoutOfSubtreesDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.animations.animations import fadeout_of_subtrees
@@ -48,24 +50,25 @@ def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
         for node_ in bfs_walker(node):
             node_.x = node_.y = node_.level = 0
             mobjs.extend([*node_.get_node_and_line_without_updater()])
-            
+
             if node_.node_state == NodeSate.REMOVE:
                 node_.parent = None
             node_.node_state = NodeSate.INSERT
     return FadeOut(*mobjs)
 
+
 def animate_of_create(
     node: Node,
     pos: np.ndarray,
     direction: np.ndarray,
-    line_styles:Dict,
-    node_styles:Dict,
-    layout_type:LayoutType
+    line_styles: Dict,
+    node_styles: Dict,
+    layout_type: LayoutType,
 ) -> List[Animation]:
     """Create-node animation.
 
     .. manim:: AnimateOfCreateDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutType
@@ -99,10 +102,10 @@ def animate_of_create(
     Layout type parameter for this operation.
     """
     anims = []
-    node.set_connector(layout_type,direction,**line_styles)
-    if isinstance(node.vmobject,ImageMobject):
+    node.set_connector(layout_type, direction, **line_styles)
+    if isinstance(node.vmobject, ImageMobject):
         AnimateClass = FadeIn
-    elif isinstance(node.vmobject,(Tex,MathTex)):
+    elif isinstance(node.vmobject, (Tex, MathTex)):
         AnimateClass = Write
     else:
         AnimateClass = Create
@@ -112,33 +115,32 @@ def animate_of_create(
             Create(
                 node.surr_rect.become(
                     Rectangle(
-                        height = node.height,
-                        width = node.width,
-                        **node_styles
+                        height=node.height, width=node.width, **node_styles
                     ).move_to(pos)
                 )
-            )
+            ),
         ]
     )
-    if hasattr(node,'connector'):
+    if hasattr(node, "connector"):
         anims.append(Create(node.connector))
     node.node_state = NodeSate.DISPLAY
     return anims
+
 
 def animate_of_display(
     node: Node,
     pos: np.ndarray,
     direction: np.ndarray,
-    line_styles:Dict,
-    node_styles:Dict,
-    layout_type:LayoutType,
-    change_dir:bool,
-    change_layout:bool
+    line_styles: Dict,
+    node_styles: Dict,
+    layout_type: LayoutType,
+    change_dir: bool,
+    change_layout: bool,
 ) -> List[Animation]:
     """Animation for a node already on the scene: update its position and style.
 
     .. manim:: AnimateOfDisplayDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.nodes import NodeSate
@@ -178,33 +180,32 @@ def animate_of_display(
     change_layout : bool
     Change layout parameter for this operation.
     """
-    anims =[
+    anims = [
         node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
-            Rectangle(
-                height = node.height,
-                width = node.width,
-                **node_styles
-            ).move_to(pos)
-        )
+            Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
+        ),
     ]
-    node.change_connector(change_dir,change_layout,layout_type,direction,**line_styles)
+    node.change_connector(
+        change_dir, change_layout, layout_type, direction, **line_styles
+    )
     return anims
+
 
 def animate_of_scale(
     node: Node,
     pos: np.ndarray,
     direction: np.ndarray,
-    line_styles:Dict,
-    node_styles:Dict,
-    layout_type:LayoutType,
-    change_dir:bool,
-    change_layout:bool
+    line_styles: Dict,
+    node_styles: Dict,
+    layout_type: LayoutType,
+    change_dir: bool,
+    change_layout: bool,
 ) -> List[Animation]:
     """Animation for a node already on the scene: scale it up or down.
 
     .. manim:: AnimateOfScaleDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.nodes import NodeSate
@@ -249,31 +250,30 @@ def animate_of_scale(
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
-            Rectangle(
-                height = node.height,
-                width = node.width,
-                **node_styles
-            ).move_to(pos)
-        )
+            Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
+        ),
     ]
-    node.change_connector(change_dir,change_layout,layout_type,direction,**line_styles)
+    node.change_connector(
+        change_dir, change_layout, layout_type, direction, **line_styles
+    )
     node.node_state = NodeSate.DISPLAY
     return anims
+
 
 def animate_of_alter(
     node: Node,
     pos: np.ndarray,
     direction: np.ndarray,
-    line_styles:Dict,
-    node_styles:Dict,
-    layout_type:LayoutType,
-    change_dir:bool,
-    change_layout:bool
+    line_styles: Dict,
+    node_styles: Dict,
+    layout_type: LayoutType,
+    change_dir: bool,
+    change_layout: bool,
 ) -> List[Animation]:
     """Animation for a node already on the scene: replace its vmobject.
 
     .. manim:: AnimateOfAlterDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.nodes import NodeSate
@@ -316,35 +316,32 @@ def animate_of_alter(
     Change layout parameter for this operation.
     """
     anims = [
-        node.vmobject.animate.become(
-            node.alter_vmobject.move_to(pos)
-        ),
+        node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
         node.surr_rect.animate.become(
-            Rectangle(
-                height = node.height,
-                width = node.width,
-                **node_styles
-            ).move_to(pos)
-        )
+            Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
+        ),
     ]
     node.node_state = NodeSate.DISPLAY
-    node.change_connector(change_dir,change_layout,layout_type,direction,**line_styles)
+    node.change_connector(
+        change_dir, change_layout, layout_type, direction, **line_styles
+    )
     return anims
+
 
 def animate_of_node(
     node: Node,
     pos: np.ndarray,
     direction: np.ndarray,
-    line_styles:Dict,
-    node_styles:Dict,
-    layout_type:LayoutType,
-    change_dir:bool,
-    change_layout:bool
+    line_styles: Dict,
+    node_styles: Dict,
+    layout_type: LayoutType,
+    change_dir: bool,
+    change_layout: bool,
 ) -> List[Animation]:
     """Return the appropriate animation for node based on its state.
 
     .. manim:: AnimateOfNodeDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutType
@@ -381,22 +378,23 @@ def animate_of_node(
     change_layout : bool
     Change layout parameter for this operation.
     """
-    args = (node,pos,direction,line_styles,node_styles,layout_type)
+    args = (node, pos, direction, line_styles, node_styles, layout_type)
     match node.node_state:
         case NodeSate.INSERT:
             anims = animate_of_create(*args)
         case NodeSate.DISPLAY:
-            anims = animate_of_display(*args,change_dir,change_layout)
+            anims = animate_of_display(*args, change_dir, change_layout)
         case NodeSate.SCALE:
-            anims = animate_of_scale(*args,change_dir,change_layout)
+            anims = animate_of_scale(*args, change_dir, change_layout)
         case NodeSate.ALTER:
-            anims = animate_of_alter(*args,change_dir,change_layout)
+            anims = animate_of_alter(*args, change_dir, change_layout)
     return anims
+
 
 def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     """
     Check whether the layout algorithm has changed.
-    
+
     Parameters
     ----------
     root : Node
@@ -404,15 +402,16 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     layout_type : LayoutType
         The layout method to be used
     Returns (bool): Whether the layout algorithm has changed
-    
+
 
     """
-    origin_layout = getattr(root,'layout_type',None)
+    origin_layout = getattr(root, "layout_type", None)
     if origin_layout is not None:
         return origin_layout != layout_type
     return False
 
-def is_direction_change(root: Node, direction = RIGHT) -> bool:
+
+def is_direction_change(root: Node, direction=RIGHT) -> bool:
     """
     Check whether the layout direction has changed.
 
@@ -423,13 +422,14 @@ def is_direction_change(root: Node, direction = RIGHT) -> bool:
     direction
         The layout direction to be used
     Returns (bool): Whether the layout direction has changed
-    
+
 
     """
-    origin_dir = getattr(root,'direction',None)
+    origin_dir = getattr(root, "direction", None)
     if origin_dir is not None:
-        return not np.array_equal(origin_dir,direction)
+        return not np.array_equal(origin_dir, direction)
     return False
+
 
 def animate_of_layout(
     root: Node,
@@ -441,7 +441,7 @@ def animate_of_layout(
     """Core animation method: run the full Layout algorithm and generate animations.
 
     .. manim:: AnimateOfLayoutDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutConfig, LayoutType
@@ -470,17 +470,17 @@ def animate_of_layout(
     Node style parameter for this operation.
     """
     direction = layout_config.direction
-    change_dir = is_direction_change(root,direction)
-    change_layout = is_layout_change(root,layout_type)
-    current_x,current_y,_ = root.vmobject.get_center()
-    layout = LayoutFactory.create_layout(layout_type,root,layout_config)
+    change_dir = is_direction_change(root, direction)
+    change_layout = is_layout_change(root, layout_type)
+    current_x, current_y, _ = root.vmobject.get_center()
+    layout = LayoutFactory.create_layout(layout_type, root, layout_config)
     root = layout.layout()
-    setattr(root,'layout_type',layout_type)
-    setattr(root,'direction',direction)
+    setattr(root, "layout_type", layout_type)
+    setattr(root, "direction", direction)
     x_offset = current_x - root.x
     y_offset = current_y - root.y
     anims = [fadeout_of_subtrees(remove_nodes)] if remove_nodes else []
-        
+
     for node in bfs_walker(root):
         node.x += x_offset
         node.y += y_offset
@@ -496,17 +496,18 @@ def animate_of_layout(
                 node_styles,
                 layout_type,
                 change_dir,
-                change_layout
+                change_layout,
             )
         )
         node.x = node.y = 0
     return anims
-    
+
+
 class AbstractLayoutAnimation(AnimationGroup):
     """Abstract base class for layout animations: collect node states and generate the full layout animation.
 
     .. manim:: AbstractLayoutAnimationDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.animations.animations import AbstractLayoutAnimation
@@ -533,23 +534,24 @@ class AbstractLayoutAnimation(AnimationGroup):
             Layout parameters. Defaults to LayoutConfig().
         node_style : NodeStyle, optional
             Layout and node styles. Defaults to NodeStyle()."""
+
     def __init__(
         self,
-        scene:Scene,
-        root:Node,
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        root: Node,
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize AbstractLayoutAnimation."""
-        self.scene = scene  
+        self.scene = scene
         self.root = root
         self.layout_type = layout_type
         self.layout_config = layout_config
         self.node_style = node_style
         anims = self.collect_animations()
-        super().__init__(*anims,**kwargs)
+        super().__init__(*anims, **kwargs)
 
     def _check_node_state(self) -> List[Node]:
         """Check the state of each node and return the nodes to be removed."""
@@ -562,11 +564,17 @@ class AbstractLayoutAnimation(AnimationGroup):
                     case NodeSate.DISPLAY:
                         node.node_state = NodeSate.INSERT
                     case NodeSate.REMOVE:
-                        raise Exception(f'{node.vmobject} is not on current scene,the animation of remove node is not supported')
+                        raise Exception(
+                            f"{node.vmobject} is not on current scene,the animation of remove node is not supported"
+                        )
                     case NodeSate.SCALE:
-                        raise Exception(f'{node.vmobject} is not on current scene,the animation of scale node is not supported')
+                        raise Exception(
+                            f"{node.vmobject} is not on current scene,the animation of scale node is not supported"
+                        )
                     case _:
-                        raise Exception(f'{node.vmobject} is not on current scene,the animation of alter node is not supported')
+                        raise Exception(
+                            f"{node.vmobject} is not on current scene,the animation of alter node is not supported"
+                        )
             else:
                 match node.node_state:
                     case NodeSate.INSERT:
@@ -577,12 +585,14 @@ class AbstractLayoutAnimation(AnimationGroup):
                             remove_nodes.append(node)
                             continue
                         try:
-                            idx = parent.children.index(node) # Future: optimise; match only up to the first occurrence, modify __eq__?
+                            idx = parent.children.index(node)
                             if (child_num := len(parent.children)) > 1:
                                 if idx == 0:
                                     parent.children[1].neighbor = None
                                 elif idx < child_num - 1:
-                                    parent.children[idx+1].neighbor = parent.children[idx-1]
+                                    parent.children[idx + 1].neighbor = parent.children[
+                                        idx - 1
+                                    ]
                             parent.children.remove(node)
                             node.neighbor = None
                             remove_nodes.append(node)
@@ -595,27 +605,28 @@ class AbstractLayoutAnimation(AnimationGroup):
     def collect_animations(self) -> List[Animation]:
         """Collect animations: must be implemented by subclasses."""
         raise NotImplementedError
-    
+
     def get_common_root(self, nodes: List[Node]) -> Node:
         """Return the common root of nodes.
 
-    Parameters
-    ----------
-    nodes : List[Node]
-    Nodes processed by this operation.
-    """
+        Parameters
+        ----------
+        nodes : List[Node]
+        Nodes processed by this operation.
+        """
         root = nodes[0].get_root()
         if len(nodes) == 1:
             return root
         if not all(node.get_root() is root for node in nodes[1::]):
             return None
         return root
-    
+
+
 class LayoutAnimation(AbstractLayoutAnimation):
     r"""General layout animation: apply a layout to the whole tree and play all change animations.
 
     .. manim:: LayoutAnimationDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, LayoutAnimation
 
@@ -629,25 +640,26 @@ class LayoutAnimation(AbstractLayoutAnimation):
                self.play(LayoutAnimation(self, root))
                self.wait()
     """
+
     def __init__(
         self,
-        scene:Scene,
-        root:Node,
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        root: Node,
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize the LayoutAnimation instance."""
         super().__init__(
             scene,
             root,
-            layout_type = layout_type,
-            layout_config = layout_config,
-            node_style = node_style,
-            **kwargs
+            layout_type=layout_type,
+            layout_config=layout_config,
+            node_style=node_style,
+            **kwargs,
         )
-    
+
     def collect_animations(self):
         """Collect the animations needed to re-layout the mind map.
 
@@ -662,14 +674,15 @@ class LayoutAnimation(AbstractLayoutAnimation):
             remove_nodes,
             self.layout_type,
             self.layout_config,
-            self.node_style
+            self.node_style,
         )
-    
+
+
 class RemoveNode(LayoutAnimation):
     r"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
     .. manim:: RemoveNodeDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, RemoveNode
 
@@ -682,24 +695,25 @@ class RemoveNode(LayoutAnimation):
                self.play(RemoveNode(self, [a1, a2]))
                self.wait()
     """
+
     def __init__(
         self,
-        scene:Scene,
-        nodes:Node | List[Node],
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        nodes: Node | List[Node],
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize the RemoveNode instance."""
         self.is_whole_tree = False
-        if isinstance(nodes,Node):
+        if isinstance(nodes, Node):
             nodes = (nodes,)
         root = self.get_common_root(nodes)
         if root is None:
-            raise Exception('nodes must be in the same tree')
+            raise Exception("nodes must be in the same tree")
         for node in nodes:
-            if (parent:= node.parent) is None:
+            if (parent := node.parent) is None:
                 self.is_whole_tree = True
                 break
             else:
@@ -707,10 +721,10 @@ class RemoveNode(LayoutAnimation):
         super().__init__(
             scene,
             root,
-            layout_type = layout_type,
-            layout_config = layout_config,
-            node_style = node_style,
-            **kwargs
+            layout_type=layout_type,
+            layout_config=layout_config,
+            node_style=node_style,
+            **kwargs,
         )
 
     def collect_animations(self):
@@ -725,7 +739,7 @@ class RemoveNode(LayoutAnimation):
         if self.is_whole_tree:
             tree = self._get_whole_tree()
             if len(tree) == 0:
-                raise Exception(f'the root {self.root} is not on current scene')
+                raise Exception(f"the root {self.root} is not on current scene")
             return (FadeOut(*tree),)
         else:
             return super().collect_animations()
@@ -746,11 +760,12 @@ class RemoveNode(LayoutAnimation):
             group.add(*node.get_node_and_line_without_updater())
         return group
 
+
 class InsertNode(LayoutAnimation):
     """Insert one or more child nodes into the mind map.
 
     .. manim:: InsertNodeDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
 
@@ -766,14 +781,15 @@ class InsertNode(LayoutAnimation):
     ----------
         father_children : dict
             dictionary mapping parent nodes to lists of child nodes"""
+
     def __init__(
         self,
-        scene:Scene,
-        father_children:Dict[Node,List[Node]] = None,
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        father_children: Dict[Node, List[Node]] = None,
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize InsertNode."""
         root = None
@@ -781,13 +797,13 @@ class InsertNode(LayoutAnimation):
         super().__init__(
             scene,
             root,
-            layout_type = layout_type,
-            layout_config = layout_config,
-            node_style = node_style,
-            **kwargs
+            layout_type=layout_type,
+            layout_config=layout_config,
+            node_style=node_style,
+            **kwargs,
         )
 
-    def get_root(self,nodes:List[Node]):
+    def get_root(self, nodes: List[Node]):
         """Return the common root of the given nodes.
 
         Parameters
@@ -806,10 +822,10 @@ class InsertNode(LayoutAnimation):
             If the list is empty or the nodes share no common root.
         """
         if len(nodes) == 0:
-            raise Exception('father_children is empty')
+            raise Exception("father_children is empty")
         root = self.get_common_root(nodes)
         if root is None:
-            raise Exception('all fathers must be in the same tree')
+            raise Exception("all fathers must be in the same tree")
         return root
 
     def collect_animations(self) -> List[Animation]:
@@ -820,18 +836,19 @@ class InsertNode(LayoutAnimation):
         list of Animation
             The layout animations after adding children.
         """
-        for father,children in self.father_children.items():
+        for father, children in self.father_children.items():
             if children:
                 for child in children:
                     father.add_child(child)
         self.root = self.get_root(list(self.father_children.keys()))
         return super().collect_animations()
-    
+
+
 class ScaleNode(LayoutAnimation):
     """Scale one or more nodes in the mind map.
 
     .. manim:: ScaleNodeDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, ScaleNode
 
@@ -847,14 +864,15 @@ class ScaleNode(LayoutAnimation):
     ----------
         node_scale : dict
             dictionary mapping Node instances to scale factors (float)"""
+
     def __init__(
         self,
-        scene:Scene,
-        node_scale:Dict[Node,float] = None,
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        node_scale: Dict[Node, float] = None,
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize ScaleNode."""
         for node, scale in node_scale.items():
@@ -863,17 +881,18 @@ class ScaleNode(LayoutAnimation):
         super().__init__(
             scene,
             root,
-            layout_type = layout_type,
-            layout_config = layout_config,
-            node_style = node_style,
-            **kwargs
+            layout_type=layout_type,
+            layout_config=layout_config,
+            node_style=node_style,
+            **kwargs,
         )
+
 
 class AlterNode(LayoutAnimation):
     """Replace the content of one or more nodes in the mind map.
 
     .. manim:: AlterNodeDocExample
-        
+
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, AlterNode
 
@@ -889,14 +908,15 @@ class AlterNode(LayoutAnimation):
     ----------
         node_vmobject : dict
             dictionary mapping Node instances to the replacement VMobjects"""
+
     def __init__(
         self,
-        scene:Scene,
-        node_vmobject:Dict[Node,VMobject] = None,
-        layout_type:LayoutType = LayoutType.MindMap,
-        layout_config:LayoutConfig = LayoutConfig(),
-        node_style:NodeStyle = NodeStyle(),
-        **kwargs
+        scene: Scene,
+        node_vmobject: Dict[Node, VMobject] = None,
+        layout_type: LayoutType = LayoutType.MindMap,
+        layout_config: LayoutConfig = LayoutConfig(),
+        node_style: NodeStyle = NodeStyle(),
+        **kwargs,
     ):
         """Initialize AlterNode."""
         for node, scale in node_vmobject.items():
@@ -905,8 +925,8 @@ class AlterNode(LayoutAnimation):
         super().__init__(
             scene,
             root,
-            layout_type = layout_type,
-            layout_config = layout_config,
-            node_style = node_style,
-            **kwargs
+            layout_type=layout_type,
+            layout_config=layout_config,
+            node_style=node_style,
+            **kwargs,
         )

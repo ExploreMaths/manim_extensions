@@ -57,7 +57,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
                    amplitude=0.3,
                )
                self.add(wave)
-"""
+    """
 
     def __init__(
         self,
@@ -169,7 +169,7 @@ class LinearWave(RadialWave):
            def construct(self):
                wave = LinearWave(wavelength=2, amplitude=0.3)
                self.add(wave)
-"""
+    """
 
     def __init__(
         self,
@@ -241,7 +241,7 @@ class StandingWave(ParametricFunction):
            def construct(self):
                wave = StandingWave(n=3, length=6, amplitude=0.5)
                self.add(wave)
-"""
+    """
 
     def __init__(
         self,

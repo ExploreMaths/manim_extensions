@@ -6,6 +6,7 @@
 from manim import *
 from .cube_utils import get_axis_from_face
 
+
 class CubeMove(Animation):
     """Animate a single face turn on a :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 
@@ -49,8 +50,8 @@ class CubeMove(Animation):
         """Initialize the CubeMove instance."""
         self.axis = get_axis_from_face(face[0])
         self.face = face
-        self.angle = PI/2 if ("R" in face or "F" in face or "D" in face) else -PI/2
-        self.angle = self.angle if "2" not in face else self.angle*2
+        self.angle = PI / 2 if ("R" in face or "F" in face or "D" in face) else -PI / 2
+        self.angle = self.angle if "2" not in face else self.angle * 2
         self.angle = -self.angle if "'" in face else self.angle
         super().__init__(mobject, **kwargs)
 
@@ -76,10 +77,9 @@ class CubeMove(Animation):
             Animation progress between ``0`` and ``1``.
         """
         self.mobject.become(self.starting_mobject)
-        
+
         VGroup(*self.mobject.get_face(self.face[0])).rotate(
-            alpha * self.angle,
-            self.axis
+            alpha * self.angle, self.axis
         )
 
     def finish(self):

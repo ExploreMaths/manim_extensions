@@ -37,7 +37,7 @@ class FastManimMesh(OpenGLMobject):
         -> copy directory 'mesh' (under manim_extensions.meshes/shaders/) to manim/renderer/shaders/
 
     HINT: the mesh must only consist of triangles
-"""
+    """
 
     shader_dtype = [
         ("point", np.float32, (3,)),
@@ -46,12 +46,12 @@ class FastManimMesh(OpenGLMobject):
     shader_folder = "mesh"
 
     def __init__(
-            self,
-            mesh: Mesh,
-            shader_folder=None,
-            **kwargs,
+        self,
+        mesh: Mesh,
+        shader_folder=None,
+        **kwargs,
     ):
-        """ Initialization. mesh must only consist of triangles """
+        """Initialization. mesh must only consist of triangles"""
         if any(len(face) != 3 for face in mesh.faces):
             raise ValueError("mesh must only consist of triangles!")
         self.mesh = mesh

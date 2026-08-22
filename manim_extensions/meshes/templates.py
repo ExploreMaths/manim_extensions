@@ -6,12 +6,15 @@
 """
 define a few basic mesh-structures to be used as examples or test
 """
+
 # python imports
 import pathlib
 from typing import List, Tuple
+
 # third-party imports
 import numpy as np
 import trimesh
+
 # local imports
 from manim_extensions.meshes.models.data_models.mesh import Mesh
 
@@ -150,14 +153,7 @@ def create_coplanar_triangles() -> Mesh:
         [1, -1],
         [-1, 2],
     ]
-    faces = [
-        [0, 1, 2],
-        [2, 3, 0],
-        [3, 5, 4],
-        [3, 2, 5],
-        [4, 0, 3],
-        [6, 1, 0]
-    ]
+    faces = [[0, 1, 2], [2, 3, 0], [3, 5, 4], [3, 2, 5], [4, 0, 3], [6, 1, 0]]
     return Mesh(
         vertices=vertices,
         faces=faces,
@@ -168,21 +164,21 @@ def create_coplanar_points() -> Mesh:
     """
     create a basic 2D mesh without faces ~> exemplary 2D point cloud / set
     """
-    vertices = np.array([[+1.77291731, -2.42097974],
-                         [+1.72006063,  2.77386102],
-                         [-2.47248328, -1.53451374],
-                         [+0.32320519,  2.34811395],
-                         [-0.83498357,  0.34056556],
-                         [+0.43649618,  0.79539595],
-                         [-0.24413860, -2.04571182],
-                         [+2.83770675,  2.33446802],
-                         [+1.27516666, -0.08275843],
-                         [+1.94458474, -2.79598506]]
-                        )
-    return Mesh(
-        vertices=vertices,
-        faces=[]
+    vertices = np.array(
+        [
+            [+1.77291731, -2.42097974],
+            [+1.72006063, 2.77386102],
+            [-2.47248328, -1.53451374],
+            [+0.32320519, 2.34811395],
+            [-0.83498357, 0.34056556],
+            [+0.43649618, 0.79539595],
+            [-0.24413860, -2.04571182],
+            [+2.83770675, 2.33446802],
+            [+1.27516666, -0.08275843],
+            [+1.94458474, -2.79598506],
+        ]
     )
+    return Mesh(vertices=vertices, faces=[])
 
 
 def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
@@ -206,7 +202,10 @@ def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
     """
     dim = len(areas)
     vertices = np.array(
-        np.meshgrid(*[np.linspace(area[0], area[1], int(area[2])) for area in areas], indexing='ij')
+        np.meshgrid(
+            *[np.linspace(area[0], area[1], int(area[2])) for area in areas],
+            indexing="ij",
+        )
     ).T.reshape((-1, dim))
 
     if dim == 1:
@@ -214,19 +213,19 @@ def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
         parts = None
     elif dim == 2:
         u, v = areas[0][2], areas[1][2]
-        faces = [np.array([
-            i + j * u,  # bottom left
-            i + j * u + 1,  # bottom right
-            i + (j + 1) * u + 1,  # top right
-            i + (j + 1) * u  # top left
-        ]) for j in range(v - 1) for i in range(u - 1)]
+        faces = [
+            np.array(
+                [
+                    i + j * u,  # bottom left
+                    i + j * u + 1,  # bottom right
+                    i + (j + 1) * u + 1,  # top right
+                    i + (j + 1) * u,  # top left
+                ]
+            )
+            for j in range(v - 1)
+            for i in range(u - 1)
+        ]
         parts = None
-    # elif dim == 3:
-    #     # u, v, w = areas[0][2], areas[1][2], areas[2][2]
-    #     # faces = [... for k in range(w - 1) for j in range(v - 1) for i in range(u - 1)]
-    #     # parts = None
-    #     # Future: fully implement 3D grid
-    #     raise NotImplementedError("3D grid generation is not yet implemented")
     else:
         raise NotImplementedError("Only 1D, 2D meshes implemented.")
     return Mesh(
@@ -268,14 +267,12 @@ def create_model(filepath: str = "", name: str = "") -> Mesh:
     path_to_models = "data/models/"
     # load the ply files
     if name in ["armadillo", "suzanne"]:
-        filepath = pathlib.Path(__file__).parent.joinpath(
-            path_to_models, name + ".ply")
+        filepath = pathlib.Path(__file__).parent.joinpath(path_to_models, name + ".ply")
     # load the stl files
     elif name in ["tail_topper"]:
-        filepath = pathlib.Path(__file__).parent.joinpath(
-            path_to_models, name + ".stl")
+        filepath = pathlib.Path(__file__).parent.joinpath(path_to_models, name + ".stl")
     elif name != "":
-        raise FileNotFoundError(f'{name} is not a valid object name.')
+        raise FileNotFoundError(f"{name} is not a valid object name.")
     # use trimesh to load the files, no parts?
     tmesh = trimesh.load(filepath, force="mesh")
     return Mesh(vertices=tmesh.vertices, faces=tmesh.faces)

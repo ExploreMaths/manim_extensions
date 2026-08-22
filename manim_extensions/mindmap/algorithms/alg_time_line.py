@@ -4,14 +4,16 @@
 
 
 """Timeline layout algorithm - Python implementation."""
+
 __all__ = [
-    'TimeLineLayout',
+    "TimeLineLayout",
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Any, Callable,Tuple
+from typing import List, Optional, Dict, Any, Callable, Tuple
 from .layout import Layout
 from .layout_config import LayoutDirection
+
 
 @dataclass
 class TimelineNode:
@@ -38,7 +40,8 @@ class TimelineNode:
                tn = TimelineNode()
                label = Text(f"TimelineNode: {tn.width}x{tn.height}", font_size=24)
                self.add(label)
-"""
+    """
+
     node: Any = None
     width: float = 0.0
     height: float = 0.0
@@ -52,11 +55,11 @@ class TimelineNode:
     # Internal runtime attributes (do not set manually)
     _is_root: bool = False
     _parent: Optional["TimelineNode"] = None
-    _layer_index: int = 0         # layer depth (root is 0)
-    _index: int = 0               # index among siblings
+    _layer_index: int = 0  # layer depth (root is 0)
+    _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node) -> 'TimelineNode':
+    def from_node(cls, node) -> "TimelineNode":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references
@@ -76,12 +79,13 @@ class TimelineNode:
         tl = cls()
         tl.node = node
         # Copy dimensions
-        tl.width = float(getattr(node, 'width', 0))
-        tl.height = float(getattr(node, 'height', 0))
+        tl.width = float(getattr(node, "width", 0))
+        tl.height = float(getattr(node, "height", 0))
         # Recursively create children
-        children = getattr(node, 'children', [])
+        children = getattr(node, "children", [])
         tl.children = [cls.from_node(child) for child in children]
         return tl
+
 
 def walk(
     node: TimelineNode,
@@ -90,7 +94,7 @@ def walk(
     after_callback: Optional[Callable],
     is_root: bool = False,
     layer_index: int = 0,
-    index: int = 0
+    index: int = 0,
 ):
     """Tree traversal utility.
 
@@ -126,11 +130,14 @@ def walk(
     # Traverse children
     if node.children:
         for i, child in enumerate(node.children):
-            walk(child, node, before_callback, after_callback,False, layer_index + 1, i)
+            walk(
+                child, node, before_callback, after_callback, False, layer_index + 1, i
+            )
 
     # Post-order callback
     if after_callback:
         after_callback(node, parent, is_root, layer_index, index)
+
 
 class TimeLineLayout(Layout):
     """Timeline layout engine.
@@ -159,13 +166,14 @@ class TimeLineLayout(Layout):
            def construct(self):
                label = Text("TimeLineLayout algorithm", font_size=24)
                self.add(label)
-"""
+    """
+
     def __init__(
         self,
         root: Any,
         sides: Tuple[LayoutDirection] = (
             LayoutDirection.TopToBottom,
-            LayoutDirection.BottomToTop
+            LayoutDirection.BottomToTop,
         ),
         level_spacing: float = 0.5,
         node_spacing: float = 0.5,
@@ -175,7 +183,7 @@ class TimeLineLayout(Layout):
         self.level_spacing = level_spacing
         self.node_spacing = node_spacing
         self.sides = sides
-        self.is_two_sides = (len(sides) == 2)
+        self.is_two_sides = len(sides) == 2
 
     # ==================== Public API ====================
     def layout(self) -> Any:
@@ -189,28 +197,29 @@ class TimeLineLayout(Layout):
     # ==================== Stage 1: base-value computation ====================
     def _compute_base(self):
         """Pre-order traversal: create nodes, set root position, compute second-level top values."""
+
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
             is_root: bool,
             layer_index: int,
-            index: int
+            index: int,
         ) -> bool:
             """_compute_base before_callback helper.
 
-    Parameters
-    ----------
-    node : TimelineNode
-        The current node.
-    parent : Optional[TimelineNode]
-        The parent node, or ``None`` for the root.
-    is_root : bool
-        Whether this is the root node.
-    layer_index : int
-        The depth of the current node.
-    index : int
-        The index of the node within its parent's children.
-    """
+            Parameters
+            ----------
+            node : TimelineNode
+                The current node.
+            parent : Optional[TimelineNode]
+                The parent node, or ``None`` for the root.
+            is_root : bool
+                Whether this is the root node.
+            layer_index : int
+                The depth of the current node.
+            index : int
+                The index of the node within its parent's children.
+            """
             node._parent = parent
             node._layer_index = layer_index
             node._index = index
@@ -239,28 +248,29 @@ class TimeLineLayout(Layout):
     # ==================== Stage 2: precise coordinate computation ====================
     def _compute_coords(self):
         """Pre-order traversal: compute node left (x) and top (y)."""
+
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
             is_root: bool,
             layer_index: int,
-            index: int
+            index: int,
         ) -> bool:
             """_compute_coords before_callback helper.
 
-    Parameters
-    ----------
-    node : TimelineNode
-        The current node.
-    parent : Optional[TimelineNode]
-        The parent node, or ``None`` for the root.
-    is_root : bool
-        Whether this is the root node.
-    layer_index : int
-        The depth of the current node.
-    index : int
-        The index of the node within its parent's children.
-    """
+            Parameters
+            ----------
+            node : TimelineNode
+                The current node.
+            parent : Optional[TimelineNode]
+                The parent node, or ``None`` for the root.
+            is_root : bool
+                Whether this is the root node.
+            layer_index : int
+                The depth of the current node.
+            index : int
+                The index of the node within its parent's children.
+            """
             if not node.children:
                 return False
 
@@ -279,7 +289,7 @@ class TimeLineLayout(Layout):
                 for cur in node.children:
                     cur.x = node.x + node.width * 0.5
                     cur.y = total_top
-                    total_top += (cur.height + node_spacing)
+                    total_top += cur.height + node_spacing
             return False
 
         walk(self.root, None, before_callback, None, True, 0)
@@ -287,35 +297,38 @@ class TimeLineLayout(Layout):
     # ==================== Stage 3: collision adjustment ====================
     def _adjust(self):
         """Pre-order + post-order traversal: adjust node left and top."""
+
         def before_callback(
             node: TimelineNode,
             parent: Optional[TimelineNode],
             is_root: bool,
             layer_index: int,
-            index: int
+            index: int,
         ) -> bool:
             """_adjust before_callback helper.
 
-    Parameters
-    ----------
-    node : TimelineNode
-        The current node.
-    parent : Optional[TimelineNode]
-        The parent node, or ``None`` for the root.
-    is_root : bool
-        Whether this is the root node.
-    layer_index : int
-        The depth of the current node.
-    index : int
-        The index of the node within its parent's children.
-    """
+            Parameters
+            ----------
+            node : TimelineNode
+                The current node.
+            parent : Optional[TimelineNode]
+                The parent node, or ``None`` for the root.
+            is_root : bool
+                Whether this is the root node.
+            layer_index : int
+                The depth of the current node.
+            index : int
+                The index of the node within its parent's children.
+            """
             if node._is_root:
                 self._update_brothers_left(node)
 
             length = len(node.children)
             if parent and not parent._is_root and length > 0:
                 node_spacing = self.node_spacing
-                total_height = sum(item.height for item in node.children) + length * node_spacing
+                total_height = (
+                    sum(item.height for item in node.children) + length * node_spacing
+                )
                 self._update_brothers_top(node, total_height)
             return False
 
@@ -324,29 +337,29 @@ class TimeLineLayout(Layout):
             parent: Optional[TimelineNode],
             is_root: bool,
             layer_index: int,
-            index: int
+            index: int,
         ):
             # Special handling: mirror-flip upward-growing branches
             """_adjust after_callback helper.
 
-    Parameters
-    ----------
-    node : TimelineNode
-        The current node.
-    parent : Optional[TimelineNode]
-        The parent node, or ``None`` for the root.
-    is_root : bool
-        Whether this is the root node.
-    layer_index : int
-        The depth of the current node.
-    index : int
-        The index of the node within its parent's children.
-    """
+            Parameters
+            ----------
+            node : TimelineNode
+                The current node.
+            parent : Optional[TimelineNode]
+                The parent node, or ``None`` for the root.
+            is_root : bool
+                Whether this is the root node.
+            layer_index : int
+                The depth of the current node.
+            index : int
+                The index of the node within its parent's children.
+            """
             if (
-                parent and
-                parent._is_root and
-                node.side_dir == LayoutDirection.BottomToTop and
-                node.children
+                parent
+                and parent._is_root
+                and node.side_dir == LayoutDirection.BottomToTop
+                and node.children
             ):
                 # Mirror the children of the second-level node to above the parent
                 for item in node.children:
@@ -461,7 +474,7 @@ class TimeLineLayout(Layout):
                 The current node.
             """
             nonlocal total_height
-            total_height += (n.height + self.node_spacing)
+            total_height += n.height + self.node_spacing
             if n.children:
                 for item in n.children:
                     loop(item)
@@ -486,6 +499,7 @@ class TimeLineLayout(Layout):
             A dictionary with keys ``"left"``, ``"right"``, ``"top"``, and
             ``"bottom"`` representing the bounding box of the subtree.
         """
+
         def walk_tree(root: TimelineNode):
             """Recursively walk the subtree to find boundary values.
 
@@ -511,13 +525,13 @@ class TimeLineLayout(Layout):
                 "left": root.x,
                 "right": root.x + root.width,
                 "top": root.y,
-                "bottom": root.y + root.height
+                "bottom": root.y + root.height,
             }
             return {
                 "left": min(cur["left"], _left),
                 "right": max(cur["right"], _right),
                 "top": min(cur["top"], _top),
-                "bottom": max(cur["bottom"], _bottom)
+                "bottom": max(cur["bottom"], _bottom),
             }
 
         return walk_tree(node)
@@ -554,7 +568,7 @@ class TimeLineLayout(Layout):
         """
         if node.node:
             node.node.x = node.x + node.width / 2
-            node.node.y = - node.y - node.height / 2
+            node.node.y = -node.y - node.height / 2
             node.node.side = node.side_dir
             node.node.level = node._layer_index
         for child in node.children:

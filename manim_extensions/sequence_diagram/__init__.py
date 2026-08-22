@@ -14,8 +14,4 @@ from .seq_action import *
 from .seq_actor import *
 from .seq_object import *
 
-__all__ = [
-  "SeqAction",
-  "SeqActor",
-  "SeqObject"
-]
+__all__ = ["SeqAction", "SeqActor", "SeqObject"]

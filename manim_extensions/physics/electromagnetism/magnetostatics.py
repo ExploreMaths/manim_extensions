@@ -13,7 +13,6 @@ from typing import Iterable, Tuple
 
 import numpy as np
 
-
 __all__ = ["Wire", "MagneticField"]
 
 
@@ -50,7 +49,7 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
            def construct(self):
                wire = Wire(Circle(2).rotate(PI / 2, UP))
                self.add(wire)
-"""
+    """
 
     def __init__(
         self,

@@ -4,15 +4,12 @@
 
 
 from manim import *
-__all__ = [
-    'MovePencilAlongPath',
-    'MovePencilTipTo',
-    'DrawPath',
-    'PutPencilAway'
-]
+
+__all__ = ["MovePencilAlongPath", "MovePencilTipTo", "DrawPath", "PutPencilAway"]
 from typing import Union
 
 from ..compass.pencil import Pencil
+
 
 class MovePencilAlongPath(MoveAlongPath):
     """Animation of the pencil nib moving along a given path.
@@ -37,17 +34,19 @@ class MovePencilAlongPath(MoveAlongPath):
             The target path.
         suspend_mobject_updating : Union[bool, None]
             Whether to suspend mobject updating."""
+
     def __init__(
         self,
         mobject: Pencil,
         path: VMobject = None,
         suspend_mobject_updating: Union[bool, None] = False,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initialize MovePencilAlongPath."""
         start = path.get_start()
         path = path.copy().shift(mobject.get_center() - start)
         super().__init__(mobject, path, suspend_mobject_updating, **kwargs)
+
 
 class MovePencilTipTo(ApplyMethod):
     """Move the pencil so that its nib is placed at point.
@@ -69,18 +68,11 @@ class MovePencilTipTo(ApplyMethod):
             The pencil.
         point : Point
             The target point."""
-    def __init__(
-        self,
-        pencil: Pencil,
-        point:Point = None,
-        **kwargs
-    ):
+
+    def __init__(self, pencil: Pencil, point: Point = None, **kwargs):
         """Initialize MovePencilTipTo."""
-        super().__init__(
-            pencil.move_nid_to,
-            point,
-            **kwargs
-        )
+        super().__init__(pencil.move_nid_to, point, **kwargs)
+
 
 class DrawPath(AnimationGroup):
     """Animation of the pencil nib moving along the path while drawing it.
@@ -103,18 +95,11 @@ class DrawPath(AnimationGroup):
             The pencil.
         path : VMobject
             The path."""
-    def __init__(
-        self,
-        pencil:Pencil,
-        path: VMobject = None,
-        **kwargs
-    ):
+
+    def __init__(self, pencil: Pencil, path: VMobject = None, **kwargs):
         """Initialize DrawPath."""
-        super().__init__(
-            Create(path),
-            MovePencilAlongPath(pencil,path),
-            **kwargs
-        )
+        super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
+
 
 class PutPencilAway(MovePencilTipTo):
     """Put the pencil away: move the pencil to point.
@@ -136,11 +121,7 @@ class PutPencilAway(MovePencilTipTo):
             The pencil.
         point : Point
             The placement position."""
-    def __init__(
-        self,
-        pencil:Pencil,
-        point:Point = None,
-        **kwargs
-    ):
+
+    def __init__(self, pencil: Pencil, point: Point = None, **kwargs):
         """Initialize PutPencilAway."""
-        super().__init__(pencil,point,**kwargs)
+        super().__init__(pencil, point, **kwargs)

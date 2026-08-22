@@ -6,6 +6,7 @@
 from manim import *
 import itertools as it
 
+
 # A customizable Sequential Neural Network
 class NeuralNetworkMobject(VGroup):
     """Visual representation of a feed-forward neural network.
@@ -54,10 +55,12 @@ class NeuralNetworkMobject(VGroup):
 
     def add_neurons(self):
         """Create the neuron layers and arrange them horizontally."""
-        layers = VGroup(*[
-            self.get_layer(size, index)
-            for index, size in enumerate(self.layer_sizes)
-        ])
+        layers = VGroup(
+            *[
+                self.get_layer(size, index)
+                for index, size in enumerate(self.layer_sizes)
+            ]
+        )
         layers.arrange(RIGHT, buff=self.layer_to_layer_buff)
         self.layers = layers
 
@@ -104,23 +107,24 @@ class NeuralNetworkMobject(VGroup):
             A group containing the neuron circles for this layer.
         """
         layer = VGroup()
-        neurons = VGroup(*[
-            Circle(
-                radius=self.neuron_radius,
-                stroke_color=self.get_nn_fill_color(index),
-                stroke_width=self.neuron_stroke_width,
-                fill_color=BLACK,
-                fill_opacity=self.neuron_fill_opacity,
-            )
-            for _ in range(size)
-        ])
+        neurons = VGroup(
+            *[
+                Circle(
+                    radius=self.neuron_radius,
+                    stroke_color=self.get_nn_fill_color(index),
+                    stroke_width=self.neuron_stroke_width,
+                    fill_color=BLACK,
+                    fill_opacity=self.neuron_fill_opacity,
+                )
+                for _ in range(size)
+            ]
+        )
         for neuron in neurons:
             neuron.z_index = 1  # Ensure neurons are in front of edges
         neurons.arrange(DOWN, buff=self.neuron_to_neuron_buff)
         layer.neurons = neurons
         layer.add(neurons)
         return layer
-
 
     def add_edges(self):
         """Draw edges connecting the neuron layers."""
@@ -138,8 +142,6 @@ class NeuralNetworkMobject(VGroup):
                 edge_group.add(edge)
             self.edge_groups.add(edge_group)
         self.add(self.edge_groups)  # Add edges first
-
-
 
     def label_inputs(self, label):
         """Add symbolic labels to the input layer neurons.
@@ -168,7 +170,6 @@ class NeuralNetworkMobject(VGroup):
             text.set_height(0.3)
             text.next_to(neuron, RIGHT)
             self.add(text)
-
 
     def label_layers(self, labels, input_size=0.4, hidden_size=0.25, output_size=0.4):
         """Add text labels above each layer of the neural network.

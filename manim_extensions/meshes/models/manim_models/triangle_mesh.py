@@ -10,6 +10,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 # third-party imports
 import manim as m
 import numpy as np
+
 # local imports
 from manim_extensions.meshes.exceptions import InvalidMeshException
 from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -58,7 +59,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
                mesh_data = Mesh(vertices, faces)
                tm = TriangleManim2DMesh(mesh_data)
                self.add(tm)
-"""
+    """
 
     # pylint:disable=abstract-method
     def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
@@ -72,7 +73,9 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             **kwargs,
         )
 
-    def edge_flip(self, scene: m.Scene, face_idx_1: int, face_idx_2: int, **kwargs) -> None:
+    def edge_flip(
+        self, scene: m.Scene, face_idx_1: int, face_idx_2: int, **kwargs
+    ) -> None:
         """Flip the shared edge between two adjacent triangle faces.
 
         The edge connecting the two non-shared vertices of the original
@@ -94,18 +97,25 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         face_arr_2 = self.mesh.faces[face_idx_2]
         if len(face_arr_1) != 3 or len(face_arr_2) != 3:
             raise ValueError("Faces must be triangles!")
-        mask_1, mask_2 = np.isin(face_arr_1, face_arr_2), np.isin(face_arr_2, face_arr_1)
+        mask_1, mask_2 = np.isin(face_arr_1, face_arr_2), np.isin(
+            face_arr_2, face_arr_1
+        )
         if mask_1.sum() != 2:
             raise ValueError("Faces must share exactly one edge!")
         # currently ignores resulting winding order (should this be fixed?)
         v_1, v_2 = face_arr_1[~mask_1][0], face_arr_2[~mask_2][0]  # new shared edge
-        v_3_a, v_3_b = face_arr_1[mask_1][0], face_arr_1[mask_1][1]  # new unshared vertices
-        old_edge = self.get_edge(self.mesh.get_edge_index(tuple(sorted([v_3_a, v_3_b]))))
+        v_3_a, v_3_b = (
+            face_arr_1[mask_1][0],
+            face_arr_1[mask_1][1],
+        )  # new unshared vertices
+        old_edge = self.get_edge(
+            self.mesh.get_edge_index(tuple(sorted([v_3_a, v_3_b])))
+        )
         self.mesh.update_face(face_idx_1, np.array([v_1, v_2, v_3_a]))
         self.mesh.update_face(face_idx_2, np.array([v_1, v_2, v_3_b]))
         anims = []
-        if 'run_time' not in kwargs:
-            kwargs['run_time'] = 1
+        if "run_time" not in kwargs:
+            kwargs["run_time"] = 1
         if self.display_faces:
             for face_idx in [face_idx_1, face_idx_2]:
                 face = self.mesh.faces[face_idx]
@@ -113,19 +123,18 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
                 face = self.get_face(face_idx)
                 new_face = face.copy()
                 new_face.set_points_as_corners(
-                    [
-                        triangle[0],
-                        triangle[1],
-                        triangle[2],
-                        triangle[0]
-                    ],
+                    [triangle[0], triangle[1], triangle[2], triangle[0]],
                 )
                 anims.append(face.animate(**kwargs).become(new_face))
         if self.display_edges:
             self.edges.remove(old_edge)
-            self.edges.insert(self.mesh.get_edge_index(tuple(sorted([v_1, v_2]))), old_edge)
+            self.edges.insert(
+                self.mesh.get_edge_index(tuple(sorted([v_1, v_2]))), old_edge
+            )
             new_edge = old_edge.copy()
-            new_edge.set_points_as_corners([self.mesh.get_3d_vertices()[v_1], self.mesh.get_3d_vertices()[v_2]])
+            new_edge.set_points_as_corners(
+                [self.mesh.get_3d_vertices()[v_1], self.mesh.get_3d_vertices()[v_2]]
+            )
             anims.append(old_edge.animate(**kwargs).become(new_edge))
         if len(anims) > 0:
             scene.play(*anims)

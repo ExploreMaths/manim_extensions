@@ -76,11 +76,17 @@ class Cubie(VGroup):
         tuple of float
             The rounded (x, y, z) coordinates.
         """
-        return tuple([round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)])
+        return tuple(
+            [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
+        )
 
     def generate_points(self):
         """Construct the six square faces that correspond to this cubie."""
-        faces = np.array(get_faces_of_cubie(self.dimensions, (self.position[0], self.position[1], self.position[2]))).tolist()
+        faces = np.array(
+            get_faces_of_cubie(
+                self.dimensions, (self.position[0], self.position[1], self.position[2])
+            )
+        ).tolist()
         i = 0
         for vect in OUT, DOWN, LEFT, IN, UP, RIGHT:
             face = Square(side_length=2, shade_in_3d=True, stroke_width=3)
@@ -127,19 +133,17 @@ class Cubie(VGroup):
     def init_colors(self):
         """Apply fill, stroke, and background-stroke colours to the cubie."""
         self.set_fill(
-            color=self.fill_color or self.color,
-            opacity=self.fill_opacity,
-            family=False
+            color=self.fill_color or self.color, opacity=self.fill_opacity, family=False
         )
         self.set_stroke(
             color=self.stroke_color or self.color,
             width=self.stroke_width,
             opacity=self.stroke_opacity,
-            family=False
+            family=False,
         )
         self.set_background_stroke(
             color=self.background_stroke_color,
             width=self.background_stroke_width,
             opacity=self.background_stroke_opacity,
-            family=False
+            family=False,
         )

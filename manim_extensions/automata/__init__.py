@@ -16,4 +16,10 @@ from .mobjects.manim_non_deterministic_finite_state_automaton import *
 from .mobjects.manim_animations import *
 from .mobjects.manim_pushdown_automaton import *
 
-__all__ = ["ManimAutomaton", "ManimdeterministicFiniteAutomaton", "ManimNondeterministicFiniteAutomaton", "ManimAnimations", "ManimPushDownAutomaton"]
+__all__ = [
+    "ManimAutomaton",
+    "ManimdeterministicFiniteAutomaton",
+    "ManimNondeterministicFiniteAutomaton",
+    "ManimAnimations",
+    "ManimPushDownAutomaton",
+]

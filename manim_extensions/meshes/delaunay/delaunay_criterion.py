@@ -6,20 +6,23 @@
 """
 functions to check delaunay criterion
 """
+
 # python imports
 from typing import List
 import numpy as np
+
 # third-party imports
 import manim as m
+
 # local imports
 
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 
 def get_triangle_circum_circle_params(
-        pt1: np.ndarray,
-        pt2: np.ndarray,
-        pt3: np.ndarray
+    pt1: np.ndarray, pt2: np.ndarray, pt3: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray]:
     """Calculate the circumscribed circle of a triangle defined by three points.
 
@@ -43,11 +46,18 @@ def get_triangle_circum_circle_params(
     gamma = np.linalg.norm(pt1 - pt2) ** 2 * (pt3 - pt1).dot(pt3 - pt2) / div
     center = alpha * pt1 + beta * pt2 + gamma * pt3
     div = 2 * np.linalg.norm(np.cross(pt1 - pt2, pt2 - pt3))
-    radius = np.linalg.norm(pt1 - pt2) * np.linalg.norm(pt2 - pt3) * np.linalg.norm(pt3 - pt1) / div
+    radius = (
+        np.linalg.norm(pt1 - pt2)
+        * np.linalg.norm(pt2 - pt3)
+        * np.linalg.norm(pt3 - pt1)
+        / div
+    )
     return center, radius
 
 
-def get_circum_circle(triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs) -> m.Circle:
+def get_circum_circle(
+    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs
+) -> m.Circle:
     """Create a Manim circle visualising the circumscribed circle of a face.
 
     Parameters
@@ -68,14 +78,16 @@ def get_circum_circle(triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwarg
     face = triangle_mesh.mesh.faces[face_idx]
     vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
     center, radius = get_triangle_circum_circle_params(*vertices)
-    if 'stroke_width' not in kwargs:
-        kwargs['stroke_width'] = 2
+    if "stroke_width" not in kwargs:
+        kwargs["stroke_width"] = 2
     circ = m.Circle(radius, **kwargs)
     circ.shift(center)
     return circ
 
 
-def get_point_indices_violating_delaunay(triangle_mesh: TriangleManim2DMesh, face_id: int) -> List[int]:
+def get_point_indices_violating_delaunay(
+    triangle_mesh: TriangleManim2DMesh, face_id: int
+) -> List[int]:
     """Return the indices of all vertices that violate the Delaunay criterion.
 
     A vertex violates the criterion when it lies inside the circumscribed
@@ -96,10 +108,10 @@ def get_point_indices_violating_delaunay(triangle_mesh: TriangleManim2DMesh, fac
     """
     indices: List[int] = []
     face = triangle_mesh.mesh.faces[face_id]
-    center, radius = get_triangle_circum_circle_params(*[triangle_mesh.mesh.get_3d_vertices()[i] for i in face])
+    center, radius = get_triangle_circum_circle_params(
+        *[triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
+    )
 
-    # Future: [improve to be faster] don't loop all vertices, only loop ones that are "close", how?
-    #  should be possible to do using numpy functions, should be faster and more readable
     for idx, point in enumerate(triangle_mesh.mesh.get_3d_vertices()):
         if idx not in face:
             distance = np.linalg.norm(center - point)
@@ -108,7 +120,9 @@ def get_point_indices_violating_delaunay(triangle_mesh: TriangleManim2DMesh, fac
     return indices
 
 
-def is_point_violating_delaunay(triangle_mesh: TriangleManim2DMesh, vertex_idx: int, face_idx) -> bool:
+def is_point_violating_delaunay(
+    triangle_mesh: TriangleManim2DMesh, vertex_idx: int, face_idx
+) -> bool:
     """Check whether a vertex violates the Delaunay criterion for a given face.
 
     Parameters
@@ -128,6 +142,8 @@ def is_point_violating_delaunay(triangle_mesh: TriangleManim2DMesh, vertex_idx: 
     """
     point = triangle_mesh.mesh.get_3d_vertices()[vertex_idx]
     face = triangle_mesh.mesh.faces[face_idx]
-    center, radius = get_triangle_circum_circle_params(*[triangle_mesh.mesh.get_3d_vertices()[i] for i in face])
+    center, radius = get_triangle_circum_circle_params(
+        *[triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
+    )
     distance = np.linalg.norm(center - point)
     return distance < radius

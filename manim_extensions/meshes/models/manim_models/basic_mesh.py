@@ -13,11 +13,17 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 # python imports
 import copy
 from typing import List, Tuple
+
 # third-party imports
 import manim as m
 import numpy as np
+
 # local imports
-from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException, InvalidMeshException, InvalidShapeException
+from manim_extensions.meshes.exceptions import (
+    InvalidMeshDimensionsException,
+    InvalidMeshException,
+    InvalidShapeException,
+)
 from manim_extensions.meshes.helpers import remove_keys_from_dict
 from manim_extensions.meshes.models.data_models.mesh import Mesh
 from manim_extensions.meshes.params import get_param_or_default, BM2DM, BM3DM
@@ -70,7 +76,8 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
                mesh_data = Mesh(vertices, faces)
                mm = ManimMesh(mesh_data)
                self.add(mm)
-"""
+    """
+
     # pylint:disable=abstract-method
 
     def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
@@ -86,7 +93,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         # set all the parameters
         for param_name in BM3DM:
-            self.__setattr__(param_name, get_param_or_default(param_name, kwargs, BM3DM))
+            self.__setattr__(
+                param_name, get_param_or_default(param_name, kwargs, BM3DM)
+            )
 
         super().__init__(*args, **remove_keys_from_dict(kwargs, list(BM3DM.keys())))
 
@@ -116,7 +125,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             self.vertices = m.Group()
         # create and add all the points into self.vertices
         for v in self.mesh.get_3d_vertices():
-            self.vertices.add(m.Sphere(v, radius=self.verts_size, color=self.verts_color))
+            self.vertices.add(
+                m.Sphere(v, radius=self.verts_size, color=self.verts_color)
+            )
         return self.vertices
 
     def setup_edges(self) -> m.VGroup:
@@ -173,14 +184,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             new_face.set_points_as_corners(face_points)
             self.faces.add(new_face)
         # color, scale, ... all faces at once
-        self.faces.set_fill(
-            color=self.faces_color,
-            opacity=self.faces_opacity
-        )
+        self.faces.set_fill(color=self.faces_color, opacity=self.faces_opacity)
         self.faces.set_stroke(
             color=self.faces_color,
-            width=0.,
-            opacity=0.,
+            width=0.0,
+            opacity=0.0,
         )
         return self.faces
 
@@ -210,14 +218,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         face_points.append(verts_3d[face[0]])
         new_face = m.ThreeDVMobject()
         new_face.set_points_as_corners(face_points)
-        new_face.set_fill(
-            color=color,
-            opacity=self.faces_opacity
-        )
+        new_face.set_fill(color=color, opacity=self.faces_opacity)
         new_face.set_stroke(
             color=color,
-            width=0.,
-            opacity=0.,
+            width=0.0,
+            opacity=0.0,
         )
         self.faces.add(new_face)
         # update edges
@@ -262,7 +267,10 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         self.faces.remove(removed_face)
         removed_edges = []
         if self.display_edges:
-            del_indices = [old_edges.index(edge) for edge in set(old_edges).difference(set(self.mesh.edges))]
+            del_indices = [
+                old_edges.index(edge)
+                for edge in set(old_edges).difference(set(self.mesh.edges))
+            ]
             for index in sorted(del_indices, reverse=True):
                 removed_edge = self.edges.submobjects[index]
                 removed_edges.append(removed_edge)
@@ -317,13 +325,13 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     def add_vertices(self, new_vertices: Vertices, scene: m.Scene) -> None:
         """fade in some additional vertices
 
-    Parameters
-    ----------
-    new_vertices : Vertices
-    New vertices processed by this operation.
-    scene : m.Scene
-    The scene in which the action is performed.
-    """
+        Parameters
+        ----------
+        new_vertices : Vertices
+        New vertices processed by this operation.
+        scene : m.Scene
+        The scene in which the action is performed.
+        """
         self.mesh.add_vertices(new_vertices)
         # fade out current ones, fade in all after add
         if self.display_vertices:
@@ -388,7 +396,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         """
         total_shift = np.sum(vectors, axis=0)
         # update vertices of self.mesh
-        self.mesh.translate_mesh(total_shift[:self.mesh.dim])
+        self.mesh.translate_mesh(total_shift[: self.mesh.dim])
         # shift manim vertices, edges and faces
         super().shift(total_shift)
 
@@ -402,7 +410,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
         """
-        about_point = self.get_bounding_box_point(m.ORIGIN)[:self.mesh.dim]
+        about_point = self.get_bounding_box_point(m.ORIGIN)[: self.mesh.dim]
         self.mesh.scale_mesh(scale_factor, about_point)
         super().scale(scale_factor, **kwargs)
 
@@ -425,7 +433,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
-        about_point = self.get_bounding_box_point(m.ORIGIN)[:self.mesh.dim]
+        about_point = self.get_bounding_box_point(m.ORIGIN)[: self.mesh.dim]
         self.mesh.stretch_mesh(factor, dim, about_point)
         super().stretch(factor, dim, **kwargs)
 
@@ -483,7 +491,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         # Fixme implement flip on axis for mesh.py
         raise NotImplementedError
 
-    def shift_vertex(self, scene: m.Scene, vertex_idx: int, shift: np.ndarray, **kwargs) -> None:
+    def shift_vertex(
+        self, scene: m.Scene, vertex_idx: int, shift: np.ndarray, **kwargs
+    ) -> None:
         """Animate a single vertex and update all adjacent faces/edges.
 
         Parameters
@@ -502,13 +512,19 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         tracker.add_updater(
             # make sure even with multiple calls lambda has the correct values
             lambda mo, go=start, move=shift: self._update_vertex(
-                vertex_idx, go + tracker.get_value() * move,
-                **remove_keys_from_dict(kwargs, ["shift_vertex_runtime"]))
+                vertex_idx,
+                go + tracker.get_value() * move,
+                **remove_keys_from_dict(kwargs, ["shift_vertex_runtime"]),
+            )
         )
         scene.add(tracker)
         scene.play(
             tracker.animate(**kwargs).set_value(1),
-            run_time=kwargs["shift_vertex_runtime"] if "shift_vertex_runtime" in kwargs else 1.0
+            run_time=(
+                kwargs["shift_vertex_runtime"]
+                if "shift_vertex_runtime" in kwargs
+                else 1.0
+            ),
         )
         scene.remove(tracker)
 
@@ -533,16 +549,25 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
                 lambda mo, bound_v_id=vertex_idx: self._update_vertex(
                     vertex_idx=bound_v_id,
                     pos=start[bound_v_id] + tracker.get_value() * shift[bound_v_id],
-                    **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"])
-                ))
+                    **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"]),
+                )
+            )
         scene.add(tracker)
         scene.play(
-            tracker.animate(**remove_keys_from_dict(kwargs, ["shift_vertices_runtime"])).set_value(1),
-            run_time=kwargs["shift_vertices_runtime"] if "shift_vertices_runtime" in kwargs else 1.0
+            tracker.animate(
+                **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"])
+            ).set_value(1),
+            run_time=(
+                kwargs["shift_vertices_runtime"]
+                if "shift_vertices_runtime" in kwargs
+                else 1.0
+            ),
         )
         scene.remove(tracker)
 
-    def move_vertices_to(self, scene: m.Scene, new_positions: np.ndarray, **kwargs) -> None:
+    def move_vertices_to(
+        self, scene: m.Scene, new_positions: np.ndarray, **kwargs
+    ) -> None:
         """Animate all vertices to *new_positions* and update the underlying mesh.
 
         Parameters
@@ -560,11 +585,15 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             If *new_positions* does not have the same length as the vertex list.
         """
         if len(new_positions) != len(self.mesh.vertices):
-            raise InvalidShapeException("new_positions", len(new_positions), len(self.mesh.vertices))
+            raise InvalidShapeException(
+                "new_positions", len(new_positions), len(self.mesh.vertices)
+            )
         shift: np.ndarray = new_positions - self.mesh.vertices
         self.shift_vertices(scene, shift=shift, **kwargs)
 
-    def move_vertex_to(self, scene: m.Scene, vertex_idx: int, pos: np.ndarray, **kwargs) -> None:
+    def move_vertex_to(
+        self, scene: m.Scene, vertex_idx: int, pos: np.ndarray, **kwargs
+    ) -> None:
         """Animate a single vertex to a new absolute position.
 
         Parameters
@@ -591,9 +620,13 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         self.shift_vertex(scene, vertex_idx, shift, **kwargs)
 
     def move_to_grid(
-            self, scene: m.Scene, grid_sizes: Tuple[float, ...], threshold: Tuple[float, ...],
-            nof_steps: int = 1, **kwargs
-        ) -> None:
+        self,
+        scene: m.Scene,
+        grid_sizes: Tuple[float, ...],
+        threshold: Tuple[float, ...],
+        nof_steps: int = 1,
+        **kwargs,
+    ) -> None:
         """Animate vertices snapping to a regular grid.
 
         Uses :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid` to compute the target positions and
@@ -613,7 +646,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
         """
         # to be able to show the movement, the update needs to be calculated on a dummy mesh first
-        new_verts = self.mesh.snap_to_grid(grid_sizes, threshold, steps=nof_steps, update_verts=False)
+        new_verts = self.mesh.snap_to_grid(
+            grid_sizes, threshold, steps=nof_steps, update_verts=False
+        )
         # use new calculated positions but have still the old mesh
         self.move_vertices_to(scene, new_verts, **kwargs)
 
@@ -667,7 +702,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                mesh_data = Mesh(vertices, faces)
                mm = Manim2DMesh(mesh_data)
                self.add(mm)
-"""
+    """
 
     # pylint:disable=abstract-method
     def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
@@ -675,10 +710,13 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
         """Initialize the Manim2DMesh instance."""
         if mesh.dim == 3:
             if np.sum(np.abs(mesh.vertices[:, 2] != 0)):
-                raise InvalidMeshException("Mesh has z values != 0 and therefore is not 2D.")
+                raise InvalidMeshException(
+                    "Mesh has z values != 0 and therefore is not 2D."
+                )
         elif mesh.dim > 3:
             raise InvalidMeshException(
-                f'Mesh is not in the correct format. Expected Dim 2 or 3 with z zero, was {mesh.dim}')
+                f"Mesh is not in the correct format. Expected Dim 2 or 3 with z zero, was {mesh.dim}"
+            )
         # init ManimMesh
         super().__init__(
             mesh=mesh,
@@ -723,6 +761,10 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
         vertices = self.mesh.get_3d_vertices()
         for idx in indices:
             dot = m.Dot(vertices[idx], radius=self.verts_size, color=m.RED)
-            dot.add_updater(lambda mo, mesh=self.mesh, index=idx: mo.move_to(mesh.get_3d_vertices()[index]))
+            dot.add_updater(
+                lambda mo, mesh=self.mesh, index=idx: mo.move_to(
+                    mesh.get_3d_vertices()[index]
+                )
+            )
             dots.append(dot)
         return dots

@@ -8,30 +8,30 @@ from manim import *  # noqa: F401
 from .manim_automaton import ManimAutomaton
 
 nfa_automaton_json = {
-    'structure': {
-        'type': 'nfa',
-        'automaton': {
-            'state': [
-                {'@id': '0', '@name': 'q0', 'x': '84.0', 'y': '122.0', 'initial': None},
-                {'@id': '1', '@name': 'q1', 'x': '218.0', 'y': '175.0'},
-                {'@id': '2', '@name': 'q2', 'x': '386.0', 'y': '131.0', 'final': None},
-                {'@id': '3', '@name': 'q3', 'x': '227.0', 'y': '36.0'}
+    "structure": {
+        "type": "nfa",
+        "automaton": {
+            "state": [
+                {"@id": "0", "@name": "q0", "x": "84.0", "y": "122.0", "initial": None},
+                {"@id": "1", "@name": "q1", "x": "218.0", "y": "175.0"},
+                {"@id": "2", "@name": "q2", "x": "386.0", "y": "131.0", "final": None},
+                {"@id": "3", "@name": "q3", "x": "227.0", "y": "36.0"},
             ],
-            'transition': [
-                {'from': '0', 'to': '1', 'read': '0'},
-                {'from': '0', 'to': '1', 'read': '1'},
-                {'from': '0', 'to': '2', 'read': None},
-                {'from': '2', 'to': '3', 'read': '0'},
-                {'from': '1', 'to': '2', 'read': '1'},
-                {'from': '3', 'to': '0', 'read': '1'},
-                {'from': '3', 'to': '0', 'read': '0'}
-            ]
-        }
+            "transition": [
+                {"from": "0", "to": "1", "read": "0"},
+                {"from": "0", "to": "1", "read": "1"},
+                {"from": "0", "to": "2", "read": None},
+                {"from": "2", "to": "3", "read": "0"},
+                {"from": "1", "to": "2", "read": "1"},
+                {"from": "3", "to": "0", "read": "1"},
+                {"from": "3", "to": "0", "read": "0"},
+            ],
+        },
     }
 }
 
-class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
 
+class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
     """A non-deterministic finite automaton (NFA) with Manim visualisation.
 
     This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents an NFA where states
@@ -66,7 +66,8 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
            def construct(self):
                ndfa = ManimNondeterministicFiniteAutomaton()
                self.add(ndfa)
-"""
+    """
+
     nda_builder = False
 
     def __init__(
@@ -84,10 +85,18 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:
-            super().__init__(json_template, xml_file, camera_follow, animation_style, cli=cli, **kwargs)
+            super().__init__(
+                json_template,
+                xml_file,
+                camera_follow,
+                animation_style,
+                cli=cli,
+                **kwargs,
+            )
 
-        if cli: #if cli exist display options to user
+        if cli:  # if cli exist display options to user
             self.cli.display_nda_options()
-            if self.cli.nda_option == 0: #check the settings of the cli (what the user wants to do)
+            if (
+                self.cli.nda_option == 0
+            ):  # check the settings of the cli (what the user wants to do)
                 self.nda_builder = True
-

@@ -7,6 +7,8 @@ from typing import List
 
 
 from manim import *
+
+
 class TikzTemplate(TexTemplate):
     r"""A custom :class:`~manim.utils.tex.TexTemplate` for rendering TikZ diagrams.
 
@@ -44,13 +46,17 @@ class TikzTemplate(TexTemplate):
                    use_pdf=False,
                )
                self.add(tikz)
-"""
+    """
 
     _DEFAULT_PREAMBLE = (
-        r"\usepackage[english]{babel}" "\n"
-        r"\usepackage{amsmath}" "\n"
-        r"\usepackage{amssymb}" "\n"
-        r"\usepackage{tikz}" "\n"
+        r"\usepackage[english]{babel}"
+        "\n"
+        r"\usepackage{amsmath}"
+        "\n"
+        r"\usepackage{amssymb}"
+        "\n"
+        r"\usepackage{tikz}"
+        "\n"
     )
 
     def __init__(
@@ -60,7 +66,7 @@ class TikzTemplate(TexTemplate):
         tikzset: List[str] = [],
         preamble: str = None,
         use_pdf=False,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the TikzTemplate instance."""
         default_preamble = self._DEFAULT_PREAMBLE

@@ -20,9 +20,10 @@ from typing import Any, Optional, Union
 from PIL import Image, ImageChops, ImageDraw
 import cv2
 
-
 DEFAULT_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
-DEFAULT_MONO_FONT = "Cascadia Code" if platform.system() == "Windows" else "JetBrains Mono"
+DEFAULT_MONO_FONT = (
+    "Cascadia Code" if platform.system() == "Windows" else "JetBrains Mono"
+)
 
 
 class ChineseMathTex(MathTex):
@@ -60,7 +61,6 @@ class ChineseMathTex(MathTex):
                self.add(formula)
 
     """
-
 
     def __init__(
         self,
@@ -560,9 +560,7 @@ class PerpendicularSign(VGroup):
         dirs2 = self._get_both_directions(line2, intersection)
 
         # Select the best pair of directions
-        d1, d2 = self._select_directions(
-            dirs1, dirs2, corner_direction
-        )
+        d1, d2 = self._select_directions(dirs1, dirs2, corner_direction)
 
         # Three vertices of the corner
         corner1 = intersection + length * d1
@@ -616,13 +614,13 @@ class PerpendicularSign(VGroup):
     ) -> tuple[np.ndarray, np.ndarray]:
         """Return the two unit direction vectors from *point* toward the line's endpoints.
 
-    Parameters
-    ----------
-    line : Line
-    The geometric object involved in the operation.
-    point : np.ndarray
-    The point used by the operation.
-    """
+        Parameters
+        ----------
+        line : Line
+        The geometric object involved in the operation.
+        point : np.ndarray
+        The point used by the operation.
+        """
         start = line.get_start()
         end = line.get_end()
         d1 = start - point
@@ -742,9 +740,7 @@ class FileTree(Code):
     ) -> None:
         """Initialize the FileTree instance."""
         if not isinstance(tree_dict, dict):
-            raise TypeError(
-                f"tree_dict must be a dict, got {type(tree_dict).__name__}"
-            )
+            raise TypeError(f"tree_dict must be a dict, got {type(tree_dict).__name__}")
         self._tree = self._build_tree(tree_dict)
         super().__init__(
             code_string="\n".join(self._tree),
@@ -760,9 +756,7 @@ class FileTree(Code):
         )
         del self.submobjects[0]
 
-    def highlight(
-        self, line: int, color: ParsableManimColor = WHITE
-    ) -> AnimationGroup:
+    def highlight(self, line: int, color: ParsableManimColor = WHITE) -> AnimationGroup:
         """Highlight the content of a specific line (excluding tree prefixes).
 
         Parameters
@@ -794,15 +788,11 @@ class FileTree(Code):
             return Wait(0)
 
         return AnimationGroup(
-            VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(
-                color
-            )
+            VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(color)
         )
 
     @staticmethod
-    def _build_tree(
-        data, prefix: str = "", is_root: bool = True
-    ) -> list[str]:
+    def _build_tree(data, prefix: str = "", is_root: bool = True) -> list[str]:
         """Recursively build ASCII tree lines from a nested dictionary.
 
         Parameters
@@ -837,9 +827,7 @@ class FileTree(Code):
                 lines.append(prefix + connector + display_name)
                 if is_dir:
                     extension = "    " if is_last else "│   "
-                    lines.extend(
-                        FileTree._build_tree(value, prefix + extension, False)
-                    )
+                    lines.extend(FileTree._build_tree(value, prefix + extension, False))
         return lines
 
 
@@ -880,7 +868,7 @@ class CropImageMobject(ImageMobject):
         self,
         filename_or_array: Union[str, np.ndarray, Image.Image],
         corner_radius: Union[int, float] = 0.1,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Initialize the CropImageMobject instance."""
         if isinstance(filename_or_array, str):
@@ -906,9 +894,7 @@ class CropImageMobject(ImageMobject):
         if radius > 0:
             draw = ImageDraw.Draw(mask)
             draw.rounded_rectangle(
-                (0, 0, img.size[0], img.size[1]),
-                radius=radius,
-                fill=255
+                (0, 0, img.size[0], img.size[1]), radius=radius, fill=255
             )
         else:
             mask.paste(255, (0, 0, img.size[0], img.size[1]))
@@ -960,11 +946,7 @@ class VideoMobject(ImageMobject):
     """
 
     def __init__(
-        self,
-        filename: str,
-        loop: bool = False,
-        rate: float = 1.0,
-        **kwargs: Any
+        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
     ) -> None:
         """Initialize the VideoMobject instance."""
         self.filename = filename
@@ -983,9 +965,7 @@ class VideoMobject(ImageMobject):
         self._cap = cv2.VideoCapture(filename)
         self._fps = self._cap.get(cv2.CAP_PROP_FPS) or 30.0
         self._total_frames = int(self._cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        self._duration = (
-            self._total_frames / self._fps if self._fps > 0 else 0.0
-        )
+        self._duration = self._total_frames / self._fps if self._fps > 0 else 0.0
 
         self._frame_idx = 0
         self._elapsed = 0.0
@@ -1128,11 +1108,7 @@ class VideoMobject(ImageMobject):
 
     def __del__(self) -> None:
         """Release the OpenCV capture on garbage collection."""
-        if (
-            hasattr(self, "_cap")
-            and self._cap is not None
-            and self._cap.isOpened()
-        ):
+        if hasattr(self, "_cap") and self._cap is not None and self._cap.isOpened():
             self._cap.release()
 
 
@@ -1197,12 +1173,18 @@ class ColorText(Text):
     ) -> None:
         """Initialize the ColorText instance."""
         if name is not None:
-            super().__init__(str(name), color=color, font=font, font_size=font_size, **kwargs)
+            super().__init__(
+                str(name), color=color, font=font, font_size=font_size, **kwargs
+            )
             return
 
         c = [float(v) for v in color]
         if max(c) > 1.0:
-            r, g, b = str(int(round(c[0]))), str(int(round(c[1]))), str(int(round(c[2])))
+            r, g, b = (
+                str(int(round(c[0]))),
+                str(int(round(c[1]))),
+                str(int(round(c[2]))),
+            )
             fill = rgb_to_color([c[0] / 255.0, c[1] / 255.0, c[2] / 255.0])
         else:
             r, g, b = f"{c[0]:.2f}", f"{c[1]:.2f}", f"{c[2]:.2f}"
@@ -1282,7 +1264,7 @@ class Trail(VGroup):
         self.max_width = max_width
         self.nums = nums
         self.trail_color = trail_color
-        self.rate_func = rate_func if rate_func is not None else (lambda t: t ** 1.25)
+        self.rate_func = rate_func if rate_func is not None else (lambda t: t**1.25)
         self.add(mob)
         self.trail = VGroup()
         self.path_xyz = []
@@ -1418,7 +1400,9 @@ class ShadowAround(VGroup):
             self.shape = mob_or_points.copy().set_stroke(width=0)
 
         inner_opacity = shadow_opacity if show_basic_shape else 0
-        self.shape.set_fill(color=shadow_color, opacity=inner_opacity).scale(scale_factor)
+        self.shape.set_fill(color=shadow_color, opacity=inner_opacity).scale(
+            scale_factor
+        )
 
         self.blur_outline = VGroup()
         s = (self.shape.height + self.shape.width) / 2
@@ -1430,7 +1414,7 @@ class ShadowAround(VGroup):
                 layer.set_stroke(
                     color=shadow_color,
                     width=51 * blur_width / layer_num,
-                    opacity=shadow_opacity * (1 - frac ** 0.5),
+                    opacity=shadow_opacity * (1 - frac**0.5),
                 )
                 layer.set_fill(opacity=0)
                 layer.scale((s + sign * blur_width / layer_num * (i + 0.5)) / s)
@@ -1516,7 +1500,11 @@ class ObjectBorder(VGroup):
         if self.add_corner:
             corners = VGroup(
                 *[
-                    Dot(radius=self.corner_radius, color=BLACK, stroke_color=self.border_color).move_to(v)
+                    Dot(
+                        radius=self.corner_radius,
+                        color=BLACK,
+                        stroke_color=self.border_color,
+                    ).move_to(v)
                     for v in border.get_vertices()
                 ]
             )
@@ -1593,10 +1581,18 @@ class ThreeDVector(VGroup):
         body_len = max(length - tip_len, 1e-6)
 
         body = Cylinder(
-            radius=radius, height=body_len, color=color, fill_opacity=fill_opacity, stroke_width=0
+            radius=radius,
+            height=body_len,
+            color=color,
+            fill_opacity=fill_opacity,
+            stroke_width=0,
         )
         tip = Cone(
-            base_radius=radius, height=tip_len, color=color, fill_opacity=fill_opacity, stroke_width=0
+            base_radius=radius,
+            height=tip_len,
+            color=color,
+            fill_opacity=fill_opacity,
+            stroke_width=0,
         )
         body.shift(OUT * body_len / 2)
         tip.shift(OUT * (body_len + tip_len / 2))
@@ -1703,8 +1699,10 @@ class TreeDiagram(VGroup):
         """
         if isinstance(tree, (set, list, tuple)):
             a = self._lowest(tree)
-            brace = Brace(a, LEFT).set_stroke(color=self.branch_color, width=2).set_fill(
-                opacity=self.branch_opacity
+            brace = (
+                Brace(a, LEFT)
+                .set_stroke(color=self.branch_color, width=2)
+                .set_fill(opacity=self.branch_opacity)
             )
             return VGroup(brace, a)
         vg = VGroup()
@@ -1716,7 +1714,9 @@ class TreeDiagram(VGroup):
             vg.add(node)
         vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
         to_be_braced = VGroup(*[i[0] for i in vg])
-        brace = Brace(to_be_braced, LEFT).set_stroke(color=self.branch_color, width=2).set_fill(
-            opacity=self.branch_opacity
+        brace = (
+            Brace(to_be_braced, LEFT)
+            .set_stroke(color=self.branch_color, width=2)
+            .set_fill(opacity=self.branch_opacity)
         )
         return VGroup(brace, vg)

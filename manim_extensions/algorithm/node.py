@@ -44,6 +44,7 @@ class NodeConfig:
                group = VGroup(default_node, selection_node).arrange(RIGHT, buff=1)
                self.add(group)
     """
+
     WIDTH = 2
     BOX_TYPE = Square
     BOX_COLOR = WHITE
@@ -139,7 +140,7 @@ class Node(VMobject):
         self,
         value: NodeValue = None,
         width: float = NodeConfig.WIDTH,
-        text_scale:float = 1.0,
+        text_scale: float = 1.0,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         **kwargs,
@@ -151,8 +152,8 @@ class Node(VMobject):
         self.text_scale = text_scale
         self.set_value(value)
         self.width = width
-    
-    def set_box(self, box_type: NodeBoxType, width: float, color: ManimColor) -> 'Node':
+
+    def set_box(self, box_type: NodeBoxType, width: float, color: ManimColor) -> "Node":
         """Set the shape and fill colour of the node's box.
 
         If the node already has a box it is removed first; the new box
@@ -178,7 +179,7 @@ class Node(VMobject):
         ValueError
             If *box_type* is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
         """
-        if hasattr(self, 'box'):
+        if hasattr(self, "box"):
             self.remove(self.box)
         if box_type not in [Square, Circle]:
             raise ValueError("box_type must be Square or Circle")
@@ -194,7 +195,7 @@ class Node(VMobject):
         """Return the underlying visual box for the node."""
         return self.box
 
-    def set_value(self, value: NodeValue) -> 'Node':
+    def set_value(self, value: NodeValue) -> "Node":
         """Replace the node's displayed content and update the internal value.
 
         Parameters
@@ -202,7 +203,7 @@ class Node(VMobject):
         value : NodeValue
             The value to display inside the node.
         """
-        if hasattr(self, 'text'):
+        if hasattr(self, "text"):
             self.remove(self.text)
         self.value = value
         if value is None or not str(value).strip():
@@ -217,11 +218,12 @@ class Node(VMobject):
         """Return the underlying data value of the node."""
         return self.value
 
-    def set_fill(self,
+    def set_fill(
+        self,
         color: ParsableManimColor | None = None,
         opacity: float | None = None,
         family: bool = True,
-    ) -> 'Node':
+    ) -> "Node":
         """Set the fill color and transparency for the node box.
 
         Parameters
@@ -234,7 +236,7 @@ class Node(VMobject):
             Whether to apply the fill to the whole family of mobjects.
         """
         super().set_fill(color, opacity, False)
-        if hasattr(self, 'box'):
+        if hasattr(self, "box"):
             self.box.set_fill(color, opacity, family)
         return self
 
@@ -344,8 +346,13 @@ class Node(VMobject):
             **kwargs,
         ):
             """Initialize Select."""
-            
-            super().__init__(AnimationGroup(*[node.animate.set_fill(color, opacity) for node in nodes]), **kwargs)
+
+            super().__init__(
+                AnimationGroup(
+                    *[node.animate.set_fill(color, opacity) for node in nodes]
+                ),
+                **kwargs,
+            )
 
     class Unselect(Succession):
         """Clear the highlight from one or more nodes.
@@ -381,7 +388,12 @@ class Node(VMobject):
             Restores each node's original fill colour with zero opacity,
             effectively undoing a previous :class:`~manim_extensions.algorithm.node.Node.Select` animation.
             """
-            super().__init__(AnimationGroup(*[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]), **kwargs)
+            super().__init__(
+                AnimationGroup(
+                    *[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]
+                ),
+                **kwargs,
+            )
 
     class UpdateValue(Succession):
         """Replace the value shown by a node through an animation.
@@ -411,8 +423,7 @@ class Node(VMobject):
         def __init__(self, node: "Node", value: NodeValue, **kwargs):
             """Initialize UpdateValue."""
             super().__init__(*[node.animate.set_value(value)], **kwargs)
-        
-        
+
     class MoveAndOverWrite(Succession):
         """Move a node into place and overwrite the destination value.
 
@@ -447,22 +458,30 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, node: "Node", target: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
+        def __init__(
+            self,
+            node: "Node",
+            target: "Node",
+            select_color: ManimColor = None,
+            select_opacity: float = 0.2,
+            **kwargs,
+        ):
             """Initialize MoveAndOverWrite."""
             steps = []
             if select_color is not None:
-                steps.append(Node.Select(node, color=select_color, opacity=select_opacity))
-          
-            steps.extend([
-                node.animate.move_to(target),
-                AnimationGroup(
-                    Node.UpdateValue(target, node.value), 
-                    FadeOut(node)
+                steps.append(
+                    Node.Select(node, color=select_color, opacity=select_opacity)
                 )
-            ])
-            
+
+            steps.extend(
+                [
+                    node.animate.move_to(target),
+                    AnimationGroup(Node.UpdateValue(target, node.value), FadeOut(node)),
+                ]
+            )
+
             super().__init__(*steps, **kwargs)
-        
+
     class CopyAndOverWrite(Succession):
         """Copy a node into a target location and overwrite its value.
 
@@ -497,16 +516,25 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, node: "Node", target: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
+        def __init__(
+            self,
+            node: "Node",
+            target: "Node",
+            select_color: ManimColor = None,
+            select_opacity: float = 0.2,
+            **kwargs,
+        ):
             """Initialize CopyAndOverWrite."""
             copied_node = node.copy().move_to(node)
             steps = [
                 FadeIn(copied_node),
-                Node.MoveAndOverWrite(copied_node, target, select_color, select_opacity)
+                Node.MoveAndOverWrite(
+                    copied_node, target, select_color, select_opacity
+                ),
             ]
-            
+
             super().__init__(*steps, **kwargs)
-    
+
     class SwapAndOverWrite(Succession):
         """Swap the values of two nodes while preserving the animation sequence.
 
@@ -541,7 +569,14 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, node1: "Node", node2: "Node", select_color:ManimColor=None, select_opacity:float=0.2, **kwargs):
+        def __init__(
+            self,
+            node1: "Node",
+            node2: "Node",
+            select_color: ManimColor = None,
+            select_opacity: float = 0.2,
+            **kwargs,
+        ):
             """Initialize SwapAndOverWrite."""
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)
@@ -549,11 +584,20 @@ class Node(VMobject):
                 FadeIn(copied_node1, copied_node2),
             ]
             if select_color is not None:
-                steps.append(Node.Select(copied_node1, copied_node2, select_color=select_color, select_opacity=select_opacity))
+                steps.append(
+                    Node.Select(
+                        copied_node1,
+                        copied_node2,
+                        select_color=select_color,
+                        select_opacity=select_opacity,
+                    )
+                )
             steps.append(Swap(copied_node1, copied_node2))
-            steps.append(AnimationGroup(
-                Node.UpdateValue(node1, copied_node2.value),
-                Node.UpdateValue(node2, copied_node1.value),
-                FadeOut(copied_node1, copied_node2)
-            ))
+            steps.append(
+                AnimationGroup(
+                    Node.UpdateValue(node1, copied_node2.value),
+                    Node.UpdateValue(node2, copied_node1.value),
+                    FadeOut(copied_node1, copied_node2),
+                )
+            )
             super().__init__(*steps, **kwargs)

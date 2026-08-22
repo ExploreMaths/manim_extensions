@@ -9,6 +9,7 @@ from manim import *
 
 import itertools
 
+
 class ManimAutomataInput(VGroup):
     """Graphical representation of an input string used in automata animations.
 
@@ -41,26 +42,29 @@ class ManimAutomataInput(VGroup):
                inp = ManimAutomataInput("0101", animation_style={})
                self.add(inp)
     """
-    def __init__(self, input_string: str, animation_style: dict[str, Any], font_size: int = 100, **kwargs: Any) -> None:
 
+    def __init__(
+        self,
+        input_string: str,
+        animation_style: dict[str, Any],
+        font_size: int = 100,
+        **kwargs: Any,
+    ) -> None:
         """Initialize the ManimAutomataInput instance."""
         super().__init__(**kwargs)
 
         self.animation_style = animation_style
 
-        #token creation
+        # token creation
         self.tokens = []
         spacing = 0
         for token_symbol in input_string:
             token_mobject = Token(token_symbol, spacing, font_size)
-            
 
             self.add(token_mobject)
             self.tokens.append(token_mobject)
 
             spacing = spacing + 1
-
-        
 
     @staticmethod
     def highlight_token(token: MathTex, animation_style: dict[str, Any]) -> Any:
@@ -77,10 +81,9 @@ class ManimAutomataInput(VGroup):
         color = animation_style["token_highlight"]["color"]
 
         return animation_function(token, color=color)
-    
+
 
 class Token(MathTex):
-
     """A single input token rendered as maths text.
 
     Each token has a unique numeric identifier and stores its horizontal
@@ -109,11 +112,13 @@ class Token(MathTex):
            def construct(self):
                token = Token("a", 0)
                self.add(token)
-"""
+    """
+
     id_iter = itertools.count()
 
-    def __init__(self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any) -> None:
-
+    def __init__(
+        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
+    ) -> None:
         """Initialize the Token instance."""
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 

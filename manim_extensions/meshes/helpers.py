@@ -6,8 +6,10 @@
 """
 some basic helpers for our models
 """
+
 # python imports
 from typing import Any, Dict, List, Tuple, Union
+
 # third-party imports
 import numpy as np
 
@@ -41,7 +43,9 @@ def is_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True) -> b
     return any(np.array_equal(item, a) for a in array)
 
 
-def find_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True, start: int = 0) -> List[int]:
+def find_in_vararray(
+    array: VarArray, item: np.ndarray, rolling: bool = True, start: int = 0
+) -> List[int]:
     """Find all indices where *item* appears in *array*.
 
     Parameters
@@ -62,10 +66,17 @@ def find_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True, st
     """
     if rolling:
         alternatives = [np.roll(item, i) for i in range(len(item))]
-        return [idx for idx, curr_item in enumerate(array[start:], start=start)
-                if any(np.array_equal(a, curr_item) for a in alternatives)]
+        return [
+            idx
+            for idx, curr_item in enumerate(array[start:], start=start)
+            if any(np.array_equal(a, curr_item) for a in alternatives)
+        ]
     # non rolling
-    return [idx for idx, curr_item in enumerate(array[start:], start=start) if np.array_equal(curr_item, item)]
+    return [
+        idx
+        for idx, curr_item in enumerate(array[start:], start=start)
+        if np.array_equal(curr_item, item)
+    ]
 
 
 def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) -> bool:
@@ -85,8 +96,11 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
     bool
         ``True`` if both collections contain the same elements.
     """
-    return all(is_in_vararray(array=array1, item=value2, rolling=rolling) for value2 in array2) and \
-           all(is_in_vararray(array=array2, item=value1, rolling=rolling) for value1 in array1)
+    return all(
+        is_in_vararray(array=array1, item=value2, rolling=rolling) for value2 in array2
+    ) and all(
+        is_in_vararray(array=array2, item=value1, rolling=rolling) for value1 in array1
+    )
 
 
 def is_twice_nested_iterable(obj: Any, min_lens: Tuple[int, int] = (1, 3)) -> bool:
@@ -114,15 +128,20 @@ def is_twice_nested_iterable(obj: Any, min_lens: Tuple[int, int] = (1, 3)) -> bo
     if isinstance(obj, (list, tuple)) and len(obj) == 0:
         return True
 
-    if isinstance(obj, (list, tuple, np.ndarray)) and \
-            len(obj) >= min_lens[0]:
+    if isinstance(obj, (list, tuple, np.ndarray)) and len(obj) >= min_lens[0]:
         # obj is iterable
         return all(
             # either list / tuple with values inside
             # or np.ndarray with shape length 1
-            ((isinstance(sub_obj, (list, tuple)) and all(isinstance(v, (int, float)) for v in sub_obj)) or
-             (isinstance(sub_obj, np.ndarray) and len(sub_obj.shape) == 1)) and \
-            len(sub_obj) >= min_lens[1] for sub_obj in obj
+            (
+                (
+                    isinstance(sub_obj, (list, tuple))
+                    and all(isinstance(v, (int, float)) for v in sub_obj)
+                )
+                or (isinstance(sub_obj, np.ndarray) and len(sub_obj.shape) == 1)
+            )
+            and len(sub_obj) >= min_lens[1]
+            for sub_obj in obj
         )
 
     return False
@@ -146,7 +165,9 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
     return all(e1 in edges2 for e1 in edges1) and all(e2 in edges1 for e2 in edges2)
 
 
-def fix_references(original: VarArray, indices: Union[np.ndarray, List[int]]) -> List[int]:
+def fix_references(
+    original: VarArray, indices: Union[np.ndarray, List[int]]
+) -> List[int]:
     """Remove references to *indices* from *original* and adjust remaining indices.
 
     Both *original* and *indices* are mutated in place for performance.

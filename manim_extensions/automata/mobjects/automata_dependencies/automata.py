@@ -11,34 +11,32 @@ from .transition import Transition
 
 import itertools
 
-        
 automaton_json = {
-    'structure': {
-        'type': 'fa',
-        'automaton': {
-            'state': [
-                {'@id': '0', '@name': 'q0', 'x': '84.0', 'y': '122.0', 'initial': None},
-                {'@id': '1', '@name': 'q1', 'x': '218.0', 'y': '175.0'},
-                {'@id': '2', '@name': 'q2', 'x': '386.0', 'y': '131.0', 'final': None},
-                {'@id': '3', '@name': 'q3', 'x': '227.0', 'y': '36.0'}
+    "structure": {
+        "type": "fa",
+        "automaton": {
+            "state": [
+                {"@id": "0", "@name": "q0", "x": "84.0", "y": "122.0", "initial": None},
+                {"@id": "1", "@name": "q1", "x": "218.0", "y": "175.0"},
+                {"@id": "2", "@name": "q2", "x": "386.0", "y": "131.0", "final": None},
+                {"@id": "3", "@name": "q3", "x": "227.0", "y": "36.0"},
             ],
-            'transition': [
-                {'from': '0', 'to': '1', 'read': '0'},
-                {'from': '0', 'to': '1', 'read': '1'},
-                {'from': '2', 'to': '3', 'read': '0'},
-                {'from': '1', 'to': '2', 'read': '1'},
-                {'from': '3', 'to': '0', 'read': '1'},
-                {'from': '3', 'to': '0', 'read': '0'}
-            ]
-        }
+            "transition": [
+                {"from": "0", "to": "1", "read": "0"},
+                {"from": "0", "to": "1", "read": "1"},
+                {"from": "2", "to": "3", "read": "0"},
+                {"from": "1", "to": "2", "read": "1"},
+                {"from": "3", "to": "0", "read": "1"},
+                {"from": "3", "to": "0", "read": "0"},
+            ],
+        },
     }
 }
-#create error message here - need to look up standard.
+# create error message here - need to look up standard.
 
 
-#this class manages states and transitions, including simulation
-class FiniteStateAutomaton():
-
+# this class manages states and transitions, including simulation
+class FiniteStateAutomaton:
     """Formal finite-state automaton model.
 
     This class manages the underlying data structures for states and
@@ -64,7 +62,8 @@ class FiniteStateAutomaton():
                fa = FiniteStateAutomaton()
                label = Text(f"States: {len(fa.states)}", font_size=24)
                self.add(label)
-"""
+    """
+
     id_iter = itertools.count()
 
     def __init__(self, json_template: dict | None = None) -> None:
@@ -111,10 +110,10 @@ class FiniteStateAutomaton():
             State definitions from JSON or XML parsing.
         """
         for state_data in states:
-            initial = state_data.get('initial') is not None
-            final = state_data.get('final') is not None
-            state_id = int(state_data.get('@id', 0))
-            name = state_data.get('@name', str(state_id))
+            initial = state_data.get("initial") is not None
+            final = state_data.get("final") is not None
+            state_id = int(state_data.get("@id", 0))
+            name = state_data.get("@name", str(state_id))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
     def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
@@ -126,9 +125,9 @@ class FiniteStateAutomaton():
             Transition definitions from JSON or XML parsing.
         """
         for trans_data in transitions:
-            from_id = int(trans_data['from'])
-            to_id = int(trans_data['to'])
-            read = trans_data.get('read')
+            from_id = int(trans_data["from"])
+            to_id = int(trans_data["to"])
+            read = trans_data.get("read")
             from_state = self.get_state_by_id(from_id)
             to_state = self.get_state_by_id(to_id)
             if from_state and to_state:
@@ -136,9 +135,8 @@ class FiniteStateAutomaton():
                 transition.read_symbols = [read] if read else []
                 self.transitions.append(transition)
                 from_state.add_transition_to_state(transition)
-    
 
-    #State Methods
+    # State Methods
     def get_initial_state(self) -> State:
         """Return the state marked as the initial state.
 
@@ -177,7 +175,9 @@ class FiniteStateAutomaton():
                 return state
         return None
 
-    def automaton_step(self, token: str, state_pointer: State) -> tuple[bool, list[State], list[Transition]]:
+    def automaton_step(
+        self, token: str, state_pointer: State
+    ) -> tuple[bool, list[State], list[Transition]]:
         """Advance the automaton by one token from the current state.
 
         Parameters
@@ -187,32 +187,46 @@ class FiniteStateAutomaton():
         state_pointer : State
             Current state from which the step is evaluated.
         """
-        next_states = [] #stores all of the next states that can be jumped to
-        transitions = [] #store the transitions that transition from current to next states.
-        
-        #go through each transition of this state
+        next_states = []  # stores all of the next states that can be jumped to
+        transitions = (
+            []
+        )  # store the transitions that transition from current to next states.
+
+        # go through each transition of this state
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
-            #check if any transition's symbols match the input token
-            for read_symbol in transition.read_symbols: #Iterate through the transtion's read options
-                if read_symbol.tex_string == token.tex_string or read_symbol.tex_string == r"\epsilon":
+            # check if any transition's symbols match the input token
+            for (
+                read_symbol
+            ) in (
+                transition.read_symbols
+            ):  # Iterate through the transtion's read options
+                if (
+                    read_symbol.tex_string == token.tex_string
+                    or read_symbol.tex_string == r"\epsilon"
+                ):
                     next_states.append(transition.transition_to)
                     transitions.append(transition)
 
-
         if len(next_states) != 0:
-            return True, next_states, transitions #the token matches the transition's input
+            return (
+                True,
+                next_states,
+                transitions,
+            )  # the token matches the transition's input
 
-        return False, next_states, transitions #There are no other transitions/ reachable next states given the token
+        return (
+            False,
+            next_states,
+            transitions,
+        )  # There are no other transitions/ reachable next states given the token
 
-    #IMPORTANT
-    #if there is an epsilon transition then take it regardless of the input
-    #needs to be added
-    #also possibly redesign the play_string method.
+    # IMPORTANT
+    # if there is an epsilon transition then take it regardless of the input
+    # needs to be added
+    # also possibly redesign the play_string method.
 
-
-
-    #Transition Methods
+    # Transition Methods
     def get_transition_by_id(self, id: int) -> Transition | None:
         """Return the transition with the given identifier.
 
@@ -230,7 +244,6 @@ class FiniteStateAutomaton():
             if transition.id == id:
                 return transition
         return None
-
 
 
 class PushDownAutomaton(FiniteStateAutomaton):
@@ -253,12 +266,15 @@ class PushDownAutomaton(FiniteStateAutomaton):
                pda = PushDownAutomaton()
                label = Text(f"States: {len(pda.states)}", font_size=24)
                self.add(label)
-"""
+    """
+
     def __init__(self) -> None:
         """Initialize the PushDownAutomaton instance."""
         super().__init__()
 
-    def automaton_step(self, token: str, state_pointer: State, deterministic: bool = True) -> tuple[bool, list[State], list[int]]:
+    def automaton_step(
+        self, token: str, state_pointer: State, deterministic: bool = True
+    ) -> tuple[bool, list[State], list[int]]:
         """Perform one step of the automaton on the given token.
 
         Parameters
@@ -277,21 +293,41 @@ class PushDownAutomaton(FiniteStateAutomaton):
             token was accepted, the reachable next states, and the matching
             transition ids.
         """
-        next_states = [] #stores all of the next states that can be jumped to
-        transition_ids = [] #store the ids of the transitions that transition from current to next states.
-        
-        #go through each transition of this state
+        next_states = []  # stores all of the next states that can be jumped to
+        transition_ids = (
+            []
+        )  # store the ids of the transitions that transition from current to next states.
+
+        # go through each transition of this state
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
-            #check if any transition's symbols match the input token
-            for read_symbol in transition.read_symbols: #Iterate through the transtion's read options
+            # check if any transition's symbols match the input token
+            for (
+                read_symbol
+            ) in (
+                transition.read_symbols
+            ):  # Iterate through the transtion's read options
                 if read_symbol.tex_string == token.tex_string:
                     next_states.append(transition.transition_to)
                     transition_ids.append(transition.id)
-                    if deterministic: #pick the first valid transition and next state then returns.
-                        return True, next_states, transition_ids #the token matches the transition's input
+                    if (
+                        deterministic
+                    ):  # pick the first valid transition and next state then returns.
+                        return (
+                            True,
+                            next_states,
+                            transition_ids,
+                        )  # the token matches the transition's input
 
         if len(next_states) != 0:
-            return True, next_states, transition_ids #the token matches the transition's input
+            return (
+                True,
+                next_states,
+                transition_ids,
+            )  # the token matches the transition's input
 
-        return False, next_states, transition_ids #There are no other transitions/ reachable next states given the token
+        return (
+            False,
+            next_states,
+            transition_ids,
+        )  # There are no other transitions/ reachable next states given the token

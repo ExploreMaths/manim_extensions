@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-
-
 from manim import *
-class ManimAnimations():
 
+
+class ManimAnimations:
     """Default animation strategy for automata visualisation.
 
     This class encapsulates all individual animations used during automaton
@@ -31,12 +30,13 @@ class ManimAnimations():
                anim = ManimAnimations()
                circle = Circle()
                self.add(circle)
-"""
+    """
+
     def __init__(self) -> None:
         """Initialize the ManimAnimations instance."""
         pass
 
-    #state animations
+    # state animations
     def animate_dead_branch_state(self, state: Mobject) -> Animation:
         """Return an animation that marks a rejected state as dead.
 
@@ -67,7 +67,7 @@ class ManimAnimations():
         """
         return FadeToColor(state, color=PURE_YELLOW)
 
-    #transition animations
+    # transition animations
     def animate_transition_to_default_color(self, transition: Mobject) -> Animation:
         """Return an animation resetting a transition to its default color.
 
@@ -88,7 +88,7 @@ class ManimAnimations():
         """
         return FadeToColor(transition, color=PURE_YELLOW)
 
-    #input animations
+    # input animations
     def animate_input_token_spent(self, token: Mobject) -> Animation:
         """Return an animation marking an input token as consumed.
 
@@ -119,8 +119,10 @@ class ManimAnimations():
         """
         return FadeIn(input)
 
-    #subscript animations
-    def animate_transform_to_new_subscript_object(self, initial_subscript: Mobject, new_subscript: Mobject) -> Animation:
+    # subscript animations
+    def animate_transform_to_new_subscript_object(
+        self, initial_subscript: Mobject, new_subscript: Mobject
+    ) -> Animation:
         """Return a transform animation between two subscript labels.
 
         Parameters

@@ -3,13 +3,11 @@
 # SPDX-License-Identifier: MIT
 
 
-__all__ = [
-    'PutRuler',
-    'PutRulerAway'
-]
+__all__ = ["PutRuler", "PutRulerAway"]
 
 from manim import *
 from ..compass.ruler import Ruler
+
 
 class PutRuler(ApplyMethod):
     """Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
@@ -33,20 +31,11 @@ class PutRuler(ApplyMethod):
             The start point.
         end : Point
             The end point."""
-    def __init__(
-        self,
-        ruler:Ruler,
-        start:Point = None,
-        end:Point = None,
-        **kwargs
-    ):
+
+    def __init__(self, ruler: Ruler, start: Point = None, end: Point = None, **kwargs):
         """Initialize PutRuler."""
-        super().__init__(
-            ruler.set_ruler,
-            start,
-            end,
-            **kwargs
-        )
+        super().__init__(ruler.set_ruler, start, end, **kwargs)
+
 
 class PutRulerAway(PutRuler):
     """Put the ruler away: move the ruler to point.
@@ -70,12 +59,9 @@ class PutRulerAway(PutRuler):
             The placement position.
         is_flat : bool
             Whether to place it horizontally (or vertically)."""
+
     def __init__(
-        self,
-        ruler:Ruler,
-        point:Point = None,
-        is_flat:bool = True,
-        **kwargs
+        self, ruler: Ruler, point: Point = None, is_flat: bool = True, **kwargs
     ):
         """Initialize PutRulerAway."""
         if is_flat:
@@ -84,9 +70,4 @@ class PutRulerAway(PutRuler):
         else:
             start = point + UP
             end = point + DOWN
-        super().__init__(
-            ruler,
-            start,
-            end,
-            **kwargs
-        )
+        super().__init__(ruler, start, end, **kwargs)

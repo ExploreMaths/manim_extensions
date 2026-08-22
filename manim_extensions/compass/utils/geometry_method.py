@@ -4,10 +4,12 @@
 
 
 from manim import *
-__all__ =[
+
+__all__ = [
     "get_arc",
 ]
 import numpy as np
+
 
 def get_arc(
     niddle_pos: np.ndarray,
@@ -46,16 +48,17 @@ def get_arc(
                arc = get_arc(ORIGIN, RIGHT, PI / 2)
                self.add(arc)
     """
-    arc_radius = get_distance(niddle_pos,pen_pos)
+    arc_radius = get_distance(niddle_pos, pen_pos)
     vec_s = pen_pos - niddle_pos
     return Arc(
-        arc_center = niddle_pos,
-        radius = arc_radius,
-        start_angle = get_vecs_angle(RIGHT,vec_s),
-        angle = angle,
-        color = color,
-        **kwargs
+        arc_center=niddle_pos,
+        radius=arc_radius,
+        start_angle=get_vecs_angle(RIGHT, vec_s),
+        angle=angle,
+        color=color,
+        **kwargs,
     )
+
 
 def get_distance(
     point_start: np.ndarray,
@@ -72,6 +75,7 @@ def get_distance(
     """
     return np.linalg.norm(point_start - point_end)
 
+
 def is_counter_clockwise(
     vector_start: np.ndarray,
     vector_end: np.ndarray,
@@ -85,7 +89,8 @@ def is_counter_clockwise(
     vector_end : np.ndarray
         Ending vector whose orientation relative to the starting vector is evaluated.
     """
-    return np.cross(vector_start,vector_end)[-1] > 0
+    return np.cross(vector_start, vector_end)[-1] > 0
+
 
 def get_vecs_angle(
     vec_s: np.ndarray,
@@ -114,8 +119,7 @@ def get_vecs_angle(
     """
     angle = np.arccos(
         np.true_divide(
-            np.dot(vec_s,vec_e),
-            np.linalg.norm(vec_s) * np.linalg.norm(vec_e)
+            np.dot(vec_s, vec_e), np.linalg.norm(vec_s) * np.linalg.norm(vec_e)
         )
     )
-    return angle if is_counter_clockwise(vec_s,vec_e) else -angle
+    return angle if is_counter_clockwise(vec_s, vec_e) else -angle

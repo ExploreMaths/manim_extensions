@@ -12,12 +12,12 @@ Layout characteristics:
 - Third-level and deeper nodes are arranged vertically below their parent (vertical tree)
 - Sibling offsets are automatically adjusted to avoid overlaps
 """
-__all__ = [
-    'CatalogLayout'
-]
+
+__all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
 from typing import List, Optional, Any, Callable, Tuple
 from .layout import Layout
+
 
 @dataclass
 class CatalogNode:
@@ -46,7 +46,8 @@ class CatalogNode:
                cn = CatalogNode()
                label = Text(f"CatalogNode: {cn.width}x{cn.height}", font_size=24)
                self.add(label)
-"""
+    """
+
     data: Any = None
     width: float = 0.0
     height: float = 0.0
@@ -70,12 +71,13 @@ class CatalogNode:
         """
         org_node = cls()
         org_node.node = node
-        org_node.width = getattr(node, 'width', 0)
-        org_node.height = getattr(node, 'height', 0)
+        org_node.width = getattr(node, "width", 0)
+        org_node.height = getattr(node, "height", 0)
 
-        children = getattr(node, 'children', [])
+        children = getattr(node, "children", [])
         org_node.children = [cls.from_data(child) for child in children]
         return org_node
+
 
 class CatalogLayout(Layout):
     """Organisation-chart layout algorithm.
@@ -102,11 +104,9 @@ class CatalogLayout(Layout):
                label = Text("CatalogLayout algorithm", font_size=24)
                self.add(label)
     """
+
     def __init__(
-        self,
-        root: Any,
-        node_spacing: float = 0.5,
-        level_spacing: float = 0.5
+        self, root: Any, node_spacing: float = 0.5, level_spacing: float = 0.5
     ):
         """Initialize CatalogLayout."""
         self.root = CatalogNode.from_data(root)
@@ -172,7 +172,7 @@ class CatalogLayout(Layout):
         pre_cb: Optional[Callable] = None,
         post_cb: Optional[Callable] = None,
         layer: int = 0,
-        index: int = 0
+        index: int = 0,
     ):
         """Traverse the tree while running pre-order and post-order callbacks.
 
@@ -297,6 +297,7 @@ class CatalogLayout(Layout):
         """
         Step 1: create nodes, set the root position, and set the initial top of second-level nodes.
         """
+
         def pre_cb(node: CatalogNode, layer: int, _idx: int):
             """Pre-order callback: set initial top position for second-level nodes.
 
@@ -335,7 +336,9 @@ class CatalogLayout(Layout):
                 else:
                     children_width = sum(child.width for child in node.children)
                     margin_x = self._get_margin_x(layer + 1)
-                    node.children_area_width = children_width + (child_count + 1) * margin_x
+                    node.children_area_width = (
+                        children_width + (child_count + 1) * margin_x
+                    )
 
         self._walk(self.root, pre_cb=pre_cb, post_cb=post_cb)
 
@@ -345,6 +348,7 @@ class CatalogLayout(Layout):
         - Children of the root are arranged horizontally
         - Children of non-root nodes are arranged vertically
         """
+
         def pre_cb(node: CatalogNode, layer: int, _idx: int):
             """Pre-order callback: compute left and top positions for child nodes.
 
@@ -372,7 +376,9 @@ class CatalogLayout(Layout):
                 start_top = node.top + node.height + margin_y
                 current_top = start_top
                 for child in node.children:
-                    child.left = node.left + node.width * 0.5  # horizontally centred on parent
+                    child.left = (
+                        node.left + node.width * 0.5
+                    )  # horizontally centred on parent
                     child.top = current_top
                     current_top += child.height + margin_y
 
@@ -385,6 +391,7 @@ class CatalogLayout(Layout):
         - Pre-order: for non-root nodes with children, adjust vertical offset
         - Post-order: for the root, shift all children horizontally to centre the whole subtree
         """
+
         # Pre-order callback
         def pre_cb(node: CatalogNode, layer: int, _idx: int):
             # Horizontal adjustment (second-level nodes and their descendants)
@@ -407,10 +414,7 @@ class CatalogLayout(Layout):
             # Vertical adjustment (non-root nodes with children)
             if node.parent and node.parent.layer_index != 0 and node.children:
                 margin_y = self._get_margin_y(layer + 1)
-                total_height = sum(
-                    child.height + margin_y
-                    for child in node.children
-                )
+                total_height = sum(child.height + margin_y for child in node.children)
                 self._update_brothers_top(node, total_height)
 
         # Post-order callback: centre the whole subtree under the root
@@ -440,6 +444,7 @@ class CatalogLayout(Layout):
 
     def _applay_coords(self):
         """Apply the computed results to the original nodes."""
+
         def _applay_coords_for_node(node: CatalogNode):
             """Apply computed ``left``/``top`` coordinates to a node and its descendants.
 

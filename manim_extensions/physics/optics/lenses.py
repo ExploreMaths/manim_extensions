@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
-"""Lenses for refracting Rays.
-"""
+"""Lenses for refracting Rays."""
+
 from __future__ import annotations
 from typing import Iterable, Tuple
 
@@ -12,7 +12,6 @@ from manim import *
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 from shapely import geometry as gm
-
 
 __all__ = ["Lens"]
 
@@ -117,7 +116,8 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
            def construct(self):
                lens = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
                self.add(lens)
-"""
+    """
+
     def __init__(self, f: float, d: float, n: float = 1.52, **kwargs) -> None:
         """Initialize Lens."""
         super().__init__(**kwargs)

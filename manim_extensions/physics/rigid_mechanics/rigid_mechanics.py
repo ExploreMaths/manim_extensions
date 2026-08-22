@@ -44,7 +44,6 @@ __all__ = [
 ]
 
 
-
 class Space(Mobject, metaclass=ConvertToOpenGL):
     """Physics space that manages a pymunk simulation.
 
@@ -71,7 +70,8 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
            def construct(self):
                space = Space(gravity=(0, -9.81))
                self.add(space)
-"""
+    """
+
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
         """Initialize Space."""
         super().__init__(**kwargs)
@@ -118,6 +118,7 @@ class SpaceScene(Scene):
                self.make_rigid_body(circle)
                self.wait(1)
     """
+
     GRAVITY: Tuple[float, float] = 0, -9.81
 
     def __init__(self, renderer=None, **kwargs):
@@ -213,11 +214,11 @@ class SpaceScene(Scene):
     def stop_rigidity(self, *mobs: Mobject) -> None:
         """Stop the mobjects rigidity
 
-    Parameters
-    ----------
-    mobs : Mobject
-    Mobs processed by this operation.
-    """
+        Parameters
+        ----------
+        mobs : Mobject
+        Mobs processed by this operation.
+        """
         for mob in mobs:
             if isinstance(mob, VGroup or Group):
                 self.stop_rigidity(*mob)

@@ -86,8 +86,6 @@ class TypeWriter(Animation):
 
 import random
 
-
-
 # --- Rate functions ------------------------------------------------
 
 
@@ -619,7 +617,9 @@ class LaggedCreation(Animation):
         b = interpolate((1 - ratio) / 4, 3 / 2 + ratio / 4, alpha)
         return a, b
 
-    def interpolate_submobject(self, submobject, starting_submobject, alpha: float) -> None:
+    def interpolate_submobject(
+        self, submobject, starting_submobject, alpha: float
+    ) -> None:
         """Reveal *submobject* between the computed partial bounds.
 
         Parameters
@@ -634,7 +634,9 @@ class LaggedCreation(Animation):
         a, b = self.get_bounds(alpha)
         submobject.pointwise_become_partial(starting_submobject, a, b)
         if b > 1:
-            left_part = starting_submobject.copy().pointwise_become_partial(starting_submobject, 0, b - 1)
+            left_part = starting_submobject.copy().pointwise_become_partial(
+                starting_submobject, 0, b - 1
+            )
             submobject.append_points(left_part.get_points())
 
 

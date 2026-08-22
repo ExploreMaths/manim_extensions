@@ -44,7 +44,7 @@ class Source(VMobject):
                )
                src = Source(markings, letter="V", value=5)
                self.add(src)
-"""
+    """
 
     def __init__(
         self,
@@ -162,7 +162,7 @@ class Circuit(VMobject):
                circuit = Circuit()
                circuit.add_wire(LEFT * 3, RIGHT * 3)
                self.add(circuit)
-"""
+    """
 
     def __init__(self, **kwargs):
         """Initialize the Circuit instance."""
@@ -275,7 +275,6 @@ class Circuit(VMobject):
                         if not type(dot) == bool:
                             node.add_dot(dot)
 
-
             # This means that the wire is not attached to any node,
             # Make a new node.
             if len(intersections) == 0:
@@ -319,7 +318,7 @@ class Node(VMobject):
                node = Node()
                node.add_wire([LEFT * 2, ORIGIN, UP * 2])
                self.add(node)
-"""
+    """
 
     def __init__(self, **kwargs):
         """Initialize the Node instance."""

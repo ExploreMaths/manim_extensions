@@ -326,14 +326,18 @@ def LineArcInt(
 
         if angle > 0:
             if start_angle_mod < end_angle_mod:
-                valid = start_angle_mod - TOLERANCE <= theta <= end_angle_mod + TOLERANCE
+                valid = (
+                    start_angle_mod - TOLERANCE <= theta <= end_angle_mod + TOLERANCE
+                )
             else:
                 valid = (theta >= start_angle_mod - TOLERANCE) or (
                     theta <= end_angle_mod + TOLERANCE
                 )
         else:
             if end_angle_mod < start_angle_mod:
-                valid = end_angle_mod - TOLERANCE <= theta <= start_angle_mod + TOLERANCE
+                valid = (
+                    end_angle_mod - TOLERANCE <= theta <= start_angle_mod + TOLERANCE
+                )
             else:
                 valid = (theta <= start_angle_mod + TOLERANCE) or (
                     theta >= end_angle_mod - TOLERANCE
@@ -667,7 +671,9 @@ def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
                 if np.any(np.isnan(pts[i])):
                     i += 1
                     continue
-                curve = _sample_cubic_bezier(pts[i], pts[i + 1], pts[i + 2], pts[i + 3], samples)
+                curve = _sample_cubic_bezier(
+                    pts[i], pts[i + 1], pts[i + 2], pts[i + 3], samples
+                )
                 for j in range(len(curve) - 1):
                     segments.append((curve[j], curve[j + 1]))
                 i += 3
@@ -810,9 +816,7 @@ def TangentPoint(
         np.dot(midpoint - p1, perpendicular_dir)
         - np.dot(cross_mid_line, cross_perp_line)
     )
-    c = np.dot(midpoint - p1, midpoint - p1) - np.dot(
-        cross_mid_line, cross_mid_line
-    )
+    c = np.dot(midpoint - p1, midpoint - p1) - np.dot(cross_mid_line, cross_mid_line)
 
     # Special case: a is near zero (degenerate linear equation)
     if abs(a) < 1e-8:

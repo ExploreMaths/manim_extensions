@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-"""Contains classes to construct an array.
-
-"""
+"""Contains classes to construct an array."""
 
 from copy import deepcopy
 
@@ -248,7 +246,7 @@ class MArrayElement(VGroup):
         label_gap: float = 0.5,
         next_to_mob: "MArrayElement" = None,
         next_to_dir: np.ndarray = RIGHT,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initializes the class.
 
@@ -942,7 +940,7 @@ class MArray(VGroup):
                 anims_index.append(
                     update_anim(
                         (self.__mob_arr[i].fetch_mob(update_anim_target)),
-                        **update_anim_args
+                        **update_anim_args,
                     )
                 )
 
@@ -1052,7 +1050,7 @@ class MArray(VGroup):
         if init_arr_label:
             self.__mob_arr_label = Text(**self.__mob_arr_label_props)
             if len(self.__mob_arr):
-                (next_to_mob, label_pos) = self.__calc_label_pos_and_mob()
+                next_to_mob, label_pos = self.__calc_label_pos_and_mob()
                 self.__mob_arr_label.next_to(
                     next_to_mob, label_pos, self.__arr_label_gap
                 )
@@ -1093,7 +1091,7 @@ class MArray(VGroup):
         mob_square_args: dict = {},
         mob_value_args: dict = {},
         mob_index_args: dict = {},
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initializes the class.
 
@@ -1522,7 +1520,7 @@ class MArray(VGroup):
 
         self.__arr = self.__arr[0:index] + self.__arr[index + 1 :]
 
-        (remove_anim, update_indices) = self.__remove_elem(
+        remove_anim, update_indices = self.__remove_elem(
             index,
             removal_anim,
             update_anim,
@@ -1775,7 +1773,7 @@ class MArrayPointer(VGroup):
             self.__mob_arrow = Arrow(
                 start=(-arrow_pos_np + (arrow_pos_np * self.__arrow_len)),
                 end=-arrow_pos_np,
-                **self.__mob_arrow_props
+                **self.__mob_arrow_props,
             )
             self.__mob_arrow.next_to(
                 self.__arr.fetch_mob_arr()[self.__index].fetch_mob_square(),
@@ -1828,7 +1826,7 @@ class MArrayPointer(VGroup):
         pointer_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_arrow_args: dict = {},
         mob_label_args: dict = {},
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initializes the class.
 
@@ -2338,7 +2336,7 @@ class MArraySlidingWindow(VGroup):
         label_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_window_args: dict = {},
         mob_label_args: dict = {},
-        **kwargs
+        **kwargs,
     ) -> None:
         """Initializes the class.
 
