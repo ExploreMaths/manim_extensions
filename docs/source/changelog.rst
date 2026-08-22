@@ -4,8 +4,8 @@
 Changelog
 =========
 
-v1.0.4 (Unreleased)
---------------------
+v1.0.4
+------
 
 **Added**
 
@@ -48,6 +48,21 @@ v1.0.4 (Unreleased)
   and their corresponding Python validation scripts.
 * Removed module-level ``.. manim::`` directive examples from 16 Python files
   (the rendering engine does not display module-level manim examples).
+* Converted all absolute ``from manim_extensions.xxx`` imports to relative
+  imports across 12 files in ``meshes/`` and ``algorithm/`` subpackages
+  (``params.py``, ``templates.py``, ``helpers.py``, ``basic_mesh.py``,
+  ``opengl_mesh.py``, ``triangle_mesh.py``, ``mesh.py``, ``voronoi.py``,
+  ``divide_and_conquer.py``, ``delaunay_criterion.py``, ``array.py``,
+  ``test_numpy_helper.py``) to follow PEP 8 and reduce coupling.
+* Added ``package_data`` configuration in ``pyproject.toml`` to ensure
+  mesh model data files (``*.ply``, ``*.stl``) are included in
+  ``sdist`` and ``wheel`` distributions.
+* Added minimum version constraints to all third-party dependencies in
+  ``pyproject.toml`` — most importantly ``shapely>=2.0`` (required for
+  the new ``from shapely import geometry`` API used in optics),
+  plus ``Pillow>=9.0``, ``opencv-python>=4.5``, ``pymunk>=6.0``,
+  ``kociemba>=1.2``, ``trimesh>=4.0``, ``scipy>=1.9``,
+  and ``moderngl>=5.0``.
 
 **Removed**
 
@@ -125,33 +140,8 @@ v1.0.4 (Unreleased)
   and :class:`~manim_extensions.automata.mobjects.manim_nondeterministic_finite_automaton.ManimNondeterministicFiniteAutomaton`
   headings.
 
-**Changed**
-
-* Converted all absolute ``from manim_extensions.xxx`` imports to relative
-  imports across 12 files in ``meshes/`` and ``algorithm/`` subpackages
-  (``params.py``, ``templates.py``, ``helpers.py``, ``basic_mesh.py``,
-  ``opengl_mesh.py``, ``triangle_mesh.py``, ``mesh.py``, ``voronoi.py``,
-  ``divide_and_conquer.py``, ``delaunay_criterion.py``, ``array.py``,
-  ``test_numpy_helper.py``) to follow PEP 8 and reduce coupling.
-* Added ``package_data`` configuration in ``pyproject.toml`` to ensure
-  mesh model data files (``*.ply``, ``*.stl``) are included in
-  ``sdist`` and ``wheel`` distributions.
-* Added minimum version constraints to all third-party dependencies in
-  ``pyproject.toml`` — most importantly ``shapely>=2.0`` (required for
-  the new ``from shapely import geometry`` API used in optics),
-  plus ``Pillow>=9.0``, ``opencv-python>=4.5``, ``pymunk>=6.0``,
-  ``kociemba>=1.2``, ``trimesh>=4.0``, ``scipy>=1.9``,
-  and ``moderngl>=5.0``.
-
 v1.0.3
 ------
-
-**Full Changelog**: https://github.com/ExploreMaths/manim_extensions/compare/v1.0.2...v1.0.3
-
-**View on PyPI**: https://pypi.org/project/manim-extensions/1.0.3/
-
-What's Changed
-^^^^^^^^^^^^^^
 
 **Added**
 
@@ -171,13 +161,6 @@ What's Changed
 v1.0.2
 ------
 
-**Full Changelog**: https://github.com/ExploreMaths/manim_extensions/compare/v1.0.1...v1.0.2
-
-**View on PyPI**: https://pypi.org/project/manim-extensions/1.0.2/
-
-What's Changed
-^^^^^^^^^^^^^^
-
 **Changed**
 
 * Documentation theme switched to Furo, matching Manim Community's official documentation style.
@@ -185,26 +168,12 @@ What's Changed
 v1.0.1
 ------
 
-**Full Changelog**: https://github.com/ExploreMaths/manim_extensions/compare/v1.0.0...v1.0.1
-
-**View on PyPI**: https://pypi.org/project/manim-extensions/1.0.1/
-
-What's Changed
-^^^^^^^^^^^^^^
-
 **Fixed**
 
 * Fixed :class:`~manim_extensions.mobjects.LabelDot` center point calculation.
 
 v1.0.0
 ------
-
-**Full Changelog**: https://github.com/ExploreMaths/manim_extensions/commits/v1.0.0
-
-**View on PyPI**: https://pypi.org/project/manim-extensions/1.0.0/
-
-What's Changed
-^^^^^^^^^^^^^^
 
 **Added**
 
