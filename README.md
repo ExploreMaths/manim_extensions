@@ -10,6 +10,8 @@
 [![Python package](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml)
 [![Validate](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml)
 [![Docs](https://readthedocs.org/projects/manim-extensions/badge/?version=latest)](https://manim-extensions.readthedocs.io/en/latest/)
+[![Repo Size](https://img.shields.io/github/repo-size/ExploreMaths/manim_extensions?style=flat)](https://github.com/ExploreMaths/manim_extensions)
+ [![Monthly Downloads](https://img.shields.io/pypi/dm/manim_extensions?style=flat)](https://pypi.org/project/manim_extensions/)
 
 </div>
 
