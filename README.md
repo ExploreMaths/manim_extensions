@@ -5,13 +5,14 @@
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
 [![PyPI version](https://img.shields.io/pypi/v/manim-extensions.svg)](https://pypi.org/project/manim-extensions/)
+[![Latest Release](https://img.shields.io/github/v/release/ExploreMaths/manim_extensions.svg)](https://github.com/ExploreMaths/manim_extensions/releases/latest)
 [![Python versions](https://img.shields.io/pypi/pyversions/manim-extensions.svg)](https://pypi.org/project/manim-extensions/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python package](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml)
 [![Validate](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml)
 [![Docs](https://readthedocs.org/projects/manim-extensions/badge/?version=latest)](https://manim-extensions.readthedocs.io/en/latest/)
 [![Repo Size](https://img.shields.io/github/repo-size/ExploreMaths/manim_extensions?style=flat)](https://github.com/ExploreMaths/manim_extensions)
- [![Monthly Downloads](https://img.shields.io/pypi/dm/manim_extensions?style=flat)](https://pypi.org/project/manim_extensions/)
+[![Monthly Downloads](https://img.shields.io/pypi/dm/manim_extensions?style=flat)](https://pypi.org/project/manim_extensions/)
 
 </div>
 
