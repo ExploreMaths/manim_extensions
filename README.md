@@ -2,17 +2,45 @@
 
 # <img src="docs/source/_static/favicon.svg" align="top" width=45> Manim Extensions
 
+
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
-[![PyPI version](https://img.shields.io/pypi/v/manim-extensions.svg)](https://pypi.org/project/manim-extensions/)
-[![Latest Release](https://img.shields.io/github/v/release/ExploreMaths/manim_extensions.svg)](https://github.com/ExploreMaths/manim_extensions/releases/latest)
-[![Python versions](https://img.shields.io/pypi/pyversions/manim-extensions.svg)](https://pypi.org/project/manim-extensions/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python package](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml)
-[![Validate](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg)](https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml)
-[![Docs](https://readthedocs.org/projects/manim-extensions/badge/?version=latest)](https://manim-extensions.readthedocs.io/en/latest/)
-[![Repo Size](https://img.shields.io/github/repo-size/ExploreMaths/manim_extensions?style=flat)](https://github.com/ExploreMaths/manim_extensions)
-[![Monthly Downloads](https://img.shields.io/pypi/dm/manim_extensions?style=flat)](https://pypi.org/project/manim_extensions/)
+<table>
+  <tr>
+    <td><strong>📦 Package</strong></td>
+    <td>
+      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/v/manim-extensions?style=flat&logo=python&logoColor=white" /></a>
+      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/status/manim-extensions?style=flat&logo=python&logoColor=white" alt="PyPI Status"></a>
+      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/pyversions/manim-extensions?style=social&color=CB4040&logo=python" /></a>
+      <a href="https://pypi.org/project/manim-extensions/#files"><img src="https://img.shields.io/pypi/wheel/manim-extensions?style=flat&logo=python&logoColor=white" alt="PyPI Wheel"></a>
+      <br>
+      <a href="https://pypi.org/project/manim_extensions/"><img src="https://img.shields.io/pypi/dm/manim_extensions?style=social&logo=python" /></a>
+      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/implementation/manim-extensions?style=social&logo=python" alt="Python Implementation"></a>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>🚀 Repository</strong></td>
+    <td>
+      <a href="https://github.com/ExploreMaths/manim_extensions/releases/latest"><img src="https://img.shields.io/github/v/release/ExploreMaths/manim_extensions?style=flat&color=%2333fb950&logo=github&label=stable" /></a>
+      <a href="https://github.com/ExploreMaths/manim_extensions/releases/"><img src="https://img.shields.io/github/v/release/ExploreMaths/manim_extensions?include_prereleases&style=flat&color=%23ea7233&logo=github&label=latest" /></a>
+      <a href="https://github.com/ExploreMaths/manim_extensions"><img src="https://img.shields.io/github/repo-size/ExploreMaths/manim_extensions?style=social&logo=github" /></a>
+      <br>
+      <a href="https://github.com/ExploreMaths/manim_extensions/commits/main"><img src="https://img.shields.io/github/last-commit/ExploreMaths/manim_extensions?style=flat&logo=git&logoColor=white" alt="Last Commit"></a>
+      <a href="https://github.com/ExploreMaths/manim_extensions/graphs/commit-activity"><img src="https://img.shields.io/github/commit-activity/m/ExploreMaths/manim_extensions?style=social&logo=git" alt="Monthly Commit Activity"></a>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>✅ CI & Docs</strong></td>
+    <td>
+      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" /></a>
+      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" /></a>
+      <br>
+      <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" /></a>
+    </td>
+  </tr>
+</table>
 
 </div>
 
