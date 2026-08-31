@@ -10,9 +10,7 @@ from numpy.testing import assert_array_almost_equal
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "../.."))
-
-from ...utils.numpy_helper import NumpyHelper
+from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
 
 
 class TestNumpyHelper:

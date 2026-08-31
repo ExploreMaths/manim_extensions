@@ -11,8 +11,8 @@ from numpy.testing import assert_array_almost_equal
 import sys
 import os
 
-from ..array import Array
-from ..utils.numpy_helper import NumpyHelper
+from manim_extensions.algorithm.array import Array
+from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
 import shutil
 
 
@@ -26,20 +26,6 @@ class TestArray:
 
     def teardown_method(self):
         shutil.rmtree(self.TEST_MEDIA_DIR)
-
-    """
-    class Array(VMobject):
-
-    def __init__(
-        self,
-        data:List[NodeValue],
-        total_width:float|Node=None,
-        box_type=NodeConfig.BOX_TYPE,
-        box_color=NodeConfig.BOX_COLOR,
-        text_scale:float = 1.0,
-        **kwargs
-    ):
-    """
 
     @pytest.mark.parametrize(
         "data, total_width, box_type, box_color, text_scale",

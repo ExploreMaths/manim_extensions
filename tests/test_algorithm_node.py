@@ -12,8 +12,8 @@ import sys
 import os
 
 
-from ..node import Node, NodeConfig
-from ..utils.numpy_helper import NumpyHelper
+from manim_extensions.algorithm.node import Node, NodeConfig
+from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
 import shutil
 
 
@@ -82,14 +82,12 @@ class TestNode:
                 7,
                 Circle,
                 np.array((np.cos(-np.pi / 24), np.sin(-np.pi / 24), 0)),
-            ),  # 圆形对应的角度为 2*pi/48
+            ),
         ],
     )
     def test_node_get_slot(self, direction, index, box_type, expected):
         node = Node(box_type=box_type, width=2)
         point = node.get_slot(direction, index)
-        # 由于manim的圆形计算point_from_proportion是通过曲线计算的，所以存在一定的误差
-        # 这里atol=1e-3
         assert NumpyHelper.is_equal_vector(
             point, expected, atol=1e-3
         ), f"{point} != {expected}"
