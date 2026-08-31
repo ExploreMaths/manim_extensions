@@ -4,8 +4,7 @@
 
 import numpy as np
 
-from manim_extensions.gearbox import Gear
-from manim_extensions.gearbox import Rack
+from manim_extensions.gearbox import Gear, Rack
 
 
 def test_gear_constructor_and_fields():
