@@ -7,40 +7,19 @@ Geometry
 
 .. module:: manim_extensions.geometry
 
-This module contains pure geometric calculation functions that operate on
-Manim primitives (:class:`~manim.mobject.geometry.arc.Circle`, :class:`~manim.mobject.geometry.line.Line`,
-:class:`~manim.mobject.geometry.arc.Arc`) without creating any on-screen mobjects.  They are useful
-for analytic geometry tasks inside a :class:`~manim.scene.scene.Scene`.
+This module contains geometric calculation functions that operate directly on
+Manim mobjects without creating any on-screen mobjects themselves.
+:func:`~manim_extensions.geometry.VMobjectInt` works with *any* two
+:class:`~manim.mobject.types.vectorized_mobject.VMobject` instances — circles,
+lines, arcs, polygons, parametric curves, text, groups, and so on — by
+intersecting their cubic Bézier outlines, so it needs no special cases for
+particular mobject types.  They are useful for analytic geometry tasks inside
+a :class:`~manim.scene.scene.Scene`.
 
-CircleInt
-----------
+VMobjectInt
+-----------
 
-.. autofunction:: manim_extensions.geometry.CircleInt
-
-LineCircleInt
--------------
-
-.. autofunction:: manim_extensions.geometry.LineCircleInt
-
-LineInt
--------
-
-.. autofunction:: manim_extensions.geometry.LineInt
-
-LineArcInt
-----------
-
-.. autofunction:: manim_extensions.geometry.LineArcInt
-
-ArcInt
-------
-
-.. autofunction:: manim_extensions.geometry.ArcInt
-
-MobjectInt
-----------
-
-.. autofunction:: manim_extensions.geometry.MobjectInt
+.. autofunction:: manim_extensions.geometry.VMobjectInt
 
 TangentPoint
 ------------

@@ -4,8 +4,11 @@
 
 """Geometric helper functions for Manim scenes.
 
-This module collects common intersection routines used to position and analyse
-primitives such as circles, lines, and arcs within Manim visualisations.
+This module provides intersection routines that operate directly on Manim
+mobjects.  :func:`~manim_extensions.geometry.VMobjectInt` works with any two
+:class:`~manim.mobject.types.vectorized_mobject.VMobject` instances (circles,
+lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
+their cubic Bézier outlines, so no type-specific cases are needed.
 
 Examples
 
@@ -15,683 +18,372 @@ Examples
    :save_last_frame:
 
    from manim import *
-   from manim_extensions import CircleInt, LineInt
+   from manim_extensions import VMobjectInt, LabelDot
 
    class GeometryModuleDocExample(Scene):
        def construct(self):
            c1 = Circle(radius=1.4, color=BLUE)
            c2 = Circle(radius=1.4, color=RED).shift(RIGHT * 1.2)
+           pts = VMobjectInt(c1, c2)
            self.add(c1, c2)
+           for p in pts:
+               self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
 """
 
 from manim import *
 import math
 import numpy as np
-from typing import Optional, Tuple, Union
+from typing import Optional, Union
 
 
-def CircleInt(
-    circle1: Circle, circle2: Circle
-) -> Optional[Tuple[list[float], list[float]]]:
-    """Compute the intersection points of two circles.
-
-    Solves the geometric intersection of two circles (or spheres in 3-D).
-    When both circles are coplanar (z‑coordinates match) the classic 2‑D
-    circle–circle formula is used.  Otherwise the circles are treated as
-    spheres and the two points on the resulting intersection circle closest
-    to the line joining the sphere centres are returned.
-
-    Parameters
-    ----------
-    circle1 : :class:`~manim.mobject.geometry.arc.Circle`
-        The first circle.
-    circle2 : :class:`~manim.mobject.geometry.arc.Circle`
-        The second circle.
-
-    Returns
-    -------
-    Optional[Tuple[list[float], list[float]]]
-        A tuple ``(point1, point2)`` where each point is a 3‑D coordinate
-        ``[x, y, z]`` if the circles intersect; otherwise ``None``.
-
-    Examples
-    --------
-    .. manim:: CircleIntDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions import CircleInt, LabelDot
-
-       class CircleIntDocExample(Scene):
-           def construct(self):
-               c1 = Circle(radius=2, color=BLUE).shift(LEFT)
-               c2 = Circle(radius=2, color=GREEN).shift(RIGHT)
-               pts = CircleInt(c1, c2)
-
-               self.add(c1, c2)
-               if pts:
-                   for i, p in enumerate(pts):
-                       self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
-    """
-    c1 = np.asarray(circle1.get_center(), dtype=float)
-    r1 = circle1.radius
-    c2 = np.asarray(circle2.get_center(), dtype=float)
-    r2 = circle2.radius
-
-    d_vec = c2 - c1
-    d = np.linalg.norm(d_vec)
-    if d > r1 + r2 + 1e-9 or d < abs(r1 - r2) - 1e-9:
-        return None
-
-    a = (r1**2 - r2**2 + d**2) / (2 * d)
-    h_sq = r1**2 - a**2
-    if h_sq < 0:
-        return None
-    h = math.sqrt(h_sq)
-
-    mid = c1 + a * d_vec / d
-    normal = d_vec / d
-
-    if abs(normal[0]) < 0.9:
-        u = np.array([1.0, 0.0, 0.0])
-    else:
-        u = np.array([0.0, 1.0, 0.0])
-    v = np.cross(normal, u)
-    v = v / np.linalg.norm(v)
-    u = np.cross(v, normal)
-    u = u / np.linalg.norm(u)
-
-    pt1 = mid + h * u
-    pt2 = mid - h * u
-
-    return pt1.tolist(), pt2.tolist()
-
-
-def LineCircleInt(
-    line: Line, circle: Circle
-) -> Optional[Union[Tuple[np.ndarray, np.ndarray], np.ndarray]]:
-    """Compute the intersection points of a line segment and a circle (sphere in 3-D).
-
-    Only points that lie within the segment parameter range ``[0, 1]``
-    are returned.
-
-    Parameters
-    ----------
-    line : :class:`~manim.mobject.geometry.line.Line`
-        The line segment.
-    circle : :class:`~manim.mobject.geometry.arc.Circle`
-        The circle.
-
-    Returns
-    -------
-    Optional[Union[Tuple[numpy.ndarray, numpy.ndarray], numpy.ndarray]]
-        * Two intersection points as a tuple if the segment cuts the sphere
-          twice.
-        * A single :class:`numpy.ndarray` if the segment is tangent to the
-          sphere.
-        * ``None`` if there is no intersection.
-
-    Examples
-    --------
-    .. manim:: LineCircleIntDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions import LineCircleInt, LabelDot
-
-       class LineCircleIntDocExample(Scene):
-           def construct(self):
-               line = Line(LEFT * 3, RIGHT * 3)
-               circle = Circle(radius=2, color=BLUE)
-               pts = LineCircleInt(line, circle)
-
-               self.add(line, circle)
-               if pts:
-                   for p in (pts if isinstance(pts, tuple) else [pts]):
-                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
-    """
-    p1 = np.asarray(line.get_start(), dtype=float)
-    p2 = np.asarray(line.get_end(), dtype=float)
-    c = np.asarray(circle.get_center(), dtype=float)
-    r = circle.radius
-    d = p2 - p1
-    f = p1 - c
-    a = np.dot(d, d)
-    b = 2.0 * np.dot(f, d)
-    c_ = np.dot(f, f) - r**2
-    discriminant = b**2 - 4 * a * c_
-    if discriminant < 0:
-        return None
-    sqrt_d = math.sqrt(discriminant)
-    t1 = (-b + sqrt_d) / (2 * a)
-    t2 = (-b - sqrt_d) / (2 * a)
-    intersections = []
-    for t in [t1, t2]:
-        if 0 <= t <= 1:
-            intersection = p1 + t * d
-            intersections.append(intersection)
-    try:
-        return intersections[0], intersections[1]
-    except Exception:
-        try:
-            return intersections[0]
-        except Exception:
-            return None
-
-
-def LineInt(line1: Line, line2: Line) -> Optional[list[float]]:
-    """Compute the intersection of two (infinitely extended) lines.
-
-    Calculates the intersection point in 3‑D space.  Returns ``None``
-    if the lines are parallel or skew.
-
-    Parameters
-    ----------
-    line1 : :class:`~manim.mobject.geometry.line.Line`
-        The first line.
-    line2 : :class:`~manim.mobject.geometry.line.Line`
-        The second line.
-
-    Returns
-    -------
-    Optional[list[float]]
-        The intersection point ``[x, y, z]`` if the lines intersect;
-        otherwise ``None``.
-
-    Examples
-    --------
-    .. manim:: LineIntDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions import LineInt, LabelDot
-
-       class LineIntDocExample(Scene):
-           def construct(self):
-               l1 = Line(LEFT * 3, RIGHT * 3)
-               l2 = Line(DOWN * 2, UP * 2)
-               p = LineInt(l1, l2)
-
-               self.add(l1, l2)
-               if p is not None:
-                   self.add(LabelDot("P", p, label_pos=UR, buff=0.1))
-    """
-    p1 = np.asarray(line1.get_start(), dtype=float)
-    p2 = np.asarray(line1.get_end(), dtype=float)
-    p3 = np.asarray(line2.get_start(), dtype=float)
-    p4 = np.asarray(line2.get_end(), dtype=float)
-
-    d1 = p2 - p1
-    d2 = p4 - p3
-
-    normal = np.cross(d1, d2)
-    norm_sq = np.dot(normal, normal)
-    if norm_sq < 1e-18:
-        return None
-
-    if abs(np.dot(p3 - p1, normal)) > 1e-9:
-        return None
-
-    t = np.dot(np.cross(p3 - p1, d2), normal) / norm_sq
-    return (p1 + t * d1).tolist()
-
-
-def LineArcInt(
-    line: Line, arc: Arc
-) -> Optional[Union[Tuple[list[float], list[float]], list[float]]]:
-    """Compute the intersection points of a line segment and an arc.
-
-    The function checks whether each candidate intersection point actually
-    lies within the angular span of the arc.  The circle containing the arc
-    is treated as a sphere in 3‑D.
-
-    Parameters
-    ----------
-    line : :class:`~manim.mobject.geometry.line.Line`
-        The line segment.
-    arc : :class:`~manim.mobject.geometry.arc.Arc`
-        The arc.
-
-    Returns
-    -------
-    Optional[Union[Tuple[list[float], list[float]], list[float]]]
-        * A tuple of two points ``([x1, y1, z1], [x2, y2, z2])`` for two
-          intersections.
-        * A single point ``[x, y, z]`` for one intersection.
-        * ``None`` if there is no intersection.
-
-    Examples
-    --------
-    .. manim:: LineArcIntDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions import LineArcInt, LabelDot
-
-       class LineArcIntDocExample(Scene):
-           def construct(self):
-               line = Line(LEFT * 2, RIGHT * 2)
-               arc = Arc(start_angle=PI/4, angle=PI, radius=1.5, color=BLUE)
-               pts = LineArcInt(line, arc)
-
-               self.add(line, arc)
-               if pts:
-                   for p in (pts if isinstance(pts, tuple) else [pts]):
-                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
-    """
-    p1 = np.asarray(line.get_start(), dtype=float)
-    p2 = np.asarray(line.get_end(), dtype=float)
-
-    direction = p2 - p1
-    length = np.linalg.norm(direction)
-    if length < 1e-8:
-        return None
-
-    center = np.asarray(arc.arc_center, dtype=float)
-    radius = arc.radius
-    start_angle = arc.start_angle
-    angle = arc.angle
-
-    p1_centered = p1 - center
-    p2_centered = p2 - center
-    dx = p2_centered - p1_centered
-
-    a = np.dot(dx, dx)
-    b = 2.0 * np.dot(p1_centered, dx)
-    c_ = np.dot(p1_centered, p1_centered) - radius**2
-    discriminant = b**2 - 4 * a * c_
-
-    if discriminant < 0:
-        return None
-
-    sqrt_d = math.sqrt(discriminant)
-    t1 = (-b + sqrt_d) / (2 * a)
-    t2 = (-b - sqrt_d) / (2 * a)
-    t_values = []
-    for t in [t1, t2]:
-        if 0 <= t <= 1 and (len(t_values) == 0 or abs(t - t_values[0]) > 1e-8):
-            t_values.append(t)
-
-    intersections = []
-    TOLERANCE = 1e-6
-    for t in t_values:
-        pt = p1 + t * dx
-        rel = pt - center
-        x = rel[0]
-        y = rel[1]
-        theta = math.atan2(y, x) % (2 * math.pi)
-
-        start_angle_mod = start_angle % (2 * math.pi)
-        end_angle_mod = (start_angle + angle) % (2 * math.pi)
-
-        if angle > 0:
-            if start_angle_mod < end_angle_mod:
-                valid = (
-                    start_angle_mod - TOLERANCE <= theta <= end_angle_mod + TOLERANCE
-                )
-            else:
-                valid = (theta >= start_angle_mod - TOLERANCE) or (
-                    theta <= end_angle_mod + TOLERANCE
-                )
-        else:
-            if end_angle_mod < start_angle_mod:
-                valid = (
-                    end_angle_mod - TOLERANCE <= theta <= start_angle_mod + TOLERANCE
-                )
-            else:
-                valid = (theta <= start_angle_mod + TOLERANCE) or (
-                    theta >= end_angle_mod - TOLERANCE
-                )
-
-        if valid:
-            intersections.append(pt.tolist())
-
-    try:
-        return intersections[0], intersections[1]
-    except Exception:
-        try:
-            return intersections[0]
-        except Exception:
-            return None
-
-
-def _angle_in_arc(
-    theta: float,
-    start_angle: float,
-    angle: float,
+def VMobjectInt(
+    vmob1: VMobject,
+    vmob2: VMobject,
     tolerance: float = 1e-6,
-) -> bool:
-    """Check whether an angle lies within an arc's angular span.
+    flatness: float = 1e-6,
+    max_depth: int = 32,
+) -> list:
+    r"""Compute all intersection points of two arbitrary VMobjects.
+
+    Every :class:`~manim.mobject.types.vectorized_mobject.VMobject` stores its
+    outline as a sequence of cubic Bézier curves, so this function treats the
+    two inputs uniformly as families of cubic Bézier curves and intersects
+    them *without* any type-specific special cases.  The algorithm is:
+
+    * the Bézier tree of each mobject (including submobjects) is collected,
+      skipping ``NaN`` path-break markers;
+    * each curve pair is recursively subdivided with de Casteljau's
+      algorithm, always splitting the less flat curve;
+    * pairs whose control-point bounding boxes do not overlap are pruned
+      immediately — a Bézier curve is always contained in the convex hull
+      (and hence the bounding box) of its control points, so this never
+      discards a real intersection;
+    * once both sub-curves deviate from their chords by less than
+      *flatness*, they are treated as line segments and a closest-point
+      test (with a distance tolerance accounting for the approximation
+      error) decides whether the true curves meet;
+    * coincident, overlapping curve pieces report the endpoints of their
+      common interval instead of infinitely many points.
+
+    Tangencies, crossings at curve joins and intersections in 3-D are all
+    handled by the same subdivision loop.  When the same mobject is passed
+    for both arguments the function reports its self-intersections (shared
+    path-join anchors are filtered out).
 
     Parameters
     ----------
-    theta : float
-        The angle to test (radians, 0..2π).
-    start_angle : float
-        Start angle of the arc (radians).
-    angle : float
-        Angular span of the arc (positive = counter-clockwise,
-        negative = clockwise).
+    vmob1 : :class:`~manim.mobject.types.vectorized_mobject.VMobject`
+        The first vectorised mobject.
+    vmob2 : :class:`~manim.mobject.types.vectorized_mobject.VMobject`
+        The second vectorised mobject.
     tolerance : float
-        Angular tolerance in radians.
+        Distance below which two points are considered the same
+        intersection, and the base acceptance distance for the flat
+        segment closest-point test.
+    flatness : float
+        Maximum allowed deviation of a Bézier sub-curve's control points
+        from its chord before the sub-curve is treated as a straight
+        segment.  Smaller values yield more accurate intersection points
+        at the cost of more subdivision.
+    max_depth : int
+        Maximum number of recursive subdivision levels.  Guarantees
+        termination for pathological configurations such as tangencies.
 
     Returns
     -------
-    bool
-        ``True`` if *theta* lies within the arc, ``False`` otherwise.
-    """
-    start_mod = start_angle % (2 * np.pi)
-    end_mod = (start_angle + angle) % (2 * np.pi)
-    if angle > 0:
-        if start_mod < end_mod:
-            return start_mod - tolerance <= theta <= end_mod + tolerance
-        return theta >= start_mod - tolerance or theta <= end_mod + tolerance
-    else:
-        if end_mod < start_mod:
-            return end_mod - tolerance <= theta <= start_mod + tolerance
-        return theta <= start_mod + tolerance or theta >= end_mod - tolerance
-
-
-def ArcInt(
-    arc1: Arc, arc2: Arc
-) -> Optional[Union[Tuple[list[float], list[float]], list[float]]]:
-    """Compute the intersection points of two arcs.
-
-    First computes the intersection points of the two full spheres defined by
-    the arcs, then filters to keep only points that lie within the angular
-    span of both arcs.
-
-    Parameters
-    ----------
-    arc1 : :class:`~manim.mobject.geometry.arc.Arc`
-        The first arc.
-    arc2 : :class:`~manim.mobject.geometry.arc.Arc`
-        The second arc.
-
-    Returns
-    -------
-    Optional[Union[Tuple[list[float], list[float]], list[float]]]
-        * A tuple of two points ``([x1, y1, z1], [x2, y2, z2])`` for two
-          intersections.
-        * A single point ``[x, y, z]`` for one intersection.
-        * ``None`` if there is no intersection.
+    list of numpy.ndarray
+        All intersection points as 3-D arrays.  An empty list is returned
+        when the mobjects do not meet.  If the two outlines overlap along
+        a curve segment, the endpoints of the overlapping region are
+        returned.
 
     Examples
     --------
-    .. manim:: ArcIntDocExample
+    .. manim:: VMobjectIntDocExample
        :save_last_frame:
 
        from manim import *
-       from manim_extensions import ArcInt, LabelDot
+       from manim_extensions import VMobjectInt, LabelDot
 
-       class ArcIntDocExample(Scene):
+       class VMobjectIntDocExample(Scene):
            def construct(self):
-               arc1 = Arc(radius=2, start_angle=PI*3/4, angle=PI/2, color=BLUE).shift(LEFT)
-               arc2 = Arc(radius=2, start_angle=PI/4, angle=PI/2, color=GREEN).shift(RIGHT)
-               pts = ArcInt(arc1, arc2)
+               circle = Circle(radius=1.5, color=BLUE)
+               curve = ParametricFunction(
+                   lambda t: [t, 0.5 * t**2 - 1.2, 0],
+                   t_range=[-2.5, 2.5],
+                   color=RED,
+               )
+               pts = VMobjectInt(circle, curve)
 
-               self.add(arc1, arc2)
-               if pts:
-                   for p in (pts if isinstance(pts, tuple) else [pts]):
-                       self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
-    """
-    c1 = np.asarray(arc1.arc_center, dtype=float)
-    r1 = arc1.radius
-    c2 = np.asarray(arc2.arc_center, dtype=float)
-    r2 = arc2.radius
-
-    d_vec = c2 - c1
-    d = np.linalg.norm(d_vec)
-    if d <= 1e-9 or d > r1 + r2 or d < abs(r1 - r2):
-        return None
-
-    a = (r1**2 - r2**2 + d**2) / (2 * d)
-    h_sq = r1**2 - a**2
-    if h_sq < 0:
-        return None
-    h = math.sqrt(h_sq)
-
-    mid = c1 + a * d_vec / d
-    normal = d_vec / d
-
-    if abs(normal[0]) < 0.9:
-        u = np.array([1.0, 0.0, 0.0])
-    else:
-        u = np.array([0.0, 1.0, 0.0])
-    v = np.cross(normal, u)
-    v = v / np.linalg.norm(v)
-    u = np.cross(v, normal)
-    u = u / np.linalg.norm(u)
-
-    candidates = [mid + h * u, mid - h * u]
-
-    start1 = arc1.start_angle
-    angle1 = arc1.angle
-    start2 = arc2.start_angle
-    angle2 = arc2.angle
-
-    TOL = 1e-6
-    intersections = []
-    for pt in candidates:
-        dx1 = pt[0] - c1[0]
-        dy1 = pt[1] - c1[1]
-        theta1 = math.atan2(dy1, dx1) % (2 * math.pi)
-        if not _angle_in_arc(theta1, start1, angle1, TOL):
-            continue
-        dx2 = pt[0] - c2[0]
-        dy2 = pt[1] - c2[1]
-        theta2 = math.atan2(dy2, dx2) % (2 * math.pi)
-        if not _angle_in_arc(theta2, start2, angle2, TOL):
-            continue
-        intersections.append(pt.tolist())
-
-    try:
-        return intersections[0], intersections[1]
-    except Exception:
-        try:
-            return intersections[0]
-        except Exception:
-            return None
-
-
-def MobjectInt(mob1: Mobject, mob2: Mobject) -> list:
-    """Compute all intersection points between two mobjects.
-
-    Exact formulas are used for :class:`~manim.mobject.geometry.arc.Circle`, :class:`~manim.mobject.geometry.line.Line` and :class:`~manim.mobject.geometry.arc.Arc` combinations.
-    For arbitrary :class:`~manim.mobject.types.vectorized_mobject.VMobject` instances, the boundary is approximated by a
-    polygonal chain and segment–segment intersections are reported.  Groups and
-    :class:`~manim.mobject.types.vectorized_mobject.VGroup` instances are processed recursively over their submobjects.
-
-    Parameters
-    ----------
-    mob1 : :class:`~manim.mobject.mobject.Mobject`
-        First mobject.
-    mob2 : :class:`~manim.mobject.mobject.Mobject`
-        Second mobject.
-
-    Returns
-    -------
-    list
-        A list of all intersection points (each a 3-D point). Returns an empty
-        list if the objects do not intersect.
-
-    Examples
-    --------
-    .. manim:: MobjectIntDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions import MobjectInt, LabelDot
-
-       class MobjectIntDocExample(Scene):
-           def construct(self):
-               c1 = Circle(radius=1.5, color=BLUE).shift(LEFT)
-               c2 = Circle(radius=1.5, color=GREEN).shift(RIGHT)
-               line = Line(UP * 2, DOWN * 2, color=RED)
-
-               pts = []
-               pts.extend(MobjectInt(c1, c2))
-               pts.extend(MobjectInt(c1, line))
-
-               self.add(c1, c2, line)
+               self.add(circle, curve)
                for i, p in enumerate(pts):
                    self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
     """
 
-    @staticmethod
-    def _to_list(result):
-        """Normalise an intersection result into a list of numpy arrays.
+    def _extract_beziers(mob):
+        """Collect every cubic Bézier segment in a mobject tree.
 
-        Parameters
-        ----------
-        result
-            Raw intersection result — may be ``None``, a tuple/list of
-            points, or a single point.
-
-        Returns
-        -------
-        list of numpy.ndarray
-            Intersection points as 3-D arrays.
-        """
-        if result is None:
-            return []
-        if isinstance(result, tuple):
-            return [np.array(p) for p in result]
-        if isinstance(result, list):
-            return [np.array(p) for p in result]
-        return [np.array(result)]
-
-    # Exact analytic cases ----------------------------------------------------
-    if isinstance(mob1, Circle) and isinstance(mob2, Circle):
-        return _to_list(CircleInt(mob1, mob2))
-    if isinstance(mob1, Line) and isinstance(mob2, Circle):
-        return _to_list(LineCircleInt(mob1, mob2))
-    if isinstance(mob1, Circle) and isinstance(mob2, Line):
-        return _to_list(LineCircleInt(mob2, mob1))
-    if isinstance(mob1, Line) and isinstance(mob2, Line):
-        return _to_list(LineInt(mob1, mob2))
-    if isinstance(mob1, Line) and isinstance(mob2, Arc):
-        return _to_list(LineArcInt(mob1, mob2))
-    if isinstance(mob1, Arc) and isinstance(mob2, Line):
-        return _to_list(LineArcInt(mob2, mob1))
-    if isinstance(mob1, Arc) and isinstance(mob2, Arc):
-        return _to_list(ArcInt(mob1, mob2))
-
-    # Generic VMobject sampling ----------------------------------------------
-    @staticmethod
-    def _segment_intersection(a1, a2, b1, b2):
-        """Compute the intersection point of two 3-D line segments.
-
-        Parameters
-        ----------
-        a1, a2 : numpy.ndarray
-            Endpoints of the first segment.
-        b1, b2 : numpy.ndarray
-            Endpoints of the second segment.
-
-        Returns
-        -------
-        numpy.ndarray or None
-            The 3-D intersection point, or ``None`` if the segments do not
-            intersect.
-        """
-        a1 = np.asarray(a1, dtype=float)
-        a2 = np.asarray(a2, dtype=float)
-        b1 = np.asarray(b1, dtype=float)
-        b2 = np.asarray(b2, dtype=float)
-
-        d1 = a2 - a1
-        d2 = b2 - b1
-
-        normal = np.cross(d1, d2)
-        norm_sq = np.dot(normal, normal)
-        if norm_sq < 1e-18:
-            return None
-
-        if abs(np.dot(b1 - a1, normal)) > 1e-9:
-            return None
-
-        t = np.dot(np.cross(b1 - a1, d2), normal) / norm_sq
-        u = np.dot(np.cross(b1 - a1, d1), normal) / norm_sq
-
-        if -1e-9 <= t <= 1 + 1e-9 and -1e-9 <= u <= 1 + 1e-9:
-            t = max(0.0, min(1.0, t))
-            u = max(0.0, min(1.0, u))
-            return a1 + t * d1
-        return None
-
-    @staticmethod
-    def _sample_cubic_bezier(p0, p1, p2, p3, n=25):
-        """Sample points along a cubic Bezier curve defined by four control points.
-
-        Parameters
-        ----------
-        p0, p1, p2, p3 : numpy.ndarray
-            Control points of the cubic Bezier curve.
-        n : int
-            Number of sample points.
-
-        Returns
-        -------
-        numpy.ndarray
-            Array of shape ``(n, 3)`` with the sampled points.
-        """
-        t = np.linspace(0, 1, n)
-        return (
-            (1 - t) ** 3 * p0[:, None]
-            + 3 * (1 - t) ** 2 * t * p1[:, None]
-            + 3 * (1 - t) * t**2 * p2[:, None]
-            + t**3 * p3[:, None]
-        ).T
-
-    @staticmethod
-    def _collect_segments(mob, samples=25):
-        """Recursively collect line segments from a VMobject's cubic Bezier curves.
+        Each VMobject stores its outline as groups of four control points
+        ``[anchor, handle, handle, anchor]`` per cubic Bézier curve; this
+        helper reads them through Manim's own
+        :meth:`~manim.mobject.types.vectorized_mobject.VMobject.get_cubic_bezier_tuples`
+        API, so every mobject type (lines, circles, text, parametric
+        curves, groups, ...) is treated identically.
 
         Parameters
         ----------
         mob : Mobject
-            The mobject to sample.
-        samples : int
-            Number of sample points per cubic Bezier segment.
+            The mobject to traverse.
 
         Returns
         -------
-        list of tuple
-            Pairs of numpy arrays representing line segments.
+        list of numpy.ndarray
+            Arrays of shape ``(4, 3)`` holding the control points of each
+            cubic Bézier segment.
         """
-        segments = []
-        if hasattr(mob, "submobjects") and mob.submobjects:
-            for sub in mob.submobjects:
-                segments.extend(_collect_segments(sub, samples))
-        if isinstance(mob, VMobject) and len(mob.points) >= 4:
-            pts = mob.points
-            i = 0
-            while i + 3 < len(pts):
-                if np.any(np.isnan(pts[i])):
-                    i += 1
-                    continue
-                curve = _sample_cubic_bezier(
-                    pts[i], pts[i + 1], pts[i + 2], pts[i + 3], samples
-                )
-                for j in range(len(curve) - 1):
-                    segments.append((curve[j], curve[j + 1]))
-                i += 3
-        return segments
+        beziers = []
+        for sub in mob.submobjects:
+            beziers.extend(_extract_beziers(sub))
+        pts = getattr(mob, "points", None)
+        if pts is not None and len(pts) >= 4:
+            if hasattr(mob, "get_cubic_bezier_tuples"):
+                tuples = mob.get_cubic_bezier_tuples()
+            else:
+                n_per_curve = 4
+                trimmed = pts[: len(pts) - len(pts) % n_per_curve]
+                tuples = [
+                    trimmed[i:i + n_per_curve]
+                    for i in range(0, len(trimmed), n_per_curve)
+                ]
+            for tup in tuples:
+                if len(tup) >= 4 and not np.any(np.isnan(tup)):
+                    beziers.append(np.array(tup[:4], dtype=float, copy=True))
+        return beziers
 
-    segs1 = _collect_segments(mob1)
-    segs2 = _collect_segments(mob2)
+    def _split_cubic(c, t=0.5):
+        """Split a cubic Bézier curve at parameter *t* (de Casteljau).
 
-    intersections = []
-    for a1, a2 in segs1:
-        for b1, b2 in segs2:
-            p = _segment_intersection(a1, a2, b1, b2)
-            if p is not None:
-                # Deduplicate near-duplicate points (common at curve joins).
-                if not any(np.linalg.norm(p - q) < 1e-6 for q in intersections):
-                    intersections.append(p)
+        Parameters
+        ----------
+        c : numpy.ndarray
+            Array of shape ``(4, 3)`` with the control points.
+        t : float
+            Split parameter in ``[0, 1]``.
 
-    return intersections
+        Returns
+        -------
+        tuple of numpy.ndarray
+            The two sub-curves, each of shape ``(4, 3)``.
+        """
+        p0, p1, p2, p3 = c
+        a0 = p0 + t * (p1 - p0)
+        a1 = p1 + t * (p2 - p1)
+        a2 = p2 + t * (p3 - p2)
+        b0 = a0 + t * (a1 - a0)
+        b1 = a1 + t * (a2 - a1)
+        c0 = b0 + t * (b1 - b0)
+        left = np.array([p0, a0, b0, c0], dtype=float)
+        right = np.array([c0, b1, a2, p3], dtype=float)
+        return left, right
+
+    def _flatness_sq(c):
+        """Squared maximum distance of the inner control points to the chord.
+
+        Parameters
+        ----------
+        c : numpy.ndarray
+            Array of shape ``(4, 3)`` with the control points.
+
+        Returns
+        -------
+        float
+            Squared flatness of the curve.
+        """
+        a, b = c[0], c[3]
+        ab = b - a
+        norm = float(np.dot(ab, ab))
+        worst = 0.0
+        for p in (c[1], c[2]):
+            if norm < 1e-24:
+                d = p - a
+            else:
+                t = float(np.dot(p - a, ab) / norm)
+                t = 0.0 if t < 0.0 else (1.0 if t > 1.0 else t)
+                d = p - (a + t * ab)
+            dist_sq = float(np.dot(d, d))
+            if dist_sq > worst:
+                worst = dist_sq
+        return worst
+
+    def _bbox_overlap(c1, c2, eps):
+        """Check whether the control-point bounding boxes of two curves meet.
+
+        Parameters
+        ----------
+        c1, c2 : numpy.ndarray
+            Arrays of shape ``(4, 3)`` with the control points.
+        eps : float
+            Absolute slack added to every axis interval.
+
+        Returns
+        -------
+        bool
+            ``True`` if the bounding boxes overlap (intersection possible),
+            ``False`` otherwise.
+        """
+        for k in range(3):
+            if c1[:, k].max() < c2[:, k].min() - eps:
+                return False
+            if c2[:, k].max() < c1[:, k].min() - eps:
+                return False
+        return True
+
+    def _segment_meet(a0, a1, b0, b1, dist_tol):
+        """Find where two (nearly flat) segments meet or overlap.
+
+        Parameters
+        ----------
+        a0, a1 : numpy.ndarray
+            Endpoints of the first segment.
+        b0, b1 : numpy.ndarray
+            Endpoints of the second segment.
+        dist_tol : float
+            Maximum distance for the segments to count as meeting.
+
+        Returns
+        -------
+        list of numpy.ndarray
+            One point for a crossing/touch, the two endpoints of the common
+            interval for coincident overlapping segments, or an empty list.
+        """
+        da = a1 - a0
+        db = b1 - b0
+        r = b0 - a0
+        A = float(np.dot(da, da))
+        B = float(np.dot(da, db))
+        C = float(np.dot(db, db))
+        D = float(np.dot(da, r))
+        E = float(np.dot(db, r))
+
+        # Degenerate segments (single points) -------------------------------
+        if A <= 1e-24 and C <= 1e-24:
+            if np.linalg.norm(a0 - b0) <= dist_tol:
+                return [(a0 + b0) / 2.0]
+            return []
+        if A <= 1e-24:
+            t = min(1.0, max(0.0, float(np.dot(a0 - b0, db) / C)))
+            pb = b0 + t * db
+            if np.linalg.norm(a0 - pb) <= dist_tol:
+                return [(a0 + pb) / 2.0]
+            return []
+        if C <= 1e-24:
+            s = min(1.0, max(0.0, float(np.dot(b0 - a0, da) / A)))
+            pa = a0 + s * da
+            if np.linalg.norm(pa - b0) <= dist_tol:
+                return [(pa + b0) / 2.0]
+            return []
+
+        det = A * C - B * B
+        if abs(det) > 1e-14 * A * C:
+            # General case: closest points of the supporting lines.
+            # Solve [A, -B; B, -C] [s, t] = [D, E] (Cramer's rule).
+            s = (C * D - B * E) / det
+            t = (A * E - B * D) / -det
+            s = min(1.0, max(0.0, s))
+            t = min(1.0, max(0.0, t))
+            pa = a0 + s * da
+            pb = b0 + t * db
+            if np.linalg.norm(pa - pb) <= dist_tol:
+                return [(pa + pb) / 2.0]
+            return []
+
+        # Parallel supporting lines ----------------------------------------
+        normal_offset = r - (float(np.dot(r, da)) / A) * da
+        if np.linalg.norm(normal_offset) > dist_tol:
+            return []
+        # Coincident lines: overlap of the parameter intervals -------------
+        s0 = float(np.dot(b0 - a0, da) / A)
+        s1 = float(np.dot(b1 - a0, da) / A)
+        lo = max(0.0, min(s0, s1))
+        hi = min(1.0, max(s0, s1))
+        if hi < lo - 1e-9:
+            return []
+        lo = max(lo, 0.0)
+        hi = min(hi, 1.0)
+        p_lo = a0 + lo * da
+        p_hi = a0 + hi * da
+        if np.linalg.norm(p_hi - p_lo) <= dist_tol:
+            return [p_lo]
+        return [p_lo, p_hi]
+
+    curves1 = _extract_beziers(vmob1)
+    curves2 = _extract_beziers(vmob2)
+    same_object = vmob1 is vmob2
+
+    found = []
+
+    def _intersect_curves(c1, c2, depth):
+        """Recursively intersect two cubic Bézier curves."""
+        if not _bbox_overlap(c1, c2, tolerance):
+            return
+        f1 = _flatness_sq(c1)
+        f2 = _flatness_sq(c2)
+        flat_tol_sq = flatness * flatness
+
+        if f1 <= flat_tol_sq and f2 <= flat_tol_sq:
+            dist_tol = tolerance + 2.0 * math.sqrt(max(f1, f2))
+            found.extend(_segment_meet(c1[0], c1[3], c2[0], c2[3], dist_tol))
+            return
+
+        if depth >= max_depth:
+            # Last resort: accept contact within the remaining sub-curve
+            # scale (at this depth the chords are vanishingly small).
+            scale = max(
+                float(np.linalg.norm(c1[3] - c1[0])),
+                float(np.linalg.norm(c2[3] - c2[0])),
+                tolerance,
+            )
+            found.extend(_segment_meet(c1[0], c1[3], c2[0], c2[3], scale))
+            return
+
+        # Always subdivide the less flat curve.
+        if f1 >= f2:
+            left, right = _split_cubic(c1)
+            _intersect_curves(left, c2, depth + 1)
+            _intersect_curves(right, c2, depth + 1)
+        else:
+            left, right = _split_cubic(c2)
+            _intersect_curves(c1, left, depth + 1)
+            _intersect_curves(c1, right, depth + 1)
+
+    for i, c1 in enumerate(curves1):
+        for j, c2 in enumerate(curves2):
+            if same_object and j <= i:
+                continue
+            _intersect_curves(c1, c2, 0)
+
+    # Self-intersection: discard points that are just shared path joins.
+    if same_object:
+        junctions = []
+        for i, c1 in enumerate(curves1):
+            for j in range(i + 1, len(curves1)):
+                c2 = curves2[j]
+                for ep1 in (c1[0], c1[3]):
+                    for ep2 in (c2[0], c2[3]):
+                        if np.linalg.norm(ep1 - ep2) <= tolerance:
+                            junctions.append(ep1)
+        found = [
+            p
+            for p in found
+            if not any(np.linalg.norm(p - q) <= tolerance for q in junctions)
+        ]
+
+    # Merge near-duplicate points produced by adjacent sub-curves.
+    points = []
+    for p in found:
+        if all(np.linalg.norm(p - q) > tolerance for q in points):
+            points.append(p)
+    return points
 
 
 def TangentPoint(

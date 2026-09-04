@@ -9,7 +9,7 @@ v1.0.4
 
 **Added**
 
-* Added :func:`~manim_extensions.geometry.ArcInt` to the Basic geometry module
+* Added ``ArcInt`` to the Basic geometry module
   and its documentation in ``geometry.rst`` for computing arc-arc intersections.
 * Added ``reuse-lint`` and ``flake8-unused-imports`` jobs to the GitHub Actions
   workflow for license compliance and unused import detection.
@@ -88,7 +88,7 @@ v1.0.4
   in TikZ docstrings, and CJK font detection on Linux.
 * Fixed ``TypeError`` for ``str | None`` union syntax in Python 3.10–3.13
   environments by adding ``from __future__ import annotations``.
-* Fixed :func:`~manim_extensions.geometry.ArcInt` division-by-zero error for
+* Fixed ``ArcInt`` division-by-zero error for
   concentric circles by adding a ``d <= 1e-9`` guard.
 * Fixed :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh`
   ``AttributeError`` by initialising ``triangle_indices`` before ``super().__init__()``.
