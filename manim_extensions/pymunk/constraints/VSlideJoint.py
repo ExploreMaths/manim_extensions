@@ -6,8 +6,8 @@ This module provides the VSlideJoint class for creating slide joint constraints.
 
 """
 
-from typing import Optional
 from manim import *
+from typing import Optional
 from . import VConstraint
 from pymunk.constraints import SlideJoint
 from pymunk import Space

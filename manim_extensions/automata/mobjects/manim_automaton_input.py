@@ -8,9 +8,9 @@ This module provides the ManimAutomataInput class for representing input strings
 
 """
 
-from typing import Any
 
 from manim import *
+from typing import Any
 
 import itertools
 

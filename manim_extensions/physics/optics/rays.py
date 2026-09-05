@@ -6,9 +6,9 @@
 """Rays of light. Refracted by Lenses."""
 
 from __future__ import annotations
-from typing import Iterable
 
 from manim import *
+from typing import Iterable
 import numpy as np
 
 from .lenses import Lens, antisnell, intersection, snell

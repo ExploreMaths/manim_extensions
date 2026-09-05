@@ -6,9 +6,9 @@
 """3D and 2D Waves module."""
 
 from __future__ import annotations
-from typing import Iterable, Optional
 
 from manim import *
+from typing import Iterable, Optional
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 __all__ = [

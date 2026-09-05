@@ -6,9 +6,9 @@ This module provides the WeightedLine class for displaying weighted edges in net
 
 """
 
-from typing import Any
 
 from manim import *
+from typing import Any
 
 
 class WeightedLine(Line):

@@ -4,9 +4,9 @@
 
 """Node data structure for algorithm visualization."""
 
-from typing import List, TypeAlias
 
 from manim import *
+from typing import List, TypeAlias
 from manim.typing import ManimFloat, Point3D as ManimPoint3D
 from manim.typing import Vector3DLike
 from .utils.numpy_helper import NumpyHelper

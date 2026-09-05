@@ -6,10 +6,10 @@ This module provides the ThreeDMolecule class for rendering molecules in 3D.
 
 """
 
-from typing import Optional
 
 
 from manim import *
+from typing import Optional
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from ..element import Element
 from ..utils import mol_parser, mol_parser_string
