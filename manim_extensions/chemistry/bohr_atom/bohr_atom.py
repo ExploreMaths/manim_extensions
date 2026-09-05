@@ -35,14 +35,17 @@ class BohrAtom(VGroup):
     Examples
     ---------
     .. manim:: BohrAtomScene
-        :save_last_frame:
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import BohrAtom
 
         class BohrAtomScene(Scene):
             def construct(self):
-                diagram = BohrAtom(e=14, p=14, n=10)
-                self.add(diagram)
+                atom = BohrAtom(e=6, p=6, n=6)
+                self.play(Create(atom.get_orbitals()))
+                self.play(FadeIn(atom.get_nuclei()))
+                self.play(FadeIn(atom.get_electrons()))
+                self.wait()
     """
 
     def __init__(

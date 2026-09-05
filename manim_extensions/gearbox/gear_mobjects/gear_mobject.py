@@ -47,11 +47,13 @@ def involute_func(t, r, a=0, rad_offs=0, tan_offs=0):
 
        class InvoluteFuncExample(Scene):
            def construct(self):
+               base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi, 50)
                points = involute_func(t, 1.0)
-               dot = Dot(point=points[-1], color=PURE_YELLOW)
-               label = Text(f"Points: {len(points)}", font_size=24).to_edge(UP)
-               self.add(dot, label)
+               curve = VMobject()
+               curve.set_points_smoothly(points)
+               curve.set_color(PURE_YELLOW)
+               self.add(base_circle, curve, Dot(points[-1], color=RED))
     """
 
     def involute_val(val):
@@ -108,17 +110,32 @@ def involute_deriv_func(t, r, a=0, rad_offs=0, tan_offs=0):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_deriv_func
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import (
+           involute_deriv_func,
+           involute_func,
+       )
 
        class InvoluteDerivFuncExample(Scene):
            def construct(self):
+               base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi / 2, 20)
+               points = involute_func(t, 1.0)
                derivs = involute_deriv_func(t, 1.0)
-               label = Text(f"Derivative vectors: {len(derivs)}", font_size=24).to_edge(UP)
-               self.add(label)
-               for d in derivs[::5]:
-                   vec = Arrow(ORIGIN, d, buff=0, color=PURE_YELLOW)
-                   self.add(vec)
+               curve = VMobject()
+               curve.set_points_smoothly(points)
+               curve.set_color(WHITE)
+               vectors = VGroup(
+                   *[
+                       Arrow(
+                           p,
+                           p + 0.25 * d / np.linalg.norm(d),
+                           buff=0,
+                           color=PURE_YELLOW,
+                       )
+                       for p, d in zip(points[1::4], derivs[1::4])
+                   ]
+               )
+               self.add(base_circle, curve, vectors)
     """
 
     def diff_val(val):
@@ -174,14 +191,23 @@ def involute_height_func(k, r, **kwargs):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_height_func
+       from manim_extensions.gearbox.gear_mobjects.gear_mobject import (
+           involute_func,
+           involute_height_func,
+       )
 
        class InvoluteHeightFuncExample(Scene):
            def construct(self):
+               base_circle = Circle(radius=1.0, color=GREY_B)
                k_val = np.pi / 4
+               point = involute_func(k_val, 1.0)
                height = involute_height_func(k_val, 1.0)
-               label = Text(f"Height at pi/4: {height:.3f}", font_size=24).to_edge(UP)
-               self.add(label)
+               self.add(
+                   base_circle,
+                   Line(ORIGIN, point, color=PURE_YELLOW),
+                   Dot(point, color=RED),
+                   Tex(f"h = {height:.3f}", font_size=30).to_edge(UP),
+               )
     """
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
@@ -209,12 +235,13 @@ def involute_point_gen(t, r, **kwargs):
 
        class InvolutePointGenExample(Scene):
            def construct(self):
+               base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi / 2, 10)
                points = involute_point_gen(t, 1.0)
                curve = VMobject()
                curve.points = points
                curve.set_stroke(PURE_YELLOW, 3)
-               self.add(curve)
+               self.add(base_circle, curve)
     """
     end_points = involute_func(t, r, **kwargs)
     diff_points = involute_deriv_func(t, r, **kwargs)
@@ -290,8 +317,9 @@ class Gear(VMobject):
                gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
                gear1.shift(-gear1.rp * 1.5 * RIGHT)
                gear2.mesh_to(gear1)
+               contact = Dot(gear1.get_center() + gear1.rp * RIGHT, color=PURE_YELLOW)
 
-               self.add(gear1, gear2)
+               self.add(gear1, gear2, contact)
                self.play(
                    Rotate(gear1, gear1.pitch_angle, rate_func=linear),
                    Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
@@ -893,7 +921,6 @@ class Rack(VMobject):
     for proper meshing.
 
     .. manim:: RackExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.gearbox import Gear, Rack
@@ -901,11 +928,14 @@ class Rack(VMobject):
        class RackExample(Scene):
            def construct(self):
                gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-               rack = Rack(12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1)
-               gear.shift(RIGHT * gear.rp)
-               rack.shift(UP * rack.pitch * 0.5)
+               rack = Rack(
+                   12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
+               )
+               gear.mesh_to(rack)
 
                self.add(gear, rack)
+               self.play(Rotate(gear, gear.pitch_angle, rate_func=linear), run_time=2)
+               self.wait()
     Parameters
     ----------
     num_of_teeth : int

@@ -24,15 +24,21 @@ class SeqObject(VGroup):
     Examples
     --------
     .. manim:: SeqObjectExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.sequence_diagram.seq_action import SeqAction
+       from manim_extensions.sequence_diagram.seq_actor import SeqActor
        from manim_extensions.sequence_diagram.seq_object import SeqObject
 
        class SeqObjectExample(Scene):
            def construct(self):
-               obj = SeqObject("MyService")
-               self.add(obj)
+               alice = SeqActor("Alice")
+               bob = SeqActor("Bob")
+               order = SeqObject("Order")
+               self.play(*SeqAction.introduce_actors(alice, bob))
+               self.play(*SeqAction.subject_gives_gift_to_target(alice, order, bob))
+               self.play(*SeqAction.subject_gives_gift_to_target(bob, order, alice))
+               self.wait()
     """
 
     def __init__(self, name: str, font_size: float = 18):

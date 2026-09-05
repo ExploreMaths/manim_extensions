@@ -47,8 +47,9 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
 
        class WireExample(Scene):
            def construct(self):
-               wire = Wire(Circle(2).rotate(PI / 2, UP))
-               self.add(wire)
+               loop = Wire(Circle(2).rotate(PI / 2, UP), current=2)
+               label = Text("current = 2 A", font_size=30).next_to(loop, UP)
+               self.add(loop, label)
     """
 
     def __init__(
@@ -79,20 +80,21 @@ class MagneticField(ArrowVectorField):
     Example
     -------
     .. manim:: MagneticFieldExample
-       :save_last_frame:
 
        from manim_extensions.physics import *
 
        class MagneticFieldExample(ThreeDScene):
            def construct(self):
-               wire = Wire(Circle(2).rotate(PI / 2, UP))
+               wire = Wire(Circle(2).rotate(PI / 2, UP), current=2)
                mag_field = MagneticField(
                    wire,
                    x_range=[-4, 4],
                    y_range=[-4, 4],
                )
                self.set_camera_orientation(PI / 3, PI / 4)
-               self.add(wire, mag_field)
+               self.play(Create(wire))
+               self.play(FadeIn(mag_field))
+               self.wait()
 
     """
 

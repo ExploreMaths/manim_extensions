@@ -43,8 +43,16 @@ class Source(VMobject):
                    Line(LEFT * 0.3, RIGHT * 0.3).shift(UP * 0.5),
                    Line(LEFT * 0.3, RIGHT * 0.3).shift(DOWN * 0.5),
                )
-               src = Source(markings, letter="V", value=5)
-               self.add(src)
+               independent = Source(markings.copy(), letter="V", value=5)
+               dependent = Source(
+                   markings.copy(), letter="V", value="g v_1"
+               ).next_to(independent, RIGHT, buff=2)
+               self.add(
+                   independent,
+                   dependent,
+                   Dot(independent.get_terminals("positive"), color=RED),
+                   Dot(independent.get_terminals("negative"), color=BLUE),
+               )
     """
 
     def __init__(
@@ -161,7 +169,8 @@ class Circuit(VMobject):
        class CircuitExample(Scene):
            def construct(self):
                circuit = Circuit()
-               circuit.add_wire(LEFT * 3, RIGHT * 3)
+               circuit.add_wire(LEFT * 3 + UP, RIGHT * 3 + UP)
+               circuit.add_wire(UP, DOWN * 2)
                self.add(circuit)
     """
 
@@ -317,7 +326,9 @@ class Node(VMobject):
        class NodeExample(Scene):
            def construct(self):
                node = Node()
-               node.add_wire([LEFT * 2, ORIGIN, UP * 2])
+               node.add_wire([LEFT * 2, RIGHT * 2])
+               node.add_wire([ORIGIN, UP * 1.5])
+               node.add_dot(ORIGIN)
                self.add(node)
     """
 

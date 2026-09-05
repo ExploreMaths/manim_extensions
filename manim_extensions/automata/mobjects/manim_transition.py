@@ -52,24 +52,22 @@ class ManimTransition(Transition, VGroup):
     Examples
     --------
     .. manim:: ManimTransitionDocExample
-       :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata import ManimdeterministicFiniteAutomaton
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
+       from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
+           ManimdeterministicFiniteAutomaton,
+       )
 
        class ManimTransitionDocExample(Scene):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
                transition = dfa.transitions[0]
-               start = transition.transition_from.name
-               end = transition.transition_to.name
-               label = Text(
-                   f"Transition {start} -> {end}",
-                   font_size=20,
-               )
-               label.next_to(dfa, DOWN, buff=1.5)
-               self.add(label)
+               animations = ManimAnimations()
+               self.play(animations.animate_highlight_transition(transition))
+               self.play(animations.animate_transition_to_default_color(transition))
+               self.play(transition.animate_transition(True))
     """
 
     def __init__(
@@ -395,15 +393,19 @@ class ManimPushDownAutomatonTransition(ManimTransition):
     Examples
     --------
     .. manim:: ManimPushDownAutomatonTransitionExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
 
        class ManimPushDownAutomatonTransitionExample(Scene):
            def construct(self):
                pda = ManimPushDownAutomaton()
                self.add(pda)
+               transition = pda.transitions[0]
+               animations = ManimAnimations()
+               self.play(animations.animate_highlight_transition(transition))
+               self.play(animations.animate_transition_to_default_color(transition))
     """
 
     def __init__(

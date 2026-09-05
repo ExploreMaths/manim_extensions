@@ -20,12 +20,14 @@ class PutRuler(ApplyMethod):
     .. manim:: PutRulerDocExample
 
        from manim import *
-       from manim_extensions.compass import Ruler, PutRuler
+       from manim_extensions.compass import PutRuler, Ruler
 
        class PutRulerDocExample(Scene):
            def construct(self):
-               ruler = Ruler().to_edge(LEFT)
-               self.play(PutRuler(ruler, LEFT, RIGHT))
+               ruler = Ruler().to_edge(DOWN)
+               start, end = LEFT * 2, RIGHT * 2
+               self.add(Dot(start, color=RED), Dot(end, color=RED))
+               self.play(PutRuler(ruler, start, end))
                self.wait()
 
     Parameters
@@ -48,12 +50,13 @@ class PutRulerAway(PutRuler):
     .. manim:: PutRulerAwayDocExample
 
        from manim import *
-       from manim_extensions.compass import Ruler, PutRulerAway
+       from manim_extensions.compass import PutRuler, PutRulerAway, Ruler
 
        class PutRulerAwayDocExample(Scene):
            def construct(self):
-               ruler = Ruler().to_edge(LEFT)
-               self.play(PutRulerAway(ruler, 2 * DOWN))
+               ruler = Ruler().to_edge(DOWN)
+               self.play(PutRuler(ruler, LEFT * 2, RIGHT * 2))
+               self.play(PutRulerAway(ruler, 3 * UP))
                self.wait()
 
     Parameters

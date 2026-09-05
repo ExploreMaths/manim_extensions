@@ -46,7 +46,6 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     Examples
     --------
     .. manim:: TriangleManim2DMeshExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -54,11 +53,15 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
        class TriangleManim2DMeshExample(Scene):
            def construct(self):
-               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-               faces = [[0, 1, 2]]
+               vertices = [[0, 0, 0], [2, 0, 0], [2, 2, 0], [0, 2, 0]]
+               faces = [[0, 1, 2], [0, 2, 3]]
                mesh_data = Mesh(vertices, faces)
                tm = TriangleManim2DMesh(mesh_data)
-               self.add(tm)
+               self.play(FadeIn(tm.faces), FadeIn(tm.edges))
+               # flip the diagonal shared by the two triangles
+               self.wait(0.5)
+               tm.edge_flip(self, 0, 1)
+               self.wait()
     """
 
     # pylint:disable=abstract-method

@@ -27,25 +27,29 @@ class Molecule:
     ---------
     .. manim:: GraphMoleculeFromMolecule
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule, Molecule
 
         class GraphMoleculeFromMolecule(Scene):
             def construct(self):
                 molecule = Molecule(GraphMolecule).molecule_from_pubchem(name="acetone")
-                self.wait()
+                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
                 self.play(Write(molecule))
+                self.play(Write(label))
                 self.wait()
 
 
     .. manim:: MMoleculeObjectFromMolecule
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import MMoleculeObject, Molecule
 
         class MMoleculeObjectFromMolecule(Scene):
             def construct(self):
                 molecule = Molecule(MMoleculeObject).molecule_from_pubchem(name="acetone")
-                self.wait()
+                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
                 self.play(Write(molecule))
+                self.play(Write(label))
                 self.wait()
     """
 

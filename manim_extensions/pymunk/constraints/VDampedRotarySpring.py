@@ -44,29 +44,32 @@ class VDampedRotarySpring(VConstraint):
     Examples
     --------
     .. manim:: VDampedRotarySpringExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VDampedRotarySpringExample(SpaceScene):
             def construct(self):
-                floor = Line(LEFT * 10, RIGHT * 10).shift(DOWN*2)
+                # the spinning square is pulled back to rest_angle=0 and
+                # its oscillation is damped (watch the arc indicators)
+                floor = Line(LEFT * 8, RIGHT * 8, stroke_width=8, color=GREY)
+                floor.to_edge(DOWN, buff=0.5)
+                square_1 = Square().next_to(floor, UP, buff=1)
+                square_2 = Square().move_to(square_1.get_center() + RIGHT * 3)
 
-                square_1 = Square().next_to(floor, UP)
-                square_2 = Square().move_to(square_1.get_center() + RIGHT * 4)
-
-                constraint = VDampedRotarySpring(
+                spring = VDampedRotarySpring(
                     square_1,
                     square_2,
-                    rest_angle=PI / 4,
+                    rest_angle=0,
                     stiffness=100,
-                    damping=1,
+                    damping=5,
                 )
 
+                self.play(FadeIn(floor), FadeIn(square_1), FadeIn(square_2))
                 self.add_static_body(floor)
-                self.add_dynamic_body(square_1, square_2)
-                self.add_constraints(constraint)
-
+                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
+                self.add_constraints(spring)
+                self.wait(5)
 
     """
 

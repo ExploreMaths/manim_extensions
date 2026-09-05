@@ -34,8 +34,8 @@ class Pencil(SVGMobject):
 
        class PencilDocExample(Scene):
            def construct(self):
-               pencil = Pencil().to_edge(LEFT)
-               self.add(pencil)
+               pencil = Pencil()
+               self.add(pencil, Dot(pencil.get_nib(), color=RED))
     """
 
     def __init__(self, height=2, angle=PI / 4):
@@ -66,8 +66,9 @@ class Pencil(SVGMobject):
 
            class MoveNidToDocExample(Scene):
                def construct(self):
+                   target = Dot(ORIGIN, color=RED)
                    pencil = Pencil().move_nid_to(ORIGIN)
-                   self.add(pencil)
+                   self.add(target, pencil)
 
         Parameters
         ----------

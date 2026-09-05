@@ -27,7 +27,7 @@ from ..algorithms import (
 
 
 class MindMap(AbstractMap):
-    """Mind map class: parses mind-map data in the following format and builds
+    r"""Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
 
     .. manim:: MindMapExample
@@ -43,12 +43,17 @@ class MindMap(AbstractMap):
                    'child': [
                        {'node': MathTex(r"\text{Limits}")},
                        {'node': MathTex(r"\text{Derivatives}")},
-                       {'node': MathTex(r"\text{Integrals}")},
+                       {'node': MathTex(r"\text{Integrals}"),
+                        'child': [
+                            {'node': MathTex(r"\int x\,dx")},
+                            {'node': MathTex(r"\int x^2\,dx")},
+                        ]},
                    ]
                }
                mind_map = MindMap(data)
                mind_map.scale_to_fit_width(12)
                self.add(mind_map)
+               mind_map.get_submindmap((0, 2)).set_color(YELLOW)
 
     Parameters
     ----------
@@ -166,6 +171,7 @@ class TimeLine(AbstractMap):
                timeline = TimeLine(data)
                timeline.scale_to_fit_width(12)
                self.add(timeline)
+               timeline.get_node((0, 1)).set_color(YELLOW)
     """
 
     def __init__(
@@ -257,13 +263,18 @@ class StandardMap(AbstractMap):
                data = {
                    'node': MathTex(r"\text{Root}"),
                    'child': [
-                       {'node': MathTex(r"\text{Left}")},
+                       {'node': MathTex(r"\text{Left}"),
+                        'child': [
+                            {'node': MathTex(r"\text{L1}")},
+                            {'node': MathTex(r"\text{L2}")},
+                        ]},
                        {'node': MathTex(r"\text{Right}")},
                    ]
                }
                mind_map = StandardMap(data)
                mind_map.scale_to_fit_width(12)
                self.add(mind_map)
+               mind_map.get_children((0, 0)).set_color(YELLOW)
     """
 
     def __init__(
@@ -356,13 +367,18 @@ class CatalogMap(AbstractMap):
                data = {
                    'node': MathTex(r"\text{Company}"),
                    'child': [
-                       {'node': MathTex(r"\text{Engineering}")},
+                       {'node': MathTex(r"\text{Engineering}"),
+                        'child': [
+                            {'node': MathTex(r"\text{Dev}")},
+                            {'node': MathTex(r"\text{QA}")},
+                        ]},
                        {'node': MathTex(r"\text{Sales}")},
                    ]
                }
                catalog = CatalogMap(data)
                catalog.scale_to_fit_width(12)
                self.add(catalog)
+               catalog.get_descendants((0, 0)).set_color(YELLOW)
     """
 
     def __init__(

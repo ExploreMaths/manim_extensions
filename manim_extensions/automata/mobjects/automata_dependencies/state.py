@@ -46,12 +46,32 @@ class State:
 
        from manim import *
        from manim_extensions.automata.mobjects.automata_dependencies.state import State
+       from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
 
        class StateExample(Scene):
            def construct(self):
-               state = State("q0", initial=True)
-               label = Text(f"State: {state.name}", font_size=24)
-               self.add(label)
+               start = State("q0", initial=True)
+               end = State("q1", final=True)
+               transition = Transition(start, end)
+               transition.read_symbols = ["a"]
+               start.add_transition_to_state(transition)
+               c1, c2 = Circle(radius=0.6).shift(LEFT * 2), Circle(radius=0.6).shift(RIGHT * 2)
+               self.add(
+                   Arrow(LEFT * 4.5, c1.get_left(), buff=0.1),
+                   c1,
+                   Text(start.name, font_size=24).move_to(c1),
+                   Circle(radius=0.45).move_to(c2),
+                   c2,
+                   Text(end.name, font_size=24).move_to(c2),
+                   Arrow(c1, c2, buff=0.65),
+                   MathTex("a").next_to(ORIGIN, UP, buff=0.3),
+               )
+               outgoing = start.get_transition_by_transition_to_state_id(end.id)
+               caption = Text(
+                   f"State {start.name} has {len(start.transitions)} outgoing transition(s) to {outgoing.transition_to.name}",
+                   font_size=20,
+               ).to_edge(DOWN)
+               self.add(caption)
     """
 
     id_iter = itertools.count()

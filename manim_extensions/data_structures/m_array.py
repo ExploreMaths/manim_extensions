@@ -53,13 +53,20 @@ class MArrayElement(VGroup):
 
        class MArrayElementDocExample(Scene):
            def construct(self):
-               elem = MArrayElement(
+               first = MArrayElement(
                    self,
                    mob_value_args={"text": "42"},
-                   mob_index_args={"text": "i"},
+                   mob_index_args={"text": "0"},
                    mob_label_args={"text": "x"},
                )
-               self.add(elem)
+               second = MArrayElement(
+                   self,
+                   mob_value_args={"text": "7"},
+                   mob_index_args={"text": "1"},
+                   next_to_mob=first,
+                   next_to_dir=RIGHT,
+               )
+               self.add(first, second)
 
     Attributes
     ----------
@@ -574,12 +581,17 @@ class MArray(VGroup):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.data_structures import MArray
+       from manim_extensions.data_structures import MArray, MArrayDirection
 
        class MArrayDocExample(Scene):
            def construct(self):
-               arr = MArray(self, [3, 1, 4, 1, 5, 9, 2, 6], label="arr")
-               self.add(arr)
+               arr = MArray(self, [3, 1, 4, 1, 5, 9], label="arr")
+               hex_arr = MArray(
+                   self, [10, 11, 12, 13], label="hex",
+                   index_hex_display=True, arr_dir=MArrayDirection.DOWN,
+                   arr_label_pos=MArrayDirection.UP,
+               ).next_to(arr, RIGHT, buff=1.5)
+               self.add(arr, hex_arr)
 
     .. manim:: MArrayInsertRemoveDocExample
 
@@ -588,14 +600,15 @@ class MArray(VGroup):
 
        class MArrayInsertRemoveDocExample(Scene):
            def construct(self):
-               arr = MArray(self, [1, 3, 5, 7], label="arr")
+               arr = MArray(self, [5, 3, 8, 1], label="arr")
                self.play(Write(arr))
                self.wait(0.5)
-               arr.append_elem(2)
+               arr.append_elem(6)
                self.wait(0.5)
-               arr.append_elem(4)
+               self.play(arr.animate_elem(0).set_fill(YELLOW))
+               arr.update_elem_value(0, 2)
                self.wait(0.5)
-               arr.remove_elem(index=1)
+               arr.remove_elem(index=2)
                self.wait(0.5)
 
     Attributes
@@ -1568,7 +1581,6 @@ class MArrayPointer(VGroup):
     Examples
     --------
     .. manim:: MArrayPointerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.data_structures import (
@@ -1578,11 +1590,18 @@ class MArrayPointer(VGroup):
        class MArrayPointerDocExample(Scene):
            def construct(self):
                arr = MArray(self, [10, 20, 30, 40, 50], label="data")
+               self.add(arr)
                ptr = MArrayPointer(
-                   self, arr, index=2, label="i",
+                   self, arr, index=0, label="i",
                    pointer_pos=MArrayDirection.UP
                )
-               self.add(arr, ptr)
+               self.add(ptr)
+               self.play(ptr.shift_to_elem(2))
+               self.wait(0.5)
+               arr.append_elem(60)
+               self.wait(0.5)
+               ptr.update_mob_label("mid")
+               self.wait(0.5)
 
     Attributes
     ----------
@@ -2050,7 +2069,6 @@ class MArraySlidingWindow(VGroup):
     Examples
     --------
     .. manim:: MArraySlidingWindowDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.data_structures import (
@@ -2059,12 +2077,17 @@ class MArraySlidingWindow(VGroup):
 
        class MArraySlidingWindowDocExample(Scene):
            def construct(self):
-               arr = MArray(self, [7, 2, 5, 1, 8, 3, 6, 4], label="nums")
+               arr = MArray(self, [7, 2, 5, 1, 8], label="nums")
+               self.add(arr)
                window = MArraySlidingWindow(
-                   self, arr, index=1, size=3, label="window",
+                   self, arr, index=0, size=2, label="win",
                    label_pos=MArrayDirection.UP
                )
-               self.add(arr, window)
+               self.add(window)
+               self.play(window.shift_to_elem(1))
+               self.wait(0.5)
+               window.resize_window(3)
+               self.wait(0.5)
 
     Attributes
     ----------

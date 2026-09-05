@@ -45,11 +45,13 @@ class NodeMobject:
 
        class NodeMobjectExample(Scene):
            def construct(self):
-               rect = Rectangle()
-               line = Line(LEFT, RIGHT)
-               tex = Tex("x")
-               nm = NodeMobject(rect, rect, line, "x")
-               self.add(rect)
+               rect = Rectangle(width=2.5, height=1.2, color=BLUE)
+               rect.to_edge(LEFT, buff=1.0)
+               line = Line(rect.get_right(), rect.get_right() + 2 * RIGHT, color=GREY)
+               tex = Tex("x", font_size=48).move_to(rect)
+               nm = NodeMobject(vmobject=tex, surr_rect=rect, connector=line, text="the letter x")
+               caption = Text(f"nm.text = {nm.text!r}", font_size=24).to_edge(DOWN)
+               self.add(nm.connector, nm.surr_rect, nm.vmobject, caption)
     """
 
     __slots__ = ["vmobject", "surr_rect", "connector", "text"]
@@ -142,12 +144,27 @@ class AbstractMap(Group):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.mindmap.mindmap.base import AbstractMap
+       from manim_extensions.mindmap import bfs_walker
+       from manim_extensions.mindmap.mindmap.base import AbstractMap, NodeMobject, generate_tree
+       from manim_extensions.mindmap.algorithms import LayoutConfig, TidyTreeLayout
 
        class AbstractMapExample(Scene):
            def construct(self):
-               label = Text("AbstractMap base class", font_size=24)
-               self.add(label)
+               class SimpleMap(AbstractMap):
+                   def _set_connectors(self):
+                       for node in bfs_walker(self.root):
+                           self.node_data_dict[node.ID] = NodeMobject(
+                               node.vmobject, node.surr_rect, None, node.text)
+
+               data = {
+                   "node": Tex("Root"),
+                   "child": [{"node": Tex("A")}, {"node": Tex("B")}],
+               }
+               root = generate_tree(Map=data)
+               config = LayoutConfig(direction=RIGHT).mindmap
+               mind_map = SimpleMap(TidyTreeLayout(root, **config))
+               mind_map.scale_to_fit_width(10)
+               self.add(mind_map)
     """
 
     def __init__(self, layout_method: Layout = Layout()):

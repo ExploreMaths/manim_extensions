@@ -52,8 +52,11 @@ class Compass(VGroup):
 
        class CompassExample(Scene):
            def construct(self):
-               compass = Compass().to_edge(LEFT)
-               self.add(compass)
+               narrow = Compass(span=1)
+               wide = Compass(
+                   span=2.5, head_color=BLUE, niddle_color=GREEN, pen_color=ORANGE
+               ).next_to(narrow, RIGHT, buff=1.5)
+               self.add(narrow, wide)
     """
 
     def __init__(
@@ -149,8 +152,9 @@ class Compass(VGroup):
 
            class CompassMoveNiddleTipToDocExample(Scene):
                def construct(self):
+                   target = Dot(ORIGIN, color=RED)
                    compass = Compass().move_niddle_tip_to(ORIGIN)
-                   self.add(compass)
+                   self.add(target, compass)
 
         Parameters
         ----------
@@ -171,8 +175,11 @@ class Compass(VGroup):
 
            class RotateAboutNiddleTipDocExample(Scene):
                def construct(self):
-                   compass = Compass().rotate_about_niddle_tip(PI / 4)
-                   self.add(compass)
+                   pivot = Dot(ORIGIN, color=RED)
+                   compass = Compass().move_niddle_tip_to(
+                       ORIGIN
+                   ).rotate_about_niddle_tip(PI / 4)
+                   self.add(pivot, compass)
 
         Parameters
         ----------
@@ -193,8 +200,9 @@ class Compass(VGroup):
 
            class ReverseTipDocExample(Scene):
                def construct(self):
-                   compass = Compass().reverse_tip()
-                   self.add(compass)
+                   before = Compass()
+                   after = Compass().reverse_tip().next_to(before, RIGHT, buff=1.5)
+                   self.add(before, after)
         """
         self.flip(
             axis=self.head[0].get_end() - self.head[0].get_start(),
@@ -213,8 +221,11 @@ class Compass(VGroup):
 
            class SplitCompassWithGainAngleDocExample(Scene):
                def construct(self):
-                   compass = Compass().split_copass_with_gain_angle(PI / 6)
-                   self.add(compass)
+                   closed = Compass()
+                   opened = Compass().split_copass_with_gain_angle(
+                       PI / 4
+                   ).next_to(closed, RIGHT, buff=1.5)
+                   self.add(closed, opened)
 
         Parameters
         ----------
@@ -240,8 +251,11 @@ class Compass(VGroup):
 
            class SplitCompassWithNiddleTipFixedDocExample(Scene):
                def construct(self):
-                   compass = Compass().split_compass_with_niddle_tip_fixed(PI / 6, ORIGIN)
-                   self.add(compass)
+                   pivot = Dot(ORIGIN, color=RED)
+                   compass = Compass().split_compass_with_niddle_tip_fixed(
+                       PI / 4, ORIGIN
+                   )
+                   self.add(pivot, compass)
 
         Parameters
         ----------
@@ -295,8 +309,9 @@ class Compass(VGroup):
 
                class SetCompassDocExample(Scene):
                    def construct(self):
+                       pivot = Dot(ORIGIN, color=RED)
                        compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
-                       self.add(compass)
+                       self.add(pivot, compass)
 
         Parameters
         ----------

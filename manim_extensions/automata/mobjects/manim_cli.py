@@ -30,15 +30,18 @@ class ManimAutomataCLI:
 
     Examples
     --------
-    .. manim:: ManimAutomataCLIExample
-       :save_last_frame:
+    The CLI is activated through the ``cli`` flag of an automaton
+    constructor; it prints a banner and interactively records an accepting
+    path through a non-deterministic automaton:
 
-       from manim import *
-       from manim_extensions.automata.mobjects.manim_cli import ManimAutomataCLI
+    .. code-block:: python
 
-       class ManimAutomataCLIExample(Scene):
-           def construct(self):
-               cli = ManimAutomataCLI()
+        from manim_extensions.automata import ManimNondeterministicFiniteAutomaton
+
+        nda = ManimNondeterministicFiniteAutomaton(cli=True)
+        # terminal menu:
+        # 0: Non-deterministic Automaton Path Builder
+        # Choice: 0
     """
 
     def __init__(self) -> None:

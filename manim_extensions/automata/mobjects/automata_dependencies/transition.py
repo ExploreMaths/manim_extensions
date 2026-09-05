@@ -51,8 +51,23 @@ class Transition:
                s1 = State("q0")
                s2 = State("q1")
                trans = Transition(s1, s2)
-               label = Text(f"Transition: {trans.transition_from.name} -> {trans.transition_to.name}", font_size=24)
-               self.add(label)
+               trans.read_symbols = ["a", "b"]
+               s1.add_transition_to_state(trans)
+               c1, c2 = Circle(radius=0.6).shift(LEFT * 2), Circle(radius=0.6).shift(RIGHT * 2)
+               arrow = Arrow(c1, c2, buff=0.65)
+               self.add(
+                   c1,
+                   Text(s1.name, font_size=24).move_to(c1),
+                   c2,
+                   Text(s2.name, font_size=24).move_to(c2),
+                   arrow,
+                   MathTex("a, b").next_to(arrow.get_center(), UP, buff=0.2),
+               )
+               caption = Text(
+                   f"Transition {trans.id}: {trans.transition_from.name} -> {trans.transition_to.name}, read={trans.read_symbols}",
+                   font_size=20,
+               ).to_edge(DOWN)
+               self.add(caption)
     """
 
     id_iter = itertools.count()

@@ -30,13 +30,15 @@ class DrawArc(AnimationGroup):
     .. manim:: DrawArcDocExample
 
        from manim import *
-       from manim_extensions.compass import Compass, DrawArc
-       from manim.mobject.geometry.arc import Arc
+       from manim_extensions.compass import Compass, DrawArc, PutCompass
 
        class DrawArcDocExample(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
-               arc = Arc(arc_center=ORIGIN, radius=1, angle=PI / 2)
+               center = Dot(ORIGIN, color=RED)
+               arc = Arc(arc_center=ORIGIN, radius=1.5, angle=PI / 2)
+               self.add(center)
+               self.play(PutCompass(compass, ORIGIN, 1.5 * RIGHT))
                self.play(DrawArc(compass, arc))
                self.wait()
 
@@ -64,6 +66,10 @@ class SplitCompass(AnimationGroup):
            def construct(self):
                compass = Compass().to_edge(LEFT)
                self.play(SplitCompass(compass, 2))
+               span = DashedLine(
+                   compass.get_niddle_tip(), compass.get_pen_tip(), color=RED
+               )
+               self.add(span, MathTex("2").next_to(span, UP, buff=0.1))
                self.wait()
 
     Parameters
@@ -106,7 +112,9 @@ class RotateCompass(Rotate):
 
        class RotateCompassDocExample(Scene):
            def construct(self):
-               compass = Compass().to_edge(LEFT)
+               compass = Compass().move_niddle_tip_to(ORIGIN)
+               pivot = Dot(ORIGIN, color=RED)
+               self.add(compass, pivot)
                self.play(RotateCompass(compass, PI / 2))
                self.wait()
 
@@ -135,7 +143,9 @@ class MoveNiddleTipTo(ApplyMethod):
        class MoveNiddleTipToDocExample(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
-               self.play(MoveNiddleTipTo(compass, ORIGIN))
+               target = Dot(2 * RIGHT, color=RED)
+               self.add(target)
+               self.play(MoveNiddleTipTo(compass, 2 * RIGHT))
                self.wait()
 
     Parameters
@@ -161,6 +171,10 @@ class PutCompass(ApplyMethod):
        class PutCompassDocExample(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
+               targets = VGroup(
+                   Dot(ORIGIN, color=RED), Dot(2 * RIGHT, color=PURE_YELLOW)
+               )
+               self.add(targets)
                self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
                self.wait()
 
@@ -200,12 +214,14 @@ class PutCompassAway(PutCompass):
     .. manim:: PutCompassAwayDocExample
 
        from manim import *
-       from manim_extensions.compass import Compass, PutCompassAway
+       from manim_extensions.compass import Compass, DrawArc, PutCompassAway
 
        class PutCompassAwayDocExample(Scene):
            def construct(self):
-               compass = Compass().to_edge(LEFT)
-               self.play(PutCompassAway(compass, 2 * RIGHT))
+               compass = Compass().move_niddle_tip_to(ORIGIN)
+               arc = Arc(arc_center=ORIGIN, radius=1.5, angle=PI / 2)
+               self.play(DrawArc(compass, arc))
+               self.play(PutCompassAway(compass, 3 * RIGHT))
                self.wait()
 
     Parameters

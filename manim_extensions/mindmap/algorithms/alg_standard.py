@@ -30,13 +30,25 @@ class TreeNode:
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode, StandardLayout
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
        class TreeNodeExample(Scene):
            def construct(self):
-               tn = TreeNode(height=1.0, width=2.0)
-               label = Text(f"TreeNode: {tn.width}x{tn.height}", font_size=24)
-               self.add(label)
+               root = TreeNode(height=0.8, width=1.8)
+               for _ in range(3):
+                   root.add_child(TreeNode(height=0.6, width=1.4))
+               root = StandardLayout(root, direction=LayoutDirection.LeftToRight).layout()
+               boxes = Group()
+               def draw(node):
+                   box = Rectangle(height=node.height, width=node.width, color=BLUE)
+                   box.move_to([node.x, node.y, 0])
+                   boxes.add(box)
+                   for child in node.children:
+                       draw(child)
+               draw(root)
+               boxes.scale_to_fit_width(12)
+               self.add(boxes)
     """
 
     __slots__ = ("height", "width", "children", "parent", "x", "y", "level", "is_flip")
@@ -168,12 +180,28 @@ class StandardLayout(Layout):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.mindmap.algorithms.alg_standard import StandardLayout
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode, StandardLayout
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
        class StandardLayoutExample(Scene):
            def construct(self):
-               label = Text("StandardLayout algorithm", font_size=24)
-               self.add(label)
+               root = TreeNode(height=0.8, width=1.6)
+               for i in range(4):
+                   child = TreeNode(height=0.6, width=1.2)
+                   root.add_child(child)
+                   if i % 2 == 0:
+                       child.add_child(TreeNode(height=0.5, width=1.0))
+               root = StandardLayout(root, direction=LayoutDirection.TopToBottom).layout()
+               boxes = Group()
+               def draw(node):
+                   box = Rectangle(height=node.height, width=node.width, color=BLUE)
+                   box.move_to([node.x, node.y, 0])
+                   boxes.add(box)
+                   for child in node.children:
+                       draw(child)
+               draw(root)
+               boxes.scale_to_fit_height(6)
+               self.add(boxes)
     """
 
     def __init__(

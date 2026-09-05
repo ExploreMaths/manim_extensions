@@ -38,15 +38,28 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
     Examples
     --------
     .. manim:: ManimdeterministicFiniteAutomatonExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimdeterministicFiniteAutomaton
 
        class ManimdeterministicFiniteAutomatonExample(Scene):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
+               inp = dfa.construct_automaton_input("11")
+               inp.next_to(dfa, UP, buff=0.5)
+               self.play(FadeIn(inp))
+               animations = ManimAnimations()
+               q0 = dfa.get_initial_state()
+               q1 = dfa.get_state("q1")
+               q0_to_q1 = q0.get_transition_by_transition_to_state_id(q1.id)
+               self.play(animations.animate_highlight_state(q0))
+               self.play(animations.animate_highlight_transition(q0_to_q1))
+               self.play(
+                   animations.animate_state_to_default_color(q0),
+                   animations.animate_highlight_state(q1),
+               )
     """
 
     def __init__(

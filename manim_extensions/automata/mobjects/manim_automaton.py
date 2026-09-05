@@ -85,7 +85,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     Examples
     --------
     .. manim:: ManimAutomatonDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
@@ -96,6 +95,19 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
+               dfa.manim_automata_input = dfa.construct_automaton_input("11")
+               dfa.set_default_position_of_input_string()
+               self.play(FadeIn(dfa.manim_automata_input))
+               animations = ManimAnimations()
+               q0 = dfa.get_initial_state()
+               q2 = dfa.get_state("q2")
+               self.play(animations.animate_highlight_state(q0))
+               self.play(animations.animate_highlight_state(q2))
+               result = "ACCEPTED" if dfa.check_automaton_result([q2]) else "REJECTED"
+               verdict = Text(
+                   result, color=GREEN if result == "ACCEPTED" else RED
+               ).next_to(dfa.manim_automata_input, UP)
+               self.play(FadeIn(verdict))
     """
 
     def __init__(

@@ -40,16 +40,18 @@ class Charge(VGroup):
     Examples
     --------
     .. manim:: ChargeExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.electrostatics import Charge
 
        class ChargeExample(Scene):
            def construct(self):
-               pos = Charge(1, LEFT + DOWN)
-               neg = Charge(-1, RIGHT + DOWN)
-               self.add(pos, neg)
+               positive = Charge(2, LEFT * 2 + UP)
+               negative = Charge(-1, RIGHT * 2 + UP)
+               plain = Charge(1, DOWN * 2, add_glow=False)
+               self.play(FadeIn(positive), FadeIn(negative))
+               self.play(FadeIn(plain))
+               self.wait()
     """
 
     def __init__(
@@ -117,7 +119,6 @@ class ElectricField(ArrowVectorField):
     Examples
     --------
     .. manim:: ElectricFieldExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.electrostatics import (
@@ -129,7 +130,9 @@ class ElectricField(ArrowVectorField):
                q1 = Charge(1, LEFT + DOWN)
                q2 = Charge(-1, RIGHT + DOWN)
                field = ElectricField(q1, q2)
-               self.add(q1, q2, field)
+               self.play(FadeIn(q1), FadeIn(q2))
+               self.play(FadeIn(field))
+               self.wait()
     """
 
     def __init__(self, *charges: Charge, **kwargs) -> None:

@@ -37,15 +37,19 @@ class ManimAutomataInput(VGroup):
     Examples
     --------
     .. manim:: ManimAutomataInputExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_automaton_input import ManimAutomataInput
 
        class ManimAutomataInputExample(Scene):
            def construct(self):
                inp = ManimAutomataInput("0101", animation_style={})
                self.add(inp)
+               animations = ManimAnimations()
+               for token in inp.tokens:
+                   self.play(animations.animate_highlight_input_token(token))
+                   self.play(animations.animate_input_token_spent(token))
     """
 
     def __init__(
@@ -108,15 +112,15 @@ class Token(MathTex):
     Examples
     --------
     .. manim:: TokenExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_automaton_input import Token
 
        class TokenExample(Scene):
            def construct(self):
-               token = Token("a", 0)
-               self.add(token)
+               tokens = [Token(symbol, spacing) for spacing, symbol in enumerate("010")]
+               self.add(*tokens)
+               self.play(FadeToColor(tokens[1], PURE_YELLOW))
     """
 
     id_iter = itertools.count()

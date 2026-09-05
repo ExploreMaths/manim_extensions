@@ -27,12 +27,32 @@ class LayoutFactory:
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap import bfs_walker
+       from manim_extensions.mindmap.mindmap.base import generate_tree
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig, LayoutType
        from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
 
        class LayoutFactoryExample(Scene):
            def construct(self):
-               label = Text("LayoutFactory creates layout algorithms", font_size=24)
-               self.add(label)
+               data = {
+                   "node": Tex("Root"),
+                   "child": [{"node": Tex("A")}, {"node": Tex("B")}],
+               }
+               panels = Group()
+               for layout_type in (LayoutType.MindMap, LayoutType.Catalog):
+                   root = generate_tree(Map=data)
+                   config = LayoutConfig()
+                   root = LayoutFactory.create_layout(layout_type, root, config).layout()
+                   panel = Group()
+                   for node in bfs_walker(root):
+                       node.vmobject.move_to([node.x, node.y, 0])
+                       node.surr_rect.move_to([node.x, node.y, 0])
+                       panel.add(node.vmobject, node.surr_rect)
+                   panel.scale_to_fit_height(3.5)
+                   label = Text(layout_type.value, font_size=24)
+                   panels.add(Group(panel, label).arrange(DOWN))
+               panels.arrange(RIGHT, buff=1.2)
+               self.add(panels)
     """
 
     @staticmethod

@@ -34,12 +34,26 @@ class VoltageSource(Source):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.circuit.mobjects import VoltageSource
+       from manim_extensions.circuit.mobjects import Resistor, VoltageSource
+       from manim_extensions.circuit.utils import Circuit
 
        class VoltageSourceExample(Scene):
            def construct(self):
-               vs = VoltageSource(value=5, direction=LEFT)
-               self.add(vs)
+               circuit = Circuit()
+               source = VoltageSource(value=5)
+               resistor = Resistor(label="4.7k").next_to(source, RIGHT, buff=2)
+               circuit.add_components(source, resistor)
+               circuit.add_wire(
+                   source.get_terminals("positive"),
+                   resistor.get_terminals("left"),
+                   invert=True,
+               )
+               circuit.add_wire(
+                   source.get_terminals("negative"),
+                   resistor.get_terminals("right"),
+                   invert=True,
+               )
+               self.add(circuit)
     """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
@@ -86,8 +100,11 @@ class CurrentSource(Source):
 
        class CurrentSourceExample(Scene):
            def construct(self):
-               cs = CurrentSource(value=2, direction=RIGHT)
-               self.add(cs)
+               independent = CurrentSource(value=2)
+               dependent = CurrentSource(value="2i_x").next_to(
+                   independent, RIGHT, buff=2
+               )
+               self.add(independent, dependent)
     """
 
     def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
@@ -127,7 +144,14 @@ class Inductor(VMobject):
        class InductorExample(Scene):
            def construct(self):
                inductor = Inductor(label="10mH")
-               self.add(inductor)
+               start, end = inductor.get_anchors()
+               self.add(
+                   inductor,
+                   Dot(start, color=RED),
+                   Dot(end, color=BLUE),
+                   Text("start", font_size=20).next_to(start, UP, buff=0.15),
+                   Text("end", font_size=20).next_to(end, UP, buff=0.15),
+               )
     """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
@@ -246,8 +270,11 @@ class Resistor(VMobject):
 
        class ResistorExample(Scene):
            def construct(self):
-               resistor = Resistor(label="4.7k")
-               self.add(resistor)
+               upright = Resistor(label="4.7k")
+               rotated = Resistor(label="4.7k").rotate(PI / 4).next_to(
+                   upright, RIGHT, buff=1.5
+               )
+               self.add(upright, rotated)
     """
 
     def __init__(self, label=None, direction=DOWN, **kwargs):
@@ -376,8 +403,11 @@ class Capacitor(VMobject):
 
        class CapacitorExample(Scene):
            def construct(self):
-               cap = Capacitor(label="100n", polarized=True)
-               self.add(cap)
+               plain = Capacitor(label="100n")
+               polarized = Capacitor(label="100n", polarized=True).next_to(
+                   plain, RIGHT, buff=1.5
+               )
+               self.add(plain, polarized)
     """
 
     def __init__(self, label=None, direction=DOWN, polarized=False, **kwargs):
@@ -496,8 +526,9 @@ class Ground(VMobject):
 
        class GroundExample(Scene):
            def construct(self):
-               gnd = Ground(ground_type="earth")
-               self.add(gnd)
+               analog = Ground(ground_type="ground", label="A")
+               earth = Ground(ground_type="earth").next_to(analog, RIGHT, buff=2)
+               self.add(analog, earth, Dot(analog.get_terminals(), color=RED))
     """
 
     def __init__(self, ground_type="ground", label=None, **kwargs):
@@ -571,6 +602,14 @@ class Opamp(VMobject):
            def construct(self):
                opamp = Opamp(bias_supply="both", label=True)
                self.add(opamp)
+               for name in (
+                   "positive_input",
+                   "negative_input",
+                   "output",
+                   "positive_bias",
+                   "negative_bias",
+               ):
+                   self.add(Dot(opamp.get_terminals(name), color=PURE_YELLOW))
     """
 
     def __init__(self, bias_supply=None, label=False, **kwargs):

@@ -44,10 +44,9 @@ class CubeMove(Animation):
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
                self.play(FadeIn(cube))
-               self.wait()
-               self.play(CubeMove(cube, "F"))
-               self.play(CubeMove(cube, "U2"), run_time=2)
+               self.play(CubeMove(cube, "R"))
                self.play(CubeMove(cube, "R'"))
+               self.play(CubeMove(cube, "U2"), run_time=2)
                self.wait()
     """
 

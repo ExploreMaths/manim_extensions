@@ -35,6 +35,8 @@ class CompassScene(MovingCameraScene):
            def construct(self):
                self.compass_move_niddle_tip_to(ORIGIN)
                self.compass_split_span(2)
+               self.draw_arc(niddle_point=ORIGIN, pen_point=2 * RIGHT, angle=PI / 2)
+               self.put_compass_aside(3 * RIGHT)
     """
 
     def setup(self) -> None:

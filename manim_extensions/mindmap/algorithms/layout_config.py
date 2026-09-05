@@ -29,9 +29,20 @@ class LayoutDirection(Enum):
 
        class LayoutDirectionExample(Scene):
            def construct(self):
-               direction = LayoutDirection.LeftToRight
-               label = Text(f"Direction: {direction.value}", font_size=24)
-               self.add(label)
+               directions = [
+                   (RIGHT, LayoutDirection.LeftToRight),
+                   (LEFT, LayoutDirection.RightToLeft),
+                   (DOWN, LayoutDirection.TopToBottom),
+                   (UP, LayoutDirection.BottomToTop),
+               ]
+               panels = VGroup()
+               for vector, direction in directions:
+                   arrow = Arrow(ORIGIN, 1.2 * vector, buff=0, stroke_width=4)
+                   label = Text(direction.value, font_size=24)
+                   label.next_to(arrow, vector, buff=0.2)
+                   panels.add(VGroup(arrow, label))
+               panels.arrange_in_grid(rows=2, cols=2, buff=(1.5, 1.2))
+               self.add(panels)
     """
 
     LeftToRight = "left to right"
@@ -49,13 +60,33 @@ class LayoutType(Enum):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap import CatalogMap, MindMap, StandardMap, TimeLine
        from manim_extensions.mindmap.algorithms.layout_config import LayoutType
 
        class LayoutTypeExample(Scene):
            def construct(self):
-               layout = LayoutType.Standard
-               label = Text(f"Layout: {layout.value}", font_size=24)
-               self.add(label)
+               data = {
+                   "node": MathTex(r"\text{Root}", font_size=48),
+                   "child": [
+                       {"node": MathTex(r"A", font_size=44)},
+                       {"node": MathTex(r"B", font_size=44)},
+                       {"node": MathTex(r"C", font_size=44)},
+                   ],
+               }
+               maps = Group(
+                   MindMap(data),
+                   TimeLine(data),
+                   StandardMap(data),
+                   CatalogMap(data),
+               )
+               for mind_map in maps:
+                   mind_map.scale_to_fit_width(5.2)
+               maps.arrange_in_grid(rows=2, cols=2, buff=(0.8, 0.8))
+               self.add(maps)
+               for mind_map, layout_type in zip(maps, LayoutType):
+                   label = Text(layout_type.value, font_size=24)
+                   label.next_to(mind_map, UP, buff=0.15)
+                   self.add(label)
     """
 
     MindMap = "tidytree"
@@ -73,13 +104,29 @@ class LayoutConfig:
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig
+       from manim_extensions.mindmap import bfs_walker
+       from manim_extensions.mindmap.mindmap.base import generate_tree
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig, LayoutType
+       from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
 
        class LayoutConfigExample(Scene):
            def construct(self):
-               config = LayoutConfig()
-               label = Text("LayoutConfig with defaults", font_size=24)
-               self.add(label)
+               config = LayoutConfig(direction=UP, node_spacing=0.8, level_spacing=1.5)
+               data = {
+                   "node": Tex("Root"),
+                   "child": [{"node": Tex("A")}, {"node": Tex("B")}],
+               }
+               root = generate_tree(Map=data)
+               root = LayoutFactory.create_layout(
+                   LayoutType.MindMap, root, config
+               ).layout()
+               mobjects = Group()
+               for node in bfs_walker(root):
+                   node.vmobject.move_to([node.x, node.y, 0])
+                   node.surr_rect.move_to([node.x, node.y, 0])
+                   mobjects.add(node.vmobject, node.surr_rect)
+               mobjects.scale_to_fit_height(6)
+               self.add(mobjects)
     Parameters
     ----------
         direction : np.ndarray, optional

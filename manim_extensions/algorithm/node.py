@@ -41,8 +41,17 @@ class NodeConfig:
        class NodeConfigExample(Scene):
            def construct(self):
                default_node = Node("default")
-               selection_node = Node("selected", box_color=NodeConfig.SELECT_COLOR)
-               group = VGroup(default_node, selection_node).arrange(RIGHT, buff=1)
+               NodeConfig.WIDTH = 1.5
+               NodeConfig.BOX_COLOR = BLUE
+               changed_node = Node("changed defaults")
+               NodeConfig.WIDTH = 2
+               NodeConfig.BOX_COLOR = WHITE
+               selected_node = Node(
+                   "selected", box_color=NodeConfig.SELECT_COLOR
+               )
+               group = VGroup(
+                   default_node, changed_node, selected_node
+               ).arrange(RIGHT, buff=1)
                self.add(group)
     """
 
@@ -66,11 +75,16 @@ class NodeSolt:
 
        class NodeSoltExample(Scene):
            def construct(self):
-               node = Node("A")
-               self.add(node)
-               direction, _ = NodeSolt.DOWN_MID
-               tip = Dot(node.get_critical_point(direction), color=PURE_YELLOW)
-               self.add(tip)
+               a = Node("A")
+               b = Node("B").next_to(a, RIGHT, buff=2.5)
+               start_dir, start_index = NodeSolt.RIGHT_MID
+               end_dir, end_index = NodeSolt.LEFT_MID
+               edge = Arrow(
+                   a.get_slot(start_dir, start_index),
+                   b.get_slot(end_dir, end_index),
+                   buff=0,
+               )
+               self.add(a, b, edge)
     """
 
     SPLIT_PARTS = 12
@@ -131,9 +145,14 @@ class Node(VMobject):
        class NodeExample(Scene):
            def construct(self):
                square_node = Node("42")
-               circle_node = Node("?", box_type=Circle, box_color=PURE_YELLOW)
+               circle_node = Node(
+                   "?", box_type=Circle, box_color=PURE_YELLOW, text_scale=1.5
+               )
+               small_node = Node("x", width=1)
                empty_node = Node(None, box_color=BLUE)
-               group = VGroup(square_node, circle_node, empty_node).arrange(RIGHT, buff=1)
+               group = VGroup(
+                   square_node, circle_node, small_node, empty_node
+               ).arrange(RIGHT, buff=0.8)
                self.add(group)
     """
 
@@ -332,10 +351,10 @@ class Node(VMobject):
 
            class SelectExample(Scene):
                def construct(self):
-                   a = Node("1")
-                   b = Node("2").next_to(a, RIGHT)
-                   self.add(a, b)
-                   self.play(Node.Select(a, b, color=PURE_YELLOW, opacity=0.6))
+                   nodes = VGroup(*[Node(str(i)) for i in range(4)]).arrange(RIGHT, buff=0.5)
+                   self.add(nodes)
+                   self.play(Node.Select(nodes[1]))
+                   self.play(Node.Select(nodes[2], nodes[3], color=PURE_YELLOW, opacity=0.6))
                    self.wait(0.5)
         """
 
@@ -380,6 +399,7 @@ class Node(VMobject):
                    self.add(a, b)
                    self.play(Node.Select(a, b))
                    self.play(Node.Unselect(a))
+                   self.play(Node.Unselect(b))
                    self.wait(0.5)
         """
 
@@ -415,9 +435,10 @@ class Node(VMobject):
 
            class UpdateValueExample(Scene):
                def construct(self):
-                   node = Node("1")
+                   node = Node("0")
                    self.add(node)
-                   self.play(Node.UpdateValue(node, "9"))
+                   for i in range(1, 4):
+                       self.play(Node.UpdateValue(node, str(i)))
                    self.wait(0.5)
         """
 
@@ -455,7 +476,7 @@ class Node(VMobject):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
                    self.add(a, b)
-                   self.play(Node.MoveAndOverWrite(a, b))
+                   self.play(Node.MoveAndOverWrite(a, b, select_color=PURE_YELLOW))
                    self.wait(0.5)
         """
 
@@ -514,6 +535,7 @@ class Node(VMobject):
                    b = Node("2").next_to(a, RIGHT)
                    self.add(a, b)
                    self.play(Node.CopyAndOverWrite(a, b))
+                   self.play(Node.Select(a))
                    self.wait(0.5)
         """
 
@@ -566,6 +588,7 @@ class Node(VMobject):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
                    self.add(a, b)
+                   self.play(Node.SwapAndOverWrite(a, b))
                    self.play(Node.SwapAndOverWrite(a, b))
                    self.wait(0.5)
         """

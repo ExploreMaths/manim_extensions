@@ -81,7 +81,6 @@ def VMobjectInt(
     Examples
     --------
     .. manim:: VMobjectIntDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import VMobjectInt, LabelDot
@@ -96,9 +95,17 @@ def VMobjectInt(
                )
                pts = VMobjectInt(circle, curve)
 
-               self.add(circle, curve)
-               for i, p in enumerate(pts):
-                   self.add(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.1))
+               self.play(Create(circle), Create(curve))
+               self.play(
+                   LaggedStart(
+                       *[
+                           GrowFromCenter(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.15))
+                           for i, p in enumerate(pts)
+                       ],
+                       lag_ratio=0.4,
+                   )
+               )
+               self.wait()
     """
 
     def _extract_beziers(mob):
@@ -406,17 +413,15 @@ def TangentPoint(
 
        class TangentPointDocExample(Scene):
            def construct(self):
-               p1 = Dot([1, 0, 0], color=BLUE)
-               p2 = Dot([-1, 0, 0], color=BLUE)
-               line = Line([0, -2, 0], [0, 2, 0])
-               tangent = TangentPoint(
-                   p1.get_center(), p2.get_center(),
-                   line.get_start(), line.get_end(),
-               )
+               p1, p2 = [0.5, 1.5, 0], [1.5, 0.5, 0]
+               line = Line([-3, 0, 0], [3, 0, 0], color=BLUE)
+               tangent = TangentPoint(p1, p2, line.get_start(), line.get_end())
 
-               self.add(p1, p2, line)
-               if tangent is not None:
-                   self.add(LabelDot("T", tangent, label_pos=RIGHT, buff=0.1))
+               circle = Circle.from_three_points(p1, p2, tangent, color=RED)
+               radius = DashedLine(circle.get_center(), tangent, color=YELLOW)
+
+               self.add(line, circle, Dot(p1, color=BLUE), Dot(p2, color=BLUE))
+               self.add(radius, LabelDot("T", tangent, label_pos=UP, buff=0.15))
     """
 
     @staticmethod

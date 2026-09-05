@@ -39,13 +39,26 @@ class CatalogNode:
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogNode
 
        class CatalogNodeExample(Scene):
            def construct(self):
-               cn = CatalogNode()
-               label = Text(f"CatalogNode: {cn.width}x{cn.height}", font_size=24)
-               self.add(label)
+               root = TreeNode(width=2.0, height=1.0)
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               catalog = CatalogNode.from_data(root)
+               boxes = Group()
+               def draw(wrapper, pos):
+                   box = Rectangle(width=wrapper.width, height=wrapper.height, color=BLUE)
+                   box.move_to(pos)
+                   boxes.add(box)
+                   x = pos[0] - 1.5 * (len(wrapper.children) - 1)
+                   for child in wrapper.children:
+                       draw(child, [x, pos[1] - 2, 0])
+                       x += 3
+               draw(catalog, [0, 1.5, 0])
+               self.add(boxes)
     """
 
     data: Any = None
@@ -97,12 +110,32 @@ class CatalogLayout(Layout):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout
 
        class CatalogLayoutExample(Scene):
            def construct(self):
-               label = Text("CatalogLayout algorithm", font_size=24)
-               self.add(label)
+               root = TreeNode(height=0.8, width=1.6)
+               for _ in range(3):
+                   child = TreeNode(height=0.6, width=1.4)
+                   child.add_child(TreeNode(height=0.5, width=1.2))
+                   root.add_child(child)
+               root = CatalogLayout(root).layout()
+               boxes, links = Group(), Group()
+               def draw(node):
+                   box = Rectangle(height=node.height, width=node.width, color=BLUE)
+                   box.move_to([node.x, node.y, 0])
+                   boxes.add(box)
+                   for child in node.children:
+                       links.add(Line(
+                           [node.x, node.y, 0], [child.x, child.y, 0],
+                           color=GREY, stroke_width=2,
+                       ))
+                       draw(child)
+               draw(root)
+               tree = Group(links, boxes)
+               tree.scale_to_fit_height(6.5)
+               self.add(tree)
     """
 
     def __init__(

@@ -42,15 +42,22 @@ class TikzTemplate(TexTemplate):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.tikz import Tikz
+       from manim_extensions.tikz.template import TikzTemplate
 
        class TikzTemplateExample(Scene):
            def construct(self):
-               tikz = Tikz(
-                   r"\draw[fill=yellow, draw=red, thick] (0,0) circle (1);",
-                   use_pdf=False,
+               template = TikzTemplate(
+                   libraries=["arrows.meta"],
+                   tikzset=["mybox/.style={draw=red, thick, fill=red!20}"],
                )
-               self.add(tikz)
+               tex = Tex(
+                   r"\begin{tikzpicture}"
+                   r"\node[mybox] (a) at (0,0) {Template};"
+                   r"\draw[-{Stealth}, thick] (a.east) -- ++(1.5,0);"
+                   r"\end{tikzpicture}",
+                   tex_template=template,
+               )
+               self.add(tex)
     """
 
     _DEFAULT_PREAMBLE = (

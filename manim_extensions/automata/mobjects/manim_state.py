@@ -57,13 +57,11 @@ class ManimState(State, VGroup):
 
        class ManimStateExample(Scene):
            def construct(self):
-               style = {
-                   "highlight_state": {"color": PURE_YELLOW},
-                   "animate_transition": {"animation_function": FadeToColor, "accept_color": PURE_YELLOW, "reject_color": RED, "run_time": 0.5, "time_width": 2},
-                   "token_highlight": {"animation_function": FadeToColor, "color": PURE_YELLOW},
-               }
-               state = ManimState("q0", 0, 0, style, initial=True)
-               self.add(state)
+               style = {}
+               initial = ManimState("q0", -4.5, 0, style, initial=True, scaling=1)
+               normal = ManimState("q1", 0, 0, style, scaling=1)
+               final = ManimState("q2", 4.5, 0, style, final=True, scaling=1)
+               self.add(initial, normal, final)
     """
 
     def __init__(

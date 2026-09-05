@@ -270,15 +270,20 @@ class ThreeDLine(ThreeDCylinder):
         Examples
         --------
         .. manim:: ParallelLineExample
-            :save_last_frame:
 
-            class ParallelLineExample(ThreeDScene):
+            from manim import *
+            from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
+
+            class ParallelLineExample(Scene):
                 def construct(self):
-                    self.set_camera_orientation(PI / 3, -PI / 4)
-                    ax = ThreeDAxes((-5, 5), (-5, 5), (-5, 5), 10, 10, 10)
-                    line1 = Line3D(RIGHT * 2, UP + OUT, color=RED)
-                    line2 = Line3D.parallel_to(line1, color=YELLOW)
-                    self.add(ax, line1, line2)
+                    line = ThreeDLine(LEFT * 2, RIGHT * 2)
+                    # ThreeDLine needs the OpenGL renderer to be drawn directly;
+                    # here its resulting geometry is shown with regular mobjects.
+                    parallel = ThreeDLine.parallel_to(line, point=UP, color=BLUE)
+                    self.play(Create(Line(LEFT * 2, RIGHT * 2, color=RED)))
+                    self.play(FadeIn(Dot(UP, color=YELLOW)))
+                    self.play(Create(Line(parallel.get_start(), parallel.get_end(), color=BLUE)))
+                    self.wait()
         """
         point = np.array(point)
         vect = normalize(line.vect)
@@ -314,15 +319,24 @@ class ThreeDLine(ThreeDCylinder):
         Examples
         --------
         .. manim:: PerpLineExample
-            :save_last_frame:
 
-            class PerpLineExample(ThreeDScene):
+            from manim import *
+            from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
+
+            class PerpLineExample(Scene):
                 def construct(self):
-                    self.set_camera_orientation(PI / 3, -PI / 4)
-                    ax = ThreeDAxes((-5, 5), (-5, 5), (-5, 5), 10, 10, 10)
-                    line1 = Line3D(RIGHT * 2, UP + OUT, color=RED)
-                    line2 = Line3D.perpendicular_to(line1, color=BLUE)
-                    self.add(ax, line1, line2)
+                    line = ThreeDLine(LEFT * 2, RIGHT * 2)
+                    # ThreeDLine needs the OpenGL renderer to be drawn directly;
+                    # here its resulting geometry is shown with regular mobjects.
+                    perpendicular = ThreeDLine.perpendicular_to(
+                        line, point=UP, color=BLUE
+                    )
+                    self.play(Create(Line(LEFT * 2, RIGHT * 2, color=RED)))
+                    self.play(FadeIn(Dot(UP, color=YELLOW)))
+                    self.play(
+                        Create(Line(perpendicular.get_start(), perpendicular.get_end(), color=BLUE))
+                    )
+                    self.wait()
         """
         point = np.array(point)
 

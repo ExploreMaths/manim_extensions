@@ -45,8 +45,10 @@ class TypeWriter(Animation):
 
        class TypeWriterDocExample(Scene):
            def construct(self):
-               text = Text("Hello World")
-               self.play(TypeWriter(text, interval=0.1))
+               greeting = Text("Dear viewers,").to_edge(UP)
+               body = Text("each character appears in turn.").next_to(greeting, DOWN)
+               self.play(TypeWriter(greeting, interval=0.1))
+               self.play(TypeWriter(body, interval=0.06))
                self.wait()
     """
 
@@ -115,9 +117,19 @@ def easeOutBounce(t: float) -> float:
 
        class EaseOutBounceExample(Scene):
            def construct(self):
-               dot = Dot()
-               self.add(dot)
-               self.play(dot.animate(rate_func=easeOutBounce).shift(RIGHT * 5), run_time=3)
+               track = Line(LEFT * 3, RIGHT * 3)
+               linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
+               eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
+               labels = VGroup(
+                   Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
+                   Text("easeOutBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+               )
+               self.add(track, linear_dot, eased_dot, labels)
+               self.play(
+                   linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=easeOutBounce).shift(RIGHT * 6),
+                   run_time=3,
+               )
                self.wait()
     """
     if t < 1 / 2.75:
@@ -158,9 +170,19 @@ def easeInBounce(t: float) -> float:
 
        class EaseInBounceExample(Scene):
            def construct(self):
-               dot = Dot()
-               self.add(dot)
-               self.play(dot.animate(rate_func=easeInBounce).shift(RIGHT * 5), run_time=3)
+               track = Line(LEFT * 3, RIGHT * 3)
+               linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
+               eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
+               labels = VGroup(
+                   Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
+                   Text("easeInBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+               )
+               self.add(track, linear_dot, eased_dot, labels)
+               self.play(
+                   linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=easeInBounce).shift(RIGHT * 6),
+                   run_time=3,
+               )
                self.wait()
     """
     return 1 - easeOutBounce(1 - t)
@@ -191,9 +213,19 @@ def easeInOutBounce(t: float) -> float:
 
        class EaseInOutBounceExample(Scene):
            def construct(self):
-               dot = Dot()
-               self.add(dot)
-               self.play(dot.animate(rate_func=easeInOutBounce).shift(RIGHT * 5), run_time=3)
+               track = Line(LEFT * 3, RIGHT * 3)
+               linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
+               eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
+               labels = VGroup(
+                   Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
+                   Text("easeInOutBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+               )
+               self.add(track, linear_dot, eased_dot, labels)
+               self.play(
+                   linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=easeInOutBounce).shift(RIGHT * 6),
+                   run_time=3,
+               )
                self.wait()
     """
     if t < 0.5:
@@ -230,9 +262,19 @@ def easeOutElastic(t: float) -> float:
 
        class EaseOutElasticExample(Scene):
            def construct(self):
-               dot = Dot()
-               self.add(dot)
-               self.play(dot.animate(rate_func=easeOutElastic).shift(RIGHT * 5), run_time=3)
+               track = Line(LEFT * 3, RIGHT * 3)
+               linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
+               eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
+               labels = VGroup(
+                   Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
+                   Text("easeOutElastic", font_size=24).next_to(eased_dot, UP, buff=0.15),
+               )
+               self.add(track, linear_dot, eased_dot, labels)
+               self.play(
+                   linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=easeOutElastic).shift(RIGHT * 6),
+                   run_time=3,
+               )
                self.wait()
     """
     s, a = 1.70158, 1
@@ -250,7 +292,7 @@ def easeOutElastic(t: float) -> float:
 
 
 class WriteRandom(LaggedStart):
-    """Write the submobjects of *mobject* one by one in random order.
+    r"""Write the submobjects of *mobject* one by one in random order.
 
     .. note::
 
@@ -276,9 +318,9 @@ class WriteRandom(LaggedStart):
 
        class WriteRandomDocExample(Scene):
            def construct(self):
-               text = Text("Hello").scale(2)
-               self.add(text)
-               self.play(WriteRandom(text))
+               formula = MathTex(r"\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}")
+               self.play(WriteRandom(formula, lag_ratio=0.2))
+               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
@@ -320,8 +362,9 @@ class ReversedWrite(LaggedStart):
 
        class ReversedWriteDocExample(Scene):
            def construct(self):
-               mob = Text("Hello")
-               self.play(ReversedWrite(mob))
+               normal = Text("Write").shift(UP)
+               reversed_mob = Text("ReversedWrite").shift(DOWN)
+               self.play(Write(normal), ReversedWrite(reversed_mob))
                self.wait()
     """
 
@@ -336,7 +379,7 @@ class ReversedWrite(LaggedStart):
 
 
 class FadeInRandom(LaggedStart):
-    """Fade in the submobjects of *mobject* one by one in random order.
+    r"""Fade in the submobjects of *mobject* one by one in random order.
 
     .. note::
 
@@ -363,7 +406,7 @@ class FadeInRandom(LaggedStart):
 
        class FadeInRandomDocExample(Scene):
            def construct(self):
-               mob = Text("Hello")
+               mob = MathTex(r"\frac{a+b}{2} \geq \sqrt{ab}").scale(1.5)
                self.play(FadeInRandom(mob))
                self.wait()
     """
@@ -407,10 +450,9 @@ class FadeOutRandom(LaggedStart):
 
        class FadeOutRandomDocExample(Scene):
            def construct(self):
-               mob = Text("Hello")
-               self.add(mob)
+               mob = Text("Now you see me", weight=BOLD).scale(1.2)
+               self.play(FadeIn(mob))
                self.play(FadeOutRandom(mob))
-               self.wait()
     """
 
     def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
@@ -425,7 +467,7 @@ class FadeOutRandom(LaggedStart):
 
 
 class GrowRandom(LaggedStart):
-    """Grow the submobjects of *mobject* from their centres in random order.
+    r"""Grow the submobjects of *mobject* from their centres in random order.
 
     .. note::
 
@@ -452,7 +494,9 @@ class GrowRandom(LaggedStart):
 
        class GrowRandomDocExample(Scene):
            def construct(self):
-               mob = Text("Hello")
+               mob = MathTex(
+                   r"\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}"
+               ).scale(1.3)
                self.play(GrowRandom(mob))
                self.wait()
     """
@@ -502,9 +546,10 @@ class PassingRectangle(Animation):
 
        class PassingRectangleDocExample(Scene):
            def construct(self):
-               rect = SurroundingRectangle(Text("Hi").scale(2))
-               self.add(rect)
-               self.play(PassingRectangle(rect))
+               text = Text("Highlight", weight=BOLD).scale(1.5)
+               self.play(Write(text))
+               self.play(PassingRectangle(text, color=YELLOW))
+               self.wait()
     """
 
     def __init__(
@@ -582,8 +627,9 @@ class LaggedCreation(Animation):
 
        class LaggedCreationDocExample(Scene):
            def construct(self):
-               mob = Text("Hello")
-               self.play(LaggedCreation(mob))
+               circle = Circle(radius=1.2, color=BLUE).shift(LEFT * 2)
+               square = Square(2.2, color=GREEN).shift(RIGHT * 2)
+               self.play(LaggedCreation(circle), LaggedCreation(square))
                self.wait()
     """
 
@@ -673,9 +719,13 @@ class HighLightWithLines(AnimationGroup):
 
        class HighLightWithLinesDocExample(Scene):
            def construct(self):
-               mob = Text("Hello", color=WHITE)
-               self.add(mob)
-               self.play(HighLightWithLines(mob))
+               content = VGroup(
+                   Text("Some context above"),
+                   Text("the important result", color=WHITE),
+                   Text("Some context below"),
+               ).arrange(DOWN, buff=0.6)
+               self.add(content)
+               self.play(HighLightWithLines(content[1]))
                self.wait()
     """
 
@@ -710,7 +760,7 @@ class HighLightWithLines(AnimationGroup):
 
 
 class UnHighLightWithLines(AnimationGroup):
-    """Undo :class:`~manim_extensions.animations.HighLightWithLines`: fade out the lines and rectangle.
+    r"""Undo :class:`~manim_extensions.animations.HighLightWithLines`: fade out the lines and rectangle.
 
     .. note::
 
@@ -741,7 +791,7 @@ class UnHighLightWithLines(AnimationGroup):
 
        class UnHighLightWithLinesDocExample(Scene):
            def construct(self):
-               mob = Text("Hello", color=WHITE)
+               mob = MathTex(r"\Delta = b^2 - 4ac", color=WHITE).scale(1.5)
                self.add(mob)
                self.play(UnHighLightWithLines(mob))
                self.wait()

@@ -79,11 +79,15 @@ class Mesh:
 
        class MeshExample(Scene):
            def construct(self):
-               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
+               vertices = [[0, 0, 0], [2, 0, 0], [1, 1.5, 0]]
                faces = [[0, 1, 2]]
                mesh = Mesh(vertices, faces)
-               label = Text(f"Mesh: {len(mesh.vertices)} verts, {len(mesh.faces)} faces", font_size=24)
-               self.add(label)
+               # the edges are derived from the faces automatically
+               dots = VGroup(*[Dot(v) for v in mesh.get_3d_vertices()])
+               lines = VGroup(*[
+                   Line(dots[i], dots[j]) for i, j in mesh.edges
+               ])
+               self.add(lines, dots)
     """
 
     @dangling_vert_decorator()

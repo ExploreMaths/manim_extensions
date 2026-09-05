@@ -30,13 +30,23 @@ class NodeSate(Enum):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.nodes.node import NodeSate
 
        class NodeSateExample(Scene):
            def construct(self):
-               state = NodeSate.DISPLAY
-               label = Text(f"State: {state.name}", font_size=24)
-               self.add(label)
+               root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
+               child = Node(MathTex(r"\text{Child}", font_size=36))
+               root.add_child(child)
+               child.node_state = NodeSate.DISPLAY
+               tree = VGroup(root.surr_rect, root.vmobject,
+                             child.surr_rect, child.vmobject)
+               tree.arrange(RIGHT, buff=1.5)
+               caption = Text(
+                   f"child.node_state = NodeSate.{child.node_state.name}",
+                   font_size=24,
+               ).to_edge(DOWN)
+               self.add(tree, caption)
     """
 
     INSERT = 0  # newly inserted
@@ -71,8 +81,14 @@ class NodeStyle:
        class NodeStyleExample(Scene):
            def construct(self):
                style = NodeStyle()
-               label = Text("NodeStyle with default colors", font_size=24)
-               self.add(label)
+               rows = VGroup()
+               for level in range(style.node_num):
+                   box = Rectangle(width=3.2, height=1.0, **style.get_node_style(level))
+                   label = Text(f"level {level}", **style.get_text_style(level))
+                   label.move_to(box)
+                   rows.add(VGroup(box, label))
+               rows.arrange(DOWN, buff=0.4)
+               self.add(rows)
     """
 
     def __init__(
@@ -199,12 +215,25 @@ class Node:
 
        from manim import *
        from manim_extensions.mindmap import Node
+       from manim_extensions.mindmap.algorithms import LayoutType
 
        class NodeDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36))
-               root.add_child(Node(MathTex(r"\text{Child}", font_size=36)))
-               self.add(root.vmobject, root.surr_rect)
+               root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
+               child = Node(MathTex(r"\text{Child}", font_size=36), color=GREEN)
+               leaf = Node(MathTex(r"\text{Leaf}", font_size=36), color=YELLOW)
+               root.add_child(child)
+               child.add_child(leaf)
+               for node, pos in [(root, LEFT * 3), (child, ORIGIN), (leaf, RIGHT * 3)]:
+                   node.vmobject.move_to(pos)
+                   node.surr_rect.move_to(pos)
+               connectors = Group(
+                   child.get_connector(LayoutType.MindMap, RIGHT, color=GREY),
+                   leaf.get_connector(LayoutType.MindMap, RIGHT, color=GREY),
+               )
+               self.add(connectors, root.vmobject, root.surr_rect,
+                         child.vmobject, child.surr_rect,
+                         leaf.vmobject, leaf.surr_rect)
     """
 
     def __init__(

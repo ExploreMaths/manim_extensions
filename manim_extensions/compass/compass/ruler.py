@@ -47,7 +47,8 @@ class Ruler(VGroup):
        class RulerExample(Scene):
            def construct(self):
                ruler = Ruler()
-               self.add(ruler)
+               start, end = ruler.get_start_and_end()
+               self.add(ruler, Dot(start, color=RED), Dot(end, color=RED))
     """
 
     def __init__(
@@ -122,7 +123,9 @@ class Ruler(VGroup):
 
            class SetRulerDocExample(Scene):
                def construct(self):
-                   ruler = Ruler().set_ruler(LEFT, RIGHT)
+                   start, end = LEFT * 2 + DOWN, RIGHT * 2 + UP
+                   self.add(Dot(start, color=RED), Dot(end, color=RED))
+                   ruler = Ruler().set_ruler(start, end)
                    self.add(ruler)
         """
         direction = end - start
@@ -146,8 +149,9 @@ class Ruler(VGroup):
 
            class PutRulerFlatDocExample(Scene):
                def construct(self):
-                   ruler = Ruler().put_ruler_flat()
-                   self.add(ruler)
+                   tilted = Ruler().rotate(PI / 5).shift(UP * 1.5)
+                   flat = Ruler().rotate(PI / 5).put_ruler_flat().shift(DOWN * 1.5)
+                   self.add(tilted, flat)
         """
         self.rotate(angle=get_vecs_angle(self.get_direction_vector_of_ruler(), RIGHT))
         return self
