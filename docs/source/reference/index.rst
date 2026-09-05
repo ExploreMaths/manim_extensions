@@ -115,14 +115,6 @@ Meshes
    :parts: 1
    :top-classes: manim.mobject.mobject.Mobject
 
-Neural Network
-**************
-
-.. inheritance-diagram::
-   manim_extensions.neural_network.neural_network.NeuralNetworkMobject
-   :parts: 1
-   :top-classes: manim.mobject.mobject.Mobject
-
 Physics
 *******
 
@@ -171,6 +163,97 @@ TikZ
    :parts: 1
    :top-classes: manim.mobject.types.vectorized_mobject.SVGMobject
 
+Arabic
+******
+
+.. inheritance-diagram::
+   manim_extensions.arabic.text
+   :parts: 1
+
+Chemistry
+*********
+
+.. inheritance-diagram::
+   manim_extensions.chemistry.element.element.Element
+   manim_extensions.chemistry.periodic_table.table_objects.PeriodicTable
+   manim_extensions.chemistry.twoD.molecule.MMoleculeObject
+   manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule
+   manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule
+   manim_extensions.chemistry.bohr_atom.bohr_atom.BohrAtom
+   :parts: 1
+   :top-classes: manim.mobject.mobject.Mobject
+
+Economics
+*********
+
+.. inheritance-diagram::
+   manim_extensions.economics.base.EconDiagram
+   manim_extensions.economics.supply_demand.SupplyDemandDiagram
+   manim_extensions.economics.ad_as.ADASDiagram
+   manim_extensions.economics.is_lm.ISLMDiagram
+   manim_extensions.economics.solow.SolowDiagram
+   :parts: 1
+   :top-classes: manim.mobject.mobject.Mobject
+
+Font Awesome
+************
+
+.. inheritance-diagram::
+   manim_extensions.fontawesome.manim_fontawesome
+   :parts: 1
+
+Machine Learning
+****************
+
+.. inheritance-diagram::
+   manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork
+   manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeDiagram
+   :parts: 1
+   :top-classes: manim.mobject.mobject.Mobject
+
+Pymunk
+******
+
+.. inheritance-diagram::
+   manim_extensions.pymunk.space.SpaceScene.SpaceScene
+   manim_extensions.pymunk.space.VSpace.VSpace
+   manim_extensions.pymunk.custom_mobjects.v_spring.VSpring
+   manim_extensions.pymunk.constraints.constraint.VConstraint
+   :parts: 1
+   :top-classes: manim.mobject.mobject.Mobject
+
+QR Codes
+********
+
+.. inheritance-diagram::
+   manim_extensions.qr_codes.qr
+   :parts: 1
+
+SVG Animations
+**************
+
+.. inheritance-diagram::
+   manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject
+   :parts: 1
+
+Table
+*****
+
+.. inheritance-diagram::
+   manim_extensions.table.table.Table
+   manim_extensions.table.row.Row
+   manim_extensions.table.cell.Cell
+   :parts: 1
+   :top-classes: manim.mobject.types.vectorized_mobject.VGroup
+
+Weighted Line
+*************
+
+.. inheritance-diagram::
+   manim_extensions.weighted_line.weighted_line.WeightedLine
+   :parts: 1
+   :top-classes: manim.mobject.geometry.line.Line
+
 Module Index
 ------------
 
@@ -179,15 +262,24 @@ Module Index
 
    basic/index
    algorithm/index
+   arabic/index
    automata/index
+   chemistry/index
    circuit/index
    compass/index
    data_structures/index
+   economics/index
+   fontawesome/index
    gearbox/index
+   machine_learning/index
    meshes/index
    mindmap/index
-   neural_network/index
    physics/index
+   pymunk/index
+   qr_codes/index
    rubikscube/index
    sequence_diagram/index
+   svg_animations/index
+   table/index
    tikz/index
+   weighted_line/index
