@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # <img src="docs/source/_static/favicon.svg" align="top" width=45> Manim Extensions
 
@@ -69,11 +69,20 @@
 | `manim_extensions.circuit`    | Circuit diagram animations |
 | `manim_extensions.data_structures` | Data structure animations |
 | `manim_extensions.meshes`     | Mesh and geometry visualisation |
-| `manim_extensions.neural_network` | Neural-network visualisation |
 | `manim_extensions.physics`    | Physics simulation helpers |
 | `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
 | `manim_extensions.sequence_diagram` | Sequence diagram animations |
 | `manim_extensions.tikz`       | TikZ import helpers |
+| `manim_extensions.arabic`     | Arabic text support |
+| `manim_extensions.chemistry`  | Chemistry visualisation (periodic table, molecules) |
+| `manim_extensions.economics`  | Economics diagrams |
+| `manim_extensions.fontawesome`| Font Awesome icon mobjects |
+| `manim_extensions.machine_learning` | Machine-learning visualisation |
+| `manim_extensions.pymunk`     | Pymunk physics engine integration |
+| `manim_extensions.qr_codes`   | QR code generation |
+| `manim_extensions.svg_animations` | HTML/SVG animation export |
+| `manim_extensions.table`      | Animated tables |
+| `manim_extensions.weighted_line` | Weighted line graphs |
 
 ## Bundled plugins
 
@@ -81,15 +90,26 @@ The following third-party Manim plugins are bundled directly as subpackages
 inside `manim_extensions`:
 
 - `manim-algorithm` → `manim_extensions.algorithm`
+- `manim-arabic` → `manim_extensions.arabic`
 - `manim-automata` → `manim_extensions.automata`
+- `manim-Chemistry` → `manim_extensions.chemistry`
 - `manim-circuit` → `manim_extensions.circuit`
 - `manim-data-structures` → `manim_extensions.data_structures`
+- `manim_ec` → `manim_extensions.economics`
+- `manim-fontawesome` → `manim_extensions.fontawesome`
+- `manim-gearbox` → `manim_extensions.gearbox`
 - `manim-meshes` → `manim_extensions.meshes`
-- `manim-neural-network` → `manim_extensions.neural_network`
+- `manim-ml` (ManimML) → `manim_extensions.machine_learning`
+- `manim-mindmap` → `manim_extensions.mindmap`
 - `manim-physics` → `manim_extensions.physics`
+- `manim-pymunk` → `manim_extensions.pymunk`
+- `manim-qr-codes` → `manim_extensions.qr_codes`
 - `manim-rubikscube` → `manim_extensions.rubikscube`
 - `manim-sequence-diagram` → `manim_extensions.sequence_diagram`
+- `manim-svg-animations` → `manim_extensions.svg_animations`
+- `manim-table` → `manim_extensions.table`
 - `manim-tikz` → `manim_extensions.tikz`
+- `manim-weighted-line` → `manim_extensions.weighted_line`
 
 Installing `manim_extensions` lets you import them directly from the package
 namespace and guarantees compatible versions. See the
@@ -106,8 +126,27 @@ Full API reference: **[manim-extensions.readthedocs.io](https://manim-extensions
 pip install manim_extensions
 ```
 
-Requires [Manim](https://github.com/ManimCommunity/manim). For the Chinese-formula
-features you also need `xelatex` with the `xeCJK` package installed.
+Requires [Manim](https://github.com/ManimCommunity/manim) Community Edition
+(>=0.21). For the Chinese-formula features you also need `xelatex` with the
+`xeCJK` package installed.
+
+### Optional extras
+
+```bash
+pip install manim_extensions[dev]     # pytest for running tests
+pip install manim_extensions[docs]    # sphinx + furo for building docs
+pip install manim_extensions[ml]      # matplotlib, scikit-learn, seaborn, tqdm
+```
+
+Some bundled modules depend on lazily-imported packages that are **not**
+declared in `pyproject.toml` because their PyPI metadata pins incompatible
+Manim or Python versions. Install them separately when needed:
+
+- **`manim-mobject-svg`** (for `svg_animations.HTMLParsedVMobject`) — on Python
+  3.13+ use `pip install --ignore-requires-python manim-mobject-svg`.
+- **`manim-nerdfont-icons`** (for the optional `icon` argument of
+  `qr_codes.qr_code`) — use
+  `pip install --no-deps manim-nerdfont-icons`.
 
 ## License
 

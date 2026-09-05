@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "manim_extensions"
-version = "1.0.4"
+version = "1.0.5"
 description = "A package for tools and extensions in Manim"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,17 +27,35 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "manim>=0.19.1",
+    "manim>=0.21.0",
     "Pillow>=9.0",
     "opencv-python>=4.5",
-    "pymunk>=6.0",
-    "kociemba>=1.2",
-    "shapely>=2.0",
-    "trimesh>=4.0",
-    "xmltodict",
     "numpy>=2.0",
     "scipy>=1.9",
+    "pandas>=2.2",
+    "networkx>=3.0",
+    "requests>=2.31",
+    "click>=8.1",
+    "rich>=13.0",
+    "pymunk>=6.0",
+    "shapely>=2.0",
+    "trimesh>=4.0",
     "moderngl>=5.0",
+    "kociemba>=1.2",
+    "xmltodict>=0.13",
+    "segno>=1.5",
+    "svgpathtools>=1.5",
+    # manim-mobject-svg (used by svg_animations.HTMLParsedVMobject) works
+    # with any manim>=0.16, but its 0.5.x release declares python<3.13 on
+    # PyPI even though the package is pure Python; on Python 3.13+ install
+    # it with `pip install --ignore-requires-python manim-mobject-svg`.
+    # The plugin is imported lazily, so it is only needed when using
+    # HTMLParsedVMobject.
+    "manim-mobject-svg>=0.5; python_version < '3.13'",
+    # Not declared as a dependency on purpose: manim-nerdfont-icons 1.0.x
+    # (used for the optional `icon` argument of qr_codes.qr_code) pins
+    # manim>=0.19,<0.20 on PyPI, although it works with current manim.
+    # Install it with `pip install --no-deps manim-nerdfont-icons`.
 ]
 
 [project.optional-dependencies]
@@ -49,6 +67,15 @@ docs = [
     "furo>=2024.0",
     "sphinx-autodoc-typehints>=2.0",
     "myst-parser>=3.0",
+    "docutils>=0.20",
+    "jinja2>=3.1",
+]
+# Optional: machine_learning diffusion/decision-tree modules
+ml = [
+    "matplotlib>=3.7",
+    "scikit-learn>=1.3",
+    "seaborn>=0.13",
+    "tqdm>=4.65",
 ]
 
 [project.urls]
