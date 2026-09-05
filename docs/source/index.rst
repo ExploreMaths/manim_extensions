@@ -54,7 +54,6 @@ The library is organised into two areas:
     * :doc:`reference/circuit/index` – circuit elements and diagrams.
     * :doc:`reference/data_structures/index` – array and variable visualization.
     * :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
-    * :doc:`reference/neural_network/index` – neural network mobjects.
     * :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
     * :doc:`reference/rubikscube/index` – Rubik's cube mobject and animations.
     * :doc:`reference/sequence_diagram/index` – UML sequence diagram helpers.
