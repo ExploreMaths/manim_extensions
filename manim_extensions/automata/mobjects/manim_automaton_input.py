@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Input representation for automata visualization.
+
+This module provides the ManimAutomataInput class for representing input strings in automata.
+
+"""
 
 from typing import Any
 

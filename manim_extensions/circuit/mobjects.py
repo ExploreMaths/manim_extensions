@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Circuit mobjects for Manim.
+
+This module provides circuit component visualizations.
+
+"""
 
 from manim import *
 from .utils import *

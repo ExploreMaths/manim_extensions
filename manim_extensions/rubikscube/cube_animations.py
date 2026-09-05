@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Rubik's Cube animations for Manim.
+
+This module provides animations for Rubik's Cube manipulations.
+
+"""
 
 from manim import *
 from .cube_utils import get_axis_from_face

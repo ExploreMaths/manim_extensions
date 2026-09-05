@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Sequence diagram action for Manim.
+
+This module provides action classes for sequence diagrams.
+
+"""
 
 from manim import *
 from .seq_actor import SeqActor

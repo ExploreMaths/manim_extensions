@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Layout configuration for mindmap algorithms.
+
+This module provides configuration classes for layout algorithms.
+
+"""
 
 from manim import *
 

@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Pencil animations for Manim.
+
+This module provides animations for pencil manipulations.
+
+"""
 
 from manim import *
 

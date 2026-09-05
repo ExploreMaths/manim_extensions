@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Deterministic finite state automaton visualization.
+
+This module provides the ManimdeterministicFiniteAutomaton class for visualizing DFAs.
+
+"""
 
 from manim import *  # noqa: F401
 

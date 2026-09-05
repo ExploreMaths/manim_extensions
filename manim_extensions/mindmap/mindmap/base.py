@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Mindmap base classes for Manim.
+
+This module provides base classes for mindmap visualizations.
+
+"""
 
 from manim import *
 

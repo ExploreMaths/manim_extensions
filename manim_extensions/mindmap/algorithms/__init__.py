@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Mind map layout algorithms."""
 
 from .layout_factory import LayoutFactory
 from .layout_config import *

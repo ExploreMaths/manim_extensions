@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""TikZ template for Manim.
+
+This module provides the TikZ template class for rendering TikZ diagrams.
+
+"""
 
 from typing import List
 

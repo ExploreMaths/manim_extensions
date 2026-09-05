@@ -2,11 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Manim mesh classes for rendering."""
 
 from . import basic_mesh
 from . import opengl_mesh
 from . import triangle_mesh
-
-"""
-manim mesh classes for rendering
-"""

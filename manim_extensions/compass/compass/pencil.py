@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Pencil class for Manim.
+
+This module provides pencil visualization for geometry.
+
+"""
 
 from manim import *
 

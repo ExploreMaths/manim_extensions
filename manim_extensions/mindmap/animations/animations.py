@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Mindmap animations for Manim.
+
+This module provides animations for mindmap visualizations.
+
+"""
 
 from manim import *
 

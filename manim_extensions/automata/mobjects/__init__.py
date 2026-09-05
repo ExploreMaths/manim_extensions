@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Automata visualization mobjects for Manim."""
 
 from .manim_automaton import *
 from .manim_deterministic_finite_state_automaton import *

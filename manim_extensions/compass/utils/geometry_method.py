@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Geometry methods for compass.
+
+This module provides geometry utility functions for compass operations.
+
+"""
 
 from manim import *
 

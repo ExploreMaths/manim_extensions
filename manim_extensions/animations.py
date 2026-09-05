@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
 # SPDX-License-Identifier: MIT
 
+"""Custom animations for Manim."""
 
 from manim import *
 import numpy as np

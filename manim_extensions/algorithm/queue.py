@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Queue data structure for algorithm visualization."""
 
 from typing import List
 from manim import *
