@@ -197,7 +197,7 @@ class Mesh:
         def replace_part_ids_with_vertex_ids(
             parts: Parts, faces: Faces, vertices: Vertices
         ) -> VarArray:
-            """Resolve part �?face �?vertex references into flat coordinate arrays.
+            """Resolve part → face → vertex references into flat coordinate arrays.
 
             Parameters
             ----------
@@ -226,7 +226,7 @@ class Mesh:
         def replace_face_ids_with_vertex_ids(
             faces: Faces, vertices: Vertices
         ) -> VarArray:
-            """Resolve face �?vertex references into flat coordinate arrays.
+            """Resolve face → vertex references into flat coordinate arrays.
 
             Parameters
             ----------
@@ -1098,7 +1098,7 @@ class Mesh:
             the mesh dimension.
         InvalidRequestException
             If *grid_sizes* contains non-positive values, any threshold
-            is �?half the corresponding grid size, all thresholds are zero,
+            is ≥ half the corresponding grid size, all thresholds are zero,
             or *steps* is not positive.
         """
         if len(grid_sizes) != self.dim:
