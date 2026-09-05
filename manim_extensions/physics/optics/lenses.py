@@ -6,9 +6,9 @@
 """Lenses for refracting Rays."""
 
 from __future__ import annotations
-from typing import Iterable, Tuple
 
 from manim import *
+from typing import Iterable, Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 from shapely import geometry as gm

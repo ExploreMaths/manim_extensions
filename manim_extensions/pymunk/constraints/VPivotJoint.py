@@ -6,8 +6,8 @@ This module provides the VPivotJoint class for creating pivot joint constraints 
 
 """
 
-from typing import Optional
 from manim import *
+from typing import Optional
 from . import VConstraint
 from pymunk.constraints import PivotJoint
 from pymunk import Space

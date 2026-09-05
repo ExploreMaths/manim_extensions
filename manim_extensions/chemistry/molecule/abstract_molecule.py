@@ -6,8 +6,8 @@ This module provides the AbstractMolecule class as a template for all molecule i
 
 """
 
-from typing import Union, Optional, Tuple, Dict
 from manim import *
+from typing import Union, Optional, Tuple, Dict
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 

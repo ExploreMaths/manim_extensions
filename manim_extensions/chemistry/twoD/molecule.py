@@ -6,10 +6,10 @@ This module provides the MMoleculeObject class for rendering molecules in 2D.
 
 """
 
-from typing import Optional, Tuple, Dict
 
 
 from manim import *
+from typing import Optional, Tuple, Dict
 from ..utils import (
     mol_parser,
     mol_parser_string,

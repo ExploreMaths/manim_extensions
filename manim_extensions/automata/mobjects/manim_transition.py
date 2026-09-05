@@ -11,9 +11,9 @@ This module provides transition visualization for automata.
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Any
 
 from manim import *
+from typing import TYPE_CHECKING, Any
 from .automata_dependencies.automata import Transition
 
 from .manim_state import ManimState

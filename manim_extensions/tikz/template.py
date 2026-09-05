@@ -8,10 +8,10 @@ This module provides the TikZ template class for rendering TikZ diagrams.
 
 """
 
-from typing import List
 
 
 from manim import *
+from typing import List
 
 
 class TikzTemplate(TexTemplate):

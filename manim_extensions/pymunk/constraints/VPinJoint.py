@@ -6,8 +6,8 @@ This module provides the VPinJoint class for creating pin joint constraints in p
 
 """
 
-from typing import Optional
 from manim import *
+from typing import Optional
 from . import VConstraint
 from pymunk.constraints import PinJoint
 from pymunk import Space

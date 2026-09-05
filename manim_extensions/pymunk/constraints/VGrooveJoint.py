@@ -10,10 +10,10 @@ This module provides the VGrooveJoint class for creating groove joint constraint
 
 """
 
-from typing import Optional
 from pymunk.constraints import GrooveJoint
 
 from manim import *
+from typing import Optional
 from . import VConstraint
 from pymunk import Space
 

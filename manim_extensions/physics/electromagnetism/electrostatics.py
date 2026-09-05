@@ -11,11 +11,11 @@ fields suitable for teaching and demonstration scenes in Manim.
 """
 
 from __future__ import annotations
-from typing import Iterable
 
 import numpy as np
 
 from manim import *
+from typing import Iterable
 
 __all__ = [
     "Charge",

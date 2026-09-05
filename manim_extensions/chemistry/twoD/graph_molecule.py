@@ -6,9 +6,9 @@ This module provides graph-based molecule visualization classes.
 
 """
 
-from typing import Dict, Tuple
 
 from manim import *
+from typing import Dict, Tuple
 import numpy as np
 import networkx as nx
 

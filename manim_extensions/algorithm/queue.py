@@ -4,8 +4,8 @@
 
 """Queue data structure for algorithm visualization."""
 
-from typing import List
 from manim import *
+from typing import List
 from manim.typing import Point3D
 from .node import Node
 

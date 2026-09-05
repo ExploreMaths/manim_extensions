@@ -6,10 +6,10 @@ This module provides the VGearJoint class for creating gear joint constraints.
 
 """
 
-from typing import Optional
 from pymunk import Space
 from pymunk.constraints import GearJoint
 from manim import *
+from typing import Optional
 from . import VConstraint
 
 

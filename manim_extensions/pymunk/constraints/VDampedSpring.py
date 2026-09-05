@@ -6,11 +6,11 @@ This module provides the VDampedSpring class for creating damped spring constrai
 
 """
 
-from typing import Optional
 from ..custom_mobjects import VSpring
 from pymunk import Space
 from pymunk.constraints import DampedSpring
 from manim import *
+from typing import Optional
 from . import VConstraint
 
 
