@@ -107,8 +107,6 @@ class ManimDirective(Directive):
             return [node]
 
 
-        global classnamedict
-
         clsname = self.arguments[0]
         if clsname not in classnamedict:
             classnamedict[clsname] = 1
