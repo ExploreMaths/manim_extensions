@@ -74,8 +74,8 @@ def compute_bfs_traversal(tree):
     while len(queue) > 0:
         current_index = queue.pop(0)
         traversal_order.append(current_index)
-        left_child_index = tree.children_left[node_index]
-        right_child_index = tree.children_right[node_index]
+        left_child_index = tree.children_left[current_index]
+        right_child_index = tree.children_right[current_index]
         is_leaf_node = left_child_index == right_child_index
         if not is_leaf_node:
             queue.append(left_child_index)
