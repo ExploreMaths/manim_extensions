@@ -18,30 +18,15 @@ ManimMesh
 ---------
 
 .. autoclass:: manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh
-   :show-inheritance:
-   :members:
-   :undoc-members:
-
 Manim2DMesh
 -----------
 
 .. autoclass:: manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh
-   :show-inheritance:
-   :members:
-   :undoc-members:
-
 TriangleManim2DMesh
 -------------------
 
 .. autoclass:: manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh
-   :show-inheritance:
-   :members:
-   :undoc-members:
-
 FastManimMesh
 -------------
 
 .. autoclass:: manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh
-   :show-inheritance:
-   :members:
-   :undoc-members:

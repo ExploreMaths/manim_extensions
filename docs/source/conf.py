@@ -31,6 +31,7 @@ extensions = [
     "myst_parser",
     "manim_directive",
     "inheritance_colors",
+    "autodoc_inheritance",
 ]
 
 templates_path = ["_templates"]
@@ -86,7 +87,6 @@ autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
     "undoc-members": True,
-    "show-inheritance": True,
 }
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
