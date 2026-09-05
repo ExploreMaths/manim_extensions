@@ -1,439 +1,370 @@
 version = 1
 
+# ==================== Project Config Files ====================
 [[annotations]]
 path = ".readthedocs.yaml"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "docs/Makefile"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "docs/make.bat"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "pyproject.toml"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "README.md"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = ".github/**"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
+# ==================== External Resources ====================
+# Font Awesome icon assets (SVG icons) - CC BY 4.0
+[[annotations]]
+path = "manim_extensions/fontawesome/manim_fontawesome/font-awesome/**"
+SPDX-FileCopyrightText = ["2024 Fonticons, Inc."]
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# Font Awesome Python wrapper - based on manim-fontawesome (BSD-3-Clause)
+[[annotations]]
+path = [
+    "manim_extensions/fontawesome/manim_fontawesome/__init__.py",
+    "manim_extensions/fontawesome/manim_fontawesome/__init__.pyi",
+    "manim_extensions/fontawesome/manim_fontawesome/py.typed",
+]
+SPDX-FileCopyrightText = ["2021 Naveen M K", "2026 ExploreMaths"]
+SPDX-License-Identifier = "BSD-3-Clause"
+source = "https://github.com/naveen521kk/manim-fontawesome"
+
+# ==================== External Packages (Third-Party) ====================
+# algorithm - Algorithm visualization
 [[annotations]]
 path = "manim_extensions/algorithm/**"
-SPDX-FileCopyrightText = [
-    "2024 sinianluoye",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2024 sinianluoye", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/sinianluoye/manim-algorithm"
 
+# automata - Automata
 [[annotations]]
 path = "manim_extensions/automata/**"
-SPDX-FileCopyrightText = [
-    "2022 Sean Nelson",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 Sean Nelson", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/SeanNelsonIO/manim-automata"
 
+# circuit - Circuit
 [[annotations]]
 path = "manim_extensions/circuit/**"
-SPDX-FileCopyrightText = [
-    "2025 Mr-FuzzyPenguin",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2025 Mr-FuzzyPenguin", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/Mr-FuzzyPenguin/manim-circuit"
 
+# compass - Compass
 [[annotations]]
 path = "manim_extensions/compass/**"
-SPDX-FileCopyrightText = [
-    "2026 jj-math",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 jj-math", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/jj-math/manim-compass"
 
+# data_structures - Data structures
 [[annotations]]
 path = "manim_extensions/data_structures/**"
-SPDX-FileCopyrightText = [
-    "2022 Hammad Nasir",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 Hammad Nasir", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/drageelr/manim-data-structures"
 
+# gearbox - Gearbox
 [[annotations]]
 path = "manim_extensions/gearbox/**"
-SPDX-FileCopyrightText = [
-    "2020 GarryBGoode",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2020 GarryBGoode", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/GarryBGoode/manim-GearBox"
 
+# meshes - Meshes
 [[annotations]]
 path = "manim_extensions/meshes/**"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/bmmtstb/manim-meshes"
 
+# mindmap - Mind map
 [[annotations]]
 path = "manim_extensions/mindmap/**"
-SPDX-FileCopyrightText = [
-    "2026 jj-math",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 jj-math", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/jj-math/manim-mindmap"
 
-[[annotations]]
-path = "manim_extensions/neural_network/**"
-SPDX-FileCopyrightText = [
-    "2024 Javier Pozo Miranda",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/JPM2002/manim-neural-network"
-
+# physics - Physics
 [[annotations]]
 path = "manim_extensions/physics/**"
-SPDX-FileCopyrightText = [
-    "2024 Matheart",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2024 Matheart", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/Matheart/manim-physics"
 
+# rubikscube - Rubik's cube
 [[annotations]]
 path = "manim_extensions/rubikscube/**"
-SPDX-FileCopyrightText = [
-    "2021 KingWampy",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2021 KingWampy", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/WampyCakes/manim-rubikscube"
 
+# sequence_diagram - Sequence diagram
 [[annotations]]
 path = "manim_extensions/sequence_diagram/**"
-SPDX-FileCopyrightText = [
-    "2023 Thomas Chen",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2023 Thomas Chen", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/foxnewsnetwork/manim-sequence-diagram"
 
+# tikz - TikZ graphics
 [[annotations]]
 path = "manim_extensions/tikz/**"
-SPDX-FileCopyrightText = [
-    "2023 Ralphie Raccoon",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2023 Ralphie Raccoon", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/ralphieraccoon/manim-tikz"
 
+# ==================== Additional Bundled Packages (Third-Party, modified) ====================
+# Arabic support - based on manim-arabic
 [[annotations]]
-path = "manim_extensions/mobjects.py"
-SPDX-FileCopyrightText = [
-    "2020 manim-kindergarten",
-    "2026 ExploreMaths"
-]
+path = "manim_extensions/arabic/**"
+SPDX-FileCopyrightText = ["2026 Mahmoud Abdelrazek", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/manim-kindergarten/manim_sandbox"
+source = "https://github.com/razekmh/manim-arabic"
+
+# Chemistry - based on manim-Chemistry
+[[annotations]]
+path = "manim_extensions/chemistry/**"
+SPDX-FileCopyrightText = ["2023 UMDQ", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/UnMolDeQuimica/manim-Chemistry"
+
+# Economics - based on manim_ec
+[[annotations]]
+path = "manim_extensions/economics/**"
+SPDX-FileCopyrightText = ["2026 ddzhang04", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/ddzhang04/manim_ec"
+
+# Machine learning - based on ManimML (manim_ml)
+[[annotations]]
+path = "manim_extensions/machine_learning/**"
+SPDX-FileCopyrightText = ["2022 Alec Helbling", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/helblazer811/ManimML"
+
+# Pymunk physics engine - based on manim-pymunk
+[[annotations]]
+path = "manim_extensions/pymunk/**"
+SPDX-FileCopyrightText = ["2026 CoreKSets", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/HHP999/manim_pymunk"
+
+# QR codes - based on manim-qr-codes
+[[annotations]]
+path = "manim_extensions/qr_codes/**"
+SPDX-FileCopyrightText = ["2025 Alexander Nasuta", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/Alexander-Nasuta/manim-qr-codes"
+
+# SVG animations - based on manim-svg-animations
+[[annotations]]
+path = "manim_extensions/svg_animations/**"
+SPDX-FileCopyrightText = ["2023 MathLike", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/MathItYT/manim-svg-animations"
+
+# Table - based on manim-table
+[[annotations]]
+path = "manim_extensions/table/**"
+SPDX-FileCopyrightText = ["2026 Philippe Oger", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/philippe2803/manim-table"
+
+# Weighted line - based on manim-weighted-line
+[[annotations]]
+path = "manim_extensions/weighted_line/**"
+SPDX-FileCopyrightText = ["2023 Mutable Learning", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/mutable-learning/manim-weighted-line"
+
+# ==================== Basic ====================
+# manim_extensions root
+[[annotations]]
+path = "manim_extensions/__init__.py"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "manim_extensions/animations.py"
-SPDX-FileCopyrightText = [
-    "2020 manim-kindergarten",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/manim-kindergarten/manim_sandbox"
-
-[[annotations]]
-path = "manim_extensions/__init__.py"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2020 manim-kindergarten", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "manim_extensions/geometry.py"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "docs/source/_extensions/manim_directive.py"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths",
-    "2024 Manim Community"
-]
+path = "manim_extensions/mobjects.py"
+SPDX-FileCopyrightText = ["2020 manim-kindergarten", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+# ==================== Documentation ====================
+[[annotations]]
+path = "docs/Makefile"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "docs/source/_extensions/**"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "docs/source/_static/custom.css"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-
-[[annotations]]
-path = "docs/source/_static/responsiveSvg.js"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+path = "docs/make.bat"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "docs/source/conf.py"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "docs/source/reference/algorithm/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2024 sinianluoye",
-    "2026 ExploreMaths"
-]
+path = "docs/source/_extensions/**"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/sinianluoye/manim-algorithm"
 
 [[annotations]]
-path = "docs/source/reference/automata/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2022 Sean Nelson",
-    "2026 ExploreMaths"
-]
+path = "docs/source/_extensions/manim_directive.py"
+SPDX-FileCopyrightText = ["2026 ExploreMaths", "2024 Manim Community"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/SeanNelsonIO/manim-automata"
 
 [[annotations]]
-path = "docs/source/reference/circuit/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2025 Mr-FuzzyPenguin",
-    "2026 ExploreMaths"
-]
+path = "docs/source/_static/custom.css"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/Mr-FuzzyPenguin/manim-circuit"
 
 [[annotations]]
-path = "docs/source/reference/compass/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2026 jj-math",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/jj-math/manim-compass"
-
-[[annotations]]
-path = "docs/source/reference/data_structures/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2022 Hammad Nasir",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/drageelr/manim-data-structures"
-
-[[annotations]]
-path = "docs/source/reference/gearbox/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2020 GarryBGoode",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/GarryBGoode/manim-GearBox"
-
-[[annotations]]
-path = "docs/source/reference/meshes/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/bmmtstb/manim-meshes"
-
-[[annotations]]
-path = "docs/source/reference/mindmap/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2026 jj-math",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/jj-math/manim-mindmap"
-
-[[annotations]]
-path = "docs/source/reference/neural_network/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2024 Javier Pozo Miranda",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/JPM2002/manim-neural-network"
-
-[[annotations]]
-path = "docs/source/reference/physics/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2024 Matheart",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/Matheart/manim-physics"
-
-[[annotations]]
-path = "docs/source/reference/rubikscube/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2021 KingWampy",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/WampyCakes/manim-rubikscube"
-
-[[annotations]]
-path = "docs/source/reference/sequence_diagram/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2023 Thomas Chen",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/foxnewsnetwork/manim-sequence-diagram"
-
-[[annotations]]
-path = "docs/source/reference/tikz/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2023 Ralphie Raccoon",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/ralphieraccoon/manim-tikz"
-
-[[annotations]]
-path = "docs/source/reference/basic/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2020 manim-kindergarten",
-    "2026 ExploreMaths"
-]
-SPDX-License-Identifier = "MIT"
-source = "https://github.com/manim-kindergarten/manim_sandbox"
-
-[[annotations]]
-path = "docs/source/**/*.rst"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+path = "docs/source/_static/responsiveSvg.js"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "docs/source/_static/*.svg"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "docs/source/_static/3Blue1Brown.mp4"
-SPDX-FileCopyrightText = [
-    "2015 3Blue1Brown"
-]
+SPDX-FileCopyrightText = ["2015 3Blue1Brown"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "docs/source/**/*.rst"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+# Documentation references (corresponding to external packages)
+[[annotations]]
+path = "docs/source/reference/algorithm/**/*.rst"
+SPDX-FileCopyrightText = ["2024 sinianluoye", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/automata/**/*.rst"
+SPDX-FileCopyrightText = ["2022 Sean Nelson", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/circuit/**/*.rst"
+SPDX-FileCopyrightText = ["2025 Mr-FuzzyPenguin", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/compass/**/*.rst"
+SPDX-FileCopyrightText = ["2026 jj-math", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/data_structures/**/*.rst"
+SPDX-FileCopyrightText = ["2022 Hammad Nasir", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/gearbox/**/*.rst"
+SPDX-FileCopyrightText = ["2020 GarryBGoode", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/meshes/**/*.rst"
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/mindmap/**/*.rst"
+SPDX-FileCopyrightText = ["2026 jj-math", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/physics/**/*.rst"
+SPDX-FileCopyrightText = ["2024 Matheart", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/rubikscube/**/*.rst"
+SPDX-FileCopyrightText = ["2021 KingWampy", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/sequence_diagram/**/*.rst"
+SPDX-FileCopyrightText = ["2023 Thomas Chen", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/tikz/**/*.rst"
+SPDX-FileCopyrightText = ["2023 Ralphie Raccoon", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/basic/**/*.rst"
+SPDX-FileCopyrightText = ["2020 manim-kindergarten", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+# ==================== Workflow and Tests ====================
+[[annotations]]
 path = "workflow/**"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "tests/**"
-SPDX-FileCopyrightText = [
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
+# ==================== Special Resources ====================
 [[annotations]]
 path = "manim_extensions/compass/compass/assets/**"
-SPDX-FileCopyrightText = [
-    "2026 jj-math",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2026 jj-math", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "manim_extensions/meshes/data/models/armadillo.ply"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/bmmtstb/manim-meshes"
 
 [[annotations]]
 path = "manim_extensions/meshes/data/models/suzanne.ply"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/bmmtstb/manim-meshes"
 
 [[annotations]]
 path = "manim_extensions/meshes/data/models/tail_topper.stl"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/bmmtstb/manim-meshes"
 
 [[annotations]]
 path = "manim_extensions/meshes/shaders/**"
-SPDX-FileCopyrightText = [
-    "2022 bmmtstb",
-    "99Vicky",
-    "2026 ExploreMaths"
-]
+SPDX-FileCopyrightText = ["2022 bmmtstb", "99Vicky", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
-source = "https://github.com/bmmtstb/manim-meshes"
+
+[[annotations]]
+path = "manim_extensions/machine_learning/utils/testing/*.cfg"
+SPDX-FileCopyrightText = ["2022 Alec Helbling", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
