@@ -63,19 +63,23 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     Examples
     --------
     .. manim:: ManimMeshExample
-       :save_last_frame:
 
        from manim import *
+       import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
-       class ManimMeshExample(Scene):
+       class ManimMeshExample(ThreeDScene):
            def construct(self):
                vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1]]
                faces = [[0, 1, 2], [0, 1, 3], [1, 2, 3], [0, 2, 3]]
                mesh_data = Mesh(vertices, faces)
-               mm = ManimMesh(mesh_data)
-               self.add(mm)
+               mm = ManimMesh(mesh_data, display_vertices=True)
+               self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
+               self.play(FadeIn(mm.faces), FadeIn(mm.edges))
+               # dragging a vertex updates all adjacent faces and edges
+               mm.shift_vertex(self, 3, np.array([0, 0, 1.5]))
+               self.wait()
     """
 
     # pylint:disable=abstract-method
@@ -689,19 +693,24 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     Examples
     --------
     .. manim:: Manim2DMeshExample
-       :save_last_frame:
 
        from manim import *
+       import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
 
        class Manim2DMeshExample(Scene):
            def construct(self):
-               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0]]
-               faces = [[0, 1, 2]]
-               mesh_data = Mesh(vertices, faces)
-               mm = Manim2DMesh(mesh_data)
+               vertices = [[0, 0, 0], [1, 0.1, 0], [0.5, 1.05, 0], [1.5, 0.95, 0]]
+               mm = Manim2DMesh(Mesh(vertices, []), display_vertices=True)
                self.add(mm)
+               # add the faces one by one
+               for face in [[0, 1, 2], [1, 3, 2]]:
+                   face_mob, new_edges = mm.add_face(np.array(face), color=TEAL)
+                   self.play(FadeIn(face_mob), FadeIn(VGroup(*new_edges)))
+               # then snap all vertices onto a regular grid
+               mm.move_to_grid(self, (1.0, 1.0, 1.0), (0.2, 0.2, 0.2))
+               self.wait()
     """
 
     # pylint:disable=abstract-method

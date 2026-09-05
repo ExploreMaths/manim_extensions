@@ -62,15 +62,26 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
     Examples
     --------
     .. manim:: ManimNondeterministicFiniteAutomatonExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton import ManimNondeterministicFiniteAutomaton
 
        class ManimNondeterministicFiniteAutomatonExample(Scene):
            def construct(self):
-               ndfa = ManimNondeterministicFiniteAutomaton()
-               self.add(ndfa)
+               nda = ManimNondeterministicFiniteAutomaton()
+               self.add(nda)
+               animations = ManimAnimations()
+               q0 = nda.get_initial_state()
+               q1 = nda.get_state("q1")
+               q2 = nda.get_state("q2")
+               self.play(animations.animate_highlight_state(q0))
+               # the epsilon transition q0 -> q2 fires at the same time as q0 -> q1
+               self.play(
+                   animations.animate_highlight_state(q1),
+                   animations.animate_highlight_state(q2),
+               )
+               self.play(animations.animate_dead_branch_state(q1))
     """
 
     nda_builder = False

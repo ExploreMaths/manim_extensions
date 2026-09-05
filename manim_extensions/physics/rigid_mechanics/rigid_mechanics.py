@@ -61,15 +61,26 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
     Examples
     --------
     .. manim:: SpaceExample
-       :save_last_frame:
 
        from manim import *
-       from manim_extensions.physics.rigid_mechanics.rigid_mechanics import Space
+       from manim_extensions.physics.rigid_mechanics.rigid_mechanics import (
+           SpaceScene,
+       )
 
-       class SpaceExample(Scene):
+       class SpaceExample(SpaceScene):
+           GRAVITY = (0, -5)
+
            def construct(self):
-               space = Space(gravity=(0, -9.81))
-               self.add(space)
+               ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 3)
+               ball = Circle(radius=0.4, stroke_color=BLUE,
+                             fill_color=BLUE, fill_opacity=1)
+               ball.shift(ground.get_center() + UP * 4)
+               self.play(FadeIn(ground), FadeIn(ball))
+               self.make_static_body(ground)
+               self.make_rigid_body(ball)
+               self.wait(2)
+               self.space.space.gravity = (0, 5)
+               self.wait(3)
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
@@ -114,9 +125,11 @@ class SpaceScene(Scene):
            def construct(self):
                circle = Circle().shift(UP)
                circle.set_fill(RED, 1)
+               ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 2.5)
                self.play(DrawBorderThenFill(circle))
+               self.make_static_body(ground)
                self.make_rigid_body(circle)
-               self.wait(1)
+               self.wait(2)
     """
 
     GRAVITY: Tuple[float, float] = 0, -9.81

@@ -262,28 +262,28 @@ class AbstractMolecule:
 
         .. manim:: MMoleculeWithName
 
-            from manim_chemistry import *
+            from manim import *
+            from manim_extensions.chemistry import MMoleculeObject
 
             class MMoleculeWithName(Scene):
                 def construct(self):
-                    molecule = MMoleculeObject.molecule_from_file(
-                        "../examples/molecule_files/mol_files/acetone_2d.mol",
-                    ).add_molecule_name(name="Acetone")
-                    self.wait()
+                    molecule = MMoleculeObject.molecule_from_pubchem(name="acetone")
                     self.play(Write(molecule))
+                    molecule.add_molecule_name(name="Acetone")
+                    self.play(Write(molecule[-1]))
                     self.wait()
 
         .. manim:: GraphMoleculeWithName
 
-            from manim_chemistry import *
+            from manim import *
+            from manim_extensions.chemistry import GraphMolecule
 
             class GraphMoleculeWithName(Scene):
                 def construct(self):
-                    molecule = GraphMolecule.molecule_from_file(
-                        "../examples/molecule_files/mol_files/acetone_2d.mol",
-                    ).add_molecule_name(name="Acetone")
-                    self.wait()
+                    molecule = GraphMolecule.molecule_from_pubchem(name="acetone")
                     self.play(Write(molecule))
+                    molecule.add_molecule_name(name="Acetone")
+                    self.play(Write(molecule.submobjects[-1]))
                     self.wait()
 
         """

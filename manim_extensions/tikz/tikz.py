@@ -47,11 +47,15 @@ class Tikz(SVGMobject):
 
        class ManimTikzExample(Scene):
            def construct(self):
-               tikz_example = Tikz(
-                   r"\draw[magenta, line width=10mm, fill=blue] (0,0) rectangle(1,1);",
+               graph = Tikz(
+                   r"\node[draw, circle, fill=blue!20] (a) at (0,0) {A};"
+                   r"\node[draw, circle, fill=red!20] (b) at (2.5,0) {B};"
+                   r"\draw[conn] (a) -- (b);",
+                   libraries=["arrows.meta"],
+                   tikzset=["conn/.style={-{Stealth[length=3mm]}, thick, red}"],
                    use_pdf=False,
                )
-               self.add(tikz_example)
+               self.add(graph)
     """
 
     def __init__(

@@ -35,24 +35,30 @@ class VoronoiDelaunay:
     Examples
     --------
     .. manim:: VoronoiDelaunayExample
-       :save_last_frame:
 
        from manim import *
+       import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
        from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
 
        class VoronoiDelaunayExample(Scene):
            def construct(self):
-               import numpy as np
-               pts = np.random.RandomState(42).rand(10, 3)
+               pts = np.random.RandomState(42).rand(8, 3)
+               pts = (pts - 0.5) * 6
                pts[:, 2] = 0
-               vertices = pts.tolist()
-               faces = []
-               mesh_data = Mesh(vertices, faces)
-               tm = TriangleManim2DMesh(mesh_data)
-               self.add(tm)
+               mesh_data = Mesh(pts.tolist(), [])
+               tm = TriangleManim2DMesh(mesh_data, display_vertices=True)
                vd = VoronoiDelaunay(self, tm)
+               self.play(FadeIn(tm.vertices))
+               # grow the Delaunay triangles dual to the Voronoi vertices
+               for i in range(len(vd.voronoi.vertices)):
+                   vd.create_triangle(i)
+               self.play(FadeIn(tm.faces))
+               # each Voronoi vertex is the circumcircle centre of its triangle
+               circle = vd.get_circum_circle(0)
+               self.play(Create(circle))
+               self.wait()
     """
 
     def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:

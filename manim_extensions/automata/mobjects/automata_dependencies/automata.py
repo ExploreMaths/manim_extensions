@@ -56,13 +56,31 @@ class FiniteStateAutomaton:
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata.mobjects.automata_dependencies.automata import FiniteStateAutomaton
+       from manim_extensions.automata.mobjects.automata_dependencies.automata import (
+           FiniteStateAutomaton,
+           automaton_json,
+       )
 
        class FiniteStateAutomatonExample(Scene):
            def construct(self):
-               fa = FiniteStateAutomaton()
-               label = Text(f"States: {len(fa.states)}", font_size=24)
-               self.add(label)
+               fa = FiniteStateAutomaton(automaton_json)
+               nodes = {}
+               for i, state in enumerate(fa.states):
+                   angle = i * TAU / len(fa.states)
+                   circle = Circle(radius=0.5).move_to(2.2 * np.array([np.cos(angle), np.sin(angle), 0]))
+                   nodes[state.id] = circle
+                   self.add(circle, Text(state.name, font_size=20).move_to(circle))
+               drawn = set()
+               for t in fa.transitions:
+                   key = (t.transition_from.id, t.transition_to.id)
+                   if key not in drawn:
+                       drawn.add(key)
+                       self.add(Arrow(nodes[key[0]], nodes[key[1]], buff=0.55))
+               info = Text(
+                   f"{len(fa.states)} states, {len(fa.transitions)} transitions, get_state_by_id(2) = {fa.get_state_by_id(2).name}",
+                   font_size=24,
+               ).to_edge(DOWN)
+               self.add(info)
     """
 
     id_iter = itertools.count()
@@ -260,13 +278,34 @@ class PushDownAutomaton(FiniteStateAutomaton):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.automata.mobjects.automata_dependencies.automata import PushDownAutomaton
+       from manim_extensions.automata.mobjects.automata_dependencies.automata import (
+           PushDownAutomaton,
+           automaton_json,
+       )
 
        class PushDownAutomatonExample(Scene):
            def construct(self):
                pda = PushDownAutomaton()
-               label = Text(f"States: {len(pda.states)}", font_size=24)
-               self.add(label)
+               pda.construct_from_json(automaton_json)
+               nodes = {}
+               for i, state in enumerate(pda.states):
+                   angle = i * TAU / len(pda.states)
+                   circle = Circle(radius=0.5).move_to(2.2 * np.array([np.cos(angle), np.sin(angle), 0]))
+                   nodes[state.id] = circle
+                   self.add(circle, Text(state.name, font_size=20).move_to(circle))
+               drawn = set()
+               for t in pda.transitions:
+                   key = (t.transition_from.id, t.transition_to.id)
+                   if key not in drawn:
+                       drawn.add(key)
+                       self.add(Arrow(nodes[key[0]], nodes[key[1]], buff=0.55))
+               q1 = pda.get_state("q1")
+               outgoing = [t.id for t in q1.transitions]
+               info = Text(
+                   f"{len(pda.states)} states, {len(pda.transitions)} transitions, q1 outgoing transition ids={outgoing}",
+                   font_size=24,
+               ).to_edge(DOWN)
+               self.add(info)
     """
 
     def __init__(self) -> None:

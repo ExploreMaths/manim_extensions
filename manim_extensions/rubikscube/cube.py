@@ -46,6 +46,7 @@ class RubiksCube(VMobject):
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
+       from manim_extensions.rubikscube.cube_animations import CubeMove
 
        class RubiksCubeDocExample(ThreeDScene):
            def construct(self):
@@ -53,8 +54,14 @@ class RubiksCube(VMobject):
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
                self.play(FadeIn(cube))
-               self.begin_ambient_camera_rotation(rate=0.5)
-               self.wait(8)
+               # A scrambled state in kociemba facelet notation
+               state = "UULUUFUUFRRUBRRURRFFDFFUFFFDDRDDDDDDBLLLLLLLLBRRBBBBBB"
+               cube.set_state(state)
+               self.wait(0.5)
+               moves = cube.solve_by_kociemba(state)
+               for move in moves:
+                   self.play(CubeMove(cube, move), run_time=0.8)
+               self.wait()
     """
 
     # If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up

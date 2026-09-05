@@ -60,7 +60,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     Examples
     --------
     .. manim:: ManimPushDownAutomatonExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
@@ -69,6 +68,18 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
            def construct(self):
                pda = ManimPushDownAutomaton()
                self.add(pda)
+
+               def stack_label():
+                   return Text("Stack: " + " ".join(pda.stack), font_size=24)
+
+               label = stack_label().to_corner(UR)
+               self.play(FadeIn(label))
+               pda.push("X")
+               self.play(Transform(label, stack_label().move_to(label)))
+               pda.push("X")
+               self.play(Transform(label, stack_label().move_to(label)))
+               pda.pop()
+               self.play(Transform(label, stack_label().move_to(label)))
     """
 
     stack: list
@@ -316,8 +327,16 @@ class PushDownAutomatonRule:
        class PushDownAutomatonRuleExample(Scene):
            def construct(self):
                rule = PushDownAutomatonRule("a", "X", "XY")
-               label = Text(f"Rule: read={rule.read_symbol}, pop={rule.pop}, push={rule.push}", font_size=20)
-               self.add(label)
+               start = Circle(radius=0.5).shift(LEFT * 2)
+               end = Circle(radius=0.5).shift(RIGHT * 2)
+               arrow = Arrow(start, end, buff=0.6)
+               label = MathTex(str(rule))
+               self.add(
+                   start,
+                   end,
+                   arrow,
+                   label.next_to(arrow.get_center(), UP, buff=0.2),
+               )
     """
 
     read_symbol: str

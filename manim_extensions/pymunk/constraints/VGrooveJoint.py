@@ -54,34 +54,30 @@ class VGrooveJoint(VConstraint):
     Examples
     --------
     .. manim:: VGrooveJointExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VGrooveJointExample(SpaceScene):
             def construct(self):
+                # the slider is constrained to the yellow groove of the rail
+                rail = Line(LEFT * 3, RIGHT * 3, stroke_width=6, color=GREY)
+                rail.shift(UP * 2)
+                slider = Square().scale(0.4).next_to(rail, DOWN, buff=0.5).shift(LEFT * 2)
 
-                static_dot = Dot()
+                groove = VGrooveJoint(
+                    rail,
+                    slider,
+                    groove_a_local=LEFT * 2.5,
+                    groove_b_local=RIGHT * 2.5,
+                )
 
-                square_1 = Square().move_to(static_dot)
-                square_2 = Square().move_to(static_dot.get_center() + RIGHT * 4).scale(0.3)
-
-                constraints = [
-                    VGrooveJoint(
-                        square_1,
-                        square_2,
-                        groove_a_local=RIGHT * 2,
-                        groove_b_local=RIGHT * 4,
-                    ),
-                    VPinJoint(static_dot, square_1),
-                ]
-
-                self.add_static_body(static_dot)
-                self.add_dynamic_body(square_1, angular_velocity=PI * 2)
-                self.add_dynamic_body(square_2)
-
-                self.add_shapes_filter(static_dot, square_1, square_2, group=2)
-                self.add_constraints(*constraints)
+                self.play(FadeIn(rail), FadeIn(slider))
+                self.add_static_body(rail)
+                self.add_dynamic_body(slider, velocity=(4, 0))
+                self.add_shapes_filter(rail, slider, group=2)
+                self.add_constraints(groove)
+                self.wait(4)
 
     """ 
 

@@ -114,8 +114,15 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
        class LensExample(Scene):
            def construct(self):
-               lens = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
-               self.add(lens)
+               convex = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
+               concave = Lens(f=-2, d=0.4, fill_opacity=0.5, color=GREEN)
+               concave.next_to(convex, RIGHT, buff=1.5)
+               self.add(
+                   convex,
+                   concave,
+                   Text("f = 2 (convex)", font_size=28).next_to(convex, DOWN),
+                   Text("f = -2 (concave)", font_size=28).next_to(concave, DOWN),
+               )
     """
 
     def __init__(self, f: float, d: float, n: float = 1.52, **kwargs) -> None:

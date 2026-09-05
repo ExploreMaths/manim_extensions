@@ -45,12 +45,23 @@ class Ray(Line):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.physics.optics.lenses import Lens
        from manim_extensions.physics.optics.rays import Ray
 
        class RayExample(Scene):
            def construct(self):
-               ray = Ray(start=LEFT * 3 + UP, direction=RIGHT, init_length=4)
-               self.add(ray)
+               lens = Lens(f=2, d=0.4, fill_opacity=0.3)
+               rays = VGroup(*[
+                   Ray(
+                       start=LEFT * 4 + UP * y,
+                       direction=RIGHT,
+                       init_length=6,
+                       propagate=[lens],
+                       color=YELLOW,
+                   )
+                   for y in (0.5, 0, -0.5)
+               ])
+               self.add(lens, rays)
     """
 
     def __init__(

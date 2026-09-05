@@ -50,8 +50,12 @@ def get_arc(
 
        class GetArcDocExample(Scene):
            def construct(self):
-               arc = get_arc(ORIGIN, RIGHT, PI / 2)
-               self.add(arc)
+               arc = get_arc(ORIGIN, 2 * RIGHT, PI / 2)
+               self.add(
+                   Dot(ORIGIN, color=RED),
+                   Dot(2 * RIGHT, color=PURE_YELLOW),
+                   arc,
+               )
     """
     arc_radius = get_distance(niddle_pos, pen_pos)
     vec_s = pen_pos - niddle_pos

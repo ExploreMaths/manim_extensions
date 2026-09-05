@@ -47,37 +47,31 @@ class VGearJoint(VConstraint):
     Examples
     --------
     .. manim:: VGearJointExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VGearJointExample(SpaceScene):
             def construct(self):
-                floor = Line(LEFT * 10, RIGHT * 10).shift(DOWN * 2)
-
-                static_dot1 = Dot(UP * 2)
-                static_dot2 = Dot(UP * 2 + RIGHT * 4)
-
-                square_1 = Square().move_to(static_dot1)
-                square_2 = Square().move_to(static_dot2)
+                # gear_2 (with the indicator arrow) spins 4x as fast as gear_1
+                pivot_1 = Dot(LEFT * 2 + UP)
+                pivot_2 = Dot(RIGHT * 2 + UP)
+                gear_1 = Square().move_to(pivot_1)
+                gear_2 = Square().move_to(pivot_2).scale(0.5)
 
                 constraints = [
-                    VGearJoint(
-                        square_1,
-                        square_2,
-                        phase=0,
-                        ratio=4,
-                    ),
-                    VPinJoint(static_dot1, square_1),
-                    VPinJoint(static_dot2, square_2),
+                    VPinJoint(pivot_1, gear_1),
+                    VPinJoint(pivot_2, gear_2),
+                    VGearJoint(gear_1, gear_2, ratio=4),
                 ]
 
-                self.add_static_body(floor, static_dot1, static_dot2)
-                self.add_dynamic_body(square_1, angular_velocity=PI * 2)
-                self.add_dynamic_body(square_2)
-
-                self.add_shapes_filter(static_dot1, static_dot2, square_1, square_2, group=2)
+                self.play(FadeIn(pivot_1), FadeIn(pivot_2), FadeIn(gear_1), FadeIn(gear_2))
+                self.add_static_body(pivot_1, pivot_2)
+                self.add_dynamic_body(gear_1, angular_velocity=PI / 2)
+                self.add_dynamic_body(gear_2)
+                self.add_shapes_filter(pivot_1, pivot_2, gear_1, gear_2, group=2)
                 self.add_constraints(*constraints)
+                self.wait(5)
 
     """
 

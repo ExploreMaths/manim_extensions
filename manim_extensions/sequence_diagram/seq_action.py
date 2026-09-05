@@ -19,17 +19,22 @@ class SeqAction(AnimationGroup):
     Examples
     --------
     .. manim:: SeqActionExample
-       :save_last_frame:
 
        from manim import *
-       from manim_extensions.sequence_diagram.seq_actor import SeqActor
        from manim_extensions.sequence_diagram.seq_action import SeqAction
+       from manim_extensions.sequence_diagram.seq_actor import SeqActor
+       from manim_extensions.sequence_diagram.seq_object import SeqObject
 
        class SeqActionExample(Scene):
            def construct(self):
-               a1 = SeqActor("Alice").shift(LEFT * 2)
-               a2 = SeqActor("Bob").shift(RIGHT * 2)
-               self.add(a1, a2)
+               alice = SeqActor("Alice")
+               bob = SeqActor("Bob")
+               order = SeqObject("Order")
+               receipt = SeqObject("Receipt")
+               self.play(*SeqAction.introduce_actors(alice, bob))
+               self.play(*SeqAction.subject_gives_gift_to_target(alice, order, bob))
+               self.play(*SeqAction.subject_gives_gift_to_target(bob, receipt, alice))
+               self.wait()
     """
 
     @classmethod

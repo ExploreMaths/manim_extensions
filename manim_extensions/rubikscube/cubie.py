@@ -45,8 +45,9 @@ class Cubie(VGroup):
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
                self.play(FadeIn(cube))
-               self.wait()
-               self.play(Indicate(cube.cubies[0, 0, 0]))
+               corner = cube.cubies[0, 0, 2]
+               self.play(Indicate(corner))
+               self.play(Indicate(corner.get_face("U")))
                self.wait()
     """
 

@@ -28,6 +28,15 @@ class ManimTuringMachine(VGroup):
        class ManimTuringMachineExample(Scene):
            def construct(self):
                tm = ManimTuringMachine()
+               symbols = "0101"
+               cells = VGroup(*(Square(1) for _ in symbols)).arrange(RIGHT, buff=0)
+               for cell, symbol in zip(cells, symbols):
+                   cell.add(MathTex(symbol).move_to(cell))
+               tm.remove(tm.tape)
+               tm.tape = cells
+               tm.remove(tm.head)
+               tm.head = Triangle().scale(0.4).next_to(cells[0], UP, buff=0.1)
+               tm.add(tm.tape, tm.head)
                self.add(tm)
     """
 

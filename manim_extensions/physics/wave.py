@@ -44,19 +44,22 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
     Examples
     --------
     .. manim:: RadialWaveExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.wave import RadialWave
 
-       class RadialWaveExample(Scene):
+       class RadialWaveExample(ThreeDScene):
            def construct(self):
+               self.set_camera_orientation(PI / 3, PI / 4)
                wave = RadialWave(
                    ORIGIN + UP * 2,
                    wavelength=2,
                    amplitude=0.3,
                )
-               self.add(wave)
+               self.play(FadeIn(wave))
+               wave.start_wave()
+               self.wait(3)
+               wave.stop_wave()
     """
 
     def __init__(
@@ -160,15 +163,18 @@ class LinearWave(RadialWave):
     Examples
     --------
     .. manim:: LinearWaveExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.wave import LinearWave
 
-       class LinearWaveExample(Scene):
+       class LinearWaveExample(ThreeDScene):
            def construct(self):
+               self.set_camera_orientation(PI / 3, PI / 4)
                wave = LinearWave(wavelength=2, amplitude=0.3)
-               self.add(wave)
+               self.play(FadeIn(wave))
+               wave.start_wave()
+               self.wait(3)
+               wave.stop_wave()
     """
 
     def __init__(
@@ -232,7 +238,6 @@ class StandingWave(ParametricFunction):
     Examples
     --------
     .. manim:: StandingWaveExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.wave import StandingWave
@@ -240,7 +245,15 @@ class StandingWave(ParametricFunction):
        class StandingWaveExample(Scene):
            def construct(self):
                wave = StandingWave(n=3, length=6, amplitude=0.5)
-               self.add(wave)
+               nodes = VGroup(*[
+                   Dot(RIGHT * x, color=RED)
+                   for x in np.arange(-3, 3.1, 2)
+               ])
+               self.play(Create(wave))
+               self.play(FadeIn(nodes))
+               wave.start_wave()
+               self.wait(3)
+               wave.stop_wave()
     """
 
     def __init__(

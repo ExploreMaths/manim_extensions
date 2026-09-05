@@ -61,29 +61,29 @@ class VDampedSpring(VConstraint):
     Examples
     --------
     .. manim:: VDampedSpringExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VDampedSpringExample(SpaceScene):
             def construct(self):
-                floor = Line(LEFT * 10, RIGHT * 10).shift(DOWN*2)
-
-                square_1 = Square().next_to(floor, UP)
-                square_2 = Square().move_to(square_1.get_center() + UP * 4)
-
-                constraint = VDampedSpring(
-                    square_1,
-                    square_2,
-                    rest_length=3,
+                # a box hangs from an anchor and bounces on the damped spring
+                anchor = Dot(UP * 3)
+                box = Square().move_to(UP * 0.5)
+                spring = VDampedSpring(
+                    anchor,
+                    box,
+                    rest_length=2.5,
                     stiffness=100,
-                    damping=10,
+                    damping=5,
+                    connect_line_config={"color": YELLOW},
                 )
 
-                self.add_static_body(floor)
-                self.add_dynamic_body(square_1, square_2)
-                self.add_constraints(constraint)
-
+                self.play(FadeIn(anchor), FadeIn(box))
+                self.add_static_body(anchor)
+                self.add_dynamic_body(box)
+                self.add_constraints(spring)
+                self.wait(6)
 
     """
 

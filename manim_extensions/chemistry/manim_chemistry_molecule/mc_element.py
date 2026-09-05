@@ -20,15 +20,24 @@ class MCElement:
     Example
     ---------
     .. manim:: OverwrittenCarbonElement
-        :save_last_frame:
-        from manim_chemistry import *
+
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule, MCElement
 
         class OverwrittenCarbonElement(Scene):
             def construct(self):
-                custom_carbon_element = MCElement(symbol="C", color=PURPLE)
-                elements_data_dict = {"C": custom_carbon_element}
-                molecule = GraphMolecule.molecule_from_pubchem(name="acetone", elements_data_dict=elements_data_dict)
-                self.add(molecule)
+                default = GraphMolecule.molecule_from_pubchem(name="acetone")
+                custom_carbon = MCElement(symbol="C", color=PURPLE)
+                custom = GraphMolecule.molecule_from_pubchem(
+                    name="acetone", elements_data_dict={"C": custom_carbon}
+                )
+                molecules = VGroup(default, custom).arrange(RIGHT, buff=1.5)
+                self.play(Write(molecules))
+                carbons = VGroup(
+                    custom.vertices[2], custom.vertices[3], custom.vertices[4]
+                )
+                self.play(Indicate(carbons))
+                self.wait()
     """
 
     symbol: Optional[str] = None

@@ -55,8 +55,8 @@ class ChineseMathTex(MathTex):
        class ChineseMathTexDocExample(Scene):
            def construct(self):
                formula = ChineseMathTex(
-                   r"\frac{1}{2} + \text{hello} = x",
-                   tex_to_color_map={r"\text{hello}": RED},
+                   r"面积 = \frac{1}{2} \times 底 \times 高",
+                   tex_to_color_map={"底": BLUE, "高": YELLOW},
                )
                self.add(formula)
 
@@ -148,8 +148,12 @@ class LabelDot(VGroup):
 
        class LabelDotDocExample(Scene):
            def construct(self):
-               dot = LabelDot("A", [0, 0, 0], label_pos=UP, buff=0.2)
-               self.add(dot)
+               a = LabelDot("A", LEFT * 2.5, label_pos=UP, buff=0.15)
+               b = LabelDot("B", RIGHT * 2.5, label_pos=UP, buff=0.15)
+               direction = b.get_center() - a.get_center()
+               edge_a = a.get_boundary_point(direction)
+               edge_b = b.get_boundary_point(-direction)
+               self.add(a, b, Line(edge_a, edge_b))
     """
 
     def __init__(
@@ -203,7 +207,6 @@ class MathTexLine(VGroup):
     Examples
     --------
     .. manim:: MathTexLineDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import MathTexLine
@@ -211,7 +214,8 @@ class MathTexLine(VGroup):
        class MathTexLineDocExample(Scene):
            def construct(self):
                line = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE)
-               self.add(line)
+               self.play(Write(line))
+               self.wait(0.5)
     """
 
     def __init__(
@@ -258,9 +262,9 @@ class MathTexBrace(VGroup):
 
        class MathTexBraceDocExample(Scene):
            def construct(self):
-               line = Line(LEFT * 2, RIGHT * 2)
-               brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
-               self.add(line, brace)
+               expr = MathTex("1 + 2 + 3 + 4")
+               brace = MathTexBrace(expr, MathTex(r"\sum_{i=1}^{4} i"), direction=DOWN)
+               self.add(expr, brace)
     """
 
     def __init__(
@@ -306,8 +310,10 @@ class MathTexDoublearrow(VGroup):
 
        class MathTexDoublearrowDocExample(Scene):
            def construct(self):
-               arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=UP)
-               self.add(arrow)
+               lhs = MathTex("(x-1)(x+1)").shift(LEFT * 2.2)
+               rhs = MathTex("x^2 - 1").shift(RIGHT * 2.2)
+               link = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=UP)
+               self.add(lhs, link, rhs)
     """
 
     def __init__(
@@ -353,7 +359,6 @@ class PerpendicularLine(Line):
     Examples
     --------
     .. manim:: PerpendicularLineDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import PerpendicularLine
@@ -361,8 +366,12 @@ class PerpendicularLine(Line):
        class PerpendicularLineDocExample(Scene):
            def construct(self):
                base = Line(LEFT * 3, RIGHT * 3)
+               point = Dot(UP * 1.5, color=RED)
                perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
-               self.add(base, perp)
+               self.play(Create(base), FadeIn(point))
+               self.play(Create(perp))
+               self.play(FadeIn(Dot(perp.foot, color=YELLOW)))
+               self.wait(0.5)
     """
 
     def __init__(
@@ -426,8 +435,9 @@ class ExtendedLine(Line):
        class ExtendedLineDocExample(Scene):
            def construct(self):
                base = Line(LEFT, RIGHT, color=BLUE)
+               ends = VGroup(Dot(base.get_start()), Dot(base.get_end()))
                extended = ExtendedLine(base, extend_distance=1.0)
-               self.add(base, extended)
+               self.add(extended, ends)
     """
 
     def __init__(self, line: Line, extend_distance: float) -> None:
@@ -472,8 +482,9 @@ class ShortenedLine(Line):
        class ShortenedLineDocExample(Scene):
            def construct(self):
                base = Line(LEFT * 3, RIGHT * 3, color=BLUE)
+               ghost = base.copy().set_stroke(opacity=0.25)
                shortened = ShortenedLine(base, shorten_distance=1.0)
-               self.add(base, shortened)
+               self.add(ghost, shortened)
     """
 
     def __init__(self, line: Line, shorten_distance: float) -> None:
@@ -536,7 +547,7 @@ class PerpendicularSign(VGroup):
                base = Line(LEFT * 3, RIGHT * 3)
                perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
                sign = PerpendicularSign(base, perp, length=0.25, color=WHITE)
-               self.add(base, perp, sign)
+               self.add(base, perp, sign, Dot(sign.intersection, color=RED))
     """
 
     def __init__(
@@ -712,7 +723,6 @@ class FileTree(Code):
     Examples
     --------
     .. manim:: FileTreeDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import FileTree
@@ -729,6 +739,9 @@ class FileTree(Code):
                    "README.md": None,
                })
                self.add(tree)
+               self.play(tree.highlight(1, YELLOW))
+               self.play(tree.highlight(4, RED))
+               self.wait(0.5)
     """
 
     def __init__(
@@ -859,9 +872,11 @@ class CropImageMobject(ImageMobject):
 
        class CropImageMobjectDocExample(Scene):
            def construct(self):
-               img = np.random.randint(0, 255, (120, 120, 3), dtype=np.uint8)
-               logo = CropImageMobject(img, corner_radius=0.2)
-               self.add(logo)
+               img = np.zeros((120, 120, 3), dtype=np.uint8)
+               img[:] = (60, 120, 220)
+               square = ImageMobject(img).shift(LEFT)
+               rounded = CropImageMobject(img, corner_radius=0.2).shift(RIGHT)
+               self.add(square, rounded)
     """
 
     def __init__(
@@ -940,7 +955,7 @@ class VideoMobject(ImageMobject):
        class VideoMobjectDocExample(Scene):
            def construct(self):
                path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
-               vid = VideoMobject(path)
+               vid = VideoMobject(path, rate=2.0).scale(2)
                self.add(vid)
                vid.play(self)
     """
@@ -1018,7 +1033,7 @@ class VideoMobject(ImageMobject):
         Parameters
         ----------
         memo : dict
-            Memo dictionary used by :func:`copy.deepcopy` to track already
+            Memo dictionary used by :func:`~manim_extensions.fontawesome.manim_fontawesome._Solid.copy.deepcopy` to track already
             copied objects.
 
         Returns
@@ -1159,7 +1174,9 @@ class ColorText(Text):
 
        class ColorTextDocExample(Scene):
            def construct(self):
-               self.add(ColorText([150, 60, 200]).scale(0.9))
+               rgb = ColorText([150, 60, 200])
+               named = ColorText(BLUE, name="BLUE")
+               self.add(VGroup(rgb, named).arrange(DOWN, buff=0.6))
     """
 
     def __init__(
@@ -1248,6 +1265,8 @@ class Trail(VGroup):
                trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
                self.add(trail)
                self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear))
+               trail.stop_trace()
+               self.play(dot.animate.shift(RIGHT * 1.5))
     """
 
     def __init__(
@@ -1369,9 +1388,12 @@ class ShadowAround(VGroup):
 
        class ShadowAroundDocExample(Scene):
            def construct(self):
-               c = Circle(radius=1.2, fill_color=TEAL, fill_opacity=1, stroke_width=0)
-               self.add(ShadowAround(c, blur_width=0.4, shadow_color=WHITE))
-               self.add(c)
+               out = Circle(radius=1, fill_color=TEAL, fill_opacity=1, stroke_width=0)
+               inner = Circle(radius=1, fill_color=TEAL, fill_opacity=1, stroke_width=0)
+               self.add(
+                   ShadowAround(out, blur_width=0.4, shadow_color=WHITE).shift(UP * 1.4),
+                   ShadowAround(inner, blur_width=0.4, shadow_color=WHITE, shadow_out=False).shift(DOWN * 1.4),
+               )
     """
 
     def __init__(
@@ -1454,7 +1476,6 @@ class ObjectBorder(VGroup):
     Examples
     --------
     .. manim:: ObjectBorderDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import ObjectBorder
@@ -1463,6 +1484,8 @@ class ObjectBorder(VGroup):
            def construct(self):
                t = Text("Hi").scale(2)
                self.add(t, ObjectBorder(t))
+               self.play(t.animate.shift(RIGHT * 2).scale(1.5))
+               self.wait(0.5)
     """
 
     def __init__(
@@ -1554,8 +1577,10 @@ class ThreeDVector(VGroup):
        class ThreeDVectorDocExample(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
-               self.add(ThreeDAxes())
-               self.add(ThreeDVector([2, 1, 1.5], color=YELLOW))
+               axes = ThreeDAxes()
+               u = ThreeDVector([2, 1, 1.5], color=YELLOW)
+               v = ThreeDVector([1, 0.5, 2], position=[-2, -1.2, 0], color=GREEN)
+               self.add(axes, u, v)
     """
 
     def __init__(
@@ -1638,7 +1663,6 @@ class TreeDiagram(VGroup):
     Examples
     --------
     .. manim:: TreeDiagramDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions import TreeDiagram
@@ -1646,7 +1670,9 @@ class TreeDiagram(VGroup):
        class TreeDiagramDocExample(Scene):
            def construct(self):
                tree = {"A": {"B": {"D", "E"}, "C": {"F", "G"}}}
-               self.add(TreeDiagram(tree).shift(LEFT * 2))
+               diagram = TreeDiagram(tree).shift(LEFT * 2)
+               self.play(Create(diagram))
+               self.wait(0.5)
     """
 
     def __init__(

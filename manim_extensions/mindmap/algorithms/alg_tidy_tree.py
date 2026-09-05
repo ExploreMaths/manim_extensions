@@ -27,13 +27,26 @@ class WrappedTree:
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree
 
        class WrappedTreeExample(Scene):
            def construct(self):
-               wt = WrappedTree()
-               label = Text(f"WrappedTree: x={wt.x}, y={wt.y}", font_size=24)
-               self.add(label)
+               root = TreeNode(width=2.0, height=1.0)
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               wt = WrappedTree.from_node(root, is_horizontal=False)
+               boxes = Group()
+               def draw(wrapper, pos):
+                   box = Rectangle(width=wrapper.width, height=wrapper.height, color=BLUE)
+                   box.move_to(pos)
+                   boxes.add(box)
+                   x = pos[0] - 1.5 * (len(wrapper.children) - 1)
+                   for child in wrapper.children:
+                       draw(child, [x, pos[1] - 2, 0])
+                       x += 3
+               draw(wt, [0, 1.5, 0])
+               self.add(boxes)
     """
 
     # Reference to the original node
@@ -135,9 +148,20 @@ class IYLNode:
 
        class IYLNodeExample(Scene):
            def construct(self):
-               iyl = IYLNode(low=0.0, index=0)
-               label = Text(f"IYLNode: low={iyl.low}, idx={iyl.index}", font_size=24)
-               self.add(label)
+               ih = None
+               for low, index in [(2.0, 2), (1.0, 1), (0.5, 0)]:
+                   ih = IYLNode(low=low, index=index, nxt=ih)
+               entries, node = VGroup(), ih
+               while node is not None:
+                   entries.add(Text(f"({node.low}, {node.index})", font_size=32))
+                   node = node.nxt
+               entries.arrange(RIGHT, buff=0.9)
+               arrows = VGroup(*[
+                   Arrow(a.get_right(), b.get_left(), buff=0.05, stroke_width=2)
+                   for a, b in zip(entries, entries[1:])
+               ])
+               caption = Text("contour list, head first", font_size=24).to_edge(DOWN)
+               self.add(entries, arrows, caption)
     """
 
     low: float  # low end of the subtree's right contour in the orthogonal direction
@@ -277,12 +301,31 @@ class TidyTreeLayout(Layout):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout
+       from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
        class TidyTreeLayoutExample(Scene):
            def construct(self):
-               label = Text("TidyTreeLayout algorithm", font_size=24)
-               self.add(label)
+               root = TreeNode(height=0.8, width=1.6)
+               for i in range(3):
+                   child = TreeNode(height=0.6, width=1.2)
+                   root.add_child(child)
+                   for _ in range(i):
+                       child.add_child(TreeNode(height=0.5, width=1.0))
+               root = TidyTreeLayout(
+                   root, direction=LayoutDirection.LeftToRight
+               ).layout()
+               boxes = Group()
+               def draw(node):
+                   box = Rectangle(height=node.height, width=node.width, color=BLUE)
+                   box.move_to([node.x, node.y, 0])
+                   boxes.add(box)
+                   for child in node.children:
+                       draw(child)
+               draw(root)
+               boxes.scale_to_fit_width(12)
+               self.add(boxes)
     """
 
     def __init__(

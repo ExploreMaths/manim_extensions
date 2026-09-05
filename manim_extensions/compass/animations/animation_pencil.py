@@ -22,12 +22,13 @@ class MovePencilAlongPath(MoveAlongPath):
     .. manim:: MovePencilAlongPathDocExample
 
        from manim import *
-       from manim_extensions.compass import Pencil, MovePencilAlongPath
+       from manim_extensions.compass import MovePencilAlongPath, Pencil
 
        class MovePencilAlongPathDocExample(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
-               path = Line(LEFT, RIGHT)
+               path = Line(LEFT * 2, RIGHT * 2, color=GREY)
+               self.add(path)
                self.play(MovePencilAlongPath(pencil, path))
                self.wait()
 
@@ -59,11 +60,13 @@ class MovePencilTipTo(ApplyMethod):
     .. manim:: MovePencilTipToDocExample
 
        from manim import *
-       from manim_extensions.compass import Pencil, MovePencilTipTo
+       from manim_extensions.compass import MovePencilTipTo, Pencil
 
        class MovePencilTipToDocExample(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
+               target = Dot(ORIGIN, color=RED)
+               self.add(target)
                self.play(MovePencilTipTo(pencil, ORIGIN))
                self.wait()
 
@@ -85,12 +88,12 @@ class DrawPath(AnimationGroup):
     .. manim:: DrawPathDocExample
 
        from manim import *
-       from manim_extensions.compass import Pencil, DrawPath
+       from manim_extensions.compass import DrawPath, Pencil
 
        class DrawPathDocExample(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
-               path = Line(LEFT, RIGHT)
+               path = Square(side_length=2.5)
                self.play(DrawPath(pencil, path))
                self.wait()
 
@@ -112,12 +115,14 @@ class PutPencilAway(MovePencilTipTo):
     .. manim:: PutPencilAwayDocExample
 
        from manim import *
-       from manim_extensions.compass import Pencil, PutPencilAway
+       from manim_extensions.compass import DrawPath, Pencil, PutPencilAway
 
        class PutPencilAwayDocExample(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
-               self.play(PutPencilAway(pencil, 2 * DOWN))
+               line = Line(LEFT, RIGHT)
+               self.play(DrawPath(pencil, line))
+               self.play(PutPencilAway(pencil, 3 * DOWN))
                self.wait()
 
     Parameters

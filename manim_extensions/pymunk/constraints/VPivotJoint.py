@@ -56,30 +56,28 @@ class VPivotJoint(VConstraint):
     Examples
     --------
     .. manim:: VPivotJointExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VPivotJointExample(SpaceScene):
             def construct(self):
-
-                static_dot = Dot(ORIGIN)
-                square = Square().move_to(static_dot)
-                square2 = Square().move_to(static_dot.get_center() + UP * 2).scale(0.5)
+                # both squares rotate freely around their shared pivot points
+                pivot = Dot(ORIGIN)
+                square = Square().move_to(pivot)
+                square2 = Square().move_to(pivot.get_center() + UP * 2).scale(0.5)
 
                 constraints = [
-                    VPivotJoint(static_dot, square),
-                    VPivotJoint(
-                        square,
-                        square2,
-                        pivot_world= UP*3,
-                    ),
+                    VPivotJoint(pivot, square),
+                    VPivotJoint(square, square2, pivot_world=UP * 3),
                 ]
 
-                self.add_static_body(static_dot)
+                self.play(FadeIn(pivot), FadeIn(square), FadeIn(square2))
+                self.add_static_body(pivot)
                 self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
-                self.add_shapes_filter(static_dot, square, square2, group=2)
+                self.add_shapes_filter(pivot, square, square2, group=2)
                 self.add_constraints(*constraints)
+                self.wait(5)
 
     """
 

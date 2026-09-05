@@ -33,13 +33,26 @@ class TimelineNode:
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode
 
        class TimelineNodeExample(Scene):
            def construct(self):
-               tn = TimelineNode()
-               label = Text(f"TimelineNode: {tn.width}x{tn.height}", font_size=24)
-               self.add(label)
+               root = TreeNode(width=2.0, height=1.0)
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               root.add_child(TreeNode(width=1.5, height=0.8))
+               tl = TimelineNode.from_node(root)
+               boxes = Group()
+               def draw(wrapper, pos):
+                   box = Rectangle(width=wrapper.width, height=wrapper.height, color=BLUE)
+                   box.move_to(pos)
+                   boxes.add(box)
+                   x = pos[0] - 1.5 * (len(wrapper.children) - 1)
+                   for child in wrapper.children:
+                       draw(child, [x, pos[1] - 2, 0])
+                       x += 3
+               draw(tl, [0, 1.5, 0])
+               self.add(boxes)
     """
 
     node: Any = None
@@ -160,12 +173,38 @@ class TimeLineLayout(Layout):
        :save_last_frame:
 
        from manim import *
+       from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout
 
        class TimeLineLayoutExample(Scene):
            def construct(self):
-               label = Text("TimeLineLayout algorithm", font_size=24)
-               self.add(label)
+               class StubNode:
+                   def __init__(self, width, height):
+                       self.width = width
+                       self.height = height
+                       self.children = []
+
+               root = StubNode(width=1.6, height=0.8)
+               for _ in range(3):
+                   child = StubNode(width=1.4, height=0.7)
+                   child.children.append(StubNode(width=1.2, height=0.6))
+                   root.children.append(child)
+               root = TimeLineLayout(root).layout()
+               boxes, links = Group(), Group()
+               def draw(node):
+                   box = Rectangle(height=node.height, width=node.width, color=BLUE)
+                   box.move_to([node.x, node.y, 0])
+                   boxes.add(box)
+                   for child in node.children:
+                       links.add(Line(
+                           [node.x, node.y, 0], [child.x, child.y, 0],
+                           color=GREY, stroke_width=2,
+                       ))
+                       draw(child)
+               draw(root)
+               tree = Group(links, boxes)
+               tree.scale_to_fit_width(13)
+               self.add(tree)
     """
 
     def __init__(

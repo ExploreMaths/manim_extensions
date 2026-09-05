@@ -94,24 +94,24 @@ class DivideAndConquer:
     Examples
     --------
     .. manim:: DivideAndConquerExample
-       :save_last_frame:
 
        from manim import *
+       import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
        from manim_extensions.meshes.delaunay.divide_and_conquer import DivideAndConquer
 
        class DivideAndConquerExample(Scene):
            def construct(self):
-               import numpy as np
-               pts = np.random.RandomState(42).rand(10, 3)
+               pts = np.random.RandomState(42).rand(8, 3)
+               pts = (pts - 0.5) * 6
                pts[:, 2] = 0
-               vertices = pts.tolist()
-               faces = []
-               mesh_data = Mesh(vertices, faces)
-               tm = TriangleManim2DMesh(mesh_data)
-               self.add(tm)
+               mesh_data = Mesh(pts.tolist(), [])
+               tm = TriangleManim2DMesh(mesh_data, display_vertices=True)
+               self.play(FadeIn(tm.vertices))
+               # recursively splits, triangulates and merges the point set
                dc = DivideAndConquer(self, tm)
+               dc.divide_and_conquer_recursive(speed=0.5)
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:

@@ -50,10 +50,10 @@ class MVariable(MArrayElement):
                var.to_edge(UP)
                self.play(Write(var))
                self.wait(0.5)
-               var.update_value(5)
-               self.wait(0.5)
-               var.update_value(10)
-               self.wait(0.5)
+               for step in range(1, 4):
+                   var.update_value(step)
+                   self.wait(0.5)
+               var.update_index("y")
                var.update_label("total")
                self.wait(0.5)
 

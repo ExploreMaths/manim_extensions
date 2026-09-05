@@ -33,15 +33,19 @@ class Queue(VMobject):
     Examples
     --------
     .. manim:: QueueExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.algorithm.queue import Queue
+       from manim_extensions.algorithm.node import Node
 
        class QueueExample(Scene):
            def construct(self):
                q = Queue(capacity=5, init_data=[1, 2, 3], total_width=8)
                self.add(q)
+               self.play(Queue.Enqueue(q, Node("4").next_to(q, RIGHT, buff=1.5)))
+               self.wait(0.5)
+               self.play(Queue.Dequeue(q))
+               self.wait(0.5)
     """
 
     def __init__(
@@ -106,10 +110,10 @@ class Queue(VMobject):
 
            class EnqueueExample(Scene):
                def construct(self):
-                   q = Queue(capacity=4, init_data=[1, 2], total_width=8)
-                   item = Node("3").next_to(q, RIGHT, buff=1.5)
-                   self.add(q, item)
-                   self.play(Queue.Enqueue(q, item))
+                   q = Queue(capacity=4, init_data=[1], total_width=8)
+                   self.add(q)
+                   self.play(Queue.Enqueue(q, Node("2").next_to(q, RIGHT, buff=1.5)))
+                   self.play(Queue.Enqueue(q, Node("3").next_to(q, RIGHT, buff=1.5)))
                    self.wait(0.5)
         """
 
@@ -158,8 +162,7 @@ class Queue(VMobject):
                def construct(self):
                    q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)
                    self.add(q)
-                   self.wait(0.5)
-                   self.play(Queue.Dequeue(q))
+                   self.play(Queue.Dequeue(q, target_pos=DOWN * 2.5 + LEFT * 2))
                    self.wait(0.5)
         """
 

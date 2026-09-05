@@ -25,16 +25,21 @@ class ManimAnimations:
     Examples
     --------
     .. manim:: ManimAnimationsExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
 
        class ManimAnimationsExample(Scene):
            def construct(self):
-               anim = ManimAnimations()
-               circle = Circle()
-               self.add(circle)
+               animations = ManimAnimations()
+               state = Circle(radius=1)
+               token = MathTex("0").next_to(state, UP)
+               self.add(state, token)
+               self.play(animations.animate_highlight_state(state))
+               self.play(animations.animate_highlight_input_token(token))
+               self.play(animations.animate_input_token_spent(token))
+               self.play(animations.animate_dead_branch_state(state))
+               self.play(animations.animate_state_to_default_color(state))
     """
 
     def __init__(self) -> None:

@@ -135,57 +135,121 @@ class GraphMolecule(Graph, AbstractMolecule):
     ---------
     .. manim:: GraphMoleculeFromFile
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule
+
+        mol_file_data = (
+            "acetone\n"
+            "manim_extensions\n"
+            "\n"
+            "10 9 0 0 0 0 999 V2000\n"
+            "3.7320 0.7500 0.0000 O\n"
+            "2.8660 0.2500 0.0000 C\n"
+            "2.0000 0.7500 0.0000 C\n"
+            "2.8660 -0.7500 0.0000 C\n"
+            "2.3100 1.2869 0.0000 H\n"
+            "1.4631 1.0600 0.0000 H\n"
+            "1.6900 0.2131 0.0000 H\n"
+            "2.2460 -0.7500 0.0000 H\n"
+            "2.8660 -1.3700 0.0000 H\n"
+            "3.4860 -0.7500 0.0000 H\n"
+            "1 2 2\n"
+            "2 3 1\n"
+            "2 4 1\n"
+            "3 5 1\n"
+            "3 6 1\n"
+            "3 7 1\n"
+            "4 8 1\n"
+            "4 9 1\n"
+            "4 10 1\n"
+            "M  END\n"
+        )
+        with open("acetone_2d.mol", "w") as mol_file:
+            mol_file.write(mol_file_data)
 
         class GraphMoleculeFromFile(Scene):
             def construct(self):
-                molecule = GraphMolecule.molecule_from_file(
-                    "../examples/molecule_files/mol_files/acetone_2d.mol"
-                )
-                self.wait()
+                molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
                 self.play(Write(molecule))
+                carbons = molecule.get_connected_atoms_v_group(1, 2)
+                self.play(Indicate(carbons))
                 self.wait()
 
 
     .. manim:: GraphMoleculeFromFileWithHydrogens
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule
+
+        mol_file_data = (
+            "acetone\n"
+            "manim_extensions\n"
+            "\n"
+            "10 9 0 0 0 0 999 V2000\n"
+            "3.7320 0.7500 0.0000 O\n"
+            "2.8660 0.2500 0.0000 C\n"
+            "2.0000 0.7500 0.0000 C\n"
+            "2.8660 -0.7500 0.0000 C\n"
+            "2.3100 1.2869 0.0000 H\n"
+            "1.4631 1.0600 0.0000 H\n"
+            "1.6900 0.2131 0.0000 H\n"
+            "2.2460 -0.7500 0.0000 H\n"
+            "2.8660 -1.3700 0.0000 H\n"
+            "3.4860 -0.7500 0.0000 H\n"
+            "1 2 2\n"
+            "2 3 1\n"
+            "2 4 1\n"
+            "3 5 1\n"
+            "3 6 1\n"
+            "3 7 1\n"
+            "4 8 1\n"
+            "4 9 1\n"
+            "4 10 1\n"
+            "M  END\n"
+        )
+        with open("acetone_2d.mol", "w") as mol_file:
+            mol_file.write(mol_file_data)
 
         class GraphMoleculeFromFileWithHydrogens(Scene):
             def construct(self):
-                molecule = GraphMolecule.molecule_from_file(
-                    "../examples/molecule_files/mol_files/acetone_2d.mol",
-                    ignore_hydrogens=False
+                without_h = GraphMolecule.molecule_from_file("acetone_2d.mol")
+                with_h = GraphMolecule.molecule_from_file(
+                    "acetone_2d.mol", ignore_hydrogens=False
                 )
-                self.wait()
-                self.play(Write(molecule))
+                self.play(Write(without_h))
+                self.play(Write(with_h))
+                hydrogens = VGroup(
+                    *[with_h.vertices[index] for index in range(5, 11)]
+                )
+                self.play(Indicate(hydrogens))
                 self.wait()
 
 
     .. manim:: GraphMoleculeFromPubChem
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule
 
         class GraphMoleculeFromPubChem(Scene):
             def construct(self):
                 molecule = GraphMolecule.molecule_from_pubchem(name="acetone")
-                self.wait()
                 self.play(Write(molecule))
+                self.play(Indicate(molecule.vertices[2]))
                 self.wait()
 
     .. manim:: GraphMoleculeFromPubChemThreeD
 
-        from manim_chemistry import *
+        from manim import *
+        from manim_extensions.chemistry import GraphMolecule
 
-        class GraphMoleculeFromPubChemThreeD(Scene):
+        class GraphMoleculeFromPubChemThreeD(ThreeDScene):
             def construct(self):
+                self.set_camera_orientation(PI / 3, -PI / 4)
                 molecule = GraphMolecule.molecule_from_pubchem(
-                    name="acetone",
-                    three_d=True,
-                    ignore_hydrogens=False
+                    name="acetone", three_d=True, ignore_hydrogens=False
                 )
-                self.wait()
                 self.play(Write(molecule))
+                self.play(Rotate(molecule, PI / 2, axis=RIGHT))
                 self.wait()
     """
 

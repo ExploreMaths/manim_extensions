@@ -25,15 +25,19 @@ class SeqActor(VGroup):
     Examples
     --------
     .. manim:: SeqActorExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.sequence_diagram.seq_actor import SeqActor
 
        class SeqActorExample(Scene):
            def construct(self):
-               actor = SeqActor("Alice")
-               self.add(actor)
+               alice = SeqActor("Alice").shift(LEFT * 2)
+               bob = SeqActor("Bob").shift(RIGHT * 2)
+               self.play(FadeIn(alice), FadeIn(bob))
+               _, alice_time = alice.time_elapse(1)
+               _, bob_time = bob.time_elapse(1)
+               self.play(alice_time, bob_time)
+               self.wait()
     """
 
     all_actors = list()

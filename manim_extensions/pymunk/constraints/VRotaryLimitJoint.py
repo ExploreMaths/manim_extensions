@@ -42,38 +42,29 @@ class VRotaryLimitJoint(VConstraint):
     Examples
     --------
     .. manim:: VRotaryLimitJointExample
-       :save_last_frame:
 
-        from manim_pymunk import *
+        from manim import *
+        from manim_extensions.pymunk import *
 
         class VRotaryLimitJointExample(SpaceScene):
             def construct(self):
-
-                static_dot = Dot(ORIGIN)
-                square = Square().move_to(static_dot)
-                square2 = Square().move_to(static_dot.get_center() + UP * 2).scale(0.5)
+                # gravity pulls the arm down, but the joint stops the
+                # rotation at +/- PI/6 (see the yellow arc indicators)
+                pivot = Dot(UP * 2)
+                arm = Rectangle(width=2.5, height=0.3)
+                arm.move_to(pivot.get_center() + DOWN * 1.25)
 
                 constraints = [
-                    VPinJoint(static_dot, square),
-                    VPinJoint(
-                        square,
-                        square2,
-                        anchor_a_local=square.get_corner(UR) - square.get_center(),
-                        distance=2,
-                        connect_line_class=Line,
-                    ),
-                    VRotaryLimitJoint(
-                        static_dot,
-                        square2,
-                        min_angle=-PI / 6,
-                        max_angle=PI / 6,
-                    ),
+                    VPivotJoint(pivot, arm, pivot_world=pivot.get_center()),
+                    VRotaryLimitJoint(pivot, arm, min_angle=-PI / 6, max_angle=PI / 6),
                 ]
 
-                self.add_static_body(static_dot)
-                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
-                self.add_shapes_filter(static_dot, square, square2, group=2)
+                self.play(FadeIn(pivot), FadeIn(arm))
+                self.add_static_body(pivot)
+                self.add_dynamic_body(arm)
+                self.add_shapes_filter(pivot, arm, group=2)
                 self.add_constraints(*constraints)
+                self.wait(5)
 
     """
 
