@@ -45,12 +45,12 @@ class VDampedSpring(VConstraint):
         causing the kinetic energy of the system to dissipate over time.
     mob_a_appearance
         The Mobject used to visually represent the anchor point on `a_mob`
-        (e.g., a `Dot`).
+        (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     mob_b_appearance
         The Mobject used to visually represent the anchor point on `b_mob`
-        (e.g., a `Dot`).
+        (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     connect_line_class
-        The class used to visualize the spring body (defaults to `VSpring`).
+        The class used to visualize the spring body (defaults to :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`).
         If set to `None`, the spring connection will be invisible.
     connect_line_config
         A dictionary defining the visual style of the `connect_line_class`,

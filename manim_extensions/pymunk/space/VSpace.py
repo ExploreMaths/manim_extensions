@@ -27,7 +27,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     The Manim visualization manager for a Pymunk physical space.
 
-    The VSpace class encapsulates the Pymunk `Space` object, managing rigid bodies,
+    The VSpace class encapsulates the Pymunk :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object, managing rigid bodies,
     shapes, and constraints within the simulation. It utilizes Manim's updater
     mechanism to synchronize the physical simulation results with Mobject
     visual states in real-time.

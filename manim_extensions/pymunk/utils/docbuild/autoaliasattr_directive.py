@@ -79,7 +79,7 @@ class AliasAttrDocumenter(Directive):
     """Directive which replaces Sphinx's Autosummary for module-level
     attributes: instead, it manually crafts a new "Type Aliases"
     section, where all the module-level attributes which are explicitly
-    annotated as :class:`TypeAlias` are considered as such, for their
+    annotated as :class:`~manim_extensions.pymunk.utils.docbuild.autoaliasattr_directive.AliasAttrDocumenter.TypeAlias` are considered as such, for their
     use all around the Manim docs.
 
     These type aliases are separated from the "regular" module-level
@@ -91,7 +91,7 @@ class AliasAttrDocumenter(Directive):
     this directive in action.
 
     See :func:`~.parse_module_attributes` for more information on how
-    the modules are parsed to obtain the :class:`TypeAlias` information
+    the modules are parsed to obtain the :class:`~manim_extensions.pymunk.utils.docbuild.autoaliasattr_directive.AliasAttrDocumenter.TypeAlias` information
     and separate it from the other attributes.
     """
 
@@ -166,7 +166,7 @@ class AliasAttrDocumenter(Directive):
                         # also hyperlink the TypeVars from that module
                         if module_typevars is not None:
                             for T in module_typevars:
-                                alias_doc = alias_doc.replace(f"`{T}`", f":class:`{T}`")
+                                alias_doc = alias_doc.replace(f"`{T}`", f":class:`~manim_extensions.pymunk.utils.docbuild.autoaliasattr_directive.AliasAttrDocumenter.{T}`")
 
                         # Add all the lines with 4 spaces behind, to consider all the
                         # documentation as a paragraph INSIDE the `.. class::` block

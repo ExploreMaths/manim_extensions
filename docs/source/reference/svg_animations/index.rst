@@ -21,14 +21,14 @@ The code is bundled inside ``manim_extensions`` as the
 .. note::
 
    This module requires the ``manim-mobject-svg`` plugin (it provides
-   ``VMobject.to_svg()``). On Python 3.13+ install it with
+   :attr:`~manim.mobject.types.vectorized_mobject.VMobject.to_svg()`). On Python 3.13+ install it with
    ``pip install --ignore-requires-python manim-mobject-svg``.
 
 Features
 --------
 
 - :class:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject`
-  – converts a ``VMobject`` into an SVG-based HTML animation. Attaches to a
+  – converts a :class:`~manim.mobject.types.vectorized_mobject.VMobject` into an SVG-based HTML animation. Attaches to a
   scene as an updater, writes per-frame SVG paths, and produces a finished
   ``.html`` + ``.js`` pair on ``finish()``.
 

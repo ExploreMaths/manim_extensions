@@ -63,7 +63,7 @@ v1.0.5
 * Fixed a vendored ManimML import bug in 10 files: ``from ... import
   machine_learning as manim_ml`` (which tried to import a nonexistent name)
   replaced with ``from ... import config``; all ``manim_ml.config.X``
-  references changed to ``config.X``. This made ``NeuralNetwork`` importable.
+  references changed to ``config.X``. This made :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` importable.
 * Fixed ``test_algorithm_array.py`` and ``test_algorithm_node.py``
   ``FileExistsError`` by adding ``exist_ok=True`` to ``os.makedirs()``.
 * Converted ``manim-nerdfont-icons`` and ``manim-mobject-svg`` imports to
@@ -140,10 +140,10 @@ v1.0.4
 
 **Removed**
 
-* Deleted ``Code``, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
+* Deleted :class:`~manim.mobject.text.code_mobject.Code`, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
   from the ``algorithm`` module (unused code block classes).
 * Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
-  (was only used by the deleted ``Code`` class).
+  (was only used by the deleted :class:`~manim.mobject.text.code_mobject.Code` class).
 
 **Fixed**
 
@@ -172,11 +172,11 @@ v1.0.4
 * Removed gray text / titles from :class:`~manim_extensions.compass.scene.compass_scene.CompassExample`
   and ensured all geometry elements are centered.
 * Fixed ``check_redundant_imports.py`` false positives: no longer flags
-  explicitly-imported names (e.g. ``ConvertToOpenGL``) when ``from manim import *``
+  explicitly-imported names (e.g. :class:`~manim.mobject.opengl.opengl_compatibility.ConvertToOpenGL`) when ``from manim import *``
   is absent and those names are not covered by star exports.
 * Fixed ``validate_refs.py`` false positives: separated project class map
   (``manim_extensions``) from installed ``manim`` so that manim-internal names
-  like ``Code`` no longer trigger inline-code suggestions in changelog/docs.
+  like :class:`~manim.mobject.text.code_mobject.Code` no longer trigger inline-code suggestions in changelog/docs.
 * Fixed ``flake8-unused-imports`` CI job by correcting the ``--exclude``
   glob pattern (``*__init__.py*``) so that all ``__init__.py`` files are
   properly excluded from the F401 check.
