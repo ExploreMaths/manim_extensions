@@ -17,6 +17,16 @@ from ..molecule import AbstractMolecule
 
 
 class SimpleLine(Line):
+    """A line with a ``sheen_direction`` attribute, used as a single bond.
+
+    Parameters
+    ----------
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.sheen_direction = self._get_unit_vector()
@@ -28,6 +38,22 @@ class SimpleLine(Line):
 
 
 class DoubleLine(ArcBetweenPoints):
+    """Two arcs between the same points, used as a double bond.
+
+    Parameters
+    ----------
+    start : :class:`list`, optional
+        Starting point of the arcs. Defaults to ``[-1, 0, 0]``.
+    end : :class:`list`, optional
+        Ending point of the arcs. Defaults to ``[1, 0, 0]``.
+    angle : :class:`float`, optional
+        Angle of the arcs. Defaults to ``PI / 4``.
+    radius : :class:`float`, optional
+        Radius of the arcs. Defaults to ``None``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.ArcBetweenPoints`.
+    """
+
     def __init__(
         self,
         start=[-1, 0, 0],
@@ -59,6 +85,22 @@ class DoubleLine(ArcBetweenPoints):
 
 
 class TripleLine(DoubleLine):
+    """A double line with an added middle line, used as a triple bond.
+
+    Parameters
+    ----------
+    start : :class:`list`, optional
+        Starting point of the lines. Defaults to ``[-1, 0, 0]``.
+    end : :class:`list`, optional
+        Ending point of the lines. Defaults to ``[1, 0, 0]``.
+    angle : :class:`float`, optional
+        Angle of the arcs. Defaults to ``PI / 4``.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
+    """
+
     def __init__(
         self, start=[-1, 0, 0], end=[1, 0, 0], angle: float = PI / 4, *args, **kwargs
     ):
@@ -70,6 +112,24 @@ class TripleLine(DoubleLine):
 
 class GraphMolecule(Graph, AbstractMolecule):
     """Represents a molecule like a Graph from Manim.
+
+    Parameters
+    ----------
+    vertices_dict : :class:`dict`
+        Dictionary mapping vertex indices to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCAtom` objects.
+    edges_dict : :class:`dict`
+        Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCBond` objects.
+    label : :class:`bool`, optional
+        Whether to add a label with the element symbol to each atom.
+        Defaults to ``False``.
+    numeric_label : :class:`bool`, optional
+        Whether to add a numeric label to each atom. Defaults to ``False``.
+    label_color : :class:`str`, optional
+        Color of the atom labels. Defaults to ``BLACK``.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
 
     Examples
     ---------
@@ -329,12 +389,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         """
         Returns the position of a single atom given its index.
 
-        Example:
-        ```
-        molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atom_position_by_index(1))
-        >>> array([ 0.9397, -0.7497,  0.    ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atom_position_by_index(1))
+            >>> array([ 0.9397, -0.7497,  0.    ])
 
 
         Args:
@@ -359,12 +420,13 @@ class GraphMolecule(Graph, AbstractMolecule):
     def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
         """Returns the position of multiple atoms given their indices.
 
-        Example:
-        ```
-        molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atoms_position_by_index([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atoms_position_by_index([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             atoms_index_list (list): List of atoms indices to be gotten.
 
@@ -383,12 +445,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
         The bund tuple corresponds to the indices of the atoms in the bond.
 
-        Example:
-        ```
-        molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bond_center_by_index((1, 2))
-        >>> array([0.51935, 0.59615, 0.     ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bond_center_by_index((1, 2))
+            >>> array([0.51935, 0.59615, 0.     ])
 
         Args:
             bond_index (tuple): index of the bond
@@ -441,12 +504,13 @@ class GraphMolecule(Graph, AbstractMolecule):
     def find_bonds_center_by_index(self, bonds_tuples_list: list) -> list:
         """Returns the position of multiple bonds given their indices.
 
-        Example:
-        ```
-        molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bonds_center_by_tuple([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bonds_center_by_tuple([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             bondss_index_list (list): List of bonds indices to be gotten.
 

@@ -21,6 +21,17 @@ class MCMolecule:
     - MCBonds.
     - Molecule name.
     - Extra properties (To be defined)
+
+    Parameters
+    ----------
+    atoms : :class:`list`, optional
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCAtom` objects of the molecule. Defaults to an empty list.
+    bonds : :class:`list`, optional
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCBond` objects of the molecule. Defaults to an empty list.
+    name : :class:`str`, optional
+        Name of the molecule. Defaults to ``None``.
+    elements : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCElement`, optional
+        Elements data of the molecule. Defaults to an empty dict.
     """
 
     def __init__(

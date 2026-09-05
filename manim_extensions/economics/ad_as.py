@@ -6,8 +6,8 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 
 """
 
-from manim import BLUE, GREEN, RED, AnimationGroup, Line, Transform, UP
 
+from manim import *
 from .base import EconDiagram
 
 # Default long-run adjustment duration (seconds)
@@ -36,13 +36,27 @@ class ADASDiagram(EconDiagram):
 
     LRAS is a vertical line at potential output.
 
-    Parameters:
-        m: Money supply (default 20)
-        v: Velocity of money (default 1)
-        sras_price: Short-run price level / expected price Pᵉ (default 4)
-        sras_slope: SRAS slope.  ``None`` → flat.  Positive → upward-sloping
-            ``P = Pᵉ + slope·(Y − Ȳ)``.
-        lras_y: Potential output / natural rate of output (default 5)
+    Parameters
+    ----------
+    m
+        Money supply (default 20).
+    v
+        Velocity of money (default 1).
+    sras_price
+        Short-run price level / expected price Pᵉ (default 4).
+    sras_slope
+        SRAS slope.  ``None`` → flat.  Positive → upward-sloping
+        ``P = Pᵉ + slope·(Y − Ȳ)``.
+    lras_y
+        Potential output / natural rate of output (default 5).
+    show_equilibrium
+        If True (default), mark the AD–SRAS intersection as the equilibrium.
+    sras_only
+        If True, draw only the SRAS curve (no LRAS line).
+    lras_only
+        If True, draw only the LRAS line (no SRAS curve).
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
     """
 
     def __init__(

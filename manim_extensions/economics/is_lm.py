@@ -6,8 +6,8 @@ This module provides the IS-LM model diagram.
 
 """
 
-from manim import BLUE, RED
 
+from manim import *
 from .base import EconDiagram
 
 
@@ -20,12 +20,24 @@ class ISLMDiagram(EconDiagram):
     LM curve (money market equilibrium):
         Ms = k*Y - h*r  =>  r = (k*Y - Ms) / h
 
-    Parameters:
-        a: Autonomous spending (default 10)
-        b: Interest sensitivity of investment (default 2)
-        ms: Real money supply (default 5)
-        k: Income sensitivity of money demand (default 0.5)
-        h: Interest sensitivity of money demand (default 1)
+    Parameters
+    ----------
+    a
+        Autonomous spending (default 9.5).
+    b
+        Interest sensitivity of investment (default 1.5).
+    ms
+        Real money supply (default 2).
+    k
+        Income sensitivity of money demand (default 1).
+    h
+        Interest sensitivity of money demand (default 1).
+    show_equilibrium
+        If True (default), mark the IS–LM intersection as the equilibrium.
+    numbered_eq
+        If True, label equilibria with subscripts that increment on each shift.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
     """
 
     def __init__(

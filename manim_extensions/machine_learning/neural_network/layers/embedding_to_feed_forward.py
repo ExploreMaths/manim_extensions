@@ -13,7 +13,21 @@ from .embedding import EmbeddingLayer
 
 
 class EmbeddingToFeedForward(ConnectiveLayer):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between an embedding layer and a feed-forward layer
+
+    Parameters
+    ----------
+    input_layer : EmbeddingLayer
+        The input embedding layer.
+    output_layer : FeedForwardLayer
+        The output feed-forward layer.
+    animation_dot_color : ManimColor, optional
+        Color of the dots in the forward pass animation, by default RED.
+    dot_radius : float, optional
+        Radius of the dots in the forward pass animation, by default 0.03.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+    """
 
     input_class = EmbeddingLayer
     output_class = FeedForwardLayer

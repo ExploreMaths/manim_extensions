@@ -13,7 +13,18 @@ from .parent_layers import VGroupNeuralNetworkLayer
 
 
 class VectorLayer(VGroupNeuralNetworkLayer):
-    """Shows a vector"""
+    """Shows a vector
+
+    Parameters
+    ----------
+    num_values : int
+        Number of values in the vector.
+    value_func : callable, optional
+        Function generating the displayed value; by default samples uniformly
+        from [0, 1].
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     def __init__(self, num_values, value_func=lambda: random.uniform(0, 1), **kwargs):
         super().__init__(**kwargs)

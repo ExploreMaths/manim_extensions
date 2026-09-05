@@ -36,11 +36,14 @@ class VSimpleMotor(VConstraint):
         The Manim class used to visualize the rotation (e.g., Arrow or CurvedArrow).
     indicator_line_config
         Configuration dictionary for the styling of the visual indicator.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
 
     Examples
     --------
     .. manim:: VSimpleMotorExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -72,7 +75,6 @@ class VSimpleMotor(VConstraint):
                 self.add_dynamic_body(square, square2)
                 self.add_shapes_filter(static_dot, square, square2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(3)
 
 
     """

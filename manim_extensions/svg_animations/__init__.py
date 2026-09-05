@@ -6,4 +6,4 @@ This module provides SVG parsing and animation capabilities.
 
 """
 
-from .html_parsed_vmobject import *
+from .html_parsed_vmobject import *  # noqa: F401

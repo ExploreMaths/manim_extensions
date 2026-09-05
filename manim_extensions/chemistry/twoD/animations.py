@@ -6,12 +6,24 @@ This module provides the GMAnimationBuilder class for building molecule animatio
 
 """
 
-from manim import VGroup, PI, BLACK
 
+from manim import *
 from .graph_molecule import GraphMolecule
 
 
 class GMAnimationBuilder:
+    """Builds animations for a :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`.
+
+    Parameters
+    ----------
+    molecule : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`
+        The molecule the animations are built for.
+    atoms : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.VGroup`, optional
+        The atoms to animate. Defaults to all vertices of the molecule.
+    bonds : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.VGroup`, optional
+        The bonds to animate. Defaults to all edges of the molecule.
+    """
+
     def __init__(
         self,
         molecule: GraphMolecule,

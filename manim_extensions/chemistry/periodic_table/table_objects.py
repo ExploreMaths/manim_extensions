@@ -6,24 +6,38 @@ This module provides the MElementObject class for rendering periodic table eleme
 
 """
 
-from manim import (
-    VGroup,
-    WHITE,
-    BLACK,
-    BLUE,
-    Rectangle,
-    color_gradient,
-    Text,
-    Tex,
-    RIGHT,
-    ORIGIN,
-    DOWN,
-)
+from manim import *
 import pandas as pd
 import numpy as np
 
 
 class MElementObject(VGroup):
+    """A visual representation of a single periodic table element.
+
+    Parameters
+    ----------
+    atomic_number : :class:`int`, optional
+        Atomic number of the element. Defaults to 1.
+    atomic_mass : :class:`float`, optional
+        Atomic mass of the element. Defaults to 1.
+    element_name : :class:`str`, optional
+        Name of the element. Defaults to ``"Hydrogen"``.
+    element_symbol : :class:`str`, optional
+        Symbol of the element. Defaults to ``"H"``.
+    coloring : optional
+        Color of the element frame. Defaults to ``BLACK``.
+    fill_colors : :class:`tuple`, optional
+        Colors used for the frame gradient fill. Defaults to ``(WHITE, BLUE)``.
+    gradient : :class:`int`, optional
+        Number of colors in the frame gradient. Defaults to 10.
+    opacity : :class:`float`, optional
+        Fill opacity of the element frame. Defaults to 1.
+    text_color : optional
+        Color of the element texts. Defaults to ``BLACK``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     def __init__(
         self,
         atomic_number=1,
@@ -132,6 +146,15 @@ class MElementObject(VGroup):
 
 class PeriodicTable(VGroup):
     """Draws a periodic table using the data using a configuration from a csv file.
+
+    Parameters
+    ----------
+    data_file : :class:`str` or Path-like
+        Path to the csv file with the element data.
+    vmobjects
+        Additional vmobjects to add to the group.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     ---------

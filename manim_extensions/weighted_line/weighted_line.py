@@ -8,11 +8,7 @@ This module provides the WeightedLine class for displaying weighted edges in net
 
 from typing import Any
 
-from manim import config
-from manim.constants import DEFAULT_FONT_SIZE, ITALIC, SMALL_BUFF
-from manim.mobject.geometry.line import Line
-from manim.mobject.text.text_mobject import Text
-from manim.utils.color import WHITE
+from manim import *
 
 
 class WeightedLine(Line):

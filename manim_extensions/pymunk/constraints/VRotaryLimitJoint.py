@@ -36,9 +36,13 @@ class VRotaryLimitJoint(VConstraint):
         Set to None to hide the visual representation.
     arc_indicator_config
         Configuration dictionary for the styling of the visual arc.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
+
     Examples
     --------
     .. manim:: VRotaryLimitJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -70,7 +74,6 @@ class VRotaryLimitJoint(VConstraint):
                 self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
                 self.add_shapes_filter(static_dot, square, square2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(3)
 
     """
 

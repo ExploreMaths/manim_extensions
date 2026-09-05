@@ -60,6 +60,19 @@ class MultidimensionalGaussianPosterior:
     var ~ LogNormal(0, 1.5)
 
     Prior on mean is U(-500, 500)
+
+    Parameters
+    ----------
+    ndim : int, optional
+        Dimension of the distribution, by default 2.
+    seed : int, optional
+        Random seed, by default 12345.
+    scale : int, optional
+        Scale of the prior on the mean, by default 3.
+    mu : np.ndarray, optional
+        Mean of the distribution; drawn from the prior if None.
+    var : np.ndarray, optional
+        Variance of the distribution; drawn from the prior if None.
     """
 
     def __init__(self, ndim=2, seed=12345, scale=3, mu=None, var=None):
@@ -188,6 +201,22 @@ def make_dist_image_mobject_from_samples(samples, ylim, xlim):
     return image_mobject
 
 class Uncreate(Create):
+    """Animation that uncreates a mobject by playing :class:`~manim.animation.creation.Create` in reverse.
+
+    Parameters
+    ----------
+    mobject : Mobject
+        The mobject to uncreate.
+    reverse_rate_function : bool, optional
+        Whether to reverse the rate function, by default True.
+    introducer : bool, optional
+        Whether the animation introduces the mobject into the scene, by default True.
+    remover : bool, optional
+        Whether the animation removes the mobject from the scene, by default True.
+    **kwargs
+        Forwarded to :class:`~manim.animation.creation.Create`.
+    """
+
     def __init__(
         self,
         mobject,
@@ -205,7 +234,31 @@ class Uncreate(Create):
         )
 
 class MCMCAxes(Group):
-    """Container object for visualizing MCMC on a 2D axis"""
+    """Container object for visualizing MCMC on a 2D axis
+
+    Parameters
+    ----------
+    dot_color : ManimColor, optional
+        Color of the dots marking chain samples, by default BLUE.
+    dot_radius : float, optional
+        Radius of the dots marking chain samples, by default 0.02.
+    accept_line_color : ManimColor, optional
+        Color of the lines for accepted transitions, by default GREEN.
+    reject_line_color : ManimColor, optional
+        Color of the lines for rejected transitions, by default RED.
+    line_color : ManimColor, optional
+        Color of the transition lines, by default BLUE.
+    line_stroke_width : float, optional
+        Stroke width of the transition lines, by default 2.
+    x_range : list, optional
+        Range of the x-axis, by default [-3, 3].
+    y_range : list, optional
+        Range of the y-axis, by default [-3, 3].
+    x_length : float, optional
+        Length of the x-axis, by default 5.
+    y_length : float, optional
+        Length of the y-axis, by default 5.
+    """
 
     def __init__(
         self,

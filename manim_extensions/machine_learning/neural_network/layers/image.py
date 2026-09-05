@@ -15,7 +15,19 @@ from .parent_layers import NeuralNetworkLayer
 
 
 class ImageLayer(NeuralNetworkLayer):
-    """Single Image Layer for Neural Network"""
+    """Single Image Layer for Neural Network
+
+    Parameters
+    ----------
+    numpy_image : np.ndarray
+        Image data as a numpy array; 2D is treated as grayscale and 3D as RGB.
+    height : float, optional
+        Height of the rendered image, by default 1.5.
+    show_image_on_create : bool, optional
+        Whether the image is shown when the layer is created, by default True.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+    """
 
     def __init__(
         self, 

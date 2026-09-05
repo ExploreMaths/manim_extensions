@@ -6,12 +6,8 @@ This module provides the Solow growth model diagram.
 
 """
 
+from manim import *
 import numpy as np
-from manim import (
-    BLUE, GREEN, ORANGE, PURPLE, RED, RIGHT, YELLOW,
-    AnimationGroup, Brace, DashedLine, FadeIn, FadeOut,
-    Line, ReplacementTransform, Text, UpdateFromAlphaFunc, VGroup,
-)
 
 from .base import EconDiagram
 
@@ -25,12 +21,26 @@ class SolowDiagram(EconDiagram):
 
     Steady state where sf(k*) = (δ + n + g)·k*.
 
-    Parameters:
-        s: Savings rate (default 0.3)
-        alpha: Capital share / production function exponent (default 0.5)
-        delta: Depreciation rate (default 0.05)
-        n: Population growth rate (default 0.02)
-        g: Technological growth rate (default 0.03)
+    Parameters
+    ----------
+    s
+        Savings rate (default 0.3).
+    alpha
+        Capital share / production function exponent (default 0.5).
+    delta
+        Depreciation rate (default 0.1).
+    n
+        Population growth rate (default 0.05).
+    g
+        Technological growth rate (default 0.05).
+    show_equilibrium
+        If True (default), mark the steady-state equilibrium.
+    numbered_eq
+        If True, label equilibria with subscripts that increment on each shift.
+    show_production
+        If True (default), also draw the production function f(k).
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
     """
 
     def __init__(

@@ -8,6 +8,10 @@
 
 from __future__ import annotations
 
+from manim import *
+from manim._config.utils import ManimConfig
+from manim.utils.testing._frames_testers import _ControlDataWriter, _FramesTester
+from manim.utils.testing._test_class_makers import DummySceneFileWriter, _make_scene_file_writer_class, _make_test_renderer_class, _make_test_scene_class
 import functools
 import inspect
 from pathlib import Path
@@ -15,20 +19,7 @@ from typing import Callable
 
 from _pytest.fixtures import FixtureRequest
 
-from manim import Scene
-from manim._config import tempconfig
-from manim._config.utils import ManimConfig
-from manim.camera.three_d_camera import ThreeDCamera
-from manim.renderer.cairo_renderer import CairoRenderer
-from manim.scene.three_d_scene import ThreeDScene
 
-from manim.utils.testing._frames_testers import _ControlDataWriter, _FramesTester
-from manim.utils.testing._test_class_makers import (
-    DummySceneFileWriter,
-    _make_scene_file_writer_class,
-    _make_test_renderer_class,
-    _make_test_scene_class,
-)
 
 SCENE_PARAMETER_NAME = "scene"
 _tests_root_dir_path = Path(__file__).absolute().parents[2]

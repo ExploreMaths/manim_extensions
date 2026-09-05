@@ -9,11 +9,28 @@
 from manim import *
 from . import NeuralNetworkLayer
 from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
-import numpy as np
 
 
 class TripletLayer(NeuralNetworkLayer):
-    """Shows triplet images"""
+    """Shows triplet images
+
+    Parameters
+    ----------
+    anchor : Mobject
+        Mobject shown as the anchor example.
+    positive : Mobject
+        Mobject shown as the positive example.
+    negative : Mobject
+        Mobject shown as the negative example.
+    stroke_width : float, optional
+        Stroke width of the surrounding rectangles, by default 5.
+    font_size : float, optional
+        Font size of the labels, by default 22.
+    buff : float, optional
+        Buffer between the images, by default 0.2.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+    """
 
     def __init__(
         self,

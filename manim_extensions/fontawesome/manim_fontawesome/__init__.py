@@ -10,11 +10,11 @@
 
 """Font Awesome icons for Manim."""
 
+from manim import *
 import os
 
 from pathlib import Path
 from enum import Enum
-from manim import SVGMobject, config, BLACK, WHITE
 
 __all__ = ["brand", "regular", "solid", "FONT_AWESOME_VERSION"]
 

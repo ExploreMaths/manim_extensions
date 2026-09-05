@@ -14,7 +14,6 @@ from .parent_layers import ConnectiveLayer, ThreeDLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 from ... import config
 
-from manim.utils.space_ops import rotation_matrix
 
 
 def get_rotated_shift_vectors(input_layer, normalized=False):
@@ -38,7 +37,26 @@ def get_rotated_shift_vectors(input_layer, normalized=False):
 
 
 class Filters(VGroup):
-    """Group for showing a collection of filters connecting two layers"""
+    """Group for showing a collection of filters connecting two layers
+
+    Parameters
+    ----------
+    input_layer : Convolutional2DLayer
+        The input convolutional layer.
+    output_layer : Convolutional2DLayer
+        The output convolutional layer.
+    line_color : ManimColor, optional
+        Color of the connective lines, by default ORANGE.
+    cell_width : float, optional
+        Width of a single grid cell, by default 1.0.
+    stroke_width : float, optional
+        Stroke width of the filter rectangles, by default 2.0.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    output_feature_map_to_connect : int, optional
+        Index of the output feature map to connect; None connects all of them
+        at once.
+    """
 
     def __init__(
         self,
@@ -288,7 +306,31 @@ class Filters(VGroup):
 
 
 class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between two convolutional 2D layers
+
+    Parameters
+    ----------
+    input_layer : Convolutional2DLayer
+        The input convolutional layer.
+    output_layer : Convolutional2DLayer
+        The output convolutional layer.
+    color : ManimColor, optional
+        Color of the filter rectangles, by default ORANGE.
+    filter_opacity : float, optional
+        Fill opacity of the filter rectangles, by default 0.3.
+    line_color : ManimColor, optional
+        Color of the connective lines, by default ORANGE.
+    active_color : ManimColor, optional
+        Color used when highlighting the layer, by default ORANGE.
+    cell_width : float, optional
+        Width of a single grid cell, by default 0.2.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default True.
+    highlight_color : ManimColor, optional
+        Color used to highlight cells during animations, by default ORANGE.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     input_class = Convolutional2DLayer
     output_class = Convolutional2DLayer

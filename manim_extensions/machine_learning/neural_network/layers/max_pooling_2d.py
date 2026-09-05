@@ -18,6 +18,27 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     Note: This is for a Convolutional2DLayer even though
     it is called MaxPooling2DLayer because the 2D corresponds
     to the 2 spatial dimensions of the convolution.
+
+    Parameters
+    ----------
+    kernel_size : int or tuple, optional
+        Width/Height of max pooling kernel, by default 2.
+    stride : int, optional
+        Stride of the max pooling operation, by default 1.
+    cell_highlight_color : ManimColor, optional
+        Color used to highlight the pooled cells, by default ORANGE.
+    cell_width : float, optional
+        Width of a single cell, by default 0.2.
+    filter_spacing : float, optional
+        Spacing between feature maps, by default 0.1.
+    color : ManimColor, optional
+        Color of the feature map borders, by default BLUE.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    stroke_width : float, optional
+        Stroke width of the borders, by default 2.0.
+    **kwargs
+        Forwarded to the parent layer classes.
     """
 
     def __init__(

@@ -6,19 +6,26 @@
 # SPDX-License-Identifier: MIT
 """Image to convolutional 2D layer connection visualization."""
 
-import numpy as np
-
 from manim import *
 from .convolutional_2d import Convolutional2DLayer
 from .image import ImageLayer
 from .parent_layers import ThreeDLayer, VGroupNeuralNetworkLayer
-from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from ... import config
 
 
 class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Handles rendering a convolutional layer for a nn"""
+    """Connective layer between an image layer and a convolutional 2D layer
+
+    Parameters
+    ----------
+    input_layer : ImageLayer
+        The input image layer.
+    output_layer : Convolutional2DLayer
+        The output convolutional layer.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     input_class = ImageLayer
     output_class = Convolutional2DLayer

@@ -6,7 +6,6 @@ This module provides the VSlideJoint class for creating slide joint constraints.
 
 """
 
-from tracemalloc import start
 from typing import Optional
 from manim import *
 from . import VConstraint
@@ -44,10 +43,13 @@ class VSlideJoint(VConstraint):
         Pass None to disable the visual indicator.
     indicator_line_config
         Configuration dictionary for the styling of the indicator line.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VSlideJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -79,7 +81,6 @@ class VSlideJoint(VConstraint):
                 self.add_dynamic_body(square, square2)
                 self.add_shapes_filter(static_dot, square, square2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(6)
 
     """
 

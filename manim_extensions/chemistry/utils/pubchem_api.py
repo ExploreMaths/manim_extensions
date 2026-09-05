@@ -14,6 +14,24 @@ import requests
 
 
 class PubchemAPIManager:
+    """Manages the requests to the PubChem API to retrieve molecular data.
+
+    Parameters
+    ----------
+    cid : :class:`int`, optional
+        PubChem compound id of the molecule. Defaults to ``None``.
+    name : :class:`str`, optional
+        Name of the molecule. Defaults to ``None``.
+    smiles : :class:`str`, optional
+        SMILES identifier of the molecule. Defaults to ``None``.
+    inchi : :class:`str`, optional
+        InChI identifier of the molecule. Defaults to ``None``.
+    three_d : :class:`bool`, optional
+        Whether to retrieve the 3D structure of the molecule. Defaults to ``False``.
+    format : :class:`str`, optional
+        Format of the response data. Defaults to ``"json"``.
+    """
+
     BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"
 
     def __init__(

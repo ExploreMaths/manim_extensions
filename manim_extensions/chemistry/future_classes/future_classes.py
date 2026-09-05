@@ -11,18 +11,68 @@ from manim import *
 
 
 class Hole(VMobject):
+    """A dashed circle representing a hole (absence of an electron).
+
+    Parameters
+    ----------
+    radius : :class:`float`, optional
+        Radius of the hole circle. Defaults to 0.25.
+    color : optional
+        Color of the hole circle. Defaults to ``WHITE``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+    """
+
     def __init__(self, radius=0.25, color=WHITE, **kwargs):
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
 
 
 class Electron(VMobject):
+    """A filled circle representing an electron.
+
+    Parameters
+    ----------
+    radius : :class:`float`, optional
+        Radius of the electron circle. Defaults to 0.2.
+    color : optional
+        Color of the electron circle. Defaults to ``BLUE_E``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+    """
+
     def __init__(self, radius=0.2, color=BLUE_E, **kwargs):
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
 
 
 class Element(VGroup):
+    """A chemical element with a labeled central atom surrounded by electrons and holes.
+
+    Parameters
+    ----------
+    element : :class:`str`, optional
+        Symbol of the chemical element. Defaults to ``"H"``.
+    radius : :class:`float`, optional
+        Radius of the element group. Defaults to 1.
+    color : optional
+        Fill color of the central atom. Defaults to ``ORANGE``.
+    label_color : optional
+        Color of the element symbol label. Defaults to ``BLACK``.
+    n_electrons : :class:`int`, optional
+        Number of electrons around the atom. Defaults to 2.
+    n_holes : :class:`int`, optional
+        Number of holes around the atom. Defaults to 2.
+    add_electrons : :class:`bool`, optional
+        Whether to add electrons to the element. Defaults to ``True``.
+    add_holes : :class:`bool`, optional
+        Whether to add holes to the element. Defaults to ``True``.
+    subelectron_holes : :class:`bool`, optional
+        Whether to add holes at the positions of the electrons. Defaults to ``True``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     def __init__(
         self,
         element: str = "H",
@@ -114,6 +164,20 @@ class Element(VGroup):
 
 
 class ElementFrame(VGroup):
+    """A frame displaying an element symbol and its name.
+
+    Parameters
+    ----------
+    element_symbol : :class:`str`, optional
+        Symbol of the chemical element. Defaults to ``"H"``.
+    element_name : :class:`str`, optional
+        Name of the chemical element. Defaults to ``"Hidrógeno"``.
+    frame_colors : :class:`list`, optional
+        Colors used for the frame gradient. Defaults to ``[BLUE, BLUE_B]``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     def __init__(
         self,
         element_symbol: str = "H",
@@ -137,6 +201,16 @@ class ElementFrame(VGroup):
 
 
 class NPNTransistor(VGroup):
+    """An NPN transistor diagram with n and p regions, electrons and holes.
+
+    Parameters
+    ----------
+    regions_opacity : :class:`float`, optional
+        Opacity of the transistor regions. Defaults to 0.8.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     def __init__(self, regions_opacity=0.8, **kwargs):
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
@@ -181,6 +255,21 @@ class NPNTransistor(VGroup):
 
 
 class BatterySchema(VGroup):
+    """A battery schema attached to a mobject.
+
+    Parameters
+    ----------
+    mob : :class:`~manim.mobject.mobject.Mobject`, optional
+        The mobject the battery schema is attached to. Defaults to ``Square()``.
+    schema_type : :class:`str`, optional
+        Type of the schema, either ``"horizontal"`` or ``"corner"``.
+        Defaults to ``"horizontal"``.
+    inverted_terminals : :class:`bool`, optional
+        Whether to invert the positive and negative terminals. Defaults to ``False``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     # TODO: This is not working as intended, rebuild this.
     def __init__(
         self, mob=Square(), schema_type="horizontal", inverted_terminals=False, **kwargs
@@ -315,6 +404,18 @@ class BatterySchema(VGroup):
 
 
 class MOSFETTransistor(VGroup):
+    """A MOSFET transistor diagram with optional holes and battery.
+
+    Parameters
+    ----------
+    show_holes : :class:`bool`, optional
+        Whether to show holes in the transistor. Defaults to ``False``.
+    show_battery : :class:`bool`, optional
+        Whether to show the battery terminals. Defaults to ``False``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
+
     def __init__(self, show_holes=False, show_battery=False, **kwargs):
         super().__init__(**kwargs)
 
@@ -401,6 +502,18 @@ class MOSFETTransistor(VGroup):
 
 
 class BatterySide(VMobject):
+    """A line connecting a battery terminal to an anchor mobject.
+
+    Parameters
+    ----------
+    terminal : :class:`~manim.mobject.mobject.Mobject`
+        The battery terminal to connect from.
+    anchor : :class:`~manim.mobject.mobject.Mobject`
+        The mobject to connect the terminal to.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+    """
+
     def __init__(self, terminal, anchor, **kwargs):
         super().__init__(**kwargs)
         self.terminal = terminal

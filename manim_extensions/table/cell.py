@@ -18,15 +18,24 @@ import numpy as np
 class Cell(VGroup):
     """
     A single cell in a table, containing text and optional border lines.
-    
-    Args:
-        value: The text content of the cell
-        width: Width of the cell
-        height: Height of the cell
-        font_size: Font size for the text
-        is_header: If True, renders text in bold with thicker border
-        show_border: If True, draws border lines around the cell
-        **kwargs: Additional arguments passed to VGroup
+
+    Parameters
+    ----------
+    value : str
+        The text content of the cell.
+    width : float, optional
+        Width of the cell. Defaults to ``1.5``.
+    height : float, optional
+        Height of the cell. Defaults to ``0.5``.
+    font_size : int, optional
+        Font size for the text. Defaults to ``20``.
+    is_header : bool, optional
+        If True, renders the text in bold with a thicker border.
+    show_border : bool, optional
+        If True, draws border lines around the cell.
+    **kwargs
+        Additional arguments passed to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
     
     def __init__(

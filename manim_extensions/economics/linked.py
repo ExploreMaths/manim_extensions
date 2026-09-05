@@ -6,8 +6,8 @@ This module provides linked IS-LM and AD-AS diagrams for policy analysis.
 
 """
 
-from manim import AnimationGroup, VGroup, RIGHT
 
+from manim import *
 from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
@@ -17,15 +17,24 @@ class LinkedISLM_ADAS(VGroup):
 
     A policy change (monetary or fiscal) shifts curves in both diagrams
     simultaneously:
+
       - Monetary expansion: LM right + AD right
       - Fiscal expansion:   IS right + AD right
 
-    Parameters:
-        is_lm_kwargs: Extra keyword arguments forwarded to ISLMDiagram.
-        ad_as_kwargs: Extra keyword arguments forwarded to ADASDiagram.
-        spacing: Horizontal gap between the two diagrams (default 1.0).
-        numbered_eq: Use numbered equilibrium labels in both diagrams.
-        show_arrows: Show axis arrows on shifts in both diagrams.
+    Parameters
+    ----------
+    is_lm_kwargs
+        Extra keyword arguments forwarded to :class:`~manim_extensions.economics.is_lm.ISLMDiagram`.
+    ad_as_kwargs
+        Extra keyword arguments forwarded to :class:`~manim_extensions.economics.ad_as.ADASDiagram`.
+    spacing
+        Horizontal gap between the two diagrams (default 1.0).
+    numbered_eq
+        Use numbered equilibrium labels in both diagrams.
+    show_arrows
+        Show axis arrows on shifts in both diagrams.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
 
     def __init__(

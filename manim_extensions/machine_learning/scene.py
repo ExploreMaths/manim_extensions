@@ -19,6 +19,14 @@ class ManimML3DScene(ThreeDScene):
 
     Note: the primary purpose of this is to make it so
     that everything inside of a layer
+
+    Parameters
+    ----------
+    args : tuple
+        Positional arguments forwarded to
+        :class:`~manim.scene.three_d_scene.ThreeDScene`.
+    **kwargs
+        Forwarded to :class:`~manim.scene.three_d_scene.ThreeDScene`.
     """
 
     def __init__(self, *args, **kwargs):

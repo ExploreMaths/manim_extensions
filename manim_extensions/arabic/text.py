@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 
-from manim import Tex, TexTemplate
 
 
+from manim import *
 def create_arabic_template(font_name: str = "Al Bayan") -> TexTemplate:
     """
     Create a TexTemplate configured for Arabic text rendering using XeLaTeX.

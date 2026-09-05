@@ -16,19 +16,42 @@ Example:
     NeuralNetwork(layer_node_count)
 """
 import textwrap
-from .layers.embedding import EmbeddingLayer
 from ..utils.mobjects.connections import NetworkConnection
 import numpy as np
 from manim import *
 
-from .layers.parent_layers import ConnectiveLayer, ThreeDLayer
+from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
 from ..utils.mobjects.list_group import ListGroup
 from .animations.neural_network_transformations import InsertLayer, RemoveLayer
 from .. import config
 
 class NeuralNetwork(Group):
-    """Neural Network Visualization Container Class"""
+    """Neural Network Visualization Container Class
+
+    Parameters
+    ----------
+    input_layers : list or dict
+        Neural network layers to visualize; a list is converted to a dict with
+        default names.
+    layer_spacing : float, optional
+        Spacing between the layers, by default 0.2.
+    animation_dot_color : ManimColor, optional
+        Color of the dots in the forward pass animation, by default
+        ``config.color_scheme.active_color``.
+    edge_width : float, optional
+        Stroke width of the connective edges, by default 2.5.
+    dot_radius : float, optional
+        Radius of the dots in the forward pass animation, by default 0.03.
+    title : str, optional
+        Title displayed above the network, by default a blank string.
+    layout : str, optional
+        Layout of the network, by default "linear".
+    layout_direction : str, optional
+        Direction of the linear layout, by default "left_to_right".
+    debug_mode : bool, optional
+        Whether to enable debug visuals, by default False.
+    """
 
     def __init__(
         self,

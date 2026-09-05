@@ -13,7 +13,19 @@ from .math_operation_layer import MathOperationLayer
 from ...utils.mobjects.connections import NetworkConnection
 
 class FeedForwardToMathOperation(ConnectiveLayer):
-    """Image Layer to FeedForward layer"""
+    """Connective layer between a feed-forward layer and a math operation layer
+
+    Parameters
+    ----------
+    input_layer : FeedForwardLayer
+        The input feed-forward layer.
+    output_layer : MathOperationLayer
+        The output math operation layer.
+    active_color : ManimColor, optional
+        Color used when highlighting the connection, by default ORANGE.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+    """
 
     input_class = FeedForwardLayer
     output_class = MathOperationLayer

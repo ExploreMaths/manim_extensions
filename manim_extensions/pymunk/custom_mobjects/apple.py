@@ -5,6 +5,14 @@
 from manim import *
 
 class Apple(VMobject):
+    """An apple-shaped Mobject built from Bezier curves.
+
+    Parameters
+    ----------
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+    """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # 贝塞尔曲线点集

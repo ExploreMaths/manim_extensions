@@ -13,7 +13,21 @@ from .triplet import TripletLayer
 
 
 class TripletToFeedForward(ConnectiveLayer):
-    """TripletLayer to FeedForward layer"""
+    """Connective layer between a triplet layer and a feed-forward layer
+
+    Parameters
+    ----------
+    input_layer : TripletLayer
+        The input triplet layer.
+    output_layer : FeedForwardLayer
+        The output feed-forward layer.
+    animation_dot_color : ManimColor, optional
+        Color of the dots in the forward pass animation, by default RED.
+    dot_radius : float, optional
+        Radius of the dots in the forward pass animation, by default 0.02.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+    """
 
     input_class = TripletLayer
     output_class = FeedForwardLayer

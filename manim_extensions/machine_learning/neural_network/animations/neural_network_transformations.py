@@ -22,6 +22,15 @@ class RemoveLayer(AnimationGroup):
     after the animations have been created. This means that the animation depends upon
     the state of the neural network layers after previous animations have been run.
     To fix this issue I needed to use an UpdateFromFunc.
+
+    Parameters
+    ----------
+    layer : NeuralNetworkLayer
+        The layer to remove from the network.
+    neural_network : NeuralNetwork
+        The neural network the layer belongs to.
+    layer_spacing : float, optional
+        Spacing between layers after the removal, by default 0.2.
     """
 
     def __init__(self, layer, neural_network, layer_spacing=0.2):
@@ -166,7 +175,17 @@ class RemoveLayer(AnimationGroup):
 
 
 class InsertLayer(AnimationGroup):
-    """Animation for inserting layer at given index"""
+    """Animation for inserting layer at given index
+
+    Parameters
+    ----------
+    layer : NeuralNetworkLayer
+        The layer to insert into the network.
+    index : int
+        Index in the network's layer list at which to insert the layer.
+    neural_network : NeuralNetwork
+        The neural network to insert the layer into.
+    """
 
     def __init__(self, layer, index, neural_network):
         self.layer = layer

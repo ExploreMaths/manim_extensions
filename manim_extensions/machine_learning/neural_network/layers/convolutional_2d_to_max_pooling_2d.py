@@ -9,17 +9,31 @@
 import random
 from manim import *
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
-from .convolutional_2d_to_convolutional_2d import get_rotated_shift_vectors
 
 from .max_pooling_2d import MaxPooling2DLayer
 from .parent_layers import ConnectiveLayer, ThreeDLayer
-from .feed_forward import FeedForwardLayer
 from .convolutional_2d import Convolutional2DLayer
 
 from ... import config
 
 
 class Uncreate(Create):
+    """Animation that uncreates a mobject by playing :class:`~manim.animation.creation.Create` in reverse.
+
+    Parameters
+    ----------
+    mobject : Mobject
+        The mobject to uncreate.
+    reverse_rate_function : bool, optional
+        Whether to reverse the rate function, by default True.
+    introducer : bool, optional
+        Whether the animation introduces the mobject into the scene, by default True.
+    remover : bool, optional
+        Whether the animation removes the mobject from the scene, by default True.
+    **kwargs
+        Forwarded to :class:`~manim.animation.creation.Create`.
+    """
+
     def __init__(
         self,
         mobject,
@@ -38,7 +52,19 @@ class Uncreate(Create):
 
 
 class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between a convolutional 2D layer and a max pooling 2D layer
+
+    Parameters
+    ----------
+    input_layer : Convolutional2DLayer
+        The input convolutional layer.
+    output_layer : MaxPooling2DLayer
+        The output max pooling layer.
+    active_color : ManimColor, optional
+        Color used to highlight the kernel windows, by default ORANGE.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     input_class = Convolutional2DLayer
     output_class = MaxPooling2DLayer

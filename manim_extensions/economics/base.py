@@ -6,26 +6,8 @@ This module provides the base classes for economic diagram visualizations.
 
 """
 
+from manim import *
 import numpy as np
-from manim import (
-    Axes,
-    AnimationGroup,
-    DashedLine,
-    Dot,
-    FadeIn,
-    FadeOut,
-    Line,
-    Polygon,
-    Text,
-    ReplacementTransform,
-    VGroup,
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    WHITE,
-    YELLOW,
-)
 
 
 def find_intersection(func_a, func_b, x_range):
@@ -44,7 +26,25 @@ def find_intersection(func_a, func_b, x_range):
 
 
 class EconDiagram(VGroup):
-    """Base class for economics diagrams built on manim Axes."""
+    """Base class for economics diagrams built on manim Axes.
+
+    Parameters
+    ----------
+    x_label
+        Label for the x-axis (default ``"X"``).
+    y_label
+        Label for the y-axis (default ``"Y"``).
+    x_range
+        Range of the x-axis as ``[min, max, step]`` (default ``[0, 10, 1]``).
+    y_range
+        Range of the y-axis as ``[min, max, step]`` (default ``[0, 10, 1]``).
+    x_length
+        Length of the x-axis in scene units (default 6).
+    y_length
+        Length of the y-axis in scene units (default 4).
+    **kwargs
+        Additional keyword arguments passed to ``VGroup``.
+    """
 
     def __init__(self, x_label="X", y_label="Y",
                  x_range=None, y_range=None,

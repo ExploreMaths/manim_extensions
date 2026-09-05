@@ -12,14 +12,26 @@
     TODO reimplement the decision 2D decision tree surface drawing. 
 """
 from manim import *
-from .decision_tree_surface import compute_decision_areas, merge_overlapping_polygons
 from . import helpers
 
 import numpy as np
 from PIL import Image
 
 class LeafNode(Group):
-    """Leaf node in tree"""
+    """Leaf node in tree
+
+    Parameters
+    ----------
+    class_index : int
+        Index of the predicted class, used to look up the class image and color.
+    display_type : str, optional
+        How to display the leaf content; ``"image"`` shows the class image,
+        ``"text"`` is not yet implemented.
+    class_image_paths : list, optional
+        List of image file paths, one per class.
+    class_colors : list, optional
+        List of colors, one per class, used for the border rectangle.
+    """
 
     def __init__(
         self, class_index, display_type="image", class_image_paths=[], class_colors=[]
@@ -53,7 +65,15 @@ class LeafNode(Group):
         self.add(node)
 
 class SplitNode(VGroup):
-    """Node for splitting decision in tree"""
+    """Node for splitting decision in tree
+
+    Parameters
+    ----------
+    feature : str
+        Name of the feature used for the split.
+    threshold : float
+        Threshold value of the split; the node text shows ``feature <= threshold``.
+    """
 
     def __init__(self, feature, threshold):
         super().__init__()
@@ -66,7 +86,22 @@ class SplitNode(VGroup):
         self.add(decision_text)
 
 class DecisionTreeDiagram(Group):
-    """Decision Tree Diagram Class for Manim"""
+    """Decision Tree Diagram Class for Manim
+
+    Parameters
+    ----------
+    sklearn_tree : sklearn.tree.DecisionTreeClassifier
+        Fitted scikit-learn decision tree classifier to visualize.
+    feature_names : list, optional
+        Names of the features, used to label the split nodes.
+    class_names : list, optional
+        Names of the classes.
+    class_images_paths : list, optional
+        Image file paths, one per class, used for the leaf nodes.
+    class_colors : list, optional
+        Colors, one per class, used for the leaf node borders.
+        Defaults to ``[RED, GREEN, BLUE]``.
+    """
 
     def __init__(
         self,
@@ -349,7 +384,17 @@ class DecisionTreeDiagram(Group):
         return expand_tree_animation
 
 class DecisionTreeContainer():
-    """Connects the DecisionTreeDiagram to the DecisionTreeEmbedding"""
+    """Connects the DecisionTreeDiagram to the DecisionTreeEmbedding
+
+    Parameters
+    ----------
+    sklearn_tree : sklearn.tree.DecisionTreeClassifier
+        Fitted scikit-learn decision tree classifier to visualize.
+    points : np.ndarray
+        Data points of the embedding the tree is fitted on.
+    classes : np.ndarray
+        Class label of each point in ``points``.
+    """
 
     def __init__(self, sklearn_tree, points, classes):
         self.sklearn_tree = sklearn_tree

@@ -11,7 +11,19 @@ from ..neural_network import NeuralNetwork
 from ..layers.feed_forward import FeedForwardLayer
 
 class FeedForwardNeuralNetwork(NeuralNetwork):
-    """NeuralNetwork with just feed forward layers"""
+    """NeuralNetwork with just feed forward layers
+
+    Parameters
+    ----------
+    layer_node_count : list
+        Number of nodes in each feed forward layer.
+    node_radius : float, optional
+        Radius of each node, by default 0.08.
+    node_color : ManimColor, optional
+        Color of each node, by default ``config.color_scheme.primary_color``.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`.
+    """
 
     def __init__(
         self, 

@@ -6,7 +6,7 @@ This module provides bond classes for representing chemical bonds in 2D.
 
 """
 
-from manim import VGroup, WHITE, Line, Polygram, PI, VMobject
+from manim import *
 import numpy as np
 from .atom import MAtomObject
 
@@ -181,6 +181,24 @@ class SimpleBond(BaseMBondObject):
 
 
 class DoubleBond(BaseMBondObject):
+    """A double bond between two atoms.
+
+    Parameters
+    ----------
+    from_atom : :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.MAtomObject`
+        The atom the bond starts from.
+    to_atom : :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.MAtomObject`
+        The atom the bond ends at.
+    side : :class:`int`, optional
+        Side of the double bond line. Defaults to 0.
+    distance : :class:`float`, optional
+        Distance between the two lines of the bond. Defaults to 0.15.
+    double_bond_scale : :class:`float`, optional
+        Scale applied to the secondary line of the bond. Defaults to 0.7.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.BaseMBondObject`.
+    """
+
     def __init__(
         self, from_atom, to_atom, side=0, distance=0.15, double_bond_scale=0.7, **kwargs
     ):
@@ -333,6 +351,24 @@ class DoubleBond(BaseMBondObject):
 
 
 class TripleBond(BaseMBondObject):
+    """A triple bond between two atoms.
+
+    Parameters
+    ----------
+    from_atom : :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.MAtomObject`
+        The atom the bond starts from.
+    to_atom : :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.MAtomObject`
+        The atom the bond ends at.
+    side : :class:`int`, optional
+        Side of the triple bond lines. Defaults to 0.
+    distance : :class:`float`, optional
+        Distance between the lines of the bond. Defaults to 0.3.
+    triple_bond_scale : :class:`float`, optional
+        Scale applied to the secondary lines of the bond. Defaults to 0.8.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.BaseMBondObject`.
+    """
+
     def __init__(
         self, from_atom, to_atom, side=0, distance=0.3, triple_bond_scale=0.8, **kwargs
     ):

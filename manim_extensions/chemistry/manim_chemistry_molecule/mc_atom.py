@@ -22,6 +22,21 @@ class MCAtom:
     - The bonds associated with it.
     - It's molecule.
     - It's index in the molecule.
+
+    Parameters
+    ----------
+    element : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`
+        The chemical element of the atom.
+    coords : :class:`np.array`, optional
+        3D coordinates of the atom. Defaults to the origin.
+    atoms : :class:`list`, optional
+        List of bonded atoms. Defaults to an empty list.
+    bonds : :class:`list`, optional
+        List of bonds associated with the atom. Defaults to an empty list.
+    molecule : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCMolecule`, optional
+        The molecule the atom belongs to. Defaults to ``None``.
+    molecule_index : :class:`int`, optional
+        Index of the atom in the molecule. Defaults to ``None``.
     """
 
     def __init__(

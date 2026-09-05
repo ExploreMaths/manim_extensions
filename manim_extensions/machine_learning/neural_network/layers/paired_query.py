@@ -9,11 +9,26 @@
 from manim import *
 from .parent_layers import NeuralNetworkLayer
 from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
-import numpy as np
 
 
 class PairedQueryLayer(NeuralNetworkLayer):
-    """Paired Query Layer"""
+    """Paired Query Layer
+
+    Parameters
+    ----------
+    positive : Mobject
+        Mobject shown as the positive query example.
+    negative : Mobject
+        Mobject shown as the negative query example.
+    stroke_width : float, optional
+        Stroke width of the surrounding rectangles, by default 5.
+    font_size : float, optional
+        Font size of the labels, by default 18.
+    spacing : float, optional
+        Spacing between the two images, by default 0.5.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+    """
 
     def __init__(
         self, positive, negative, stroke_width=5, font_size=18, spacing=0.5, **kwargs

@@ -6,7 +6,7 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 """
 
-from manim import VGroup, WHITE, MarkupText, RIGHT, LEFT, Dot
+from manim import *
 import numpy as np
 from typing import Dict, Any, Optional
 

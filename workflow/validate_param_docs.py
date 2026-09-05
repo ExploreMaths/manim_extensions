@@ -24,13 +24,6 @@ ROOT = Path(__file__).resolve().parent.parent
 
 SKIP_FILES = {'__init__.py'}
 
-# Vendored upstream subpackages keep their original docstring style.
-SKIP_DIRS = {
-    "arabic", "chemistry", "economics", "fontawesome", "machine_learning",
-    "pymunk", "qr_codes", "svg_animations", "table", "weighted_line",
-    "docbuild", "testing", "custom_mobjects",
-}
-
 SKIP_CLASSES = {'ABC'}
 
 KNOWN_NO_PARAMS = {
@@ -300,8 +293,6 @@ def main():
 
     for fp in sorted(set(py_files)):
         if fp.name in SKIP_FILES:
-            continue
-        if any(part in SKIP_DIRS for part in fp.parts):
             continue
         blocks = extract_class_init_blocks(fp)
         total_classes += len(blocks)

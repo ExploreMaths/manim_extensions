@@ -6,6 +6,29 @@ import numpy as np
 from manim import *
 
 class VSpring(Line):
+    """A spring-shaped Mobject rendered as a helix between two points.
+
+    Parameters
+    ----------
+    start
+        The start point of the spring. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
+    end
+        The end point of the spring. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
+    turns
+        The number of helical turns in the spring. Defaults to ``18``.
+    amplitude
+        The amplitude (radius) of the helical oscillation. Defaults to ``0.1``.
+    end_length
+        The length of the straight terminal segments at both ends of the
+        spring. Defaults to ``0.2``.
+    stroke_width
+        The stroke width used to draw the spring. Defaults to ``1``.
+    color
+        The color of the spring. Defaults to ``WHITE``.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.geometry.line.Line`.
+    """
+
     def __init__(
         self,
         start=LEFT,
