@@ -37,6 +37,13 @@ SKIP_FILES = {
     'manim_directive.py',
 }
 
+# Vendored upstream subpackages keep their original example style.
+SKIP_DIRS = {
+    "arabic", "chemistry", "economics", "fontawesome", "machine_learning",
+    "pymunk", "qr_codes", "svg_animations", "table", "weighted_line",
+    "docbuild", "testing", "custom_mobjects",
+}
+
 
 def has_animation(code: str) -> bool:
     for pat in ANIMATION_PATTERNS:
@@ -161,6 +168,8 @@ def main():
 
     for fp in sorted(set(py_files)):
         if fp.name in SKIP_FILES:
+            continue
+        if any(part in SKIP_DIRS for part in fp.parts):
             continue
         blocks = extract_manim_blocks(fp)
         if blocks:

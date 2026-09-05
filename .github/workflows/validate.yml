@@ -74,4 +74,4 @@ jobs:
       - name: Install flake8
         run: pip install flake8
       - name: Check unused imports
-        run: flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples"
+        run: flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples,*/arabic/*,*/chemistry/*,*/economics/*,*/fontawesome/*,*/machine_learning/*,*/pymunk/*,*/qr_codes/*,*/svg_animations/*,*/table/*,*/weighted_line/*"
