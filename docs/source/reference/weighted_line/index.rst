@@ -10,7 +10,7 @@ Weighted Line
 
 **License:** MIT
 
-``manim-weighted-line`` provides a ``WeightedLine`` mobject — a
+``manim-weighted-line`` provides a :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` mobject — a
 :class:`~manim.mobject.geometry.line.Line` subclass that displays a
 weight label at its midpoint with an optional background rectangle. Useful
 for graph-theory and network-flow visualisations.

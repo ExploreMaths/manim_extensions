@@ -157,15 +157,15 @@ class ThreeDLine(ThreeDCylinder):
     ) -> None:
         """Sets the start and end points of the line.
 
-        If either ``start`` or ``end`` are :class:`Mobjects <.Mobject>`,
+        If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
         this gives their centers.
 
         Parameters
         ----------
         start
-            Starting point or :class:`Mobject`.
+            Starting point or :class:`~manim.mobject.mobject.Mobject`.
         end
-            Ending point or :class:`Mobject`.
+            Ending point or :class:`~manim.mobject.mobject.Mobject`.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -188,19 +188,19 @@ class ThreeDLine(ThreeDCylinder):
     def pointify(
         self, mob_or_point: Mobject or float, direction: np.ndarray = None
     ) -> np.ndarray:
-        """Gets a point representing the center of the :class:`Mobjects <.Mobject>`.
+        """Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.
 
         Parameters
         ----------
         mob_or_point
-            :class:`Mobjects <.Mobject>` or point whose center should be returned.
+            :class:`~manim.mobject.mobject.Mobject` or point whose center should be returned.
         direction
-            If an edge of a :class:`Mobjects <.Mobject>` should be returned, the direction of the edge.
+            If an edge of a :class:`~manim.mobject.mobject.Mobject` should be returned, the direction of the edge.
 
         Returns
         -------
         :class:`numpy.array`
-            Center of the :class:`Mobjects <.Mobject>` or point, or edge if direction is given.
+            Center of the :class:`~manim.mobject.mobject.Mobject` or point, or edge if direction is given.
         """
         if isinstance(mob_or_point, (Mobject, OpenGLMobject)):
             mob = mob_or_point
@@ -211,22 +211,22 @@ class ThreeDLine(ThreeDCylinder):
         return np.array(mob_or_point)
 
     def get_start(self) -> np.ndarray:
-        """Returns the starting point of the :class:`Line3D`.
+        """Returns the starting point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
 
         Returns
         -------
         start : :class:`numpy.array`
-            Starting point of the :class:`Line3D`.
+            Starting point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
         """
         return self.start
 
     def get_end(self) -> np.ndarray:
-        """Returns the ending point of the :class:`Line3D`.
+        """Returns the ending point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
 
         Returns
         -------
         end : :class:`numpy.array`
-            Ending point of the :class:`Line3D`.
+            Ending point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
         """
         return self.end
 
@@ -250,7 +250,7 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        :class:`Line3D`
+        :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`
             Line parallel to ``line``.
 
         Examples
@@ -294,7 +294,7 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        :class:`Line3D`
+        :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`
             Line perpendicular to ``line``.
 
         Examples

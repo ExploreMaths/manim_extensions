@@ -21,19 +21,19 @@ class WeightedLine(Line):
     Parameters
     ----------
     args
-        Arguments to be passed to :class:`Line`
+        Arguments to be passed to :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine.Line`
     weight
         The weight of the edge to display
     weight_config
-        Dict of options to be passed to :class:`Text`
+        Dict of options to be passed to :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine.Text`
     weight_alpha
         The alpha position on the edge to show the weight
     bg_config
-        Dict of options to be passed to :class:`Rectangle`
+        Dict of options to be passed to :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine.Rectangle`
     add_bg
         Boolean to show a rectangle behind the weight
     kwargs
-        Additional arguments to be passed to :class:`Line`
+        Additional arguments to be passed to :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine.Line`
 
     """
 

@@ -29,8 +29,8 @@ Features
 - :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`
   – composable neural-network visualisation with layers, edges, and
   forward-pass animations.
-- Layer classes: ``FeedForwardLayer``, ``Convolutional2DLayer``,
-  ``EmbeddingLayer``, ``ImageLayer``, ``VectorLayer``, ``MaxPooling2DLayer``,
+- Layer classes: :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`, :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer`,
+  :class:`~manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer`, :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer`, :class:`~manim_extensions.machine_learning.neural_network.layers.vector.VectorLayer`, :class:`~manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer`,
   and more.
 - :class:`~manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeDiagram`
   – decision-tree diagram from a scikit-learn tree.
