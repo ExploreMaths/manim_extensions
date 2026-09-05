@@ -15,6 +15,17 @@ import sys
 import argparse
 from pathlib import Path
 
+# Vendored upstream subpackages keep their original import style.
+SKIP_DIRS = {
+    "arabic", "chemistry", "economics", "fontawesome", "machine_learning",
+    "pymunk", "qr_codes", "svg_animations", "table", "weighted_line",
+    "docbuild", "testing", "custom_mobjects",
+}
+
+
+def _is_skipped(path: Path) -> bool:
+    return any(part in SKIP_DIRS for part in path.parts)
+
 
 def get_manim_star_exports():
     try:
@@ -439,6 +450,7 @@ def main():
     targets = [
         t for t in targets
         if "__pycache__" not in str(t) and ".git" not in str(t)
+        and not _is_skipped(t)
     ]
 
     issues_found = 0
