@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Compass and drawing tools for Manim."""
 
 from .compass import *
 from .animations import *

@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Mindmap main classes for Manim.
+
+This module provides main mindmap classes for visualizations.
+
+"""
 
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 from typing import Dict

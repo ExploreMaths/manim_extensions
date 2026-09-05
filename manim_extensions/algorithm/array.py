@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Array data structure for algorithm visualization."""
 
 from .node import *
 from typing import List, Union

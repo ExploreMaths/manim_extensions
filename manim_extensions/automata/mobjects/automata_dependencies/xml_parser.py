@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""XML parser for automata definition files.
+
+This module provides functions for parsing XML format automaton definition files.
+
+"""
 
 import xmltodict
 

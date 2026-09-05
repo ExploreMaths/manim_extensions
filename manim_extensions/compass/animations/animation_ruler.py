@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Ruler animations for Manim.
+
+This module provides animations for ruler manipulations.
+
+"""
 
 __all__ = ["PutRuler", "PutRulerAway"]
 

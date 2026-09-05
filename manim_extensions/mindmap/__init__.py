@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Mind map visualization for Manim."""
 
 from .nodes import Node, NodeStyle, bfs_walker, dfs_walker
 from .mindmap import *

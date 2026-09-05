@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Sequence diagram actor for Manim.
+
+This module provides actor class for sequence diagrams.
+
+"""
 
 from manim import *
 from .constants import HALF_DOWN

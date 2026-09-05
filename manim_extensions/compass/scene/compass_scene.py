@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Compass scene for Manim.
+
+This module provides scene classes for compass-based geometry animations.
+
+"""
 
 from manim import *
 

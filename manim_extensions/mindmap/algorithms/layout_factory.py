@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Layout factory for mindmap algorithms.
+
+This module provides factory for creating layout algorithms.
+
+"""
 
 __all__ = [
     "LayoutFactory",

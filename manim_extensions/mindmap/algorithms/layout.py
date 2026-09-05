@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Layout base class for mindmap algorithms.
+
+This module provides base class for layout algorithms.
+
+"""
 
 __all__ = ["Layout"]
 from typing import Any

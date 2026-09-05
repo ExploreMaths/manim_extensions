@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Transition class for automata visualizations.
+
+This module provides transition visualization for automata.
+
+"""
 
 from __future__ import annotations
 

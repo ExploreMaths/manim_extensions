@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Standard mind map layout algorithm."""
 
 __all__ = [
     "StandardLayout",

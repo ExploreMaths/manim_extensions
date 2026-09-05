@@ -2,6 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""CLI utilities for automata.
+
+This module provides the ManimAutomataCLI class for interactive command-line interface.
+
+"""
+
 
 cli_logo = r"""
   __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ 

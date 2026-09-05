@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Compass animations for Manim.
+
+This module provides animations for compass manipulations.
+
+"""
 
 from manim import *
 

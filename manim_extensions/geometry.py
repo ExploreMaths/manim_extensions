@@ -9,25 +9,6 @@ mobjects.  :func:`~manim_extensions.geometry.VMobjectInt` works with any two
 :class:`~manim.mobject.types.vectorized_mobject.VMobject` instances (circles,
 lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
 their cubic Bézier outlines, so no type-specific cases are needed.
-
-Examples
-
---------
-
-.. manim:: GeometryModuleDocExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions import VMobjectInt, LabelDot
-
-   class GeometryModuleDocExample(Scene):
-       def construct(self):
-           c1 = Circle(radius=1.4, color=BLUE)
-           c2 = Circle(radius=1.4, color=RED).shift(RIGHT * 1.2)
-           pts = VMobjectInt(c1, c2)
-           self.add(c1, c2)
-           for p in pts:
-               self.add(LabelDot("P", p, label_pos=UP, buff=0.1))
 """
 
 from manim import *

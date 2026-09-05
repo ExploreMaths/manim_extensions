@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Compass class for Manim.
+
+This module provides compass visualization for geometry.
+
+"""
 
 from manim import *
 

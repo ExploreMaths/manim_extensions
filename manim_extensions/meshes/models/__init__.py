@@ -2,10 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""3D model classes for meshes."""
 
 from . import data_models
 from . import manim_models
-
-"""
-all the model classes
-"""

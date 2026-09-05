@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Transition representation for automata.
+
+This module provides the Transition class for representing state transitions in automata.
+
+"""
 
 from __future__ import annotations
 

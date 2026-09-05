@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Non-deterministic finite state automaton visualization.
+
+This module provides the ManimNonDeterministicFiniteAutomaton class for visualizing NFAs.
+
+"""
 
 from manim import *  # noqa: F401
 

@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Data structures for Manim animations."""
 
 from .m_array import *
 from .m_enum import *

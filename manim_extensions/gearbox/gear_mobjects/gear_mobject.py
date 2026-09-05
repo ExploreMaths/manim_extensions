@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Gear mobject for Manim.
+
+This module provides gear and rack visualizations.
+
+"""
 
 import numpy as np
 from manim import *

@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Ruler class for Manim.
+
+This module provides ruler visualization for geometry.
+
+"""
 
 from manim import *
 

@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""State class for automata visualizations.
+
+This module provides state visualization for automata.
+
+"""
 
 from manim import *
 from .automata_dependencies.automata import State

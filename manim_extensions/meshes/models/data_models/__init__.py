@@ -2,9 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Data model classes for mesh structures."""
 
 from . import mesh
-
-"""
-classes for the underlying mesh structure
-"""

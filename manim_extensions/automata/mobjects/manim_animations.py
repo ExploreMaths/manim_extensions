@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Animation utilities for automata visualization.
+
+This module provides the ManimAnimations class for animating automata visualizations.
+
+"""
 
 from manim import *
 

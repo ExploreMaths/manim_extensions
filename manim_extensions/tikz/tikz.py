@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""TikZ integration for Manim.
+
+This module provides TikZ markup to SVG conversion for Manim animations.
+
+"""
 
 from manim import *
 from manim.utils.tex_file_writing import tex_to_svg_file

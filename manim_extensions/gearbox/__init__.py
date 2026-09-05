@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Gear and gear-related mobjects for Manim."""
 
 from .gear_mobjects.gear_mobject import *
 

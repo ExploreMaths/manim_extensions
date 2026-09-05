@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Utility functions for Rubik's Cube.
+
+This module provides utility functions for Rubik's Cube operations.
+
+"""
 
 from manim.constants import *
 

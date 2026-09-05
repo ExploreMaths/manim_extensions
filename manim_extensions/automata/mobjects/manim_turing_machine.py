@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Turing machine visualization.
+
+This module provides the ManimTuringMachine class for visualizing Turing machines.
+
+"""
 
 from manim import *
 

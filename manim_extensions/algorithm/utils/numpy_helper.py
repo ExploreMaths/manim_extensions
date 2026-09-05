@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""NumPy helper utilities for algorithm visualization."""
 
 import numpy as np
 from numpy.typing import NDArray

@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Animations for compass tools."""
 
 from .animation_compass import *
 from .animation_pencil import *
