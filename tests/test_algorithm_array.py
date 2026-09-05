@@ -22,7 +22,7 @@ class TestArray:
 
     def setup_method(self):
         config.media_dir = self.TEST_MEDIA_DIR
-        os.makedirs(self.TEST_MEDIA_DIR)
+        os.makedirs(self.TEST_MEDIA_DIR, exist_ok=True)
 
     def teardown_method(self):
         shutil.rmtree(self.TEST_MEDIA_DIR)
