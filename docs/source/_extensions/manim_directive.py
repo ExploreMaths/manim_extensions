@@ -321,7 +321,7 @@ class ManimDirective(Directive):
             self.state.nested_parse(
                 StringList(
                     [
-                        f"**Example ``{clsname}``** �?rendering failed; source shown instead.",
+                        f"**Example ``{clsname}``** — rendering failed; source shown instead.",
                         "",
                         ".. code-block:: python",
                         "",
