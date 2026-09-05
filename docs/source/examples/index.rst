@@ -403,20 +403,6 @@ inline. Each example demonstrates one of the core extension modules.
 
            self.add(gear1, gear2, rack)
 
-.. manim:: NeuralNetworkExample
-   :save_last_frame:
-   :ref_classes: NeuralNetworkMobject
-
-   from manim import *
-   from manim_extensions.neural_network import NeuralNetworkMobject
-
-   class NeuralNetworkExample(Scene):
-       def construct(self):
-           nn = NeuralNetworkMobject([3, 5, 4, 2])
-           nn.scale_to_fit_width(9)
-
-           self.add(nn)
-
 .. manim:: MeshesExample
    :save_last_frame:
    :ref_classes: Mesh Manim2DMesh
