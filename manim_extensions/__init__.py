@@ -21,5 +21,14 @@ from .geometry import *
 from .animations import *
 from . import meshes
 from . import physics
-from . import neural_network
 from . import rubikscube
+from . import fontawesome
+from . import chemistry
+from . import economics
+from . import qr_codes
+from . import table
+from . import weighted_line
+from . import pymunk
+from . import arabic
+from . import machine_learning
+from . import svg_animations
