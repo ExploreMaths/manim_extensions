@@ -39,10 +39,15 @@ class VGearJoint(VConstraint):
     indicator_line_config
         A dictionary defining the visual style of the indicator line,
         including `color` and `stroke_width`.
+    indicator_length
+        The visual length of the indicator arrows drawn on each Mobject.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VGearJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -73,7 +78,6 @@ class VGearJoint(VConstraint):
 
                 self.add_shapes_filter(static_dot1, static_dot2, square_1, square_2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(3)
 
     """
 

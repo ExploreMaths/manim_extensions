@@ -21,6 +21,11 @@ class BaseParser(ABC):
         - Parse the file to extract the atoms and bonds data.
         - Return a dictionary with the atoms and bonds data.
 
+    Parameters
+    ----------
+    filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bytes` or Path-like
+        Path to the file to parse.
+
     """
 
     def __init__(self, filename: Union[str, bytes, os.PathLike]) -> None:

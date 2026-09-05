@@ -6,12 +6,12 @@ This module provides classes for rendering atomic orbitals in 3D.
 
 """
 
+from manim import *
+from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 import scipy.special as spe
 
-from manim import ORIGIN, PI, TAU, RED, BLUE
 
-from manim.mobject.opengl.opengl_surface import OpenGLSurface
 
 
 class OrbitalBase(OpenGLSurface):
@@ -98,6 +98,20 @@ class Orbital(OpenGLSurface):
     """
     Uses positive and negative orbitals to create
     an orbital. n value is still not implemented TODO
+
+    Parameters
+    ----------
+    n : :class:`int`, optional
+        Principal quantum number. If ``None``, it is set to ``l + 1``.
+        Defaults to ``None``.
+    l : :class:`int`, optional
+        Azimuthal (angular momentum) quantum number. Defaults to 0.
+    m : :class:`int`, optional
+        Magnetic quantum number. Defaults to 0.
+    size : :class:`float`, optional
+        Scale of the orbital surface. Defaults to 3.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface`.
     """
 
     def __init__(self, n=None, l=0, m=0, size=3, **kwargs):

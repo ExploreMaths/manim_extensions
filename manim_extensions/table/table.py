@@ -8,7 +8,7 @@ from manim import *
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple
 
 
 class Table(VGroup):
@@ -16,23 +16,37 @@ class Table(VGroup):
     A database table visualization for Manim Community Edition (manim CE).
     
     The table can be created in two ways:
+
     1. With a single data list where the first row is treated as the header:
        Table([["col1", "col2"], ["val1", "val2"]])
     
     2. With explicit header and rows:
        Table(header=["col1", "col2"], rows=[["val1", "val2"]])
-    
-    Args:
-        data: List of rows, first row is header. Ignored if header is provided.
-        header: Explicit header row (list of column names)
-        rows: Data rows (list of lists). Required if header is provided.
-        cell_width: Default width if auto_fit=False. Ignored if auto_fit=True.
-        cell_height: Height of each cell
-        font_size: Font size for cell text
-        show_border: If True, cells have visible borders
-        auto_fit: If True, column widths auto-fit to longest content (default True)
-        padding: Extra padding around text when auto_fit=True
-        **kwargs: Additional arguments passed to VGroup
+
+    Parameters
+    ----------
+    data : Optional[List[List[str]]], optional
+        List of rows where the first row is treated as the header. Ignored if
+        ``header`` is provided.
+    header : Optional[List[str]], optional
+        Explicit header row (list of column names). Requires ``rows``.
+    rows : Optional[List[List[str]]], optional
+        Data rows (list of lists). Required if ``header`` is provided.
+    cell_width : float, optional
+        Default cell width, used only when ``auto_fit=False``. Defaults to ``1.5``.
+    cell_height : float, optional
+        Height of each cell. Defaults to ``0.5``.
+    font_size : int, optional
+        Font size for cell text. Defaults to ``20``.
+    show_border : bool, optional
+        If True, cells have visible borders.
+    auto_fit : bool, optional
+        If True, column widths auto-fit to the longest content. Defaults to True.
+    padding : float, optional
+        Extra padding around text when ``auto_fit=True``. Defaults to ``0.3``.
+    **kwargs
+        Additional arguments passed to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
     
     def __init__(

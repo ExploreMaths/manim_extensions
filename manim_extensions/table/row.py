@@ -14,16 +14,27 @@ from typing import List, Union
 class Row(VGroup):
     """
     A row of cells in a table.
-    
-    Args:
-        values: List of string values for each cell
-        cell_widths: Either a single width for all cells, or a list of widths per column
-        cell_height: Height of each cell
-        font_size: Font size for cell text
-        is_header: If True, renders cells as header cells (bold, thicker border)
-        show_border: If True, cells have visible borders
-        index: Row index in the parent table (useful for animations)
-        **kwargs: Additional arguments passed to VGroup
+
+    Parameters
+    ----------
+    values : List[str]
+        List of string values for each cell.
+    cell_widths : Union[float, List[float]], optional
+        Either a single width for all cells, or a list of widths per column.
+        Defaults to ``1.5``.
+    cell_height : float, optional
+        Height of each cell. Defaults to ``0.5``.
+    font_size : int, optional
+        Font size for cell text. Defaults to ``20``.
+    is_header : bool, optional
+        If True, renders cells as header cells (bold, thicker border).
+    show_border : bool, optional
+        If True, cells have visible borders.
+    index : int, optional
+        Row index in the parent table (useful for animations). Defaults to ``0``.
+    **kwargs
+        Additional arguments passed to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
     
     def __init__(

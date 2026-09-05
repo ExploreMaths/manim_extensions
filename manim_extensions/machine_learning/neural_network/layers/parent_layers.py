@@ -14,7 +14,18 @@ from manim import *
 from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):
-    """Abstract Neural Network Layer class"""
+    """Abstract Neural Network Layer class
+
+    Parameters
+    ----------
+    text : str, optional
+        Text of the layer title; unused in the base implementation.
+    args : tuple
+        Positional arguments forwarded to the parent class.
+    **kwargs
+        Forwarded to the parent class; a ``"title"`` entry adds a title above
+        the layer.
+    """
 
     def __init__(self, text=None, *args, **kwargs):
         super(Group, self).__init__()
@@ -57,6 +68,16 @@ class NeuralNetworkLayer(ABC, Group):
         return f"{type(self).__name__}"
 
 class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
+    """Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Parameters
+    ----------
+    args : tuple
+        Positional arguments forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # self.camera = camera
@@ -76,7 +97,17 @@ class ThreeDLayer(ABC):
 
 
 class ConnectiveLayer(VGroupNeuralNetworkLayer):
-    """Forward pass animation for a given pair of layers"""
+    """Forward pass animation for a given pair of layers
+
+    Parameters
+    ----------
+    input_layer : NeuralNetworkLayer
+        The layer the forward pass animation starts from.
+    output_layer : NeuralNetworkLayer
+        The layer the forward pass animation ends at.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     @abstractmethod
     def __init__(self, input_layer, output_layer, **kwargs):
@@ -105,7 +136,17 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
 
 class BlankConnective(ConnectiveLayer):
-    """Connective layer to be used when the given pair of layers is undefined"""
+    """Connective layer to be used when the given pair of layers is undefined
+
+    Parameters
+    ----------
+    input_layer : NeuralNetworkLayer
+        The layer the connection starts from.
+    output_layer : NeuralNetworkLayer
+        The layer the connection ends at.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
+    """
 
     def __init__(self, input_layer, output_layer, **kwargs):
         super().__init__(input_layer, output_layer, **kwargs)

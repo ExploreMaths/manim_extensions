@@ -6,20 +6,35 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
-import numpy as np
 from manim import *
 
-from .convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D, Filters
+from .convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
 from .max_pooling_2d import MaxPooling2DLayer
-from .parent_layers import ConnectiveLayer, ThreeDLayer
-from .feed_forward import FeedForwardLayer
 from .convolutional_2d import Convolutional2DLayer
 
-from manim.utils.space_ops import rotation_matrix
 
 
 class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between a max pooling 2D layer and a convolutional 2D layer
+
+    Parameters
+    ----------
+    input_layer : MaxPooling2DLayer
+        The input max pooling layer.
+    output_layer : Convolutional2DLayer
+        The output convolutional layer.
+    passing_flash_color : ManimColor, optional
+        Color of the flash animation during the forward pass, by default ORANGE.
+    cell_width : float, optional
+        Width of a single grid cell, by default 1.0.
+    stroke_width : float, optional
+        Stroke width of the filter rectangles, by default 2.0.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    **kwargs
+        Forwarded to
+        :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D`.
+    """
 
     input_class = MaxPooling2DLayer
     output_class = Convolutional2DLayer

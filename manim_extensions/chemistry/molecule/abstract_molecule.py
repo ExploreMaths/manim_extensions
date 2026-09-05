@@ -7,10 +7,10 @@ This module provides the AbstractMolecule class as a template for all molecule i
 """
 
 from typing import Union, Optional, Tuple, Dict
+from manim import *
+from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 
-from manim import VGroup, Text, Tex, DOWN
-from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 import numpy as np
 
 from ..utils import PubchemAPIManager
@@ -21,6 +21,13 @@ class AbstractMolecule:
     """
     Abstract molecule class used as a template to create
     all the other molecule classes.
+
+    Parameters
+    ----------
+    args
+        Positional arguments passed to subclass implementations.
+    **kwargs
+        Additional keyword arguments passed to subclass implementations.
     """
 
     group_class = VGroup
@@ -254,7 +261,6 @@ class AbstractMolecule:
             scale (float, optional): Scale of the text. Defaults to 0.75.
 
         .. manim:: MMoleculeWithName
-            :save_last_frame:
 
             from manim_chemistry import *
 
@@ -268,7 +274,6 @@ class AbstractMolecule:
                     self.wait()
 
         .. manim:: GraphMoleculeWithName
-            :save_last_frame:
 
             from manim_chemistry import *
 

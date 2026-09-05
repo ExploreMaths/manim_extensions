@@ -6,14 +6,24 @@
 # SPDX-License-Identifier: MIT
 """Sigmoid activation function visualization."""
 
-from manim import *
+from manim import *  # noqa: F401
 import numpy as np
 
 from .activation_function import ActivationFunction
 
 
 class SigmoidFunction(ActivationFunction):
-    """Sigmoid Activation Function"""
+    """Sigmoid Activation Function
+
+    Parameters
+    ----------
+    function_name : str, optional
+        Name displayed next to the plot, by default "Sigmoid".
+    x_range : list, optional
+        Range of the x-axis, by default [-5, 5].
+    y_range : list, optional
+        Range of the y-axis, by default [0, 1].
+    """
 
     def __init__(self, function_name="Sigmoid", x_range=[-5, 5], y_range=[0, 1]):
         super().__init__(function_name, x_range, y_range)

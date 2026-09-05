@@ -6,26 +6,10 @@ This module provides 3D bond classes for rendering chemical bonds in three dimen
 
 """
 
-from manim import (
-    TAU,
-    PI,
-    ORIGIN,
-    Z_AXIS,
-    config,
-    RendererType,
-    Circle,
-    IN,
-    Y_AXIS,
-    LEFT,
-    RIGHT,
-    normalize,
-    Mobject,
-    Line3D,
-    perpendicular_bisector,
-)
-from manim.mobject.opengl.opengl_surface import OpenGLSurface
-from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 
+from manim import *
+from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
+from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 
 
@@ -33,6 +17,23 @@ class ThreeDCylinder(OpenGLSurface):
     """
     Absolutely yoinked from Cylinder class and
     adapted to OpenGL rendering.
+
+    Parameters
+    ----------
+    radius : :class:`float`, optional
+        Radius of the cylinder. Defaults to 1.
+    height : :class:`float`, optional
+        Height of the cylinder. Defaults to 2.
+    direction : :class:`np.ndarray`, optional
+        Direction the cylinder is aligned to. Defaults to ``Z_AXIS``.
+    v_range : :class:`list`, optional
+        Range of the v parameter of the surface. Defaults to ``[0, TAU]``.
+    show_ends : :class:`bool`, optional
+        Whether to show the end caps of the cylinder. Defaults to ``True``.
+    resolution : :class:`tuple`, optional
+        Resolution of the surface. Defaults to ``(24, 24)``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.OpenGLSurface`.
     """
 
     def __init__(
@@ -137,6 +138,19 @@ class ThreeDLine(ThreeDCylinder):
     """
     Absolutely yoinked from ThreeDLine class and
     adapted to OpenGL rendering.
+
+    Parameters
+    ----------
+    start : :class:`np.ndarray`, optional
+        Starting point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
+    end : :class:`np.ndarray`, optional
+        Ending point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
+    thickness : :class:`float`, optional
+        Thickness (radius) of the line. Defaults to 0.05.
+    color : optional
+        Color of the line. Defaults to ``None``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.ThreeDCylinder`.
     """
 
     def __init__(
@@ -329,6 +343,19 @@ class ThreeDBond(OpenGLGroup):
     """
     Used to create a tridimensional bond.
     Uses an origin atom and a target atom to be drawn.
+
+    Parameters
+    ----------
+    from_atom : :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.ThreeDAtom`
+        The atom the bond starts from.
+    to_atom : :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.ThreeDAtom`
+        The atom the bond ends at.
+    bond_type : :class:`int`
+        Type of the bond: 1 for single, 2 (also 5, 7) for double, 3 for triple.
+    mobjects
+        Additional mobjects to add to the group.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.OpenGLGroup`.
     """
 
     def __str__(self):

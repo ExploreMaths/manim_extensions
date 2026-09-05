@@ -16,6 +16,16 @@ from ..layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
 
 
 class XMark(VGroup):
+    """X-shaped mark used to indicate dropped-out nodes
+
+    Parameters
+    ----------
+    stroke_width : float, optional
+        Stroke width of the two lines, by default 1.0.
+    color : ManimColor, optional
+        Color of the mark, by default GRAY.
+    """
+
     def __init__(self, stroke_width=1.0, color=GRAY):
         super().__init__()
         line_one = Line(

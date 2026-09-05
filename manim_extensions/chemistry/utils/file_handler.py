@@ -24,6 +24,14 @@ class IncorrectFormat(Exception): ...
 
 
 class FileHandler:
+    """Handles the parsing of chemistry files selecting the right parser.
+
+    Parameters
+    ----------
+    file_path : :class:`str`, :class:`~manim_extensions.chemistry.utils.file_handler.FileHandler.bytes` or Path-like
+        Path to the chemistry file to parse.
+    """
+
     def __init__(self, file_path: Union[str, bytes, os.PathLike]):
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")

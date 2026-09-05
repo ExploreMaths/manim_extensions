@@ -9,9 +9,9 @@ A directive for including Manim videos in a Sphinx document
 """
 from __future__ import annotations
 
+from manim import *
 import csv
 import itertools as it
-import os
 import re
 import shutil
 import sys
@@ -23,7 +23,6 @@ from docutils import nodes
 from docutils.parsers.rst import Directive, directives  # type: ignore
 from docutils.statemachine import StringList
 
-from manim import QUALITIES
 
 classnamedict = {}
 
@@ -107,7 +106,6 @@ class ManimDirective(Directive):
             )
             return [node]
 
-        from manim import config, tempconfig
 
         global classnamedict
 

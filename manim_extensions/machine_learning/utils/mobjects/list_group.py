@@ -10,7 +10,13 @@ from manim import *
 
 
 class ListGroup(Mobject):
-    """Indexable Group with traditional list operations"""
+    """Indexable Group with traditional list operations
+
+    Parameters
+    ----------
+    layers : Mobject
+        Initial items stored in the group.
+    """
 
     def __init__(self, *layers):
         super().__init__()

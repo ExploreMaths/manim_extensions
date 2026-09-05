@@ -8,18 +8,8 @@ This module provides the MMoleculeObject class for rendering molecules in 2D.
 
 from typing import Optional, Tuple, Dict
 
-from manim import (
-    DOWN,
-    GREEN,
-    ORIGIN,
-    RED,
-    MarkupText,
-    MathTex,
-    SVGMobject,
-    VDict,
-    VGroup,
-)
 
+from manim import *
 from ..utils import (
     mol_parser,
     mol_parser_string,
@@ -35,6 +25,29 @@ from .bond import *
 
 class MMoleculeObject(VGroup, AbstractMolecule):
     """Represents a molecule in a similar fashion as it is done in academia.
+
+    Parameters
+    ----------
+    atoms_dict : :class:`dict`
+        Dictionary with the atom data of the molecule.
+    bonds_dict : :class:`dict`
+        Dictionary with the bond data of the molecule.
+    representation_type : :class:`str`, optional
+        Type of atom representation. Defaults to ``None``.
+    explicit_carbons : :class:`bool`, optional
+        Whether to explicitly show carbon atoms. Defaults to ``False``.
+    explicit_hydrogens : :class:`bool`, optional
+        Whether to explicitly show hydrogen atoms. Defaults to ``False``.
+    planar : :class:`bool`, optional
+        Whether the molecule is rendered in 2D. Defaults to ``True``.
+    add_atoms_numbering : :class:`bool`, optional
+        Whether to add numbering to the atoms. Defaults to ``False``.
+    add_bonds_numbering : :class:`bool`, optional
+        Whether to add numbering to the bonds. Defaults to ``False``.
+    rotate_bonds : :class:`list`, optional
+        Bonds to rotate. Defaults to an empty list.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     ---------
@@ -358,12 +371,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         """_summary_
         Returns the position of a single atom given its index.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atom_position_by_index(1))
-        >>> array([ 0.9397, -0.7497,  0.    ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atom_position_by_index(1))
+            >>> array([ 0.9397, -0.7497,  0.    ])
 
 
         Args:
@@ -390,12 +404,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns the position of multiple atoms given their indices.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atoms_position_by_index([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atoms_position_by_index([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             atoms_index_list (list): List of atoms indices to be gotten.
 
@@ -415,12 +430,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns the [x, y, z] coordinates of a bond given a bond index.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bond_center_by_index(1))
-        >>> array([0.51935, 0.59615, 0.     ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bond_center_by_index(1))
+            >>> array([0.51935, 0.59615, 0.     ])
 
         Args:
             bond_index (int): index of the bond
@@ -476,12 +492,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns the position of multiple bonds given their indices.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bonds_center_by_index([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bonds_center_by_index([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             bondss_index_list (list): List of bonds indices to be gotten.
 
@@ -573,6 +590,29 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
 
 class NamedMolecule(VGroup):
+    """A molecule together with its name.
+
+    Parameters
+    ----------
+    name
+        The name of the molecule. Can be a string or a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.SVGMobject`.
+    molecule_data
+        An :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MMoleculeObject` or the molecule data to construct one.
+    direction
+        Direction in which the name is placed relative to the molecule.
+        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+    buff : :class:`float`, optional
+        Distance between the molecule and its name. Defaults to 1.
+    tex : :class:`bool`, optional
+        Whether to render the name with :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MathTex`. Defaults to ``False``.
+    font : :class:`str`, optional
+        Font of the name text. Defaults to ``""``.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
+    """
+
     def __init__(
         self,
         name,
@@ -698,12 +738,13 @@ class NamedMolecule(VGroup):
         """_summary_
         Returns the position of a single atom given its index.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atom_position_by_index(1))
-        >>> array([ 0.9397, -0.7497,  0.    ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atom_position_by_index(1))
+            >>> array([ 0.9397, -0.7497,  0.    ])
 
 
         Args:
@@ -730,12 +771,13 @@ class NamedMolecule(VGroup):
 
         Returns the position of multiple atoms given their indices.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_atoms_position_by_index([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_atoms_position_by_index([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             atoms_index_list (list): List of atoms indices to be gotten.
 
@@ -755,12 +797,13 @@ class NamedMolecule(VGroup):
 
         Returns the [x, y, z] coordinates of a bond given a bond index.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bond_center_by_index(1))
-        >>> array([0.51935, 0.59615, 0.     ])
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bond_center_by_index(1))
+            >>> array([0.51935, 0.59615, 0.     ])
 
         Args:
             bond_index (int): index of the bond
@@ -817,12 +860,13 @@ class NamedMolecule(VGroup):
 
         Returns the position of multiple bonds given their indices.
 
-        Example:
-        ```
-        molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-        print(molecule.find_bonds_position_by_index([1,2,3]))
-        >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
-        ```
+        Example
+
+        .. code-block:: python
+
+            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+            print(molecule.find_bonds_position_by_index([1,2,3]))
+            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Args:
             bondss_index_list (list): List of bonds indices to be gotten.
 

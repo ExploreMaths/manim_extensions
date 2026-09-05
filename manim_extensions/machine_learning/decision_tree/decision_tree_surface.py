@@ -12,7 +12,13 @@ from collections import deque
 from sklearn.tree import _tree as ctree
 
 class AABB:
-    """Axis-aligned bounding box"""
+    """Axis-aligned bounding box
+
+    Parameters
+    ----------
+    n_features : int
+        Number of features; each feature gets a ``[-inf, inf]`` limit pair.
+    """
 
     def __init__(self, n_features):
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
@@ -171,6 +177,14 @@ def merge_overlapping_polygons(all_polygons, colors=[BLUE, GREEN, ORANGE]):
     return return_polygons
 
 class IrisDatasetPlot(VGroup):
+    """Plot of the first two features of the Iris dataset
+
+    Parameters
+    ----------
+    iris : sklearn.datasets.base.Bunch
+        Loaded Iris dataset (e.g. from ``sklearn.datasets.load_iris``).
+    """
+
     def __init__(self, iris):
         points = iris.data[:, 0:2]
         labels = iris.feature_names
@@ -283,6 +297,21 @@ class IrisDatasetPlot(VGroup):
 
 
 class DecisionTreeSurface(VGroup):
+    """Colored decision surface of a fitted decision tree
+
+    Parameters
+    ----------
+    tree_clf : sklearn.tree.DecisionTreeClassifier
+        Fitted scikit-learn decision tree classifier.
+    data : np.ndarray
+        Two-dimensional data points the tree was fitted on.
+    axes : Axes
+        Manim axes the surface rectangles are drawn in.
+    class_colors : list, optional
+        Colors, one per class, used to fill the decision areas.
+        Defaults to ``[BLUE, ORANGE, GREEN]``.
+    """
+
     def __init__(self, tree_clf, data, axes, class_colors=[BLUE, ORANGE, GREEN]):
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf

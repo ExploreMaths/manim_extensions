@@ -13,7 +13,28 @@ from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import VGroupNeuralNetworkLayer
 
 class MathOperationLayer(VGroupNeuralNetworkLayer):
-    """Handles rendering a layer for a neural network"""
+    """Handles rendering a layer for a neural network
+
+    Parameters
+    ----------
+    operation_type : str
+        Math operation to display; one of ``+``, ``-``, ``*``, ``/``.
+    node_radius : float, optional
+        Radius of the surrounding circle, by default 0.5.
+    node_color : ManimColor, optional
+        Color of the surrounding circle, by default BLUE.
+    node_stroke_width : float, optional
+        Stroke width of the surrounding circle, by default 2.0.
+    active_color : ManimColor, optional
+        Color used when highlighting the layer, by default ORANGE.
+    activation_function : ActivationFunction or str, optional
+        Activation function displayed next to the layer; a string is looked up
+        by name.
+    font_size : float, optional
+        Font size of the operation text, by default 20.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
     valid_operations = ["+", "-", "*", "/"]
 
     def __init__(

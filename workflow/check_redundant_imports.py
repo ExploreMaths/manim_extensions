@@ -10,21 +10,28 @@ Two modes:
 """
 
 import ast
+import io
 import re
 import sys
 import argparse
+import tokenize
 from pathlib import Path
 
-# Vendored upstream subpackages keep their original import style.
-SKIP_DIRS = {
-    "arabic", "chemistry", "economics", "fontawesome", "machine_learning",
-    "pymunk", "qr_codes", "svg_animations", "table", "weighted_line",
-    "docbuild", "testing", "custom_mobjects",
-}
 
+def _string_line_numbers(source: str):
+    """1-based line numbers inside any multi-line string literal.
 
-def _is_skipped(path: Path) -> bool:
-    return any(part in SKIP_DIRS for part in path.parts)
+    Used to keep the fixer from inserting ``from manim import *`` in the
+    middle of a module docstring.
+    """
+    protected = set()
+    try:
+        for tok in tokenize.generate_tokens(io.StringIO(source).readline):
+            if tok.type == tokenize.STRING and tok.end[0] > tok.start[0]:
+                protected.update(range(tok.start[0], tok.end[0] + 1))
+    except Exception:
+        pass
+    return protected
 
 
 def get_manim_star_exports():
@@ -244,8 +251,12 @@ def fix_file(filepath: Path, dry_run: bool = False):
     new_lines = []
     star_inserted = False
     star_done = has_star
+    protected = _string_line_numbers(source)
 
     for i, line in enumerate(lines, 1):
+        if i in protected:
+            new_lines.append(line)
+            continue
         if i in remove_ranges:
             stripped = line.strip()
             messages.append(f"  Removed line {i}: {stripped}")
@@ -284,19 +295,36 @@ def fix_file(filepath: Path, dry_run: bool = False):
 
         new_lines.append(line)
 
+    if all_uncovered:
+        # Re-emit explicit imports for names the star import does not cover.
+        # (All manim import blocks were removed above, so without this the
+        # uncovered names would be lost when the file already had a star
+        # import.)
+        existing = {l.strip() for l in new_lines}
+        inserts = []
+        for module, names in sorted(all_uncovered.items()):
+            line = (
+                f"from manim import {', '.join(sorted(names))}"
+                if module == "manim"
+                else f"from {module} import {', '.join(sorted(names))}"
+            )
+            if line not in existing:
+                inserts.append(line)
+        if inserts:
+            idx = next(
+                (j + 1 for j, l in enumerate(new_lines)
+                 if l.strip() == "from manim import *"),
+                _find_insertion_point(new_lines),
+            )
+            for k, line in enumerate(inserts):
+                new_lines.insert(idx + k, line)
+            messages.append("  Kept explicit imports not covered by star: "
+                            + "; ".join(inserts))
+
     if not star_done:
         insert_idx = _find_insertion_point(new_lines)
 
         new_lines.insert(insert_idx, "from manim import *")
-        if all_uncovered:
-            offset = insert_idx + 1
-            for module, names in sorted(all_uncovered.items()):
-                name_list = ", ".join(sorted(names))
-                if module == "manim":
-                    new_lines.insert(offset, f"from manim import {name_list}")
-                else:
-                    new_lines.insert(offset, f"from {module} import {name_list}")
-                offset += 1
         messages.append(f"  Added `from manim import *`")
 
     new_source = "\n".join(new_lines)
@@ -450,7 +478,6 @@ def main():
     targets = [
         t for t in targets
         if "__pycache__" not in str(t) and ".git" not in str(t)
-        and not _is_skipped(t)
     ]
 
     issues_found = 0

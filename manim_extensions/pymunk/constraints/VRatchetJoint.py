@@ -42,10 +42,13 @@ class VRatchetJoint(VConstraint):
         objects. Set to None to disable.
     connect_line_config
         Configuration dictionary for the styling of the connection line.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
         
     Examples
     --------
     .. manim:: VRatchetJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -76,7 +79,6 @@ class VRatchetJoint(VConstraint):
 
                 self.add_shapes_filter(static_dot1, static_dot2, square_1, square_2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(3)
 
 
     """

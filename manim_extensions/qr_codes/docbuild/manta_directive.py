@@ -82,6 +82,7 @@ directive:
 
 from __future__ import annotations
 
+from manim import *
 import csv
 import itertools as it
 import re
@@ -97,8 +98,6 @@ from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
 
-from manim import QUALITIES
-from manim import __version__ as manim_version
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
@@ -204,7 +203,6 @@ class ManimDirective(Directive):
             )
             return [node]
 
-        from manim import config, tempconfig
 
         global classnamedict
 

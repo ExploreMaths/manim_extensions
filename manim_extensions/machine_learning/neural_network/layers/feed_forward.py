@@ -18,7 +18,43 @@ from .parent_layers import VGroupNeuralNetworkLayer
 from ... import config
 
 class FeedForwardLayer(VGroupNeuralNetworkLayer):
-    """Handles rendering a layer for a neural network"""
+    """Handles rendering a layer for a neural network
+
+    Parameters
+    ----------
+    num_nodes : int
+        Number of nodes in the layer.
+    layer_buffer : float, optional
+        Buffer between the nodes and the surrounding rectangle,
+        by default ``SMALL_BUFF / 2``.
+    node_radius : float, optional
+        Radius of each node, by default 0.08.
+    node_color : ManimColor, optional
+        Color of each node, by default ``config.color_scheme.primary_color``.
+    node_outline_color : ManimColor, optional
+        Outline color of each node, by default
+        ``config.color_scheme.secondary_color``.
+    rectangle_color : ManimColor, optional
+        Color of the surrounding rectangle, by default
+        ``config.color_scheme.secondary_color``.
+    node_spacing : float, optional
+        Spacing between the nodes, by default 0.3.
+    rectangle_fill_color : ManimColor, optional
+        Fill color of the surrounding rectangle, by default
+        ``config.color_scheme.background_color``.
+    node_stroke_width : float, optional
+        Stroke width of the node circles, by default 2.0.
+    rectangle_stroke_width : float, optional
+        Stroke width of the surrounding rectangle, by default 2.0.
+    animation_dot_color : ManimColor, optional
+        Color of the dots in the forward pass animation, by default
+        ``config.color_scheme.active_color``.
+    activation_function : ActivationFunction or str, optional
+        Activation function displayed next to the layer; a string is looked up
+        by name.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     def __init__(
         self,

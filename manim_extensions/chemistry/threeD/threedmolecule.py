@@ -8,10 +8,9 @@ This module provides the ThreeDMolecule class for rendering molecules in 3D.
 
 from typing import Optional
 
-from manim import ORIGIN, config
-from manim.constants import RendererType
-from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 
+from manim import *
+from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from ..element import Element
 from ..utils import mol_parser, mol_parser_string
 from .threedatom import ThreeDAtom
@@ -25,7 +24,24 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
     Requires using opengl renderer.
 
-    Examples:
+    Parameters
+    ----------
+    atoms_dict : :class:`dict`
+        Dictionary with the atom data of the molecule.
+    bonds_dict : :class:`dict`
+        Dictionary with the bond data of the molecule.
+    source_csv : :class:`str`, optional
+        Path to a csv file with element data. Defaults to ``None``.
+    add_bonds : :class:`bool`, optional
+        Whether to add the bonds to the molecule. Defaults to ``True``.
+    add_atoms : :class:`bool`, optional
+        Whether to add the atoms to the molecule. Defaults to ``True``.
+    mobjects
+        Additional mobjects to add to the group.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.OpenGLGroup`.
+
+    Examples
     ---------
     .. code-block:: python
 

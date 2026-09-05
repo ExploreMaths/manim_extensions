@@ -14,6 +14,27 @@ class NetworkConnection(VGroup):
     """
     This class allows for creating connections
     between locations in a network
+
+    Parameters
+    ----------
+    start_mobject : Mobject
+        Mobject where the start of the connection is from.
+    end_mobject : Mobject
+        Mobject where the end of the connection goes to.
+    arc_direction : str, optional
+        Direction that the connection arcs; one of "straight", "up", "down",
+        "left", "right", by default "straight".
+    buffer : float, optional
+        Amount of space between the connection and the mobjects at the ends,
+        by default 0.0.
+    arc_distance : float, optional
+        Distance from start and end mobject that the arc bends, by default 0.2.
+    stroke_width : float, optional
+        Stroke width of the connection, by default 2.0.
+    color : ManimColor, optional
+        Color of the connection, by default WHITE.
+    active_color : ManimColor, optional
+        Color of active animations for this mobject, by default ORANGE.
     """
 
     direction_vector_map = {"up": UP, "down": DOWN, "left": LEFT, "right": RIGHT}

@@ -8,7 +8,6 @@
 
 from manim import *
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
 from PIL import Image
 import io

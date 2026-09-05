@@ -7,18 +7,14 @@ This module provides the VSpace class for managing Pymunk physical simulations.
 """
 
 from manim import *
+from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import pymunk
 from pymunk import Body, autogeometry
 from typing import Callable, Dict, Any, Tuple, Union
 import numpy as np
-from manim.mobject.geometry.arc import Circle
-from manim.mobject.geometry.line import Line
-from manim.mobject.mobject import Mobject
-from manim.utils.bezier import subdivide_bezier
 from ..utils.img_tools import get_normalized_convex_polygons
 from ..utils.logger_tool import manim_pymunk_logger
 
-from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 
 class VSpace(Mobject, metaclass=ConvertToOpenGL):
@@ -40,10 +36,13 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         The number of sub-steps per frame for physical simulation. Increasing
          this value improves numerical stability and collision accuracy.
         Defaults to 8.
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.mobject.Mobject`.
 
     Examples
     --------
     .. manim:: VSpaceExample
+       :save_last_frame:
 
         import random
         from manim_pymunk import *
@@ -88,7 +87,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 end_pt = (0, -7, 0)
                 self.add(Line(start_pt, end_pt, color=RED))
 
-                self.wait(1.5)
 
                 results = self.get_line_query(floor, start_pt, end_pt, stroke_width=0.1)
 
@@ -100,7 +98,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
                 final_vel = self.get_velocity_at_local_point(stones[-1])
                 print(f"Last stone velocity: {final_vel}")
-                self.wait(1)
 
     """
 
@@ -999,6 +996,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
         query_info_list
             A list of tuples containing intersection data:
+
             - alpha: A float (0.0 to 1.0) representing the normalized distance
               along the segment where the hit occurred.
             - normal: A 3D vector representing the surface normal at the impact point.
@@ -1040,6 +1038,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         contact_data
             A list where the first element is the collision normal, followed by 
             tuples of contact point details:
+
             - normal: A 3D vector representing the direction required to resolve 
               the collision (from shape_a to shape_b).
             - point_a: The coordinate on the surface of shape_a involved in the contact.

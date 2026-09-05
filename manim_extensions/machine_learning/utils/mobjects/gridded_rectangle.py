@@ -11,7 +11,41 @@ import numpy as np
 
 
 class GriddedRectangle(VGroup):
-    """Rectangle object with grid lines"""
+    """Rectangle object with grid lines
+
+    Parameters
+    ----------
+    color : ManimColor, optional
+        Color of the rectangle, by default ORANGE.
+    height : float, optional
+        Height of the rectangle, by default 2.0.
+    width : float, optional
+        Width of the rectangle, by default 4.0.
+    mark_paths_closed : bool, optional
+        Whether paths are marked closed, by default True.
+    close_new_points : bool, optional
+        Whether new points close the path, by default True.
+    grid_xstep : float, optional
+        Horizontal step of the grid lines.
+    grid_ystep : float, optional
+        Vertical step of the grid lines.
+    grid_stroke_width : float, optional
+        Stroke width of the grid lines, by default 0.0.
+    grid_stroke_color : ManimColor, optional
+        Color of the grid lines, by default ORANGE.
+    grid_stroke_opacity : float, optional
+        Opacity of the grid lines, by default 1.0.
+    stroke_width : float, optional
+        Stroke width of the rectangle border, by default 2.0.
+    fill_opacity : float, optional
+        Fill opacity of the rectangle, by default 0.2.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    dotted_lines : bool, optional
+        Whether the border is drawn with dotted lines, by default False.
+    **kwargs
+        Forwarded to the parent class.
+    """
 
     def __init__(
         self,

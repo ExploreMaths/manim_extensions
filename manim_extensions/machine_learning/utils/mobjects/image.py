@@ -11,7 +11,15 @@ import numpy as np
 from PIL import Image
 
 class GrayscaleImageMobject(Group):
-    """Mobject for creating images in Manim from numpy arrays"""
+    """Mobject for creating images in Manim from numpy arrays
+
+    Parameters
+    ----------
+    numpy_image : np.ndarray
+        2D grayscale image data.
+    height : float, optional
+        Height of the rendered image, by default 2.3.
+    """
 
     def __init__(self, numpy_image, height=2.3):
         super().__init__()
@@ -60,7 +68,23 @@ class GrayscaleImageMobject(Group):
 
 
 class LabeledColorImage(Group):
-    """Labeled Color Image"""
+    """Labeled Color Image
+
+    Parameters
+    ----------
+    image : Mobject
+        The image to label.
+    color : ManimColor, optional
+        Color of the surrounding rectangle, by default RED.
+    label : str, optional
+        Text displayed above the image, by default "Positive".
+    stroke_width : float, optional
+        Stroke width of the surrounding rectangle, by default 5.
+    font_size : float, optional
+        Font size of the label, by default 24.
+    buff : float, optional
+        Buffer between the image and the label, by default 0.2.
+    """
 
     def __init__(
         self, image, color=RED, label="Positive", stroke_width=5, font_size=24, buff=0.2

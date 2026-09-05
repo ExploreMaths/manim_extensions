@@ -8,11 +8,27 @@
 
 from manim import *
 import numpy as np
-import math
 
 
 class GaussianDistribution(VGroup):
-    """Object for drawing a Gaussian distribution"""
+    """Object for drawing a Gaussian distribution
+
+    Parameters
+    ----------
+    axes : Axes
+        Manim axes the distribution is drawn in.
+    mean : np.ndarray, optional
+        Mean of the distribution; defaults to [0.0, 0.0].
+    cov : np.ndarray, optional
+        Covariance matrix of the distribution; defaults to the identity.
+    dist_theme : str, optional
+        Drawing style; "gaussian" draws confidence ellipses and "ellipse" a
+        single ellipse, by default "gaussian".
+    color : ManimColor, optional
+        Color of the ellipses, by default ORANGE.
+    **kwargs
+        Forwarded to the parent class.
+    """
 
     def __init__(
         self, axes, mean=None, cov=None, dist_theme="gaussian", color=ORANGE, **kwargs

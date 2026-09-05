@@ -10,12 +10,18 @@ This module provides the VConstraint base class for Pymunk constraint visualizat
 
 """
 
+from manim import *
 from pymunk import Space
-from manim import VGroup, Mobject
 
 
 class VConstraint(VGroup):
-    """The Manim base class for visualizing Pymunk physical constraints."""
+    """The Manim base class for visualizing Pymunk physical constraints.
+
+    Parameters
+    ----------
+    **kwargs
+        Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

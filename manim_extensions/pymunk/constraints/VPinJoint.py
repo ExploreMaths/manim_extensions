@@ -45,10 +45,13 @@ class VPinJoint(VConstraint):
     connect_line_config
         A dictionary defining the visual style of the connecting line,
         such as `color` and `stroke_width`.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VPinJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -74,7 +77,6 @@ class VPinJoint(VConstraint):
                 self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
                 self.add_shapes_filter(static_dot, square, square2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(3)
 
     """
 

@@ -6,13 +6,23 @@ This module provides OpenGL-based 3D geometry classes for chemistry visualizatio
 
 """
 
+from manim import *
+from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 
-from manim import ORIGIN, TAU, PI
-from manim.mobject.opengl.opengl_surface import OpenGLSurface
 
 
 class OpenGLSphere(OpenGLSurface):
+    """A sphere rendered as an OpenGL surface.
+
+    Parameters
+    ----------
+    center
+        Center point of the sphere. Defaults to ``ORIGIN``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere.OpenGLSurface`.
+    """
+
     def __init__(
         self,
         center=ORIGIN,

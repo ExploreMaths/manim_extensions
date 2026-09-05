@@ -55,10 +55,13 @@ class VDampedSpring(VConstraint):
     connect_line_config
         A dictionary defining the visual style of the `connect_line_class`,
         such as `color` and `stroke_width`.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VDampedSpringExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -81,7 +84,6 @@ class VDampedSpring(VConstraint):
                 self.add_dynamic_body(square_1, square_2)
                 self.add_constraints(constraint)
 
-                self.wait(3)
 
     """
 

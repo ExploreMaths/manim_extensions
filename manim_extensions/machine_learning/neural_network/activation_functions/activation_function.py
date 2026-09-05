@@ -10,11 +10,35 @@ from manim import *
 from abc import ABC, abstractmethod
 import random
 
-from . import relu
 from ... import config
 
 class ActivationFunction(ABC, VGroup):
-    """Abstract parent class for defining activation functions"""
+    """Abstract parent class for defining activation functions
+
+    Parameters
+    ----------
+    function_name : str, optional
+        Name displayed next to the plot.
+    x_range : list, optional
+        Range of the x-axis, by default [-1, 1].
+    y_range : list, optional
+        Range of the y-axis, by default [-1, 1].
+    x_length : float, optional
+        Length of the x-axis, by default 0.5.
+    y_length : float, optional
+        Length of the y-axis, by default 0.3.
+    show_function_name : bool, optional
+        Whether to display the function name, by default True.
+    active_color : ManimColor, optional
+        Color used when highlighting the function, by default
+        ``config.color_scheme.active_color``.
+    plot_color : ManimColor, optional
+        Color of the function plot, by default
+        ``config.color_scheme.primary_color``.
+    rectangle_color : ManimColor, optional
+        Color of the surrounding rectangle and axes, by default
+        ``config.color_scheme.secondary_color``.
+    """
 
     def __init__(
         self,

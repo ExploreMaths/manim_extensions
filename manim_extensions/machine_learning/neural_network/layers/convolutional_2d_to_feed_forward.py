@@ -13,7 +13,19 @@ from .convolutional_2d import Convolutional2DLayer
 
 
 class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between a convolutional 2D layer and a feed-forward layer
+
+    Parameters
+    ----------
+    input_layer : Convolutional2DLayer
+        The input convolutional layer.
+    output_layer : FeedForwardLayer
+        The output feed-forward layer.
+    passing_flash_color : ManimColor, optional
+        Color of the flash animation during the forward pass, by default ORANGE.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     input_class = Convolutional2DLayer
     output_class = FeedForwardLayer

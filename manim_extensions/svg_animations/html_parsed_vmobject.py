@@ -105,6 +105,29 @@ def _ensure_to_svg_plugin():
 
 
 class HTMLParsedVMobject:
+    """Wrap a VMobject and stream its rendered SVG into an HTML page.
+
+    While the scene runs, the vmobject is continuously exported to an SVG
+    file and the corresponding JavaScript/SVG updates are injected into a
+    generated HTML page, so the object can be viewed and interacted with in
+    a web browser.
+
+    Parameters
+    ----------
+    vmobject : VMobject
+        The Manim object to export and animate in the HTML output.
+    scene : Scene
+        The scene in which ``vmobject`` lives. Its camera state and
+        background color are used for the HTML output, and the per-frame
+        updater is registered on it.
+    width : float, optional
+        Width of the embedded SVG element, e.g. ``"500px"``.
+        Defaults to ``"500px"``.
+    basic_html : bool, optional
+        If ``True``, generate a minimal HTML wrapper without the full page
+        structure and script tag. Defaults to ``False``.
+    """
+
     def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html=False):
         self.vmobject = vmobject
         self.scene = scene

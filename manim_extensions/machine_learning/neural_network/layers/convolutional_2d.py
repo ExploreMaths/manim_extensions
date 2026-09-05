@@ -10,10 +10,8 @@ This module provides the convolutional 2D layer class for neural network visuali
 
 """
 
-from typing import Union
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
-import numpy as np
 from manim import *
 from ... import config
 
@@ -22,7 +20,29 @@ from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 
 class FeatureMap(VGroup):
-    """Class for making a feature map"""
+    """Class for making a feature map
+
+    Parameters
+    ----------
+    color : ManimColor, optional
+        Color of the feature map border, by default ORANGE.
+    feature_map_size : tuple, optional
+        Size of the feature map as (width, height) in cells.
+    fill_color : ManimColor, optional
+        Fill color of the feature map, by default ORANGE.
+    fill_opacity : float, optional
+        Fill opacity of the feature map, by default 0.2.
+    cell_width : float, optional
+        Width of a single cell, by default 0.2.
+    padding : tuple, optional
+        Padding around the feature map as (x, y), by default (0, 0).
+    stroke_width : float, optional
+        Stroke width of the border, by default 2.0.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    padding_dashed : bool, optional
+        Whether the padding region is drawn with dashed lines, by default False.
+    """
 
     def __init__(
         self,
@@ -111,7 +131,45 @@ class FeatureMap(VGroup):
 
 
 class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Handles rendering a convolutional layer for a nn"""
+    """Handles rendering a convolutional layer for a nn
+
+    Parameters
+    ----------
+    num_feature_maps : int
+        Number of feature maps in the layer.
+    feature_map_size : int or tuple, optional
+        Size of each feature map in cells; an int makes a square feature map.
+    filter_size : int or tuple, optional
+        Size of the filter in cells; an int makes a square filter.
+    cell_width : float, optional
+        Width of a single cell, by default 0.2.
+    filter_spacing : float, optional
+        Spacing between feature maps, by default 0.1.
+    color : ManimColor, optional
+        Color of the feature map borders, by default BLUE.
+    active_color : ManimColor, optional
+        Color used when highlighting the layer, by default ORANGE.
+    filter_color : ManimColor, optional
+        Color of the filter rectangle, by default ORANGE.
+    show_grid_lines : bool, optional
+        Whether to show the grid lines, by default False.
+    fill_opacity : float, optional
+        Fill opacity of the feature maps, by default 0.3.
+    stride : int, optional
+        Stride of the convolution, by default 1.
+    stroke_width : float, optional
+        Stroke width of the borders, by default 2.0.
+    activation_function : ActivationFunction or str, optional
+        Activation function displayed above the layer; a string is looked up
+        by name.
+    padding : int or tuple, optional
+        Padding around the feature maps; an int applies to both axes,
+        by default 0.
+    padding_dashed : bool, optional
+        Whether the padding region is drawn with dashed lines, by default True.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     def __init__(
         self,

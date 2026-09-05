@@ -12,7 +12,24 @@ from .parent_layers import VGroupNeuralNetworkLayer
 
 
 class EmbeddingLayer(VGroupNeuralNetworkLayer):
-    """NeuralNetwork embedding object that can show probability distributions"""
+    """NeuralNetwork embedding object that can show probability distributions
+
+    Parameters
+    ----------
+    point_radius : float, optional
+        Radius of the points in the point cloud, by default 0.02.
+    mean : np.ndarray, optional
+        Mean of the Gaussian point cloud, by default [0, 0].
+    covariance : np.ndarray, optional
+        Covariance matrix of the Gaussian point cloud, by default the identity.
+    dist_theme : str, optional
+        Theme of the latent distribution visualization, by default "gaussian".
+    paired_query_mode : bool, optional
+        Whether the embedding shows positive/negative query images,
+        by default False.
+    **kwargs
+        Forwarded to the parent layer classes.
+    """
 
     def __init__(
         self,

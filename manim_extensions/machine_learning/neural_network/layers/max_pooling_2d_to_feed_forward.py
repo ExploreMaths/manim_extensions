@@ -13,7 +13,20 @@ from .max_pooling_2d import MaxPooling2DLayer
 
 
 class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
-    """Feed Forward to Embedding Layer"""
+    """Connective layer between a max pooling 2D layer and a feed-forward layer
+
+    Parameters
+    ----------
+    input_layer : MaxPooling2DLayer
+        The input max pooling layer.
+    output_layer : FeedForwardLayer
+        The output feed-forward layer.
+    passing_flash_color : ManimColor, optional
+        Color of the flash animation during the forward pass, by default ORANGE.
+    **kwargs
+        Forwarded to
+        :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward.Convolutional2DToFeedForward`.
+    """
 
     input_class = MaxPooling2DLayer
     output_class = FeedForwardLayer

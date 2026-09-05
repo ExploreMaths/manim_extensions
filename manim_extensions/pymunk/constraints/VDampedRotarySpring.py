@@ -38,10 +38,13 @@ class VDampedRotarySpring(VConstraint):
         The class used to draw a connecting line between the two objects (e.g., `Line`). Defaults to `None` for no visible connection.
     connect_line_config
         A dictionary defining the visual style of the connecting line, such as `color` and `stroke_width`.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VDampedRotarySpringExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -64,7 +67,6 @@ class VDampedRotarySpring(VConstraint):
                 self.add_dynamic_body(square_1, square_2)
                 self.add_constraints(constraint)
 
-                self.wait(3)
 
     """
 

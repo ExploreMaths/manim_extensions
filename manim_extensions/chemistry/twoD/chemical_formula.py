@@ -14,6 +14,21 @@ from manim import *
 class ChemicalFormula(MarkupText):
     """
     Mostly usefull for simple compounds like binary salts or oxoanions.
+
+    Parameters
+    ----------
+    formula : :class:`str`
+        The chemical formula to render, e.g. ``"H2O"``.
+    metal_color : :class:`str`, optional
+        Color of the metal element. Defaults to ``WHITE``.
+    non_metal_color : :class:`str`, optional
+        Color of the non-metal element. Defaults to ``WHITE``.
+    oxygen_color : :class:`str`, optional
+        Color of the oxygen element. Defaults to ``WHITE``.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
     """
 
     def __init__(
@@ -83,6 +98,39 @@ class ChemicalFormula(MarkupText):
 
 
 class NamedFormula(VGroup):
+    """A chemical formula together with its name.
+
+    Parameters
+    ----------
+    metal_name : :class:`str`
+        Name of the metal element.
+    non_metal_name : :class:`str`
+        Name of the non-metal element.
+    formula : :class:`str`
+        The chemical formula to render.
+    metal_color : :class:`str`, optional
+        Color of the metal element. Defaults to ``WHITE``.
+    non_metal_color : :class:`str`, optional
+        Color of the non-metal element. Defaults to ``WHITE``.
+    oxygen_color : :class:`str`, optional
+        Color of the oxygen element. Defaults to ``WHITE``.
+    font : :class:`str`, optional
+        Font of the name text. Defaults to ``""``.
+    spanish_structure : :class:`bool`, optional
+        Whether to use the spanish name ordering (non-metal first).
+        Defaults to ``False``.
+    buff : :class:`float`, optional
+        Distance between the formula and its name. Defaults to
+        ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
+    direction
+        Direction in which the name is placed relative to the formula.
+        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
+    """
+
     def __init__(
         self,
         metal_name: str,
@@ -155,6 +203,15 @@ class ComplexFormula(MarkupText):
     Allows the creation of more complex molecular formulas
     using a dictionary. The key is the string to be written
     and the value is a color.
+
+    Parameters
+    ----------
+    formula_dict : :class:`dict`
+        Dictionary mapping formula strings to their colors.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.MarkupText`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.MarkupText`.
     """
 
     def __init__(self, formula_dict: dict, *args, **kwargs):
@@ -189,6 +246,23 @@ class ComplexFormula(MarkupText):
 class NamedComplexFormula(VGroup):
     """
     Complex formula build with two dicts.
+
+    Parameters
+    ----------
+    name_dict : :class:`dict`
+        Dictionary mapping name strings to their colors.
+    formula_dict : :class:`dict`
+        Dictionary mapping formula strings to their colors.
+    direction
+        Direction in which the name is placed relative to the formula.
+        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+    buff : :class:`float`, optional
+        Distance between the formula and its name. Defaults to
+        ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
+    args
+        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
     """
 
     def __init__(

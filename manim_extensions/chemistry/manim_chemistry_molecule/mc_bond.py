@@ -23,6 +23,23 @@ STEREO_TYPES = {
 class MCBond:
     """
     MCBond: Abstraction of a bond in a molecule: Type of bond, from and to atoms.
+
+    Parameters
+    ----------
+    bond_type : :class:`int`
+        Type of the bond: 1 for simple, 2 for double, 3 for triple.
+    from_atom : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.MCAtom`, optional
+        Atom the bond starts from. Defaults to ``None``.
+    to_atom : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.MCAtom`, optional
+        Atom the bond ends at. Defaults to ``None``.
+    stereo : :class:`int`, optional
+        Stereo type of the bond. Defaults to ``None``.
+    molecule_index : :class:`int`, optional
+        Index of the bond in the molecule. Defaults to ``None``.
+    topology : :class:`int`, optional
+        Topology of the bond. Defaults to ``None``.
+    reacting_center_status : :class:`int`, optional
+        Reacting center status of the bond. Defaults to ``None``.
     """
 
     def __init__(

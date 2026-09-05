@@ -2,13 +2,35 @@
 # SPDX-License-Identifier: MIT
 """Bohr atom model visualization for Manim."""
 
+from manim import *
 import numpy as np
 import random
-from manim import VGroup, WHITE, BLUE, RED, Circle, Dot, TAU, RIGHT
 
 
 class BohrAtom(VGroup):
     """Creates a Bohr like diagram
+
+    Parameters
+    ----------
+    e : :class:`int`, optional
+        Number of electrons of the atom. Defaults to 14.
+    p : :class:`int`, optional
+        Number of protons of the atom. Defaults to 14.
+    n : :class:`int`, optional
+        Number of neutrons of the atom. Defaults to 10.
+    level : :class:`int`, optional
+        Number of orbit levels. If ``None``, it is calculated
+        from the number of electrons. Defaults to ``None``.
+    orbit_color : optional
+        Color of the orbit circles. Defaults to ``WHITE``.
+    electron_color : optional
+        Color of the electron dots. Defaults to ``BLUE``.
+    proton_color : optional
+        Color of the proton dots. Defaults to ``RED``.
+    neutron_color : optional
+        Color of the neutron dots. Defaults to ``WHITE``.
+    **kwargs
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     ---------

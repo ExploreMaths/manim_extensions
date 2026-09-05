@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to feed-forward layer connection visualization."""
 
-from typing import List, Union
 import numpy as np
 
 from manim import *
@@ -15,7 +14,32 @@ from .parent_layers import ConnectiveLayer
 from ... import config
 
 class FeedForwardToFeedForward(ConnectiveLayer):
-    """Layer for connecting FeedForward layer to FeedForwardLayer"""
+    """Layer for connecting FeedForward layer to FeedForwardLayer
+
+    Parameters
+    ----------
+    input_layer : FeedForwardLayer
+        The input feed-forward layer.
+    output_layer : FeedForwardLayer
+        The output feed-forward layer.
+    passing_flash : bool, optional
+        Whether to flash the edges during the forward pass animation,
+        by default True.
+    dot_radius : float, optional
+        Radius of the dots in the forward pass animation, by default 0.05.
+    animation_dot_color : ManimColor, optional
+        Color of the dots in the forward pass animation, by default
+        ``config.color_scheme.active_color``.
+    edge_color : ManimColor, optional
+        Color of the edges between the layers, by default
+        ``config.color_scheme.secondary_color``.
+    edge_width : float, optional
+        Stroke width of the edges, by default 1.5.
+    camera : object, optional
+        Unused camera reference reserved for future use, by default None.
+    **kwargs
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+    """
 
     input_class = FeedForwardLayer
     output_class = FeedForwardLayer

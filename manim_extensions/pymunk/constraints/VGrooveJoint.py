@@ -48,10 +48,13 @@ class VGrooveJoint(VConstraint):
         The Manim class used to draw the groove line (e.g., Line or DashedLine).
     groove_line_config
         Configuration dictionary for the styling of the groove line.
+    **kwargs
+        Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 
     Examples
     --------
     .. manim:: VGrooveJointExample
+       :save_last_frame:
 
         from manim_pymunk import *
 
@@ -79,7 +82,6 @@ class VGrooveJoint(VConstraint):
 
                 self.add_shapes_filter(static_dot, square_1, square_2, group=2)
                 self.add_constraints(*constraints)
-                self.wait(6)
 
     """ 
 

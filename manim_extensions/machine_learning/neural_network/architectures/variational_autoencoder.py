@@ -11,14 +11,28 @@ and Traditional Autoencoders.
 
 """
 from manim import *
-import numpy as np
-from PIL import Image
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer
 from ..neural_network import NeuralNetwork
 
 
 class VariationalAutoencoder(VGroup):
-    """Variational Autoencoder Manim Visualization"""
+    """Variational Autoencoder Manim Visualization
+
+    Parameters
+    ----------
+    encoder_nodes_per_layer : list, optional
+        Number of nodes in each encoder layer, by default [5, 3].
+    decoder_nodes_per_layer : list, optional
+        Number of nodes in each decoder layer, by default [3, 5].
+    point_color : ManimColor, optional
+        Color of the points in the embedding layer, by default BLUE.
+    dot_radius : float, optional
+        Radius of the points in the embedding layer, by default 0.05.
+    ellipse_stroke_width : float, optional
+        Stroke width of the embedding ellipse, by default 1.0.
+    layer_spacing : float, optional
+        Spacing between the neural network layers, by default 0.5.
+    """
 
     def __init__(
         self,

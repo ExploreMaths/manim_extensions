@@ -9,7 +9,6 @@ from manim import *
 from ..constraints.constraint import VConstraint
 import pymunk
 from typing import Any, Callable, Dict, Tuple
-from manim.mobject.mobject import Mobject
 
 from . import VSpace
 
@@ -17,20 +16,23 @@ from ..utils.logger_tool import manim_pymunk_logger
 
 
 class SpaceScene(ZoomedScene):
-    """A rotational spring connection is created between the two rigid bodies.
+    """A scene that hosts and manages a Pymunk physics simulation.
+
     When the actual relative angle deviates from the target angle,
     the spring torque pulls it back; the damping torque dampens the oscillation.
 
     Parameters
     ----------
-    a_mob
-        The first Mobject to be connected. Typically acts as the pivot point or one of the bodies under physical influence.
-    b_mob
-        The second Mobject to be connected. It is linked to `a_mob` via a physical constraint such as a spring or hinge.
+    gravity
+        The gravity acceleration vector $(g_x, g_y)$ applied to the physical
+        space. Defaults to $(0, -9.81)$.
+    **kwargs
+        Forwarded to the parent :class:`~manim.scene.zoomed_scene.ZoomedScene`.
 
     Examples
     --------
     .. manim:: SpaceSceneExample
+       :save_last_frame:
 
         import random
 
@@ -267,7 +269,6 @@ class SpaceScene(ZoomedScene):
                 self.camera.frame.add_updater(lambda m: m.move_to(car))
 
                 # self.draw_debug_img(xlim=(-200, 200), ylim=(-1, 50))
-                self.wait(3)
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
