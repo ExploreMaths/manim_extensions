@@ -42,6 +42,22 @@ jobs:
       - name: Run import style checker
         run: python workflow/check_redundant_imports.py
 
+  validate-relative-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+      - name: Check that all in-package imports use relative imports
+        run: python workflow/check_relative_imports.py
+
+  validate-docstrings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+      - name: Run module docstring validator
+        run: python workflow/validate_docstrings.py
+
   reuse-lint:
     runs-on: ubuntu-latest
     steps:
