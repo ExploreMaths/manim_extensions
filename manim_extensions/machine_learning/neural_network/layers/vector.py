@@ -28,7 +28,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
     Examples
     --------
     .. manim:: VectorLayerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -37,16 +36,24 @@ class VectorLayer(VGroupNeuralNetworkLayer):
            VectorLayer,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class VectorLayerDocExample(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    [
-                       FeedForwardLayer(4),
-                       VectorLayer(1),
+                       FeedForwardLayer(3),
+                       VectorLayer(4),
                    ]
                )
                nn.move_to(ORIGIN)
-               self.add(nn)
+               self.play(Create(nn))
+               # Animate the forward pass
+               self.play(nn.make_forward_pass_animation())
     """
 
     def __init__(self, num_values, value_func=lambda: random.uniform(0, 1), **kwargs):

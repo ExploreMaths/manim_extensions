@@ -173,7 +173,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     Examples
     --------
     .. manim:: Convolutional2DLayerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -181,6 +180,12 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
            FeedForwardLayer,
            NeuralNetwork,
        )
+
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 1200
+       config.pixel_width = 1900
+       config.frame_height = 6.0
+       config.frame_width = 6.0
 
        class Convolutional2DLayerDocExample(ThreeDScene):
            def construct(self):
@@ -190,12 +195,16 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                        Convolutional2DLayer(
                            3, 5, 3, filter_spacing=0.32, activation_function="ReLU"
                        ),
-                       FeedForwardLayer(3),
+                       FeedForwardLayer(3, activation_function="Sigmoid"),
                    ],
                    layer_spacing=0.25,
                )
                nn.move_to(ORIGIN)
                self.add(nn)
+               # Animate the forward pass
+               forward_pass = nn.make_forward_pass_animation()
+               self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
+               self.wait(1)
     """
 
     def __init__(

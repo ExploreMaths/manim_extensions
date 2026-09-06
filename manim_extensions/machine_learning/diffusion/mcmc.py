@@ -268,17 +268,45 @@ class MCMCAxes(Group):
        import scipy.stats
        from manim_extensions.machine_learning.diffusion.mcmc import MCMCAxes
 
+       # Square layout used by the upstream ManimML example
+       config.pixel_height = 720
+       config.pixel_width = 720
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class MCMCAxesDocExample(Scene):
            def construct(self):
+               # Gaussian mixture likelihood
                def log_prob_fn(x):
-                   return scipy.stats.multivariate_normal(
-                       mean=[0, 0], cov=[[1, 0], [0, 1]]
-                   ).logpdf(x)
+                   big_gaussian_pdf = scipy.stats.multivariate_normal(
+                       mean=[-0.5, -0.5], cov=[1.0, 1.0]
+                   ).pdf(x)
+                   little_gaussian_pdf = scipy.stats.multivariate_normal(
+                       mean=[2.3, 1.9], cov=[0.3, 0.3]
+                   ).pdf(x)
+                   return np.log(big_gaussian_pdf + little_gaussian_pdf)
 
-               true_samples = np.random.multivariate_normal(
-                   [0, 0], [[1, 0], [0, 1]], size=2000
+               # Generate true samples from both components
+               big_gaussian_samples = np.random.multivariate_normal(
+                   mean=[-0.5, -0.5],
+                   cov=[[1.0, 0.0], [0.0, 1.0]],
+                   size=10000,
                )
-               axes = MCMCAxes(x_range=[-4, 4], y_range=[-4, 4])
+               little_gaussian_samples = np.random.multivariate_normal(
+                   mean=[2.3, 1.9],
+                   cov=[[0.3, 0.0], [0.0, 0.3]],
+                   size=10000,
+               )
+               true_samples = np.concatenate(
+                   (big_gaussian_samples, little_gaussian_samples)
+               )
+
+               axes = MCMCAxes(
+                   x_range=[-5, 5],
+                   y_range=[-5, 5],
+                   x_length=7.0,
+                   y_length=7.0,
+               )
                axes.move_to(ORIGIN)
                self.play(Create(axes))
                self.play(
@@ -286,13 +314,14 @@ class MCMCAxes(Group):
                        log_prob_fn=log_prob_fn,
                        true_samples=true_samples,
                        sampling_kwargs={
-                           "iterations": 50,
-                           "warm_up": 10,
-                           "initial_location": np.array([-2.5, 2.5]),
+                           "iterations": 800,
+                           "warm_up": 50,
+                           "initial_location": np.array([-3.5, 3.5]),
                            "sampling_seed": 4,
                        },
                    )
                )
+               self.wait(1)
     """
 
     def __init__(

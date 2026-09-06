@@ -33,7 +33,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     Examples
     --------
     .. manim:: EmbeddingLayerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -42,17 +41,27 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
            NeuralNetwork,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class EmbeddingLayerDocExample(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    [
+                       FeedForwardLayer(5),
                        FeedForwardLayer(3),
-                       EmbeddingLayer(),
+                       EmbeddingLayer(dist_theme="ellipse"),
                        FeedForwardLayer(3),
+                       FeedForwardLayer(5),
                    ]
                )
                nn.move_to(ORIGIN)
-               self.add(nn)
+               self.play(Create(nn))
+               # Animate the forward pass
+               self.play(nn.make_forward_pass_animation())
     """
 
     def __init__(

@@ -119,6 +119,12 @@ class DecisionTreeDiagram(Group):
            DecisionTreeDiagram,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class DecisionTreeDiagramDocExample(Scene):
            def construct(self):
                iris = load_iris()

@@ -60,15 +60,30 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     .. manim:: FeedForwardLayerDocExample
 
        from manim import *
-       from manim_extensions.machine_learning.neural_network import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
 
        class FeedForwardLayerDocExample(Scene):
            def construct(self):
-               layer = FeedForwardLayer(5, activation_function="Sigmoid")
-               layer.construct_layer(None, None)
-               layer.move_to(ORIGIN)
-               self.add(layer)
-               self.play(layer.make_forward_pass_animation())
+               nn = NeuralNetwork(
+                   [
+                       FeedForwardLayer(3),
+                       FeedForwardLayer(5, activation_function="Sigmoid"),
+                       FeedForwardLayer(3),
+                   ]
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
+               # Animate the forward pass
+               self.play(nn.make_forward_pass_animation())
     """
 
     def __init__(
