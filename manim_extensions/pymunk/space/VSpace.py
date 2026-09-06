@@ -49,27 +49,45 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         class VSpaceExample(SpaceScene):
             def construct(self):
                 # VSpace lives inside SpaceScene as self.vspace; here its
-                # segment query is used to locate the floor surface
-                floor = Line(LEFT * 5, RIGHT * 5, stroke_width=10, color=BLUE)
-                floor.to_edge(DOWN, buff=0.3)
-                ball = Circle(radius=0.3, color=RED, fill_opacity=0.8)
-                ball.move_to(UP * 3)
+                # collision handler and segment query are exercised directly
+                COLLISION_TYPE = 123
 
-                self.play(FadeIn(floor), FadeIn(ball))
-                self.add_static_body(floor)
-                self.add_dynamic_body(ball)
-
-                start, end = tuple(UP * 3), tuple(DOWN * 5)
-                hits = self.vspace.get_line_query(
-                    floor, start, end, stroke_width=0.1
-                )
-                if hits:
-                    hit_point = hits[0][2]  # closest point on the floor shape
-                    self.play(
-                        Create(Line(start, end, color=YELLOW)),
-                        FadeIn(Dot(hit_point, color=YELLOW)),
+                floor = Line(start=LEFT * 5, end=RIGHT * 5, stroke_width=12, color=BLUE)
+                floor.to_edge(DOWN, buff=0.1)
+                stones = [
+                    Dot(color=BLUE).move_to(
+                        UP * 2 + (i - 2) * RIGHT * 1.5
                     )
-                self.wait(4)
+                    for i in range(5)
+                ]
+
+                self.play(FadeIn(floor), FadeIn(VGroup(*stones)))
+                self.add_static_body(floor)
+                self.add_dynamic_body(*stones)
+                self.set_collision_type(floor, *stones, collision_type=COLLISION_TYPE)
+
+                def post_solve_callback(arbiter, space, data):
+                    # log the impulse of each floor impact
+                    if arbiter.total_impulse.length > 0.2:
+                        print(f"Impact Strength: {arbiter.total_impulse.length:.2f}")
+                    return True
+
+                self.set_collision_detection_handler(
+                    collision_type_a=COLLISION_TYPE,
+                    collision_type_b=COLLISION_TYPE,
+                    post_solve=post_solve_callback,
+                )
+                self.apply_impulse_at_local_point(*stones, impulse=(0, 0.1, 0))
+
+                # segment query: locate the floor surface with a vertical ray
+                start_pt = (0, 2, 0)
+                end_pt = (0, -5, 0)
+                results = self.get_line_query(floor, start_pt, end_pt, stroke_width=0.1)
+                if results:
+                    hit_point = results[0][2]
+                    self.play(Create(Line(start_pt, end_pt, color=RED)))
+                    self.add(Dot(hit_point, color=YELLOW, radius=0.1))
+                self.wait(3)
 
     """
 

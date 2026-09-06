@@ -39,6 +39,32 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         Stroke width of the borders, by default 2.0.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: MaxPooling2DLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           Convolutional2DLayer,
+           MaxPooling2DLayer,
+           NeuralNetwork,
+       )
+
+       class MaxPooling2DLayerDocExample(ThreeDScene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       Convolutional2DLayer(1, 8),
+                       Convolutional2DLayer(3, 6, 3),
+                       MaxPooling2DLayer(kernel_size=2),
+                       Convolutional2DLayer(5, 2, 2),
+                   ],
+                   layer_spacing=0.25,
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

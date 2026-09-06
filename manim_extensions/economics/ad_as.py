@@ -57,6 +57,26 @@ class ADASDiagram(EconDiagram):
         If True, draw only the LRAS line (no SRAS curve).
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
+
+    Examples
+    --------
+    .. manim:: ADASDiagramDocExample
+
+       from manim import *
+       from manim_extensions.economics import ADASDiagram
+
+       class ADASDiagramDocExample(Scene):
+           def construct(self):
+               diagram = ADASDiagram(m=20, v=1, sras_price=4, lras_y=5)
+               self.play(Create(diagram))
+               self.wait()
+
+               label = Text("Positive demand shock: M up",
+                            font_size=28).to_edge(UP)
+               self.play(Write(label))
+               for anim in diagram.positive_demand_shock(m=30, show_arrows=True):
+                   self.play(anim)
+                   self.wait(0.5)
     """
 
     def __init__(

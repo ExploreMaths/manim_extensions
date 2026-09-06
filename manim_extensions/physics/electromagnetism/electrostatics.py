@@ -119,6 +119,7 @@ class ElectricField(ArrowVectorField):
     Examples
     --------
     .. manim:: ElectricFieldExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.electrostatics import (
@@ -127,12 +128,12 @@ class ElectricField(ArrowVectorField):
 
        class ElectricFieldExample(Scene):
            def construct(self):
-               q1 = Charge(1, LEFT + DOWN)
-               q2 = Charge(-1, RIGHT + DOWN)
-               field = ElectricField(q1, q2)
-               self.play(FadeIn(q1), FadeIn(q2))
-               self.play(FadeIn(field))
-               self.wait()
+               charge1 = Charge(-1, LEFT + DOWN)
+               charge2 = Charge(2, RIGHT + DOWN)
+               charge3 = Charge(-1, UP)
+               field = ElectricField(charge1, charge2, charge3)
+               self.add(charge1, charge2, charge3)
+               self.add(field)
     """
 
     def __init__(self, *charges: Charge, **kwargs) -> None:

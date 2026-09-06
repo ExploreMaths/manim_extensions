@@ -588,10 +588,23 @@ class MArray(VGroup):
                arr = MArray(self, [3, 1, 4, 1, 5, 9], label="arr")
                hex_arr = MArray(
                    self, [10, 11, 12, 13], label="hex",
-                   index_hex_display=True, arr_dir=MArrayDirection.DOWN,
+                   index_hex_display=True, index_offset=4,
+                   arr_dir=MArrayDirection.DOWN,
                    arr_label_pos=MArrayDirection.UP,
-               ).next_to(arr, RIGHT, buff=1.5)
-               self.add(arr, hex_arr)
+               )
+               custom_arr = MArray(
+                   self, [1, 1, 2],
+                   mob_square_args={
+                       "color": GRAY_A, "fill_color": RED_E, "side_length": 0.5
+                   },
+                   mob_value_args={"color": GOLD_A, "font_size": 28},
+                   mob_index_args={"color": RED_E, "font_size": 22},
+               )
+               plain_arr = MArray(self, [7, 8], hide_index=True)
+               top = VGroup(arr, hex_arr).arrange(RIGHT, buff=1.5)
+               bottom = VGroup(custom_arr, plain_arr).arrange(RIGHT, buff=1.5)
+               group = VGroup(top, bottom).arrange(DOWN, buff=1.5)
+               self.add(group)
 
     .. manim:: MArrayInsertRemoveDocExample
 
@@ -603,12 +616,19 @@ class MArray(VGroup):
                arr = MArray(self, [5, 3, 8, 1], label="arr")
                self.play(Write(arr))
                self.wait(0.5)
-               arr.append_elem(6)
+               arr.append_elem(6, append_anim=GrowFromCenter)
                self.wait(0.5)
-               self.play(arr.animate_elem(0).set_fill(YELLOW))
-               arr.update_elem_value(0, 2)
+               self.play(arr.animate_elem(3).shift(UP * 0.5))
+               self.play(
+                   arr.animate_elem_square(0).set_fill(BLACK),
+                   arr.animate_elem_value(0).rotate(PI / 2).set_fill(RED),
+                   arr.animate_elem_index(0).rotate(PI / 2),
+               )
+               arr.update_elem_value(0, 2, mob_value_args={"color": RED})
                self.wait(0.5)
-               arr.remove_elem(index=2)
+               arr.remove_elem(
+                   index=2, removal_anim=ShowPassingFlash, update_anim=Write
+               )
                self.wait(0.5)
 
     Attributes
@@ -1595,12 +1615,15 @@ class MArrayPointer(VGroup):
                    self, arr, index=0, label="i",
                    pointer_pos=MArrayDirection.UP
                )
-               self.add(ptr)
-               self.play(ptr.shift_to_elem(2))
+               self.play(Create(ptr))
+               ptr.shift_to_elem(2)
                self.wait(0.5)
                arr.append_elem(60)
                self.wait(0.5)
+               ptr.shift_to_elem(4)
                ptr.update_mob_label("mid")
+               self.wait(0.5)
+               ptr.attach_to_elem(0)
                self.wait(0.5)
 
     Attributes
@@ -2083,10 +2106,13 @@ class MArraySlidingWindow(VGroup):
                    self, arr, index=0, size=2, label="win",
                    label_pos=MArrayDirection.UP
                )
-               self.add(window)
-               self.play(window.shift_to_elem(1))
+               self.play(Create(window))
+               window.shift_to_elem(1)
                self.wait(0.5)
                window.resize_window(3)
+               self.wait(0.5)
+               window.shift_to_elem(0)
+               window.attach_to_elem(2)
                self.wait(0.5)
 
     Attributes

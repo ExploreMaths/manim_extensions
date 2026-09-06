@@ -33,10 +33,18 @@ class CompassScene(MovingCameraScene):
 
        class CompassSceneExample(CompassScene):
            def construct(self):
-               self.compass_move_niddle_tip_to(ORIGIN)
-               self.compass_split_span(2)
-               self.draw_arc(niddle_point=ORIGIN, pen_point=2 * RIGHT, angle=PI / 2)
-               self.put_compass_aside(3 * RIGHT)
+               self.play(FadeIn(self.compass, self.ruler, self.pencil))
+
+               A, B = ORIGIN, 2 * RIGHT
+               # align the ruler with A-B, then draw the line with the pencil
+               self.set_ruler(start=A, end=B)
+               self.draw_line(start=A, end=B)
+               self.put_pencil_away(3 * UR)
+               self.put_ruler_aside(3 * DOWN)
+
+               # draw an arc centred at A through B, then put the compass aside
+               self.draw_arc(niddle_point=A, pen_point=B, angle=PI / 2)
+               self.put_compass_aside(4 * LEFT)
     """
 
     def setup(self) -> None:

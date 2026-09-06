@@ -126,6 +126,45 @@ class HTMLParsedVMobject:
     basic_html : bool, optional
         If ``True``, generate a minimal HTML wrapper without the full page
         structure and script tag. Defaults to ``False``.
+
+    Examples
+    --------
+    Render the scene with the ``--disable_caching`` flag. Besides the MP4,
+    an HTML and a JS file are written next to the scene file; open the HTML
+    file in a browser and call ``renderHTMLParsedVMobjectDocExample()`` from
+    the developer console to see the SVG animation.
+
+    .. manim:: HTMLParsedVMobjectDocExample
+
+       from manim import *
+       from manim_extensions.svg_animations import HTMLParsedVMobject
+
+       VMobject.set_default(color=BLACK)
+
+       class HTMLParsedVMobjectDocExample(Scene):
+           def construct(self):
+               self.camera.background_color = WHITE
+               ax = Axes().add_coordinates()
+               labels = ax.get_axis_labels("x", "y")
+               vg = VGroup(ax, labels)
+               parsed = HTMLParsedVMobject(vg, self)
+               self.play(Write(VGroup(ax, labels)))
+               graph = ax.plot(np.log, x_range=[np.exp(-4), 7], color=RED)
+               vg.add(graph)
+               self.play(Create(graph))
+               riemann = ax.get_riemann_rectangles(graph, x_range=[1, 6], dx=1)
+               vg.add(riemann)
+               self.play(Write(riemann))
+               dx = ValueTracker(1)
+               riemann.add_updater(
+                   lambda m: m.become(ax.get_riemann_rectangles(
+                       graph, x_range=[1, 6], dx=dx.get_value()))
+               )
+               self.play(dx.animate.set_value(0.1))
+               self.wait()
+               riemann.clear_updaters()
+               self.play(FadeOut(vg))
+               parsed.finish()
     """
 
     def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html=False):

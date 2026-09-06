@@ -51,6 +51,33 @@ class NeuralNetwork(Group):
         Direction of the linear layout, by default "left_to_right".
     debug_mode : bool, optional
         Whether to enable debug visuals, by default False.
+
+    Examples
+    --------
+    .. manim:: NeuralNetworkDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           Convolutional2DLayer,
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+
+       class NeuralNetworkDocExample(ThreeDScene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
+                       Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                       Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
+                       FeedForwardLayer(3),
+                       FeedForwardLayer(3),
+                   ],
+                   layer_spacing=0.25,
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

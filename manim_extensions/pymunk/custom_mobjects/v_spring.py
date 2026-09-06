@@ -8,12 +8,16 @@ from manim import *
 class VSpring(Line):
     """A spring-shaped Mobject rendered as a helix between two points.
 
+    This is the default ``connect_line_class`` of
+    :class:`~manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring`,
+    whose updater continuously re-stretches the helix between its anchors.
+
     Parameters
     ----------
     start
-        The start point of the spring. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
+        The start point of the spring. Defaults to :class:`~manim.constants.LEFT`.
     end
-        The end point of the spring. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
+        The end point of the spring. Defaults to :class:`~manim.constants.RIGHT`.
     turns
         The number of helical turns in the spring. Defaults to ``18``.
     amplitude
@@ -27,6 +31,25 @@ class VSpring(Line):
         The color of the spring. Defaults to ``WHITE``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.geometry.line.Line`.
+
+    Examples
+    --------
+    .. manim:: VSpringDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.pymunk import *
+
+       class VSpringDocExample(Scene):
+           def construct(self):
+               springs = VGroup(
+                   VSpring(LEFT * 4 + UP * 2, RIGHT * 4 + UP * 2,
+                           turns=8, amplitude=0.25, color=BLUE),
+                   VSpring(LEFT * 4, RIGHT * 4, color=YELLOW),
+                   VSpring(LEFT * 4 + DOWN * 2, RIGHT * 4 + DOWN * 2,
+                           turns=30, amplitude=0.08, color=RED),
+               )
+               self.add(springs)
     """
 
     def __init__(

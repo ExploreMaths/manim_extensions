@@ -27,6 +27,35 @@ class ImageLayer(NeuralNetworkLayer):
         Whether the image is shown when the layer is created, by default True.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+
+    Examples
+    --------
+    .. manim:: ImageLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       import numpy as np
+       from manim_extensions.machine_learning.neural_network import (
+           Convolutional2DLayer,
+           FeedForwardLayer,
+           ImageLayer,
+           NeuralNetwork,
+       )
+
+       class ImageLayerDocExample(ThreeDScene):
+           def construct(self):
+               numpy_image = np.zeros((8, 8), dtype=np.uint8)
+               numpy_image[2:6, 2:6] = 255
+               nn = NeuralNetwork(
+                   [
+                       ImageLayer(numpy_image, height=1.5),
+                       Convolutional2DLayer(1, 8, 3),
+                       FeedForwardLayer(3),
+                   ],
+                   layer_spacing=0.25,
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

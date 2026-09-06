@@ -32,6 +32,22 @@ class VariationalAutoencoder(VGroup):
         Stroke width of the embedding ellipse, by default 1.0.
     layer_spacing : float, optional
         Spacing between the neural network layers, by default 0.5.
+
+    Examples
+    --------
+    .. manim:: VariationalAutoencoderDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder import (
+           VariationalAutoencoder,
+       )
+
+       class VariationalAutoencoderDocExample(Scene):
+           def construct(self):
+               vae = VariationalAutoencoder()
+               vae.move_to(ORIGIN)
+               self.add(vae)
     """
 
     def __init__(

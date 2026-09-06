@@ -64,24 +64,31 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
     .. manim:: ManimNondeterministicFiniteAutomatonExample
 
        from manim import *
-       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton import ManimNondeterministicFiniteAutomaton
 
-       class ManimNondeterministicFiniteAutomatonExample(Scene):
+       class ManimNondeterministicFiniteAutomatonExample(MovingCameraScene):
            def construct(self):
-               nda = ManimNondeterministicFiniteAutomaton()
-               self.add(nda)
-               animations = ManimAnimations()
-               q0 = nda.get_initial_state()
-               q1 = nda.get_state("q1")
-               q2 = nda.get_state("q2")
-               self.play(animations.animate_highlight_state(q0))
-               # the epsilon transition q0 -> q2 fires at the same time as q0 -> q1
+               # build the NFA from the default JSON template (contains an
+               # epsilon transition and multiple branches per symbol)
+               nda = ManimNondeterministicFiniteAutomaton(animate_subscripts=False)
+
+               # Adjust camera frame to fit the automaton in the scene
+               self.camera.frame_width = nda.width + 4
+               self.camera.frame_height = nda.height + 4
+               self.camera.frame.move_to(nda)
+
+               # Create an mobject version of the input for the automaton
+               automaton_input = nda.construct_automaton_input("01")
+               automaton_input.next_to(nda, UP, buff=0.5)
+
                self.play(
-                   animations.animate_highlight_state(q1),
-                   animations.animate_highlight_state(q2),
+                   DrawBorderThenFill(nda),
+                   FadeIn(automaton_input),
                )
-               self.play(animations.animate_dead_branch_state(q1))
+
+               # Play all the animations generated from play_string()
+               for sequence in nda.play_string(automaton_input):
+                   self.play(*sequence, run_time=0.5)
     """
 
     nda_builder = False

@@ -101,6 +101,48 @@ class DecisionTreeDiagram(Group):
     class_colors : list, optional
         Colors, one per class, used for the leaf node borders.
         Defaults to ``[RED, GREEN, BLUE]``.
+
+    Examples
+    --------
+    .. manim:: DecisionTreeDiagramDocExample
+
+       from manim import *
+       import tempfile
+       from pathlib import Path
+
+       import numpy as np
+       from PIL import Image as PILImage
+       from sklearn.datasets import load_iris
+       from sklearn.tree import DecisionTreeClassifier
+
+       from manim_extensions.machine_learning.decision_tree.decision_tree import (
+           DecisionTreeDiagram,
+       )
+
+       class DecisionTreeDiagramDocExample(Scene):
+           def construct(self):
+               iris = load_iris()
+               tree = DecisionTreeClassifier(max_depth=2, random_state=0).fit(
+                   iris.data[:, :2], iris.target
+               )
+
+               tmp_dir = Path(tempfile.mkdtemp())
+               image_paths = []
+               for i, color in enumerate([RED, GREEN, BLUE]):
+                   path = tmp_dir / f"class_{i}.png"
+                   rgb = tuple(int(c * 255) for c in color_to_rgb(color))
+                   PILImage.new("RGB", (32, 32), rgb).save(path)
+                   image_paths.append(str(path))
+
+               diagram = DecisionTreeDiagram(
+                   tree.tree_,
+                   feature_names=["sepal length", "sepal width"],
+                   class_names=list(iris.target_names),
+                   class_images_paths=image_paths,
+               )
+               diagram.scale_to_fit_height(5)
+               diagram.move_to(ORIGIN)
+               self.play(FadeIn(diagram))
     """
 
     def __init__(

@@ -56,6 +56,20 @@ class Tikz(SVGMobject):
                    use_pdf=False,
                )
                self.add(graph)
+
+    .. manim:: TikzDrawExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.tikz import Tikz
+
+       class TikzDrawExample(Scene):
+           def construct(self):
+               square = Tikz(
+                   r"\draw[magenta, line width=10mm, fill=blue] (0,0) rectangle(1,1);",
+                   use_pdf=False,
+               )
+               self.add(square)
     """
 
     def __init__(

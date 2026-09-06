@@ -38,6 +38,26 @@ class ISLMDiagram(EconDiagram):
         If True, label equilibria with subscripts that increment on each shift.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
+
+    Examples
+    --------
+    .. manim:: ISLMDiagramDocExample
+
+       from manim import *
+       from manim_extensions.economics import ISLMDiagram
+
+       class ISLMDiagramDocExample(Scene):
+           def construct(self):
+               diagram = ISLMDiagram(numbered_eq=True)
+               self.play(Create(diagram))
+               self.wait()
+
+               label = Text("Monetary expansion: Ms up",
+                            font_size=28).to_edge(UP)
+               self.play(Write(label))
+               for anim in diagram.monetary_expansion(ms=5, show_arrows=True):
+                   self.play(anim)
+                   self.wait(0.5)
     """
 
     def __init__(

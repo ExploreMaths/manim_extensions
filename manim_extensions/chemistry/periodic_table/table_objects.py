@@ -36,6 +36,33 @@ class MElementObject(VGroup):
         Color of the element texts. Defaults to ``BLACK``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    ---------
+    .. manim:: MElementObjectDocExample
+        :save_last_frame:
+
+        import pandas as pd
+        from manim import *
+        from manim_extensions.chemistry import MElementObject
+        from manim_extensions.chemistry.manim_chemistry_molecule import MC_ELEMENT_DICT
+
+        class MElementObjectDocExample(Scene):
+            def construct(self):
+                data = pd.DataFrame(
+                    {
+                        "AtomicNumber": [e.atomic_number for e in MC_ELEMENT_DICT.values()],
+                        "AtomicMass": [e.mass for e in MC_ELEMENT_DICT.values()],
+                        "Name": [e.name for e in MC_ELEMENT_DICT.values()],
+                        "Symbol": [e.symbol for e in MC_ELEMENT_DICT.values()],
+                        "Color": [e.color for e in MC_ELEMENT_DICT.values()],
+                    }
+                )
+                data.to_csv("element_data_single.csv", index=False)
+                carbon = MElementObject.from_csv_file_data(
+                    filename="element_data_single.csv", atomic_number=6
+                )
+                self.add(carbon)
     """
 
     def __init__(

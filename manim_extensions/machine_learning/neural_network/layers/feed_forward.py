@@ -54,6 +54,21 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         by name.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: FeedForwardLayerDocExample
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import FeedForwardLayer
+
+       class FeedForwardLayerDocExample(Scene):
+           def construct(self):
+               layer = FeedForwardLayer(5, activation_function="Sigmoid")
+               layer.construct_layer(None, None)
+               layer.move_to(ORIGIN)
+               self.add(layer)
+               self.play(layer.make_forward_pass_animation())
     """
 
     def __init__(

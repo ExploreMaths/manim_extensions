@@ -35,6 +35,26 @@ class LinkedISLM_ADAS(VGroup):
         Show axis arrows on shifts in both diagrams.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: LinkedISLMADASDocExample
+
+       from manim import *
+       from manim_extensions.economics import LinkedISLM_ADAS
+
+       class LinkedISLMADASDocExample(Scene):
+           def construct(self):
+               linked = LinkedISLM_ADAS(numbered_eq=True, show_arrows=True)
+               self.play(Create(linked))
+               self.wait()
+
+               label = Text("Monetary expansion: Ms up",
+                            font_size=28).to_edge(UP)
+               self.play(Write(label))
+               for anim in linked.monetary_expansion(ms=5, m=30):
+                   self.play(anim)
+                   self.wait(0.5)
     """
 
     def __init__(

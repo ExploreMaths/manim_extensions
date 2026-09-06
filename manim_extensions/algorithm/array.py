@@ -40,16 +40,19 @@ class Array(VMobject):
 
        class ArrayExample(Scene):
            def construct(self):
-               arr = Array([10, -5, 3.14, "x"], total_width=10)
+               data = [-1, 0, 3, -43.12, " ", "abc"]
+               arr = Array(data, total_width=10)
                circle_arr = Array(
-                   [10, -5, 3.14, "x"], total_width=10, box_type=Circle,
-                   box_color=PURE_YELLOW, text_scale=1.2,
+                   data, total_width=10, box_type=Circle,
+                   box_color=PURE_YELLOW, text_scale=1.5,
                ).next_to(arr, DOWN, buff=1)
                self.add(arr, circle_arr)
-               self.play(Node.Select(arr[1]))
-               self.play(Node.UpdateValue(arr[1], 7))
-               self.play(Node.Unselect(arr[1]))
-               self.play(Node.SwapAndOverWrite(arr[0], arr[2]))
+               self.play(Node.Select(arr[2]))
+               self.play(Node.Unselect(arr[2]))
+               self.play(Node.SwapAndOverWrite(arr[1], arr[2]))
+               self.play(Node.UpdateValue(arr[1], 123))
+               node = Node(arr[1].value).next_to(arr, RIGHT)
+               self.play(FadeIn(node))
                self.wait(1)
     """
 

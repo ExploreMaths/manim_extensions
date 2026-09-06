@@ -60,13 +60,16 @@ class MultiPendulum(VGroup):
 
        class MultiPendulumExample(SpaceScene):
            def construct(self):
-               pendulum = MultiPendulum(
-                   DOWN * 2 + RIGHT,
-                   DOWN * 3 + LEFT,
-               )
+               pendulum = MultiPendulum(RIGHT, LEFT)
                self.play(FadeIn(pendulum))
                self.make_rigid_body(*pendulum.bobs)
                pendulum.start_swinging()
+               self.add(
+                   TracedPath(
+                       pendulum.bobs[-1].get_center,
+                       stroke_color=BLUE,
+                   )
+               )
                self.wait(5)
     """
 
@@ -197,10 +200,13 @@ class Pendulum(MultiPendulum):
 
        class PendulumExample(SpaceScene):
            def construct(self):
-               pendulum = Pendulum(length=3, initial_theta=0.5)
-               self.play(FadeIn(pendulum))
-               self.make_rigid_body(*pendulum.bobs)
-               pendulum.start_swinging()
+               pendulums = VGroup(
+                   *[Pendulum(i) for i in np.linspace(1, 5, 7)]
+               )
+               self.play(FadeIn(pendulums))
+               for pendulum in pendulums:
+                   self.make_rigid_body(*pendulum.bobs)
+                   pendulum.start_swinging()
                self.wait(5)
     """
 

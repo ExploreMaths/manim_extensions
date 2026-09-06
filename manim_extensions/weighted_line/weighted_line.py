@@ -31,6 +31,70 @@ class WeightedLine(Line):
     kwargs
         Additional arguments to be passed to :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine.Line`
 
+    Examples
+    --------
+    A minimal weighted edge between two points.  To use the line in a
+    graph, pass the configuration to the edge object and use the
+    :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` as
+    the ``edge_type``; if you are using NetworkX to
+    create your graph, you can pass the edge data in the ``edge_config``
+    dictionary.
+
+    .. manim:: WeightedLineDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.weighted_line import WeightedLine
+
+       class WeightedLineDocExample(Scene):
+           def construct(self):
+               weighted_line = WeightedLine(
+                   0,
+                   1,
+                   weight=4,
+               )
+               self.add(weighted_line)
+
+    .. manim:: WeightedLineGraphDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.weighted_line import WeightedLine
+
+       class WeightedLineGraphDocExample(Scene):
+           def construct(self):
+               vertices = [1, 2, 3, 4, 5, 6, 7, 8]
+               edges = [(1, 7), (1, 8), (2, 3), (2, 4), (2, 5),
+                        (2, 8), (3, 4), (6, 1), (6, 2),
+                        (6, 3), (7, 2), (7, 4)]
+               g = DiGraph(vertices, edges, layout="circular", layout_scale=3,
+                           labels=True, vertex_config={7: {"fill_color": RED}},
+                           edge_type=WeightedLine,
+                           edge_config={(1, 7): {"stroke_color": RED, "weight": 2},
+                                        (7, 2): {"stroke_color": RED, "weight": 0},
+                                        (7, 4): {"stroke_color": RED, "weight": 5}})
+               self.add(g)
+
+    .. manim:: WeightedLineNetworkXDocExample
+       :save_last_frame:
+
+       import networkx as nx
+       from manim import *
+       from manim_extensions.weighted_line import WeightedLine
+
+       class WeightedLineNetworkXDocExample(Scene):
+           def construct(self):
+               G = nx.Graph()
+               G.add_nodes_from([1, 2, 3, 4, 5, 6, 7, 8])
+               G.add_weighted_edges_from([(1, 7, 2), (1, 8, 3), (2, 3, 4), (2, 4, 5),
+                                          (2, 5, 6), (2, 8, 1), (3, 4, 5), (6, 1, 0),
+                                          (6, 2, 11), (6, 3, 15), (7, 2, 3), (7, 4, 9)])
+               g = Graph(G.nodes, G.edges, layout="circular", layout_scale=3,
+                         labels=True, vertex_config={7: {"fill_color": RED}},
+                         edge_type=WeightedLine,
+                         edge_config={(u, v): G.get_edge_data(u, v) for u, v in G.edges})
+               self.add(g)
+
     """
 
     def __init__(

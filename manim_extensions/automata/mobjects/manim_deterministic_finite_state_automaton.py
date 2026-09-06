@@ -40,26 +40,30 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
     .. manim:: ManimdeterministicFiniteAutomatonExample
 
        from manim import *
-       from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimdeterministicFiniteAutomaton
 
-       class ManimdeterministicFiniteAutomatonExample(Scene):
+       class ManimdeterministicFiniteAutomatonExample(MovingCameraScene):
            def construct(self):
-               dfa = ManimdeterministicFiniteAutomaton()
-               self.add(dfa)
-               inp = dfa.construct_automaton_input("11")
-               inp.next_to(dfa, UP, buff=0.5)
-               self.play(FadeIn(inp))
-               animations = ManimAnimations()
-               q0 = dfa.get_initial_state()
-               q1 = dfa.get_state("q1")
-               q0_to_q1 = q0.get_transition_by_transition_to_state_id(q1.id)
-               self.play(animations.animate_highlight_state(q0))
-               self.play(animations.animate_highlight_transition(q0_to_q1))
+               # build the DFA from the default JSON template
+               dfa = ManimdeterministicFiniteAutomaton(animate_subscripts=False)
+
+               # Adjust camera frame to fit the automaton in the scene
+               self.camera.frame_width = dfa.width + 4
+               self.camera.frame_height = dfa.height + 4
+               self.camera.frame.move_to(dfa)
+
+               # Create an mobject version of the input for the automaton
+               automaton_input = dfa.construct_automaton_input("11")
+               automaton_input.next_to(dfa, UP, buff=0.5)
+
                self.play(
-                   animations.animate_state_to_default_color(q0),
-                   animations.animate_highlight_state(q1),
+                   DrawBorderThenFill(dfa),
+                   FadeIn(automaton_input),
                )
+
+               # Play all the animations generated from play_string()
+               for sequence in dfa.play_string(automaton_input):
+                   self.play(*sequence, run_time=0.5)
     """
 
     def __init__(

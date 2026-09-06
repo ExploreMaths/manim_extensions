@@ -28,6 +28,33 @@ class GaussianDistribution(VGroup):
         Color of the ellipses, by default ORANGE.
     **kwargs
         Forwarded to the parent class.
+
+    Examples
+    --------
+    .. manim:: GaussianDistributionDocExample
+       :save_last_frame:
+
+       from manim import *
+       import numpy as np
+       from manim_extensions.machine_learning.utils.mobjects.probability import (
+           GaussianDistribution,
+       )
+
+       class GaussianDistributionDocExample(Scene):
+           def construct(self):
+               axes = Axes(
+                   x_range=[-3, 3],
+                   y_range=[-3, 3],
+                   x_length=6,
+                   y_length=6,
+                   tips=False,
+               )
+               gaussian = GaussianDistribution(
+                   axes,
+                   mean=np.array([0.5, -0.5]),
+                   cov=np.array([[1.2, 0.6], [0.6, 0.8]]),
+               )
+               self.add(axes, gaussian)
     """
 
     def __init__(

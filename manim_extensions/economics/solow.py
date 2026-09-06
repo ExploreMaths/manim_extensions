@@ -41,6 +41,29 @@ class SolowDiagram(EconDiagram):
         If True (default), also draw the production function f(k).
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
+
+    Examples
+    --------
+    .. manim:: SolowDiagramDocExample
+
+       from manim import *
+       from manim_extensions.economics import SolowDiagram
+
+       class SolowDiagramDocExample(Scene):
+           def construct(self):
+               diagram = SolowDiagram(s=0.3, alpha=0.5, delta=0.1,
+                                      n=0.05, g=0.05, show_production=True)
+               self.play(Create(diagram))
+               self.wait()
+
+               label = Text("Increase in savings rate: s up",
+                            font_size=28).to_edge(UP)
+               self.play(Write(label))
+               for anim in diagram.increase_savings(s=0.5, show_arrows=True):
+                   self.play(anim)
+                   self.wait(0.5)
+               self.play(diagram.show_shares())
+               self.wait()
     """
 
     def __init__(

@@ -50,18 +50,14 @@ class Ray(Line):
 
        class RayExample(Scene):
            def construct(self):
-               lens = Lens(f=2, d=0.4, fill_opacity=0.3)
-               rays = VGroup(*[
-                   Ray(
-                       start=LEFT * 4 + UP * y,
-                       direction=RIGHT,
-                       init_length=6,
-                       propagate=[lens],
-                       color=YELLOW,
-                   )
-                   for y in (0.5, 0, -0.5)
-               ])
-               self.add(lens, rays)
+               lens_style = {"fill_opacity": 0.5, "color": BLUE}
+               a = Lens(-5, 1, **lens_style).shift(LEFT)
+               a2 = Lens(5, 1, **lens_style).shift(RIGHT)
+               rays = [
+                   Ray(LEFT * 5 + UP * i, RIGHT, 8, [a, a2], color=RED)
+                   for i in np.linspace(-2, 2, 10)
+               ]
+               self.add(a, a2, *rays)
     """
 
     def __init__(

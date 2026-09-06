@@ -44,9 +44,13 @@ class CubeMove(Animation):
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
                self.play(FadeIn(cube))
-               self.play(CubeMove(cube, "R"))
-               self.play(CubeMove(cube, "R'"))
+               # CubeMove() takes the cube and the face to rotate. The possible
+               # faces are F, B, U, D, L, and R. An inverse move is preceded by a
+               # single quote ('), a double move is followed by "2". If a move is
+               # too fast or too slow, run_time can be provided (in seconds):
+               self.play(CubeMove(cube, "F"))
                self.play(CubeMove(cube, "U2"), run_time=2)
+               self.play(CubeMove(cube, "R'"))
                self.wait()
     """
 
