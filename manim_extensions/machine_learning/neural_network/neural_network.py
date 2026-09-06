@@ -55,7 +55,6 @@ class NeuralNetwork(Group):
     Examples
     --------
     .. manim:: NeuralNetworkDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -63,6 +62,12 @@ class NeuralNetwork(Group):
            FeedForwardLayer,
            NeuralNetwork,
        )
+
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
 
        class NeuralNetworkDocExample(ThreeDScene):
            def construct(self):
@@ -78,6 +83,9 @@ class NeuralNetwork(Group):
                )
                nn.move_to(ORIGIN)
                self.add(nn)
+               # Animate the forward pass
+               forward_pass = nn.make_forward_pass_animation()
+               self.play(forward_pass)
     """
 
     def __init__(
@@ -362,25 +370,38 @@ class NeuralNetwork(Group):
             layer_forward_pass = layer.make_forward_pass_animation(
                 layer_args=current_layer_args, run_time=per_layer_runtime, **kwargs
             )
-            # Animate a forward pass for incoming connections
-            connection_input_pass = AnimationGroup()
+            # Animate a forward pass for incoming connections.
+            # Layers without an activation function (e.g. Convolutional2DLayer)
+            # return an empty AnimationGroup; manim raises when playing empty
+            # groups, so only keep non-empty animations.
+            def _is_empty(animation):
+                return (
+                    isinstance(animation, AnimationGroup)
+                    and len(animation.animations) == 0
+                )
+
+            subanimations = (
+                [] if _is_empty(layer_forward_pass) else [layer_forward_pass]
+            )
             for connection in self.connections:
                 if isinstance(layer, ConnectiveLayer):
                     output_layer = layer.output_layer
                     if connection.end_mobject == output_layer:
-                        connection_input_pass = ShowPassingFlash(
-                            connection,
-                            run_time=layer_forward_pass.run_time,
-                            time_width=0.2,
+                        subanimations.append(
+                            ShowPassingFlash(
+                                connection,
+                                run_time=layer_forward_pass.run_time,
+                                time_width=0.2,
+                            )
                         )
                         break
 
-            layer_forward_pass = AnimationGroup(
-                layer_forward_pass, 
-                connection_input_pass, 
-                lag_ratio=0.0
-            )
-            all_animations.append(layer_forward_pass)
+            if len(subanimations) > 0:
+                layer_forward_pass = AnimationGroup(
+                    *subanimations,
+                    lag_ratio=0.0
+                )
+                all_animations.append(layer_forward_pass)
             # Add the animation to per layer animation
             per_layer_animation_map[layer] = layer_forward_pass
         # Make the animation group
@@ -395,7 +416,8 @@ class NeuralNetwork(Group):
         """Overrides Create animation"""
         # Stop the neural network from being created twice
         if self.created:
-            return AnimationGroup()
+            # manim >= 0.21 raises when playing an empty AnimationGroup.
+            return Wait(run_time=0)
         self.created = True
 
         animations = []
@@ -404,10 +426,14 @@ class NeuralNetwork(Group):
         # Create each layer one by one
         for layer in self.all_layers:
             layer_animation = Create(layer)
-            # Make titles
-            create_title = Create(layer.title)
-            # Create layer animation group
-            animation_group = AnimationGroup(layer_animation, create_title)
+            # Make titles (empty default titles are plain Groups and
+            # cannot be played with Create, so skip them)
+            if len(layer.title.submobjects) > 0:
+                create_title = Create(layer.title)
+                # Create layer animation group
+                animation_group = AnimationGroup(layer_animation, create_title)
+            else:
+                animation_group = AnimationGroup(layer_animation)
             animations.append(animation_group)
 
         animation_group = AnimationGroup(*animations, lag_ratio=1.0)

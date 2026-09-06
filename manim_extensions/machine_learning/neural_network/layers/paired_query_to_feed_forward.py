@@ -86,4 +86,6 @@ class PairedQueryToFeedForward(ConnectiveLayer):
 
     @override_animation(Create)
     def _create_override(self):
-        return AnimationGroup()
+        # Nothing to create visually; manim >= 0.21 raises on empty groups,
+        # so return a zero-duration Wait instead.
+        return Wait(run_time=0)
