@@ -94,7 +94,7 @@ class VoronoiDelaunay:
         line_group = m.VGroup()
 
         center = verts.mean(axis=0)
-        ptp_bound = verts.ptp(axis=0)
+        ptp_bound = np.ptp(verts, axis=0)
         voronoi_vertices = np.pad(self.voronoi.vertices, ((0, 0), (0, 1)))
 
         # add voronoi lines

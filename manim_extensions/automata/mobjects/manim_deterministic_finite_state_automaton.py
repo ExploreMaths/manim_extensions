@@ -45,7 +45,7 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
        class ManimdeterministicFiniteAutomatonExample(MovingCameraScene):
            def construct(self):
                # build the DFA from the default JSON template
-               dfa = ManimdeterministicFiniteAutomaton(animate_subscripts=False)
+               dfa = ManimdeterministicFiniteAutomaton()
 
                # Adjust camera frame to fit the automaton in the scene
                self.camera.frame_width = dfa.width + 4

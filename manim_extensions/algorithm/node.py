@@ -612,8 +612,8 @@ class Node(VMobject):
                     Node.Select(
                         copied_node1,
                         copied_node2,
-                        select_color=select_color,
-                        select_opacity=select_opacity,
+                        color=select_color,
+                        opacity=select_opacity,
                     )
                 )
             steps.append(Swap(copied_node1, copied_node2))

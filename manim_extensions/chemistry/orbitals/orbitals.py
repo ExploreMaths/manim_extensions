@@ -11,6 +11,16 @@ from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 import scipy.special as spe
 
+if hasattr(spe, "sph_harm_y"):
+    # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
+    def _sph_harm(m, l, azimuthal, polar):
+        return spe.sph_harm_y(l, m, polar, azimuthal)
+
+else:
+    # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
+    def _sph_harm(m, l, azimuthal, polar):
+        return spe.sph_harm(m, l, azimuthal, polar)
+
 
 
 
@@ -51,7 +61,7 @@ class OrbitalBase(OpenGLSurface):
         self.shift(center)
 
     def psi_ang(self, phi, theta, l=0, m=0):
-        sphHarm = spe.sph_harm(m, l, phi, theta)
+        sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
 

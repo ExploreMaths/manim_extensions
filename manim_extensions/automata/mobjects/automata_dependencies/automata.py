@@ -129,8 +129,8 @@ class FiniteStateAutomaton:
             State definitions from JSON or XML parsing.
         """
         for state_data in states:
-            initial = state_data.get("initial") is not None
-            final = state_data.get("final") is not None
+            initial = "initial" in state_data
+            final = "final" in state_data
             state_id = int(state_data.get("@id", 0))
             name = state_data.get("@name", str(state_id))
             self.states.append(State(name, initial=initial, final=final, id=state_id))

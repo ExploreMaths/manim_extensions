@@ -429,7 +429,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
         """
-        about_point = self.get_bounding_box_point(m.ORIGIN)[: self.mesh.dim]
+        about_point = self.get_critical_point(m.ORIGIN)[: self.mesh.dim]
         self.mesh.scale_mesh(scale_factor, about_point)
         super().scale(scale_factor, **kwargs)
 
@@ -452,7 +452,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
-        about_point = self.get_bounding_box_point(m.ORIGIN)[: self.mesh.dim]
+        about_point = self.get_critical_point(m.ORIGIN)[: self.mesh.dim]
         self.mesh.stretch_mesh(factor, dim, about_point)
         super().stretch(factor, dim, **kwargs)
 
@@ -480,13 +480,13 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
         """
         if about_point is None:
-            about_point = self.get_bounding_box_point(m.ORIGIN)
+            about_point = self.get_critical_point(m.ORIGIN)
 
         if self.mesh.dim == 2:  # always rotate about Z if mesh is 2D
             self.mesh.apply_rotation(angle, m.OUT, about_point[:2])
         else:
             self.mesh.apply_rotation(angle, axis, about_point)
-        super().rotate(angle, axis, about_point, **kwargs)
+        super().rotate(angle, axis, about_point=about_point, **kwargs)
 
     def flip(self, axis=m.UP, **kwargs):
         """Flip the mesh about *axis*.

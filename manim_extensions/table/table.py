@@ -652,7 +652,9 @@ class Table(VGroup):
             index: Insert index (0-indexed). Defaults to end of table.
             
         Returns:
-            Tuple of (new_column_group, shift_animations, appear_animations)
+            Tuple of (new_column_group, shift_animations, appear_animations).
+            ``shift_animations`` is empty when appending at the end of the
+            table, so check it before wrapping it in an ``AnimationGroup``.
         """
         if len(values) != len(self.rows):
             raise ValueError(f"Values length ({len(values)}) must match number of rows ({len(self.rows)})")
@@ -754,7 +756,9 @@ class Table(VGroup):
             index: Column index to delete (0-indexed)
             
         Returns:
-            Tuple of (deleted_column_group, shift_animations)
+            Tuple of (deleted_column_group, shift_animations).
+            ``shift_animations`` is empty when deleting the last column, so
+            check it before wrapping it in an ``AnimationGroup``.
         """
         if index < 0 or index >= len(self.header_values):
             raise IndexError(f"Column index {index} out of range")
