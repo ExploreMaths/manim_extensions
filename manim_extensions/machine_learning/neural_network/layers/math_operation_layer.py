@@ -38,7 +38,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     Examples
     --------
     .. manim:: MathOperationLayerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -46,6 +45,12 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
            MathOperationLayer,
            NeuralNetwork,
        )
+
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
 
        class MathOperationLayerDocExample(Scene):
            def construct(self):
@@ -60,8 +65,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
                    layer_spacing=0.38,
                )
                nn.add_connection("feed_forward_1", "sum")
+               nn.add_connection("feed_forward_2", "sum")
                nn.move_to(ORIGIN)
-               self.add(nn)
+               self.play(Create(nn))
+               # Animate the forward pass
+               self.play(nn.make_forward_pass_animation())
     """
     valid_operations = ["+", "-", "*", "/"]
 

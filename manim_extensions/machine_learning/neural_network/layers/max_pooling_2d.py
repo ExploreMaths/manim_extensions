@@ -43,7 +43,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     Examples
     --------
     .. manim:: MaxPooling2DLayerDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -51,6 +50,12 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
            MaxPooling2DLayer,
            NeuralNetwork,
        )
+
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 1200
+       config.pixel_width = 1900
+       config.frame_height = 6.0
+       config.frame_width = 6.0
 
        class MaxPooling2DLayerDocExample(ThreeDScene):
            def construct(self):
@@ -65,6 +70,10 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                )
                nn.move_to(ORIGIN)
                self.add(nn)
+               # Animate the forward pass
+               forward_pass = nn.make_forward_pass_animation()
+               self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
+               self.wait(1)
     """
 
     def __init__(

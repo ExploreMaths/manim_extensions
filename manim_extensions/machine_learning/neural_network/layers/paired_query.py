@@ -32,7 +32,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
     Examples
     --------
     .. manim:: PairedQueryLayerDocExample
-       :save_last_frame:
 
        from manim import *
        import numpy as np
@@ -45,19 +44,31 @@ class PairedQueryLayer(NeuralNetworkLayer):
            GrayscaleImageMobject,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class PairedQueryLayerDocExample(Scene):
            def construct(self):
-               positive_array = np.zeros((8, 8), dtype=np.uint8)
-               positive_array[2:6, 2:6] = 255
-               negative_array = np.zeros((8, 8), dtype=np.uint8)
-               negative_array[4:8, 4:8] = 255
+               # Synthesize digit-like query images
+               yy, xx = np.mgrid[0:28, 0:28]
+               positive_array = np.where(
+                   (yy - 14) ** 2 + (xx - 14) ** 2 < 81, 200, 0
+               ).astype(np.uint8)
+               negative_array = np.where(
+                   (yy - 20) ** 2 + (xx - 20) ** 2 < 81, 200, 0
+               ).astype(np.uint8)
                query_layer = PairedQueryLayer(
                    GrayscaleImageMobject(positive_array, height=0.6),
                    GrayscaleImageMobject(negative_array, height=0.6),
                )
                nn = NeuralNetwork([query_layer, FeedForwardLayer(3)])
                nn.move_to(ORIGIN)
-               self.add(nn)
+               self.play(Create(nn))
+               # Animate the forward pass
+               self.play(nn.make_forward_pass_animation())
     """
 
     def __init__(

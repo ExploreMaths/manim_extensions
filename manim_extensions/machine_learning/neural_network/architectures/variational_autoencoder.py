@@ -36,18 +36,23 @@ class VariationalAutoencoder(VGroup):
     Examples
     --------
     .. manim:: VariationalAutoencoderDocExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder import (
            VariationalAutoencoder,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class VariationalAutoencoderDocExample(Scene):
            def construct(self):
                vae = VariationalAutoencoder()
                vae.move_to(ORIGIN)
-               self.add(vae)
+               self.play(Create(vae))
     """
 
     def __init__(
