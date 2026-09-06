@@ -21,3 +21,7 @@ workflow/_validate_result.txt
 workflow/_inline_refs_data.json
 workflow/_inline_refs_result.txt
 tests/__test_media_dir__
+/element_data.csv
+/element_data_single.csv
+/HTMLParsedVMobjectDocExample.html
+/HTMLParsedVMobjectDocExample.js

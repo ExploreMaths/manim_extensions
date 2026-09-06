@@ -5,3 +5,4 @@
 """Utility functions for algorithm visualization."""
 
 from .numpy_helper import NumpyHelper
+from .debug import index_paragraph_labels
