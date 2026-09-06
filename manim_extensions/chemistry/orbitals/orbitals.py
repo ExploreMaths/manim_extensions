@@ -109,6 +109,12 @@ class Orbital(OpenGLSurface):
     Uses positive and negative orbitals to create
     an orbital. n value is still not implemented TODO
 
+    .. note::
+
+        :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface` requires
+        the OpenGL renderer; render scenes containing orbitals with
+        ``manim render --renderer=opengl``.
+
     Parameters
     ----------
     n : :class:`int`, optional

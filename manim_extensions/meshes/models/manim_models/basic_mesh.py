@@ -89,11 +89,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
                    quad_pyramid.get_face(4).animate.set_fill(GREEN, 1),
                )
                # move a vertex; all adjacent faces and edges are updated.
-               # Note: Rotate animations are not supported by ManimMesh,
-               # rotate the mesh data directly via mesh.apply_rotation instead.
                tri_pyramid.move_vertex_to(
                    vertex_idx=0, scene=self, pos=np.array([2, 2, 1])
                )
+               # rotate the whole mesh; mesh data and mobjects stay in sync
+               self.play(Rotate(quad_pyramid, PI / 3, about_point=ORIGIN))
                self.wait()
     """
 
