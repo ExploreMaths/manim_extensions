@@ -108,7 +108,8 @@ napoleon_type_aliases = None
 # inheritance_graph settings (matching Manim Community documentation)
 inheritance_graph_attrs = {
     "size": '""',
-    "splines": "ortho",
+    "splines": "spline",
+    "concentrate": "true",
     "nodesep": 0.15,
     "ranksep": 0.3,
 }
