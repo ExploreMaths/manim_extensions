@@ -751,6 +751,7 @@ class HighLightWithLines(AnimationGroup):
         )
         rectangle.save_state()
         rectangle.stretch(0, 0, about_edge=LEFT).set_fill(opacity=0)
+        self.rectangle = rectangle
 
         super().__init__(
             Create(self.lines, lag_ratio=0),
@@ -758,9 +759,18 @@ class HighLightWithLines(AnimationGroup):
             **kwargs,
         )
 
+        # Remember the created parts so that UnHighLightWithLines removes
+        # exactly these objects instead of leaving them in the scene.
+        mobject._highlight_with_lines_parts = (self.lines, rectangle)
+
 
 class UnHighLightWithLines(AnimationGroup):
     r"""Undo :class:`~manim_extensions.animations.HighLightWithLines`: fade out the lines and rectangle.
+
+    When played on a mobject that was highlighted with
+    :class:`~manim_extensions.animations.HighLightWithLines`, the exact
+    lines and rectangle created by that animation are removed.  Without a
+    preceding highlight, the parts are recreated first and then removed.
 
     .. note::
 
@@ -787,12 +797,14 @@ class UnHighLightWithLines(AnimationGroup):
     .. manim:: UnHighLightWithLinesDocExample
 
        from manim import *
-       from manim_extensions import UnHighLightWithLines
+       from manim_extensions import HighLightWithLines, UnHighLightWithLines
 
        class UnHighLightWithLinesDocExample(Scene):
            def construct(self):
                mob = MathTex(r"\Delta = b^2 - 4ac", color=WHITE).scale(1.5)
                self.add(mob)
+               self.play(HighLightWithLines(mob))
+               self.wait(0.5)
                self.play(UnHighLightWithLines(mob))
                self.wait()
     """
@@ -806,17 +818,27 @@ class UnHighLightWithLines(AnimationGroup):
         **kwargs,
     ):
         """Initialize the UnHighLightWithLines instance."""
-        line_up = Line(color=color, stroke_width=2)
-        line_up.width = config.frame_width
-        line_up.next_to(mobject, UP, buff=buff)
-        line_down = Line(color=color, stroke_width=2)
-        line_down.width = config.frame_width
-        line_down.next_to(mobject, DOWN, buff=buff)
-        lines = VGroup(line_up, line_down)
+        parts = getattr(mobject, "_highlight_with_lines_parts", None)
+        if parts is not None:
+            # remove exactly the objects created by HighLightWithLines
+            lines, rectangle = parts
+            del mobject._highlight_with_lines_parts
+        else:
+            line_up = Line(color=color, stroke_width=2)
+            line_up.width = config.frame_width
+            line_up.next_to(mobject, UP, buff=buff)
+            line_down = Line(color=color, stroke_width=2)
+            line_down.width = config.frame_width
+            line_down.next_to(mobject, DOWN, buff=buff)
+            lines = VGroup(line_up, line_down)
 
-        rectangle = SurroundingRectangle(
-            mobject, color=color, fill_opacity=rec_opacity, stroke_width=0, buff=buff
-        )
+            rectangle = SurroundingRectangle(
+                mobject,
+                color=color,
+                fill_opacity=rec_opacity,
+                stroke_width=0,
+                buff=buff,
+            )
 
         super().__init__(
             Uncreate(lines, lag_ratio=0),

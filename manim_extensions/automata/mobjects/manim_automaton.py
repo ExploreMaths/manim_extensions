@@ -141,7 +141,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         else:
             self.nda_builder = False
 
-        self.animate_subscripts = animate_subscripts
+        self._animate_subscripts = animate_subscripts
 
         VGroup.__init__(self, **kwargs)
 
@@ -159,7 +159,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def add_manim_state(self, manim_state: ManimState) -> None:
         # maybe need validation
         # adds an already existing manim_state to automaton
-        self.append(manim_state)
+        self.add(manim_state)
 
     def construct_state(self, state: dict[str, object], scaling: float = 10) -> None:
         initial = False
@@ -448,26 +448,49 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return None
 
     def play_string(self, input: Union[str, "ManimAutomataInput"]) -> list:
+        """Run *input* through the automaton and return the animations.
+
+        Parameters
+        ----------
+        input : str or :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput`
+            The input string, or an already constructed input mobject.
+
+        Returns
+        -------
+        list of list of :class:`~manim.animation.animation.Animation`
+            One entry per step; each entry is a list of animations that can
+            be played with ``self.play(*entry)``.
+        """
         if type(input) is str:
             # create mobject of input string
             self.manim_automata_input = self.construct_automaton_input(input)
             # position the mobject
             self.set_default_position_of_input_string()
-            # display manim_automaton_input to the screen
-            list_of_animations.append(
-                self.manim_animations.animate_display_input(self.manim_automata_input)
-            )
+            input_to_run = self.manim_automata_input
         else:
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
+            input_to_run = input
+
+        # display manim_automaton_input to the screen
+        list_of_animations = [
+            self.manim_animations.animate_display_input(self.manim_automata_input)
+        ]
 
         # run the input through the machine, returning a history of what happend
-        history = self.run_input_through_automaton(input)
+        history = self.run_input_through_automaton(input_to_run)
 
-        list_of_animations = self.generate_history_animations(history)
+        list_of_animations = list_of_animations + self.generate_history_animations(
+            history
+        )
 
-        return list_of_animations
+        # normalize: every entry must be a list of animations so that callers
+        # can uniformly do ``self.play(*entry)`` for each entry
+        return [
+            entry if isinstance(entry, list) else [entry]
+            for entry in list_of_animations
+        ]
 
     def generate_history_animations(self, history: dict[str, object]) -> list[object]:
         """Given a history of events of each iteration of the input ran through the manim automaton,
@@ -506,7 +529,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                         step_history
                     )
 
-                if self.animate_subscripts:
+                if self._animate_subscripts:
                     list_of_animations.append(
                         self.animate_subscripts(iteration_history)
                     )

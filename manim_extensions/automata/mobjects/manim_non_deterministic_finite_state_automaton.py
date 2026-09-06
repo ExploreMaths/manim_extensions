@@ -70,7 +70,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
            def construct(self):
                # build the NFA from the default JSON template (contains an
                # epsilon transition and multiple branches per symbol)
-               nda = ManimNondeterministicFiniteAutomaton(animate_subscripts=False)
+               nda = ManimNondeterministicFiniteAutomaton()
 
                # Adjust camera frame to fit the automaton in the scene
                self.camera.frame_width = nda.width + 4

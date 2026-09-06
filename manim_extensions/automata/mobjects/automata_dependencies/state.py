@@ -120,6 +120,10 @@ class State:
                 return transition
         return None
 
+    def get_transitions(self) -> list["Transition"]:
+        """Return all transitions outgoing from this state."""
+        return self.transitions
+
     def get_transition_by_transition_to_state_id(
         self, transition_to_state_id: int
     ) -> "Transition | None":

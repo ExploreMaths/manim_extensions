@@ -67,7 +67,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
        class ManimPushDownAutomatonExample(MovingCameraScene):
            def construct(self):
                # build the PDA from the default JSON template
-               pda = ManimPushDownAutomaton(animate_subscripts=False)
+               pda = ManimPushDownAutomaton()
 
                # Adjust camera frame to fit the automaton in the scene
                self.camera.frame_width = pda.width + 4
@@ -211,7 +211,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self,
         input: Union[str, "ManimAutomataInput"],
         automaton_path_name: str | None = None,
-        accept_on_final_state: bool = True,
     ) -> list:
         """Animate the pushdown automaton processing an input string.
 
@@ -221,34 +220,45 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             The input string or pre-constructed input mobject.
         automaton_path_name : str or None
             Optional path name for the automaton traversal.
-        accept_on_final_state : bool
-            If ``True``, acceptance requires ending on a final state.
 
         Returns
         -------
-        list
-            A list of animations to play.
+        list of list of :class:`~manim.animation.animation.Animation`
+            One entry per step; each entry is a list of animations that can
+            be played with ``self.play(*entry)``.
         """
         if type(input) is str:
             # create mobject of input string
             self.manim_automata_input = self.construct_automaton_input(input)
             # position the mobject
             self.set_default_position_of_input_string()
-            # display manim_automaton_input to the screen
-            list_of_animations.append(
-                self.manim_animations.animate_display_input(self.manim_automata_input)
-            )
+            input_to_run = self.manim_automata_input
         else:
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
+            input_to_run = input
+
+        # display manim_automaton_input to the screen
+        list_of_animations = [
+            self.manim_animations.animate_display_input(self.manim_automata_input)
+        ]
 
         # run the input through the machine, returning a history of what happend
-        history = self.run_input_through_automaton(input)
+        history = self.run_input_through_automaton(
+            input_to_run, automaton_path_name
+        )
 
-        list_of_animations = self.generate_history_animations(history)
+        list_of_animations = list_of_animations + self.generate_history_animations(
+            history
+        )
 
-        return list_of_animations
+        # normalize: every entry must be a list of animations so that callers
+        # can uniformly do ``self.play(*entry)`` for each entry
+        return [
+            entry if isinstance(entry, list) else [entry]
+            for entry in list_of_animations
+        ]
 
     # overriden
     def automaton_step(

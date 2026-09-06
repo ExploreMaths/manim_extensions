@@ -15,6 +15,7 @@ rendering_times.csv
 .DS_Store
 docs/_c.log
 docs/_v.log
+.docspot
 workflow/_refs_report.json
 workflow/_validate_result.txt
 workflow/_inline_refs_data.json
