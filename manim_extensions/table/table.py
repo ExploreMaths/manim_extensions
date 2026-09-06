@@ -47,6 +47,113 @@ class Table(VGroup):
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    Create a table from a data list (the first row is the header) and
+    animate it with :class:`~manim.animation.creation.Write`.  Individual
+    cells, rows and columns can be accessed for highlighting, and rows and
+    columns can be added and deleted again with animations.  Styling can
+    be applied per header, per column or per cell.
+
+    .. manim:: TableDocExample
+
+       from manim import *
+       from manim_extensions.table import Table
+
+       class TableDocExample(Scene):
+           def construct(self):
+               data = [
+                   ["Name", "Age", "City"],
+                   ["Alice", "25", "New York"],
+                   ["Bob", "30", "Paris"],
+               ]
+               table = Table(data)
+               self.play(Write(table))
+               # row 0 is the header, row 1 the first data row
+               self.play(Circumscribe(table.get_cell(1, 1)))
+               self.play(Circumscribe(table.get_column_by_name("Age")))
+               self.wait()
+
+    .. manim:: TableRowOpsDocExample
+
+       from manim import *
+       from manim_extensions.table import Table
+
+       class TableRowOpsDocExample(Scene):
+           def construct(self):
+               table = Table([
+                   ["Name", "Age", "City"],
+                   ["Alice", "25", "New York"],
+                   ["Bob", "30", "Paris"],
+               ])
+               self.add(table)
+               # add a new row at the bottom; the mutation methods return
+               # the affected row together with the animations to play
+               new_row, anims = table.add_row(["Charlie", "35", "London"])
+               self.play(AnimationGroup(*anims, lag_ratio=0.05))
+               # delete a data row (index 1 is the first data row, header is 0)
+               deleted_row, anims = table.delete_row(1)
+               self.play(AnimationGroup(*anims, lag_ratio=0.05))
+               self.wait()
+
+    .. manim:: TableColumnOpsDocExample
+
+       from manim import *
+       from manim_extensions.table import Table
+
+       class TableColumnOpsDocExample(Scene):
+           def construct(self):
+               table = Table([
+                   ["ID", "Name"],
+                   ["1", "Alice"],
+                   ["2", "Bob"],
+               ])
+               self.add(table)
+               # append a column at the end (nothing to shift, only FadeIn anims)
+               new_col, shift_anims, appear_anims = table.add_column(
+                   header="Score", values=["85", "92"]
+               )
+               if shift_anims:
+                   self.play(AnimationGroup(*shift_anims, lag_ratio=0.1))
+               self.play(AnimationGroup(*appear_anims, lag_ratio=0.1))
+               # insert a column in the middle (index 1)
+               new_col, shift_anims, appear_anims = table.add_column(
+                   header="Role", values=["Dev", "Manager"], index=1
+               )
+               if shift_anims:
+                   self.play(AnimationGroup(*shift_anims, lag_ratio=0.1))
+               self.play(AnimationGroup(*appear_anims, lag_ratio=0.1))
+               # delete a column by index
+               deleted_col, shift_anims = table.delete_column(0)
+               self.play(FadeOut(deleted_col))
+               if shift_anims:
+                   self.play(AnimationGroup(*shift_anims, lag_ratio=0.1))
+               self.wait()
+
+    .. manim:: TableStylingDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.table import Table
+
+       class TableStylingDocExample(Scene):
+           def construct(self):
+               table = Table([
+                   ["Product", "Category", "Price"],
+                   ["Apple", "Fruit", "$1.50"],
+                   ["Banana", "Fruit", "$0.75"],
+                   ["Milk", "Dairy", "$2.00"],
+               ])
+               # style the header
+               table.set_header_background_color(BLUE, opacity=0.3)
+               table.set_header_font_color(WHITE)
+               # style a whole column (column index 2 = Price)
+               table.set_column_font_color(2, GREEN)
+               # style a single cell (row 3, column 2)
+               table.get_cell(3, 2).set_font_color(RED)
+               table.get_cell(3, 2).set_background_color(RED, opacity=0.2)
+               self.add(table)
     """
     
     def __init__(

@@ -34,6 +34,34 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         Font size of the operation text, by default 20.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: MathOperationLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           MathOperationLayer,
+           NeuralNetwork,
+       )
+
+       class MathOperationLayerDocExample(Scene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   {
+                       "feed_forward_1": FeedForwardLayer(3),
+                       "feed_forward_2": FeedForwardLayer(
+                           3, activation_function="ReLU"
+                       ),
+                       "sum": MathOperationLayer("+", activation_function="ReLU"),
+                   },
+                   layer_spacing=0.38,
+               )
+               nn.add_connection("feed_forward_1", "sum")
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
     valid_operations = ["+", "-", "*", "/"]
 

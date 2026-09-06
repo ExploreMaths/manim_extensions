@@ -49,6 +49,7 @@ class VoronoiDelaunay:
                pts[:, 2] = 0
                mesh_data = Mesh(pts.tolist(), [])
                tm = TriangleManim2DMesh(mesh_data, display_vertices=True)
+               self.add(tm)
                vd = VoronoiDelaunay(self, tm)
                self.play(FadeIn(tm.vertices))
                # grow the Delaunay triangles dual to the Voronoi vertices

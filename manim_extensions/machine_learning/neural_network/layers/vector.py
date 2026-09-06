@@ -24,6 +24,29 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         from [0, 1].
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: VectorLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+           VectorLayer,
+       )
+
+       class VectorLayerDocExample(Scene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       FeedForwardLayer(4),
+                       VectorLayer(1),
+                   ]
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(self, num_values, value_func=lambda: random.uniform(0, 1), **kwargs):

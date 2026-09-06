@@ -62,6 +62,95 @@ class RubiksCube(VMobject):
                for move in moves:
                    self.play(CubeMove(cube, move), run_time=0.8)
                self.wait()
+
+    .. manim:: RubiksCubeColorsExample
+
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+
+       class RubiksCubeColorsExample(ThreeDScene):
+           def construct(self):
+               # Colors are passed in the order [Up, Right, Front, Down, Left, Back]
+               # Default is [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"]
+               cube = RubiksCube(
+                   colors=[WHITE, ORANGE, DARK_BLUE, YELLOW, PINK, "#00FF00"]
+               ).scale(0.6)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               self.wait()
+
+    .. manim:: RubiksCubeDimExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+
+       class RubiksCubeDimExample(ThreeDScene):
+           def construct(self):
+               # The first parameter the RubiksCube takes is the dimension
+               # (alternatively dim=4). Default dim is 3; much larger cubes
+               # (e.g. dim=10) can take a long time to render.
+               cube = RubiksCube(4).scale(0.5)
+               self.set_camera_orientation(phi=50 * DEGREES, theta=160 * DEGREES)
+               self.renderer.camera.frame_center = cube.get_center()
+               self.add(cube)
+
+    .. manim:: RubiksCubeOffsetExample
+
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+
+       class RubiksCubeOffsetExample(ThreeDScene):
+           def construct(self):
+               # x_offset, y_offset and z_offset control the gap between cubies
+               # (the default for all three is 2.1). Passing all three spreads
+               # the cube apart along every axis:
+               spread = RubiksCube(x_offset=3, y_offset=3, z_offset=3).scale(0.5)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=spread.get_center())
+               self.play(FadeIn(spread))
+               # Offsets can also be adjusted individually, e.g. y_offset:
+               wide = RubiksCube(y_offset=4).scale(0.6)
+               self.play(FadeOut(spread))
+               self.play(FadeIn(wide))
+               self.wait()
+
+    .. manim:: RubiksCubeSetStateExample
+
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+
+       class RubiksCubeSetStateExample(ThreeDScene):
+           def construct(self):
+               cube = RubiksCube().scale(0.6)
+               # set_state() takes a 54-character string in kociemba facelet
+               # notation (9 cubies per face, in the order U, R, F, D, L, B).
+               # Each letter tells the cube which face's color that cubie face
+               # should have, so a real-life scrambled cube can be replicated:
+               cube.set_state("BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR")
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               self.wait()
+
+    .. manim:: RubiksCubeFaceExample
+
+       from manim import *
+       from manim_extensions.rubikscube import RubiksCube
+
+       class RubiksCubeFaceExample(ThreeDScene):
+           def construct(self):
+               cube = RubiksCube().scale(0.6)
+               self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
+                                frame_center=cube.get_center())
+               self.play(FadeIn(cube))
+               # get_face() returns an array of Cubie objects, so wrap them in
+               # a VGroup to animate them all at once. Individual cubies are
+               # accessed straight from the cubies grid, e.g. cube.cubies[0, 0, 0]
+               self.play(Indicate(VGroup(*cube.get_face("F"))))
+               self.play(Indicate(cube.cubies[0, 0, 0]))
+               self.wait()
     """
 
     # If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up

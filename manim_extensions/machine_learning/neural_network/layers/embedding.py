@@ -29,6 +29,30 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         by default False.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: EmbeddingLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           EmbeddingLayer,
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+
+       class EmbeddingLayerDocExample(Scene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       FeedForwardLayer(3),
+                       EmbeddingLayer(),
+                       FeedForwardLayer(3),
+                   ]
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

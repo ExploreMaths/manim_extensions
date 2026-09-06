@@ -143,14 +143,17 @@ class Inductor(VMobject):
 
        class InductorExample(Scene):
            def construct(self):
-               inductor = Inductor(label="10mH")
-               start, end = inductor.get_anchors()
+               # a labelled inductor with the label placed on top
+               labelled = Inductor(label="0.3", direction=UP)
+               start, end = labelled.get_anchors()
+               plain = Inductor().next_to(labelled, RIGHT, buff=1.5)
                self.add(
-                   inductor,
+                   labelled,
+                   plain,
                    Dot(start, color=RED),
                    Dot(end, color=BLUE),
-                   Text("start", font_size=20).next_to(start, UP, buff=0.15),
-                   Text("end", font_size=20).next_to(end, UP, buff=0.15),
+                   Text("start", font_size=20).next_to(start, DOWN, buff=0.15),
+                   Text("end", font_size=20).next_to(end, DOWN, buff=0.15),
                )
     """
 
@@ -526,9 +529,17 @@ class Ground(VMobject):
 
        class GroundExample(Scene):
            def construct(self):
-               analog = Ground(ground_type="ground", label="A")
-               earth = Ground(ground_type="earth").next_to(analog, RIGHT, buff=2)
-               self.add(analog, earth, Dot(analog.get_terminals(), color=RED))
+               digital = Ground(ground_type="ground", label="D")
+               analog = Ground(ground_type="ground", label="A").next_to(
+                   digital, RIGHT, buff=1.5
+               )
+               earth = Ground(ground_type="earth").next_to(analog, RIGHT, buff=1.5)
+               self.add(
+                   digital,
+                   analog,
+                   earth,
+                   Dot(digital.get_terminals(), color=RED),
+               )
     """
 
     def __init__(self, ground_type="ground", label=None, **kwargs):
@@ -600,8 +611,14 @@ class Opamp(VMobject):
 
        class OpampExample(Scene):
            def construct(self):
-               opamp = Opamp(bias_supply="both", label=True)
-               self.add(opamp)
+               positive = Opamp(bias_supply="positive")
+               negative = Opamp(bias_supply="negative").next_to(
+                   positive, RIGHT, buff=2.5
+               )
+               both = Opamp(bias_supply="both", label=True).next_to(
+                   negative, RIGHT, buff=2.5
+               )
+               self.add(positive, negative, both)
                for name in (
                    "positive_input",
                    "negative_input",
@@ -609,7 +626,7 @@ class Opamp(VMobject):
                    "positive_bias",
                    "negative_bias",
                ):
-                   self.add(Dot(opamp.get_terminals(name), color=PURE_YELLOW))
+                   self.add(Dot(both.get_terminals(name), color=PURE_YELLOW))
     """
 
     def __init__(self, bias_supply=None, label=False, **kwargs):

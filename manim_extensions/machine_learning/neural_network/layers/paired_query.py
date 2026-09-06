@@ -28,6 +28,36 @@ class PairedQueryLayer(NeuralNetworkLayer):
         Spacing between the two images, by default 0.5.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+
+    Examples
+    --------
+    .. manim:: PairedQueryLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       import numpy as np
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+           PairedQueryLayer,
+       )
+       from manim_extensions.machine_learning.utils.mobjects.image import (
+           GrayscaleImageMobject,
+       )
+
+       class PairedQueryLayerDocExample(Scene):
+           def construct(self):
+               positive_array = np.zeros((8, 8), dtype=np.uint8)
+               positive_array[2:6, 2:6] = 255
+               negative_array = np.zeros((8, 8), dtype=np.uint8)
+               negative_array[4:8, 4:8] = 255
+               query_layer = PairedQueryLayer(
+                   GrayscaleImageMobject(positive_array, height=0.6),
+                   GrayscaleImageMobject(negative_array, height=0.6),
+               )
+               nn = NeuralNetwork([query_layer, FeedForwardLayer(3)])
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

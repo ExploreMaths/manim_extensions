@@ -28,6 +28,24 @@ class Gear(VMobject):
         a solid gear. Defaults to ``0.1``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
+    Examples
+    --------
+    .. manim:: PymunkGearDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.pymunk import *
+
+       class PymunkGearDocExample(Scene):
+           def construct(self):
+               gears = VGroup(
+                   Gear(num_teeth=8, radius=0.8, color=BLUE),
+                   Gear(num_teeth=12, radius=1.0, tooth_height=0.5, color=GREEN),
+                   Gear(num_teeth=16, radius=0.9, hole_radius=0, color=RED),
+               )
+               gears.arrange(RIGHT, buff=0.8)
+               self.add(gears)
     """
 
     def __init__(

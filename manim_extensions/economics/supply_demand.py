@@ -24,6 +24,25 @@ class SupplyDemandDiagram(EconDiagram):
         If True (default), mark the supply–demand intersection as the equilibrium.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
+
+    Examples
+    --------
+    .. manim:: SupplyDemandDiagramDocExample
+
+       from manim import *
+       from manim_extensions.economics import SupplyDemandDiagram
+
+       class SupplyDemandDiagramDocExample(Scene):
+           def construct(self):
+               diagram = SupplyDemandDiagram(
+                   demand_func=lambda q: 8 - 0.5 * q,   # inverse demand P(Q)
+                   supply_func=lambda q: 2 + 0.5 * q,   # inverse supply P(Q)
+                   show_equilibrium=True,
+               )
+               self.play(Create(diagram))
+               self.play(diagram.get_shift_animation(
+                   "demand", lambda q: 10 - 0.5 * q, show_arrows=True))
+               self.wait()
     """
 
     def __init__(

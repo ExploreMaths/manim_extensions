@@ -47,6 +47,44 @@ def qr_code(payload: str,
     :param segno_kwargs:        additional keyword arguments for the segno.make() function.
     :param kwargs:              placeholder for additional keyword arguments that are not used in this function.
     :return:                    a VGroup containing the QR code as Manim objects.
+
+    Examples
+    --------
+    .. manim:: QrCodeDocExample
+       :save_last_frame:
+
+       import manim as m
+       from manim_extensions.qr_codes.qr import qr_code
+
+       class QrCodeDocExample(m.Scene):
+           def construct(self):
+               plain = qr_code("https://fishshell.com")
+               with_icon = qr_code(
+                   payload="https://fishshell.com",
+                   icon="terminal",
+                   icon_size=6,
+               )
+               group = m.VGroup(plain, with_icon).arrange(m.RIGHT, buff=0.75)
+               label = m.Text("https://fishshell.com")
+               label.to_edge(m.UP, buff=0.75)
+               self.add(group, label)
+
+    .. manim:: QrCodeShapesExample
+
+       import manim as m
+       from manim_extensions.qr_codes.qr import qr_code
+
+       class QrCodeShapesExample(m.Scene):
+           def construct(self):
+               rust = qr_code("https://www.rust-lang.org/", icon="language-rust",
+                              data_shape="circles")
+               self.play(m.FadeIn(rust))
+               self.wait(1)
+               python = qr_code("https://www.python.org/", icon="language-python",
+                                data_shape="circles", corner_color=m.BLUE,
+                                icon_color=m.YELLOW, icon_size=4)
+               self.play(m.ReplacementTransform(rust, python))
+               self.wait(1)
     """
     if icon_color is None:
         icon_color = m.WHITE

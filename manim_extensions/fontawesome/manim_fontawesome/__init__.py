@@ -8,7 +8,19 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE.txt file.
 
-"""Font Awesome icons for Manim."""
+"""Font Awesome icons for Manim.
+
+Access the SVG icons through the three style namespaces ``brand``,
+``regular``, and ``solid``. Every attribute lookup returns an
+:class:`~manim.mobject.svg.svg_mobject.SVGMobject`, so icons can be added,
+arranged, colored, and animated like any other mobject. The full icon list
+is available at https://fontawesome.com/icons (see ``FONT_AWESOME_VERSION``
+for the bundled icon set version).
+
+The usage examples live in the docstrings of :class:`~manim_extensions.fontawesome.manim_fontawesome.Brand`,
+:class:`~manim_extensions.fontawesome.manim_fontawesome.Regular`,
+and :class:`~manim_extensions.fontawesome.manim_fontawesome.Solid`.
+"""
 
 from manim import *
 import os
@@ -4119,7 +4131,23 @@ def _get_svg_object(fp: str):
 
 
 class Brand:
-    """Brand SVG files defined in font-awesome/svgs/brands"""
+    """Brand SVG files defined in font-awesome/svgs/brands
+
+    Every attribute (e.g. ``brand.github``) is a brand-style Font Awesome
+    icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
+
+    Examples
+    --------
+    .. manim:: BrandDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import brand
+
+       class BrandDocExample(Scene):
+           def construct(self):
+               self.add(brand.python)
+    """
     def __init__(self) -> None:
         pass
 
@@ -4128,7 +4156,23 @@ class Brand:
 
 
 class Regular:
-    """Regular SVG files defined in font-awesome/svgs/regular"""
+    """Regular SVG files defined in font-awesome/svgs/regular
+
+    Every attribute (e.g. ``regular.heart``) is a regular-style Font Awesome
+    icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
+
+    Examples
+    --------
+    .. manim:: RegularDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import regular
+
+       class RegularDocExample(Scene):
+           def construct(self):
+               self.add(regular.heart)
+    """
     def __init__(self) -> None:
         pass
 
@@ -4137,7 +4181,25 @@ class Regular:
 
 
 class Solid:
-    """Solid SVG files defined in font-awesome/svgs/solid"""
+    """Solid SVG files defined in font-awesome/svgs/solid
+
+    Every attribute (e.g. ``solid.rocket``) is a solid-style Font Awesome
+    icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
+
+    Examples
+    --------
+    .. manim:: SolidDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import solid
+
+       class SolidDocExample(Scene):
+           def construct(self):
+               rocket = solid.rocket
+               rocket.set_color(ORANGE)
+               self.add(rocket)
+    """
     def __init__(self) -> None:
         pass
 

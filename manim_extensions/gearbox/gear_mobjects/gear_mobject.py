@@ -718,6 +718,39 @@ class Gear(VMobject):
         offset: axial distance offset coefficient. The gears will be offset*module further apart than default.
         positive_bias: When offset is used, there will play between gears. If positive_bias= True,
             this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
+
+        Examples
+        --------
+        .. manim:: GearMeshToDocExample
+
+           from manim import *
+           from manim_extensions.gearbox import Gear
+
+           class GearMeshToDocExample(Scene):
+               def construct(self):
+                   # smaller gear
+                   gear1 = Gear(
+                       12, module=1, profile_shift=0.3,
+                       stroke_opacity=0, fill_color=WHITE, fill_opacity=1,
+                   )
+                   # larger gear with inner teeth
+                   gear2 = Gear(
+                       36, module=1, inner_teeth=True, profile_shift=0.1,
+                       stroke_opacity=0, fill_color=RED, fill_opacity=1,
+                   )
+                   gear1.shift(gear1.rp * UP)
+                   gear2.shift(gear2.rp * UP)
+                   # mesh with 0.15*module larger distance than default;
+                   # bias selects which tooth flank engages when there is offset and play
+                   gear2.mesh_to(gear1, offset=0.15, bias=False)
+
+                   self.add(gear1, gear2)
+                   self.play(
+                       Rotate(gear1, gear1.pitch_angle, rate_func=linear),
+                       Rotate(gear2, gear2.pitch_angle, rate_func=linear),
+                       run_time=4,
+                   )
+                   self.wait()
         """
 
         # -- Rack branch -----------------------------------------------------------
@@ -920,22 +953,6 @@ class Rack(VMobject):
     The rack must use the same module and pressure angle as the mating gear
     for proper meshing.
 
-    .. manim:: RackExample
-
-       from manim import *
-       from manim_extensions.gearbox import Gear, Rack
-
-       class RackExample(Scene):
-           def construct(self):
-               gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-               rack = Rack(
-                   12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
-               )
-               gear.mesh_to(rack)
-
-               self.add(gear, rack)
-               self.play(Rotate(gear, gear.pitch_angle, rate_func=linear), run_time=2)
-               self.wait()
     Parameters
     ----------
     num_of_teeth : int
@@ -952,6 +969,25 @@ class Rack(VMobject):
         Defaults to ``1.17``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
+    Examples
+    --------
+    .. manim:: RackExample
+
+       from manim import *
+       from manim_extensions.gearbox import Gear, Rack
+
+       class RackExample(Scene):
+           def construct(self):
+               gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
+               rack = Rack(
+                   12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
+               )
+               gear.mesh_to(rack)
+
+               self.add(gear, rack)
+               self.play(Rotate(gear, gear.pitch_angle, rate_func=linear), run_time=2)
+               self.wait()
     """
 
     def __init__(self, num_of_teeth, module=0.2, alpha=20, h_a=1, h_f=1.17, **kwargs):

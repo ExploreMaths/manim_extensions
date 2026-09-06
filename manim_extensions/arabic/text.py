@@ -16,6 +16,20 @@ def create_arabic_template(font_name: str = "Al Bayan") -> TexTemplate:
 
     Returns:
         Configured TexTemplate for Arabic text rendering
+
+    Examples
+    --------
+    .. manim:: CreateArabicTemplateDocExample
+
+       from manim import *
+       from manim_extensions.arabic import create_arabic_template
+
+       class CreateArabicTemplateDocExample(Scene):
+           def construct(self):
+               template = create_arabic_template()
+               label = Tex("مرحبا", tex_template=template, font_size=48)
+               self.play(Write(label))
+               self.wait()
     """
     template = TexTemplate()
     template.tex_compiler = "xelatex"
@@ -52,6 +66,20 @@ def create_arabic_text(
 
     Returns:
         Tex object with Arabic text
+
+    Examples
+    --------
+    .. manim:: CreateArabicTextDocExample
+
+       from manim import *
+       from manim_extensions.arabic import create_arabic_text
+
+       class CreateArabicTextDocExample(Scene):
+           def construct(self):
+               label = create_arabic_text("مرحبا", color="arabicblue",
+                                          font_size=48)
+               self.play(Write(label))
+               self.wait()
     """
     template = create_arabic_template(font_name=font_name)
     return Tex(

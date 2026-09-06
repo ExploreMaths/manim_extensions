@@ -30,31 +30,6 @@ class MindMap(AbstractMap):
     r"""Mind map class: parses mind-map data in the following format and builds
     the corresponding mind-map object.
 
-    .. manim:: MindMapExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions.mindmap import MindMap
-
-       class MindMapExample(Scene):
-           def construct(self):
-               data = {
-                   'node': MathTex(r"\text{Calculus}"),
-                   'child': [
-                       {'node': MathTex(r"\text{Limits}")},
-                       {'node': MathTex(r"\text{Derivatives}")},
-                       {'node': MathTex(r"\text{Integrals}"),
-                        'child': [
-                            {'node': MathTex(r"\int x\,dx")},
-                            {'node': MathTex(r"\int x^2\,dx")},
-                        ]},
-                   ]
-               }
-               mind_map = MindMap(data)
-               mind_map.scale_to_fit_width(12)
-               self.add(mind_map)
-               mind_map.get_submindmap((0, 2)).set_color(YELLOW)
-
     Parameters
     ----------
         map : dict
@@ -68,7 +43,41 @@ class MindMap(AbstractMap):
         node_spacing : float
             spacing between nodes
         node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-            node style"""
+            node style
+
+    Examples
+    --------
+    .. manim:: MindMapExample
+
+       from manim import *
+       from manim_extensions.mindmap import MindMap
+
+       class MindMapExample(Scene):
+           def construct(self):
+               data = {
+                   'node': MathTex(r"\text{Calculus}"),
+                   'text': 'narration text for TTS',
+                   'child': [
+                       {'node': MathTex(r"\text{Limits}")},
+                       {'node': MathTex(r"\text{Derivatives}")},
+                       {'node': MathTex(r"\text{Integrals}"),
+                        'child': [
+                            {'node': MathTex(r"\int x\,dx")},
+                            {'node': MathTex(r"\int x^2\,dx")},
+                        ]},
+                   ]
+               }
+               mind_map = MindMap(data)
+               mind_map.scale_to_fit_width(12)
+               for node in mind_map.dfs_walker():
+                   if node.connector:
+                       self.play(Create(node.connector), run_time=0.3)
+                   self.play(Create(node.surr_rect), Write(node.vmobject),
+                             run_time=0.3)
+               children = mind_map.get_children((0, 2))
+               self.play(*[Wiggle(child) for child in children])
+               self.wait()
+    """
 
     def __init__(
         self,

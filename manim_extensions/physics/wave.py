@@ -50,15 +50,16 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
        class RadialWaveExample(ThreeDScene):
            def construct(self):
-               self.set_camera_orientation(PI / 3, PI / 4)
+               self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
                wave = RadialWave(
-                   ORIGIN + UP * 2,
-                   wavelength=2,
-                   amplitude=0.3,
+                   LEFT * 2 + DOWN * 5,  # Two sources of waves
+                   RIGHT * 2 + DOWN * 5,
+                   checkerboard_colors=[BLUE_D],
+                   stroke_width=0,
                )
                self.play(FadeIn(wave))
                wave.start_wave()
-               self.wait(3)
+               self.wait()
                wave.stop_wave()
     """
 
@@ -169,11 +170,11 @@ class LinearWave(RadialWave):
 
        class LinearWaveExample(ThreeDScene):
            def construct(self):
-               self.set_camera_orientation(PI / 3, PI / 4)
-               wave = LinearWave(wavelength=2, amplitude=0.3)
+               self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
+               wave = LinearWave()
                self.play(FadeIn(wave))
                wave.start_wave()
-               self.wait(3)
+               self.wait()
                wave.stop_wave()
     """
 
@@ -244,16 +245,16 @@ class StandingWave(ParametricFunction):
 
        class StandingWaveExample(Scene):
            def construct(self):
-               wave = StandingWave(n=3, length=6, amplitude=0.5)
-               nodes = VGroup(*[
-                   Dot(RIGHT * x, color=RED)
-                   for x in np.arange(-3, 3.1, 2)
-               ])
-               self.play(Create(wave))
-               self.play(FadeIn(nodes))
-               wave.start_wave()
-               self.wait(3)
-               wave.stop_wave()
+               wave1 = StandingWave(1)
+               wave2 = StandingWave(2)
+               wave3 = StandingWave(3)
+               wave4 = StandingWave(4)
+               waves = VGroup(wave1, wave2, wave3, wave4)
+               waves.arrange(DOWN).move_to(ORIGIN)
+               self.play(FadeIn(waves))
+               for wave in waves:
+                   wave.start_wave()
+               self.wait()
     """
 
     def __init__(

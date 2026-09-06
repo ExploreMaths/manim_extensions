@@ -169,6 +169,33 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         Whether the padding region is drawn with dashed lines, by default True.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: Convolutional2DLayerDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           Convolutional2DLayer,
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+
+       class Convolutional2DLayerDocExample(ThreeDScene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       Convolutional2DLayer(1, 7, filter_spacing=0.32),
+                       Convolutional2DLayer(
+                           3, 5, 3, filter_spacing=0.32, activation_function="ReLU"
+                       ),
+                       FeedForwardLayer(3),
+                   ],
+                   layer_spacing=0.25,
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
     """
 
     def __init__(

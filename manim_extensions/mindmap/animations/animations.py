@@ -649,6 +649,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
        from manim import *
        from manim_extensions.mindmap import Node, LayoutAnimation
+       from manim_extensions.mindmap.algorithms import LayoutConfig
 
        class LayoutAnimationDocExample(Scene):
            def construct(self):
@@ -659,7 +660,19 @@ class LayoutAnimation(AbstractLayoutAnimation):
                root.add_child(a1)
                root.add_child(a2)
                a1.add_child(b1)
+               # first creation
                self.play(LayoutAnimation(self, root))
+               # insert a child, then re-layout
+               c1 = Node(MathTex(r"\text{C1}", font_size=36))
+               a2.add_child(c1)
+               self.play(LayoutAnimation(self, root))
+               # scale a node and alter the root content
+               b1.scale(1.5)
+               root.alter_content(MathTex(r"\text{Root}", font_size=48, color=RED))
+               self.play(LayoutAnimation(self, root))
+               # change the layout direction
+               self.play(LayoutAnimation(self, root,
+                                         layout_config=LayoutConfig(direction=UP)))
                self.wait()
     """
 

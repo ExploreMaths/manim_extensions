@@ -64,18 +64,35 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
        from manim import *
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
 
-       class ManimPushDownAutomatonExample(Scene):
+       class ManimPushDownAutomatonExample(MovingCameraScene):
            def construct(self):
-               pda = ManimPushDownAutomaton()
-               self.add(pda)
+               # build the PDA from the default JSON template
+               pda = ManimPushDownAutomaton(animate_subscripts=False)
 
+               # Adjust camera frame to fit the automaton in the scene
+               self.camera.frame_width = pda.width + 4
+               self.camera.frame_height = pda.height + 4
+               self.camera.frame.move_to(pda)
+
+               # Create an mobject version of the input for the automaton
+               automaton_input = pda.construct_automaton_input("01")
+               automaton_input.next_to(pda, UP, buff=0.5)
+
+               self.play(
+                   DrawBorderThenFill(pda),
+                   FadeIn(automaton_input),
+               )
+
+               # Play all the animations generated from play_string()
+               for sequence in pda.play_string(automaton_input):
+                   self.play(*sequence, run_time=0.5)
+
+               # the stack can also be manipulated directly
                def stack_label():
                    return Text("Stack: " + " ".join(pda.stack), font_size=24)
 
                label = stack_label().to_corner(UR)
                self.play(FadeIn(label))
-               pda.push("X")
-               self.play(Transform(label, stack_label().move_to(label)))
                pda.push("X")
                self.play(Transform(label, stack_label().move_to(label)))
                pda.pop()

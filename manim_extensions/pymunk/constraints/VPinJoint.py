@@ -57,16 +57,28 @@ class VPinJoint(VConstraint):
 
         class VPinJointExample(SpaceScene):
             def construct(self):
-                # a pin joint acts like a rigid rod: the bob swings on it
-                anchor = Dot(UP * 2)
-                bob = Square().move_to(ORIGIN)
-                rod = VPinJoint(anchor, bob, connect_line_class=Line)
+                # a pin joint acts like a rigid rod between two anchors
+                static_dot = Dot(ORIGIN)
+                square = Square().move_to(static_dot)
+                square2 = Square().move_to(static_dot.get_center() + UP * 2).scale(0.5)
 
-                self.play(FadeIn(anchor), FadeIn(bob))
-                self.add_static_body(anchor)
-                self.add_dynamic_body(bob)
-                self.add_constraints(rod)
-                self.wait(5)
+                constraints = [
+                    VPinJoint(static_dot, square),
+                    VPinJoint(
+                        square,
+                        square2,
+                        anchor_a_local=square.get_corner(UR) - square.get_center(),
+                        distance=2,
+                        connect_line_class=Line,
+                    ),
+                ]
+
+                self.play(FadeIn(static_dot), FadeIn(square), FadeIn(square2))
+                self.add_static_body(static_dot)
+                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
+                self.add_shapes_filter(static_dot, square, square2, group=2)
+                self.add_constraints(*constraints)
+                self.wait(3)
 
     """
 

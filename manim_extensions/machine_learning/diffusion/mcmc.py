@@ -258,6 +258,41 @@ class MCMCAxes(Group):
         Length of the x-axis, by default 5.
     y_length : float, optional
         Length of the y-axis, by default 5.
+
+    Examples
+    --------
+    .. manim:: MCMCAxesDocExample
+
+       from manim import *
+       import numpy as np
+       import scipy.stats
+       from manim_extensions.machine_learning.diffusion.mcmc import MCMCAxes
+
+       class MCMCAxesDocExample(Scene):
+           def construct(self):
+               def log_prob_fn(x):
+                   return scipy.stats.multivariate_normal(
+                       mean=[0, 0], cov=[[1, 0], [0, 1]]
+                   ).logpdf(x)
+
+               true_samples = np.random.multivariate_normal(
+                   [0, 0], [[1, 0], [0, 1]], size=2000
+               )
+               axes = MCMCAxes(x_range=[-4, 4], y_range=[-4, 4])
+               axes.move_to(ORIGIN)
+               self.play(Create(axes))
+               self.play(
+                   axes.visualize_metropolis_hastings_chain_sampling(
+                       log_prob_fn=log_prob_fn,
+                       true_samples=true_samples,
+                       sampling_kwargs={
+                           "iterations": 50,
+                           "warm_up": 10,
+                           "initial_location": np.array([-2.5, 2.5]),
+                           "sampling_seed": 4,
+                       },
+                   )
+               )
     """
 
     def __init__(

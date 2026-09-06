@@ -66,19 +66,34 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
        from manim import *
        import numpy as np
-       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.templates import create_pyramid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
        class ManimMeshExample(ThreeDScene):
            def construct(self):
-               vertices = [[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1]]
-               faces = [[0, 1, 2], [0, 1, 3], [1, 2, 3], [0, 2, 3]]
-               mesh_data = Mesh(vertices, faces)
-               mm = ManimMesh(mesh_data, display_vertices=True)
                self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
-               self.play(FadeIn(mm.faces), FadeIn(mm.edges))
-               # dragging a vertex updates all adjacent faces and edges
-               mm.shift_vertex(self, 3, np.array([0, 0, 1.5]))
+               # pyramid built from triangles only
+               tri_pyramid = ManimMesh(
+                   create_pyramid(triangles_only=True), display_vertices=True
+               )
+               tri_pyramid.shift(OUT)
+               # pyramid with a quadrilateral base, to test the renderer
+               quad_pyramid = ManimMesh(
+                   create_pyramid(triangles_only=False), display_vertices=True
+               )
+               quad_pyramid.shift(IN, IN)
+               self.add(tri_pyramid, quad_pyramid)
+               # color single faces
+               self.play(
+                   tri_pyramid.get_face(0).animate.set_fill(RED, 1),
+                   quad_pyramid.get_face(4).animate.set_fill(GREEN, 1),
+               )
+               # move a vertex; all adjacent faces and edges are updated.
+               # Note: Rotate animations are not supported by ManimMesh,
+               # rotate the mesh data directly via mesh.apply_rotation instead.
+               tri_pyramid.move_vertex_to(
+                   vertex_idx=0, scene=self, pos=np.array([2, 2, 1])
+               )
                self.wait()
     """
 

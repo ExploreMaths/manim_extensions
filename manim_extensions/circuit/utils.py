@@ -161,17 +161,43 @@ class Circuit(VMobject):
     Examples
     --------
     .. manim:: CircuitExample
-       :save_last_frame:
 
        from manim import *
+       from manim_extensions.circuit.mobjects import Ground, Resistor, VoltageSource
        from manim_extensions.circuit.utils import Circuit
 
        class CircuitExample(Scene):
            def construct(self):
+               # Place the components down first. Then, connect with wires later.
+               source = VoltageSource(9).shift(LEFT * 3)
+               r1 = Resistor("1k").shift(UP * 1.5)
+               r2 = Resistor("2.2k", direction=RIGHT).rotate(90 * DEGREES).shift(
+                   RIGHT * 1.5 + DOWN * 0.75
+               )
+               gnd = Ground().shift(LEFT * 3 + DOWN * 2.5)
+
+               # Add circuit components.
                circuit = Circuit()
-               circuit.add_wire(LEFT * 3 + UP, RIGHT * 3 + UP)
-               circuit.add_wire(UP, DOWN * 2)
+               circuit.add_components(source, r1, r2, gnd)
+
+               # A streamlined way to connect terminals with wires.
+               circuit.add_wire(source.get_terminals("positive"), r1.get_terminals("left"))
+               circuit.add_wire(r1.get_terminals("right"), r2.get_terminals("left"))
+               circuit.add_wire(r2.get_terminals("right"), gnd.get_terminals())
+               circuit.add_wire(gnd.get_terminals(), source.get_terminals("negative"))
+
+               # You can invert the direction of the wire: vertical first,
+               # or horizontal first.
+               circuit.add_wire(
+                   source.get_terminals("negative"), r2.get_terminals("right"), invert=True
+               )
+
                self.add(circuit)
+               self.wait(0.5)
+
+               # Automatic node detection
+               for node, color in zip(circuit.node_list, [BLUE, RED, ORANGE, YELLOW]):
+                   self.play(node.animate.set_color(color), run_time=0.5)
     """
 
     def __init__(self, **kwargs):
