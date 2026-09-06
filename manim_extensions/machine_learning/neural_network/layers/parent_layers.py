@@ -62,7 +62,9 @@ class NeuralNetworkLayer(ABC, Group):
 
     @override_animation(Create)
     def _create_override(self):
-        return Succession()
+        # A zero-duration Wait: connective layers have no visible geometry to
+        # create, and manim >= 0.21 raises when playing an empty Succession.
+        return Wait(run_time=0)
 
     def __repr__(self):
         return f"{type(self).__name__}"

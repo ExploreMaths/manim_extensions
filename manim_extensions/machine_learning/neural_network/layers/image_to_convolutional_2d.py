@@ -77,7 +77,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             image_mobject.rotate,
             config.three_d_config.rotation_angle,
             config.three_d_config.rotation_axis,
-            image_mobject.get_center(),
+            # A trailing dict is forwarded to the method as keyword
+            # arguments (see ApplyMethod.create_target).
+            {"about_point": image_mobject.get_center()},
             run_time=0.5,
         )
         """
@@ -125,4 +127,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     @override_animation(Create)
     def _create_override(self, **kwargs):
-        return AnimationGroup()
+        # Nothing to create visually; manim >= 0.21 raises on empty groups,
+        # so return a zero-duration Wait instead.
+        return Wait(run_time=0)

@@ -31,7 +31,6 @@ class ImageLayer(NeuralNetworkLayer):
     Examples
     --------
     .. manim:: ImageLayerDocExample
-       :save_last_frame:
 
        from manim import *
        import numpy as np
@@ -42,20 +41,35 @@ class ImageLayer(NeuralNetworkLayer):
            NeuralNetwork,
        )
 
+       # Widescreen layout used by the upstream ManimML examples
+       config.pixel_height = 700
+       config.pixel_width = 1900
+       config.frame_height = 7.0
+       config.frame_width = 7.0
+
        class ImageLayerDocExample(ThreeDScene):
            def construct(self):
-               numpy_image = np.zeros((8, 8), dtype=np.uint8)
-               numpy_image[2:6, 2:6] = 255
+               # Synthesize a digit-like image (the upstream example loads an
+               # MNIST digit from assets)
+               yy, xx = np.mgrid[0:28, 0:28]
+               numpy_image = np.where((yy - 14) ** 2 + (xx - 14) ** 2 < 81, 200, 0).astype(np.uint8)
                nn = NeuralNetwork(
                    [
                        ImageLayer(numpy_image, height=1.5),
-                       Convolutional2DLayer(1, 8, 3),
+                       Convolutional2DLayer(1, 7, filter_spacing=0.32),
+                       Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                       Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
+                       FeedForwardLayer(3),
                        FeedForwardLayer(3),
                    ],
                    layer_spacing=0.25,
                )
                nn.move_to(ORIGIN)
                self.add(nn)
+               # Animate the forward pass
+               forward_pass = nn.make_forward_pass_animation()
+               self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
+               self.wait(1)
     """
 
     def __init__(
@@ -115,7 +129,9 @@ class ImageLayer(NeuralNetworkLayer):
         if self.show_image_on_create:
             return FadeIn(self.image_mobject)
         else:
-            return AnimationGroup()
+            # Nothing to create visually; manim >= 0.21 raises on empty
+            # groups, so return a zero-duration Wait instead.
+            return Wait(run_time=0)
 
     def make_forward_pass_animation(self, layer_args={}, **kwargs):
         return AnimationGroup()
