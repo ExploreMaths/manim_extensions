@@ -19,15 +19,21 @@ def get_normalized_convex_polygons(
     该函数通过marchingSquares算法和凸分解，从图片中智能提取
     碰撞用的凸多边形。支持透明背景和实色背景的自动识别。
 
-    Args:
-        pixel_array (np.ndarray): 输入图片的像素数组[H, W, C]。
-        base_width (float, optional): 采样基准宽度，默认为512.0。
+    Parameters
+    ----------
+    pixel_array : np.ndarray
+        输入图片的像素数组[H, W, C]。
+    base_width : float, optional
+        采样基准宽度，默认为512.0。
             用于控制采样精度。
-        target_cell_size (float, optional): 目标单元格大小，默认为4。
+    target_cell_size : float, optional
+        目标单元格大小，默认为4。
             控制marchingSquares的网格密度。
-        frame_w (float, optional): Manim框架宽度，默认为8。
+    frame_w : float, optional
+        Manim框架宽度，默认为8。
             用于坐标映射。
-        frame_h (float, optional): Manim框架高度，默认为14.22。
+    frame_h : float, optional
+        Manim框架高度，默认为14.22。
             用于坐标映射。
 
     Returns:
@@ -86,8 +92,10 @@ def get_normalized_convex_polygons(
     def sample_func(point):
         """采样函数：根据坐标返回Mask值。
 
-        Args:
-            point (tuple): (x, y)坐标。
+        Parameters
+        ----------
+        point : tuple
+            (x, y)坐标。
 
         Returns:
             int: 该点的Mask值（0或255）。
@@ -133,12 +141,18 @@ def map_polygons_to_manim(polygons, img_px_w, img_px_h, img_manim_w, img_manim_h
 
     执行坐标系转换：从图片像素坐标转换为Manim的笛卡尔坐标系。
 
-    Args:
-        polygons (list): 像素坐标系中的多边形列表。
-        img_w (float): 图片宽度（像素）。
-        img_h (float): 图片高度（像素）。
-        frame_w (float): Manim框架宽度。
-        frame_h (float): Manim框架高度。
+    Parameters
+    ----------
+    polygons : list
+        像素坐标系中的多边形列表。
+    img_w : float
+        图片宽度（像素）。
+    img_h : float
+        图片高度（像素）。
+    frame_w : float
+        Manim框架宽度。
+    frame_h : float
+        Manim框架高度。
 
     Returns:
         list: Manim坐标系中的多边形列表。

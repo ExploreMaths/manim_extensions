@@ -9,8 +9,10 @@ def create_arabic_template(font_name: str = "Al Bayan") -> TexTemplate:
     """
     Create a TexTemplate configured for Arabic text rendering using XeLaTeX.
 
-    Args:
-        font_name: Name of the Arabic-supporting font to use.
+    Parameters
+    ----------
+    font_name
+        Name of the Arabic-supporting font to use.
                   Options: "Al Bayan" (macOS), "Geeza Pro" (macOS),
                           "Arial Unicode MS" (cross-platform)
 
@@ -58,11 +60,16 @@ def create_arabic_text(
     """
     Create a Tex object with Arabic text.
 
-    Args:
-        text: Arabic text to render
-        color: LaTeX color name (arabicblue, arabicgreen, arabicred, or any xcolor)
-        font_size: Font size in points
-        font_name: Arabic font name
+    Parameters
+    ----------
+    text
+        Arabic text to render
+    color
+        LaTeX color name (arabicblue, arabicgreen, arabicred, or any xcolor)
+    font_size
+        Font size in points
+    font_name
+        Arabic font name
 
     Returns:
         Tex object with Arabic text

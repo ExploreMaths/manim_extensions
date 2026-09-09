@@ -51,8 +51,10 @@ class MCMolecule:
         """
         Uses the atoms dict returned by a parser to add the atoms to the molecule.
 
-        Args:
-            atoms_dict (Dict): Atoms dict from a parser. See BaseParser.
+        Parameters
+        ----------
+        atoms_dict : Dict
+            Atoms dict from a parser. See BaseParser.
         """
 
         if self.atoms and not isinstance(self.atoms, list):
@@ -75,8 +77,10 @@ class MCMolecule:
         """
         Uses the bonds dict returned by a parser to add the bonds to the molecule.
 
-        Args:
-            bonds_dict (Dict): Bonds dict from a parser. See Base Parser.
+        Parameters
+        ----------
+        bonds_dict : Dict
+            Bonds dict from a parser. See Base Parser.
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -119,9 +123,12 @@ class MCMolecule:
         the corresponding MCAtoms and MCBonds and stablishes the connections between
         MCAtoms and bonds.
 
-        Args:
-            atoms_data_dict (dict): Atoms data
-            bonds_data_dict (dict): Bonds data
+        Parameters
+        ----------
+        atoms_data_dict : dict
+            Atoms data
+        bonds_data_dict : dict
+            Bonds data
         """
 
         mc_molecule = MCMolecule()
@@ -149,8 +156,10 @@ class MCMolecule:
         """
         Returns an MCMolecule given a file path.
 
-        Args:
-            filepath: File path
+        Parameters
+        ----------
+        filepath
+            File path
         """
         parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 

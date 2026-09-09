@@ -71,8 +71,10 @@ class ASNTParser(BaseParser):
     def replace_stuff(line: str) -> str:
         """Makes replacements of strings given the shitty structure of this format.
 
-        Args:
-            line (str): Line being read at that moment.
+        Parameters
+        ----------
+        line : str
+            Line being read at that moment.
 
         Returns:
             str: Line with replaced strings.

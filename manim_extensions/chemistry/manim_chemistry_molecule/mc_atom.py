@@ -59,7 +59,8 @@ class MCAtom:
         """
         Assigns bonded atoms to MCAtom.
 
-        Args:
+        Parameters
+        ----------
             atoms (MCAtom or List[MCAtom])
 
         Raises:
@@ -145,8 +146,10 @@ class MCAtom:
         """
         Given an atom data dict from a parser, returns an MCAtom
 
-        Args:
-            atom_dict (Dict): See data_parser function from BaseParser
+        Parameters
+        ----------
+        atom_dict : Dict
+            See data_parser function from BaseParser
 
         Output:
             MCAtom

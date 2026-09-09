@@ -312,10 +312,14 @@ class Table(VGroup):
         """
         Set the font color for all cells in a column.
         
-        Args:
-            col: Column index (0-indexed)
-            color: A Manim color
-            include_header: If True, also colors the header cell
+        Parameters
+        ----------
+        col
+            Column index (0-indexed)
+        color
+            A Manim color
+        include_header
+            If True, also colors the header cell
         """
         if include_header:
             self.header_row[col].set_font_color(color)
@@ -327,11 +331,16 @@ class Table(VGroup):
         """
         Set the background color for all cells in a column.
         
-        Args:
-            col: Column index (0-indexed)
-            color: A Manim color
-            opacity: Background opacity (0 to 1)
-            include_header: If True, also colors the header cell
+        Parameters
+        ----------
+        col
+            Column index (0-indexed)
+        color
+            A Manim color
+        opacity
+            Background opacity (0 to 1)
+        include_header
+            If True, also colors the header cell
         """
         if include_header:
             self.header_row[col].set_background_color(color, opacity)
@@ -343,10 +352,14 @@ class Table(VGroup):
         """
         Set the border color for all cells in a column.
         
-        Args:
-            col: Column index (0-indexed)
-            color: A Manim color
-            include_header: If True, also colors the header cell
+        Parameters
+        ----------
+        col
+            Column index (0-indexed)
+        color
+            A Manim color
+        include_header
+            If True, also colors the header cell
         """
         if include_header:
             self.header_row[col].set_border_color(color)
@@ -358,9 +371,12 @@ class Table(VGroup):
         """
         Set the background color for all header cells.
         
-        Args:
-            color: A Manim color
-            opacity: Background opacity (0 to 1)
+        Parameters
+        ----------
+        color
+            A Manim color
+        opacity
+            Background opacity (0 to 1)
         """
         for cell in self.header_row:
             cell.set_background_color(color, opacity)
@@ -370,8 +386,10 @@ class Table(VGroup):
         """
         Set the font color for all header cells.
         
-        Args:
-            color: A Manim color
+        Parameters
+        ----------
+        color
+            A Manim color
         """
         for cell in self.header_row:
             cell.set_font_color(color)
@@ -522,9 +540,11 @@ class Table(VGroup):
         """
         Delete a row from the table.
         
-        Args:
-            index: Row index (1-indexed, i.e., header is 0, first data row is 1)
-        
+        Parameters
+        ----------
+        index
+            Row index (1-indexed, i.e., header is 0, first data row is 1)
+
         Returns:
             Tuple of (deleted_row, animations) where animations includes:
             - FadeOut for the deleted row
@@ -647,11 +667,15 @@ class Table(VGroup):
         """
         Add a new column to the table.
         
-        Args:
-            header: Header text for the new column
-            values: List of values for the data rows
-            index: Insert index (0-indexed). Defaults to end of table.
-            
+        Parameters
+        ----------
+        header
+            Header text for the new column
+        values
+            List of values for the data rows
+        index
+            Insert index (0-indexed). Defaults to end of table.
+
         Returns:
             Tuple of (new_column_group, shift_animations, appear_animations).
             ``shift_animations`` is empty when appending at the end of the
@@ -753,9 +777,11 @@ class Table(VGroup):
         """
         Delete a column from the table.
         
-        Args:
-            index: Column index to delete (0-indexed)
-            
+        Parameters
+        ----------
+        index
+            Column index to delete (0-indexed)
+
         Returns:
             Tuple of (deleted_column_group, shift_animations).
             ``shift_animations`` is empty when deleting the last column, so

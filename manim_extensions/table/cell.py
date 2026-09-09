@@ -114,9 +114,11 @@ class Cell(VGroup):
         """
         Change the text value of this cell.
         
-        Args:
-            new_value: The new text content
-            
+        Parameters
+        ----------
+        new_value
+            The new text content
+
         Returns:
             The new Text mobject (useful for animations like Transform)
         
@@ -156,9 +158,11 @@ class Cell(VGroup):
         Preserves font color, background color, border color, and current scale.
         Useful for animating width changes with Transform.
         
-        Args:
-            new_width: The new width for the cell (in unscaled units)
-            
+        Parameters
+        ----------
+        new_width
+            The new width for the cell (in unscaled units)
+
         Returns:
             A new Cell with the same value and styling but different width,
             scaled to match the current cell's scale
@@ -197,8 +201,10 @@ class Cell(VGroup):
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
         
-        Args:
-            new_width: The new width
+        Parameters
+        ----------
+        new_width
+            The new width
         """
         self.cell_width = new_width
         
@@ -224,8 +230,10 @@ class Cell(VGroup):
         """
         Set the font/text color of this cell.
         
-        Args:
-            color: A Manim color (e.g., RED, BLUE, "#FF0000")
+        Parameters
+        ----------
+        color
+            A Manim color (e.g., RED, BLUE, "#FF0000")
         """
         self._font_color = color  # Store for copying
         self.text.set_color(color)
@@ -235,8 +243,10 @@ class Cell(VGroup):
         """
         Set the border line color of this cell.
         
-        Args:
-            color: A Manim color (e.g., RED, BLUE, "#FF0000")
+        Parameters
+        ----------
+        color
+            A Manim color (e.g., RED, BLUE, "#FF0000")
         """
         self._border_color = color  # Store for copying
         if self.border is not None:
@@ -249,8 +259,10 @@ class Cell(VGroup):
         Set a background fill color for this cell.
         Creates a filled rectangle behind the text.
         
-        Args:
-            color: A Manim color (e.g., RED, BLUE, "#FF0000")
+        Parameters
+        ----------
+        color
+            A Manim color (e.g., RED, BLUE, "#FF0000")
         opacity: Opacity of the background (0 to 1)
         """
         # Store for copying
