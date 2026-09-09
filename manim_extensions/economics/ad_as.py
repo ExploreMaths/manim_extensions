@@ -55,6 +55,8 @@ class ADASDiagram(EconDiagram):
         If True, draw only the SRAS curve (no LRAS line).
     lras_only
         If True, draw only the LRAS line (no SRAS curve).
+    numbered_eq
+        If True, number the equilibrium coordinates.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
 
@@ -89,6 +91,7 @@ class ADASDiagram(EconDiagram):
         show_equilibrium=True,
         sras_only=False,
         lras_only=False,
+        numbered_eq=False,
         **kwargs,
     ):
         if sras_only and lras_only:
@@ -122,7 +125,8 @@ class ADASDiagram(EconDiagram):
             )
 
         if show_equilibrium and not lras_only:
-            self.mark_equilibrium("ad", "sras", label_x="Y*", label_y="P*")
+            self.mark_equilibrium("ad", "sras", label_x="Y*", label_y="P*",
+                                  numbered=numbered_eq)
 
     @staticmethod
     def _make_ad_func(m, v):

@@ -347,9 +347,23 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        pymunk.CollisionHandler
-            The registered collision handler object.
+        pymunk.CollisionHandler or None
+            The registered collision handler object (pymunk < 7); None with
+            pymunk >= 7, where callbacks are registered directly.
         """
+        if hasattr(self.space, "on_collision"):
+            # pymunk >= 7: on_collision registers the callbacks directly
+            # and returns None.
+            self.space.on_collision(
+                collision_type_a,
+                None,
+                begin=begin,
+                pre_solve=pre_solve,
+                post_solve=post_solve,
+                separate=separate,
+                data=data,
+            )
+            return None
         handler = self.space.add_wildcard_collision_handler(collision_type_a)
         if begin:
             handler.begin = begin
@@ -404,9 +418,23 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        pymunk.CollisionHandler
-            The registered collision handler object.
+        pymunk.CollisionHandler or None
+            The registered collision handler object (pymunk < 7); None with
+            pymunk >= 7, where callbacks are registered directly.
         """
+        if hasattr(self.space, "on_collision"):
+            # pymunk >= 7: on_collision registers the callbacks directly
+            # and returns None.
+            self.space.on_collision(
+                collision_type_a,
+                collision_type_b,
+                begin=begin,
+                pre_solve=pre_solve,
+                post_solve=post_solve,
+                separate=separate,
+                data=data,
+            )
+            return None
         handler = self.space.add_collision_handler(collision_type_a, collision_type_b)
 
         if begin:
