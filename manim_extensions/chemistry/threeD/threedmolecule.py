@@ -174,8 +174,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         - Vertices: {<atom_index>: MCAtom}
         - Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
 
-        Args:
-            mc_molecule (MCMolecule): The origin MCMolecule
+        Parameters
+        ----------
+        mc_molecule : MCMolecule
+            The origin MCMolecule
 
         Returns:
             Tuple[Dict, Dict]: See above.

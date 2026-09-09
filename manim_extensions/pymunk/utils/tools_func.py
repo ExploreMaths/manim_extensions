@@ -18,11 +18,15 @@ def get_moment_for_box(mass: float, width: float, height: float) -> float:
     
     基于矩形的质量、宽度和高度计算绕中心的转动惯量。
     
-    Args:
-        mass (float): 矩形的质量。
-        width (float): 矩形的宽度。
-        height (float): 矩形的高度。
-    
+    Parameters
+    ----------
+    mass : float
+        矩形的质量。
+    width : float
+        矩形的宽度。
+    height : float
+        矩形的高度。
+
     Returns:
         float: 转动惯量值。
     """
@@ -41,13 +45,19 @@ def get_moment_for_circle(
     基于圆环的质量、内外半径和偏移量计算转动惯量。
     当内半径为0时，计算实心圆的转动惯量。
     
-    Args:
-        mass (float): 圆环的质量。
-        inner_radius (float): 内半径。
-        outer_radius (float): 外半径。
-        x_offset (float, optional): 中心X偏移，默认为0。
-        y_offset (float, optional): 中心Y偏移，默认为0。
-    
+    Parameters
+    ----------
+    mass : float
+        圆环的质量。
+    inner_radius : float
+        内半径。
+    outer_radius : float
+        外半径。
+    x_offset : float, optional
+        中心X偏移，默认为0。
+    y_offset : float, optional
+        中心Y偏移，默认为0。
+
     Returns:
         float: 转动惯量值。
     """
@@ -70,13 +80,19 @@ def get_moment_for_poly(
     
     基于多边形的质量、顶点坐标和偏移量计算转动惯量。
     
-    Args:
-        mass (float): 多边形的质量。
-        vertices (list[tuple[float, float]]): 多边形顶点列表，每个顶点为(x, y)坐标。
-        x_offset (float, optional): 中心X偏移，默认为0。
-        y_offset (float, optional): 中心Y偏移，默认为0。
-        stroke_width (float, optional): 形状的半径（用于线宽），默认为0。
-    
+    Parameters
+    ----------
+    mass : float
+        多边形的质量。
+    vertices : list[tuple[float, float]]
+        多边形顶点列表，每个顶点为(x, y)坐标。
+    x_offset : float, optional
+        中心X偏移，默认为0。
+    y_offset : float, optional
+        中心Y偏移，默认为0。
+    stroke_width : float, optional
+        形状的半径（用于线宽），默认为0。
+
     Returns:
         float: 转动惯量值。
     """
@@ -95,12 +111,17 @@ def get_moment_for_line(
     
     基于线段的质量、端点和宽度计算转动惯量。
     
-    Args:
-        mass (float): 线段的质量。
-        start (tuple[float, float]): 线段起点坐标(x, y)。
-        end (tuple[float, float]): 线段终点坐标(x, y)。
-        stroke_width (float): 线段的宽度（半径）。
-    
+    Parameters
+    ----------
+    mass : float
+        线段的质量。
+    start : tuple[float, float]
+        线段起点坐标(x, y)。
+    end : tuple[float, float]
+        线段终点坐标(x, y)。
+    stroke_width : float
+        线段的宽度（半径）。
+
     Returns:
         float: 转动惯量值。
     """

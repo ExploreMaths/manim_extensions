@@ -62,8 +62,10 @@ class SDFParser(MolParser):
         sdf files might contain multiple molecules, so we return a list of list
         of string when reading a file.
 
-        Args:
-            filename (Union[str, bytes, os.PathLike]): Path of the sdf file
+        Parameters
+        ----------
+        filename : Union[str, bytes, os.PathLike]
+            Path of the sdf file
 
         Returns:
             List[List[str]]: List with all the molecules data.

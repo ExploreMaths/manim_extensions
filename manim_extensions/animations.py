@@ -101,8 +101,10 @@ def easeOutBounce(t: float) -> float:
         <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
         Original author: @pdcxs.
 
-    Args:
-        t: Progress in ``[0, 1]``.
+    Parameters
+    ----------
+    t
+        Progress in ``[0, 1]``.
 
     Returns:
         Eased value used in this operation. in ``[0, 1]``.
@@ -154,8 +156,10 @@ def easeInBounce(t: float) -> float:
         <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
         Original author: @pdcxs.
 
-    Args:
-        t: Progress in ``[0, 1]``.
+    Parameters
+    ----------
+    t
+        Progress in ``[0, 1]``.
 
     Returns:
         Eased value used in this operation. in ``[0, 1]``.
@@ -197,8 +201,10 @@ def easeInOutBounce(t: float) -> float:
         <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
         Original author: @pdcxs.
 
-    Args:
-        t: Progress in ``[0, 1]``.
+    Parameters
+    ----------
+    t
+        Progress in ``[0, 1]``.
 
     Returns:
         Eased value used in this operation. in ``[0, 1]``.
@@ -246,8 +252,10 @@ def easeOutElastic(t: float) -> float:
         used with animations that sample ``points_from_proportion`` (e.g.
         :class:`~manim.animation.movement.MoveAlongPath`).
 
-    Args:
-        t: Progress in ``[0, 1]``.
+    Parameters
+    ----------
+    t
+        Progress in ``[0, 1]``.
 
     Returns:
         Eased value used in this operation., which may exceed ``1`` near the end.

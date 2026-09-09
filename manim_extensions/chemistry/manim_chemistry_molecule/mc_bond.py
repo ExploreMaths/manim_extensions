@@ -74,9 +74,12 @@ class MCBond:
         """
         Given a bond data dict from a parser, returns an MCBond
 
-        Args:
-            atom_dict (Dict): See data_parser function from BaseParser
-            molecule: MCMolecule: Required to get the atoms by their index and
+        Parameters
+        ----------
+        atom_dict : Dict
+            See data_parser function from BaseParser
+        molecule
+            MCMolecule: Required to get the atoms by their index and
             create the MCBond using MCAtoms.
 
         Output:

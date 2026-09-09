@@ -1059,8 +1059,10 @@ class VideoMobject(ImageMobject):
     def play(self, scene: Optional[Scene] = None) -> "VideoMobject":
         """Start video playback and optionally block the scene for its duration.
 
-        Args:
-            scene: If given, the scene waits for the full video duration.
+        Parameters
+        ----------
+        scene
+            If given, the scene waits for the full video duration.
 
         Returns:
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
@@ -1103,8 +1105,10 @@ class VideoMobject(ImageMobject):
     def seek(self, time: float) -> "VideoMobject":
         """Seek to a specific timestamp in seconds.
 
-        Args:
-            time: Target time in seconds, clamped to ``[0, duration]``.
+        Parameters
+        ----------
+        time
+            Target time in seconds, clamped to ``[0, duration]``.
 
         Returns:
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
@@ -1293,8 +1297,10 @@ class Trail(VGroup):
     def get_path_xyz(self, err: float = 1e-4) -> None:
         """Record the latest centre position if the mobject has moved.
 
-        Args:
-            err: Minimum displacement required to record a new point.
+        Parameters
+        ----------
+        err
+            Minimum displacement required to record a new point.
         """
         pos_new = self[0].get_center()
         pos_old = self.pos_old
