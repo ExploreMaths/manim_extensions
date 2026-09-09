@@ -7,8 +7,6 @@
 
 from __future__ import annotations
 
-from manim import *
-
 from .manim_non_deterministic_finite_state_automaton import (
     ManimNondeterministicFiniteAutomaton,
 )
