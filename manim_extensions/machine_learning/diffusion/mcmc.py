@@ -8,14 +8,11 @@
     Tool for animating Markov Chain Monte Carlo simulations in 2D. 
 """
 from manim import *
-import matplotlib
-import matplotlib.pyplot as plt
 from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
 import numpy as np
 import scipy
 import scipy.stats
 from tqdm import tqdm
-import seaborn as sns
 
 from ..utils.mobjects.probability import GaussianDistribution
 
@@ -181,6 +178,10 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples, ylim, xlim):
+    import matplotlib
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
     # Make the plot
     matplotlib.use('Agg')
     plt.figure(figsize=(10,10), dpi=100)

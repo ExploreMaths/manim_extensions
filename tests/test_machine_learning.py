@@ -194,6 +194,7 @@ class TestOtherMLModules:
         assert axes is not None
 
     def test_decision_tree_diagram_construct(self, tmp_path):
+        pytest.importorskip("sklearn", exc_type=ImportError)
         from PIL import Image as PILImage
         from sklearn.datasets import load_iris
         from sklearn.tree import DecisionTreeClassifier
