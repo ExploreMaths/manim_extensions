@@ -3,9 +3,10 @@
 
 """Tests for the remaining small public modules."""
 
-
-
 from manim import *
+import pytest
+
+
 class TestQrCodes:
     def test_qr_code_builds_vgroup(self):
         from manim_extensions.qr_codes import qr_code
@@ -23,6 +24,9 @@ class TestQrCodes:
 
 class TestSvgAnimations:
     def test_html_parsed_vmobject(self, tmp_path):
+        # The manim-mobject-svg plugin is only a hard dependency on
+        # Python < 3.13 (see pyproject.toml); skip where it is absent.
+        pytest.importorskip("manim_mobject_svg", exc_type=ImportError)
         from manim_extensions.svg_animations import HTMLParsedVMobject
 
         scene = Scene()
