@@ -8,7 +8,6 @@
 
 from manim import *
 import numpy as np
-import matplotlib.pyplot as plt
 from PIL import Image
 import io
 
@@ -20,6 +19,8 @@ def convert_matplotlib_figure_to_image_mobject(fig, dpi=200):
     fig : matplotlib figure
         matplotlib figure
     """
+    import matplotlib.pyplot as plt
+
     fig.tight_layout(pad=0)
     # plt.axis('off')
     fig.canvas.draw()
