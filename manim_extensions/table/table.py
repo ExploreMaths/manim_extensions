@@ -171,13 +171,14 @@ class Table(VGroup):
     ):
         super().__init__(**kwargs)
         
-        # Parse input
+        # Parse input (copy the lists: add/delete column mutate them and
+        # must not leak changes back into the caller's data)
         if header is not None:
-            self.header_values = header
-            self.row_values = rows if rows is not None else []
+            self.header_values = list(header)
+            self.row_values = [list(r) for r in rows] if rows is not None else []
         elif data is not None and len(data) > 0:
-            self.header_values = data[0]
-            self.row_values = data[1:] if len(data) > 1 else []
+            self.header_values = list(data[0])
+            self.row_values = [list(r) for r in data[1:]] if len(data) > 1 else []
         else:
             raise ValueError("Must provide either 'data' or 'header' argument")
         
