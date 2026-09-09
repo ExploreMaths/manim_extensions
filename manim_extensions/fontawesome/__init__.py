@@ -9,6 +9,9 @@ It includes 2000+ SVG icons that can be used in Manim animations.
 
 """
 
-from . import *
+from .manim_fontawesome import *
+from .manim_fontawesome import __all__ as _manim_fontawesome_all
 
-__all__ = ["brand", "regular", "solid", "FONT_AWESOME_VERSION"]
+__all__ = list(_manim_fontawesome_all)
+
+del _manim_fontawesome_all
