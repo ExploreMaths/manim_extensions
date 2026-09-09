@@ -14,12 +14,22 @@ import pkgutil
 
 import manim_extensions
 
+# Sphinx extension / doc-build tooling (e.g. ``pymunk.utils.docbuild``,
+# ``machine_learning.utils.testing``) requires the ``docs`` extra
+# (sphinx/docutils) and is only ever imported by Sphinx itself via
+# ``extensions`` in conf.py — it is not part of the importable runtime
+# package, so the walk skips it. Same convention as SKIP_DIRS in
+# workflow/validate_docstrings.py.
+DOCS_TOOLING_PARTS = {"docbuild", "testing"}
+
 
 def _walk_modules(module):
     yield module.__name__
     if hasattr(module, "__path__"):
         prefix = module.__name__ + "."
         for info in pkgutil.iter_modules(module.__path__, prefix):
+            if any(part in DOCS_TOOLING_PARTS for part in info.name.split(".")):
+                continue
             yield from _walk_modules(importlib.import_module(info.name))
 
 
