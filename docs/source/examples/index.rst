@@ -419,9 +419,9 @@ inline. Each example demonstrates one of the core extension modules.
            mesh_data = Mesh(vertices, faces)
            manim_mesh = Manim2DMesh(mesh_data)
 
-           v0 = LabelDot("V0", [0, 0, 0], label_pos=DOWN + LEFT, buff=0.1).set_color(PURE_YELLOW)
-           v1 = LabelDot("V1", [3, 0, 0], label_pos=DOWN + RIGHT, buff=0.1).set_color(PURE_YELLOW)
-           v2 = LabelDot("V2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW)
+           v0 = LabelDot("V_0", [0, 0, 0], label_pos=DOWN + LEFT, buff=0.1).set_color(PURE_YELLOW)
+           v1 = LabelDot("V_1", [3, 0, 0], label_pos=DOWN + RIGHT, buff=0.1).set_color(PURE_YELLOW)
+           v2 = LabelDot("V_2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW)
 
            self.add(manim_mesh)
            self.add(v0, v1, v2)

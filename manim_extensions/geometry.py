@@ -99,7 +99,7 @@ def VMobjectInt(
                self.play(
                    LaggedStart(
                        *[
-                           GrowFromCenter(LabelDot(f"P{i+1}", p, label_pos=UP, buff=0.15))
+                           GrowFromCenter(LabelDot(f"P_{i+1}", p, label_pos=UP, buff=0.15))
                            for i, p in enumerate(pts)
                        ],
                        lag_ratio=0.4,

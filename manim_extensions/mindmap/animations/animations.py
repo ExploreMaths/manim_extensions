@@ -39,9 +39,9 @@ def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
        class FadeoutOfSubtreesDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
-               a2 = Node(MathTex(r"\text{A2}", font_size=36))
-               b1 = Node(MathTex(r"\text{B1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                a1.add_child(b1)
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(fadeout_of_subtrees([a1]))
@@ -224,7 +224,7 @@ def animate_of_scale(
        class AnimateOfScaleDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
                a1.scale(2.0)
                anims = animate_of_scale(
@@ -290,7 +290,7 @@ def animate_of_alter(
        class AnimateOfAlterDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
                a1.alter_content(MathTex(r"\text{Updated}", font_size=36))
                anims = animate_of_alter(
@@ -357,7 +357,7 @@ def animate_of_node(
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                root.add_child(a1)
                args = (RIGHT, {'color': WHITE, 'stroke_width': 4},
                        {'color': BLUE, 'stroke_width': 2}, LayoutType.MindMap)
@@ -460,9 +460,9 @@ def animate_of_layout(
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
                root.node_state = NodeSate.DISPLAY
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
-               a2 = Node(MathTex(r"\text{A2}", font_size=36))
-               b1 = Node(MathTex(r"\text{B1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                root.add_child(a1)
                root.add_child(a2)
                a1.add_child(b1)
@@ -537,7 +537,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                        ]
 
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                root.add_child(a1)
                self.play(CreateTreeAnimation(self, root))
                self.wait()
@@ -654,16 +654,16 @@ class LayoutAnimation(AbstractLayoutAnimation):
        class LayoutAnimationDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
-               a2 = Node(MathTex(r"\text{A2}", font_size=36))
-               b1 = Node(MathTex(r"\text{B1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                root.add_child(a1)
                root.add_child(a2)
                a1.add_child(b1)
                # first creation
                self.play(LayoutAnimation(self, root))
                # insert a child, then re-layout
-               c1 = Node(MathTex(r"\text{C1}", font_size=36))
+               c1 = Node(MathTex(r"\text{C}_1", font_size=36))
                a2.add_child(c1)
                self.play(LayoutAnimation(self, root))
                # scale a node and alter the root content
@@ -724,9 +724,9 @@ class RemoveNode(LayoutAnimation):
        class RemoveNodeDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
-               a2 = Node(MathTex(r"\text{A2}", font_size=36))
-               b1 = Node(MathTex(r"\text{B1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                a1.add_child(b1)
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(RemoveNode(self, [a1]))
@@ -809,10 +809,10 @@ class InsertNode(LayoutAnimation):
        class InsertNodeDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
-               a2 = Node(MathTex(r"\text{A2}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
                self.play(InsertNode(self, {root: [a1, a2]}))
-               b1 = Node(MathTex(r"\text{B1}", font_size=36))
+               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                self.play(InsertNode(self, {a1: [b1]}))
                self.wait()
 
@@ -894,7 +894,7 @@ class ScaleNode(LayoutAnimation):
        class ScaleNodeDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
                self.play(ScaleNode(self, {a1: 2}))
                self.wait()
@@ -938,9 +938,9 @@ class AlterNode(LayoutAnimation):
        class AlterNodeDocExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A1}", font_size=36))
+               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
-               self.play(AlterNode(self, {a1: MathTex(r"\text{A1} \to \text{Altered}", font_size=36)}))
+               self.play(AlterNode(self, {a1: MathTex(r"\text{A}_1 \to \text{Altered}", font_size=36)}))
                self.wait()
 
     Parameters

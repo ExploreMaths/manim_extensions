@@ -274,8 +274,8 @@ class StandardMap(AbstractMap):
                    'child': [
                        {'node': MathTex(r"\text{Left}"),
                         'child': [
-                            {'node': MathTex(r"\text{L1}")},
-                            {'node': MathTex(r"\text{L2}")},
+                            {'node': MathTex(r"\text{L}_1")},
+                            {'node': MathTex(r"\text{L}_2")},
                         ]},
                        {'node': MathTex(r"\text{Right}")},
                    ]
