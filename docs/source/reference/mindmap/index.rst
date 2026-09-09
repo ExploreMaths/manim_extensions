@@ -39,9 +39,9 @@ Import directly from ``manim_extensions`` (``from manim_extensions.mindmap impor
    class MindMapInsertExample(Scene):
        def construct(self):
            root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex(r"\text{A1}", font_size=36))
-           a2 = Node(MathTex(r"\text{A2}", font_size=36))
-           a3 = Node(MathTex(r"\text{A3}", font_size=36))
+           a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+           a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+           a3 = Node(MathTex(r"\text{A}_3", font_size=36))
 
            self.play(
                InsertNode(self, {root: [a1, a2, a3]}),
@@ -56,10 +56,10 @@ Import directly from ``manim_extensions`` (``from manim_extensions.mindmap impor
    class LayoutAnimationExample(Scene):
        def construct(self):
            root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex(r"\text{A1}", font_size=36))
-           a2 = Node(MathTex(r"\text{A2}", font_size=36))
-           a21 = Node(MathTex(r"\text{A2-1}", font_size=36))
-           a22 = Node(MathTex(r"\text{A2-2}", font_size=36))
+           a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+           a2 = Node(MathTex(r"\text{A}_2", font_size=36))
+           a21 = Node(MathTex(r"\text{A}_{2-1}", font_size=36))
+           a22 = Node(MathTex(r"\text{A}_{2-2}", font_size=36))
 
            root.add_child(a1)
            root.add_child(a2)
