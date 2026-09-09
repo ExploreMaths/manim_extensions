@@ -87,6 +87,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     .. manim:: ManimAutomatonDocExample
 
        from manim import *
+       from manim_extensions.automata.mobjects.manim_animations import (
+           ManimAnimations,
+       )
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
            ManimdeterministicFiniteAutomaton,
        )

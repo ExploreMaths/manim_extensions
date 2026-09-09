@@ -50,7 +50,7 @@ Quick start
 
    class MLExample(Scene):
        def construct(self):
-           nn = NeuralNetwork(FeedForwardLayer(3), FeedForwardLayer(5))
+           nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(5)])
            self.add(nn)
 
 .. toctree::

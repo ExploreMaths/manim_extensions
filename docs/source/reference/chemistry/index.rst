@@ -45,12 +45,24 @@ Quick start
 .. manim:: ChemistryExample
    :save_last_frame:
 
+   import pandas as pd
    from manim import *
    from manim_extensions.chemistry import Element, PeriodicTable
+   from manim_extensions.chemistry.manim_chemistry_molecule import MC_ELEMENT_DICT
 
    class ChemistryExample(Scene):
        def construct(self):
-           table = PeriodicTable()
+           data = pd.DataFrame(
+               {
+                   "AtomicNumber": [e.atomic_number for e in MC_ELEMENT_DICT.values()],
+                   "AtomicMass": [e.mass for e in MC_ELEMENT_DICT.values()],
+                   "Name": [e.name for e in MC_ELEMENT_DICT.values()],
+                   "Symbol": [e.symbol for e in MC_ELEMENT_DICT.values()],
+                   "Color": [e.color for e in MC_ELEMENT_DICT.values()],
+               }
+           )
+           data.to_csv("element_data.csv", index=False)
+           table = PeriodicTable(data_file="element_data.csv")
            table.scale(0.35)
            self.add(table)
 
