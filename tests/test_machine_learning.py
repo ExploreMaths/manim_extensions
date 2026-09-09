@@ -9,6 +9,7 @@ override must never contain empty animation groups, for every supported
 layer topology.
 """
 
+from manim import *
 import numpy as np
 import pytest
 
@@ -150,13 +151,11 @@ class TestCreateOverride:
         ],
     )
     def test_create_animation_is_playable(self, layers):
-        from manim import Create
 
         nn = NeuralNetwork(layers)
         _assert_playable(Create(nn))
 
     def test_create_twice_returns_playable_animation(self):
-        from manim import Create
 
         nn = NeuralNetwork([FeedForwardLayer(2), FeedForwardLayer(2)])
         _assert_playable(Create(nn))
@@ -182,7 +181,6 @@ class TestVariationalAutoencoder:
         assert vae.embedding_layer is not None
 
     def test_create_is_playable(self):
-        from manim import Create
 
         vae = VariationalAutoencoder()
         _assert_playable(Create(vae))

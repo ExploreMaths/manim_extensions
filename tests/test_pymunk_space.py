@@ -3,9 +3,9 @@
 
 """Tests for the pymunk (VSpace/SpaceScene) physics integration."""
 
+from manim import *
 import pymunk
 import pytest
-from manim import Dot
 
 from manim_extensions.pymunk.space.VSpace import VSpace
 

@@ -3,9 +3,9 @@
 
 """Tests for the remaining small public modules."""
 
-from manim import LEFT, RIGHT, Circle, Scene, Square, SVGMobject, VGroup
 
 
+from manim import *
 class TestQrCodes:
     def test_qr_code_builds_vgroup(self):
         from manim_extensions.qr_codes import qr_code
