@@ -114,7 +114,10 @@ def find_issues_in_file(filepath: Path):
     if not star_exports:
         return None
 
-    has_star, blocks = collect_import_blocks(source)
+    try:
+        has_star, blocks = collect_import_blocks(source)
+    except SyntaxError:
+        return None
 
     result = {
         "path": filepath,
