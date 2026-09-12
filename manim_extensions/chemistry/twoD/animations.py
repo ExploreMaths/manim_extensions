@@ -7,7 +7,7 @@ This module provides the GMAnimationBuilder class for building molecule animatio
 """
 
 
-from manim import *
+from manim import BLACK, PI, VGroup
 from .graph_molecule import GraphMolecule
 
 

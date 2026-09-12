@@ -4,7 +4,32 @@
 
 """Custom animations for Manim."""
 
-from manim import *
+from manim import (
+    Animation,
+    AnimationGroup,
+    Create,
+    DOWN,
+    FadeIn,
+    FadeOut,
+    GrowFromCenter,
+    LEFT,
+    LaggedStart,
+    Line,
+    RED,
+    RIGHT,
+    Rectangle,
+    Restore,
+    SurroundingRectangle,
+    Text,
+    UP,
+    Uncreate,
+    VGroup,
+    Write,
+    config,
+    interpolate,
+    linear,
+    rush_into,
+)
 import numpy as np
 
 

@@ -4,7 +4,21 @@
 
 """Queue data structure for algorithm visualization."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    DOWN,
+    FadeOut,
+    LEFT,
+    Line,
+    MoveAlongPath,
+    RED,
+    RIGHT,
+    Square,
+    Succession,
+    UP,
+    VMobject,
+    linear,
+)
 from typing import List
 from manim.typing import Point3D
 from .node import Node

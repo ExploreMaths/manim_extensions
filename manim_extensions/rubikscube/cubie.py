@@ -5,9 +5,9 @@
 
 """Individual cubie used by the Rubik's Cube mobject."""
 
-from manim.constants import *
-from manim.utils.color import *
-from manim import *
+from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
+from manim.utils.color import BLACK
+from manim import Square, VGroup, z_to_vector
 from .cube_utils import get_faces_of_cubie
 
 import numpy as np

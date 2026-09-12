@@ -7,7 +7,20 @@
 """Network connection visualization utilities."""
 
 import numpy as np
-from manim import *
+from manim import (
+    AnimationGroup,
+    Arrow,
+    DOWN,
+    LEFT,
+    Line,
+    ORANGE,
+    RIGHT,
+    ShowPassingFlash,
+    UP,
+    VGroup,
+    WHITE,
+    override_animation,
+)
 
 
 class NetworkConnection(VGroup):

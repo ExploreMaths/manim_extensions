@@ -9,7 +9,7 @@ This module provides the VSpace class for managing Pymunk physical simulations.
 
 from __future__ import annotations
 
-from manim import *
+from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from typing import Callable, Dict, Any, Tuple, Union, TYPE_CHECKING
 import numpy as np

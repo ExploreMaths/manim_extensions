@@ -9,7 +9,7 @@ A directive for including Manim videos in a Sphinx document
 """
 from __future__ import annotations
 
-from manim import *
+from manim import QUALITIES, config, tempconfig
 import csv
 import itertools as it
 import re

@@ -9,7 +9,7 @@ This module provides the VRatchetJoint class for creating ratchet joint constrai
 
 from __future__ import annotations
 
-from manim import *
+from manim import Arrow, BLUE, Line, Mobject, PI, UP, VMobject, YELLOW, np
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

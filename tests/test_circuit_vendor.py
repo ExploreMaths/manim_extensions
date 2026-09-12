@@ -3,7 +3,7 @@
 
 
 
-from manim import *
+from manim import Circle, Scene
 from manim_extensions.circuit.mobjects import (
     Capacitor,
     CurrentSource,

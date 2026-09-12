@@ -8,12 +8,29 @@ This module provides scene classes for compass-based geometry animations.
 
 """
 
-from manim import *
+from manim import (
+    Animation,
+    AnimationGroup,
+    Arc,
+    Create,
+    DOWN,
+    LEFT,
+    Line,
+    MovingCameraScene,
+    ORIGIN,
+    PI,
+    PURE_YELLOW,
+    Point,
+    RIGHT,
+    Rotate,
+    UP,
+    UR,
+    linear,
+)
 
 __all__ = ["CompassScene"]
 from typing import List
 
-from manim.constants import *
 
 from ..compass import Compass, Ruler, Pencil
 from ..animations import *

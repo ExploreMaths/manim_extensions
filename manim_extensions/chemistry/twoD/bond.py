@@ -6,7 +6,7 @@ This module provides bond classes for representing chemical bonds in 2D.
 
 """
 
-from manim import *
+from manim import Line, PI, Polygram, VGroup, VMobject, WHITE
 import numpy as np
 from .atom import MAtomObject
 

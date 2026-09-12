@@ -11,7 +11,25 @@
     TODO return a map from nodes to split animation for BFS tree expansion
     TODO reimplement the decision 2D decision tree surface drawing. 
 """
-from manim import *
+from manim import (
+    AnimationGroup,
+    BLUE,
+    Create,
+    FadeIn,
+    FadeOut,
+    GREEN,
+    Group,
+    ImageMobject,
+    Line,
+    RED,
+    Rectangle,
+    Succession,
+    SurroundingRectangle,
+    Text,
+    VGroup,
+    WHITE,
+    override_animation,
+)
 from . import helpers
 
 import numpy as np
@@ -344,7 +362,7 @@ class DecisionTreeDiagram(Group):
                         class_colors=self.class_colors,
                         class_image_paths=self.class_image_paths,
                     )
-                    new_leaf_node.move_to(self.nodes_map[leaf_child_index])
+                    new_leaf_node.move_to(self.nodes_map[left_child_index])
                     placeholder_class_nodes[left_child_index] = new_leaf_node
                     left_animation = AnimationGroup(
                         FadeIn(new_leaf_node),

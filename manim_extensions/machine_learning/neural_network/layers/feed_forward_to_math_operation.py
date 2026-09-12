@@ -6,9 +6,9 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to math operation layer connection visualization."""
 
-from manim import *
+from manim import ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
-from .parent_layers import ConnectiveLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .math_operation_layer import MathOperationLayer
 from ...utils.mobjects.connections import NetworkConnection
 

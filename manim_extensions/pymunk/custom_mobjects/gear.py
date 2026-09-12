@@ -3,7 +3,7 @@
 # patched: lazy-import pymunk (physics extra)
 """Gear Mobject for Pymunk physics simulations."""
 
-from manim import *
+from manim import Circle, DEGREES, Exclusion, Polygon, Union, VMobject
 import numpy as np
 
 class Gear(VMobject):

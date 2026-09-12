@@ -6,7 +6,15 @@
 # SPDX-License-Identifier: MIT
 """Image layer visualization for neural networks."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    FadeIn,
+    ImageMobject,
+    SurroundingRectangle,
+    Wait,
+    override_animation,
+)
 import numpy as np
 from PIL import Image
 

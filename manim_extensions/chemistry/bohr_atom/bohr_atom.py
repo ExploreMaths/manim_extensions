@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 """Bohr atom model visualization for Manim."""
 
-from manim import *
+from manim import BLUE, Circle, Dot, RED, RIGHT, TAU, VGroup, WHITE
 import numpy as np
 import random
 

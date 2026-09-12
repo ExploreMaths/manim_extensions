@@ -7,7 +7,7 @@ This module provides the IS-LM model diagram.
 """
 
 
-from manim import *
+from manim import BLUE, RED
 from .base import EconDiagram
 
 

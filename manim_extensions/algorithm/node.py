@@ -5,7 +5,27 @@
 """Node data structure for algorithm visualization."""
 
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Circle,
+    DOWN,
+    Dot,
+    FadeIn,
+    FadeOut,
+    LEFT,
+    ManimColor,
+    Mobject,
+    ParsableManimColor,
+    RED,
+    RIGHT,
+    Square,
+    Succession,
+    Swap,
+    Tex,
+    UP,
+    VMobject,
+    WHITE,
+)
 from typing import List, TypeAlias
 from manim.typing import ManimFloat, Point3D as ManimPoint3D
 from manim.typing import Vector3DLike

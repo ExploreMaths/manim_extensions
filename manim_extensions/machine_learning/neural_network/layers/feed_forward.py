@@ -10,11 +10,23 @@ This module provides the feed forward layer class for neural network visualizati
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    Circle,
+    Create,
+    Mobject,
+    SMALL_BUFF,
+    Succession,
+    SurroundingRectangle,
+    VGroup,
+    Wait,
+    override_animation,
+)
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
-from .parent_layers import VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 from ... import config
 
 class FeedForwardLayer(VGroupNeuralNetworkLayer):

@@ -8,7 +8,17 @@ This module provides the ManimAnimations class for animating automata visualizat
 
 """
 
-from manim import *
+from manim import (
+    Animation,
+    BLUE,
+    FadeIn,
+    FadeToColor,
+    Mobject,
+    PURE_YELLOW,
+    RED,
+    Transform,
+    WHITE,
+)
 
 
 class ManimAnimations:

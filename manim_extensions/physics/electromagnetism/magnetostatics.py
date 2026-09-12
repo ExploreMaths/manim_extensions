@@ -6,7 +6,7 @@
 """Magnetostatics module"""
 
 from __future__ import annotations
-from manim import *
+from manim import ArrowVectorField, VMobject
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import itertools as it
 from typing import Iterable, Tuple

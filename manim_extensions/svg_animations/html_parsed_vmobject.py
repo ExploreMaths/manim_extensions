@@ -8,7 +8,17 @@ animated Manim objects from them.
 
 """
 
-from manim import *
+from manim import (
+    DOWN,
+    MovingCameraScene,
+    RIGHT,
+    Scene,
+    UL,
+    VMobject,
+    ValueTracker,
+    color_to_int_rgba,
+    np,
+)
 import itertools
 import os
 
@@ -281,6 +291,7 @@ class HTMLParsedVMobject:
         linspaces: list[np.ndarray],
         animate_this=True
     ):
+        svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:
             self.continue_updating = False
             self.last_t = self.scene.renderer.time

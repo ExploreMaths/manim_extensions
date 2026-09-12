@@ -8,7 +8,7 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import CairoRenderer, Scene, ThreeDCamera, ThreeDScene, tempconfig
 from manim._config.utils import ManimConfig
 from manim.utils.testing._frames_testers import _ControlDataWriter, _FramesTester
 from manim.utils.testing._test_class_makers import DummySceneFileWriter, _make_scene_file_writer_class, _make_test_renderer_class, _make_test_scene_class

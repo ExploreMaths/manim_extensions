@@ -4,7 +4,7 @@
 """Spring Mobject for Pymunk physics simulations."""
 
 import numpy as np
-from manim import *
+from manim import LEFT, Line, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 
 class VSpring(Line):
     """A spring-shaped Mobject rendered as a helix between two points.

@@ -8,14 +8,21 @@ This module provides base classes for mindmap visualizations.
 
 """
 
-from manim import *
+from manim import (
+    Group,
+    Line,
+    Mobject,
+    ORIGIN,
+    Rectangle,
+    Tex,
+    TexTemplateLibrary,
+    VMobject,
+)
 
 __all__ = ["NodeMobject", "generate_tree", "AbstractMap"]
 from typing import Generator, List, Dict
 
 import numpy as np
-from manim.constants import *
-from manim.utils.color import *
 
 from ..nodes import Node, NodeStyle, bfs_walker, dfs_walker
 from ..algorithms import Layout

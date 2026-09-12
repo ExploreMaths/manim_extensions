@@ -6,9 +6,9 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to vector layer connection visualization."""
 
-from manim import *
+from manim import AnimationGroup, Create, Dot, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
-from .parent_layers import ConnectiveLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .vector import VectorLayer
 
 

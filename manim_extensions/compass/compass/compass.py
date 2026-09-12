@@ -8,14 +8,27 @@ This module provides compass visualization for geometry.
 
 """
 
-from manim import *
+from manim import (
+    Circle,
+    DOWN,
+    Line,
+    ORIGIN,
+    PI,
+    PURE_YELLOW,
+    Point,
+    Polygon,
+    RED,
+    RIGHT,
+    Rectangle,
+    UP,
+    VGroup,
+    WHITE,
+)
 
 __all__ = [
     "Compass",
 ]
 import numpy as np
-from manim.utils.color import *
-from manim.constants import *
 
 from ..utils.geometry_method import get_distance, is_counter_clockwise
 

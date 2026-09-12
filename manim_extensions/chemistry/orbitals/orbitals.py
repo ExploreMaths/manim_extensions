@@ -6,7 +6,7 @@ This module provides classes for rendering atomic orbitals in 3D.
 
 """
 
-from manim import *
+from manim import BLUE, ORIGIN, PI, RED, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 import scipy.special as spe

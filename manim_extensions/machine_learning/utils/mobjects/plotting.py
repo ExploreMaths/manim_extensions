@@ -7,7 +7,7 @@
 # patched: lazy-import matplotlib (ml extra)
 """Plotting utilities for neural network visualization."""
 
-from manim import *
+from manim import ImageMobject
 import numpy as np
 from PIL import Image
 import io

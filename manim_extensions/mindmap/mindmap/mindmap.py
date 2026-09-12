@@ -11,8 +11,8 @@ This module provides main mindmap classes for visualizations.
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 from typing import Dict
 
-from manim.constants import *
-from manim.utils.color import *
+from manim.constants import DOWN, RIGHT, UP
+from manim.utils.color import GREEN, PURE_YELLOW, RED, WHITE
 
 from .base import NodeMobject, AbstractMap, generate_tree
 from ..nodes import NodeStyle, bfs_walker

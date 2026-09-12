@@ -8,7 +8,7 @@ This module provides animations for pencil manipulations.
 
 """
 
-from manim import *
+from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, Point, VMobject
 
 __all__ = ["MovePencilAlongPath", "MovePencilTipTo", "DrawPath", "PutPencilAway"]
 from typing import Union

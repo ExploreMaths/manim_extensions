@@ -6,7 +6,25 @@ This module provides the base classes for economic diagram visualizations.
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Axes,
+    DOWN,
+    DashedLine,
+    Dot,
+    FadeIn,
+    FadeOut,
+    LEFT,
+    Line,
+    Polygon,
+    RIGHT,
+    ReplacementTransform,
+    Text,
+    UP,
+    VGroup,
+    WHITE,
+    YELLOW,
+)
 import numpy as np
 
 

@@ -8,7 +8,36 @@
 from copy import deepcopy
 
 import numpy as np
-from manim import *
+from manim import (
+    Animation,
+    AnimationGroup,
+    ApplyFunction,
+    ApplyMethod,
+    Arrow,
+    BLUE_A,
+    BLUE_B,
+    BLUE_D,
+    BOLD,
+    DOWN,
+    FadeOut,
+    GOLD_A,
+    GOLD_D,
+    Indicate,
+    LEFT,
+    Mobject,
+    RED_A,
+    RED_D,
+    RIGHT,
+    Rectangle,
+    Scene,
+    Square,
+    Succession,
+    Text,
+    UP,
+    VGroup,
+    WHITE,
+    Write,
+)
 from manim.mobject.mobject import _AnimationBuilder
 from typing import Any, Callable, List, Tuple, Union
 

@@ -12,7 +12,7 @@ r"""Pendulums.
 
 from __future__ import annotations
 
-from manim import *
+from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup
 from typing import Iterable
 
 import numpy as np

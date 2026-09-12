@@ -6,7 +6,25 @@ This module provides the Solow growth model diagram.
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    BLUE,
+    Brace,
+    DashedLine,
+    FadeIn,
+    FadeOut,
+    GREEN,
+    Line,
+    ORANGE,
+    PURPLE,
+    RED,
+    RIGHT,
+    ReplacementTransform,
+    Text,
+    UpdateFromAlphaFunc,
+    VGroup,
+    YELLOW,
+)
 import numpy as np
 
 from .base import EconDiagram

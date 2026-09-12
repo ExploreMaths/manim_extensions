@@ -9,7 +9,7 @@ This module provides the VPinJoint class for creating pin joint constraints in p
 
 from __future__ import annotations
 
-from manim import *
+from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, np
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

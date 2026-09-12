@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Gridded rectangle visualization utility."""
 
-from manim import *
+from manim import DOWN, DashedVMobject, Dot, Line, ORANGE, RIGHT, Rectangle, VGroup
 import numpy as np
 
 

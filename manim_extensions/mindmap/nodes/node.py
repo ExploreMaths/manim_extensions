@@ -8,14 +8,27 @@ This module provides node classes for mindmap visualizations.
 
 """
 
-from manim import *
+from manim import (
+    BLUE,
+    DOWN,
+    GREEN,
+    Group,
+    LEFT,
+    Line,
+    PURE_YELLOW,
+    RED,
+    RIGHT,
+    Rectangle,
+    UP,
+    VMobject,
+    WHITE,
+)
 
 __all__ = ["Node", "NodeSate", "NodeStyle", "dfs_walker", "bfs_walker"]
 from enum import Enum
 from collections import deque
 from typing import Generator, List, Dict
 
-from manim.utils.color import *
 import numpy as np
 
 from ..algorithms import LayoutType, LayoutDirection

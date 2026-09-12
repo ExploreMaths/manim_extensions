@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """List group utility for neural network visualization."""
 
-from manim import *
+from manim import Mobject
 
 
 class ListGroup(Mobject):

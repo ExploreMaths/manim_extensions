@@ -10,7 +10,7 @@ This module provides custom scene classes for machine learning visualizations.
 
 """
 
-from manim import *
+from manim import ThreeDScene
 
 
 class ManimML3DScene(ThreeDScene):

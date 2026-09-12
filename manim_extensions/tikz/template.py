@@ -10,7 +10,7 @@ This module provides the TikZ template class for rendering TikZ diagrams.
 
 
 
-from manim import *
+from manim import TexTemplate
 from typing import List
 
 

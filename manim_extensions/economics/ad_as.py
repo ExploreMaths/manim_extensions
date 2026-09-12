@@ -7,7 +7,7 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 """
 
 
-from manim import *
+from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram
 
 # Default long-run adjustment duration (seconds)

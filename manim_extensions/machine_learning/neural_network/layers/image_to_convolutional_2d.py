@@ -6,10 +6,17 @@
 # SPDX-License-Identifier: MIT
 """Image to convolutional 2D layer connection visualization."""
 
-from manim import *
+from manim import (
+    ApplyFunction,
+    ApplyMethod,
+    Create,
+    Succession,
+    Wait,
+    override_animation,
+)
 from .convolutional_2d import Convolutional2DLayer
 from .image import ImageLayer
-from .parent_layers import ThreeDLayer, VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 
 from ... import config
 

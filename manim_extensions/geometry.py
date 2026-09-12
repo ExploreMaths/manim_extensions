@@ -11,7 +11,7 @@ lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
 their cubic Bézier outlines, so no type-specific cases are needed.
 """
 
-from manim import *
+from manim import VMobject
 import math
 import numpy as np
 from typing import Optional, Union

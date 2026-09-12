@@ -6,7 +6,7 @@ This module provides OpenGL-based 3D geometry classes for chemistry visualizatio
 
 """
 
-from manim import *
+from manim import ORIGIN, PI, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 

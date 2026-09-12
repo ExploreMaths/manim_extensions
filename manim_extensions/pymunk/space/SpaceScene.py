@@ -8,7 +8,7 @@ This module provides the SpaceScene class for creating physics simulations with 
 """
 from __future__ import annotations
 
-from manim import *
+from manim import Mobject, ZoomedScene
 from typing import Any, Callable, Dict, Tuple, TYPE_CHECKING
 
 from . import VSpace

@@ -10,7 +10,7 @@ This module provides the VDampedSpring class for creating damped spring constrai
 from __future__ import annotations
 
 from ..custom_mobjects import VSpring
-from manim import *
+from manim import BLUE, Dot, Line, Mobject, ORIGIN, VMobject, YELLOW
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

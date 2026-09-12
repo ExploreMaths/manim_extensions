@@ -8,9 +8,23 @@
 
 import numpy as np
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyFunction,
+    ApplyMethod,
+    Create,
+    FadeOut,
+    Line,
+    ORANGE,
+    RED,
+    ShowPassingFlash,
+    Succession,
+    VGroup,
+    override_animation,
+    rotation_matrix,
+)
 from .convolutional_2d import Convolutional2DLayer
-from .parent_layers import ConnectiveLayer, ThreeDLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 from ... import config
 

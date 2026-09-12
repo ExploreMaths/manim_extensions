@@ -3,7 +3,7 @@
 
 """Tests for the remaining small public modules."""
 
-from manim import *
+from manim import Circle, LEFT, RIGHT, SVGMobject, Scene, Square, VGroup
 import pytest
 
 

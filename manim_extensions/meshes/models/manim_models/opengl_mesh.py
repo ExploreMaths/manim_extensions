@@ -4,7 +4,6 @@
 
 """Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""
 
-from manim import *  # noqa: F401
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
 # Implementation in progress

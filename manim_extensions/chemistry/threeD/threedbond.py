@@ -7,7 +7,23 @@ This module provides 3D bond classes for rendering chemical bonds in three dimen
 """
 
 
-from manim import *
+from manim import (
+    Circle,
+    IN,
+    LEFT,
+    Line3D,
+    Mobject,
+    ORIGIN,
+    PI,
+    RIGHT,
+    RendererType,
+    TAU,
+    Y_AXIS,
+    Z_AXIS,
+    config,
+    normalize,
+    perpendicular_bisector,
+)
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np

@@ -8,7 +8,7 @@ This module provides pencil visualization for geometry.
 
 """
 
-from manim import *
+from manim import Line, ORIGIN, PI, SVGMobject
 
 __all__ = [
     "Pencil",

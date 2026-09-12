@@ -7,7 +7,7 @@
 functions to create delaunay meshes by divide and conquer
 """
 
-from manim import *
+from manim import Create, DashedLine, FadeOut, Scene, Uncreate
 
 # python imports
 from typing import List

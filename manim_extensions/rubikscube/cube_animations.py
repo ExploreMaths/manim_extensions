@@ -8,7 +8,7 @@ This module provides animations for Rubik's Cube manipulations.
 
 """
 
-from manim import *
+from manim import Animation, PI, VGroup
 from .cube_utils import get_axis_from_face
 
 

@@ -9,7 +9,22 @@ This module provides gear and rack visualizations.
 """
 
 import numpy as np
-from manim import *
+from manim import (
+    Arc,
+    ArcBetweenPoints,
+    Circle,
+    DEGREES,
+    DOWN,
+    LEFT,
+    Line,
+    ORIGIN,
+    OUT,
+    PI,
+    RIGHT,
+    UP,
+    VMobject,
+    rotate_vector,
+)
 from typing import Optional, Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares

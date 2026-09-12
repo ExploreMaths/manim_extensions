@@ -8,7 +8,17 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import (
+    Circle,
+    Difference,
+    Intersection,
+    LEFT,
+    RIGHT,
+    Square,
+    VMobject,
+    VectorizedPoint,
+    config,
+)
 from typing import Iterable, Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np

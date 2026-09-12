@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import Circle, DOWN, Dot, LEFT, RIGHT, Square, UP, WHITE, config
 import pytest
 import numpy as np
 from numpy.testing import assert_array_almost_equal

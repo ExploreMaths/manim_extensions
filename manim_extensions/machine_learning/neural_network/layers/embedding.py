@@ -6,9 +6,24 @@
 # SPDX-License-Identifier: MIT
 """Embedding layer visualization for neural networks."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Axes,
+    Create,
+    DEFAULT_STROKE_WIDTH,
+    Dot,
+    FadeOut,
+    GOLD,
+    GrowFromCenter,
+    Line,
+    Scene,
+    VGroup,
+    WHITE,
+    np,
+    override_animation,
+)
 from ...utils.mobjects.probability import GaussianDistribution
-from .parent_layers import VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 
 class EmbeddingLayer(VGroupNeuralNetworkLayer):

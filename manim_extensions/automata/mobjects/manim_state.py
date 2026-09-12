@@ -8,7 +8,7 @@ This module provides state visualization for automata.
 
 """
 
-from manim import *
+from manim import Arrow, BLUE, Circle, LEFT, Tex, VGroup
 from .automata_dependencies.automata import State
 
 

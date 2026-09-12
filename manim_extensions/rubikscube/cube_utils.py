@@ -8,7 +8,7 @@ This module provides utility functions for Rubik's Cube operations.
 
 """
 
-from manim.constants import *
+from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
 
 
 def get_axis_from_face(face):

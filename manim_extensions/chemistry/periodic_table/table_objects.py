@@ -7,7 +7,19 @@ This module provides the MElementObject class for rendering periodic table eleme
 
 """
 
-from manim import *
+from manim import (
+    BLACK,
+    BLUE,
+    DOWN,
+    ORIGIN,
+    RIGHT,
+    Rectangle,
+    Tex,
+    Text,
+    VGroup,
+    WHITE,
+    color_gradient,
+)
 import numpy as np
 
 from ...utils.deps import require

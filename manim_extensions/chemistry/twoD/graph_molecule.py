@@ -7,7 +7,17 @@ This module provides graph-based molecule visualization classes.
 """
 
 
-from manim import *
+from manim import (
+    ArcBetweenPoints,
+    BLACK,
+    Graph,
+    Line,
+    ORIGIN,
+    PI,
+    Text,
+    VGroup,
+    color_gradient,
+)
 from typing import Dict, Tuple
 import numpy as np
 import networkx as nx

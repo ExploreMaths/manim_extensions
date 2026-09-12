@@ -8,7 +8,7 @@ This module provides object class for sequence diagrams.
 
 """
 
-from manim import *
+from manim import ORIGIN, Rectangle, Text, VGroup, WHITE
 
 
 class SeqObject(VGroup):

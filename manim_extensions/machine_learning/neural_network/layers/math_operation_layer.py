@@ -6,11 +6,21 @@
 # SPDX-License-Identifier: MIT
 """Math operation layer visualization for neural networks."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    BLUE,
+    Circle,
+    Mobject,
+    ORANGE,
+    Succession,
+    Text,
+    Wait,
+)
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
-from .parent_layers import VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 class MathOperationLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import PI, PURE_YELLOW, RED, WHITE
 import numpy as np
 
 from manim_extensions.compass import Compass

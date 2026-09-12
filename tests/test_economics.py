@@ -7,7 +7,7 @@ Includes the regression for ``ADASDiagram(numbered_eq=True)`` (9a12ddc),
 where the unhandled kwarg leaked through **kwargs into Mobject.__init__.
 """
 
-from manim import *
+from manim import Animation
 import pytest
 
 from manim_extensions.economics import (

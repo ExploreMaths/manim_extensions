@@ -8,7 +8,7 @@ This module provides TikZ markup to SVG conversion for Manim animations.
 
 """
 
-from manim import *
+from manim import SVGMobject
 from manim.utils.tex_file_writing import tex_to_svg_file
 from .template import TikzTemplate
 

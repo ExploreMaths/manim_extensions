@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """ReLU activation function visualization."""
 
-from manim import *  # noqa: F401
 
 from .activation_function import ActivationFunction
 

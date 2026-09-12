@@ -9,7 +9,7 @@ This module provides the VRotaryLimitJoint class for creating rotary limit joint
 
 from __future__ import annotations
 
-from manim import *
+from manim import Arc, Mobject, PI, VMobject, YELLOW
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 import numpy as np

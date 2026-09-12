@@ -10,7 +10,7 @@ This module provides animations for ruler manipulations.
 
 __all__ = ["PutRuler", "PutRulerAway"]
 
-from manim import *
+from manim import ApplyMethod, DOWN, LEFT, Point, RIGHT, UP
 from ..compass.ruler import Ruler
 
 

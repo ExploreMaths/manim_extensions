@@ -8,6 +8,6 @@ This module provides constants used in sequence diagrams.
 
 """
 
-from manim import *
+from manim import DOWN
 
 HALF_DOWN = DOWN / 1.5

@@ -6,7 +6,18 @@
 # SPDX-License-Identifier: MIT
 """Triplet layer visualization for neural networks."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    DOWN,
+    FadeIn,
+    GREEN,
+    Group,
+    ImageMobject,
+    RED,
+    WHITE,
+    override_animation,
+)
 from . import NeuralNetworkLayer
 from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 

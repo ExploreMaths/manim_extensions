@@ -7,7 +7,26 @@
 import sys
 import os
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    BLUE,
+    Circle,
+    DOWN,
+    FadeIn,
+    FadeOut,
+    GREEN,
+    PINK,
+    PURE_YELLOW,
+    RED,
+    RIGHT,
+    Scene,
+    Succession,
+    Text,
+    VGroup,
+    VMobject,
+    tempconfig,
+)
 from ..node import Node
 
 

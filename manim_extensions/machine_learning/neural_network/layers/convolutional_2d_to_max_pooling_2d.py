@@ -7,11 +7,19 @@
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
 import random
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    ORANGE,
+    ReplacementTransform,
+    Succession,
+    VGroup,
+    Wait,
+)
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from .max_pooling_2d import MaxPooling2DLayer
-from .parent_layers import ConnectiveLayer, ThreeDLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .convolutional_2d import Convolutional2DLayer
 
 from ... import config

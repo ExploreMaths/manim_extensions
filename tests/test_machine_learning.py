@@ -9,7 +9,7 @@ override must never contain empty animation groups, for every supported
 layer topology.
 """
 
-from manim import *
+from manim import Create
 import numpy as np
 import pytest
 

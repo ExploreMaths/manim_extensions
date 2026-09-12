@@ -12,7 +12,43 @@ objects.
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    BLACK,
+    BLUE,
+    BLUE_B,
+    Brace,
+    Code,
+    Cone,
+    Cylinder,
+    DARK_GRAY,
+    DEFAULT_FONT_SIZE,
+    DOWN,
+    Dot,
+    DoubleArrow,
+    GREEN,
+    GREY,
+    ImageMobject,
+    LEFT,
+    Line,
+    MathTex,
+    Mobject,
+    ORIGIN,
+    OUT,
+    ParsableManimColor,
+    Polygon,
+    RED,
+    RIGHT,
+    Rectangle,
+    Scene,
+    TexTemplate,
+    Text,
+    UP,
+    VGroup,
+    WHITE,
+    Wait,
+    rgb_to_color,
+)
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform

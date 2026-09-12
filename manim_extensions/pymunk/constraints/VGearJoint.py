@@ -9,7 +9,7 @@ This module provides the VGearJoint class for creating gear joint constraints.
 
 from __future__ import annotations
 
-from manim import *
+from manim import Arrow, BLUE, Line, Mobject, UP, np
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

@@ -4,7 +4,7 @@
 
 """Debug utilities for algorithm visualization."""
 
-from manim import *
+from manim import DOWN, Dot, Integer, Paragraph, VGroup
 
 
 def index_paragraph_labels(

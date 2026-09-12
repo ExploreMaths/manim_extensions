@@ -6,10 +6,10 @@
 # SPDX-License-Identifier: MIT
 """Vector layer visualization for neural networks."""
 
-from manim import *
+from manim import AnimationGroup, Create, Matrix, Text, Write, np, override_animation
 import random
 
-from .parent_layers import VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 
 class VectorLayer(VGroupNeuralNetworkLayer):

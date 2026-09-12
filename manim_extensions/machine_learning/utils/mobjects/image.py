@@ -6,7 +6,18 @@
 # SPDX-License-Identifier: MIT
 """Image mobject utilities for neural network visualization."""
 
-from manim import *
+from manim import (
+    Create,
+    FadeIn,
+    Group,
+    ImageMobject,
+    RED,
+    RESAMPLING_ALGORITHMS,
+    SurroundingRectangle,
+    Text,
+    UP,
+    override_animation,
+)
 import numpy as np
 from PIL import Image
 

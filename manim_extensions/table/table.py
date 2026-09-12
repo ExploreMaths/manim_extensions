@@ -4,7 +4,7 @@
 Table - The main database table component.
 """
 
-from manim import *
+from manim import DOWN, FadeIn, FadeOut, LEFT, RIGHT, Text, Transform, VGroup
 import numpy as np
 from .row import Row
 from .cell import Cell

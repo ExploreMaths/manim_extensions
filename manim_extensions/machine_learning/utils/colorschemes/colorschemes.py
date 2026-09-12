@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Color schemes for neural network visualization."""
 
-from manim import *
+from manim import BLACK, BLUE, ORANGE, WHITE
 from dataclasses import dataclass
 
 @dataclass

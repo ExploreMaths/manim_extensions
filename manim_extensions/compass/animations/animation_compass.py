@@ -8,7 +8,19 @@ This module provides animations for compass manipulations.
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    Arc,
+    Create,
+    DOWN,
+    LEFT,
+    Line,
+    Point,
+    RIGHT,
+    Rotate,
+    UP,
+)
 
 __all__ = [
     "DrawArc",

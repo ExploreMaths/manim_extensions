@@ -3,7 +3,7 @@
 # patched: lazy-import pymunk (physics extra)
 """Apple Mobject for Pymunk physics simulations."""
 
-from manim import *
+from manim import VMobject, np
 
 class Apple(VMobject):
     """An apple-shaped Mobject built from Bezier curves.

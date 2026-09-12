@@ -9,7 +9,7 @@ This module provides the ManimAutomataInput class for representing input strings
 """
 
 
-from manim import *
+from manim import MathTex, VGroup
 from typing import Any
 
 import itertools

@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Probability distribution utilities for neural network visualization."""
 
-from manim import *
+from manim import Ellipse, ORANGE, VGroup
 import numpy as np
 
 

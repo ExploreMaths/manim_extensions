@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import Animation, Indicate, Scene, Text
 from typing import Any, Union
 
 from .m_array import MArrayElement

@@ -30,7 +30,21 @@ from __future__ import annotations
 
 import numpy as np
 
-from manim import *
+from manim import (
+    Circle,
+    Group,
+    Line,
+    Mobject,
+    Polygon,
+    Polygram,
+    RIGHT,
+    Rectangle,
+    Scene,
+    UP,
+    VGroup,
+    VMobject,
+    angle_between_vectors,
+)
 from typing import Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 

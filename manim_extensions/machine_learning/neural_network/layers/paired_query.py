@@ -6,7 +6,17 @@
 # SPDX-License-Identifier: MIT
 """Paired query layer visualization for neural networks."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    BLUE,
+    Create,
+    DOWN,
+    FadeIn,
+    Group,
+    ImageMobject,
+    RED,
+    override_animation,
+)
 from .parent_layers import NeuralNetworkLayer
 from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 

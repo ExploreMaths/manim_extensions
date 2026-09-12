@@ -8,7 +8,22 @@ This module provides animations for mindmap visualizations.
 
 """
 
-from manim import *
+from manim import (
+    Animation,
+    AnimationGroup,
+    Create,
+    FadeIn,
+    FadeOut,
+    Group,
+    ImageMobject,
+    MathTex,
+    RIGHT,
+    Rectangle,
+    Scene,
+    Tex,
+    VMobject,
+    Write,
+)
 
 __all__ = [
     "LayoutAnimation",
@@ -19,8 +34,6 @@ __all__ = [
 ]
 from typing import List, Dict
 
-from manim.utils.color import *
-from manim.constants import *
 import numpy as np
 
 from ..algorithms import LayoutFactory, LayoutType, LayoutConfig

@@ -8,7 +8,21 @@ This module provides actor class for sequence diagrams.
 
 """
 
-from manim import *
+from manim import (
+    Create,
+    DOWN,
+    Dot,
+    Line,
+    MoveAlongPath,
+    ORANGE,
+    ORIGIN,
+    Rectangle,
+    Succession,
+    Text,
+    TracedPath,
+    VGroup,
+    WHITE,
+)
 from .constants import HALF_DOWN
 
 

@@ -6,9 +6,18 @@
 # SPDX-License-Identifier: MIT
 """Embedding to feed-forward layer connection visualization."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    Dot,
+    FadeOut,
+    RED,
+    Succession,
+    Wait,
+    override_animation,
+)
 from .feed_forward import FeedForwardLayer
-from .parent_layers import ConnectiveLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .embedding import EmbeddingLayer
 
 
