@@ -4,12 +4,15 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import matplotlib (ml extra)
 """Plotting utilities for neural network visualization."""
 
 from manim import *
 import numpy as np
 from PIL import Image
 import io
+
+from ....utils.deps import require
 
 def convert_matplotlib_figure_to_image_mobject(fig, dpi=200):
     """Takes a matplotlib figure and makes an image mobject from it
@@ -19,7 +22,7 @@ def convert_matplotlib_figure_to_image_mobject(fig, dpi=200):
     fig : matplotlib figure
         matplotlib figure
     """
-    import matplotlib.pyplot as plt
+    plt = require("ml", "matplotlib.pyplot")
 
     fig.tight_layout(pad=0)
     # plt.axis('off')

@@ -1,14 +1,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """图片工具模块。
 
 该模块提供将图片转换为Pymunk物理形状的工具函数，支持透明背景图和实色背景图的智能处理。
 """
 
-import pymunk
-from pymunk.autogeometry import march_soft, simplify_vertexes, convex_decomposition
-from PIL import Image, ImageFilter, ImageOps
 import numpy as np
+from PIL import Image, ImageFilter, ImageOps
+
+from ...utils.deps import require
 
 
 def get_normalized_convex_polygons(
@@ -39,6 +40,9 @@ def get_normalized_convex_polygons(
     Returns:
         list: Manim坐标系中的凸多边形列表，每个多边形为顶点坐标列表。
     """
+    pymunk = require("physics", "pymunk")
+    from pymunk.autogeometry import march_soft, simplify_vertexes, convex_decomposition
+
     # 1. 基础维度获取
     orig_h, orig_w = pixel_array.shape[:2]
     is_rgba = pixel_array.shape[2] == 4 if len(pixel_array.shape) > 2 else False

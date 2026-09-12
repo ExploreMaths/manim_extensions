@@ -1,17 +1,24 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Simple motor constraint for Pymunk.
 
 This module provides the VSimpleMotor class for creating simple motor constraints.
 
 """
 
+from __future__ import annotations
+
 from math import inf
 from manim import *
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import SimpleMotor
-from pymunk import Space
-from typing import Optional
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import SimpleMotor
 
 
 class VSimpleMotor(VConstraint):
@@ -96,6 +103,9 @@ class VSimpleMotor(VConstraint):
         pass
 
     def install(self, space: Space):
+
+        SimpleMotor = require("physics", "pymunk").constraints.SimpleMotor
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

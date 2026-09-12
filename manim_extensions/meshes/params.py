@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import moderngl (meshes extra)
 
 
 """
@@ -14,11 +15,12 @@ from typing import Any
 
 # third-party imports
 import manim as m
-import moderngl
 
 # local imports
 from .exceptions import BadParameterException
 from .types import DefaultParameters, Parameters
+
+from ..utils.deps import require
 
 # map from param name to type and default value
 
@@ -57,14 +59,27 @@ BM2DM: DefaultParameters = {
 }
 
 # opengl_mesh_default_params
-OGLM: DefaultParameters = {
-    "color": (ManimColor, ManimColor(m.GREY)),
-    "depth_test": (bool, True),
-    "gloss": (float, 0.3),
-    "opacity": (float, 1.0),
-    "render_primitive": (int, moderngl.TRIANGLES),
-    "shadow": (float, 0.4),
-}
+# OGLM is built lazily (see __getattr__ below): it defaults
+# ``render_primitive`` to ``moderngl.TRIANGLES``, so building it at import
+# time would require the optional "meshes" extra just to import this module.
+def _build_oglm() -> DefaultParameters:
+    moderngl = require("meshes", "moderngl")
+    return {
+        "color": (ManimColor, ManimColor(m.GREY)),
+        "depth_test": (bool, True),
+        "gloss": (float, 0.3),
+        "opacity": (float, 1.0),
+        "render_primitive": (int, moderngl.TRIANGLES),
+        "shadow": (float, 0.4),
+    }
+
+
+def __getattr__(name: str):
+    # PEP 562: build OGLM on first attribute access so that importing this
+    # module does not require the optional moderngl dependency.
+    if name == "OGLM":
+        return _build_oglm()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def get_param_or_default(

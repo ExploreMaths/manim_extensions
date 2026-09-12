@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Ratchet joint constraint for Pymunk.
 
 This module provides the VRatchetJoint class for creating ratchet joint constraints.
 
 """
 
+from __future__ import annotations
+
 from manim import *
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import RatchetJoint
-from pymunk import Space
-from typing import Optional
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import RatchetJoint
 
 
 class VRatchetJoint(VConstraint):
@@ -128,6 +135,9 @@ class VRatchetJoint(VConstraint):
                 )
 
     def install(self, space: Space):
+
+        RatchetJoint = require("physics", "pymunk").constraints.RatchetJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

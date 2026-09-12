@@ -26,25 +26,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Operating System :: OS Independent",
 ]
+# Core: only manim and numpy. Everything else either ships with manim
+# itself (Pillow, scipy, networkx, click, rich, moderngl) or is split
+# into the per-module extras below and lazy-imported on use.
 dependencies = [
     "manim>=0.21.0",
-    "Pillow>=9.0",
-    "opencv-python>=4.5",
     "numpy>=2.0",
-    "scipy>=1.9",
-    "pandas>=2.2",
-    "networkx>=3.0",
-    "requests>=2.31",
-    "click>=8.1",
-    "rich>=13.0",
-    "pymunk>=6.0",
-    "shapely>=2.0",
-    "trimesh>=4.0",
-    "moderngl>=5.0",
-    "kociemba>=1.2",
-    "xmltodict>=0.13",
-    "segno>=1.5",
-    "svgpathtools>=1.5",
     # manim-mobject-svg (used by svg_animations.HTMLParsedVMobject) works
     # with any manim>=0.16, but its 0.5.x release declares python<3.13 on
     # PyPI even though the package is pure Python; on Python 3.13+ install
@@ -66,7 +53,43 @@ docs = [
     "docutils>=0.20",
     "jinja2>=3.1",
 ]
-# Optional: machine_learning diffusion/decision-tree modules
+# automata: JSON/XML template parsing
+automata = [
+    "xmltodict>=0.13",
+]
+# chemistry: element data, periodic table, PubChem API
+chemistry = [
+    "pandas>=2.2",
+    "xmltodict>=0.13",
+    "requests>=2.31",
+]
+# physics: the pymunk subpackage plus rigid mechanics and optics
+physics = [
+    "pymunk>=6.0",
+    "shapely>=2.0",
+]
+# rubikscube: Rubik's cube solving (rubikscube.RubiksCube.solve_by_kociemba)
+rubikscube = [
+    "kociemba>=1.2",
+]
+# meshes: mesh loading and 3D geometry (meshes subpackage)
+meshes = [
+    "trimesh>=4.0",
+    "moderngl>=5.0",
+]
+# video: VideoMobject frame reading (mobjects.VideoMobject)
+video = [
+    "opencv-python>=4.5",
+]
+# qr: QR code generation (qr_codes.qr_code)
+qr = [
+    "segno>=1.5",
+]
+# svg: SVG path parsing (svg_animations)
+svg = [
+    "svgpathtools>=1.5",
+]
+# machine_learning: diffusion/decision-tree modules
 ml = [
     "matplotlib>=3.7",
     "scikit-learn>=1.3",

@@ -1,18 +1,24 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Space scene for Pymunk physics.
 
 This module provides the SpaceScene class for creating physics simulations with Pymunk.
 
 """
+from __future__ import annotations
+
 from manim import *
-from ..constraints.constraint import VConstraint
-import pymunk
-from typing import Any, Callable, Dict, Tuple
+from typing import Any, Callable, Dict, Tuple, TYPE_CHECKING
 
 from . import VSpace
-
+from ..constraints.constraint import VConstraint
 from ..utils.logger_tool import manim_pymunk_logger
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    import pymunk
 
 
 class SpaceScene(ZoomedScene):
@@ -148,6 +154,7 @@ class SpaceScene(ZoomedScene):
         angular_velocity
             The initial angular velocity of the body.
         """
+        pymunk = require("physics", "pymunk")
         self.add(*mobs)
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
@@ -221,6 +228,7 @@ class SpaceScene(ZoomedScene):
         angular_velocity
             The initial angular velocity of the body.
         """
+        pymunk = require("physics", "pymunk")
         self.add(*mobs)
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
@@ -294,6 +302,7 @@ class SpaceScene(ZoomedScene):
         angular_velocity
             The initial angular velocity of the body.
         """
+        pymunk = require("physics", "pymunk")
         self.add(*mobs)
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
@@ -341,6 +350,7 @@ class SpaceScene(ZoomedScene):
             The Mobjects whose associated physical bodies should be activated.
             This includes all sub-mobjects within the family tree of each provided Mobject.
         """
+        pymunk = require("physics", "pymunk")
         for mob in mobs:
             family = mob.family_members_with_points()
             for sub_mob in family:
@@ -364,6 +374,7 @@ class SpaceScene(ZoomedScene):
             This iterates through all sub-mobjects within the family tree of
             each provided Mobject.
         """
+        pymunk = require("physics", "pymunk")
         for mob in mobs:
             # 解决组的问题
             family = mob.family_members_with_points()
@@ -394,6 +405,8 @@ class SpaceScene(ZoomedScene):
         ylim
             The display range for the Y-axis in the plot.
         """
+        pymunk = require("physics", "pymunk")
+
         import matplotlib.pyplot as plt
         import pymunk.matplotlib_util
         import matplotlib

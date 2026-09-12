@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """A directive for documenting type aliases and other module-level attributes."""
 
 from __future__ import annotations

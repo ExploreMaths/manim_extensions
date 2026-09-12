@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2024 Matheart
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 
 
 """A gravity simulation space.
@@ -28,11 +29,12 @@ the specific functions of the space.
 from __future__ import annotations
 
 import numpy as np
-import pymunk
 
 from manim import *
 from typing import Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+
+from ...utils.deps import require
 
 __all__ = [
     "Space",
@@ -86,6 +88,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
         """Initialize Space."""
         super().__init__(**kwargs)
+        pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
         self.space.gravity = gravity
         self.space.sleep_time_threshold = 5
@@ -197,6 +200,7 @@ class SpaceScene(Scene):
             The attributes of the mobjects in regards to
             interacting with other rigid and static objects.
         """
+        pymunk = require("physics", "pymunk")
         for mob in mobs:
             if not hasattr(mob, "body"):
                 self.add(mob)
@@ -292,6 +296,7 @@ def get_shape(mob: VMobject) -> None:
     mob : VMobject
     The mobject to manipulate.
     """
+    pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
         mob.shape = pymunk.Circle(body=mob.body, radius=mob.radius)
     elif isinstance(mob, Line):

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2021 KingWampy
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import kociemba (rubikscube extra)
 
 
 """Rubik's Cube mobject built from Manim primitives.
@@ -14,9 +15,8 @@ from manim import *
 from manim.utils.color import *
 import numpy as np
 from .cubie import Cubie
-import kociemba
 
-sv = kociemba
+from ..utils.deps import require
 
 
 class RubiksCube(VMobject):
@@ -263,6 +263,7 @@ class RubiksCube(VMobject):
         list[str]
             A list of move tokens.
         """
+        sv = require("rubikscube", "kociemba")
         return sv.solve(state).replace("3", "'").replace("1", "").split()
 
     def transform_cubie(self, position, offset, tile):

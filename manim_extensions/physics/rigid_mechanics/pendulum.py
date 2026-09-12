@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2024 Matheart
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 
 r"""Pendulums.
 
@@ -15,9 +16,10 @@ from manim import *
 from typing import Iterable
 
 import numpy as np
-import pymunk
 
 from .rigid_mechanics import SpaceScene
+
+from ...utils.deps import require
 
 __all__ = [
     "Pendulum",
@@ -120,6 +122,7 @@ class MultiPendulum(VGroup):
         spacescene : SpaceScene
             The physics scene to which the joint is added.
         """
+        pymunk = require("physics", "pymunk")
         a = mob1.body
         if type(mob2) == np.ndarray:
             b = pymunk.Body(body_type=pymunk.Body.STATIC)

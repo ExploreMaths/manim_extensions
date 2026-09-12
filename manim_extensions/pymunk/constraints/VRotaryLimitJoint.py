@@ -1,17 +1,24 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Rotary limit joint constraint for Pymunk.
 
 This module provides the VRotaryLimitJoint class for creating rotary limit joint constraints.
 
 """
 
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import RotaryLimitJoint
-from pymunk import Space
 import numpy as np
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import RotaryLimitJoint
 
 
 class VRotaryLimitJoint(VConstraint):
@@ -103,6 +110,9 @@ class VRotaryLimitJoint(VConstraint):
         pass
 
     def install(self, space: Space):
+
+        RotaryLimitJoint = require("physics", "pymunk").constraints.RotaryLimitJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

@@ -1,16 +1,20 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import requests (chemistry extra)
 """PubChem API manager for Manim chemistry.
 
 This module provides the PubchemAPIManager class for fetching molecular data from PubChem.
 
 """
 
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 import json
 import time
 
-import requests
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    import requests
 
 
 class PubchemAPIManager:
@@ -54,7 +58,8 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: requests.models.Response, identifier):
+    def handle_request(self, request: 'requests.models.Response', identifier):
+        requests = require("chemistry", "requests")
         # Added sleep to prevent overloading the PubChem API
         time.sleep(0.25)
         if request.status_code == 200:
@@ -75,6 +80,7 @@ class PubchemAPIManager:
         )
 
     def from_cid(self):
+        requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
             request_url += "?record_type=3d"
@@ -83,6 +89,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.cid)
 
     def from_name(self):
+        requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
             request_url += "?record_type=3d"
@@ -91,6 +98,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.name)
 
     def from_smiles(self):
+        requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
             request_url += "?record_type=3d"
@@ -99,6 +107,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.smiles)
 
     def from_inchi(self):
+        requests = require("chemistry", "requests")
         request_url = (
             f"{PubchemAPIManager.BASE_URL}/inchikey/{self.inchi}/{self.format}"
         )

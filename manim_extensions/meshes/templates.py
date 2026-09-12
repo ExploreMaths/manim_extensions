@@ -8,15 +8,17 @@ define a few basic mesh-structures to be used as examples or test
 """
 
 # python imports
+# patched: lazy-import trimesh (meshes extra)
 import pathlib
 from typing import List, Tuple
 
 # third-party imports
 import numpy as np
-import trimesh
 
 # local imports
 from .models.data_models.mesh import Mesh
+
+from ..utils.deps import require
 
 
 def create_triangle() -> Mesh:
@@ -264,6 +266,7 @@ def create_model(filepath: str = "", name: str = "") -> Mesh:
     """
     if len(name) == 0 and len(filepath) == 0:
         raise FileNotFoundError("Either provide a name or a filepath.")
+    trimesh = require("meshes", "trimesh")
     path_to_models = "data/models/"
     # load the ply files
     if name in ["armadillo", "suzanne"]:

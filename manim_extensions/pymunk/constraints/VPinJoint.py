@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Pin joint constraint for Pymunk.
 
 This module provides the VPinJoint class for creating pin joint constraints in physics simulations.
 
 """
 
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import PinJoint
-from pymunk import Space
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import PinJoint
 
 
 class VPinJoint(VConstraint):
@@ -134,6 +141,8 @@ class VPinJoint(VConstraint):
                 )
 
     def install(self, space: Space):
+
+        PinJoint = require("physics", "pymunk").constraints.PinJoint
 
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)

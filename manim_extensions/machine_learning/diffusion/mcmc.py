@@ -4,6 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import matplotlib/seaborn (ml extra)
 """
     Tool for animating Markov Chain Monte Carlo simulations in 2D. 
 """
@@ -13,6 +14,8 @@ import numpy as np
 import scipy
 import scipy.stats
 from tqdm import tqdm
+
+from ...utils.deps import require
 
 from ..utils.mobjects.probability import GaussianDistribution
 
@@ -178,9 +181,9 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples, ylim, xlim):
-    import matplotlib
-    import matplotlib.pyplot as plt
-    import seaborn as sns
+    matplotlib = require("ml", "matplotlib")
+    plt = require("ml", "matplotlib.pyplot")
+    sns = require("ml", "seaborn")
 
     # Make the plot
     matplotlib.use('Agg')

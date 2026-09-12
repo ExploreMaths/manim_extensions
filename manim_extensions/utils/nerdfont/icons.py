@@ -9,6 +9,8 @@
 #          manim_nerdfont_icons.resources, and to use
 #          importlib.resources.files() (pkg_resources.path() was removed
 #          in Python 3.13).
+"""Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
+
 import manim as m
 from manim import Text
 

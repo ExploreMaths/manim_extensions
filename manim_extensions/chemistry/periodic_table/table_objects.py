@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pandas (chemistry extra)
 """Periodic table visualization objects for Manim chemistry.
 
 This module provides the MElementObject class for rendering periodic table elements.
@@ -7,8 +8,9 @@ This module provides the MElementObject class for rendering periodic table eleme
 """
 
 from manim import *
-import pandas as pd
 import numpy as np
+
+from ...utils.deps import require
 
 
 class MElementObject(VGroup):
@@ -159,6 +161,7 @@ class MElementObject(VGroup):
     def from_csv_file_data(filename, atomic_number, **kwargs):
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
+        pd = require("chemistry", "pandas")
         df = pd.read_csv(filename)
         element = df.loc[df["AtomicNumber"] == atomic_number].squeeze().to_dict()
 

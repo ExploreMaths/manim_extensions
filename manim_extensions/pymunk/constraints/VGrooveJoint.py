@@ -4,18 +4,24 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Groove joint constraint for Pymunk.
 
 This module provides the VGrooveJoint class for creating groove joint constraints.
 
 """
 
-from pymunk.constraints import GrooveJoint
+from __future__ import annotations
 
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk import Space
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import GrooveJoint
 
 
 class VGrooveJoint(VConstraint):
@@ -117,6 +123,9 @@ class VGrooveJoint(VConstraint):
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters."""
+
+        GrooveJoint = require("physics", "pymunk").constraints.GrooveJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

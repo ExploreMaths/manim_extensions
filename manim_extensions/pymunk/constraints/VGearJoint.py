@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Gear joint constraint for Pymunk.
 
 This module provides the VGearJoint class for creating gear joint constraints.
 
 """
 
-from pymunk import Space
-from pymunk.constraints import GearJoint
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import GearJoint
 
 
 class VGearJoint(VConstraint):
@@ -104,6 +111,9 @@ class VGearJoint(VConstraint):
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters."""
+
+        GearJoint = require("physics", "pymunk").constraints.GearJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

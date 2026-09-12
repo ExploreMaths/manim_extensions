@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Slide joint constraint for Pymunk.
 
 This module provides the VSlideJoint class for creating slide joint constraints.
 
 """
 
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import SlideJoint
-from pymunk import Space
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import SlideJoint
 
 
 class VSlideJoint(VConstraint):
@@ -116,6 +123,9 @@ class VSlideJoint(VConstraint):
         pass
 
     def install(self, space: Space):
+
+        SlideJoint = require("physics", "pymunk").constraints.SlideJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

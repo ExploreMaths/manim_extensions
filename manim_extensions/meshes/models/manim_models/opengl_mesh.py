@@ -8,6 +8,7 @@ from manim import *  # noqa: F401
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
 # Implementation in progress
+# patched: lazy-import moderngl (meshes extra)
 # pylint: skip-file
 # pylint: disable-all
 
@@ -15,7 +16,7 @@ import numpy as np
 
 from ...helpers import remove_keys_from_dict
 from ..data_models.mesh import Mesh
-from ...params import get_param_or_default, OGLM
+from ...params import get_param_or_default
 
 
 class FastManimMesh(OpenGLMobject):
@@ -52,6 +53,9 @@ class FastManimMesh(OpenGLMobject):
         **kwargs,
     ):
         """Initialization. mesh must only consist of triangles"""
+        # imported here because OGLM requires the optional moderngl dependency
+        from ...params import OGLM
+
         if any(len(face) != 3 for face in mesh.faces):
             raise ValueError("mesh must only consist of triangles!")
         self.mesh = mesh

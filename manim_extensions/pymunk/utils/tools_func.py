@@ -1,16 +1,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """物理工具函数模块。
 
 该模块提供计算各种形状转动惯量的便利函数，用于配置Pymunk刚体的物理属性。
 """
 
-from pymunk import (
-    moment_for_box,
-    moment_for_circle,
-    moment_for_poly,
-    moment_for_segment,
-)
+from ...utils.deps import require
 
 
 def get_moment_for_box(mass: float, width: float, height: float) -> float:
@@ -30,6 +26,7 @@ def get_moment_for_box(mass: float, width: float, height: float) -> float:
     Returns:
         float: 转动惯量值。
     """
+    moment_for_box = require("physics", "pymunk").moment_for_box
     return moment_for_box(mass=mass, size=(width, height))
 
 
@@ -61,6 +58,7 @@ def get_moment_for_circle(
     Returns:
         float: 转动惯量值。
     """
+    moment_for_circle = require("physics", "pymunk").moment_for_circle
     return moment_for_circle(
         mass=mass,
         inner_radius=inner_radius,
@@ -96,6 +94,7 @@ def get_moment_for_poly(
     Returns:
         float: 转动惯量值。
     """
+    moment_for_poly = require("physics", "pymunk").moment_for_poly
     return moment_for_poly(
         mass=mass, vertices=vertices, offset=(x_offset, y_offset), radius=stroke_width
     )
@@ -125,5 +124,6 @@ def get_moment_for_line(
     Returns:
         float: 转动惯量值。
     """
+    moment_for_segment = require("physics", "pymunk").moment_for_segment
     return moment_for_segment(mass=mass, a=start, b=end, radius=stroke_width)
 

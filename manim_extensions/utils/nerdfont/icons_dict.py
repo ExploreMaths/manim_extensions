@@ -4,6 +4,8 @@
 
 # Vendored from manim-nerdfont-icons 1.0.2 (unmodified).
 # Upstream: https://github.com/Alexander-Nasuta/manim-nerdfont-icons
+"""Icon-name to Unicode-codepoint mapping (vendored from manim-nerdfont-icons)."""
+
 SYMBOLS_UNICODE = {
     'POWER SYMBOL': 9211,  # ⏻ U+23FB
     'POWER ON-OFF SYMBOL': 9212,  # ⏼ U+23FC
