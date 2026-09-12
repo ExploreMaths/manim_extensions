@@ -8,7 +8,7 @@ This module provides the ChemicalFormula class for rendering chemical formulas.
 
 import re
 
-from manim import *
+from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, MarkupText, VGroup, WHITE
 
 
 class ChemicalFormula(MarkupText):

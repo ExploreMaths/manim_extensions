@@ -9,7 +9,7 @@ This module provides the VDampedRotarySpring class for creating damped rotary sp
 
 from __future__ import annotations
 
-from manim import *
+from manim import Arc, Line, Mobject, PI, RED, VMobject, YELLOW, np
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

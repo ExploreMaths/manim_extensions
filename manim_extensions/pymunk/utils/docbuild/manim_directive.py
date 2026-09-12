@@ -83,7 +83,8 @@ directive:
 
 from __future__ import annotations
 
-from manim import *
+from manim import QUALITIES, config, tempconfig
+from manim import __version__ as manim_version
 import csv
 import itertools as it
 import re

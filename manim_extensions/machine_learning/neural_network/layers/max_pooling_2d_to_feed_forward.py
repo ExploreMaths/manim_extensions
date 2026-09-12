@@ -6,10 +6,11 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to feed-forward layer connection visualization."""
 
-from manim import *
+from manim import ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .feed_forward import FeedForwardLayer
 from .max_pooling_2d import MaxPooling2DLayer
+from .parent_layers import NeuralNetworkLayer
 
 
 class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):

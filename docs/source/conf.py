@@ -4,7 +4,7 @@
 
 """Sphinx configuration for manim_extensions documentation."""
 
-from manim import *
+from manim import Mobject, VMobject
 import os
 import sys
 

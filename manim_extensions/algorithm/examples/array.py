@@ -9,7 +9,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from manim import *
+from manim import Circle, DOWN, FadeIn, RED, RIGHT, Scene, tempconfig
 from ..array import Array
 from ..node import Node
 

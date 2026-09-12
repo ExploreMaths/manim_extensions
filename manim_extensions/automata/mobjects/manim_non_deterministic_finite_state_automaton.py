@@ -8,7 +8,6 @@ This module provides the ManimNonDeterministicFiniteAutomaton class for visualiz
 
 """
 
-from manim import *  # noqa: F401
 
 from .manim_automaton import ManimAutomaton
 

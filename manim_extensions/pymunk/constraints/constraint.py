@@ -13,7 +13,7 @@ This module provides the VConstraint base class for Pymunk constraint visualizat
 
 from __future__ import annotations
 
-from manim import *
+from manim import Mobject, VGroup
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:

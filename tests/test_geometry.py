@@ -2,7 +2,19 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import (
+    Arc,
+    Axes,
+    Circle,
+    DOWN,
+    FunctionGraph,
+    LEFT,
+    Line,
+    ParametricFunction,
+    RIGHT,
+    UP,
+    VGroup,
+)
 import numpy as np
 import pytest
 

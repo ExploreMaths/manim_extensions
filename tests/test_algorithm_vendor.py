@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
 from manim_extensions.algorithm import Array, Node, NodeConfig, NodeSolt
 
 

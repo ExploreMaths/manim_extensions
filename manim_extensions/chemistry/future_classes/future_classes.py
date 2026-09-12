@@ -7,7 +7,36 @@ This module contains experimental classes that may be implemented in the future.
 """
 
 
-from manim import *
+from functools import wraps
+
+from manim import (
+    BLACK,
+    BLUE,
+    BLUE_B,
+    BLUE_E,
+    Circle,
+    DOWN,
+    DashedVMobject,
+    Dot,
+    LEFT,
+    LabeledDot,
+    Line,
+    MathTex,
+    ORANGE,
+    PI,
+    RED,
+    RIGHT,
+    Rectangle,
+    Square,
+    TAU,
+    Text,
+    UP,
+    VGroup,
+    VMobject,
+    WHITE,
+    np,
+    smooth,
+)
 
 
 class Hole(VMobject):

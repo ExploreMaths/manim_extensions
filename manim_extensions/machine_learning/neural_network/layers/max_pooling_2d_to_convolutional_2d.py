@@ -6,11 +6,12 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
-from manim import *
+from manim import ORANGE
 
 from .convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
 from .max_pooling_2d import MaxPooling2DLayer
 from .convolutional_2d import Convolutional2DLayer
+from .parent_layers import NeuralNetworkLayer
 
 
 

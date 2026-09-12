@@ -12,7 +12,19 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
-from manim import *
+from manim import (
+    Animation,
+    Arrow,
+    Circle,
+    CurvedArrow,
+    MathTex,
+    PI,
+    RED,
+    UP,
+    VGroup,
+    normalize,
+    np,
+)
 from typing import TYPE_CHECKING, Any
 from .automata_dependencies.automata import Transition
 

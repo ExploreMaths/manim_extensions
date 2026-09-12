@@ -1,466 +1,185 @@
-"""Check and fix redundant/manual manim imports.
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+"""Check and fix manim star imports.
+
+Convention: ``from manim import *`` (and ``from manim.<sub> import *``)
+is not allowed outside ``__init__.py`` files (which keep star imports
+for re-exports). Explicit imports are required instead — they also rid
+the codebase of flake8 F403/'unable to detect undefined names' noise.
 
 Two modes:
-  check (default) - detect files that have explicit manim imports
-                    without `from manim import *`, or have redundant
-                    imports after `from manim import *`.
-  fix             - auto-convert explicit manim imports to
-                    `from manim import *`, preserving imports of
-                    names not covered by star exports.
+  check (default) - detect files using star imports.
+  fix             - replace star imports with explicit imports of the
+                    names actually used in the file.
+
+Usage:
+    python check_redundant_imports.py
+    python check_redundant_imports.py --fix
 """
 
-import ast
-import io
-import re
-import sys
 import argparse
-import tokenize
+import ast
+import importlib
+import sys
 from pathlib import Path
 
+STAR_IMPORT_MODULES = ("manim",)
 
-def _string_line_numbers(source: str):
-    """1-based line numbers inside any multi-line string literal.
 
-    Used to keep the fixer from inserting ``from manim import *`` in the
-    middle of a module docstring.
-    """
-    protected = set()
+def is_star_import(node):
+    return (
+        isinstance(node, ast.ImportFrom)
+        and node.module is not None
+        and any(node.module == m or node.module.startswith(m + ".") for m in STAR_IMPORT_MODULES)
+        and any(alias.name == "*" for alias in node.names)
+    )
+
+
+def get_star_exports(module_name):
+    """Names a 'from <module_name> import *' would bind."""
     try:
-        for tok in tokenize.generate_tokens(io.StringIO(source).readline):
-            if tok.type == tokenize.STRING and tok.end[0] > tok.start[0]:
-                protected.update(range(tok.start[0], tok.end[0] + 1))
+        mod = importlib.import_module(module_name)
     except Exception:
-        pass
-    return protected
-
-
-def get_manim_star_exports():
-    try:
-        import manim
-        names = set()
-        if hasattr(manim, "__all__"):
-            names.update(manim.__all__)
-        for attr in dir(manim):
-            if not attr.startswith("_"):
-                names.add(attr)
-        return names
-    except ImportError:
         return set()
+    names = set(getattr(mod, "__all__", None) or [])
+    if not names:
+        names = {n for n in dir(mod) if not n.startswith("_")}
+    return names
 
 
-def collect_import_blocks(source: str):
-    """Collect manim import statement blocks with full line ranges.
-
-    Returns:
-        has_star: bool - whether `from manim import *` exists
-        blocks: list of dicts with keys:
-            start, end (inclusive), module, names, covered, uncovered
-    """
-    star_exports = get_manim_star_exports()
-    has_star = False
-    blocks = []
-
-    tree = ast.parse(source)
-
-    for node in ast.walk(tree):
-        if isinstance(node, ast.ImportFrom):
-            module = node.module or ""
-            if module == "manim" or module.startswith("manim."):
-                covered = []
-                uncovered = []
-                for alias in node.names:
-                    if alias.name == "*" and module == "manim":
-                        has_star = True
-                    elif alias.name == "*":
-                        pass
-                    else:
-                        name = alias.name
-                        in_star = name in star_exports if star_exports else False
-                        if in_star:
-                            covered.append(name)
-                        else:
-                            uncovered.append(name)
-
-                if node.lineno is None:
-                    continue
-
-                end_lineno = getattr(node, "end_lineno", node.lineno)
-                blocks.append({
-                    "start": node.lineno,
-                    "end": end_lineno if end_lineno else node.lineno,
-                    "module": module,
-                    "names": [alias.name for alias in node.names if alias.name != "*"],
-                    "covered": covered,
-                    "uncovered": uncovered,
-                })
-
-    return has_star, blocks
-
-
-def find_issues_in_file(filepath: Path):
-    """Detect import issues in a Python file.
-
-    Returns dict with keys:
-        has_star: whether `from manim import *` is present
-        blocks: list of import block dicts
-        needs_fix: bool
-    """
+def find_star_imports(source):
+    """Return (has_star, [star ImportFrom nodes]) for non-init files."""
     try:
-        source = filepath.read_text(encoding="utf-8")
-    except Exception:
-        return None
-
-    star_exports = get_manim_star_exports()
-    if not star_exports:
-        return None
-
-    try:
-        has_star, blocks = collect_import_blocks(source)
+        tree = ast.parse(source)
     except SyntaxError:
-        return None
-
-    result = {
-        "path": filepath,
-        "has_star": has_star,
-        "blocks": blocks,
-        "needs_fix": False,
-    }
-
-    if has_star:
-        result["needs_fix"] = any(b["covered"] for b in blocks)
-    else:
-        result["needs_fix"] = any(b["covered"] for b in blocks)
-
-    return result
+        return False, []
+    nodes = [n for n in ast.walk(tree) if is_star_import(n)]
+    return bool(nodes), nodes
 
 
-def _is_initial_comment_or_docstring(lines, idx):
-    """Check if lines up to idx are only comments, blank lines, or docstrings."""
-    in_docstring = False
-    docstring_char = None
-    for i in range(idx):
-        stripped = lines[i].strip()
-        if in_docstring:
-            if docstring_char in stripped and not stripped.startswith(docstring_char):
-                in_docstring = False
-            elif stripped.endswith(docstring_char) and len(stripped) >= 3:
-                in_docstring = False
-            continue
-        if not stripped:
-            continue
-        if stripped.startswith("#"):
-            continue
-        for dq in ('"""', "'''"):
-            if stripped.startswith(dq):
-                if stripped.count(dq) >= 2 and len(stripped) >= 6:
-                    pass
-                else:
-                    in_docstring = True
-                    docstring_char = dq
-                break
-        else:
-            return False
-    return True
+def collect_used_names(source):
+    """All names referenced (loaded) anywhere in the module, minus names
+    bound at module level (a module-level assignment/def/class would
+    shadow any import of the same name)."""
+    tree = ast.parse(source)
+    import symtable
+
+    try:
+        module_table = symtable.symtable(source, "<file>", "exec")
+    except Exception:
+        module_table = None
+
+    used = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Load):
+            used.add(node.id)
+        elif isinstance(node, ast.Attribute):
+            root = node
+            while isinstance(root, ast.Attribute):
+                root = root.value
+            if isinstance(root, ast.Name):
+                used.add(root.id)
+
+    if module_table is not None:
+        for name in list(used):
+            try:
+                if module_table.lookup(name).is_local():
+                    used.discard(name)
+            except KeyError:
+                pass
+    return used
 
 
-def _find_insertion_point(lines):
-    """Find the best position to insert `from manim import *`.
+def fix_star_imports(source, filepath):
+    """Replace star imports with explicit imports of used names.
 
-    Returns the index (0-based) where the star import should be inserted.
-    Skips comments, blank lines, and module docstrings.
+    Returns (new_source, num_fixed).
     """
-    insert_idx = 0
-    in_docstring = False
-    docstring_char = None
+    if "__init__.py" in Path(filepath).name:
+        return source, 0
+    has_star, star_nodes = find_star_imports(source)
+    if not has_star:
+        return source, 0
 
-    for i, line in enumerate(lines):
-        stripped = line.strip()
+    used = collect_used_names(source)
+    lines = source.splitlines(keepends=False)
+    replacements = {}  # start lineno -> list of replacement lines
+    claimed = set()
 
-        if in_docstring:
-            if docstring_char in stripped[1:] if len(stripped) > 1 else False:
-                in_docstring = False
-                docstring_char = None
-            elif stripped.endswith(docstring_char) and len(stripped) >= 3:
-                in_docstring = False
-                docstring_char = None
-            continue
-
-        if not stripped:
-            insert_idx = i + 1
-            continue
-
-        if stripped.startswith("#"):
-            insert_idx = i + 1
-            continue
-
-        for dq in ('"""', "'''"):
-            if stripped.startswith(dq):
-                in_docstring = True
-                docstring_char = dq
-                insert_idx = i
-                if stripped.count(dq) >= 2 and len(stripped) >= 6:
-                    in_docstring = False
-                    docstring_char = None
-                break
+    for node in sorted(star_nodes, key=lambda n: n.lineno):
+        exports = get_star_exports(node.module)
+        names = sorted((used - claimed) & exports)
+        claimed |= set(names)
+        indent = " " * node.col_offset
+        if names:
+            # one name per continuation line to stay readable and
+            # well under the line-length limit
+            if len(", ".join(names)) <= 76 - len(indent) - len(node.module):
+                new_line = indent + f"from {node.module} import " + ", ".join(names)
+            else:
+                inner = indent + " " * 4
+                new_line = (
+                    indent + f"from {node.module} import (\n"
+                    + ",\n".join(inner + n for n in names)
+                    + ",\n" + indent + ")"
+                )
+            replacements[node.lineno] = new_line
         else:
-            if stripped.startswith("from __future__") or stripped.startswith("from typing"):
-                insert_idx = i + 1
-                continue
-            if stripped.startswith("import ") or stripped.startswith("from "):
-                insert_idx = i
-                break
-            insert_idx = i
-            break
-
-    return insert_idx
-
-
-def fix_file(filepath: Path, dry_run: bool = False):
-    """Fix import issues in a Python file.
-
-    Returns (success, messages) tuple.
-    """
-    result = find_issues_in_file(filepath)
-    if result is None or not result["needs_fix"]:
-        return True, []
-
-    messages = []
-    source = filepath.read_text(encoding="utf-8")
-    lines = source.split("\n")
-
-    has_star = result["has_star"]
-    blocks = result["blocks"]
-
-    remove_ranges = set()
-    all_uncovered = {}
-
-    for block in blocks:
-        is_star_line = (
-            block["start"] == block["end"]
-            and block["module"] == "manim"
-            and len(block["names"]) == 0
-        )
-        if is_star_line:
-            continue
-        if block["covered"] or block["uncovered"]:
-            for line_no in range(block["start"], block["end"] + 1):
-                remove_ranges.add(line_no)
-        for name in block["uncovered"]:
-            mod = block["module"]
-            if mod not in all_uncovered:
-                all_uncovered[mod] = set()
-            all_uncovered[mod].add(name)
+            replacements[node.lineno] = None  # remove
+        # blank out any continuation lines of a multi-line import
+        for ln in range(node.lineno + 1, (node.end_lineno or node.lineno) + 1):
+            replacements[ln] = None
 
     new_lines = []
-    star_inserted = False
-    star_done = has_star
-    protected = _string_line_numbers(source)
-
     for i, line in enumerate(lines, 1):
-        if i in protected:
+        if i in replacements:
+            rep = replacements[i]
+            if rep is not None:
+                new_lines.append(rep)
+        else:
             new_lines.append(line)
-            continue
-        if i in remove_ranges:
-            stripped = line.strip()
-            messages.append(f"  Removed line {i}: {stripped}")
-            continue
-
-        if not star_done and not star_inserted:
-            stripped = line.strip()
-            is_manim_import = (
-                stripped.startswith("from manim.") or
-                stripped.startswith("from manim import")
-            )
-            is_future = stripped.startswith("from __future__")
-            is_typing = stripped.startswith("from typing")
-
-            is_initial_comment_or_doc = (
-                not stripped
-                or stripped.startswith("#")
-                or stripped.startswith('"""')
-                or stripped.startswith("'''")
-            )
-
-            if not is_manim_import and not is_future and not is_typing:
-                if not is_initial_comment_or_doc:
-                    new_lines.append("from manim import *")
-                    if all_uncovered:
-                        for module, names in sorted(all_uncovered.items()):
-                            name_list = ", ".join(sorted(names))
-                            if module == "manim":
-                                new_lines.append(f"from manim import {name_list}")
-                            else:
-                                new_lines.append(f"from {module} import {name_list}")
-                    star_done = True
-                    star_inserted = True
-                    new_lines.append(line)
-                    continue
-
-        new_lines.append(line)
-
-    if all_uncovered:
-        # Re-emit explicit imports for names the star import does not cover.
-        # (All manim import blocks were removed above, so without this the
-        # uncovered names would be lost when the file already had a star
-        # import.)
-        existing = {l.strip() for l in new_lines}
-        inserts = []
-        for module, names in sorted(all_uncovered.items()):
-            line = (
-                f"from manim import {', '.join(sorted(names))}"
-                if module == "manim"
-                else f"from {module} import {', '.join(sorted(names))}"
-            )
-            if line not in existing:
-                inserts.append(line)
-        if inserts:
-            idx = next(
-                (j + 1 for j, l in enumerate(new_lines)
-                 if l.strip() == "from manim import *"),
-                _find_insertion_point(new_lines),
-            )
-            for k, line in enumerate(inserts):
-                new_lines.insert(idx + k, line)
-            messages.append("  Kept explicit imports not covered by star: "
-                            + "; ".join(inserts))
-
-    if not star_done:
-        insert_idx = _find_insertion_point(new_lines)
-
-        new_lines.insert(insert_idx, "from manim import *")
-        messages.append(f"  Added `from manim import *`")
-
     new_source = "\n".join(new_lines)
-
+    if source.endswith("\n"):
+        new_source += "\n"
     try:
         ast.parse(new_source)
     except SyntaxError as e:
-        messages.append(f"  ERROR: Would produce invalid Python: {e}")
-        return False, messages
-
-    if not dry_run:
-        filepath.write_text(new_source, encoding="utf-8")
-        messages.append(f"  Fixed and written to {filepath}")
-
-    return True, messages
+        print(f"  ERROR: {filepath}: fix would produce invalid Python: {e}", file=sys.stderr)
+        return source, 0
+    return new_source, len(star_nodes)
 
 
-def find_manim_code_blocks(source: str):
-    """Find .. manim:: code blocks in RST source and check imports."""
-    blocks = []
-    lines = source.split("\n")
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        stripped = line.strip()
-
-        if re.match(r"^\.\.\s+manim::\s*", stripped):
-            i += 1
-            while i < len(lines) and lines[i].strip() == "":
-                i += 1
-            start_line = i + 1
-            block_lines = []
-            while i < len(lines):
-                current = lines[i]
-                if current.strip() == "":
-                    block_lines.append(current)
-                    i += 1
-                    continue
-                if not current.startswith("   "):
-                    break
-                block_lines.append(current[3:])
-                i += 1
-
-            dedented = _dedent_block(block_lines)
-            block_source = "\n".join(dedented)
-            trimmed = _trim_to_valid_python(block_source)
-            if trimmed.strip():
-                blocks.append((trimmed, start_line))
-        else:
-            i += 1
-
-    return blocks
-
-
-def _trim_to_valid_python(block_source: str):
-    lines = block_source.split("\n")
-    for end in range(len(lines), 0, -1):
-        candidate = "\n".join(lines[:end])
-        try:
-            ast.parse(candidate)
-            return candidate
-        except SyntaxError:
-            continue
-    return ""
-
-
-def _dedent_block(block_lines):
-    non_empty = [l for l in block_lines if l.strip()]
-    if not non_empty:
-        return block_lines
-    min_indent = min(
-        len(l) - len(l.lstrip(" "))
-        for l in non_empty
-    )
-    if min_indent == 0:
-        return block_lines
-    return [l[min_indent:] if len(l) >= min_indent else l for l in block_lines]
-
-
-def check_rst_file(filepath: Path):
-    """Check RST files for manim code blocks with import issues."""
+def check_file(filepath):
     try:
         source = filepath.read_text(encoding="utf-8")
     except Exception:
         return None
-
-    blocks = find_manim_code_blocks(source)
-    issues = []
-
-    for block_source, start_line in blocks:
-        try:
-            has_star, block_imports = collect_import_blocks(block_source)
-            if not has_star and block_imports:
-                for block in block_imports:
-                    if block["covered"] or block["uncovered"]:
-                        issues.append({
-                            "start_line": start_line,
-                            "has_star": has_star,
-                            "block": block,
-                        })
-        except SyntaxError:
-            pass
-
-    return issues if issues else None
+    if "__init__.py" in filepath.name:
+        return None
+    has_star, nodes = find_star_imports(source)
+    if not has_star:
+        return None
+    return [(n.lineno, n.module) for n in sorted(nodes, key=lambda n: n.lineno)]
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Check and fix manim import style consistency."
+        description="Check and fix manim star imports (banned outside __init__.py)."
     )
     parser.add_argument(
         "--fix", action="store_true",
-        help="Auto-fix imports to use `from manim import *`"
+        help="Replace star imports with explicit imports of used names",
     )
     parser.add_argument(
         "--dry-run", action="store_true",
-        help="Show what would be changed without writing files"
-    )
-    parser.add_argument(
-        "--rst", action="store_true",
-        help="Also check RST files for manim code block issues"
+        help="Show what would be changed without writing files",
     )
     parser.add_argument(
         "paths", nargs="*",
-        help="Specific files/dirs to check (default: entire project)"
+        help="Specific files/dirs to check (default: manim_extensions, tests, workflow, docs)",
     )
     args = parser.parse_args()
-
-    star_exports = get_manim_star_exports()
-    if not star_exports:
-        print("WARNING: Could not import manim to detect star exports.")
-        print("Run this from an environment with manim installed.")
-        return 1
 
     root = Path(".")
     if args.paths:
@@ -469,97 +188,53 @@ def main():
             path = Path(p)
             if path.is_dir():
                 targets.extend(sorted(path.rglob("*.py")))
-                if args.rst:
-                    targets.extend(sorted(path.rglob("*.rst")))
             elif path.is_file():
                 targets.append(path)
     else:
-        targets = list(root.rglob("*.py"))
-        if args.rst:
-            targets.extend(sorted(root.rglob("*.rst")))
+        targets = []
+        for base in ("manim_extensions", "tests", "workflow", "docs"):
+            b = Path(base)
+            if b.exists():
+                targets.extend(sorted(b.rglob("*.py")))
 
     targets = [
         t for t in targets
         if "__pycache__" not in str(t) and ".git" not in str(t)
+        and "__init__.py" not in t.name
     ]
 
     issues_found = 0
     fixed_count = 0
-    error_count = 0
 
     for target in sorted(targets):
-        rel_path = target.relative_to(root)
-
-        if target.suffix == ".rst":
-            if not args.rst:
-                continue
-            issues = check_rst_file(target)
-            if issues:
-                issues_found += 1
-                print(f"\n{'='*70}")
-                print(f"FILE: {rel_path}")
-                print(f"{'='*70}")
-                for issue in issues:
-                    block = issue["block"]
-                    print(f"  Line {issue['start_line']}: "
-                          f"{len(block['covered'])} covered + {len(block['uncovered'])} uncovered")
-                    for name in block["covered"]:
-                        print(f"    from {block['module']} import {name}  [covered by star]")
-                    for name in block["uncovered"]:
-                        print(f"    from {block['module']} import {name}  [NOT covered]")
+        rel = target.relative_to(root) if target.is_relative_to(root) else target
+        issues = check_file(target)
+        if not issues:
             continue
-
-        result = find_issues_in_file(target)
-
-        if result is None:
-            continue
-
-        if not result["needs_fix"]:
-            continue
-
         issues_found += 1
         print(f"\n{'='*70}")
-        print(f"FILE: {rel_path}")
+        print(f"FILE: {rel}")
         print(f"{'='*70}")
-
-        if result["has_star"]:
-            print(f"  Already has `from manim import *`, but has redundant imports:")
-            for block in result["blocks"]:
-                if block["covered"]:
-                    for name in block["covered"]:
-                        print(f"    Line {block['start']}-{block['end']}: "
-                              f"from {block['module']} import {name}")
-        else:
-            covered_total = sum(len(b["covered"]) for b in result["blocks"])
-            uncovered_total = sum(len(b["uncovered"]) for b in result["blocks"])
-            print(f"  No `from manim import *`. Has {covered_total} covered + {uncovered_total} uncovered imports:")
-            for block in result["blocks"]:
-                for name in block["covered"]:
-                    print(f"    Line {block['start']}-{block['end']}: "
-                          f"from {block['module']} import {name}  [covered by star]")
-                for name in block["uncovered"]:
-                    print(f"    Line {block['start']}-{block['end']}: "
-                          f"from {block['module']} import {name}  [NOT covered, must stay explicit]")
+        for lineno, module in issues:
+            print(f"  line {lineno}: from {module} import *")
 
         if args.fix:
-            success, messages = fix_file(target, dry_run=args.dry_run)
-            for msg in messages:
-                print(msg)
-            if success:
+            source = target.read_text(encoding="utf-8")
+            new_source, num = fix_star_imports(source, target)
+            if num and new_source != source:
+                if not args.dry_run:
+                    target.write_text(new_source, encoding="utf-8")
+                print(f"  {'Would fix' if args.dry_run else 'Fixed'} {num} star import(s)")
                 fixed_count += 1
-            else:
-                error_count += 1
 
     print(f"\n{'='*70}")
     if issues_found == 0:
-        print("No import style issues found.")
+        print("No star imports found.")
     else:
-        print(f"Total files with issues: {issues_found}")
+        action = "would fix" if args.dry_run else "fixed"
+        print(f"Files with star imports: {issues_found}")
         if args.fix:
-            action = "would fix" if args.dry_run else "fixed"
             print(f"Files {action}: {fixed_count}")
-            if error_count:
-                print(f"Files with errors: {error_count}")
     print(f"{'='*70}")
 
     return 0 if issues_found == 0 or args.fix else 1

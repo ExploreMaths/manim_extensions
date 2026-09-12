@@ -6,7 +6,7 @@ This module provides the Row class for table visualizations.
 
 """
 
-from manim import *
+from manim import RIGHT, VGroup
 from .cell import Cell
 from typing import List, Union
 

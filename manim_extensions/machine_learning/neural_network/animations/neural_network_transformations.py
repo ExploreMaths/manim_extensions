@@ -7,7 +7,7 @@
 """
     Transformations for manipulating a neural network object. 
 """
-from manim import *
+from manim import AnimationGroup, Create, FadeOut, Group, UpdateFromFunc, np
 from ..layers.util import get_connective_layer
 
 
@@ -166,7 +166,7 @@ class RemoveLayer(AnimationGroup):
                     before_layer_index = (
                         neural_network.all_layers.index_of(self.before_layer) + 1
                     )
-                    neural_network.all_layers.insert(before_layer_index, new_connective)
+                    neural_network.all_layers.insert(before_layer_index, new_connective_class)
                     print(neural_network)
 
         update_func_anim = UpdateFromFunc(self.neural_network, create_new_connective)

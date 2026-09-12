@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface, np
 from typing import Iterable, Optional
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 

@@ -9,7 +9,7 @@ This module provides the VPivotJoint class for creating pivot joint constraints 
 
 from __future__ import annotations
 
-from manim import *
+from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

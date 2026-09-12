@@ -12,10 +12,21 @@ This module provides the convolutional 2D layer class for neural network visuali
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    BLUE,
+    Create,
+    FadeIn,
+    Mobject,
+    ORANGE,
+    Succession,
+    VGroup,
+    override_animation,
+)
 from ... import config
 
-from .parent_layers import ThreeDLayer, VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 

@@ -14,7 +14,21 @@ from __future__ import annotations
 
 import numpy as np
 
-from manim import *
+from manim import (
+    Arc,
+    ArrowVectorField,
+    BLUE,
+    Dot,
+    ORIGIN,
+    RED,
+    RED_A,
+    RED_D,
+    Rectangle,
+    TAU,
+    VGroup,
+    color_gradient,
+    normalize,
+)
 from typing import Iterable
 
 __all__ = [

@@ -7,7 +7,17 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import (
+    BLUE,
+    FadeToColor,
+    GREEN,
+    MathTex,
+    PURE_YELLOW,
+    RED,
+    Tex,
+    Transform,
+    VGroup,
+)
 from .automata_dependencies.automata import FiniteStateAutomaton, automaton_json
 from .manim_state import ManimState, State
 from .manim_automaton_input import ManimAutomataInput
@@ -334,7 +344,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
             if self.nda_builder:
                 path_options = self.generate_next_state_options(
-                    state_pointer, transition_ids
+                    state_pointer, transitions
                 )
                 user_choice = self.cli.display_dictionary_options(path_options)
                 transition = path_options[user_choice][

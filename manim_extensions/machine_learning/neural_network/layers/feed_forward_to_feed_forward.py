@@ -8,9 +8,20 @@
 
 import numpy as np
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    Dot,
+    FadeOut,
+    Line,
+    MoveAlongPath,
+    ShowPassingFlash,
+    VGroup,
+    override_animation,
+    sigmoid,
+)
 from .feed_forward import FeedForwardLayer
-from .parent_layers import ConnectiveLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from ... import config
 
 class FeedForwardToFeedForward(ConnectiveLayer):

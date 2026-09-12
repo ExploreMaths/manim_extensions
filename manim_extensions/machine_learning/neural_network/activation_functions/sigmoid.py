@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Sigmoid activation function visualization."""
 
-from manim import *  # noqa: F401
 import numpy as np
 
 from .activation_function import ActivationFunction

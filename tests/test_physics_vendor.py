@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import ORIGIN
 import shutil
 
 import numpy as np

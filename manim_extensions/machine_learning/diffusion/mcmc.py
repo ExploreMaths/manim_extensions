@@ -8,7 +8,21 @@
 """
     Tool for animating Markov Chain Monte Carlo simulations in 2D. 
 """
-from manim import *
+from manim import (
+    AnimationGroup,
+    Axes,
+    BLUE,
+    Create,
+    Dot,
+    FadeIn,
+    GREEN,
+    Group,
+    Line,
+    RED,
+    Succession,
+    VGroup,
+    override_animation,
+)
 from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
 import numpy as np
 import scipy

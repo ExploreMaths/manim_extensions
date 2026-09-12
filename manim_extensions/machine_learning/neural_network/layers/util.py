@@ -8,7 +8,6 @@
 
 import warnings
 
-from manim import *  # noqa: F401
 from .parent_layers import BlankConnective
 from . import connective_layers_list
 

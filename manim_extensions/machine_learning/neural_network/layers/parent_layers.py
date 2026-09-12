@@ -10,7 +10,17 @@ This module provides abstract base classes for neural network layer visualizatio
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    DEFAULT_FONT_SIZE,
+    Group,
+    SurroundingRectangle,
+    Text,
+    UP,
+    Wait,
+    override_animation,
+)
 from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):

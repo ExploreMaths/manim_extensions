@@ -7,7 +7,7 @@ This module provides the supply and demand diagram.
 """
 
 
-from manim import *
+from manim import BLUE, RED
 from .base import EconDiagram
 
 

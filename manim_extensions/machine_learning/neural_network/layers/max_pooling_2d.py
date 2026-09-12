@@ -6,10 +6,10 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D layer visualization for neural networks."""
 
-from manim import *
+from manim import AnimationGroup, BLUE, Create, ORANGE, VGroup, override_animation
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
-from .parent_layers import ThreeDLayer, VGroupNeuralNetworkLayer
+from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 from ... import config
 
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):

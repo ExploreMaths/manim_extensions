@@ -34,7 +34,7 @@ import time
 import traceback
 from pathlib import Path
 
-from manim import *
+from manim import QUALITIES, config, tempconfig
 
 ROOT = Path(__file__).resolve().parent.parent
 # Ensure the source package shadows any stale installed copy in workers.

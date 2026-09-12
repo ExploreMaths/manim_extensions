@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import Line, angle_of_vector, config, rotate_vector
 from typing import Iterable
 import numpy as np
 

@@ -8,7 +8,17 @@
     Code for making a dropout animation for the
     feed forward layers of a neural network. 
 """
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    FadeIn,
+    FadeOut,
+    GRAY,
+    Line,
+    Succession,
+    Uncreate,
+    VGroup,
+)
 import random
 
 from ..layers.feed_forward import FeedForwardLayer

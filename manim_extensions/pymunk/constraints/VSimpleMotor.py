@@ -10,7 +10,7 @@ This module provides the VSimpleMotor class for creating simple motor constraint
 from __future__ import annotations
 
 from math import inf
-from manim import *
+from manim import Arrow, Line, Mobject, PI, RED
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

@@ -8,7 +8,19 @@ This module provides the MMoleculeObject class for rendering molecules in 2D.
 
 
 
-from manim import *
+from manim import (
+    DOWN,
+    GREEN,
+    MarkupText,
+    MathTex,
+    ORIGIN,
+    PI,
+    RED,
+    SVGMobject,
+    VDict,
+    VGroup,
+    np,
+)
 from typing import Optional, Tuple, Dict
 from ..utils import (
     mol_parser,

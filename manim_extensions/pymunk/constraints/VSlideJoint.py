@@ -9,7 +9,7 @@ This module provides the VSlideJoint class for creating slide joint constraints.
 
 from __future__ import annotations
 
-from manim import *
+from manim import Dot, GREEN_A, Line, Mobject, ORIGIN, RED
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

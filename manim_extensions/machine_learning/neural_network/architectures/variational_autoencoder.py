@@ -10,7 +10,7 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 
 """
-from manim import *
+from manim import AnimationGroup, BLUE, Create, VGroup, override_animation
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer
 from ..neural_network import NeuralNetwork
 

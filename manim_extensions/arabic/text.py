@@ -11,7 +11,7 @@
 
 import subprocess
 
-from manim import *
+from manim import Tex, TexTemplate
 
 
 _FONT_CANDIDATES = (

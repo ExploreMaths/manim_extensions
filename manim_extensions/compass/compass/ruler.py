@@ -8,13 +8,11 @@ This module provides ruler visualization for geometry.
 
 """
 
-from manim import *
+from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
 
 __all__ = [
     "Ruler",
 ]
-from manim.utils.color import *
-from manim.constants import *
 import numpy as np
 
 from ..utils.geometry_method import get_vecs_angle

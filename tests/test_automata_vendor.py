@@ -3,7 +3,6 @@
 
 
 
-from manim import *
 from manim_extensions.automata import ManimAutomaton, ManimNondeterministicFiniteAutomaton
 from manim_extensions.automata.mobjects.automata_dependencies.state import State
 from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition

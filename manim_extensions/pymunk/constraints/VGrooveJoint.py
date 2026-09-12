@@ -13,7 +13,7 @@ This module provides the VGrooveJoint class for creating groove joint constraint
 
 from __future__ import annotations
 
-from manim import *
+from manim import Dot, GREEN, Line, Mobject, ORIGIN, RED, RIGHT, YELLOW
 from typing import Optional, TYPE_CHECKING
 from . import VConstraint
 

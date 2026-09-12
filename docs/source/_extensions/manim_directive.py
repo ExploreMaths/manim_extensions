@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from manim import *
+from manim import QUALITIES, config, tempconfig
 r"""
 A directive for including Manim videos in a Sphinx document
 ===========================================================

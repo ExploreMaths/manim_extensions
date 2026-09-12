@@ -6,7 +6,17 @@
 # SPDX-License-Identifier: MIT
 """Base class for activation function visualization."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    ApplyMethod,
+    Axes,
+    Succession,
+    SurroundingRectangle,
+    Text,
+    UP,
+    VGroup,
+    Wait,
+)
 from abc import ABC, abstractmethod
 import random
 

@@ -6,10 +6,10 @@
 # SPDX-License-Identifier: MIT
 """Paired query to feed-forward layer connection visualization."""
 
-from manim import *
+from manim import AnimationGroup, Create, Dot, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .paired_query import PairedQueryLayer
-from .parent_layers import ConnectiveLayer
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 
 
 class PairedQueryToFeedForward(ConnectiveLayer):

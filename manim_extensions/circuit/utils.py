@@ -4,7 +4,19 @@
 
 """Circuit diagram utilities for Manim."""
 
-from manim import *
+from manim import (
+    Circle,
+    DEGREES,
+    DOWN,
+    Dot,
+    LEFT,
+    MathTex,
+    Square,
+    VGroup,
+    VMobject,
+    WHITE,
+    np,
+)
 import math
 
 

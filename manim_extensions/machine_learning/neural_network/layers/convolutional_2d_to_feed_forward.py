@@ -6,8 +6,8 @@
 # SPDX-License-Identifier: MIT
 """Convolutional 2D to feed-forward layer connection visualization."""
 
-from manim import *
-from .parent_layers import ConnectiveLayer, ThreeDLayer
+from manim import AnimationGroup, Line, ORANGE, ShowPassingFlash
+from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .feed_forward import FeedForwardLayer
 from .convolutional_2d import Convolutional2DLayer
 

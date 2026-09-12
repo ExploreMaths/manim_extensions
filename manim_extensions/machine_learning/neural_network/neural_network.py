@@ -18,7 +18,22 @@ Example:
 import textwrap
 from ..utils.mobjects.connections import NetworkConnection
 import numpy as np
-from manim import *
+from manim import (
+    AnimationGroup,
+    Create,
+    DEFAULT_FONT_SIZE,
+    FadeIn,
+    FadeOut,
+    Group,
+    Mobject,
+    ORIGIN,
+    ShowPassingFlash,
+    Succession,
+    Text,
+    UP,
+    Wait,
+    override_animation,
+)
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -317,14 +332,6 @@ class NeuralNetwork(Group):
     def replace_layer(self, old_layer, new_layer):
         """Replaces given layer object"""
         raise NotImplementedError()
-        remove_animation = self.remove_layer(insert_index)
-        insert_animation = self.insert_layer(layer, insert_index)
-        # Make the animation
-        animation_group = AnimationGroup(
-            FadeOut(self.all_layers[insert_index]), FadeIn(layer), lag_ratio=1.0
-        )
-
-        return animation_group
 
     def make_forward_pass_animation(
         self, 

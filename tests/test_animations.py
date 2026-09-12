@@ -3,7 +3,7 @@
 
 
 
-from manim import *
+from manim import Animation, Square, Text, tempconfig
 from manim_extensions.animations import TypeWriter
 
 

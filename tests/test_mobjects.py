@@ -2,7 +2,22 @@
 # SPDX-License-Identifier: MIT
 
 
-from manim import *
+from manim import (
+    Circle,
+    Code,
+    DOWN,
+    Dot,
+    ImageMobject,
+    LEFT,
+    Line,
+    MathTex,
+    ORIGIN,
+    RED,
+    RIGHT,
+    Text,
+    UP,
+    VGroup,
+)
 import shutil
 import subprocess
 import platform

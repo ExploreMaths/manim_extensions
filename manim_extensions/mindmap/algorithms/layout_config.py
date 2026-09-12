@@ -8,7 +8,7 @@ This module provides configuration classes for layout algorithms.
 
 """
 
-from manim import *
+from manim import DOWN, LEFT, RIGHT, UP
 
 __all__ = ["LayoutConfig", "LayoutDirection", "LayoutType"]
 from enum import Enum

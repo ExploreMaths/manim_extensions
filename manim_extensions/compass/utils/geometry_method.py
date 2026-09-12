@@ -8,7 +8,7 @@ This module provides geometry utility functions for compass operations.
 
 """
 
-from manim import *
+from manim import Arc, PURE_YELLOW, RIGHT
 
 __all__ = [
     "get_arc",

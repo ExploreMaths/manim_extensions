@@ -8,7 +8,25 @@ This module provides action classes for sequence diagrams.
 
 """
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Arrow,
+    Create,
+    CurvedArrow,
+    DOWN,
+    Dot,
+    FadeIn,
+    Group,
+    LEFT,
+    MoveAlongPath,
+    ORIGIN,
+    RIGHT,
+    Succession,
+    TracedPath,
+    Transform,
+    UP,
+    utils,
+)
 from .seq_actor import SeqActor
 from .seq_object import SeqObject
 

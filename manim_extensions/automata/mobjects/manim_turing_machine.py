@@ -8,7 +8,7 @@ This module provides the ManimTuringMachine class for visualizing Turing machine
 
 """
 
-from manim import *
+from manim import Triangle, VGroup
 
 
 class ManimTuringMachine(VGroup):

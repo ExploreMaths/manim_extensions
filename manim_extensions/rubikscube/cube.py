@@ -11,8 +11,7 @@ visual demonstrations, and algorithm walkthroughs.
 
 """
 
-from manim import *
-from manim.utils.color import *
+from manim import Mobject, ORIGIN, VMobject, WHITE
 import numpy as np
 from .cubie import Cubie
 

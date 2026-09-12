@@ -7,7 +7,27 @@
 # patched: lazy-import scikit-learn (ml extra)
 """Decision tree visualization for Manim."""
 
-from manim import *
+from manim import (
+    AnimationGroup,
+    Axes,
+    BLUE,
+    Create,
+    Dot,
+    GREEN,
+    Group,
+    LEFT,
+    ORANGE,
+    Polygon,
+    RIGHT,
+    Rectangle,
+    SurroundingRectangle,
+    Text,
+    Uncreate,
+    VGroup,
+    WHITE,
+    Wait,
+    override_animation,
+)
 import numpy as np
 from collections import deque
 
@@ -97,6 +117,7 @@ def compute_decision_areas(
     return rectangles
 
 def plot_areas(rectangles):
+    plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
         color = ["b", "r"][int(rect[4])]
         print(rect[0], rect[1], rect[2] - rect[0], rect[3] - rect[1])

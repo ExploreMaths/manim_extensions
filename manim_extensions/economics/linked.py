@@ -7,7 +7,7 @@ This module provides linked IS-LM and AD-AS diagrams for policy analysis.
 """
 
 
-from manim import *
+from manim import AnimationGroup, RIGHT, VGroup
 from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
