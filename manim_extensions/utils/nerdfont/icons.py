@@ -11,8 +11,8 @@
 #          in Python 3.13).
 """Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
 
+from manim import *
 import manim as m
-from manim import Text
 
 import importlib.resources as pkg_resources
 

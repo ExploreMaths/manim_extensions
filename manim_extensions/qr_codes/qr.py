@@ -185,7 +185,7 @@ def qr_code(payload: str,
 
     if icon is not None:
         # add icon to the center
-        from manim_extensions.utils.nerdfont import nerdfont_icon
+        from ..utils.nerdfont import nerdfont_icon
 
         center_icon = nerdfont_icon(icon)
         center_icon.set_color(icon_color)

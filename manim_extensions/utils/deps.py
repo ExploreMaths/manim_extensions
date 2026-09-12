@@ -5,14 +5,14 @@
 
 The packages listed in ``[project.optional-dependencies]`` are not needed
 to import ``manim_extensions``; each vendored module pulls in its own
-extra (``physics``, ``chemistry``, ``qr``, ...).  Use :func:`require`
-inside the function or method that needs such a package, passing the
-extra that provides it, so the ImportError names the right
+extra (``physics``, ``chemistry``, ``qr``, ...).  Use
+:func:`~manim_extensions.utils.deps.require` inside the function or
+method that needs such a package, passing the extra that provides it, so
+the ImportError names the right
 ``pip install manim_extensions[...]`` command.
 """
 
 import importlib
-
 
 def require(extra, *names):
     """Import optional dependencies, raising a helpful error naming the extra.
