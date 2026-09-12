@@ -16,7 +16,7 @@
 | Local module | Upstream repository | Synced tag/commit | Local patches |
 | --- | --- | --- | --- |
 | `manim_extensions/algorithm` | https://github.com/sinianluoye/manim-algorithm | not recorded | import/doc style normalization (commit `712865f`) |
-| `manim_extensions/arabic` | https://github.com/razekmh/manim-arabic | not recorded | import/doc style normalization (commit `712865f`) |
+| `manim_extensions/arabic` | https://github.com/razekmh/manim-arabic | not recorded | import/doc style normalization; default font auto-resolution (the upstream default "Al Bayan" is macOS-only, so the module failed everywhere else; `create_arabic_template`/`create_arabic_text` now pick the first installed font from a candidate list via fontconfig when no font is passed) |
 | `manim_extensions/automata` | https://github.com/SeanNelsonIO/manim-automata | not recorded | import/doc style normalization; `mobjects/automata_dependencies/xml_parser.py` lazy-imports xmltodict (`automata` extra) |
 | `manim_extensions/chemistry` | https://github.com/UnMolDeQuimica/manim-Chemistry | not recorded | import/doc style normalization; element/periodic-table/parsers lazy-import pandas, requests, xmltodict (`chemistry` extra) |
 | `manim_extensions/circuit` | https://github.com/Mr-FuzzyPenguin/manim-circuit | not recorded | import/doc style normalization (commit `712865f`) |
