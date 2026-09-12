@@ -144,9 +144,6 @@ Manim or Python versions. Install them separately when needed:
 
 - **`manim-mobject-svg`** (for `svg_animations.HTMLParsedVMobject`) — on Python
   3.13+ use `pip install --ignore-requires-python manim-mobject-svg`.
-- **`manim-nerdfont-icons`** (for the optional `icon` argument of
-  `qr_codes.qr_code`) — use
-  `pip install --no-deps manim-nerdfont-icons`.
 
 ## License
 
