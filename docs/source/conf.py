@@ -12,6 +12,13 @@ import sys
 sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("_extensions"))
 
+# Reuse CI-pre-rendered example media on Read the Docs instead of rendering
+# every example during the build (see .github/workflows/docs-media.yml and
+# workflow/render_doc_examples.py). Examples missing from the cache still
+# render normally as a fallback.
+if os.environ.get("READTHEDOCS") == "True" and os.path.isdir("/tmp/rtd-media"):
+    os.environ["MANIM_MEDIA_CACHE_DIR"] = "/tmp/rtd-media"
+
 # -- Project information -----------------------------------------------------
 project = "manim_extensions"
 copyright = "2026, ExploreMaths"
