@@ -13,6 +13,13 @@ build:
     - libpango1.0-dev
     - libffi-dev
     - pkg-config
+  jobs:
+    pre_build:
+      # Fetch the CI-pre-rendered example media so the Sphinx build reuses
+      # it instead of rendering every example (see
+      # .github/workflows/docs-media.yml). Examples missing from the cache
+      # still render normally as a fallback.
+      - git clone --depth 1 --branch rtd-media https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-media || true
 
 sphinx:
   configuration: docs/source/conf.py

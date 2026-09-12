@@ -86,7 +86,9 @@ directive:
 """
 
 import csv
+import hashlib
 import itertools as it
+import os
 import re
 import shutil
 import sys
@@ -210,13 +212,10 @@ class ManimDirective(Directive):
             return [node]
 
 
-        global classnamedict
-
+        # patched: occurrences are numbered by a hash of the example source
+        # (see output_file below) instead of a global build-order counter, so
+        # that pre-rendered media can be matched deterministically.
         clsname = self.arguments[0]
-        if clsname not in classnamedict:
-            classnamedict[clsname] = 1
-        else:
-            classnamedict[clsname] += 1
 
         hide_source = "hide_source" in self.options
         no_autoplay = "no_autoplay" in self.options
@@ -258,6 +257,10 @@ class ManimDirective(Directive):
             ]
         else:
             user_code = textwrap.dedent("\n".join(user_code)).splitlines()
+        # patched: trim trailing blank lines so the source hash matches the
+        # CI pre-renderer (workflow/render_doc_examples.py).
+        while user_code and not user_code[-1].strip():
+            user_code.pop()
 
         has_manim_import = any(
             line.strip() == "from manim import *" for line in user_code
@@ -276,7 +279,13 @@ class ManimDirective(Directive):
         config.media_dir = (Path(setup.confdir) / "media").absolute()  # type: ignore[attr-defined]
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
-        output_file = f"{clsname}-{classnamedict[clsname]}"
+        # patched: hash-based output name (deterministic across builds, see
+        # header note) so CI can pre-render examples and RTD can reuse them
+        # via the MANIM_MEDIA_CACHE_DIR directory.
+        output_file = (
+            f"{clsname}-"
+            f"{hashlib.md5(chr(10).join(user_code).encode()).hexdigest()[:8]}"
+        )
         config.assets_dir = Path(setup.confdir) / "_static"
         config.progress_bar = "none"
         config.verbosity = "WARNING"
@@ -301,46 +310,82 @@ class ManimDirective(Directive):
             f"{clsname}().render()",
         ]
 
-        try:
-            with tempconfig(example_config):
-                run_time = timeit(lambda: exec("\n".join(code), globals()), number=1)
-                video_dir = config.get_dir("video_dir")
-                images_dir = config.get_dir("images_dir")
-        except Exception as e:
-            # A broken example embedded in a docstring should not fail the whole
-            # documentation build: warn about it and fall back to a placeholder
-            # that still shows the source code.
-            logger.warning(
-                "manim example %r could not be rendered (%s); "
-                "showing the source code instead. [%s]",
-                clsname,
-                e,
-                self.state.document.settings.env.docname,
+        # patched: reuse pre-rendered media when MANIM_MEDIA_CACHE_DIR points
+        # to a cache tree (videos/{name}.{mp4,gif}, images/{name}.png) shipped
+        # from CI; only examples missing from the cache are rendered here.
+        cache_dir = os.environ.get("MANIM_MEDIA_CACHE_DIR", "")
+        if save_last_frame:
+            cached = Path(cache_dir, "images", f"{output_file}.png") if cache_dir else None
+        else:
+            cached = (
+                Path(cache_dir, "videos", f"{output_file}.{'gif' if save_as_gif else 'mp4'}")
+                if cache_dir else None
             )
-            placeholder = SkipManimNode()
-            self.state.nested_parse(
-                StringList(
-                    [
-                        f"**Example ``{clsname}``** — rendering failed; source shown instead.",
-                        "",
-                        ".. code-block:: python",
-                        "",
-                    ]
-                    + ["    " + line for line in self.content]
-                ),
-                self.content_offset,
-                placeholder,
-            )
-            return [placeholder]
+        from_cache = cached is not None and cached.exists()
 
-        _write_rendering_stats(
-            clsname,
-            run_time,
-            self.state.document.settings.env.docname,
-        )
+        run_time = 0.0
+        if from_cache:
+            logger.info("manim example %r reused from media cache", output_file)
+        else:
+            try:
+                with tempconfig(example_config):
+                    run_time = timeit(lambda: exec("\n".join(code), globals()), number=1)
+                    video_dir = config.get_dir("video_dir")
+                    images_dir = config.get_dir("images_dir")
+            except Exception as e:
+                # A broken example embedded in a docstring should not fail the whole
+                # documentation build: warn about it and fall back to a placeholder
+                # that still shows the source code.
+                logger.warning(
+                    "manim example %r could not be rendered (%s); "
+                    "showing the source code instead. [%s]",
+                    clsname,
+                    e,
+                    self.state.document.settings.env.docname,
+                )
+                placeholder = SkipManimNode()
+                self.state.nested_parse(
+                    StringList(
+                        [
+                            f"**Example ``{clsname}``** — rendering failed; source shown instead.",
+                            "",
+                            ".. code-block:: python",
+                            "",
+                        ]
+                        + ["    " + line for line in self.content]
+                    ),
+                    self.content_offset,
+                    placeholder,
+                )
+                return [placeholder]
+
+            if not from_cache:
+                _write_rendering_stats(
+                    clsname,
+                    run_time,
+                    self.state.document.settings.env.docname,
+                )
 
         # copy video file to output directory
-        if not (save_as_gif or save_last_frame):
+        if from_cache:
+            # Drop the media where the normal flow would put it (under the
+            # confdir) so TEMPLATE's reference and docutils' readability
+            # check both resolve; videos are additionally copied next to
+            # the page that embeds them.
+            if save_last_frame:
+                filesrc = Path(setup.confdir, "media", "images", f"{output_file}.png")
+            else:
+                filesrc = Path(
+                    setup.confdir,
+                    "media",
+                    "videos",
+                    f"{output_file}.{'gif' if save_as_gif else 'mp4'}",
+                )
+            filesrc.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(cached, filesrc)
+            if not (save_as_gif or save_last_frame):
+                shutil.copyfile(cached, Path(dest_dir, filesrc.name))
+        elif not (save_as_gif or save_last_frame):
             filename = f"{output_file}.mp4"
             filesrc = video_dir / filename
             destfile = Path(dest_dir, filename)
@@ -353,6 +398,13 @@ class ManimDirective(Directive):
             filesrc = images_dir / filename
         else:
             raise ValueError("Invalid combination of render flags received.")
+        if save_as_gif or save_last_frame:
+            # patched: also publish images under the build root so the
+            # site-absolute '/media/...' reference in TEMPLATE resolves in
+            # the built HTML (applies to cached and freshly rendered alike).
+            target = Path(setup.app.builder.outdir, filesrc.relative_to(setup.confdir))
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(filesrc, target)
         rendered_template = jinja2.Template(TEMPLATE).render(
             clsname=clsname,
             clsname_lowercase=clsname.lower(),

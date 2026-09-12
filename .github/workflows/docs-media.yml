@@ -1,0 +1,57 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+name: Docs media
+
+# Pre-render every .. manim:: doc example and push the media tree to the
+# `rtd-media` branch. Read the Docs fetches that branch before building so
+# the Sphinx build reuses the media instead of rendering hundreds of
+# examples (which used to time the RTD build out). Rendering is
+# content-hash based, so unchanged examples are skipped on re-runs.
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - "manim_extensions/**"
+      - "workflow/render_doc_examples.py"
+      - ".github/workflows/docs-media.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+        with:
+          python-version: "3.13"
+          install-full-deps: "true"
+
+      - name: Install package with all extras
+        run: pip install ".[all]"
+
+      - name: Render all doc examples
+        run: python workflow/render_doc_examples.py --out media_cache --workers 6
+
+      - name: Push media to the rtd-media branch
+        run: |
+          set -e
+          cd media_cache
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth 1 origin rtd-media || true
+          git checkout -B rtd-media
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Media unchanged; nothing to push."
+          else
+            git commit -q -m "docs media: refresh rendered examples"
+            git push -f origin rtd-media
+          fi
