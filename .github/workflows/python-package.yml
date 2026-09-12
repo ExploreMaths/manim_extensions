@@ -21,12 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]ython-version }}
           install-full-deps: "true"
 
-      - name: Install dev dependencies
+      - name: Install dev dependencies and all extras
         run: |
-          pip install flake8 pytest
+          pip install flake8 ".[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]"
 
       - name: Lint with flake8
         run: |
@@ -36,3 +36,27 @@ jobs:
       - name: Test with pytest
         run: |
           xvfb-run -a pytest tests/ -v
+
+  # Verify the declared `manim>=0.21.0` against the newest manim release,
+  # so compatibility is tested rather than merely claimed.
+  manim-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+        with:
+          python-version: "3.13"
+          install-full-deps: "true"
+
+      - name: Install dev dependencies and all extras
+        run: |
+          pip install ".[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]"
+
+      - name: Upgrade manim to the latest release
+        run: |
+          pip install --upgrade manim
+          python -c "import manim; print('manim', manim.__version__)"
+
+      - name: Test with pytest
+        run: |
+          xvfb-run -a pytest tests/ -q
