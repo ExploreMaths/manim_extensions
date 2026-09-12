@@ -12,11 +12,6 @@ name: Docs media
 on:
   push:
     branches: ["main"]
-    paths:
-      - "docs/**"
-      - "manim_extensions/**"
-      - "workflow/render_doc_examples.py"
-      - ".github/workflows/docs-media.yml"
   workflow_dispatch:
 
 permissions:
