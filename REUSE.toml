@@ -124,6 +124,20 @@ SPDX-FileCopyrightText = ["2023 Ralphie Raccoon", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/ralphieraccoon/manim-tikz"
 
+# Nerd Font icons - vendored from manim-nerdfont-icons 1.0.2 (code, MIT)
+[[annotations]]
+path = "manim_extensions/utils/nerdfont/**"
+SPDX-FileCopyrightText = ["2025 Alexander Nasuta", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/Alexander-Nasuta/manim-nerdfont-icons"
+
+# Symbols Nerd Font Mono font file (font, MIT) - separate from the code above
+[[annotations]]
+path = "manim_extensions/utils/nerdfont/SymbolsNerdFontMono-Regular.ttf"
+SPDX-FileCopyrightText = ["2014 Ryan L McIntyre (Nerd Fonts)"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/ryanoasis/nerd-fonts"
+
 # ==================== Additional Bundled Packages (Third-Party, modified) ====================
 # Arabic support - based on manim-arabic
 [[annotations]]

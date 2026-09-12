@@ -182,14 +182,8 @@ def qr_code(payload: str,
 
     if icon is not None:
         # add icon to the center
-        try:
-            from manim_nerdfont_icons.icons import nerdfont_icon
-        except ImportError as exc:
-            raise ImportError(
-                "The 'icon' argument requires the manim-nerdfont-icons "
-                "package. Its PyPI metadata pins manim<0.20, so install "
-                "it with: pip install --no-deps manim-nerdfont-icons"
-            ) from exc
+        from manim_extensions.utils.nerdfont import nerdfont_icon
+
         center_icon = nerdfont_icon(icon)
         center_icon.set_color(icon_color)
         # scale icon to fit the qr center mask
