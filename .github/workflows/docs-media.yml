@@ -22,15 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
-        with:
-          # 3.12 so the manim-mobject-svg plugin (python<3.13 pin) installs
-          # and HTMLParsedVMobject examples render; matches the RTD build.
-          python-version: "3.12"
-          install-full-deps: "true"
-
-      - name: Install package with all extras
-        run: pip install ".[all]"
 
       - name: Seed media cache from the rtd-media branch
         run: |
@@ -40,8 +31,33 @@ jobs:
           mkdir -p media_cache
           cp -r rtd-media-clone/videos rtd-media-clone/images rtd-media-clone/manifest.json media_cache/ 2>/dev/null || true
 
+      # Lightweight scan (no manim needed): if every example is already in
+      # the cache at the requested quality, skip the whole render pipeline
+      # below — including the TeX/LaTeX environment setup.
+      - name: Check whether any rendering is needed
+        id: needed
+        run: |
+          if python workflow/render_doc_examples.py --out media_cache --quality high --check; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: ./.github/actions/setup-manim-env
+        if: steps.needed.outputs.needed == 'true'
+        with:
+          # 3.12 so the manim-mobject-svg plugin (python<3.13 pin) installs
+          # and HTMLParsedVMobject examples render; matches the RTD build.
+          python-version: "3.12"
+          install-full-deps: "true"
+
+      - name: Install package with all extras
+        if: steps.needed.outputs.needed == 'true'
+        run: pip install ".[all]"
+
       - name: Render all doc examples
-        run: python workflow/render_doc_examples.py --out media_cache --workers 6
+        if: steps.needed.outputs.needed == 'true'
+        run: python workflow/render_doc_examples.py --out media_cache --workers 6 --quality high
 
       - name: Push media to the rtd-media branch
         id: push
