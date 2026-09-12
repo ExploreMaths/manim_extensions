@@ -130,9 +130,25 @@ include = ["manim_extensions*"]
 exclude = ["tests*"]
 
 [tool.setuptools.package-data]
-"manim_extensions.meshes" = ["data/models/*.ply", "data/models/*.stl"]
+"manim_extensions.meshes" = ["data/models/*.ply", "data/models/*.stl", "shaders/mesh/*.glsl"]
 # Vendored Nerd Font (see manim_extensions/utils/nerdfont/)
 "manim_extensions.utils.nerdfont" = ["*.ttf"]
+# Font Awesome SVG assets and license (see REUSE.toml)
+"manim_extensions.fontawesome" = [
+    "manim_fontawesome/font-awesome/LICENSE.txt",
+    "manim_fontawesome/font-awesome/svgs/*/*.svg",
+]
+# Compass pencil asset
+"manim_extensions.compass" = ["compass/assets/*.svg"]
+# Gearbox vendored license file
+"manim_extensions.gearbox" = ["LICENSE.txt"]
+# Machine learning: decision-tree example data + graphical-test configs
+"manim_extensions.machine_learning" = [
+    "decision_tree/synced_surfa*",
+    "utils/testing/*.cfg",
+]
+# REUSE license sidecar files
+"manim_extensions.pymunk" = ["custom_mobjects/*.license", "utils/*.license"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
