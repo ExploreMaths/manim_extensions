@@ -303,11 +303,12 @@ def main() -> int:
             if not ok:
                 failures += 1
                 print(
-                    f"[{pct:>3}%] ({done}/{total}) FAILED {key}\n{error}",
+                    f"[{pct:>3}%] ({done}/{total}) "
+                    f"\033[31mFAILED\033[0m {key}\n{error}",
                     file=sys.stderr,
                 )
                 continue
-            print(f"[{pct:>3}%] ({done}/{total}) OK {key}")
+            print(f"[{pct:>3}%] ({done}/{total}) \033[32mOK\033[0m {key}")
             src = Path(src)
             if src.suffix == ".png":
                 shutil.copyfile(src, images_out / src.name)
