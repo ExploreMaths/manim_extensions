@@ -5,6 +5,12 @@
 
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
+<p align="center">
+  <img src="docs/source/_static/gifs/sequence_diagram.gif" width="30%" alt="Sequence diagram animation" />
+  <img src="docs/source/_static/gifs/compass.gif" width="30%" alt="Compass construction animation" />
+  <img src="docs/source/_static/gifs/more_animations.gif" width="30%" alt="Animation helpers demo" />
+</p>
+
 <table>
   <tr>
     <td><strong>📦 Package</strong></td>
@@ -132,18 +138,53 @@ Requires [Manim](https://github.com/ManimCommunity/manim) Community Edition
 
 ### Optional extras
 
+Each bundled module only pulls in what it needs. The base install is
+just `manim` + `numpy`; heavy or niche dependencies are lazy-imported
+and belong to the matching extra:
+
 ```bash
-pip install manim_extensions[dev]     # pytest for running tests
-pip install manim_extensions[docs]    # sphinx + furo for building docs
-pip install manim_extensions[ml]      # matplotlib, scikit-learn, seaborn, tqdm
+pip install manim_extensions[dev]         # pytest for running tests
+pip install manim_extensions[docs]        # sphinx + furo for building docs
+pip install manim_extensions[automata]    # xmltodict
+pip install manim_extensions[chemistry]   # pandas, xmltodict, requests
+pip install manim_extensions[physics]     # pymunk, shapely
+pip install manim_extensions[rubikscube]  # kociemba
+pip install manim_extensions[meshes]      # trimesh, moderngl
+pip install manim_extensions[video]       # opencv (VideoMobject)
+pip install manim_extensions[qr]          # segno
+pip install manim_extensions[svg]         # svgpathtools
+pip install manim_extensions[ml]          # matplotlib, scikit-learn, seaborn, tqdm
 ```
 
-Some bundled modules depend on lazily-imported packages that are **not**
-declared in `pyproject.toml` because their PyPI metadata pins incompatible
-Manim or Python versions. Install them separately when needed:
+If a feature is used without its extra installed, the error message names
+the exact `pip install manim_extensions[...]` command.
 
-- **`manim-mobject-svg`** (for `svg_animations.HTMLParsedVMobject`) — on Python
-  3.13+ use `pip install --ignore-requires-python manim-mobject-svg`.
+### Why we bundle upstream packages
+
+Most of `manim_extensions` is **vendored**: source copied from small,
+independent upstream Manim extension projects and maintained here as one
+coherent, tested whole. The motivations:
+
+- **Upstream metadata locks.** Some upstream packages declare dependency
+  ranges that conflict with reality. For example
+  `manim-nerdfont-icons` 1.0.x pins `manim>=0.19,<0.20` on PyPI even
+  though it works with current manim — it is bundled as
+  `manim_extensions.utils.nerdfont` instead of being a dependency.
+  `manim-mobject-svg` similarly declares `python<3.13`; it stays a
+  lazily-imported plugin for that reason.
+- **Integration.** Vendoring lets us normalise import style, docstring
+  conventions and CI checks across all modules, fix cross-module bugs in
+  one place, and keep every public name importable from a single package.
+- **Longevity.** Several upstream projects are inactive; vendoring
+  decouples this package from their release cadence.
+- **Lean installs.** Because each module's extra dependencies are
+  lazy-imported, the base install stays at two packages while every
+  feature remains a `pip install manim_extensions[...]` away.
+
+Every vendored package's upstream repository, sync version and local
+patches are tracked in [VENDORED.md](VENDORED.md); patched files carry a
+`# patched: <reason>` marker in their header. Licensing and attribution
+are kept per-package in [REUSE.toml](REUSE.toml).
 
 ## License
 
