@@ -34,8 +34,6 @@ import time
 import traceback
 from pathlib import Path
 
-from manim import QUALITIES, config, tempconfig
-
 ROOT = Path(__file__).resolve().parent.parent
 # Ensure the source package shadows any stale installed copy in workers.
 sys.path.insert(0, str(ROOT))
@@ -160,15 +158,18 @@ DIRECTIVE_FILE = str(DOCS / "_extensions" / "manim_directive.py")
 
 
 def render_block(task):
-    """Render one example in a subprocess. Returns (key, src_ext, ok, error)."""
+    """Render one example in a subprocess. Returns (key, src, ok, error, quality)."""
     class_name, code, save_last_frame, save_as_gif, quality, workdir = task
     output_file = output_name(class_name, code)
+    q = quality or "example_quality"
     try:
         import logging
 
+        from manim import config, tempconfig
+        from manim.constants import QUALITIES
+
         logging.getLogger("manim").setLevel(logging.ERROR)
 
-        q = quality or "example_quality"
         frame_rate = QUALITIES[q]["frame_rate"]
         pixel_height = QUALITIES[q]["pixel_height"]
         pixel_width = QUALITIES[q]["pixel_width"]
@@ -214,16 +215,29 @@ def render_block(task):
             ext = "gif" if save_as_gif else "mp4"
             hits = list(Path(workdir).rglob(f"{output_file}.{ext}"))
         if not hits:
-            return (output_file, ext, False, "render produced no output file")
-        return (output_file, str(hits[0]), True, "")
+            return (output_file, "", False, "render produced no output file", q)
+        return (output_file, str(hits[0]), True, "", q)
     except Exception:
-        return (output_file, "", False, traceback.format_exc(limit=3))
+        return (output_file, "", False, traceback.format_exc(limit=3), q)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True, help="cache output directory")
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--quality",
+        choices=["low", "medium", "high", "fourk"],
+        default=None,
+        help="render quality for blocks without an explicit :quality: option "
+             "(default: manim's example quality)",
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="only report how many blocks would be rendered; exits 0 when "
+             "everything is cached (does not require manim installed)",
+    )
     parser.add_argument(
         "--only",
         default=None,
@@ -246,6 +260,11 @@ def main() -> int:
             continue
         for block in extract_blocks(path):
             block["output_file"] = output_name(block["class_name"], block["code"])
+            block["effective_quality"] = (
+                block.get("quality")
+                or (f"{args.quality}_quality" if args.quality else None)
+                or "example_quality"
+            )
             blocks.append(block)
 
     print(f"Found {len(blocks)} manim example blocks")
@@ -263,6 +282,7 @@ def main() -> int:
         if (
             entry
             and entry.get("sha256") == block["output_file"]
+            and entry.get("quality") == block["effective_quality"]
             and (target_dir / f"{block['output_file']}.{ext}").exists()
         ):
             skipped += 1
@@ -270,8 +290,8 @@ def main() -> int:
         todo.append(block)
 
     print(f"{skipped} already cached, {len(todo)} to render")
-    if not todo:
-        return 0
+    if not todo or args.check:
+        return 0 if not todo else 1
 
     work_root = out / "_work"
     shutil.rmtree(work_root, ignore_errors=True)
@@ -287,7 +307,7 @@ def main() -> int:
                 block["code"],
                 block["save_last_frame"],
                 block["save_as_gif"],
-                block.get("quality"),
+                block["effective_quality"],
                 str(workdir),
             )
         )
@@ -297,7 +317,7 @@ def main() -> int:
     t0 = time.time()
     total = len(tasks)
     with multiprocessing.Pool(args.workers) as pool:
-        for key, src, ok, error in pool.imap_unordered(render_block, tasks):
+        for key, src, ok, error, q in pool.imap_unordered(render_block, tasks):
             done += 1
             pct = done * 100 // total
             if not ok:
@@ -314,7 +334,7 @@ def main() -> int:
                 shutil.copyfile(src, images_out / src.name)
             else:
                 shutil.copyfile(src, videos_out / src.name)
-            manifest[key] = {"sha256": key, "ext": src.suffix.lstrip(".")}
+            manifest[key] = {"sha256": key, "ext": src.suffix.lstrip("."), "quality": q}
 
     shutil.rmtree(work_root, ignore_errors=True)
     manifest_path.write_text(json.dumps(manifest, indent=1, sort_keys=True))
