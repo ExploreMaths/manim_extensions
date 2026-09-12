@@ -114,7 +114,7 @@ def create_arabic_text(
     font_name
         Arabic font name. ``None`` (the default) picks the first installed
         font from a built-in candidate list; see
-        :func:`create_arabic_template`.
+        :func:`~manim_extensions.arabic.text.create_arabic_template`.
 
     Returns:
         Tex object with Arabic text
