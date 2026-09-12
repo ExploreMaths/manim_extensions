@@ -9,14 +9,11 @@
 from __future__ import annotations
 
 from manim import *
-from typing import Iterable, Tuple, TYPE_CHECKING
+from typing import Iterable, Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 
 from ...utils.deps import require
-
-if TYPE_CHECKING:
-    from shapely import geometry as gm
 
 __all__ = ["Lens"]
 
@@ -39,7 +36,7 @@ def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:
     gm = require("physics", "shapely").geometry
     a = gm.LineString(vmob1.points)
     b = gm.LineString(vmob2.points)
-    intersects: gm.GeometryCollection = a.intersection(b)
+    intersects = a.intersection(b)
     try:  # for intersections > 1
         return np.array(
             [[[x, y, z] for x, y, z in m.coords][0] for m in intersects.geoms]
