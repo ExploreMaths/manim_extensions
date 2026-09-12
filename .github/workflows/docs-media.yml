@@ -32,6 +32,14 @@ jobs:
       - name: Install package with all extras
         run: pip install ".[all]"
 
+      - name: Seed media cache from the rtd-media branch
+        run: |
+          git clone --depth 1 --branch rtd-media \
+            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" \
+            rtd-media-clone || { echo "No existing media cache; rendering from scratch."; exit 0; }
+          mkdir -p media_cache
+          cp -r rtd-media-clone/videos rtd-media-clone/images rtd-media-clone/manifest.json media_cache/ 2>/dev/null || true
+
       - name: Render all doc examples
         run: python workflow/render_doc_examples.py --out media_cache --workers 6
 
@@ -43,7 +51,7 @@ jobs:
           git init -q
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git fetch --depth 1 origin rtd-media || true
           git checkout -B rtd-media
           git add -A
