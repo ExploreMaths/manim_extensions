@@ -1,17 +1,17 @@
-# SPDX-FileCopyrightText: 2026 ExploreMaths
-# SPDX-License-Identifier: MIT
+<!-- SPDX-FileCopyrightText: 2026 ExploreMaths
+SPDX-License-Identifier: MIT
 
-# Vendored packages
-#
-# manim_extensions aggregates a number of small upstream Manim extension
-# projects. This file records, for each vendored package, where it came
-# from, which upstream version it was synced at, and which local patches
-# deviate from upstream. Patches are also marked in the patched files
-# themselves with a `# patched: <reason>` line in the file header.
-#
-# Version history note: most packages below were vendored before this
-# registry existed, so their exact upstream tag/commit is not recorded;
-# only subsequently synced packages carry a precise version.
+Vendored packages
+
+manim_extensions aggregates a number of small upstream Manim extension
+projects. This file records, for each vendored package, where it came
+from, which upstream version it was synced at, and which local patches
+deviate from upstream. Patches are also marked in the patched files
+themselves with a `# patched: <reason>` line in the file header.
+
+Version history note: most packages below were vendored before this
+registry existed, so their exact upstream tag/commit is not recorded;
+only subsequently synced packages carry a precise version. -->
 
 | Local module | Upstream repository | Synced tag/commit | Local patches |
 | --- | --- | --- | --- |
