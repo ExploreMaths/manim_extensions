@@ -29,7 +29,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
         with:
-          python-version: "3.13"
+          # 3.12 so the manim-mobject-svg plugin (python<3.13 pin) installs
+          # and HTMLParsedVMobject examples render; matches the RTD build.
+          python-version: "3.12"
           install-full-deps: "true"
 
       - name: Install package with all extras

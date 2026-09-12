@@ -1,20 +1,62 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
+# patched: default font resolution — the upstream default "Al Bayan" only
+#          exists on macOS, so create_arabic_template()/create_arabic_text()
+#          failed on every other platform. When no font is given explicitly,
+#          the first installed font from _FONT_CANDIDATES (queried via
+#          fontconfig's fc-list) is used; an explicitly passed font_name is
+#          used verbatim.
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 
-
+import subprocess
 
 from manim import *
-def create_arabic_template(font_name: str = "Al Bayan") -> TexTemplate:
+
+
+_FONT_CANDIDATES = (
+    "Al Bayan",  # macOS
+    "Geeza Pro",  # macOS
+    "Amiri",  # Linux/Windows, fonts-amiri
+    "Scheherazade",  # Linux/Windows, fonts-sil-scheherazade
+    "Noto Naskh Arabic",  # Linux, fonts-noto-core
+    "Arial Unicode MS",  # cross-platform if installed
+)
+
+
+def _resolve_arabic_font(font_name):
+    """Pick an installed Arabic font.
+
+    Returns *font_name* verbatim when given; otherwise the first candidate
+    from :data:`_FONT_CANDIDATES` that fontconfig reports as installed,
+    falling back to the historical default ("Al Bayan").
+    """
+    if font_name is not None:
+        return font_name
+    try:
+        available = subprocess.check_output(
+            ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL
+        )
+    except Exception:
+        available = ""
+    for candidate in _FONT_CANDIDATES:
+        if candidate in available:
+            return candidate
+    return _FONT_CANDIDATES[0]
+
+
+def create_arabic_template(font_name: str = None) -> TexTemplate:
     """
     Create a TexTemplate configured for Arabic text rendering using XeLaTeX.
 
     Parameters
     ----------
     font_name
-        Name of the Arabic-supporting font to use.
-                  Options: "Al Bayan" (macOS), "Geeza Pro" (macOS),
-                          "Arial Unicode MS" (cross-platform)
+        Name of the Arabic-supporting font to use. ``None`` (the default)
+        picks the first installed font from a built-in candidate list
+        ("Al Bayan", "Geeza Pro", "Amiri", "Scheherazade",
+        "Noto Naskh Arabic", "Arial Unicode MS") via fontconfig; pass a name
+        explicitly to override.
 
     Returns:
         Configured TexTemplate for Arabic text rendering
@@ -33,6 +75,7 @@ def create_arabic_template(font_name: str = "Al Bayan") -> TexTemplate:
                self.play(Write(label))
                self.wait()
     """
+    font_name = _resolve_arabic_font(font_name)
     template = TexTemplate()
     template.tex_compiler = "xelatex"
     template.output_format = ".xdv"
@@ -55,7 +98,7 @@ def create_arabic_text(
     text: str,
     color: str = "arabicblue",
     font_size: int = 34,
-    font_name: str = "Al Bayan",
+    font_name: str = None,
 ) -> Tex:
     """
     Create a Tex object with Arabic text.
@@ -69,7 +112,9 @@ def create_arabic_text(
     font_size
         Font size in points
     font_name
-        Arabic font name
+        Arabic font name. ``None`` (the default) picks the first installed
+        font from a built-in candidate list; see
+        :func:`create_arabic_template`.
 
     Returns:
         Tex object with Arabic text

@@ -8,6 +8,7 @@ build:
     - ffmpeg
     - fonts-jetbrains-mono
     - fonts-noto-cjk
+    - fonts-amiri
     - graphviz
     - libcairo2-dev
     - libpango1.0-dev
