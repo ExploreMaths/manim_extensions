@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
 # SPDX-License-Identifier: MIT
+# patched: lazy-import cv2 (video extra)
 
 
 """Reusable Manim mobjects and convenience wrappers.
@@ -18,7 +19,8 @@ import platform
 from typing import Any, Optional, Union
 
 from PIL import Image, ImageChops, ImageDraw
-import cv2
+
+from .utils.deps import require
 
 DEFAULT_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
 DEFAULT_MONO_FONT = (
@@ -964,6 +966,8 @@ class VideoMobject(ImageMobject):
         self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
     ) -> None:
         """Initialize the VideoMobject instance."""
+        cv2 = require("video", "cv2")
+
         self.filename = filename
         self.loop = loop
         self.rate = float(rate)
@@ -1003,6 +1007,8 @@ class VideoMobject(ImageMobject):
         dt : float
             Elapsed time (in seconds) since the last frame.
         """
+        cv2 = require("video", "cv2")
+
         if not self._playing or self._finished:
             return
 
@@ -1041,6 +1047,8 @@ class VideoMobject(ImageMobject):
         VideoMobject
             A new instance with its own video capture handle.
         """
+        cv2 = require("video", "cv2")
+
         cap = self._cap
         self._cap = None
         try:
@@ -1095,6 +1103,8 @@ class VideoMobject(ImageMobject):
 
     def reset(self) -> "VideoMobject":
         """Seek to the first frame and reset all playback state."""
+        cv2 = require("video", "cv2")
+
         if self._cap.isOpened():
             self._cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
         self._frame_idx = 0
@@ -1113,6 +1123,8 @@ class VideoMobject(ImageMobject):
         Returns:
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
+        cv2 = require("video", "cv2")
+
         if not self._cap.isOpened():
             return self
         frame_idx = int(np.clip(time, 0, self._duration) * self._fps)

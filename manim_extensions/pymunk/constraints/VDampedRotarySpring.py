@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Damped rotary spring constraint for Pymunk.
 
 This module provides the VDampedRotarySpring class for creating damped rotary spring constraints.
 
 """
 
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk import Space
-from pymunk.constraints import DampedRotarySpring
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import DampedRotarySpring
 
 
 class VDampedRotarySpring(VConstraint):
@@ -126,6 +133,8 @@ class VDampedRotarySpring(VConstraint):
 
     def install(self, space: Space):
         """Initialization of physics and visualization components"""
+
+        DampedRotarySpring = require("physics", "pymunk").constraints.DampedRotarySpring
 
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)

@@ -1,17 +1,24 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Damped spring constraint for Pymunk.
 
 This module provides the VDampedSpring class for creating damped spring constraints.
 
 """
 
+from __future__ import annotations
+
 from ..custom_mobjects import VSpring
-from pymunk import Space
-from pymunk.constraints import DampedSpring
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import DampedSpring
 
 
 class VDampedSpring(VConstraint):
@@ -123,6 +130,9 @@ class VDampedSpring(VConstraint):
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters."""
+
+        DampedSpring = require("physics", "pymunk").constraints.DampedSpring
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

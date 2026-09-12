@@ -1,9 +1,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pandas (chemistry extra)
 """Chemical element data structure."""
 
-import pandas as pd
 from dataclasses import dataclass
+
+from ...utils.deps import require
 
 
 class Element:
@@ -26,6 +28,7 @@ class Element:
 
     def from_csv_file(filename, element: str or int):
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
+        pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)
 
         if isinstance(element, str):

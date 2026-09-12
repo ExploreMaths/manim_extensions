@@ -4,11 +4,14 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import scikit-learn (ml extra)
 """Decision tree visualization for Manim."""
 
 from manim import *
 import numpy as np
 from collections import deque
+
+from ...utils.deps import require
 
 class AABB:
     """Axis-aligned bounding box
@@ -34,7 +37,7 @@ class AABB:
 
 def tree_bounds(tree, n_features=None):
     """Compute final decision rule for each node in tree"""
-    from sklearn.tree import _tree as ctree
+    ctree = require("ml", "sklearn.tree")._tree
 
     if n_features is None:
         n_features = np.max(tree.feature) + 1
@@ -64,7 +67,7 @@ def compute_decision_areas(
     y: index of the feature that goes on the y axis
     n_features: override autodetection of number of features
     """
-    from sklearn.tree import _tree as ctree
+    ctree = require("ml", "sklearn.tree")._tree
 
     tree = tree_classifier.tree_
     aabbs = tree_bounds(tree, n_features)

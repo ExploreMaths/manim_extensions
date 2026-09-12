@@ -1,16 +1,23 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Pivot joint constraint for Pymunk.
 
 This module provides the VPivotJoint class for creating pivot joint constraints in physics simulations.
 
 """
 
+from __future__ import annotations
+
 from manim import *
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from . import VConstraint
-from pymunk.constraints import PivotJoint
-from pymunk import Space
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from pymunk import Space
+    from pymunk.constraints import PivotJoint
 
 
 class VPivotJoint(VConstraint):
@@ -121,6 +128,9 @@ class VPivotJoint(VConstraint):
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters."""
+
+        PivotJoint = require("physics", "pymunk").constraints.PivotJoint
+
         a_body = getattr(self.a_mob, "body", None)
         b_body = getattr(self.b_mob, "body", None)
 

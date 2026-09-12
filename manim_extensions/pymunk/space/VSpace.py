@@ -1,19 +1,26 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import pymunk (physics extra)
 """Virtual space for Pymunk physics.
 
 This module provides the VSpace class for managing Pymunk physical simulations.
 
 """
 
+from __future__ import annotations
+
 from manim import *
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-import pymunk
-from pymunk import Body, autogeometry
-from typing import Callable, Dict, Any, Tuple, Union
+from typing import Callable, Dict, Any, Tuple, Union, TYPE_CHECKING
 import numpy as np
+
+from ...utils.deps import require
 from ..utils.img_tools import get_normalized_convex_polygons
 from ..utils.logger_tool import manim_pymunk_logger
+
+if TYPE_CHECKING:
+    import pymunk
+    from pymunk import Body
 
 
 
@@ -95,6 +102,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self, gravity: Tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
     ):
         super().__init__(**kwargs)
+        pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
         self.space.gravity = gravity
         self.space.sleep_time_threshold = 1
@@ -210,6 +218,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         angular_velocity
             The initial angular velocity (in radians per second).
         """
+
+        pymunk = require("physics", "pymunk")
 
         if not hasattr(mob, "body"):
             mob.set(body=None)
@@ -703,6 +713,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         objects are decomposed into multiple convex sub-shapes attached to
         the same body.
         """
+        pymunk = require("physics", "pymunk")
+        from pymunk import autogeometry
+
         stroke_width = (mob.stroke_width / 100) * (
             config.frame_height / config.frame_width
         )
@@ -761,6 +774,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The subdivision level for Bezier curves. Higher values result in
             smoother boundaries but may impact simulation performance.
         """
+        pymunk = require("physics", "pymunk")
+
         stroke_width = (mob.stroke_width / 100) * (
             config.frame_height / config.frame_width
         )
@@ -804,6 +819,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         For better performance and physical stability, complex image outlines are
         often simplified into low-vertex count convex polygons.
         """
+        pymunk = require("physics", "pymunk")
+
         pixel_array = mob.pixel_array
         polygons_verts = get_normalized_convex_polygons(
             pixel_array,
@@ -895,6 +912,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             A list where each element is a list of vertices defining a
             specific convex sub-polygon.
         """
+        pymunk = require("physics", "pymunk")
+        from pymunk import autogeometry
+
         # 1. 采样获取高质量点集
         refined_points = self.__get_refined_points(mob, n_divisions)
         # 2. 转换成相对于中心的局部坐标（物理引擎需要）
@@ -939,6 +959,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             A bitmask representing which categories this shape will collide with.
             Default is all categories.
         """
+        pymunk = require("physics", "pymunk")
+
         shape_filter = pymunk.ShapeFilter(group, categories, mask)
         for shape in mob.shapes:
             shape.filter = shape_filter

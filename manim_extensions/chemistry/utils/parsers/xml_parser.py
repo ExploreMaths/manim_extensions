@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import xmltodict (chemistry extra)
 """XML format parser for chemical files.
 
 This module provides the XMLParser class for parsing XML format chemical files.
@@ -10,7 +11,8 @@ from typing import Dict, Tuple, Union
 import os
 
 import numpy as np
-import xmltodict
+
+from ....utils.deps import require
 
 from .base_parser import BaseParser
 
@@ -70,6 +72,7 @@ class XMLParser(BaseParser):
         The bond data follows the structure:
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
         """
+        xmltodict = require("chemistry", "xmltodict")
         molecule_data = xmltodict.parse(data).get("PC-Compounds").get("PC-Compound")
         molecule_parsed_data = XMLParser.parse_molecule_data(
             molecule_data=molecule_data

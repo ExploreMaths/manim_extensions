@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2024 Matheart
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import shapely (physics extra)
 
 
 """Lenses for refracting Rays."""
@@ -8,10 +9,14 @@
 from __future__ import annotations
 
 from manim import *
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, TYPE_CHECKING
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
-from shapely import geometry as gm
+
+from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from shapely import geometry as gm
 
 __all__ = ["Lens"]
 
@@ -31,6 +36,7 @@ def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:
     Iterable[Iterable[float]]
         Array of 3-D intersection coordinates (possibly empty).
     """
+    gm = require("physics", "shapely").geometry
     a = gm.LineString(vmob1.points)
     b = gm.LineString(vmob2.points)
     intersects: gm.GeometryCollection = a.intersection(b)

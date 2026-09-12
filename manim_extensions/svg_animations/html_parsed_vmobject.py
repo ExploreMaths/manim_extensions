@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazily import the manim-mobject-svg plugin and svgpathtools (svg extra)
 """HTML parsed SVG vmobjects for Manim.
 
 This module provides functionality to parse SVG files and create
@@ -8,9 +9,10 @@ animated Manim objects from them.
 """
 
 from manim import *
-from svgpathtools import svg2paths
 import itertools
 import os
+
+from ..utils.deps import require
 
 
 HTML_STRUCTURE = """<!DOCTYPE html>
@@ -188,6 +190,7 @@ class HTMLParsedVMobject:
     def updater(self, dt):
         if self.continue_updating is False:
             return
+        svg2paths = require("svg", "svgpathtools").svg2paths
         svg_filename = self.filename_base + str(self.current_index) + ".svg"
         self.vmobject.to_svg(svg_filename)
         html_el_creations = ""

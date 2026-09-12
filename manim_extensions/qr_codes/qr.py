@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: use vendored manim_extensions.utils.nerdfont instead of the manim-nerdfont-icons package; lazy-import segno (qr extra)
 """QR code generation for Manim.
 
 This module provides QR code generation functionality with customization options.
@@ -7,7 +8,8 @@ This module provides QR code generation functionality with customization options
 """
 
 import manim as m
-import segno
+
+from ..utils.deps import require
 
 
 def qr_code(payload: str,
@@ -94,6 +96,7 @@ def qr_code(payload: str,
         corner_color = white_color
     if data_shape not in ['circles', 'rectangles']:
         raise ValueError(f"Invalid data_shape: {data_shape}. valid values are 'circles' and 'rectangles'")
+    segno = require("qr", "segno")
     if rectangles_kwargs is None:
         rectangles_kwargs = {}
     if circle_kwargs is None:

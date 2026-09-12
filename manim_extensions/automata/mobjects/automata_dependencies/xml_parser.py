@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Sean Nelson
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: lazy-import xmltodict (automata extra)
 
 """XML parser for automata definition files.
 
@@ -8,7 +9,7 @@ This module provides functions for parsing XML format automaton definition files
 
 """
 
-import xmltodict
+from ....utils.deps import require
 
 
 def parse_xml_file(file_name: str) -> dict[str, object]:
@@ -20,5 +21,6 @@ def parse_xml_file(file_name: str) -> dict[str, object]:
     file_name
     The path to the target file.
     """
+    xmltodict = require("automata", "xmltodict")
     with open(file_name, "rb") as f:
         return xmltodict.parse(f)
