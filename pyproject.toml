@@ -96,6 +96,24 @@ ml = [
     "seaborn>=0.13",
     "tqdm>=4.65",
 ]
+# Every other vendored module also has a same-named extra. They declare no
+# additional dependencies today (the modules work with the base install),
+# but the extras exist so installs can uniformly request
+# manim_extensions[<module>] and gain dependencies transparently if a
+# module ever needs any.
+algorithm = []
+arabic = []
+circuit = []
+compass = []
+data_structures = []
+economics = []
+fontawesome = []
+gearbox = []
+mindmap = []
+sequence_diagram = []
+table = []
+tikz = []
+weighted_line = []
 
 [project.urls]
 Homepage = "https://github.com/ExploreMaths/manim_extensions"
