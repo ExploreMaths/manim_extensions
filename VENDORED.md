@@ -31,7 +31,7 @@ only subsequently synced packages carry a precise version. -->
 | `manim_extensions/physics` | https://github.com/Matheart/manim-physics | not recorded | import/doc style normalization; rigid mechanics/optics lazy-import pymunk/shapely (`physics` extra) |
 | `manim_extensions/pymunk` | https://github.com/HHP999/manim_pymunk | not recorded | import/doc style normalization; constraints/space/utils lazy-import pymunk (`physics` extra) |
 | `manim_extensions/qr_codes` | https://github.com/Alexander-Nasuta/manim-qr-codes | not recorded | import/doc style normalization; `qr.py` uses the vendored `utils.nerdfont` instead of the manim-nerdfont-icons package and lazy-imports segno (`qr` extra) |
-| `manim_extensions/rubikscube` | https://github.com/WampyCakes/manim-rubikscube | not recorded | import/doc style normalization; `cube.py` lazy-imports kociemba (`rubikscube` extra) |
+| `manim_extensions/rubikscube` | https://github.com/WampyCakes/manim-rubikscube | not recorded | import/doc style normalization; `cube.py` lazy-imports kociemba (`rubikscube` extra); `cube_animations.py` applies `rate_func` in `interpolate_mobject` (manim 0.21 requires subclasses to apply it manually, so turns were linear instead of smooth) |
 | `manim_extensions/sequence_diagram` | https://github.com/foxnewsnetwork/manim-sequence-diagram | not recorded | import/doc style normalization (commit `712865f`) |
 | `manim_extensions/svg_animations` | https://github.com/MathItYT/manim-svg-animations | not recorded | import/doc style normalization; `html_parsed_vmobject.py` lazily imports the manim-mobject-svg plugin and svgpathtools (`svg` extra) |
 | `manim_extensions/table` | https://github.com/philippe2803/manim-table | not recorded | import/doc style normalization (commit `712865f`) |
