@@ -65,30 +65,30 @@
 
 | Package | Description |
 |---------|-------------|
-| `manim_extensions.mobjects`   | Custom mobjects (Basic) |
-| `manim_extensions.geometry`   | Geometric calculation functions (Basic) |
-| `manim_extensions.animations` | Animations and easing functions (Basic) |
-| `manim_extensions.gearbox`    | Involute gears and racks |
-| `manim_extensions.mindmap`    | Mind maps, timelines, catalog diagrams |
-| `manim_extensions.compass`    | Compass, ruler, pencil, and construction animations |
 | `manim_extensions.algorithm`  | Algorithm visualisation helpers |
-| `manim_extensions.automata`   | Automata visualisation helpers |
-| `manim_extensions.circuit`    | Circuit diagram animations |
-| `manim_extensions.data_structures` | Data structure animations |
-| `manim_extensions.meshes`     | Mesh and geometry visualisation |
-| `manim_extensions.physics`    | Physics simulation helpers |
-| `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
-| `manim_extensions.sequence_diagram` | Sequence diagram animations |
-| `manim_extensions.tikz`       | TikZ import helpers |
+| `manim_extensions.animations` | Animations and easing functions (Basic) |
 | `manim_extensions.arabic`     | Arabic text support |
+| `manim_extensions.automata`   | Automata visualisation helpers |
 | `manim_extensions.chemistry`  | Chemistry visualisation (periodic table, molecules) |
+| `manim_extensions.circuit`    | Circuit diagram animations |
+| `manim_extensions.compass`    | Compass, ruler, pencil, and construction animations |
+| `manim_extensions.data_structures` | Data structure animations |
 | `manim_extensions.economics`  | Economics diagrams |
 | `manim_extensions.fontawesome`| Font Awesome icon mobjects |
+| `manim_extensions.gearbox`    | Involute gears and racks |
+| `manim_extensions.geometry`   | Geometric calculation functions (Basic) |
 | `manim_extensions.machine_learning` | Machine-learning visualisation |
+| `manim_extensions.meshes`     | Mesh and geometry visualisation |
+| `manim_extensions.mindmap`    | Mind maps, timelines, catalog diagrams |
+| `manim_extensions.mobjects`   | Custom mobjects (Basic) |
+| `manim_extensions.physics`    | Physics simulation helpers |
 | `manim_extensions.pymunk`     | Pymunk physics engine integration |
 | `manim_extensions.qr_codes`   | QR code generation |
+| `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
+| `manim_extensions.sequence_diagram` | Sequence diagram animations |
 | `manim_extensions.svg_animations` | HTML/SVG animation export |
 | `manim_extensions.table`      | Animated tables |
+| `manim_extensions.tikz`       | TikZ import helpers |
 | `manim_extensions.weighted_line` | Weighted line graphs |
 
 ## Bundled plugins
