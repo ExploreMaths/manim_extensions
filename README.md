@@ -6,9 +6,9 @@
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
 <p align="center">
-  <img src="docs/source/_static/gifs/sequence_diagram.gif" width="30%" alt="Sequence diagram animation" />
-  <img src="docs/source/_static/gifs/compass.gif" width="30%" alt="Compass construction animation" />
-  <img src="docs/source/_static/gifs/more_animations.gif" width="30%" alt="Animation helpers demo" />
+  <img src="docs/source/_static/gifs/magnetic_field.gif" width="30%" alt="Magnetic field of a current loop" />
+  <img src="docs/source/_static/gifs/multi_pendulum.gif" width="30%" alt="Chaotic double pendulum" />
+  <img src="docs/source/_static/gifs/rubiks_cube.gif" width="30%" alt="Rubik's cube scramble and solve" />
 </p>
 
 <table>
