@@ -37,6 +37,9 @@ from pathlib import Path
 from manim import *
 
 ROOT = Path(__file__).resolve().parent.parent
+# Ensure the source package shadows any stale installed copy in workers.
+sys.path.insert(0, str(ROOT))
+
 DOCS = ROOT / "docs" / "source"
 SRC = ROOT / "manim_extensions"
 
@@ -56,13 +59,29 @@ QUALITY_MAP = {
 
 
 def iter_source_files():
-    for base in (DOCS, SRC):
-        for path in sorted(base.rglob("*")):
-            if path.suffix not in (".rst", ".py"):
-                continue
-            if any(part in SKIP_PARTS for part in path.parts):
-                continue
-            yield path
+    # Examples live in rst sources and in autodoc'd package docstrings.
+    # Python files under docs/ (sphinx extensions, conf) only *document*
+    # the directive and must not be scanned.
+    for path in sorted(DOCS.rglob("*.rst")):
+        yield path
+    for path in sorted(SRC.rglob("*.py")):
+        if any(part in SKIP_PARTS for part in path.parts):
+            continue
+        yield path
+
+
+def normalize_code(code: str) -> list:
+    """Normalize a block exactly like manim_directive.py normalizes its
+    content before hashing and executing it: doctest prompt stripping,
+    dedent, trailing blank removal."""
+    lines = code.splitlines()
+    if lines and lines[0].startswith(">>> "):
+        lines = [line[4:] for line in lines if line.startswith((">>> ", "... "))]
+    else:
+        lines = textwrap.dedent("\n".join(lines)).splitlines()
+    while lines and not lines[-1].strip():
+        lines.pop()
+    return lines
 
 
 def extract_blocks(path: Path):
@@ -129,26 +148,36 @@ def extract_blocks(path: Path):
 
 
 def output_name(class_name: str, code: str) -> str:
-    user_code = textwrap.dedent(code).splitlines()
+    user_code = normalize_code(code)
     digest = hashlib.md5(chr(10).join(user_code).encode()).hexdigest()[:8]
     return f"{class_name}-{digest}"
+
+
+# The docs build executes every example with manim_directive.py's globals,
+# so __file__ inside an example resolves to this path (VideoMobject's
+# docstring example relies on it to locate docs/source/_static media).
+DIRECTIVE_FILE = str(DOCS / "_extensions" / "manim_directive.py")
 
 
 def render_block(task):
     """Render one example in a subprocess. Returns (key, src_ext, ok, error)."""
     class_name, code, save_last_frame, save_as_gif, quality, workdir = task
+    output_file = output_name(class_name, code)
     try:
+        import logging
+
+        logging.getLogger("manim").setLevel(logging.ERROR)
+
         q = quality or "example_quality"
         frame_rate = QUALITIES[q]["frame_rate"]
         pixel_height = QUALITIES[q]["pixel_height"]
         pixel_width = QUALITIES[q]["pixel_width"]
 
-        output_file = output_name(class_name, code)
         config.media_dir = Path(workdir)
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         config.progress_bar = "none"
-        config.verbosity = "WARNING"
+        config.verbosity = "ERROR"
 
         example_config = {
             "frame_rate": frame_rate,
@@ -163,7 +192,7 @@ def render_block(task):
         if save_as_gif:
             example_config["format"] = "gif"
 
-        user_code = textwrap.dedent(code).splitlines()
+        user_code = normalize_code(code)
         has_manim_import = any(
             line.strip() == "from manim import *" for line in user_code
         )
@@ -173,7 +202,10 @@ def render_block(task):
             f"{class_name}().render()",
         ]
         with tempconfig(example_config):
-            exec("\n".join(exec_code), {})
+            exec(
+                "\n".join(exec_code),
+                {"__file__": DIRECTIVE_FILE, "__name__": "__manim_docgen__"},
+            )
 
         if save_last_frame:
             hits = list(Path(workdir).rglob(f"{output_file}.png"))
@@ -185,7 +217,7 @@ def render_block(task):
             return (output_file, ext, False, "render produced no output file")
         return (output_file, str(hits[0]), True, "")
     except Exception:
-        return (class_name, "", False, traceback.format_exc(limit=3))
+        return (output_file, "", False, traceback.format_exc(limit=3))
 
 
 def main() -> int:
@@ -208,8 +240,9 @@ def main() -> int:
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
 
     blocks = []
+    only = args.only.replace("\\", "/") if args.only else None
     for path in iter_source_files():
-        if args.only and args.only not in str(path):
+        if only and only not in str(path).replace("\\", "/"):
             continue
         for block in extract_blocks(path):
             block["output_file"] = output_name(block["class_name"], block["code"])
@@ -260,13 +293,21 @@ def main() -> int:
         )
 
     failures = 0
+    done = 0
     t0 = time.time()
+    total = len(tasks)
     with multiprocessing.Pool(args.workers) as pool:
         for key, src, ok, error in pool.imap_unordered(render_block, tasks):
+            done += 1
+            pct = done * 100 // total
             if not ok:
                 failures += 1
-                print(f"FAILED {key}: {error}", file=sys.stderr)
+                print(
+                    f"[{pct:>3}%] ({done}/{total}) FAILED {key}\n{error}",
+                    file=sys.stderr,
+                )
                 continue
+            print(f"[{pct:>3}%] ({done}/{total}) OK {key}")
             src = Path(src)
             if src.suffix == ".png":
                 shutil.copyfile(src, images_out / src.name)
