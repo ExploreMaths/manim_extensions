@@ -159,6 +159,13 @@ pip install manim_extensions[ml]          # matplotlib, scikit-learn, seaborn, t
 If a feature is used without its extra installed, the error message names
 the exact `pip install manim_extensions[...]` command.
 
+Every vendored module has a same-named extra. The ones below declare no
+additional dependencies (they work with the base install) but exist so
+that installs can uniformly request `manim_extensions[<module>]`:
+`algorithm`, `arabic`, `circuit`, `compass`, `data_structures`,
+`economics`, `fontawesome`, `gearbox`, `mindmap`, `sequence_diagram`,
+`table`, `tikz`, `weighted_line`.
+
 ### Why we bundle upstream packages
 
 Most of `manim_extensions` is **vendored**: source copied from small,
