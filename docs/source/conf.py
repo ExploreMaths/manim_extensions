@@ -16,8 +16,8 @@ sys.path.insert(0, os.path.abspath("_extensions"))
 project = "manim_extensions"
 copyright = "2026, ExploreMaths"
 author = "ExploreMaths"
-release = "1.0.4"
-version = "1.0.4"
+release = "1.0.5"
+version = "1.0.5"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
@@ -29,6 +29,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
     "myst_parser",
+    "sphinx_design",
     "manim_directive",
     "inheritance_colors",
     "autodoc_inheritance",
