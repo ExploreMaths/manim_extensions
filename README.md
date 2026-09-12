@@ -43,6 +43,7 @@
       <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" /></a>
       <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" /></a>
       <br>
+      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/docs-media.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/docs-media.yml/badge.svg"></a>
       <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" /></a>
     </td>
   </tr>
