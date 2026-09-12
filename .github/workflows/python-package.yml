@@ -21,12 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
         with:
-          python-version: ${{ matrix.[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]ython-version }}
+          python-version: ${{ matrix.python-version }}
           install-full-deps: "true"
 
       - name: Install dev dependencies and all extras
         run: |
-          pip install flake8 ".[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]"
+          pip install flake8 ".[dev,all]"
 
       - name: Lint with flake8
         run: |
@@ -50,7 +50,7 @@ jobs:
 
       - name: Install dev dependencies and all extras
         run: |
-          pip install ".[dev,automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]"
+          pip install ".[dev,all]"
 
       - name: Upgrade manim to the latest release
         run: |

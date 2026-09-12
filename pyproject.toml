@@ -115,6 +115,11 @@ table = []
 tikz = []
 weighted_line = []
 
+# Everything at once: pip install manim_extensions[all]
+all = [
+    "manim_extensions[algorithm,arabic,automata,chemistry,circuit,compass,data_structures,economics,fontawesome,gearbox,mindmap,sequence_diagram,table,tikz,weighted_line,physics,rubikscube,meshes,video,qr,svg,ml]",
+]
+
 [project.urls]
 Homepage = "https://github.com/ExploreMaths/manim_extensions"
 Issues = "https://github.com/ExploreMaths/manim_extensions/issues"

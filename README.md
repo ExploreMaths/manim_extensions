@@ -143,6 +143,7 @@ just `manim` + `numpy`; heavy or niche dependencies are lazy-imported
 and belong to the matching extra:
 
 ```bash
+pip install manim_extensions[all]         # every module at once
 pip install manim_extensions[dev]         # pytest for running tests
 pip install manim_extensions[docs]        # sphinx + furo for building docs
 pip install manim_extensions[automata]    # xmltodict
