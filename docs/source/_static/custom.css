@@ -3,6 +3,13 @@
     height: auto !important;
 }
 
+.sd-badge {
+    font-size: 0.45em !important;
+    vertical-align: middle;
+    margin-top: -0.45em;
+    border-radius: 100rem;
+}
+
 @media (prefers-color-scheme: dark) {
     span.nc {
         text-decoration: none !important;
