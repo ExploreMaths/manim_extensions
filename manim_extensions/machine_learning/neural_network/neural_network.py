@@ -22,8 +22,6 @@ from manim import (
     AnimationGroup,
     Create,
     DEFAULT_FONT_SIZE,
-    FadeIn,
-    FadeOut,
     Group,
     Mobject,
     ORIGIN,
