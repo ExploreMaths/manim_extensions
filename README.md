@@ -145,17 +145,17 @@ and belong to the matching extra:
 
 ```bash
 pip install manim_extensions[all]         # every module at once
-pip install manim_extensions[dev]         # pytest for running tests
-pip install manim_extensions[docs]        # sphinx + furo for building docs
 pip install manim_extensions[automata]    # xmltodict
 pip install manim_extensions[chemistry]   # pandas, xmltodict, requests
-pip install manim_extensions[physics]     # pymunk, shapely
-pip install manim_extensions[rubikscube]  # kociemba
+pip install manim_extensions[dev]         # pytest for running tests
+pip install manim_extensions[docs]        # sphinx + furo for building docs
 pip install manim_extensions[meshes]      # trimesh, moderngl
-pip install manim_extensions[video]       # opencv (VideoMobject)
-pip install manim_extensions[qr]          # segno
-pip install manim_extensions[svg]         # svgpathtools
 pip install manim_extensions[ml]          # matplotlib, scikit-learn, seaborn, tqdm
+pip install manim_extensions[physics]     # pymunk, shapely
+pip install manim_extensions[qr]          # segno
+pip install manim_extensions[rubikscube]  # kociemba
+pip install manim_extensions[svg]         # svgpathtools
+pip install manim_extensions[video]       # opencv (VideoMobject)
 ```
 
 If a feature is used without its extra installed, the error message names
