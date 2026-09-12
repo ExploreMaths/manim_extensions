@@ -34,7 +34,7 @@ runs:
             ffmpeg \
             texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvisvgm texlive-xetex texlive-lang-chinese \
             fonts-noto-cjk \
-            fonts-amiri
+            fonts-hosny-amiri
         fi
       shell: bash
 
