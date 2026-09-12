@@ -34,6 +34,8 @@ import time
 import traceback
 from pathlib import Path
 
+from manim import *
+
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs" / "source"
 SRC = ROOT / "manim_extensions"
@@ -136,10 +138,6 @@ def render_block(task):
     """Render one example in a subprocess. Returns (key, src_ext, ok, error)."""
     class_name, code, save_last_frame, save_as_gif, quality, workdir = task
     try:
-        from manim import config, tempconfig
-
-        from manim.constants import QUALITIES
-
         q = quality or "example_quality"
         frame_rate = QUALITIES[q]["frame_rate"]
         pixel_height = QUALITIES[q]["pixel_height"]
