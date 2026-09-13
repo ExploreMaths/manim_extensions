@@ -62,7 +62,7 @@ v1.0.5 :bdg-success-line:`Latest`
   ``Parameters`` (64 sections across 16 files) and added a ``--fix`` mode
   to the docstring validator to keep it that way.
 * Normalised indexed labels in doc examples to LaTeX subscripts
-  (``V0`` → ``V_0``, ``	ext{A1}`` → ``	ext{A}_1``, ``P{i+1}`` →
+  (``V0`` → ``V_0``, ``ext{A1}`` → ``ext{A}_1``, ``P{i+1}`` →
   ``P_{i+1}``).
 * Reworked the docs build: examples are pre-rendered by CI and reused on
   RTD via a media cache; README cover media switched from GIFs to three
