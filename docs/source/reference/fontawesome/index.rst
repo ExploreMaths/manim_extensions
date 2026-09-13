@@ -52,29 +52,31 @@ A wall of solid icons, staggered in and spun like on the
 .. manim:: FontAwesomeWallExample
 
    from manim import *
-   from manim_extensions.fontawesome import solid
+   from manim_extensions.fontawesome import solid, list_icons
 
    class FontAwesomeWallExample(Scene):
        def construct(self):
-           names = ["heart", "camera", "music", "file", "globe", "house",
-                    "bell", "gear", "gift", "user", "comment", "lightbulb",
-                    "plane", "thumbs_up", "face_smile", "clock",
-                    "headphones", "star", "truck", "clipboard",
-                    "bookmark", "calendar", "envelope", "flag", "folder",
-                    "image", "map", "paper-plane", "pen", "phone",
-                    "camera-retro", "cart-shopping", "cloud", "code",
-                    "dice", "feather", "fire", "key", "lock", "moon"]
-           icons = VGroup(*[getattr(solid, name.replace("-", "_")) for name in names])
-           icons.arrange_in_grid(rows=5, cols=8, buff=0.7)
+           names = list_icons("solid")
+           icons = VGroup(*[getattr(solid, n) for n in names[:210]])
            icons.set_color(WHITE)
-           icons.scale_to_fit_width(config.frame_width - 3)
-           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.04))
+           # fixed per-icon tilt from the golden angle — fully
+           # deterministic, so every build shows the same wall
+           for i, icon in enumerate(icons):
+               icon.rotate(i * 137.5 * DEGREES)
+           icons.arrange_in_grid(rows=14, cols=15, buff=0.32)
+           # scale until the grid covers the whole frame (full bleed)
+           cover = max(
+               (config.frame_width + 0.5) / icons.width,
+               (config.frame_height + 0.5) / icons.height,
+           )
+           icons.scale(cover)
+           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.01))
            self.play(LaggedStart(
                *[
                    Rotate(icon, angle=TAU, about_point=icon.get_center())
                    for icon in icons
                ],
-               lag_ratio=0.04,
+               lag_ratio=0.01,
            ))
            self.wait()
 
