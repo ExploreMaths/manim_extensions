@@ -84,9 +84,6 @@ TreeDiagram
 
 .. autoclass:: manim_extensions.mobjects.TreeDiagram
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.mobjects
    :recursive:
    :missing-only:

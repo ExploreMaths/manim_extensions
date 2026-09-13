@@ -30,9 +30,6 @@ NumpyHelper
 
 .. autoclass:: manim_extensions.algorithm.utils.numpy_helper.NumpyHelper
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.algorithm
    :recursive:
    :missing-only:

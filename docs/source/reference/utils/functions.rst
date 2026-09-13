@@ -4,9 +4,6 @@
 Functions
 =========
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.utils
    :recursive:
    :missing-only:
