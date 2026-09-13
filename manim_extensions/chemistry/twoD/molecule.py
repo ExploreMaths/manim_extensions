@@ -410,25 +410,25 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return moleculeObjects
 
     def find_atom_position_by_index(self, atom_index: int) -> np.array:
-        """_summary_
-        Returns the position of a single atom given its index.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atom_position_by_index(1))
-            >>> array([ 0.9397, -0.7497,  0.    ])
-
+        """Returns the position of a single atom given its index.
 
         Parameters
         ----------
         atom_index : int
             Index of the atom inside the VDict.
 
-        Returns:
-            np.array: Array with the [x, y, z] coordinates of the atom.
+        Returns
+        -------
+        numpy.array
+            Array with the [x, y, z] coordinates of the atom.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atom_position_by_index(1))
+           >>> array([ 0.9397, -0.7497,  0.    ])
         """
         try:
             atom = self.atoms[atom_index]
@@ -444,24 +444,25 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             raise exception
 
     def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
-        """_summary_
+        """Returns the position of multiple atoms given their indices.
 
-        Returns the position of multiple atoms given their indices.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atoms_position_by_index([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
         atoms_index_list : list
             List of atoms indices to be gotten.
 
-        Returns:
-            list: List of the atoms positions.
+        Returns
+        -------
+        list
+            List of the atoms positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atoms_position_by_index([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -472,25 +473,25 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return atoms_positions
 
     def find_bond_center_by_index(self, bond_index: int) -> np.array:
-        """_summary_
-
-        Returns the [x, y, z] coordinates of a bond given a bond index.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bond_center_by_index(1))
-            >>> array([0.51935, 0.59615, 0.     ])
+        """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
         ----------
         bond_index : int
             index of the bond
 
-        Returns:
-            np.array: [x, y, z] coordinates of bond center.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of bond center.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bond_center_by_index(1))
+           >>> array([0.51935, 0.59615, 0.     ])
         """
         try:
             bond = self.bonds[bond_index]
@@ -507,8 +508,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
     ) -> np.array:
-        """_summary_
-        Returns a position along the bond axis given a bond index and depending on a position_buff.
+        """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.
         Values bigger or lower that 1 and -1 will return positions outside the bond.
@@ -520,8 +520,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         position_buff : float
             Position buff
 
-        Returns:
-            np.array: [x, y, z] coordinates of the final position selected.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of the final position selected.
         """
 
         try:
@@ -539,24 +541,25 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return bond_center + bond_vector * position_buff * 0.5
 
     def find_bonds_center_by_index(self, bonds_index_list: list) -> list:
-        """_summary_
+        """Returns the position of multiple bonds given their indices.
 
-        Returns the position of multiple bonds given their indices.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bonds_center_by_index([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
         bondss_index_list : list
             List of bonds indices to be gotten.
 
-        Returns:
-            list: List of the bonds positions.
+        Returns
+        -------
+        list
+            List of the bonds positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bonds_center_by_index([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         bonds_positions = []
         for bond_index in bonds_index_list:
@@ -597,10 +600,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Parameters
         ----------
         mc_molecule : MCMolecule
-            _description_
+            The MCMolecule object to transform.
 
-        Returns:
-            Tuple[Dict, Dict]: _description_
+        Returns
+        -------
+        Tuple[Dict, Dict]
+            A tuple containing atoms and bonds dictionaries.
         """
         atoms = {}
         for index, atom in mc_molecule.atoms_by_index.items():
@@ -834,25 +839,25 @@ class NamedMolecule(VGroup):
         return self
 
     def find_atom_position_by_index(self, atom_index: int) -> np.array:
-        """_summary_
-        Returns the position of a single atom given its index.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atom_position_by_index(1))
-            >>> array([ 0.9397, -0.7497,  0.    ])
-
+        """Returns the position of a single atom given its index.
 
         Parameters
         ----------
         atom_index : int
             Index of the atom inside the VDict.
 
-        Returns:
-            np.array: Array with the [x, y, z] coordinates of the atom.
+        Returns
+        -------
+        numpy.array
+            Array with the [x, y, z] coordinates of the atom.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atom_position_by_index(1))
+           >>> array([ 0.9397, -0.7497,  0.    ])
         """
         try:
             atom = self.atoms[atom_index]
@@ -868,24 +873,25 @@ class NamedMolecule(VGroup):
             raise exception
 
     def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
-        """_summary_
+        """Returns the position of multiple atoms given their indices.
 
-        Returns the position of multiple atoms given their indices.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atoms_position_by_index([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
         atoms_index_list : list
             List of atoms indices to be gotten.
 
-        Returns:
-            list: List of the atoms positions.
+        Returns
+        -------
+        list
+            List of the atoms positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atoms_position_by_index([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -896,25 +902,25 @@ class NamedMolecule(VGroup):
         return atoms_positions
 
     def find_bond_center_by_index(self, bond_index: int) -> np.array:
-        """_summary_
-
-        Returns the [x, y, z] coordinates of a bond given a bond index.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bond_center_by_index(1))
-            >>> array([0.51935, 0.59615, 0.     ])
+        """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
         ----------
         bond_index : int
             index of the bond
 
-        Returns:
-            np.array: [x, y, z] coordinates of bond center.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of bond center.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bond_center_by_index(1))
+           >>> array([0.51935, 0.59615, 0.     ])
         """
         try:
             bond = self.bonds[bond_index]
@@ -932,8 +938,7 @@ class NamedMolecule(VGroup):
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
     ) -> np.array:
-        """_summary_
-        Returns a position along the bond axis given a bond index and depending on a position_buff.
+        """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.
         Values bigger or lower that 1 and -1 will return positions outside the bond.
@@ -945,8 +950,10 @@ class NamedMolecule(VGroup):
         position_buff : float
             Position buff
 
-        Returns:
-            np.array: [x, y, z] coordinates of the final position selected.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of the final position selected.
         """
 
         try:
@@ -964,24 +971,25 @@ class NamedMolecule(VGroup):
         return bond_center + bond_vector * position_buff * 0.5
 
     def find_bonds_center_by_index(self, bonds_index_list: list) -> list:
-        """_summary_
+        """Returns the position of multiple bonds given their indices.
 
-        Returns the position of multiple bonds given their indices.
-
-        Example
-
-        .. code-block:: python
-
-            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bonds_position_by_index([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
         bondss_index_list : list
             List of bonds indices to be gotten.
 
-        Returns:
-            list: List of the bonds positions.
+        Returns
+        -------
+        list
+            List of the bonds positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bonds_position_by_index([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         bonds_positions = []
         for bond_index in bonds_index_list:

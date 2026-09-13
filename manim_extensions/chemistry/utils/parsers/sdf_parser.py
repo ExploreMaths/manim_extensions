@@ -67,8 +67,10 @@ class SDFParser(MolParser):
         filename : Union[str, bytes, os.PathLike]
             Path of the sdf file
 
-        Returns:
-            List[List[str]]: List with all the molecules data.
+        Returns
+        -------
+        List[List[str]]
+            List with all the molecules data.
         """
         with open(filename) as file:
             sdf_file_data = file.read()

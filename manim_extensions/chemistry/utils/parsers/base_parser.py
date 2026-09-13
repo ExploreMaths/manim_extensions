@@ -45,8 +45,10 @@ class BaseParser(ABC):
         """
         Reads the file and converts it to a string.
 
-        Returns:
-            str: String with the file data.
+        Returns
+        -------
+        str
+            String with the file data.
         """
         ...
 
@@ -69,8 +71,10 @@ class BaseParser(ABC):
         """
         Receives the file data as a string and uses the string_parser.
 
-        Returns:
-            Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]: (atom_data, bond_data)
+        Returns
+        -------
+        Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]
+            (atom_data, bond_data)
         """
         return self.data_parser(self.file_data)
 

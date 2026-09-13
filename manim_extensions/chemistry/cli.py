@@ -33,7 +33,7 @@ def cli(): ...
 )
 @click.option("--output_folder", "-o", default=".", help="Output folder.")
 def pubchem_molecule(format, cid, name, smiles, inchi, three_d, output_folder):
-    """
+    r"""
     Download molecule from pubchem.
 
     Supports downloading multiple files from a single request.

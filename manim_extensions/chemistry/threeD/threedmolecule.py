@@ -179,8 +179,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         mc_molecule : MCMolecule
             The origin MCMolecule
 
-        Returns:
-            Tuple[Dict, Dict]: See above.
+        Returns
+        -------
+        Tuple[Dict, Dict]
+            See above.
         """
 
         atoms = {}

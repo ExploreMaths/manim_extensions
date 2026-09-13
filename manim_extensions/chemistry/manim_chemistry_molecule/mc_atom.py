@@ -27,7 +27,7 @@ class MCAtom:
     ----------
     element : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`
         The chemical element of the atom.
-    coords : :class:`np.array`, optional
+    coords : :class:`numpy.array`, optional
         3D coordinates of the atom. Defaults to the origin.
     atoms : :class:`list`, optional
         List of bonded atoms. Defaults to an empty list.
@@ -61,10 +61,13 @@ class MCAtom:
 
         Parameters
         ----------
-            atoms (MCAtom or List[MCAtom])
+        atoms : MCAtom or List[MCAtom]
+            Bonded atoms to assign.
 
-        Raises:
-            Exception: In case the atoms are not MCAtoms or a list.
+        Raises
+        ------
+        Exception
+            In case the atoms are not MCAtoms or a list.
         """
         if not atoms:
             pass
