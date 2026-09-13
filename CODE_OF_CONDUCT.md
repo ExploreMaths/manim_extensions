@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 ExploreMaths
+SPDX-License-Identifier: MIT
+-->
+
 # Code of Conduct
 
 This project follows the [Manim Community Code of Conduct](https://github.com/ManimCommunity/manim/blob/main/CODE_OF_CONDUCT.md).
