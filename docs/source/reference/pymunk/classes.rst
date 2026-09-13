@@ -49,9 +49,6 @@ VRotaryLimitJoint
 
 .. autoclass:: manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.pymunk
    :recursive:
    :missing-only:

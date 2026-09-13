@@ -4,9 +4,6 @@
 Functions
 =========
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.machine_learning
    :recursive:
    :missing-only:

@@ -53,9 +53,6 @@ MCMolecule
 
 .. autoclass:: manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.chemistry
    :recursive:
    :missing-only:

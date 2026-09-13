@@ -4,9 +4,6 @@
 Constants
 =========
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.economics
    :recursive:
    :missing-only:

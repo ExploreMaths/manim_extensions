@@ -29,9 +29,6 @@ SolowDiagram
 
 .. autoclass:: manim_extensions.economics.solow.SolowDiagram
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.economics
    :recursive:
    :missing-only:

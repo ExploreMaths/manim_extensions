@@ -49,9 +49,6 @@ SplitNode
 
 .. autoclass:: manim_extensions.machine_learning.decision_tree.decision_tree.SplitNode
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.machine_learning
    :recursive:
    :missing-only:

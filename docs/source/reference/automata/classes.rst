@@ -4,9 +4,6 @@
 Classes
 =======
 
-Automatically documented
-------------------------
-
 .. autoall:: manim_extensions.automata
    :recursive:
    :missing-only:
