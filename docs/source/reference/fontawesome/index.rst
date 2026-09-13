@@ -69,7 +69,11 @@ A wall of solid icons, staggered in and spun like on the
            # deterministic, so every build shows the same wall
            for i, icon in enumerate(icons):
                icon.rotate(i * 137.5 * DEGREES)
-           icons.arrange_in_grid(rows=12, cols=20, buff=0.32)
+           icons.arrange_in_grid(rows=12, cols=20, buff=0.35)
+           # shrink the glyphs in place (positions unchanged) so the gaps
+           # open up — scaling the whole group would shrink the gaps too
+           for icon in icons:
+               icon.scale(0.55)
            # scale until the grid covers the whole frame (full bleed)
            cover = max(
                (config.frame_width + 0.5) / icons.width,
