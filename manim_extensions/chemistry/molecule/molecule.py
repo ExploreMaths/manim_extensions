@@ -27,30 +27,30 @@ class Molecule:
     ---------
     .. manim:: GraphMoleculeFromMolecule
 
-        from manim import *
-        from manim_extensions.chemistry import GraphMolecule, Molecule
+       from manim import *
+       from manim_extensions.chemistry import GraphMolecule, Molecule
 
-        class GraphMoleculeFromMolecule(Scene):
-            def construct(self):
-                molecule = Molecule(GraphMolecule).molecule_from_pubchem(name="acetone")
-                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
-                self.play(Write(molecule))
-                self.play(Write(label))
-                self.wait()
+       class GraphMoleculeFromMolecule(Scene):
+           def construct(self):
+               molecule = Molecule(GraphMolecule).molecule_from_pubchem(name="acetone")
+               label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
+               self.play(Write(molecule))
+               self.play(Write(label))
+               self.wait()
 
 
     .. manim:: MMoleculeObjectFromMolecule
 
-        from manim import *
-        from manim_extensions.chemistry import MMoleculeObject, Molecule
+       from manim import *
+       from manim_extensions.chemistry import MMoleculeObject, Molecule
 
-        class MMoleculeObjectFromMolecule(Scene):
-            def construct(self):
-                molecule = Molecule(MMoleculeObject).molecule_from_pubchem(name="acetone")
-                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
-                self.play(Write(molecule))
-                self.play(Write(label))
-                self.wait()
+       class MMoleculeObjectFromMolecule(Scene):
+           def construct(self):
+               molecule = Molecule(MMoleculeObject).molecule_from_pubchem(name="acetone")
+               label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
+               self.play(Write(molecule))
+               self.play(Write(label))
+               self.wait()
     """
 
     def __init__(self, molecule_class=GraphMolecule):

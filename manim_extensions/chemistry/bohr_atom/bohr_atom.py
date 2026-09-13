@@ -36,16 +36,16 @@ class BohrAtom(VGroup):
     ---------
     .. manim:: BohrAtomScene
 
-        from manim import *
-        from manim_extensions.chemistry import BohrAtom
+       from manim import *
+       from manim_extensions.chemistry import BohrAtom
 
-        class BohrAtomScene(Scene):
-            def construct(self):
-                atom = BohrAtom(e=6, p=6, n=6)
-                self.play(Create(atom.get_orbitals()))
-                self.play(FadeIn(atom.get_nuclei()))
-                self.play(FadeIn(atom.get_electrons()))
-                self.wait()
+       class BohrAtomScene(Scene):
+           def construct(self):
+               atom = BohrAtom(e=6, p=6, n=6)
+               self.play(Create(atom.get_orbitals()))
+               self.play(FadeIn(atom.get_nuclei()))
+               self.play(FadeIn(atom.get_electrons()))
+               self.wait()
     """
 
     def __init__(

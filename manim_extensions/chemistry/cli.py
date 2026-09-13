@@ -38,8 +38,8 @@ def pubchem_molecule(format, cid, name, smiles, inchi, three_d, output_folder):
 
     Supports downloading multiple files from a single request.
 
-    Example
-    -------
+    Examples
+    --------
 
     .. code-block:: console
 
@@ -51,8 +51,8 @@ def pubchem_molecule(format, cid, name, smiles, inchi, three_d, output_folder):
 
         >>> Retrieving molecule data for ('acetone', 'morphine').
         >>> Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
-        >>> File .\\acetone.sdf is ready!!
-        >>> File .\\morphine.sdf is ready!!
+        >>> File .\acetone.sdf is ready!!
+        >>> File .\morphine.sdf is ready!!
         >>> Finished
     """
 
