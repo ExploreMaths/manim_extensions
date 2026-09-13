@@ -9,74 +9,98 @@ v1.0.5 :bdg-success-line:`Latest`
 
 **Added**
 
-* Bundled 12 additional third-party Manim plugins as subpackages:
+* Bundled 10 additional third-party Manim plugins as subpackages:
   ``arabic``, ``chemistry``, ``economics``, ``fontawesome``,
   ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
-  ``svg_animations``, ``table``, and ``weighted_line``.
-* Added ``workflow/check_relative_imports.py`` — an AST-based script that
-  detects and optionally fixes intra-package absolute imports, converting
-  them to relative imports. Supports ``--fix`` and ``--fix --dry-run`` modes.
-  Added a ``validate-relative-imports`` job to the ``validate.yml`` GitHub
-  Actions workflow.
-* Added API reference documentation (Sphinx ``.rst``) for all 10 newly
-  bundled packages — each with module overview, original-author attribution,
-  quick-start example, and ``autoclass``/``autofunction`` directives for
-  every public class and function.
-* Added inheritance diagrams for all new modules in the reference index.
-* Added ``[ml]`` optional dependency group (``matplotlib``,
-  ``scikit-learn``, ``seaborn``, ``tqdm``) for the machine-learning
-  diffusion and decision-tree modules.
-* Added ``docutils`` and ``jinja2`` to the ``[docs]`` optional dependencies.
-* Added comprehensive installation instructions for optional extras and
-  lazily-imported plugins to both the README and the installation docs.
+  ``svg_animations``, ``table``, and ``weighted_line`` — plus
+  ``manim-nerdfont-icons`` 1.0.2, vendored as
+  ``manim_extensions.utils.nerdfont`` because its PyPI metadata pins
+  ``manim>=0.19,<0.20`` (code and font licensed separately, font shipped
+  as package data).
+* Added API reference documentation for every bundled package, with a
+  single consolidated inheritance graph in the Reference Manual.
+* Added a same-named optional extra for every module (``automata``,
+  ``chemistry``, ``physics``, ``rubikscube``, ``meshes``, ``video``,
+  ``qr``, ``svg``, ``ml``, ...) and an ``all`` extra; the base install
+  is now just ``manim`` + ``numpy``, and every heavier dependency is
+  lazy-imported via the new ``manim_extensions.utils.deps.require``
+  helper whose error names the exact ``pip install manim_extensions[...]``
+  command. A subprocess-based test blocks all optional packages via a
+  meta-path finder and asserts the base package and all 250+ submodules
+  still import.
+* Added ``VENDORED.md``: a registry of every vendored package's upstream
+  repository, sync version, and local patches (also marked in-file with
+  ``# patched:`` header lines).
+* Added comprehensive pytest coverage for previously untested modules
+  (the suite grows from 331 to 421 tests), including import-resolution
+  regressions, optional-dependency guards, and per-module behaviour.
+* Added CI: a ``manim-latest`` job that upgrades to the newest manim
+  release and runs the full suite (turning ``manim>=0.21.0`` from a
+  claim into a tested guarantee); a ``docs-media`` workflow that
+  pre-renders every doc example at high quality into the ``rtd-media``
+  branch (content-hash incremental, pytest-style progress output) so
+  Read the Docs reuses the media instead of timing out; and an RTD API
+  trigger that also builds tagged versions after syncing them.
+* Added ``workflow/check_relative_imports.py`` and
+  ``validate-relative-imports`` / ``validate-docstrings`` /
+  ``validate-refs`` jobs to the Validate workflow.
+* Added rounded-corner static cover images to the README.
 
 **Changed**
 
-* Migrated the ``table`` module from ``manimlib`` (ManimGL / 3b1b) to
-  Manim Community Edition (>=0.21.0): ``from manimlib import *`` →
-  ``from manim import *`` in all three files, added missing
-  ``import numpy as np`` in ``table.py``, and updated all docstrings.
-* Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0``.
-* Added 9 new core dependencies to ``pyproject.toml``: ``pandas>=2.2``,
-  ``networkx>=3.0``, ``requests>=2.31``, ``click>=8.1``, ``rich>=13.0``,
-  ``segno>=1.5``, ``svgpathtools>=1.5``, ``xmltodict>=0.13`` (version
-  added), and ``manim-mobject-svg>=0.5`` (Python <3.13 only).
-* Converted all 177 intra-package absolute imports across 59 files to
-  relative imports (including vendored aliases such as ``manim_chemistry``,
-  ``manim_ml``, ``manim_pymunk``, and ``manim_arabic``).
-* Updated the README modules table from 16 to 28 entries and the bundled
-  plugins list from 10 to 22 entries, matching all vendored subpackages.
-* Updated installation docs: development install now uses
-  ``pip install -e ".[dev]"``; test instructions use
-  ``pip install manim_extensions[dev]``.
+* Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0`` and
+  migrated the ``table`` module from ``manimlib`` (ManimGL) to Manim
+  Community Edition.
+* Replaced the type-specific geometry intersection helpers with a single
+  generic ``VMobjectInt``.
+* Converted all intra-package absolute imports to relative imports, and
+  banned ``from manim import *`` outside ``__init__.py`` across the whole
+  repository (165 files converted to explicit imports; the import-style
+  checker was inverted accordingly). This also surfaced and fixed real
+  latent bugs that star imports had masked from pyflakes (see Fixed).
+* Converted all Google-style ``Args:`` docstring sections to numpydoc
+  ``Parameters`` (64 sections across 16 files) and added a ``--fix`` mode
+  to the docstring validator to keep it that way.
+* Normalised indexed labels in doc examples to LaTeX subscripts
+  (``V0`` → ``V_0``, ``	ext{A1}`` → ``	ext{A}_1``, ``P{i+1}`` →
+  ``P_{i+1}``).
+* Reworked the docs build: examples are pre-rendered by CI and reused on
+  RTD via a media cache; README cover media switched from GIFs to three
+  rounded static images; ``conf.py`` version synced to 1.0.5 and the
+  changelog gained a sphinx-design ``Latest`` badge.
+* ``RubiksCube`` doc examples now use the default realistic colour
+  scheme instead of an ad-hoc palette.
 
 **Fixed**
 
-* Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode`` class
-  (the actual public API is the ``qr_code`` function) — this caused
-  ``import manim_extensions`` to fail whenever ``qr_codes`` was in the
-  import chain.
-* Fixed the root ``__init__.py`` importing ``ml`` (a nonexistent module)
-  instead of ``machine_learning``.
-* Fixed a ``cell.py`` method call bug: ``self._create_border(...)`` →
-  ``self.create_border(...)`` in the table module.
-* Fixed a vendored ManimML import bug in 10 files: ``from ... import
-  machine_learning as manim_ml`` (which tried to import a nonexistent name)
-  replaced with ``from ... import config``; all ``manim_ml.config.X``
-  references changed to ``config.X``. This made :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` importable.
-* Fixed ``test_algorithm_array.py`` and ``test_algorithm_node.py``
-  ``FileExistsError`` by adding ``exist_ok=True`` to ``os.makedirs()``.
-* Converted ``manim-nerdfont-icons`` and ``manim-mobject-svg`` imports to
-  lazy imports with helpful error messages, because their PyPI metadata
-  pins incompatible Manim / Python versions (``manim<0.20`` and
-  ``python<3.13`` respectively).
-
-**Removed**
-
-* Removed the ``manim-nerdfont-icons`` hard dependency from
-  ``pyproject.toml`` (it pins ``manim<0.20`` and would force a downgrade;
-  the package is now imported lazily when the optional ``icon`` argument
-  of ``qr_code()`` is used).
+* Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
+  class and the root ``__init__.py`` importing a nonexistent ``ml``
+  module — both broke ``import manim_extensions``.
+* Fixed manim's ``utils`` namespace shadowing the package's own utils
+  submodules.
+* Fixed machine-learning empty-animation groups being unplayable on
+  manim >= 0.21, and the pymunk 7 collision-API / ``ADASDiagram``
+  ``numbered_eq`` regressions.
+* Fixed ``CubeMove`` face turns being strictly linear: manim 0.21
+  expects subclasses to apply ``rate_func`` themselves, so the rotation
+  now eases in and out like the original ManimGL version.
+* Fixed the Arabic module failing on every non-macOS platform: the
+  macOS-only ``Al Bayan`` default is replaced by fontconfig-based
+  auto-resolution (Amiri/Scheherazade/Noto Naskh Arabic...).
+* Latent undefined-name bugs surfaced by removing star imports:
+  ``NeuralNetworkLayer`` quoted annotations now import the real base
+  class; ``leaf_child_index`` typo; dead code after
+  ``raise NotImplementedError()``; an undefined ``transition_ids`` in
+  the nondeterministic-automata path; missing ``functools.wraps``,
+  ``plt``, ``manim_version``, and ``svg2paths`` imports.
+* Fixed the wheel silently dropping runtime data files (mesh shaders,
+  Font Awesome SVGs, compass assets, the Nerd Font TTF, REUSE sidecars),
+  which broke non-editable installs.
+* Repaired mojibake characters in ``mesh.py`` and ``manim_directive.py``.
+* Fixed CI authentication and incremental seeding for the docs-media
+  workflow, and made tests skip gracefully when optional extras
+  (``sklearn``, the ``manim-mobject-svg`` plugin on Python 3.13+) are
+  absent.
 
 v1.0.4
 ------
