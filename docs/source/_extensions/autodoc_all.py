@@ -56,9 +56,33 @@ import pkgutil
 import types
 from pathlib import Path
 
-from docutils import nodes
-from docutils.parsers.rst import Directive, directives
-from docutils.statemachine import StringList
+try:
+    from docutils import nodes
+    from docutils.parsers.rst import Directive, directives
+    from docutils.statemachine import StringList
+    _HAS_DOCUTILS = True
+except ImportError:
+    # The coverage checker (workflow/validate_api_coverage.py) imports the
+    # pure-python helpers below without docutils installed. Provide stubs
+    # so the class body still defines; it is only ever *run* under Sphinx,
+    # where docutils is guaranteed.
+    _HAS_DOCUTILS = False
+
+    class _Stub:
+        def __init__(self, *args, **kwargs):
+            pass
+
+    class _StubNamespace:
+        unchanged = flag = staticmethod(lambda *a, **k: None)
+        container = staticmethod(lambda *a, **k: None)
+
+    Directive = _Stub
+    directives = _StubNamespace()
+    nodes = _StubNamespace()
+
+    class StringList(list):
+        def __init__(self, lines=(), source=None):
+            super().__init__(lines)
 
 DEFAULT_SNAPSHOT = "_extensions/api_documented.json"
 
