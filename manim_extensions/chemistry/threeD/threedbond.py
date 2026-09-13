@@ -40,7 +40,7 @@ class ThreeDCylinder(OpenGLSurface):
         Radius of the cylinder. Defaults to 1.
     height : :class:`float`, optional
         Height of the cylinder. Defaults to 2.
-    direction : :class:`np.ndarray`, optional
+    direction : :class:`numpy.ndarray`, optional
         Direction the cylinder is aligned to. Defaults to ``Z_AXIS``.
     v_range : :class:`list`, optional
         Range of the v parameter of the surface. Defaults to ``[0, TAU]``.
@@ -157,9 +157,9 @@ class ThreeDLine(ThreeDCylinder):
 
     Parameters
     ----------
-    start : :class:`np.ndarray`, optional
+    start : :class:`numpy.ndarray`, optional
         Starting point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
-    end : :class:`np.ndarray`, optional
+    end : :class:`numpy.ndarray`, optional
         Ending point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
     thickness : :class:`float`, optional
         Thickness (radius) of the line. Defaults to 0.05.

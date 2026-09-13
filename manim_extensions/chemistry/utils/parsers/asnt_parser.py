@@ -76,8 +76,10 @@ class ASNTParser(BaseParser):
         line : str
             Line being read at that moment.
 
-        Returns:
-            str: Line with replaced strings.
+        Returns
+        -------
+        str
+            Line with replaced strings.
         """
         line = line.strip().replace("\n", "")
         line = line.replace('"', "¿")

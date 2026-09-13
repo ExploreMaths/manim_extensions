@@ -55,11 +55,13 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        filepath : _type_
-            Pathlike or str
+        filepath : str | Pathlike
+            Path to the file
 
-        Returns:
-            GraphMolecule: GraphMolecule from the file
+        Returns
+        -------
+        GraphMolecule
+            GraphMolecule from the file
         """
         mc_molecule = MCMolecule.construct_from_file(
             filepath=filepath,
@@ -91,11 +93,15 @@ class AbstractMolecule:
         filepath : str | Pathlike
             Path to the molecule
 
-        Raises:
-            Exception: In case the mc_molecules parsed is not a list.
+        Raises
+        ------
+        Exception
+            In case the mc_molecules parsed is not a list.
 
-        Returns:
-            OpenGLGroup: OpenGLGroup with the molecules inside.
+        Returns
+        -------
+        OpenGLGroup
+            OpenGLGroup with the molecules inside.
         """
         mc_molecules = MCMolecule.construct_multiples_from_file(
             filepath=filepath,
@@ -132,13 +138,15 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        filepath : _type_
-            Pathlike or str
+        filepath : str | Pathlike
+            Path to the file
         label : bool, optional
             Add a label such as element symbol or number. Defaults to False.
 
-        Returns:
-            ThreeDMolecule: ThreeDMolecule from the string
+        Returns
+        -------
+        ThreeDMolecule
+            ThreeDMolecule from the string
         """
 
         mc_molecule = MCMolecule.construct_from_string(
@@ -175,11 +183,15 @@ class AbstractMolecule:
         label : bool, optional
             Wether or not add a label.. Defaults to False.
 
-        Raises:
-            Exception: In case the mc_molecules parsed is not a list.
+        Raises
+        ------
+        Exception
+            In case the mc_molecules parsed is not a list.
 
-        Returns:
-            OpenGLGroup: OpenGLGroup with the molecules inside.
+        Returns
+        -------
+        OpenGLGroup
+            OpenGLGroup with the molecules inside.
         """
 
         mc_molecules = MCMolecule.construct_multiples_from_string(
@@ -226,8 +238,10 @@ class AbstractMolecule:
         inchi : Optional[str], optional
             Molecule InChi. Defaults to None.
 
-        Returns:
-            GraphMolecule: GraphMolecule
+        Returns
+        -------
+        GraphMolecule
+            GraphMolecule
         """
         pubchem_api_manager = PubchemAPIManager(
             cid=cid, name=name, smiles=smiles, inchi=inchi, three_d=three_d
@@ -255,10 +269,12 @@ class AbstractMolecule:
         Parameters
         ----------
         mc_molecule : MCMolecule
-            _description_
+            The MCMolecule object to transform.
 
-        Returns:
-            Tuple[Dict, Dict]: _description_
+        Returns
+        -------
+        Tuple[Dict, Dict]
+            A tuple containing atoms and bonds dictionaries.
         """
         ...
 
@@ -268,14 +284,14 @@ class AbstractMolecule:
         direction: np.ndarray = DOWN,
         buff: float = 0.5,
         scale: float = 0.75,
-    ):
+        ):
         """Adds the name of the molecule.
 
         Parameters
         ----------
         name : Union[Text, Tex, str]
             Name of the molecule. Can either be a string, a Manim Tex or a Manim Text
-        positdirectionion : np.ndarray, optional
+        direction : numpy.ndarray, optional
             Position where to set the molecule name. Defaults to DOWN.
         buff : float, optional
             Distance between the name and the molecule. Defaults to 0.5.

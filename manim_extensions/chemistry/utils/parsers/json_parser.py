@@ -177,8 +177,10 @@ class JSONParser(BaseParser):
         """
         Reads the file and converts it to a string.
 
-        Returns:
-            str: String with the file data.
+        Returns
+        -------
+        str
+            String with the file data.
         """
         with open(filename) as file:
             json_file = file.read()

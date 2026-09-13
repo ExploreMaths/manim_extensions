@@ -463,22 +463,23 @@ class GraphMolecule(Graph, AbstractMolecule):
         """
         Returns the position of a single atom given its index.
 
-        Example
-
-        .. code-block:: python
-
-            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atom_position_by_index(1))
-            >>> array([ 0.9397, -0.7497,  0.    ])
-
-
         Parameters
         ----------
         atom_index : int
             Index of the atom inside the VDict.
 
-        Returns:
-            np.array: Array with the [x, y, z] coordinates of the atom.
+        Returns
+        -------
+        numpy.array
+            Array with the [x, y, z] coordinates of the atom.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atom_position_by_index(1))
+           >>> array([ 0.9397, -0.7497,  0.    ])
         """
         try:
             atom = self.atoms[atom_index]
@@ -496,20 +497,23 @@ class GraphMolecule(Graph, AbstractMolecule):
     def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
         """Returns the position of multiple atoms given their indices.
 
-        Example
-
-        .. code-block:: python
-
-            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_atoms_position_by_index([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
         atoms_index_list : list
             List of atoms indices to be gotten.
 
-        Returns:
-            list: List of the atoms positions.
+        Returns
+        -------
+        list
+            List of the atoms positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_atoms_position_by_index([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -523,21 +527,23 @@ class GraphMolecule(Graph, AbstractMolecule):
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
         The bund tuple corresponds to the indices of the atoms in the bond.
 
-        Example
-
-        .. code-block:: python
-
-            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bond_center_by_index((1, 2))
-            >>> array([0.51935, 0.59615, 0.     ])
-
         Parameters
         ----------
         bond_index : tuple
             index of the bond
 
-        Returns:
-            np.array: [x, y, z] coordinates of bond center.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of bond center.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bond_center_by_index((1, 2))
+           >>> array([0.51935, 0.59615, 0.     ])
         """
         try:
             bond = self.bonds[bond_index]
@@ -566,8 +572,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         position_buff : float
             Position buff
 
-        Returns:
-            np.array: [x, y, z] coordinates of the final position selected.
+        Returns
+        -------
+        numpy.array
+            [x, y, z] coordinates of the final position selected.
         """
 
         try:
@@ -587,20 +595,23 @@ class GraphMolecule(Graph, AbstractMolecule):
     def find_bonds_center_by_index(self, bonds_tuples_list: list) -> list:
         """Returns the position of multiple bonds given their indices.
 
-        Example
-
-        .. code-block:: python
-
-            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bonds_center_by_tuple([1,2,3]))
-            >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         Parameters
         ----------
-        bondss_index_list : list
+        bonds_tuples_list : list
             List of bonds indices to be gotten.
 
-        Returns:
-            list: List of the bonds positions.
+        Returns
+        -------
+        list
+            List of the bonds positions.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           print(molecule.find_bonds_center_by_tuple([1,2,3]))
+           >>> [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
         """
         bonds_positions = []
         for bond_index in bonds_tuples_list:
@@ -643,8 +654,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         mc_molecule : MCMolecule
             The origin MCMolecule
 
-        Returns:
-            Tuple[Dict, Dict]: See above.
+        Returns
+        -------
+        Tuple[Dict, Dict]
+            See above.
         """
 
         vertices = mc_molecule.atoms_by_index
