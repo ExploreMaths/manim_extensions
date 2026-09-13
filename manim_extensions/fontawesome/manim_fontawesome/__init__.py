@@ -28,7 +28,7 @@ import os
 from pathlib import Path
 from enum import Enum
 
-__all__ = ["brand", "regular", "solid", "FONT_AWESOME_VERSION"]
+__all__ = ["brand", "regular", "solid", "FONT_AWESOME_VERSION", "list_icons"]
 
 svg_dir = Path(__file__).parent / 'font-awesome'/ 'svgs'
 brand_dir = svg_dir / 'brands'
@@ -4205,6 +4205,26 @@ class Solid:
 
     def __getattr__(self, name) -> SVGMobject:
         return _get_svg_object(_Solid.__members__[name].value)
+
+
+# patched: added list_icons() — upstream offers no public way to enumerate
+#          icon names, which gallery-style scenes need.
+def list_icons(style="solid"):
+    """Return the names of every bundled icon for *style*.
+
+    Parameters
+    ----------
+    style
+        One of ``"solid"``, ``"regular"``, or ``"brand"``.
+
+    Returns
+    -------
+    list of str
+        Icon names in definition order; use ``getattr(solid, name)``
+        (or the matching namespace) to obtain the icon mobject.
+    """
+    enums = {"solid": _Solid, "regular": _Regular, "brand": _Brand}
+    return list(enums[style].__members__)
 
 
 brand = Brand()
