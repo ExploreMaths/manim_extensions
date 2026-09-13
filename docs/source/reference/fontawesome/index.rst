@@ -52,19 +52,31 @@ A wall of solid icons, staggered in and spun like on the
 .. manim:: FontAwesomeWallExample
 
    from manim import *
-   from manim_extensions.fontawesome import solid, list_icons
+   from manim_extensions.fontawesome import solid, regular, brand, list_icons
 
    class FontAwesomeWallExample(Scene):
        def construct(self):
-           # keep only near-square icons — wide glyphs rotated sideways by
-           # the tilt below would tower over their neighbours
+           config.background_color = WHITE  # so new icons default to black
+           self.camera.background_color = WHITE  # render the frame white
+           # near-square glyphs only — wide glyphs rotated sideways by the
+           # tilt below would tower over their neighbours
+           pools = {}
+           for namespace, style in [(solid, "solid"), (regular, "regular"),
+                                    (brand, "brand")]:
+               pools[style] = [
+                   name for name in list_icons(style)
+                   if 0.8 <= getattr(namespace, name).width
+                            / getattr(namespace, name).height <= 1.25
+               ]
+           # alternate the three styles round-robin so the wall mixes
+           # filled, outline, and brand glyphs instead of one monotone set
+           namespaces = {"solid": solid, "regular": regular, "brand": brand}
+           styles = ["solid", "regular", "brand"]
            names = []
-           for name in list_icons("solid"):
-               icon = getattr(solid, name)
-               if 0.8 <= icon.width / icon.height <= 1.25:
-                   names.append(name)
-           icons = VGroup(*[getattr(solid, n) for n in names[:240]])
-           icons.set_color(WHITE)
+           for i in range(240):
+               style = styles[i % len(styles)]
+               names.append((namespaces[style], pools[style][i // len(styles)]))
+           icons = VGroup(*[getattr(ns, n) for ns, n in names])
            # fixed per-icon tilt from the golden angle — fully
            # deterministic, so every build shows the same wall
            for i, icon in enumerate(icons):
