@@ -12,6 +12,7 @@ name: Docs media
 on:
   push:
     branches: ["main"]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
@@ -80,21 +81,44 @@ jobs:
             echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Trigger a Read the Docs build only after fresh media is on the
-      # rtd-media branch, so RTD never builds against a stale or missing
-      # media cache. Requires a Read the Docs API token stored as the
-      # READTHEDOCS_API_TOKEN repository secret; without it this step is a
-      # no-op (and RTD's default push webhook keeps working as before).
+      # Trigger a Read the Docs build. Branch pushes: only after fresh media
+      # is on the rtd-media branch (no point rebuilding otherwise). Tag
+      # pushes: always — the tagged docs version must be built even when
+      # the media cache is unchanged. Without the secret this is a no-op.
       - name: Trigger Read the Docs build
-        if: steps.push.outputs.pushed == 'true'
+        if: ${{ steps.push.outputs.pushed == 'true' || github.ref_type == 'tag' }}
         env:
           RTD_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
+          RTD_PROJECT: manim-extensions
         run: |
           if [ -z "$RTD_TOKEN" ]; then
             echo "READTHEDOCS_API_TOKEN secret not set; skipping RTD trigger."
             exit 0
           fi
-          curl -sf -X POST \
-            -H "Authorization: Token $RTD_TOKEN" \
-            "https://app.readthedocs.org/api/v3/projects/manim-extensions/versions/latest/builds/" \
+          BASE="https://app.readthedocs.org/api/v3/projects/$RTD_PROJECT"
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            TAG="$GITHUB_REF_NAME"
+            # Without the push webhook RTD never sees the new tag, so ask it
+            # to sync versions from the repo first, then resolve the slug
+            # (RTD slugifies tag names) and build that version.
+            curl -sf -X POST -H "Authorization: Token $RTD_TOKEN" "$BASE/versions/" \
+              || echo "WARNING: version sync call failed, continuing anyway"
+            SLUG=$(curl -sf -H "Authorization: Token $RTD_TOKEN" "$BASE/versions/?limit=100" \
+              | jq -r --arg tag "$TAG" '.results[] | select(.verbose_name == $tag) | .slug' | head -1)
+            if [ -z "$SLUG" ]; then
+              echo "No RTD version for tag $TAG yet; waiting 30s for the sync..."
+              sleep 30
+              SLUG=$(curl -sf -H "Authorization: Token $RTD_TOKEN" "$BASE/versions/?limit=100" \
+                | jq -r --arg tag "$TAG" '.results[] | select(.verbose_name == $tag) | .slug' | head -1)
+            fi
+            if [ -z "$SLUG" ]; then
+              echo "ERROR: could not resolve an RTD version for tag $TAG."
+              exit 1
+            fi
+            TARGET="$BASE/versions/$SLUG/builds/"
+            echo "Triggering RTD build for tag $TAG (version slug: $SLUG)"
+          else
+            TARGET="$BASE/versions/latest/builds/"
+          fi
+          curl -sf -X POST -H "Authorization: Token $RTD_TOKEN" "$TARGET" \
             && echo "Read the Docs build triggered."
