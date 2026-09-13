@@ -85,6 +85,9 @@ The ``layout_type`` argument of the animation classes accepts:
    maps
    animations
    layout
+   classes
+   functions
+   constants
 
 See the `original README <https://github.com/jj-math/manim-mindmap>`_
 for full animated demos and the complete API.

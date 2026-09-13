@@ -13,3 +13,12 @@ Cubie
 -----
 
 .. autoclass:: manim_extensions.rubikscube.cubie.Cubie
+
+Automatically documented
+------------------------
+
+.. autoall:: manim_extensions.rubikscube
+   :recursive:
+   :missing-only:
+   :types: class
+

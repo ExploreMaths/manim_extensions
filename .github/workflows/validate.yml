@@ -58,6 +58,14 @@ jobs:
       - name: Run module docstring validator
         run: python workflow/validate_docstrings.py
 
+  validate-api-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+      - name: Check API documentation coverage
+        run: python workflow/validate_api_coverage.py
+
   reuse-lint:
     runs-on: ubuntu-latest
     steps:
