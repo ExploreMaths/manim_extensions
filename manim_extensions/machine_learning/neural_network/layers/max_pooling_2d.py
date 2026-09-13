@@ -168,7 +168,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         Parameters
         ----------
         layer_args : dict, optional
-            _description_, by default {}
+            Arguments for the layer, by default {}
         """
         return AnimationGroup()
 
