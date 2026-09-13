@@ -21,16 +21,18 @@ The code is bundled inside ``manim_extensions`` as the
 Usage
 -----
 
-Each style is an ``Enum`` whose members are paths to the corresponding SVG
-file. Pass the enum member to ``SVGMobject`` to render the icon:
+Each style is a namespace whose attributes are the corresponding SVG
+icons — attribute access returns a ready-made
+:class:`~manim.mobject.svg.svg_mobject.SVGMobject`:
 
 .. code-block:: python
 
    from manim import *
    from manim_extensions.fontawesome import solid, regular, brand
 
-   icon = SVGMobject(solid.heart.value)
+   icon = solid.heart          # an SVGMobject, ready to add to a scene
    icon.set_color(RED)
+   self.play(FadeIn(icon))
 
 Available styles:
 
@@ -40,6 +42,37 @@ Available styles:
 
 The variable ``FONT_AWESOME_VERSION`` reports the bundled Font Awesome
 version string.
+
+Gallery
+-------
+
+A wall of solid icons, staggered in and spun like on the
+`Font Awesome homepage <https://fontawesome.com>`_:
+
+.. manim:: FontAwesomeWallExample
+
+   from manim import *
+   from manim_extensions.fontawesome import solid
+
+   class FontAwesomeWallExample(Scene):
+       def construct(self):
+           names = ["heart", "camera", "music", "file", "globe", "house",
+                    "bell", "gear", "gift", "user", "comment", "lightbulb",
+                    "plane", "thumbs_up", "face_smile", "clock",
+                    "headphones", "star", "truck", "clipboard"]
+           icons = VGroup(*[getattr(solid, name) for name in names])
+           icons.arrange_in_grid(rows=4, cols=5, buff=0.7)
+           icons.set_color("#183153")  # Font Awesome's brand navy
+           icons.scale_to_fit_width(config.frame_width - 1.5)
+           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.06))
+           self.play(LaggedStart(
+               *[
+                   Rotate(icon, angle=TAU, about_point=icon.get_center())
+                   for icon in icons
+               ],
+               lag_ratio=0.06,
+           ))
+           self.wait()
 
 .. toctree::
    :hidden:
