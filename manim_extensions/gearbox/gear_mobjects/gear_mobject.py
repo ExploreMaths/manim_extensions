@@ -286,9 +286,6 @@ class Gear(VMobject):
     (pressure angle). The pitch-circle radius of a gear is
     ``module * num_of_teeth / 2``.
 
-    .. inheritance-diagram:: manim_extensions.gearbox.Gear
-       :parts: 1
-
     Parameters
     ----------
     num_of_teeth : int
