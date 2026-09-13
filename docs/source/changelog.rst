@@ -68,8 +68,8 @@ v1.0.5 :bdg-success-line:`Latest`
   RTD via a media cache; README cover media switched from GIFs to three
   rounded static images; ``conf.py`` version synced to 1.0.5 and the
   changelog gained a sphinx-design ``Latest`` badge.
-* ``RubiksCube`` doc examples now use the default realistic colour
-  scheme instead of an ad-hoc palette.
+* :class:`~manim_extensions.rubikscube.cube.RubiksCube` doc examples now
+  use the default realistic colour scheme instead of an ad-hoc palette.
 
 **Fixed**
 
@@ -79,16 +79,18 @@ v1.0.5 :bdg-success-line:`Latest`
 * Fixed manim's ``utils`` namespace shadowing the package's own utils
   submodules.
 * Fixed machine-learning empty-animation groups being unplayable on
-  manim >= 0.21, and the pymunk 7 collision-API / ``ADASDiagram``
-  ``numbered_eq`` regressions.
-* Fixed ``CubeMove`` face turns being strictly linear: manim 0.21
+  manim >= 0.21, and the pymunk 7 collision-API /
+  :class:`~manim_extensions.economics.base.ADASDiagram` ``numbered_eq``
+  regressions.
+* Fixed :class:`~manim_extensions.rubikscube.cube_animations.CubeMove` face turns being strictly linear: manim 0.21
   expects subclasses to apply ``rate_func`` themselves, so the rotation
   now eases in and out like the original ManimGL version.
 * Fixed the Arabic module failing on every non-macOS platform: the
   macOS-only ``Al Bayan`` default is replaced by fontconfig-based
   auto-resolution (Amiri/Scheherazade/Noto Naskh Arabic...).
 * Latent undefined-name bugs surfaced by removing star imports:
-  ``NeuralNetworkLayer`` quoted annotations now import the real base
+  :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`
+  quoted annotations now import the real base
   class; ``leaf_child_index`` typo; dead code after
   ``raise NotImplementedError()``; an undefined ``transition_ids`` in
   the nondeterministic-automata path; missing ``functools.wraps``,
