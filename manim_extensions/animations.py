@@ -41,9 +41,6 @@ class TypeWriter(Animation):
     calculated from the character count and *interval* unless an explicit
     ``run_time`` is passed in ``kwargs``.
 
-    .. inheritance-diagram:: manim_extensions.animations.TypeWriter
-       :parts: 1
-
     Parameters
     ----------
     mobject : :class:`~manim.mobject.text.text_mobject.Text`
