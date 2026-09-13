@@ -104,5 +104,5 @@ A wall of solid icons, staggered in and spun like on the
 
 .. toctree::
    :hidden:
-
-   classes
+   functions
+   constants

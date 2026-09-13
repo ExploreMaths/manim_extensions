@@ -81,6 +81,9 @@ example.
    pencil_animations
    ruler_animations
    utilities
+   classes
+   functions
+   constants
 
 See the `original README <https://github.com/jj-math/manim-compass>`_
 for full animated examples and further details.

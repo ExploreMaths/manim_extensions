@@ -133,4 +133,5 @@ Module Index
    svg_animations/index
    table/index
    tikz/index
+   utils/index
    weighted_line/index

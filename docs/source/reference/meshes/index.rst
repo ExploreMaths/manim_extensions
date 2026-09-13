@@ -62,4 +62,7 @@ for details on the mesh model and more advanced examples.
    data_model
    mobjects
    helpers
+   classes
+   functions
+   constants
    exceptions

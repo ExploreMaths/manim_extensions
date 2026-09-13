@@ -501,4 +501,5 @@ for the full spec, examples, and documentation.
 
    classes
    animations
+   constants
    functions

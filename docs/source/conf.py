@@ -38,6 +38,7 @@ extensions = [
     "myst_parser",
     "sphinx_design",
     "manim_directive",
+    "autodoc_all",
     "inheritance_colors",
     "autodoc_inheritance",
 ]

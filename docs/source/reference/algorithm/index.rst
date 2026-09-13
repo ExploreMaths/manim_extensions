@@ -56,4 +56,5 @@ for more complete examples and API details.
    :hidden:
 
    classes
+   constants
    functions

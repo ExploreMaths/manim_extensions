@@ -57,4 +57,6 @@ for more complete examples and API walkthroughs.
    mobjects
    animations
    dependencies
+   classes
+   constants
    functions

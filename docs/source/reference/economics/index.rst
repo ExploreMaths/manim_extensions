@@ -49,3 +49,5 @@ Quick start
    :hidden:
 
    classes
+   functions
+   constants
