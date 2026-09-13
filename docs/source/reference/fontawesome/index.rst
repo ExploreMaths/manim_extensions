@@ -73,7 +73,7 @@ A wall of solid icons, staggered in and spun like on the
            # shrink the glyphs in place (positions unchanged) so the gaps
            # open up — scaling the whole group would shrink the gaps too
            for icon in icons:
-               icon.scale(0.55)
+               icon.scale(0.75)
            # scale until the grid covers the whole frame (full bleed)
            cover = max(
                (config.frame_width + 0.5) / icons.width,
