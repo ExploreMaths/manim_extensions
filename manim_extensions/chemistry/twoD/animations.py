@@ -12,7 +12,7 @@ from .graph_molecule import GraphMolecule
 
 
 class GMAnimationBuilder:
-    """Builds animations for a :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`.
+    r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`.
 
     Parameters
     ----------

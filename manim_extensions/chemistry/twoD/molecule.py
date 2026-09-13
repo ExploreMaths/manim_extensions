@@ -36,7 +36,7 @@ from .bond import *
 
 
 class MMoleculeObject(VGroup, AbstractMolecule):
-    """Represents a molecule in a similar fashion as it is done in academia.
+    r"""Represents a molecule in a similar fashion as it is done in academia.
 
     Parameters
     ----------
@@ -650,7 +650,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
 
 class NamedMolecule(VGroup):
-    """A molecule together with its name.
+    r"""A molecule together with its name.
 
     Parameters
     ----------

@@ -121,7 +121,7 @@ class TripleLine(DoubleLine):
 
 
 class GraphMolecule(Graph, AbstractMolecule):
-    """Represents a molecule like a Graph from Manim.
+    r"""Represents a molecule like a Graph from Manim.
 
     Parameters
     ----------
