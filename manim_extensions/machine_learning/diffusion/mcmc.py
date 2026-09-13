@@ -90,16 +90,16 @@ class MultidimensionalGaussianPosterior:
     """
 
     def __init__(self, ndim=2, seed=12345, scale=3, mu=None, var=None):
-        """_summary_
+        """Initialize the Multidimensional Gaussian posterior distribution.
 
         Parameters
         ----------
         ndim : int, optional
-            _description_, by default 2
+            Dimension of the distribution, by default 2
         seed : int, optional
-            _description_, by default 12345
+            Random seed, by default 12345
         scale : int, optional
-            _description_, by default 10
+            Scale of the prior on the mean, by default 10
         """
         np.random.seed(seed)
         self.scale = scale
