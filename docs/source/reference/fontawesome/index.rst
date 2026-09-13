@@ -59,18 +59,22 @@ A wall of solid icons, staggered in and spun like on the
            names = ["heart", "camera", "music", "file", "globe", "house",
                     "bell", "gear", "gift", "user", "comment", "lightbulb",
                     "plane", "thumbs_up", "face_smile", "clock",
-                    "headphones", "star", "truck", "clipboard"]
-           icons = VGroup(*[getattr(solid, name) for name in names])
-           icons.arrange_in_grid(rows=4, cols=5, buff=0.7)
-           icons.set_color("#183153")  # Font Awesome's brand navy
-           icons.scale_to_fit_width(config.frame_width - 1.5)
-           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.06))
+                    "headphones", "star", "truck", "clipboard",
+                    "bookmark", "calendar", "envelope", "flag", "folder",
+                    "image", "map", "paper-plane", "pen", "phone",
+                    "camera-retro", "cart-shopping", "cloud", "code",
+                    "dice", "feather", "fire", "key", "lock", "moon"]
+           icons = VGroup(*[getattr(solid, name.replace("-", "_")) for name in names])
+           icons.arrange_in_grid(rows=5, cols=8, buff=0.7)
+           icons.set_color(WHITE)
+           icons.scale_to_fit_width(config.frame_width - 3)
+           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.04))
            self.play(LaggedStart(
                *[
                    Rotate(icon, angle=TAU, about_point=icon.get_center())
                    for icon in icons
                ],
-               lag_ratio=0.06,
+               lag_ratio=0.04,
            ))
            self.wait()
 
