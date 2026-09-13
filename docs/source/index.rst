@@ -92,9 +92,12 @@ introduction, or browse the :doc:`examples/index` gallery.
    contributing
    code_of_conduct
 
-Indices and tables
-==================
+.. toctree::
+   :maxdepth: 1
+   :caption: External Links
+   :hidden:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   GitHub Repository <https://github.com/ExploreMaths/manim_extensions>
+   PyPI Package <https://pypi.org/project/manim_extensions/>
+   Manim Community <https://www.manim.community/>
+  
