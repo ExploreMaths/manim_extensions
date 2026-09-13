@@ -30,9 +30,11 @@ icons — attribute access returns a ready-made
    from manim import *
    from manim_extensions.fontawesome import solid, regular, brand
 
-   icon = solid.heart          # an SVGMobject, ready to add to a scene
-   icon.set_color(RED)
-   self.play(FadeIn(icon))
+   class FontAwesomeHeartExample(Scene):
+       def construct(self):
+           icon = solid.heart          # an SVGMobject, ready to add to a scene
+           icon.set_color(RED)
+           self.play(FadeIn(icon))
 
 Available styles:
 
