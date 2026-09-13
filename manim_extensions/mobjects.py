@@ -993,7 +993,7 @@ class VideoMobject(ImageMobject):
        class VideoMobjectDocExample(Scene):
            def construct(self):
                path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
-               vid = VideoMobject(path, rate=2.0).scale(2)
+               vid = VideoMobject(path)
                self.add(vid)
                vid.play(self)
     """
