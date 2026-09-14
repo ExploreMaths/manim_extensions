@@ -18,6 +18,14 @@ on:
 permissions:
   contents: write
 
+# Serialize pushes to the rtd-media branch: each run does `git push -f`, so
+# concurrent runs (e.g. a fast sequence of commits to main) would race and
+# the last push wins, even if an earlier run rendered newer media. Cancelling
+# superseded runs avoids that race and saves CI minutes.
+concurrency:
+  group: docs-media
+  cancel-in-progress: true
+
 jobs:
   render:
     runs-on: ubuntu-latest
