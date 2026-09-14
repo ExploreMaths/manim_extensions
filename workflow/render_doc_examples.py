@@ -55,6 +55,14 @@ QUALITY_MAP = {
     "fourk": "fourk_quality",
 }
 
+# Bump this to invalidate the entire media cache: each manifest entry
+# records the scheme version it was rendered under, and entries whose
+# recorded version doesn't match the current value are re-rendered.
+# v2: re-render QR-code-with-icon examples that were rendered before the
+# fontconfig-based Nerd Font installation landed (their icons showed as
+# CJK fallback glyphs because Pango couldn't find the PUA font).
+SCHEME_VERSION = 2
+
 
 def iter_source_files():
     # Examples live in rst sources and in autodoc'd package docstrings.
@@ -283,6 +291,7 @@ def main() -> int:
             entry
             and entry.get("sha256") == block["output_file"]
             and entry.get("quality") == block["effective_quality"]
+            and entry.get("version", 1) == SCHEME_VERSION
             and (target_dir / f"{block['output_file']}.{ext}").exists()
         ):
             skipped += 1
@@ -334,7 +343,7 @@ def main() -> int:
                 shutil.copyfile(src, images_out / src.name)
             else:
                 shutil.copyfile(src, videos_out / src.name)
-            manifest[key] = {"sha256": key, "ext": src.suffix.lstrip("."), "quality": q}
+            manifest[key] = {"sha256": key, "ext": src.suffix.lstrip("."), "quality": q, "version": SCHEME_VERSION}
 
     shutil.rmtree(work_root, ignore_errors=True)
     manifest_path.write_text(json.dumps(manifest, indent=1, sort_keys=True))
