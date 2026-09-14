@@ -63,7 +63,7 @@ Quick start
            )
            data.to_csv("element_data.csv", index=False)
            table = PeriodicTable(data_file="element_data.csv")
-           table.scale(0.35)
+           table.scale(1.3)
            self.add(table)
 
 .. toctree::
