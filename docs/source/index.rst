@@ -46,18 +46,28 @@ The library is organised into two areas:
     Several popular Manim plugins are included as subpackages,
     with full API documentation and attribution to the original authors:
 
-    * :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.
-    * :doc:`reference/compass/index` – compass-and-straightedge constructions.
-    * :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
     * :doc:`reference/algorithm/index` – algorithm visualization toolkit.
+    * :doc:`reference/arabic/index` – Arabic text rendering helpers.
     * :doc:`reference/automata/index` – finite-state, pushdown, and Turing automata.
+    * :doc:`reference/chemistry/index` – periodic table, molecules, orbitals, and Bohr atoms.
     * :doc:`reference/circuit/index` – circuit elements and diagrams.
+    * :doc:`reference/compass/index` – compass-and-straightedge constructions.
     * :doc:`reference/data_structures/index` – array and variable visualization.
+    * :doc:`reference/economics/index` – supply-demand, AD-AS, IS-LM, and Solow diagrams.
+    * :doc:`reference/fontawesome/index` – 2 000+ Font Awesome SVG icons.
+    * :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.
+    * :doc:`reference/machine_learning/index` – neural networks and decision tree diagrams.
     * :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
+    * :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
     * :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
+    * :doc:`reference/pymunk/index` – 2-D rigid-body physics simulation with Pymunk.
+    * :doc:`reference/qr_codes/index` – QR code generation with optional Nerd Font icons.
     * :doc:`reference/rubikscube/index` – Rubik's cube mobject and animations.
     * :doc:`reference/sequence_diagram/index` – UML sequence diagram helpers.
+    * :doc:`reference/svg_animations/index` – export scenes as interactive HTML/SVG animations.
+    * :doc:`reference/table/index` – animated database tables, rows, and cells.
     * :doc:`reference/tikz/index` – TikZ diagram integration.
+    * :doc:`reference/weighted_line/index` – weighted line mobject with midpoint weight labels.
 
 Quick Links
 ===========
