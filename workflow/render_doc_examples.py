@@ -55,16 +55,43 @@ QUALITY_MAP = {
     "fourk": "fourk_quality",
 }
 
-# Bump this to invalidate the entire media cache: each manifest entry
-# records the scheme version it was rendered under, and entries whose
-# recorded version doesn't match the current value are re-rendered.
-# v2: re-render QR-code-with-icon examples that were rendered before the
-# fontconfig-based Nerd Font installation landed (their icons showed as
-# CJK fallback glyphs because Pango couldn't find the PUA font).
-# v3: re-render FileTree / Code-based examples after installing
-# fonts-jetbrains-mono in CI; without it Pango fell back to a non-monospace
-# font and the ASCII tree lost its alignment.
-SCHEME_VERSION = 3
+# Fine-grained cache invalidation tags. Each tag is a named version of an
+# environmental factor that affects rendering (installed fonts, compiler
+# versions, etc.). When rendering an example, we determine which tags are
+# relevant to that example by scanning its code, and record the
+# (tag -> value) mapping in the manifest entry. On cache check, the
+# recorded values must exactly match the current values of the example's
+# relevant tags; otherwise the example is re-rendered.
+#
+# Bumping a tag's value invalidates only the examples whose code triggers
+# that tag. Adding a new tag invalidates the examples that match its
+# heuristic (those whose code references the relevant APIs).
+#
+# History:
+#   fontconfig_nerdfont = 1  # fontconfig-based Nerd Font installation
+#   jetbrains_mono = 1      # fonts-jetbrains-mono apt package
+ENV_TAGS = {
+    "fontconfig_nerdfont": 1,
+    "jetbrains_mono": 1,
+}
+
+
+def tags_for_block(block: dict) -> set[str]:
+    """Heuristic: which ENV_TAGS affect this example based on its code."""
+    code = block["code"]
+    tags = set()
+    # Nerd Font is only loaded when a QR code requests an icon (passed as
+    # a string keyword argument), or when the nerdfont helpers are used
+    # directly. Match `icon="` / `icon='` to avoid flagging examples that
+    # merely use `icon` as a local variable name.
+    if any(s in code for s in ("nerdfont", "NerdFont", 'icon="', "icon='")):
+        tags.add("fontconfig_nerdfont")
+    if any(
+        s in code
+        for s in ("FileTree", "DEFAULT_MONO_FONT", "JetBrains Mono", "Code(")
+    ):
+        tags.add("jetbrains_mono")
+    return tags
 
 
 def iter_source_files():
@@ -276,6 +303,7 @@ def main() -> int:
                 or (f"{args.quality}_quality" if args.quality else None)
                 or "example_quality"
             )
+            block["env_tags"] = tags_for_block(block)
             blocks.append(block)
 
     print(f"Found {len(blocks)} manim example blocks")
@@ -290,11 +318,12 @@ def main() -> int:
             else ("gif" if block["save_as_gif"] else "mp4")
         )
         target_dir = images_out if block["save_last_frame"] else videos_out
+        expected_tags = {t: ENV_TAGS[t] for t in block["env_tags"]}
         if (
             entry
             and entry.get("sha256") == block["output_file"]
             and entry.get("quality") == block["effective_quality"]
-            and entry.get("version", 1) == SCHEME_VERSION
+            and entry.get("env_tags", {}) == expected_tags
             and (target_dir / f"{block['output_file']}.{ext}").exists()
         ):
             skipped += 1
@@ -328,6 +357,7 @@ def main() -> int:
     done = 0
     t0 = time.time()
     total = len(tasks)
+    todo_by_key = {b["output_file"]: b for b in todo}
     with multiprocessing.Pool(args.workers) as pool:
         for key, src, ok, error, q in pool.imap_unordered(render_block, tasks):
             done += 1
@@ -346,7 +376,13 @@ def main() -> int:
                 shutil.copyfile(src, images_out / src.name)
             else:
                 shutil.copyfile(src, videos_out / src.name)
-            manifest[key] = {"sha256": key, "ext": src.suffix.lstrip("."), "quality": q, "version": SCHEME_VERSION}
+            block = todo_by_key[key]
+            manifest[key] = {
+                "sha256": key,
+                "ext": src.suffix.lstrip("."),
+                "quality": q,
+                "env_tags": {t: ENV_TAGS[t] for t in block["env_tags"]},
+            }
 
     shutil.rmtree(work_root, ignore_errors=True)
     manifest_path.write_text(json.dumps(manifest, indent=1, sort_keys=True))
