@@ -1,0 +1,1918 @@
+{
+ "ADASDiagramDocExample-729bb3a1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ADASDiagramDocExample-729bb3a1",
+  "version": 3
+ },
+ "AbstractLayoutAnimationDocExample-692a25b0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AbstractLayoutAnimationDocExample-692a25b0",
+  "version": 3
+ },
+ "AbstractMapExample-836d8cbf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AbstractMapExample-836d8cbf",
+  "version": 3
+ },
+ "AlgorithmExample-a432f839": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AlgorithmExample-a432f839",
+  "version": 3
+ },
+ "AlgorithmLibraryExample-b7da70b9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AlgorithmLibraryExample-b7da70b9",
+  "version": 3
+ },
+ "AllTogetherExample-594658bd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AllTogetherExample-594658bd",
+  "version": 3
+ },
+ "AlterNodeDocExample-0c8e912f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AlterNodeDocExample-0c8e912f",
+  "version": 3
+ },
+ "AnimateOfAlterDocExample-65a49307": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlterDocExample-65a49307",
+  "version": 3
+ },
+ "AnimateOfCreateDocExample-61b94b1a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfCreateDocExample-61b94b1a",
+  "version": 3
+ },
+ "AnimateOfDisplayDocExample-dd39e449": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-dd39e449",
+  "version": 3
+ },
+ "AnimateOfLayoutDocExample-f4ed04f7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfLayoutDocExample-f4ed04f7",
+  "version": 3
+ },
+ "AnimateOfNodeDocExample-3760c02c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfNodeDocExample-3760c02c",
+  "version": 3
+ },
+ "AnimateOfScaleDocExample-9d1dff84": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfScaleDocExample-9d1dff84",
+  "version": 3
+ },
+ "ArabicExample-29f491d9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicExample-29f491d9",
+  "version": 3
+ },
+ "ArrayExample-6b062c43": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArrayExample-6b062c43",
+  "version": 3
+ },
+ "AutomataExample-04413437": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AutomataExample-04413437",
+  "version": 3
+ },
+ "AutomataLibraryExample-b6e086d0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AutomataLibraryExample-b6e086d0",
+  "version": 3
+ },
+ "BohrAtomScene-3d79c832": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "BohrAtomScene-3d79c832",
+  "version": 3
+ },
+ "BrandDocExample-c99e011c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BrandDocExample-c99e011c",
+  "version": 3
+ },
+ "CapacitorExample-5e30beaa": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CapacitorExample-5e30beaa",
+  "version": 3
+ },
+ "CatalogLayoutExample-228e7a56": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogLayoutExample-228e7a56",
+  "version": 3
+ },
+ "CatalogMapDocExample-37606ef9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogMapDocExample-37606ef9",
+  "version": 3
+ },
+ "CatalogNodeExample-421f5a86": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogNodeExample-421f5a86",
+  "version": 3
+ },
+ "ChargeExample-707aacd2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ChargeExample-707aacd2",
+  "version": 3
+ },
+ "ChemistryExample-693aadc6": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChemistryExample-693aadc6",
+  "version": 3
+ },
+ "ChineseMathTexDocExample-a2b1e8a6": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexDocExample-a2b1e8a6",
+  "version": 3
+ },
+ "ChineseMathTexExample-7aaf25e1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexExample-7aaf25e1",
+  "version": 3
+ },
+ "CircuitExample-62fc530e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CircuitExample-62fc530e",
+  "version": 3
+ },
+ "CircuitExample-660d0c33": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitExample-660d0c33",
+  "version": 3
+ },
+ "CircuitLibraryExample-69afcb1d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitLibraryExample-69afcb1d",
+  "version": 3
+ },
+ "ColorExample-538dd86c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ColorExample-538dd86c",
+  "version": 3
+ },
+ "ColorTextDocExample-f17e4f64": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextDocExample-f17e4f64",
+  "version": 3
+ },
+ "ColorTextExample-9689a850": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextExample-9689a850",
+  "version": 3
+ },
+ "CompassExample-0adf699a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassExample-0adf699a",
+  "version": 3
+ },
+ "CompassExample-66694e16": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassExample-66694e16",
+  "version": 3
+ },
+ "CompassExample-84b75cc8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassExample-84b75cc8",
+  "version": 3
+ },
+ "CompassMoveNiddleTipToDocExample-17ebee24": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassMoveNiddleTipToDocExample-17ebee24",
+  "version": 3
+ },
+ "CompassSceneExample-f99bc3d0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassSceneExample-f99bc3d0",
+  "version": 3
+ },
+ "Convolutional2DLayerDocExample-c6e5d697": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Convolutional2DLayerDocExample-c6e5d697",
+  "version": 3
+ },
+ "CopyAndOverWriteExample-4d1e43c3": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CopyAndOverWriteExample-4d1e43c3",
+  "version": 3
+ },
+ "CreateArabicTemplateDocExample-4d8e189f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTemplateDocExample-4d8e189f",
+  "version": 3
+ },
+ "CreateArabicTextDocExample-7c125785": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTextDocExample-7c125785",
+  "version": 3
+ },
+ "CropImageMobjectDocExample-0b3981a1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CropImageMobjectDocExample-0b3981a1",
+  "version": 3
+ },
+ "CubeMoveExample-74e4b757": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeMoveExample-74e4b757",
+  "version": 3
+ },
+ "CubeMoveExample-a7bb604c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeMoveExample-a7bb604c",
+  "version": 3
+ },
+ "CubieDocExample-d5ea92f2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubieDocExample-d5ea92f2",
+  "version": 3
+ },
+ "CurrentSourceExample-38ee2533": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CurrentSourceExample-38ee2533",
+  "version": 3
+ },
+ "DataStructureArrayExample-09ff7632": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructureArrayExample-09ff7632",
+  "version": 3
+ },
+ "DataStructureInsertRemoveExample-d94d1985": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DataStructureInsertRemoveExample-d94d1985",
+  "version": 3
+ },
+ "DataStructurePointerExample-f41df8f2": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructurePointerExample-f41df8f2",
+  "version": 3
+ },
+ "DataStructureSlidingWindowExample-53f8531c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructureSlidingWindowExample-53f8531c",
+  "version": 3
+ },
+ "DataStructureVariableExample-eb63fc6c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DataStructureVariableExample-eb63fc6c",
+  "version": 3
+ },
+ "DataStructuresExample-3acf2bd1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructuresExample-3acf2bd1",
+  "version": 3
+ },
+ "DecisionTreeDiagramDocExample-6cafc935": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeDiagramDocExample-6cafc935",
+  "version": 3
+ },
+ "DecorationHelpersExample-a25f3d4d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecorationHelpersExample-a25f3d4d",
+  "version": 3
+ },
+ "DequeueExample-cc25f778": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DequeueExample-cc25f778",
+  "version": 3
+ },
+ "DivideAndConquerExample-7d22eb0b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DivideAndConquerExample-7d22eb0b",
+  "version": 3
+ },
+ "DrawArcDocExample-d7ec82bc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawArcDocExample-d7ec82bc",
+  "version": 3
+ },
+ "DrawLineExample-891d4722": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawLineExample-891d4722",
+  "version": 3
+ },
+ "DrawPathDocExample-8611fc97": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawPathDocExample-8611fc97",
+  "version": 3
+ },
+ "EaseInBounceExample-b5ba2c06": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInBounceExample-b5ba2c06",
+  "version": 3
+ },
+ "EaseInOutBounceExample-7c41efbc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInOutBounceExample-7c41efbc",
+  "version": 3
+ },
+ "EaseOutBounceExample-ca21e868": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutBounceExample-ca21e868",
+  "version": 3
+ },
+ "EaseOutElasticExample-f8b011ce": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutElasticExample-f8b011ce",
+  "version": 3
+ },
+ "EconomicsExample-28296e95": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "EconomicsExample-28296e95",
+  "version": 3
+ },
+ "ElectricFieldExample-f783c63f": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectricFieldExample-f783c63f",
+  "version": 3
+ },
+ "EmbeddingLayerDocExample-2685f1f5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EmbeddingLayerDocExample-2685f1f5",
+  "version": 3
+ },
+ "EnqueueExample-e2f06393": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EnqueueExample-e2f06393",
+  "version": 3
+ },
+ "ExtendedLineDocExample-ff1ee2a3": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ExtendedLineDocExample-ff1ee2a3",
+  "version": 3
+ },
+ "FadeInExample-a51dd186": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInExample-a51dd186",
+  "version": 3
+ },
+ "FadeInRandomDocExample-a2a37d12": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInRandomDocExample-a2a37d12",
+  "version": 3
+ },
+ "FadeOutRandomDocExample-cb6dd42e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeOutRandomDocExample-cb6dd42e",
+  "version": 3
+ },
+ "FadeoutOfSubtreesDocExample-05306942": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeoutOfSubtreesDocExample-05306942",
+  "version": 3
+ },
+ "FeedForwardLayerDocExample-ed21b6d7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FeedForwardLayerDocExample-ed21b6d7",
+  "version": 3
+ },
+ "FileTreeDocExample-8eda0339": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FileTreeDocExample-8eda0339"
+ },
+ "FileTreeExample-b60a7de3": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FileTreeExample-b60a7de3"
+ },
+ "FiniteStateAutomatonExample-8adcc880": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiniteStateAutomatonExample-8adcc880",
+  "version": 3
+ },
+ "FontAwesomeHeartExample-c6c94846": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeHeartExample-c6c94846",
+  "version": 3
+ },
+ "FontAwesomeWallExample-b892d43e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeWallExample-b892d43e",
+  "version": 3
+ },
+ "GMAnimationBuilderDocExample-d94f8102": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GMAnimationBuilderDocExample-d94f8102",
+  "version": 3
+ },
+ "GaussianDistributionDocExample-f05e8fc1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GaussianDistributionDocExample-f05e8fc1",
+  "version": 3
+ },
+ "GearDocExample-6b684700": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearDocExample-6b684700",
+  "version": 3
+ },
+ "GearExample-89b7763c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearExample-89b7763c",
+  "version": 3
+ },
+ "GearMeshToDocExample-d813732c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshToDocExample-d813732c",
+  "version": 3
+ },
+ "GearboxExample-aec16763": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GearboxExample-aec16763",
+  "version": 3
+ },
+ "GeometryHelpersExample-13e845eb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GeometryHelpersExample-13e845eb",
+  "version": 3
+ },
+ "GetArcDocExample-f51a823c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GetArcDocExample-f51a823c",
+  "version": 3
+ },
+ "GraphMoleculeFromFile-ada3d42c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFile-ada3d42c",
+  "version": 3
+ },
+ "GraphMoleculeFromFileWithHydrogens-e9226d98": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFileWithHydrogens-e9226d98",
+  "version": 3
+ },
+ "GraphMoleculeFromMolecule-74a578fb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromMolecule-74a578fb",
+  "version": 3
+ },
+ "GraphMoleculeFromPubChem-9fa9ea7c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromPubChem-9fa9ea7c",
+  "version": 3
+ },
+ "GraphMoleculeFromPubChemThreeD-dc439000": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromPubChemThreeD-dc439000",
+  "version": 3
+ },
+ "GraphMoleculeWithName-01eafd57": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeWithName-01eafd57",
+  "version": 3
+ },
+ "GroundExample-38602b89": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GroundExample-38602b89",
+  "version": 3
+ },
+ "GrowRandomDocExample-0bc1d70b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GrowRandomDocExample-0bc1d70b",
+  "version": 3
+ },
+ "HTMLParsedVMobjectDocExample-b8e96d54": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HTMLParsedVMobjectDocExample-b8e96d54",
+  "version": 3
+ },
+ "HighLightWithLinesDocExample-9adb27db": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighLightWithLinesDocExample-9adb27db",
+  "version": 3
+ },
+ "HighlightAnimationsExample-ba1e2cf0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighlightAnimationsExample-ba1e2cf0",
+  "version": 3
+ },
+ "ISLMDiagramDocExample-22a86db4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ISLMDiagramDocExample-22a86db4",
+  "version": 3
+ },
+ "IYLNodeExample-bb74f1a8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "IYLNodeExample-bb74f1a8",
+  "version": 3
+ },
+ "ImageLayerDocExample-110ec8d6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ImageLayerDocExample-110ec8d6",
+  "version": 3
+ },
+ "IndicateCubieExample-3ae15903": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateCubieExample-3ae15903",
+  "version": 3
+ },
+ "IndicateFaceExample-aa493a89": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateFaceExample-aa493a89",
+  "version": 3
+ },
+ "InductorExample-849bee8e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InductorExample-849bee8e",
+  "version": 3
+ },
+ "InnerGearExample-dcbe5bdd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InnerGearExample-dcbe5bdd",
+  "version": 3
+ },
+ "InsertNodeDocExample-7bb99919": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertNodeDocExample-7bb99919",
+  "version": 3
+ },
+ "InvoluteDerivFuncExample-2cc6448b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteDerivFuncExample-2cc6448b",
+  "version": 3
+ },
+ "InvoluteFuncExample-b0565acb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteFuncExample-b0565acb",
+  "version": 3
+ },
+ "InvoluteHeightFuncExample-93dfc45d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteHeightFuncExample-93dfc45d",
+  "version": 3
+ },
+ "InvolutePointGenExample-752b4880": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvolutePointGenExample-752b4880",
+  "version": 3
+ },
+ "LabelDotDocExample-a6883bdc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotDocExample-a6883bdc",
+  "version": 3
+ },
+ "LabelDotExample-05f5c07e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotExample-05f5c07e",
+  "version": 3
+ },
+ "LaggedCreationDocExample-152d5428": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LaggedCreationDocExample-152d5428",
+  "version": 3
+ },
+ "LayoutAnimationDocExample-bc33c6ee": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-bc33c6ee",
+  "version": 3
+ },
+ "LayoutAnimationExample-571cd6c5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationExample-571cd6c5",
+  "version": 3
+ },
+ "LayoutConfigExample-e940ef4a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutConfigExample-e940ef4a",
+  "version": 3
+ },
+ "LayoutDirectionExample-4211a2a7": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutDirectionExample-4211a2a7",
+  "version": 3
+ },
+ "LayoutExample-1ce10d80": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutExample-1ce10d80",
+  "version": 3
+ },
+ "LayoutFactoryExample-1f290151": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutFactoryExample-1f290151",
+  "version": 3
+ },
+ "LayoutTypeExample-30c39db0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutTypeExample-30c39db0",
+  "version": 3
+ },
+ "LensExample-e6344df8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensExample-e6344df8",
+  "version": 3
+ },
+ "LinearWaveExample-21500dc7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinearWaveExample-21500dc7",
+  "version": 3
+ },
+ "LinkedISLMADASDocExample-1561d021": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinkedISLMADASDocExample-1561d021",
+  "version": 3
+ },
+ "MArrayDocExample-d8f4bedd": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayDocExample-d8f4bedd",
+  "version": 3
+ },
+ "MArrayElementDocExample-59436824": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayElementDocExample-59436824",
+  "version": 3
+ },
+ "MArrayInsertRemoveDocExample-77864c5c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayInsertRemoveDocExample-77864c5c",
+  "version": 3
+ },
+ "MArrayPointerDocExample-1e815cbe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayPointerDocExample-1e815cbe",
+  "version": 3
+ },
+ "MArraySlidingWindowDocExample-0c4fae89": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArraySlidingWindowDocExample-0c4fae89",
+  "version": 3
+ },
+ "MCMCAxesDocExample-1031ce27": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MCMCAxesDocExample-1031ce27",
+  "version": 3
+ },
+ "MElementObjectDocExample-753c5e75": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MElementObjectDocExample-753c5e75",
+  "version": 3
+ },
+ "MLExample-93fbaf68": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MLExample-93fbaf68",
+  "version": 3
+ },
+ "MMoleculeFromFile-744dc218": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromFile-744dc218",
+  "version": 3
+ },
+ "MMoleculeFromPubChem-da654ee4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromPubChem-da654ee4",
+  "version": 3
+ },
+ "MMoleculeObjectFromMolecule-84c5d48e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeObjectFromMolecule-84c5d48e",
+  "version": 3
+ },
+ "MMoleculeWithName-80a35d2b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeWithName-80a35d2b",
+  "version": 3
+ },
+ "MVariableDocExample-0874e0e6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MVariableDocExample-0874e0e6",
+  "version": 3
+ },
+ "MagneticFieldExample-93591efb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldExample-93591efb",
+  "version": 3
+ },
+ "Manim2DMeshExample-94717859": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Manim2DMeshExample-94717859",
+  "version": 3
+ },
+ "ManimAnimationsExample-74121092": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAnimationsExample-74121092",
+  "version": 3
+ },
+ "ManimAutomataInputExample-023e02cd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomataInputExample-023e02cd",
+  "version": 3
+ },
+ "ManimAutomatonDocExample-9c4f2d8d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomatonDocExample-9c4f2d8d",
+  "version": 3
+ },
+ "ManimMeshExample-2da46103": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimMeshExample-2da46103",
+  "version": 3
+ },
+ "ManimNondeterministicFiniteAutomatonExample-e35ce57b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimNondeterministicFiniteAutomatonExample-e35ce57b",
+  "version": 3
+ },
+ "ManimPushDownAutomatonExample-8b4b2ea5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonExample-8b4b2ea5",
+  "version": 3
+ },
+ "ManimPushDownAutomatonTransitionExample-114c7565": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonTransitionExample-114c7565",
+  "version": 3
+ },
+ "ManimStateExample-2be29765": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimStateExample-2be29765",
+  "version": 3
+ },
+ "ManimTikzExample-2168f4b9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTikzExample-2168f4b9",
+  "version": 3
+ },
+ "ManimTransitionDocExample-69bfa435": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimTransitionDocExample-69bfa435",
+  "version": 3
+ },
+ "ManimTuringMachineExample-f7e35e6a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTuringMachineExample-f7e35e6a",
+  "version": 3
+ },
+ "ManimdeterministicFiniteAutomatonExample-8418347a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimdeterministicFiniteAutomatonExample-8418347a",
+  "version": 3
+ },
+ "MathOperationLayerDocExample-6fbac4ac": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathOperationLayerDocExample-6fbac4ac",
+  "version": 3
+ },
+ "MathTexBraceDocExample-6ebe54dc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexBraceDocExample-6ebe54dc",
+  "version": 3
+ },
+ "MathTexDoublearrowDocExample-de99dc2e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexDoublearrowDocExample-de99dc2e",
+  "version": 3
+ },
+ "MathTexHelpersExample-0145fbce": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexHelpersExample-0145fbce",
+  "version": 3
+ },
+ "MathTexLineDocExample-0110af0e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathTexLineDocExample-0110af0e",
+  "version": 3
+ },
+ "MaxPooling2DLayerDocExample-a8211480": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxPooling2DLayerDocExample-a8211480",
+  "version": 3
+ },
+ "MeshExample-fe2d0f1d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshExample-fe2d0f1d",
+  "version": 3
+ },
+ "MeshesExample-24fa9b98": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshesExample-24fa9b98",
+  "version": 3
+ },
+ "MindMapExample-64ac6a8b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapExample-64ac6a8b",
+  "version": 3
+ },
+ "MindMapExample-f9d3b561": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MindMapExample-f9d3b561",
+  "version": 3
+ },
+ "MindMapInsertExample-37e03761": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapInsertExample-37e03761",
+  "version": 3
+ },
+ "MoreAnimationsExample-a0289ce6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoreAnimationsExample-a0289ce6",
+  "version": 3
+ },
+ "MoveAndOverWriteExample-93a5f1d4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveAndOverWriteExample-93a5f1d4",
+  "version": 3
+ },
+ "MoveNidToDocExample-a34460ec": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MoveNidToDocExample-a34460ec",
+  "version": 3
+ },
+ "MoveNiddleTipToDocExample-f0c51973": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveNiddleTipToDocExample-f0c51973",
+  "version": 3
+ },
+ "MovePencilAlongPathDocExample-c0e11ce1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilAlongPathDocExample-c0e11ce1",
+  "version": 3
+ },
+ "MovePencilTipToDocExample-f1f20f37": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilTipToDocExample-f1f20f37",
+  "version": 3
+ },
+ "MultiPendulumExample-f2aac9fd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MultiPendulumExample-f2aac9fd",
+  "version": 3
+ },
+ "NamedMoleculeDocExample-d9ffd5b4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedMoleculeDocExample-d9ffd5b4",
+  "version": 3
+ },
+ "NeuralNetworkDocExample-adc64533": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkDocExample-adc64533",
+  "version": 3
+ },
+ "NodeConfigExample-d562e6c1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeConfigExample-d562e6c1",
+  "version": 3
+ },
+ "NodeDocExample-aa632df8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeDocExample-aa632df8",
+  "version": 3
+ },
+ "NodeExample-34ab85b7": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeExample-34ab85b7",
+  "version": 3
+ },
+ "NodeExample-af3b8288": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeExample-af3b8288",
+  "version": 3
+ },
+ "NodeMobjectExample-3d84bde0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeMobjectExample-3d84bde0",
+  "version": 3
+ },
+ "NodeSateExample-a5c89b68": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeSateExample-a5c89b68",
+  "version": 3
+ },
+ "NodeSoltExample-e83146af": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeSoltExample-e83146af",
+  "version": 3
+ },
+ "NodeStyleExample-7e65943c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeStyleExample-7e65943c",
+  "version": 3
+ },
+ "ObjectBorderDocExample-3470a12c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ObjectBorderDocExample-3470a12c",
+  "version": 3
+ },
+ "OpampExample-44f09522": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "OpampExample-44f09522",
+  "version": 3
+ },
+ "OverwrittenCarbonElement-e83bf5de": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "OverwrittenCarbonElement-e83bf5de",
+  "version": 3
+ },
+ "PairedQueryLayerDocExample-e0f9a25f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PairedQueryLayerDocExample-e0f9a25f",
+  "version": 3
+ },
+ "ParallelLineExample-746019a7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ParallelLineExample-746019a7",
+  "version": 3
+ },
+ "PassingRectangleDocExample-7e39fe37": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PassingRectangleDocExample-7e39fe37",
+  "version": 3
+ },
+ "PencilDocExample-3814c0ac": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PencilDocExample-3814c0ac",
+  "version": 3
+ },
+ "PendulumExample-7b040b19": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PendulumExample-7b040b19",
+  "version": 3
+ },
+ "PeriodicTableScene-85145408": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PeriodicTableScene-85145408",
+  "version": 3
+ },
+ "PerpLineExample-32aadf70": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PerpLineExample-32aadf70",
+  "version": 3
+ },
+ "PerpendicularLineDocExample-4d922f9e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PerpendicularLineDocExample-4d922f9e",
+  "version": 3
+ },
+ "PerpendicularSignDocExample-44ab78f0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpendicularSignDocExample-44ab78f0",
+  "version": 3
+ },
+ "PhysicsEMExample-1178fe56": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsEMExample-1178fe56",
+  "version": 3
+ },
+ "PhysicsLibraryExample-03156f67": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsLibraryExample-03156f67",
+  "version": 3
+ },
+ "PhysicsMechanicsExample-a8c2de17": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsMechanicsExample-a8c2de17",
+  "version": 3
+ },
+ "PhysicsOpticsExample-2be6977c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsOpticsExample-2be6977c",
+  "version": 3
+ },
+ "PhysicsWavesExample-5ee9671b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsWavesExample-5ee9671b",
+  "version": 3
+ },
+ "PushDownAutomatonExample-ac855058": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonExample-ac855058",
+  "version": 3
+ },
+ "PushDownAutomatonRuleExample-977c77fb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonRuleExample-977c77fb",
+  "version": 3
+ },
+ "PutCompassAwayDocExample-cd43b794": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassAwayDocExample-cd43b794",
+  "version": 3
+ },
+ "PutCompassDocExample-6876e025": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassDocExample-6876e025",
+  "version": 3
+ },
+ "PutPencilAwayDocExample-944cdfbe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutPencilAwayDocExample-944cdfbe",
+  "version": 3
+ },
+ "PutRulerAwayDocExample-00ba2457": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerAwayDocExample-00ba2457",
+  "version": 3
+ },
+ "PutRulerDocExample-433aa4f0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerDocExample-433aa4f0",
+  "version": 3
+ },
+ "PutRulerFlatDocExample-2a40cf2c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PutRulerFlatDocExample-2a40cf2c",
+  "version": 3
+ },
+ "PymunkExample-8d8b259e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PymunkExample-8d8b259e",
+  "version": 3
+ },
+ "QRCodeExample-3b740849": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QRCodeExample-3b740849",
+  "version": 3
+ },
+ "QrCodeDocExample-bcdfa53f": {
+  "env_tags": {
+   "fontconfig_nerdfont": 1
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QrCodeDocExample-bcdfa53f"
+ },
+ "QrCodeShapesExample-2f9947bd": {
+  "env_tags": {
+   "fontconfig_nerdfont": 1
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QrCodeShapesExample-2f9947bd"
+ },
+ "QueueExample-011a8dfe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QueueExample-011a8dfe",
+  "version": 3
+ },
+ "QuickstartAnimations-03399060": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QuickstartAnimations-03399060",
+  "version": 3
+ },
+ "QuickstartAnnotatedScene-8183287d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QuickstartAnnotatedScene-8183287d",
+  "version": 3
+ },
+ "QuickstartGear-6c51686c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QuickstartGear-6c51686c",
+  "version": 3
+ },
+ "QuickstartGeometry-70389759": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QuickstartGeometry-70389759",
+  "version": 3
+ },
+ "RackExample-6f8caf1a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-6f8caf1a",
+  "version": 3
+ },
+ "RadialWaveExample-67ef93b0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RadialWaveExample-67ef93b0",
+  "version": 3
+ },
+ "RayExample-9793fafd": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RayExample-9793fafd",
+  "version": 3
+ },
+ "ReLUFunctionDocExample-dc2f6fd4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReLUFunctionDocExample-dc2f6fd4",
+  "version": 3
+ },
+ "RegularDocExample-2b7cbf32": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RegularDocExample-2b7cbf32",
+  "version": 3
+ },
+ "RemoveNodeDocExample-a337efbf": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RemoveNodeDocExample-a337efbf",
+  "version": 3
+ },
+ "ResistorExample-dee3ca15": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ResistorExample-dee3ca15",
+  "version": 3
+ },
+ "ReverseTipDocExample-dbfae4f0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReverseTipDocExample-dbfae4f0",
+  "version": 3
+ },
+ "ReversedWriteDocExample-fffea6aa": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ReversedWriteDocExample-fffea6aa",
+  "version": 3
+ },
+ "RotateAboutNiddleTipDocExample-217b065a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RotateAboutNiddleTipDocExample-217b065a",
+  "version": 3
+ },
+ "RotateCompassDocExample-c56c2110": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RotateCompassDocExample-c56c2110",
+  "version": 3
+ },
+ "RubiksCubeColorsExample-1117a38c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeColorsExample-1117a38c",
+  "version": 3
+ },
+ "RubiksCubeDimExample-8bafe7cf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeDimExample-8bafe7cf",
+  "version": 3
+ },
+ "RubiksCubeDocExample-90bf98c2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeDocExample-90bf98c2",
+  "version": 3
+ },
+ "RubiksCubeFaceExample-6bd2c648": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeFaceExample-6bd2c648",
+  "version": 3
+ },
+ "RubiksCubeOffsetExample-42f54a2a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeOffsetExample-42f54a2a",
+  "version": 3
+ },
+ "RubiksCubeSetStateExample-21908adc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeSetStateExample-21908adc",
+  "version": 3
+ },
+ "RulerExample-b44637a0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RulerExample-b44637a0",
+  "version": 3
+ },
+ "ScaleNodeDocExample-75ae28e7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ScaleNodeDocExample-75ae28e7",
+  "version": 3
+ },
+ "SelectExample-ee780674": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SelectExample-ee780674",
+  "version": 3
+ },
+ "SeqActionDocExample-faf0da70": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionDocExample-faf0da70",
+  "version": 3
+ },
+ "SeqActionExample-411b5eb6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionExample-411b5eb6",
+  "version": 3
+ },
+ "SeqActorExample-d4b65d2e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActorExample-d4b65d2e",
+  "version": 3
+ },
+ "SeqObjectExample-e5485f67": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqObjectExample-e5485f67",
+  "version": 3
+ },
+ "SequenceDiagramExample-2ad277d5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramExample-2ad277d5",
+  "version": 3
+ },
+ "SequenceDiagramLibraryExample-ab28a111": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramLibraryExample-ab28a111",
+  "version": 3
+ },
+ "SetCompassDocExample-fcf76100": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetCompassDocExample-fcf76100",
+  "version": 3
+ },
+ "SetRulerDocExample-9bac4571": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetRulerDocExample-9bac4571",
+  "version": 3
+ },
+ "ShadowAroundDocExample-f4513dc4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShadowAroundDocExample-f4513dc4",
+  "version": 3
+ },
+ "ShortenedLineDocExample-03bf4327": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShortenedLineDocExample-03bf4327",
+  "version": 3
+ },
+ "SigmoidFunctionDocExample-274437ac": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SigmoidFunctionDocExample-274437ac",
+  "version": 3
+ },
+ "SolidDocExample-6c76c515": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SolidDocExample-6c76c515",
+  "version": 3
+ },
+ "SolowDiagramDocExample-54a18e80": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SolowDiagramDocExample-54a18e80",
+  "version": 3
+ },
+ "SourceExample-b525d958": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SourceExample-b525d958",
+  "version": 3
+ },
+ "SpaceExample-5330e48d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceExample-5330e48d",
+  "version": 3
+ },
+ "SpaceSceneExample-1f8e8218": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneExample-1f8e8218",
+  "version": 3
+ },
+ "SpaceSceneExample-657a1b6f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneExample-657a1b6f",
+  "version": 3
+ },
+ "SplitCompassDocExample-ba19e840": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SplitCompassDocExample-ba19e840",
+  "version": 3
+ },
+ "SplitCompassWithGainAngleDocExample-37c8f6f8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithGainAngleDocExample-37c8f6f8",
+  "version": 3
+ },
+ "SplitCompassWithNiddleTipFixedDocExample-55ad87c1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithNiddleTipFixedDocExample-55ad87c1",
+  "version": 3
+ },
+ "StandardLayoutExample-395c736b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardLayoutExample-395c736b",
+  "version": 3
+ },
+ "StandardMapDocExample-51d0f27c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardMapDocExample-51d0f27c",
+  "version": 3
+ },
+ "StandingWaveExample-fa30d986": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StandingWaveExample-fa30d986",
+  "version": 3
+ },
+ "StateExample-2e8e83c0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StateExample-2e8e83c0",
+  "version": 3
+ },
+ "StateExample-fd4b2b8c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StateExample-fd4b2b8c",
+  "version": 3
+ },
+ "SupplyDemandDiagramDocExample-d3c1764a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SupplyDemandDiagramDocExample-d3c1764a",
+  "version": 3
+ },
+ "SwapAndOverWriteExample-5845e661": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SwapAndOverWriteExample-5845e661",
+  "version": 3
+ },
+ "TableColumnOpsDocExample-c0eea313": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableColumnOpsDocExample-c0eea313",
+  "version": 3
+ },
+ "TableDocExample-42c25407": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableDocExample-42c25407",
+  "version": 3
+ },
+ "TableExample-12393384": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableExample-12393384",
+  "version": 3
+ },
+ "TableRowOpsDocExample-bb8e345e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableRowOpsDocExample-bb8e345e",
+  "version": 3
+ },
+ "TableStylingDocExample-8239ebce": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableStylingDocExample-8239ebce",
+  "version": 3
+ },
+ "TangentPointDocExample-b4ee8ca5": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TangentPointDocExample-b4ee8ca5",
+  "version": 3
+ },
+ "TenDimensionalExample-efc0d781": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TenDimensionalExample-efc0d781",
+  "version": 3
+ },
+ "TextAnimationsExample-156303b9": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TextAnimationsExample-156303b9",
+  "version": 3
+ },
+ "ThreeDVectorDocExample-c7dd47d1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorDocExample-c7dd47d1",
+  "version": 3
+ },
+ "ThreeDVectorExample-a8c4a1d4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorExample-a8c4a1d4",
+  "version": 3
+ },
+ "ThreeOffsetExample-52bd602d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ThreeOffsetExample-52bd602d",
+  "version": 3
+ },
+ "TidyTreeLayoutExample-c4038f25": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TidyTreeLayoutExample-c4038f25",
+  "version": 3
+ },
+ "TikzDrawExample-99bd97b8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzDrawExample-99bd97b8",
+  "version": 3
+ },
+ "TikzExample-96d0d37f": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzExample-96d0d37f",
+  "version": 3
+ },
+ "TikzLibraryExample-a0eebd99": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzLibraryExample-a0eebd99",
+  "version": 3
+ },
+ "TikzTemplateExample-30aecbd2": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzTemplateExample-30aecbd2",
+  "version": 3
+ },
+ "TimeLineDocExample-1ab24a2b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineDocExample-1ab24a2b",
+  "version": 3
+ },
+ "TimeLineLayoutExample-93be1a38": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineLayoutExample-93be1a38",
+  "version": 3
+ },
+ "TimelineNodeExample-52bd1407": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimelineNodeExample-52bd1407",
+  "version": 3
+ },
+ "TokenExample-add8ed2a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TokenExample-add8ed2a",
+  "version": 3
+ },
+ "TrailDocExample-0e72456c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailDocExample-0e72456c",
+  "version": 3
+ },
+ "TrailExample-14f489dc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailExample-14f489dc",
+  "version": 3
+ },
+ "TransitionExample-30382caf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TransitionExample-30382caf",
+  "version": 3
+ },
+ "TreeDiagramDocExample-6788f16b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramDocExample-6788f16b",
+  "version": 3
+ },
+ "TreeDiagramExample-0afab970": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramExample-0afab970",
+  "version": 3
+ },
+ "TreeNodeExample-fb4e5b8b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeNodeExample-fb4e5b8b",
+  "version": 3
+ },
+ "TriangleManim2DMeshExample-6b2c5bdb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TriangleManim2DMeshExample-6b2c5bdb",
+  "version": 3
+ },
+ "TwoDimensionalExample-c66e35dd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalExample-c66e35dd",
+  "version": 3
+ },
+ "TwoDimensionalStateExample-0b47227f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalStateExample-0b47227f",
+  "version": 3
+ },
+ "TypeWriterDocExample-5210b9f4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TypeWriterDocExample-5210b9f4",
+  "version": 3
+ },
+ "UnHighLightWithLinesDocExample-890a4d0e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UnHighLightWithLinesDocExample-890a4d0e",
+  "version": 3
+ },
+ "UnselectExample-16ea7c45": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UnselectExample-16ea7c45",
+  "version": 3
+ },
+ "UpdateValueExample-b66b94a2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UpdateValueExample-b66b94a2",
+  "version": 3
+ },
+ "VDampedRotarySpringExample-3e97f7b6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedRotarySpringExample-3e97f7b6",
+  "version": 3
+ },
+ "VDampedSpringExample-8988ef1d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedSpringExample-8988ef1d",
+  "version": 3
+ },
+ "VGearJointExample-5240fd71": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGearJointExample-5240fd71",
+  "version": 3
+ },
+ "VGrooveJointExample-6e29a6ea": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGrooveJointExample-6e29a6ea",
+  "version": 3
+ },
+ "VMobjectIntDocExample-d6533204": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntDocExample-d6533204",
+  "version": 3
+ },
+ "VMobjectIntExample-c2213290": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntExample-c2213290",
+  "version": 3
+ },
+ "VPinJointExample-7113f146": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPinJointExample-7113f146",
+  "version": 3
+ },
+ "VPivotJointExample-c557cc2e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPivotJointExample-c557cc2e",
+  "version": 3
+ },
+ "VRatchetJointExample-37a8e6f3": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRatchetJointExample-37a8e6f3",
+  "version": 3
+ },
+ "VRotaryLimitJointExample-13d720e1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRotaryLimitJointExample-13d720e1",
+  "version": 3
+ },
+ "VSimpleMotorExample-78219373": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSimpleMotorExample-78219373",
+  "version": 3
+ },
+ "VSlideJointExample-9f7fbd4a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSlideJointExample-9f7fbd4a",
+  "version": 3
+ },
+ "VSpaceExample-e06a5c7c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSpaceExample-e06a5c7c",
+  "version": 3
+ },
+ "VariationalAutoencoderDocExample-8222b320": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VariationalAutoencoderDocExample-8222b320",
+  "version": 3
+ },
+ "VectorLayerDocExample-f5168e19": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VectorLayerDocExample-f5168e19",
+  "version": 3
+ },
+ "VideoMobjectDocExample-cd14ad29": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VideoMobjectDocExample-cd14ad29",
+  "version": 3
+ },
+ "VoltageSourceExample-0712ed77": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VoltageSourceExample-0712ed77",
+  "version": 3
+ },
+ "VoronoiDelaunayExample-d33f1b84": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VoronoiDelaunayExample-d33f1b84",
+  "version": 3
+ },
+ "WeightedLineDocExample-ff0c92fb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineDocExample-ff0c92fb",
+  "version": 3
+ },
+ "WeightedLineExample-4b7dfe8d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineExample-4b7dfe8d",
+  "version": 3
+ },
+ "WeightedLineGraphDocExample-051a0aca": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineGraphDocExample-051a0aca",
+  "version": 3
+ },
+ "WeightedLineNetworkXDocExample-51252dfc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineNetworkXDocExample-51252dfc",
+  "version": 3
+ },
+ "WireExample-5a9d4deb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WireExample-5a9d4deb",
+  "version": 3
+ },
+ "WrappedTreeExample-e92af6f1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WrappedTreeExample-e92af6f1",
+  "version": 3
+ },
+ "WriteRandomDocExample-837ac663": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "WriteRandomDocExample-837ac663",
+  "version": 3
+ },
+ "YOffsetExample-2bf7c48e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "YOffsetExample-2bf7c48e",
+  "version": 3
+ }
+}
