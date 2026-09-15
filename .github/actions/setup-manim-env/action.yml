@@ -32,7 +32,8 @@ runs:
             ffmpeg \
             texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvisvgm texlive-xetex texlive-lang-chinese \
             fonts-noto-cjk \
-            fonts-hosny-amiri
+            fonts-hosny-amiri \
+            fonts-jetbrains-mono
         fi
       shell: bash
 
