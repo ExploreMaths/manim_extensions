@@ -61,7 +61,10 @@ QUALITY_MAP = {
 # v2: re-render QR-code-with-icon examples that were rendered before the
 # fontconfig-based Nerd Font installation landed (their icons showed as
 # CJK fallback glyphs because Pango couldn't find the PUA font).
-SCHEME_VERSION = 2
+# v3: re-render FileTree / Code-based examples after installing
+# fonts-jetbrains-mono in CI; without it Pango fell back to a non-monospace
+# font and the ASCII tree lost its alignment.
+SCHEME_VERSION = 3
 
 
 def iter_source_files():
