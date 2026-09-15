@@ -79,6 +79,12 @@ class ChineseMathTex(MathTex):
         Name of the Chinese font to use. Defaults to ``"SimSun"``.
     tex_to_color_map : dict, optional
         Mapping from text substrings to colours. Defaults to ``{}``.
+    tex_template : :class:`~manim.utils.tex.TexTemplate`, optional
+        Custom TeX template to build on. When provided, its preamble,
+        documentclass, and post-document commands are preserved; only the
+        ``xelatex`` toolchain and the ``xeCJK`` / ``\setCJKmainfont`` lines
+        are added (skipped if already present). The caller's instance is
+        not modified. When omitted, a fresh ``xelatex`` template is built.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.text.tex_mobject.MathTex`.
 
@@ -108,10 +114,29 @@ class ChineseMathTex(MathTex):
         **kwargs,
     ) -> None:
         """Initialize the ChineseMathTex instance."""
-        tex_template = TexTemplate(tex_compiler="xelatex", output_format=".xdv")
-        tex_template.add_to_preamble(r"\usepackage{amsmath}")
-        tex_template.add_to_preamble(r"\usepackage{xeCJK}")
-        tex_template.add_to_preamble(rf"\setCJKmainfont{{{font}}}")
+        user_template = kwargs.pop("tex_template", None)
+        if user_template is not None:
+            # Reuse the user's template (preamble, documentclass, etc.) but
+            # force the xelatex toolchain required by xeCJK. Copy first so the
+            # caller's instance is not mutated.
+            tex_template = user_template.copy()
+            tex_template.tex_compiler = "xelatex"
+            tex_template.output_format = ".xdv"
+        else:
+            tex_template = TexTemplate(
+                tex_compiler="xelatex", output_format=".xdv"
+            )
+
+        # Only add the CJK preamble lines that aren't already present, so a
+        # user-supplied template that already loads xeCJK (or amsmath) isn't
+        # duplicated.
+        for line, marker in (
+            (r"\usepackage{amsmath}", "usepackage{amsmath}"),
+            (r"\usepackage{xeCJK}", "usepackage{xeCJK}"),
+            (rf"\setCJKmainfont{{{font}}}", "setCJKmainfont"),
+        ):
+            if marker not in tex_template.preamble:
+                tex_template.add_to_preamble(line)
 
         combined_chinesetext = []
         for text in texts:
