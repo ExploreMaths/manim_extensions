@@ -16,6 +16,12 @@ build:
     - pkg-config
   jobs:
     pre_build:
+      # Install the vendored Nerd Font before Sphinx starts. Pango (>= 1.52,
+      # ubuntu-24.04) snapshots available fonts at initialization and ignores
+      # fonts registered later, so QR-code icons must be on disk beforehand
+      # (see manim_extensions/utils/nerdfont/icons.py). Examples missing from
+      # the CI media cache are rendered in-process by the Sphinx build.
+      - python -c "import manim_extensions.utils.nerdfont as nf; nf._install_font_linux()"
       # Fetch the CI-pre-rendered example media so the Sphinx build reuses
       # it instead of rendering every example (see
       # .github/workflows/docs-media.yml). Examples missing from the cache

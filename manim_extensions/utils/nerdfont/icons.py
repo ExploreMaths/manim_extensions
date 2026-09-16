@@ -9,9 +9,19 @@
 #          manim_nerdfont_icons.resources, and to use
 #          importlib.resources.files() (pkg_resources.path() was removed
 #          in Python 3.13).
-# patched: permanently install the font via fontconfig on Linux so
-#          Pango can find it by name; manimpango's register_font does
-#          not make PUA glyphs available to Pango on Linux.
+# patched: install the font into the fontconfig user font directory on
+#          Linux. On modern Linux stacks (pango >= 1.52 / fontconfig
+#          >= 2.15, e.g. ubuntu-24.04) Pango resolves families through a
+#          per-process fontmap snapshot taken at initialization: fonts
+#          registered afterwards — both manimpango's register_font
+#          (FcConfigAppFontAddFile) and fonts copied into fontconfig
+#          directories with a post-hoc fc-cache — are invisible to it.
+#          The icon Text then falls back per character, and with a CJK
+#          font installed (RTD/CI apt packages) the Private Use Area
+#          codepoints render as CJK glyphs. The font must be in place
+#          BEFORE Pango initializes, so the installation happens at
+#          module import time (importing manim does not initialize Pango)
+#          and the docs build/CI pre-install it before rendering.
 """Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
 
 from manim import Text
@@ -25,28 +35,42 @@ import subprocess
 
 from .icons_dict import SYMBOLS_UNICODE
 
+_FONT_FILENAME = "SymbolsNerdFontMono-Regular.ttf"
 _font_installed = False
 
 
-def _ensure_font_installed() -> str:
-    """Return the font path, installing it system-wide on Linux if needed."""
+def _font_path() -> str:
+    return str(pkg_resources.files("manim_extensions.utils.nerdfont") / _FONT_FILENAME)
+
+
+def _install_font_linux() -> None:
+    """Install the TTF into the fontconfig user font dir (Linux only).
+
+    Idempotent and best-effort: a missing ``fc-cache`` binary or an
+    unwritable home directory is silently ignored (``register_font``
+    remains sufficient on Windows/macOS and older pango).
+    """
     global _font_installed
-    font_path = pkg_resources.files("manim_extensions.utils.nerdfont") / "SymbolsNerdFontMono-Regular.ttf"
-    font_path = str(font_path)
-
-    if _font_installed:
-        return font_path
-
-    if platform.system() == "Linux":
+    if _font_installed or platform.system() != "Linux":
+        return
+    _font_installed = True
+    try:
         font_dir = os.path.join(os.path.expanduser("~"), ".local", "share", "fonts")
         os.makedirs(font_dir, exist_ok=True)
-        dest = os.path.join(font_dir, "SymbolsNerdFontMono-Regular.ttf")
+        dest = os.path.join(font_dir, _FONT_FILENAME)
         if not os.path.exists(dest):
-            shutil.copy2(font_path, dest)
-            subprocess.run(["fc-cache", "-f", font_dir], capture_output=True)
-        _font_installed = True
+            shutil.copy2(_font_path(), dest)
+        # Rebuild the cache even if the file already exists: it may have
+        # landed after the cache for that directory was written.
+        subprocess.run(["fc-cache", "-f", font_dir], capture_output=True)
+    except OSError:
+        pass
 
-    return font_path
+
+# Install as early as possible: at import time Pango is usually not
+# initialized yet in this process (importing manim does not touch it), so
+# fontconfig picks the font up when Pango later builds its fontmap.
+_install_font_linux()
 
 
 def nerdfont_icon(icon: int | str, **kwargs) -> Text:
@@ -61,7 +85,8 @@ def nerdfont_icon(icon: int | str, **kwargs) -> Text:
 
     :return: A Text object representing the specified icon.
     """
-    font_path = _ensure_font_installed()
+    font_path = _font_path()
+    _install_font_linux()
     with m.register_font(font_path):
         kwargs["font"] = "Symbols Nerd Font Mono"
         if isinstance(icon, str):
