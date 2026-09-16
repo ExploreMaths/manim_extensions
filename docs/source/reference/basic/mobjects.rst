@@ -12,9 +12,6 @@ that extend Manim's built-in primitives with additional convenience features
 such as Chinese formula support, labelled dots, lines paired with formulas,
 and geometric construction helpers.
 
-.. inheritance-diagram:: manim_extensions.mobjects
-   :parts: 1
-
 ChineseMathTex
 --------------
 
