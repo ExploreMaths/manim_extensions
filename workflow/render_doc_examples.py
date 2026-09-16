@@ -26,8 +26,10 @@ import argparse
 import hashlib
 import json
 import multiprocessing
+import platform
 import re
 import shutil
+import subprocess
 import sys
 import textwrap
 import time
@@ -69,9 +71,13 @@ QUALITY_MAP = {
 #
 # History:
 #   fontconfig_nerdfont = 1  # fontconfig-based Nerd Font installation
-#   jetbrains_mono = 1      # fonts-jetbrains-mono apt package
+#   fontconfig_nerdfont = 2  # install the font before Pango initializes:
+#                            # on pango >= 1.52 / fontconfig >= 2.15
+#                            # (ubuntu-24.04, RTD) fonts registered after
+#                            # Pango's fontmap snapshot are invisible to it
+#                            # and the icon falls back to CJK glyphs
 ENV_TAGS = {
-    "fontconfig_nerdfont": 1,
+    "fontconfig_nerdfont": 2,
     "jetbrains_mono": 1,
 }
 
@@ -259,6 +265,29 @@ def render_block(task):
         return (output_file, "", False, traceback.format_exc(limit=3), q)
 
 
+def _ensure_nerdfont_installed() -> None:
+    """Copy the vendored Nerd Font into the fontconfig user font dir (Linux).
+
+    Stdlib-only and best-effort (no manim import, so ``--check`` stays
+    lightweight); mirrors ``_install_font_linux`` in
+    ``manim_extensions/utils/nerdfont/icons.py``.
+    """
+    if platform.system() != "Linux":
+        return
+    try:
+        font_dir = Path.home() / ".local" / "share" / "fonts"
+        font_dir.mkdir(parents=True, exist_ok=True)
+        dest = font_dir / "SymbolsNerdFontMono-Regular.ttf"
+        if not dest.exists():
+            shutil.copy2(
+                SRC / "utils" / "nerdfont" / "SymbolsNerdFontMono-Regular.ttf",
+                dest,
+            )
+        subprocess.run(["fc-cache", "-f", str(font_dir)], capture_output=True)
+    except OSError:
+        pass
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True, help="cache output directory")
@@ -333,6 +362,14 @@ def main() -> int:
     print(f"{skipped} already cached, {len(todo)} to render")
     if not todo or args.check:
         return 0 if not todo else 1
+
+    # Install the vendored Nerd Font into the fontconfig user font dir
+    # BEFORE any worker initializes Pango. On pango >= 1.52 / fontconfig
+    # >= 2.15 (ubuntu-24.04 runners) fonts registered after Pango's
+    # fontmap snapshot are invisible to it, and each worker renders many
+    # examples, so Pango is long initialized by the time a QR example
+    # with an icon runs (see manim_extensions/utils/nerdfont/icons.py).
+    _ensure_nerdfont_installed()
 
     work_root = out / "_work"
     shutil.rmtree(work_root, ignore_errors=True)
