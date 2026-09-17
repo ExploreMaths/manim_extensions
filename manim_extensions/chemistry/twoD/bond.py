@@ -13,6 +13,7 @@ from .atom import MAtomObject
 
 from typing import Any
 class BaseMBondObject(VGroup):
+    """base m bond object."""
     def __str__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
@@ -29,6 +30,7 @@ class BaseMBondObject(VGroup):
         index: int = 0,
         **kwargs,
     ):
+        """  init  ."""
         VGroup.__init__(self, **kwargs)
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -69,21 +71,25 @@ class BaseMBondObject(VGroup):
         return False
 
     def atoms_in_bond(self):
+        """atoms in bond."""
         return self.from_atom, self.to_atom
 
     def atom_is_in_bond(self, atom: Any):
+        """atom is in bond."""
         if self.from_atom == atom or self.to_atom == atom:
             return True
         else:
             return False
 
     def get_bond_index_by_atom(self, atom: Any):
+        """get bond index by atom."""
         if self.atom_is_in_bond(atom):
             return self.index
 
         return
 
     def add_bond_index_by_atom_to_list(self, atom: Any, list: list):
+        """add bond index by atom to list."""
         index = self.get_bond_index_by_atom(atom)
 
         if index is not None:
@@ -92,6 +98,7 @@ class BaseMBondObject(VGroup):
         return list
 
     def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
+        """get perpendicular unit vector."""
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))
@@ -149,22 +156,29 @@ class BaseMBondObject(VGroup):
 
 
 class SimpleBond(BaseMBondObject):
+    """simple bond."""
     def no_subtype(self):
+        """no subtype."""
         return Line(self.from_atom.coords, self.to_atom.coords)
 
     def shorter_subtype(self):
+        """shorter subtype."""
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
     def shorter_from_subtype(self, direction: str):
+        """shorter from subtype."""
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
 
     def shorter_to_subtype(self, direction: str):
+        """shorter to subtype."""
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
     def longer_subtype(self):
+        """longer subtype."""
         return Line(self.from_atom.coords, self.from_atom.coords)
 
     def create_line(self):
+        """create line."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -203,12 +217,14 @@ class DoubleBond(BaseMBondObject):
     def __init__(
         self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.15, double_bond_scale: float = 0.7, **kwargs
     ):
+        """  init  ."""
         self.side = side
         self.distance = distance
         self.double_bond_scale = double_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)
 
     def no_subtype(self):
+        """no subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -223,6 +239,7 @@ class DoubleBond(BaseMBondObject):
         return VGroup(long_line, short_line)
 
     def shorter_subtype(self):
+        """shorter subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -239,6 +256,7 @@ class DoubleBond(BaseMBondObject):
         return VGroup(base_line, double_line)
 
     def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
+        """shorter from subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -265,6 +283,7 @@ class DoubleBond(BaseMBondObject):
         return VGroup(base_line, double_line)
 
     def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
+        """shorter to subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -327,6 +346,7 @@ class DoubleBond(BaseMBondObject):
         return from_surroundings, to_surroundings
 
     def create_line(self):
+        """create line."""
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -373,11 +393,13 @@ class TripleBond(BaseMBondObject):
     def __init__(
         self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.3, triple_bond_scale: float = 0.8, **kwargs
     ):
+        """  init  ."""
         self.distance = distance
         self.triple_bond_scale = triple_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)
 
     def no_subtype(self):
+        """no subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -391,6 +413,7 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def shorter_subtype(self):
+        """shorter subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -404,6 +427,7 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def shorter_from_subtype(self, direction: str):
+        """shorter from subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -420,6 +444,7 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def shorter_to_subtype(self, direction: str):
+        """shorter to subtype."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -436,6 +461,7 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def longer_subtype(self, bond: Mobject, base_line: Mobject):
+        """longer subtype."""
         bond.add(base_line)
         double_line = base_line.copy().scale(self.triple_bond_scale)
         triple_line = base_line.copy().scale(self.triple_bond_scale)
@@ -449,6 +475,7 @@ class TripleBond(BaseMBondObject):
         bond.add(double_line, triple_line)
 
     def create_line(self):
+        """create line."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -475,7 +502,9 @@ class TripleBond(BaseMBondObject):
 
 
 class PlainCramBond(BaseMBondObject):
+    """plain cram bond."""
     def no_subtype(self):
+        """no subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
@@ -490,6 +519,7 @@ class PlainCramBond(BaseMBondObject):
         return cram_bond
 
     def shorter_subtype(self):
+        """shorter subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         pivot_line = (
@@ -504,6 +534,7 @@ class PlainCramBond(BaseMBondObject):
         return cram_bond
 
     def shorter_from_subtype(self):
+        """shorter from subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         pivot_line = (
@@ -518,6 +549,7 @@ class PlainCramBond(BaseMBondObject):
         return cram_bond
 
     def shorter_to_subtype(self):
+        """shorter to subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         pivot_line = (
@@ -531,6 +563,7 @@ class PlainCramBond(BaseMBondObject):
         return cram_bond
 
     def longer_subtype(self):
+        """longer subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         pivot_line = (
@@ -545,6 +578,7 @@ class PlainCramBond(BaseMBondObject):
         return cram_bond
 
     def create_line(self):
+        """create line."""
         if not self.subtype:
             return self.no_subtype()
 
@@ -558,6 +592,7 @@ class PlainCramBond(BaseMBondObject):
             return subtypes.get(self.subtype) or VMobject()
 
     def get_vector(self):
+        """get vector."""
         try:
             atom_a, atom_b = self.atoms_in_bond()
 
@@ -568,7 +603,9 @@ class PlainCramBond(BaseMBondObject):
 
 
 class DashedCramBond(BaseMBondObject):
+    """dashed cram bond."""
     def add_dashed_cram_bond(self, base_line: Mobject, direction: str):
+        """add dashed cram bond."""
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)
         cram_bond = VGroup()
         direction_modulus = (
@@ -585,12 +622,14 @@ class DashedCramBond(BaseMBondObject):
         return cram_bond
 
     def no_subtype(self):
+        """no subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
         return cram_bond
 
     def shorter_subtype(self):
+        """shorter subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -598,6 +637,7 @@ class DashedCramBond(BaseMBondObject):
         return cram_bond
 
     def shorter_from_subtype(self):
+        """shorter from subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -605,6 +645,7 @@ class DashedCramBond(BaseMBondObject):
         return cram_bond
 
     def shorter_to_subtype(self):
+        """shorter to subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -612,6 +653,7 @@ class DashedCramBond(BaseMBondObject):
         return cram_bond
 
     def longer_subtype(self):
+        """longer subtype."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -619,6 +661,7 @@ class DashedCramBond(BaseMBondObject):
         return cram_bond
 
     def create_line(self):
+        """create line."""
         if not self.subtype:
             return self.no_subtype()
 

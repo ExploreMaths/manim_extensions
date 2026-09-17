@@ -41,6 +41,7 @@ class MCMolecule:
         name: Optional[str] = None,
         elements: Optional[MCElement] = None,
     ):
+        """  init  ."""
         self.atoms = atoms or []
         self.bonds = bonds or []
         self.elements = elements or {}
@@ -260,6 +261,7 @@ class MCMolecule:
         return mc_molecules
 
     def remove_carbon_hydrogens(self):
+        """remove carbon hydrogens."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1 or atom.element.symbol != "H":
@@ -276,6 +278,7 @@ class MCMolecule:
         return self.remove_hydrogens(atoms_to_be_removed)
 
     def remove_all_hydrogens(self):
+        """remove all hydrogens."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1:
@@ -286,6 +289,7 @@ class MCMolecule:
         return self.remove_hydrogens(atoms_to_be_removed)
 
     def remove_hydrogens(self, atoms_to_be_removed: list):
+        """remove hydrogens."""
         if not atoms_to_be_removed:
             return
         for atom in atoms_to_be_removed:
@@ -312,6 +316,7 @@ class MCMolecule:
         self.reindex_molecule_atoms()
 
     def reindex_molecule_atoms(self):
+        """reindex molecule atoms."""
         self.atoms_by_index = {}
         atoms_old_index_mapping = {}
         for index, atom in enumerate(self.atoms, start=1):

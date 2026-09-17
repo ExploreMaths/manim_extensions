@@ -12,6 +12,7 @@ from typing import Dict, Any, Optional
 
 
 class MAtomObject(VGroup):
+    """m atom object."""
     def __str__(self):
         return f"MAtomObject of element {self.element}"
 
@@ -32,6 +33,7 @@ class MAtomObject(VGroup):
         planar: bool = True,
         **kwargs,
     ):
+        """  init  ."""
         VGroup.__init__(self, **kwargs)
         self.coords = coords
         self.element = element
@@ -89,6 +91,7 @@ class MAtomObject(VGroup):
             return MarkupText(self.element).scale(0.8)
 
     def bonds_fulfilled(self):
+        """bonds fulfilled."""
         minimum_bonds = {"O": 2, "S": 2, "N": 3, "P": 3}
         minimum_bond = minimum_bonds.get(self.element)
         if self.bond_to and minimum_bond:
@@ -97,6 +100,7 @@ class MAtomObject(VGroup):
         return True
 
     def make_copy(self):
+        """make copy."""
         copy = MAtomObject(
             coords=self.coords,
             element=self.element,
@@ -112,6 +116,7 @@ class MAtomObject(VGroup):
         return copy
 
     def rename_atom(self, new_element: Any, bonds_direction: Any):
+        """rename atom."""
         self.element = new_element
         renamed_atom = self.make_copy()
 
@@ -128,6 +133,7 @@ class MAtomObject(VGroup):
         return renamed_atom
 
     def copy_with_explicit_hydrogens(self):
+        """copy with explicit hydrogens."""
         self.explicit_hydrogens = True
 
         return self.make_copy()

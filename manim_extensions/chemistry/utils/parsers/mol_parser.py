@@ -53,6 +53,7 @@ class MolParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> list:
+        """read file."""
         with open(filename) as file:
             mol_file = file.readlines()
 
@@ -60,6 +61,7 @@ class MolParser(BaseParser):
 
     @staticmethod
     def data_parser(data: list) -> Tuple[Dict, Dict]:
+        """data parser."""
         # Get general data
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841

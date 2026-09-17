@@ -55,6 +55,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> list:
+        """read file."""
         with open(filename) as file:
             xml_file = file.read()
 
@@ -82,6 +83,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def parse_molecule_data(molecule_data: Dict) -> Tuple[Dict, Dict]:
+        """parse molecule data."""
         atoms_data = XMLParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = XMLParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -89,6 +91,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: Dict) -> Dict:
+        """extract atoms data."""
         atoms_data_dict = molecule_data.get("PC-Compound_atoms").get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
             raise Exception(f"Atoms data has no dictionary structure {atoms_data_dict}")
@@ -141,6 +144,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: Dict) -> Dict:
+        """extract bonds data."""
         bonds_data_dict = molecule_data.get("PC-Compound_bonds").get("PC-Bonds")
 
         from_atoms_raw_data = bonds_data_dict.get("PC-Bonds_aid1").get(

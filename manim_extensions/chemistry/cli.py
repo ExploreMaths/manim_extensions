@@ -16,6 +16,7 @@ from .utils import PubchemAPIManager
 from typing import Any
 @click.group
 def cli(): ...
+    """cli."""
 
 
 @click.command()

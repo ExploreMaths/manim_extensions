@@ -33,6 +33,7 @@ class Apple(VMobject):
     """
 
     def __init__(self, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         # 贝塞尔曲线点集
         points = np.array(

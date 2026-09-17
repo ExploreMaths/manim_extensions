@@ -101,6 +101,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def __init__(
         self, gravity: Tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
@@ -110,6 +111,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     # ================================== init ==================================
     def init_updater(self):
+        """init updater."""
         self.add_updater(self.__step_updater)
 
     # ================================== updater ==================================
@@ -569,6 +571,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def local_to_world(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
+        """local to world."""
         world_pos = mob.body.local_to_world(point[:2])
         return (*world_pos, 0)
 
@@ -576,6 +579,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def world_to_local(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
+        """world to local."""
         local_pos = mob.body.world_to_local(point[:2])
         return (*local_pos, 0)
 
@@ -627,6 +631,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_local_point(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
+        """velocity at local point."""
         velocity = mob.body.velocity_at_local_point(point[:2])
         return (*velocity, 0)
 
@@ -634,6 +639,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_world_point(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
+        """velocity at world point."""
         velocity = mob.body.velocity_at_world_point(point[:2])
         return (*velocity, 0)
 

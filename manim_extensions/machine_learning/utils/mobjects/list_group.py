@@ -19,6 +19,7 @@ class ListGroup(Mobject):
     """
 
     def __init__(self, *layers):
+        """  init  ."""
         super().__init__()
         self.items = [*layers]
 

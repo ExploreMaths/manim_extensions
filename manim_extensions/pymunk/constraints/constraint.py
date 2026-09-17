@@ -30,6 +30,7 @@ class VConstraint(VGroup):
     """
 
     def __init__(self, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.__check_data()
 

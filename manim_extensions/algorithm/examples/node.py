@@ -32,8 +32,10 @@ from ..node import Node
 
 
 class NodeScene(Scene):
+    """node scene."""
 
     def construct(self):
+        """construct."""
         node_list = [
             Node(1, text_scale=2),
             Node(1.2, width=3),
@@ -62,8 +64,10 @@ class NodeScene(Scene):
 
 
 class NodeMoveScene(Scene):
+    """node move scene."""
 
     def construct(self):
+        """construct."""
         node1 = Node(1)
         node2 = Node(2)
         node3 = Node(3)
@@ -80,8 +84,10 @@ class NodeMoveScene(Scene):
 
 
 class NodeCopyScene(Scene):
+    """node copy scene."""
 
     def construct(self):
+        """construct."""
         node1 = Node(1)
         node2 = Node(2)
         node3 = Node(3)
@@ -98,8 +104,10 @@ class NodeCopyScene(Scene):
 
 
 class NodeSwapScene(Scene):
+    """node swap scene."""
 
     def construct(self):
+        """construct."""
         node1 = Node(1)
         node2 = Node(2)
         node3 = Node(3)
@@ -116,8 +124,10 @@ class NodeSwapScene(Scene):
 
 
 class NodeMoveAndOverwriteWithColor(Scene):
+    """node move and overwrite with color."""
 
     def construct(self):
+        """construct."""
         node1 = Node(1)
         node2 = Node(2).next_to(node1, RIGHT, buff=1)
         self.play(FadeIn(node1, node2))
@@ -138,8 +148,10 @@ class NodeMoveAndOverwriteWithColor(Scene):
 
 
 class NodeUpdateValue1(Scene):
+    """node update value1."""
 
     def construct(self):
+        """construct."""
         node = Node(1)
         self.play(FadeIn(node))
         self.play(Node.UpdateValue(node, 2))
@@ -147,19 +159,24 @@ class NodeUpdateValue1(Scene):
 
 
 class TestCombine(Scene):
+    """test combine."""
 
     class CombinedText(VMobject):
+        """combined text."""
 
         def __init__(self):
+            """  init  ."""
             super().__init__()
             self.t1 = Text("1")
             self.t2 = Text("2")
             self.add(self.t1, self.t2)
 
         def set_t1_color(self, color: ManimColor):
+            """set t1 color."""
             self.t1.color = color
 
     def construct(self):
+        """construct."""
         obj = self.CombinedText()
         self.play(
             Succession(*[FadeIn(obj), obj.animate.set_t1_color(RED), FadeOut(obj)])

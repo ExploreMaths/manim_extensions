@@ -84,6 +84,7 @@ class VSimpleMotor(VConstraint):
         },
         **kwargs,
     ):
+        """  init  ."""
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -103,6 +104,7 @@ class VSimpleMotor(VConstraint):
         pass
 
     def install(self, space: Space):
+        """install."""
 
         SimpleMotor = require("physics", "pymunk").constraints.SimpleMotor
 

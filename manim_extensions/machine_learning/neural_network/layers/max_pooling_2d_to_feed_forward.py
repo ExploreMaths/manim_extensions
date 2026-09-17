@@ -39,6 +39,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         passing_flash_color: ManimColor = ORANGE,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(input_layer, output_layer, **kwargs)
 
     def construct_layer(
@@ -47,4 +48,5 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)

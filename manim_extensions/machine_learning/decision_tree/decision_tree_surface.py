@@ -46,9 +46,11 @@ class AABB:
     """
 
     def __init__(self, n_features: Any):
+        """  init  ."""
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
     def split(self, f: Any, v: Any):
+        """split."""
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -120,6 +122,7 @@ def compute_decision_areas(
     return rectangles
 
 def plot_areas(rectangles: Any):
+    """plot areas."""
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
         color = ["b", "r"][int(rect[4])]
@@ -134,6 +137,7 @@ def plot_areas(rectangles: Any):
         plt.gca().add_artist(rp)
 
 def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]):
+    """merge overlapping polygons."""
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -216,6 +220,7 @@ class IrisDatasetPlot(VGroup):
     """
 
     def __init__(self, iris: Any):
+        """  init  ."""
         points = iris.data[:, 0:2]
         labels = iris.feature_names
         targets = iris.target
@@ -242,6 +247,7 @@ class IrisDatasetPlot(VGroup):
 
     @override_animation(Create)
     def create_animation(self):
+        """create animation."""
         animation_group = AnimationGroup(
             # Perform the animations
             Create(self.point_group, run_time=2),
@@ -343,6 +349,7 @@ class DecisionTreeSurface(VGroup):
     """
 
     def __init__(self, tree_clf: Any, data: Any, axes: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
+        """  init  ."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
         self.data = data
@@ -351,6 +358,7 @@ class DecisionTreeSurface(VGroup):
         self.surface_rectangles = self.generate_surface_rectangles()
 
     def generate_surface_rectangles(self):
+        """generate surface rectangles."""
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
         right = np.amax(self.data[:, 0]) - 0.2
@@ -362,6 +370,7 @@ class DecisionTreeSurface(VGroup):
         )
         # turn the rectangle objects into manim rectangles
         def convert_rectangle_to_polygon(rect: Any):
+            """convert rectangle to polygon."""
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
             bottom_right = [rect[1], rect[3]]
@@ -398,6 +407,7 @@ class DecisionTreeSurface(VGroup):
 
     @override_animation(Create)
     def create_override(self):
+        """create override."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:
@@ -408,6 +418,7 @@ class DecisionTreeSurface(VGroup):
 
     @override_animation(Uncreate)
     def uncreate_override(self):
+        """uncreate override."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:

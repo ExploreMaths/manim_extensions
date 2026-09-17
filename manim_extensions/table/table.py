@@ -169,6 +169,7 @@ class Table(VGroup):
         padding: float = 0.3,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and

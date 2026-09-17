@@ -86,6 +86,7 @@ class Filters(VGroup):
         show_grid_lines: bool = False,
         output_feature_map_to_connect: Optional[Any]=None,  # None means all at once
     ):
+        """  init  ."""
         super().__init__()
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -106,6 +107,7 @@ class Filters(VGroup):
         # self.add(self.connective_lines)
 
     def make_input_feature_map_rectangles(self):
+        """make input feature map rectangles."""
         rectangles = []
         rectangle_width = (
             self.output_layer.filter_size[0] * self.output_layer.cell_width
@@ -151,6 +153,7 @@ class Filters(VGroup):
         return feature_map_rectangles
 
     def make_output_feature_map_rectangles(self):
+        """make output feature map rectangles."""
         rectangles = []
 
         rectangle_width = self.output_layer.cell_width
@@ -295,6 +298,7 @@ class Filters(VGroup):
         """
 
         def add_content(object: Mobject):
+            """add content."""
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
             object.add(self.output_rectangles)
@@ -366,6 +370,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         highlight_color: ManimColor = ORANGE,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(
             input_layer,
             output_layer,
@@ -393,6 +398,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def animate_filters_all_at_once(self, filters: Mobject):
@@ -566,6 +572,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             )
 
     def scale(self, scale_factor: float, **kwargs):
+        """scale."""
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 

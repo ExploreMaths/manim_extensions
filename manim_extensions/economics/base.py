@@ -70,6 +70,7 @@ class EconDiagram(VGroup):
     def __init__(self, x_label: str = "X", y_label: str = "Y",
                  x_range: Optional[Any]=None, y_range: Optional[Any]=None,
                  x_length: int = 6, y_length: int = 4, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]

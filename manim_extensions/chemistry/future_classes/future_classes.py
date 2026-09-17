@@ -56,6 +56,7 @@ class Hole(VMobject):
     """
 
     def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
 
@@ -74,6 +75,7 @@ class Electron(VMobject):
     """
 
     def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
 
@@ -118,6 +120,7 @@ class Element(VGroup):
         subelectron_holes: bool = True,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.element_label = element
         self.label_color = label_color
@@ -140,6 +143,7 @@ class Element(VGroup):
             self.add(self.subelectron_holes_group.shift([0, 0, 0]))
 
     def central_atom(self):
+        """central atom."""
         label = Text(self.element_label)
         base_radius = 0.4 + max(label.width, label.height) / 2
 
@@ -154,18 +158,21 @@ class Element(VGroup):
         return base_dot.scale(scale_ratio)
 
     def get_electrons(self):
+        """get electrons."""
         if self.add_electrons and self.n_electrons > 0:
             return VGroup(*[Electron() for i in range(self.n_electrons)])
 
         return None
 
     def get_holes(self):
+        """get holes."""
         if self.add_holes and self.n_holes > 0:
             return VGroup(*[Hole() for i in range(self.n_holes)])
 
         return None
 
     def get_particles(self):
+        """get particles."""
         particles = VGroup()
         if self.electrons:
             particles.add(*self.electrons.submobjects)
@@ -176,6 +183,7 @@ class Element(VGroup):
         return particles
 
     def arrange_particles(self):
+        """arrange particles."""
         if len(self.particles) == 0:
             return self.particles
         self.add(self.particles.shift([0, 0, 0]))
@@ -186,12 +194,14 @@ class Element(VGroup):
             particle.rotate(angles[index], about_point=self.atom.get_center())
 
     def make_subelectron_holes(self):
+        """make subelectron holes."""
         if self.subelectron_holes:
             return VGroup(
                 *[Hole().move_to(electron.get_center()) for electron in self.electrons]
             )
 
     def get_subelectron_holes(self):
+        """get subelectron holes."""
         return self.subelectron_holes_group
 
 
@@ -217,6 +227,7 @@ class ElementFrame(VGroup):
         frame_colors: list = [BLUE, BLUE_B],
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         # Not the most elegant way to do this but good enought for the lightning
 
@@ -244,6 +255,7 @@ class NPNTransistor(VGroup):
     """
 
     def __init__(self, regions_opacity: float = 0.8, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
         self.left_n_region = Rectangle(
@@ -279,6 +291,7 @@ class NPNTransistor(VGroup):
         vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
         horizontal_boundary: list = [LEFT, RIGHT],
     ):
+        """make particles."""
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
             particles, n_copies, vertical_boundary, horizontal_boundary
@@ -306,6 +319,7 @@ class BatterySchema(VGroup):
     def __init__(
         self, mob: Mobject = Square(), schema_type: str = "horizontal", inverted_terminals: bool = False, **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
 
         self.mob = mob
@@ -318,6 +332,7 @@ class BatterySchema(VGroup):
         self.add(self.schema)
 
     def get_start_finish_positions(self):
+        """get start finish positions."""
         options_dict = {
             "horizontal": [self.mob.get_left(), self.mob.get_right()],
             "corner": [self.mob.get_left(), self.mob.get_top()],
@@ -326,6 +341,7 @@ class BatterySchema(VGroup):
         return options_dict[self.schema_type]
 
     def horizontal_schema(self):
+        """horizontal schema."""
         if self.schema_type != "horizontal":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -374,6 +390,7 @@ class BatterySchema(VGroup):
         return schema
 
     def corner_schema(self):
+        """corner schema."""
         if self.schema_type != "corner":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -419,6 +436,7 @@ class BatterySchema(VGroup):
         return schema
 
     def select_schema(self):
+        """select schema."""
         schema_options = {
             "horizontal": self.horizontal_schema(),
             "corner": self.corner_schema(),
@@ -428,6 +446,7 @@ class BatterySchema(VGroup):
         return selected_schema
 
     def invert_terminals(self):
+        """invert terminals."""
         terminals = VGroup(self.plus_terminal, self.minus_terminal)
 
         terminals.rotate(PI, UP, terminals.get_center())
@@ -449,6 +468,7 @@ class MOSFETTransistor(VGroup):
     """
 
     def __init__(self, show_holes: bool = False, show_battery: bool = False, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
 
         self.main_board = self.make_main_board()
@@ -474,9 +494,11 @@ class MOSFETTransistor(VGroup):
         )
 
     def make_main_board(self):
+        """make main board."""
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
     def make_n_region(self, side: Any = LEFT):
+        """make n region."""
         region = (
             Rectangle(fill_opacity=1)
             .set_color(BLUE)
@@ -488,6 +510,7 @@ class MOSFETTransistor(VGroup):
         return region
 
     def add_holes(self):
+        """add holes."""
         if not self.show_holes:
             return VGroup()
         holes = VGroup(*[Hole().scale(0.5) for i in range(4)])
@@ -502,6 +525,7 @@ class MOSFETTransistor(VGroup):
         return holes
 
     def add_battery_terminals(self):
+        """add battery terminals."""
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
             .next_to(self.main_board, UP, buff=1.25)
@@ -516,12 +540,14 @@ class MOSFETTransistor(VGroup):
         return VGroup(negative_terminal, positive_terminal)
 
     def add_battery_sides(self):
+        """add battery sides."""
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
 
         return VGroup(negative_elbow, positive_elbow)
 
     def add_battery(self):
+        """add battery."""
         if not self.show_battery:
             return VGroup()
 
@@ -547,12 +573,14 @@ class BatterySide(VMobject):
     """
 
     def __init__(self, terminal: Any, anchor: VGroup, **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
         self.make_points()
 
     def make_points(self):
+        """make points."""
         terminal_points = self.terminal.get_center()
         anchor_points = self.anchor.get_top() + [0, -0.2, 0]
         intermediate_point = [anchor_points[0], terminal_points[1], 0]
@@ -566,6 +594,7 @@ class BatterySide(VMobject):
 
 
 def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
+    """arrange in 1D boundary."""
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)
 
@@ -574,6 +603,7 @@ def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
 
 
 def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
+    """duplicate and rearrange."""
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
@@ -583,6 +613,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
 
 
 def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5):
+    """add over rectangular surface."""
     group = VGroup()
     for i in range(amount):
         group.add(
@@ -599,6 +630,7 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
 
 def get_element_by_data(element: dict):
+    """get element by data."""
     return Element(
         element=element["symbol"],
         color=element["color"],
@@ -608,6 +640,7 @@ def get_element_by_data(element: dict):
 
 
 def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: int = 1, up: int = 1):
+    """randomly distributed in 2D."""
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
     vertical = np.random.uniform(up, -down, n_mobs)
@@ -621,6 +654,7 @@ def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: i
 def arrange_copies_in_rectangle(
     mobs: Mobject, n_copies: int = 2, vertical_boundary: list = [UP, DOWN], horizontal_boundary: list = [LEFT, RIGHT]
 ):
+    """arrange copies in rectangle."""
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
     for i in range(n_copies):
@@ -632,6 +666,7 @@ def arrange_copies_in_rectangle(
 
 
 def make_subpaths(group: Any):
+    """make subpaths."""
     for mob in group:
         group.add_subpath(mob.get_points())
 
@@ -639,6 +674,7 @@ def make_subpaths(group: Any):
 
 
 def zero(function: Callable):
+    """zero."""
     @wraps(function)
     def wrapper(t: Optional[np.ndarray], *args, **kwargs):
         if 0 <= t <= 1:
@@ -651,16 +687,19 @@ def zero(function: Callable):
 
 @zero
 def inverse_smooth(t: float, inflection: float = 10.0):
+    """inverse smooth."""
     new_t = 1 - t
     return smooth(new_t, inflection)
 
 
 @zero
 def inverse_linear(t: float, inflection: float = 10.0):
+    """inverse linear."""
     return 1 - t
 
 
 def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
+    """concat mobjects."""
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):

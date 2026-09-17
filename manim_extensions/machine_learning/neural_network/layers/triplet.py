@@ -54,6 +54,7 @@ class TripletLayer(NeuralNetworkLayer):
         buff: float = 0.2,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.anchor = anchor
         self.positive = positive
@@ -69,6 +70,7 @@ class TripletLayer(NeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
+        """construct layer."""
         # Make the assets
         self.assets = self.make_assets()
         self.add(self.assets)

@@ -93,6 +93,7 @@ class VDampedRotarySpring(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

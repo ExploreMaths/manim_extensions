@@ -64,6 +64,7 @@ class VSpring(Line):
         color: ManimColor = WHITE,
         **kwargs
     ):
+        """  init  ."""
         self.turns = turns
         self.amplitude = amplitude
         self.end_length = end_length

@@ -48,6 +48,7 @@ class Row(VGroup):
         index: int = 0,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         
         self.values = values

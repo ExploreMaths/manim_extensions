@@ -41,9 +41,11 @@ class ReLUFunction(ActivationFunction):
     """
 
     def __init__(self, function_name: str = "ReLU", x_range: list = [-1, 1], y_range: list = [-1, 1]):
+        """  init  ."""
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: Any):
+        """apply function."""
         if x_val < 0:
             return 0
         else:

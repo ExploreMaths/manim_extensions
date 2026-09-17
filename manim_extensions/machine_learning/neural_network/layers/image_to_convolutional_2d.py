@@ -41,6 +41,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def __init__(
         self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs
     ):
+        """  init  ."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -51,6 +52,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
@@ -111,6 +113,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Scale the max of width or height to the
         # width of the feature_map
         def scale_image_func(image_mobject: Mobject):
+            """scale image func."""
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height
             image_mobject.scale(scale_factor)
@@ -131,6 +134,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return animation
 
     def scale(self, scale_factor: float, **kwargs):
+        """scale."""
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)

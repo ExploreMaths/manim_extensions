@@ -119,12 +119,14 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 
 def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
+    """visit."""
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 
 def depart(self: SkipManimNode, node: nodes.Element) -> None:
+    """depart."""
     self.depart_admonition(node)
 
 
@@ -172,6 +174,7 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self) -> list[nodes.Element]:
+        """run."""
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -388,6 +391,7 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
+    """setup."""
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app
