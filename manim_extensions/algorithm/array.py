@@ -5,7 +5,7 @@
 """Array data structure for algorithm visualization."""
 
 from .node import *
-from typing import List, Union
+from typing import Any, List, Union
 
 
 class Array(VMobject):
