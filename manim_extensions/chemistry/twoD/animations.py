@@ -95,6 +95,7 @@ class GMAnimationBuilder:
                    animation_builder.change_color(
                        atoms_color=BLUE, bonds_color=RED, label_color=PINK
                    )
+               )
                self.wait()
     """
 

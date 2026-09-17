@@ -71,6 +71,7 @@ class MultiPendulum(VGroup):
                        pendulum.bobs[-1].get_center,
                        stroke_color=BLUE,
                    )
+               )
                self.wait(5)
     """
 

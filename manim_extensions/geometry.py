@@ -104,6 +104,7 @@ def VMobjectInt(
                        ],
                        lag_ratio=0.4,
                    )
+               )
                self.wait()
     """
 
