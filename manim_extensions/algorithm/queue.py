@@ -80,7 +80,7 @@ class Queue(VMobject):
         capacity : int
             Maximum number of entries the queue can hold.
         init_data : list, optional
-            Initial values or :class:`Node` instances to populate the queue.
+            Initial values or :class:`~manim_extensions.algorithm.node.Node` instances to populate the queue.
         total_width : int, optional
             Total width of the queue visualisation.
         font_size : int, optional
