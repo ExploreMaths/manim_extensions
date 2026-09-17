@@ -20,7 +20,7 @@ SUPPORTED_FORMATS = {
 }
 
 
-class IncorrectFormat(Exception): ...
+class IncorrectFormat(Exception):
     """incorrect format."""
 
 
