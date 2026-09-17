@@ -33,6 +33,7 @@ from manim import (
     np,
 )
 from .utils import *
+from typing import Any, Optional
 
 
 class VoltageSource(Source):

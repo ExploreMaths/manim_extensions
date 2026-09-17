@@ -6,7 +6,7 @@ This module provides the MCAtom class for representing atoms in molecules.
 
 """
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 import numpy as np
 

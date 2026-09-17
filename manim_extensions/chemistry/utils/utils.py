@@ -7,11 +7,12 @@ This module provides utility functions for parsing chemical molecule data.
 """
 
 import numpy as np
+from typing import Any
 
 from ..element import *
 
 
-def mol_parser_string(mol_string: Mobject):
+def mol_parser_string(mol_string: list):
     # Get general data
     mol_name = mol_string[0].strip()  # This info is not always available  # noqa F841
     mol_source = mol_string[1].strip()  # This info is not always available  # noqa F841
@@ -127,7 +128,7 @@ def sdf_parser(file: Any):
     return sdf_parser_string(sdf_file)
 
 
-def get_element(element: Mobject, language: str = "ENG"):
+def get_element(element: str, language: str = "ENG"):
     if language == "ENG":
         element_dict = ELEMENT_DICT
     elif language == "ESP":

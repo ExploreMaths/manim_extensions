@@ -36,7 +36,7 @@ class VoronoiDelaunay:
     Examples
     --------
     .. manim:: VoronoiDelaunayExample
-from manim import ManimColor
+
        from manim import *
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
