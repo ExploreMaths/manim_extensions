@@ -11,7 +11,7 @@ This module provides animations for pencil manipulations.
 from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, Point, VMobject
 
 __all__ = ["MovePencilAlongPath", "MovePencilTipTo", "DrawPath", "PutPencilAway"]
-from typing import Union
+from typing import Optional, Union
 
 from ..compass.pencil import Pencil
 
@@ -44,7 +44,7 @@ class MovePencilAlongPath(MoveAlongPath):
     def __init__(
         self,
         mobject: Pencil,
-        path: VMobject = None,
+        path: Optional[VMobject] = None,
         suspend_mobject_updating: Union[bool, None] = False,
         **kwargs,
     ) -> None:
@@ -77,7 +77,7 @@ class MovePencilTipTo(ApplyMethod):
         point : Point
             The target point."""
 
-    def __init__(self, pencil: Pencil, point: Point = None, **kwargs):
+    def __init__(self, pencil: Pencil, point: Optional[Point] = None, **kwargs):
         """Initialize MovePencilTipTo."""
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
@@ -104,7 +104,7 @@ class DrawPath(AnimationGroup):
         path : VMobject
             The path."""
 
-    def __init__(self, pencil: Pencil, path: VMobject = None, **kwargs):
+    def __init__(self, pencil: Pencil, path: Optional[VMobject] = None, **kwargs):
         """Initialize DrawPath."""
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
 
@@ -132,6 +132,6 @@ class PutPencilAway(MovePencilTipTo):
         point : Point
             The placement position."""
 
-    def __init__(self, pencil: Pencil, point: Point = None, **kwargs):
+    def __init__(self, pencil: Pencil, point: Optional[Point] = None, **kwargs):
         """Initialize PutPencilAway."""
         super().__init__(pencil, point, **kwargs)

@@ -10,6 +10,7 @@ This module provides pencil visualization for geometry.
 
 from manim import Line, ORIGIN, PI, SVGMobject
 
+import numpy as np
 __all__ = [
     "Pencil",
 ]
@@ -38,7 +39,7 @@ class Pencil(SVGMobject):
                self.add(pencil, Dot(pencil.get_nib(), color=RED))
     """
 
-    def __init__(self, height=2, angle=PI / 4):
+    def __init__(self, height: float = 2, angle: float = PI / 4):
         """Initialize the Pencil instance."""
         super().__init__(
             file_name=Path(__file__).resolve().parent / "assets/pencil.svg",
@@ -55,7 +56,7 @@ class Pencil(SVGMobject):
         """Return the direction of the pencil body."""
         return Line(self.get_nib(), self.submobjects[1].get_center()).get_unit_vector()
 
-    def move_nid_to(self, point=ORIGIN):
+    def move_nid_to(self, point: np.ndarray = ORIGIN):
         """Translate the pencil so that the nib moves to point.
 
         .. manim:: MoveNidToDocExample

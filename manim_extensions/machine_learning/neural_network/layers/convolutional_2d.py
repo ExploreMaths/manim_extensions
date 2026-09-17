@@ -18,12 +18,15 @@ from manim import (
     BLUE,
     Create,
     FadeIn,
+    ManimColor,
     Mobject,
     ORANGE,
     Succession,
     VGroup,
     override_animation,
 )
+from typing import Any, Optional
+
 from ... import config
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
@@ -57,15 +60,15 @@ class FeatureMap(VGroup):
 
     def __init__(
         self,
-        color=ORANGE,
-        feature_map_size=None,
-        fill_color=ORANGE,
-        fill_opacity=0.2,
-        cell_width=0.2,
-        padding=(0, 0),
-        stroke_width=2.0,
-        show_grid_lines=False,
-        padding_dashed=False,
+        color: ManimColor = ORANGE,
+        feature_map_size: Optional[Any]=None,
+        fill_color: ManimColor = ORANGE,
+        fill_opacity: float = 0.2,
+        cell_width: float = 0.2,
+        padding: tuple = (0, 0),
+        stroke_width: float = 2.0,
+        show_grid_lines: bool = False,
+        padding_dashed: bool = False,
     ):
         super().__init__()
         self.color = color
@@ -220,21 +223,21 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def __init__(
         self,
-        num_feature_maps,
-        feature_map_size=None,
-        filter_size=None,
-        cell_width=0.2,
-        filter_spacing=0.1,
-        color=BLUE,
-        active_color=ORANGE,
-        filter_color=ORANGE,
-        show_grid_lines=False,
-        fill_opacity=0.3,
-        stride=1,
-        stroke_width=2.0,
-        activation_function=None,
-        padding=0,
-        padding_dashed=True,
+        num_feature_maps: Any,
+        feature_map_size: Optional[Any]=None,
+        filter_size: Optional[Any]=None,
+        cell_width: float = 0.2,
+        filter_spacing: float = 0.1,
+        color: ManimColor = BLUE,
+        active_color: ManimColor = ORANGE,
+        filter_color: ManimColor = ORANGE,
+        show_grid_lines: bool = False,
+        fill_opacity: float = 0.3,
+        stride: int = 1,
+        stroke_width: float = 2.0,
+        activation_function: Optional[Any]=None,
+        padding: int = 0,
+        padding_dashed: bool = True,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -351,7 +354,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             ApplyMethod(self.feature_maps.set_color, self.color),
         )
 
-    def make_forward_pass_animation(self, run_time=5, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
         """Convolution forward pass animation"""
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer
         if not self.activation_function is None:
@@ -365,7 +368,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return animation_group
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 
@@ -385,7 +388,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         """Overrides get height function"""
         return self.feature_maps.length_over_dim(1)
 
-    def move_to(self, mobject_or_point):
+    def move_to(self, mobject_or_point: Mobject):
         """Moves the center of the layer to the given mobject or point"""
         layer_center = self.feature_maps.get_center()
         if isinstance(mobject_or_point, Mobject):

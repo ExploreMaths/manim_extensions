@@ -8,7 +8,7 @@ This module provides ruler visualization for geometry.
 
 """
 
-from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
+from manim import LEFT, Line, ManimColor, RIGHT, Rectangle, VGroup, WHITE
 
 __all__ = [
     "Ruler",
@@ -51,11 +51,11 @@ class Ruler(VGroup):
 
     def __init__(
         self,
-        length=12,
-        width=0.8,
-        ruler_color=WHITE,
-        stroke_width=2,
-        fill_opacity=0.4,
+        length: int = 12,
+        width: float = 0.8,
+        ruler_color: ManimColor = WHITE,
+        stroke_width: float = 2,
+        fill_opacity: float = 0.4,
         **kwargs,
     ):
         """Initialize the Ruler instance."""
@@ -102,7 +102,7 @@ class Ruler(VGroup):
         S, E = self.get_start_and_end()
         return np.linalg.norm(E - S)
 
-    def set_ruler(self, start=LEFT, end=RIGHT):
+    def set_ruler(self, start: np.ndarray = LEFT, end: np.ndarray = RIGHT):
         """
         Place the ruler so that one of its edges aligns with start and end.
 

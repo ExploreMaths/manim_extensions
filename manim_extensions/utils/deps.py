@@ -14,7 +14,7 @@ the ImportError names the right
 
 import importlib
 
-def require(extra, *names):
+def require(extra: str, *names):
     """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters

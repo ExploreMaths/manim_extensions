@@ -6,7 +6,7 @@ This module provides the MCBond class for representing chemical bonds in molecul
 
 """
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 BOND_TYPES = {
     1: "simple",
@@ -45,8 +45,8 @@ class MCBond:
     def __init__(
         self,
         bond_type: int,
-        from_atom=None,
-        to_atom=None,
+        from_atom: Optional[Any]=None,
+        to_atom: Optional[Any]=None,
         stereo: Optional[int] = None,
         molecule_index: Optional[int] = None,
         topology: Optional[int] = None,
@@ -60,17 +60,17 @@ class MCBond:
         self.topology = topology
         self.reacting_center_status = reacting_center_status
 
-    def assign_from_atom(self, from_atom):
+    def assign_from_atom(self, from_atom: Any):
         self.from_atom = from_atom
 
-    def assign_to_atom(self, to_atom):
+    def assign_to_atom(self, to_atom: Any):
         self.to_atom = to_atom
 
-    def assign_stereo(self, stereo):
+    def assign_stereo(self, stereo: Any):
         self.stereo = stereo
 
     @staticmethod
-    def construct_from_bond_dict(bond_index, bond_data_dict: Dict, molecule):
+    def construct_from_bond_dict(bond_index: Any, bond_data_dict: Dict, molecule: Any):
         """
         Given a bond data dict from a parser, returns an MCBond
 

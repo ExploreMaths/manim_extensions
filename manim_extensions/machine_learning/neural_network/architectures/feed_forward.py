@@ -10,6 +10,8 @@ from ... import config
 from ..neural_network import NeuralNetwork
 from ..layers.feed_forward import FeedForwardLayer
 
+from typing import Any
+from manim import ManimColor
 class FeedForwardNeuralNetwork(NeuralNetwork):
     """NeuralNetwork with just feed forward layers
 
@@ -27,9 +29,9 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
 
     def __init__(
         self, 
-        layer_node_count, 
-        node_radius=0.08, 
-        node_color=config.color_scheme.primary_color, 
+        layer_node_count: Any, 
+        node_radius: float = 0.08, 
+        node_color: ManimColor = config.color_scheme.primary_color, 
         **kwargs
     ):
         # construct layer

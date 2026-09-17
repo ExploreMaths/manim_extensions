@@ -51,7 +51,7 @@ class Cubie(VGroup):
                self.wait()
     """
 
-    def __init__(self, x, y, z, dim, colors):
+    def __init__(self, x: int, y: int, z: int, dim: int, colors: list):
         """Initialize the Cubie instance."""
         self.dimensions = dim
         self.colors = colors
@@ -104,7 +104,7 @@ class Cubie(VGroup):
             self.add(face)
             i += 1
 
-    def get_face(self, face):
+    def get_face(self, face: str):
         """Return the face tile corresponding to a cube label.
 
         Parameters

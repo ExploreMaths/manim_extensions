@@ -11,6 +11,8 @@ from manim import BLUE, RED
 from .base import EconDiagram
 
 
+from typing import Any, Optional
+import numpy as np
 class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
 
@@ -62,13 +64,13 @@ class ISLMDiagram(EconDiagram):
 
     def __init__(
         self,
-        a=9.5,
-        b=1.5,
-        ms=2,
-        k=1,
-        h=1,
-        show_equilibrium=True,
-        numbered_eq=False,
+        a: float = 9.5,
+        b: float = 1.5,
+        ms: int = 2,
+        k: int = 1,
+        h: int = 1,
+        show_equilibrium: bool = True,
+        numbered_eq: bool = False,
         **kwargs,
     ):
         kwargs.setdefault("y_range", [-2, 8, 1])
@@ -104,16 +106,16 @@ class ISLMDiagram(EconDiagram):
                                   numbered=numbered_eq)
 
     @staticmethod
-    def _make_is_func(a, b):
+    def _make_is_func(a: np.ndarray, b: np.ndarray):
         """r = a/b - Y/b"""
         return lambda y: a / b - y / b
 
     @staticmethod
-    def _make_lm_func(ms, k, h):
+    def _make_lm_func(ms: Any, k: Any, h: Any):
         """r = (k*Y - Ms) / h"""
         return lambda y: (k * y - ms) / h
 
-    def _clamp_is(self, a, b):
+    def _clamp_is(self, a: np.ndarray, b: np.ndarray):
         """X range so IS (r = a/b - Y/b) stays within visible y range."""
         # r = a/b - Y/b => Y = a - b*r
         x_at_ymax = a - b * self._y_max
@@ -122,7 +124,7 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymin, self._x_max)
         return [lo, hi]
 
-    def _clamp_lm(self, ms, k, h):
+    def _clamp_lm(self, ms: Any, k: Any, h: Any):
         """X range so LM (r = (kY - Ms)/h) stays within visible y range."""
         # r = (kY - Ms)/h => Y = (h*r + Ms) / k
         x_at_ymin = (h * self._y_min + ms) / k
@@ -131,7 +133,7 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymax, self._x_max)
         return [lo, hi]
 
-    def shift_is(self, a=None, b=None, run_time=1, show_arrows=False):
+    def shift_is(self, a: Optional[Any]=None, b: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
         """Animate IS shifting due to changes in autonomous spending or interest sensitivity."""
         self._a = a if a is not None else self._a
         self._b = b if b is not None else self._b
@@ -141,7 +143,7 @@ class ISLMDiagram(EconDiagram):
             run_time=run_time, show_arrows=show_arrows,
         )
 
-    def shift_lm(self, ms=None, k=None, h=None, run_time=1, show_arrows=False):
+    def shift_lm(self, ms: Optional[Any]=None, k: Optional[Any]=None, h: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
         """Animate LM shifting due to changes in money supply or money demand parameters."""
         self._ms = ms if ms is not None else self._ms
         self._k = k if k is not None else self._k
@@ -154,20 +156,20 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms, show_arrows=False):
+    def monetary_expansion(self, ms: Any, show_arrows: bool = False):
         """Increase in money supply → LM shifts right → lower r, higher Y."""
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
-    def monetary_contraction(self, ms, show_arrows=False):
+    def monetary_contraction(self, ms: Any, show_arrows: bool = False):
         """Decrease in money supply → LM shifts left → higher r, lower Y."""
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a, show_arrows=False):
+    def fiscal_expansion(self, a: np.ndarray, show_arrows: bool = False):
         """Increase in government spending → IS shifts right → higher r, higher Y."""
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
-    def fiscal_contraction(self, a, show_arrows=False):
+    def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False):
         """Decrease in government spending → IS shifts left → lower r, lower Y."""
         return [self.shift_is(a=a, show_arrows=show_arrows)]

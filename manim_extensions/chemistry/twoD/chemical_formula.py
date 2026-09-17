@@ -8,9 +8,10 @@ This module provides the ChemicalFormula class for rendering chemical formulas.
 
 import re
 
-from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, MarkupText, VGroup, WHITE
+from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, ManimColor, MarkupText, VGroup, WHITE
 
 
+from typing import Any
 class ChemicalFormula(MarkupText):
     """
     Mostly usefull for simple compounds like binary salts or oxoanions.
@@ -66,7 +67,7 @@ class ChemicalFormula(MarkupText):
 
     def make_markup(
         self,
-        parsed_formula,
+        parsed_formula: Any,
         metal_color: str = WHITE,
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
@@ -86,7 +87,7 @@ class ChemicalFormula(MarkupText):
 
         return markup
 
-    def set_atom_color(self, atom, subindex, color):
+    def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor):
         colored_atom = f"<span fgcolor='{color}'>{atom}"
 
         if subindex > 1:
@@ -140,9 +141,9 @@ class NamedFormula(VGroup):
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
         font: str = "",
-        spanish_structure=False,
-        buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
-        direction=DOWN,
+        spanish_structure: bool = False,
+        buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
+        direction: str = DOWN,
         *args,
         **kwargs,
     ):
@@ -223,20 +224,20 @@ class ComplexFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def add_tags_around_numbers(self, formula_part):
+    def add_tags_around_numbers(self, formula_part: Any):
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
         result = re.sub(pattern, replacement, formula_part)
         return result
 
-    def add_tags_around_charges(self, formula_part):
+    def add_tags_around_charges(self, formula_part: Any):
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
         result_string = re.sub(pattern, substitution, formula_part)
 
         return result_string
 
-    def make_formula_structure(self, formula_part):
+    def make_formula_structure(self, formula_part: Any):
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)
 
@@ -269,8 +270,8 @@ class NamedComplexFormula(VGroup):
         self,
         name_dict: dict,
         formula_dict: dict,
-        direction=DOWN,
-        buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
+        direction: str = DOWN,
+        buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
         *args,
         **kwargs,
     ):

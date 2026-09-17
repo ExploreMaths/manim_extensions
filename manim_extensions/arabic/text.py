@@ -14,6 +14,7 @@ import subprocess
 from manim import Tex, TexTemplate
 
 
+from typing import Any, Optional
 _FONT_CANDIDATES = (
     "Al Bayan",  # macOS
     "Geeza Pro",  # macOS
@@ -24,7 +25,7 @@ _FONT_CANDIDATES = (
 )
 
 
-def _resolve_arabic_font(font_name):
+def _resolve_arabic_font(font_name: Any):
     """Pick an installed Arabic font.
 
     Returns *font_name* verbatim when given; otherwise the first candidate
@@ -45,7 +46,7 @@ def _resolve_arabic_font(font_name):
     return _FONT_CANDIDATES[0]
 
 
-def create_arabic_template(font_name: str = None) -> TexTemplate:
+def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
     """
     Create a TexTemplate configured for Arabic text rendering using XeLaTeX.
 
@@ -98,7 +99,7 @@ def create_arabic_text(
     text: str,
     color: str = "arabicblue",
     font_size: int = 34,
-    font_name: str = None,
+    font_name: Optional[str] = None,
 ) -> Tex:
     """
     Create a Tex object with Arabic text.

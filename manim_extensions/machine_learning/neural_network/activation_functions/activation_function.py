@@ -10,6 +10,7 @@ from manim import (
     AnimationGroup,
     ApplyMethod,
     Axes,
+    ManimColor,
     Succession,
     SurroundingRectangle,
     Text,
@@ -17,6 +18,8 @@ from manim import (
     VGroup,
     Wait,
 )
+from typing import Any, Optional
+
 from abc import ABC, abstractmethod
 import random
 
@@ -52,15 +55,15 @@ class ActivationFunction(ABC, VGroup):
 
     def __init__(
         self,
-        function_name=None,
-        x_range=[-1, 1],
-        y_range=[-1, 1],
-        x_length=0.5,
-        y_length=0.3,
-        show_function_name=True,
-        active_color=config.color_scheme.active_color,
-        plot_color=config.color_scheme.primary_color,
-        rectangle_color=config.color_scheme.secondary_color,
+        function_name: Optional[Any]=None,
+        x_range: list = [-1, 1],
+        y_range: list = [-1, 1],
+        x_length: float = 0.5,
+        y_length: float = 0.3,
+        show_function_name: bool = True,
+        active_color: ManimColor = config.color_scheme.active_color,
+        plot_color: Any = config.color_scheme.primary_color,
+        rectangle_color: Any = config.color_scheme.secondary_color,
     ):
         super(VGroup, self).__init__()
         self.function_name = function_name
@@ -118,12 +121,12 @@ class ActivationFunction(ABC, VGroup):
             self.add(function_name_text)
 
     @abstractmethod
-    def apply_function(self, x_val):
+    def apply_function(self, x_val: Any):
         """Evaluates function at given x_val"""
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
-    def make_evaluate_animation(self, x_val=None):
+    def make_evaluate_animation(self, x_val: Optional[Any]=None):
         """Evaluates the function at a random point in the x_range"""
         # Highlight the graph
         # TODO: Evaluate the function at the x_val and show a highlighted dot

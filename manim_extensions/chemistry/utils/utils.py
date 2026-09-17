@@ -11,7 +11,7 @@ import numpy as np
 from ..element import *
 
 
-def mol_parser_string(mol_string):
+def mol_parser_string(mol_string: Mobject):
     # Get general data
     mol_name = mol_string[0].strip()  # This info is not always available  # noqa F841
     mol_source = mol_string[1].strip()  # This info is not always available  # noqa F841
@@ -104,13 +104,13 @@ def mol_parser_string(mol_string):
     return atoms, bonds  # Should return atoms and bonds
 
 
-def mol_parser(file):
+def mol_parser(file: Any):
     with open(file) as file:
         mol_file = file.readlines()
     return mol_parser_string(mol_file)
 
 
-def sdf_parser_string(sdf_string):
+def sdf_parser_string(sdf_string: str):
     molecules = sdf_string.split("$$$$")
     molecules = [m.strip() for m in molecules if m.strip()]
 
@@ -121,13 +121,13 @@ def sdf_parser_string(sdf_string):
     return mol_list
 
 
-def sdf_parser(file):
+def sdf_parser(file: Any):
     with open(file) as file:
         sdf_file = file.read()
     return sdf_parser_string(sdf_file)
 
 
-def get_element(element, language="ENG"):
+def get_element(element: Mobject, language: str = "ENG"):
     if language == "ENG":
         element_dict = ELEMENT_DICT
     elif language == "ESP":
@@ -136,7 +136,7 @@ def get_element(element, language="ENG"):
     return element_dict[element]
 
 
-def mol_to_graph(file, language="ENG"):
+def mol_to_graph(file: Any, language: str = "ENG"):
     with open(file) as file:
         mol_file = file.readlines()
     # Get general data

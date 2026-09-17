@@ -15,10 +15,13 @@ from manim import (
     FadeOut,
     GRAY,
     Line,
+    ManimColor,
     Succession,
     Uncreate,
     VGroup,
 )
+from typing import Any, Optional
+
 import random
 
 from ..layers.feed_forward import FeedForwardLayer
@@ -36,7 +39,7 @@ class XMark(VGroup):
         Color of the mark, by default GRAY.
     """
 
-    def __init__(self, stroke_width=1.0, color=GRAY):
+    def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
         super().__init__()
         line_one = Line(
             [-0.1, 0.1, 0],
@@ -56,7 +59,7 @@ class XMark(VGroup):
         self.add(line_two)
 
 
-def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out):
+def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: Any):
     """Returns edges to drop out for a given FeedForwardToFeedForward layer"""
     prev_layer = layer.input_layer
     next_layer = layer.output_layer
@@ -81,10 +84,10 @@ def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_dr
 
 
 def make_pre_dropout_animation(
-    neural_network,
-    layers_to_nodes_to_drop_out,
-    dropped_out_color=GRAY,
-    dropped_out_opacity=0.2,
+    neural_network: Any,
+    layers_to_nodes_to_drop_out: dict,
+    dropped_out_color: ManimColor = GRAY,
+    dropped_out_opacity: float = 0.2,
 ):
     """Makes an animation that sets up the NN layer for dropout"""
     animations = []
@@ -150,9 +153,9 @@ def make_pre_dropout_animation(
 
 
 def make_post_dropout_animation(
-    neural_network,
-    layers_to_nodes_to_drop_out,
-    x_marks,
+    neural_network: Any,
+    layers_to_nodes_to_drop_out: Any,
+    x_marks: Any,
 ):
     """Returns the NN to normal after dropout"""
     # Go through the network and get the FeedForwardLayer instances
@@ -192,8 +195,8 @@ def make_post_dropout_animation(
 
 
 def make_forward_pass_with_dropout_animation(
-    neural_network,
-    layers_to_nodes_to_drop_out,
+    neural_network: Any,
+    layers_to_nodes_to_drop_out: Any,
 ):
     """Makes forward pass animation with dropout"""
     layer_args = {}
@@ -216,7 +219,7 @@ def make_forward_pass_with_dropout_animation(
 
 
 def make_neural_network_dropout_animation(
-    neural_network, dropout_rate=0.5, do_forward_pass=True, last_layer_stable=False, first_layer_stable=False, seed=None
+    neural_network: Any, dropout_rate: float = 0.5, do_forward_pass: bool = True, last_layer_stable: bool = False, first_layer_stable: bool = False, seed: Optional[Any]=None
 ):
     """
     Makes a dropout animation for a given neural network.

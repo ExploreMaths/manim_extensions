@@ -7,7 +7,7 @@ This module provides file parsing utilities for chemistry file formats.
 """
 
 import os
-from typing import Dict, Tuple, Union
+from typing import Any, Dict, Tuple, Union
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
@@ -46,7 +46,7 @@ class FileHandler:
         self.parser = SUPPORTED_FORMATS.get(file_extension)(filename=file_path)
 
     @staticmethod
-    def get_file_extension(file_path):
+    def get_file_extension(file_path: Any):
         return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> Tuple[Dict, Dict]:

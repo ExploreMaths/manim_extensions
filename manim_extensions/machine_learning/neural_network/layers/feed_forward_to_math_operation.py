@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to math operation layer connection visualization."""
 
-from manim import ORANGE, ShowPassingFlash
+from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .math_operation_layer import MathOperationLayer
@@ -32,9 +32,9 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer,
-        output_layer,
-        active_color=ORANGE,
+        input_layer: Mobject,
+        output_layer: Mobject,
+        active_color: ManimColor = ORANGE,
         **kwargs
     ):
         self.active_color = active_color
@@ -58,7 +58,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Makes dots diverge from the given location and move to the feed forward nodes decoder"""
         # Make flashing pass animation on arrow
         passing_flash = ShowPassingFlash(

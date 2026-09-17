@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Convolutional 2D to feed-forward layer connection visualization."""
 
-from manim import AnimationGroup, Line, ORANGE, ShowPassingFlash
+from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .feed_forward import FeedForwardLayer
 from .convolutional_2d import Convolutional2DLayer
@@ -34,7 +34,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         self,
         input_layer: Convolutional2DLayer,
         output_layer: FeedForwardLayer,
-        passing_flash_color=ORANGE,
+        passing_flash_color: ManimColor = ORANGE,
         **kwargs
     ):
         super().__init__(input_layer, output_layer, **kwargs)
@@ -48,7 +48,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args={}, run_time=1.5, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
         """Forward pass animation from conv2d to conv2d"""
         animations = []
         # Get input layer final feature map

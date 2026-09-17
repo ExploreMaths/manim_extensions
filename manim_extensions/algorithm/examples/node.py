@@ -16,6 +16,7 @@ from manim import (
     FadeIn,
     FadeOut,
     GREEN,
+    ManimColor,
     PINK,
     PURE_YELLOW,
     RED,
@@ -155,7 +156,7 @@ class TestCombine(Scene):
             self.t2 = Text("2")
             self.add(self.t1, self.t2)
 
-        def set_t1_color(self, color):
+        def set_t1_color(self, color: ManimColor):
             self.t1.color = color
 
     def construct(self):

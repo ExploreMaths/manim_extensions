@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Triplet to feed-forward layer connection visualization."""
 
-from manim import AnimationGroup, Create, Dot, RED, Succession, Wait, override_animation
+from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .triplet import TripletLayer
@@ -34,10 +34,10 @@ class TripletToFeedForward(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer,
-        output_layer,
-        animation_dot_color=RED,
-        dot_radius=0.02,
+        input_layer: Mobject,
+        output_layer: Mobject,
+        animation_dot_color: ManimColor = RED,
+        dot_radius: float = 0.02,
         **kwargs
     ):
         super().__init__(input_layer, output_layer, **kwargs)
@@ -55,7 +55,7 @@ class TripletToFeedForward(ConnectiveLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Makes dots diverge from the given location and move to the feed forward nodes decoder"""
         animations = []
         # Loop through each image

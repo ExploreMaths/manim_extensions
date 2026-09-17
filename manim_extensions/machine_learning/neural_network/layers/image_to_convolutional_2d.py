@@ -10,6 +10,7 @@ from manim import (
     ApplyFunction,
     ApplyMethod,
     Create,
+    Mobject,
     Succession,
     Wait,
     override_animation,
@@ -52,7 +53,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time=5, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
         """Maps image to convolutional layer"""
         # Transform the image from the input layer to the
         num_image_channels = self.input_layer.num_channels
@@ -109,7 +110,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         set_opacity = ApplyMethod(image_mobject.set_opacity, 0.2, run_time=0.5)
         # Scale the max of width or height to the
         # width of the feature_map
-        def scale_image_func(image_mobject):
+        def scale_image_func(image_mobject: Mobject):
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height
             image_mobject.scale(scale_factor)
@@ -129,7 +130,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
         return animation
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)

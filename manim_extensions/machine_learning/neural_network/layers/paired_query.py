@@ -15,6 +15,7 @@ from manim import (
     Group,
     ImageMobject,
     RED,
+    VGroup,
     override_animation,
 )
 from .parent_layers import NeuralNetworkLayer
@@ -82,7 +83,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
     """
 
     def __init__(
-        self, positive, negative, stroke_width=5, font_size=18, spacing=0.5, **kwargs
+        self, positive: VGroup, negative: VGroup, stroke_width: float = 5, font_size: float = 18, spacing: float = 0.5, **kwargs
     ):
         super().__init__(**kwargs)
         self.positive = positive
@@ -105,7 +106,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_paths(cls, positive_path, negative_path, grayscale=True, **kwargs):
+    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs):
         """Creates a query using the paths"""
         # Load images from path
         if grayscale:
@@ -150,6 +151,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
         # TODO make Create animation that is custom
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Forward pass for query"""
         return AnimationGroup()

@@ -7,7 +7,7 @@ This module provides the PubchemAPIManager class for fetching molecular data fro
 
 """
 
-from typing import Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 import json
 import time
 
@@ -58,7 +58,7 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: 'requests.models.Response', identifier):
+    def handle_request(self, request: 'requests.models.Response', identifier: Any):
         requests = require("chemistry", "requests")
         # Added sleep to prevent overloading the PubChem API
         time.sleep(0.25)

@@ -6,10 +6,11 @@
 # SPDX-License-Identifier: MIT
 """Gridded rectangle visualization utility."""
 
-from manim import DOWN, DashedVMobject, Dot, Line, ORANGE, RIGHT, Rectangle, VGroup
+from manim import DOWN, DashedVMobject, Dot, Line, ManimColor, ORANGE, RIGHT, Rectangle, VGroup
 import numpy as np
 
 
+from typing import Any, Optional
 class GriddedRectangle(VGroup):
     """Rectangle object with grid lines
 
@@ -49,20 +50,20 @@ class GriddedRectangle(VGroup):
 
     def __init__(
         self,
-        color=ORANGE,
-        height=2.0,
-        width=4.0,
-        mark_paths_closed=True,
-        close_new_points=True,
-        grid_xstep=None,
-        grid_ystep=None,
-        grid_stroke_width=0.0,  # DEFAULT_STROKE_WIDTH/2,
-        grid_stroke_color=ORANGE,
-        grid_stroke_opacity=1.0,
-        stroke_width=2.0,
-        fill_opacity=0.2,
-        show_grid_lines=False,
-        dotted_lines=False,
+        color: ManimColor = ORANGE,
+        height: float = 2.0,
+        width: float = 4.0,
+        mark_paths_closed: bool = True,
+        close_new_points: bool = True,
+        grid_xstep: Optional[Any]=None,
+        grid_ystep: Optional[Any]=None,
+        grid_stroke_width: float = 0.0,  # DEFAULT_STROKE_WIDTH/2,
+        grid_stroke_color: ManimColor = ORANGE,
+        grid_stroke_opacity: float = 1.0,
+        stroke_width: float = 2.0,
+        fill_opacity: float = 0.2,
+        show_grid_lines: bool = False,
+        dotted_lines: bool = False,
         **kwargs
     ):
         super().__init__()
@@ -203,7 +204,7 @@ class GriddedRectangle(VGroup):
 
         return normal_vector
 
-    def set_color(self, color):
+    def set_color(self, color: ManimColor):
         """Sets the color of the gridded rectangle"""
         self.color = color
         self.rectangle.set_color(color)

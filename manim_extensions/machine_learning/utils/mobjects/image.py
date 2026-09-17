@@ -11,6 +11,7 @@ from manim import (
     FadeIn,
     Group,
     ImageMobject,
+    ManimColor,
     RED,
     RESAMPLING_ALGORITHMS,
     SurroundingRectangle,
@@ -18,6 +19,8 @@ from manim import (
     UP,
     override_animation,
 )
+from typing import Any
+
 import numpy as np
 from PIL import Image
 
@@ -32,7 +35,7 @@ class GrayscaleImageMobject(Group):
         Height of the rendered image, by default 2.3.
     """
 
-    def __init__(self, numpy_image, height=2.3):
+    def __init__(self, numpy_image: Any, height: float = 2.3):
         super().__init__()
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
@@ -52,7 +55,7 @@ class GrayscaleImageMobject(Group):
         self.image_mobject.scale_to_fit_height(height)
 
     @classmethod
-    def from_path(cls, path, height=2.3):
+    def from_path(cls, path: str, height: float = 2.3):
         """Loads image from path"""
         image = Image.open(path)
         numpy_image = np.asarray(image)
@@ -60,10 +63,10 @@ class GrayscaleImageMobject(Group):
         return cls(numpy_image, height=height)
 
     @override_animation(Create)
-    def create(self, run_time=2):
+    def create(self, run_time: float = 2):
         return FadeIn(self)
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         """Scales the image mobject"""
         # super().scale(scale_factor)
         # height = self.height
@@ -73,7 +76,7 @@ class GrayscaleImageMobject(Group):
         #     lambda points: scale_factor * points, **kwargs
         # )
 
-    def set_opacity(self, opacity):
+    def set_opacity(self, opacity: float):
         """Set the opacity"""
         self.image_mobject.set_opacity(opacity)
 
@@ -98,7 +101,7 @@ class LabeledColorImage(Group):
     """
 
     def __init__(
-        self, image, color=RED, label="Positive", stroke_width=5, font_size=24, buff=0.2
+        self, image: Any, color: ManimColor = RED, label: str = "Positive", stroke_width: float = 5, font_size: float = 24, buff: float = 0.2
     ):
         super().__init__()
         self.image = image

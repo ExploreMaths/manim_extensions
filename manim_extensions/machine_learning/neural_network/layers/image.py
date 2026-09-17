@@ -11,10 +11,13 @@ from manim import (
     Create,
     FadeIn,
     ImageMobject,
+    Mobject,
     SurroundingRectangle,
     Wait,
     override_animation,
 )
+from typing import Any
+
 import numpy as np
 from PIL import Image
 
@@ -82,9 +85,9 @@ class ImageLayer(NeuralNetworkLayer):
 
     def __init__(
         self, 
-        numpy_image, 
-        height=1.5, 
-        show_image_on_create=True, 
+        numpy_image: Any, 
+        height: float = 1.5, 
+        show_image_on_create: bool = True, 
         **kwargs
     ):
         super().__init__(**kwargs)
@@ -92,7 +95,7 @@ class ImageLayer(NeuralNetworkLayer):
         self.numpy_image = numpy_image
         self.show_image_on_create = show_image_on_create
 
-    def construct_layer(self, input_layer, output_layer, **kwargs):
+    def construct_layer(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
         """Construct layer method
 
         Parameters
@@ -119,7 +122,7 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(cls, image_path, grayscale=True, **kwargs):
+    def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs):
         """Creates a query using the paths"""
         # Load images from path
         image = Image.open(image_path)
@@ -141,14 +144,14 @@ class ImageLayer(NeuralNetworkLayer):
             # groups, so return a zero-duration Wait instead.
             return Wait(run_time=0)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         return AnimationGroup()
 
     def get_right(self):
         """Override get right"""
         return self.image_mobject.get_right()
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         """Scales the image mobject"""
         self.image_mobject.scale(scale_factor)
 

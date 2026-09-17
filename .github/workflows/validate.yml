@@ -75,6 +75,13 @@ jobs:
       - name: Run reuse lint
         run: reuse lint
 
+  validate-type-annotations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that all function parameters have type annotations
+        run: python scripts/check_type_annotations.py
+
   flake8-unused-imports:
     runs-on: ubuntu-latest
     steps:

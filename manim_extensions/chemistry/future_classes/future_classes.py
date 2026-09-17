@@ -21,7 +21,9 @@ from manim import (
     LEFT,
     LabeledDot,
     Line,
+    ManimColor,
     MathTex,
+    Mobject,
     ORANGE,
     PI,
     RED,
@@ -37,6 +39,7 @@ from manim import (
     np,
     smooth,
 )
+from typing import Any, Callable, Optional
 
 
 class Hole(VMobject):
@@ -52,7 +55,7 @@ class Hole(VMobject):
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
     """
 
-    def __init__(self, radius=0.25, color=WHITE, **kwargs):
+    def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
 
@@ -70,7 +73,7 @@ class Electron(VMobject):
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
     """
 
-    def __init__(self, radius=0.2, color=BLUE_E, **kwargs):
+    def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
 
@@ -240,7 +243,7 @@ class NPNTransistor(VGroup):
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
 
-    def __init__(self, regions_opacity=0.8, **kwargs):
+    def __init__(self, regions_opacity: float = 0.8, **kwargs):
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
         self.left_n_region = Rectangle(
@@ -271,10 +274,10 @@ class NPNTransistor(VGroup):
 
     def make_particles(
         self,
-        particle_type,
-        n_copies=5,
-        vertical_boundary=[0.8 * UP, 0.8 * DOWN],
-        horizontal_boundary=[LEFT, RIGHT],
+        particle_type: Any,
+        n_copies: int = 5,
+        vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
+        horizontal_boundary: list = [LEFT, RIGHT],
     ):
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
@@ -301,7 +304,7 @@ class BatterySchema(VGroup):
 
     # TODO: This is not working as intended, rebuild this.
     def __init__(
-        self, mob=Square(), schema_type="horizontal", inverted_terminals=False, **kwargs
+        self, mob: Mobject = Square(), schema_type: str = "horizontal", inverted_terminals: bool = False, **kwargs
     ):
         super().__init__(**kwargs)
 
@@ -445,7 +448,7 @@ class MOSFETTransistor(VGroup):
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
 
-    def __init__(self, show_holes=False, show_battery=False, **kwargs):
+    def __init__(self, show_holes: bool = False, show_battery: bool = False, **kwargs):
         super().__init__(**kwargs)
 
         self.main_board = self.make_main_board()
@@ -473,7 +476,7 @@ class MOSFETTransistor(VGroup):
     def make_main_board(self):
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
-    def make_n_region(self, side=LEFT):
+    def make_n_region(self, side: Any = LEFT):
         region = (
             Rectangle(fill_opacity=1)
             .set_color(BLUE)
@@ -543,7 +546,7 @@ class BatterySide(VMobject):
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
     """
 
-    def __init__(self, terminal, anchor, **kwargs):
+    def __init__(self, terminal: Any, anchor: VGroup, **kwargs):
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
@@ -562,7 +565,7 @@ class BatterySide(VMobject):
 # Useful functions
 
 
-def arrange_in_1D_boundary(mobs, boundary=[LEFT, RIGHT]):
+def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)
 
@@ -570,7 +573,7 @@ def arrange_in_1D_boundary(mobs, boundary=[LEFT, RIGHT]):
         mob.move_to(positions[index])
 
 
-def duplicate_and_rearrange(mobs, boundary=[LEFT, RIGHT]):
+def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
@@ -579,7 +582,7 @@ def duplicate_and_rearrange(mobs, boundary=[LEFT, RIGHT]):
     return group
 
 
-def add_over_rectangular_surface(mobtype=Dot(), amount=10, height=5, width=5):
+def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5):
     group = VGroup()
     for i in range(amount):
         group.add(
@@ -604,7 +607,7 @@ def get_element_by_data(element: dict):
     )
 
 
-def randomly_distributed_in_2D(mobs, left=1, right=1, down=1, up=1):
+def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: int = 1, up: int = 1):
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
     vertical = np.random.uniform(up, -down, n_mobs)
@@ -616,7 +619,7 @@ def randomly_distributed_in_2D(mobs, left=1, right=1, down=1, up=1):
 
 
 def arrange_copies_in_rectangle(
-    mobs, n_copies=2, vertical_boundary=[UP, DOWN], horizontal_boundary=[LEFT, RIGHT]
+    mobs: Mobject, n_copies: int = 2, vertical_boundary: list = [UP, DOWN], horizontal_boundary: list = [LEFT, RIGHT]
 ):
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
@@ -628,16 +631,16 @@ def arrange_copies_in_rectangle(
     return copies_group
 
 
-def make_subpaths(group):
+def make_subpaths(group: Any):
     for mob in group:
         group.add_subpath(mob.get_points())
 
     return group
 
 
-def zero(function):
+def zero(function: Callable):
     @wraps(function)
-    def wrapper(t, *args, **kwargs):
+    def wrapper(t: Optional[np.ndarray], *args, **kwargs):
         if 0 <= t <= 1:
             return function(t, *args, **kwargs)
         else:
@@ -657,7 +660,7 @@ def inverse_linear(t: float, inflection: float = 10.0):
     return 1 - t
 
 
-def concat_mobjects(mobject, concats, buff=0):
+def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):

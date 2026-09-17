@@ -22,16 +22,16 @@ class ListGroup(Mobject):
         super().__init__()
         self.items = [*layers]
 
-    def __getitem__(self, indices):
+    def __getitem__(self, indices: list):
         """Traditional list indexing"""
         return self.items[indices]
 
-    def insert(self, index, item):
+    def insert(self, index: int, item: Mobject):
         """Inserts item at index"""
         self.items.insert(index, item)
         self.submobjects = self.items
 
-    def remove_at_index(self, index):
+    def remove_at_index(self, index: int):
         """Removes item at index"""
         if index > len(self.items):
             raise Exception(f"ListGroup index out of range: {index}")
@@ -41,7 +41,7 @@ class ListGroup(Mobject):
 
         return item
 
-    def remove_at_indices(self, indices):
+    def remove_at_indices(self, indices: list):
         """Removes items at indices"""
         items = []
         for index in indices:
@@ -50,28 +50,28 @@ class ListGroup(Mobject):
 
         return items
 
-    def remove(self, item):
+    def remove(self, item: Mobject):
         """Removes first instance of item"""
         self.items.remove(item)
         self.submobjects = self.items
 
         return item
 
-    def get(self, index):
+    def get(self, index: int):
         """Gets item at index"""
         return self.items[index]
 
-    def add(self, item):
+    def add(self, item: Mobject):
         """Adds to end"""
         self.items.append(item)
         self.submobjects = self.items
 
-    def replace(self, index, item):
+    def replace(self, index: int, item: Mobject):
         """Replaces item at index"""
         self.items[index] = item
         self.submobjects = self.items
 
-    def index_of(self, item):
+    def index_of(self, item: Mobject):
         """Returns index of item if it exists"""
         for index, obj in enumerate(self.items):
             if item is obj:
@@ -82,7 +82,7 @@ class ListGroup(Mobject):
         """Length of items"""
         return len(self.items)
 
-    def set_z_index(self, z_index_value, family=True):
+    def set_z_index(self, z_index_value: int, family: bool = True):
         """Sets z index of all values in ListGroup"""
         for item in self.items:
             item.set_z_index(z_index_value, family=True)

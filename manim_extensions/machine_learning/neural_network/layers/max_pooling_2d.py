@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D layer visualization for neural networks."""
 
-from manim import AnimationGroup, BLUE, Create, ORANGE, VGroup, override_animation
+from manim import AnimationGroup, BLUE, Create, ManimColor, ORANGE, VGroup, override_animation
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
@@ -78,14 +78,14 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def __init__(
         self,
-        kernel_size=2,
-        stride=1,
-        cell_highlight_color=ORANGE,
-        cell_width=0.2,
-        filter_spacing=0.1,
-        color=BLUE,
-        show_grid_lines=False,
-        stroke_width=2.0,
+        kernel_size: int = 2,
+        stride: int = 1,
+        cell_highlight_color: ManimColor = ORANGE,
+        cell_width: float = 0.2,
+        filter_spacing: float = 0.1,
+        color: ManimColor = BLUE,
+        show_grid_lines: bool = False,
+        stroke_width: float = 2.0,
         **kwargs
     ):
         """Layer object for animating 2D Convolution Max Pooling
@@ -131,7 +131,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
 
-    def _make_output_feature_maps(self, num_input_feature_maps, input_feature_map_size):
+    def _make_output_feature_maps(self, num_input_feature_maps: int, input_feature_map_size: int):
         """Makes a set of output feature maps"""
         # Compute the size of the feature maps
         output_feature_map_size = (
@@ -162,7 +162,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return VGroup(*feature_maps)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Makes forward pass of Max Pooling Layer.
 
         Parameters

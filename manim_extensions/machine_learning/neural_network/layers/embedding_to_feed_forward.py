@@ -11,6 +11,8 @@ from manim import (
     Create,
     Dot,
     FadeOut,
+    ManimColor,
+    Mobject,
     RED,
     Succession,
     Wait,
@@ -43,10 +45,10 @@ class EmbeddingToFeedForward(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer,
-        output_layer,
-        animation_dot_color=RED,
-        dot_radius=0.03,
+        input_layer: Mobject,
+        output_layer: Mobject,
+        animation_dot_color: ManimColor = RED,
+        dot_radius: float = 0.03,
         **kwargs
     ):
         super().__init__(input_layer, output_layer, **kwargs)
@@ -63,7 +65,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args={}, run_time=1.5, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
         """Makes dots diverge from the given location and move the decoder"""
         # Find point to converge on by sampling from gaussian distribution
         location = self.embedding_layer.sample_point_location_from_distribution()

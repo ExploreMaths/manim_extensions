@@ -61,7 +61,7 @@ class CatalogNode:
                self.add(boxes)
     """
 
-    data: Any = None
+    data: Optional[Any] = None
     width: float = 0.0
     height: float = 0.0
     children: List["CatalogNode"] = field(default_factory=list)

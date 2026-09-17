@@ -332,7 +332,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def rotate_bond(self, rotate_bonds):
+    def rotate_bond(self, rotate_bonds: Any):
         if isinstance(rotate_bonds, int):
             rotate_bonds = [rotate_bonds]
 
@@ -385,15 +385,15 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 atom.element + "H", bonds_direction
                             )
 
-    def from_mol_file(filename, *args, **kwargs):
+    def from_mol_file(filename: Any, *args, **kwargs):
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_mol_string(mol_string, *args, **kwargs):
+    def from_mol_string(mol_string: Any, *args, **kwargs):
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_sdf_file(filename, *args, **kwargs):
+    def from_sdf_file(filename: Any, *args, **kwargs):
         molecules = sdf_parser(filename)
         moleculeObjects = []
         for molecule in molecules:
@@ -401,7 +401,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def from_sdf_string(sdf_string, *args, **kwargs):
+    def from_sdf_string(sdf_string: Any, *args, **kwargs):
         molecules = sdf_parser_string(sdf_string)
         moleculeObjects = []
         for molecule in molecules:
@@ -719,12 +719,12 @@ class NamedMolecule(VGroup):
 
     def __init__(
         self,
-        name,
-        molecule_data,
-        direction=DOWN,
-        buff=1,
-        tex=False,
-        font="",
+        name: str,
+        molecule_data: Any,
+        direction: str = DOWN,
+        buff: float = 1,
+        tex: bool = False,
+        font: str = "",
         *args,
         **kwargs,
     ):
@@ -749,7 +749,7 @@ class NamedMolecule(VGroup):
         self.bonds = self.molecule.bonds
 
     def from_mol_file(
-        name, filename, direction=DOWN, buff=1, tex=False, font="", *args, **kwargs
+        name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
@@ -765,7 +765,7 @@ class NamedMolecule(VGroup):
         )
 
     def from_mol_string(
-        name, mol_str, direction=DOWN, buff=1, tex=False, font="", *args, **kwargs
+        name: str, mol_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
@@ -781,7 +781,7 @@ class NamedMolecule(VGroup):
         )
 
     def from_sdf_file(
-        name, filename, direction=DOWN, buff=1, tex=False, font="", *args, **kwargs
+        name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
         molecules = MMoleculeObject.from_sdf_file(filename, *args, **kwargs)
         named_molecules = []
@@ -801,7 +801,7 @@ class NamedMolecule(VGroup):
         return named_molecules
 
     def from_sdf_string(
-        name, sdf_str, direction=DOWN, buff=1, tex=False, font="", *args, **kwargs
+        name: str, sdf_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
         molecules = MMoleculeObject.from_sdf_string(sdf_str, *args, **kwargs)
         named_molecules = []

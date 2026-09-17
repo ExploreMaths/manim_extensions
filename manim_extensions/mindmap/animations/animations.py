@@ -32,7 +32,7 @@ __all__ = [
     "ScaleNode",
     "AlterNode",
 ]
-from typing import List, Dict
+from typing import Dict, List, Optional
 
 import numpy as np
 
@@ -40,7 +40,7 @@ from ..algorithms import LayoutFactory, LayoutType, LayoutConfig
 from ..nodes import Node, bfs_walker, NodeSate, NodeStyle
 
 
-def fadeout_of_subtrees(nodes: List[Node] = None) -> FadeOut:
+def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
     """FadeOut the given nodes and their subtrees.
 
     .. manim:: FadeoutOfSubtreesDocExample
@@ -431,7 +431,7 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     return False
 
 
-def is_direction_change(root: Node, direction=RIGHT) -> bool:
+def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
     """
     Check whether the layout direction has changed.
 
@@ -453,7 +453,7 @@ def is_direction_change(root: Node, direction=RIGHT) -> bool:
 
 def animate_of_layout(
     root: Node,
-    remove_nodes: List[Node] = None,
+    remove_nodes: Optional[List[Node]] = None,
     layout_type: LayoutType = LayoutType.MindMap,
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
@@ -920,7 +920,7 @@ class ScaleNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_scale: Dict[Node, float] = None,
+        node_scale: Optional[Dict[Node, float]] = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
@@ -964,7 +964,7 @@ class AlterNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_vmobject: Dict[Node, VMobject] = None,
+        node_vmobject: Optional[Dict[Node, VMobject]] = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),

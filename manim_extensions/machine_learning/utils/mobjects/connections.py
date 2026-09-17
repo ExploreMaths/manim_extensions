@@ -13,6 +13,8 @@ from manim import (
     DOWN,
     LEFT,
     Line,
+    ManimColor,
+    Mobject,
     ORANGE,
     RIGHT,
     ShowPassingFlash,
@@ -54,14 +56,14 @@ class NetworkConnection(VGroup):
 
     def __init__(
         self,
-        start_mobject,
-        end_mobject,
-        arc_direction="straight",
-        buffer=0.0,
-        arc_distance=0.2,
-        stroke_width=2.0,
-        color=WHITE,
-        active_color=ORANGE,
+        start_mobject: Mobject,
+        end_mobject: Mobject,
+        arc_direction: str = "straight",
+        buffer: float = 0.0,
+        arc_distance: float = 0.2,
+        stroke_width: float = 2.0,
+        color: ManimColor = WHITE,
+        active_color: ManimColor = ORANGE,
     ):
         """Creates an arrow with right angles in it connecting
         two mobjects.
@@ -187,7 +189,7 @@ class NetworkConnection(VGroup):
             )
 
     @override_animation(ShowPassingFlash)
-    def _override_passing_flash(self, run_time=1.0, time_width=0.2):
+    def _override_passing_flash(self, run_time: float = 1.0, time_width: float = 0.2):
         """Passing flash animation"""
         if self.arc_direction == "straight":
             return ShowPassingFlash(

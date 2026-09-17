@@ -27,6 +27,15 @@ Contributions are welcome! Please open issues or pull requests on the
 - Follow PEP 8 for Python code.
 - Use meaningful variable and function names.
 - Add docstrings for all public functions and classes.
+- **Type-annotate every function parameter.** All function and method
+  parameters (except `self`, `cls`, `*args`, and `**kwargs`) must have
+  a type annotation. The CI check
+  `validate-type-annotations` enforces this — run it locally with:
+
+  ```bash
+  python scripts/check_type_annotations.py
+  ```
+
 - Keep lines within 88 characters (Black-compatible).
 
 ## Reporting Issues
@@ -56,4 +65,6 @@ utility, or visualization), please follow these guidelines:
 - Each PR should focus on a single concern.
 - Update documentation if you change public APIs.
 - Do not break existing tests.
+- Run `python scripts/check_type_annotations.py` before submitting —
+  the CI will reject PRs with unannotated parameters.
 - Keep the diff as small and focused as possible.

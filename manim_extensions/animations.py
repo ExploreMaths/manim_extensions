@@ -15,6 +15,8 @@ from manim import (
     LEFT,
     LaggedStart,
     Line,
+    ManimColor,
+    Mobject,
     RED,
     RIGHT,
     Rectangle,
@@ -30,6 +32,8 @@ from manim import (
     linear,
     rush_into,
 )
+from typing import Any
+
 import numpy as np
 
 
@@ -353,7 +357,7 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
         """Initialize the WriteRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -398,7 +402,7 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
         """Initialize the ReversedWrite instance."""
         indices = list(range(len(mobject.submobjects) - 1, -1, -1))
         super().__init__(
@@ -441,7 +445,7 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
         """Initialize the FadeInRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -485,7 +489,7 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
         """Initialize the FadeOutRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -531,7 +535,7 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
         """Initialize the GrowRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -584,8 +588,8 @@ class PassingRectangle(Animation):
 
     def __init__(
         self,
-        mobject,
-        color=RED,
+        mobject: Mobject,
+        color: ManimColor = RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
         **kwargs,
@@ -665,7 +669,7 @@ class LaggedCreation(Animation):
 
     def __init__(
         self,
-        mobject,
+        mobject: Mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
         **kwargs,
@@ -695,7 +699,7 @@ class LaggedCreation(Animation):
         return a, b
 
     def interpolate_submobject(
-        self, submobject, starting_submobject, alpha: float
+        self, submobject: Any, starting_submobject: Mobject, alpha: float
     ) -> None:
         """Reveal *submobject* between the computed partial bounds.
 
@@ -761,8 +765,8 @@ class HighLightWithLines(AnimationGroup):
 
     def __init__(
         self,
-        mobject,
-        color=RED,
+        mobject: Mobject,
+        color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
         **kwargs,
@@ -841,8 +845,8 @@ class UnHighLightWithLines(AnimationGroup):
 
     def __init__(
         self,
-        mobject,
-        color=RED,
+        mobject: Mobject,
+        color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
         **kwargs,

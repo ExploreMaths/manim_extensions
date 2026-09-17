@@ -10,6 +10,8 @@ import random
 from manim import (
     AnimationGroup,
     Create,
+    ManimColor,
+    Mobject,
     ORANGE,
     ReplacementTransform,
     Succession,
@@ -44,7 +46,7 @@ class Uncreate(Create):
 
     def __init__(
         self,
-        mobject,
+        mobject: Mobject,
         reverse_rate_function: bool = True,
         introducer: bool = True,
         remover: bool = True,
@@ -81,7 +83,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         self,
         input_layer: Convolutional2DLayer,
         output_layer: MaxPooling2DLayer,
-        active_color=ORANGE,
+        active_color: ManimColor = ORANGE,
         **kwargs,
     ):
         super().__init__(input_layer, output_layer, **kwargs)
@@ -95,7 +97,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args={}, run_time=1.5, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
         """Forward pass animation from conv2d to max pooling"""
         cell_width = self.input_layer.cell_width
         feature_map_size = self.input_layer.feature_map_size

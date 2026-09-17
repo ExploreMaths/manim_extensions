@@ -17,15 +17,17 @@ from manim import (
     DOWN,
     LEFT,
     Line,
+    ManimColor,
     ORIGIN,
     OUT,
     PI,
     RIGHT,
+    Renderer,
     UP,
     VMobject,
     rotate_vector,
 )
-from typing import Optional, Sequence
+from typing import Any, Optional, Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
@@ -40,7 +42,7 @@ __all__ = [
 ]
 
 
-def involute_func(t, r, a=0, rad_offs=0, tan_offs=0):
+def involute_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int = 0, rad_offs: int = 0, tan_offs: int = 0):
     """
     Returns the x-y-z values of the involute function.
 
@@ -71,7 +73,7 @@ def involute_func(t, r, a=0, rad_offs=0, tan_offs=0):
                self.add(base_circle, curve, Dot(points[-1], color=RED))
     """
 
-    def involute_val(val):
+    def involute_val(val: Any):
         """Compute a single point on the involute tooth profile.
 
         Parameters
@@ -108,7 +110,7 @@ def involute_func(t, r, a=0, rad_offs=0, tan_offs=0):
         return involute_val(t)
 
 
-def involute_deriv_func(t, r, a=0, rad_offs=0, tan_offs=0):
+def involute_deriv_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int = 0, rad_offs: int = 0, tan_offs: int = 0):
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -153,7 +155,7 @@ def involute_deriv_func(t, r, a=0, rad_offs=0, tan_offs=0):
                self.add(base_circle, curve, vectors)
     """
 
-    def diff_val(val):
+    def diff_val(val: Any):
         """Compute the derivative of the involute profile at a given parameter.
 
         Parameters
@@ -190,7 +192,7 @@ def involute_deriv_func(t, r, a=0, rad_offs=0, tan_offs=0):
         return diff_val(t)
 
 
-def involute_height_func(k, r, **kwargs):
+def involute_height_func(k: Any, r: Optional[Renderer], **kwargs):
     """
     Returns the radial height of the involute compared to the base circle.
 
@@ -227,7 +229,7 @@ def involute_height_func(k, r, **kwargs):
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t, r, **kwargs):
+def involute_point_gen(t: Optional[np.ndarray], r: Optional[Renderer], **kwargs):
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
@@ -342,15 +344,15 @@ class Gear(VMobject):
 
     def __init__(
         self,
-        num_of_teeth,
-        module=0.2,
-        alpha=20,
-        h_a=1,
-        h_f=1.2,
-        inner_teeth=False,
-        profile_shift=0,
-        cutout_teeth_num=0,
-        nppc=5,
+        num_of_teeth: Any,
+        module: float = 0.2,
+        alpha: int = 20,
+        h_a: int = 1,
+        h_f: float = 1.2,
+        inner_teeth: bool = False,
+        profile_shift: int = 0,
+        cutout_teeth_num: int = 0,
+        nppc: int = 5,
         **kwargs,
     ):
         """Create an involute gear. See the class docstring for parameter details."""
@@ -413,7 +415,7 @@ class Gear(VMobject):
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
 
-    def set_stroke(self, color=None, **kwargs):
+    def set_stroke(self, color: Optional[ManimColor] = None, **kwargs):
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
             If family is specified, it will still do it.
 
@@ -458,7 +460,7 @@ class Gear(VMobject):
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES + da
 
         # find t-range for the involute that lies inside the rf-ra range
-        def invo_cross_diff(t):
+        def invo_cross_diff(t: Optional[np.ndarray]):
             """Compute the y-coordinate where two involute flanks intersect.
 
             Used to find the maximum involute height before the tooth tip.
@@ -525,7 +527,7 @@ class Gear(VMobject):
         rad_ucut = ofs_vector[0]
         tan_ucut = ofs_vector[1]
 
-        def undercut_func(t):
+        def undercut_func(t: Optional[np.ndarray]):
             """Compute a point on the undercut (radial) curve at parameter ``t``.
 
             Parameters
@@ -546,7 +548,7 @@ class Gear(VMobject):
         if self.z < 2 / (np.sin(self.alpha * DEGREES) ** 2) or self.rf < self.rb:
             undercut = True
 
-            def diff_val_func(t):
+            def diff_val_func(t: Optional[np.ndarray]):
                 """Compute the 2-D distance between undercut and involute curves.
 
                 Parameters
@@ -721,7 +723,7 @@ class Gear(VMobject):
             Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
 
-    def mesh_to(self, gear2: "Gear", offset: float = 0, bias=1):
+    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1):
         """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
@@ -1002,7 +1004,7 @@ class Rack(VMobject):
                self.wait()
     """
 
-    def __init__(self, num_of_teeth, module=0.2, alpha=20, h_a=1, h_f=1.17, **kwargs):
+    def __init__(self, num_of_teeth: Any, module: float = 0.2, alpha: int = 20, h_a: int = 1, h_f: float = 1.17, **kwargs):
         """Initialize Rack."""
         self.z = num_of_teeth
         self.m = module

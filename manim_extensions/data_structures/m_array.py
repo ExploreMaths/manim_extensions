@@ -39,7 +39,7 @@ from manim import (
     Write,
 )
 from manim.mobject.mobject import _AnimationBuilder
-from typing import Any, Callable, List, Tuple, Union
+from typing import Any, Callable, List, Optional, Tuple, Union
 
 from .m_enum import MArrayDirection, MArrayElementComp
 
@@ -256,7 +256,7 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo: Any):
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArrayElement__scene"]
@@ -840,11 +840,11 @@ class MArray(VGroup):
 
     def __append_elem(
         self,
-        value,
+        value: Any,
         shift_label: bool = True,
         append_anim: Animation = Write,
         append_anim_args: dict = {},
-        append_anim_target: MArrayElementComp = None,
+        append_anim_target: Optional[MArrayElementComp] = None,
         mob_square_args: dict = {},
         mob_value_args: dict = {},
         mob_index_args: dict = {},
@@ -915,7 +915,7 @@ class MArray(VGroup):
         update_anim: Animation = Indicate,
         removal_anim_args: dict = {},
         update_anim_args: dict = {},
-        removal_anim_target: MArrayElementComp = None,
+        removal_anim_target: Optional[MArrayElementComp] = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
     ) -> Tuple[Succession, Callable[[bool], List[Animation]]]:
         """Removes the element from the array at the specified index.
@@ -1123,7 +1123,7 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo: Any):
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArray__scene"]
@@ -1267,7 +1267,7 @@ class MArray(VGroup):
     def update_elem_value(
         self,
         index: int,
-        value,
+        value: Any,
         mob_value_args: dict = {},
         update_anim: Animation = Write,
         update_anim_args: dict = {},
@@ -1311,7 +1311,7 @@ class MArray(VGroup):
     def update_elem_index(
         self,
         index: int,
-        value,
+        value: Any,
         mob_index_args: dict = {},
         update_anim: Animation = Write,
         update_anim_args: dict = {},
@@ -1481,7 +1481,7 @@ class MArray(VGroup):
         value: Any,
         append_anim: Animation = Write,
         append_anim_args: dict = {},
-        append_anim_target: MArrayElementComp = None,
+        append_anim_target: Optional[MArrayElementComp] = None,
         mob_square_args: dict = {},
         mob_value_args: dict = {},
         mob_index_args: dict = {},
@@ -1541,7 +1541,7 @@ class MArray(VGroup):
         update_anim: Animation = Indicate,
         removal_anim_args: dict = {},
         update_anim_args: dict = {},
-        removal_anim_target: MArrayElementComp = None,
+        removal_anim_target: Optional[MArrayElementComp] = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
         play_anim: bool = True,
         play_anim_args: dict = {},
@@ -1757,9 +1757,9 @@ class MArrayPointer(VGroup):
                     .fetch_mob_square()
                     .side_length
                 )
-            )
             * self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
             * (-1 if to_lesser_index else 1)
+            )
         )
 
     def __init_props(
@@ -1872,7 +1872,7 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo: Any):
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
@@ -2390,7 +2390,7 @@ class MArraySlidingWindow(VGroup):
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo: Any):
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]

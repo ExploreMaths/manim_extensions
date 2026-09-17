@@ -12,7 +12,8 @@ from .parent_layers import BlankConnective
 from . import connective_layers_list
 
 
-def get_connective_layer(input_layer, output_layer):
+from manim import Mobject
+def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
     """
     Deduces the relevant connective layer
     """

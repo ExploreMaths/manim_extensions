@@ -50,7 +50,7 @@ class WrappedTree:
     """
 
     # Reference to the original node
-    node: Any = None
+    node: Optional[Any] = None
     # Basic attributes
     x: float = 0.0
     y: float = 0.0
@@ -87,7 +87,7 @@ class WrappedTree:
     thread_right: Optional["WrappedTree"] = None
 
     @classmethod
-    def from_node(cls, node, is_horizontal: bool, level: int = 0) -> "WrappedTree":
+    def from_node(cls, node: Any, is_horizontal: bool, level: int = 0) -> "WrappedTree":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
@@ -171,7 +171,7 @@ class IYLNode:
     )
 
 
-def move_right(node, move: float, is_horizontal: bool):
+def move_right(node: Any, move: float, is_horizontal: bool):
     """Move a node and all its descendants by *move* in the non-layered direction.
 
     Parameters
@@ -191,7 +191,7 @@ def move_right(node, move: float, is_horizontal: bool):
         move_right(child, move, is_horizontal)
 
 
-def get_min(node, is_horizontal: bool) -> float:
+def get_min(node: Any, is_horizontal: bool) -> float:
     """Return the minimum non-layered coordinate in a subtree.
 
     Parameters
@@ -212,7 +212,7 @@ def get_min(node, is_horizontal: bool) -> float:
     return res
 
 
-def normalize(node, is_horizontal: bool):
+def normalize(node: Any, is_horizontal: bool):
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -226,7 +226,7 @@ def normalize(node, is_horizontal: bool):
     move_right(node, -min_val, is_horizontal)
 
 
-def convert_back(converted: WrappedTree, root, is_horizontal: bool):
+def convert_back(converted: WrappedTree, root: Any, is_horizontal: bool):
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
@@ -251,7 +251,7 @@ def convert_back(converted: WrappedTree, root, is_horizontal: bool):
             convert_back(child, root.children[i], is_horizontal)
 
 
-def layer(node, direction, level_spacing):
+def layer(node: Any, direction: str, level_spacing: float):
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -330,7 +330,7 @@ class TidyTreeLayout(Layout):
 
     def __init__(
         self,
-        root,
+        root: Any,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
@@ -343,7 +343,7 @@ class TidyTreeLayout(Layout):
         self.level_spacing = level_spacing
         self.wt = None
 
-    def _is_horizontal(self, direction):
+    def _is_horizontal(self, direction: str):
         """Check whether the given layout direction is horizontal.
 
         Parameters

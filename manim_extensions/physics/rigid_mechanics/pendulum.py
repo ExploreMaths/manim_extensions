@@ -13,7 +13,7 @@ r"""Pendulums.
 from __future__ import annotations
 
 from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup
-from typing import Iterable
+from typing import Any, Iterable
 
 import numpy as np
 
@@ -71,7 +71,6 @@ class MultiPendulum(VGroup):
                        pendulum.bobs[-1].get_center,
                        stroke_color=BLUE,
                    )
-               )
                self.wait(5)
     """
 
@@ -132,7 +131,7 @@ class MultiPendulum(VGroup):
         joint = pymunk.PinJoint(a, b)
         spacescene.space.space.add(joint)
 
-    def _redraw_rods(self, mob: Line, pins, i):
+    def _redraw_rods(self, mob: Line, pins: list, i: Any):
         """Update a rod line to connect the positions of two consecutive pins.
 
         Parameters
@@ -215,11 +214,11 @@ class Pendulum(MultiPendulum):
 
     def __init__(
         self,
-        length=3.5,
-        initial_theta=0.3,
-        pivot_point=UP * 2,
-        rod_style={},
-        bob_style={
+        length: float = 3.5,
+        initial_theta: float = 0.3,
+        pivot_point: np.ndarray = UP * 2,
+        rod_style: dict = {},
+        bob_style: dict = {
             "radius": 0.25,
             "color": ORANGE,
             "fill_opacity": 1,

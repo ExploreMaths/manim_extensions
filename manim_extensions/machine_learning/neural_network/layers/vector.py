@@ -12,6 +12,7 @@ import random
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 
+from typing import Callable
 class VectorLayer(VGroupNeuralNetworkLayer):
     """Shows a vector
 
@@ -56,7 +57,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
                self.play(nn.make_forward_pass_animation())
     """
 
-    def __init__(self, num_values, value_func=lambda: random.uniform(0, 1), **kwargs):
+    def __init__(self, num_values: int, value_func: Callable = lambda: random.uniform(0, 1), **kwargs):
         super().__init__(**kwargs)
         self.num_values = num_values
         self.value_func = value_func
@@ -85,7 +86,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         return vector_label
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         return AnimationGroup()
 
     @override_animation(Create)

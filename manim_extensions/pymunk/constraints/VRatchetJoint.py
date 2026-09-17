@@ -94,7 +94,7 @@ class VRatchetJoint(VConstraint):
             "color": BLUE,
             "stroke_width": 2,
         },
-        indicator_line_length=0.4,
+        indicator_line_length: float = 0.4,
         connect_line_class: Optional[Line] = None,
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
@@ -171,7 +171,7 @@ class VRatchetJoint(VConstraint):
 
         self.add_updater(self.mob_updater)
 
-    def mob_updater(self, mob, dt):
+    def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""
         if not self.constraint:
             return

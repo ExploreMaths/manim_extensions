@@ -2,11 +2,12 @@
 # SPDX-License-Identifier: MIT
 """Bohr atom model visualization for Manim."""
 
-from manim import BLUE, Circle, Dot, RED, RIGHT, TAU, VGroup, WHITE
+from manim import BLUE, Circle, Dot, ManimColor, RED, RIGHT, TAU, VGroup, WHITE
 import numpy as np
 import random
 
 
+from typing import Any, Optional
 class BohrAtom(VGroup):
     """Creates a Bohr like diagram
 
@@ -50,14 +51,14 @@ class BohrAtom(VGroup):
 
     def __init__(
         self,
-        e=14,  # Electrons
-        p=14,  # Protons
-        n=10,  # Neutrons
-        level=None,  # Levels
-        orbit_color=WHITE,
-        electron_color=BLUE,
-        proton_color=RED,
-        neutron_color=WHITE,
+        e: int = 14,  # Electrons
+        p: int = 14,  # Protons
+        n: int = 10,  # Neutrons
+        level: Optional[Any]=None,  # Levels
+        orbit_color: ManimColor = WHITE,
+        electron_color: ManimColor = BLUE,
+        proton_color: ManimColor = RED,
+        neutron_color: ManimColor = WHITE,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -151,7 +152,7 @@ class BohrAtom(VGroup):
 
         return electrons_group
 
-    def arrange_electrons(self, n_electrons, level):
+    def arrange_electrons(self, n_electrons: Any, level: int):
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)

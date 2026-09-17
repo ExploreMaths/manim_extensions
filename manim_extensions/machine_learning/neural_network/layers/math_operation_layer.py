@@ -11,12 +11,14 @@ from manim import (
     ApplyMethod,
     BLUE,
     Circle,
+    ManimColor,
     Mobject,
     ORANGE,
     Succession,
     Text,
     Wait,
 )
+from typing import Any, Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -86,12 +88,12 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     def __init__(
         self,
         operation_type: str,
-        node_radius=0.5,
-        node_color=BLUE,
-        node_stroke_width=2.0,
-        active_color=ORANGE,
-        activation_function=None,
-        font_size=20,
+        node_radius: float = 0.5,
+        node_color: ManimColor = BLUE,
+        node_stroke_width: float = 2.0,
+        active_color: ManimColor = ORANGE,
+        activation_function: Optional[Any]=None,
+        font_size: float = 20,
         **kwargs
     ):
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
@@ -144,7 +146,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Makes the forward pass animation
 
         Parameters
@@ -191,7 +193,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     def get_right(self):
         return self.surrounding_circle.get_right()
     
-    def move_to(self, mobject_or_point):
+    def move_to(self, mobject_or_point: Mobject):
         """Moves the center of the layer to the given mobject or point"""
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):

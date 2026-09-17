@@ -10,11 +10,12 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 
 """
-from manim import AnimationGroup, BLUE, Create, VGroup, override_animation
+from manim import AnimationGroup, BLUE, Create, ManimColor, VGroup, override_animation
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer
 from ..neural_network import NeuralNetwork
 
 
+from typing import Any
 class VariationalAutoencoder(VGroup):
     """Variational Autoencoder Manim Visualization
 
@@ -57,12 +58,12 @@ class VariationalAutoencoder(VGroup):
 
     def __init__(
         self,
-        encoder_nodes_per_layer=[5, 3],
-        decoder_nodes_per_layer=[3, 5],
-        point_color=BLUE,
-        dot_radius=0.05,
-        ellipse_stroke_width=1.0,
-        layer_spacing=0.5,
+        encoder_nodes_per_layer: list = [5, 3],
+        decoder_nodes_per_layer: list = [3, 5],
+        point_color: ManimColor = BLUE,
+        dot_radius: float = 0.05,
+        ellipse_stroke_width: float = 1.0,
+        layer_spacing: float = 0.5,
     ):
         super(VGroup, self).__init__()
         self.encoder_nodes_per_layer = encoder_nodes_per_layer
@@ -94,10 +95,10 @@ class VariationalAutoencoder(VGroup):
     def _create_vae(self):
         return Create(self.neural_network)
 
-    def make_triplet_forward_pass(self, triplet):
+    def make_triplet_forward_pass(self, triplet: Any):
         pass
 
-    def make_image_forward_pass(self, input_image, output_image, run_time=1.5):
+    def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5):
         """Override forward pass animation specific to a VAE"""
         # Make a wrapper NN with images
         wrapper_neural_network = NeuralNetwork(

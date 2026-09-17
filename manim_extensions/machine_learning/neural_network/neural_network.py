@@ -19,10 +19,12 @@ import textwrap
 from ..utils.mobjects.connections import NetworkConnection
 import numpy as np
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     DEFAULT_FONT_SIZE,
     Group,
+    ManimColor,
     Mobject,
     ORIGIN,
     ShowPassingFlash,
@@ -32,6 +34,7 @@ from manim import (
     Wait,
     override_animation,
 )
+from typing import Callable, Optional, Union
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -103,15 +106,15 @@ class NeuralNetwork(Group):
 
     def __init__(
         self,
-        input_layers,
-        layer_spacing=0.2,
-        animation_dot_color=config.color_scheme.active_color,
-        edge_width=2.5,
-        dot_radius=0.03,
-        title=" ",
-        layout="linear",
-        layout_direction="left_to_right",
-        debug_mode=False
+        input_layers: list,
+        layer_spacing: float = 0.2,
+        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        edge_width: float = 2.5,
+        dot_radius: float = 0.03,
+        title: str = " ",
+        layout: str = "linear",
+        layout_direction: str = "left_to_right",
+        debug_mode: bool = False
     ):
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
@@ -153,7 +156,7 @@ class NeuralNetwork(Group):
         # Print neural network
         print(repr(self))
 
-    def make_input_layers_dict(self, input_layers):
+    def make_input_layers_dict(self, input_layers: list):
         """Make dictionary of input layers"""
         if isinstance(input_layers, dict):
             # If input layers is dictionary then return it
@@ -170,11 +173,11 @@ class NeuralNetwork(Group):
 
     def add_connection(
         self,
-        start_mobject_or_name,
-        end_mobject_or_name,
-        connection_style="default",
-        connection_position="bottom",
-        arc_direction="down"
+        start_mobject_or_name: Union[Mobject, str],
+        end_mobject_or_name: Union[Mobject, str],
+        connection_style: str = "default",
+        connection_position: str = "bottom",
+        arc_direction: str = "down"
     ):
         """Add connection from start layer to end layer"""
         assert connection_style in ["default"]
@@ -222,8 +225,8 @@ class NeuralNetwork(Group):
 
     def _place_layers(
         self, 
-        layout="linear", 
-        layout_direction="top_to_bottom"
+        layout: str = "linear", 
+        layout_direction: str = "top_to_bottom"
     ):
         """Creates the neural network"""
         # TODO implement more sophisticated custom layouts
@@ -316,27 +319,27 @@ class NeuralNetwork(Group):
             ) / 2
             connective_layer.move_to(layer_midpoint)
 
-    def insert_layer(self, layer, insert_index):
+    def insert_layer(self, layer: Mobject, insert_index: int):
         """Inserts a layer at the given index"""
         neural_network = self
         insert_animation = InsertLayer(layer, insert_index, neural_network)
         return insert_animation
 
-    def remove_layer(self, layer):
+    def remove_layer(self, layer: Mobject):
         """Removes layer object if it exists"""
         neural_network = self
         return RemoveLayer(layer, neural_network, layer_spacing=self.layer_spacing)
 
-    def replace_layer(self, old_layer, new_layer):
+    def replace_layer(self, old_layer: Mobject, new_layer: Mobject):
         """Replaces given layer object"""
         raise NotImplementedError()
 
     def make_forward_pass_animation(
         self, 
-        run_time=None, 
-        passing_flash=True, 
-        layer_args={}, 
-        per_layer_animations=False,
+        run_time: Optional[float] = None, 
+        passing_flash: bool = True, 
+        layer_args: dict = {}, 
+        per_layer_animations: bool = False,
         **kwargs
     ):
         """Generates an animation for feed forward propagation"""
@@ -379,7 +382,7 @@ class NeuralNetwork(Group):
             # Layers without an activation function (e.g. Convolutional2DLayer)
             # return an empty AnimationGroup; manim raises when playing empty
             # groups, so only keep non-empty animations.
-            def _is_empty(animation):
+            def _is_empty(animation: Animation):
                 return (
                     isinstance(animation, AnimationGroup)
                     and len(animation.animations) == 0
@@ -445,14 +448,14 @@ class NeuralNetwork(Group):
 
         return animation_group
 
-    def set_z_index(self, z_index_value: float, family=False):
+    def set_z_index(self, z_index_value: float, family: bool = False):
         """Overriden set_z_index"""
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
             if not isinstance(NeuralNetwork):
                 layer.set_z_index(z_index_value)
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         """Overriden scale"""
         prior_center = self.get_center()
 
@@ -471,7 +474,7 @@ class NeuralNetwork(Group):
 
         self.move_to(prior_center)
 
-    def filter_layers(self, function):
+    def filter_layers(self, function: Callable):
         """Filters layers of the network given function"""
         layers_to_return = []
         for layer in self.all_layers:
@@ -484,7 +487,7 @@ class NeuralNetwork(Group):
 
         return layers_to_return
 
-    def __repr__(self, metadata=["z_index", "title_text"]):
+    def __repr__(self, metadata: str = ["z_index", "title_text"]):
         """Print string representation of layers"""
         inner_string = ""
         for layer in self.all_layers:

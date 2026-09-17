@@ -92,7 +92,7 @@ class VPivotJoint(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        pivot_world: list[float, float, float] = None,
+        pivot_world: Optional[list[float, float, float]] = None,
         anchor_a_local: list[float, float, float] = ORIGIN,
         anchor_b_local: list[float, float, float] = ORIGIN,
         anchor_a_appearance: Mobject = Dot(color=RED),
@@ -184,7 +184,7 @@ class VPivotJoint(VConstraint):
         space.add(self.constraint)
         self.add_updater(self.mob_updater)
 
-    def mob_updater(self, mob, dt):
+    def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""
         if not self.constraint:
             return

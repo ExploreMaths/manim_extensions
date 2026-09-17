@@ -55,11 +55,11 @@ class TimelineNode:
                self.add(boxes)
     """
 
-    node: Any = None
+    node: Optional[Any] = None
     width: float = 0.0
     height: float = 0.0
     children: List["TimelineNode"] = field(default_factory=list)
-    side_dir: LayoutDirection = None
+    side_dir: Optional[LayoutDirection] = None
 
     # Layout result coordinates
     x: float = 0.0
@@ -72,7 +72,7 @@ class TimelineNode:
     _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node) -> "TimelineNode":
+    def from_node(cls, node: Any) -> "TimelineNode":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references

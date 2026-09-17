@@ -6,7 +6,7 @@ This module provides the MCMolecule class for representing molecules.
 
 """
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -148,7 +148,7 @@ class MCMolecule:
 
     @staticmethod
     def construct_from_file(
-        filepath,
+        filepath: Any,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
@@ -177,7 +177,7 @@ class MCMolecule:
 
     @staticmethod
     def construct_multiples_from_file(
-        filepath,
+        filepath: Any,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,

@@ -12,7 +12,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 import copy
-from typing import List, Tuple
+from typing import Any, List, Optional, Tuple
 
 # third-party imports
 import manim as m
@@ -64,7 +64,6 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     --------
     .. manim:: ManimMeshExample
 
-       from manim import *
        import numpy as np
        from manim_extensions.meshes.templates import create_pyramid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
@@ -211,7 +210,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         )
         return self.faces
 
-    def add_face(self, face: np.ndarray, color=None) -> tuple[m.VGroup, m.VGroup]:
+    def add_face(self, face: np.ndarray, color: Optional[m.ManimColor] = None) -> tuple[m.VGroup, m.VGroup]:
         """Add a face to the mesh and create the corresponding Manim objects.
 
         If *color* is ``None``, the default ``self.faces_color`` is used.
@@ -267,7 +266,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         return new_face, new_edges
 
-    def remove_face(self, face_idx):
+    def remove_face(self, face_idx: int):
         """Remove a face (and its orphaned edges) by index.
 
         Parameters
@@ -433,7 +432,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         self.mesh.scale_mesh(scale_factor, about_point)
         super().scale(scale_factor, **kwargs)
 
-    def stretch(self, factor, dim, **kwargs):
+    def stretch(self, factor: float, dim: int, **kwargs):
         """Stretch the mesh along a single dimension.
 
         Parameters
@@ -458,9 +457,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     def rotate(
         self,
-        angle,
-        axis=m.OUT,
-        about_point=None,
+        angle: float,
+        axis: np.ndarray = m.OUT,
+        about_point: Optional[Any]=None,
         **kwargs,
     ):
         """Rotate the mesh (data and Manim objects) about *about_point*.
@@ -488,7 +487,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             self.mesh.apply_rotation(angle, axis, about_point)
         super().rotate(angle, axis, about_point=about_point, **kwargs)
 
-    def flip(self, axis=m.UP, **kwargs):
+    def flip(self, axis: np.ndarray = m.UP, **kwargs):
         """Flip the mesh about *axis*.
 
         .. note::
@@ -569,8 +568,8 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
                     vertex_idx=bound_v_id,
                     pos=start[bound_v_id] + tracker.get_value() * shift[bound_v_id],
                     **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"]),
-                )
             )
+        )
         scene.add(tracker)
         scene.play(
             tracker.animate(
@@ -765,7 +764,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
             self.vertices.add(m.Dot(v, radius=self.verts_size, color=self.verts_color))
         return self.vertices
 
-    def get_dots(self, indices) -> List[m.Dot]:
+    def get_dots(self, indices: list) -> List[m.Dot]:
         """Return Manim :class:`~manim.mobject.geometry.arc.Dot` objects that track the specified vertices.
 
         Each dot is automatically updated via an updater so that it stays at

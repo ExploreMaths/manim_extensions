@@ -13,7 +13,7 @@ from ...utils.deps import require
 
 
 def get_normalized_convex_polygons(
-    pixel_array, base_px_width=512.0, target_cell_size=4, img_manim_w=8, img_manim_h=14.22
+    pixel_array: np.ndarray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
 ):
     """从像素数组中提取规范化的凸多边形集合。
 
@@ -93,7 +93,7 @@ def get_normalized_convex_polygons(
     # 闭运算：连接断裂的高光位
     mask = mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
 
-    def sample_func(point):
+    def sample_func(point: np.ndarray):
         """采样函数：根据坐标返回Mask值。
 
         Parameters
@@ -140,7 +140,7 @@ def get_normalized_convex_polygons(
     return manim_polygons
 
 
-def map_polygons_to_manim(polygons, img_px_w, img_px_h, img_manim_w, img_manim_h):
+def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float):
     """将像素坐标系中的多边形映射到Manim坐标系。
 
     执行坐标系转换：从图片像素坐标转换为Manim的笛卡尔坐标系。

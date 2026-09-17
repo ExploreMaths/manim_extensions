@@ -11,6 +11,7 @@ from manim import BLUE, RED
 from .base import EconDiagram
 
 
+from typing import Any, Optional
 class SupplyDemandDiagram(EconDiagram):
     """A supply-and-demand diagram.
 
@@ -47,9 +48,9 @@ class SupplyDemandDiagram(EconDiagram):
 
     def __init__(
         self,
-        demand_func=None,
-        supply_func=None,
-        show_equilibrium=True,
+        demand_func: Optional[Any]=None,
+        supply_func: Optional[Any]=None,
+        show_equilibrium: bool = True,
         **kwargs,
     ):
         super().__init__(x_label="Q", y_label="P", **kwargs)

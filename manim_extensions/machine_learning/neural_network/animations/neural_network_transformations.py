@@ -7,10 +7,11 @@
 """
     Transformations for manipulating a neural network object. 
 """
-from manim import AnimationGroup, Create, FadeOut, Group, UpdateFromFunc, np
+from manim import AnimationGroup, Create, FadeOut, Group, Mobject, UpdateFromFunc, np
 from ..layers.util import get_connective_layer
 
 
+from typing import Any
 class RemoveLayer(AnimationGroup):
     """
     Animation for removing a layer from a neural network.
@@ -33,7 +34,7 @@ class RemoveLayer(AnimationGroup):
         Spacing between layers after the removal, by default 0.2.
     """
 
-    def __init__(self, layer, neural_network, layer_spacing=0.2):
+    def __init__(self, layer: Mobject, neural_network: Any, layer_spacing: float = 0.2):
         self.layer = layer
         self.neural_network = neural_network
         self.layer_spacing = layer_spacing
@@ -150,7 +151,7 @@ class RemoveLayer(AnimationGroup):
         """Makes new connective layer"""
         self.anim_count = 0
 
-        def create_new_connective(neural_network):
+        def create_new_connective(neural_network: Any):
             """
             Creates new connective layer
 
@@ -187,7 +188,7 @@ class InsertLayer(AnimationGroup):
         The neural network to insert the layer into.
     """
 
-    def __init__(self, layer, index, neural_network):
+    def __init__(self, layer: Mobject, index: int, neural_network: Any):
         self.layer = layer
         self.index = index
         self.neural_network = neural_network
@@ -296,7 +297,7 @@ class InsertLayer(AnimationGroup):
         return Create(self.layer)
 
     def make_create_connective_layers_animation(
-        self, before_connective, after_connective
+        self, before_connective: Any, after_connective: Any
     ):
         """Create connective layers"""
         # Make the layers
