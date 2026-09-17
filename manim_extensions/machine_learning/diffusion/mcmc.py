@@ -342,6 +342,7 @@ class MCMCAxes(Group):
                            "sampling_seed": 4,
                        },
                    )
+               )
                self.wait(1)
     """
 
