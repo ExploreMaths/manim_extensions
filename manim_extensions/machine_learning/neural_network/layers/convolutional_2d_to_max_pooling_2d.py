@@ -52,6 +52,7 @@ class Uncreate(Create):
         remover: bool = True,
         **kwargs,
     ) -> None:
+        """  init  ."""
         super().__init__(
             mobject,
             reverse_rate_function=reverse_rate_function,
@@ -86,6 +87,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         active_color: ManimColor = ORANGE,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.active_color = active_color
 
@@ -95,6 +97,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):

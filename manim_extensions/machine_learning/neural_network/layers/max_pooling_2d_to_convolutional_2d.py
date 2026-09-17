@@ -50,6 +50,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         show_grid_lines: bool = False,
         **kwargs
     ):
+        """  init  ."""
         input_layer.num_feature_maps = output_layer.num_feature_maps
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash_color = passing_flash_color

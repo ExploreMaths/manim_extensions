@@ -17,8 +17,10 @@ import manim
 from .utils.colorschemes.colorschemes import light_mode, dark_mode, ColorScheme
 
 class ManimMLConfig:
+    """Global configuration for ManimML visualizations."""
 
     def __init__(self, default_color_scheme=dark_mode):
+        """Initialize the configuration with a default color scheme."""
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(
             three_d_x_rotation = 90 * DEGREES,
@@ -31,10 +33,12 @@ class ManimMLConfig:
 
     @property
     def color_scheme(self):
+        """Return the currently active color scheme."""
         return self._color_scheme
     
     @color_scheme.setter
     def color_scheme(self, value):
+        """Set the active color scheme by name or ColorScheme instance."""
         if isinstance(value, str):
             if value == "dark_mode":
                 self._color_scheme = dark_mode

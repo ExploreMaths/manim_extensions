@@ -47,6 +47,7 @@ class PubchemAPIManager:
         three_d: bool = False,
         format: str = "json",
     ):
+        """  init  ."""
         if not any([cid, name, smiles, inchi]):
             raise Exception(
                 "You should provide an identifier. Available identifiers are cid, name, smiles and inchi"
@@ -59,6 +60,7 @@ class PubchemAPIManager:
         self.format = format
 
     def handle_request(self, request: 'requests.models.Response', identifier: Any):
+        """handle request."""
         requests = require("chemistry", "requests")
         # Added sleep to prevent overloading the PubChem API
         time.sleep(0.25)
@@ -80,6 +82,7 @@ class PubchemAPIManager:
         )
 
     def from_cid(self):
+        """from cid."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
@@ -89,6 +92,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.cid)
 
     def from_name(self):
+        """from name."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
@@ -98,6 +102,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.name)
 
     def from_smiles(self):
+        """from smiles."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
@@ -107,6 +112,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.smiles)
 
     def from_inchi(self):
+        """from inchi."""
         requests = require("chemistry", "requests")
         request_url = (
             f"{PubchemAPIManager.BASE_URL}/inchikey/{self.inchi}/{self.format}"
@@ -118,6 +124,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.inchi)
 
     def get_molecule(self):
+        """get molecule."""
         if self.cid:
             return self.from_cid()
 

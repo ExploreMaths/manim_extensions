@@ -32,6 +32,7 @@ class OrbitalBase(OpenGLSurface):
     """
 
     def add_background_rectangle_to_family_members_with_points(self):
+        """add background rectangle to family members with points."""
         pass
 
     def __init__(
@@ -46,6 +47,7 @@ class OrbitalBase(OpenGLSurface):
         size: int = 1,
         **kwargs,
     ):
+        """  init  ."""
         self.n_value = n_value
         self.l_value = l_value
         self.m_value = m_value
@@ -62,11 +64,13 @@ class OrbitalBase(OpenGLSurface):
         self.shift(center)
 
     def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0):
+        """psi ang."""
         sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
 
     def calculate_coordinates(self, psi: Any, u: Optional[np.ndarray], v: Any):
+        """calculate coordinates."""
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
         z = np.cos(u) * abs(psi)
@@ -74,6 +78,7 @@ class OrbitalBase(OpenGLSurface):
         return self.size * np.array([x, y, z])
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
+        """uv func."""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
@@ -85,6 +90,7 @@ class OrbitalPositive(OrbitalBase):
     """
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
+        """uv func."""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
             psi = 0
@@ -98,6 +104,7 @@ class OrbitalNegative(OrbitalBase):
     """
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
+        """uv func."""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
             psi = 0
@@ -132,6 +139,7 @@ class Orbital(OpenGLSurface):
     """
 
     def __init__(self, n: Optional[Any]=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):
+        """  init  ."""
         super().__init__(self.uv_func, **kwargs)
         if not n:
             self.n = l + 1
@@ -150,4 +158,5 @@ class Orbital(OpenGLSurface):
         self.needs_new_bounding_box = True
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
+        """uv func."""
         return np.array([0, 0, 0])

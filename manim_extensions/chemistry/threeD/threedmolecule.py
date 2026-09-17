@@ -115,6 +115,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         *mobjects,
         **kwargs,
     ):
+        """  init  ."""
         if config.renderer != RendererType.OPENGL:
             raise Exception(
                 "ThreeDMolecule requires using a OpenGL renderer. You can use it adding the `--renderer=opengl` flag or adding `config.renderer = opengl` to your python file."
@@ -133,6 +134,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         self.move_to(ORIGIN)
 
     def get_atoms_from_csv(self):
+        """get atoms from csv."""
         elements_data_dict = {}
         for atom in self.atoms_dict.values():
             elements_data_dict[atom.get("element").symbol] = atom.get("element")
@@ -152,6 +154,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return atoms
 
     def get_bonds(self):
+        """get bonds."""
         bonds = OpenGLGroup()
         for index, bonds_list in self.bonds_dict.items():
             from_atom = self.atoms[index - 1]
@@ -227,9 +230,11 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return atoms, bonds
 
     def from_mol_file(filename: Any, source_csv: Any):
+        """from mol file."""
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
     def from_mol_string(mol_string: Any, source_csv: Any):
+        """from mol string."""
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

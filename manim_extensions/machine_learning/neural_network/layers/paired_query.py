@@ -85,6 +85,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
     def __init__(
         self, positive: VGroup, negative: VGroup, stroke_width: float = 5, font_size: float = 18, spacing: float = 0.5, **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.positive = positive
         self.negative = negative
@@ -103,6 +104,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod

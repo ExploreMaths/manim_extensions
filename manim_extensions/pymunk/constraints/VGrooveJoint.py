@@ -104,6 +104,7 @@ class VGrooveJoint(VConstraint):
         },
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

@@ -1717,6 +1717,7 @@ class MArrayPointer(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
+            """updater pos."""
             self.__init_pos()
 
         self.__updater_pos = updater_pos
@@ -2286,6 +2287,7 @@ class MArraySlidingWindow(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
+            """updater pos."""
             self.__init_pos()
 
         self.__updater_pos = updater_pos

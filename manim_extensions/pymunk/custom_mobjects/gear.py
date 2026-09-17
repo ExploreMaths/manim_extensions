@@ -59,6 +59,7 @@ class Gear(VMobject):
         hole_radius: float = 0.1,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         
         # 自动计算最佳齿宽

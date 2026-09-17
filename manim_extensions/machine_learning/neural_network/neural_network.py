@@ -116,6 +116,7 @@ class NeuralNetwork(Group):
         layout_direction: str = "left_to_right",
         debug_mode: bool = False
     ):
+        """  init  ."""
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
         self.input_layers = ListGroup(*self.input_layers_dict.values())

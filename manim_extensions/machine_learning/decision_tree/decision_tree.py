@@ -57,6 +57,7 @@ class LeafNode(Group):
     def __init__(
         self, class_index: Any, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
     ):
+        """  init  ."""
         super().__init__()
         self.display_type = display_type
         self.class_image_paths = class_image_paths
@@ -97,6 +98,7 @@ class SplitNode(VGroup):
     """
 
     def __init__(self, feature: Any, threshold: Any):
+        """  init  ."""
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f} cm"
         # Draw decision text
@@ -180,6 +182,7 @@ class DecisionTreeDiagram(Group):
         class_images_paths: Optional[Any]=None,
         class_colors: list = [RED, GREEN, BLUE],
     ):
+        """  init  ."""
         super().__init__()
         self.tree = sklearn_tree
         self.feature_names = feature_names
@@ -245,6 +248,7 @@ class DecisionTreeDiagram(Group):
         tree_width = scale_factor * 2**max_depth * node_width
         # traverse tree
         def recurse(node_index: Any, depth: Any, direction: str, parent_object: Any, parent_node: Any):
+            """recurse."""
             # make the node object
             is_leaf = (
                 self.tree.children_left[node_index]
@@ -466,6 +470,7 @@ class DecisionTreeContainer():
     """
 
     def __init__(self, sklearn_tree: Any, points: Any, classes: Any):
+        """  init  ."""
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes

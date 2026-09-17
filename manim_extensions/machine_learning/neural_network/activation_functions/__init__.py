@@ -13,6 +13,7 @@ name_to_activation_function_map = {"ReLU": ReLUFunction, "Sigmoid": SigmoidFunct
 
 
 def get_activation_function_by_name(name):
+    """Return the activation function class matching the given name."""
     assert (
         name in name_to_activation_function_map.keys()
     ), f"Unrecognized activation function {name}"

@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ColorScheme:
+    """color scheme."""
     primary_color: str
     secondary_color: str
     active_color: str

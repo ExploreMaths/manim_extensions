@@ -52,6 +52,7 @@ class MCBond:
         topology: Optional[int] = None,
         reacting_center_status: Optional[int] = None,
     ):
+        """  init  ."""
         self.bond_type = bond_type
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -61,12 +62,15 @@ class MCBond:
         self.reacting_center_status = reacting_center_status
 
     def assign_from_atom(self, from_atom: Any):
+        """assign from atom."""
         self.from_atom = from_atom
 
     def assign_to_atom(self, to_atom: Any):
+        """assign to atom."""
         self.to_atom = to_atom
 
     def assign_stereo(self, stereo: Any):
+        """assign stereo."""
         self.stereo = stereo
 
     @staticmethod

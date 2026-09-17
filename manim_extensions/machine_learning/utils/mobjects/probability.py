@@ -61,6 +61,7 @@ class GaussianDistribution(VGroup):
     def __init__(
         self, axes: Any, mean: Optional[Any]=None, cov: Optional[Any]=None, dist_theme: str = "gaussian", color: ManimColor = ORANGE, **kwargs
     ):
+        """  init  ."""
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
         self.mean = mean
@@ -92,6 +93,7 @@ class GaussianDistribution(VGroup):
     """
 
     def compute_covariance_rotation_and_scale(self, covariance: np.ndarray):
+        """compute covariance rotation and scale."""
         def eigsorted(cov: np.ndarray):
             """
             Eigenvalues and eigenvectors of the covariance matrix.

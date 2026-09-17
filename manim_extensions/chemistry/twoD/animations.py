@@ -105,6 +105,7 @@ class GMAnimationBuilder:
         atoms: VGroup | None = None,
         bonds: VGroup | None = None,
     ):
+        """  init  ."""
         self.molecule = molecule
         self.atoms = atoms or self.molecule.vertices.values()
         self.atoms_copy = self.atoms.copy()
@@ -112,6 +113,7 @@ class GMAnimationBuilder:
         self.bonds_copy = self.bonds.copy()
 
     def bonds_from_atoms(self, atom_a: Any, atom_b: Any):
+        """bonds from atoms."""
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
                 return bond
@@ -119,6 +121,7 @@ class GMAnimationBuilder:
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 
     def rotate_atoms_about_bond(self, atom_a: Any, atom_b: Any, angle: float = PI / 4):
+        """rotate atoms about bond."""
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
         axis = self.molecule.edges[bond].sheen_direction
         self.atoms_copy.rotate(axis=axis, angle=angle)
@@ -129,6 +132,7 @@ class GMAnimationBuilder:
         ]
 
     def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: Optional[Any]=None, label_color: Optional[Any]=None):
+        """change color."""
         animations = []
 
         if label_color:

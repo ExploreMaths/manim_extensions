@@ -42,21 +42,39 @@ SKIP_DIRS = {
     "tests",
     "workflow",
     "docbuild",
-    "testing",
-    "custom_mobjects",
-    "chemistry",
-    "machine_learning",
-    "qr_codes",
-    "svg_animations",
-    "pymunk",
-    "algorithm",
-    "automata",
 }
 
 SKIP_PATTERNS = [
     "__pycache__",
     ".pyc",
 ]
+
+# Dunder methods that are conventionally left undocumented.
+# __init__ is NOT here — it should be documented.
+SKIP_DUNDER = {
+    '__repr__', '__str__', '__len__', '__getitem__', '__setitem__',
+    '__delitem__', '__enter__', '__exit__', '__call__', '__eq__',
+    '__ne__', '__lt__', '__le__', '__gt__', '__ge__', '__add__',
+    '__sub__', '__mul__', '__truediv__', '__contains__', '__iter__',
+    '__next__', '__hash__', '__getattr__', '__setattr__', '__delattr__',
+    '__new__', '__bool__', '__abs__', '__pos__', '__neg__', '__invert__',
+    '__int__', '__float__', '__complex__', '__round__', '__trunc__',
+    '__floor__', '__ceil__', '__index__', '__format__', '__sizeof__',
+    '__class_getitem__', '__init_subclass__', '__set_name__',
+    '__copy__', '__deepcopy__', '__reduce__', '__reduce_ex__',
+    '__getstate__', '__setstate__', '__getattribute__',
+    '__dir__', '__subclasshook__', '__instancecheck__',
+    '__missing__', '__del__', '__post_init__',
+    '__abstractmethods__', '__parameters__',
+    '__orig_bases__', '__type_params__',
+    '__slots__', '__mro_entries__',
+    '__annotations__', '__dict__', '__module__',
+}
+
+# Decorator/protocol inner functions where docstrings are optional.
+SKIP_NAMES = {
+    'wrapper', 'decorator_maker', 'real_test',
+}
 
 SPDX_PATTERNS = [  # REUSE-IgnoreStart
     "# SPDX-FileCopyrightText:",
@@ -236,77 +254,24 @@ def check_function_docstrings(filepath):
     
     missing = []
     
-    SKIP_NAMES = {'__init__', '__repr__', '__str__', '__len__', '__getitem__', 
-                  '__setitem__', '__delitem__', '__enter__', '__exit__',
-                  '__call__', '__eq__', '__ne__', '__lt__', '__le__', '__gt__',
-                  '__ge__', '__add__', '__sub__', '__mul__', '__truediv__',
-                  '__contains__', '__iter__', '__next__', '__hash__',
-                  '__getattr__', '__setattr__', '__delattr__',
-                  'setup', 'run', 'visit', 'depart', 'condition',
-                  'decorator_maker', 'wrapper', 'real_test', 'updater',
-                  'finish', 'start_interactive', 'update_html',
-                  'install', 'set_collision_type', 'set_wildcard_collision_handler',
-                  'set_collision_detection_handler', 'apply_force_at_local_point',
-                  'apply_force_at_world_point', 'apply_impulse_at_local_point',
-                  'apply_impulse_at_world_point', 'local_to_world', 'world_to_local',
-                  'set_position_func', 'set_velocity_func', 'get_velocity_at_local_point',
-                  'velocity_at_local_point', 'velocity_at_world_point',
-                  'get_point_query_info', 'get_line_query', 'get_shapea_shapeb_info',
-                  'init_updater',
-                  'construct_layer', 'make_forward_pass_animation',
-                  'get_height', 'get_center', 'get_left', 'get_right', 'get_top', 'get_bottom',
-                  'get_width', 'get_normal_vector', 'construct_edges', 'scale', 'scale_image_func',
-                  'create', 'compute_covariance_rotation_and_scale', 'play',
-                  'from_name', 'from_smiles', 'from_inchi', 'get_molecule',
-                  'mol_parser_string', 'mol_parser', 'sdf_parser_string', 'sdf_parser',
-                  'get_element', 'mol_to_graph', 'updater_pos',
-                  'color_scheme', 'recurse', 'plot_areas', 'merge_overlapping_polygons',
-                  'generate_surface_rectangles', 'create_override', 'uncreate_override',
-                  'convert_rectangle_to_polygon', 'make_dist_image_mobject_from_samples',
-                  'get_activation_function_by_name', 'apply_function',
-                  'make_triplet_forward_pass', 'make_input_feature_map_rectangles',
-                  'make_output_feature_map_rectangles', 'add_content', 'construct',
-                  'width', 'height', 'split', 'show_ground_truth_gaussian',
-                  'complete_missing_hydrogens', 'from_mol_file', 'from_mol_string',
-                  'from_sdf_file', 'from_sdf_string', 'find_all_atoms_positions',
-                  'find_all_bonds_centers', 'rotate_bond', 'add_bond_numbering',
-                  'add_atom_numbering', 'get_file_extension', 'parsed_atoms_bonds_data',
-                  'parse_from_string', 'read_file', 'parse_single_molecule_data',
-                  'extract_atoms_data', 'extract_bonds_data', 'clean_elements_data',
-                  'data_parser', 'parse_molecule_data', 'handle_request', 'from_cid',
-                  'no_subtype', 'shorter_subtype', 'shorter_from_subtype', 'shorter_to_subtype',
-                  'longer_subtype', 'create_line', 'parse_formula', 'make_markup',
-                  'set_atom_color', 'add_tags_around_numbers', 'add_tags_around_charges',
-                  'make_formula_structure', 'build_name', 'get_vector', 'set_points_by_ends',
-                  'select_bond_from_edge', 'select_bond_type', 'make_layout', 'make_vertex_config',
-                  'make_edge_config', 'make_labels', 'get_atoms_vgroup_from_index',
-                  'get_connected_atoms_v_group', 'get_bonds_vgroup_from_index',
-                  'get_connected_atoms_and_bonds_group_from_index', 'get_connected_atoms_and_bonds',
-                  'get_atoms', 'get_bonds', 'create_animation',
-                  'from_csv_file_data', 'add_elements', 'elements_position_dict',
-                  'uv_func', 'set_direction', 'get_direction', 'add_single_bond',
-                  'add_double_bond', 'add_triple_bond', 'get_perpendicular_unit_vector',
-                  'get_atoms_from_csv', 'bonds_from_atoms', 'rotate_atoms_about_bond',
-                  'change_color', 'bonds_fulfilled', 'make_copy', 'rename_atom',
-                  'copy_with_explicit_hydrogens', 'add_dashed_cram_bond', 'get_logger',
-                  'assign_stereo', 'remove_carbon_hydrogens', 'remove_all_hydrogens',
-                  'remove_hydrogens', 'reindex_molecule_atoms', 'molecule_from_file',
-                  'multiple_molecules_from_file', 'molecule_from_string', 'multiple_molecules_from_string',
-                  'molecule_from_pubchem', 'mc_molecule_to_atoms_and_bonds',
-                  'add_background_rectangle_to_family_members_with_points', 'psi_ang',
-                  'calculate_coordinates', 'frame_name_width_ratio', 'max_height_ratio',
-                  'create_frame_base', 'create_frame_with_text', 'get_perpendicular_unit_vector'}
-    
     for node in ast.walk(tree):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            if node.name.startswith('_') and node.name not in ('__init__',):
-                continue
+            name = node.name
             
-            if node.name in SKIP_NAMES:
+            # Skip private members (starting with _) except __init__
+            if name.startswith('_') and name != '__init__':
+                # Skip dunder methods in SKIP_DUNDER
+                if name in SKIP_DUNDER:
+                    continue
+                # Skip other private methods
+                if name != '__init__':
+                    continue
+            
+            if name in SKIP_NAMES:
                 continue
             
             if not ast.get_docstring(node):
-                missing.append((node.lineno, node.name, type(node).__name__))
+                missing.append((node.lineno, name, type(node).__name__))
     
     return missing
 
@@ -480,9 +445,12 @@ def main():
 
     for py_file in all_py_files:
         if any(skip in py_file.parts for skip in SKIP_DIRS):
-            # Still check Args: format everywhere; other checks stay skipped.
+            # Still check Args: format and function docstrings everywhere.
             for line_no, _indent in check_args_format(py_file):
                 args_errors.append((py_file, line_no))
+            missing_funcs = check_function_docstrings(py_file)
+            for line_no, name, node_type in missing_funcs:
+                func_errors.append((py_file, line_no, name, node_type))
             continue
 
         result = check_file(py_file)

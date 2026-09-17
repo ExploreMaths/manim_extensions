@@ -95,6 +95,7 @@ class ADASDiagram(EconDiagram):
         numbered_eq: bool = False,
         **kwargs,
     ):
+        """  init  ."""
         if sras_only and lras_only:
             raise ValueError("sras_only and lras_only cannot both be True")
 

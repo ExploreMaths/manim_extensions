@@ -116,6 +116,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         activation_function: Optional[Any]=None,
         **kwargs
     ):
+        """  init  ."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.num_nodes = num_nodes
         self.layer_buffer = layer_buffer
@@ -207,6 +208,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return succession
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+        """make forward pass animation."""
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
             # Drop out certain nodes
@@ -245,15 +247,19 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return animation_group
 
     def get_height(self):
+        """get height."""
         return self.surrounding_rectangle.get_height()
 
     def get_center(self):
+        """get center."""
         return self.surrounding_rectangle.get_center()
 
     def get_left(self):
+        """get left."""
         return self.surrounding_rectangle.get_left()
 
     def get_right(self):
+        """get right."""
         return self.surrounding_rectangle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):

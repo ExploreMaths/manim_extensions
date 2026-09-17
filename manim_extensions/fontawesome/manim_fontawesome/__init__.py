@@ -4149,6 +4149,7 @@ class Brand:
                self.add(brand.python)
     """
     def __init__(self) -> None:
+        """Initialize the Brand icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:
@@ -4174,6 +4175,7 @@ class Regular:
                self.add(regular.heart)
     """
     def __init__(self) -> None:
+        """Initialize the Regular icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:
@@ -4201,6 +4203,7 @@ class Solid:
                self.add(rocket)
     """
     def __init__(self) -> None:
+        """Initialize the Solid icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:

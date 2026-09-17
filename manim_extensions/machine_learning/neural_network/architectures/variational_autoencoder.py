@@ -65,6 +65,7 @@ class VariationalAutoencoder(VGroup):
         ellipse_stroke_width: float = 1.0,
         layer_spacing: float = 0.5,
     ):
+        """  init  ."""
         super(VGroup, self).__init__()
         self.encoder_nodes_per_layer = encoder_nodes_per_layer
         self.decoder_nodes_per_layer = decoder_nodes_per_layer
@@ -96,6 +97,7 @@ class VariationalAutoencoder(VGroup):
         return Create(self.neural_network)
 
     def make_triplet_forward_pass(self, triplet: Any):
+        """make triplet forward pass."""
         pass
 
     def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5):

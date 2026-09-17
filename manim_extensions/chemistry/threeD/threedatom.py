@@ -29,6 +29,7 @@ class ThreeDAtom(OpenGLSphere):
     """
 
     def __init__(self, element: Element, coords: Any = np.array([0, 0, 0]), **kwargs):
+        """  init  ."""
         self.center = coords
         self.coords = coords
         self.element = element

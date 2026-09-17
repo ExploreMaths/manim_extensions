@@ -217,6 +217,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def parse_single_molecule_data(molecule_data: Dict) -> Tuple[Dict, Dict]:
+        """parse single molecule data."""
         atoms_data = JSONParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = JSONParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -224,6 +225,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: Dict) -> Dict:
+        """extract atoms data."""
         atoms_initial_data_dict = molecule_data.get("atoms")
         if not isinstance(atoms_initial_data_dict, dict):
             raise Exception(f"Wrong atomic data on molecule data: {molecule_data}")
@@ -271,6 +273,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: Dict) -> Dict:
+        """extract bonds data."""
         bonds_data_dict = molecule_data.get("bonds")
         if not isinstance(bonds_data_dict, dict):
             raise Exception(f"Bonds data is not defined correctly: {molecule_data}")
@@ -294,6 +297,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def clean_elements_data(atoms_elements_raw: List[int]):
+        """clean elements data."""
         return [
             ELEMENTS_BY_ATOMIC_NUMBER[elemenent_atomic_number]
             for elemenent_atomic_number in atoms_elements_raw

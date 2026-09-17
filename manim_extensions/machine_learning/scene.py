@@ -30,8 +30,10 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args, **kwargs):
+        """  init  ."""
         super().__init__(*args, **kwargs)
 
     def play(self):
+        """play."""
         """ """
         pass

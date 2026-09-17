@@ -29,6 +29,7 @@ class BaseParser(ABC):
     """
 
     def __init__(self, filename: Union[str, bytes, os.PathLike]) -> None:
+        """  init  ."""
         self.file_data: str = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):

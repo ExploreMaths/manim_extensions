@@ -100,6 +100,7 @@ class VSlideJoint(VConstraint):
         },
         **kwargs,
     ):
+        """  init  ."""
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -123,6 +124,7 @@ class VSlideJoint(VConstraint):
         pass
 
     def install(self, space: Space):
+        """install."""
 
         SlideJoint = require("physics", "pymunk").constraints.SlideJoint
 

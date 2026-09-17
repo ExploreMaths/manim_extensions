@@ -112,6 +112,7 @@ classnamedict: dict[str, int] = {}
 
 
 class SetupMetadata(TypedDict):
+    """setup metadata."""
     parallel_read_safe: bool
     parallel_write_safe: bool
 
@@ -127,6 +128,7 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 
 def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
+    """visit."""
     # TODO: Parent classes don't have a visit_admonition() method.
     self.visit_admonition(node, name)  # type: ignore[attr-defined]
     if not isinstance(node[0], nodes.title):
@@ -134,6 +136,7 @@ def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
 
 
 def depart(self: SkipManimNode, node: nodes.Element) -> None:
+    """depart."""
     # TODO: Parent classes don't have a depart_admonition() method.
     self.depart_admonition(node)  # type: ignore[attr-defined]
 
@@ -182,6 +185,7 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self) -> list[nodes.Element]:
+        """run."""
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -391,6 +395,7 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> SetupMetadata:
+    """setup."""
     app.add_node(
         SkipManimNode,
         html=(visit, depart),

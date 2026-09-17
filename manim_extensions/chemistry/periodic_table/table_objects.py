@@ -97,6 +97,7 @@ class MElementObject(VGroup):
         text_color: ManimColor = BLACK,
         **kwargs,
     ):
+        """  init  ."""
         VGroup.__init__(self, **kwargs)
         self.atomic_number = atomic_number
         self.atomic_mass = atomic_mass
@@ -113,9 +114,11 @@ class MElementObject(VGroup):
         self.add(element_frame)
 
     def frame_name_width_ratio(self, frame: Mobject, name_text: Mobject):
+        """frame name width ratio."""
         return frame.get_width() / (1.25 * name_text.get_width())
 
     def max_height_ratio(self, name_text: Mobject):
+        """max height ratio."""
         text_height = name_text.get_height()
         if text_height > 0.3:
             ratio = 0.3 / text_height
@@ -124,6 +127,7 @@ class MElementObject(VGroup):
         return name_text
 
     def create_frame_base(self):
+        """create frame base."""
         frame_rectangle = (
             Rectangle(
                 height=2.8,
@@ -139,6 +143,7 @@ class MElementObject(VGroup):
         return frame_rectangle
 
     def create_frame_with_text(self):
+        """create frame with text."""
         frame_rectangle = self.create_frame_base()
         symbol_text = (
             Text(self.element_symbol, color=self.text_color)
@@ -176,6 +181,7 @@ class MElementObject(VGroup):
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
     def from_csv_file_data(filename: Any, atomic_number: Any, **kwargs):
+        """from csv file data."""
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
         pd = require("chemistry", "pandas")
@@ -234,6 +240,7 @@ class PeriodicTable(VGroup):
 
     # TODO Change to english database
     def __init__(self, data_file: Any, *vmobjects, **kwargs):
+        """  init  ."""
         VGroup.__init__(self, *vmobjects, **kwargs)
         self.data_file = data_file
         self.table = self.add_elements()
@@ -241,6 +248,7 @@ class PeriodicTable(VGroup):
         self.add(self.table)
 
     def add_elements(self):
+        """add elements."""
         positions = self.elements_position_dict()
         base_element = MElementObject()
         mult_array = np.array([base_element.get_width(), -base_element.get_height(), 0])
@@ -258,6 +266,7 @@ class PeriodicTable(VGroup):
         return table
 
     def elements_position_dict(self):
+        """elements position dict."""
         # TODO: Think of a better way of doing this. However, it works and looks good
         positions = {
             1: [0, 0, 0],

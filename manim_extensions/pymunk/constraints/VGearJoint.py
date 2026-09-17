@@ -96,6 +96,7 @@ class VGearJoint(VConstraint):
         indicator_length: float = 0.4,
         **kwargs,
     ):
+        """  init  ."""
 
         super().__init__(**kwargs)
         self.a_mob = a_mob

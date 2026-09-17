@@ -89,6 +89,7 @@ class VRotaryLimitJoint(VConstraint):
         },
         **kwargs,
     ):
+        """  init  ."""
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -110,6 +111,7 @@ class VRotaryLimitJoint(VConstraint):
         pass
 
     def install(self, space: Space):
+        """install."""
 
         RotaryLimitJoint = require("physics", "pymunk").constraints.RotaryLimitJoint
 

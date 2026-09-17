@@ -52,6 +52,7 @@ def smart_replace(base: str, alias: str, substitution: str) -> str:
     len_base = len(base)
 
     def condition(char: str) -> bool:
+        """condition."""
         return not char.isalnum() and char != "_"
 
     start = 0
@@ -73,6 +74,7 @@ def smart_replace(base: str, alias: str, substitution: str) -> str:
 
 
 def setup(app: Sphinx) -> None:
+    """setup."""
     app.add_directive("autoaliasattr", AliasAttrDocumenter)
 
 
@@ -101,6 +103,7 @@ class AliasAttrDocumenter(Directive):
     has_content = True
 
     def run(self) -> list[nodes.Element]:
+        """run."""
         module_name = self.arguments[0]
         # not present in the keys of the DICTs
         module_name = module_name.removeprefix("manim.")

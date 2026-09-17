@@ -199,6 +199,7 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]):
+    """make dist image mobject from samples."""
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -247,6 +248,7 @@ class Uncreate(Create):
         remover: bool = True,
         **kwargs,
     ) -> None:
+        """  init  ."""
         super().__init__(
             mobject,
             reverse_rate_function=reverse_rate_function,
@@ -359,6 +361,7 @@ class MCMCAxes(Group):
         x_length: int = 5,
         y_length: int = 5
     ):
+        """  init  ."""
         super().__init__()
         self.dot_color = dot_color
         self.dot_radius = dot_radius
@@ -468,6 +471,7 @@ class MCMCAxes(Group):
                 ), line
 
     def show_ground_truth_gaussian(self, distribution: Any):
+        """show ground truth gaussian."""
         """ """
         mean = distribution.mu
         var = np.eye(2) * distribution.var

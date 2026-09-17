@@ -65,6 +65,7 @@ class SpaceScene(ZoomedScene):
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
+        """  init  ."""
         super().__init__(**kwargs)
         self.vspace = VSpace(gravity=gravity)
         manim_pymunk_logger.debug("SpaceScene initional~")
@@ -489,6 +490,7 @@ class SpaceScene(ZoomedScene):
 
     # collision ID setter
     def set_collision_type(self, *mobs: Mobject, collision_type: int = 4):
+        """set collision type."""
         for mob in mobs:
             self.vspace._set_collision_type(mob, collision_type)
 
@@ -502,6 +504,7 @@ class SpaceScene(ZoomedScene):
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Optional[Dict[Any, Any]] = None,
     ):
+        """set wildcard collision handler."""
         self.vspace._wildcard_collision_handler(
             collision_type_a, begin, pre_solve, post_solve, separate, data
         )
@@ -516,6 +519,7 @@ class SpaceScene(ZoomedScene):
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Optional[Dict[Any, Any]] = None,
     ):
+        """set collision detection handler."""
         self.vspace._collision_detection_handler(
             collision_type_a,
             collision_type_b,
@@ -533,6 +537,7 @@ class SpaceScene(ZoomedScene):
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ):
+        """apply force at local point."""
         for mob in mobs:
             self.vspace.apply_force_at_local_point(mob, force, point)
 
@@ -542,6 +547,7 @@ class SpaceScene(ZoomedScene):
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ):
+        """apply force at world point."""
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
 
@@ -552,6 +558,7 @@ class SpaceScene(ZoomedScene):
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ) -> None:
+        """apply impulse at local point."""
         for mob in mobs:
             self.vspace.apply_impulse_at_local_point(mob, impulse, point)
 
@@ -561,6 +568,7 @@ class SpaceScene(ZoomedScene):
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ) -> None:
+        """apply impulse at world point."""
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)
 
@@ -568,17 +576,20 @@ class SpaceScene(ZoomedScene):
     def local_to_world(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ):
+        """local to world."""
         self.vspace.local_to_world(mob, point)
 
     def world_to_local(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ):
+        """world to local."""
         self.vspace.world_to_local(mob, point)
 
     # custom positon | velocity
     def set_position_func(
         self, *mobs: Mobject, callback: Callable[[pymunk.Body, float], None] = None
     ):
+        """set position func."""
         for mob in mobs:
             self.vspace.set_position_func(mob, callback)
 
@@ -589,6 +600,7 @@ class SpaceScene(ZoomedScene):
             [pymunk.Body, tuple[float, float], float, float], None
         ] = None,
     ):
+        """set velocity func."""
         for mob in mobs:
             self.vspace.set_velocity_func(mob, callback)
 
@@ -596,17 +608,20 @@ class SpaceScene(ZoomedScene):
     def get_velocity_at_local_point(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     )-> Tuple[float, float, float]:
+        """get velocity at local point."""
         return self.vspace.velocity_at_local_point(mob, point)
 
     def velocity_at_world_point(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     )-> Tuple[float, float, float]:
+        """velocity at world point."""
         return self.vspace.velocity_at_world_point(mob, point)
 
     # get point info
     def get_point_query_info(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> list:
+        """get point query info."""
         return self.vspace.get_point_query_info(
             mob,
             point,
@@ -619,11 +634,13 @@ class SpaceScene(ZoomedScene):
         end: Tuple[float, float, float],
         stroke_width: float,
     ) -> list:
+        """get line query."""
         return self.vspace.get_line_query(mob, start, end, stroke_width)
 
     def get_shapea_shapeb_info(
         self, shape_a: pymunk.Shape, shape_b: pymunk.Shape
     ) -> list:
+        """get shapea shapeb info."""
         return self.vspace.get_shapea_shapeb_info(
             shape_a,
             shape_b,

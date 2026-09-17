@@ -48,6 +48,7 @@ class Cell(VGroup):
         show_border: bool = True,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         
         self.value = value

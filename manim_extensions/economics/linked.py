@@ -68,6 +68,7 @@ class LinkedISLM_ADAS(VGroup):
         show_arrows: bool = False,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
 
         self._show_arrows = show_arrows

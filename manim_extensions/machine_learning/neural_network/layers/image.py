@@ -90,6 +90,7 @@ class ImageLayer(NeuralNetworkLayer):
         show_image_on_create: bool = True, 
         **kwargs
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.image_height = height
         self.numpy_image = numpy_image
@@ -145,6 +146,7 @@ class ImageLayer(NeuralNetworkLayer):
             return Wait(run_time=0)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+        """make forward pass animation."""
         return AnimationGroup()
 
     def get_right(self):
@@ -157,8 +159,10 @@ class ImageLayer(NeuralNetworkLayer):
 
     @property
     def width(self):
+        """width."""
         return self.image_mobject.width
 
     @property
     def height(self):
+        """height."""
         return self.image_mobject.height

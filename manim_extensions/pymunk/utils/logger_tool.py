@@ -11,6 +11,7 @@ import threading
 
 
 class SingletonLogger:
+    """singleton logger."""
     _instance_lock = threading.Lock()
     _instance = None
 
@@ -42,6 +43,7 @@ class SingletonLogger:
             self.logger.addHandler(console_handler)
 
     def get_logger(self):
+        """get logger."""
         return self.logger
 
 # 为了方便使用，可以直接实例化一个全局对象

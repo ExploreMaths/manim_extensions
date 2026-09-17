@@ -29,6 +29,7 @@ class OpenGLSphere(OpenGLSurface):
         center: Any = ORIGIN,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(
             self.uv_func,
             u_range=(0, TAU),
@@ -39,6 +40,7 @@ class OpenGLSphere(OpenGLSurface):
         self.shift(center)
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
+        """uv func."""
         return np.array(
             [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
         )

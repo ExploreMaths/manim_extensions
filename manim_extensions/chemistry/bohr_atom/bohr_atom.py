@@ -61,6 +61,7 @@ class BohrAtom(VGroup):
         neutron_color: ManimColor = WHITE,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(**kwargs)
         self.e = e
         self.p = p
@@ -83,6 +84,7 @@ class BohrAtom(VGroup):
         }
 
     def calculate_levels(self):
+        """calculate levels."""
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
             2: 1,
@@ -100,6 +102,7 @@ class BohrAtom(VGroup):
         ]
 
     def orbitals_group(self):
+        """orbitals group."""
         return VGroup(
             *[
                 Circle(radius=1 + i, color=self.orbit_color)
@@ -108,6 +111,7 @@ class BohrAtom(VGroup):
         )
 
     def nuclei_groups(self):
+        """nuclei groups."""
         protons = [
             Dot(color=self.proton_color)
             .scale(2)
@@ -126,6 +130,7 @@ class BohrAtom(VGroup):
         return VGroup(*nuclei)
 
     def electrons_group(self):
+        """electrons group."""
         ELECTRONS_PER_LEVEL = {
             # Level: Electrons that fit in each level
             1: 2,
@@ -153,6 +158,7 @@ class BohrAtom(VGroup):
         return electrons_group
 
     def arrange_electrons(self, n_electrons: Any, level: int):
+        """arrange electrons."""
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)
@@ -163,10 +169,13 @@ class BohrAtom(VGroup):
         return level_group
 
     def get_orbitals(self):
+        """get orbitals."""
         return self[0]
 
     def get_electrons(self):
+        """get electrons."""
         return self[1]
 
     def get_nuclei(self):
+        """get nuclei."""
         return self[2]

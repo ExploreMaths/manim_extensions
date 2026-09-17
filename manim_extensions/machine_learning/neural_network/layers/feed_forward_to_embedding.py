@@ -52,6 +52,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         dot_radius: float = 0.03,
         **kwargs
     ):
+        """  init  ."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.feed_forward_layer = input_layer
         self.embedding_layer = output_layer
@@ -64,6 +65,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
+        """construct layer."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):

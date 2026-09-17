@@ -15,8 +15,10 @@ from ..node import Node
 
 
 class ArrayScene(Scene):
+    """array scene."""
 
     def construct(self):
+        """construct."""
         data = [-1, 0, 3, -43.12, " ", "abc"]
         array1 = Array(data, total_width=10)
         array2 = Array(

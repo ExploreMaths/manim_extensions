@@ -43,7 +43,9 @@ class SigmoidFunction(ActivationFunction):
     """
 
     def __init__(self, function_name: str = "Sigmoid", x_range: list = [-5, 5], y_range: list = [0, 1]):
+        """  init  ."""
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: Any):
+        """apply function."""
         return 1 / (1 + np.exp(-1 * x_val))

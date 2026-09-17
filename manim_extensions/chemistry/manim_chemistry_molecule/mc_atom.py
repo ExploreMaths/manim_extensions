@@ -48,6 +48,7 @@ class MCAtom:
         molecule: Optional[None] = None,
         molecule_index: Optional[int] = None,
     ):
+        """  init  ."""
         self.element = element
         self.coords = coords
         self.atoms = atoms or []
@@ -91,6 +92,7 @@ class MCAtom:
         return self.atoms
 
     def add_bonds(self, bonds: Any):
+        """add bonds."""
         from .mc_bond import MCBond
 
         if not bonds:
@@ -115,6 +117,7 @@ class MCAtom:
         return self.bonds
 
     def assign_molecule(self, molecule: Any):
+        """assign molecule."""
         from .mc_molecule import MCMolecule
 
         if not molecule:
@@ -130,6 +133,7 @@ class MCAtom:
         return self.molecule
 
     def assign_molecule_index(self, molecule_index: int):
+        """assign molecule index."""
         if isinstance(molecule_index, None):
             pass
 

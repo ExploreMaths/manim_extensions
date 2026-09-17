@@ -41,6 +41,7 @@ class NeuralNetworkLayer(ABC, Group):
     """
 
     def __init__(self, text: Optional[str] = None, *args, **kwargs):
+        """  init  ."""
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         if "title" in kwargs:
@@ -71,6 +72,7 @@ class NeuralNetworkLayer(ABC, Group):
 
     @abstractmethod
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+        """make forward pass animation."""
         pass
 
     @override_animation(Create)
@@ -94,11 +96,13 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """
 
     def __init__(self, *args, **kwargs):
+        """  init  ."""
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
     def make_forward_pass_animation(self, **kwargs):
+        """make forward pass animation."""
         pass
 
     @override_animation(Create)
@@ -126,6 +130,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
+        """  init  ."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -135,6 +140,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(self, run_time: float = 2.0, layer_args: dict = {}, **kwargs):
+        """make forward pass animation."""
         pass
 
     @override_animation(Create)
@@ -164,9 +170,11 @@ class BlankConnective(ConnectiveLayer):
     """
 
     def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
+        """  init  ."""
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 1.5, layer_args: dict = {}, **kwargs):
+        """make forward pass animation."""
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)

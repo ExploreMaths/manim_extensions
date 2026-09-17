@@ -41,6 +41,7 @@ class ChemicalFormula(MarkupText):
         *args,
         **kwargs,
     ):
+        """  init  ."""
         self.formula = formula
         self.metal_color = metal_color
         self.non_metal_color = non_metal_color
@@ -56,6 +57,7 @@ class ChemicalFormula(MarkupText):
         super().__init__(markup, *args, **kwargs)
 
     def parse_formula(self, formula: str):
+        """parse formula."""
         FORMULA_PATTERN = r"([A-Z][a-z]*)(\d*)"
         elements = re.findall(FORMULA_PATTERN, formula)
         parsed_formula = {}
@@ -72,6 +74,7 @@ class ChemicalFormula(MarkupText):
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
     ):
+        """make markup."""
         parsed_list = enumerate(list(parsed_formula))
         markup = ""
 
@@ -88,6 +91,7 @@ class ChemicalFormula(MarkupText):
         return markup
 
     def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor):
+        """set atom color."""
         colored_atom = f"<span fgcolor='{color}'>{atom}"
 
         if subindex > 1:
@@ -147,6 +151,7 @@ class NamedFormula(VGroup):
         *args,
         **kwargs,
     ):
+        """  init  ."""
         super().__init__(*args, **kwargs)
         self.metal_name = metal_name
         self.non_metal_name = non_metal_name
@@ -216,6 +221,7 @@ class ComplexFormula(MarkupText):
     """
 
     def __init__(self, formula_dict: dict, *args, **kwargs):
+        """  init  ."""
         markup = ""
         for formula, color in formula_dict.items():
             markup += (
@@ -225,12 +231,14 @@ class ComplexFormula(MarkupText):
         super().__init__(markup, *args, **kwargs)
 
     def add_tags_around_numbers(self, formula_part: Any):
+        """add tags around numbers."""
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
         result = re.sub(pattern, replacement, formula_part)
         return result
 
     def add_tags_around_charges(self, formula_part: Any):
+        """add tags around charges."""
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
         result_string = re.sub(pattern, substitution, formula_part)
@@ -238,6 +246,7 @@ class ComplexFormula(MarkupText):
         return result_string
 
     def make_formula_structure(self, formula_part: Any):
+        """make formula structure."""
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)
 
@@ -275,6 +284,7 @@ class NamedComplexFormula(VGroup):
         *args,
         **kwargs,
     ):
+        """  init  ."""
         self.name_dict = name_dict
         self.formula_dict = formula_dict
         super().__init__(*args, **kwargs)
@@ -286,6 +296,7 @@ class NamedComplexFormula(VGroup):
         self.add(name)
 
     def build_name(self):
+        """build name."""
         markup = ""
         for name, color in self.name_dict.items():
             markup += f"<span fgcolor='{color}'>{name} </span>"

@@ -180,6 +180,7 @@ class HTMLParsedVMobject:
     """
 
     def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html: str = False):
+        """  init  ."""
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -198,6 +199,7 @@ class HTMLParsedVMobject:
         self.scene.add_updater(self.updater)
     
     def updater(self, dt: float):
+        """updater."""
         if self.continue_updating is False:
             return
         svg2paths = require("svg", "svgpathtools").svg2paths
@@ -239,6 +241,7 @@ class HTMLParsedVMobject:
         os.remove(svg_filename)
     
     def update_html(self):
+        """update html."""
         bg_color = color_to_int_rgba(
             self.scene.camera.background_color,
             self.scene.camera.background_opacity
@@ -267,6 +270,7 @@ class HTMLParsedVMobject:
             )
     
     def finish(self):
+        """finish."""
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
         if not hasattr(self, "last_t"):
@@ -291,6 +295,7 @@ class HTMLParsedVMobject:
         linspaces: list[np.ndarray],
         animate_this: bool = True
     ):
+        """start interactive."""
         svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:
             self.continue_updating = False

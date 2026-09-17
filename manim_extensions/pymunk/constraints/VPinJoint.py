@@ -105,6 +105,7 @@ class VPinJoint(VConstraint):
         },
         **kwargs,
     ):
+        """  init  ."""
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -141,6 +142,7 @@ class VPinJoint(VConstraint):
                 )
 
     def install(self, space: Space):
+        """install."""
 
         PinJoint = require("physics", "pymunk").constraints.PinJoint
 
