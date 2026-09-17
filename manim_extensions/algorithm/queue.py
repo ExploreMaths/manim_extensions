@@ -73,7 +73,25 @@ class Queue(VMobject):
         bound_color: ManimColor = RED,
         **kwargs,
     ):
-        """Initialize the Queue instance."""
+        """Create a visual queue with configurable capacity and styling.
+
+        Parameters
+        ----------
+        capacity : int
+            Maximum number of entries the queue can hold.
+        init_data : list, optional
+            Initial values or :class:`Node` instances to populate the queue.
+        total_width : int, optional
+            Total width of the queue visualisation.
+        font_size : int, optional
+            Font size used for node value labels.
+        box_type : type, optional
+            Shape used for each node box.
+        bound_color : ManimColor, optional
+            Colour applied to the queue boundary lines.
+        **kwargs
+            Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+        """
         super().__init__(**kwargs)
         self.capacity = capacity
         self.total_width = total_width
@@ -133,7 +151,17 @@ class Queue(VMobject):
         """
 
         def __init__(self, queue: "Queue", item: Node, **kwargs):
-            """Initialize the Enqueue instance."""
+            """Create an animation that slides an item into the queue from the right.
+
+            Parameters
+            ----------
+            queue : Queue
+                The queue that will receive the new item.
+            item : Node
+                The node to enqueue.
+            **kwargs
+                Forwarded to :class:`~manim.animation.composition.Succession`.
+            """
             path = [
                 item.get_center(),
                 queue.get_right() + queue.item_width / 2 * RIGHT,
@@ -182,7 +210,17 @@ class Queue(VMobject):
         """
 
         def __init__(self, queue: "Queue", target_pos: Optional[Point3D] = None, **kwargs):
-            """Initialize the Dequeue instance."""
+            """Create an animation that removes the front item and shifts remaining items left.
+
+            Parameters
+            ----------
+            queue : Queue
+                The queue from which the front item will be removed.
+            target_pos : Point3D, optional
+                Destination point for the dequeued item; fades out if omitted.
+            **kwargs
+                Forwarded to :class:`~manim.animation.composition.Succession`.
+            """
             if not queue.data:
                 return
             item = queue.data[0]

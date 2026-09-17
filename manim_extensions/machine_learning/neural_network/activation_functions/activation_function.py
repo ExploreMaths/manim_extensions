@@ -65,7 +65,7 @@ class ActivationFunction(ABC, VGroup):
         plot_color: Any = config.color_scheme.primary_color,
         rectangle_color: Any = config.color_scheme.secondary_color,
     ):
-        """  init  ."""
+        """Initialize the activation function plot with axes, graph, and optional label."""
         super(VGroup, self).__init__()
         self.function_name = function_name
         self.x_range = x_range

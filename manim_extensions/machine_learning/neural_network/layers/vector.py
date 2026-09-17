@@ -58,7 +58,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
     """
 
     def __init__(self, num_values: int, value_func: Callable = lambda: random.uniform(0, 1), **kwargs):
-        """  init  ."""
+        """Initialize the vector layer with the number of values and a value generator function."""
         super().__init__(**kwargs)
         self.num_values = num_values
         self.value_func = value_func
@@ -69,7 +69,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """construct layer."""
+        """Build the vector label and add it to the layer."""
         super().construct_layer(input_layer, output_layer, **kwargs)
         # Make the vector
         self.vector_label = self.make_vector()
@@ -89,7 +89,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         return vector_label
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """make forward pass animation."""
+        """Return an empty animation group; the vector layer has no forward pass effect."""
         return AnimationGroup()
 
     @override_animation(Create)

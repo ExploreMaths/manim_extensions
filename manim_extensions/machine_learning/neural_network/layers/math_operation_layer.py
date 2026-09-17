@@ -96,7 +96,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         font_size: float = 20,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize the math operation layer with operator symbol and styling parameters."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         # Ensure operation type is valid
         assert operation_type in MathOperationLayer.valid_operations
@@ -186,15 +186,15 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             return succession
 
     def get_center(self):
-        """get center."""
+        """Return the center point of the surrounding circle."""
         return self.surrounding_circle.get_center()
 
     def get_left(self):
-        """get left."""
+        """Return the leftmost point of the surrounding circle."""
         return self.surrounding_circle.get_left()
 
     def get_right(self):
-        """get right."""
+        """Return the rightmost point of the surrounding circle."""
         return self.surrounding_circle.get_right()
     
     def move_to(self, mobject_or_point: Mobject):

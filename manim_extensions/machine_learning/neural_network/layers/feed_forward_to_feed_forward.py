@@ -71,7 +71,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         camera: Optional[Any]=None,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize the feed-forward connective layer with edges and animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash = passing_flash
         self.edge_color = edge_color
@@ -85,13 +85,13 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """construct layer."""
+        """Build the fully-connected edges between input and output layers."""
         self.edges = self.construct_edges()
         self.add(self.edges)
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_edges(self):
-        """construct edges."""
+        """Create all connecting lines between input and output layer nodes."""
         # Go through each node in the two layers and make a connecting line
         edges = []
         for node_i in self.input_layer.node_group:

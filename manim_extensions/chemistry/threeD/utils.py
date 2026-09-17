@@ -29,7 +29,7 @@ class OpenGLSphere(OpenGLSurface):
         center: Any = ORIGIN,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize an OpenGL sphere surface at the given center point."""
         super().__init__(
             self.uv_func,
             u_range=(0, TAU),
@@ -40,7 +40,7 @@ class OpenGLSphere(OpenGLSurface):
         self.shift(center)
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
-        """uv func."""
+        """Compute sphere surface coordinates from azimuthal u and polar v angles."""
         return np.array(
             [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
         )

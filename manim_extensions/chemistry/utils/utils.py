@@ -13,7 +13,19 @@ from ..element import *
 
 
 def mol_parser_string(mol_string: list):
-    """mol parser string."""
+    """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
+
+    Parameters
+    ----------
+    mol_string : list of str
+        Lines of a MOL file, with the first line being the molecule name.
+
+    Returns
+    -------
+    tuple of dict
+        ``(atoms, bonds)`` where each atom has coords and element, and each
+        bond references its connected atoms and bond type/stereo/etc.
+    """
     # Get general data
     mol_name = mol_string[0].strip()  # This info is not always available  # noqa F841
     mol_source = mol_string[1].strip()  # This info is not always available  # noqa F841
@@ -107,14 +119,27 @@ def mol_parser_string(mol_string: list):
 
 
 def mol_parser(file: Any):
-    """mol parser."""
+    """Read a .mol file from disk and return parsed ``(atoms, bonds)``."""
     with open(file) as file:
         mol_file = file.readlines()
     return mol_parser_string(mol_file)
 
 
 def sdf_parser_string(sdf_string: str):
-    """sdf parser string."""
+    """Parse an SDF-format string into a list of ``(atoms, bonds)`` tuples.
+
+    SDF files can contain multiple molecules separated by ``$$$$`` delimiters.
+
+    Parameters
+    ----------
+    sdf_string : str
+        Raw SDF file content as a single string.
+
+    Returns
+    -------
+    list of tuple
+        List of ``(atoms, bonds)`` dicts, one per molecule.
+    """
     molecules = sdf_string.split("$$$$")
     molecules = [m.strip() for m in molecules if m.strip()]
 
@@ -126,14 +151,27 @@ def sdf_parser_string(sdf_string: str):
 
 
 def sdf_parser(file: Any):
-    """sdf parser."""
+    """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples."""
     with open(file) as file:
         sdf_file = file.read()
     return sdf_parser_string(sdf_file)
 
 
 def get_element(element: str, language: str = "ENG"):
-    """get element."""
+    """Return the Element class instance for a given element symbol.
+
+    Parameters
+    ----------
+    element : str
+        Chemical element symbol (e.g. ``"H"``, ``"C"``, ``"Fe"``).
+    language : str, optional
+        Language of the element name dictionary. ``"ENG"`` (default) or ``"ESP"``.
+
+    Returns
+    -------
+    Element
+        The Element class instance matching the symbol.
+    """
     if language == "ENG":
         element_dict = ELEMENT_DICT
     elif language == "ESP":
@@ -143,7 +181,25 @@ def get_element(element: str, language: str = "ENG"):
 
 
 def mol_to_graph(file: Any, language: str = "ENG"):
-    """mol to graph."""
+    """Parse a .mol file into a simple graph representation (atoms + bonds).
+
+    Unlike ``mol_parser``, this function stores atom positions under the
+    ``"position"`` key and uses ``(atom1, atom2)`` tuples as bond keys,
+    which is more convenient for graph traversal.
+
+    Parameters
+    ----------
+    file : path-like
+        Path to the .mol file.
+    language : str, optional
+        Element name language. ``"ENG"`` (default) or ``"ESP"``.
+
+    Returns
+    -------
+    tuple of dict
+        ``(atoms, bonds)`` where ``atoms`` maps index to element/position and
+        ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.
+    """
     with open(file) as file:
         mol_file = file.readlines()
     # Get general data

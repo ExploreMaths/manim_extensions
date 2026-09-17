@@ -57,7 +57,7 @@ class LeafNode(Group):
     def __init__(
         self, class_index: Any, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
     ):
-        """  init  ."""
+        """Initialize the leaf node with a class image or text and colored border."""
         super().__init__()
         self.display_type = display_type
         self.class_image_paths = class_image_paths
@@ -98,7 +98,7 @@ class SplitNode(VGroup):
     """
 
     def __init__(self, feature: Any, threshold: Any):
-        """  init  ."""
+        """Initialize the split node showing the feature name and threshold value."""
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f} cm"
         # Draw decision text
@@ -182,7 +182,7 @@ class DecisionTreeDiagram(Group):
         class_images_paths: Optional[Any]=None,
         class_colors: list = [RED, GREEN, BLUE],
     ):
-        """  init  ."""
+        """Initialize the decision tree diagram by building nodes, edges, and the tree layout."""
         super().__init__()
         self.tree = sklearn_tree
         self.feature_names = feature_names
@@ -197,7 +197,7 @@ class DecisionTreeDiagram(Group):
         self,
         node_index: Any,
     ):
-        """Make node"""
+        """Create a split or leaf node mobject for the given tree node index."""
         is_split_node = (
             self.tree.children_left[node_index] != self.tree.children_right[node_index]
         )
@@ -248,7 +248,7 @@ class DecisionTreeDiagram(Group):
         tree_width = scale_factor * 2**max_depth * node_width
         # traverse tree
         def recurse(node_index: Any, depth: Any, direction: str, parent_object: Any, parent_node: Any):
-            """recurse."""
+            """Recursively build tree nodes and connections at the given depth."""
             # make the node object
             is_leaf = (
                 self.tree.children_left[node_index]
@@ -470,7 +470,7 @@ class DecisionTreeContainer():
     """
 
     def __init__(self, sklearn_tree: Any, points: Any, classes: Any):
-        """  init  ."""
+        """Store the fitted tree, data points, and class labels for coordinated visualization."""
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes

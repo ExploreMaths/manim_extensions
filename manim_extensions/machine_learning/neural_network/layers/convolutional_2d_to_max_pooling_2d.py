@@ -52,7 +52,7 @@ class Uncreate(Create):
         remover: bool = True,
         **kwargs,
     ) -> None:
-        """  init  ."""
+        """Initialize the Uncreate animation by reversing a Create animation."""
         super().__init__(
             mobject,
             reverse_rate_function=reverse_rate_function,
@@ -87,7 +87,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         active_color: ManimColor = ORANGE,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize the conv2d-to-max-pooling connective layer with active highlight color."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.active_color = active_color
 
@@ -97,7 +97,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """construct layer."""
+        """Forward to the parent construct_layer method."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):

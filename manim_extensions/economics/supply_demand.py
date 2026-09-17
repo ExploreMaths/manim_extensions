@@ -53,7 +53,7 @@ class SupplyDemandDiagram(EconDiagram):
         show_equilibrium: bool = True,
         **kwargs,
     ):
-        """  init  ."""
+        """Initializes the supply-demand diagram with demand and supply curves."""
         super().__init__(x_label="Q", y_label="P", **kwargs)
 
         demand_func = demand_func or (lambda x: 8 - 0.5 * x)

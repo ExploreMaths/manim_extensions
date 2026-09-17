@@ -40,7 +40,7 @@ class XMark(VGroup):
     """
 
     def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
-        """  init  ."""
+        """Initialize the X-shaped mark with two crossing lines of given width and color."""
         super().__init__()
         line_one = Line(
             [-0.1, 0.1, 0],

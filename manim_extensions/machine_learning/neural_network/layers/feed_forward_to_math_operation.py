@@ -37,7 +37,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         active_color: ManimColor = ORANGE,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize the feed-forward-to-math-operation connective layer with active color."""
         self.active_color = active_color
         super().__init__(input_layer, output_layer, **kwargs)
 
@@ -47,7 +47,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """construct layer."""
+        """Build a straight arrow connection between the feed-forward and math operation layers."""
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer
         self.connection = NetworkConnection(

@@ -53,7 +53,7 @@ class MolParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> list:
-        """read file."""
+        """Read a .mol file and return its lines as a list of strings."""
         with open(filename) as file:
             mol_file = file.readlines()
 
@@ -61,7 +61,11 @@ class MolParser(BaseParser):
 
     @staticmethod
     def data_parser(data: list) -> Tuple[Dict, Dict]:
-        """data parser."""
+        """Parse MOL-format line data into ``(atoms_dict, bonds_dict)``.
+
+        Extracts atom coordinates, element symbols, and bond connectivity
+        from the MOL file's counts line, atom block, and bond block.
+        """
         # Get general data
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841

@@ -52,7 +52,9 @@ def smart_replace(base: str, alias: str, substitution: str) -> str:
     len_base = len(base)
 
     def condition(char: str) -> bool:
-        """condition."""
+        """Return True if the given character is a non-alphanumeric and
+        non-underscore boundary character, used for alias matching.
+        """
         return not char.isalnum() and char != "_"
 
     start = 0
@@ -74,7 +76,7 @@ def smart_replace(base: str, alias: str, substitution: str) -> str:
 
 
 def setup(app: Sphinx) -> None:
-    """setup."""
+    """Register the ``autoaliasattr`` directive with the Sphinx app."""
     app.add_directive("autoaliasattr", AliasAttrDocumenter)
 
 
@@ -103,7 +105,10 @@ class AliasAttrDocumenter(Directive):
     has_content = True
 
     def run(self) -> list[nodes.Element]:
-        """run."""
+        """Build and return documentation nodes for type aliases, TypeVars,
+        and module-level attributes of the target module, with automatic
+        cross-referencing between aliases.
+        """
         module_name = self.arguments[0]
         # not present in the keys of the DICTs
         module_name = module_name.removeprefix("manim.")

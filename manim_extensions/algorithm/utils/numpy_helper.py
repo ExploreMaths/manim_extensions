@@ -9,7 +9,11 @@ from numpy.typing import NDArray
 
 
 class NumpyHelper:
-    """Utility functions for common NumPy vector checks."""
+    """Static helper methods for common NumPy vector operations.
+
+    Provides utilities for normalizing vectors and comparing
+    vector equality and direction within numerical tolerance.
+    """
 
     @staticmethod
     def normalize_vector(v: NDArray):

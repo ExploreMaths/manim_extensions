@@ -180,7 +180,21 @@ class HTMLParsedVMobject:
     """
 
     def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html: str = False):
-        """  init  ."""
+        """Initialize the HTML-parsed vmobject wrapper with scene references,
+        output filenames, and register the per-frame updater.
+
+        Parameters
+        ----------
+        vmobject
+            The Manim VMobject to export as SVG into the HTML page.
+        scene
+            The scene whose camera state and updater mechanism are used.
+        width
+            CSS width of the embedded SVG element (default ``"500px"``).
+        basic_html
+            If ``True``, generate a minimal HTML wrapper without a full page
+            structure or script tag.
+        """
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -199,7 +213,10 @@ class HTMLParsedVMobject:
         self.scene.add_updater(self.updater)
     
     def updater(self, dt: float):
-        """updater."""
+        """Per-frame updater that exports the vmobject to SVG, parses its
+        path attributes, and appends the corresponding JavaScript/SVG update
+        commands for the HTML output page.
+        """
         if self.continue_updating is False:
             return
         svg2paths = require("svg", "svgpathtools").svg2paths
@@ -241,7 +258,9 @@ class HTMLParsedVMobject:
         os.remove(svg_filename)
     
     def update_html(self):
-        """update html."""
+        """Rebuild the HTML page content using the current camera background
+        color and pixel dimensions, applying either the full or basic template.
+        """
         bg_color = color_to_int_rgba(
             self.scene.camera.background_color,
             self.scene.camera.background_opacity
@@ -270,7 +289,10 @@ class HTMLParsedVMobject:
             )
     
     def finish(self):
-        """finish."""
+        """Stop the updater, assemble the final JavaScript file with all
+        recorded frame updates and optional interactive code, and write both
+        the HTML and JS files to disk.
+        """
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
         if not hasattr(self, "last_t"):
@@ -295,7 +317,21 @@ class HTMLParsedVMobject:
         linspaces: list[np.ndarray],
         animate_this: bool = True
     ):
-        """start interactive."""
+        """Pre-render all combinations of ValueTracker values and generate
+        interactive JavaScript so the user can scrub through the SVG animation
+        in the browser.
+
+        Parameters
+        ----------
+        value_trackers
+            List of ValueTrackers whose values are varied in the animation.
+        linspaces
+            List of value arrays; each defines the discrete steps for the
+            corresponding ValueTracker.
+        animate_this
+            If ``False``, stop the regular updater immediately and use the
+            current time as the last timestamp.
+        """
         svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:
             self.continue_updating = False

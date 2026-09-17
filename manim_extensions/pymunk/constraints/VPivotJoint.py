@@ -105,7 +105,9 @@ class VPivotJoint(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a pivot joint constraint with two bodies, pivot point
+        (world or local anchors), and visual pivot/anchor indicators.
+        """
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

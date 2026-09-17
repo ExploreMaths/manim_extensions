@@ -169,7 +169,7 @@ class Table(VGroup):
         padding: float = 0.3,
         **kwargs
     ):
-        """  init  ."""
+        """Initializes a table from data with a header row and data rows."""
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and

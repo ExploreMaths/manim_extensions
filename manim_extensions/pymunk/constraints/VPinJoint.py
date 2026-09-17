@@ -105,7 +105,9 @@ class VPinJoint(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a pin joint constraint with two bodies, local anchor
+        points, optional fixed distance, and visual anchor/line indicators.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -142,7 +144,10 @@ class VPinJoint(VConstraint):
                 )
 
     def install(self, space: Space):
-        """install."""
+        """Create the Pymunk PinJoint constraint, initialize visual anchor
+        markers and connecting line, add the constraint to the space, and
+        register the per-frame updater.
+        """
 
         PinJoint = require("physics", "pymunk").constraints.PinJoint
 

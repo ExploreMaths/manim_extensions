@@ -65,7 +65,9 @@ class SpaceScene(ZoomedScene):
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
-        """  init  ."""
+        """Initialize the SpaceScene with a VSpace physics simulation
+        using the specified gravity vector.
+        """
         super().__init__(**kwargs)
         self.vspace = VSpace(gravity=gravity)
         manim_pymunk_logger.debug("SpaceScene initional~")
@@ -490,7 +492,16 @@ class SpaceScene(ZoomedScene):
 
     # collision ID setter
     def set_collision_type(self, *mobs: Mobject, collision_type: int = 4):
-        """set collision type."""
+        """Set the collision type integer on the physical shapes of the
+        given Mobjects, used by collision handlers to match pairs.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose shapes will have their collision type set.
+        collision_type
+            Integer identifier for the collision category (default 4).
+        """
         for mob in mobs:
             self.vspace._set_collision_type(mob, collision_type)
 
@@ -504,7 +515,24 @@ class SpaceScene(ZoomedScene):
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Optional[Dict[Any, Any]] = None,
     ):
-        """set wildcard collision handler."""
+        """Register a wildcard collision handler that matches any collision
+        involving the given collision type.
+
+        Parameters
+        ----------
+        collision_type_a
+            The collision type to match against all other types.
+        begin
+            Callback called when two shapes first start touching.
+        pre_solve
+            Callback called before collision forces are calculated.
+        post_solve
+            Callback called after collision forces are applied.
+        separate
+            Callback called when two shapes stop touching.
+        data
+            Optional user data dictionary passed to the callbacks.
+        """
         self.vspace._wildcard_collision_handler(
             collision_type_a, begin, pre_solve, post_solve, separate, data
         )
@@ -519,7 +547,25 @@ class SpaceScene(ZoomedScene):
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Optional[Dict[Any, Any]] = None,
     ):
-        """set collision detection handler."""
+        """Register a collision handler between two specific collision types.
+
+        Parameters
+        ----------
+        collision_type_a
+            The first collision type identifier.
+        collision_type_b
+            The second collision type identifier.
+        begin
+            Callback called when two shapes first start touching.
+        pre_solve
+            Callback called before collision forces are calculated.
+        post_solve
+            Callback called after collision forces are applied.
+        separate
+            Callback called when two shapes stop touching.
+        data
+            Optional user data dictionary passed to the callbacks.
+        """
         self.vspace._collision_detection_handler(
             collision_type_a,
             collision_type_b,
@@ -537,7 +583,19 @@ class SpaceScene(ZoomedScene):
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ):
-        """apply force at local point."""
+        """Apply a continuous force to each given Mobject at a local point
+        relative to the body's center.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose physical bodies will receive the force.
+        force
+            The force vector (fx, fy, fz) to apply.
+        point
+            The local point on the body where the force is applied.
+            Defaults to the center (0, 0, 0).
+        """
         for mob in mobs:
             self.vspace.apply_force_at_local_point(mob, force, point)
 
@@ -547,7 +605,19 @@ class SpaceScene(ZoomedScene):
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ):
-        """apply force at world point."""
+        """Apply a continuous force to each given Mobject at a point in
+        world (scene) coordinates.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose physical bodies will receive the force.
+        force
+            The force vector (fx, fy, fz) to apply.
+        point
+            The world-space point where the force is applied.
+            Defaults to (0, 0, 0).
+        """
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
 
@@ -558,7 +628,19 @@ class SpaceScene(ZoomedScene):
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ) -> None:
-        """apply impulse at local point."""
+        """Apply an instantaneous impulse to each given Mobject at a local
+        point relative to the body's center.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose physical bodies will receive the impulse.
+        impulse
+            The impulse vector (ix, iy, iz) to apply.
+        point
+            The local point on the body where the impulse is applied.
+            Defaults to the center (0, 0, 0).
+        """
         for mob in mobs:
             self.vspace.apply_impulse_at_local_point(mob, impulse, point)
 
@@ -568,7 +650,19 @@ class SpaceScene(ZoomedScene):
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
     ) -> None:
-        """apply impulse at world point."""
+        """Apply an instantaneous impulse to each given Mobject at a point
+        in world (scene) coordinates.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose physical bodies will receive the impulse.
+        impulse
+            The impulse vector (ix, iy, iz) to apply.
+        point
+            The world-space point where the impulse is applied.
+            Defaults to (0, 0, 0).
+        """
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)
 
@@ -576,20 +670,48 @@ class SpaceScene(ZoomedScene):
     def local_to_world(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ):
-        """local to world."""
+        """Convert a point from the Mobject's local body coordinates to
+        world (scene) coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body's coordinate system is used.
+        point
+            The local point (x, y, z) to convert. Defaults to (0, 0, 0).
+        """
         self.vspace.local_to_world(mob, point)
 
     def world_to_local(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ):
-        """world to local."""
+        """Convert a point from world (scene) coordinates to the Mobject's
+        local body coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body's coordinate system is used.
+        point
+            The world point (x, y, z) to convert. Defaults to (0, 0, 0).
+        """
         self.vspace.world_to_local(mob, point)
 
     # custom positon | velocity
     def set_position_func(
         self, *mobs: Mobject, callback: Callable[[pymunk.Body, float], None] = None
     ):
-        """set position func."""
+        """Assign a custom position update callback to each Mobject's
+        physical body, overriding Pymunk's default position integration.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose bodies will use the custom position function.
+        callback
+            A function with signature ``(body, dt)``. If ``None``, the
+            default Pymunk position update is restored.
+        """
         for mob in mobs:
             self.vspace.set_position_func(mob, callback)
 
@@ -600,7 +722,17 @@ class SpaceScene(ZoomedScene):
             [pymunk.Body, tuple[float, float], float, float], None
         ] = None,
     ):
-        """set velocity func."""
+        """Assign a custom velocity update callback to each Mobject's
+        physical body, overriding Pymunk's default velocity integration.
+
+        Parameters
+        ----------
+        mobs
+            The Mobjects whose bodies will use the custom velocity function.
+        callback
+            A function with signature ``(body, gravity, damping, dt)``.
+            If ``None``, the default Pymunk velocity update is restored.
+        """
         for mob in mobs:
             self.vspace.set_velocity_func(mob, callback)
 
@@ -608,20 +740,64 @@ class SpaceScene(ZoomedScene):
     def get_velocity_at_local_point(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     )-> Tuple[float, float, float]:
-        """get velocity at local point."""
+        """Return the velocity of a point on the Mobject's body expressed
+        in local body coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body is queried.
+        point
+            The local point (x, y, z) at which to compute velocity.
+            Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The velocity vector (vx, vy, 0) at the given point.
+        """
         return self.vspace.velocity_at_local_point(mob, point)
 
     def velocity_at_world_point(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     )-> Tuple[float, float, float]:
-        """velocity at world point."""
+        """Return the velocity of a point on the Mobject's body expressed
+        in world (scene) coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body is queried.
+        point
+            The world point (x, y, z) at which to compute velocity.
+            Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The velocity vector (vx, vy, 0) at the given point.
+        """
         return self.vspace.velocity_at_world_point(mob, point)
 
     # get point info
     def get_point_query_info(
         self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> list:
-        """get point query info."""
+        """Query which shapes of the Mobject contain or are closest to a
+        given point in world coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose shapes will be queried.
+        point
+            The world point (x, y, z) to test against. Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        list
+            A list of point query results for each shape of the Mobject.
+        """
         return self.vspace.get_point_query_info(
             mob,
             point,
@@ -634,13 +810,45 @@ class SpaceScene(ZoomedScene):
         end: Tuple[float, float, float],
         stroke_width: float,
     ) -> list:
-        """get line query."""
+        """Perform a segment (line) query against the Mobject's shapes,
+        finding the first intersection along the line segment.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose shapes will be queried.
+        start
+            Start point (x, y, z) of the query segment.
+        end
+            End point (x, y, z) of the query segment.
+        stroke_width
+            Thickness of the query segment (for hit detection).
+
+        Returns
+        -------
+        list
+            A list of segment query hit results.
+        """
         return self.vspace.get_line_query(mob, start, end, stroke_width)
 
     def get_shapea_shapeb_info(
         self, shape_a: pymunk.Shape, shape_b: pymunk.Shape
     ) -> list:
-        """get shapea shapeb info."""
+        """Return collision information between two specific Pymunk shapes,
+        such as contact points and normal.
+
+        Parameters
+        ----------
+        shape_a
+            The first Pymunk shape to test.
+        shape_b
+            The second Pymunk shape to test.
+
+        Returns
+        -------
+        list
+            Collision information between the two shapes.
+        """
         return self.vspace.get_shapea_shapeb_info(
             shape_a,
             shape_b,

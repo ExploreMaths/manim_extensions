@@ -100,7 +100,9 @@ class VSlideJoint(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a slide joint constraint with two bodies, local anchor
+        points, min/max distance limits, and optional indicator line/anchors.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -124,7 +126,10 @@ class VSlideJoint(VConstraint):
         pass
 
     def install(self, space: Space):
-        """install."""
+        """Create the Pymunk SlideJoint constraint, initialize visual
+        indicator line and anchor markers, add to the space, and register
+        the per-frame updater.
+        """
 
         SlideJoint = require("physics", "pymunk").constraints.SlideJoint
 

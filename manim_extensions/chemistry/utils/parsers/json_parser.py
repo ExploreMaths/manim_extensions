@@ -217,7 +217,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def parse_single_molecule_data(molecule_data: Dict) -> Tuple[Dict, Dict]:
-        """parse single molecule data."""
+        """Parse one molecule's JSON dict into ``(atoms_data, bonds_data)``."""
         atoms_data = JSONParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = JSONParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -225,7 +225,11 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: Dict) -> Dict:
-        """extract atoms data."""
+        """Extract atom indices, elements, and 3D coordinates from a molecule JSON dict.
+
+        Returns a dict keyed by atom index, with each value containing
+        ``"element"`` and ``"coords"`` (numpy array) keys.
+        """
         atoms_initial_data_dict = molecule_data.get("atoms")
         if not isinstance(atoms_initial_data_dict, dict):
             raise Exception(f"Wrong atomic data on molecule data: {molecule_data}")
@@ -273,7 +277,11 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: Dict) -> Dict:
-        """extract bonds data."""
+        """Extract bond connectivity and bond order from a molecule JSON dict.
+
+        Returns a dict keyed by bond index, with each value containing
+        ``"from_atom_index"``, ``"to_atom_index"``, and ``"bond_type"``.
+        """
         bonds_data_dict = molecule_data.get("bonds")
         if not isinstance(bonds_data_dict, dict):
             raise Exception(f"Bonds data is not defined correctly: {molecule_data}")
@@ -297,7 +305,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def clean_elements_data(atoms_elements_raw: List[int]):
-        """clean elements data."""
+        """Convert a list of atomic numbers to element symbol strings."""
         return [
             ELEMENTS_BY_ATOMIC_NUMBER[elemenent_atomic_number]
             for elemenent_atomic_number in atoms_elements_raw

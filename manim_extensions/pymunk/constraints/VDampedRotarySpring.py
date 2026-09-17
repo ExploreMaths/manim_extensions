@@ -93,7 +93,10 @@ class VDampedRotarySpring(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a damped rotary spring constraint with two bodies,
+        spring physics properties (rest angle, stiffness, damping), and
+        optional visual indicators (arc and connecting line).
+        """
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

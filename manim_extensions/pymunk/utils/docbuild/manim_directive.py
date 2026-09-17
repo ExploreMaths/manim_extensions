@@ -112,7 +112,9 @@ classnamedict: dict[str, int] = {}
 
 
 class SetupMetadata(TypedDict):
-    """setup metadata."""
+    """Typed dictionary describing the Sphinx extension metadata returned
+    by the setup function, indicating parallel read/write safety.
+    """
     parallel_read_safe: bool
     parallel_write_safe: bool
 
@@ -128,7 +130,9 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 
 def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
-    """visit."""
+    """Visitor function for SkipManimNode that renders it as an admonition
+    with a placeholder title when manim rendering is skipped.
+    """
     # TODO: Parent classes don't have a visit_admonition() method.
     self.visit_admonition(node, name)  # type: ignore[attr-defined]
     if not isinstance(node[0], nodes.title):
@@ -136,7 +140,9 @@ def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
 
 
 def depart(self: SkipManimNode, node: nodes.Element) -> None:
-    """depart."""
+    """Departure function for SkipManimNode that finalizes the admonition
+    rendering when manim rendering is skipped.
+    """
     # TODO: Parent classes don't have a depart_admonition() method.
     self.depart_admonition(node)  # type: ignore[attr-defined]
 
@@ -185,7 +191,11 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self) -> list[nodes.Element]:
-        """run."""
+        """Execute the manim directive: render the scene code, copy the
+        resulting video/image to the output directory, and inject the
+        rendered template into the documentation. Returns an empty list
+        since content is inserted via the state machine.
+        """
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -395,7 +405,9 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> SetupMetadata:
-    """setup."""
+    """Register the manim directive, SkipManimNode, and build hooks with
+    the Sphinx app, and return parallel-read/write safety metadata.
+    """
     app.add_node(
         SkipManimNode,
         html=(visit, depart),

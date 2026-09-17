@@ -114,7 +114,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """construct layer."""
+        """Build the output feature maps and apply 3D rotation to the layer."""
         # Make the output feature maps
         self.feature_maps = self._make_output_feature_maps(
             input_layer.num_feature_maps, input_layer.feature_map_size

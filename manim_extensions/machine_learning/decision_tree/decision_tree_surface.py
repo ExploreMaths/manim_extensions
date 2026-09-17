@@ -46,11 +46,11 @@ class AABB:
     """
 
     def __init__(self, n_features: Any):
-        """  init  ."""
+        """Initialize an axis-aligned bounding box with [-inf, inf] limits per feature."""
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
     def split(self, f: Any, v: Any):
-        """split."""
+        """Split the bounding box along feature f at value v, returning left and right AABBs."""
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -122,7 +122,7 @@ def compute_decision_areas(
     return rectangles
 
 def plot_areas(rectangles: Any):
-    """plot areas."""
+    """Plot decision area rectangles on the current matplotlib axes."""
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
         color = ["b", "r"][int(rect[4])]
@@ -137,7 +137,7 @@ def plot_areas(rectangles: Any):
         plt.gca().add_artist(rp)
 
 def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]):
-    """merge overlapping polygons."""
+    """Merge adjacent polygons of the same color into larger contiguous polygons."""
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -220,7 +220,7 @@ class IrisDatasetPlot(VGroup):
     """
 
     def __init__(self, iris: Any):
-        """  init  ."""
+        """Initialize the Iris dataset plot with points, axes, and a legend."""
         points = iris.data[:, 0:2]
         labels = iris.feature_names
         targets = iris.target
@@ -247,7 +247,7 @@ class IrisDatasetPlot(VGroup):
 
     @override_animation(Create)
     def create_animation(self):
-        """create animation."""
+        """Create animation for the Iris plot: points, axes, and legend in sequence."""
         animation_group = AnimationGroup(
             # Perform the animations
             Create(self.point_group, run_time=2),
@@ -349,7 +349,7 @@ class DecisionTreeSurface(VGroup):
     """
 
     def __init__(self, tree_clf: Any, data: Any, axes: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
-        """  init  ."""
+        """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
         self.data = data
@@ -358,7 +358,7 @@ class DecisionTreeSurface(VGroup):
         self.surface_rectangles = self.generate_surface_rectangles()
 
     def generate_surface_rectangles(self):
-        """generate surface rectangles."""
+        """Compute decision areas from the tree and return them as Manim polygon mobjects."""
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
         right = np.amax(self.data[:, 0]) - 0.2
@@ -370,7 +370,7 @@ class DecisionTreeSurface(VGroup):
         )
         # turn the rectangle objects into manim rectangles
         def convert_rectangle_to_polygon(rect: Any):
-            """convert rectangle to polygon."""
+            """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates."""
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
             bottom_right = [rect[1], rect[3]]
@@ -407,7 +407,7 @@ class DecisionTreeSurface(VGroup):
 
     @override_animation(Create)
     def create_override(self):
-        """create override."""
+        """Create animation that reveals all surface rectangles simultaneously."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:
@@ -418,7 +418,7 @@ class DecisionTreeSurface(VGroup):
 
     @override_animation(Uncreate)
     def uncreate_override(self):
-        """uncreate override."""
+        """Uncreate animation that removes all surface rectangles simultaneously."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:

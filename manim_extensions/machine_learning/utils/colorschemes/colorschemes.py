@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ColorScheme:
-    """color scheme."""
+    """Dataclass holding the five colors used by neural network visualizations."""
     primary_color: str
     secondary_color: str
     active_color: str

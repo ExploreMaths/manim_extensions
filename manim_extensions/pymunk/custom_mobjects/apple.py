@@ -33,7 +33,9 @@ class Apple(VMobject):
     """
 
     def __init__(self, **kwargs):
-        """  init  ."""
+        """Initialize the apple-shaped VMobject by setting pre-defined
+        Bezier curve points that form the apple silhouette.
+        """
         super().__init__(**kwargs)
         # 贝塞尔曲线点集
         points = np.array(

@@ -84,7 +84,9 @@ class VSimpleMotor(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a simple motor constraint with two bodies, target rate,
+        max torque limit, and optional rotational indicator line.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -104,7 +106,10 @@ class VSimpleMotor(VConstraint):
         pass
 
     def install(self, space: Space):
-        """install."""
+        """Create the Pymunk SimpleMotor constraint, set max torque,
+        initialize visual indicator, add to the space, and register the
+        per-frame updater.
+        """
 
         SimpleMotor = require("physics", "pymunk").constraints.SimpleMotor
 

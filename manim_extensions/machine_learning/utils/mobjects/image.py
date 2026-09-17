@@ -36,7 +36,7 @@ class GrayscaleImageMobject(Group):
     """
 
     def __init__(self, numpy_image: Any, height: float = 2.3):
-        """  init  ."""
+        """Initialize the grayscale image mobject from a 2D numpy array."""
         super().__init__()
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
@@ -65,7 +65,7 @@ class GrayscaleImageMobject(Group):
 
     @override_animation(Create)
     def create(self, run_time: float = 2):
-        """create."""
+        """Return a FadeIn animation for the grayscale image."""
         return FadeIn(self)
 
     def scale(self, scale_factor: float, **kwargs):
@@ -105,7 +105,7 @@ class LabeledColorImage(Group):
     def __init__(
         self, image: Any, color: ManimColor = RED, label: str = "Positive", stroke_width: float = 5, font_size: float = 24, buff: float = 0.2
     ):
-        """  init  ."""
+        """Initialize the labeled image with a colored border rectangle and text label above."""
         super().__init__()
         self.image = image
         self.color = color

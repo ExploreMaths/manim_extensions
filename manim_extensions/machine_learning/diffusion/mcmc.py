@@ -199,7 +199,7 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]):
-    """make dist image mobject from samples."""
+    """Render a KDE density plot from 2D samples and return it as an ImageMobject."""
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -248,7 +248,7 @@ class Uncreate(Create):
         remover: bool = True,
         **kwargs,
     ) -> None:
-        """  init  ."""
+        """Initialize the Uncreate animation by reversing a Create animation."""
         super().__init__(
             mobject,
             reverse_rate_function=reverse_rate_function,
@@ -361,7 +361,7 @@ class MCMCAxes(Group):
         x_length: int = 5,
         y_length: int = 5
     ):
-        """  init  ."""
+        """Initialize the MCMC axes with configurable dot/line colors and axis ranges."""
         super().__init__()
         self.dot_color = dot_color
         self.dot_radius = dot_radius
@@ -471,8 +471,7 @@ class MCMCAxes(Group):
                 ), line
 
     def show_ground_truth_gaussian(self, distribution: Any):
-        """show ground truth gaussian."""
-        """ """
+        """Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse."""
         mean = distribution.mu
         var = np.eye(2) * distribution.var
         distribution_drawing = GaussianDistribution(

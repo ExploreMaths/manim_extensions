@@ -96,7 +96,9 @@ class VGearJoint(VConstraint):
         indicator_length: float = 0.4,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a gear joint constraint with two bodies, phase/ratio
+        parameters, and optional rotational indicator arrows.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob

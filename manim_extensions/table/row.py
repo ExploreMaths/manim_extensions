@@ -48,7 +48,7 @@ class Row(VGroup):
         index: int = 0,
         **kwargs
     ):
-        """  init  ."""
+        """Initializes a table row with cells created from the given values."""
         super().__init__(**kwargs)
         
         self.values = values

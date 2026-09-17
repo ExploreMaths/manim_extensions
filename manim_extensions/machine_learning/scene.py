@@ -30,10 +30,9 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args, **kwargs):
-        """  init  ."""
+        """Initialize the 3D scene wrapper, forwarding all arguments to ThreeDScene."""
         super().__init__(*args, **kwargs)
 
     def play(self):
-        """play."""
-        """ """
+        """Placeholder play method; currently unimplemented."""
         pass
