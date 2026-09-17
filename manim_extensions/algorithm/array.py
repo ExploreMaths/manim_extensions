@@ -65,7 +65,7 @@ class Array(VMobject):
         text_scale: float = 1.0,
         **kwargs,
     ):
-        """Create a horizontal array of :class:`Node` mobjects from *data*.
+        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from *data*.
 
         Parameters
         ----------
