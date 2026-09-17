@@ -22,7 +22,6 @@ from manim import (
     OUT,
     PI,
     RIGHT,
-    Renderer,
     UP,
     VMobject,
     rotate_vector,
@@ -42,7 +41,7 @@ __all__ = [
 ]
 
 
-def involute_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int = 0, rad_offs: int = 0, tan_offs: int = 0):
+def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0):
     """
     Returns the x-y-z values of the involute function.
 
@@ -110,7 +109,7 @@ def involute_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int = 0, ra
         return involute_val(t)
 
 
-def involute_deriv_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int = 0, rad_offs: int = 0, tan_offs: int = 0):
+def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0):
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -192,7 +191,7 @@ def involute_deriv_func(t: Optional[np.ndarray], r: Optional[Renderer], a: int =
         return diff_val(t)
 
 
-def involute_height_func(k: Any, r: Optional[Renderer], **kwargs):
+def involute_height_func(k: float | np.ndarray, r: float, **kwargs):
     """
     Returns the radial height of the involute compared to the base circle.
 
@@ -229,7 +228,7 @@ def involute_height_func(k: Any, r: Optional[Renderer], **kwargs):
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t: Optional[np.ndarray], r: Optional[Renderer], **kwargs):
+def involute_point_gen(t: np.ndarray, r: float, **kwargs):
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
