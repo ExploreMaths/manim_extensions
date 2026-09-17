@@ -99,7 +99,9 @@ class VRatchetJoint(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a ratchet joint constraint with two bodies, phase and
+        ratchet angle parameters, and optional indicator/connection visuals.
+        """
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob
@@ -136,7 +138,10 @@ class VRatchetJoint(VConstraint):
                 )
 
     def install(self, space: Space):
-        """install."""
+        """Create the Pymunk RatchetJoint constraint, initialize visual
+        indicator arrows and connecting line, add to the space, and
+        register the per-frame updater.
+        """
 
         RatchetJoint = require("physics", "pymunk").constraints.RatchetJoint
 

@@ -70,7 +70,7 @@ class FeatureMap(VGroup):
         show_grid_lines: bool = False,
         padding_dashed: bool = False,
     ):
-        """  init  ."""
+        """Initialize a feature map as a gridded rectangle with optional dashed padding border."""
         super().__init__()
         self.color = color
         self.feature_map_size = feature_map_size
@@ -241,7 +241,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         padding_dashed: bool = True,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize the 2D convolutional layer with feature map count, size, and styling."""
         super().__init__(**kwargs)
         self.num_feature_maps = num_feature_maps
         self.filter_color = filter_color
@@ -280,7 +280,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """construct layer."""
+        """Build the feature maps and apply the 3D rotation to the layer."""
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
         self.add(self.feature_maps)
@@ -372,7 +372,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return animation_group
 
     def scale(self, scale_factor: float, **kwargs):
-        """scale."""
+        """Scale the layer and adjust cell_width proportionally."""
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 

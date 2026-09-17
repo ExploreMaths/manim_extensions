@@ -65,7 +65,23 @@ class Array(VMobject):
         text_scale: float = 1.0,
         **kwargs,
     ):
-        """Initialize Array."""
+        """Create a horizontal array of :class:`Node` mobjects from *data*.
+
+        Parameters
+        ----------
+        data : list
+            Values to display in each array slot.
+        total_width : float or Node, optional
+            Total width of the array; derived from node width if omitted.
+        box_type : type, optional
+            Shape used for each node box (``Square`` or ``Circle``).
+        box_color : ManimColor, optional
+            Fill colour applied to each node box.
+        text_scale : float, optional
+            Scale factor for the value label inside each node.
+        **kwargs
+            Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+        """
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)

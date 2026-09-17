@@ -41,7 +41,7 @@ class NeuralNetworkLayer(ABC, Group):
     """
 
     def __init__(self, text: Optional[str] = None, *args, **kwargs):
-        """  init  ."""
+        """Initialize the base layer with an optional title text above it."""
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         if "title" in kwargs:
@@ -72,8 +72,7 @@ class NeuralNetworkLayer(ABC, Group):
 
     @abstractmethod
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """make forward pass animation."""
-        pass
+        """Abstract method; subclasses return the layer's forward pass animation."""
 
     @override_animation(Create)
     def _create_override(self):
@@ -96,14 +95,13 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """
 
     def __init__(self, *args, **kwargs):
-        """  init  ."""
+        """Initialize the VGroup-based neural network layer, forwarding arguments to the parent."""
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
     def make_forward_pass_animation(self, **kwargs):
-        """make forward pass animation."""
-        pass
+        """Abstract method; subclasses return the layer's forward pass animation."""
 
     @override_animation(Create)
     def _create_override(self):
@@ -130,7 +128,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
-        """  init  ."""
+        """Initialize the connective layer storing references to the input and output layers."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -140,8 +138,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(self, run_time: float = 2.0, layer_args: dict = {}, **kwargs):
-        """make forward pass animation."""
-        pass
+        """Abstract method; subclasses return the connection's forward pass animation."""
 
     @override_animation(Create)
     def _create_override(self):
@@ -170,11 +167,11 @@ class BlankConnective(ConnectiveLayer):
     """
 
     def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
-        """  init  ."""
+        """Initialize a blank connective placeholder for undefined layer pairs."""
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 1.5, layer_args: dict = {}, **kwargs):
-        """make forward pass animation."""
+        """Return an empty animation group as a placeholder for undefined connections."""
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)

@@ -11,7 +11,9 @@ import threading
 
 
 class SingletonLogger:
-    """singleton logger."""
+    """Thread-safe singleton logger that provides a single shared logging
+    instance for the manim-pymunk module with a console handler.
+    """
     _instance_lock = threading.Lock()
     _instance = None
 
@@ -43,7 +45,9 @@ class SingletonLogger:
             self.logger.addHandler(console_handler)
 
     def get_logger(self):
-        """get logger."""
+        """Return the singleton Python logging.Logger instance configured
+        for the manim-pymunk module.
+        """
         return self.logger
 
 # 为了方便使用，可以直接实例化一个全局对象

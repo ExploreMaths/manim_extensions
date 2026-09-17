@@ -55,7 +55,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> list:
-        """read file."""
+        """Read an XML file and return its full content as a string."""
         with open(filename) as file:
             xml_file = file.read()
 
@@ -83,7 +83,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def parse_molecule_data(molecule_data: Dict) -> Tuple[Dict, Dict]:
-        """parse molecule data."""
+        """Parse PubChem XML molecule data into ``(atoms_data, bonds_data)``."""
         atoms_data = XMLParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = XMLParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -91,7 +91,11 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: Dict) -> Dict:
-        """extract atoms data."""
+        """Extract atom indices, elements, and coordinates from PubChem XML data.
+
+        Returns a dict keyed by atom index with ``"element"`` and ``"coords"`` values.
+        Falls back to z=0 if 3D coordinates are not present.
+        """
         atoms_data_dict = molecule_data.get("PC-Compound_atoms").get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
             raise Exception(f"Atoms data has no dictionary structure {atoms_data_dict}")
@@ -144,7 +148,11 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: Dict) -> Dict:
-        """extract bonds data."""
+        """Extract bond connectivity and order from PubChem XML data.
+
+        Returns a dict keyed by bond index with ``"from_atom_index"``,
+        ``"to_atom_index"``, and ``"bond_type"`` entries.
+        """
         bonds_data_dict = molecule_data.get("PC-Compound_bonds").get("PC-Bonds")
 
         from_atoms_raw_data = bonds_data_dict.get("PC-Bonds_aid1").get(

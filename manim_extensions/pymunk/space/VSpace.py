@@ -101,7 +101,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def __init__(
         self, gravity: Tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
     ):
-        """  init  ."""
+        """Initialize the VSpace with a Pymunk physics space, gravity
+        vector, and sub-step count for simulation stability.
+        """
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
@@ -111,7 +113,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     # ================================== init ==================================
     def init_updater(self):
-        """init updater."""
+        """Register the per-frame step updater that advances the physics
+        simulation and synchronizes Mobject positions with their bodies.
+        """
         self.add_updater(self.__step_updater)
 
     # ================================== updater ==================================
@@ -571,7 +575,21 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def local_to_world(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
-        """local to world."""
+        """Convert a point from the Mobject's local body coordinates to
+        world coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body's coordinate system is used.
+        point
+            The local point (x, y, z) to convert. Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The corresponding world-space point (x, y, 0).
+        """
         world_pos = mob.body.local_to_world(point[:2])
         return (*world_pos, 0)
 
@@ -579,7 +597,21 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def world_to_local(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
-        """world to local."""
+        """Convert a point from world coordinates to the Mobject's local
+        body coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body's coordinate system is used.
+        point
+            The world point (x, y, z) to convert. Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The corresponding local-space point (x, y, 0).
+        """
         local_pos = mob.body.world_to_local(point[:2])
         return (*local_pos, 0)
 
@@ -631,7 +663,22 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_local_point(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
-        """velocity at local point."""
+        """Return the velocity of a point on the Mobject's body expressed
+        in local body coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body is queried.
+        point
+            The local point (x, y, z) at which to compute velocity.
+            Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The velocity vector (vx, vy, 0) at the given point.
+        """
         velocity = mob.body.velocity_at_local_point(point[:2])
         return (*velocity, 0)
 
@@ -639,7 +686,22 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_world_point(
         mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
     ) -> Tuple[float, float, float]:
-        """velocity at world point."""
+        """Return the velocity of a point on the Mobject's body expressed
+        in world coordinates.
+
+        Parameters
+        ----------
+        mob
+            The Mobject whose body is queried.
+        point
+            The world point (x, y, z) at which to compute velocity.
+            Defaults to (0, 0, 0).
+
+        Returns
+        -------
+        Tuple[float, float, float]
+            The velocity vector (vx, vy, 0) at the given point.
+        """
         velocity = mob.body.velocity_at_world_point(point[:2])
         return (*velocity, 0)
 

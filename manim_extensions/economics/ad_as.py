@@ -95,7 +95,7 @@ class ADASDiagram(EconDiagram):
         numbered_eq: bool = False,
         **kwargs,
     ):
-        """  init  ."""
+        """Initializes the AD-AS diagram with AD, SRAS, and LRAS curves."""
         if sras_only and lras_only:
             raise ValueError("sras_only and lras_only cannot both be True")
 

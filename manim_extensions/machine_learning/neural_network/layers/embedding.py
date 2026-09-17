@@ -91,7 +91,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         paired_query_mode: bool = False,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize the embedding layer with Gaussian distribution parameters and styling."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.mean = mean
         self.covariance = covariance
@@ -107,7 +107,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """construct layer."""
+        """Build the axes, point cloud, and latent distribution for the embedding."""
         self.axes = Axes(
             tips=False,
             x_length=0.8,
@@ -262,9 +262,9 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
 
 class NeuralNetworkEmbeddingTestScene(Scene):
-    """neural network embedding test scene."""
+    """Test scene for verifying the embedding layer visualization."""
     def construct(self):
-        """construct."""
+        """Build the test scene with an embedding layer and Gaussian distribution."""
         nne = EmbeddingLayer()
         mean = np.array([0, 0])
         cov = np.array([[5.0, 1.0], [0.0, 1.0]])

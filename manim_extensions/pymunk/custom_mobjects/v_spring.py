@@ -64,7 +64,9 @@ class VSpring(Line):
         color: ManimColor = WHITE,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize a spring-shaped Line with helical turns, amplitude,
+        end segment lengths, stroke width, and color properties.
+        """
         self.turns = turns
         self.amplitude = amplitude
         self.end_length = end_length

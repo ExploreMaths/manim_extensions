@@ -119,14 +119,18 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 
 def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
-    """visit."""
+    """Visitor function for SkipManimNode that renders it as an admonition
+    with a placeholder title when rendering is skipped.
+    """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 
 def depart(self: SkipManimNode, node: nodes.Element) -> None:
-    """depart."""
+    """Departure function for SkipManimNode that finalizes the admonition
+    rendering when rendering is skipped.
+    """
     self.depart_admonition(node)
 
 
@@ -174,7 +178,12 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self) -> list[nodes.Element]:
-        """run."""
+        """Execute the manim directive: render the scene code, copy the
+        resulting video/image to the output directory, and inject the
+        rendered template (with optional source code and references) into
+        the documentation. Returns an empty list since content is inserted
+        directly via the state machine.
+        """
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -391,7 +400,9 @@ def _delete_rendering_times(*args: tuple[Any]) -> None:
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
-    """setup."""
+    """Register the manim directive and SkipManimNode with the Sphinx app,
+    connect build hooks for rendering stats, and return parallel-read metadata.
+    """
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app

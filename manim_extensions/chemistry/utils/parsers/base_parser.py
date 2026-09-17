@@ -29,7 +29,16 @@ class BaseParser(ABC):
     """
 
     def __init__(self, filename: Union[str, bytes, os.PathLike]) -> None:
-        """  init  ."""
+        """Read the file and parse it into atoms/bonds data.
+
+        Populates either ``atoms_data``/``bonds_data`` (single molecule) or
+        ``molecular_data`` (multi-molecule formats) based on the parser output.
+
+        Parameters
+        ----------
+        filename : str, bytes, or os.PathLike
+            Path to the chemical file to parse.
+        """
         self.file_data: str = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):

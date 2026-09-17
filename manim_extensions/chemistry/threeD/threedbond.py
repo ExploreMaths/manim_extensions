@@ -65,7 +65,7 @@ class ThreeDCylinder(OpenGLSurface):
         resolution: tuple = (24, 24),
         **kwargs,
     ) -> None:
-        """  init  ."""
+        """Initialize an OpenGL cylinder with given radius, height, direction and resolution."""
         self._height = height
         self.radius = radius
         super().__init__(
@@ -82,7 +82,7 @@ class ThreeDCylinder(OpenGLSurface):
         self.set_direction(direction)
 
     def uv_func(self, u: float, v: float) -> np.ndarray:
-        """uv func."""
+        """Compute cylinder surface point from axial u and angular v parameters."""
         height = u
         phi = v
         r = self.radius
@@ -148,12 +148,12 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_phi = phi
 
     def set_direction(self, direction: np.ndarray) -> None:
-        """set direction."""
+        """Align the cylinder to point along the given direction vector."""
         self.direction = direction
         self._rotate_to_direction()
 
     def get_direction(self) -> np.ndarray:
-        """get direction."""
+        """Return the current direction vector of the cylinder."""
         return self.direction
 
 
@@ -184,7 +184,7 @@ class ThreeDLine(ThreeDCylinder):
         color: Optional[ManimColor] = None,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a 3D cylinder line between start and end points with given thickness."""
         self.thickness = thickness
         self.set_start_and_end_attrs(start, end, **kwargs)
         if color is not None:
@@ -403,7 +403,7 @@ class ThreeDBond(OpenGLGroup):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
     def __init__(self, from_atom: Any, to_atom: Any, bond_type: Any, *mobjects, **kwargs):
-        """  init  ."""
+        """Initialize a 3D chemical bond between two atoms with the given bond order (1/2/3)."""
         self.from_atom = from_atom
         self.to_atom = to_atom
         super().__init__(**kwargs)
@@ -429,7 +429,7 @@ class ThreeDBond(OpenGLGroup):
         self.add(self.bonds)
 
     def add_single_bond(self):
-        """add single bond."""
+        """Create a single bond as two half-cylinders colored by each connected atom."""
         bond = OpenGLGroup()
         midpoint = (self.to_atom.coords + self.from_atom.coords) / 2
 
@@ -445,7 +445,7 @@ class ThreeDBond(OpenGLGroup):
         return bond
 
     def add_double_bond(self):
-        """add double bond."""
+        """Create a double bond with two parallel single-bond cylinders offset perpendicularly."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
 
@@ -466,7 +466,7 @@ class ThreeDBond(OpenGLGroup):
         return bond
 
     def add_triple_bond(self):
-        """add triple bond."""
+        """Create a triple bond with three parallel single-bond cylinders offset perpendicularly."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
         perp_unit = self.get_perpendicular_unit_vector(
@@ -488,7 +488,7 @@ class ThreeDBond(OpenGLGroup):
         return bond
 
     def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
-        """get perpendicular unit vector."""
+        """Return a unit vector perpendicular to the bond direction in the xy plane."""
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))

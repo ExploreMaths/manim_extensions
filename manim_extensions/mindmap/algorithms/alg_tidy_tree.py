@@ -679,7 +679,7 @@ class TidyTreeLayout(Layout):
             child.mod += modsumdelta
 
     def compute_connectors(self):
-        """Compute connectors."""
+        """Compute connector paths between each node and its parent in the layout."""
 
         def compute_node(node: Any):
             """Compute the connector path from a node to its parent.

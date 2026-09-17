@@ -19,7 +19,7 @@ class ListGroup(Mobject):
     """
 
     def __init__(self, *layers):
-        """  init  ."""
+        """Initialize the list-backed group with the given mobject items."""
         super().__init__()
         self.items = [*layers]
 

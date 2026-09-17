@@ -155,7 +155,7 @@ class MultiPendulum(VGroup):
         )
 
     def start_swinging(self) -> None:
-        """Start swinging."""
+        """Creates pymunk joints between bobs and starts the physics simulation."""
         spacescene: SpaceScene = self.bobs[0].spacescene
         pins = [self.pivot_point]
         pins += self.bobs

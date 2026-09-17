@@ -48,7 +48,7 @@ class Cell(VGroup):
         show_border: bool = True,
         **kwargs
     ):
-        """  init  ."""
+        """Initializes a table cell with text content and optional styling."""
         super().__init__(**kwargs)
         
         self.value = value

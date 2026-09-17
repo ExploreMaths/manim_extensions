@@ -55,29 +55,29 @@ class Molecule:
     """
 
     def __init__(self, molecule_class: Any = GraphMolecule):
-        """  init  ."""
+        """Initialize the proxy with a target molecule class to delegate calls to."""
         self.molecule_class = molecule_class
 
     def molecule_from_file(self, *args, **kwargs):
-        """molecule from file."""
+        """Delegate to the wrapped molecule class to construct a molecule from a file."""
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
     def multiple_molecules_from_file(self, *args, **kwargs):
-        """multiple molecules from file."""
+        """Delegate to the wrapped molecule class to construct multiple molecules from a file."""
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
     def molecule_from_string(self, *args, **kwargs):
-        """molecule from string."""
+        """Delegate to the wrapped molecule class to construct a molecule from a string."""
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
     def multiple_molecules_from_string(self, *args, **kwargs):
-        """multiple molecules from string."""
+        """Delegate to the wrapped molecule class to construct multiple molecules from a string."""
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
     def molecule_from_pubchem(self, *args, **kwargs):
-        """molecule from pubchem."""
+        """Delegate to the wrapped molecule class to fetch a molecule from PubChem."""
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
     def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs):
-        """mc molecule to atoms and bonds."""
+        """Delegate to the wrapped molecule class to convert an MCMolecule to atoms and bonds."""
         return self.molecule_class.mc_molecule_to_atoms_and_bonds(*args, **kwargs)

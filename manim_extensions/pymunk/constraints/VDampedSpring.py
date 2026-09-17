@@ -109,7 +109,10 @@ class VDampedSpring(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a damped spring constraint with two bodies, anchor
+        points, spring physics (rest length, stiffness, damping), and
+        visual spring/anchor mobjects.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob

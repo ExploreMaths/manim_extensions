@@ -68,7 +68,7 @@ class LinkedISLM_ADAS(VGroup):
         show_arrows: bool = False,
         **kwargs,
     ):
-        """  init  ."""
+        """Initializes linked IS-LM and AD-AS diagrams side by side."""
         super().__init__(**kwargs)
 
         self._show_arrows = show_arrows

@@ -133,7 +133,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         rotate_bonds: list = [],
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a 2D molecule from atom and bond dicts with display options."""
         VGroup.__init__(self, **kwargs)
         self.atoms_dict = atoms_dict
         self.bonds_dict = bonds_dict
@@ -153,7 +153,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self.move_to(ORIGIN)
 
     def get_atoms(self):
-        """get atoms."""
+        """Build MAtomObject instances from the atoms dict and return them as VDict + index dict."""
         atoms = VDict()
         atoms_by_index = {}
         for index, atom in self.atoms_dict.items():
@@ -172,7 +172,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return atoms, atoms_by_index
 
     def get_bonds(self):
-        """get bonds."""
+        """Build bond mobjects (single/double/triple/cram) from the bonds dict and return a VGroup."""
         bonds = VGroup()
         bond_index = 0
         for index, bond_list in self.bonds_dict.items():
@@ -294,7 +294,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return bonds
 
     def add_atom_numbering(self):
-        """add atom numbering."""
+        """Add numeric index labels next to each atom and return self."""
         numbering = VGroup()
         for atom in self.atoms:
             if not self.explicit_hydrogens:
@@ -318,7 +318,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return self
 
     def add_bond_numbering(self):
-        """add bond numbering."""
+        """Add numeric index labels next to each bond and return self."""
         numbering = VGroup()
         for bond in self.bonds:
             if (
@@ -338,7 +338,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return self
 
     def rotate_bond(self, rotate_bonds: Any):
-        """rotate bond."""
+        """Rotate specified bonds 180 degrees around their own axis and return self."""
         if isinstance(rotate_bonds, int):
             rotate_bonds = [rotate_bonds]
 
@@ -351,7 +351,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return self
 
     def complete_missing_hydrogens(self):
-        """complete missing hydrogens."""
+        """Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count."""
         supported_atoms = ["O", "S", "N", "P"]
 
         for atom in self.atoms:
@@ -393,17 +393,17 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             )
 
     def from_mol_file(filename: Any, *args, **kwargs):
-        """from mol file."""
+        """Create an MMoleculeObject by parsing a .mol file."""
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_mol_string(mol_string: Any, *args, **kwargs):
-        """from mol string."""
+        """Create an MMoleculeObject by parsing a mol-format string."""
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_sdf_file(filename: Any, *args, **kwargs):
-        """from sdf file."""
+        """Create a list of MMoleculeObjects by parsing an .sdf file."""
         molecules = sdf_parser(filename)
         moleculeObjects = []
         for molecule in molecules:
@@ -412,7 +412,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return moleculeObjects
 
     def from_sdf_string(sdf_string: Any, *args, **kwargs):
-        """from sdf string."""
+        """Create a list of MMoleculeObjects by parsing an sdf-format string."""
         molecules = sdf_parser_string(sdf_string)
         moleculeObjects = []
         for molecule in molecules:
@@ -581,7 +581,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return bonds_positions
 
     def find_all_atoms_positions(self) -> dict:
-        """find all atoms positions."""
+        """Return a dict mapping every atom index to its current position."""
         atoms_positions = {}
         for atom_index in self.atoms.submob_dict.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
@@ -591,7 +591,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return atoms_positions
 
     def find_all_bonds_centers(self) -> dict:
-        """find all bonds centers."""
+        """Return a dict mapping every bond index to its center position."""
         bonds_positions = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(
@@ -741,7 +741,7 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a named molecule by pairing a molecule mobject with its name label."""
         if isinstance(molecule_data, MMoleculeObject):
             self.molecule = molecule_data
 
@@ -765,7 +765,7 @@ class NamedMolecule(VGroup):
     def from_mol_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """from mol file."""
+        """Create a NamedMolecule from a .mol file and a name string."""
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
         return NamedMolecule(
@@ -782,7 +782,7 @@ class NamedMolecule(VGroup):
     def from_mol_string(
         name: str, mol_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """from mol string."""
+        """Create a NamedMolecule from a mol-format string and a name string."""
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
         return NamedMolecule(
@@ -799,7 +799,7 @@ class NamedMolecule(VGroup):
     def from_sdf_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """from sdf file."""
+        """Create a list of NamedMolecules from an .sdf file with a shared base name."""
         molecules = MMoleculeObject.from_sdf_file(filename, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -820,7 +820,7 @@ class NamedMolecule(VGroup):
     def from_sdf_string(
         name: str, sdf_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """from sdf string."""
+        """Create a list of NamedMolecules from an sdf-format string with a shared base name."""
         molecules = MMoleculeObject.from_sdf_string(sdf_str, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -839,20 +839,20 @@ class NamedMolecule(VGroup):
         return named_molecules
 
     def rotate_bond(self, bonds: int | list):
-        """rotate bond."""
+        """Rotate specified bonds on the inner molecule and return self."""
         self.molecule = self.molecule.rotate_bond(bonds)
 
         return self
 
     def add_bond_numbering(self):
-        """add bond numbering."""
+        """Add bond numbering to the inner molecule and return self."""
         self.molecule = self.molecule.add_bond_numbering()
         self.molecule[-1].move_to(self.molecule[1].get_center())
 
         return self
 
     def add_atom_numbering(self):
-        """add atom numbering."""
+        """Add atom numbering to the inner molecule and return self."""
         # Atom numbering is not working correctly.
         self.molecule = self.molecule.add_atom_numbering()
         self.molecule[-1].move_to(self.molecule[0].get_center())
@@ -1021,7 +1021,7 @@ class NamedMolecule(VGroup):
         return bonds_positions
 
     def find_all_atoms_positions(self) -> dict:
-        """find all atoms positions."""
+        """Return a dict mapping every atom index to its current position."""
         atoms_positions = {}
         for atom_index in self.atoms.submob_dict.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
@@ -1031,7 +1031,7 @@ class NamedMolecule(VGroup):
         return atoms_positions
 
     def find_all_bonds_centers(self) -> dict:
-        """find all bonds centers."""
+        """Return a dict mapping every bond index to its center position."""
         bonds_positions = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(

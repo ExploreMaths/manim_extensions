@@ -100,7 +100,7 @@ class SolowDiagram(EconDiagram):
         show_production: bool = True,
         **kwargs,
     ):
-        """  init  ."""
+        """Initializes the Solow growth model diagram with production, savings, and breakeven curves."""
         kwargs.setdefault("x_range", [0, 10, 1])
         kwargs.setdefault("y_range", [0, 4, 1])
         super().__init__(x_label="k", y_label="y", **kwargs)
@@ -302,7 +302,7 @@ class SolowDiagram(EconDiagram):
         container = self._shares_group
 
         def updater(mob: Mobject, alpha: Any):
-            """updater."""
+            """Rebuilds the consumption/investment shares mobject at capital level k."""
             k = k_start + (k_end - k_start) * alpha
             new = self._build_shares(k, c_color, i_color)
             mob.become(new)

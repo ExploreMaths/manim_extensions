@@ -47,7 +47,30 @@ class PubchemAPIManager:
         three_d: bool = False,
         format: str = "json",
     ):
-        """  init  ."""
+        """Store the molecule identifier and fetch options for PubChem API calls.
+
+        At least one of ``cid``, ``name``, ``smiles``, or ``inchi`` must be provided.
+
+        Parameters
+        ----------
+        cid : int, optional
+            PubChem compound ID.
+        name : str, optional
+            Common name of the molecule.
+        smiles : str, optional
+            SMILES string representation.
+        inchi : str, optional
+            InChI key representation.
+        three_d : bool, optional
+            Whether to request 3D coordinates. Defaults to False.
+        format : str, optional
+            Response format. Defaults to ``"json"``.
+
+        Raises
+        ------
+        Exception
+            If no identifier is provided.
+        """
         if not any([cid, name, smiles, inchi]):
             raise Exception(
                 "You should provide an identifier. Available identifiers are cid, name, smiles and inchi"
@@ -60,7 +83,28 @@ class PubchemAPIManager:
         self.format = format
 
     def handle_request(self, request: 'requests.models.Response', identifier: Any):
-        """handle request."""
+        """Validate a PubChem API response and return the decoded payload.
+
+        Adds a small sleep after the request to avoid rate-limiting the PubChem API.
+
+        Parameters
+        ----------
+        request : requests.Response
+            The response object returned by the requests library.
+        identifier
+            The identifier used in the request (for error messages).
+
+        Returns
+        -------
+        str
+            JSON string of the response body, or the raw decoded content
+            if JSON parsing fails.
+
+        Raises
+        ------
+        Exception
+            If the response status code is 404 (not found) or any other error.
+        """
         requests = require("chemistry", "requests")
         # Added sleep to prevent overloading the PubChem API
         time.sleep(0.25)
@@ -82,7 +126,7 @@ class PubchemAPIManager:
         )
 
     def from_cid(self):
-        """from cid."""
+        """Fetch molecule data from PubChem using the compound ID (CID)."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
@@ -92,7 +136,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.cid)
 
     def from_name(self):
-        """from name."""
+        """Fetch molecule data from PubChem using the common name."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
@@ -102,7 +146,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.name)
 
     def from_smiles(self):
-        """from smiles."""
+        """Fetch molecule data from PubChem using a SMILES string."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
@@ -112,7 +156,7 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.smiles)
 
     def from_inchi(self):
-        """from inchi."""
+        """Fetch molecule data from PubChem using an InChI key."""
         requests = require("chemistry", "requests")
         request_url = (
             f"{PubchemAPIManager.BASE_URL}/inchikey/{self.inchi}/{self.format}"
@@ -124,7 +168,18 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.inchi)
 
     def get_molecule(self):
-        """get molecule."""
+        """Dispatch to the correct ``from_*`` method based on the set identifier.
+
+        Returns
+        -------
+        str
+            Parsed molecule data as a JSON string.
+
+        Raises
+        ------
+        Exception
+            If no identifier has been set.
+        """
         if self.cid:
             return self.from_cid()
 

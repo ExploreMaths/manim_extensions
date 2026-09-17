@@ -30,7 +30,9 @@ class VConstraint(VGroup):
     """
 
     def __init__(self, **kwargs):
-        """  init  ."""
+        """Initialize the base VConstraint by calling the parent VGroup
+        constructor and validating constraint parameters.
+        """
         super().__init__(**kwargs)
         self.__check_data()
 

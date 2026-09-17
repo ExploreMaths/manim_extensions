@@ -36,13 +36,13 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     pass
 
 def visit(self, node: list, name: str = ""):
-    """visit."""
+    """Visit a SkipManimNode, adding a placeholder title if missing, then render as admonition."""
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 def depart(self, node: Any):
-    """depart."""
+    """Depart from a SkipManimNode by closing the admonition rendering."""
     self.depart_admonition(node)
 
 def process_name_list(option_input: str, reference_type: str) -> list[str]:
@@ -86,7 +86,7 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self):
-        """run."""
+        """Execute the directive: either render the manim example or output a placeholder."""
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -286,7 +286,7 @@ def _delete_rendering_times(*args):
 
 
 def setup(app: Any):
-    """setup."""
+    """Register the manim directive and its nodes with the Sphinx application."""
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app

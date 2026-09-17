@@ -41,11 +41,11 @@ class ReLUFunction(ActivationFunction):
     """
 
     def __init__(self, function_name: str = "ReLU", x_range: list = [-1, 1], y_range: list = [-1, 1]):
-        """  init  ."""
+        """Initialize the ReLU activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: Any):
-        """apply function."""
+        """Return max(0, x_val), the ReLU activation applied to the input value."""
         if x_val < 0:
             return 0
         else:

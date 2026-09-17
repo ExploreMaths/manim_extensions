@@ -66,7 +66,7 @@ class GriddedRectangle(VGroup):
         dotted_lines: bool = False,
         **kwargs
     ):
-        """  init  ."""
+        """Initialize the gridded rectangle with border, fill, and optional grid lines."""
         super().__init__()
         # Fields
         self.color = color
@@ -194,11 +194,11 @@ class GriddedRectangle(VGroup):
         return grid_lines
 
     def get_center(self):
-        """get center."""
+        """Return the center point of the rectangle."""
         return self.rectangle.get_center()
 
     def get_normal_vector(self):
-        """get normal vector."""
+        """Return the surface normal vector of the rectangle plane."""
         vertex_1 = self.rectangle.get_vertices()[0]
         vertex_2 = self.rectangle.get_vertices()[1]
         vertex_3 = self.rectangle.get_vertices()[2]

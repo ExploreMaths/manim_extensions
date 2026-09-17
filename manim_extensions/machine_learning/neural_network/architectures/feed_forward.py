@@ -34,7 +34,7 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
         node_color: ManimColor = config.color_scheme.primary_color, 
         **kwargs
     ):
-        """  init  ."""
+        """Build a fully-connected neural network from a list of node counts per layer."""
         # construct layer
         layers = []
         for num_nodes in layer_node_count:

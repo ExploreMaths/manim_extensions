@@ -104,7 +104,10 @@ class VGrooveJoint(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a groove joint constraint with two bodies, groove
+        endpoints (on body a), a sliding anchor (on body b), and optional
+        visual groove line and anchor markers.
+        """
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

@@ -62,7 +62,7 @@ class ASNTParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> List[List[str]]:
-        """read file."""
+        """Read an ASNT file and return its lines as a list of strings."""
         with open(filename, "r") as asnt_file:
             file_list = asnt_file.readlines()
 

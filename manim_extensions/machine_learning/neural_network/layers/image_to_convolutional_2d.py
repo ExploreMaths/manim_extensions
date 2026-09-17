@@ -41,7 +41,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def __init__(
         self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs
     ):
-        """  init  ."""
+        """Initialize the image-to-conv2d connective layer storing references to both layers."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -52,7 +52,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """construct layer."""
+        """Forward to the parent construct_layer method."""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
@@ -113,7 +113,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Scale the max of width or height to the
         # width of the feature_map
         def scale_image_func(image_mobject: Mobject):
-            """scale image func."""
+            """Scale the image to match the target feature map size, preserving aspect ratio."""
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height
             image_mobject.scale(scale_factor)
@@ -134,7 +134,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return animation
 
     def scale(self, scale_factor: float, **kwargs):
-        """scale."""
+        """Scale the layer by forwarding to the parent class."""
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)

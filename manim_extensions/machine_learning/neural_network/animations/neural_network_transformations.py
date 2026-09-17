@@ -35,7 +35,7 @@ class RemoveLayer(AnimationGroup):
     """
 
     def __init__(self, layer: Mobject, neural_network: Any, layer_spacing: float = 0.2):
-        """  init  ."""
+        """Initialize the remove-layer animation with the target layer and network."""
         self.layer = layer
         self.neural_network = neural_network
         self.layer_spacing = layer_spacing
@@ -190,7 +190,7 @@ class InsertLayer(AnimationGroup):
     """
 
     def __init__(self, layer: Mobject, index: int, neural_network: Any):
-        """  init  ."""
+        """Initialize the insert-layer animation with the new layer, index, and network."""
         self.layer = layer
         self.index = index
         self.neural_network = neural_network

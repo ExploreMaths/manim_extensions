@@ -107,7 +107,7 @@ class WeightedLine(Line):
         add_bg: bool = True,
         **kwargs: Any,
     ):
-        """  init  ."""
+        """Initializes a weighted line with an optional weight label and background."""
         self.weight = weight
         self.alpha = weight_alpha
         self.add_bg = add_bg

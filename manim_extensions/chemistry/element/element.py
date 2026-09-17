@@ -10,7 +10,7 @@ from ...utils.deps import require
 
 from typing import Any
 class Element:
-    """element."""
+    """Represents a chemical element with symbol, name, atomic number, mass, and color properties."""
     def __repr__(self) -> str:
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 
@@ -22,7 +22,7 @@ class Element:
         mass: float = 1.008,
         color: str or None = "#FFFFFF",
     ):
-        """  init  ."""
+        """Initialize element with symbol, name, atomic number, mass, and display color."""
         self.symbol = symbol
         self.name = name
         self.atomic_number = atomic_number
@@ -30,7 +30,7 @@ class Element:
         self.color = color or "#ff00ff"
 
     def from_csv_file(filename: Any, element: str or int):
-        """from csv file."""
+        """Load an Element from a CSV file by looking up element by symbol (str) or atomic number (int)."""
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
         pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)
@@ -62,7 +62,7 @@ class Element:
 
 @dataclass
 class GenericElement:
-    """generic element."""
+    """Dataclass representing a generic chemical element with pre-defined CPK color and standard properties."""
     symbol: str
     name: str
     atomic_number: int

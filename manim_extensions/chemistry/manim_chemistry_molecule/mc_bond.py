@@ -52,7 +52,7 @@ class MCBond:
         topology: Optional[int] = None,
         reacting_center_status: Optional[int] = None,
     ):
-        """  init  ."""
+        """Initialize MCBond with bond type, connected atoms, stereo info and metadata."""
         self.bond_type = bond_type
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -62,15 +62,15 @@ class MCBond:
         self.reacting_center_status = reacting_center_status
 
     def assign_from_atom(self, from_atom: Any):
-        """assign from atom."""
+        """Set the atom the bond originates from."""
         self.from_atom = from_atom
 
     def assign_to_atom(self, to_atom: Any):
-        """assign to atom."""
+        """Set the atom the bond points to."""
         self.to_atom = to_atom
 
     def assign_stereo(self, stereo: Any):
-        """assign stereo."""
+        """Set the stereochemistry type of the bond."""
         self.stereo = stereo
 
     @staticmethod

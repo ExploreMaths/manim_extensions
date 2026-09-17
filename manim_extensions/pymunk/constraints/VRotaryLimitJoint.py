@@ -89,7 +89,9 @@ class VRotaryLimitJoint(VConstraint):
         },
         **kwargs,
     ):
-        """  init  ."""
+        """Initialize a rotary limit joint constraint with two bodies,
+        min/max angle bounds, and optional arc indicator visuals.
+        """
 
         super().__init__(**kwargs)
         self.a_mob = a_mob
@@ -111,7 +113,10 @@ class VRotaryLimitJoint(VConstraint):
         pass
 
     def install(self, space: Space):
-        """install."""
+        """Create the Pymunk RotaryLimitJoint constraint, initialize arc
+        indicator visuals, add the constraint to the space, and register
+        the per-frame updater.
+        """
 
         RotaryLimitJoint = require("physics", "pymunk").constraints.RotaryLimitJoint
 
