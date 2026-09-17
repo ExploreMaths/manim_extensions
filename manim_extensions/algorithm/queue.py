@@ -10,6 +10,7 @@ from manim import (
     FadeOut,
     LEFT,
     Line,
+    ManimColor,
     MoveAlongPath,
     RED,
     RIGHT,
@@ -19,7 +20,7 @@ from manim import (
     VMobject,
     linear,
 )
-from typing import List
+from typing import Any, List, Optional
 from manim.typing import Point3D
 from .node import Node
 
@@ -65,11 +66,11 @@ class Queue(VMobject):
     def __init__(
         self,
         capacity: int,
-        init_data: List[Node] = None,
+        init_data: Optional[List[Node]] = None,
         total_width: int = 12,
         font_size: int = 48,
-        box_type=Square,
-        bound_color=RED,
+        box_type: Any = Square,
+        bound_color: ManimColor = RED,
         **kwargs,
     ):
         """Initialize the Queue instance."""
@@ -180,7 +181,7 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: "Queue", target_pos: Point3D = None, **kwargs):
+        def __init__(self, queue: "Queue", target_pos: Optional[Point3D] = None, **kwargs):
             """Initialize the Dequeue instance."""
             if not queue.data:
                 return

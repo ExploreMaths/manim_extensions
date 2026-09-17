@@ -60,8 +60,8 @@ class Array(VMobject):
         self,
         data: List[NodeValue],
         total_width: float | Node = None,
-        box_type=NodeConfig.BOX_TYPE,
-        box_color=NodeConfig.BOX_COLOR,
+        box_type: Any = NodeConfig.BOX_TYPE,
+        box_color: Any = NodeConfig.BOX_COLOR,
         text_scale: float = 1.0,
         **kwargs,
     ):

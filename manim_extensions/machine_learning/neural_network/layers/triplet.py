@@ -15,6 +15,7 @@ from manim import (
     Group,
     ImageMobject,
     RED,
+    VGroup,
     WHITE,
     override_animation,
 )
@@ -45,12 +46,12 @@ class TripletLayer(NeuralNetworkLayer):
 
     def __init__(
         self,
-        anchor,
-        positive,
-        negative,
-        stroke_width=5,
-        font_size=22,
-        buff=0.2,
+        anchor: VGroup,
+        positive: VGroup,
+        negative: VGroup,
+        stroke_width: float = 5,
+        font_size: float = 22,
+        buff: float = 0.2,
         **kwargs
     ):
         super().__init__(**kwargs)
@@ -76,12 +77,12 @@ class TripletLayer(NeuralNetworkLayer):
     @classmethod
     def from_paths(
         cls,
-        anchor_path,
-        positive_path,
-        negative_path,
-        grayscale=True,
-        font_size=22,
-        buff=0.2,
+        anchor_path: str,
+        positive_path: str,
+        negative_path: str,
+        grayscale: bool = True,
+        font_size: float = 22,
+        buff: float = 0.2,
     ):
         """Creates a triplet using the anchor paths"""
         # Load images from path
@@ -140,6 +141,6 @@ class TripletLayer(NeuralNetworkLayer):
         # TODO make Create animation that is custom
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Forward pass for triplet"""
         return AnimationGroup()

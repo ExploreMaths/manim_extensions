@@ -12,6 +12,7 @@ from .utils import OpenGLSphere
 from ..element import Element
 
 
+from typing import Any
 class ThreeDAtom(OpenGLSphere):
     """
     Used to draw a sphere which represents an atom.
@@ -27,7 +28,7 @@ class ThreeDAtom(OpenGLSphere):
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom.OpenGLSphere`.
     """
 
-    def __init__(self, element: Element, coords=np.array([0, 0, 0]), **kwargs):
+    def __init__(self, element: Element, coords: Any = np.array([0, 0, 0]), **kwargs):
         self.center = coords
         self.coords = coords
         self.element = element

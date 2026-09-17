@@ -4,7 +4,7 @@
 Table - The main database table component.
 """
 
-from manim import DOWN, FadeIn, FadeOut, LEFT, RIGHT, Text, Transform, VGroup
+from manim import DOWN, FadeIn, FadeOut, LEFT, ManimColor, RIGHT, Text, Transform, VGroup
 import numpy as np
 from .row import Row
 from .cell import Cell
@@ -308,7 +308,7 @@ class Table(VGroup):
     # Styling methods
     # -------------------------------------------------------------------------
     
-    def set_column_font_color(self, col: int, color, include_header: bool = False):
+    def set_column_font_color(self, col: int, color: ManimColor, include_header: bool = False):
         """
         Set the font color for all cells in a column.
         
@@ -327,7 +327,7 @@ class Table(VGroup):
             row[col].set_font_color(color)
         return self
     
-    def set_column_background_color(self, col: int, color, opacity: float = 0.5, include_header: bool = False):
+    def set_column_background_color(self, col: int, color: ManimColor, opacity: float = 0.5, include_header: bool = False):
         """
         Set the background color for all cells in a column.
         
@@ -348,7 +348,7 @@ class Table(VGroup):
             row[col].set_background_color(color, opacity)
         return self
     
-    def set_column_border_color(self, col: int, color, include_header: bool = True):
+    def set_column_border_color(self, col: int, color: ManimColor, include_header: bool = True):
         """
         Set the border color for all cells in a column.
         
@@ -367,7 +367,7 @@ class Table(VGroup):
             row[col].set_border_color(color)
         return self
     
-    def set_header_background_color(self, color, opacity: float = 0.5):
+    def set_header_background_color(self, color: ManimColor, opacity: float = 0.5):
         """
         Set the background color for all header cells.
         
@@ -382,7 +382,7 @@ class Table(VGroup):
             cell.set_background_color(color, opacity)
         return self
     
-    def set_header_font_color(self, color):
+    def set_header_font_color(self, color: ManimColor):
         """
         Set the font color for all header cells.
         

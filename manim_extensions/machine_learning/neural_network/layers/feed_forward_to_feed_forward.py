@@ -14,12 +14,16 @@ from manim import (
     Dot,
     FadeOut,
     Line,
+    ManimColor,
+    Mobject,
     MoveAlongPath,
     ShowPassingFlash,
     VGroup,
     override_animation,
     sigmoid,
 )
+from typing import Any, Optional
+
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from ... import config
@@ -57,14 +61,14 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer,
-        output_layer,
-        passing_flash=True,
-        dot_radius=0.05,
-        animation_dot_color=config.color_scheme.active_color,
-        edge_color=config.color_scheme.secondary_color,
-        edge_width=1.5,
-        camera=None,
+        input_layer: Mobject,
+        output_layer: Mobject,
+        passing_flash: bool = True,
+        dot_radius: float = 0.05,
+        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        edge_color: Any = config.color_scheme.secondary_color,
+        edge_width: float = 1.5,
+        camera: Optional[Any]=None,
         **kwargs
     ):
         super().__init__(input_layer, output_layer, **kwargs)
@@ -112,7 +116,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return animation_group
 
     def make_forward_pass_animation(
-        self, layer_args={}, run_time=1, feed_forward_dropout=0.0, **kwargs
+        self, layer_args: dict = {}, run_time: float = 1, feed_forward_dropout: float = 0.0, **kwargs
     ):
         """Animation for passing information from one FeedForwardLayer to the next"""
         path_animations = []
@@ -149,12 +153,12 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         return path_animations
 
-    def modify_edge_colors(self, colors=None, magnitudes=None, color_scheme="inferno"):
+    def modify_edge_colors(self, colors: Optional[Any]=None, magnitudes: Optional[Any]=None, color_scheme: str = "inferno"):
         """Changes the colors of edges"""
         # TODO implement
         pass
 
-    def modify_edge_stroke_widths(self, widths):
+    def modify_edge_stroke_widths(self, widths: Any):
         """Changes the widths of the edges"""
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order

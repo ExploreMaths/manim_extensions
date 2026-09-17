@@ -8,6 +8,7 @@ This module provides factory for creating layout algorithms.
 
 """
 
+from typing import Any
 __all__ = [
     "LayoutFactory",
 ]
@@ -56,7 +57,7 @@ class LayoutFactory:
     """
 
     @staticmethod
-    def create_layout(layout_type: LayoutType, root, layout_config: LayoutConfig):
+    def create_layout(layout_type: LayoutType, root: Any, layout_config: LayoutConfig):
         """Create the appropriate layout algorithm instance.
 
         Parameters

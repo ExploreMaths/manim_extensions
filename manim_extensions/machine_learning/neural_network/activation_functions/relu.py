@@ -9,6 +9,7 @@
 
 from .activation_function import ActivationFunction
 
+from typing import Any
 class ReLUFunction(ActivationFunction):
     """Rectified Linear Unit Activation Function
 
@@ -39,10 +40,10 @@ class ReLUFunction(ActivationFunction):
                self.add(relu)
     """
 
-    def __init__(self, function_name="ReLU", x_range=[-1, 1], y_range=[-1, 1]):
+    def __init__(self, function_name: str = "ReLU", x_range: list = [-1, 1], y_range: list = [-1, 1]):
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val):
+    def apply_function(self, x_val: Any):
         if x_val < 0:
             return 0
         else:

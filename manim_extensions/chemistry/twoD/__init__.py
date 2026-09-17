@@ -16,4 +16,3 @@ from .chemical_formula import (
     ComplexFormula,  # noqa F841
     NamedComplexFormula,  # noqa F841
 )  # noqa F841
-from .graph_molecule import GraphMolecule  # noqa F841

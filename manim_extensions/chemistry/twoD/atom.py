@@ -6,7 +6,7 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 """
 
-from manim import Dot, LEFT, MarkupText, RIGHT, VGroup, WHITE
+from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
 from typing import Dict, Any, Optional
 
@@ -57,7 +57,7 @@ class MAtomObject(VGroup):
         self.move_to(self.coords)
         self.set_atom_color(self.color)
 
-    def set_representation(self, representation_type):
+    def set_representation(self, representation_type: Any):
         """
         - 'complete': Adds the element symbol.
         - 'skeleton': Does not add the symbol
@@ -111,7 +111,7 @@ class MAtomObject(VGroup):
         )
         return copy
 
-    def rename_atom(self, new_element, bonds_direction):
+    def rename_atom(self, new_element: Any, bonds_direction: Any):
         self.element = new_element
         renamed_atom = self.make_copy()
 
@@ -132,7 +132,7 @@ class MAtomObject(VGroup):
 
         return self.make_copy()
 
-    def set_atom_color(self, color):
+    def set_atom_color(self, color: ManimColor):
         """
         TODO: Add the color depending on cpk convention
         """

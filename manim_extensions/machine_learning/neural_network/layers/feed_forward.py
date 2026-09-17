@@ -15,6 +15,7 @@ from manim import (
     ApplyMethod,
     Circle,
     Create,
+    ManimColor,
     Mobject,
     SMALL_BUFF,
     Succession,
@@ -23,6 +24,7 @@ from manim import (
     Wait,
     override_animation,
 )
+from typing import Any, Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -100,18 +102,18 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     def __init__(
         self,
-        num_nodes,
-        layer_buffer=SMALL_BUFF / 2,
-        node_radius=0.08,
-        node_color=config.color_scheme.primary_color,
-        node_outline_color=config.color_scheme.secondary_color,
-        rectangle_color=config.color_scheme.secondary_color,
-        node_spacing=0.3,
-        rectangle_fill_color=config.color_scheme.background_color,
-        node_stroke_width=2.0,
-        rectangle_stroke_width=2.0,
-        animation_dot_color=config.color_scheme.active_color,
-        activation_function=None,
+        num_nodes: Any,
+        layer_buffer: Any = SMALL_BUFF / 2,
+        node_radius: float = 0.08,
+        node_color: ManimColor = config.color_scheme.primary_color,
+        node_outline_color: Any = config.color_scheme.secondary_color,
+        rectangle_color: Any = config.color_scheme.secondary_color,
+        node_spacing: float = 0.3,
+        rectangle_fill_color: Any = config.color_scheme.background_color,
+        node_stroke_width: float = 2.0,
+        rectangle_stroke_width: float = 2.0,
+        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        activation_function: Optional[Any]=None,
         **kwargs
     ):
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
@@ -182,7 +184,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_dropout_forward_pass_animation(self, layer_args, **kwargs):
+    def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs):
         """Makes a forward pass animation with dropout"""
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args
@@ -204,7 +206,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         return succession
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
             # Drop out certain nodes
@@ -254,7 +256,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     def get_right(self):
         return self.surrounding_rectangle.get_right()
 
-    def move_to(self, mobject_or_point):
+    def move_to(self, mobject_or_point: Mobject):
         """Moves the center of the layer to the given mobject or point"""
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):

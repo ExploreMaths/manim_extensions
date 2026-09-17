@@ -16,6 +16,7 @@ from manim import (
     FadeOut,
     LEFT,
     Line,
+    ManimColor,
     Polygon,
     RIGHT,
     ReplacementTransform,
@@ -25,10 +26,12 @@ from manim import (
     WHITE,
     YELLOW,
 )
+from typing import Any, Callable, Optional
+
 import numpy as np
 
 
-def find_intersection(func_a, func_b, x_range):
+def find_intersection(func_a: Any, func_b: Any, x_range: Any):
     """Find the x where func_a(x) == func_b(x) by sampling."""
     xs = np.linspace(x_range[0] + 0.01, x_range[1] - 0.01, 1000)
     diffs = np.array([func_a(x) - func_b(x) for x in xs])
@@ -64,9 +67,9 @@ class EconDiagram(VGroup):
         Additional keyword arguments passed to ``VGroup``.
     """
 
-    def __init__(self, x_label="X", y_label="Y",
-                 x_range=None, y_range=None,
-                 x_length=6, y_length=4, **kwargs):
+    def __init__(self, x_label: str = "X", y_label: str = "Y",
+                 x_range: Optional[Any]=None, y_range: Optional[Any]=None,
+                 x_length: int = 6, y_length: int = 4, **kwargs):
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]
@@ -98,7 +101,7 @@ class EconDiagram(VGroup):
 
         self.add(self.axes, self.axis_labels)
 
-    def add_curve(self, name, func, x_range, color, label_text=None):
+    def add_curve(self, name: str, func: Callable, x_range: Any, color: ManimColor, label_text: Optional[Any]=None):
         """Plot a curve on the axes and store it by name."""
         curve = self.axes.plot(func, x_range=x_range, color=color)
         self.curves[name] = curve
@@ -114,7 +117,7 @@ class EconDiagram(VGroup):
 
         return curve
 
-    def add_vertical_line(self, name, x, color, label_text=None):
+    def add_vertical_line(self, name: str, x: int, color: ManimColor, label_text: Optional[Any]=None):
         """Add a vertical line at a given x position."""
         y_min = self.axes.y_range[0]
         y_max = self.axes.y_range[1]
@@ -134,14 +137,14 @@ class EconDiagram(VGroup):
 
     _SUBSCRIPTS = "₁₂₃₄₅₆₇₈₉"
 
-    def _sub(self, n):
+    def _sub(self, n: Optional[np.ndarray]):
         """Return a unicode subscript for n (1-indexed)."""
         if 1 <= n <= 9:
             return self._SUBSCRIPTS[n - 1]
         return str(n)
 
-    def _build_eq_parts(self, curve_a, curve_b, label_x="", label_y="",
-                        subscript=None):
+    def _build_eq_parts(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
+                        subscript: Optional[Any]=None):
         """Build equilibrium geometry and labels separately.
 
         Returns (geometry_group, labels_group) or (None, None).
@@ -183,8 +186,8 @@ class EconDiagram(VGroup):
 
         return geom, labels
 
-    def _build_eq_group(self, curve_a, curve_b, label_x="", label_y="",
-                        subscript=None):
+    def _build_eq_group(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
+                        subscript: Optional[Any]=None):
         """Build a combined equilibrium VGroup (geometry + labels)."""
         geom, labels = self._build_eq_parts(curve_a, curve_b, label_x,
                                             label_y, subscript)
@@ -192,8 +195,8 @@ class EconDiagram(VGroup):
             return None
         return VGroup(geom, labels)
 
-    def mark_equilibrium(self, curve_a, curve_b, label_x="", label_y="",
-                         numbered=False):
+    def mark_equilibrium(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
+                         numbered: bool = False):
         """Mark the intersection of two curves with a dot and dashed lines.
 
         Parameters:
@@ -229,7 +232,7 @@ class EconDiagram(VGroup):
         return x_eq, func_a(x_eq)
 
     @staticmethod
-    def _make_single_arrow(start, end, color, tip_size=0.08):
+    def _make_single_arrow(start: np.ndarray, end: np.ndarray, color: ManimColor, tip_size: float = 0.08):
         """Create a line with a small triangle at the end only."""
         direction = end - start
         norm = np.linalg.norm(direction)
@@ -250,7 +253,7 @@ class EconDiagram(VGroup):
         )
         return VGroup(shaft, tip)
 
-    def _build_axis_arrows(self, old_xy, new_xy, arrow_color=WHITE):
+    def _build_axis_arrows(self, old_xy: Any, new_xy: Any, arrow_color: ManimColor = WHITE):
         """Build arrows near the axes between old and new equilibrium values.
 
         Returns a VGroup with up to two arrows (x-axis and y-axis).
@@ -273,8 +276,8 @@ class EconDiagram(VGroup):
 
         return group
 
-    def get_shift_animation(self, curve_name, new_func, new_x_range=None,
-                            run_time=1, show_arrows=False, arrow_color=WHITE):
+    def get_shift_animation(self, curve_name: Any, new_func: Any, new_x_range: Optional[Any]=None,
+                            run_time: float = 1, show_arrows: bool = False, arrow_color: ManimColor = WHITE):
         """Return a Transform animation that shifts a curve to a new function.
 
         Parameters:

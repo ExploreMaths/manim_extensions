@@ -136,7 +136,7 @@ class VRotaryLimitJoint(VConstraint):
 
         self.add_updater(self.mob_updater)
 
-    def mob_updater(self, mob, dt):
+    def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""
         if not self.constraint:
             return

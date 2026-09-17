@@ -31,6 +31,7 @@ from manim import (
     ImageMobject,
     LEFT,
     Line,
+    ManimColor,
     MathTex,
     Mobject,
     ORIGIN,
@@ -332,7 +333,7 @@ class MathTexBrace(VGroup):
 
     def __init__(
         self,
-        target,
+        target: Any,
         formula: MathTex,
         direction: np.ndarray = UP,
         buff: float = 0.5,
@@ -618,7 +619,7 @@ class PerpendicularSign(VGroup):
         line1: Line,
         line2: Line,
         length: float = 0.25,
-        corner_direction: Union[np.ndarray, tuple, list, None] = None,
+        corner_direction: Optional[Union[np.ndarray, tuple, list, None]] = None,
         **kwargs: Any,
     ) -> None:
         """Initialize the PerpendicularSign instance."""
@@ -868,7 +869,7 @@ class FileTree(Code):
         )
 
     @staticmethod
-    def _build_tree(data, prefix: str = "", is_root: bool = True) -> list[str]:
+    def _build_tree(data: dict, prefix: str = "", is_root: bool = True) -> list[str]:
         """Recursively build ASCII tree lines from a nested dictionary.
 
         Parameters
@@ -1258,11 +1259,11 @@ class ColorText(Text):
 
     def __init__(
         self,
-        color,
-        name=None,
-        background_color=WHITE,
-        font="Consolas",
-        font_size=28,
+        color: ManimColor,
+        name: Optional[str] = None,
+        background_color: ManimColor = WHITE,
+        font: str = "Consolas",
+        font_size: float = 28,
         **kwargs,
     ) -> None:
         """Initialize the ColorText instance."""
@@ -1348,11 +1349,11 @@ class Trail(VGroup):
 
     def __init__(
         self,
-        mob,
+        mob: Mobject,
         max_width: float = 5,
         nums: int = 500,
-        trail_color=BLUE_B,
-        rate_func=None,
+        trail_color: ManimColor = BLUE_B,
+        rate_func: Optional[Any]=None,
         **kwargs,
     ) -> None:
         """Initialize the Trail instance."""
@@ -1401,7 +1402,7 @@ class Trail(VGroup):
             )
         return path
 
-    def update_path(self, trail) -> None:
+    def update_path(self, trail: Any) -> None:
         """Updater: replace *trail* by the freshly created path.
 
         Parameters
@@ -1477,8 +1478,8 @@ class ShadowAround(VGroup):
 
     def __init__(
         self,
-        mob_or_points,
-        shadow_color=DARK_GRAY,
+        mob_or_points: Mobject,
+        shadow_color: ManimColor = DARK_GRAY,
         shadow_opacity: float = 0.6,
         blur_width: float = 0.25,
         layer_num: int = 40,
@@ -1569,11 +1570,11 @@ class ObjectBorder(VGroup):
 
     def __init__(
         self,
-        obj,
+        obj: Mobject,
         buff: float = 0.08,
         add_corner: bool = True,
         track: bool = True,
-        border_color=WHITE,
+        border_color: ManimColor = WHITE,
         corner_radius: float = 0.06,
         **kwargs,
     ) -> None:
@@ -1664,10 +1665,10 @@ class ThreeDVector(VGroup):
 
     def __init__(
         self,
-        vector=RIGHT,
-        position=ORIGIN,
+        vector: Any = RIGHT,
+        position: np.ndarray = ORIGIN,
         radius: float = 0.12,
-        color=BLUE,
+        color: ManimColor = BLUE,
         tip_fraction: float = 0.25,
         fill_opacity: float = 0.9,
         **kwargs,
@@ -1756,8 +1757,8 @@ class TreeDiagram(VGroup):
 
     def __init__(
         self,
-        tree,
-        branch_color=GREY,
+        tree: Mobject,
+        branch_color: ManimColor = GREY,
         branch_opacity: float = 1,
         item_v_buff: float = 0.3,
         item_scale: float = 0.7,
@@ -1772,7 +1773,7 @@ class TreeDiagram(VGroup):
         self.tree = tree
         self.add(self._generate(tree)[1])
 
-    def _lowest(self, leaves) -> "VGroup":
+    def _lowest(self, leaves: list) -> "VGroup":
         """Create a vertical group of text mobjects for the leaf nodes.
 
         Parameters
@@ -1788,7 +1789,7 @@ class TreeDiagram(VGroup):
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
         return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
 
-    def _generate(self, tree):
+    def _generate(self, tree: dict):
         """Recursively build the tree diagram mobject.
 
         Parameters

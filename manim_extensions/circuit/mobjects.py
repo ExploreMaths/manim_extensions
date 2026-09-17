@@ -79,7 +79,7 @@ class VoltageSource(Source):
                self.add(circuit)
     """
 
-    def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
+    def __init__(self, value: int = 1, label: str = True, direction: str = LEFT, dependent: bool = True, **kwargs):
         # + and -
         """Initialize the VoltageSource instance."""
         markings = VGroup()
@@ -130,7 +130,7 @@ class CurrentSource(Source):
                self.add(independent, dependent)
     """
 
-    def __init__(self, value=1, label=True, direction=LEFT, dependent=True, **kwargs):
+    def __init__(self, value: int = 1, label: str = True, direction: str = LEFT, dependent: bool = True, **kwargs):
         # Arrow
         """Initialize the CurrentSource instance."""
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
@@ -180,7 +180,7 @@ class Inductor(VMobject):
                )
     """
 
-    def __init__(self, label=None, direction=DOWN, **kwargs):
+    def __init__(self, label: Optional[str] = None, direction: str = DOWN, **kwargs):
         # initialize the vmobject
         """Initialize the Inductor instance."""
         super().__init__(**kwargs)
@@ -218,7 +218,7 @@ class Inductor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: Any):
         """Return the position of the left or right terminal.
 
         Parameters
@@ -250,7 +250,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle, *args, **kwargs):
+    def rotate(self, angle: float, *args, **kwargs):
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -303,7 +303,7 @@ class Resistor(VMobject):
                self.add(upright, rotated)
     """
 
-    def __init__(self, label=None, direction=DOWN, **kwargs):
+    def __init__(self, label: Optional[str] = None, direction: str = DOWN, **kwargs):
         # initialize the vmobject
         """Initialize the Resistor instance."""
         super().__init__(**kwargs)
@@ -349,7 +349,7 @@ class Resistor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: Any):
         """Return the position of the left or right terminal.
 
         Parameters
@@ -381,7 +381,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle, *args, **kwargs):
+    def rotate(self, angle: float, *args, **kwargs):
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -436,7 +436,7 @@ class Capacitor(VMobject):
                self.add(plain, polarized)
     """
 
-    def __init__(self, label=None, direction=DOWN, polarized=False, **kwargs):
+    def __init__(self, label: Optional[str] = None, direction: str = DOWN, polarized: bool = False, **kwargs):
         # initialize the vmobject
         """Initialize the Capacitor instance."""
         super().__init__(**kwargs)
@@ -474,7 +474,7 @@ class Capacitor(VMobject):
             )
             self.add(self.label)
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: Any):
         """Return the position of the left or right terminal plate.
 
         Parameters
@@ -506,7 +506,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle, *args, **kwargs):
+    def rotate(self, angle: float, *args, **kwargs):
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -565,7 +565,7 @@ class Ground(VMobject):
                )
     """
 
-    def __init__(self, ground_type="ground", label=None, **kwargs):
+    def __init__(self, ground_type: str = "ground", label: Optional[str] = None, **kwargs):
         # initialize the vmobject
         """Initialize the Ground instance."""
         super().__init__(**kwargs)
@@ -652,7 +652,7 @@ class Opamp(VMobject):
                    self.add(Dot(both.get_terminals(name), color=PURE_YELLOW))
     """
 
-    def __init__(self, bias_supply=None, label=False, **kwargs):
+    def __init__(self, bias_supply: Optional[Any]=None, label: str = False, **kwargs):
         # initialize the vmobject
         """Initialize the Opamp instance."""
         super().__init__(**kwargs)
@@ -765,7 +765,7 @@ class Opamp(VMobject):
             self._terminals["negative_bias"] = self._plots[-1].get_center()
         self.add(self.rails, self._labels, self._plots)
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: Any):
         """Return the position of a named terminal.
 
         Parameters

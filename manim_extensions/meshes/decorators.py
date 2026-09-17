@@ -10,13 +10,14 @@ A place for all decorators
 import warnings
 
 
+from typing import Callable
 def dangling_vert_decorator():
     """Decorator for mesh operations to check for dangling vertices.
 
     Warns if any vertices are not part of a face after the decorated function runs.
     """
 
-    def decorator_func(func):
+    def decorator_func(func: Callable):
         """Wrap a mesh operation with a dangling-vertex check.
 
         Parameters
@@ -57,7 +58,7 @@ def dangling_face_decorator():
     Warns if any faces are not part of a part after the decorated function runs.
     """
 
-    def decorator_func(func):
+    def decorator_func(func: Callable):
         """Wrap a mesh operation with a dangling-face check.
 
         Parameters

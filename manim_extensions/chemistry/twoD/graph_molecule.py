@@ -18,7 +18,7 @@ from manim import (
     VGroup,
     color_gradient,
 )
-from typing import Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
 import numpy as np
 import networkx as nx
 
@@ -66,8 +66,8 @@ class DoubleLine(ArcBetweenPoints):
 
     def __init__(
         self,
-        start=[-1, 0, 0],
-        end=[1, 0, 0],
+        start: list = [-1, 0, 0],
+        end: list = [1, 0, 0],
         angle: float = PI / 4,
         radius: float | None = None,
         **kwargs,
@@ -90,7 +90,7 @@ class DoubleLine(ArcBetweenPoints):
     def get_vector(self):
         return self._get_unit_vector()
 
-    def set_points_by_ends(self, start, end, *args, **kwargs) -> None:
+    def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs) -> None:
         self.put_start_and_end_on(start=start, end=end)
 
 
@@ -112,7 +112,7 @@ class TripleLine(DoubleLine):
     """
 
     def __init__(
-        self, start=[-1, 0, 0], end=[1, 0, 0], angle: float = PI / 4, *args, **kwargs
+        self, start: list = [-1, 0, 0], end: list = [1, 0, 0], angle: float = PI / 4, *args, **kwargs
     ):
         super().__init__(start=start, end=end, *args, **kwargs)
         middle_line = Line(start=start, end=end, *args, **kwargs)
@@ -299,7 +299,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.atoms = self.vertices
         self.bonds = self.edges
 
-    def _populate_edge_dict(self, edges, _):
+    def _populate_edge_dict(self, edges: Any, _: Optional[np.ndarray]):
         self.edges = {}
 
         for u, v in edges:
@@ -312,7 +312,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             )
             self.edges[(u, v)] = bond
 
-    def select_bond_from_edge(self, edge):
+    def select_bond_from_edge(self, edge: Any):
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
 
@@ -412,7 +412,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             connected_atoms=connected_atoms,
         )
 
-    def get_atoms_vgroup_from_index(self, atoms_indices):
+    def get_atoms_vgroup_from_index(self, atoms_indices: Any):
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
 
     def get_connected_atoms_v_group(

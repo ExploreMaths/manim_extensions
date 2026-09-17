@@ -12,19 +12,20 @@ import manim as m
 from ..utils.deps import require
 
 
+from typing import Optional
 def qr_code(payload: str,
-            corner_size=7,
+            corner_size: int = 7,
             icon: str | int | None = None,
-            icon_color: str = None,
+            icon_color: Optional[str] = None,
             icon_size: float = 10,  # in qr pixel
             icon_margin_size: float = 0.1,  # in qr pixel
-            white_color: str = None,
-            corner_color: str = None,
+            white_color: Optional[str] = None,
+            corner_color: Optional[str] = None,
             data_shape: str = 'rectangles',
-            rectangles_kwargs: dict = None,
-            circle_kwargs: dict = None,
-            error_correction='H',
-            segno_kwargs: dict = None,
+            rectangles_kwargs: Optional[dict] = None,
+            circle_kwargs: Optional[dict] = None,
+            error_correction: bool = 'H',
+            segno_kwargs: Optional[dict] = None,
             **kwargs, ) -> m.VGroup:
     """
     Create a QR code as a VGroup of Manim objects.

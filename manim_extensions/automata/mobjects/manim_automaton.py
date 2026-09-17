@@ -26,7 +26,7 @@ from .manim_animations import ManimAnimations
 
 from .manim_cli import ManimAutomataCLI
 
-from typing import Union
+from typing import Optional, Union
 
 import abc
 
@@ -375,7 +375,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return next_states, sequence_result
 
     def run_input_through_automaton(
-        self, input: Union[str, "ManimAutomataInput"], automaton_path_name: str = None
+        self, input: Union[str, "ManimAutomataInput"], automaton_path_name: Optional[str] = None
     ) -> list:
         """
         parameters:

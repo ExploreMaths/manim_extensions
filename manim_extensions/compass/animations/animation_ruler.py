@@ -8,6 +8,7 @@ This module provides animations for ruler manipulations.
 
 """
 
+from typing import Optional
 __all__ = ["PutRuler", "PutRulerAway"]
 
 from manim import ApplyMethod, DOWN, LEFT, Point, RIGHT, UP
@@ -39,7 +40,7 @@ class PutRuler(ApplyMethod):
         end : Point
             The end point."""
 
-    def __init__(self, ruler: Ruler, start: Point = None, end: Point = None, **kwargs):
+    def __init__(self, ruler: Ruler, start: Optional[Point] = None, end: Optional[Point] = None, **kwargs):
         """Initialize PutRuler."""
         super().__init__(ruler.set_ruler, start, end, **kwargs)
 
@@ -69,7 +70,7 @@ class PutRulerAway(PutRuler):
             Whether to place it horizontally (or vertically)."""
 
     def __init__(
-        self, ruler: Ruler, point: Point = None, is_flat: bool = True, **kwargs
+        self, ruler: Ruler, point: Optional[Point] = None, is_flat: bool = True, **kwargs
     ):
         """Initialize PutRulerAway."""
         if is_flat:

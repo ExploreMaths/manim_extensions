@@ -6,10 +6,12 @@
 # SPDX-License-Identifier: MIT
 """Helper functions for decision tree visualization."""
 
-def compute_node_depths(tree):
+from typing import Any
+from manim import Mobject
+def compute_node_depths(tree: Mobject):
     """Computes the depths of nodes for level order traversal"""
 
-    def depth(node_index, current_node_index=0):
+    def depth(node_index: Any, current_node_index: int = 0):
         """Compute the height of a node"""
         if current_node_index == node_index:
             return 0
@@ -35,10 +37,10 @@ def compute_node_depths(tree):
     return node_depths
 
 
-def compute_level_order_traversal(tree):
+def compute_level_order_traversal(tree: Mobject):
     """Computes level order traversal of a sklearn tree"""
 
-    def depth(node_index, current_node_index=0):
+    def depth(node_index: Any, current_node_index: int = 0):
         """Compute the height of a node"""
         if current_node_index == node_index:
             return 0
@@ -66,7 +68,7 @@ def compute_level_order_traversal(tree):
     return sorted_inds
 
 
-def compute_bfs_traversal(tree):
+def compute_bfs_traversal(tree: Mobject):
     """Traverses the tree in BFS order and returns the nodes in order"""
     traversal_order = []
     tree_root_index = 0
@@ -84,12 +86,12 @@ def compute_bfs_traversal(tree):
     return traversal_order
 
 
-def compute_best_first_traversal(tree):
+def compute_best_first_traversal(tree: Mobject):
     """Traverses the tree according to the best split first order"""
     pass
 
 
-def compute_node_to_parent_mapping(tree):
+def compute_node_to_parent_mapping(tree: Mobject):
     """Returns a hashmap mapping node indices to their parent indices"""
     node_to_parent = {0: -1}  # Root has no parent
     num_nodes = tree.node_count

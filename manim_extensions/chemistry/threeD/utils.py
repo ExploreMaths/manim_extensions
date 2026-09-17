@@ -12,6 +12,7 @@ import numpy as np
 
 
 
+from typing import Any, Optional
 class OpenGLSphere(OpenGLSurface):
     """A sphere rendered as an OpenGL surface.
 
@@ -25,7 +26,7 @@ class OpenGLSphere(OpenGLSurface):
 
     def __init__(
         self,
-        center=ORIGIN,
+        center: Any = ORIGIN,
         **kwargs,
     ):
         super().__init__(
@@ -37,7 +38,7 @@ class OpenGLSphere(OpenGLSurface):
 
         self.shift(center)
 
-    def uv_func(self, u, v):
+    def uv_func(self, u: Optional[np.ndarray], v: Any):
         return np.array(
             [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
         )

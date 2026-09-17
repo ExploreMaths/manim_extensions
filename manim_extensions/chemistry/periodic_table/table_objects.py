@@ -11,6 +11,8 @@ from manim import (
     BLACK,
     BLUE,
     DOWN,
+    ManimColor,
+    Mobject,
     ORIGIN,
     RIGHT,
     Rectangle,
@@ -20,6 +22,8 @@ from manim import (
     WHITE,
     color_gradient,
 )
+from typing import Any
+
 import numpy as np
 
 from ...utils.deps import require
@@ -82,15 +86,15 @@ class MElementObject(VGroup):
 
     def __init__(
         self,
-        atomic_number=1,
-        atomic_mass=1,
-        element_name="Hydrogen",
-        element_symbol="H",
-        coloring=BLACK,
-        fill_colors=(WHITE, BLUE),
-        gradient=10,
-        opacity=1,
-        text_color=BLACK,
+        atomic_number: int = 1,
+        atomic_mass: int = 1,
+        element_name: str = "Hydrogen",
+        element_symbol: str = "H",
+        coloring: ManimColor = BLACK,
+        fill_colors: tuple = (WHITE, BLUE),
+        gradient: int = 10,
+        opacity: float = 1,
+        text_color: ManimColor = BLACK,
         **kwargs,
     ):
         VGroup.__init__(self, **kwargs)
@@ -108,10 +112,10 @@ class MElementObject(VGroup):
 
         self.add(element_frame)
 
-    def frame_name_width_ratio(self, frame, name_text):
+    def frame_name_width_ratio(self, frame: Mobject, name_text: Mobject):
         return frame.get_width() / (1.25 * name_text.get_width())
 
-    def max_height_ratio(self, name_text):
+    def max_height_ratio(self, name_text: Mobject):
         text_height = name_text.get_height()
         if text_height > 0.3:
             ratio = 0.3 / text_height
@@ -171,7 +175,7 @@ class MElementObject(VGroup):
 
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
-    def from_csv_file_data(filename, atomic_number, **kwargs):
+    def from_csv_file_data(filename: Any, atomic_number: Any, **kwargs):
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
         pd = require("chemistry", "pandas")
@@ -229,7 +233,7 @@ class PeriodicTable(VGroup):
     """
 
     # TODO Change to english database
-    def __init__(self, data_file, *vmobjects, **kwargs):
+    def __init__(self, data_file: Any, *vmobjects, **kwargs):
         VGroup.__init__(self, *vmobjects, **kwargs)
         self.data_file = data_file
         self.table = self.add_elements()

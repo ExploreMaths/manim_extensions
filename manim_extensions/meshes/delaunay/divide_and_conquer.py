@@ -7,7 +7,7 @@
 functions to create delaunay meshes by divide and conquer
 """
 
-from manim import Create, DashedLine, FadeOut, Scene, Uncreate
+from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate
 
 # python imports
 from typing import List
@@ -16,7 +16,7 @@ from typing import List
 import numpy as np
 
 # Note: this file will most likely be moved in the future
-from scipy.spatial import ConvexHull  # pylint: disable=no-name-in-module
+from scipy.spatial import ConvexHull  # pylint: disable = no-name-in-module
 
 # local imports
 from .delaunay_criterion import (
@@ -27,7 +27,7 @@ from ..models.manim_models.triangle_mesh import (
 )
 
 
-def get_clockwise_angle(a, b) -> float:
+def get_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
     """Returns clockwise angle between 2D vectors a and b.
 
     Parameters
@@ -50,7 +50,7 @@ def get_clockwise_angle(a, b) -> float:
     return angle
 
 
-def get_counter_clockwise_angle(a, b) -> float:
+def get_counter_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
     """Returns counter-clockwise angle between 2D vectors a and b.
 
     Parameters
@@ -123,7 +123,7 @@ class DivideAndConquer:
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
-    def split_points(self, vert_indices, dash_length=0.2, line_width=1, speed=1.0):
+    def split_points(self, vert_indices: list, dash_length: float = 0.2, line_width: float = 1, speed: float = 1.0):
         """Split the vertex set into two halves along the x-coordinate median.
 
         The vertices referenced by *vert_indices* are sorted by their
@@ -207,7 +207,7 @@ class DivideAndConquer:
             # update hack
             self.scene.renderer.update_frame(self.scene)
 
-    def _right_candidate(self, base_lr, rr_edges, speed: float = 1.0):
+    def _right_candidate(self, base_lr: list, rr_edges: Mobject, speed: float = 1.0):
         """Find the best right-side candidate vertex for the merge step.
 
         The method evaluates all right-side vertices connected to the
@@ -280,7 +280,7 @@ class DivideAndConquer:
                 self.scene.wait(0.3 * speed)
         return None
 
-    def _left_candidate(self, base_lr, ll_edges, speed: float = 1.0):
+    def _left_candidate(self, base_lr: list, ll_edges: Mobject, speed: float = 1.0):
         """Find the best left-side candidate vertex for the merge step.
 
         Mirror of :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate` for the left side.  Evaluates
@@ -463,7 +463,7 @@ class DivideAndConquer:
             The ``(l, r)`` vertex indices forming the initial base edge.
         """
 
-        def next_index(cur_idx, indices):
+        def next_index(cur_idx: int, indices: list):
             """Return the next index in a cyclic sequence.
 
             Parameters
@@ -483,7 +483,7 @@ class DivideAndConquer:
                     return indices[(i + 1) % len(indices)]
             return None
 
-        def on_right(tangent, point):
+        def on_right(tangent: np.ndarray, point: np.ndarray):
             """Check whether a point lies to the right of a tangent line.
 
             Parameters

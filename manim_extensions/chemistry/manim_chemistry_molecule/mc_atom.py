@@ -45,7 +45,7 @@ class MCAtom:
         coords: np.array = np.array([0, 0, 0]),
         atoms: Optional[list] = None,
         bonds: Optional[list] = None,
-        molecule: None = None,
+        molecule: Optional[None] = None,
         molecule_index: Optional[int] = None,
     ):
         self.element = element
@@ -55,7 +55,7 @@ class MCAtom:
         self.molecule = molecule
         self.molecule_index = molecule_index
 
-    def add_atoms(self, atoms):
+    def add_atoms(self, atoms: Any):
         """
         Assigns bonded atoms to MCAtom.
 
@@ -90,7 +90,7 @@ class MCAtom:
 
         return self.atoms
 
-    def add_bonds(self, bonds):
+    def add_bonds(self, bonds: Any):
         from .mc_bond import MCBond
 
         if not bonds:
@@ -114,7 +114,7 @@ class MCAtom:
 
         return self.bonds
 
-    def assign_molecule(self, molecule):
+    def assign_molecule(self, molecule: Any):
         from .mc_molecule import MCMolecule
 
         if not molecule:
@@ -144,7 +144,7 @@ class MCAtom:
 
     @staticmethod
     def construct_from_atom_dict(
-        atom_index, atom_data_dict: Dict, elements_data_dict: Dict
+        atom_index: Any, atom_data_dict: Dict, elements_data_dict: Dict
     ):
         """
         Given an atom data dict from a parser, returns an MCAtom

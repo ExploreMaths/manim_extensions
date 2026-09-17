@@ -11,7 +11,9 @@ This module provides utility functions for Rubik's Cube operations.
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
 
 
-def get_axis_from_face(face):
+from typing import Any
+import numpy as np
+def get_axis_from_face(face: str):
     """Return the rotation axis corresponding to a Rubik's cube face.
 
     Parameters
@@ -34,7 +36,7 @@ def get_axis_from_face(face):
         return Y_AXIS
 
 
-def get_direction_from_face(face):
+def get_direction_from_face(face: str):
     """Return the rotation direction for a given face.
 
     Parameters
@@ -53,7 +55,7 @@ def get_direction_from_face(face):
     return -1
 
 
-def get_cubie_colors_from_state(state):
+def get_cubie_colors_from_state(state: np.ndarray):
     """Extract individual cubie colours from a cube state string.
 
     The state string follows the standard cube notation where each
@@ -72,7 +74,7 @@ def get_cubie_colors_from_state(state):
     pass
 
 
-def get_all_states(cube):
+def get_all_states(cube: Any):
     """Return the current state of every cubie in the cube.
 
     Parameters
@@ -88,7 +90,7 @@ def get_all_states(cube):
     pass
 
 
-def get_type_of_cubie(dim, position):
+def get_type_of_cubie(dim: int, position: np.ndarray):
     """Classify a cubie by its position within the cube.
 
     Parameters
@@ -114,7 +116,7 @@ def get_type_of_cubie(dim, position):
         return "center"
 
 
-def get_faces_of_cubie(dim, position):
+def get_faces_of_cubie(dim: int, position: np.ndarray):
     """Return the outward-facing directions for a cubie at a given position.
 
     Parameters

@@ -13,6 +13,7 @@ import click
 from .utils import PubchemAPIManager
 
 
+from typing import Any
 @click.group
 def cli(): ...
 
@@ -32,7 +33,7 @@ def cli(): ...
     "--three_d", "-td", default=False, help="Use three d data of the molecule."
 )
 @click.option("--output_folder", "-o", default=".", help="Output folder.")
-def pubchem_molecule(format, cid, name, smiles, inchi, three_d, output_folder):
+def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, three_d: Any, output_folder: Any):
     r"""
     Download molecule from pubchem.
 

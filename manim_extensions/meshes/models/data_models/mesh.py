@@ -11,7 +11,7 @@ Mesh structure
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Set, Tuple, Union
+from typing import Any, List, Optional, Set, Tuple, Union
 import numpy as np
 
 # local imports
@@ -92,7 +92,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def __init__(self, vertices, faces, parts=None, dangling: bool = False):
+    def __init__(self, vertices: list, faces: list, parts: Optional[Any]=None, dangling: bool = False):
         """Initialize mesh with the correct internal structure for all variables."""
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
@@ -889,7 +889,7 @@ class Mesh:
         unique = np.unique(np.concatenate(self._parts).ravel())
         return any(f_idx not in unique for f_idx in range(len(self._faces)))
 
-    def scale_mesh(self, scaling: float, about_point=None) -> None:
+    def scale_mesh(self, scaling: float, about_point: Optional[Any]=None) -> None:
         """Scale all vertices by a uniform factor.
 
         Parameters
@@ -906,7 +906,7 @@ class Mesh:
         else:
             self._vertices *= float(scaling)
 
-    def stretch_mesh(self, factor: float, dim: int, about_point=None) -> None:
+    def stretch_mesh(self, factor: float, dim: int, about_point: Optional[Any]=None) -> None:
         """Stretch all vertices along a single dimension.
 
         Parameters
@@ -986,7 +986,7 @@ class Mesh:
         self._vertices[v_id] += translation
 
     def apply_rotation(
-        self, angle: float, axis: np.ndarray = np.array([0, 0, 1]), about_point=None
+        self, angle: float, axis: np.ndarray = np.array([0, 0, 1]), about_point: Optional[Any]=None
     ) -> None:
         """Rotate all vertices around a given axis.
 

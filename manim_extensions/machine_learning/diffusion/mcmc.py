@@ -18,11 +18,15 @@ from manim import (
     GREEN,
     Group,
     Line,
+    ManimColor,
+    Mobject,
     RED,
     Succession,
     VGroup,
     override_animation,
 )
+from typing import Any, Optional
+
 from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
 import numpy as np
 import scipy
@@ -35,7 +39,7 @@ from ..utils.mobjects.probability import GaussianDistribution
 
 ######################## MCMC Algorithms #########################
 
-def gaussian_proposal(x, sigma=0.3):
+def gaussian_proposal(x: int, sigma: float = 0.3):
     """
     Gaussian proposal distribution.
 
@@ -89,7 +93,7 @@ class MultidimensionalGaussianPosterior:
         Variance of the distribution; drawn from the prior if None.
     """
 
-    def __init__(self, ndim=2, seed=12345, scale=3, mu=None, var=None):
+    def __init__(self, ndim: int = 2, seed: int = 12345, scale: int = 3, mu: Optional[Any]=None, var: Optional[Any]=None):
         """Initialize the Multidimensional Gaussian posterior distribution.
 
         Parameters
@@ -114,7 +118,7 @@ class MultidimensionalGaussianPosterior:
         else:
             self.mu = mu
 
-    def __call__(self, x):
+    def __call__(self, x: int):
         """
         Call multivariate normal posterior.
         """
@@ -125,13 +129,13 @@ class MultidimensionalGaussianPosterior:
             return -1e6
 
 def metropolis_hastings_sampler(
-    log_prob_fn=MultidimensionalGaussianPosterior(),
-    prop_fn=gaussian_proposal,
+    log_prob_fn: Any = MultidimensionalGaussianPosterior(),
+    prop_fn: Any = gaussian_proposal,
     initial_location: np.ndarray = np.array([0, 0]),
-    iterations=25,
-    warm_up=0,
-    ndim=2,
-    sampling_seed=1
+    iterations: int = 25,
+    warm_up: int = 0,
+    ndim: int = 2,
+    sampling_seed: int = 1
 ):
     """Samples using a Metropolis-Hastings sampler.
 
@@ -194,7 +198,7 @@ def metropolis_hastings_sampler(
 
 #################### MCMC Visualization Tools ######################
 
-def make_dist_image_mobject_from_samples(samples, ylim, xlim):
+def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]):
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -237,7 +241,7 @@ class Uncreate(Create):
 
     def __init__(
         self,
-        mobject,
+        mobject: Mobject,
         reverse_rate_function: bool = True,
         introducer: bool = True,
         remover: bool = True,
@@ -338,22 +342,21 @@ class MCMCAxes(Group):
                            "sampling_seed": 4,
                        },
                    )
-               )
                self.wait(1)
     """
 
     def __init__(
         self,
-        dot_color=BLUE,
-        dot_radius=0.02,
-        accept_line_color=GREEN,
-        reject_line_color=RED,
-        line_color=BLUE,
-        line_stroke_width=2,
-        x_range=[-3, 3],
-        y_range=[-3, 3],
-        x_length=5,
-        y_length=5
+        dot_color: ManimColor = BLUE,
+        dot_radius: float = 0.02,
+        accept_line_color: ManimColor = GREEN,
+        reject_line_color: ManimColor = RED,
+        line_color: ManimColor = BLUE,
+        line_stroke_width: int = 2,
+        x_range: list = [-3, 3],
+        y_range: list = [-3, 3],
+        x_length: int = 5,
+        y_length: int = 5
     ):
         super().__init__()
         self.dot_color = dot_color
@@ -383,7 +386,7 @@ class MCMCAxes(Group):
         """Overrides Create animation"""
         return AnimationGroup(Create(self.axes))
 
-    def visualize_gaussian_proposal_about_point(self, mean, cov=None) -> AnimationGroup:
+    def visualize_gaussian_proposal_about_point(self, mean: np.ndarray, cov: Optional[Any]=None) -> AnimationGroup:
         """Creates a Gaussian distribution about a certain point
 
         Parameters
@@ -407,11 +410,11 @@ class MCMCAxes(Group):
 
     def make_transition_animation(
         self, 
-        start_point, 
-        end_point, 
-        candidate_point, 
-        show_dots=True,
-        run_time=0.1
+        start_point: Mobject, 
+        end_point: Mobject, 
+        candidate_point: Mobject, 
+        show_dots: bool = True,
+        run_time: float = 0.1
     ) -> AnimationGroup:
         """Makes an transition animation for a single point on a Markov Chain
 
@@ -463,7 +466,7 @@ class MCMCAxes(Group):
                     run_time=run_time
                 ), line
 
-    def show_ground_truth_gaussian(self, distribution):
+    def show_ground_truth_gaussian(self, distribution: Any):
         """ """
         mean = distribution.mu
         var = np.eye(2) * distribution.var
@@ -474,11 +477,11 @@ class MCMCAxes(Group):
 
     def visualize_metropolis_hastings_chain_sampling(
         self,
-        log_prob_fn=MultidimensionalGaussianPosterior(),
-        prop_fn=gaussian_proposal,
-        show_dots=False,
-        true_samples=None,
-        sampling_kwargs={},
+        log_prob_fn: Any = MultidimensionalGaussianPosterior(),
+        prop_fn: Any = gaussian_proposal,
+        show_dots: bool = False,
+        true_samples: Optional[Any]=None,
+        sampling_kwargs: dict = {},
     ):
         """
         Makes an animation for visualizing a 2D markov chain using

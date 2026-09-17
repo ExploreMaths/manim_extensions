@@ -11,12 +11,15 @@ from manim import (
     Dot,
     LEFT,
     MathTex,
+    Mobject,
     Square,
     VGroup,
     VMobject,
     WHITE,
     np,
 )
+from typing import Any
+
 import math
 
 
@@ -69,12 +72,12 @@ class Source(VMobject):
 
     def __init__(
         self,
-        mobject_group,
-        letter,
-        value,
-        direction=LEFT,
-        label=True,
-        dependent=True,
+        mobject_group: Mobject,
+        letter: Any,
+        value: Any,
+        direction: str = LEFT,
+        label: str = True,
+        dependent: bool = True,
         **kwargs,
     ):
         # initialize the vmobject
@@ -106,7 +109,7 @@ class Source(VMobject):
         else:
             self.label = None
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: Any):
         """Return the positive or negative terminal of the source symbol.
 
         Parameters
@@ -143,7 +146,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle, *args, **kwargs):
+    def rotate(self, angle: float, *args, **kwargs):
         """Rotate the source symbol around its center.
 
         Parameters
@@ -229,7 +232,7 @@ class Circuit(VMobject):
         self.add(self.node_list)
 
     # This function returns the endpoints of the wire.
-    def __create_wire(self, end1, end2, diagonal=False, invert=False):
+    def __create_wire(self, end1: Any, end2: Any, diagonal: bool = False, invert: bool = False):
         # Check if a turn is necessary. Only satisfiable if:
         # 1. diagonal flag is not set/overriden to True
         # 2. end1.x != end2.x and end1.y != end2.y
@@ -273,10 +276,10 @@ class Circuit(VMobject):
 
     def add_wire(
         self,
-        end1,
-        end2,
-        diagonal=False,
-        invert=False,
+        end1: Any,
+        end2: Any,
+        diagonal: bool = False,
+        invert: bool = False,
     ):
         """Create a wire between two points and merge it into the circuit graph.
 
@@ -396,7 +399,7 @@ class Node(VMobject):
             for coord in path[1:]:
                 self.add_line_to(np.array(coord))
 
-    def check_coord(self, coord):
+    def check_coord(self, coord: Any):
         # coord is to be checked.
         # return a non-False value if:
         # 1. It paired coordinates in self.coords (and not endpoint)
@@ -428,7 +431,7 @@ class Node(VMobject):
 
         return False
 
-    def add_dot(self, dot_coord):
+    def add_dot(self, dot_coord: Any):
         """Add a junction dot at the provided coordinate.
 
         Parameters
@@ -440,7 +443,7 @@ class Node(VMobject):
 
     # wire is just a matrix with dimensions 2n x 3 or 3 x 3
     # depending entirely on if it is a diagonal wire or not
-    def add_wire(self, wire_param):
+    def add_wire(self, wire_param: Any):
         """Append a wire path to the node's internal connectivity list.
 
         Parameters
@@ -483,7 +486,7 @@ class Node(VMobject):
 
         self.__update()
 
-    def merge(self, node, wire=False):
+    def merge(self, node: Any, wire: bool = False):
         """Merge this node with another node and optionally attach a wire.
 
         Parameters
@@ -505,7 +508,7 @@ class Node(VMobject):
         self.__update()
 
 
-def distance(a, b):
+def distance(a: np.ndarray, b: np.ndarray):
     """Compute the Euclidean distance between two points.
 
     Parameters
@@ -523,7 +526,7 @@ def distance(a, b):
     return np.sqrt(np.sum([i * i for i in np.array(a) - np.array(b)]))
 
 
-def validate_forms_approx_line(coord, line, tolerance=1e-5):
+def validate_forms_approx_line(coord: Any, line: Any, tolerance: float = 1e-5):
     # Check if the sum of the distance(s) between a coordinate to the end(s) of a line
     # equates to the distance of the line
     """Check whether a coordinate lies approximately on a line segment.

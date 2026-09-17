@@ -179,7 +179,7 @@ class HTMLParsedVMobject:
                parsed.finish()
     """
 
-    def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html=False):
+    def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html: str = False):
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -197,7 +197,7 @@ class HTMLParsedVMobject:
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
     
-    def updater(self, dt):
+    def updater(self, dt: float):
         if self.continue_updating is False:
             return
         svg2paths = require("svg", "svgpathtools").svg2paths
@@ -289,7 +289,7 @@ class HTMLParsedVMobject:
         self,
         value_trackers: list[ValueTracker],
         linspaces: list[np.ndarray],
-        animate_this=True
+        animate_this: bool = True
     ):
         svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:

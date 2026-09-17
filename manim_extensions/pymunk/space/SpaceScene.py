@@ -9,7 +9,7 @@ This module provides the SpaceScene class for creating physics simulations with 
 from __future__ import annotations
 
 from manim import Mobject, ZoomedScene
-from typing import Any, Callable, Dict, Tuple, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Tuple
 
 from . import VSpace
 from ..constraints.constraint import VConstraint
@@ -105,8 +105,8 @@ class SpaceScene(ZoomedScene):
     def add_static_body(
         self,
         *mobs,
-        family_members=False,
-        is_solid=True,
+        family_members: bool = False,
+        is_solid: bool = True,
         # shapes 相关
         elasticity: float = 0.8,
         friction: float = 0.8,
@@ -179,8 +179,8 @@ class SpaceScene(ZoomedScene):
     def add_dynamic_body(
         self,
         *mobs,
-        family_members=False,
-        is_solid=True,
+        family_members: bool = False,
+        is_solid: bool = True,
         # shapes 相关
         elasticity: float = 0.8,
         friction: float = 0.8,
@@ -253,8 +253,8 @@ class SpaceScene(ZoomedScene):
     def add_kinematic_body(
         self,
         *mobs,
-        family_members=False,
-        is_solid=True,
+        family_members: bool = False,
+        is_solid: bool = True,
         # shapes 相关
         elasticity: float = 0.8,
         friction: float = 0.8,
@@ -385,7 +385,7 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.sleep()
 
-    def draw_debug_img(self, option: int = None, xlim=(-8, 8), ylim=(-5, 5)) -> None:
+    def draw_debug_img(self, option: Optional[int] = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)) -> None:
         """Pops up a Matplotlib window to render a debug view of the physical space.
         This is an essential diagnostic tool used to verify if collision shapes,
         constraints, and pivots are correctly aligned when they are not behaving
@@ -500,7 +500,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Dict[Any, Any] = None,
+        data: Optional[Dict[Any, Any]] = None,
     ):
         self.vspace._wildcard_collision_handler(
             collision_type_a, begin, pre_solve, post_solve, separate, data
@@ -514,7 +514,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Dict[Any, Any] = None,
+        data: Optional[Dict[Any, Any]] = None,
     ):
         self.vspace._collision_detection_handler(
             collision_type_a,

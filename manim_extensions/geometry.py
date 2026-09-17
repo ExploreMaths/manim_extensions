@@ -11,10 +11,10 @@ lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
 their cubic Bézier outlines, so no type-specific cases are needed.
 """
 
-from manim import VMobject
+from manim import Mobject, VMobject
 import math
 import numpy as np
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 
 def VMobjectInt(
@@ -104,11 +104,10 @@ def VMobjectInt(
                        ],
                        lag_ratio=0.4,
                    )
-               )
                self.wait()
     """
 
-    def _extract_beziers(mob):
+    def _extract_beziers(mob: Mobject):
         """Collect every cubic Bézier segment in a mobject tree.
 
         Each VMobject stores its outline as groups of four control points
@@ -148,7 +147,7 @@ def VMobjectInt(
                     beziers.append(np.array(tup[:4], dtype=float, copy=True))
         return beziers
 
-    def _split_cubic(c, t=0.5):
+    def _split_cubic(c: Any, t: float = 0.5):
         """Split a cubic Bézier curve at parameter *t* (de Casteljau).
 
         Parameters
@@ -174,7 +173,7 @@ def VMobjectInt(
         right = np.array([c0, b1, a2, p3], dtype=float)
         return left, right
 
-    def _flatness_sq(c):
+    def _flatness_sq(c: Any):
         """Squared maximum distance of the inner control points to the chord.
 
         Parameters
@@ -203,7 +202,7 @@ def VMobjectInt(
                 worst = dist_sq
         return worst
 
-    def _bbox_overlap(c1, c2, eps):
+    def _bbox_overlap(c1: Any, c2: Any, eps: Any):
         """Check whether the control-point bounding boxes of two curves meet.
 
         Parameters
@@ -226,7 +225,7 @@ def VMobjectInt(
                 return False
         return True
 
-    def _segment_meet(a0, a1, b0, b1, dist_tol):
+    def _segment_meet(a0: Any, a1: Any, b0: Any, b1: Any, dist_tol: Any):
         """Find where two (nearly flat) segments meet or overlap.
 
         Parameters
@@ -310,7 +309,7 @@ def VMobjectInt(
 
     found = []
 
-    def _intersect_curves(c1, c2, depth):
+    def _intersect_curves(c1: Any, c2: Any, depth: Any):
         """Recursively intersect two cubic Bézier curves."""
         if not _bbox_overlap(c1, c2, tolerance):
             return

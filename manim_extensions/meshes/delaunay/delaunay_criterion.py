@@ -121,7 +121,7 @@ def get_point_indices_violating_delaunay(
 
 
 def is_point_violating_delaunay(
-    triangle_mesh: TriangleManim2DMesh, vertex_idx: int, face_idx
+    triangle_mesh: TriangleManim2DMesh, vertex_idx: int, face_idx: int
 ) -> bool:
     """Check whether a vertex violates the Delaunay criterion for a given face.
 

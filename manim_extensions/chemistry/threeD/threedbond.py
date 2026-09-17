@@ -12,6 +12,7 @@ from manim import (
     IN,
     LEFT,
     Line3D,
+    ManimColor,
     Mobject,
     ORIGIN,
     PI,
@@ -24,6 +25,8 @@ from manim import (
     normalize,
     perpendicular_bisector,
 )
+from typing import Any, Optional
+
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
@@ -57,9 +60,9 @@ class ThreeDCylinder(OpenGLSurface):
         radius: float = 1,
         height: float = 2,
         direction: np.ndarray = Z_AXIS,
-        v_range=[0, TAU],
+        v_range: list = [0, TAU],
         show_ends: bool = True,
-        resolution=(24, 24),
+        resolution: tuple = (24, 24),
         **kwargs,
     ) -> None:
         self._height = height
@@ -174,7 +177,7 @@ class ThreeDLine(ThreeDCylinder):
         start: np.ndarray = LEFT,
         end: np.ndarray = RIGHT,
         thickness: float = 0.05,
-        color=None,
+        color: Optional[ManimColor] = None,
         **kwargs,
     ):
         self.thickness = thickness
@@ -216,7 +219,7 @@ class ThreeDLine(ThreeDCylinder):
         self.shift((self.start + self.end) / 2)
 
     def pointify(
-        self, mob_or_point: Mobject or float, direction: np.ndarray = None
+        self, mob_or_point: Mobject or float, direction: Optional[np.ndarray] = None
     ) -> np.ndarray:
         """Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.
 
@@ -262,7 +265,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def parallel_to(
-        cls, line: Line3D, point=ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: np.ndarray = ORIGIN, length: float = 5, **kwargs
     ) -> Line3D:
         """Returns a line parallel to another line going through
         a given point.
@@ -311,7 +314,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def perpendicular_to(
-        cls, line: Line3D, point=ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: np.ndarray = ORIGIN, length: float = 5, **kwargs
     ) -> Line3D:
         """Returns a line perpendicular to another line going through
         a given point.
@@ -394,7 +397,7 @@ class ThreeDBond(OpenGLGroup):
     def __repr__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __init__(self, from_atom, to_atom, bond_type, *mobjects, **kwargs):
+    def __init__(self, from_atom: Any, to_atom: Any, bond_type: Any, *mobjects, **kwargs):
         self.from_atom = from_atom
         self.to_atom = to_atom
         super().__init__(**kwargs)
@@ -475,7 +478,7 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def get_perpendicular_unit_vector(self, point_a, point_b):
+    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))

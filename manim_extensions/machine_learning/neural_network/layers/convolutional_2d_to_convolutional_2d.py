@@ -15,6 +15,8 @@ from manim import (
     Create,
     FadeOut,
     Line,
+    ManimColor,
+    Mobject,
     ORANGE,
     RED,
     ShowPassingFlash,
@@ -23,6 +25,8 @@ from manim import (
     override_animation,
     rotation_matrix,
 )
+from typing import Any, Optional
+
 from .convolutional_2d import Convolutional2DLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
@@ -30,7 +34,7 @@ from ... import config
 
 
 
-def get_rotated_shift_vectors(input_layer, normalized=False):
+def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
     """Rotates the shift vectors"""
     # Make base shift vectors
     right_shift = np.array([input_layer.cell_width, 0, 0])
@@ -74,13 +78,13 @@ class Filters(VGroup):
 
     def __init__(
         self,
-        input_layer,
-        output_layer,
-        line_color=ORANGE,
-        cell_width=1.0,
-        stroke_width=2.0,
-        show_grid_lines=False,
-        output_feature_map_to_connect=None,  # None means all at once
+        input_layer: Mobject,
+        output_layer: Mobject,
+        line_color: ManimColor = ORANGE,
+        cell_width: float = 1.0,
+        stroke_width: float = 2.0,
+        show_grid_lines: bool = False,
+        output_feature_map_to_connect: Optional[Any]=None,  # None means all at once
     ):
         super().__init__()
         self.input_layer = input_layer
@@ -290,7 +294,7 @@ class Filters(VGroup):
         TODO Fix this
         """
 
-        def add_content(object):
+        def add_content(object: Mobject):
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
             object.add(self.output_rectangles)
@@ -305,7 +309,7 @@ class Filters(VGroup):
             lag_ratio=0.0,
         )
 
-    def make_pulse_animation(self, shift_amount):
+    def make_pulse_animation(self, shift_amount: Any):
         """Make animation of the filter pulsing"""
         passing_flash = ShowPassingFlash(
             self.connective_lines.shift(shift_amount).set_stroke_width(
@@ -353,13 +357,13 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         self,
         input_layer: Convolutional2DLayer,
         output_layer: Convolutional2DLayer,
-        color=ORANGE,
-        filter_opacity=0.3,
-        line_color=ORANGE,
-        active_color=ORANGE,
-        cell_width=0.2,
-        show_grid_lines=True,
-        highlight_color=ORANGE,
+        color: ManimColor = ORANGE,
+        filter_opacity: float = 0.3,
+        line_color: ManimColor = ORANGE,
+        active_color: ManimColor = ORANGE,
+        cell_width: float = 0.2,
+        show_grid_lines: bool = True,
+        highlight_color: ManimColor = ORANGE,
         **kwargs,
     ):
         super().__init__(
@@ -391,7 +395,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
     ):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def animate_filters_all_at_once(self, filters):
+    def animate_filters_all_at_once(self, filters: Mobject):
         """Animates each of the filters all at once"""
         animations = []
         # Make filters
@@ -440,7 +444,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         animations.append(FadeOut(filters))
         return Succession(*animations, lag_ratio=1.0)
 
-    def animate_filters_one_at_a_time(self, highlight_active_feature_map=True):
+    def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True):
         """Animates each of the filters one at a time"""
         animations = []
         output_feature_maps = self.output_layer.feature_maps
@@ -532,10 +536,10 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 input_feature_maps = self.input_layer.feature_maps
                 for input_feature_map in input_feature_maps:
                     change_color_animations.append(
-                        ApplyMethod(
-                            input_feature_map.set_color, original_feature_map_color
-                        )
+                    ApplyMethod(
+                        input_feature_map.set_color, original_feature_map_color
                     )
+                )
                 # Combine the animations
                 animations.append(
                     AnimationGroup(*change_color_animations, lag_ratio=0.0)
@@ -545,10 +549,10 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args={},
-        all_filters_at_once=False,
-        highlight_active_feature_map=True,
-        run_time=10.5,
+        layer_args: dict = {},
+        all_filters_at_once: bool = False,
+        highlight_active_feature_map: bool = True,
+        run_time: float = 10.5,
         **kwargs,
     ):
         """Forward pass animation from conv2d to conv2d"""
@@ -561,7 +565,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 highlight_active_feature_map=highlight_active_feature_map
             )
 
-    def scale(self, scale_factor, **kwargs):
+    def scale(self, scale_factor: float, **kwargs):
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 

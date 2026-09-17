@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
-from manim import ORANGE
+from manim import ManimColor, ORANGE
 
 from .convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
 from .max_pooling_2d import MaxPooling2DLayer
@@ -44,10 +44,10 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         self,
         input_layer: MaxPooling2DLayer,
         output_layer: Convolutional2DLayer,
-        passing_flash_color=ORANGE,
-        cell_width=1.0,
-        stroke_width=2.0,
-        show_grid_lines=False,
+        passing_flash_color: ManimColor = ORANGE,
+        cell_width: float = 1.0,
+        stroke_width: float = 2.0,
+        show_grid_lines: bool = False,
         **kwargs
     ):
         input_layer.num_feature_maps = output_layer.num_feature_maps

@@ -15,12 +15,15 @@ from manim import (
     Create,
     DEFAULT_FONT_SIZE,
     Group,
+    Mobject,
     SurroundingRectangle,
     Text,
     UP,
     Wait,
     override_animation,
 )
+from typing import Optional
+
 from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):
@@ -37,7 +40,7 @@ class NeuralNetworkLayer(ABC, Group):
         the layer.
     """
 
-    def __init__(self, text=None, *args, **kwargs):
+    def __init__(self, text: Optional[str] = None, *args, **kwargs):
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         if "title" in kwargs:
@@ -67,7 +70,7 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         pass
 
     @override_animation(Create)
@@ -122,7 +125,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
     """
 
     @abstractmethod
-    def __init__(self, input_layer, output_layer, **kwargs):
+    def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -131,7 +134,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         # assert isinstance(output_layer, self.output_class), f"{output_layer}, {self.output_class}"
 
     @abstractmethod
-    def make_forward_pass_animation(self, run_time=2.0, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 2.0, layer_args: dict = {}, **kwargs):
         pass
 
     @override_animation(Create)
@@ -160,10 +163,10 @@ class BlankConnective(ConnectiveLayer):
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
     """
 
-    def __init__(self, input_layer, output_layer, **kwargs):
+    def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
         super().__init__(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time=1.5, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 1.5, layer_args: dict = {}, **kwargs):
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)

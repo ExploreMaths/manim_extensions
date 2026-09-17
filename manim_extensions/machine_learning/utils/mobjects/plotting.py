@@ -14,7 +14,8 @@ import io
 
 from ....utils.deps import require
 
-def convert_matplotlib_figure_to_image_mobject(fig, dpi=200):
+from typing import Any
+def convert_matplotlib_figure_to_image_mobject(fig: Any, dpi: int = 200):
     """Takes a matplotlib figure and makes an image mobject from it
 
     Parameters

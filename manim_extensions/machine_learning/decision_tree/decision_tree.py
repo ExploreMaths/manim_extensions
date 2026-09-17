@@ -21,6 +21,7 @@ from manim import (
     Group,
     ImageMobject,
     Line,
+    Mobject,
     RED,
     Rectangle,
     Succession,
@@ -30,6 +31,8 @@ from manim import (
     WHITE,
     override_animation,
 )
+from typing import Any, Optional
+
 from . import helpers
 
 import numpy as np
@@ -52,7 +55,7 @@ class LeafNode(Group):
     """
 
     def __init__(
-        self, class_index, display_type="image", class_image_paths=[], class_colors=[]
+        self, class_index: Any, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
     ):
         super().__init__()
         self.display_type = display_type
@@ -64,7 +67,7 @@ class LeafNode(Group):
         else:
             raise NotImplementedError()
 
-    def _construct_image_node(self, class_index):
+    def _construct_image_node(self, class_index: Any):
         """Make an image node"""
         # Get image
         image_path = self.class_image_paths[class_index]
@@ -93,7 +96,7 @@ class SplitNode(VGroup):
         Threshold value of the split; the node text shows ``feature <= threshold``.
     """
 
-    def __init__(self, feature, threshold):
+    def __init__(self, feature: Any, threshold: Any):
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f} cm"
         # Draw decision text
@@ -171,11 +174,11 @@ class DecisionTreeDiagram(Group):
 
     def __init__(
         self,
-        sklearn_tree,
-        feature_names=None,
-        class_names=None,
-        class_images_paths=None,
-        class_colors=[RED, GREEN, BLUE],
+        sklearn_tree: Any,
+        feature_names: Optional[Any]=None,
+        class_names: Optional[Any]=None,
+        class_images_paths: Optional[Any]=None,
+        class_colors: list = [RED, GREEN, BLUE],
     ):
         super().__init__()
         self.tree = sklearn_tree
@@ -189,7 +192,7 @@ class DecisionTreeDiagram(Group):
 
     def _make_node(
         self,
-        node_index,
+        node_index: Any,
     ):
         """Make node"""
         is_split_node = (
@@ -210,7 +213,7 @@ class DecisionTreeDiagram(Group):
             )
         return node
 
-    def _make_connection(self, top, bottom, is_leaf=False):
+    def _make_connection(self, top: Mobject, bottom: Mobject, is_leaf: bool = False):
         """Make a connection from top to bottom"""
         top_node_bottom_location = top.get_center()
         top_node_bottom_location[1] -= top.height / 2
@@ -241,7 +244,7 @@ class DecisionTreeDiagram(Group):
         tree_height = scale_factor * node_height * max_depth
         tree_width = scale_factor * 2**max_depth * node_width
         # traverse tree
-        def recurse(node_index, depth, direction, parent_object, parent_node):
+        def recurse(node_index: Any, depth: Any, direction: str, parent_object: Any, parent_node: Any):
             # make the node object
             is_leaf = (
                 self.tree.children_left[node_index]
@@ -293,11 +296,11 @@ class DecisionTreeDiagram(Group):
         tree_group.scale(0.35)
         return tree_group, nodes_map, edge_map
 
-    def create_level_order_expansion_decision_tree(self, tree):
+    def create_level_order_expansion_decision_tree(self, tree: Mobject):
         """Expands the decision tree in level order"""
         raise NotImplementedError()
     
-    def create_bfs_expansion_decision_tree(self, tree):
+    def create_bfs_expansion_decision_tree(self, tree: Mobject):
         """Expands the tree using BFS"""
         animations = []
         split_node_animations = {} # Dictionary mapping split node to animation
@@ -416,7 +419,7 @@ class DecisionTreeDiagram(Group):
             lag_ratio=1.0
         ), split_node_animations
 
-    def make_expand_tree_animation(self, node_expand_order):
+    def make_expand_tree_animation(self, node_expand_order: Any):
         """
             Make an animation for expanding the decision tree
 
@@ -436,7 +439,7 @@ class DecisionTreeDiagram(Group):
         pass
 
     @override_animation(Create)
-    def create_decision_tree(self, traversal_order="bfs"):
+    def create_decision_tree(self, traversal_order: str = "bfs"):
         """Makes a create animation for the decision tree"""
         # Comptue the node expand order
         if traversal_order == "level":
@@ -462,7 +465,7 @@ class DecisionTreeContainer():
         Class label of each point in ``points``.
     """
 
-    def __init__(self, sklearn_tree, points, classes):
+    def __init__(self, sklearn_tree: Any, points: Any, classes: Any):
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes

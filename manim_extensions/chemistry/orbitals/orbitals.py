@@ -11,14 +11,15 @@ from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 import scipy.special as spe
 
+from typing import Any, Optional
 if hasattr(spe, "sph_harm_y"):
     # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
-    def _sph_harm(m, l, azimuthal, polar):
+    def _sph_harm(m: Any, l: Any, azimuthal: Any, polar: Any):
         return spe.sph_harm_y(l, m, polar, azimuthal)
 
 else:
     # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
-    def _sph_harm(m, l, azimuthal, polar):
+    def _sph_harm(m: Any, l: Any, azimuthal: Any, polar: Any):
         return spe.sph_harm(m, l, azimuthal, polar)
 
 
@@ -35,14 +36,14 @@ class OrbitalBase(OpenGLSurface):
 
     def __init__(
         self,
-        center=ORIGIN,
-        resolution=(100, 50),
-        u_range=(0, PI),
-        v_range=(0, TAU),
-        n_value=1,
-        l_value=0,
-        m_value=0,
-        size=1,
+        center: Any = ORIGIN,
+        resolution: tuple = (100, 50),
+        u_range: tuple = (0, PI),
+        v_range: tuple = (0, TAU),
+        n_value: int = 1,
+        l_value: int = 0,
+        m_value: int = 0,
+        size: int = 1,
         **kwargs,
     ):
         self.n_value = n_value
@@ -60,19 +61,19 @@ class OrbitalBase(OpenGLSurface):
 
         self.shift(center)
 
-    def psi_ang(self, phi, theta, l=0, m=0):
+    def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0):
         sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
 
-    def calculate_coordinates(self, psi, u, v):
+    def calculate_coordinates(self, psi: Any, u: Optional[np.ndarray], v: Any):
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
         z = np.cos(u) * abs(psi)
 
         return self.size * np.array([x, y, z])
 
-    def uv_func(self, u, v):
+    def uv_func(self, u: Optional[np.ndarray], v: Any):
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
@@ -83,7 +84,7 @@ class OrbitalPositive(OrbitalBase):
     Calculates the positive values of the orbital.
     """
 
-    def uv_func(self, u, v):
+    def uv_func(self, u: Optional[np.ndarray], v: Any):
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
             psi = 0
@@ -96,7 +97,7 @@ class OrbitalNegative(OrbitalBase):
     Calculates the negative values of the orbital.
     """
 
-    def uv_func(self, u, v):
+    def uv_func(self, u: Optional[np.ndarray], v: Any):
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
             psi = 0
@@ -130,7 +131,7 @@ class Orbital(OpenGLSurface):
         Additional keyword arguments passed to :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface`.
     """
 
-    def __init__(self, n=None, l=0, m=0, size=3, **kwargs):
+    def __init__(self, n: Optional[Any]=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):
         super().__init__(self.uv_func, **kwargs)
         if not n:
             self.n = l + 1
@@ -148,5 +149,5 @@ class Orbital(OpenGLSurface):
         self.add(pos, neg)
         self.needs_new_bounding_box = True
 
-    def uv_func(self, u, v):
+    def uv_func(self, u: Optional[np.ndarray], v: Any):
         return np.array([0, 0, 0])

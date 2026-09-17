@@ -18,6 +18,7 @@ from .cubie import Cubie
 from ..utils.deps import require
 
 
+from typing import Any
 class RubiksCube(VMobject):
     """A Manim-backed Rubik's Cube model.
 
@@ -161,11 +162,11 @@ class RubiksCube(VMobject):
     # Colors are in the order Up, Right, Front, Down, Left, Back
     def __init__(
         self,
-        dim=3,
-        colors=[WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"],
-        x_offset=2.1,
-        y_offset=2.1,
-        z_offset=2.1,
+        dim: int = 3,
+        colors: list = [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"],
+        x_offset: float = 2.1,
+        y_offset: float = 2.1,
+        z_offset: float = 2.1,
     ):  # , **kwargs):
         """Initialize the RubiksCube instance."""
         if not (dim >= 2):
@@ -214,7 +215,7 @@ class RubiksCube(VMobject):
                     self.cubies[x, y, z] = cubie
         self.move_to(ORIGIN)
 
-    def set_state(self, positions):
+    def set_state(self, positions: list):
         """Apply a colour state to each cube face.
 
         Parameters
@@ -249,7 +250,7 @@ class RubiksCube(VMobject):
         for cubie in np.rot90(np.flip(self.get_face("B", False), (0, 1)), -1).flatten():
             cubie.get_face("B").set_fill(colors[positions.pop(0)], 1)
 
-    def solve_by_kociemba(self, state):
+    def solve_by_kociemba(self, state: np.ndarray):
         """Solve a cube state using the kociemba solver.
 
         Parameters
@@ -265,7 +266,7 @@ class RubiksCube(VMobject):
         sv = require("rubikscube", "kociemba")
         return sv.solve(state).replace("3", "'").replace("1", "").split()
 
-    def transform_cubie(self, position, offset, tile):
+    def transform_cubie(self, position: np.ndarray, offset: np.ndarray, tile: Any):
         """Apply translation offsets to a cubie based on its position.
 
         Parameters
@@ -291,7 +292,7 @@ class RubiksCube(VMobject):
                         tile, magnitude * np.array(offset[i][1 + j * 2])
                     )
 
-    def get_face(self, face, flatten=True):
+    def get_face(self, face: np.ndarray, flatten: bool = True):
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters
@@ -330,7 +331,7 @@ class RubiksCube(VMobject):
         for c in self.cubies.flatten():
             self.indices[c.get_rounded_center()] = c.position
 
-    def adjust_indices(self, cubies):
+    def adjust_indices(self, cubies: np.ndarray):
         """Rebuild the cube index mapping from a set of cubies.
 
         Parameters

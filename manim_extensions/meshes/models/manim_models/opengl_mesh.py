@@ -18,6 +18,7 @@ from ..data_models.mesh import Mesh
 from ...params import get_param_or_default
 
 
+from typing import Any, Optional
 class FastManimMesh(OpenGLMobject):
     """More efficient mesh implementation.
         Uses custom shaders and stores vertices and faces in a single VAO
@@ -48,7 +49,7 @@ class FastManimMesh(OpenGLMobject):
     def __init__(
         self,
         mesh: Mesh,
-        shader_folder=None,
+        shader_folder: Optional[Any]=None,
         **kwargs,
     ):
         """Initialization. mesh must only consist of triangles"""
@@ -96,7 +97,7 @@ class FastManimMesh(OpenGLMobject):
         self.fill_in_shader_color_info(shader_data)
         return shader_data
 
-    def fill_in_shader_color_info(self, shader_data):
+    def fill_in_shader_color_info(self, shader_data: Any):
         """Write colour information into the shader data array.
 
         Parameters

@@ -16,6 +16,7 @@ from manim import (
     GREEN,
     Group,
     LEFT,
+    Mobject,
     ORANGE,
     Polygon,
     RIGHT,
@@ -28,6 +29,8 @@ from manim import (
     Wait,
     override_animation,
 )
+from typing import Any, Optional
+
 import numpy as np
 from collections import deque
 
@@ -42,10 +45,10 @@ class AABB:
         Number of features; each feature gets a ``[-inf, inf]`` limit pair.
     """
 
-    def __init__(self, n_features):
+    def __init__(self, n_features: Any):
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
-    def split(self, f, v):
+    def split(self, f: Any, v: Any):
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -55,7 +58,7 @@ class AABB:
 
         return left, right
 
-def tree_bounds(tree, n_features=None):
+def tree_bounds(tree: Mobject, n_features: Optional[Any]=None):
     """Compute final decision rule for each node in tree"""
     ctree = require("ml", "sklearn.tree")._tree
 
@@ -73,11 +76,11 @@ def tree_bounds(tree, n_features=None):
     return aabbs
 
 def compute_decision_areas(
-    tree_classifier, 
-    maxrange, 
-    x=0,
-    y=1, 
-    n_features=None
+    tree_classifier: Any, 
+    maxrange: Any, 
+    x: int = 0,
+    y: int = 1, 
+    n_features: Optional[Any]=None
 ):
     """Extract decision areas.
 
@@ -116,7 +119,7 @@ def compute_decision_areas(
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
 
-def plot_areas(rectangles):
+def plot_areas(rectangles: Any):
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
         color = ["b", "r"][int(rect[4])]
@@ -130,7 +133,7 @@ def plot_areas(rectangles):
         )
         plt.gca().add_artist(rp)
 
-def merge_overlapping_polygons(all_polygons, colors=[BLUE, GREEN, ORANGE]):
+def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]):
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -212,7 +215,7 @@ class IrisDatasetPlot(VGroup):
         Loaded Iris dataset (e.g. from ``sklearn.datasets.load_iris``).
     """
 
-    def __init__(self, iris):
+    def __init__(self, iris: Any):
         points = iris.data[:, 0:2]
         labels = iris.feature_names
         targets = iris.target
@@ -250,7 +253,7 @@ class IrisDatasetPlot(VGroup):
         )
         return animation_group
 
-    def _make_point_group(self, points, targets, class_colors=[BLUE, ORANGE, GREEN]):
+    def _make_point_group(self, points: Any, targets: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
         point_group = VGroup()
         for point_index, point in enumerate(points):
             # draw the dot
@@ -261,7 +264,7 @@ class IrisDatasetPlot(VGroup):
             point_group.add(dot)
         return point_group
 
-    def _make_legend(self, class_colors, feature_labels, axes):
+    def _make_legend(self, class_colors: Any, feature_labels: Any, axes: Any):
         legend_group = VGroup()
         # Make Text
         setosa = Text("Setosa", color=BLUE)
@@ -283,7 +286,7 @@ class IrisDatasetPlot(VGroup):
 
         return legend_group
 
-    def _make_axes_group(self, points, labels, font="Source Han Sans", font_scale=0.75):
+    def _make_axes_group(self, points: Any, labels: Any, font: str = "Source Han Sans", font_scale: float = 0.75):
         axes_group = VGroup()
         # make the axes
         x_range = [
@@ -339,7 +342,7 @@ class DecisionTreeSurface(VGroup):
         Defaults to ``[BLUE, ORANGE, GREEN]``.
     """
 
-    def __init__(self, tree_clf, data, axes, class_colors=[BLUE, ORANGE, GREEN]):
+    def __init__(self, tree_clf: Any, data: Any, axes: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
         self.data = data
@@ -358,7 +361,7 @@ class DecisionTreeSurface(VGroup):
             self.tree_clf, maxrange, x=0, y=1, n_features=2
         )
         # turn the rectangle objects into manim rectangles
-        def convert_rectangle_to_polygon(rect):
+        def convert_rectangle_to_polygon(rect: Any):
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
             bottom_right = [rect[1], rect[3]]

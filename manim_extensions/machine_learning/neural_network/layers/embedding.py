@@ -16,12 +16,15 @@ from manim import (
     GOLD,
     GrowFromCenter,
     Line,
+    ManimColor,
     Scene,
     VGroup,
     WHITE,
     np,
     override_animation,
 )
+from typing import Any
+
 from ...utils.mobjects.probability import GaussianDistribution
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
@@ -81,11 +84,11 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
     def __init__(
         self,
-        point_radius=0.02,
-        mean=np.array([0, 0]),
-        covariance=np.array([[1.0, 0], [0, 1.0]]),
-        dist_theme="gaussian",
-        paired_query_mode=False,
+        point_radius: float = 0.02,
+        mean: np.ndarray = np.array([0, 0]),
+        covariance: np.ndarray = np.array([[1.0, 0], [0, 1.0]]),
+        dist_theme: str = "gaussian",
+        paired_query_mode: bool = False,
         **kwargs
     ):
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
@@ -125,13 +128,13 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         )  # Use defaults
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def add_gaussian_distribution(self, gaussian_distribution):
+    def add_gaussian_distribution(self, gaussian_distribution: Any):
         """Adds given GaussianDistribution to the list"""
         self.gaussian_distributions.add(gaussian_distribution)
 
         return Create(gaussian_distribution)
 
-    def remove_gaussian_distribution(self, gaussian_distribution):
+    def remove_gaussian_distribution(self, gaussian_distribution: Any):
         """Removes the given gaussian distribution from the embedding"""
         for gaussian in self.gaussian_distributions:
             if gaussian == gaussian_distribution:
@@ -153,7 +156,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
     def construct_gaussian_point_cloud(
-        self, mean, covariance, point_color=WHITE, num_points=400
+        self, mean: np.ndarray, covariance: np.ndarray, point_color: ManimColor = WHITE, num_points: int = 400
     ):
         """Plots points sampled from a Gaussian with the given mean and covariance"""
         # Sample points from a Gaussian
@@ -169,7 +172,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         return point_dots
 
-    def make_forward_pass_animation(self, layer_args={}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
         """Forward pass animation"""
         animations = []
         if "triplet_args" in layer_args:

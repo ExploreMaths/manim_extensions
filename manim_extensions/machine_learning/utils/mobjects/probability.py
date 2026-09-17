@@ -6,10 +6,11 @@
 # SPDX-License-Identifier: MIT
 """Probability distribution utilities for neural network visualization."""
 
-from manim import Ellipse, ORANGE, VGroup
+from manim import Ellipse, ManimColor, ORANGE, VGroup
 import numpy as np
 
 
+from typing import Any, Optional
 class GaussianDistribution(VGroup):
     """Object for drawing a Gaussian distribution
 
@@ -58,7 +59,7 @@ class GaussianDistribution(VGroup):
     """
 
     def __init__(
-        self, axes, mean=None, cov=None, dist_theme="gaussian", color=ORANGE, **kwargs
+        self, axes: Any, mean: Optional[Any]=None, cov: Optional[Any]=None, dist_theme: str = "gaussian", color: ManimColor = ORANGE, **kwargs
     ):
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
@@ -90,8 +91,8 @@ class GaussianDistribution(VGroup):
         return Create(self)
     """
 
-    def compute_covariance_rotation_and_scale(self, covariance):
-        def eigsorted(cov):
+    def compute_covariance_rotation_and_scale(self, covariance: np.ndarray):
+        def eigsorted(cov: np.ndarray):
             """
             Eigenvalues and eigenvectors of the covariance matrix.
             """
@@ -99,7 +100,7 @@ class GaussianDistribution(VGroup):
             order = vals.argsort()[::-1]
             return vals[order], vecs[:, order]
 
-        def cov_ellipse(cov, nstd):
+        def cov_ellipse(cov: np.ndarray, nstd: float):
             """
             Source: http://stackoverflow.com/a/12321306/1391441
             """
@@ -121,7 +122,7 @@ class GaussianDistribution(VGroup):
         return angle, width, height
 
     def construct_gaussian_distribution(
-        self, mean, covariance, color=ORANGE, num_ellipses=4
+        self, mean: np.ndarray, covariance: np.ndarray, color: ManimColor = ORANGE, num_ellipses: int = 4
     ):
         """Returns a 2d Gaussian distribution object with given mean and covariance"""
         # map mean and covariance to frame coordinates
@@ -148,7 +149,7 @@ class GaussianDistribution(VGroup):
 
         return ellipses
 
-    def construct_simple_gaussian_ellipse(self, mean, covariance, color=ORANGE):
+    def construct_simple_gaussian_ellipse(self, mean: np.ndarray, covariance: np.ndarray, color: ManimColor = ORANGE):
         """Returns a 2d Gaussian distribution object with given mean and covariance"""
         # Map mean and covariance to frame coordinates
         mean = self.axes.coords_to_point(*mean)

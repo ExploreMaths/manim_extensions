@@ -4,7 +4,7 @@
 """Spring Mobject for Pymunk physics simulations."""
 
 import numpy as np
-from manim import LEFT, Line, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
+from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 
 class VSpring(Line):
     """A spring-shaped Mobject rendered as a helix between two points.
@@ -55,13 +55,13 @@ class VSpring(Line):
 
     def __init__(
         self,
-        start=LEFT,
-        end=RIGHT,
-        turns=18,
-        amplitude=0.1,
-        end_length=0.2,
-        stroke_width=1,
-        color=WHITE,
+        start: np.ndarray = LEFT,
+        end: np.ndarray = RIGHT,
+        turns: int = 18,
+        amplitude: float = 0.1,
+        end_length: float = 0.2,
+        stroke_width: float = 1,
+        color: ManimColor = WHITE,
         **kwargs
     ):
         self.turns = turns
@@ -118,7 +118,7 @@ class VSpring(Line):
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
 
-    def put_start_and_end_on(self, start, end):
+    def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray):
         """当位置改变时（如被 Updater 调用），重新生成点"""
         self.start = np.array(start)
         self.end = np.array(end)

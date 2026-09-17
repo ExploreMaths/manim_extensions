@@ -9,6 +9,7 @@ This module provides the Molecule class as a unified interface for different mol
 from ..twoD import GraphMolecule
 
 
+from typing import Any
 class Molecule:
     """Works as a proxy between different types of molecules with the same methods.
 
@@ -53,7 +54,7 @@ class Molecule:
                self.wait()
     """
 
-    def __init__(self, molecule_class=GraphMolecule):
+    def __init__(self, molecule_class: Any = GraphMolecule):
         self.molecule_class = molecule_class
 
     def molecule_from_file(self, *args, **kwargs):

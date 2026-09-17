@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to feed-forward layer connection visualization."""
 
-from manim import ORANGE
+from manim import ManimColor, ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .feed_forward import FeedForwardLayer
 from .max_pooling_2d import MaxPooling2DLayer
@@ -36,7 +36,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         self,
         input_layer: MaxPooling2DLayer,
         output_layer: FeedForwardLayer,
-        passing_flash_color=ORANGE,
+        passing_flash_color: ManimColor = ORANGE,
         **kwargs
     ):
         super().__init__(input_layer, output_layer, **kwargs)

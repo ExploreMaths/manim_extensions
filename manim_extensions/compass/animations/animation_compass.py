@@ -21,6 +21,7 @@ from manim import (
     Rotate,
     UP,
 )
+from typing import Optional
 
 __all__ = [
     "DrawArc",
@@ -91,7 +92,7 @@ class SplitCompass(AnimationGroup):
         span : float
             The distance between the two compass tips."""
 
-    def __init__(self, compass: Compass, span: float = None, **kwargs):
+    def __init__(self, compass: Compass, span: Optional[float] = None, **kwargs):
         """Initialize SplitCompass."""
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
         compass.theta = theta_new
@@ -137,7 +138,7 @@ class RotateCompass(Rotate):
         angle : float
             The rotation angle."""
 
-    def __init__(self, compass: Compass, angle: float = None, **kwargs):
+    def __init__(self, compass: Compass, angle: Optional[float] = None, **kwargs):
         """Initialize RotateCompass."""
         super().__init__(
             compass, about_point=compass.get_niddle_tip(), angle=angle, **kwargs
@@ -167,7 +168,7 @@ class MoveNiddleTipTo(ApplyMethod):
         point : Point
             The target point."""
 
-    def __init__(self, compass: Compass, point: Point = None, **kwargs):
+    def __init__(self, compass: Compass, point: Optional[Point] = None, **kwargs):
         """Initialize MoveNiddleTipTo."""
         super().__init__(compass.move_niddle_tip_to, point, **kwargs)
 
@@ -202,8 +203,8 @@ class PutCompass(ApplyMethod):
     def __init__(
         self,
         compass: Compass,
-        niddle_pos: Point = None,
-        pen_pos: Point = None,
+        niddle_pos: Optional[Point] = None,
+        pen_pos: Optional[Point] = None,
         **kwargs,
     ):
         """Initialize PutCompass."""

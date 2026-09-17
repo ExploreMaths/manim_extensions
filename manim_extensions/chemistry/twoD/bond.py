@@ -6,11 +6,12 @@ This module provides bond classes for representing chemical bonds in 2D.
 
 """
 
-from manim import Line, PI, Polygram, VGroup, VMobject, WHITE
+from manim import Line, Mobject, PI, Polygram, VGroup, VMobject, WHITE
 import numpy as np
 from .atom import MAtomObject
 
 
+from typing import Any
 class BaseMBondObject(VGroup):
     def __str__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
@@ -70,19 +71,19 @@ class BaseMBondObject(VGroup):
     def atoms_in_bond(self):
         return self.from_atom, self.to_atom
 
-    def atom_is_in_bond(self, atom):
+    def atom_is_in_bond(self, atom: Any):
         if self.from_atom == atom or self.to_atom == atom:
             return True
         else:
             return False
 
-    def get_bond_index_by_atom(self, atom):
+    def get_bond_index_by_atom(self, atom: Any):
         if self.atom_is_in_bond(atom):
             return self.index
 
         return
 
-    def add_bond_index_by_atom_to_list(self, atom, list):
+    def add_bond_index_by_atom_to_list(self, atom: Any, list: list):
         index = self.get_bond_index_by_atom(atom)
 
         if index is not None:
@@ -90,7 +91,7 @@ class BaseMBondObject(VGroup):
 
         return list
 
-    def get_perpendicular_unit_vector(self, point_a, point_b):
+    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))
@@ -154,10 +155,10 @@ class SimpleBond(BaseMBondObject):
     def shorter_subtype(self):
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
-    def shorter_from_subtype(self, direction):
+    def shorter_from_subtype(self, direction: str):
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
 
-    def shorter_to_subtype(self, direction):
+    def shorter_to_subtype(self, direction: str):
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
     def longer_subtype(self):
@@ -200,7 +201,7 @@ class DoubleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom, to_atom, side=0, distance=0.15, double_bond_scale=0.7, **kwargs
+        self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.15, double_bond_scale: float = 0.7, **kwargs
     ):
         self.side = side
         self.distance = distance
@@ -237,7 +238,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_from_subtype(self, direction, from_surroundings, to_surroundings):
+    def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -263,7 +264,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_to_subtype(self, direction, from_surroundings, to_surroundings):
+    def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -370,7 +371,7 @@ class TripleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom, to_atom, side=0, distance=0.3, triple_bond_scale=0.8, **kwargs
+        self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.3, triple_bond_scale: float = 0.8, **kwargs
     ):
         self.distance = distance
         self.triple_bond_scale = triple_bond_scale
@@ -402,7 +403,7 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def shorter_from_subtype(self, direction):
+    def shorter_from_subtype(self, direction: str):
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -418,7 +419,7 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def shorter_to_subtype(self, direction):
+    def shorter_to_subtype(self, direction: str):
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -434,7 +435,7 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def longer_subtype(self, bond, base_line):
+    def longer_subtype(self, bond: Mobject, base_line: Mobject):
         bond.add(base_line)
         double_line = base_line.copy().scale(self.triple_bond_scale)
         triple_line = base_line.copy().scale(self.triple_bond_scale)
@@ -567,7 +568,7 @@ class PlainCramBond(BaseMBondObject):
 
 
 class DashedCramBond(BaseMBondObject):
-    def add_dashed_cram_bond(self, base_line, direction):
+    def add_dashed_cram_bond(self, base_line: Mobject, direction: str):
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)
         cram_bond = VGroup()
         direction_modulus = (

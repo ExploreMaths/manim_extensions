@@ -20,7 +20,7 @@ from manim import (
 )
 
 __all__ = ["NodeMobject", "generate_tree", "AbstractMap"]
-from typing import Generator, List, Dict
+from typing import Any, Dict, Generator, List, Optional
 
 import numpy as np
 
@@ -74,7 +74,7 @@ class NodeMobject:
 
 
 def generate_tree(
-    Map=None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
+    Map: Optional[Any]=None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
 ) -> Node:
     """Recursively traverse *Map* and return the root node of the generated tree.
 
@@ -88,7 +88,7 @@ def generate_tree(
     Buff parameter for this operation.
     """
 
-    def _generate_tree(ID=(0,), current_map: Dict = None) -> Node:
+    def _generate_tree(ID: tuple = (0,), current_map: Optional[Dict] = None) -> Node:
         """Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.
 
         Parameters
@@ -116,7 +116,7 @@ def generate_tree(
 
         return current_node
 
-    def _generate_node(Mobj, level=1) -> Mobject:
+    def _generate_node(Mobj: Mobject, level: int = 1) -> Mobject:
         """Generate a node mobject.
 
         Parameters
@@ -202,7 +202,7 @@ class AbstractMap(Group):
         """Set connection lines."""
         raise NotImplementedError
 
-    def get_node_component(self, ID) -> NodeMobject:
+    def get_node_component(self, ID: str) -> NodeMobject:
         """Return the full component object of the node with the given ID.
 
         Parameters
@@ -212,7 +212,7 @@ class AbstractMap(Group):
         """
         return self.node_data_dict.get(ID, None)
 
-    def get_node(self, ID) -> Group:
+    def get_node(self, ID: str) -> Group:
         """Return the VMobject and surrounding rectangle of the node with the given ID.
 
         Parameters
@@ -225,7 +225,7 @@ class AbstractMap(Group):
             return Group(node.vmobject, node.surr_rect)
         return None
 
-    def get_text(self, ID) -> str:
+    def get_text(self, ID: str) -> str:
         """Return the narration text of the node with the given ID.
 
         Parameters
@@ -238,7 +238,7 @@ class AbstractMap(Group):
             return node.text
         return None
 
-    def get_connector(self, ID) -> Line:
+    def get_connector(self, ID: str) -> Line:
         """Return the connector line of the node with the given ID.
 
         Parameters
@@ -282,7 +282,7 @@ class AbstractMap(Group):
         for id in id_list:
             yield self.node_data_dict.get(id, None)
 
-    def _get_origin_node(self, ID) -> Node:
+    def _get_origin_node(self, ID: str) -> Node:
         """Find the node with the given ID in the original tree.
 
         Parameters
@@ -305,7 +305,7 @@ class AbstractMap(Group):
         """
         return self.node_style.get_line_style(level=level)
 
-    def get_children(self, ID) -> Group:
+    def get_children(self, ID: str) -> Group:
         """Return the child nodes of the node with the given ID.
 
         Parameters
@@ -318,7 +318,7 @@ class AbstractMap(Group):
             return Group()
         return node.get_children_mobjects()
 
-    def get_submindmap(self, ID) -> Group:
+    def get_submindmap(self, ID: str) -> Group:
         """Return the subtree rooted at the node with the given ID.
 
         Parameters
@@ -337,7 +337,7 @@ class AbstractMap(Group):
                 mondmap.add(node_.vmobject, node_.surr_rect)
         return mondmap
 
-    def get_descendants(self, ID) -> Group:
+    def get_descendants(self, ID: str) -> Group:
         """Return the descendants of the node with the given ID.
 
         Parameters

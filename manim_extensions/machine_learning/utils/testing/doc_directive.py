@@ -9,6 +9,7 @@ A directive for including Manim videos in a Sphinx document
 """
 from __future__ import annotations
 
+from typing import Any
 from manim import QUALITIES, config, tempconfig
 import csv
 import itertools as it
@@ -34,12 +35,12 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     """
     pass
 
-def visit(self, node, name=""):
+def visit(self, node: list, name: str = ""):
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
-def depart(self, node):
+def depart(self, node: Any):
     self.depart_admonition(node)
 
 def process_name_list(option_input: str, reference_type: str) -> list[str]:
@@ -239,7 +240,7 @@ class ManimDirective(Directive):
 rendering_times_file_path = Path("../rendering_times.csv")
 
 
-def _write_rendering_stats(scene_name, run_time, file_name):
+def _write_rendering_stats(scene_name: str, run_time: float, file_name: str):
     with rendering_times_file_path.open("a") as file:
         csv.writer(file).writerow(
             [
@@ -281,7 +282,7 @@ def _delete_rendering_times(*args):
         rendering_times_file_path.unlink()
 
 
-def setup(app):
+def setup(app: Any):
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app
