@@ -44,6 +44,11 @@ v1.0.5 :bdg-success-line:`Latest`
 * Added ``workflow/check_relative_imports.py`` and
   ``validate-relative-imports`` / ``validate-docstrings`` /
   ``validate-refs`` jobs to the Validate workflow.
+* Added full type annotations to every function and method parameter
+  across the entire codebase (544+ functions in 128 files, ~1286
+  annotations), plus a ``validate-type-annotations`` CI job
+  (``scripts/check_type_annotations.py``) to enforce the requirement
+  going forward.
 * Added rounded-corner static cover images to the README.
 
 **Changed**
@@ -103,6 +108,17 @@ v1.0.5 :bdg-success-line:`Latest`
   workflow, and made tests skip gracefully when optional extras
   (``sklearn``, the ``manim-mobject-svg`` plugin on Python 3.13+) are
   absent.
+* Fixed the gearbox module failing to import due to an incorrect
+  ``Renderer`` type annotation on the radius parameter of
+  :func:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func`
+  and related functions.
+* Fixed missing closing parentheses in four docstring manim example
+  blocks (MCMCAxes, MultiPendulum, GMAnimationBuilder, VMobjectInt)
+  that caused the docs-media render workflow to fail.
+* Fixed misplaced type annotations that caused ``NameError`` in five
+  files (algorithm/array.py, chemistry/utils/utils.py,
+  chemistry/manim_chemistry_molecule/mc_atom.py,
+  chemistry/twoD/molecule.py, circuit/mobjects.py).
 
 v1.0.4
 ------
