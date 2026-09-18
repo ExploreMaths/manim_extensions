@@ -93,9 +93,7 @@ class VRotaryLimitJoint(VConstraint):
         min/max angle bounds, and optional arc indicator visuals.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         # 物理限制参数
         self.min_angle = min_angle
@@ -120,11 +118,9 @@ class VRotaryLimitJoint(VConstraint):
 
         RotaryLimitJoint = require("physics", "pymunk").constraints.RotaryLimitJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VRotaryLimitJoint 连接的物体必须先执行 add_dynamic_body")
+        a_body, b_body = self._get_bodies(
+            "VRotaryLimitJoint 连接的物体必须先执行 add_dynamic_body"
+        )
 
         self.constraint = RotaryLimitJoint(
             a_body, b_body, self.min_angle, self.max_angle
@@ -139,9 +135,7 @@ class VRotaryLimitJoint(VConstraint):
             )
             self.add(self.arc_indicator_a, self.arc_indicator_b)
 
-        space.add(self.constraint)
-
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

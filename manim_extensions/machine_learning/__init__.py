@@ -55,3 +55,11 @@ class ManimMLConfig:
 
 # These are accesible from the manim_ml namespace
 config = ManimMLConfig()
+
+__all__ = [
+    "ColorScheme",
+    "ManimMLConfig",
+    "config",
+    "dark_mode",
+    "light_mode",
+]

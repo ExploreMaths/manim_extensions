@@ -32,7 +32,7 @@ from manim import (
     WHITE,
     np,
 )
-from .utils import *
+from .utils import Source
 from typing import Any, Optional
 
 

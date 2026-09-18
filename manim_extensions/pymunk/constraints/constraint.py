@@ -25,22 +25,70 @@ class VConstraint(VGroup):
 
     Parameters
     ----------
+    a_mob
+        The first Mobject to be connected.
+    b_mob
+        The second Mobject to be connected.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, a_mob: Mobject = None, b_mob: Mobject = None, **kwargs):
         """Initialize the base VConstraint by calling the parent VGroup
-        constructor and validating constraint parameters.
+        constructor, storing the two connected mobjects, and validating
+        constraint parameters.
         """
         super().__init__(**kwargs)
-        self.__check_data()
+        self.a_mob = a_mob
+        self.b_mob = b_mob
+        self.constraint = None
+        self._check_data()
 
-    def __check_data(self):
-        """ Verify the validity of constraint parameters.
-            Requires subclass implementation
+    def _check_data(self):
+        """Verify the validity of constraint parameters.
+
+        Override in subclasses to perform subclass-specific validation.
         """
         pass
+
+    def _get_bodies(self, error_msg: str = None):
+        """Extract pymunk bodies from the two connected mobjects and validate them.
+
+        Parameters
+        ----------
+        error_msg
+            Custom error message for the ValueError raised when a body is missing.
+            If None, a default message using the class name is generated.
+
+        Returns
+        -------
+        tuple
+            A (a_body, b_body) tuple of pymunk Body objects.
+
+        Raises
+        ------
+        ValueError
+            If either mobject does not have a pymunk body attached.
+        """
+        a_body = getattr(self.a_mob, "body", None)
+        b_body = getattr(self.b_mob, "body", None)
+        if not a_body or not b_body:
+            if error_msg is None:
+                error_msg = (
+                    f"{self.__class__.__name__} connected objects "
+                    "must have Pymunk bodies."
+                )
+            raise ValueError(error_msg)
+        return a_body, b_body
+
+    def _finalize_install(self, space: Space):
+        """Finalize the installation by adding the constraint to the space
+        and registering the per-frame updater.
+
+        This is a common final step called at the end of every ``install`` method.
+        """
+        space.add(self.constraint)
+        self.add_updater(self.mob_updater)
 
     def install(self, space: Space):
         """Installs physical constraints into the Pymunk physical space.

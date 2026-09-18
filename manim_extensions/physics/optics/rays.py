@@ -151,7 +151,8 @@ class Ray(Line):
                 dists += [
                     [np.linalg.norm(intersection(self, lens)[0] - self.start), lens]
                 ]
-            except:
+            except (IndexError, ValueError):
+                # no valid intersection found — put the lens at infinity
                 dists += [[np.inf, lens]]
         dists.sort(key=lambda x: x[0])
         return np.array(dists, dtype=object)[:, 1]

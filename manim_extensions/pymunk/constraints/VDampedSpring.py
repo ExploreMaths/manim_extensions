@@ -114,9 +114,7 @@ class VDampedSpring(VConstraint):
         visual spring/anchor mobjects.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.anchor_a_local = anchor_a_local
         self.anchor_b_local = anchor_b_local
 
@@ -137,11 +135,9 @@ class VDampedSpring(VConstraint):
 
         DampedSpring = require("physics", "pymunk").constraints.DampedSpring
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VDampedSpring connected objects must have a Pymunk body.")
+        a_body, b_body = self._get_bodies(
+            "VDampedSpring connected objects must have a Pymunk body."
+        )
 
         self.constraint = DampedSpring(
             a_body,
@@ -166,8 +162,7 @@ class VDampedSpring(VConstraint):
 
         self.add(self.conn_line, self.appearance_a, self.appearance_b)
 
-        space.add(self.constraint)
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

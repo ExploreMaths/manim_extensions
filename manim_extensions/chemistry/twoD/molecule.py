@@ -6,6 +6,8 @@ This module provides the MMoleculeObject class for rendering molecules in 2D.
 
 """
 
+import logging
+
 
 
 from manim import (
@@ -32,7 +34,15 @@ from ..manim_chemistry_molecule import MCMolecule
 from ..molecule import AbstractMolecule
 
 from .atom import MAtomObject
-from .bond import *
+from .bond import (
+    DashedCramBond,
+    DoubleBond,
+    PlainCramBond,
+    SimpleBond,
+    TripleBond,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class MMoleculeObject(VGroup, AbstractMolecule):
@@ -178,6 +188,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         for index, bond_list in self.bonds_dict.items():
             for bond in bond_list:
                 # TODO: Add logic to check type of bond
+                bond_type = int(bond.get("type", 1))
                 from_atom = self.atoms_by_index.get(index)
                 to_atom = self.atoms_by_index.get(bond.get("to"))
                 if from_atom.element == "H" or to_atom.element == "H":
@@ -249,7 +260,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                         continue
 
                 else:
-                    bond_type = int(bond.get("type"))
                     if bond_type == 2 or bond_type == 5 or bond_type == 7:
                         new_bond = DoubleBond(  # TODO: Add function inside bond to create it from data
                             from_atom=from_atom,
@@ -446,9 +456,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             return atom.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Atom index {atom_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -509,8 +518,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             return bond.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond index {bond_index} is not valid for molecule {self}")
+            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
             raise key_error
 
         except Exception as exception:
@@ -541,9 +549,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             bond = self.bonds[bond_index]
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond index {bond_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()
@@ -885,9 +892,8 @@ class NamedMolecule(VGroup):
             return atom.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Atom index {atom_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -948,9 +954,8 @@ class NamedMolecule(VGroup):
             return bond.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond index {bond_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -981,9 +986,8 @@ class NamedMolecule(VGroup):
             bond = self.bonds[bond_index]
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond index {bond_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()

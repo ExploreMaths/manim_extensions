@@ -33,4 +33,6 @@ __all__ = [
     "ManimAutomataInput",
     "Token",
     "PushDownAutomatonRule",
+    "nfa_automaton_json",
+    "pushdown_automaton_json",
 ]

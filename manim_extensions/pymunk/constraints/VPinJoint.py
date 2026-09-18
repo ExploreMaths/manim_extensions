@@ -109,9 +109,7 @@ class VPinJoint(VConstraint):
         points, optional fixed distance, and visual anchor/line indicators.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.anchor_a_local = anchor_a_local
         self.anchor_b_local = anchor_b_local
@@ -151,11 +149,9 @@ class VPinJoint(VConstraint):
 
         PinJoint = require("physics", "pymunk").constraints.PinJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VPinJoint 连接的物体必须先执行 add_dynamic_body")
+        a_body, b_body = self._get_bodies(
+            "VPinJoint 连接的物体必须先执行 add_dynamic_body"
+        )
 
         # 1. 创建约束
         self.constraint = PinJoint(
@@ -184,10 +180,7 @@ class VPinJoint(VConstraint):
 
         self.add(self.anchor_a_appearance, self.anchor_b_appearance)
 
-        space.add(self.constraint)
-
-        # 4. 绑定实时更新
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

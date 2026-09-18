@@ -6,6 +6,7 @@ This module provides graph-based molecule visualization classes.
 
 """
 
+import logging
 
 from manim import (
     ArcBetweenPoints,
@@ -24,6 +25,8 @@ import networkx as nx
 
 from ..manim_chemistry_molecule import MCMolecule
 from ..molecule import AbstractMolecule
+
+logger = logging.getLogger(__name__)
 
 
 class SimpleLine(Line):
@@ -503,9 +506,8 @@ class GraphMolecule(Graph, AbstractMolecule):
             return atom.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Atom index {atom_index} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -567,8 +569,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             return bond.get_center()
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond tuple {bond_index} is not valid for molecule {self}")
+            logger.warning(f"Bond tuple {bond_index} is not valid for molecule {self}")
             raise key_error
 
         except Exception as exception:
@@ -599,9 +600,8 @@ class GraphMolecule(Graph, AbstractMolecule):
             bond = self.bonds[bond_tuple]
 
         except KeyError as key_error:
-            # TODO: Change from print to proper logging system.
-            print(f"Bond index {bond_tuple} is not valid for molecule {self}")
-            print(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            logger.warning(f"Bond index {bond_tuple} is not valid for molecule {self}")
+            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()

@@ -126,7 +126,8 @@ def get_normalized_convex_polygons(
                     pixel_polygons.append(
                         [(p[0] * scale_factor, p[1] * scale_factor) for p in part]
                     )
-            except:
+            except Exception:
+                # convex decomposition failed for this shape; skip it
                 continue
 
     # 坐标转换

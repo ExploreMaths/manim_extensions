@@ -146,7 +146,8 @@ class MultiPendulum(VGroup):
         """
         try:
             x, y, _ = pins[i]
-        except:
+        except (TypeError, ValueError):
+            # pins[i] is a pymunk body, not a coordinate tuple
             x, y = pins[i].body.position
         x1, y1 = pins[i + 1].body.position
         mob.put_start_and_end_on(

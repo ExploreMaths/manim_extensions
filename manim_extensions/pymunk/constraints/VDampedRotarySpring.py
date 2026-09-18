@@ -97,9 +97,7 @@ class VDampedRotarySpring(VConstraint):
         spring physics properties (rest angle, stiffness, damping), and
         optional visual indicators (arc and connecting line).
         """
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.rest_angle = rest_angle
         self.stiffness = stiffness
@@ -140,13 +138,9 @@ class VDampedRotarySpring(VConstraint):
 
         DampedRotarySpring = require("physics", "pymunk").constraints.DampedRotarySpring
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError(
-                "VDampedRotarySpring 连接的物体必须先执行 add_dynamic_body"
-            )
+        a_body, b_body = self._get_bodies(
+            "VDampedRotarySpring 连接的物体必须先执行 add_dynamic_body"
+        )
 
         self.constraint = DampedRotarySpring(
             a_body, b_body, self.rest_angle, self.stiffness, self.damping
@@ -172,10 +166,7 @@ class VDampedRotarySpring(VConstraint):
             self.add(self.arc_a, self.arc_b)
 
         # 3. 注入物理世界
-        space.add(self.constraint)
-
-        # 4. 绑定更新器
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

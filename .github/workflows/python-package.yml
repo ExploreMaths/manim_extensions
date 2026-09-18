@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dev dependencies and all extras
         run: |
-          pip install flake8 ".[dev,all]"
+          pip install flake8 pytest-cov ".[dev,all]"
 
       - name: Lint with flake8
         run: |
@@ -35,7 +35,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          xvfb-run -a pytest tests/ -v
+          xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-fail-under=35
 
   # Verify the declared `manim>=0.21.0` against the newest manim release,
   # so compatibility is tested rather than merely claimed.

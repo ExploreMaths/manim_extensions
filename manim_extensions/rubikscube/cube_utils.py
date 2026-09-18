@@ -148,7 +148,7 @@ def get_faces_of_cubie(dim: int, position: np.ndarray):
             (dim, dim, dim): [RIGHT, UP, OUT],
         }
         return faces[position]
-    except:
+    except KeyError:
         x = position[0]
         y = position[1]
         z = position[2]

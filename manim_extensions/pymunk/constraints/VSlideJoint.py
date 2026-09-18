@@ -104,9 +104,7 @@ class VSlideJoint(VConstraint):
         points, min/max distance limits, and optional indicator line/anchors.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.anchor_a_local = anchor_a_local
         self.anchor_b_local = anchor_b_local
@@ -133,11 +131,9 @@ class VSlideJoint(VConstraint):
 
         SlideJoint = require("physics", "pymunk").constraints.SlideJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VSlideJoint connected objects must have Pymunk bodies.")
+        a_body, b_body = self._get_bodies(
+            "VSlideJoint connected objects must have Pymunk bodies."
+        )
 
         self.constraint = SlideJoint(
             a_body,
@@ -164,8 +160,7 @@ class VSlideJoint(VConstraint):
 
         self.add(self.anchor_a_appearance, self.anchor_b_appearance)
 
-        space.add(self.constraint)
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

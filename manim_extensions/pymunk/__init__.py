@@ -12,3 +12,22 @@ __version__ = "1.2.0"
 from .custom_mobjects import *
 from .constraints import *
 from .space import *
+
+__all__ = [
+    "Apple",
+    "Gear",
+    "SpaceScene",
+    "VConstraint",
+    "VDampedRotarySpring",
+    "VDampedSpring",
+    "VGearJoint",
+    "VGrooveJoint",
+    "VPinJoint",
+    "VPivotJoint",
+    "VRatchetJoint",
+    "VRotaryLimitJoint",
+    "VSimpleMotor",
+    "VSlideJoint",
+    "VSpace",
+    "VSpring",
+]
