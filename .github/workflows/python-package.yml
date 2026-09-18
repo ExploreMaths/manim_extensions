@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dev dependencies and all extras
         run: |
-          pip install flake8 pytest-cov ".[dev,all]"
+          pip install flake8 pytest-cov -e ".[dev,all]"
 
       - name: Lint with flake8
         run: |
@@ -50,7 +50,7 @@ jobs:
 
       - name: Install dev dependencies and all extras
         run: |
-          pip install ".[dev,all]"
+          pip install -e ".[dev,all]"
 
       - name: Upgrade manim to the latest release
         run: |
