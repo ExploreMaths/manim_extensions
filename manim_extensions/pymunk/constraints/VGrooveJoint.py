@@ -108,9 +108,7 @@ class VGrooveJoint(VConstraint):
         endpoints (on body a), a sliding anchor (on body b), and optional
         visual groove line and anchor markers.
         """
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.groove_a_local = groove_a_local
         self.groove_b_local = groove_b_local
@@ -130,11 +128,9 @@ class VGrooveJoint(VConstraint):
 
         GrooveJoint = require("physics", "pymunk").constraints.GrooveJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VGrooveJoint connected objects must have Pymunk bodies.")
+        a_body, b_body = self._get_bodies(
+            "VGrooveJoint connected objects must have Pymunk bodies."
+        )
 
         self.constraint = GrooveJoint(
             a_body,
@@ -164,8 +160,7 @@ class VGrooveJoint(VConstraint):
             self.groove_a_appearance, self.groove_b_appearance, self.anchor_b_appearance
         )
 
-        space.add(self.constraint)
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

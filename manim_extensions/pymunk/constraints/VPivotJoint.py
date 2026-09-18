@@ -108,9 +108,7 @@ class VPivotJoint(VConstraint):
         """Initialize a pivot joint constraint with two bodies, pivot point
         (world or local anchors), and visual pivot/anchor indicators.
         """
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.pivot_world = pivot_world
         self.anchor_a_local = anchor_a_local
@@ -134,11 +132,9 @@ class VPivotJoint(VConstraint):
 
         PivotJoint = require("physics", "pymunk").constraints.PivotJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VPivotJoint connected objects must have Pymunk bodies.")
+        a_body, b_body = self._get_bodies(
+            "VPivotJoint connected objects must have Pymunk bodies."
+        )
 
         if self.pivot_world is not None:
             self.constraint = PivotJoint(a_body, b_body, tuple(self.pivot_world[:2]))
@@ -184,8 +180,7 @@ class VPivotJoint(VConstraint):
         else:
             raise "You seem to have forgotten to configure the parameters: pivot_world or (anchor_a_loca, anchor_b_local)!!!"
 
-        space.add(self.constraint)
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

@@ -88,9 +88,7 @@ class VSimpleMotor(VConstraint):
         max torque limit, and optional rotational indicator line.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         # Motor properties
         self.rate = rate  # Desired relative angular velocity
@@ -113,11 +111,9 @@ class VSimpleMotor(VConstraint):
 
         SimpleMotor = require("physics", "pymunk").constraints.SimpleMotor
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VSimpleMotor connected objects must have Pymunk bodies.")
+        a_body, b_body = self._get_bodies(
+            "VSimpleMotor connected objects must have Pymunk bodies."
+        )
 
         self.constraint = SimpleMotor(a_body, b_body, self.rate)
 
@@ -131,9 +127,7 @@ class VSimpleMotor(VConstraint):
             )
             self.add(self.indicator_line)
 
-        space.add(self.constraint)
-
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

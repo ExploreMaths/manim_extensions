@@ -33,7 +33,14 @@ from typing import List
 
 
 from ..compass import Compass, Ruler, Pencil
-from ..animations import *
+from ..animations import (
+    DrawArc,
+    DrawPath,
+    MovePencilTipTo,
+    PutCompass,
+    PutRuler,
+    SplitCompass,
+)
 from ..utils.geometry_method import get_distance, get_vecs_angle
 
 

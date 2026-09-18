@@ -102,9 +102,7 @@ class VRatchetJoint(VConstraint):
         """Initialize a ratchet joint constraint with two bodies, phase and
         ratchet angle parameters, and optional indicator/connection visuals.
         """
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.phase = phase
         self.ratchet = ratchet
@@ -145,11 +143,9 @@ class VRatchetJoint(VConstraint):
 
         RatchetJoint = require("physics", "pymunk").constraints.RatchetJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VRatchetJoint connected objects must have Pymunk bodies.")
+        a_body, b_body = self._get_bodies(
+            "VRatchetJoint connected objects must have Pymunk bodies."
+        )
 
         self.constraint = RatchetJoint(a_body, b_body, self.phase, self.ratchet)
 
@@ -174,9 +170,7 @@ class VRatchetJoint(VConstraint):
             )
             self.add(self.indicator_a, self.indicator_b)
 
-        space.add(self.constraint)
-
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

@@ -4,8 +4,10 @@
 
 """Array data structure for algorithm visualization."""
 
-from .node import *
+from manim import VMobject
 from typing import Any, List, Union
+
+from .node import Node, NodeConfig, NodeValue
 
 
 class Array(VMobject):

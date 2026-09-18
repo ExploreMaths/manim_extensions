@@ -10,7 +10,7 @@ from typing import Any, Dict, Optional
 
 import numpy as np
 
-from .mc_element import *
+from .mc_element import MC_ELEMENT_DICT, MCElement
 
 
 class MCAtom:

@@ -100,9 +100,7 @@ class VGearJoint(VConstraint):
         parameters, and optional rotational indicator arrows.
         """
 
-        super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
+        super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.phase = phase
         self.ratio = ratio
         self.indicator_a = None
@@ -117,11 +115,9 @@ class VGearJoint(VConstraint):
 
         GearJoint = require("physics", "pymunk").constraints.GearJoint
 
-        a_body = getattr(self.a_mob, "body", None)
-        b_body = getattr(self.b_mob, "body", None)
-
-        if not a_body or not b_body:
-            raise ValueError("VGearJoint connected objects must have a Pymunk body.")
+        a_body, b_body = self._get_bodies(
+            "VGearJoint connected objects must have a Pymunk body."
+        )
 
         self.constraint = GearJoint(a_body, b_body, self.phase, self.ratio)
 
@@ -138,8 +134,7 @@ class VGearJoint(VConstraint):
             )
             self.add(self.indicator_a, self.indicator_b)
 
-        space.add(self.constraint)
-        self.add_updater(self.mob_updater)
+        self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
         """Visual control updater"""

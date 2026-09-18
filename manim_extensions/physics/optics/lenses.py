@@ -51,7 +51,7 @@ def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:
         return np.array(
             [[[x, y, z] for x, y, z in m.coords][0] for m in intersects.geoms]
         )
-    except:  # else
+    except AttributeError:  # else (single intersection, no .geoms)
         return np.array([[x, y, z] for x, y, z in intersects.coords])
 
 
