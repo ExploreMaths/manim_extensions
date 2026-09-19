@@ -10,20 +10,20 @@ This module provides abstract base classes for neural network layer visualizatio
 
 """
 
+from typing import Any
+
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     DEFAULT_FONT_SIZE,
     Group,
-    Mobject,
     SurroundingRectangle,
     Text,
     UP,
     Wait,
     override_animation,
 )
-from typing import Optional
-
 from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):
@@ -40,10 +40,10 @@ class NeuralNetworkLayer(ABC, Group):
         the layer.
     """
 
-    def __init__(self, text: Optional[str] = None, *args, **kwargs):
-        """Initialize the base layer with an optional title text above it."""
+    def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
+        self.title: Text | Group
         if "title" in kwargs:
             self.title = Text(self.title_text, font_size=DEFAULT_FONT_SIZE // 3).scale(0.6)
             self.title.next_to(self, UP, 1.2)
@@ -56,8 +56,8 @@ class NeuralNetworkLayer(ABC, Group):
         self,
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Constructs the layer at network construction time
 
         Parameters
@@ -71,16 +71,18 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Abstract method; subclasses return the layer's forward pass animation."""
+    def make_forward_pass_animation(
+        self, *args: Any, **kwargs: Any
+    ) -> Animation:
+        pass
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
         # A zero-duration Wait: connective layers have no visible geometry to
         # create, and manim >= 0.21 raises when playing an empty Succession.
         return Wait(run_time=0)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{type(self).__name__}"
 
 class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
@@ -94,17 +96,16 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
     """
 
-    def __init__(self, *args, **kwargs):
-        """Initialize the VGroup-based neural network layer, forwarding arguments to the parent."""
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
-    def make_forward_pass_animation(self, **kwargs):
-        """Abstract method; subclasses return the layer's forward pass animation."""
+    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+        pass
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
         return super()._create_override()
 
 class ThreeDLayer(ABC):
@@ -127,8 +128,12 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
     """
 
     @abstractmethod
-    def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
-        """Initialize the connective layer storing references to the input and output layers."""
+    def __init__(
+        self,
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
+        **kwargs: Any,
+    ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -137,14 +142,16 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         # assert isinstance(output_layer, self.output_class), f"{output_layer}, {self.output_class}"
 
     @abstractmethod
-    def make_forward_pass_animation(self, run_time: float = 2.0, layer_args: dict = {}, **kwargs):
-        """Abstract method; subclasses return the connection's forward pass animation."""
+    def make_forward_pass_animation(
+        self, run_time: float = 2.0, layer_args: Any = {}, **kwargs: Any
+    ) -> Animation:
+        pass
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
         return super()._create_override()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return (
             f"{self.__class__.__name__}("
             + f"input_layer={self.input_layer.__class__.__name__},"
@@ -166,14 +173,19 @@ class BlankConnective(ConnectiveLayer):
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
     """
 
-    def __init__(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
-        """Initialize a blank connective placeholder for undefined layer pairs."""
+    def __init__(
+        self,
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time: float = 1.5, layer_args: dict = {}, **kwargs):
-        """Return an empty animation group as a placeholder for undefined connections."""
+    def make_forward_pass_animation(
+        self, run_time: float = 1.5, layer_args: Any = {}, **kwargs: Any
+    ) -> Animation:
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
         return super()._create_override()

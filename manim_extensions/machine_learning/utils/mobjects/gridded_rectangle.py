@@ -6,11 +6,23 @@
 # SPDX-License-Identifier: MIT
 """Gridded rectangle visualization utility."""
 
-from manim import DOWN, DashedVMobject, Dot, Line, ManimColor, ORANGE, RIGHT, Rectangle, VGroup
+from typing import Any
+
+from manim import (
+    DOWN,
+    DashedVMobject,
+    Dot,
+    Line,
+    ManimColor,
+    ORANGE,
+    RIGHT,
+    Rectangle,
+    VGroup,
+)
 import numpy as np
+from numpy.typing import NDArray
 
 
-from typing import Any, Optional
 class GriddedRectangle(VGroup):
     """Rectangle object with grid lines
 
@@ -55,8 +67,8 @@ class GriddedRectangle(VGroup):
         width: float = 4.0,
         mark_paths_closed: bool = True,
         close_new_points: bool = True,
-        grid_xstep: Optional[Any]=None,
-        grid_ystep: Optional[Any]=None,
+        grid_xstep: float | None = None,
+        grid_ystep: float | None = None,
         grid_stroke_width: float = 0.0,  # DEFAULT_STROKE_WIDTH/2,
         grid_stroke_color: ManimColor = ORANGE,
         grid_stroke_opacity: float = 1.0,
@@ -64,9 +76,8 @@ class GriddedRectangle(VGroup):
         fill_opacity: float = 0.2,
         show_grid_lines: bool = False,
         dotted_lines: bool = False,
-        **kwargs
-    ):
-        """Initialize the gridded rectangle with border, fill, and optional grid lines."""
+        **kwargs: Any,
+    ) -> None:
         super().__init__()
         # Fields
         self.color = color
@@ -82,7 +93,7 @@ class GriddedRectangle(VGroup):
         self.show_grid_lines = show_grid_lines
         self.untransformed_width = width
         self.untransformed_height = height
-        self.dotted_lines = dotted_lines
+        self.dotted_lines: bool | DashedVMobject = dotted_lines
         # Make rectangle
         if self.dotted_lines:
             no_border_rectangle = Rectangle(
@@ -127,31 +138,31 @@ class GriddedRectangle(VGroup):
         self.corners_dict = self.make_corners_dict()
         self.add(*self.corners_dict.values())
 
-    def make_corners_dict(self):
+    def make_corners_dict(self) -> dict[str, Dot]:
         """Make corners dictionary"""
         corners_dict = {
             "top_right": Dot(
-                self.rectangle.get_corner([1, 1, 0]), fill_opacity=0.0, radius=0.0
+                self.rectangle.get_corner((1, 1, 0)), fill_opacity=0.0, radius=0.0
             ),
             "top_left": Dot(
-                self.rectangle.get_corner([-1, 1, 0]), fill_opacity=0.0, radius=0.0
+                self.rectangle.get_corner((-1, 1, 0)), fill_opacity=0.0, radius=0.0
             ),
             "bottom_left": Dot(
-                self.rectangle.get_corner([-1, -1, 0]), fill_opacity=0.0, radius=0.0
+                self.rectangle.get_corner((-1, -1, 0)), fill_opacity=0.0, radius=0.0
             ),
             "bottom_right": Dot(
-                self.rectangle.get_corner([1, -1, 0]), fill_opacity=0.0, radius=0.0
+                self.rectangle.get_corner((1, -1, 0)), fill_opacity=0.0, radius=0.0
             ),
         }
 
         return corners_dict
 
-    def get_corners_dict(self):
+    def get_corners_dict(self) -> dict[str, Dot]:
         """Returns a dictionary of the corners"""
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.corners_dict
 
-    def make_grid_lines(self):
+    def make_grid_lines(self) -> VGroup:
         """Make grid lines in rectangle"""
         grid_lines = VGroup()
 
@@ -193,12 +204,10 @@ class GriddedRectangle(VGroup):
 
         return grid_lines
 
-    def get_center(self):
-        """Return the center point of the rectangle."""
+    def get_center(self) -> NDArray[np.float64]:
         return self.rectangle.get_center()
 
-    def get_normal_vector(self):
-        """Return the surface normal vector of the rectangle plane."""
+    def get_normal_vector(self) -> NDArray[np.float64]:
         vertex_1 = self.rectangle.get_vertices()[0]
         vertex_2 = self.rectangle.get_vertices()[1]
         vertex_3 = self.rectangle.get_vertices()[2]
@@ -207,7 +216,9 @@ class GriddedRectangle(VGroup):
 
         return normal_vector
 
-    def set_color(self, color: ManimColor):
+    def set_color(  # type: ignore[override] # intentionally returns None instead of the group
+        self, color: ManimColor
+    ) -> None:
         """Sets the color of the gridded rectangle"""
         self.color = color
         self.rectangle.set_color(color)

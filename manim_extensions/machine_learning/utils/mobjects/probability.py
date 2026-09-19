@@ -6,11 +6,13 @@
 # SPDX-License-Identifier: MIT
 """Probability distribution utilities for neural network visualization."""
 
-from manim import Ellipse, ManimColor, ORANGE, VGroup
+from typing import Any
+
 import numpy as np
+from manim import Axes, Ellipse, ManimColor, ORANGE, VGroup
+from numpy.typing import NDArray
 
 
-from typing import Any, Optional
 class GaussianDistribution(VGroup):
     """Object for drawing a Gaussian distribution
 
@@ -59,19 +61,24 @@ class GaussianDistribution(VGroup):
     """
 
     def __init__(
-        self, axes: Any, mean: Optional[Any]=None, cov: Optional[Any]=None, dist_theme: str = "gaussian", color: ManimColor = ORANGE, **kwargs
-    ):
-        """Initialize the Gaussian distribution visualization with ellipses on the given axes."""
+        self,
+        axes: Axes,
+        mean: NDArray[np.float64] | None = None,
+        cov: NDArray[np.float64] | None = None,
+        dist_theme: str = "gaussian",
+        color: ManimColor = ORANGE,
+        **kwargs: Any,
+    ) -> None:
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
+        if mean is None:
+            mean = np.array([0.0, 0.0])
+        if cov is None:
+            cov = np.array([[1, 0], [0, 1]])
         self.mean = mean
         self.cov = cov
         self.dist_theme = dist_theme
         self.color = color
-        if mean is None:
-            self.mean = np.array([0.0, 0.0])
-        if cov is None:
-            self.cov = np.array([[1, 0], [0, 1]])
         # Make the Gaussian
         if self.dist_theme == "gaussian":
             self.ellipses = self.construct_gaussian_distribution(
@@ -92,9 +99,12 @@ class GaussianDistribution(VGroup):
         return Create(self)
     """
 
-    def compute_covariance_rotation_and_scale(self, covariance: np.ndarray):
-        """Compute the rotation angle and scaled width/height of a covariance ellipse."""
-        def eigsorted(cov: np.ndarray):
+    def compute_covariance_rotation_and_scale(
+        self, covariance: NDArray[np.float64]
+    ) -> tuple[float, float, float]:
+        def eigsorted(
+            cov: NDArray[np.float64],
+        ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
             """
             Eigenvalues and eigenvectors of the covariance matrix.
             """
@@ -102,7 +112,7 @@ class GaussianDistribution(VGroup):
             order = vals.argsort()[::-1]
             return vals[order], vecs[:, order]
 
-        def cov_ellipse(cov: np.ndarray, nstd: float):
+        def cov_ellipse(cov: NDArray[np.float64], nstd: float) -> tuple[float, float, float]:
             """
             Source: http://stackoverflow.com/a/12321306/1391441
             """
@@ -124,8 +134,12 @@ class GaussianDistribution(VGroup):
         return angle, width, height
 
     def construct_gaussian_distribution(
-        self, mean: np.ndarray, covariance: np.ndarray, color: ManimColor = ORANGE, num_ellipses: int = 4
-    ):
+        self,
+        mean: NDArray[np.float64],
+        covariance: NDArray[np.float64],
+        color: ManimColor = ORANGE,
+        num_ellipses: int = 4,
+    ) -> VGroup:
         """Returns a 2d Gaussian distribution object with given mean and covariance"""
         # map mean and covariance to frame coordinates
         mean = self.axes.coords_to_point(*mean)
@@ -151,7 +165,12 @@ class GaussianDistribution(VGroup):
 
         return ellipses
 
-    def construct_simple_gaussian_ellipse(self, mean: np.ndarray, covariance: np.ndarray, color: ManimColor = ORANGE):
+    def construct_simple_gaussian_ellipse(
+        self,
+        mean: NDArray[np.float64],
+        covariance: NDArray[np.float64],
+        color: ManimColor = ORANGE,
+    ) -> VGroup:
         """Returns a 2d Gaussian distribution object with given mean and covariance"""
         # Map mean and covariance to frame coordinates
         mean = self.axes.coords_to_point(*mean)

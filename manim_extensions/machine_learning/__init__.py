@@ -17,10 +17,8 @@ import manim
 from .utils.colorschemes.colorschemes import light_mode, dark_mode, ColorScheme
 
 class ManimMLConfig:
-    """Global configuration for ManimML visualizations."""
 
-    def __init__(self, default_color_scheme=dark_mode):
-        """Initialize the configuration with a default color scheme."""
+    def __init__(self, default_color_scheme: ColorScheme = dark_mode) -> None:
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(
             three_d_x_rotation = 90 * DEGREES,
@@ -32,13 +30,11 @@ class ManimMLConfig:
         )
 
     @property
-    def color_scheme(self):
-        """Return the currently active color scheme."""
+    def color_scheme(self) -> ColorScheme:
         return self._color_scheme
-    
+
     @color_scheme.setter
-    def color_scheme(self, value):
-        """Set the active color scheme by name or ColorScheme instance."""
+    def color_scheme(self, value: ColorScheme | str) -> None:
         if isinstance(value, str):
             if value == "dark_mode":
                 self._color_scheme = dark_mode
@@ -50,16 +46,8 @@ class ManimMLConfig:
                 )
         elif isinstance(value, ColorScheme):
             self._color_scheme = value
-            
+
         manim.config.background_color = self.color_scheme.background_color
 
 # These are accesible from the manim_ml namespace
-config = ManimMLConfig()
-
-__all__ = [
-    "ColorScheme",
-    "ManimMLConfig",
-    "config",
-    "dark_mode",
-    "light_mode",
-]
+config = ManimMLConfig()  # type: ignore[assignment] # intentionally shadows manim's star-imported config

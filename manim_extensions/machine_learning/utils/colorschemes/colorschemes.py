@@ -6,17 +6,16 @@
 # SPDX-License-Identifier: MIT
 """Color schemes for neural network visualization."""
 
-from manim import BLACK, BLUE, ORANGE, WHITE
+from manim import BLACK, BLUE, ORANGE, WHITE, ManimColor
 from dataclasses import dataclass
 
 @dataclass
 class ColorScheme:
-    """Dataclass holding the five colors used by neural network visualizations."""
-    primary_color: str
-    secondary_color: str
-    active_color: str
-    text_color: str
-    background_color: str
+    primary_color: ManimColor
+    secondary_color: ManimColor
+    active_color: ManimColor
+    text_color: ManimColor
+    background_color: ManimColor
 
 dark_mode = ColorScheme(
     primary_color=BLUE,

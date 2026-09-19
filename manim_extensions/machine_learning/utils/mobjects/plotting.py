@@ -7,15 +7,23 @@
 # patched: lazy-import matplotlib (ml extra)
 """Plotting utilities for neural network visualization."""
 
-from manim import ImageMobject
-import numpy as np
-from PIL import Image
 import io
+from types import ModuleType
+from typing import TYPE_CHECKING, cast
+
+import numpy as np
+from manim import ImageMobject
+from PIL import Image
 
 from ....utils.deps import require
 
-from typing import Any
-def convert_matplotlib_figure_to_image_mobject(fig: Any, dpi: int = 200):
+if TYPE_CHECKING:
+    from matplotlib.figure import Figure
+
+
+def convert_matplotlib_figure_to_image_mobject(
+    fig: "Figure", dpi: int = 200
+) -> ImageMobject:
     """Takes a matplotlib figure and makes an image mobject from it
 
     Parameters
@@ -23,7 +31,7 @@ def convert_matplotlib_figure_to_image_mobject(fig: Any, dpi: int = 200):
     fig : matplotlib figure
         matplotlib figure
     """
-    plt = require("ml", "matplotlib.pyplot")
+    plt = cast(ModuleType, require("ml", "matplotlib.pyplot"))
 
     fig.tight_layout(pad=0)
     # plt.axis('off')
@@ -32,8 +40,8 @@ def convert_matplotlib_figure_to_image_mobject(fig: Any, dpi: int = 200):
     image_buffer = io.BytesIO()
     plt.savefig(image_buffer, format='png', dpi=dpi)
     # Reopen in PIL and convert to numpy
-    image = Image.open(image_buffer)
-    image = np.array(image)
+    pil_image = Image.open(image_buffer)
+    image = np.asarray(pil_image)
     # Convert it to an image mobject
     image_mobject = ImageMobject(image, image_mode="RGB")
 
