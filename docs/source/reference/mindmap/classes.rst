@@ -6,6 +6,5 @@ Classes
 
 .. autoall:: manim_extensions.mindmap
    :recursive:
-   :missing-only:
    :types: class
-
+   :skip: AlterNode CatalogMap InsertNode LayoutAnimation LayoutConfig LayoutType MindMap Node NodeStyle RemoveNode ScaleNode StandardMap TimeLine

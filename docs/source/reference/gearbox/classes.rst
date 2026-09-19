@@ -5,5 +5,5 @@
 Classes
 =======
 
-.. autoclass:: manim_extensions.gearbox.Gear
-.. autoclass:: manim_extensions.gearbox.Rack
+.. autoall:: manim_extensions.gearbox
+   :types: class

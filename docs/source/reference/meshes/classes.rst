@@ -6,6 +6,5 @@ Classes
 
 .. autoall:: manim_extensions.meshes
    :recursive:
-   :missing-only:
    :types: class
-
+   :skip: BadParameterException FastManimMesh FaultyVarArrayException InvalidMeshDimensionsException InvalidMeshException InvalidRequestException InvalidShapeException InvalidTypeException Manim2DMesh ManimMesh Mesh MeshIndexException TriangleManim2DMesh

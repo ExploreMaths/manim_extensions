@@ -5,7 +5,6 @@
 Nodes
 =====
 
-.. autoclass:: manim_extensions.mindmap.Node
-.. autoclass:: manim_extensions.mindmap.NodeStyle
-.. autofunction:: manim_extensions.mindmap.bfs_walker
-.. autofunction:: manim_extensions.mindmap.dfs_walker
+.. autoall:: manim_extensions.mindmap
+   :types: class, function
+   :skip: AlterNode CatalogMap InsertNode LayoutAnimation LayoutConfig LayoutType MindMap RemoveNode ScaleNode StandardMap TimeLine

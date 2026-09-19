@@ -5,5 +5,5 @@
 Functions
 =========
 
-.. autofunction:: manim_extensions.circuit.utils.distance
-.. autofunction:: manim_extensions.circuit.utils.validate_forms_approx_line
+.. autoall:: manim_extensions.circuit.utils
+   :types: function

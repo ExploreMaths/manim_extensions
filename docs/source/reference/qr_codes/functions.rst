@@ -4,7 +4,5 @@
 Functions
 =========
 
-qr_code
--------
-
-.. autofunction:: manim_extensions.qr_codes.qr.qr_code
+.. autoall:: manim_extensions.qr_codes.qr
+   :types: function

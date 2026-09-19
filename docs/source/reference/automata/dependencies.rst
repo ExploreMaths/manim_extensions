@@ -5,19 +5,11 @@
 Dependencies
 ============
 
-FiniteStateAutomaton
---------------------
+.. autoall:: manim_extensions.automata.mobjects.automata_dependencies.automata
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton
-PushDownAutomaton
------------------
+.. autoall:: manim_extensions.automata.mobjects.automata_dependencies.state
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton
-State
------
-
-.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.state.State
-Transition
-----------
-
-.. autoclass:: manim_extensions.automata.mobjects.automata_dependencies.transition.Transition
+.. autoall:: manim_extensions.automata.mobjects.automata_dependencies.transition
+   :types: class

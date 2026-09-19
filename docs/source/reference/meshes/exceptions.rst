@@ -5,35 +5,5 @@
 Exceptions
 ==========
 
-InvalidMeshException
---------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.InvalidMeshException
-InvalidRequestException
------------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.InvalidRequestException
-MeshIndexException
-------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.MeshIndexException
-InvalidTypeException
---------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.InvalidTypeException
-InvalidMeshDimensionsException
-------------------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.InvalidMeshDimensionsException
-InvalidShapeException
----------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.InvalidShapeException
-BadParameterException
----------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.BadParameterException
-FaultyVarArrayException
------------------------
-
-.. autoclass:: manim_extensions.meshes.exceptions.FaultyVarArrayException
+.. autoall:: manim_extensions.meshes.exceptions
+   :types: class

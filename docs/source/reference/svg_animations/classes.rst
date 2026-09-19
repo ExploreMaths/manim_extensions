@@ -4,7 +4,5 @@
 Classes
 =======
 
-HTMLParsedVMobject
-------------------
-
-.. autoclass:: manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject
+.. autoall:: manim_extensions.svg_animations.html_parsed_vmobject
+   :types: class

@@ -5,19 +5,8 @@
 Electromagnetism
 ================
 
-Charge
-------
+.. autoall:: manim_extensions.physics.electromagnetism.electrostatics
+   :types: class
 
-.. autoclass:: manim_extensions.physics.electromagnetism.electrostatics.Charge
-ElectricField
--------------
-
-.. autoclass:: manim_extensions.physics.electromagnetism.electrostatics.ElectricField
-Wire
-----
-
-.. autoclass:: manim_extensions.physics.electromagnetism.magnetostatics.Wire
-MagneticField
--------------
-
-.. autoclass:: manim_extensions.physics.electromagnetism.magnetostatics.MagneticField
+.. autoall:: manim_extensions.physics.electromagnetism.magnetostatics
+   :types: class

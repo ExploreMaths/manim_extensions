@@ -5,14 +5,8 @@
 Optics
 ======
 
-Lens
-----
+.. autoall:: manim_extensions.physics.optics.lenses
+   :types: class, function
 
-.. autoclass:: manim_extensions.physics.optics.lenses.Lens
-Ray
----
-
-.. autoclass:: manim_extensions.physics.optics.rays.Ray
-.. autofunction:: manim_extensions.physics.optics.lenses.intersection
-.. autofunction:: manim_extensions.physics.optics.lenses.snell
-.. autofunction:: manim_extensions.physics.optics.lenses.antisnell
+.. autoall:: manim_extensions.physics.optics.rays
+   :types: class

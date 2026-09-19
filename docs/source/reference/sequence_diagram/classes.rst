@@ -5,15 +5,11 @@
 Classes
 =======
 
-SeqActor
---------
+.. autoall:: manim_extensions.sequence_diagram.seq_action
+   :types: class
 
-.. autoclass:: manim_extensions.sequence_diagram.seq_actor.SeqActor
-SeqObject
----------
+.. autoall:: manim_extensions.sequence_diagram.seq_actor
+   :types: class
 
-.. autoclass:: manim_extensions.sequence_diagram.seq_object.SeqObject
-SeqAction
----------
-
-.. autoclass:: manim_extensions.sequence_diagram.seq_action.SeqAction
+.. autoall:: manim_extensions.sequence_diagram.seq_object
+   :types: class

@@ -4,12 +4,5 @@
 Functions
 =========
 
-create_arabic_template
----------------------
-
-.. autofunction:: manim_extensions.arabic.text.create_arabic_template
-
-create_arabic_text
-------------------
-
-.. autofunction:: manim_extensions.arabic.text.create_arabic_text
+.. autoall:: manim_extensions.arabic.text
+   :types: function

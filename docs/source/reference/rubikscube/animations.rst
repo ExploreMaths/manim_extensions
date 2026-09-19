@@ -5,7 +5,5 @@
 Animations
 ==========
 
-CubeMove
---------
-
-.. autoclass:: manim_extensions.rubikscube.cube_animations.CubeMove
+.. autoall:: manim_extensions.rubikscube.cube_animations
+   :types: class

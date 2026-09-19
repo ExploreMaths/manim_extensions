@@ -16,12 +16,5 @@ intersecting their cubic Bézier outlines, so it needs no special cases for
 particular mobject types.  They are useful for analytic geometry tasks inside
 a :class:`~manim.scene.scene.Scene`.
 
-VMobjectInt
------------
-
-.. autofunction:: manim_extensions.geometry.VMobjectInt
-
-TangentPoint
-------------
-
-.. autofunction:: manim_extensions.geometry.TangentPoint
+.. autoall:: manim_extensions.geometry
+   :types: function

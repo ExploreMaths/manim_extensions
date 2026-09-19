@@ -5,5 +5,6 @@
 Ruler animations
 ================
 
-.. autoclass:: manim_extensions.compass.PutRuler
-.. autoclass:: manim_extensions.compass.PutRulerAway
+.. autoall:: manim_extensions.compass
+   :types: class
+   :skip: Compass CompassScene DrawArc DrawPath MoveNiddleTipTo MovePencilAlongPath MovePencilTipTo Pencil PutCompass PutCompassAway PutPencilAway RotateCompass Ruler SplitCompass

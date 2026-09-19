@@ -5,15 +5,5 @@
 Helpers
 =======
 
-Source
-------
-
-.. autoclass:: manim_extensions.circuit.utils.Source
-Circuit
--------
-
-.. autoclass:: manim_extensions.circuit.utils.Circuit
-Node
-----
-
-.. autoclass:: manim_extensions.circuit.utils.Node
+.. autoall:: manim_extensions.circuit.utils
+   :types: class

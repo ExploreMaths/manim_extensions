@@ -5,17 +5,7 @@
 Classes
 =======
 
-RubiksCube
-----------
-
-.. autoclass:: manim_extensions.rubikscube.cube.RubiksCube
-Cubie
------
-
-.. autoclass:: manim_extensions.rubikscube.cubie.Cubie
-
 .. autoall:: manim_extensions.rubikscube
    :recursive:
-   :missing-only:
    :types: class
-
+   :skip: CubeMove

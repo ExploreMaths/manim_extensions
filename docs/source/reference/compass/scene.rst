@@ -5,4 +5,6 @@
 Scene helper
 ============
 
-.. autoclass:: manim_extensions.compass.CompassScene
+.. autoall:: manim_extensions.compass
+   :types: class
+   :skip: Compass DrawArc DrawPath MoveNiddleTipTo MovePencilAlongPath MovePencilTipTo Pencil PutCompass PutCompassAway PutPencilAway PutRuler PutRulerAway RotateCompass Ruler SplitCompass

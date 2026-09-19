@@ -5,47 +5,26 @@
 Mobjects
 ========
 
-ManimAutomaton
---------------
+.. autoall:: manim_extensions.automata.mobjects.manim_automaton
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton
-ManimState
-----------
+.. autoall:: manim_extensions.automata.mobjects.manim_automaton_input
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_state.ManimState
-ManimTransition
-----------------
+.. autoall:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_transition.ManimTransition
-ManimPushDownAutomatonTransition
---------------------------------
+.. autoall:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_transition.ManimPushDownAutomatonTransition
-ManimdeterministicFiniteAutomaton
-----------------------------------
+.. autoall:: manim_extensions.automata.mobjects.manim_pushdown_automaton
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
-ManimNondeterministicFiniteAutomaton
-------------------------------------
+.. autoall:: manim_extensions.automata.mobjects.manim_state
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton
-ManimPushDownAutomaton
-----------------------
+.. autoall:: manim_extensions.automata.mobjects.manim_transition
+   :types: class
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton
-PushDownAutomatonRule
----------------------
-
-.. autoclass:: manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule
-ManimTuringMachine
-------------------
-
-.. autoclass:: manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine
-ManimAutomataInput
-------------------
-
-.. autoclass:: manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput
-Token
------
-
-.. autoclass:: manim_extensions.automata.mobjects.manim_automaton_input.Token
+.. autoall:: manim_extensions.automata.mobjects.manim_turing_machine
+   :types: class

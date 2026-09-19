@@ -5,8 +5,6 @@
 Animations
 ==========
 
-.. autoclass:: manim_extensions.mindmap.LayoutAnimation
-.. autoclass:: manim_extensions.mindmap.InsertNode
-.. autoclass:: manim_extensions.mindmap.RemoveNode
-.. autoclass:: manim_extensions.mindmap.AlterNode
-.. autoclass:: manim_extensions.mindmap.ScaleNode
+.. autoall:: manim_extensions.mindmap
+   :types: class
+   :skip: CatalogMap LayoutConfig LayoutType MindMap Node NodeStyle StandardMap TimeLine

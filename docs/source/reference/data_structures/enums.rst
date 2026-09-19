@@ -5,11 +5,5 @@
 Enums
 =====
 
-MArrayDirection
----------------
-
-.. autoclass:: manim_extensions.data_structures.m_enum.MArrayDirection
-MArrayElementComp
------------------
-
-.. autoclass:: manim_extensions.data_structures.m_enum.MArrayElementComp
+.. autoall:: manim_extensions.data_structures.m_enum
+   :types: class

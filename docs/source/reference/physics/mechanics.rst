@@ -5,21 +5,9 @@
 Mechanics
 =========
 
-Pendulum
---------
+.. autoall:: manim_extensions.physics.rigid_mechanics.pendulum
+   :types: class
+   :skip: SpaceScene
 
-.. autoclass:: manim_extensions.physics.rigid_mechanics.pendulum.Pendulum
-MultiPendulum
--------------
-
-.. autoclass:: manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum
-Space
------
-
-.. autoclass:: manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space
-SpaceScene
-----------
-
-.. autoclass:: manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene
-.. autofunction:: manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape
-.. autofunction:: manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_angle
+.. autoall:: manim_extensions.physics.rigid_mechanics.rigid_mechanics
+   :types: class, function

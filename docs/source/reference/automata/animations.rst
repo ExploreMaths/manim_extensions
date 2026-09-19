@@ -5,7 +5,5 @@
 Animations
 ==========
 
-ManimAnimations
----------------
-
-.. autoclass:: manim_extensions.automata.mobjects.manim_animations.ManimAnimations
+.. autoall:: manim_extensions.automata.mobjects.manim_animations
+   :types: class

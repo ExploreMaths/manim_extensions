@@ -5,23 +5,8 @@
 Classes
 =======
 
-MArray
-------
+.. autoall:: manim_extensions.data_structures.m_array
+   :types: class
 
-.. autoclass:: manim_extensions.data_structures.m_array.MArray
-MArrayElement
--------------
-
-.. autoclass:: manim_extensions.data_structures.m_array.MArrayElement
-MArrayPointer
--------------
-
-.. autoclass:: manim_extensions.data_structures.m_array.MArrayPointer
-MArraySlidingWindow
--------------------
-
-.. autoclass:: manim_extensions.data_structures.m_array.MArraySlidingWindow
-MVariable
----------
-
-.. autoclass:: manim_extensions.data_structures.m_variable.MVariable
+.. autoall:: manim_extensions.data_structures.m_variable
+   :types: class

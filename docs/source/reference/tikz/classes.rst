@@ -5,11 +5,8 @@
 Classes
 =======
 
-Tikz
-----
+.. autoall:: manim_extensions.tikz.template
+   :types: class
 
-.. autoclass:: manim_extensions.tikz.tikz.Tikz
-TikzTemplate
-------------
-
-.. autoclass:: manim_extensions.tikz.template.TikzTemplate
+.. autoall:: manim_extensions.tikz.tikz
+   :types: class

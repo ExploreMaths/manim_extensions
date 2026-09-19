@@ -14,19 +14,11 @@ on-screen Manim mobjects.
    The manim-side renderers depend on the optional ``colour`` / ``moderngl``
    packages and are therefore not importable in every environment.
 
-ManimMesh
----------
+.. autoall:: manim_extensions.meshes.models.manim_models.basic_mesh
+   :types: class
 
-.. autoclass:: manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh
-Manim2DMesh
------------
+.. autoall:: manim_extensions.meshes.models.manim_models.opengl_mesh
+   :types: class
 
-.. autoclass:: manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh
-TriangleManim2DMesh
--------------------
-
-.. autoclass:: manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh
-FastManimMesh
--------------
-
-.. autoclass:: manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh
+.. autoall:: manim_extensions.meshes.models.manim_models.triangle_mesh
+   :types: class

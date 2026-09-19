@@ -6,6 +6,5 @@ Functions
 
 .. autoall:: manim_extensions.mindmap
    :recursive:
-   :missing-only:
    :types: function
-
+   :skip: bfs_walker dfs_walker

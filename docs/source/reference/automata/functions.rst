@@ -5,9 +5,6 @@
 Functions
 =========
 
-.. autofunction:: manim_extensions.automata.mobjects.automata_dependencies.xml_parser.parse_xml_file
 .. autoall:: manim_extensions.automata
    :recursive:
-   :missing-only:
    :types: function
-
