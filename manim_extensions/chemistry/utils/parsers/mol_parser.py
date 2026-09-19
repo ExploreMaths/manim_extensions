@@ -6,13 +6,11 @@ This module provides the MolParser class for parsing MOL format chemical files.
 
 """
 
-from typing import Dict, Tuple, Union
-import os
-
+from typing import Any
 
 import numpy as np
 
-from .base_parser import BaseParser
+from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath
 
 
 class MolParser(BaseParser):
@@ -52,20 +50,14 @@ class MolParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: Union[str, bytes, os.PathLike]) -> list:
-        """Read a .mol file and return its lines as a list of strings."""
+    def read_file(filename: FilePath) -> list[str]:
         with open(filename) as file:
             mol_file = file.readlines()
 
         return mol_file
 
     @staticmethod
-    def data_parser(data: list) -> Tuple[Dict, Dict]:
-        """Parse MOL-format line data into ``(atoms_dict, bonds_dict)``.
-
-        Extracts atom coordinates, element symbols, and bond connectivity
-        from the MOL file's counts line, atom block, and bond block.
-        """
+    def data_parser(data: list[str]) -> tuple[AtomsDict, BondsDict]:
         # Get general data
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841
@@ -78,8 +70,8 @@ class MolParser(BaseParser):
         number_of_atoms = int(mol_general_info[0])
         number_of_bonds = int(mol_general_info[1])
 
-        atoms = {}
-        bonds = {}
+        atoms: AtomsDict = {}
+        bonds: dict[int, list[dict[str, Any]]] = {}
         for index, line in enumerate(data[3 : 3 + number_of_atoms]):
             line_data = line.split()
             x_position = float(line_data[0])
@@ -96,7 +88,7 @@ class MolParser(BaseParser):
             first_atom_index = int(float(line_data[0]))
             second_atom_index = int(float(line_data[1]))
             bond_type = line_data[2]
-            bond_data = {
+            bond_data: dict[str, Any] = {
                 "to_atom_index": first_atom_index,
                 "from_atom_index": second_atom_index,
                 "bond_type": bond_type,
@@ -130,39 +122,35 @@ class MolParser(BaseParser):
 
             if first_atom_index not in bonds:
                 bonds[first_atom_index] = [bond_data]
-                if not atoms.get(first_atom_index) or not atoms.get(
-                    first_atom_index
-                ).get("bond_to"):
+                if not atoms[first_atom_index].get("bond_to"):
                     atoms[first_atom_index]["bond_to"] = {
-                        second_atom_index: atoms.get(second_atom_index).get("element")
+                        second_atom_index: atoms[second_atom_index].get("element")
                     }
                 else:
-                    atoms[first_atom_index]["bond_to"][second_atom_index] = atoms.get(
+                    atoms[first_atom_index]["bond_to"][second_atom_index] = atoms[
                         second_atom_index
-                    ).get("element")
+                    ].get("element")
 
             else:
                 bonds[first_atom_index].append(bond_data)
-                atoms[first_atom_index]["bond_to"][second_atom_index] = atoms.get(
+                atoms[first_atom_index]["bond_to"][second_atom_index] = atoms[
                     second_atom_index
-                ).get("element")
+                ].get("element")
 
-            if not atoms.get(second_atom_index).get("bond_to"):
+            if not atoms[second_atom_index].get("bond_to"):
                 atoms[second_atom_index]["bond_to"] = {
-                    first_atom_index: atoms.get(first_atom_index).get("element")
+                    first_atom_index: atoms[first_atom_index].get("element")
                 }
             else:
-                atoms[second_atom_index]["bond_to"][first_atom_index] = atoms.get(
+                atoms[second_atom_index]["bond_to"][first_atom_index] = atoms[
                     first_atom_index
-                ).get("element")
+                ].get("element")
 
-        new_bonds = {}
+        new_bonds: BondsDict = {}
 
         for bonds_data in bonds.values():
             for bond in bonds_data:
                 bond_index = bond.pop("bond_index")
                 new_bonds[bond_index] = bond
 
-        bonds = new_bonds
-
-        return atoms, bonds
+        return atoms, new_bonds

@@ -6,12 +6,11 @@ This module provides the ASNTParser class for parsing ASNT format chemical files
 
 """
 
-from typing import Any, Dict, List, Tuple, Union
-import os
+from typing import Any
 
 import numpy as np
 
-from .base_parser import BaseParser
+from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath, MoleculeData
 
 BOND_TYPE_MAPPING = {
     "simple": 1,
