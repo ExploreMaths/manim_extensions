@@ -174,9 +174,9 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        niddle_pos : Point
+        niddle_pos : Point3D
             target position for the compass needle tip (niddle_tip)
-        pen_pos : Point
+        pen_pos : Point3D
             target position for the compass pen tip (pen_tip)
         """
         self.play(
@@ -190,8 +190,8 @@ class CompassScene(MovingCameraScene):
 
     def draw_arc(
         self,
-        niddle_point: Point = ORIGIN,
-        pen_point: Point = RIGHT,
+        niddle_point: Point3D = ORIGIN,
+        pen_point: Point3D = RIGHT,
         angle: float = PI / 3,
         move_time: float = 1.0,
         wait_time: float = 1.0,
@@ -256,7 +256,7 @@ class CompassScene(MovingCameraScene):
 
     def put_compass_aside(
         self,
-        aside_pos: Point = RIGHT,
+        aside_pos: Point3D = RIGHT,
         span_buff: float = 0.1,
         run_time: float = 1.0,
     ) -> None:
@@ -265,7 +265,7 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        aside_pos : Point
+        aside_pos : Point3D
             position to place the compass
         span_buff : float
             distance between the two compass tips when placed aside
@@ -282,8 +282,8 @@ class CompassScene(MovingCameraScene):
 
     def set_ruler(
         self,
-        start: Point | None = None,
-        end: Point | None = None,
+        start: Point3D | None = None,
+        end: Point3D | None = None,
         lag_ratio: float = 0.5,
         run_time: float = 1.0,
         with_pencil: bool = True,
@@ -293,9 +293,9 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        start : Point
+        start : Point3D
             start point of the ruler placement
-        end : Point
+        end : Point3D
             end point of the ruler placement
         lag_ratio : float
             lag ratio between the ruler and pencil placement animations
@@ -316,12 +316,12 @@ class CompassScene(MovingCameraScene):
         else:
             self.play(PutRuler(self.ruler, start=start, end=end), run_time=run_time)
 
-    def set_pencil(self, pos: Point, run_time: float = 1.0) -> None:
+    def set_pencil(self, pos: Point3D, run_time: float = 1.0) -> None:
         """Move the pencil nib to the specified position.
 
         Parameters
         ----------
-        pos : Point
+        pos : Point3D
             Target position for the pencil nib.
         run_time : float
             Duration of the move animation in seconds.
@@ -334,8 +334,8 @@ class CompassScene(MovingCameraScene):
 
     def draw_line(
         self,
-        start: Point | None = None,
-        end: Point | None = None,
+        start: Point3D | None = None,
+        end: Point3D | None = None,
         run_time: float = 1.0,
         with_pencil: bool = True,
         color: object = PURE_YELLOW,
@@ -345,9 +345,9 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        start : Point
+        start : Point3D
             Start point of the line.
-        end : Point
+        end : Point3D
             End point of the line.
         run_time : float
             Duration of the drawing animation in seconds.
@@ -372,12 +372,12 @@ class CompassScene(MovingCameraScene):
             self.play(Create(line), run_time=0.5 * run_time)
         return line
 
-    def put_pencil_away(self, pos: Point = 3 * DOWN, run_time: float = 1) -> None:
+    def put_pencil_away(self, pos: Point3D = 3 * DOWN, run_time: float = 1) -> None:
         """Translate the pencil as a whole to the specified position.
 
         Parameters
         ----------
-        pos : Point
+        pos : Point3D
             Target position for the pencil.
         run_time : float
             Duration of the translation animation in seconds.
@@ -387,7 +387,7 @@ class CompassScene(MovingCameraScene):
 
     def put_ruler_aside(
         self,
-        aside_pos: Point = 3 * DOWN,
+        aside_pos: Point3D = 3 * DOWN,
         horizontal_or_vertical: bool = True,
         run_time: float = 1.0,
     ) -> None:
@@ -398,7 +398,7 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        aside_pos : Point
+        aside_pos : Point3D
             Target position for the ruler.
         horizontal_or_vertical : bool
             If ``True``, align the ruler horizontally; otherwise vertically.

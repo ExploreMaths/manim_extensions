@@ -6,7 +6,8 @@ This module provides the ASNTParser class for parsing ASNT format chemical files
 
 """
 
-from typing import Any
+from typing import Any, Dict, List, Tuple, Union
+import os
 
 import numpy as np
 
