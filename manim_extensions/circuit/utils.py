@@ -4,6 +4,10 @@
 
 """Circuit diagram utilities for Manim."""
 
+import math
+from typing import Any, Self
+
+import numpy as np
 from manim import (
     Circle,
     DEGREES,
@@ -16,11 +20,8 @@ from manim import (
     VGroup,
     VMobject,
     WHITE,
-    np,
 )
-from typing import Any
-
-import math
+from manim.typing import Point3D, Point3DLike, Vector3DLike
 
 
 class Source(VMobject):
@@ -73,13 +74,13 @@ class Source(VMobject):
     def __init__(
         self,
         mobject_group: Mobject,
-        letter: Any,
-        value: Any,
-        direction: str = LEFT,
-        label: str = True,
+        letter: str,
+        value: int | float | str,
+        direction: Vector3DLike = LEFT,
+        label: bool = True,
         dependent: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Source instance."""
         super().__init__(**kwargs)
@@ -87,7 +88,7 @@ class Source(VMobject):
 
         # If value is a number or override dependent is False
         if dependent is False or type(value) is int or type(value) is float:
-            self.main_body = Circle().set_stroke(WHITE)
+            self.main_body: VMobject = Circle().set_stroke(WHITE)
         else:
             self.main_body = (
                 Square().set_stroke(WHITE).rotate(45 * DEGREES).scale(1 / np.sqrt(2))
@@ -100,7 +101,7 @@ class Source(VMobject):
         self.add(self.main_body.scale(0.5))
 
         if label:
-            self.label = (
+            self.label: MathTex | None = (
                 MathTex(str(value) + r"\text{ " + letter + "}")
                 .scale(0.5)
                 .next_to(self.main_body, self._direction, buff=0.1)
@@ -109,7 +110,7 @@ class Source(VMobject):
         else:
             self.label = None
 
-    def get_terminals(self, val: Any):
+    def get_terminals(self, val: str) -> Point3D | None:
         """Return the positive or negative terminal of the source symbol.
 
         Parameters
@@ -123,7 +124,7 @@ class Source(VMobject):
             The 3D position of the requested terminal.
         """
         if type(self.main_body) is Circle:
-            proportion_offset = 0
+            proportion_offset: float = 0
         else:
             proportion_offset = -0.25
 
@@ -132,7 +133,7 @@ class Source(VMobject):
         elif val == "negative":
             return self.main_body[0].point_from_proportion(0.75 + proportion_offset)
 
-    def center(self):
+    def center(self) -> Self:
         """Shift the source so that its main body is centred at the origin.
 
         Returns
@@ -146,7 +147,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args, **kwargs):
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
         """Rotate the source symbol around its center.
 
         Parameters
@@ -215,7 +216,7 @@ class Circuit(VMobject):
                    self.play(node.animate.set_color(color), run_time=0.5)
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """Initialize the Circuit instance."""
         super().__init__(**kwargs)
 
@@ -232,7 +233,13 @@ class Circuit(VMobject):
         self.add(self.node_list)
 
     # This function returns the endpoints of the wire.
-    def __create_wire(self, end1: Any, end2: Any, diagonal: bool = False, invert: bool = False):
+    def __create_wire(
+        self,
+        end1: Point3DLike,
+        end2: Point3DLike,
+        diagonal: bool = False,
+        invert: bool = False,
+    ) -> list[Point3DLike]:
         # Check if a turn is necessary. Only satisfiable if:
         # 1. diagonal flag is not set/overriden to True
         # 2. end1.x != end2.x and end1.y != end2.y
@@ -254,16 +261,16 @@ class Circuit(VMobject):
         ) and diagonal is not True:
             # Define the turn
             if invert is True:
-                turn = [end2[0], end1[1], 0]
+                turn: Point3DLike = (end2[0], end1[1], 0)
             else:
-                turn = [end1[0], end2[1], 0]
+                turn = (end1[0], end2[1], 0)
             return [end1, turn, end2]
 
         # This is diagonal, OR it is a straight line
         else:
             return [end1, end2]
 
-    def add_components(self, *args):
+    def add_components(self, *args: Mobject) -> None:
         """Append circuit components to the circuit definition.
 
         Parameters
@@ -276,11 +283,11 @@ class Circuit(VMobject):
 
     def add_wire(
         self,
-        end1: Any,
-        end2: Any,
+        end1: Point3DLike,
+        end2: Point3DLike,
         diagonal: bool = False,
         invert: bool = False,
-    ):
+    ) -> list[Point3DLike] | None:
         """Create a wire between two points and merge it into the circuit graph.
 
         Parameters
@@ -309,7 +316,7 @@ class Circuit(VMobject):
         # Not first wire.
         # Loop through all nodes and wires through each node
         else:
-            intersections = []
+            intersections: list[Node] = []
             # Iterate through all nodes.
             for node in self.node_list:
                 # search if a coordinate of the wire belong in the node.
@@ -373,7 +380,7 @@ class Node(VMobject):
                self.add(node)
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """Initialize the Node instance."""
         super().__init__(**kwargs)
 
@@ -382,16 +389,16 @@ class Node(VMobject):
         # relative to ground using sympy or some python and spice
         # library. Something like pyspice or ngspice...
         # Voltage functionality has not been added in v2 yet.
-        self.voltage = None
+        self.voltage: None = None
 
-        self.coords = []
+        self.coords: list[list[Point3DLike]] = []
         self.junction_dots = VGroup()
 
         self.add(self.junction_dots)
 
         self.set_color(WHITE)
 
-    def __update(self):
+    def __update(self) -> None:
         """Rebuild the internal wire paths for this junction node."""
         self.clear_points()
         for path in self.coords:
@@ -399,7 +406,7 @@ class Node(VMobject):
             for coord in path[1:]:
                 self.add_line_to(np.array(coord))
 
-    def check_coord(self, coord: Any):
+    def check_coord(self, coord: Point3DLike) -> bool | Point3DLike:
         # coord is to be checked.
         # return a non-False value if:
         # 1. It paired coordinates in self.coords (and not endpoint)
@@ -431,7 +438,7 @@ class Node(VMobject):
 
         return False
 
-    def add_dot(self, dot_coord: Any):
+    def add_dot(self, dot_coord: Point3DLike) -> None:
         """Add a junction dot at the provided coordinate.
 
         Parameters
@@ -443,7 +450,7 @@ class Node(VMobject):
 
     # wire is just a matrix with dimensions 2n x 3 or 3 x 3
     # depending entirely on if it is a diagonal wire or not
-    def add_wire(self, wire_param: Any):
+    def add_wire(self, wire_param: list[Point3DLike]) -> None:
         """Append a wire path to the node's internal connectivity list.
 
         Parameters
@@ -486,7 +493,7 @@ class Node(VMobject):
 
         self.__update()
 
-    def merge(self, node: Any, wire: bool = False):
+    def merge(self, node: Node, wire: list[Point3DLike] | bool = False) -> None:
         """Merge this node with another node and optionally attach a wire.
 
         Parameters
@@ -508,7 +515,7 @@ class Node(VMobject):
         self.__update()
 
 
-def distance(a: np.ndarray, b: np.ndarray):
+def distance(a: Point3DLike, b: Point3DLike) -> float:
     """Compute the Euclidean distance between two points.
 
     Parameters
@@ -523,10 +530,12 @@ def distance(a: np.ndarray, b: np.ndarray):
     float
         Euclidean distance between the two points.
     """
-    return np.sqrt(np.sum([i * i for i in np.array(a) - np.array(b)]))
+    return float(np.sqrt(np.sum([i * i for i in np.array(a) - np.array(b)])))
 
 
-def validate_forms_approx_line(coord: Any, line: Any, tolerance: float = 1e-5):
+def validate_forms_approx_line(
+    coord: Point3DLike, line: list[Point3DLike], tolerance: float = 1e-5
+) -> bool:
     # Check if the sum of the distance(s) between a coordinate to the end(s) of a line
     # equates to the distance of the line
     """Check whether a coordinate lies approximately on a line segment.
@@ -542,6 +551,6 @@ def validate_forms_approx_line(coord: Any, line: Any, tolerance: float = 1e-5):
     """
     return math.isclose(
         distance(coord, line[0]) + distance(coord, line[1]),
-        distance(*line),
+        distance(line[0], line[1]),
         rel_tol=tolerance,
     )

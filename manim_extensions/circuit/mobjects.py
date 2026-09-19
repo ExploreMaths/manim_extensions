@@ -8,6 +8,9 @@ This module provides circuit component visualizations.
 
 """
 
+from typing import Any, Self
+
+import numpy as np
 from manim import (
     ArcBetweenPoints,
     DEGREES,
@@ -30,10 +33,10 @@ from manim import (
     VGroup,
     VMobject,
     WHITE,
-    np,
 )
-from .utils import Source
-from typing import Any, Optional
+from manim.typing import Point3D, Vector3DLike
+
+from .utils import *
 
 
 class VoltageSource(Source):
@@ -80,7 +83,14 @@ class VoltageSource(Source):
                self.add(circuit)
     """
 
-    def __init__(self, value: int = 1, label: str = True, direction: str = LEFT, dependent: bool = True, **kwargs):
+    def __init__(
+        self,
+        value: int | float | str = 1,
+        label: bool = True,
+        direction: Vector3DLike = LEFT,
+        dependent: bool = True,
+        **kwargs: Any,
+    ) -> None:
         # + and -
         """Initialize the VoltageSource instance."""
         markings = VGroup()
@@ -131,7 +141,14 @@ class CurrentSource(Source):
                self.add(independent, dependent)
     """
 
-    def __init__(self, value: int = 1, label: str = True, direction: str = LEFT, dependent: bool = True, **kwargs):
+    def __init__(
+        self,
+        value: int | float | str = 1,
+        label: bool = True,
+        direction: Vector3DLike = LEFT,
+        dependent: bool = True,
+        **kwargs: Any,
+    ) -> None:
         # Arrow
         """Initialize the CurrentSource instance."""
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
@@ -181,7 +198,12 @@ class Inductor(VMobject):
                )
     """
 
-    def __init__(self, label: Optional[str] = None, direction: str = DOWN, **kwargs):
+    def __init__(
+        self,
+        label: str | None = None,
+        direction: Vector3DLike = DOWN,
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Inductor instance."""
         super().__init__(**kwargs)
@@ -200,7 +222,7 @@ class Inductor(VMobject):
 
         # check if lebel is present.
         if not label is None:
-            self.label = (
+            self.label: Tex | None = (
                 Tex(str(label) + " H")
                 .scale(0.5)
                 .next_to(self.main_body, self._direction, buff=0.1)
@@ -209,7 +231,7 @@ class Inductor(VMobject):
         else:
             self.label = None
 
-    def get_anchors(self):
+    def get_anchors(self) -> list[Point3D]:
         """Return the start and end anchor points of the inductor.
 
         Returns
@@ -219,7 +241,7 @@ class Inductor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val: Any):
+    def get_terminals(self, val: str) -> Point3D | None:
         """Return the position of the left or right terminal.
 
         Parameters
@@ -237,7 +259,7 @@ class Inductor(VMobject):
         elif val == "right":
             return self.main_body.get_end()
 
-    def center(self):
+    def center(self) -> Self:
         """Shift the inductor so that its main body is centred at the origin.
 
         Returns
@@ -251,7 +273,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args, **kwargs):
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -304,7 +326,12 @@ class Resistor(VMobject):
                self.add(upright, rotated)
     """
 
-    def __init__(self, label: Optional[str] = None, direction: str = DOWN, **kwargs):
+    def __init__(
+        self,
+        label: str | None = None,
+        direction: Vector3DLike = DOWN,
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Resistor instance."""
         super().__init__(**kwargs)
@@ -322,7 +349,7 @@ class Resistor(VMobject):
             [3.7101, -1, 0],
             [4.13537, 0, 0],
         ]
-        self.main_body.start_new_path(points[0])
+        self.main_body.start_new_path(np.array(points[0]))
         for i in points[1:]:
             self.main_body.add_line_to(np.array(i))
         self.main_body.scale(0.25).center()
@@ -331,7 +358,7 @@ class Resistor(VMobject):
 
         # check if lebel is present.
         if not label is None:
-            self.label = (
+            self.label: Tex | None = (
                 Tex(str(label) + r" $\Omega $")
                 .scale(0.5)
                 .next_to(self.main_body, self._direction, buff=0.1)
@@ -340,7 +367,7 @@ class Resistor(VMobject):
         else:
             self.label = None
 
-    def get_anchors(self):
+    def get_anchors(self) -> list[Point3D]:
         """Return the start and end anchor points of the resistor.
 
         Returns
@@ -350,7 +377,7 @@ class Resistor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val: Any):
+    def get_terminals(self, val: str) -> Point3D | None:
         """Return the position of the left or right terminal.
 
         Parameters
@@ -368,7 +395,7 @@ class Resistor(VMobject):
         elif val == "right":
             return self.main_body.get_end()
 
-    def center(self):
+    def center(self) -> Self:
         """Shift the resistor so that its main body is centred at the origin.
 
         Returns
@@ -382,7 +409,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args, **kwargs):
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -437,26 +464,32 @@ class Capacitor(VMobject):
                self.add(plain, polarized)
     """
 
-    def __init__(self, label: Optional[str] = None, direction: str = DOWN, polarized: bool = False, **kwargs):
+    def __init__(
+        self,
+        label: str | None = None,
+        direction: Vector3DLike = DOWN,
+        polarized: bool = False,
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Capacitor instance."""
         super().__init__(**kwargs)
         self._direction = direction
 
         self.main_body = VGroup(
-            Line([(7 / 4.42) - 0.125, 1, 0], [(7 / 4.42) - 0.125, -1, 0]),
+            Line(((7 / 4.42) - 0.125, 1, 0), ((7 / 4.42) - 0.125, -1, 0)),
         )
 
         # not polarized:
         if not polarized:
             self.main_body.add(
-                Line([(7 / 4.42) + 0.125, 1, 0], [(7 / 4.42) + 0.125, -1, 0])
+                Line(((7 / 4.42) + 0.125, 1, 0), ((7 / 4.42) + 0.125, -1, 0))
             )
         else:
             self.main_body.add(
                 ArcBetweenPoints(
-                    start=[(7 / 4.42) + 0.325, 1, 0],
-                    end=[(7 / 4.42) + 0.325, -1, 0],
+                    start=((7 / 4.42) + 0.325, 1, 0),
+                    end=((7 / 4.42) + 0.325, -1, 0),
                     angle=PI / 4,
                 )
             )
@@ -475,7 +508,7 @@ class Capacitor(VMobject):
             )
             self.add(self.label)
 
-    def get_terminals(self, val: Any):
+    def get_terminals(self, val: str) -> Point3D | None:
         """Return the position of the left or right terminal plate.
 
         Parameters
@@ -493,7 +526,7 @@ class Capacitor(VMobject):
         elif val == "right":
             return self.main_body[1].get_midpoint()
 
-    def center(self):
+    def center(self) -> Self:
         """Shift the capacitor so that its main body is centred at the origin.
 
         Returns
@@ -507,7 +540,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args, **kwargs):
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -566,13 +599,18 @@ class Ground(VMobject):
                )
     """
 
-    def __init__(self, ground_type: str = "ground", label: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        ground_type: str = "ground",
+        label: str | None = None,
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Ground instance."""
         super().__init__(**kwargs)
 
         if ground_type == "ground":
-            self.main_body = VGroup(Polygon([0, 0, 0], [2, 0, 0], [1, -1, 0]))
+            self.main_body = VGroup(Polygon((0, 0, 0), (2, 0, 0), (1, -1, 0)))
             if not label is None and label == "D" or label == "A":
                 self.main_body.add(Text(label).move_to(self.main_body))
                 # 'D' or 'A' for digital vs analog ground
@@ -580,9 +618,9 @@ class Ground(VMobject):
 
         elif ground_type == "earth":
             self.main_body = VGroup(
-                Line([0, 0, 0], [2, 0, 0]),
-                Line([(1 / 3), -(1 / 3), 0], [(5 / 3), -(1 / 3), 0]),
-                Line([(2 / 3), -(2 / 3), 0], [(4 / 3), -(2 / 3), 0]),
+                Line((0, 0, 0), (2, 0, 0)),
+                Line((1 / 3, -(1 / 3), 0), (5 / 3, -(1 / 3), 0)),
+                Line((2 / 3, -(2 / 3), 0), (4 / 3, -(2 / 3), 0)),
             )
 
         # tail for ground:
@@ -594,7 +632,7 @@ class Ground(VMobject):
 
         self.main_body.center().scale(0.25).center()
 
-    def get_terminals(self, *args):
+    def get_terminals(self, *args: Any) -> Point3D:
         """Return the top connection point of the ground symbol.
 
         Parameters
@@ -653,13 +691,18 @@ class Opamp(VMobject):
                    self.add(Dot(both.get_terminals(name), color=PURE_YELLOW))
     """
 
-    def __init__(self, bias_supply: Optional[Any]=None, label: str = False, **kwargs):
+    def __init__(
+        self,
+        bias_supply: str | None = None,
+        label: bool = False,
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         """Initialize the Opamp instance."""
         super().__init__(**kwargs)
 
         self._plots = VGroup()
-        self._terminals = {
+        self._terminals: dict[str, Point3D | None] = {
             "positive_input": None,
             "negative_input": None,
             "positive_bias": None,
@@ -766,7 +809,7 @@ class Opamp(VMobject):
             self._terminals["negative_bias"] = self._plots[-1].get_center()
         self.add(self.rails, self._labels, self._plots)
 
-    def get_terminals(self, val: Any):
+    def get_terminals(self, val):
         """Return the position of a named terminal.
 
         Parameters
