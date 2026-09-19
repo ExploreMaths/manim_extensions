@@ -100,6 +100,11 @@ autodoc_default_options = {
 }
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
+autodoc_typehints_format = "short"
+
+# sphinx_autodoc_typehints: emit short names with leading "~" so intersphinx
+# resolves them to :py:class: references displaying just the class name.
+typehints_fully_qualified = False
 
 # napoleon (Google / NumPy style docstrings)
 napoleon_google_docstring = False

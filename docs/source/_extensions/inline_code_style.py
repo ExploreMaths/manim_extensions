@@ -17,7 +17,7 @@ code.docutils.literal {
     background: none !important;
     border: none !important;
     border-radius: 0 !important;
-    font-size: inherit !important;
+    font-size: 90% !important;
     padding: 0 !important;
 }
 """

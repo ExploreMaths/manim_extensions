@@ -709,7 +709,7 @@ class MArray(VGroup):
         The distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     __mob_arr_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-    __mob_arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __mob_arr : :class:`~typing.List`\ [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         Represents the array.
     __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the array label.
@@ -807,7 +807,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`~typing.Union` [:class:`int`, :class:`str`]
+        :data:`~typing.Union`\ [:class:`int`, :class:`str`]
             Displayable index.
         """
 
@@ -896,7 +896,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`typing.List` [:class:`~manim.animation.animation.Animation`]
+        :data:`typing.List`\ [:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -965,7 +965,7 @@ class MArray(VGroup):
         -------
         :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable` [[:class:`bool`], :class:`~typing.List` [:class:`~manim.animation.animation.Animation`]]
+        :data:`~typing.Callable`\ [[:class:`bool`], :class:`~typing.List`\ [:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation` (s).
         """
 
@@ -1539,7 +1539,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`typing.List` [:class:`~manim.animation.animation.Animation`]
+        :class:`typing.List`\ [:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -1599,7 +1599,7 @@ class MArray(VGroup):
         -------
         :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable` [[:class:`bool`], :class:`~typing.List` [:class:`~manim.animation.animation.Animation`]]
+        :data:`~typing.Callable`\ [[:class:`bool`], :class:`~typing.List`\ [:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation` (s).
         """
 
@@ -1685,7 +1685,7 @@ class MArrayPointer(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __arr : :class:`~typing.List`\ [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the pointer is attached to.
     __index : :class:`int`
         The index of the element to which the pointer is attached to.
@@ -1707,7 +1707,7 @@ class MArrayPointer(VGroup):
         Represents the arrow of the element.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the element.
-    __updater_pos : :data:`~typing.Callable` [[], None]
+    __updater_pos : :data:`~typing.Callable`\ [[], None]
         The updater function that keeps the pointer intact with the array.
     """
 
@@ -2178,7 +2178,7 @@ class MArraySlidingWindow(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List` [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __arr : :class:`~typing.List`\ [:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the sliding window is to be attached.
     __index : :class:`int`
         The index of the element to which the sliding window is to be attached.
@@ -2198,7 +2198,7 @@ class MArraySlidingWindow(VGroup):
         Represents the window of the sliding window.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the sliding window.
-    __updater_pos : :data:`typing.Callable` [[], None]
+    __updater_pos : :data:`typing.Callable`\ [[], None]
         The updater function that keeps the sliding window intact with the array.
     """
 

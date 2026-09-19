@@ -22,10 +22,7 @@ workflow/_inline_refs_data.json
 workflow/_inline_refs_result.txt
 tests/__test_media_dir__
 /element_data.csv
-/element_data_single.csv
-/docs/element_data.csv
-/docs/element_data_single.csv
-/HTMLParsedVMobjectDocExample.html
-/HTMLParsedVMobjectDocExample.js
-/docs/HTMLParsedVMobjectDocExample.js
-/docs/HTMLParsedVMobjectDocExample.html
+*.csv
+*.mol
+HTMLParsedVMobjectDocExample.html
+HTMLParsedVMobjectDocExample.js
