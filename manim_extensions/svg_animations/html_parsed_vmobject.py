@@ -186,6 +186,7 @@ class HTMLParsedVMobject:
     """
 
     def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False) -> None:
+        """TODO: add docstring for __init__."""
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -205,6 +206,7 @@ class HTMLParsedVMobject:
         self.scene.add_updater(self.updater)
     
     def updater(self, dt: float) -> None:
+        """TODO: add docstring for updater."""
         if self.continue_updating is False:
             return
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
@@ -248,6 +250,7 @@ class HTMLParsedVMobject:
         os.remove(svg_filename)
     
     def update_html(self) -> None:
+        """TODO: add docstring for update_html."""
         camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(
             camera.background_color,
@@ -277,6 +280,7 @@ class HTMLParsedVMobject:
             )
     
     def finish(self) -> None:
+        """TODO: add docstring for finish."""
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
         if not hasattr(self, "last_t"):
@@ -301,6 +305,7 @@ class HTMLParsedVMobject:
         linspaces: list[NDArray[np.float64]],
         animate_this: bool = True
     ) -> None:
+        """TODO: add docstring for start_interactive."""
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:
             self.continue_updating = False

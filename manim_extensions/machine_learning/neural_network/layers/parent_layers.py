@@ -41,6 +41,7 @@ class NeuralNetworkLayer(ABC, Group):
     """
 
     def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
+        """TODO: add docstring for __init__."""
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         self.title: Text | Group
@@ -74,6 +75,7 @@ class NeuralNetworkLayer(ABC, Group):
     def make_forward_pass_animation(
         self, *args: Any, **kwargs: Any
     ) -> Animation:
+        """TODO: add docstring for make_forward_pass_animation."""
         pass
 
     @override_animation(Create)
@@ -97,11 +99,13 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
     def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+        """TODO: add docstring for make_forward_pass_animation."""
         pass
 
     @override_animation(Create)
@@ -134,6 +138,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ) -> None:
+        """TODO: add docstring for __init__."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -145,6 +150,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
     def make_forward_pass_animation(
         self, run_time: float = 2.0, layer_args: Any = {}, **kwargs: Any
     ) -> Animation:
+        """TODO: add docstring for make_forward_pass_animation."""
         pass
 
     @override_animation(Create)
@@ -179,13 +185,16 @@ class BlankConnective(ConnectiveLayer):
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
         self, run_time: float = 1.5, layer_args: Any = {}, **kwargs: Any
     ) -> Animation:
+        """TODO: add docstring for make_forward_pass_animation."""
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
         return super()._create_override()
+

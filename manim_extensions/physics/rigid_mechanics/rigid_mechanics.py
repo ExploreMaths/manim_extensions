@@ -36,18 +36,18 @@ from manim import (
     Circle,
     Line,
     Mobject,
+    VMobject,
     Polygon,
     Polygram,
     RIGHT,
     Rectangle,
     Scene,
     UP,
+    Group,
     VGroup,
     angle_between_vectors,
 )
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-from manim.renderer.cairo_renderer import CairoRenderer
-from manim.renderer.opengl_renderer import OpenGLRenderer
 
 from ...utils.deps import require
 
@@ -192,7 +192,7 @@ class SpaceScene(Scene):
 
     GRAVITY: Tuple[float, float] = 0, -9.81
 
-    def __init__(self, renderer=None, **kwargs):
+    def __init__(self, renderer: Any = None, **kwargs):
         """A basis scene for all of rigid mechanics. The gravity vector
         can be adjusted with ``self.GRAVITY``.
         """
@@ -298,7 +298,7 @@ class SpaceScene(Scene):
                 mob.body.sleep()
 
 
-def _step(space, dt):
+def _step(space: "Space", dt: float):
     """Advance the pymont simulation by one time step.
 
     Parameters
@@ -311,7 +311,7 @@ def _step(space, dt):
     space.space.step(dt)
 
 
-def _simulate(b):
+def _simulate(b: Any):
     """Read the current state of a pymont body and update the Manim mobject.
 
     Parameters

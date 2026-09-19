@@ -50,6 +50,7 @@ class Cell(VGroup):
         show_border: bool = True,
         **kwargs: Any
     ) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(**kwargs)
         
         self.value = value

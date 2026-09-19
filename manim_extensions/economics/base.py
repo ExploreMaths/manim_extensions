@@ -80,6 +80,7 @@ class EconDiagram(VGroup):
                  y_range: Sequence[float] | None = None,
                  x_length: float = 6, y_length: float = 4,
                  **kwargs: Any) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]

@@ -27,7 +27,6 @@ from manim import (
     linear,
 )
 from manim.typing import Point3D
-from manim.utils.color import ParsableManimColor
 
 __all__ = ["CompassScene"]
 from typing import Any

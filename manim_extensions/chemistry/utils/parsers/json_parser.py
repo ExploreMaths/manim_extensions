@@ -216,6 +216,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def parse_single_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+        """TODO: add docstring for parse_single_molecule_data."""
         atoms_data = JSONParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = JSONParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -223,6 +224,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+        """TODO: add docstring for extract_atoms_data."""
         atoms_initial_data_dict = molecule_data.get("atoms")
         if not isinstance(atoms_initial_data_dict, dict):
             raise Exception(f"Wrong atomic data on molecule data: {molecule_data}")
@@ -272,6 +274,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+        """TODO: add docstring for extract_bonds_data."""
         bonds_data_dict = molecule_data.get("bonds")
         if not isinstance(bonds_data_dict, dict):
             raise Exception(f"Bonds data is not defined correctly: {molecule_data}")
@@ -295,6 +298,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def clean_elements_data(atoms_elements_raw: list[int]) -> list[str]:
+        """TODO: add docstring for clean_elements_data."""
         return [
             ELEMENTS_BY_ATOMIC_NUMBER[elemenent_atomic_number]
             for elemenent_atomic_number in atoms_elements_raw

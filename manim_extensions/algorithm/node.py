@@ -6,7 +6,6 @@
 
 
 from manim import (
-    Animation,
     AnimationGroup,
     Circle,
     DOWN,
@@ -27,10 +26,7 @@ from manim import (
     VMobject,
     WHITE,
 )
-from typing import Any, List, TypeAlias, cast
-import numpy as np
-from numpy.typing import NDArray
-from manim.mobject.mobject import _AnimationBuilder
+from typing import List, TypeAlias
 from manim.typing import ManimFloat, Point3D as ManimPoint3D
 from manim.typing import Vector3DLike
 from .utils.numpy_helper import NumpyHelper
@@ -292,7 +288,7 @@ class Node(VMobject):
         """Return the fill opacity of the node box."""
         return self.box.get_fill_opacity()
 
-    def get_slot(self, direction: Vector3D, index) -> Point3D:
+    def get_slot(self, direction: Vector3D, index: int) -> Point3D:
         """Return a point on the node's boundary at the given slot index.
 
         The slot numbering scheme divides each edge of the box into

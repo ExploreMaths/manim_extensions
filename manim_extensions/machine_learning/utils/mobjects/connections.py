@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Network connection visualization utilities."""
 
-from typing import Any
 
 import numpy as np
 from manim import (

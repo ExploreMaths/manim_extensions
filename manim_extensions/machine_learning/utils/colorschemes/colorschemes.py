@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 @dataclass
 class ColorScheme:
+    """TODO: add docstring for ColorScheme."""
     primary_color: ManimColor
     secondary_color: ManimColor
     active_color: ManimColor

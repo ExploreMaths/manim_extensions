@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """List group utility for neural network visualization."""
 
-from typing import Any, Iterator
+from typing import Iterator
 
 from manim import Mobject
 
@@ -21,6 +21,7 @@ class ListGroup(Mobject):
     """
 
     def __init__(self, *layers: Mobject) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__()
         self.items: list[Mobject] = [*layers]
 
@@ -107,3 +108,5 @@ class ListGroup(Mobject):
 
     def __repr__(self) -> str:
         return f"ListGroup({self.items})"
+
+

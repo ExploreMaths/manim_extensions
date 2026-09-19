@@ -13,7 +13,6 @@ objects.
 """
 
 from manim import (
-    Animation,
     AnimationGroup,
     BLACK,
     BLUE,
@@ -47,16 +46,14 @@ from manim import (
     Text,
     UP,
     VGroup,
-    VMobject,
     WHITE,
     Wait,
     rgb_to_color,
 )
-from manim.animation.composition import prepare_animation
-from manim.typing import Point3D, Point3DLike, Vector3DLike
+from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
-from typing import Any, Callable, Iterable, Mapping, Optional, Sequence, Union, cast
+from typing import Any, Optional, Union
 
 from PIL import Image, ImageChops, ImageDraw
 

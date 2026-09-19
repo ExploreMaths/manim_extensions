@@ -35,12 +35,13 @@ class BaseParser(ABC):
 
     Parameters
     ----------
-    filename : :class:`str`, :class:`bytes` or Path-like
+    filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bytes` or Path-like
         Path to the file to parse.
 
     """
 
     def __init__(self, filename: FilePath) -> None:
+        """TODO: add docstring for __init__."""
         self.file_data: Any = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):
@@ -122,3 +123,4 @@ class BaseParser(ABC):
         """
 
         return self.bonds_data
+

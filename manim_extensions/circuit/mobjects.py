@@ -809,7 +809,7 @@ class Opamp(VMobject):
             self._terminals["negative_bias"] = self._plots[-1].get_center()
         self.add(self.rails, self._labels, self._plots)
 
-    def get_terminals(self, val):
+    def get_terminals(self, val: str):
         """Return the position of a named terminal.
 
         Parameters

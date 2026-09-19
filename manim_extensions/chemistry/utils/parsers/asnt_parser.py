@@ -10,7 +10,7 @@ from typing import Any
 
 import numpy as np
 
-from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath, MoleculeData
+from .base_parser import BaseParser
 
 BOND_TYPE_MAPPING = {
     "simple": 1,

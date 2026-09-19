@@ -9,6 +9,7 @@ from ...utils.deps import require
 
 
 class Element:
+    """TODO: add docstring for Element."""
     def __repr__(self) -> str:
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 
@@ -20,13 +21,15 @@ class Element:
         mass: float = 1.008,
         color: str or None = "#FFFFFF",
     ):
+        """TODO: add docstring for __init__."""
         self.symbol = symbol
         self.name = name
         self.atomic_number = atomic_number
         self.mass = mass
         self.color = color or "#ff00ff"
 
-    def from_csv_file(filename, element: str or int):
+    def from_csv_file(filename: str, element: str or int):
+        """TODO: add docstring for from_csv_file."""
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
         pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)
