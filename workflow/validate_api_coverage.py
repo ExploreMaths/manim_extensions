@@ -12,7 +12,9 @@ names defined in the module itself), then resolves every
 in ``docs/source`` and matches by canonical defining-module dotted name.
 
 A public name counts as documented when either
-  * an explicit autodoc directive reaches it, or
+  * an explicit autodoc directive reaches it,
+  * an ``.. autoall::`` block without ``:missing-only:`` enumerates it
+    (its full expansion is injected into the docs at build time), or
   * an ``.. autoall::`` block with ``:missing-only:`` enumerates it
     (the block injects it into the docs at build time).
 
@@ -43,9 +45,22 @@ SNAPSHOT_PATH = DOCS / "_extensions" / "api_documented.json"
 
 sys.path.insert(0, str(DOCS / "_extensions"))
 
-from autodoc_all import defining_dotted, iter_package_modules, public_names  # noqa: E402
+from autodoc_all import (  # noqa: E402
+    classify,
+    defining_dotted,
+    iter_package_modules,
+    public_names,
+)
 
 DOCS_TOOLS = {"docbuild", "testing", "custom_mobjects", "__pycache__"}
+
+# Public names deliberately excluded from the API docs (recorded
+# decisions; keep in sync with :skip: options in the rst sources).
+IGNORED_PUBLIC_NAMES = {
+    # Module-level singleton instance (manim_extensions.machine_learning);
+    # skipped via ":skip: config" in reference/machine_learning/constants.rst.
+    "manim_extensions.machine_learning.config",
+}
 
 DIRECTIVE_RE = re.compile(
     r"^\.\.\s+(autoclass|autofunction|autodata|autoall)::\s+(\S+)\s*$",
@@ -111,13 +126,46 @@ def parse_directives():
             yield rst, directive, target, options
 
 
+def autoall_expansion_keys(target, options):
+    """Canonical dotted names an ``autoall`` block expands to.
+
+    Mirrors AutoAllDirective's enumeration (types filter + skip list +
+    recursion), without the ``:missing-only:`` snapshot filter.
+    """
+    keys = set()
+    warnings = []
+    obj = resolve_dotted(target)
+    if not isinstance(obj, types.ModuleType):
+        warnings.append(f"autoall target {target} is not a module")
+        return keys, warnings
+    want = {
+        t.strip()
+        for t in (options.get("types") or "class function data").split(",")
+        if t.strip()
+    }
+    skip = set((options.get("skip") or "").split())
+    modules = iter_package_modules(obj) if "recursive" in options else iter([obj])
+    for mod in modules:
+        for name, member in public_names(mod):
+            if classify(member) not in want or name in skip:
+                continue
+            keys.add(defining_dotted(mod, name, member))
+    return keys, warnings
+
+
 def documented_keys():
-    """Canonical dotted names reachable from explicit autodoc directives."""
+    """Canonical dotted names reachable from explicit autodoc directives
+    and from full (non-``:missing-only:``) ``autoall`` expansions."""
     keys = set()
     warnings = []
     for rst, directive, target, options in parse_directives():
         if directive == "autoall":
-            continue  # handled separately (see missing_only_coverage)
+            if "missing-only" in options:
+                continue  # handled separately (see missing_only_coverage)
+            expanded, w = autoall_expansion_keys(target, options)
+            keys |= expanded
+            warnings.extend(f"{w_} ({rst.relative_to(ROOT)})" for w_ in w)
+            continue
         obj = resolve_dotted(target)
         if obj is None:
             warnings.append(
@@ -138,17 +186,9 @@ def missing_only_coverage():
     for rst, directive, target, options in parse_directives():
         if directive != "autoall" or "missing-only" not in options:
             continue
-        obj = resolve_dotted(target)
-        if not isinstance(obj, types.ModuleType):
-            warnings.append(f"autoall target {target} is not a module ({rst.relative_to(ROOT)})")
-            continue
-        skip = set((options.get("skip") or "").split())
-        modules = iter_package_modules(obj) if "recursive" in options else iter([obj])
-        for mod in modules:
-            for name, member in public_names(mod):
-                if name in skip:
-                    continue
-                keys.add(defining_dotted(mod, name, member))
+        expanded, w = autoall_expansion_keys(target, options)
+        keys |= expanded
+        warnings.extend(f"{w_} ({rst.relative_to(ROOT)})" for w_ in w)
     return keys, warnings
 
 
@@ -193,7 +233,8 @@ def main():
     for module in iter_modules():
         for name, obj in public_names(module):
             total += 1
-            if defining_dotted(module, name, obj) not in covered:
+            key = defining_dotted(module, name, obj)
+            if key not in covered and key not in IGNORED_PUBLIC_NAMES:
                 missing.append(f"{module.__name__}.{name}")
 
     print(f"Public names checked: {total}")
