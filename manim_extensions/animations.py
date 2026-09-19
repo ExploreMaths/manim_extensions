@@ -4,6 +4,8 @@
 
 """Custom animations for Manim."""
 
+from typing import Any
+
 from manim import (
     Animation,
     AnimationGroup,
@@ -26,14 +28,13 @@ from manim import (
     UP,
     Uncreate,
     VGroup,
+    VMobject,
     Write,
     config,
     interpolate,
     linear,
     rush_into,
 )
-from typing import Any
-
 import numpy as np
 
 
@@ -78,7 +79,7 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 2, **kwargs) -> None:
+    def __init__(self, mobject: Text, interval: float = 2, **kwargs: Any) -> None:
         """Initialize the TypeWriter instance."""
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
@@ -90,7 +91,7 @@ class TypeWriter(Animation):
 
         super().__init__(mobject, **kwargs)
 
-    def interpolate_mobject(self, alpha: float) -> Text:
+    def interpolate_mobject(self, alpha: float) -> None:
         """Set the visible characters based on the animation progress *alpha*.
 
         This method is called internally by Manim during the animation.  It
@@ -104,7 +105,6 @@ class TypeWriter(Animation):
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
             char.set_opacity(1 if i < current_index else 0)
-        return self.mobject
 
 
 # ---------------------------------------------------------------------------
@@ -319,7 +319,7 @@ def easeOutElastic(t: float) -> float:
         a, s = 1, p / 4
     else:
         s = p / (2 * np.pi) * np.arcsin(1 / a)
-    return a * pow(2, -10 * t) * np.sin((t - s) * (2 * np.pi) / p) + 1
+    return float(a * pow(2, -10 * t) * np.sin((t - s) * (2 * np.pi) / p) + 1)
 
 
 # --- Random-order animations ---------------------------------------
@@ -357,12 +357,13 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         """Initialize the WriteRandom instance."""
-        indices = list(range(len(mobject.submobjects)))
+        submobjects = mobject.submobjects
+        indices = list(range(len(submobjects)))
         random.shuffle(indices)
         super().__init__(
-            *[Write(mobject[i], rate_func=linear) for i in indices],
+            *[Write(submobjects[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
             **kwargs,
         )
@@ -402,11 +403,12 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         """Initialize the ReversedWrite instance."""
-        indices = list(range(len(mobject.submobjects) - 1, -1, -1))
+        submobjects = mobject.submobjects
+        indices = list(range(len(submobjects) - 1, -1, -1))
         super().__init__(
-            *[Write(mobject[i], rate_func=linear) for i in indices],
+            *[Write(submobjects[i], rate_func=linear) for i in indices],
             lag_ratio=lag_ratio,
             **kwargs,
         )
@@ -445,7 +447,7 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         """Initialize the FadeInRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -489,7 +491,7 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         """Initialize the FadeOutRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -535,7 +537,7 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         """Initialize the GrowRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -592,8 +594,8 @@ class PassingRectangle(Animation):
         color: ManimColor = RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the PassingRectangle instance."""
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
@@ -621,7 +623,9 @@ class PassingRectangle(Animation):
         a_right = 1 - rush_into(1 - alpha)
         left = interpolate(self.mob_left, self.mob_right, a_left)
         right = interpolate(self.mob_left, self.mob_right, a_right)
-        self.mobject.become(
+        mobject = self.mobject
+        assert isinstance(mobject, Rectangle)
+        mobject.become(
             Rectangle(
                 width=float(np.linalg.norm(right - left)),
                 height=self.height,
@@ -672,14 +676,14 @@ class LaggedCreation(Animation):
         mobject: Mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the LaggedCreation instance."""
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
         super().__init__(mobject, rate_func=linear, **kwargs)
 
-    def get_bounds(self, alpha: float):
+    def get_bounds(self, alpha: float) -> tuple[float, float]:
         """Compute the start and end fractions for the reveal at progress *alpha*.
 
         Parameters
@@ -699,8 +703,8 @@ class LaggedCreation(Animation):
         return a, b
 
     def interpolate_submobject(
-        self, submobject: Any, starting_submobject: Mobject, alpha: float
-    ) -> None:
+        self, submobject: Mobject, starting_submobject: Mobject, alpha: float
+    ) -> Animation:
         """Reveal *submobject* between the computed partial bounds.
 
         Parameters
@@ -711,6 +715,11 @@ class LaggedCreation(Animation):
             The initial state of the submobject.
         alpha : float
             Animation progress from ``0`` to ``1``.
+
+        Returns
+        -------
+        :class:`~manim.animation.animation.Animation`
+            This animation, matching the signature of the superclass method.
         """
         a, b = self.get_bounds(alpha)
         submobject.pointwise_become_partial(starting_submobject, a, b)
@@ -719,6 +728,7 @@ class LaggedCreation(Animation):
                 starting_submobject, 0, b - 1
             )
             submobject.append_points(left_part.get_points())
+        return self
 
 
 class HighLightWithLines(AnimationGroup):
@@ -769,8 +779,8 @@ class HighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the HighLightWithLines instance."""
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
@@ -795,7 +805,7 @@ class HighLightWithLines(AnimationGroup):
 
         # Remember the created parts so that UnHighLightWithLines removes
         # exactly these objects instead of leaving them in the scene.
-        mobject._highlight_with_lines_parts = (self.lines, rectangle)
+        setattr(mobject, "_highlight_with_lines_parts", (self.lines, rectangle))
 
 
 class UnHighLightWithLines(AnimationGroup):
@@ -849,8 +859,8 @@ class UnHighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the UnHighLightWithLines instance."""
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:

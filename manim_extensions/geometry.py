@@ -14,7 +14,8 @@ their cubic Bézier outlines, so no type-specific cases are needed.
 from manim import Mobject, VMobject
 import math
 import numpy as np
-from typing import Any, Optional, Union
+from numpy.typing import NDArray
+from typing import Optional, Union
 
 
 def VMobjectInt(
@@ -23,7 +24,7 @@ def VMobjectInt(
     tolerance: float = 1e-6,
     flatness: float = 1e-6,
     max_depth: int = 32,
-) -> list:
+) -> list[NDArray[np.float64]]:
     r"""Compute all intersection points of two arbitrary VMobjects.
 
     Every :class:`~manim.mobject.types.vectorized_mobject.VMobject` stores its
@@ -108,7 +109,7 @@ def VMobjectInt(
                self.wait()
     """
 
-    def _extract_beziers(mob: Mobject):
+    def _extract_beziers(mob: Mobject) -> list[NDArray[np.float64]]:
         """Collect every cubic Bézier segment in a mobject tree.
 
         Each VMobject stores its outline as groups of four control points
@@ -129,13 +130,14 @@ def VMobjectInt(
             Arrays of shape ``(4, 3)`` holding the control points of each
             cubic Bézier segment.
         """
-        beziers = []
+        beziers: list[NDArray[np.float64]] = []
         for sub in mob.submobjects:
             beziers.extend(_extract_beziers(sub))
         pts = getattr(mob, "points", None)
         if pts is not None and len(pts) >= 4:
-            if hasattr(mob, "get_cubic_bezier_tuples"):
-                tuples = mob.get_cubic_bezier_tuples()
+            getter = getattr(mob, "get_cubic_bezier_tuples", None)
+            if getter is not None:
+                tuples = getter()
             else:
                 n_per_curve = 4
                 trimmed = pts[: len(pts) - len(pts) % n_per_curve]
@@ -148,7 +150,9 @@ def VMobjectInt(
                     beziers.append(np.array(tup[:4], dtype=float, copy=True))
         return beziers
 
-    def _split_cubic(c: Any, t: float = 0.5):
+    def _split_cubic(
+        c: NDArray[np.float64], t: float = 0.5
+    ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
         """Split a cubic Bézier curve at parameter *t* (de Casteljau).
 
         Parameters
@@ -174,7 +178,7 @@ def VMobjectInt(
         right = np.array([c0, b1, a2, p3], dtype=float)
         return left, right
 
-    def _flatness_sq(c: Any):
+    def _flatness_sq(c: NDArray[np.float64]) -> float:
         """Squared maximum distance of the inner control points to the chord.
 
         Parameters
@@ -203,7 +207,9 @@ def VMobjectInt(
                 worst = dist_sq
         return worst
 
-    def _bbox_overlap(c1: Any, c2: Any, eps: Any):
+    def _bbox_overlap(
+        c1: NDArray[np.float64], c2: NDArray[np.float64], eps: float
+    ) -> bool:
         """Check whether the control-point bounding boxes of two curves meet.
 
         Parameters
@@ -226,7 +232,13 @@ def VMobjectInt(
                 return False
         return True
 
-    def _segment_meet(a0: Any, a1: Any, b0: Any, b1: Any, dist_tol: Any):
+    def _segment_meet(
+        a0: NDArray[np.float64],
+        a1: NDArray[np.float64],
+        b0: NDArray[np.float64],
+        b1: NDArray[np.float64],
+        dist_tol: float,
+    ) -> list[NDArray[np.float64]]:
         """Find where two (nearly flat) segments meet or overlap.
 
         Parameters
@@ -308,9 +320,11 @@ def VMobjectInt(
     curves2 = _extract_beziers(vmob2)
     same_object = vmob1 is vmob2
 
-    found = []
+    found: list[NDArray[np.float64]] = []
 
-    def _intersect_curves(c1: Any, c2: Any, depth: Any):
+    def _intersect_curves(
+        c1: NDArray[np.float64], c2: NDArray[np.float64], depth: int
+    ) -> None:
         """Recursively intersect two cubic Bézier curves."""
         if not _bbox_overlap(c1, c2, tolerance):
             return
@@ -352,7 +366,7 @@ def VMobjectInt(
 
     # Self-intersection: discard points that are just shared path joins.
     if same_object:
-        junctions = []
+        junctions: list[NDArray[np.float64]] = []
         for i, c1 in enumerate(curves1):
             for j in range(i + 1, len(curves1)):
                 c2 = curves2[j]
@@ -367,7 +381,7 @@ def VMobjectInt(
         ]
 
     # Merge near-duplicate points produced by adjacent sub-curves.
-    points = []
+    points: list[NDArray[np.float64]] = []
     for p in found:
         if all(np.linalg.norm(p - q) > tolerance for q in points):
             points.append(p)
@@ -375,11 +389,11 @@ def VMobjectInt(
 
 
 def TangentPoint(
-    p1: Union[np.ndarray, tuple, list],
-    p2: Union[np.ndarray, tuple, list],
-    line_start: Union[np.ndarray, tuple, list],
-    line_end: Union[np.ndarray, tuple, list],
-) -> Optional[np.ndarray]:
+    p1: Union[NDArray[np.float64], tuple[float, ...], list[float]],
+    p2: Union[NDArray[np.float64], tuple[float, ...], list[float]],
+    line_start: Union[NDArray[np.float64], tuple[float, ...], list[float]],
+    line_end: Union[NDArray[np.float64], tuple[float, ...], list[float]],
+) -> Optional[NDArray[np.float64]]:
     """Compute the tangent point of a circle through two points and a line.
 
     Given two points *p1* and *p2* that lie on a circle, and a line segment
@@ -424,8 +438,9 @@ def TangentPoint(
                self.add(radius, LabelDot("T", tangent, label_pos=UP, buff=0.15))
     """
 
-    @staticmethod
-    def to_3d(point: Union[np.ndarray, tuple, list]) -> np.ndarray:
+    def to_3d(
+        point: Union[NDArray[np.float64], tuple[float, ...], list[float]],
+    ) -> NDArray[np.float64]:
         """Convert a 2-D or 3-D point into a 3-D numpy array.
 
         Parameters
@@ -519,7 +534,7 @@ def TangentPoint(
         centers = [midpoint + t * perpendicular_dir for t in [t1, t2]]
 
     # Compute corresponding tangent points (on the line)
-    valid_tangents = []
+    valid_tangents: list[NDArray[np.float64]] = []
     for center in centers:
         # Project vector from line_start to center onto the line direction
         projection = np.dot(center - line_start, line_direction)
