@@ -8,10 +8,13 @@ This module provides animations for ruler manipulations.
 
 """
 
-from typing import Optional
 __all__ = ["PutRuler", "PutRulerAway"]
 
-from manim import ApplyMethod, DOWN, LEFT, Point, RIGHT, UP
+from typing import Any
+
+from manim import ApplyMethod, DOWN, LEFT, RIGHT, UP
+from manim.typing import Point3D
+
 from ..compass.ruler import Ruler
 
 
@@ -40,7 +43,13 @@ class PutRuler(ApplyMethod):
         end : Point
             The end point."""
 
-    def __init__(self, ruler: Ruler, start: Optional[Point] = None, end: Optional[Point] = None, **kwargs):
+    def __init__(
+        self,
+        ruler: Ruler,
+        start: Point3D | None = None,
+        end: Point3D | None = None,
+        **kwargs: Any,
+    ) -> None:
         """Initialize PutRuler."""
         super().__init__(ruler.set_ruler, start, end, **kwargs)
 
@@ -70,9 +79,14 @@ class PutRulerAway(PutRuler):
             Whether to place it horizontally (or vertically)."""
 
     def __init__(
-        self, ruler: Ruler, point: Optional[Point] = None, is_flat: bool = True, **kwargs
-    ):
+        self,
+        ruler: Ruler,
+        point: Point3D | None = None,
+        is_flat: bool = True,
+        **kwargs: Any,
+    ) -> None:
         """Initialize PutRulerAway."""
+        assert point is not None
         if is_flat:
             start = point + LEFT
             end = point + RIGHT

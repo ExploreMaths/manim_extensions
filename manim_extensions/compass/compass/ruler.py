@@ -8,7 +8,11 @@ This module provides ruler visualization for geometry.
 
 """
 
-from manim import LEFT, Line, ManimColor, RIGHT, Rectangle, VGroup, WHITE
+from typing import Any
+
+from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
+from manim.typing import Point3D, Vector3D
+from manim.utils.color import ParsableManimColor
 
 __all__ = [
     "Ruler",
@@ -51,13 +55,13 @@ class Ruler(VGroup):
 
     def __init__(
         self,
-        length: int = 12,
+        length: float = 12,
         width: float = 0.8,
-        ruler_color: ManimColor = WHITE,
+        ruler_color: ParsableManimColor = WHITE,
         stroke_width: float = 2,
         fill_opacity: float = 0.4,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the Ruler instance."""
         super().__init__(**kwargs)
         self.ruler_length = length
@@ -72,37 +76,37 @@ class Ruler(VGroup):
         )
         self.add(self.ruler)
 
-    def get_vecs_of_ruler(self):
+    def get_vecs_of_ruler(self) -> tuple[Vector3D, Vector3D]:
         """Return the extension and width directions of the ruler."""
         A, B, C, _ = self.ruler.get_vertices()
         return Line(B, A).get_unit_vector(), Line(B, C).get_unit_vector()
 
-    def get_direction_vector_of_ruler(self):
+    def get_direction_vector_of_ruler(self) -> Vector3D:
         """Return the extension direction of the ruler."""
         s, e, *_ = self.ruler.get_vertices()
         return Line(e, s).get_unit_vector()
 
-    def get_width_vector_of_ruler(self):
+    def get_width_vector_of_ruler(self) -> Vector3D:
         """Return the width direction of the ruler."""
         _, s, e, _ = self.ruler.get_vertices()
         return Line(e, s).get_unit_vector()
 
-    def get_start_and_end(self):
+    def get_start_and_end(self) -> tuple[Point3D, Point3D]:
         """Return the start and end points of the ruler."""
         E, S, *_ = self.ruler.get_vertices()
         return S, E
 
-    def get_middle_point(self):
+    def get_middle_point(self) -> Point3D:
         """Return the midpoint of the ruler."""
         S, E = self.get_start_and_end()
         return (S + E) / 2
 
-    def get_length_of_ruler(self):
+    def get_length_of_ruler(self) -> float:
         """Return the length of the ruler."""
         S, E = self.get_start_and_end()
-        return np.linalg.norm(E - S)
+        return float(np.linalg.norm(E - S))
 
-    def set_ruler(self, start: np.ndarray = LEFT, end: np.ndarray = RIGHT):
+    def set_ruler(self, start: Point3D = LEFT, end: Point3D = RIGHT) -> "Ruler":
         """
         Place the ruler so that one of its edges aligns with start and end.
 
@@ -136,7 +140,7 @@ class Ruler(VGroup):
         ).shift(target_pos - current_pos)
         return self
 
-    def put_ruler_flat(self):
+    def put_ruler_flat(self) -> "Ruler":
         """Lay the ruler flat.
 
         .. manim:: PutRulerFlatDocExample

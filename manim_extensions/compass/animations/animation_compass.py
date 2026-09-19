@@ -16,12 +16,11 @@ from manim import (
     DOWN,
     LEFT,
     Line,
-    Point,
     RIGHT,
     Rotate,
     UP,
 )
-from typing import Optional
+from manim.typing import Point3D
 
 __all__ = [
     "DrawArc",
@@ -31,6 +30,8 @@ __all__ = [
     "PutCompass",
     "PutCompassAway",
 ]
+from typing import Any
+
 import numpy as np
 
 from ..compass import Compass
@@ -62,7 +63,7 @@ class DrawArc(AnimationGroup):
         arc : Arc
             The arc to draw."""
 
-    def __init__(self, compass: Compass, arc: Arc, **kwargs):
+    def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
         """Initialize DrawArc."""
         super().__init__(Create(arc), RotateCompass(compass, arc.angle), **kwargs)
 
@@ -92,8 +93,11 @@ class SplitCompass(AnimationGroup):
         span : float
             The distance between the two compass tips."""
 
-    def __init__(self, compass: Compass, span: Optional[float] = None, **kwargs):
+    def __init__(
+        self, compass: Compass, span: float | None = None, **kwargs: Any
+    ) -> None:
         """Initialize SplitCompass."""
+        assert span is not None
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
         compass.theta = theta_new
         rotate_angle = theta_old - theta_new
@@ -138,8 +142,11 @@ class RotateCompass(Rotate):
         angle : float
             The rotation angle."""
 
-    def __init__(self, compass: Compass, angle: Optional[float] = None, **kwargs):
+    def __init__(
+        self, compass: Compass, angle: float | None = None, **kwargs: Any
+    ) -> None:
         """Initialize RotateCompass."""
+        assert angle is not None
         super().__init__(
             compass, about_point=compass.get_niddle_tip(), angle=angle, **kwargs
         )
@@ -168,7 +175,12 @@ class MoveNiddleTipTo(ApplyMethod):
         point : Point
             The target point."""
 
-    def __init__(self, compass: Compass, point: Optional[Point] = None, **kwargs):
+    def __init__(
+        self,
+        compass: Compass,
+        point: Point3D | None = None,
+        **kwargs: Any,
+    ) -> None:
         """Initialize MoveNiddleTipTo."""
         super().__init__(compass.move_niddle_tip_to, point, **kwargs)
 
@@ -203,11 +215,12 @@ class PutCompass(ApplyMethod):
     def __init__(
         self,
         compass: Compass,
-        niddle_pos: Optional[Point] = None,
-        pen_pos: Optional[Point] = None,
-        **kwargs,
-    ):
+        niddle_pos: Point3D | None = None,
+        pen_pos: Point3D | None = None,
+        **kwargs: Any,
+    ) -> None:
         """Initialize PutCompass."""
+        assert niddle_pos is not None and pen_pos is not None
         arc_radius = get_distance(niddle_pos, pen_pos)
         if arc_radius > compass.leg_length * 2:
             raise ValueError("The span exceeds the compass drawing range.")
@@ -247,8 +260,12 @@ class PutCompassAway(PutCompass):
             Distance between the two tips when placed aside."""
 
     def __init__(
-        self, compass: Compass, point: Point = RIGHT, span_buff: float = 0.1, **kwargs
-    ):
+        self,
+        compass: Compass,
+        point: Point3D = RIGHT,
+        span_buff: float = 0.1,
+        **kwargs: Any,
+    ) -> None:
         """Initialize PutCompassAway."""
         r = 0.5 * compass.leg_length
         vec = r * DOWN if compass.get_compass_rotate_angle_direction() else r * UP

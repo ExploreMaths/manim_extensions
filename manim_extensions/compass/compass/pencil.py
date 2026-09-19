@@ -8,13 +8,16 @@ This module provides pencil visualization for geometry.
 
 """
 
-from manim import Line, ORIGIN, PI, SVGMobject
+from pathlib import Path
 
 import numpy as np
+
+from manim import Line, ORIGIN, PI, SVGMobject
+from manim.typing import Point3D, Vector3D
+
 __all__ = [
     "Pencil",
 ]
-from pathlib import Path
 
 
 class Pencil(SVGMobject):
@@ -39,7 +42,7 @@ class Pencil(SVGMobject):
                self.add(pencil, Dot(pencil.get_nib(), color=RED))
     """
 
-    def __init__(self, height: float = 2, angle: float = PI / 4):
+    def __init__(self, height: float = 2, angle: float = PI / 4) -> None:
         """Initialize the Pencil instance."""
         super().__init__(
             file_name=Path(__file__).resolve().parent / "assets/pencil.svg",
@@ -48,15 +51,15 @@ class Pencil(SVGMobject):
         self.rotate(angle=-angle)
         self._nib = self.submobjects[3]
 
-    def get_nib(self):
+    def get_nib(self) -> Point3D:
         """Return the position of the nib."""
-        return self._nib.get_all_points()[7]
+        return np.asarray(self._nib.get_all_points()[7])
 
-    def get_nid_vector(self):
+    def get_nid_vector(self) -> Vector3D:
         """Return the direction of the pencil body."""
         return Line(self.get_nib(), self.submobjects[1].get_center()).get_unit_vector()
 
-    def move_nid_to(self, point: np.ndarray = ORIGIN):
+    def move_nid_to(self, point: Point3D = ORIGIN) -> "Pencil":
         """Translate the pencil so that the nib moves to point.
 
         .. manim:: MoveNidToDocExample
