@@ -12,7 +12,8 @@ from manim import SVGMobject
 from manim.utils.tex_file_writing import tex_to_svg_file
 from .template import TikzTemplate
 
-from typing import List, Optional
+from pathlib import Path
+from typing import Any, List, Optional
 
 
 class Tikz(SVGMobject):
@@ -79,9 +80,9 @@ class Tikz(SVGMobject):
         libraries: Optional[List[str]] = None,
         tikzset: Optional[List[str]] = None,
         preamble: Optional[str] = None,
-        use_pdf: Optional[bool] = False,
-        **kwargs,
-    ):
+        use_pdf: bool = False,
+        **kwargs: Any,
+    ) -> None:
         """Initialize the TikZ instance."""
         file_name = self.convert(code, packages, libraries, tikzset, preamble, use_pdf)
         super().__init__(
@@ -97,7 +98,7 @@ class Tikz(SVGMobject):
         tikzset: Optional[List[str]] = None,
         preamble: Optional[str] = None,
         use_pdf: bool = False,
-    ) -> str:
+    ) -> Path:
         """Convert a TikZ string into an SVG file path.
 
         Parameters
@@ -118,7 +119,7 @@ class Tikz(SVGMobject):
 
         Returns
         -------
-        str
+        pathlib.Path
             The generated SVG file path.
         """
         return tex_to_svg_file(

@@ -23,6 +23,8 @@ from manim import (
     VGroup,
     WHITE,
 )
+from typing import cast
+
 from .constants import HALF_DOWN
 
 
@@ -54,7 +56,7 @@ class SeqActor(VGroup):
                self.wait()
     """
 
-    all_actors = list()
+    all_actors: list["SeqActor"] = []
 
     def __init__(
         self,
@@ -80,9 +82,9 @@ class SeqActor(VGroup):
         super().__init__(self.actor_ctn, actor_label, self.actor_timedots)
 
     @classmethod
-    def get_deepest_actor(cls):
+    def get_deepest_actor(cls) -> "SeqActor | None":
         """Return the actor with the greatest time depth."""
-        latest_contenter = None
+        latest_contenter: "SeqActor | None" = None
         for actor in cls.all_actors:
             if latest_contenter is None or (
                 actor.get_time_depth() > latest_contenter.get_time_depth()
@@ -93,16 +95,19 @@ class SeqActor(VGroup):
     @property
     def latest_timedot(self) -> Dot:
         """Return the newest timeline marker attached to this actor."""
-        return self.actor_timedots[-1]
+        return cast(Dot, self.actor_timedots[-1])
 
     def get_time_depth(self) -> int:
         """Return the actor's current vertical timeline depth."""
         timedot = self.latest_timedot
-        return round(
-            (timedot.get_center()[1] - self.actor_timedot_y_displace) / HALF_DOWN[1]
+        return int(
+            round(
+                (timedot.get_center()[1] - self.actor_timedot_y_displace)
+                / HALF_DOWN[1]
+            )
         )
 
-    def time_elapse(self, ticks_to_elapse: int = 1):
+    def time_elapse(self, ticks_to_elapse: int = 1) -> tuple[Line, Succession]:
         """Advance the timeline by a given number of ticks.
 
         Parameters
@@ -116,6 +121,7 @@ class SeqActor(VGroup):
             A ``(timeline, animation)`` pair describing the elapsed time motion.
         """
         deepest_actor = SeqActor.get_deepest_actor()
+        assert deepest_actor is not None
         time_ticks = deepest_actor.get_time_depth() + ticks_to_elapse
         latest_time_reached = HALF_DOWN * time_ticks
         next_timedot = Dot(self.latest_timedot.get_center(), radius=0.05)

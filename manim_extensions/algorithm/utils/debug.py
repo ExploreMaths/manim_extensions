@@ -4,14 +4,16 @@
 
 """Debug utilities for algorithm visualization."""
 
+from typing import Any
+
 from manim import DOWN, Dot, Integer, Paragraph, VGroup
 
 
 def index_paragraph_labels(
     paragraph: Paragraph,
     label_height: float = 0.1,
-    **kwargs,
-):
+    **kwargs: Any,
+) -> VGroup:
     """Add integer index labels below each paragraph line.
 
     Parameters

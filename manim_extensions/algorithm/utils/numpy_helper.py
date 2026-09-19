@@ -16,7 +16,7 @@ class NumpyHelper:
     """
 
     @staticmethod
-    def normalize_vector(v: NDArray):
+    def normalize_vector(v: NDArray[np.float64]) -> NDArray[np.float64]:
         """Normalise a vector to unit length.
 
         Parameters
@@ -37,8 +37,11 @@ class NumpyHelper:
 
     @staticmethod
     def is_equal_vector(
-        v1: NDArray, v2: NDArray, rtol: float = 1e-5, atol: float = 1e-8
-    ):
+        v1: NDArray[np.float64],
+        v2: NDArray[np.float64],
+        rtol: float = 1e-5,
+        atol: float = 1e-8,
+    ) -> bool:
         """Check whether two vectors are equal within tolerance.
 
         Parameters
@@ -57,12 +60,15 @@ class NumpyHelper:
         bool
             ``True`` if ``v1`` and ``v2`` are element-wise close.
         """
-        return np.isclose(v1, v2, rtol=rtol, atol=atol).all()
+        return bool(np.isclose(v1, v2, rtol=rtol, atol=atol).all())
 
     @staticmethod
     def is_same_direction(
-        v1: NDArray, v2: NDArray, rtol: float = 1e-5, atol: float = 1e-8
-    ):
+        v1: NDArray[np.float64],
+        v2: NDArray[np.float64],
+        rtol: float = 1e-5,
+        atol: float = 1e-8,
+    ) -> bool:
         """Check whether two vectors point in the same direction.
 
         Both vectors are normalized before comparison.

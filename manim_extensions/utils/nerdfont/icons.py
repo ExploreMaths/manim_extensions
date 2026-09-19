@@ -32,6 +32,7 @@ import os
 import platform
 import shutil
 import subprocess
+from typing import Any
 
 from .icons_dict import SYMBOLS_UNICODE
 
@@ -73,7 +74,7 @@ def _install_font_linux() -> None:
 _install_font_linux()
 
 
-def nerdfont_icon(icon: int | str, **kwargs) -> Text:
+def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
     """
     Create a Nerd Font icon using the Symbols Nerd Font Mono font.
     Please have a look at the documentation for an exhaustive list of available icons:

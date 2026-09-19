@@ -6,7 +6,10 @@ This module provides the base classes for economic diagram visualizations.
 
 """
 
+from typing import Any, Callable, Sequence
+
 from manim import (
+    Animation,
     AnimationGroup,
     Axes,
     DOWN,
@@ -17,6 +20,8 @@ from manim import (
     LEFT,
     Line,
     ManimColor,
+    Mobject,
+    ParametricFunction,
     Polygon,
     RIGHT,
     ReplacementTransform,
@@ -26,12 +31,15 @@ from manim import (
     WHITE,
     YELLOW,
 )
-from typing import Any, Callable, Optional
-
+from manim.typing import Point3D
 import numpy as np
 
 
-def find_intersection(func_a: Any, func_b: Any, x_range: Any):
+def find_intersection(
+    func_a: Callable[[float], float],
+    func_b: Callable[[float], float],
+    x_range: Sequence[float],
+) -> float | None:
     """Find the x where func_a(x) == func_b(x) by sampling."""
     xs = np.linspace(x_range[0] + 0.01, x_range[1] - 0.01, 1000)
     diffs = np.array([func_a(x) - func_b(x) for x in xs])
@@ -68,9 +76,10 @@ class EconDiagram(VGroup):
     """
 
     def __init__(self, x_label: str = "X", y_label: str = "Y",
-                 x_range: Optional[Any]=None, y_range: Optional[Any]=None,
-                 x_length: int = 6, y_length: int = 4, **kwargs):
-        """Initializes the base economic diagram with axes and curve storage."""
+                 x_range: Sequence[float] | None = None,
+                 y_range: Sequence[float] | None = None,
+                 x_length: float = 6, y_length: float = 4,
+                 **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]
@@ -89,20 +98,23 @@ class EconDiagram(VGroup):
             Text(y_label, font_size=24).next_to(self.axes.y_axis, UP),
         )
 
-        self.curves = {}
-        self._curve_funcs = {}
-        self._curve_x_ranges = {}
-        self._curve_labels = {}
-        self._eq_group = VGroup()
-        self._eq_curve_names = None
-        self._eq_label_x = ""
-        self._eq_label_y = ""
-        self._eq_numbered = False
-        self._eq_count = 0
+        self.curves: dict[str, Mobject] = {}
+        self._curve_funcs: dict[str, Callable[[float], float]] = {}
+        self._curve_x_ranges: dict[str, Sequence[float]] = {}
+        self._curve_labels: dict[str, Text] = {}
+        self._eq_group: VGroup = VGroup()
+        self._eq_curve_names: tuple[str, str] | None = None
+        self._eq_label_x: str = ""
+        self._eq_label_y: str = ""
+        self._eq_numbered: bool = False
+        self._eq_count: int = 0
+        self._axis_arrows: VGroup | None = None
 
         self.add(self.axes, self.axis_labels)
 
-    def add_curve(self, name: str, func: Callable, x_range: Any, color: ManimColor, label_text: Optional[Any]=None):
+    def add_curve(self, name: str, func: Callable[[float], float],
+                  x_range: Sequence[float], color: ManimColor | str,
+                  label_text: str | None = None) -> ParametricFunction:
         """Plot a curve on the axes and store it by name."""
         curve = self.axes.plot(func, x_range=x_range, color=color)
         self.curves[name] = curve
@@ -118,7 +130,8 @@ class EconDiagram(VGroup):
 
         return curve
 
-    def add_vertical_line(self, name: str, x: int, color: ManimColor, label_text: Optional[Any]=None):
+    def add_vertical_line(self, name: str, x: float, color: ManimColor | str,
+                          label_text: str | None = None) -> Line:
         """Add a vertical line at a given x position."""
         y_min = self.axes.y_range[0]
         y_max = self.axes.y_range[1]
@@ -136,16 +149,18 @@ class EconDiagram(VGroup):
 
         return line
 
-    _SUBSCRIPTS = "₁₂₃₄₅₆₇₈₉"
+    _SUBSCRIPTS: str = "₁₂₃₄₅₆₇₈₉"
 
-    def _sub(self, n: Optional[np.ndarray]):
+    def _sub(self, n: int) -> str:
         """Return a unicode subscript for n (1-indexed)."""
         if 1 <= n <= 9:
             return self._SUBSCRIPTS[n - 1]
         return str(n)
 
-    def _build_eq_parts(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
-                        subscript: Optional[Any]=None):
+    def _build_eq_parts(self, curve_a: str, curve_b: str,
+                        label_x: str = "", label_y: str = "",
+                        subscript: int | None = None
+                        ) -> tuple[VGroup | None, VGroup | None]:
         """Build equilibrium geometry and labels separately.
 
         Returns (geometry_group, labels_group) or (None, None).
@@ -187,17 +202,19 @@ class EconDiagram(VGroup):
 
         return geom, labels
 
-    def _build_eq_group(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
-                        subscript: Optional[Any]=None):
+    def _build_eq_group(self, curve_a: str, curve_b: str,
+                        label_x: str = "", label_y: str = "",
+                        subscript: int | None = None) -> VGroup | None:
         """Build a combined equilibrium VGroup (geometry + labels)."""
         geom, labels = self._build_eq_parts(curve_a, curve_b, label_x,
                                             label_y, subscript)
-        if geom is None:
+        if geom is None or labels is None:
             return None
         return VGroup(geom, labels)
 
-    def mark_equilibrium(self, curve_a: Any, curve_b: Any, label_x: str = "", label_y: str = "",
-                         numbered: bool = False):
+    def mark_equilibrium(self, curve_a: str, curve_b: str, label_x: str = "",
+                         label_y: str = "", numbered: bool = False
+                         ) -> VGroup | None:
         """Mark the intersection of two curves with a dot and dashed lines.
 
         Parameters:
@@ -220,7 +237,7 @@ class EconDiagram(VGroup):
         self.add(eq_group)
         return eq_group
 
-    def _get_eq_coords(self):
+    def _get_eq_coords(self) -> tuple[float, float] | None:
         """Return (x, y) of the current equilibrium, or None."""
         if not self._eq_curve_names:
             return None
@@ -233,7 +250,9 @@ class EconDiagram(VGroup):
         return x_eq, func_a(x_eq)
 
     @staticmethod
-    def _make_single_arrow(start: np.ndarray, end: np.ndarray, color: ManimColor, tip_size: float = 0.08):
+    def _make_single_arrow(start: Point3D, end: Point3D,
+                           color: ManimColor | str,
+                           tip_size: float = 0.08) -> VGroup:
         """Create a line with a small triangle at the end only."""
         direction = end - start
         norm = np.linalg.norm(direction)
@@ -254,7 +273,9 @@ class EconDiagram(VGroup):
         )
         return VGroup(shaft, tip)
 
-    def _build_axis_arrows(self, old_xy: Any, new_xy: Any, arrow_color: ManimColor = WHITE):
+    def _build_axis_arrows(self, old_xy: tuple[float, float],
+                           new_xy: tuple[float, float],
+                           arrow_color: ManimColor | str = WHITE) -> VGroup:
         """Build arrows near the axes between old and new equilibrium values.
 
         Returns a VGroup with up to two arrows (x-axis and y-axis).
@@ -277,8 +298,12 @@ class EconDiagram(VGroup):
 
         return group
 
-    def get_shift_animation(self, curve_name: Any, new_func: Any, new_x_range: Optional[Any]=None,
-                            run_time: float = 1, show_arrows: bool = False, arrow_color: ManimColor = WHITE):
+    def get_shift_animation(self, curve_name: str,
+                            new_func: Callable[[float], float],
+                            new_x_range: Sequence[float] | None = None,
+                            run_time: float = 1, show_arrows: bool = False,
+                            arrow_color: ManimColor | str = WHITE
+                            ) -> AnimationGroup:
         """Return a Transform animation that shifts a curve to a new function.
 
         Parameters:
@@ -297,7 +322,9 @@ class EconDiagram(VGroup):
         self._curve_funcs[curve_name] = new_func
         self.curves[curve_name] = new_curve
 
-        anims = [ReplacementTransform(old_curve, new_curve, run_time=run_time)]
+        anims: list[Animation] = [
+            ReplacementTransform(old_curve, new_curve, run_time=run_time)
+        ]
 
         if curve_name in self._curve_labels:
             old_label = self._curve_labels[curve_name]
@@ -311,7 +338,7 @@ class EconDiagram(VGroup):
                     *self._eq_curve_names, self._eq_label_x, self._eq_label_y,
                     subscript=self._eq_count,
                 )
-                if new_geom is not None:
+                if new_geom is not None and new_labels is not None:
                     old_group = self._eq_group
                     old_geom = old_group[0]
                     new_eq_group = VGroup(new_geom, new_labels)

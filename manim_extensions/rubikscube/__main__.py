@@ -8,7 +8,7 @@ This module provides the entry point for the Rubik's Cube extension.
 
 """
 
-def main():
+def main() -> None:
     """Entry point for the ``python -m manim_extensions.rubikscube`` command."""
     pass
 

@@ -11,7 +11,9 @@ Cell - A single table cell with optional border.
 """
 
 # Manim Community Edition (manim CE) wildcard import for mobjects and constants
-from manim import BOLD, Line, ManimColor, Rectangle, Text, VGroup
+from manim import BOLD, Line, Rectangle, Text, VGroup
+from manim.utils.color import ParsableManimColor
+from typing import Any, Optional
 import numpy as np
 
 
@@ -46,9 +48,8 @@ class Cell(VGroup):
         font_size: int = 20,
         is_header: bool = False,
         show_border: bool = True,
-        **kwargs
-    ):
-        """Initializes a table cell with text content and optional styling."""
+        **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         
         self.value = value
@@ -59,10 +60,11 @@ class Cell(VGroup):
         self.show_border = show_border
         
         # Store color properties for copying
-        self._font_color = None
-        self._background_color = None
-        self._background_opacity = 0.0
-        self._border_color = None
+        self._font_color: Optional[ParsableManimColor] = None
+        self._background_color: Optional[ParsableManimColor] = None
+        self._background_opacity: float = 0.0
+        self._border_color: Optional[ParsableManimColor] = None
+        self.background: Optional[Rectangle] = None
         
         # Create invisible bounding box to enforce dimensions
         self.invisible_box = Rectangle(
@@ -83,7 +85,7 @@ class Cell(VGroup):
         
         # Create border if requested
         if show_border:
-            self.border = self.create_border(stroke_width)
+            self.border: Optional[VGroup] = self.create_border(stroke_width)
             self.add(self.border)
         else:
             self.border = None
@@ -197,7 +199,7 @@ class Cell(VGroup):
         
         return new_cell
     
-    def resize_width(self, new_width: float):
+    def resize_width(self, new_width: float) -> None:
         """
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
@@ -227,7 +229,7 @@ class Cell(VGroup):
             self.border = self.create_border(stroke_width)
             self.add(self.border)
     
-    def set_font_color(self, color: ManimColor):
+    def set_font_color(self, color: ParsableManimColor) -> "Cell":
         """
         Set the font/text color of this cell.
         
@@ -240,7 +242,7 @@ class Cell(VGroup):
         self.text.set_color(color)
         return self
     
-    def set_border_color(self, color: ManimColor):
+    def set_border_color(self, color: ParsableManimColor) -> "Cell":
         """
         Set the border line color of this cell.
         
@@ -255,7 +257,7 @@ class Cell(VGroup):
                 line.set_color(color)
         return self
     
-    def set_background_color(self, color: ManimColor, opacity: float = 0.5):
+    def set_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> "Cell":
         """
         Set a background fill color for this cell.
         Creates a filled rectangle behind the text.
@@ -271,7 +273,7 @@ class Cell(VGroup):
         self._background_opacity = opacity
         
         # Remove existing background if any
-        if hasattr(self, 'background') and self.background is not None:
+        if self.background is not None:
             self.remove(self.background)
         
         # Create background rectangle

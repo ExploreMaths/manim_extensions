@@ -8,7 +8,7 @@ This module provides the Row class for table visualizations.
 
 from manim import RIGHT, VGroup
 from .cell import Cell
-from typing import List, Union
+from typing import Any, Iterator, List, Union, overload
 
 
 class Row(VGroup):
@@ -46,9 +46,8 @@ class Row(VGroup):
         is_header: bool = False,
         show_border: bool = True,
         index: int = 0,
-        **kwargs
-    ):
-        """Initializes a table row with cells created from the given values."""
+        **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         
         self.values = values
@@ -66,7 +65,7 @@ class Row(VGroup):
         self.cells: List[Cell] = []
         self.create_cells()
     
-    def create_cells(self):
+    def create_cells(self) -> None:
         """Create and position all cells in this row."""
         for i, value in enumerate(self.values):
             cell = Cell(
@@ -85,7 +84,11 @@ class Row(VGroup):
             self.cells.append(cell)
             self.add(cell)
     
-    def __getitem__(self, index: int) -> Cell:
+    @overload
+    def __getitem__(self, index: int) -> Cell: ...
+    @overload
+    def __getitem__(self, index: slice) -> List[Cell]: ...
+    def __getitem__(self, index: Union[int, slice]) -> Union[Cell, List[Cell]]:
         """Get a cell by index."""
         return self.cells[index]
     
@@ -93,7 +96,7 @@ class Row(VGroup):
         """Return number of cells in this row."""
         return len(self.cells)
     
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Cell]:
         """Iterate over cells."""
         return iter(self.cells)
     

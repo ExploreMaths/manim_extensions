@@ -51,7 +51,7 @@ class SeqObject(VGroup):
         obj_label.align_to(obj_ctn, ORIGIN)
         super().__init__(obj_ctn, obj_label)
 
-    def create_obj_label(self, font_size: float = 18):
+    def create_obj_label(self, font_size: float = 18) -> Text:
         """Build the text label shown inside the object box.
 
         Parameters

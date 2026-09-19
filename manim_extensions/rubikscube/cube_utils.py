@@ -8,12 +8,17 @@ This module provides utility functions for Rubik's Cube operations.
 
 """
 
-from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
+from typing import TYPE_CHECKING
 
-
-from typing import Any
 import numpy as np
-def get_axis_from_face(face: str):
+from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
+from numpy.typing import NDArray
+
+if TYPE_CHECKING:
+    from .cube import RubiksCube
+
+
+def get_axis_from_face(face: str) -> NDArray[np.float64]:
     """Return the rotation axis corresponding to a Rubik's cube face.
 
     Parameters
@@ -36,7 +41,7 @@ def get_axis_from_face(face: str):
         return Y_AXIS
 
 
-def get_direction_from_face(face: str):
+def get_direction_from_face(face):
     """Return the rotation direction for a given face.
 
     Parameters
@@ -55,7 +60,7 @@ def get_direction_from_face(face: str):
     return -1
 
 
-def get_cubie_colors_from_state(state: np.ndarray):
+def get_cubie_colors_from_state(state):
     """Extract individual cubie colours from a cube state string.
 
     The state string follows the standard cube notation where each
@@ -74,7 +79,7 @@ def get_cubie_colors_from_state(state: np.ndarray):
     pass
 
 
-def get_all_states(cube: Any):
+def get_all_states(cube):
     """Return the current state of every cubie in the cube.
 
     Parameters
@@ -90,7 +95,7 @@ def get_all_states(cube: Any):
     pass
 
 
-def get_type_of_cubie(dim: int, position: np.ndarray):
+def get_type_of_cubie(dim, position):
     """Classify a cubie by its position within the cube.
 
     Parameters
@@ -116,7 +121,7 @@ def get_type_of_cubie(dim: int, position: np.ndarray):
         return "center"
 
 
-def get_faces_of_cubie(dim: int, position: np.ndarray):
+def get_faces_of_cubie(dim, position):
     """Return the outward-facing directions for a cubie at a given position.
 
     Parameters
@@ -148,7 +153,7 @@ def get_faces_of_cubie(dim: int, position: np.ndarray):
             (dim, dim, dim): [RIGHT, UP, OUT],
         }
         return faces[position]
-    except KeyError:
+    except:
         x = position[0]
         y = position[1]
         z = position[2]

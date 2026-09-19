@@ -6,6 +6,7 @@
 
 
 from manim import (
+    Animation,
     AnimationGroup,
     Circle,
     DOWN,
@@ -26,7 +27,10 @@ from manim import (
     VMobject,
     WHITE,
 )
-from typing import List, Optional, TypeAlias
+from typing import Any, List, TypeAlias, cast
+import numpy as np
+from numpy.typing import NDArray
+from manim.mobject.mobject import _AnimationBuilder
 from manim.typing import ManimFloat, Point3D as ManimPoint3D
 from manim.typing import Vector3DLike
 from .utils.numpy_helper import NumpyHelper
@@ -178,30 +182,14 @@ class Node(VMobject):
 
     def __init__(
         self,
-        value: Optional[NodeValue] = None,
+        value: NodeValue = None,
         width: float = NodeConfig.WIDTH,
         text_scale: float = 1.0,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         **kwargs,
     ):
-        """Create a visual node with a value label and configurable box.
-
-        Parameters
-        ----------
-        value : str | int | float | None, optional
-            Content displayed inside the node; a dot is shown when empty.
-        width : float, optional
-            Width of the node box.
-        text_scale : float, optional
-            Scale factor applied to the displayed text.
-        box_type : type, optional
-            Shape of the node box (``Square`` or ``Circle``).
-        box_color : ManimColor, optional
-            Fill colour of the node box.
-        **kwargs
-            Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
-        """
+        """Initialize Node."""
 
         super().__init__(**kwargs)
         self.set_box(box_type, width, box_color)
@@ -304,7 +292,7 @@ class Node(VMobject):
         """Return the fill opacity of the node box."""
         return self.box.get_fill_opacity()
 
-    def get_slot(self, direction: Vector3D, index: int) -> Point3D:
+    def get_slot(self, direction: Vector3D, index) -> Point3D:
         """Return a point on the node's boundary at the given slot index.
 
         The slot numbering scheme divides each edge of the box into
@@ -401,19 +389,7 @@ class Node(VMobject):
             opacity: float = NodeConfig.SELECT_OPACITY,
             **kwargs,
         ):
-            """Create an animation that highlights nodes by changing their fill colour.
-
-            Parameters
-            ----------
-            *nodes : Node
-                One or more nodes to highlight.
-            color : ManimColor, optional
-                Fill colour used for highlighting.
-            opacity : float, optional
-                Opacity of the highlight fill.
-            **kwargs
-                Forwarded to :class:`~manim.animation.composition.Succession`.
-            """
+            """Initialize Select."""
 
             super().__init__(
                 AnimationGroup(
@@ -491,17 +467,7 @@ class Node(VMobject):
         """
 
         def __init__(self, node: "Node", value: NodeValue, **kwargs):
-            """Create an animation that replaces a node's displayed value.
-
-            Parameters
-            ----------
-            node : Node
-                The node whose value will be updated.
-            value : NodeValue
-                New value to display inside the node.
-            **kwargs
-                Forwarded to :class:`~manim.animation.composition.Succession`.
-            """
+            """Initialize UpdateValue."""
             super().__init__(*[node.animate.set_value(value)], **kwargs)
 
     class MoveAndOverWrite(Succession):
@@ -542,25 +508,11 @@ class Node(VMobject):
             self,
             node: "Node",
             target: "Node",
-            select_color: Optional[ManimColor] = None,
+            select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Create an animation that moves a node to a target and overwrites its value.
-
-            Parameters
-            ----------
-            node : Node
-                The node to move and whose value will be copied.
-            target : Node
-                The destination node that receives the new value.
-            select_color : ManimColor, optional
-                If given, highlights the moving node during animation.
-            select_opacity : float, optional
-                Opacity of the selection highlight.
-            **kwargs
-                Forwarded to :class:`~manim.animation.composition.Succession`.
-            """
+            """Initialize MoveAndOverWrite."""
             steps = []
             if select_color is not None:
                 steps.append(
@@ -615,25 +567,11 @@ class Node(VMobject):
             self,
             node: "Node",
             target: "Node",
-            select_color: Optional[ManimColor] = None,
+            select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Create an animation that copies a node to a target and overwrites its value.
-
-            Parameters
-            ----------
-            node : Node
-                The node whose value will be copied.
-            target : Node
-                The destination node that receives the new value.
-            select_color : ManimColor, optional
-                If given, highlights the copied node during animation.
-            select_opacity : float, optional
-                Opacity of the selection highlight.
-            **kwargs
-                Forwarded to :class:`~manim.animation.composition.Succession`.
-            """
+            """Initialize CopyAndOverWrite."""
             copied_node = node.copy().move_to(node)
             steps = [
                 FadeIn(copied_node),
@@ -683,25 +621,11 @@ class Node(VMobject):
             self,
             node1: "Node",
             node2: "Node",
-            select_color: Optional[ManimColor] = None,
+            select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Create an animation that swaps the values of two nodes visually.
-
-            Parameters
-            ----------
-            node1 : Node
-                First node to swap.
-            node2 : Node
-                Second node to swap.
-            select_color : ManimColor, optional
-                If given, highlights the temporary copies during the swap.
-            select_opacity : float, optional
-                Opacity of the selection highlight.
-            **kwargs
-                Forwarded to :class:`~manim.animation.composition.Succession`.
-            """
+            """Initialize SwapAndOverWrite."""
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)
             steps = [

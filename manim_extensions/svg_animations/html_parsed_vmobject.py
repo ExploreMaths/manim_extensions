@@ -17,10 +17,16 @@ from manim import (
     VMobject,
     ValueTracker,
     color_to_int_rgba,
-    np,
 )
+from manim.camera.camera import Camera
+from manim.camera.moving_camera import MovingCamera
 import itertools
 import os
+from types import ModuleType
+from typing import cast
+
+import numpy as np
+from numpy.typing import NDArray
 
 from ..utils.deps import require
 
@@ -99,7 +105,7 @@ combsDict[comb]();
 """
 
 
-def _ensure_to_svg_plugin():
+def _ensure_to_svg_plugin() -> None:
     """Import the manim-mobject-svg plugin, which registers VMobject.to_svg().
 
     The import is done lazily so that :mod:`manim_extensions.svg_animations`
@@ -132,7 +138,7 @@ class HTMLParsedVMobject:
         The scene in which ``vmobject`` lives. Its camera state and
         background color are used for the HTML output, and the per-frame
         updater is registered on it.
-    width : float, optional
+    width : str, optional
         Width of the embedded SVG element, e.g. ``"500px"``.
         Defaults to ``"500px"``.
     basic_html : bool, optional
@@ -179,22 +185,7 @@ class HTMLParsedVMobject:
                parsed.finish()
     """
 
-    def __init__(self, vmobject: VMobject, scene: Scene, width: float = "500px", basic_html: str = False):
-        """Initialize the HTML-parsed vmobject wrapper with scene references,
-        output filenames, and register the per-frame updater.
-
-        Parameters
-        ----------
-        vmobject
-            The Manim VMobject to export as SVG into the HTML page.
-        scene
-            The scene whose camera state and updater mechanism are used.
-        width
-            CSS width of the embedded SVG element (default ``"500px"``).
-        basic_html
-            If ``True``, generate a minimal HTML wrapper without a full page
-            structure or script tag.
-        """
+    def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False) -> None:
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -207,19 +198,16 @@ class HTMLParsedVMobject:
         self.update_html()
         self.js_updates = ""
         self.continue_updating = True
-        self.original_frame_width = self.scene.camera.frame_width
-        self.original_frame_height = self.scene.camera.frame_height
+        camera = cast(Camera, self.scene.camera)
+        self.original_frame_width = camera.frame_width
+        self.original_frame_height = camera.frame_height
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
     
-    def updater(self, dt: float):
-        """Per-frame updater that exports the vmobject to SVG, parses its
-        path attributes, and appends the corresponding JavaScript/SVG update
-        commands for the HTML output page.
-        """
+    def updater(self, dt: float) -> None:
         if self.continue_updating is False:
             return
-        svg2paths = require("svg", "svgpathtools").svg2paths
+        svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         svg_filename = self.filename_base + str(self.current_index) + ".svg"
         self.vmobject.to_svg(svg_filename)
         html_el_creations = ""
@@ -232,17 +220,19 @@ class HTMLParsedVMobject:
             html_el_creation += f"       {self.filename_base.lower()}.appendChild(el{i});\n"
             html_el_creations += html_el_creation
             i += 1
-        background_color = color_to_int_rgba(self.scene.camera.background_color, self.scene.camera.background_opacity)
+        camera = cast(Camera, self.scene.camera)
+        background_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
         background_color[-1] = background_color[-1] / 255
-        background_color = [str(par) for par in background_color]
-        html_el_creations += f"     {self.filename_base.lower()}.style.backgroundColor = 'rgb({', '.join(background_color)})';\n"
+        background_color_str = [str(par) for par in background_color]
+        html_el_creations += f"     {self.filename_base.lower()}.style.backgroundColor = 'rgb({', '.join(background_color_str)})';\n"
         if isinstance(self.scene, MovingCameraScene):
-            frame = self.scene.camera.frame
-            pixel_width = self.scene.camera.pixel_width * self.scene.camera.frame_width / self.original_frame_width
-            pixel_height = self.scene.camera.pixel_height * self.scene.camera.frame_height / self.original_frame_height
+            moving_camera = cast(MovingCamera, self.scene.camera)
+            frame = moving_camera.frame
+            pixel_width = moving_camera.pixel_width * moving_camera.frame_width / self.original_frame_width
+            pixel_height = moving_camera.pixel_height * moving_camera.frame_height / self.original_frame_height
             frame_center = frame.get_corner(UL)
-            pixel_center = frame_center * self.scene.camera.pixel_width / self.original_frame_width
-            pixel_center += self.scene.camera.pixel_width / 2 * RIGHT + self.scene.camera.pixel_height / 2 * DOWN
+            pixel_center = frame_center * moving_camera.pixel_width / self.original_frame_width
+            pixel_center += moving_camera.pixel_width / 2 * RIGHT + moving_camera.pixel_height / 2 * DOWN
             pixel_center[1] = -pixel_center[1]
             pixel_center = pixel_center[:2]
             arr = [*pixel_center, pixel_width, pixel_height]
@@ -257,25 +247,23 @@ class HTMLParsedVMobject:
         self.current_index += 1
         os.remove(svg_filename)
     
-    def update_html(self):
-        """Rebuild the HTML page content using the current camera background
-        color and pixel dimensions, applying either the full or basic template.
-        """
+    def update_html(self) -> None:
+        camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(
-            self.scene.camera.background_color,
-            self.scene.camera.background_opacity
+            camera.background_color,
+            camera.background_opacity
         )
         bg_color[-1] = bg_color[-1] / 255
-        bg_color = [str(c) for c in bg_color]
-        bg_color = f"rgb({', '.join(bg_color)})"
+        bg_color_str = [str(c) for c in bg_color]
+        bg_color_css = f"rgb({', '.join(bg_color_str)})"
         if self.basic_html is False:
             self.html = HTML_STRUCTURE % (
                 self.filename_base,
                 self.filename_base,
                 self.width,
-                self.scene.camera.pixel_width,
-                self.scene.camera.pixel_height,
-                bg_color,
+                camera.pixel_width,
+                camera.pixel_height,
+                bg_color_css,
                 self.final_html_body,
                 self.js_filename
             )
@@ -283,16 +271,12 @@ class HTMLParsedVMobject:
             self.html = BASIC_HTML_STRUCTURE % (
                 self.filename_base,
                 self.width,
-                self.scene.camera.pixel_width,
-                self.scene.camera.pixel_height,
-                bg_color
+                camera.pixel_width,
+                camera.pixel_height,
+                bg_color_css
             )
     
-    def finish(self):
-        """Stop the updater, assemble the final JavaScript file with all
-        recorded frame updates and optional interactive code, and write both
-        the HTML and JS files to disk.
-        """
+    def finish(self) -> None:
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
         if not hasattr(self, "last_t"):
@@ -314,25 +298,10 @@ class HTMLParsedVMobject:
     def start_interactive(
         self,
         value_trackers: list[ValueTracker],
-        linspaces: list[np.ndarray],
+        linspaces: list[NDArray[np.float64]],
         animate_this: bool = True
-    ):
-        """Pre-render all combinations of ValueTracker values and generate
-        interactive JavaScript so the user can scrub through the SVG animation
-        in the browser.
-
-        Parameters
-        ----------
-        value_trackers
-            List of ValueTrackers whose values are varied in the animation.
-        linspaces
-            List of value arrays; each defines the discrete steps for the
-            corresponding ValueTracker.
-        animate_this
-            If ``False``, stop the regular updater immediately and use the
-            current time as the last timestamp.
-        """
-        svg2paths = require("svg", "svgpathtools").svg2paths
+    ) -> None:
+        svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:
             self.continue_updating = False
             self.last_t = self.scene.renderer.time
@@ -342,9 +311,10 @@ class HTMLParsedVMobject:
         combs = itertools.product(*linspaces)
         combs_dict = ""
         comb_now = ", ".join([str(v.get_value()) for v in value_trackers])
+        camera = cast(Camera, self.scene.camera)
         for comb in combs:
             for vt, val in zip(value_trackers, comb):
-                self.scene.wait(1/self.scene.camera.frame_rate)
+                self.scene.wait(1/camera.frame_rate)
                 vt.set_value(val)
             self.vmobject.to_svg(filename)
             html_el_creations = f"{self.filename_base.lower()}.replaceChildren();\n"

@@ -7,26 +7,27 @@ This module provides QR code generation functionality with customization options
 
 """
 
+from typing import Any
+
 import manim as m
 
 from ..utils.deps import require
 
 
-from typing import Optional
 def qr_code(payload: str,
             corner_size: int = 7,
             icon: str | int | None = None,
-            icon_color: Optional[str] = None,
+            icon_color: str | m.ManimColor | None = None,
             icon_size: float = 10,  # in qr pixel
             icon_margin_size: float = 0.1,  # in qr pixel
-            white_color: Optional[str] = None,
-            corner_color: Optional[str] = None,
+            white_color: str | m.ManimColor | None = None,
+            corner_color: str | m.ManimColor | None = None,
             data_shape: str = 'rectangles',
-            rectangles_kwargs: Optional[dict] = None,
-            circle_kwargs: Optional[dict] = None,
-            error_correction: bool = 'H',
-            segno_kwargs: Optional[dict] = None,
-            **kwargs, ) -> m.VGroup:
+            rectangles_kwargs: dict[str, Any] | None = None,
+            circle_kwargs: dict[str, Any] | None = None,
+            error_correction: str = 'H',
+            segno_kwargs: dict[str, Any] | None = None,
+            **kwargs: Any, ) -> m.VGroup:
     """
     Create a QR code as a VGroup of Manim objects.
     This function uses the segno library to generate a QR code and then converts it into Manim objects.
@@ -97,7 +98,7 @@ def qr_code(payload: str,
         corner_color = white_color
     if data_shape not in ['circles', 'rectangles']:
         raise ValueError(f"Invalid data_shape: {data_shape}. valid values are 'circles' and 'rectangles'")
-    segno = require("qr", "segno")
+    segno: Any = require("qr", "segno")  # segno ships no type stubs
     if rectangles_kwargs is None:
         rectangles_kwargs = {}
     if circle_kwargs is None:
@@ -127,7 +128,7 @@ def qr_code(payload: str,
     # Draw a rectangle or circle for each module of the QR code, except for the corner elements
     for y, row in enumerate(matrix):
         for x, is_white_qr_pixel in enumerate(row):
-            current_elem = None
+            current_elem: m.Rectangle | m.Circle | None = None
 
             if data_shape == 'rectangles' and is_white_qr_pixel:
                 default_rect_kwargs = {
