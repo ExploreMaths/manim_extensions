@@ -25,7 +25,7 @@ import numpy as np
 
 from ...utils.deps import require
 
-__all__ = ["Lens"]
+__all__ = ["Lens", "snell", "antisnell", "intersection"]
 
 
 def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:

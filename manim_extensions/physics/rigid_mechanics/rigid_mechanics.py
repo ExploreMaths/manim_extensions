@@ -28,11 +28,12 @@ the specific functions of the space.
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING, Any, Protocol, Tuple, cast
+
 import numpy as np
 
 from manim import (
     Circle,
-    Group,
     Line,
     Mobject,
     Polygon,
@@ -42,13 +43,16 @@ from manim import (
     Scene,
     UP,
     VGroup,
-    VMobject,
     angle_between_vectors,
 )
-from typing import Any, Optional, Tuple
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+from manim.renderer.cairo_renderer import CairoRenderer
+from manim.renderer.opengl_renderer import OpenGLRenderer
 
 from ...utils.deps import require
+
+if TYPE_CHECKING:
+    import pymunk
 
 __all__ = [
     "Space",
@@ -58,6 +62,25 @@ __all__ = [
     "get_angle",
     "SpaceScene",
 ]
+
+
+def _load_pymunk() -> pymunk:
+    """Import pymunk lazily, as it belongs to the ``physics`` extra."""
+    return cast("pymunk", require("physics", "pymunk"))
+
+
+class _PhysicsAttributes(Protocol):
+    """Structural type of a mobject augmented with pymunk body attributes.
+
+    The attributes are attached dynamically by
+    :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body`
+    and :func:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape`.
+    """
+
+    body: pymunk.Body
+    shape: pymunk.Shape
+    angle: float
+    spacescene: SpaceScene
 
 
 class Space(Mobject, metaclass=ConvertToOpenGL):
@@ -169,7 +192,7 @@ class SpaceScene(Scene):
 
     GRAVITY: Tuple[float, float] = 0, -9.81
 
-    def __init__(self, renderer: Optional[Any]=None, **kwargs):
+    def __init__(self, renderer=None, **kwargs):
         """A basis scene for all of rigid mechanics. The gravity vector
         can be adjusted with ``self.GRAVITY``.
         """
@@ -275,7 +298,7 @@ class SpaceScene(Scene):
                 mob.body.sleep()
 
 
-def _step(space: Any, dt: float):
+def _step(space, dt):
     """Advance the pymont simulation by one time step.
 
     Parameters
@@ -288,7 +311,7 @@ def _step(space: Any, dt: float):
     space.space.step(dt)
 
 
-def _simulate(b: Mobject):
+def _simulate(b):
     """Read the current state of a pymont body and update the Manim mobject.
 
     Parameters
