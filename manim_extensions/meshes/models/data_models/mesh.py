@@ -11,7 +11,7 @@ Mesh structure
 from copy import deepcopy
 
 # third-party imports
-from typing import Any, List, Optional, Set, Tuple, Union
+from typing import List, Optional, Set, Tuple, Union
 import numpy as np
 
 # local imports
@@ -92,7 +92,17 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def __init__(self, vertices: list, faces: list, parts: Optional[Any]=None, dangling: bool = False):
+    def __init__(
+        self,
+        vertices: Union[np.ndarray, List[List[float]], List[Tuple[float, ...]]],
+        faces: Optional[
+            Union[np.ndarray, List[np.ndarray], List[List[int]], List[Tuple[int, ...]]]
+        ],
+        parts: Optional[
+            Union[np.ndarray, List[np.ndarray], List[List[int]], List[Tuple[int, ...]]]
+        ] = None,
+        dangling: bool = False,
+    ) -> None:
         """Initialize mesh with the correct internal structure for all variables."""
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
@@ -175,7 +185,7 @@ class Mesh:
             return self
         raise NotImplementedError
 
-    def __eq__(self, other: "Mesh") -> bool:
+    def __eq__(self, other: object) -> bool:
         """Check whether two meshes are equal.
 
         Two meshes are considered equal when their vertex coordinates
@@ -277,7 +287,7 @@ class Mesh:
             f"Not equal is not defined for mesh and {type(other)}"
         )
 
-    def __ne__(self, other: "Mesh") -> bool:
+    def __ne__(self, other: object) -> bool:
         """Check whether two meshes are not equal.
 
         Parameters
@@ -304,7 +314,7 @@ class Mesh:
     @property
     def dim(self) -> int:
         """get the shape / dimension of every vertex"""
-        return self._vertices.shape[1]
+        return int(self._vertices.shape[1])
 
     @property
     def vertices(self) -> Vertices:
@@ -693,8 +703,7 @@ class Mesh:
         if any(len(self._parts) <= idx or idx < 0 for idx in indices):
             raise MeshIndexException("Part index out of range")
         # remove indices back to front
-        indices[:] = list(set(indices))
-        indices.sort(reverse=True)
+        indices[:] = sorted(set(indices), reverse=True)
         for idx in indices:
             del self._parts[idx]
 
@@ -889,7 +898,7 @@ class Mesh:
         unique = np.unique(np.concatenate(self._parts).ravel())
         return any(f_idx not in unique for f_idx in range(len(self._faces)))
 
-    def scale_mesh(self, scaling: float, about_point: Optional[Any]=None) -> None:
+    def scale_mesh(self, scaling: float, about_point: Optional[np.ndarray] = None) -> None:
         """Scale all vertices by a uniform factor.
 
         Parameters
@@ -906,7 +915,9 @@ class Mesh:
         else:
             self._vertices *= float(scaling)
 
-    def stretch_mesh(self, factor: float, dim: int, about_point: Optional[Any]=None) -> None:
+    def stretch_mesh(
+        self, factor: float, dim: int, about_point: Optional[np.ndarray] = None
+    ) -> None:
         """Stretch all vertices along a single dimension.
 
         Parameters
@@ -986,7 +997,10 @@ class Mesh:
         self._vertices[v_id] += translation
 
     def apply_rotation(
-        self, angle: float, axis: np.ndarray = np.array([0, 0, 1]), about_point: Optional[Any]=None
+        self,
+        angle: float,
+        axis: np.ndarray = np.array([0, 0, 1]),
+        about_point: Optional[np.ndarray] = None,
     ) -> None:
         """Rotate all vertices around a given axis.
 
@@ -1030,7 +1044,7 @@ class Mesh:
             rot_mat = Rotation.from_rotvec(
                 angle * np.array(axis) / np.linalg.norm(np.array(axis))
             ).as_matrix()
-            return rot_mat
+            return np.asarray(rot_mat)
 
         # define basic rotation matrix
         rot_2d = np.array(

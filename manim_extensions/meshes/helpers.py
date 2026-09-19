@@ -124,7 +124,7 @@ def is_twice_nested_iterable(obj: Any, min_lens: Tuple[int, int] = (1, 3)) -> bo
     """
     # easy case np.ndarray with correct specs
     if isinstance(obj, np.ndarray) and len(obj.shape) == 2:
-        return obj.shape[0] >= min_lens[0] and obj.shape[1] >= min_lens[1]
+        return bool(obj.shape[0] >= min_lens[0] and obj.shape[1] >= min_lens[1])
     if isinstance(obj, (list, tuple)) and len(obj) == 0:
         return True
 
@@ -185,8 +185,7 @@ def fix_references(
         Indices in *original* where entries were removed.
     """
     # reverse sort indices in place to delete back to front and change given indices accordingly
-    indices[:] = list(set(indices))
-    indices.sort(reverse=True)
+    indices[:] = sorted(set(indices), reverse=True)
 
     # get list of indices where original references removed indices
     sub_removed = []
@@ -211,7 +210,7 @@ def fix_references(
     return sorted(sub_removed)
 
 
-def remove_keys_from_dict(d: dict, keys: List[str]) -> Dict[str, Any]:
+def remove_keys_from_dict(d: Dict[str, Any], keys: List[str]) -> Dict[str, Any]:
     """Remove *keys* from dictionary *d* without raising ``KeyError``.
 
     Parameters
