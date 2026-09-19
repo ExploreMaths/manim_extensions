@@ -8,7 +8,11 @@ This module provides geometry utility functions for compass operations.
 
 """
 
+from typing import Any
+
 from manim import Arc, PURE_YELLOW, RIGHT
+from manim.typing import Point3D, Vector3D
+from manim.utils.color import ParsableManimColor
 
 __all__ = [
     "get_arc",
@@ -17,11 +21,11 @@ import numpy as np
 
 
 def get_arc(
-    niddle_pos: np.ndarray,
-    pen_pos: np.ndarray,
+    niddle_pos: Point3D,
+    pen_pos: Point3D,
     angle: float,
-    color: object = PURE_YELLOW,
-    **kwargs: object,
+    color: ParsableManimColor = PURE_YELLOW,
+    **kwargs: Any,
 ) -> Arc:
     """
     Construct an arc from its centre and starting point.
@@ -70,8 +74,8 @@ def get_arc(
 
 
 def get_distance(
-    point_start: np.ndarray,
-    point_end: np.ndarray,
+    point_start: Point3D,
+    point_end: Point3D,
 ) -> float:
     """Compute the distance between two points.
 
@@ -82,12 +86,12 @@ def get_distance(
     point_end : np.ndarray
     The point used by the operation.
     """
-    return np.linalg.norm(point_start - point_end)
+    return float(np.linalg.norm(point_start - point_end))
 
 
 def is_counter_clockwise(
-    vector_start: np.ndarray,
-    vector_end: np.ndarray,
+    vector_start: Vector3D,
+    vector_end: Vector3D,
 ) -> bool:
     """Return whether vector_end is counter-clockwise from vector_start.
 
@@ -98,12 +102,12 @@ def is_counter_clockwise(
     vector_end : np.ndarray
         Ending vector whose orientation relative to the starting vector is evaluated.
     """
-    return np.cross(vector_start, vector_end)[-1] > 0
+    return bool(np.cross(vector_start, vector_end)[-1] > 0)
 
 
 def get_vecs_angle(
-    vec_s: np.ndarray,
-    vec_e: np.ndarray,
+    vec_s: Vector3D,
+    vec_e: Vector3D,
 ) -> float:
     """Compute the signed angle from *vec_s* to *vec_e*.
 
@@ -131,4 +135,4 @@ def get_vecs_angle(
             np.dot(vec_s, vec_e), np.linalg.norm(vec_s) * np.linalg.norm(vec_e)
         )
     )
-    return angle if is_counter_clockwise(vec_s, vec_e) else -angle
+    return float(angle) if is_counter_clockwise(vec_s, vec_e) else float(-angle)

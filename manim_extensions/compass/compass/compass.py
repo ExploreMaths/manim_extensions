@@ -15,7 +15,6 @@ from manim import (
     ORIGIN,
     PI,
     PURE_YELLOW,
-    Point,
     Polygon,
     RED,
     RIGHT,
@@ -24,10 +23,14 @@ from manim import (
     VGroup,
     WHITE,
 )
+from manim.typing import Point3D
+from manim.utils.color import ParsableManimColor
 
 __all__ = [
     "Compass",
 ]
+from typing import Any
+
 import numpy as np
 
 from ..utils.geometry_method import get_distance, is_counter_clockwise
@@ -75,14 +78,14 @@ class Compass(VGroup):
     def __init__(
         self,
         span: float = 1.5,
-        head_color: object = WHITE,
-        niddle_color: object = RED,
-        pen_color: object = PURE_YELLOW,
+        head_color: ParsableManimColor = WHITE,
+        niddle_color: ParsableManimColor = RED,
+        pen_color: ParsableManimColor = PURE_YELLOW,
         stroke_width: float = 2,
         leg_length: float = 3.1,
         leg_width: float = 0.12,
         r: float = 0.2,
-        **kwargs: object,
+        **kwargs: Any,
     ) -> None:
         """Initialize the Compass instance."""
         super().__init__(stroke_width=stroke_width, **kwargs)
@@ -138,15 +141,15 @@ class Compass(VGroup):
         self.move_to(ORIGIN)
         return self
 
-    def get_niddle_tip(self) -> np.ndarray:
+    def get_niddle_tip(self) -> Point3D:
         """Return the coordinates of the needle tip."""
-        return self.niddle_tip.get_vertices()[1]
+        return np.asarray(self.niddle_tip.get_vertices()[1])
 
-    def get_pen_tip(self) -> np.ndarray:
+    def get_pen_tip(self) -> Point3D:
         """Return the coordinates of the pen tip."""
-        return self.pen_tip.get_vertices()[1]
+        return np.asarray(self.pen_tip.get_vertices()[1])
 
-    def get_niddle2pen_vec(self) -> np.ndarray:
+    def get_niddle2pen_vec(self) -> Point3D:
         """Return the vector from the needle tip to the pen tip."""
         return Line(self.get_niddle_tip(), self.get_pen_tip()).get_unit_vector()
 
@@ -154,7 +157,7 @@ class Compass(VGroup):
         """Return the compass span: distance between pen tip and needle tip."""
         return get_distance(self.get_pen_tip(), self.get_niddle_tip())
 
-    def move_niddle_tip_to(self, pos: Point) -> "Compass":
+    def move_niddle_tip_to(self, pos: Point3D) -> "Compass":
         """Move the compass as a whole so that the needle tip is at pos.
 
         .. manim:: CompassMoveNiddleTipToDocExample
@@ -252,7 +255,7 @@ class Compass(VGroup):
     def split_compass_with_niddle_tip_fixed(
         self,
         angle: float,
-        niddle_tip_pos: Point,
+        niddle_tip_pos: Point3D,
     ) -> "Compass":
         """Keep the needle tip fixed and open the two compass legs by angle.
 
@@ -304,13 +307,13 @@ class Compass(VGroup):
         )
         if self.get_compass_rotate_angle_direction():
             span_res = -span_res
-        return span_res
+        return float(span_res)
 
     def set_compass(
         self,
         span_angle: float,
         rotate_angle: float,
-        niddle_tip_pos: Point,
+        niddle_tip_pos: Point3D,
     ) -> "Compass":
         """Set the compass span, rotation angle, and needle tip position.
 

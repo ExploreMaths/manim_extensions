@@ -20,16 +20,17 @@ from manim import (
     ORIGIN,
     PI,
     PURE_YELLOW,
-    Point,
     RIGHT,
     Rotate,
     UP,
     UR,
     linear,
 )
+from manim.typing import Point3D
+from manim.utils.color import ParsableManimColor
 
 __all__ = ["CompassScene"]
-from typing import List
+from typing import Any
 
 
 from ..compass import Compass, Ruler, Pencil
@@ -78,7 +79,7 @@ class CompassScene(MovingCameraScene):
         self.pencil = Pencil().to_corner(UR)
 
     def compass_move_niddle_tip_to(
-        self, pos: Point = ORIGIN, run_time: float = 1
+        self, pos: Point3D = ORIGIN, run_time: float = 1
     ) -> None:
         """Move the compass needle tip to a target position.
 
@@ -99,8 +100,8 @@ class CompassScene(MovingCameraScene):
         self,
         angle_or_arc: float | Arc,
         arc: Arc | None = None,
-        added_anims: List[Animation] | None = None,
-        **kwargs: object,
+        added_anims: list[Animation] | None = None,
+        **kwargs: Any,
     ) -> None:
         """Rotate the compass about its needle tip.
 
@@ -113,7 +114,7 @@ class CompassScene(MovingCameraScene):
         added_anims : list[Animation], optional
             Additional animations to combine with the rotation.
         """
-        anims = [
+        anims: list[Animation] = [
             Rotate(
                 self.compass,
                 about_point=self.compass.get_niddle_tip(),
@@ -165,8 +166,8 @@ class CompassScene(MovingCameraScene):
 
     def set_compass(
         self,
-        niddle_pos: Point | None = None,
-        pen_pos: Point | None = None,
+        niddle_pos: Point3D | None = None,
+        pen_pos: Point3D | None = None,
         run_time: float = 1.0,
     ) -> None:
         """

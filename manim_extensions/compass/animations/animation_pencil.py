@@ -8,10 +8,12 @@ This module provides animations for pencil manipulations.
 
 """
 
-from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, Point, VMobject
+from typing import Any
+
+from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, VMobject
+from manim.typing import Point3D
 
 __all__ = ["MovePencilAlongPath", "MovePencilTipTo", "DrawPath", "PutPencilAway"]
-from typing import Optional, Union
 
 from ..compass.pencil import Pencil
 
@@ -44,11 +46,12 @@ class MovePencilAlongPath(MoveAlongPath):
     def __init__(
         self,
         mobject: Pencil,
-        path: Optional[VMobject] = None,
-        suspend_mobject_updating: Union[bool, None] = False,
-        **kwargs,
+        path: VMobject | None = None,
+        suspend_mobject_updating: bool = False,
+        **kwargs: Any,
     ) -> None:
         """Initialize MovePencilAlongPath."""
+        assert path is not None
         start = path.get_start()
         path = path.copy().shift(mobject.get_center() - start)
         super().__init__(mobject, path, suspend_mobject_updating, **kwargs)
@@ -77,7 +80,9 @@ class MovePencilTipTo(ApplyMethod):
         point : Point
             The target point."""
 
-    def __init__(self, pencil: Pencil, point: Optional[Point] = None, **kwargs):
+    def __init__(
+        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    ) -> None:
         """Initialize MovePencilTipTo."""
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
@@ -104,8 +109,11 @@ class DrawPath(AnimationGroup):
         path : VMobject
             The path."""
 
-    def __init__(self, pencil: Pencil, path: Optional[VMobject] = None, **kwargs):
+    def __init__(
+        self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
+    ) -> None:
         """Initialize DrawPath."""
+        assert path is not None
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
 
 
@@ -132,6 +140,8 @@ class PutPencilAway(MovePencilTipTo):
         point : Point
             The placement position."""
 
-    def __init__(self, pencil: Pencil, point: Optional[Point] = None, **kwargs):
+    def __init__(
+        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    ) -> None:
         """Initialize PutPencilAway."""
         super().__init__(pencil, point, **kwargs)
