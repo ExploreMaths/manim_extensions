@@ -10,7 +10,7 @@ from __future__ import annotations
 from manim import Animation, Indicate, Scene, Text
 from typing import Any, Union
 
-from .m_array import MArrayElement
+from .m_array import MArrayElement, MobProps
 
 
 class MVariable(MArrayElement):
@@ -73,11 +73,11 @@ class MVariable(MArrayElement):
         value: Any = "",
         index: Union[str, int] = "",
         label: str = "",
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
-        mob_label_args: dict = {},
-        **kwargs,
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
+        mob_label_args: MobProps = {},
+        **kwargs: Any,
     ) -> None:
         """Initializes the class.
 
@@ -177,7 +177,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -215,7 +215,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -253,7 +253,7 @@ class MVariable(MArrayElement):
         play_anim
             Specifies whether to play the :class:`~manim.animation.animation.Animation`.
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
