@@ -6,8 +6,11 @@
 # SPDX-License-Identifier: MIT
 """Network connection visualization utilities."""
 
+from typing import Any
+
 import numpy as np
 from manim import (
+    Animation,
     AnimationGroup,
     Arrow,
     DOWN,
@@ -23,6 +26,7 @@ from manim import (
     WHITE,
     override_animation,
 )
+from numpy.typing import NDArray
 
 
 class NetworkConnection(VGroup):
@@ -52,7 +56,12 @@ class NetworkConnection(VGroup):
         Color of active animations for this mobject, by default ORANGE.
     """
 
-    direction_vector_map = {"up": UP, "down": DOWN, "left": LEFT, "right": RIGHT}
+    direction_vector_map: dict[str, NDArray[np.float64]] = {
+        "up": UP,
+        "down": DOWN,
+        "left": LEFT,
+        "right": RIGHT,
+    }
 
     def __init__(
         self,
@@ -64,7 +73,7 @@ class NetworkConnection(VGroup):
         stroke_width: float = 2.0,
         color: ManimColor = WHITE,
         active_color: ManimColor = ORANGE,
-    ):
+    ) -> None:
         """Creates an arrow with right angles in it connecting
         two mobjects.
 
@@ -100,7 +109,7 @@ class NetworkConnection(VGroup):
 
         self.make_mobjects()
 
-    def make_mobjects(self):
+    def make_mobjects(self) -> None:
         """Makes the submobjects"""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject
@@ -189,7 +198,9 @@ class NetworkConnection(VGroup):
             )
 
     @override_animation(ShowPassingFlash)
-    def _override_passing_flash(self, run_time: float = 1.0, time_width: float = 0.2):
+    def _override_passing_flash(
+        self, run_time: float = 1.0, time_width: float = 0.2
+    ) -> Animation:
         """Passing flash animation"""
         if self.arc_direction == "straight":
             return ShowPassingFlash(

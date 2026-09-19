@@ -10,6 +10,8 @@ This module provides custom scene classes for machine learning visualizations.
 
 """
 
+from typing import Any
+
 from manim import ThreeDScene
 
 
@@ -29,10 +31,9 @@ class ManimML3DScene(ThreeDScene):
         Forwarded to :class:`~manim.scene.three_d_scene.ThreeDScene`.
     """
 
-    def __init__(self, *args, **kwargs):
-        """Initialize the 3D scene wrapper, forwarding all arguments to ThreeDScene."""
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
 
-    def play(self):
-        """Placeholder play method; currently unimplemented."""
+    def play(self, *args: Any, **kwargs: Any) -> None:
+        """ """
         pass

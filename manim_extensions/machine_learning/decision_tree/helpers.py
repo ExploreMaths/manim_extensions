@@ -6,12 +6,23 @@
 # SPDX-License-Identifier: MIT
 """Helper functions for decision tree visualization."""
 
-from typing import Any
-from manim import Mobject
-def compute_node_depths(tree: Mobject):
+from typing import Protocol
+
+from numpy.typing import NDArray
+
+
+class SklearnTree(Protocol):
+    """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""
+
+    node_count: int
+    children_left: NDArray
+    children_right: NDArray
+
+
+def compute_node_depths(tree: SklearnTree) -> list[int]:
     """Computes the depths of nodes for level order traversal"""
 
-    def depth(node_index: Any, current_node_index: int = 0):
+    def depth(node_index: int, current_node_index: int = 0) -> int:
         """Compute the height of a node"""
         if current_node_index == node_index:
             return 0
@@ -37,10 +48,10 @@ def compute_node_depths(tree: Mobject):
     return node_depths
 
 
-def compute_level_order_traversal(tree: Mobject):
+def compute_level_order_traversal(tree: SklearnTree) -> list[int]:
     """Computes level order traversal of a sklearn tree"""
 
-    def depth(node_index: Any, current_node_index: int = 0):
+    def depth(node_index: int, current_node_index: int = 0) -> int:
         """Compute the height of a node"""
         if current_node_index == node_index:
             return 0
@@ -62,13 +73,13 @@ def compute_level_order_traversal(tree: Mobject):
                 return -1
 
     node_depths = [(index, depth(index)) for index in range(tree.node_count)]
-    node_depths = sorted(node_depths, key=lambda x: x[1])
-    sorted_inds = [node_depth[0] for node_depth in node_depths]
+    sorted_depths = sorted(node_depths, key=lambda x: x[1])
+    sorted_inds = [node_depth[0] for node_depth in sorted_depths]
 
     return sorted_inds
 
 
-def compute_bfs_traversal(tree: Mobject):
+def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
     """Traverses the tree in BFS order and returns the nodes in order"""
     traversal_order = []
     tree_root_index = 0
@@ -86,12 +97,12 @@ def compute_bfs_traversal(tree: Mobject):
     return traversal_order
 
 
-def compute_best_first_traversal(tree: Mobject):
+def compute_best_first_traversal(tree: SklearnTree) -> None:
     """Traverses the tree according to the best split first order"""
     pass
 
 
-def compute_node_to_parent_mapping(tree: Mobject):
+def compute_node_to_parent_mapping(tree: SklearnTree) -> dict[int, int]:
     """Returns a hashmap mapping node indices to their parent indices"""
     node_to_parent = {0: -1}  # Root has no parent
     num_nodes = tree.node_count
