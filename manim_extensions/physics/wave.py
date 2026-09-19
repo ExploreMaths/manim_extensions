@@ -7,8 +7,9 @@
 
 from __future__ import annotations
 
-from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface, np
-from typing import Iterable, Optional
+import numpy as np
+from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface
+from typing import Any, Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 __all__ = [
@@ -65,19 +66,19 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
     def __init__(
         self,
-        *sources: Optional[np.ndarray],
+        *sources: np.ndarray,
         wavelength: float = 1,
         period: float = 1,
         amplitude: float = 0.1,
-        x_range: Iterable[float] = [-5, 5],
-        y_range: Iterable[float] = [-5, 5],
-        **kwargs,
+        x_range: tuple[float, float] = (-5, 5),
+        y_range: tuple[float, float] = (-5, 5),
+        **kwargs: Any,
     ) -> None:
         """Initialize a radial wave surface."""
         self.wavelength = wavelength
         self.period = period
         self.amplitude = amplitude
-        self.time = 0
+        self.time = 0.0
         self.kwargs = kwargs
         self.sources = sources
 
@@ -105,7 +106,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         float
             The cumulative wave height.
         """
-        z = 0
+        z: float = 0
         for source in sources:
             x0, y0, _ = source
             z += self.amplitude * np.sin(
@@ -134,11 +135,11 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         )
 
-    def start_wave(self):
+    def start_wave(self) -> None:
         """Animate the wave propagation."""
         self.add_updater(self._update_wave)
 
-    def stop_wave(self):
+    def stop_wave(self) -> None:
         """Stop animating the wave propagation."""
         self.remove_updater(self._update_wave)
 
@@ -183,9 +184,9 @@ class LinearWave(RadialWave):
         wavelength: float = 1,
         period: float = 1,
         amplitude: float = 0.1,
-        x_range: Iterable[float] = [-5, 5],
-        y_range: Iterable[float] = [-5, 5],
-        **kwargs,
+        x_range: tuple[float, float] = (-5, 5),
+        y_range: tuple[float, float] = (-5, 5),
+        **kwargs: Any,
     ) -> None:
         """Initialize a linear wave surface."""
         super().__init__(
@@ -215,8 +216,11 @@ class LinearWave(RadialWave):
         float
             The wave height.
         """
-        return self.amplitude * np.sin(
-            (2 * PI / self.wavelength) * u - 2 * PI * self.time / self.period
+        return float(
+            self.amplitude
+            * np.sin(
+                (2 * PI / self.wavelength) * u - 2 * PI * self.time / self.period
+            )
         )
 
 
@@ -263,22 +267,22 @@ class StandingWave(ParametricFunction):
         length: float = 4,
         period: float = 1,
         amplitude: float = 1,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Initialize a standing wave."""
         self.n = n
         self.length = length
         self.period = period
         self.amplitude = amplitude
-        self.time = 0
+        self.time = 0.0
         self.kwargs = {**kwargs}
 
         super().__init__(
             lambda t: np.array([t, amplitude * np.sin(n * PI * t / length), 0]),
-            t_range=[0, length],
+            t_range=(0, length),
             **kwargs,
         )
-        self.shift([-self.length / 2, 0, 0])
+        self.shift((-self.length / 2, 0, 0))
 
     def _update_wave(self, mob: Mobject, dt: float) -> None:
         """Advance the standing-wave simulation and refresh the curve.
@@ -302,16 +306,16 @@ class StandingWave(ParametricFunction):
                         0,
                     ]
                 ),
-                t_range=[0, self.length],
+                t_range=(0, self.length),
                 **self.kwargs,
-            ).shift(self.wave_center + [-self.length / 2, 0, 0])
+            ).shift(self.wave_center + (-self.length / 2, 0, 0))
         )
 
-    def start_wave(self):
+    def start_wave(self) -> None:
         """Begin the standing-wave animation and store its current center."""
         self.wave_center = self.get_center()
         self.add_updater(self._update_wave)
 
-    def stop_wave(self):
+    def stop_wave(self) -> None:
         """Stop the standing-wave animation."""
         self.remove_updater(self._update_wave)
