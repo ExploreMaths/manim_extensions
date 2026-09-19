@@ -4,6 +4,8 @@
 
 """Circuit diagram utilities for Manim."""
 
+from __future__ import annotations
+
 import math
 from typing import Any, Self
 
