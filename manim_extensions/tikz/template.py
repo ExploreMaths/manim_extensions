@@ -11,7 +11,7 @@ This module provides the TikZ template class for rendering TikZ diagrams.
 
 
 from manim import TexTemplate
-from typing import List, Optional
+from typing import Any, List, Optional
 
 
 class TikzTemplate(TexTemplate):
@@ -73,13 +73,13 @@ class TikzTemplate(TexTemplate):
 
     def __init__(
         self,
-        packages: List[str] = [],
-        libraries: List[str] = [],
-        tikzset: List[str] = [],
+        packages: Optional[List[str]] = None,
+        libraries: Optional[List[str]] = None,
+        tikzset: Optional[List[str]] = None,
         preamble: Optional[str] = None,
         use_pdf: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         """Initialize the TikzTemplate instance."""
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (

@@ -8,7 +8,14 @@ This module provides action classes for sequence diagrams.
 
 """
 
+from collections.abc import Iterator
+from typing import Sequence, cast
+
+import numpy as np
+from numpy.typing import NDArray
+
 from manim import (
+    Animation,
     AnimationGroup,
     Arrow,
     Create,
@@ -117,7 +124,7 @@ class SeqAction(AnimationGroup):
     """
 
     @classmethod
-    def introduce_actors(cls, *actors: SeqActor):
+    def introduce_actors(cls, *actors: SeqActor) -> Iterator[Animation]:
         """Fade in the provided actors as a grouped timeline.
 
         Parameters
@@ -132,7 +139,7 @@ class SeqAction(AnimationGroup):
     @classmethod
     def subject_gives_gift_to_target(
         cls, subject: SeqActor, gift: SeqObject, target: SeqActor
-    ):
+    ) -> Iterator[Animation]:
         """Animate an object moving from one actor to another in the diagram.
 
         Parameters
@@ -171,7 +178,7 @@ class SeqAction(AnimationGroup):
         )
 
         if subject is target:
-            iobj_planned_path = CurvedArrow(
+            iobj_planned_path: CurvedArrow | Arrow = CurvedArrow(
                 start_point=act_start.get_center(),
                 end_point=act_end.get_center(),
                 stroke_width=1,
@@ -185,8 +192,12 @@ class SeqAction(AnimationGroup):
                 max_tip_length_to_length_ratio=0.2,
             )
         iobj_moved_path = TracedPath(gift.get_center)
-        mid_point = utils.space_ops.midpoint(
-            act_start.get_center(), act_end.get_center()
+        mid_point = cast(
+            "NDArray[np.float64]",
+            utils.space_ops.midpoint(
+                cast("Sequence[float]", act_start.get_center()),
+                cast("Sequence[float]", act_end.get_center()),
+            ),
         )
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(
             mid_point, aligned_edge=UP

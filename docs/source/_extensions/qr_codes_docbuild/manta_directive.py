@@ -108,7 +108,7 @@ __all__ = ["ManimDirective"]
 classnamedict: dict[str, int] = {}
 
 
-class SkipManimNode(nodes.Admonition, nodes.Element):
+class SkipManimNode(nodes.Admonition, nodes.Element):  # type: ignore[misc]  # docutils ships no type stubs, so the base classes are Any
     """Auxiliary node class that is used when the ``skip-manim`` tag is present
     or ``.pot`` files are being built.
 
@@ -151,7 +151,7 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
     return [f":{reference_type}:`~.{name}`" for name in option_input.split()]
 
 
-class ManimDirective(Directive):
+class ManimDirective(Directive):  # type: ignore[misc]  # docutils ships no type stubs, so the base class is Any
     r"""The manim directive, rendering videos while building
     the documentation.
 
@@ -249,28 +249,29 @@ class ManimDirective(Directive):
         document = state_machine.document
 
         source_file_name = Path(document.attributes["source"])
-        source_rel_name = source_file_name.relative_to(setup.confdir)
+        source_rel_name = source_file_name.relative_to(setup.confdir)  # type: ignore[attr-defined]  # attribute set on the setup function at runtime
         source_rel_dir = source_rel_name.parents[0]
-        dest_dir = Path(setup.app.builder.outdir, source_rel_dir).absolute()
+        dest_dir = Path(setup.app.builder.outdir, source_rel_dir).absolute()  # type: ignore[attr-defined]  # attribute set on the setup function at runtime
         if not dest_dir.exists():
             dest_dir.mkdir(parents=True, exist_ok=True)
 
-        source_block = [
-            ".. code-block:: python",
-            "",
-            # "    from manim import *\n",
-            *("    " + line for line in self.content),
-            "",
-            #".. raw:: html",
-            #"",
-            #f'    <pre data-manim-binder data-manim-classname="{clsname}">',
-            #*("    " + line for line in self.content),
-            #"",
-            # "    </pre>",
-        ]
-        source_block = "\n".join(source_block)
+        source_block = "\n".join(
+            [
+                ".. code-block:: python",
+                "",
+                # "    from manim import *\n",
+                *("    " + line for line in self.content),
+                "",
+                #".. raw:: html",
+                #"",
+                #f'    <pre data-manim-binder data-manim-classname="{clsname}">',
+                #*("    " + line for line in self.content),
+                #"",
+                # "    </pre>",
+            ]
+        )
 
-        config.media_dir = (Path(setup.confdir) / "media").absolute()
+        config.media_dir = (Path(setup.confdir) / "media").absolute()  # type: ignore[attr-defined]  # attribute set on the setup function at runtime
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         output_file = f"{clsname}-{classnamedict[clsname]}"
@@ -335,7 +336,7 @@ class ManimDirective(Directive):
             clsname=clsname,
             clsname_lowercase=clsname.lower(),
             hide_source=hide_source,
-            filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),
+            filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),  # type: ignore[attr-defined]  # attribute set on the setup function at runtime
             no_autoplay=no_autoplay,
             output_file=output_file,
             save_last_frame=save_last_frame,
@@ -354,7 +355,7 @@ class ManimDirective(Directive):
 rendering_times_file_path = Path("../rendering_times.csv")
 
 
-def _write_rendering_stats(scene_name: str, run_time: str, file_name: str) -> None:
+def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> None:
     with rendering_times_file_path.open("a") as file:
         csv.writer(file).writerow(
             [
@@ -380,16 +381,16 @@ def _log_rendering_times(*args: tuple[Any]) -> None:
         max_file_length = max(len(row[0]) for row in data)
         for key, group in it.groupby(data, key=lambda row: row[0]):
             key = key.ljust(max_file_length + 1, ".")
-            group = list(group)
-            if len(group) == 1:
-                row = group[0]
+            group_rows = list(group)
+            if len(group_rows) == 1:
+                row = group_rows[0]
                 print(f"{key}{row[2].rjust(7, '.')}s {row[1]}")
                 continue
-            time_sum = sum(float(row[2]) for row in group)
+            time_sum = sum(float(row[2]) for row in group_rows)
             print(
-                f"{key}{f'{time_sum:.3f}'.rjust(7, '.')}s  => {len(group)} EXAMPLES",
+                f"{key}{f'{time_sum:.3f}'.rjust(7, '.')}s  => {len(group_rows)} EXAMPLES",
             )
-            for row in group:
+            for row in group_rows:
                 print(f"{' ' * max_file_length} {row[2].rjust(7)}s {row[1]}")
         print("")
 
@@ -405,9 +406,9 @@ def setup(app: Sphinx) -> dict[str, Any]:
     """
     app.add_node(SkipManimNode, html=(visit, depart))
 
-    setup.app = app
-    setup.config = app.config
-    setup.confdir = app.confdir
+    setup.app = app  # type: ignore[attr-defined]  # attribute stashed on the setup function at runtime
+    setup.config = app.config  # type: ignore[attr-defined]  # attribute stashed on the setup function at runtime
+    setup.confdir = app.confdir  # type: ignore[attr-defined]  # attribute stashed on the setup function at runtime
 
     app.add_directive("manim", ManimDirective)
 

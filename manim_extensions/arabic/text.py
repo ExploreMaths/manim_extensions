@@ -10,11 +10,11 @@
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 
 import subprocess
+from typing import Optional
 
 from manim import Tex, TexTemplate
 
 
-from typing import Any, Optional
 _FONT_CANDIDATES = (
     "Al Bayan",  # macOS
     "Geeza Pro",  # macOS
@@ -25,7 +25,7 @@ _FONT_CANDIDATES = (
 )
 
 
-def _resolve_arabic_font(font_name: Any):
+def _resolve_arabic_font(font_name: Optional[str]) -> str:
     """Pick an installed Arabic font.
 
     Returns *font_name* verbatim when given; otherwise the first candidate

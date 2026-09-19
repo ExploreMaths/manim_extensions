@@ -101,9 +101,9 @@ class WeightedLine(Line):
         self,
         *args: Any,
         weight: str | int | float | None = None,
-        weight_config: dict | None = None,
+        weight_config: dict[str, Any] | None = None,
         weight_alpha: float = 0.5,
-        bg_config: dict | None = None,
+        bg_config: dict[str, Any] | None = None,
         add_bg: bool = True,
         **kwargs: Any,
     ):
@@ -113,7 +113,7 @@ class WeightedLine(Line):
         self.add_bg = add_bg
         super().__init__(*args, **kwargs)
 
-        self.weight_config = {
+        self.weight_config: dict[str, Any] = {
             "color": WHITE,
             "slant": ITALIC,
             "font_size": DEFAULT_FONT_SIZE * 0.5,
@@ -122,7 +122,7 @@ class WeightedLine(Line):
         if weight_config:
             self.weight_config.update(weight_config)
 
-        self.bg_config = {
+        self.bg_config: dict[str, Any] = {
             "color": config.background_color,
             "opacity": 1,
         }
@@ -132,7 +132,7 @@ class WeightedLine(Line):
         if self.weight is not None:
             self._add_weight()
 
-    def _add_weight(self):
+    def _add_weight(self) -> None:
         """
         Clears any current weight and then displays the weight is not none.
 

@@ -13,8 +13,10 @@ the ImportError names the right
 """
 
 import importlib
+from types import ModuleType
 
-def require(extra: str, *names):
+
+def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:
     """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters

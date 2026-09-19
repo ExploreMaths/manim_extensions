@@ -4,11 +4,17 @@
 Table - The main database table component.
 """
 
-from manim import DOWN, FadeIn, FadeOut, LEFT, ManimColor, RIGHT, Text, Transform, VGroup
+from manim import DOWN, Animation, FadeIn, FadeOut, LEFT, RIGHT, Text, Transform, VGroup
+from manim.mobject.mobject import _AnimationBuilder
+from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import List, Optional, Tuple
+from typing import Any, List, Optional, Tuple, Union, overload
+
+# An animation produced by the mutation methods: either a real Animation
+# (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
+TableAnimation = Union[Animation, _AnimationBuilder]
 
 
 class Table(VGroup):
@@ -167,9 +173,8 @@ class Table(VGroup):
         show_border: bool = True,
         auto_fit: bool = True,
         padding: float = 0.3,
-        **kwargs
-    ):
-        """Initializes a table from data with a header row and data rows."""
+        **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and
@@ -301,7 +306,11 @@ class Table(VGroup):
         """Return number of data rows (not including header)."""
         return len(self.rows)
     
-    def __getitem__(self, index: int) -> Row:
+    @overload
+    def __getitem__(self, index: int) -> Row: ...
+    @overload
+    def __getitem__(self, index: slice) -> List[Row]: ...
+    def __getitem__(self, index: Union[int, slice]) -> Union[Row, List[Row]]:
         """Get a data row by index (0-indexed, not including header)."""
         return self.rows[index]
     
@@ -309,7 +318,7 @@ class Table(VGroup):
     # Styling methods
     # -------------------------------------------------------------------------
     
-    def set_column_font_color(self, col: int, color: ManimColor, include_header: bool = False):
+    def set_column_font_color(self, col: int, color: ParsableManimColor, include_header: bool = False) -> "Table":
         """
         Set the font color for all cells in a column.
         
@@ -328,7 +337,7 @@ class Table(VGroup):
             row[col].set_font_color(color)
         return self
     
-    def set_column_background_color(self, col: int, color: ManimColor, opacity: float = 0.5, include_header: bool = False):
+    def set_column_background_color(self, col: int, color: ParsableManimColor, opacity: float = 0.5, include_header: bool = False) -> "Table":
         """
         Set the background color for all cells in a column.
         
@@ -349,7 +358,7 @@ class Table(VGroup):
             row[col].set_background_color(color, opacity)
         return self
     
-    def set_column_border_color(self, col: int, color: ManimColor, include_header: bool = True):
+    def set_column_border_color(self, col: int, color: ParsableManimColor, include_header: bool = True) -> "Table":
         """
         Set the border color for all cells in a column.
         
@@ -368,7 +377,7 @@ class Table(VGroup):
             row[col].set_border_color(color)
         return self
     
-    def set_header_background_color(self, color: ManimColor, opacity: float = 0.5):
+    def set_header_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> "Table":
         """
         Set the background color for all header cells.
         
@@ -383,7 +392,7 @@ class Table(VGroup):
             cell.set_background_color(color, opacity)
         return self
     
-    def set_header_font_color(self, color: ManimColor):
+    def set_header_font_color(self, color: ParsableManimColor) -> "Table":
         """
         Set the font color for all header cells.
         
@@ -403,7 +412,7 @@ class Table(VGroup):
     def add_row(
         self, 
         values: List[str]
-    ) -> Tuple[Row, List]:
+    ) -> Tuple[Row, List[TableAnimation]]:
         """
         Add a new row to the bottom of the table.
         
@@ -427,7 +436,7 @@ class Table(VGroup):
         scale_factor = first_header_cell.get_height() / self.cell_height if self.cell_height > 0 else 1.0
         
         # Check if we need to resize columns (before creating the row)
-        resize_animations = []
+        resize_animations: List[TableAnimation] = []
         new_widths = self.column_widths  # Default to current widths
         
         if self.auto_fit:
@@ -452,7 +461,7 @@ class Table(VGroup):
                     # Use scaled width for positioning
                     scaled_w = target_header.get_width()
                     target_x = x_offset + scaled_w / 2
-                    target_header.move_to([target_x, header_cell.get_center()[1], 0])
+                    target_header.move_to((target_x, header_cell.get_center()[1], 0))
                     resize_animations.append(Transform(header_cell, target_header))
                     
                     # Update cell's internal width to match new width
@@ -473,7 +482,7 @@ class Table(VGroup):
                         # Use scaled width for positioning
                         scaled_w = target_cell.get_width()
                         target_x = x_offset + scaled_w / 2
-                        target_cell.move_to([target_x, cell.get_center()[1], 0])
+                        target_cell.move_to((target_x, cell.get_center()[1], 0))
                         resize_animations.append(Transform(cell, target_cell))
                         
                         # Update cell's internal width to match new width
@@ -521,7 +530,7 @@ class Table(VGroup):
             # Use actual rendered width of the cell
             cell_width = cell.get_width()
             target_x = x_offset + cell_width / 2
-            cell.move_to([target_x, y_pos, 0])
+            cell.move_to((target_x, y_pos, 0))
             x_offset += cell_width
         
         # Add to table structure
@@ -529,7 +538,7 @@ class Table(VGroup):
         self.add(new_row)
         
         # Combine all animations: resize first, then fade in new row
-        appear_animations = [FadeIn(cell) for cell in new_row.cells]
+        appear_animations: List[TableAnimation] = [FadeIn(cell) for cell in new_row.cells]
         all_animations = resize_animations + appear_animations
         
         return new_row, all_animations
@@ -537,7 +546,7 @@ class Table(VGroup):
     def delete_row(
         self, 
         index: int
-    ) -> Tuple[Row, List]:
+    ) -> Tuple[Row, List[TableAnimation]]:
         """
         Delete a row from the table.
         
@@ -579,12 +588,12 @@ class Table(VGroup):
         actual_height = deleted_row.get_height()
         
         # Start with FadeOut for deleted row
-        all_animations = [FadeOut(deleted_row)]
+        all_animations: List[TableAnimation] = [FadeOut(deleted_row)]
         
         # Create shift-up animations for remaining rows
         for row in rows_to_shift:
             all_animations.append(
-                row.animate.shift([0, actual_height, 0])
+                row.animate.shift((0, actual_height, 0))
             )
             row.index -= 1
         
@@ -615,7 +624,7 @@ class Table(VGroup):
                     # Use scaled width for positioning
                     scaled_w = target_header.get_width()
                     target_x = x_offset + scaled_w / 2
-                    target_header.move_to([target_x, header_cell.get_center()[1], 0])
+                    target_header.move_to((target_x, header_cell.get_center()[1], 0))
                     all_animations.append(Transform(header_cell, target_header))
                     
                     # Update cell's internal width to match new width
@@ -643,7 +652,7 @@ class Table(VGroup):
                         
                         # Use the y position AFTER shift would complete
                         target_y = cell.get_center()[1] + y_shift
-                        target_cell.move_to([target_x, target_y, 0])
+                        target_cell.move_to((target_x, target_y, 0))
                         all_animations.append(Transform(cell, target_cell))
                         
                         # Update cell's internal width to match new width
@@ -664,7 +673,7 @@ class Table(VGroup):
         header: str,
         values: List[str],
         index: Optional[int] = None
-    ) -> Tuple[VGroup, List, List]:
+    ) -> Tuple[VGroup, List[TableAnimation], List[TableAnimation]]:
         """
         Add a new column to the table.
         
@@ -710,7 +719,7 @@ class Table(VGroup):
         
         # Prepare for updates
         new_cells = []
-        shift_animations = []
+        shift_animations: List[TableAnimation] = []
         
         # 1. Update Header
         header_cell = Cell(
@@ -755,7 +764,7 @@ class Table(VGroup):
             )
             
             # Position: Align x with header, y with row
-            cell.move_to([header_cell.get_center()[0], row.get_center()[1], 0])
+            cell.move_to((header_cell.get_center()[0], row.get_center()[1], 0))
             
             # Shift existing cells
             cells_shift = row.cells[index:]
@@ -767,14 +776,14 @@ class Table(VGroup):
             new_cells.append(cell)
 
         new_column_group = VGroup(*new_cells)
-        appear_animations = [FadeIn(cell) for cell in new_cells]
+        appear_animations: List[TableAnimation] = [FadeIn(cell) for cell in new_cells]
         
         return new_column_group, shift_animations, appear_animations
 
     def delete_column(
         self,
         index: int
-    ) -> Tuple[VGroup, List]:
+    ) -> Tuple[VGroup, List[TableAnimation]]:
         """
         Delete a column from the table.
         
@@ -801,7 +810,7 @@ class Table(VGroup):
         self.column_widths.pop(index)
         
         deleted_cells = []
-        shift_animations = []
+        shift_animations: List[TableAnimation] = []
         
         # 1. Header
         header_cell = self.header_row.cells.pop(index)

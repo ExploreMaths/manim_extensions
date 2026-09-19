@@ -12,6 +12,16 @@ from manim import SVGMobject
 
 FONT_AWESOME_VERSION: str = '6.5.1'
 
+__all__: list[str]
+
+
+def list_icons(style: str = "solid") -> list[str]: ...
+
+
+brand: Brand
+regular: Regular
+solid: Solid
+
 
 class Brand:
   
