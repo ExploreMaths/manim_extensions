@@ -5,7 +5,6 @@
 Pencil animations
 =================
 
-.. autoclass:: manim_extensions.compass.MovePencilTipTo
-.. autoclass:: manim_extensions.compass.PutPencilAway
-.. autoclass:: manim_extensions.compass.MovePencilAlongPath
-.. autoclass:: manim_extensions.compass.DrawPath
+.. autoall:: manim_extensions.compass
+   :types: class
+   :skip: Compass CompassScene DrawArc MoveNiddleTipTo Pencil PutCompass PutCompassAway PutRuler PutRulerAway RotateCompass Ruler SplitCompass

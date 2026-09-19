@@ -4,7 +4,5 @@
 Classes
 =======
 
-WeightedLine
-------------
-
-.. autoclass:: manim_extensions.weighted_line.weighted_line.WeightedLine
+.. autoall:: manim_extensions.weighted_line.weighted_line
+   :types: class

@@ -10,5 +10,6 @@ Nerd Font icons).
 
 .. toctree::
    :hidden:
+
    functions
    constants

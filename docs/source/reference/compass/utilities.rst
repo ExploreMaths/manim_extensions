@@ -5,4 +5,5 @@
 Utilities
 =========
 
-.. autofunction:: manim_extensions.compass.get_arc
+.. autoall:: manim_extensions.compass
+   :types: function

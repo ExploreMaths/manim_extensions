@@ -5,5 +5,6 @@
 Layout
 ======
 
-.. autoclass:: manim_extensions.mindmap.LayoutConfig
-.. autoclass:: manim_extensions.mindmap.LayoutType
+.. autoall:: manim_extensions.mindmap
+   :types: class
+   :skip: AlterNode CatalogMap InsertNode LayoutAnimation MindMap Node NodeStyle RemoveNode ScaleNode StandardMap TimeLine

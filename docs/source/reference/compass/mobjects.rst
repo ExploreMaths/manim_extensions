@@ -5,6 +5,6 @@
 Mobjects
 ========
 
-.. autoclass:: manim_extensions.compass.Compass
-.. autoclass:: manim_extensions.compass.Pencil
-.. autoclass:: manim_extensions.compass.Ruler
+.. autoall:: manim_extensions.compass
+   :types: class
+   :skip: CompassScene DrawArc DrawPath MoveNiddleTipTo MovePencilAlongPath MovePencilTipTo PutCompass PutCompassAway PutPencilAway PutRuler PutRulerAway RotateCompass SplitCompass

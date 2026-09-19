@@ -5,15 +5,5 @@
 Waves
 =====
 
-LinearWave
-----------
-
-.. autoclass:: manim_extensions.physics.wave.LinearWave
-RadialWave
-----------
-
-.. autoclass:: manim_extensions.physics.wave.RadialWave
-StandingWave
-------------
-
-.. autoclass:: manim_extensions.physics.wave.StandingWave
+.. autoall:: manim_extensions.physics.wave
+   :types: class

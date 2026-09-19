@@ -5,10 +5,10 @@
 Data model
 ==========
 
-Mesh
-----
+.. autoall:: manim_extensions.meshes.models.data_models.mesh
+   :types: class
 
-.. autoclass:: manim_extensions.meshes.models.data_models.mesh.Mesh
+
 .. note::
 
    The manim-side renderers (:class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`, :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh`, :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh`

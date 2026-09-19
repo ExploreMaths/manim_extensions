@@ -6,6 +6,5 @@ Classes
 
 .. autoall:: manim_extensions.automata
    :recursive:
-   :missing-only:
    :types: class
-
+   :skip: FiniteStateAutomaton ManimAnimations ManimAutomataInput ManimAutomaton ManimNondeterministicFiniteAutomaton ManimPushDownAutomaton ManimPushDownAutomatonTransition ManimState ManimTransition ManimTuringMachine ManimdeterministicFiniteAutomaton PushDownAutomaton PushDownAutomatonRule State Token Transition

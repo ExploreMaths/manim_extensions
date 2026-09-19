@@ -5,7 +5,6 @@
 Mind maps
 =========
 
-.. autoclass:: manim_extensions.mindmap.MindMap
-.. autoclass:: manim_extensions.mindmap.StandardMap
-.. autoclass:: manim_extensions.mindmap.CatalogMap
-.. autoclass:: manim_extensions.mindmap.TimeLine
+.. autoall:: manim_extensions.mindmap
+   :types: class
+   :skip: AlterNode InsertNode LayoutAnimation LayoutConfig LayoutType Node NodeStyle RemoveNode ScaleNode

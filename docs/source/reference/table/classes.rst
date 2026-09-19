@@ -4,15 +4,11 @@
 Classes
 =======
 
-Table
------
+.. autoall:: manim_extensions.table.cell
+   :types: class
 
-.. autoclass:: manim_extensions.table.table.Table
-Row
----
+.. autoall:: manim_extensions.table.row
+   :types: class
 
-.. autoclass:: manim_extensions.table.row.Row
-Cell
-----
-
-.. autoclass:: manim_extensions.table.cell.Cell
+.. autoall:: manim_extensions.table.table
+   :types: class
