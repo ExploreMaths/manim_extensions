@@ -69,6 +69,7 @@ class GaussianDistribution(VGroup):
         color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
+        """TODO: add docstring for __init__."""
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
         if mean is None:
@@ -102,6 +103,7 @@ class GaussianDistribution(VGroup):
     def compute_covariance_rotation_and_scale(
         self, covariance: NDArray[np.float64]
     ) -> tuple[float, float, float]:
+        """TODO: add docstring for compute_covariance_rotation_and_scale."""
         def eigsorted(
             cov: NDArray[np.float64],
         ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:

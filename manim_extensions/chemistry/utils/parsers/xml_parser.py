@@ -54,6 +54,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> str:
+        """TODO: add docstring for read_file."""
         with open(filename) as file:
             xml_file = file.read()
 
@@ -82,6 +83,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def parse_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+        """TODO: add docstring for parse_molecule_data."""
         atoms_data = XMLParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = XMLParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -89,6 +91,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+        """TODO: add docstring for extract_atoms_data."""
         compound_atoms: Any = molecule_data.get("PC-Compound_atoms")
         atoms_data_dict = compound_atoms.get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
@@ -145,6 +148,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+        """TODO: add docstring for extract_bonds_data."""
         compound_bonds: Any = molecule_data.get("PC-Compound_bonds")
         bonds_data_dict = compound_bonds.get("PC-Bonds")
 

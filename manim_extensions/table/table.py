@@ -175,6 +175,7 @@ class Table(VGroup):
         padding: float = 0.3,
         **kwargs: Any
     ) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and
@@ -836,3 +837,4 @@ class Table(VGroup):
         deleted_group = VGroup(*deleted_cells)
         
         return deleted_group, shift_animations
+

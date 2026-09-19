@@ -51,6 +51,7 @@ class MolParser(BaseParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> list[str]:
+        """TODO: add docstring for read_file."""
         with open(filename) as file:
             mol_file = file.readlines()
 
@@ -59,6 +60,7 @@ class MolParser(BaseParser):
     @staticmethod
     def data_parser(data: list[str]) -> tuple[AtomsDict, BondsDict]:
         # Get general data
+        """TODO: add docstring for data_parser."""
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841
         mol_comments = data[2].rstrip()  # This info is not always available # noqa F841

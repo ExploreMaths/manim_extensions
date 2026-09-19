@@ -32,8 +32,9 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__(*args, **kwargs)
 
     def play(self, *args: Any, **kwargs: Any) -> None:
-        """ """
+        """Override :meth:`~manim.scene.three_d_scene.ThreeDScene.play` for ML scenes."""
         pass

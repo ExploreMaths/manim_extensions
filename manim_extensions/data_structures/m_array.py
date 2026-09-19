@@ -1745,6 +1745,7 @@ class MArrayPointer(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
+            """TODO: add docstring for updater_pos."""
             self.__init_pos()
 
         self.__updater_pos: Callable[[Mobject], None] = updater_pos
@@ -2315,6 +2316,7 @@ class MArraySlidingWindow(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
+            """TODO: add docstring for updater_pos."""
             self.__init_pos()
 
         self.__updater_pos: Callable[[Mobject], None] = updater_pos
@@ -2677,3 +2679,4 @@ class MArraySlidingWindow(VGroup):
             self.__scene.play(resize_anim, **play_anim_args)
 
         return resize_anim
+

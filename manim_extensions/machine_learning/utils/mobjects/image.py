@@ -38,6 +38,7 @@ class GrayscaleImageMobject(Group):
     """
 
     def __init__(self, numpy_image: NDArray[Any], height: float = 2.3) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__()
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
@@ -66,6 +67,7 @@ class GrayscaleImageMobject(Group):
 
     @override_animation(Create)
     def create(self, run_time: float = 2) -> Animation:
+        """TODO: add docstring for create."""
         return FadeIn(self)
 
     def scale(  # type: ignore[override] # intentionally returns None instead of the group
@@ -113,6 +115,7 @@ class LabeledColorImage(Group):
         font_size: float = 24,
         buff: float = 0.2,
     ) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__()
         self.image = image
         self.color = color
@@ -129,3 +132,4 @@ class LabeledColorImage(Group):
         self.add(text)
         self.add(rectangle)
         self.add(self.image)
+

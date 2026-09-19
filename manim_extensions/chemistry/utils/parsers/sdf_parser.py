@@ -80,4 +80,5 @@ class SDFParser(MolParser):
 
     @staticmethod
     def data_parser(molecules_data: List[List[str]]) -> List[tuple[AtomsDict, BondsDict]]:
+        """TODO: add docstring for data_parser."""
         return [MolParser.data_parser(data) for data in molecules_data]

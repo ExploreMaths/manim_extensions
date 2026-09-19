@@ -78,6 +78,7 @@ class GriddedRectangle(VGroup):
         dotted_lines: bool = False,
         **kwargs: Any,
     ) -> None:
+        """TODO: add docstring for __init__."""
         super().__init__()
         # Fields
         self.color = color
@@ -205,9 +206,11 @@ class GriddedRectangle(VGroup):
         return grid_lines
 
     def get_center(self) -> NDArray[np.float64]:
+        """TODO: add docstring for get_center."""
         return self.rectangle.get_center()
 
     def get_normal_vector(self) -> NDArray[np.float64]:
+        """TODO: add docstring for get_normal_vector."""
         vertex_1 = self.rectangle.get_vertices()[0]
         vertex_2 = self.rectangle.get_vertices()[1]
         vertex_3 = self.rectangle.get_vertices()[2]

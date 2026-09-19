@@ -2,9 +2,6 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.pyright]
-strict = true
-
 [project]
 name = "manim_extensions"
 version = "1.0.5"
