@@ -10,7 +10,7 @@ define a few basic mesh-structures to be used as examples or test
 # python imports
 # patched: lazy-import trimesh (meshes extra)
 import pathlib
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 # third-party imports
 import numpy as np
@@ -237,7 +237,7 @@ def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
     )
 
 
-def create_model(filepath: str = "", name: str = "") -> Mesh:
+def create_model(filepath: Union[str, pathlib.Path] = "", name: str = "") -> Mesh:
     """Load a model file from the ``data/models/`` directory.
 
     .. warning::

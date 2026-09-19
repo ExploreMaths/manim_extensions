@@ -74,7 +74,7 @@ def _build_oglm() -> DefaultParameters:
     }
 
 
-def __getattr__(name: str):
+def __getattr__(name: str) -> Any:
     # PEP 562: build OGLM on first attribute access so that importing this
     # module does not require the optional moderngl dependency.
     if name == "OGLM":

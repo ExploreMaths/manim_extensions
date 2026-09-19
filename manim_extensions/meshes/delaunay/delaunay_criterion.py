@@ -8,7 +8,7 @@ functions to check delaunay criterion
 """
 
 # python imports
-from typing import List
+from typing import Any, List
 import numpy as np
 
 # third-party imports
@@ -23,7 +23,7 @@ from ..models.manim_models.triangle_mesh import (
 
 def get_triangle_circum_circle_params(
     pt1: np.ndarray, pt2: np.ndarray, pt3: np.ndarray
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, float]:
     """Calculate the circumscribed circle of a triangle defined by three points.
 
     Parameters
@@ -37,7 +37,7 @@ def get_triangle_circum_circle_params(
 
     Returns
     -------
-    tuple[np.ndarray, np.ndarray]
+    tuple[np.ndarray, float]
         Centre point and radius of the circumscribed circle.
     """
     div = 2 * np.linalg.norm(np.cross(pt1 - pt2, pt2 - pt3)) ** 2
@@ -52,11 +52,11 @@ def get_triangle_circum_circle_params(
         * np.linalg.norm(pt3 - pt1)
         / div
     )
-    return center, radius
+    return center, float(radius)
 
 
 def get_circum_circle(
-    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs
+    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
 ) -> m.Circle:
     """Create a Manim circle visualising the circumscribed circle of a face.
 
