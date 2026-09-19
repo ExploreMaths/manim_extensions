@@ -2,6 +2,9 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.pyright]
+strict = true
+
 [project]
 name = "manim_extensions"
 version = "1.0.5"
@@ -44,6 +47,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",
+    "mypy>=1.11",
 ]
 docs = [
     "sphinx>=7.0",
@@ -156,6 +160,22 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+
+[tool.mypy]
+strict = true
+packages = ["manim_extensions"]
+
+# These third-party libraries ship no type information (no py.typed marker
+# and no typeshed stubs), so imports from them resolve to Any.
+[[tool.mypy.overrides]]
+module = [
+    "docutils.*",
+    "networkx.*",
+    "scipy.*",
+    "tqdm.*",
+    "manim_mobject_svg.*",
+]
+ignore_missing_imports = true
 
 [tool.flake8]
 per-file-ignores = [
