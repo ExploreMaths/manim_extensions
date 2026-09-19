@@ -39,9 +39,33 @@ from manim import (
     Write,
 )
 from manim.mobject.mobject import _AnimationBuilder
-from typing import Any, Callable, List, Optional, Tuple, Union
+from types import MethodType
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    List,
+    Optional,
+    Protocol,
+    Tuple,
+    Union,
+    cast,
+)
 
 from .m_enum import MArrayDirection, MArrayElementComp
+
+MobProps = dict[str, Any]
+"""Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
+
+
+class _UpdateIndices(Protocol):
+    """Callable protocol for the index-updating function returned by element removal."""
+
+    def __call__(
+        self, play_anim: bool = ..., play_anim_args: MobProps = ...
+    ) -> List[Animation]:
+        """Updates the indices of the elements after a removal and returns the update animations."""
+        ...
 
 
 class MArrayElement(VGroup):
@@ -152,15 +176,15 @@ class MArrayElement(VGroup):
             Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
-        self.__mob_square_props: dict = {
+        self.__mob_square_props: MobProps = {
             "color": BLUE_B,
             "fill_color": BLUE_D,
             "fill_opacity": 1,
             "side_length": 1,
         }
-        self.__mob_value_props: dict = {"text": "", "color": WHITE, "weight": BOLD}
-        self.__mob_index_props: dict = {"text": "", "color": BLUE_D, "font_size": 32}
-        self.__mob_label_props: dict = {"text": "", "color": BLUE_A, "font_size": 38}
+        self.__mob_value_props: MobProps = {"text": "", "color": WHITE, "weight": BOLD}
+        self.__mob_index_props: MobProps = {"text": "", "color": BLUE_D, "font_size": 32}
+        self.__mob_label_props: MobProps = {"text": "", "color": BLUE_A, "font_size": 38}
         self.__scene: Scene = scene
         self.__index_pos: np.ndarray = index_pos
         self.__index_gap: float = index_gap
@@ -169,10 +193,10 @@ class MArrayElement(VGroup):
 
     def __update_props(
         self,
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
-        mob_label_args: dict = {},
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
+        mob_label_args: MobProps = {},
     ) -> None:
         """Updates the attributes of the class.
 
@@ -208,7 +232,7 @@ class MArrayElement(VGroup):
         init_value: bool = False,
         init_index: bool = False,
         init_label: bool = False,
-        next_to_mob: "MArrayElement" = None,
+        next_to_mob: Optional["MArrayElement"] = None,
         next_to_dir: np.ndarray = RIGHT,
     ) -> None:
         """Initializes the mobjects for the class.
@@ -256,13 +280,13 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo: Any):
+    def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayElement":
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArrayElement__scene"]
 
         cls = self.__class__
-        result = cls.__new__(cls)
+        result: "MArrayElement" = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -272,17 +296,17 @@ class MArrayElement(VGroup):
     def __init__(
         self,
         scene: Scene,
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
-        mob_label_args: dict = {},
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
+        mob_label_args: MobProps = {},
         index_pos: np.ndarray = UP,
         index_gap: float = 0.25,
         label_pos: np.ndarray = LEFT,
         label_gap: float = 0.5,
-        next_to_mob: "MArrayElement" = None,
+        next_to_mob: Optional["MArrayElement"] = None,
         next_to_dir: np.ndarray = RIGHT,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Initializes the class.
 
@@ -366,7 +390,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_label
 
-    def fetch_mob(self, mob_target: MArrayElementComp) -> Mobject:
+    def fetch_mob(self, mob_target: Optional[MArrayElementComp]) -> Mobject:
         """Fetches the mobject based on the specified enum.
 
         Parameters
@@ -393,11 +417,11 @@ class MArrayElement(VGroup):
 
     def update_mob_value(
         self,
-        mob_value_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_value_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Re-intializes the value mobject.
 
@@ -412,7 +436,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -437,11 +461,11 @@ class MArrayElement(VGroup):
 
     def update_mob_index(
         self,
-        mob_index_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_index_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Re-intializes the index mobject.
 
@@ -456,7 +480,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -481,11 +505,11 @@ class MArrayElement(VGroup):
 
     def update_mob_label(
         self,
-        mob_label_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_label_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Re-intializes the label mobject.
 
@@ -500,7 +524,7 @@ class MArrayElement(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -523,7 +547,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_square(self) -> "_AnimationBuilder":
+    def animate_mob_square(self) -> "_AnimationBuilder | Square":
         """Invokes the animate property over square mobject.
 
         Returns
@@ -534,7 +558,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_square.animate
 
-    def animate_mob_value(self) -> "_AnimationBuilder":
+    def animate_mob_value(self) -> "_AnimationBuilder | Text":
         """Invokes the animate property over value mobject.
 
         Returns
@@ -545,7 +569,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_value.animate
 
-    def animate_mob_index(self) -> "_AnimationBuilder":
+    def animate_mob_index(self) -> "_AnimationBuilder | Text":
         """Invokes the animate property over index mobject.
 
         Returns
@@ -556,7 +580,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_index.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder":
+    def animate_mob_label(self) -> "_AnimationBuilder | Text":
         """Invokes the animate property over label mobject.
 
         Returns
@@ -691,7 +715,7 @@ class MArray(VGroup):
         Represents the array label.
     """
 
-    __dir_map = [
+    __dir_map: ClassVar[list[dict[str, np.ndarray]]] = [
         {"arr": UP, "index": RIGHT},
         {"arr": DOWN, "index": RIGHT},
         {"arr": RIGHT, "index": UP},
@@ -842,12 +866,12 @@ class MArray(VGroup):
         self,
         value: Any,
         shift_label: bool = True,
-        append_anim: Animation = Write,
-        append_anim_args: dict = {},
+        append_anim: type[Animation] = Write,
+        append_anim_args: MobProps = {},
         append_anim_target: Optional[MArrayElementComp] = None,
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
     ) -> List[Animation]:
         """Creates and inserts a new element in the array.
 
@@ -911,13 +935,13 @@ class MArray(VGroup):
     def __remove_elem(
         self,
         index: int,
-        removal_anim: Animation = FadeOut,
-        update_anim: Animation = Indicate,
-        removal_anim_args: dict = {},
-        update_anim_args: dict = {},
+        removal_anim: type[Animation] = FadeOut,
+        update_anim: type[Animation] = Indicate,
+        removal_anim_args: MobProps = {},
+        update_anim_args: MobProps = {},
         removal_anim_target: Optional[MArrayElementComp] = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
-    ) -> Tuple[Succession, Callable[[bool], List[Animation]]]:
+    ) -> Tuple[Succession, _UpdateIndices]:
         """Removes the element from the array at the specified index.
 
         Parameters
@@ -950,7 +974,9 @@ class MArray(VGroup):
 
         self.remove(self.__mob_arr[index])
         removed_mob = self.__mob_arr[index]
-        self.__mob_arr = self.__mob_arr[0:index] + self.__mob_arr[index + 1 :]
+        self.__mob_arr: List[MArrayElement] = (
+            self.__mob_arr[0:index] + self.__mob_arr[index + 1 :]
+        )
 
         anims_shift = []
         for i in range(index, len(self.__mob_arr)):
@@ -975,7 +1001,7 @@ class MArray(VGroup):
             )
 
         def update_indices(
-            play_anim: bool = True, play_anim_args: dict = {}
+            play_anim: bool = True, play_anim_args: MobProps = {}
         ) -> List[Animation]:
             """Updates the indices of :class:`~manim_extensions.data_structures.m_array.MArrayElement` (s) that occur after the removal.
 
@@ -1024,7 +1050,7 @@ class MArray(VGroup):
     def __init_props(
         self,
         scene: Scene,
-        arr: list,
+        arr: list[Any],
         label: str,
         index_offset: int,
         index_start: int,
@@ -1061,7 +1087,7 @@ class MArray(VGroup):
             Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         """
 
-        self.__mob_arr_label_props: dict = {
+        self.__mob_arr_label_props: MobProps = {
             "text": "",
             "color": BLUE_A,
             "font_size": 38,
@@ -1073,7 +1099,7 @@ class MArray(VGroup):
         self.__index_offset: int = index_offset
         self.__index_start: int = index_start
         self.__index_hex_display: bool = index_hex_display
-        self.__hide_index: int = hide_index
+        self.__hide_index: bool = hide_index
         self.__arr_dir: MArrayDirection = arr_dir
         self.__switch_index_pos: bool = switch_index_pos
         self.__arr_label_pos: MArrayDirection = arr_label_pos
@@ -1081,7 +1107,7 @@ class MArray(VGroup):
 
     def __update_props(
         self,
-        mob_arr_label_args: dict = {},
+        mob_arr_label_args: MobProps = {},
     ) -> None:
         """Updates the attributes of the class.
 
@@ -1123,13 +1149,13 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo: Any):
+    def __deepcopy__(self, memo: dict[int, Any]) -> "MArray":
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArray__scene"]
 
         cls = self.__class__
-        result = cls.__new__(cls)
+        result: "MArray" = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -1139,7 +1165,7 @@ class MArray(VGroup):
     def __init__(
         self,
         scene: Scene,
-        arr: list = [],
+        arr: list[Any] = [],
         label: str = "",
         index_offset: int = 1,
         index_start: int = 0,
@@ -1149,11 +1175,11 @@ class MArray(VGroup):
         switch_index_pos: bool = False,
         arr_label_pos: MArrayDirection = MArrayDirection.LEFT,
         arr_label_gap: float = 0.5,
-        mob_arr_label_args: dict = {},
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
-        **kwargs,
+        mob_arr_label_args: MobProps = {},
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
+        **kwargs: Any,
     ) -> None:
         """Initializes the class.
 
@@ -1220,7 +1246,7 @@ class MArray(VGroup):
 
         self.__init_mobs(True)
 
-    def fetch_arr(self) -> list:
+    def fetch_arr(self) -> list[Any]:
         """Fetches the original array.
 
         Returns
@@ -1268,11 +1294,11 @@ class MArray(VGroup):
         self,
         index: int,
         value: Any,
-        mob_value_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_value_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Updates the elements value.
 
@@ -1291,7 +1317,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -1312,11 +1338,11 @@ class MArray(VGroup):
         self,
         index: int,
         value: Any,
-        mob_index_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_index_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Updates the elements index.
 
@@ -1335,7 +1361,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -1354,11 +1380,11 @@ class MArray(VGroup):
     def update_mob_arr_label(
         self,
         label: str,
-        mob_arr_label_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_arr_label_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Updates the array label.
 
@@ -1375,7 +1401,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -1400,7 +1426,7 @@ class MArray(VGroup):
 
         return self.__mob_arr_label
 
-    def animate_elem(self, index: int) -> "_AnimationBuilder":
+    def animate_elem(self, index: int) -> "_AnimationBuilder | MArrayElement":
         """Invokes the animate property over element mobject specified.
 
         Parameters
@@ -1419,7 +1445,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate
 
-    def animate_elem_square(self, index: int) -> "_AnimationBuilder":
+    def animate_elem_square(self, index: int) -> "_AnimationBuilder | Square":
         """Invokes the animate property over square mobject of the specified element.
 
         Parameters
@@ -1438,7 +1464,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate_mob_square()
 
-    def animate_elem_value(self, index: int) -> "_AnimationBuilder":
+    def animate_elem_value(self, index: int) -> "_AnimationBuilder | Text":
         """Invokes the animate property over value mobject of the specified element.
 
         Parameters
@@ -1457,7 +1483,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate_mob_value()
 
-    def animate_elem_index(self, index: int) -> "_AnimationBuilder":
+    def animate_elem_index(self, index: int) -> "_AnimationBuilder | Text":
         """Invokes the animate property over index mobject of the specified element.
 
         Parameters
@@ -1479,14 +1505,14 @@ class MArray(VGroup):
     def append_elem(
         self,
         value: Any,
-        append_anim: Animation = Write,
-        append_anim_args: dict = {},
+        append_anim: type[Animation] = Write,
+        append_anim_args: MobProps = {},
         append_anim_target: Optional[MArrayElementComp] = None,
-        mob_square_args: dict = {},
-        mob_value_args: dict = {},
-        mob_index_args: dict = {},
+        mob_square_args: MobProps = {},
+        mob_value_args: MobProps = {},
+        mob_index_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> List[Animation]:
         """Creates and inserts a new element in the array.
 
@@ -1509,7 +1535,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -1537,15 +1563,15 @@ class MArray(VGroup):
     def remove_elem(
         self,
         index: int,
-        removal_anim: Animation = FadeOut,
-        update_anim: Animation = Indicate,
-        removal_anim_args: dict = {},
-        update_anim_args: dict = {},
+        removal_anim: type[Animation] = FadeOut,
+        update_anim: type[Animation] = Indicate,
+        removal_anim_args: MobProps = {},
+        update_anim_args: MobProps = {},
         removal_anim_target: Optional[MArrayElementComp] = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
         play_anim: bool = True,
-        play_anim_args: dict = {},
-    ) -> Tuple[Succession, Callable[[bool], List[Animation]]]:
+        play_anim_args: MobProps = {},
+    ) -> Tuple[Succession, _UpdateIndices]:
         """Removes the element from the array at the specified index.
 
         Parameters
@@ -1567,7 +1593,7 @@ class MArray(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -1685,7 +1711,7 @@ class MArrayPointer(VGroup):
         The updater function that keeps the pointer intact with the array.
     """
 
-    __dir_map = [
+    __dir_map: ClassVar[list[dict[str, Any]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -1703,7 +1729,9 @@ class MArrayPointer(VGroup):
         """
 
         arr_dir_np = self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
-        arrow_pos_np = np.copy(self.__dir_map[self.__pointer_pos.value]["np"])
+        arrow_pos_np: np.ndarray = np.copy(
+            self.__dir_map[self.__pointer_pos.value]["np"]
+        )
 
         if np.dot(arr_dir_np, arrow_pos_np):
             arrow_pos_np[0], arrow_pos_np[1] = arrow_pos_np[1], arrow_pos_np[0]
@@ -1717,10 +1745,9 @@ class MArrayPointer(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
-            """Reinitializes the pointer position each frame."""
             self.__init_pos()
 
-        self.__updater_pos = updater_pos
+        self.__updater_pos: Callable[[Mobject], None] = updater_pos
 
         self.add_updater(self.__updater_pos)
 
@@ -1750,7 +1777,7 @@ class MArrayPointer(VGroup):
             index_start, index_end = index_end, index_start
             to_lesser_index = True
 
-        return (
+        shift_np: np.ndarray = (
             (
                 self.__arr._MArray__sum_elem_len(index_start, index_end)
                 - (
@@ -1758,10 +1785,11 @@ class MArrayPointer(VGroup):
                     .fetch_mob_square()
                     .side_length
                 )
+            )
             * self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
             * (-1 if to_lesser_index else 1)
-            )
         )
+        return shift_np
 
     def __init_props(
         self,
@@ -1796,8 +1824,8 @@ class MArrayPointer(VGroup):
             Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
         """
 
-        self.__mob_arrow_props: dict = {"color": GOLD_D}
-        self.__mob_label_props: dict = {"text": label, "color": GOLD_A, "font_size": 38}
+        self.__mob_arrow_props: MobProps = {"color": GOLD_D}
+        self.__mob_label_props: MobProps = {"text": label, "color": GOLD_A, "font_size": 38}
         self.__scene: Scene = scene
         self.__arr: MArray = arr
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:
@@ -1810,7 +1838,7 @@ class MArrayPointer(VGroup):
         self.__pointer_pos: MArrayDirection = pointer_pos
 
     def __update_props(
-        self, mob_arrow_args: dict = {}, mob_label_args: dict = {}
+        self, mob_arrow_args: MobProps = {}, mob_label_args: MobProps = {}
     ) -> None:
         """Updates the attributes of the class.
 
@@ -1873,13 +1901,13 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo: Any):
+    def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayPointer":
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
 
         cls = self.__class__
-        result = cls.__new__(cls)
+        result: "MArrayPointer" = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -1896,9 +1924,9 @@ class MArrayPointer(VGroup):
         arrow_gap: float = 0.25,
         label_gap: float = 0.25,
         pointer_pos: MArrayDirection = MArrayDirection.DOWN,
-        mob_arrow_args: dict = {},
-        mob_label_args: dict = {},
-        **kwargs,
+        mob_arrow_args: MobProps = {},
+        mob_label_args: MobProps = {},
+        **kwargs: Any,
     ) -> None:
         """Initializes the class.
 
@@ -1976,11 +2004,11 @@ class MArrayPointer(VGroup):
     def update_mob_label(
         self,
         label: str,
-        mob_label_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_label_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Updates the pointer label.
 
@@ -1997,7 +2025,7 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -2022,7 +2050,7 @@ class MArrayPointer(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_arrow(self) -> "_AnimationBuilder":
+    def animate_mob_arrow(self) -> "_AnimationBuilder | Arrow":
         """Invokes the animate property over arrow mobject.
 
         Returns
@@ -2033,7 +2061,7 @@ class MArrayPointer(VGroup):
 
         return self.__mob_arrow.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder":
+    def animate_mob_label(self) -> "_AnimationBuilder | Text":
         """Invokes the animate property over label mobject.
 
         Returns
@@ -2045,7 +2073,7 @@ class MArrayPointer(VGroup):
         return self.__mob_label.animate
 
     def shift_to_elem(
-        self, index: int, play_anim: bool = True, play_anim_args: dict = {}
+        self, index: int, play_anim: bool = True, play_anim_args: MobProps = {}
     ) -> ApplyMethod:
         """Shifts pointer to the specified element.
 
@@ -2056,7 +2084,7 @@ class MArrayPointer(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -2173,7 +2201,7 @@ class MArraySlidingWindow(VGroup):
         The updater function that keeps the sliding window intact with the array.
     """
 
-    __dir_map = [
+    __dir_map: ClassVar[list[dict[str, Any]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -2287,10 +2315,9 @@ class MArraySlidingWindow(VGroup):
         """Attaches the position updater function with the pointer."""
 
         def updater_pos(mob: Mobject) -> None:
-            """Reinitializes the sliding window pointer position each frame."""
             self.__init_pos()
 
-        self.__updater_pos = updater_pos
+        self.__updater_pos: Callable[[Mobject], None] = updater_pos
 
         self.add_updater(self.__updater_pos)
 
@@ -2329,8 +2356,8 @@ class MArraySlidingWindow(VGroup):
             Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
-        self.__mob_window_props: dict = {"color": RED_D, "stroke_width": 10}
-        self.__mob_label_props: dict = {"text": label, "color": RED_A, "font_size": 38}
+        self.__mob_window_props: MobProps = {"color": RED_D, "stroke_width": 10}
+        self.__mob_label_props: MobProps = {"text": label, "color": RED_A, "font_size": 38}
         self.__scene: Scene = scene
         self.__arr: MArray = arr
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:
@@ -2344,7 +2371,7 @@ class MArraySlidingWindow(VGroup):
         self.__label_pos: MArrayDirection = label_pos
 
     def __update_props(
-        self, mob_window_args: dict = {}, mob_label_args: dict = {}
+        self, mob_window_args: MobProps = {}, mob_label_args: MobProps = {}
     ) -> None:
         """Updates the attributes of the class.
 
@@ -2392,13 +2419,13 @@ class MArraySlidingWindow(VGroup):
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo: Any):
+    def __deepcopy__(self, memo: dict[int, Any]) -> "MArraySlidingWindow":
         """Deepcopy that excludes attributes specified in `exclude_list`."""
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]
 
         cls = self.__class__
-        result = cls.__new__(cls)
+        result: "MArraySlidingWindow" = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -2414,9 +2441,9 @@ class MArraySlidingWindow(VGroup):
         label: str = "",
         label_gap: float = 0.5,
         label_pos: MArrayDirection = MArrayDirection.DOWN,
-        mob_window_args: dict = {},
-        mob_label_args: dict = {},
-        **kwargs,
+        mob_window_args: MobProps = {},
+        mob_label_args: MobProps = {},
+        **kwargs: Any,
     ) -> None:
         """Initializes the class.
 
@@ -2479,11 +2506,11 @@ class MArraySlidingWindow(VGroup):
     def update_mob_label(
         self,
         label: str,
-        mob_label_args: dict = {},
-        update_anim: Animation = Write,
-        update_anim_args: dict = {},
+        mob_label_args: MobProps = {},
+        update_anim: type[Animation] = Write,
+        update_anim_args: MobProps = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: MobProps = {},
     ) -> Text:
         """Updates the window label.
 
@@ -2500,7 +2527,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -2525,7 +2552,7 @@ class MArraySlidingWindow(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_window(self) -> "_AnimationBuilder":
+    def animate_mob_window(self) -> "_AnimationBuilder | Rectangle":
         """Invokes the animate property over window mobject.
 
         Returns
@@ -2536,7 +2563,7 @@ class MArraySlidingWindow(VGroup):
 
         return self.__mob_window.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder":
+    def animate_mob_label(self) -> "_AnimationBuilder | Text":
         """Invokes the animate property over label mobject.
 
         Returns
@@ -2548,7 +2575,7 @@ class MArraySlidingWindow(VGroup):
         return self.__mob_label.animate
 
     def shift_to_elem(
-        self, index: int, play_anim: bool = True, play_anim_args: dict = {}
+        self, index: int, play_anim: bool = True, play_anim_args: MobProps = {}
     ) -> ApplyFunction:
         """Shifts sliding window to the specified element.
 
@@ -2559,7 +2586,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -2595,7 +2622,7 @@ class MArraySlidingWindow(VGroup):
         self.__init_pos()
 
     def resize_window(
-        self, size: int, play_anim: bool = True, play_anim_args: dict = {}
+        self, size: int, play_anim: bool = True, play_anim_args: MobProps = {}
     ) -> ApplyFunction:
         """Expands or shrinks the window according to the specified size.
 
@@ -2606,7 +2633,7 @@ class MArraySlidingWindow(VGroup):
         play_anim
             If `True`, plays the animation(s).
         play_anim_args
-            Arguments for :meth:`~manim.scene.scene.Scene.play() <manim.scene.scene.Scene.play>`.
+            Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
         Returns
         -------
@@ -2643,7 +2670,7 @@ class MArraySlidingWindow(VGroup):
             return mob
 
         resize_anim = ApplyFunction(
-            resize_and_shift, self, suspend_mobject_updating=True
+            cast(MethodType, resize_and_shift), self, suspend_mobject_updating=True
         )
 
         if play_anim:
