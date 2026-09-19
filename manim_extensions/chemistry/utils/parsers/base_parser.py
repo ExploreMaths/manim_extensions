@@ -8,7 +8,19 @@ This module provides the BaseParser abstract class for parsing chemical files.
 
 from abc import ABC, abstractmethod
 import os
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Union
+
+
+#: Path-like value accepted by the parsers: a string, raw bytes or a PathLike.
+FilePath = Union[str, bytes, os.PathLike[str], os.PathLike[bytes]]
+#: Parsed atoms data: ``{atom_index: {property: value}}``.
+AtomsDict = dict[int, dict[str, Any]]
+#: Parsed bonds data: ``{bond_index: {property: value}}``.
+BondsDict = dict[int, dict[str, Any]]
+#: Parsed data of a single molecule.
+MoleculeData = tuple[AtomsDict, BondsDict]
+#: Parsed data of one or more molecules.
+ParsedData = Union[MoleculeData, list[MoleculeData]]
 
 
 class BaseParser(ABC):
@@ -23,35 +35,26 @@ class BaseParser(ABC):
 
     Parameters
     ----------
-    filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bytes` or Path-like
+    filename : :class:`str`, :class:`bytes` or Path-like
         Path to the file to parse.
 
     """
 
-    def __init__(self, filename: Union[str, bytes, os.PathLike]) -> None:
-        """Read the file and parse it into atoms/bonds data.
-
-        Populates either ``atoms_data``/``bonds_data`` (single molecule) or
-        ``molecular_data`` (multi-molecule formats) based on the parser output.
-
-        Parameters
-        ----------
-        filename : str, bytes, or os.PathLike
-            Path to the chemical file to parse.
-        """
-        self.file_data: str = self.read_file(filename)
+    def __init__(self, filename: FilePath) -> None:
+        self.file_data: Any = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):
-            self.molecular_data = parsed_data
-            self.atoms_data, self.bonds_data = (None, None)
+            self.molecular_data: list[MoleculeData] | None = parsed_data
+            self.atoms_data: AtomsDict | None = None
+            self.bonds_data: BondsDict | None = None
 
-        elif isinstance(parsed_data, tuple):
+        else:
             self.molecular_data = None
             self.atoms_data, self.bonds_data = parsed_data
 
     @staticmethod
     @abstractmethod
-    def read_file(filename: Union[str, bytes, os.PathLike]) -> Any:
+    def read_file(filename: FilePath) -> Any:
         """
         Reads the file and converts it to a string.
 
@@ -64,7 +67,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def data_parser(data: Any) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
+    def data_parser(data: Any) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:
@@ -77,24 +80,24 @@ class BaseParser(ABC):
         """
         ...
 
-    def parse_file_data(self) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
+    def parse_file_data(self) -> ParsedData:
         """
         Receives the file data as a string and uses the string_parser.
 
         Returns
         -------
-        Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
             (atom_data, bond_data)
         """
         return self.data_parser(self.file_data)
 
     @property
-    def molecule_data(self):
+    def molecule_data(self) -> ParsedData:
         """
         Returns molecule data: atoms_data and bonds_data.
         """
 
-        if all([self.atoms_data, self.bonds_data]):
+        if self.atoms_data and self.bonds_data:
             return self.atoms_data, self.bonds_data
 
         elif self.molecular_data:
@@ -105,7 +108,7 @@ class BaseParser(ABC):
         )
 
     @property
-    def atoms(self):
+    def atoms(self) -> AtomsDict | None:
         """
         Returns atoms data.
         """
@@ -113,7 +116,7 @@ class BaseParser(ABC):
         return self.atoms_data
 
     @property
-    def bonds(self):
+    def bonds(self) -> BondsDict | None:
         """
         Returns bonds data.
         """

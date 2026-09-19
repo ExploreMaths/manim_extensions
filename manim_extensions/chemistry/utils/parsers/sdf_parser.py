@@ -6,9 +6,9 @@ This module provides the SDFParser class for parsing SDF format chemical files.
 
 """
 
-from typing import Dict, List, Tuple, Union
-import os
+from typing import List
 
+from .base_parser import AtomsDict, BondsDict, FilePath
 from .mol_parser import MolParser
 
 
@@ -57,7 +57,7 @@ class SDFParser(MolParser):
     """
 
     @staticmethod
-    def read_file(filename: Union[str, bytes, os.PathLike]) -> List[List[str]]:
+    def read_file(filename: FilePath) -> List[List[str]]:
         """
         sdf files might contain multiple molecules, so we return a list of list
         of string when reading a file.
@@ -79,10 +79,5 @@ class SDFParser(MolParser):
         return [molecule.split("\n") for molecule in sdf_molecules if molecule.strip()]
 
     @staticmethod
-    def data_parser(molecules_data: List[List[str]]) -> List[Tuple[Dict, Dict]]:
-        """Parse a list of MOL-format line lists into a list of ``(atoms, bonds)`` tuples.
-
-        Each item in ``molecules_data`` corresponds to one molecule block
-        from the SDF file (already split on ``$$$$``).
-        """
+    def data_parser(molecules_data: List[List[str]]) -> List[tuple[AtomsDict, BondsDict]]:
         return [MolParser.data_parser(data) for data in molecules_data]
