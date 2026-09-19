@@ -14,7 +14,7 @@ from .m_array import MArrayElement, MobProps
 
 
 class MVariable(MArrayElement):
-    """A class that represents a variable.
+    r"""A class that represents a variable.
 
     Parameters
     ----------
@@ -61,7 +61,7 @@ class MVariable(MArrayElement):
     ----------
     __value : :class:`~typing.Any`
         The value of the variable.
-    __index : :data:`~typing.Union`\ [:class:`str`, :class:`int`]
+    __index : :data:`~typing.Union`\[:class:`str`, :class:`int`]
         The value of the index.
     __label : :class:`str`
         The value of the label.
@@ -132,11 +132,11 @@ class MVariable(MArrayElement):
         return self.__value
 
     def fetch_index(self) -> Union[str, int]:
-        """Fetches the index of the variable.
+        r"""Fetches the index of the variable.
 
         Returns
         -------
-        :data:`~typing.Union`\ [:class:`str`, :class:`int`]
+        :data:`~typing.Union`\[:class:`str`, :class:`int`]
             :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
         """
 
