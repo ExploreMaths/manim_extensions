@@ -31,6 +31,20 @@ class VConstraint(VGroup):
         The second Mobject to be connected.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: VConstraintExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.pymunk.constraints.constraint import VConstraint
+
+       class VConstraintExample(Scene):
+           def construct(self):
+               mob_a = Dot(LEFT)
+               mob_b = Dot(RIGHT)
+               self.add(mob_a, mob_b, VConstraint(mob_a, mob_b))
     """
 
     def __init__(self, a_mob: Mobject = None, b_mob: Mobject = None, **kwargs):
@@ -98,6 +112,11 @@ class VConstraint(VGroup):
         2. Initialize the vision component
         3. Add constraints to the physical space
         4. Bind an updater to keep the vision synchronized.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to install the constraint into.
         """
         pass
 
@@ -105,5 +124,12 @@ class VConstraint(VGroup):
         """Updates the visual representation of constraints in real time.
         This method should be overridden by subclasses and called in every frame,
         to synchronize the state of the visual components and the physics engine regarding constraints.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
         """
         pass

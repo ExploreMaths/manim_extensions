@@ -56,6 +56,18 @@ class FeatureMap(VGroup):
         Whether to show the grid lines, by default False.
     padding_dashed : bool, optional
         Whether the padding region is drawn with dashed lines, by default False.
+
+    Examples
+    --------
+    .. manim:: FeatureMapExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import FeatureMap
+
+       class FeatureMapExample(Scene):
+           def construct(self):
+               self.add(FeatureMap(feature_map_size=(4, 4), show_grid_lines=True))
     """
 
     def __init__(
@@ -280,7 +292,17 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """Build the feature maps and apply the 3D rotation to the layer."""
+        """Build the feature maps and apply the 3D rotation to the layer.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
         self.add(self.feature_maps)
@@ -358,7 +380,18 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
-        """Convolution forward pass animation"""
+        """Convolution forward pass animation
+
+        Parameters
+        ----------
+        run_time : float, optional
+            Run time of the forward pass animation, by default 5.
+        layer_args : dict, optional
+            Additional arguments passed to the layers when making their
+            forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer
         if not self.activation_function is None:
             animation_group = AnimationGroup(
@@ -372,7 +405,15 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return animation_group
 
     def scale(self, scale_factor: float, **kwargs):
-        """Scale the layer and adjust cell_width proportionally."""
+        """Scale the layer and adjust cell_width proportionally.
+
+        Parameters
+        ----------
+        scale_factor : float
+            Factor by which the layer is scaled.
+        **kwargs
+            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+        """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 
@@ -393,7 +434,13 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return self.feature_maps.length_over_dim(1)
 
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point"""
+        """Moves the center of the layer to the given mobject or point
+
+        Parameters
+        ----------
+        mobject_or_point : Mobject
+            The mobject or point whose center the layer is moved to.
+        """
         layer_center = self.feature_maps.get_center()
         if isinstance(mobject_or_point, Mobject):
             target_center = mobject_or_point.get_center() 

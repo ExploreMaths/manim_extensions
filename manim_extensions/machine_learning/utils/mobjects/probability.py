@@ -103,7 +103,19 @@ class GaussianDistribution(VGroup):
     def compute_covariance_rotation_and_scale(
         self, covariance: NDArray[np.float64]
     ) -> tuple[float, float, float]:
-        """TODO: add docstring for compute_covariance_rotation_and_scale."""
+        """Compute the rotation angle and axes of the covariance ellipse.
+
+        Parameters
+        ----------
+        covariance : np.ndarray
+            2D covariance matrix of the Gaussian distribution.
+
+        Returns
+        -------
+        tuple[float, float, float]
+            Rotation angle, width, and height of the covariance ellipse
+            in frame coordinates.
+        """
         def eigsorted(
             cov: NDArray[np.float64],
         ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
@@ -142,7 +154,24 @@ class GaussianDistribution(VGroup):
         color: ManimColor = ORANGE,
         num_ellipses: int = 4,
     ) -> VGroup:
-        """Returns a 2d Gaussian distribution object with given mean and covariance"""
+        """Returns a 2d Gaussian distribution object with given mean and covariance
+
+        Parameters
+        ----------
+        mean : np.ndarray
+            Mean of the Gaussian distribution.
+        covariance : np.ndarray
+            Covariance matrix of the Gaussian distribution.
+        color : ManimColor, optional
+            Color of the ellipses, by default ORANGE.
+        num_ellipses : int, optional
+            Number of concentric confidence ellipses, by default 4.
+
+        Returns
+        -------
+        VGroup
+            Group of concentric ellipses visualizing the distribution.
+        """
         # map mean and covariance to frame coordinates
         mean = self.axes.coords_to_point(*mean)
         # Figure out the scale and angle of rotation
@@ -173,7 +202,22 @@ class GaussianDistribution(VGroup):
         covariance: NDArray[np.float64],
         color: ManimColor = ORANGE,
     ) -> VGroup:
-        """Returns a 2d Gaussian distribution object with given mean and covariance"""
+        """Returns a 2d Gaussian distribution object with given mean and covariance
+
+        Parameters
+        ----------
+        mean : np.ndarray
+            Mean of the Gaussian distribution.
+        covariance : np.ndarray
+            Covariance matrix of the Gaussian distribution.
+        color : ManimColor, optional
+            Color of the ellipse, by default ORANGE.
+
+        Returns
+        -------
+        VGroup
+            Group containing the single ellipse visualizing the distribution.
+        """
         # Map mean and covariance to frame coordinates
         mean = self.axes.coords_to_point(*mean)
         angle, width, height = self.compute_covariance_rotation_and_scale(covariance)

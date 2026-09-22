@@ -69,7 +69,17 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """Build the vector label and add it to the layer."""
+        """Build the vector label and add it to the layer.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         super().construct_layer(input_layer, output_layer, **kwargs)
         # Make the vector
         self.vector_label = self.make_vector()
@@ -89,7 +99,16 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         return vector_label
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Return an empty animation group; the vector layer has no forward pass effect."""
+        """Return an empty animation group; the vector layer has no forward pass effect.
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the layers when making their
+            forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return AnimationGroup()
 
     @override_animation(Create)

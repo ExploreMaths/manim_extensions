@@ -19,7 +19,12 @@ def parse_xml_file(file_name: str) -> dict[str, object]:
     Parameters
     ----------
     file_name
-    The path to the target file.
+        The path to the target file.
+
+    Returns
+    -------
+    dict
+        The parsed XML content as a dictionary.
     """
     xmltodict = require("automata", "xmltodict")
     with open(file_name, "rb") as f:

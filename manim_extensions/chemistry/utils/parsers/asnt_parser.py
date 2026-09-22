@@ -62,7 +62,18 @@ class ASNTParser(BaseParser):
 
     @staticmethod
     def read_file(filename: Union[str, bytes, os.PathLike]) -> List[List[str]]:
-        """Read an ASNT file and return its lines as a list of strings."""
+        """Read an ASNT file and return its lines as a list of strings.
+
+        Parameters
+        ----------
+        filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.bytes` or Path-like
+            Path to the ASNT file to parse.
+
+        Returns
+        -------
+        :class:`list` of :class:`list` of :class:`str`
+            Lines of the ASNT file.
+        """
         with open(filename, "r") as asnt_file:
             file_list = asnt_file.readlines()
 
@@ -128,6 +139,16 @@ class ASNTParser(BaseParser):
 
         The bond data follows the structure:
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
+
+        Parameters
+        ----------
+        data : :class:`~typing.Any`
+            Lines of the ASNT file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file`.
+
+        Returns
+        -------
+        :class:`typing.Tuple` or :class:`list` of :class:`typing.Tuple`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         lines_list = data
         line = lines_list[0]

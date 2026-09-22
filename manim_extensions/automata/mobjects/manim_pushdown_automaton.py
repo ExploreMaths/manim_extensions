@@ -198,7 +198,13 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         return self.stack
 
     def pop(self) -> str | None:
-        """Remove and return the top stack symbol."""
+        """Remove and return the top stack symbol.
+
+        Returns
+        -------
+        str or None
+            The popped symbol, or ``None`` if the stack is empty.
+        """
         if not self.stack:
             return None
         return self.stack.pop()

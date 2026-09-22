@@ -38,6 +38,24 @@ class NeuralNetworkLayer(ABC, Group):
     **kwargs
         Forwarded to the parent class; a ``"title"`` entry adds a title above
         the layer.
+
+    Examples
+    --------
+    .. manim:: NeuralNetworkLayerExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.parent_layers import NeuralNetworkLayer
+
+       class NeuralNetworkLayerExample(Scene):
+           def construct(self):
+               # NeuralNetworkLayer is abstract; FeedForwardLayer is a
+               # concrete subclass.
+               layer = FeedForwardLayer(3)
+               layer.construct_layer(None, None)
+               assert isinstance(layer, NeuralNetworkLayer)
+               self.add(layer)
     """
 
     def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
@@ -67,6 +85,9 @@ class NeuralNetworkLayer(ABC, Group):
             preceding layer
         output_layer : NeuralNetworkLayer
             following layer
+        **kwargs
+            Forwarded to the parent class; a ``"debug_mode"`` entry draws a
+            surrounding rectangle around the layer.
         """
         if "debug_mode" in kwargs and kwargs["debug_mode"]:
             self.add(SurroundingRectangle(self))
@@ -75,7 +96,18 @@ class NeuralNetworkLayer(ABC, Group):
     def make_forward_pass_animation(
         self, *args: Any, **kwargs: Any
     ) -> Animation:
-        """TODO: add docstring for make_forward_pass_animation."""
+        """Makes the forward pass animation for the layer.
+
+        Parameters
+        ----------
+        **kwargs
+            Forwarded to the layer's forward pass animation.
+
+        Returns
+        -------
+        Animation
+            The forward pass animation.
+        """
         pass
 
     @override_animation(Create)
@@ -96,6 +128,24 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
         Positional arguments forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
+
+    Examples
+    --------
+    .. manim:: VGroupNeuralNetworkLayerExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.parent_layers import VGroupNeuralNetworkLayer
+
+       class VGroupNeuralNetworkLayerExample(Scene):
+           def construct(self):
+               # VGroupNeuralNetworkLayer is abstract; FeedForwardLayer is a
+               # concrete subclass.
+               layer = FeedForwardLayer(4)
+               layer.construct_layer(None, None)
+               assert isinstance(layer, VGroupNeuralNetworkLayer)
+               self.add(layer)
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -105,7 +155,18 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
-        """TODO: add docstring for make_forward_pass_animation."""
+        """Makes the forward pass animation for the layer.
+
+        Parameters
+        ----------
+        **kwargs
+            Forwarded to the layer's forward pass animation.
+
+        Returns
+        -------
+        Animation
+            The forward pass animation.
+        """
         pass
 
     @override_animation(Create)
@@ -129,6 +190,28 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         The layer the forward pass animation ends at.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: ConnectiveLayerExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
+       from manim_extensions.machine_learning.neural_network.layers.parent_layers import ConnectiveLayer
+
+       class ConnectiveLayerExample(Scene):
+           def construct(self):
+               # ConnectiveLayer is abstract; FeedForwardToFeedForward is a
+               # concrete subclass.
+               input_layer = FeedForwardLayer(3).shift(LEFT * 2)
+               output_layer = FeedForwardLayer(2).shift(RIGHT * 2)
+               input_layer.construct_layer(None, None)
+               output_layer.construct_layer(None, None)
+               connection = FeedForwardToFeedForward(input_layer, output_layer)
+               assert isinstance(connection, ConnectiveLayer)
+               self.add(input_layer, output_layer, connection)
     """
 
     @abstractmethod
@@ -150,7 +233,23 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
     def make_forward_pass_animation(
         self, run_time: float = 2.0, layer_args: Any = {}, **kwargs: Any
     ) -> Animation:
-        """TODO: add docstring for make_forward_pass_animation."""
+        """Makes the forward pass animation between the connected layers.
+
+        Parameters
+        ----------
+        run_time : float, optional
+            Run time of the forward pass animation, by default 2.0.
+        layer_args : Any, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the layer's forward pass animation.
+
+        Returns
+        -------
+        Animation
+            The forward pass animation.
+        """
         pass
 
     @override_animation(Create)
@@ -177,6 +276,29 @@ class BlankConnective(ConnectiveLayer):
         The layer the connection ends at.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. manim:: BlankConnectiveExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
+       from manim_extensions.machine_learning.neural_network.layers.parent_layers import BlankConnective
+
+       class BlankConnectiveExample(Scene):
+           def construct(self):
+               # BlankConnective is abstract (construct_layer is not
+               # implemented); NeuralNetwork uses it for layer pairs without
+               # a specific connective. FeedForwardToFeedForward shows what
+               # a concrete connective looks like.
+               input_layer = FeedForwardLayer(3).shift(LEFT * 2)
+               output_layer = FeedForwardLayer(2).shift(RIGHT * 2)
+               input_layer.construct_layer(None, None)
+               output_layer.construct_layer(None, None)
+               connection = FeedForwardToFeedForward(input_layer, output_layer)
+               self.add(input_layer, output_layer, connection)
     """
 
     def __init__(
@@ -191,7 +313,23 @@ class BlankConnective(ConnectiveLayer):
     def make_forward_pass_animation(
         self, run_time: float = 1.5, layer_args: Any = {}, **kwargs: Any
     ) -> Animation:
-        """TODO: add docstring for make_forward_pass_animation."""
+        """Makes an empty forward pass animation for the blank connection.
+
+        Parameters
+        ----------
+        run_time : float, optional
+            Run time of the forward pass animation, by default 1.5.
+        layer_args : Any, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the layer's forward pass animation.
+
+        Returns
+        -------
+        Animation
+            The forward pass animation.
+        """
         return AnimationGroup(run_time=run_time)
 
     @override_animation(Create)

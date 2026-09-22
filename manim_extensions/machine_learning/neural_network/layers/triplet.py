@@ -70,7 +70,17 @@ class TripletLayer(NeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Build the triplet assets and add them to the layer."""
+        """Build the triplet assets and add them to the layer.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Make the assets
         self.assets = self.make_assets()
         self.add(self.assets)
@@ -86,7 +96,23 @@ class TripletLayer(NeuralNetworkLayer):
         font_size: float = 22,
         buff: float = 0.2,
     ):
-        """Creates a triplet using the anchor paths"""
+        """Creates a triplet using the anchor paths
+
+        Parameters
+        ----------
+        anchor_path : str
+            Path to the image used as the anchor example.
+        positive_path : str
+            Path to the image used as the positive example.
+        negative_path : str
+            Path to the image used as the negative example.
+        grayscale : bool, optional
+            Whether to load the images as grayscale mobjects, by default True.
+        font_size : float, optional
+            Font size of the labels, by default 22.
+        buff : float, optional
+            Buffer between the images, by default 0.2.
+        """
         # Load images from path
         if grayscale:
             anchor = GrayscaleImageMobject.from_path(anchor_path)
@@ -144,5 +170,14 @@ class TripletLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass for triplet"""
+        """Forward pass for triplet
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the layers when making their
+            forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return AnimationGroup()

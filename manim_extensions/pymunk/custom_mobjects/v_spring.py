@@ -122,7 +122,15 @@ class VSpring(Line):
         self.shift(start)
 
     def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray):
-        """当位置改变时（如被 Updater 调用），重新生成点"""
+        """当位置改变时（如被 Updater 调用），重新生成点。
+
+        Parameters
+        ----------
+        start : np.ndarray
+            The starting point of the spring.
+        end : np.ndarray
+            The ending point of the spring.
+        """
         self.start = np.array(start)
         self.end = np.array(end)
         self.generate_points()

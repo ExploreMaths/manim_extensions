@@ -158,7 +158,15 @@ class BohrAtom(VGroup):
         return electrons_group
 
     def arrange_electrons(self, n_electrons: Any, level: int):
-        """Evenly arrange n_electrons around a circular orbit at the given energy level radius."""
+        """Evenly arrange n_electrons around a circular orbit at the given energy level radius.
+
+        Parameters
+        ----------
+        n_electrons : :class:`~typing.Any`
+            Number of electrons to arrange on the orbit.
+        level : :class:`int`
+            Energy level of the orbit, used as its radius.
+        """
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)

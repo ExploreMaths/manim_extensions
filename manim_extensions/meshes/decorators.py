@@ -18,6 +18,11 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
     """Decorator for mesh operations to check for dangling vertices.
 
     Warns if any vertices are not part of a face after the decorated function runs.
+
+    Returns
+    -------
+    callable
+        The decorator that wraps a mesh operation function.
     """
 
     def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
@@ -59,6 +64,11 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
     """Decorator for mesh operations to check for dangling faces.
 
     Warns if any faces are not part of a part after the decorated function runs.
+
+    Returns
+    -------
+    callable
+        The decorator that wraps a mesh operation function.
     """
 
     def decorator_func(func: Callable[P, R]) -> Callable[P, R]:

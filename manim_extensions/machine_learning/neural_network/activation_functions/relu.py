@@ -45,7 +45,13 @@ class ReLUFunction(ActivationFunction):
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: Any):
-        """Return max(0, x_val), the ReLU activation applied to the input value."""
+        """Return max(0, x_val), the ReLU activation applied to the input value.
+
+        Parameters
+        ----------
+        x_val : Any
+            Input value to which the ReLU activation is applied.
+        """
         if x_val < 0:
             return 0
         else:

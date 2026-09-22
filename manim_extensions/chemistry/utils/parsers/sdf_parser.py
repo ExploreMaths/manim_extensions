@@ -80,5 +80,16 @@ class SDFParser(MolParser):
 
     @staticmethod
     def data_parser(molecules_data: List[List[str]]) -> List[tuple[AtomsDict, BondsDict]]:
-        """TODO: add docstring for data_parser."""
+        """Parse the molecules of an SDF file into a list of atoms and bonds dicts.
+
+        Parameters
+        ----------
+        molecules_data : :class:`list` of :class:`list` of :class:`str`
+            Molecules of the SDF file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file`.
+
+        Returns
+        -------
+        :class:`list` of :class:`typing.Tuple`
+            List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
+        """
         return [MolParser.data_parser(data) for data in molecules_data]

@@ -12,7 +12,52 @@ from typing import Dict, Any, Optional
 
 
 class MAtomObject(VGroup):
-    """A 2D visual representation of an atom in a chemical molecule."""
+    """A 2D visual representation of an atom in a chemical molecule.
+
+    Parameters
+    ----------
+    coords : np.array, optional
+        Position of the atom. Defaults to ``np.array([0, 0, 0])``.
+    element : str, optional
+        Chemical symbol of the element. Defaults to ``"H"``.
+    explicit_carbons : bool, optional
+        If True, carbon atoms display their element symbol. Defaults to
+        ``False``.
+    explicit_hydrogens : bool, optional
+        If True, hydrogen atoms display their element symbol. Defaults to
+        ``False``.
+    bond_to : Dict[int, Any], optional
+        Mapping of bonded atom indices to their elements. Defaults to
+        ``{}``.
+    representation_type : Optional[str], optional
+        Representation of the atom label: ``'complete'`` (always show the
+        symbol), ``'skeleton'`` (hide it), or ``'over_bond'`` (show it
+        above the bond). When None it is inferred from the element.
+    color : str, optional
+        Color of the atom label. Defaults to ``WHITE``.
+    charge : int, optional
+        Formal charge of the atom. Defaults to ``0``.
+    index : int, optional
+        Index of the atom in the molecule. Defaults to ``0``.
+    planar : bool, optional
+        If True, forces the z coordinate of ``coords`` to zero. Defaults
+        to ``True``.
+    **kwargs
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: MAtomObjectExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+
+       class MAtomObjectExample(Scene):
+           def construct(self):
+               self.add(MAtomObject(element="O"))
+    """
     def __str__(self):
         return f"MAtomObject of element {self.element}"
 
@@ -64,6 +109,11 @@ class MAtomObject(VGroup):
         - 'complete': Adds the element symbol.
         - 'skeleton': Does not add the symbol
         - 'over_bond': Adds the symbol above the bond
+
+        Parameters
+        ----------
+        representation_type : :class:`~typing.Any`
+            Representation type of the atom.
         """
         if representation_type:
             return representation_type
@@ -116,7 +166,15 @@ class MAtomObject(VGroup):
         return copy
 
     def rename_atom(self, new_element: Any, bonds_direction: Any):
-        """Replace this atom's element with new_element and adjust position by bond direction."""
+        """Replace this atom's element with new_element and adjust position by bond direction.
+
+        Parameters
+        ----------
+        new_element : :class:`~typing.Any`
+            Element symbol of the new atom.
+        bonds_direction : :class:`~typing.Any`
+            Direction of the bond, used to shift the renamed atom.
+        """
         self.element = new_element
         renamed_atom = self.make_copy()
 
@@ -141,5 +199,10 @@ class MAtomObject(VGroup):
     def set_atom_color(self, color: ManimColor):
         """
         TODO: Add the color depending on cpk convention
+
+        Parameters
+        ----------
+        color : :class:`~manim.utils.color.core.ManimColor`
+            New color of the atom.
         """
         pass

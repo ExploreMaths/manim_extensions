@@ -62,15 +62,33 @@ class MCBond:
         self.reacting_center_status = reacting_center_status
 
     def assign_from_atom(self, from_atom: Any):
-        """Set the atom the bond originates from."""
+        """Set the atom the bond originates from.
+
+        Parameters
+        ----------
+        from_atom : MCAtom
+            Atom the bond starts from.
+        """
         self.from_atom = from_atom
 
     def assign_to_atom(self, to_atom: Any):
-        """Set the atom the bond points to."""
+        """Set the atom the bond points to.
+
+        Parameters
+        ----------
+        to_atom : MCAtom
+            Atom the bond ends at.
+        """
         self.to_atom = to_atom
 
     def assign_stereo(self, stereo: Any):
-        """Set the stereochemistry type of the bond."""
+        """Set the stereochemistry type of the bond.
+
+        Parameters
+        ----------
+        stereo : :class:`~typing.Any`
+            Stereo type of the bond.
+        """
         self.stereo = stereo
 
     @staticmethod
@@ -80,7 +98,9 @@ class MCBond:
 
         Parameters
         ----------
-        atom_dict : Dict
+        bond_index : Any
+            Index of the bond in the molecule.
+        bond_data_dict : Dict
             See data_parser function from BaseParser
         molecule
             MCMolecule: Required to get the atoms by their index and
@@ -88,6 +108,13 @@ class MCBond:
 
         Output:
             MCBond
+
+        Raises
+        ------
+        Exception
+            Raised when ``bond_data_dict`` is not a dict, when it has no
+            ``to_atom_index`` or ``from_atom_index`` entries, or when the
+            bond type is unknown.
         """
 
         if not isinstance(bond_data_dict, dict):

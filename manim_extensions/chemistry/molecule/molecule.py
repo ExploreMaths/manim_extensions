@@ -59,25 +59,73 @@ class Molecule:
         self.molecule_class = molecule_class
 
     def molecule_from_file(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to construct a molecule from a file."""
+        """Delegate to the wrapped molecule class to construct a molecule from a file.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
     def multiple_molecules_from_file(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to construct multiple molecules from a file."""
+        """Delegate to the wrapped molecule class to construct multiple molecules from a file.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_file`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
     def molecule_from_string(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to construct a molecule from a string."""
+        """Delegate to the wrapped molecule class to construct a molecule from a string.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_string`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
     def multiple_molecules_from_string(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to construct multiple molecules from a string."""
+        """Delegate to the wrapped molecule class to construct multiple molecules from a string.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_string`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
     def molecule_from_pubchem(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to fetch a molecule from PubChem."""
+        """Delegate to the wrapped molecule class to fetch a molecule from PubChem.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_pubchem`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
     def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs):
-        """Delegate to the wrapped molecule class to convert an MCMolecule to atoms and bonds."""
+        """Delegate to the wrapped molecule class to convert an MCMolecule to atoms and bonds.
+
+        Parameters
+        ----------
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.mc_molecule_to_atoms_and_bonds`
+            of the wrapped molecule class.
+        """
         return self.molecule_class.mc_molecule_to_atoms_and_bonds(*args, **kwargs)

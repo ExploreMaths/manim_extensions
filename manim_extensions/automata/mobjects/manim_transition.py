@@ -146,6 +146,11 @@ class ManimTransition(Transition, VGroup):
         ----------
         transition_result : bool
             Whether the transition is accepted by the automaton.
+
+        Returns
+        -------
+        Animation
+            The animation of the transition arrow.
         """
         animation_function = self.animation_style["animate_transition"][
             "animation_function"
@@ -202,6 +207,11 @@ class ManimTransition(Transition, VGroup):
         ----------
         normal_vector_choice : int
             Side of the transition line on which the symbol label should be placed.
+
+        Returns
+        -------
+        list of float
+            The normal direction used to offset the arrow label.
         """
 
         x1 = self.transition_from.get_x()
@@ -339,6 +349,11 @@ class ManimTransition(Transition, VGroup):
         ----------
         token
             Token whose LaTeX representation is compared against the transition labels.
+
+        Returns
+        -------
+        bool
+            ``True`` if a read symbol matches the token, otherwise ``False``.
         """
         for read_symbol in self.read_symbols:
             if read_symbol.tex_string == token.tex_string:

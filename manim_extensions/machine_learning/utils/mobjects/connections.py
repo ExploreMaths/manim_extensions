@@ -53,6 +53,20 @@ class NetworkConnection(VGroup):
         Color of the connection, by default WHITE.
     active_color : ManimColor, optional
         Color of active animations for this mobject, by default ORANGE.
+
+    Examples
+    --------
+    .. manim:: NetworkConnectionExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.utils.mobjects.connections import NetworkConnection
+
+       class NetworkConnectionExample(Scene):
+           def construct(self):
+               start = Dot(LEFT)
+               end = Dot(RIGHT)
+               self.add(start, end, NetworkConnection(start, end))
     """
 
     direction_vector_map: dict[str, NDArray[np.float64]] = {
@@ -73,28 +87,7 @@ class NetworkConnection(VGroup):
         color: ManimColor = WHITE,
         active_color: ManimColor = ORANGE,
     ) -> None:
-        """Creates an arrow with right angles in it connecting
-        two mobjects.
-
-        Parameters
-        ----------
-        start_mobject : Mobject
-            Mobject where the start of the connection is from
-        end_mobject : Mobject
-            Mobject where the end of the connection goes to
-        arc_direction : str, optional
-            direction that the connection arcs, by default "straight"
-        buffer : float, optional
-            amount of space between the connection and mobjects at the end
-        arc_distance : float, optional
-            Distance from start and end mobject that the arc bends
-        stroke_width : float, optional
-            Stroke width of the connection
-        color : [float], optional
-            Color of the connection
-        active_color : [float], optional
-            Color of active animations for this mobject
-        """
+        """Initialize the NetworkConnection instance."""
         super().__init__()
         assert arc_direction in ["straight", "up", "down", "left", "right"]
         self.start_mobject = start_mobject

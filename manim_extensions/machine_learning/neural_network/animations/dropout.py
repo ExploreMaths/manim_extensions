@@ -37,6 +37,18 @@ class XMark(VGroup):
         Stroke width of the two lines, by default 1.0.
     color : ManimColor, optional
         Color of the mark, by default GRAY.
+
+    Examples
+    --------
+    .. manim:: XMarkExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.animations.dropout import XMark
+
+       class XMarkExample(Scene):
+           def construct(self):
+               self.add(XMark().scale(2))
     """
 
     def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
@@ -61,7 +73,16 @@ class XMark(VGroup):
 
 
 def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: Any):
-    """Returns edges to drop out for a given FeedForwardToFeedForward layer"""
+    """Returns edges to drop out for a given FeedForwardToFeedForward layer
+
+    Parameters
+    ----------
+    layer : FeedForwardToFeedForward
+        The connective layer whose edges are considered for dropout.
+    layers_to_nodes_to_drop_out : dict
+        Mapping from layers to the indices of the nodes that are
+        dropped out in each layer.
+    """
     prev_layer = layer.input_layer
     next_layer = layer.output_layer
     # Get the nodes to dropout in previous layer
@@ -90,7 +111,20 @@ def make_pre_dropout_animation(
     dropped_out_color: ManimColor = GRAY,
     dropped_out_opacity: float = 0.2,
 ):
-    """Makes an animation that sets up the NN layer for dropout"""
+    """Makes an animation that sets up the NN layer for dropout
+
+    Parameters
+    ----------
+    neural_network : Any
+        The neural network the dropout animation is applied to.
+    layers_to_nodes_to_drop_out : dict
+        Mapping from feed forward layers to the indices of the nodes
+        that are dropped out in each layer.
+    dropped_out_color : ManimColor, optional
+        Color used to indicate dropped-out edges, by default ``GRAY``.
+    dropped_out_opacity : float, optional
+        Opacity used to indicate dropped-out edges, by default 0.2.
+    """
     animations = []
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -158,7 +192,19 @@ def make_post_dropout_animation(
     layers_to_nodes_to_drop_out: Any,
     x_marks: Any,
 ):
-    """Returns the NN to normal after dropout"""
+    """Returns the NN to normal after dropout
+
+    Parameters
+    ----------
+    neural_network : Any
+        The neural network the dropout animation is applied to.
+    layers_to_nodes_to_drop_out : dict
+        Mapping from feed forward layers to the indices of the nodes
+        that are dropped out in each layer.
+    x_marks : list
+        The X-shaped marks placed on dropped-out nodes during the
+        pre-dropout animation.
+    """
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
         lambda layer: isinstance(layer, FeedForwardLayer)
@@ -199,7 +245,16 @@ def make_forward_pass_with_dropout_animation(
     neural_network: Any,
     layers_to_nodes_to_drop_out: Any,
 ):
-    """Makes forward pass animation with dropout"""
+    """Makes forward pass animation with dropout
+
+    Parameters
+    ----------
+    neural_network : Any
+        The neural network the forward pass animation is applied to.
+    layers_to_nodes_to_drop_out : dict
+        Mapping from feed forward layers to the indices of the nodes
+        that are dropped out in each layer.
+    """
     layer_args = {}
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -230,6 +285,24 @@ def make_neural_network_dropout_animation(
     1. Does dropout
     2. If `do_forward_pass` then do forward pass animation
     3. Revert network to pre-dropout appearance
+
+    Parameters
+    ----------
+    neural_network : Any
+        The neural network the dropout animation is applied to.
+    dropout_rate : float, optional
+        Probability that each node is dropped out, by default 0.5.
+    do_forward_pass : bool, optional
+        Whether to run a forward pass animation after dropout,
+        by default True.
+    last_layer_stable : bool, optional
+        Whether to keep the last feed forward layer stable (no dropout),
+        by default False.
+    first_layer_stable : bool, optional
+        Whether to keep the first feed forward layer stable (no dropout),
+        by default False.
+    seed : Any, optional
+        Seed for the random number generator, by default None.
     """
     # Go through the network and get the FeedForwardLayer instances
     if seed is not None:

@@ -52,11 +52,37 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
-        """Maps image to convolutional layer"""
+        """Maps image to convolutional layer
+
+        Parameters
+        ----------
+        run_time : float, optional
+            Run time of the forward pass animation, by default 5.
+        layer_args : dict, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+
+        Raises
+        ------
+        Exception
+            Raised when the number of image channels is not 1 or 3.
+        """
         # Transform the image from the input layer to the
         num_image_channels = self.input_layer.num_channels
         if num_image_channels == 1 or num_image_channels == 3:  # TODO fix this later
@@ -69,7 +95,14 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             )
 
     def rbg_image_forward_pass_animation(self):
-        """Handles forward pass animation for 3 channel image"""
+        """Handles forward pass animation for 3 channel image
+
+        Raises
+        ------
+        NotImplementedError
+            Always raised; RGB image forward pass animations are not yet
+            supported.
+        """
         image_mobject = self.input_layer.image_mobject
         # TODO get each color channel and turn it into an image
         # TODO create image mobjects for each channel and transform
@@ -134,7 +167,15 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return animation
 
     def scale(self, scale_factor: float, **kwargs):
-        """Scale the layer by forwarding to the parent class."""
+        """Scale the layer by forwarding to the parent class.
+
+        Parameters
+        ----------
+        scale_factor : float
+            Factor by which the layer is scaled.
+        **kwargs
+            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+        """
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)

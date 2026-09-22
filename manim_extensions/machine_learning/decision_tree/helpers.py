@@ -20,7 +20,20 @@ class SklearnTree(Protocol):
 
 
 def compute_node_depths(tree: SklearnTree) -> list[int]:
-    """Computes the depths of nodes for level order traversal"""
+    """Computes the depths of nodes for level order traversal.
+
+    Parameters
+    ----------
+    tree : SklearnTree
+        The sklearn decision tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+    Returns
+    -------
+    list[int]
+        The depth of each node, indexed by node index. Leaf nodes that are
+        never reached get a depth of ``-1``.
+    """
 
     def depth(node_index: int, current_node_index: int = 0) -> int:
         """Compute the height of a node"""
@@ -49,7 +62,19 @@ def compute_node_depths(tree: SklearnTree) -> list[int]:
 
 
 def compute_level_order_traversal(tree: SklearnTree) -> list[int]:
-    """Computes level order traversal of a sklearn tree"""
+    """Computes level order traversal of a sklearn tree.
+
+    Parameters
+    ----------
+    tree : SklearnTree
+        The sklearn decision tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+    Returns
+    -------
+    list[int]
+        Node indices sorted by ascending depth, i.e. in level order.
+    """
 
     def depth(node_index: int, current_node_index: int = 0) -> int:
         """Compute the height of a node"""
@@ -80,7 +105,19 @@ def compute_level_order_traversal(tree: SklearnTree) -> list[int]:
 
 
 def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
-    """Traverses the tree in BFS order and returns the nodes in order"""
+    """Traverses the tree in BFS order and returns the nodes in order.
+
+    Parameters
+    ----------
+    tree : SklearnTree
+        The sklearn decision tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+    Returns
+    -------
+    list[int]
+        Node indices in breadth-first order, starting from the root.
+    """
     traversal_order = []
     tree_root_index = 0
     queue = [tree_root_index]
@@ -98,12 +135,36 @@ def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
 
 
 def compute_best_first_traversal(tree: SklearnTree) -> None:
-    """Traverses the tree according to the best split first order"""
+    """Traverses the tree according to the best split first order.
+
+    Parameters
+    ----------
+    tree : SklearnTree
+        The sklearn decision tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+    Notes
+    -----
+    Not implemented yet; currently a no-op.
+    """
     pass
 
 
 def compute_node_to_parent_mapping(tree: SklearnTree) -> dict[int, int]:
-    """Returns a hashmap mapping node indices to their parent indices"""
+    """Returns a hashmap mapping node indices to their parent indices.
+
+    Parameters
+    ----------
+    tree : SklearnTree
+        The sklearn decision tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+    Returns
+    -------
+    dict[int, int]
+        Mapping from each node index to its parent node index. The root (0)
+        maps to ``-1``.
+    """
     node_to_parent = {0: -1}  # Root has no parent
     num_nodes = tree.node_count
     for node_index in range(num_nodes):

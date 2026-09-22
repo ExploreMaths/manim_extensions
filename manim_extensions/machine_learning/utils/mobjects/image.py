@@ -35,6 +35,20 @@ class GrayscaleImageMobject(Group):
         2D grayscale image data.
     height : float, optional
         Height of the rendered image, by default 2.3.
+
+    Examples
+    --------
+    .. manim:: GrayscaleImageMobjectExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.utils.mobjects.image import GrayscaleImageMobject
+
+       class GrayscaleImageMobjectExample(Scene):
+           def construct(self):
+               gradient = np.linspace(0, 255, 256).reshape(16, 16).astype(np.uint8)
+               self.add(GrayscaleImageMobject(gradient))
     """
 
     def __init__(self, numpy_image: NDArray[Any], height: float = 2.3) -> None:
@@ -59,7 +73,20 @@ class GrayscaleImageMobject(Group):
 
     @classmethod
     def from_path(cls, path: str, height: float = 2.3) -> "GrayscaleImageMobject":
-        """Loads image from path"""
+        """Loads image from path
+
+        Parameters
+        ----------
+        path : str
+            Path to the image file to load.
+        height : float, optional
+            Height of the rendered image, by default 2.3.
+
+        Returns
+        -------
+        GrayscaleImageMobject
+            Grayscale image mobject built from the loaded image.
+        """
         image = Image.open(path)
         numpy_image = np.asarray(image)
 
@@ -67,13 +94,32 @@ class GrayscaleImageMobject(Group):
 
     @override_animation(Create)
     def create(self, run_time: float = 2) -> Animation:
-        """TODO: add docstring for create."""
+        """Create the image mobject by fading it in.
+
+        Parameters
+        ----------
+        run_time : float, optional
+            Duration of the fade-in animation, by default 2.
+
+        Returns
+        -------
+        Animation
+            Fade-in animation of the image mobject.
+        """
         return FadeIn(self)
 
     def scale(  # type: ignore[override] # intentionally returns None instead of the group
         self, scale_factor: float, **kwargs: Any
     ) -> None:
-        """Scales the image mobject"""
+        """Scales the image mobject
+
+        Parameters
+        ----------
+        scale_factor : float
+            Factor by which to scale the image mobject.
+        **kwargs
+            Additional keyword arguments for scaling.
+        """
         # super().scale(scale_factor)
         # height = self.height
         self.image_mobject.scale(scale_factor)
@@ -83,7 +129,13 @@ class GrayscaleImageMobject(Group):
         # )
 
     def set_opacity(self, opacity: float) -> None:
-        """Set the opacity"""
+        """Set the opacity
+
+        Parameters
+        ----------
+        opacity : float
+            Opacity to apply to the image mobject.
+        """
         self.image_mobject.set_opacity(opacity)
 
 
@@ -104,6 +156,20 @@ class LabeledColorImage(Group):
         Font size of the label, by default 24.
     buff : float, optional
         Buffer between the image and the label, by default 0.2.
+
+    Examples
+    --------
+    .. manim:: LabeledColorImageExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.utils.mobjects.image import LabeledColorImage
+
+       class LabeledColorImageExample(Scene):
+           def construct(self):
+               image = ImageMobject(np.zeros((16, 16, 3), dtype=np.uint8))
+               self.add(LabeledColorImage(image, color=GREEN, label="Cat"))
     """
 
     def __init__(

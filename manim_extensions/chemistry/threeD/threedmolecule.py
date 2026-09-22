@@ -230,11 +230,27 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return atoms, bonds
 
     def from_mol_file(filename: Any, source_csv: Any):
-        """Create a ThreeDMolecule by parsing a .mol file."""
+        """Create a ThreeDMolecule by parsing a .mol file.
+
+        Parameters
+        ----------
+        filename : :class:`~typing.Any`
+            Path to the .mol file.
+        source_csv : :class:`~typing.Any`
+            Path to a csv file with element data.
+        """
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
     def from_mol_string(mol_string: Any, source_csv: Any):
-        """Create a ThreeDMolecule by parsing a mol-format string."""
+        """Create a ThreeDMolecule by parsing a mol-format string.
+
+        Parameters
+        ----------
+        mol_string : :class:`~typing.Any`
+            String with the molecule data in mol format.
+        source_csv : :class:`~typing.Any`
+            Path to a csv file with element data.
+        """
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

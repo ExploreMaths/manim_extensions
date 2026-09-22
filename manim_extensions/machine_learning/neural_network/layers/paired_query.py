@@ -104,12 +104,34 @@ class PairedQueryLayer(NeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
     def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs):
-        """Creates a query using the paths"""
+        """Creates a query using the paths
+
+        Parameters
+        ----------
+        positive_path : str
+            Path to the image used as the positive query example.
+        negative_path : str
+            Path to the image used as the negative query example.
+        grayscale : bool, optional
+            Whether to load the images as grayscale mobjects, by default True.
+        **kwargs
+            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.PairedQueryLayer`.
+        """
         # Load images from path
         if grayscale:
             positive = GrayscaleImageMobject.from_path(positive_path)
@@ -154,5 +176,14 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass for query"""
+        """Forward pass for query
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the layers when making their
+            forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return AnimationGroup()

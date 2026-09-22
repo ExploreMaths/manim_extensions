@@ -57,7 +57,13 @@ class ChemicalFormula(MarkupText):
         super().__init__(markup, *args, **kwargs)
 
     def parse_formula(self, formula: str):
-        """Parse a formula string into a dict mapping element symbols to their counts."""
+        """Parse a formula string into a dict mapping element symbols to their counts.
+
+        Parameters
+        ----------
+        formula : :class:`str`
+            The chemical formula to parse, e.g. ``"H2O"``.
+        """
         FORMULA_PATTERN = r"([A-Z][a-z]*)(\d*)"
         elements = re.findall(FORMULA_PATTERN, formula)
         parsed_formula = {}
@@ -74,7 +80,19 @@ class ChemicalFormula(MarkupText):
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
     ):
-        """Build Pango markup string with colored elements and subscripted counts."""
+        """Build Pango markup string with colored elements and subscripted counts.
+
+        Parameters
+        ----------
+        parsed_formula : :class:`~typing.Any`
+            Parsed formula mapping element symbols to their counts.
+        metal_color : :class:`str`, optional
+            Color of the metal element. Defaults to ``WHITE``.
+        non_metal_color : :class:`str`, optional
+            Color of the non-metal element. Defaults to ``WHITE``.
+        oxygen_color : :class:`str`, optional
+            Color of the oxygen element. Defaults to ``WHITE``.
+        """
         parsed_list = enumerate(list(parsed_formula))
         markup = ""
 
@@ -91,7 +109,17 @@ class ChemicalFormula(MarkupText):
         return markup
 
     def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor):
-        """Wrap an atom symbol and its subscript count in a colored span tag."""
+        """Wrap an atom symbol and its subscript count in a colored span tag.
+
+        Parameters
+        ----------
+        atom : :class:`~typing.Any`
+            Element symbol of the atom.
+        subindex : :class:`~typing.Any`
+            Subscript count of the atom.
+        color : :class:`~manim.utils.color.core.ManimColor`
+            Color of the atom text.
+        """
         colored_atom = f"<span fgcolor='{color}'>{atom}"
 
         if subindex > 1:
@@ -129,11 +157,24 @@ class NamedFormula(VGroup):
         ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
     direction
         Direction in which the name is placed relative to the formula.
-        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        Defaults to :class:`~manim.constants.DOWN`.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
+
+    Examples
+    --------
+    .. manim:: NamedFormulaExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.twoD.chemical_formula import NamedFormula
+
+       class NamedFormulaExample(Scene):
+           def construct(self):
+               self.add(NamedFormula("Sodio", "Cloro", "NaCl",
+                                     metal_color=BLUE, non_metal_color=GREEN))
     """
 
     def __init__(
@@ -231,14 +272,26 @@ class ComplexFormula(MarkupText):
         super().__init__(markup, *args, **kwargs)
 
     def add_tags_around_numbers(self, formula_part: Any):
-        """Wrap trailing numbers in formula parts with HTML subscript tags."""
+        """Wrap trailing numbers in formula parts with HTML subscript tags.
+
+        Parameters
+        ----------
+        formula_part : :class:`~typing.Any`
+            Formula string to add subscript tags to.
+        """
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
         result = re.sub(pattern, replacement, formula_part)
         return result
 
     def add_tags_around_charges(self, formula_part: Any):
-        """Wrap charge notation (^{...}) with HTML superscript tags."""
+        """Wrap charge notation (^{...}) with HTML superscript tags.
+
+        Parameters
+        ----------
+        formula_part : :class:`~typing.Any`
+            Formula string to add superscript tags to.
+        """
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
         result_string = re.sub(pattern, substitution, formula_part)
@@ -246,7 +299,13 @@ class ComplexFormula(MarkupText):
         return result_string
 
     def make_formula_structure(self, formula_part: Any):
-        """Apply subscript and superscript formatting to a formula string."""
+        """Apply subscript and superscript formatting to a formula string.
+
+        Parameters
+        ----------
+        formula_part : :class:`~typing.Any`
+            Formula string to add subscript and superscript tags to.
+        """
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)
 
@@ -265,7 +324,7 @@ class NamedComplexFormula(VGroup):
         Dictionary mapping formula strings to their colors.
     direction
         Direction in which the name is placed relative to the formula.
-        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        Defaults to :class:`~manim.constants.DOWN`.
     buff : :class:`float`, optional
         Distance between the formula and its name. Defaults to
         ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
@@ -273,6 +332,21 @@ class NamedComplexFormula(VGroup):
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
+
+    Examples
+    --------
+    .. manim:: NamedComplexFormulaExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.twoD.chemical_formula import NamedComplexFormula
+
+       class NamedComplexFormulaExample(Scene):
+           def construct(self):
+               self.add(NamedComplexFormula(
+                   {"Cloruro de sodio": BLUE},
+                   {"NaCl": WHITE},
+               ))
     """
 
     def __init__(

@@ -139,7 +139,17 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Creates the neural network layer"""
+        """Creates the neural network layer
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Add Nodes
         for node_number in range(self.num_nodes):
             node_object = Circle(
@@ -186,7 +196,16 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs):
-        """Makes a forward pass animation with dropout"""
+        """Makes a forward pass animation with dropout
+
+        Parameters
+        ----------
+        layer_args : dict
+            Must contain the key ``dropout_node_indices`` with the indices
+            of the nodes that are dropped out.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args
         dropout_node_indices = layer_args["dropout_node_indices"]
@@ -208,7 +227,16 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return succession
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Return a highlight animation for all nodes, respecting dropout indices if given."""
+        """Return a highlight animation for all nodes, respecting dropout indices if given.
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            May contain the key ``dropout_node_indices`` with the indices of
+            the nodes that are dropped out, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
             # Drop out certain nodes
@@ -263,7 +291,13 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return self.surrounding_rectangle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point"""
+        """Moves the center of the layer to the given mobject or point
+
+        Parameters
+        ----------
+        mobject_or_point : Mobject
+            The mobject or point whose center the layer is moved to.
+        """
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):
             target_center = mobject_or_point.get_center() 

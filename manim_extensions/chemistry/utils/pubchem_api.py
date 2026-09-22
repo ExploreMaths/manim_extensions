@@ -47,30 +47,7 @@ class PubchemAPIManager:
         three_d: bool = False,
         format: str = "json",
     ):
-        """Store the molecule identifier and fetch options for PubChem API calls.
-
-        At least one of ``cid``, ``name``, ``smiles``, or ``inchi`` must be provided.
-
-        Parameters
-        ----------
-        cid : int, optional
-            PubChem compound ID.
-        name : str, optional
-            Common name of the molecule.
-        smiles : str, optional
-            SMILES string representation.
-        inchi : str, optional
-            InChI key representation.
-        three_d : bool, optional
-            Whether to request 3D coordinates. Defaults to False.
-        format : str, optional
-            Response format. Defaults to ``"json"``.
-
-        Raises
-        ------
-        Exception
-            If no identifier is provided.
-        """
+        """Initialize the PubchemAPIManager instance."""
         if not any([cid, name, smiles, inchi]):
             raise Exception(
                 "You should provide an identifier. Available identifiers are cid, name, smiles and inchi"

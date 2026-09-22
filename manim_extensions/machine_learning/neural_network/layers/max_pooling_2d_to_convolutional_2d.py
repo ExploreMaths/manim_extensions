@@ -72,5 +72,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
             input layer
         output_layer : NeuralNetworkLayer
             output layer
+        **kwargs
+            Forwarded to the parent layer classes.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)

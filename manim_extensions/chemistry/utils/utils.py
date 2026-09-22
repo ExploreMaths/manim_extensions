@@ -356,7 +356,13 @@ def mol_parser_string(mol_string: list):
 
 
 def mol_parser(file: Any):
-    """Read a .mol file from disk and return parsed ``(atoms, bonds)``."""
+    """Read a .mol file from disk and return parsed ``(atoms, bonds)``.
+
+    Parameters
+    ----------
+    file : :class:`~typing.Any`
+        Path to the .mol file.
+    """
     with open(file) as file:
         mol_file = file.readlines()
     return mol_parser_string(mol_file)
@@ -388,7 +394,13 @@ def sdf_parser_string(sdf_string: str):
 
 
 def sdf_parser(file: Any):
-    """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples."""
+    """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.
+
+    Parameters
+    ----------
+    file : :class:`~typing.Any`
+        Path to the .sdf file.
+    """
     with open(file) as file:
         sdf_file = file.read()
     return sdf_parser_string(sdf_file)

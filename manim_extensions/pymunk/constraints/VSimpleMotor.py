@@ -107,6 +107,11 @@ class VSimpleMotor(VConstraint):
         """Create the Pymunk SimpleMotor constraint, set max torque,
         initialize visual indicator, add to the space, and register the
         per-frame updater.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
         """
 
         SimpleMotor = require("physics", "pymunk").constraints.SimpleMotor
@@ -130,7 +135,15 @@ class VSimpleMotor(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
         if not self.constraint:
             return
 

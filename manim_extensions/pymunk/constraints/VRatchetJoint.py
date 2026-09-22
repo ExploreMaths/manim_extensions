@@ -139,6 +139,11 @@ class VRatchetJoint(VConstraint):
         """Create the Pymunk RatchetJoint constraint, initialize visual
         indicator arrows and connecting line, add to the space, and
         register the per-frame updater.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
         """
 
         RatchetJoint = require("physics", "pymunk").constraints.RatchetJoint
@@ -173,7 +178,15 @@ class VRatchetJoint(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
         if not self.constraint:
             return
         a_body = self.constraint.a

@@ -106,6 +106,11 @@ class ManimAutomataCLI:
 
             This method is not yet implemented and raises
             :class:`~builtins.NotImplementedError`.
+
+        Raises
+        ------
+        NotImplementedError
+            Always raised; the NDA path builder is not yet implemented.
         """
         raise NotImplementedError("Not yet implemented")
 

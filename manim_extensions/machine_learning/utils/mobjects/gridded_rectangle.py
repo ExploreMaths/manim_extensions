@@ -58,6 +58,18 @@ class GriddedRectangle(VGroup):
         Whether the border is drawn with dotted lines, by default False.
     **kwargs
         Forwarded to the parent class.
+
+    Examples
+    --------
+    .. manim:: GriddedRectangleExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.utils.mobjects.gridded_rectangle import GriddedRectangle
+
+       class GriddedRectangleExample(Scene):
+           def construct(self):
+               self.add(GriddedRectangle(show_grid_lines=True))
     """
 
     def __init__(
@@ -140,7 +152,13 @@ class GriddedRectangle(VGroup):
         self.add(*self.corners_dict.values())
 
     def make_corners_dict(self) -> dict[str, Dot]:
-        """Make corners dictionary"""
+        """Make corners dictionary
+
+        Returns
+        -------
+        dict[str, Dot]
+            Dictionary mapping corner names to invisible corner dots.
+        """
         corners_dict = {
             "top_right": Dot(
                 self.rectangle.get_corner((1, 1, 0)), fill_opacity=0.0, radius=0.0
@@ -159,12 +177,24 @@ class GriddedRectangle(VGroup):
         return corners_dict
 
     def get_corners_dict(self) -> dict[str, Dot]:
-        """Returns a dictionary of the corners"""
+        """Returns a dictionary of the corners
+
+        Returns
+        -------
+        dict[str, Dot]
+            Dictionary mapping corner names to invisible corner dots.
+        """
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.corners_dict
 
     def make_grid_lines(self) -> VGroup:
-        """Make grid lines in rectangle"""
+        """Make grid lines in rectangle
+
+        Returns
+        -------
+        VGroup
+            Group of the vertical and horizontal grid lines.
+        """
         grid_lines = VGroup()
 
         v = self.rectangle.get_vertices()
@@ -206,11 +236,23 @@ class GriddedRectangle(VGroup):
         return grid_lines
 
     def get_center(self) -> NDArray[np.float64]:
-        """TODO: add docstring for get_center."""
+        """Return the center of the rectangle.
+
+        Returns
+        -------
+        np.ndarray
+            Center point of the rectangle.
+        """
         return self.rectangle.get_center()
 
     def get_normal_vector(self) -> NDArray[np.float64]:
-        """TODO: add docstring for get_normal_vector."""
+        """Return the normal vector of the rectangle.
+
+        Returns
+        -------
+        np.ndarray
+            Normal vector computed from the rectangle's vertices.
+        """
         vertex_1 = self.rectangle.get_vertices()[0]
         vertex_2 = self.rectangle.get_vertices()[1]
         vertex_3 = self.rectangle.get_vertices()[2]
@@ -222,7 +264,13 @@ class GriddedRectangle(VGroup):
     def set_color(  # type: ignore[override] # intentionally returns None instead of the group
         self, color: ManimColor
     ) -> None:
-        """Sets the color of the gridded rectangle"""
+        """Sets the color of the gridded rectangle
+
+        Parameters
+        ----------
+        color : ManimColor
+            Color to apply to the rectangle border and fill.
+        """
         self.color = color
         self.rectangle.set_color(color)
         self.rectangle.set_stroke_color(color)

@@ -38,6 +38,18 @@ class SimpleLine(Line):
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
+
+    Examples
+    --------
+    .. manim:: SimpleLineExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.twoD.graph_molecule import SimpleLine
+
+       class SimpleLineExample(Scene):
+           def construct(self):
+               self.add(SimpleLine(ORIGIN, 2 * RIGHT))
     """
 
     def __init__(self, *args, **kwargs):
@@ -97,7 +109,18 @@ class DoubleLine(ArcBetweenPoints):
         return self._get_unit_vector()
 
     def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs) -> None:
-        """Reposition both arcs of the double bond to span from start to end."""
+        """Reposition both arcs of the double bond to span from start to end.
+
+        Parameters
+        ----------
+        start : :class:`numpy.ndarray`
+            New starting point of the double bond.
+        end : :class:`numpy.ndarray`
+            New ending point of the double bond.
+        **kwargs
+            Additional keyword arguments passed to
+            :meth:`~manim.mobject.geometry.arc.ArcBetweenPoints.put_start_and_end_on`.
+        """
         self.put_start_and_end_on(start=start, end=end)
 
 
@@ -322,12 +345,29 @@ class GraphMolecule(Graph, AbstractMolecule):
             self.edges[(u, v)] = bond
 
     def select_bond_from_edge(self, edge: Any):
-        """Return the bond class for a given edge tuple based on its bond type."""
+        """Return the bond class for a given edge tuple based on its bond type.
+
+        Parameters
+        ----------
+        edge : :class:`~typing.Any`
+            Edge tuple of the molecule.
+        """
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
 
     def select_bond_type(self, bond_type: int):
-        """Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple)."""
+        """Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple).
+
+        Parameters
+        ----------
+        bond_type : :class:`int`
+            Type of the bond: 1 for single, 2 for double, 3 for triple.
+
+        Raises
+        ------
+        Exception
+            Raised when ``bond_type`` is not one of 1, 2, or 3.
+        """
         bond = self.SUPPORTED_BOND_TYPES.get(int(bond_type))
 
         if not bond:
@@ -338,11 +378,23 @@ class GraphMolecule(Graph, AbstractMolecule):
         return bond
 
     def make_layout(self, vertices_dict: dict):
-        """Build a layout dict mapping each atom index to its 3D coordinates."""
+        """Build a layout dict mapping each atom index to its 3D coordinates.
+
+        Parameters
+        ----------
+        vertices_dict : :class:`dict`
+            Dictionary mapping vertex indices to their atoms.
+        """
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
 
     def make_vertex_config(self, vertices_dict: dict):
-        """Build a vertex config dict with element colors and dot radius."""
+        """Build a vertex config dict with element colors and dot radius.
+
+        Parameters
+        ----------
+        vertices_dict : :class:`dict`
+            Dictionary mapping vertex indices to their atoms.
+        """
         v_dict = {}
         for vertex_index, mc_atom in vertices_dict.items():
             v_dict[vertex_index] = {
@@ -353,7 +405,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         return v_dict
 
     def make_edge_config(self, edges: dict):
-        """Build an edge config dict with gradient colors derived from bonded atom colors."""
+        """Build an edge config dict with gradient colors derived from bonded atom colors.
+
+        Parameters
+        ----------
+        edges : :class:`dict`
+            Dictionary mapping edge tuples to their bonds.
+        """
         edge_config = {}
         for edge_key, edge in edges.items():
             edge_config[edge_key] = {
@@ -369,7 +427,17 @@ class GraphMolecule(Graph, AbstractMolecule):
         return edge_config
 
     def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str):
-        """Create label text mobjects for each atom, either numeric or element symbols."""
+        """Create label text mobjects for each atom, either numeric or element symbols.
+
+        Parameters
+        ----------
+        vertices_dict : :class:`dict`
+            Dictionary mapping vertex indices to their atoms.
+        numeric_label : :class:`bool`
+            Whether to add a numeric label to each atom.
+        label_color : :class:`str`
+            Color of the atom labels.
+        """
         if numeric_label:
             return {
                 index: Text(str(index), color=label_color).scale(0.5)
@@ -387,6 +455,22 @@ class GraphMolecule(Graph, AbstractMolecule):
         Recursive depht-first search to find connected atoms.
         Warning: Only works properly for non cyclic structures. If you use
         an atom from a cycle as the starting point, it will take the whole cycle.
+
+        Parameters
+        ----------
+        graph : :class:`networkx.Graph`
+            Graph of the molecule.
+        atom : :class:`int`
+            Index of the atom to search from.
+        visited_atoms : :class:`set`
+            Set of already visited atom indices.
+        connected_atoms : :class:`list`
+            Accumulated list of connected atom indices.
+
+        Returns
+        -------
+        :class:`list`
+            List of the connected atom indices.
         """
         for neighbor in graph.neighbors(atom):
             if neighbor not in visited_atoms:
@@ -411,6 +495,24 @@ class GraphMolecule(Graph, AbstractMolecule):
         Atoms: C-O-C-N-C-H
         This function applied to atoms 2 (C) and 3 (N), would return
         [3, 4, 5], the indices of atoms N, C and H.
+
+        Parameters
+        ----------
+        from_atom_index : :class:`int`
+            Index of the atom on one side of the bond.
+        to_atom_index : :class:`int`
+            Index of the atom on the other side of the bond.
+
+        Returns
+        -------
+        :class:`list`
+            List of the connected atom indices.
+
+        Raises
+        ------
+        Exception
+            Raised when there is no bond between ``from_atom_index`` and
+            ``to_atom_index``.
         """
         if not self._graph.has_edge(from_atom_index, to_atom_index):
             raise Exception(
@@ -428,13 +530,32 @@ class GraphMolecule(Graph, AbstractMolecule):
         )
 
     def get_atoms_vgroup_from_index(self, atoms_indices: Any):
-        """Return a VGroup of vertex mobjects for the given atom indices."""
+        """Return a VGroup of vertex mobjects for the given atom indices.
+
+        Parameters
+        ----------
+        atoms_indices : :class:`~typing.Any`
+            Atom indices to get the vertex mobjects for.
+        """
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
 
     def get_connected_atoms_v_group(
         self, from_atom_index: int, to_atom_index: int
     ) -> list:
-        """Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index."""
+        """Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index.
+
+        Parameters
+        ----------
+        from_atom_index : :class:`int`
+            Index of the atom on one side of the bond.
+        to_atom_index : :class:`int`
+            Index of the atom on the other side of the bond.
+
+        Returns
+        -------
+        :class:`list`
+            VGroup of the connected atoms.
+        """
         connected_atoms = self.get_connected_atoms(
             from_atom_index=from_atom_index, to_atom_index=to_atom_index
         )
@@ -445,6 +566,18 @@ class GraphMolecule(Graph, AbstractMolecule):
     ) -> list:
         """
         Given a list of atoms, returns the bonds related to those atoms.
+
+        Parameters
+        ----------
+        connected_atoms : :class:`list`
+            List of atom indices to get the bonds from.
+        excluded_atom : :class:`int`, optional
+            Atom index to exclude from the bonds. Defaults to 0.
+
+        Returns
+        -------
+        :class:`list`
+            List of the bond tuples related to the atoms.
         """
         edges = []
         for atom in connected_atoms:
@@ -455,14 +588,30 @@ class GraphMolecule(Graph, AbstractMolecule):
         return edges
 
     def get_bonds_vgroup_from_index(self, connected_atoms: list, excluded_atom: int):
-        """Return a VGroup of bond mobjects connected to the given atoms, excluding one."""
+        """Return a VGroup of bond mobjects connected to the given atoms, excluding one.
+
+        Parameters
+        ----------
+        connected_atoms : :class:`list`
+            List of atom indices to get the bonds from.
+        excluded_atom : :class:`int`
+            Atom index to exclude from the bonds.
+        """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
         return VGroup(*[self.edges[bond_atoms] for bond_atoms in bonds])
 
     def get_connected_atoms_and_bonds_group_from_index(
         self, connected_atoms: list, excluded_atom: int = 0
     ):
-        """Return a combined VGroup of connected atoms and their bonds, excluding one atom."""
+        """Return a combined VGroup of connected atoms and their bonds, excluding one atom.
+
+        Parameters
+        ----------
+        connected_atoms : :class:`list`
+            List of connected atom indices.
+        excluded_atom : :class:`int`, optional
+            Atom index to exclude from the bonds. Defaults to 0.
+        """
         return VGroup(
             self.get_atoms_vgroup_from_index(atoms_indices=connected_atoms),
             self.get_bonds_vgroup_from_index(
@@ -471,7 +620,20 @@ class GraphMolecule(Graph, AbstractMolecule):
         )
 
     def get_connected_atoms_and_bonds(self, from_atom: int, to_atom: int) -> VGroup:
-        """Return a VGroup of all atoms and bonds on the to_atom side of a given bond."""
+        """Return a VGroup of all atoms and bonds on the to_atom side of a given bond.
+
+        Parameters
+        ----------
+        from_atom : :class:`int`
+            Index of the atom on one side of the bond.
+        to_atom : :class:`int`
+            Index of the atom on the other side of the bond.
+
+        Returns
+        -------
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
+            VGroup with the connected atoms and their bonds.
+        """
         connected_atoms = self.get_connected_atoms(
             from_atom_index=from_atom, to_atom_index=to_atom
         )
@@ -500,6 +662,13 @@ class GraphMolecule(Graph, AbstractMolecule):
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
            >>> array([ 0.9397, -0.7497,  0.    ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``atom_index`` is not a valid atom index.
+        exception
+            Re-raised when the atom lookup fails otherwise.
         """
         try:
             atom = self.atoms[atom_index]
@@ -563,6 +732,13 @@ class GraphMolecule(Graph, AbstractMolecule):
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bond_center_by_index((1, 2))
            >>> array([0.51935, 0.59615, 0.     ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
+        exception
+            Re-raised when the bond lookup fails otherwise.
         """
         try:
             bond = self.bonds[bond_index]
@@ -594,6 +770,11 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
         numpy.array
             [x, y, z] coordinates of the final position selected.
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
         """
 
         try:
@@ -639,7 +820,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         return bonds_positions
 
     def find_all_atoms_positions(self) -> dict:
-        """Return a dict mapping every atom index to its current position."""
+        """Return a dict mapping every atom index to its current position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping atom indices to their positions.
+        """
         atoms_positions = {}
         for atom_index in self.atoms.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
@@ -649,7 +836,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         return atoms_positions
 
     def find_all_bonds_centers(self) -> dict:
-        """Return a dict mapping every bond tuple to its center position."""
+        """Return a dict mapping every bond tuple to its center position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping bond tuples to their center positions.
+        """
         bonds_positions = {}
         for bond_tuple in self.bonds:
             bonds_positions[bond_tuple] = self.find_bond_center_by_index(

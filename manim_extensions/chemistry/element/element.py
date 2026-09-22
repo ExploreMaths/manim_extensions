@@ -4,12 +4,28 @@
 """Chemical element data structure."""
 
 from dataclasses import dataclass
+from typing import Optional
 
 from ...utils.deps import require
 
 
 class Element:
-    """TODO: add docstring for Element."""
+    """Chemical element data.
+
+    Parameters
+    ----------
+    symbol : str, optional
+        Chemical symbol of the element. Defaults to ``"H"``.
+    name : str, optional
+        Full name of the element. Defaults to ``"H"``.
+    atomic_number : int, optional
+        Atomic number of the element. Defaults to ``1``.
+    mass : float, optional
+        Atomic mass of the element. Defaults to ``1.008``.
+    color : Optional[str], optional
+        Display color of the element. Falls back to ``"#ff00ff"`` when
+        falsy. Defaults to ``"#FFFFFF"``.
+    """
     def __repr__(self) -> str:
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 
@@ -19,9 +35,9 @@ class Element:
         name: str = "H",
         atomic_number: int = 1,
         mass: float = 1.008,
-        color: str or None = "#FFFFFF",
+        color: Optional[str] = "#FFFFFF",
     ):
-        """TODO: add docstring for __init__."""
+        """Initialize the Element instance."""
         self.symbol = symbol
         self.name = name
         self.atomic_number = atomic_number
@@ -29,7 +45,22 @@ class Element:
         self.color = color or "#ff00ff"
 
     def from_csv_file(filename: str, element: str or int):
-        """TODO: add docstring for from_csv_file."""
+        """Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element.Element` from a CSV file.
+
+        Parameters
+        ----------
+        filename : :class:`str`
+            Path to the CSV file containing element data.
+        element : :class:`str` or :class:`int`
+            Symbol or atomic number of the element to look up.
+
+        Raises
+        ------
+        Exception
+            Raised when ``element`` is neither a valid symbol nor an atomic
+            number below 118, or when no matching element is found in the
+            CSV file.
+        """
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
         pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)

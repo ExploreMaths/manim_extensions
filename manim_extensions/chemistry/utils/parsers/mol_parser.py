@@ -51,7 +51,18 @@ class MolParser(BaseParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> list[str]:
-        """TODO: add docstring for read_file."""
+        """Read a MOL file and return its lines.
+
+        Parameters
+        ----------
+        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+            Path to the MOL file to parse.
+
+        Returns
+        -------
+        :class:`list` of :class:`str`
+            Lines of the MOL file.
+        """
         with open(filename) as file:
             mol_file = file.readlines()
 
@@ -60,7 +71,18 @@ class MolParser(BaseParser):
     @staticmethod
     def data_parser(data: list[str]) -> tuple[AtomsDict, BondsDict]:
         # Get general data
-        """TODO: add docstring for data_parser."""
+        """Parse the lines of a MOL file into atoms and bonds dicts.
+
+        Parameters
+        ----------
+        data : :class:`list` of :class:`str`
+            Lines of the MOL file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file`.
+
+        Returns
+        -------
+        :class:`typing.Tuple`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
+        """
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841
         mol_comments = data[2].rstrip()  # This info is not always available # noqa F841

@@ -29,6 +29,28 @@ class OrbitalBase(OpenGLSurface):
     """
     Base class for implementing atomic orbitals.
     Not meant to be used directly even when you can.
+
+    Parameters
+    ----------
+    center : Any, optional
+        Position of the orbital center. Defaults to ``ORIGIN``.
+    resolution : tuple, optional
+        Resolution ``(u, v)`` of the surface. Defaults to ``(100, 50)``.
+    u_range : tuple, optional
+        Range of the ``u`` parameter. Defaults to ``(0, PI)``.
+    v_range : tuple, optional
+        Range of the ``v`` parameter. Defaults to ``(0, TAU)``.
+    n_value : int, optional
+        Principal quantum number. Defaults to ``1``.
+    l_value : int, optional
+        Azimuthal quantum number. Defaults to ``0``.
+    m_value : int, optional
+        Magnetic quantum number. Defaults to ``0``.
+    size : int, optional
+        Scale factor applied to the orbital surface. Defaults to ``1``.
+    **kwargs
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.three_d.three_dimensional_space_opengl.OpenGLSurface`.
     """
 
     def add_background_rectangle_to_family_members_with_points(self):
@@ -64,13 +86,35 @@ class OrbitalBase(OpenGLSurface):
         self.shift(center)
 
     def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0):
-        """Compute the real part of the spherical harmonic Y_l^m at angles phi, theta."""
+        """Compute the real part of the spherical harmonic Y_l^m at angles phi, theta.
+
+        Parameters
+        ----------
+        phi : :class:`~typing.Any`
+            Azimuthal angle.
+        theta : :class:`~typing.Any`
+            Polar angle.
+        l : :class:`int`, optional
+            Azimuthal (angular momentum) quantum number. Defaults to 0.
+        m : :class:`int`, optional
+            Magnetic quantum number. Defaults to 0.
+        """
         sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
 
     def calculate_coordinates(self, psi: Any, u: Optional[np.ndarray], v: Any):
-        """Convert spherical psi value and angles u,v to scaled 3D Cartesian coordinates."""
+        """Convert spherical psi value and angles u,v to scaled 3D Cartesian coordinates.
+
+        Parameters
+        ----------
+        psi : :class:`~typing.Any`
+            Value of the wave function at the given angles.
+        u : :class:`numpy.ndarray`, optional
+            Polar angle. Defaults to ``None``.
+        v : :class:`~typing.Any`
+            Azimuthal angle.
+        """
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
         z = np.cos(u) * abs(psi)
@@ -78,7 +122,15 @@ class OrbitalBase(OpenGLSurface):
         return self.size * np.array([x, y, z])
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
-        """Base uv function: compute orbital surface coordinates from spherical angles u, v."""
+        """Base uv function: compute orbital surface coordinates from spherical angles u, v.
+
+        Parameters
+        ----------
+        u : :class:`numpy.ndarray`, optional
+            Polar angle. Defaults to ``None``.
+        v : :class:`~typing.Any`
+            Azimuthal angle.
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
@@ -90,7 +142,15 @@ class OrbitalPositive(OrbitalBase):
     """
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
-        """Compute positive-lobe orbital coordinates, clamping negative psi values to zero."""
+        """Compute positive-lobe orbital coordinates, clamping negative psi values to zero.
+
+        Parameters
+        ----------
+        u : :class:`numpy.ndarray`, optional
+            Polar angle. Defaults to ``None``.
+        v : :class:`~typing.Any`
+            Azimuthal angle.
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
             psi = 0
@@ -104,7 +164,15 @@ class OrbitalNegative(OrbitalBase):
     """
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
-        """Compute negative-lobe orbital coordinates, clamping positive psi values to zero."""
+        """Compute negative-lobe orbital coordinates, clamping positive psi values to zero.
+
+        Parameters
+        ----------
+        u : :class:`numpy.ndarray`, optional
+            Polar angle. Defaults to ``None``.
+        v : :class:`~typing.Any`
+            Azimuthal angle.
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
             psi = 0
@@ -158,5 +226,13 @@ class Orbital(OpenGLSurface):
         self.needs_new_bounding_box = True
 
     def uv_func(self, u: Optional[np.ndarray], v: Any):
-        """Placeholder uv function returning origin; actual geometry is in child positive/negative orbitals."""
+        """Placeholder uv function returning origin; actual geometry is in child positive/negative orbitals.
+
+        Parameters
+        ----------
+        u : :class:`numpy.ndarray`, optional
+            Polar angle. Defaults to ``None``.
+        v : :class:`~typing.Any`
+            Azimuthal angle.
+        """
         return np.array([0, 0, 0])

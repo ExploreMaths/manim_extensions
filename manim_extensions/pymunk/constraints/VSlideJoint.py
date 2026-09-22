@@ -127,6 +127,11 @@ class VSlideJoint(VConstraint):
         """Create the Pymunk SlideJoint constraint, initialize visual
         indicator line and anchor markers, add to the space, and register
         the per-frame updater.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
         """
 
         SlideJoint = require("physics", "pymunk").constraints.SlideJoint
@@ -163,7 +168,15 @@ class VSlideJoint(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
         if not self.constraint:
             return
 

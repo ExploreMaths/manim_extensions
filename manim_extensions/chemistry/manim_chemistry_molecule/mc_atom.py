@@ -92,7 +92,19 @@ class MCAtom:
         return self.atoms
 
     def add_bonds(self, bonds: Any):
-        """Add one or more MCBond objects to the atom's bond list."""
+        """Add one or more MCBond objects to the atom's bond list.
+
+        Parameters
+        ----------
+        bonds : MCBond or List[MCBond]
+            Bonds to assign to the atom.
+
+        Raises
+        ------
+        Exception
+            Raised when ``bonds`` is neither an MCBond nor a list of
+            MCBonds.
+        """
         from .mc_bond import MCBond
 
         if not bonds:
@@ -117,7 +129,18 @@ class MCAtom:
         return self.bonds
 
     def assign_molecule(self, molecule: Any):
-        """Set the parent MCMolecule this atom belongs to."""
+        """Set the parent MCMolecule this atom belongs to.
+
+        Parameters
+        ----------
+        molecule : MCMolecule
+            The molecule the atom belongs to.
+
+        Raises
+        ------
+        Exception
+            Raised when ``molecule`` is not an MCMolecule.
+        """
         from .mc_molecule import MCMolecule
 
         if not molecule:
@@ -133,7 +156,18 @@ class MCAtom:
         return self.molecule
 
     def assign_molecule_index(self, molecule_index: int):
-        """Set the index of this atom within its parent molecule."""
+        """Set the index of this atom within its parent molecule.
+
+        Parameters
+        ----------
+        molecule_index : :class:`int`
+            Index of the atom in the molecule.
+
+        Raises
+        ------
+        Exception
+            Raised when ``molecule_index`` is not an int.
+        """
         if isinstance(molecule_index, None):
             pass
 
@@ -157,9 +191,23 @@ class MCAtom:
         ----------
         atom_dict : Dict
             See data_parser function from BaseParser
+        atom_index : Any
+            Index of the atom in the molecule.
+        atom_data_dict : Dict
+            See data_parser function from BaseParser
+        elements_data_dict : Dict
+            Dictionary of custom element data to merge over the
+            default elements data.
 
         Output:
             MCAtom
+
+        Raises
+        ------
+        Exception
+            Raised when ``atom_data_dict`` is not a dict, when it has no
+            ``element`` entry, when the element is unknown, or when the
+            coordinates are not numeric.
         """
 
         if not isinstance(atom_data_dict, dict):

@@ -59,6 +59,11 @@ class BaseParser(ABC):
         """
         Reads the file and converts it to a string.
 
+        Parameters
+        ----------
+        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+            Path to the file to parse.
+
         Returns
         -------
         str
@@ -78,6 +83,17 @@ class BaseParser(ABC):
         The bond data follows the structure:
 
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
+
+        Parameters
+        ----------
+        data : :class:`~typing.Any`
+            Raw file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file`.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
+            Parsed ``(atoms_data, bonds_data)`` tuple, or a list of such
+            tuples for multi-molecule formats.
         """
         ...
 
@@ -96,6 +112,17 @@ class BaseParser(ABC):
     def molecule_data(self) -> ParsedData:
         """
         Returns molecule data: atoms_data and bonds_data.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
+            Parsed molecule data.
+
+        Raises
+        ------
+        Exception
+            Raised when the atoms data, bonds data, and molecular data are
+            all missing or invalid.
         """
 
         if self.atoms_data and self.bonds_data:
@@ -112,6 +139,11 @@ class BaseParser(ABC):
     def atoms(self) -> AtomsDict | None:
         """
         Returns atoms data.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict` or None
+            Parsed atoms data.
         """
 
         return self.atoms_data
@@ -120,6 +152,11 @@ class BaseParser(ABC):
     def bonds(self) -> BondsDict | None:
         """
         Returns bonds data.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict` or None
+            Parsed bonds data.
         """
 
         return self.bonds_data

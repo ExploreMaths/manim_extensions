@@ -24,6 +24,11 @@ from ..utils.deps import require
 def create_triangle() -> Mesh:
     """
     create most basic triangle mesh
+
+    Returns
+    -------
+    Mesh
+        The triangle mesh.
     """
     vertices = [
         [0.0, 0.0, 0.0],
@@ -47,6 +52,11 @@ def create_pyramid(triangles_only: bool = True) -> Mesh:
     triangles_only : bool
         When ``True``, faces are triangulated; otherwise the square base is
         kept as a single quad face.
+
+    Returns
+    -------
+    Mesh
+        The pyramid mesh.
     """
     vertices = [
         [1, 1, 0],  # 0
@@ -93,6 +103,11 @@ def create_cube(triangles_only: bool = True) -> Mesh:
     triangles_only : bool
         When ``True``, each face is split into two triangles; otherwise
         quad faces are preserved.
+
+    Returns
+    -------
+    Mesh
+        The cube mesh.
     """
     vertices = [
         [0, 0, 0],  # V0
@@ -145,6 +160,11 @@ def create_cube(triangles_only: bool = True) -> Mesh:
 def create_coplanar_triangles() -> Mesh:
     """
     create a basic 2D mesh consisting of triangles
+
+    Returns
+    -------
+    Mesh
+        The 2D mesh consisting of triangles.
     """
     vertices = [
         [-1, 1],
@@ -165,6 +185,11 @@ def create_coplanar_triangles() -> Mesh:
 def create_coplanar_points() -> Mesh:
     """
     create a basic 2D mesh without faces ~> exemplary 2D point cloud / set
+
+    Returns
+    -------
+    Mesh
+        The 2D point cloud mesh without faces.
     """
     vertices = np.array(
         [

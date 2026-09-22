@@ -107,7 +107,17 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Build the axes, point cloud, and latent distribution for the embedding."""
+        """Build the axes, point cloud, and latent distribution for the embedding.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         self.axes = Axes(
             tips=False,
             x_length=0.8,
@@ -131,13 +141,25 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def add_gaussian_distribution(self, gaussian_distribution: Any):
-        """Adds given GaussianDistribution to the list"""
+        """Adds given GaussianDistribution to the list
+
+        Parameters
+        ----------
+        gaussian_distribution : GaussianDistribution
+            The Gaussian distribution to add to the embedding.
+        """
         self.gaussian_distributions.add(gaussian_distribution)
 
         return Create(gaussian_distribution)
 
     def remove_gaussian_distribution(self, gaussian_distribution: Any):
-        """Removes the given gaussian distribution from the embedding"""
+        """Removes the given gaussian distribution from the embedding
+
+        Parameters
+        ----------
+        gaussian_distribution : GaussianDistribution
+            The Gaussian distribution to remove from the embedding.
+        """
         for gaussian in self.gaussian_distributions:
             if gaussian == gaussian_distribution:
                 self.gaussian_distributions.remove(gaussian_distribution)
@@ -160,7 +182,19 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     def construct_gaussian_point_cloud(
         self, mean: np.ndarray, covariance: np.ndarray, point_color: ManimColor = WHITE, num_points: int = 400
     ):
-        """Plots points sampled from a Gaussian with the given mean and covariance"""
+        """Plots points sampled from a Gaussian with the given mean and covariance
+
+        Parameters
+        ----------
+        mean : np.ndarray
+            Mean of the Gaussian distribution to sample from.
+        covariance : np.ndarray
+            Covariance matrix of the Gaussian distribution to sample from.
+        point_color : ManimColor, optional
+            Color of the sampled points, by default ``WHITE``.
+        num_points : int, optional
+            Number of points to sample, by default 400.
+        """
         # Sample points from a Gaussian
         np.random.seed(5)
         points = np.random.multivariate_normal(mean, covariance, num_points)
@@ -175,7 +209,18 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return point_dots
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass animation"""
+        """Forward pass animation
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments controlling the forward pass, such as
+            ``triplet_args``, ``dist_args``, ``scale_factor``,
+            ``positive_dist_args``, and ``negative_dist_args``,
+            by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         animations = []
         if "triplet_args" in layer_args:
             triplet_args = layer_args["triplet_args"]

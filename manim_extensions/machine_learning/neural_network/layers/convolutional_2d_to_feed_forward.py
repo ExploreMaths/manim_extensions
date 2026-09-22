@@ -47,11 +47,32 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
-        """Forward pass animation from conv2d to conv2d"""
+        """Forward pass animation from conv2d to conv2d
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        run_time : float, optional
+            Run time of the forward pass animation, by default 1.5.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         animations = []
         # Get input layer final feature map
         final_feature_map = self.input_layer.feature_maps[-1]

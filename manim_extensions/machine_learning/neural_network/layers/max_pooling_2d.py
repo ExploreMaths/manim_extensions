@@ -88,15 +88,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         stroke_width: float = 2.0,
         **kwargs
     ):
-        """Layer object for animating 2D Convolution Max Pooling
-
-        Parameters
-        ----------
-        kernel_size : int or tuple, optional
-            Width/Height of max pooling kernel, by default 2
-        stride : int, optional
-            Stride of the max pooling operation, by default 1
-        """
+        """Initialize the MaxPooling2DLayer instance."""
         super().__init__(**kwargs)
         self.kernel_size = kernel_size
         self.stride = stride
@@ -114,7 +106,17 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Build the output feature maps and apply 3D rotation to the layer."""
+        """Build the output feature maps and apply 3D rotation to the layer.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Make the output feature maps
         self.feature_maps = self._make_output_feature_maps(
             input_layer.num_feature_maps, input_layer.feature_map_size
@@ -170,6 +172,8 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         ----------
         layer_args : dict, optional
             Arguments for the layer, by default {}
+        **kwargs
+            Forwarded to the parent layer classes.
         """
         return AnimationGroup()
 

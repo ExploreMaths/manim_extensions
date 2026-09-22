@@ -114,11 +114,25 @@ class MElementObject(VGroup):
         self.add(element_frame)
 
     def frame_name_width_ratio(self, frame: Mobject, name_text: Mobject):
-        """Calculate the scale factor needed to fit the element name within the frame width."""
+        """Calculate the scale factor needed to fit the element name within the frame width.
+
+        Parameters
+        ----------
+        frame : :class:`~manim.mobject.mobject.Mobject`
+            Frame rectangle containing the element name.
+        name_text : :class:`~manim.mobject.mobject.Mobject`
+            Text mobject with the element name.
+        """
         return frame.get_width() / (1.25 * name_text.get_width())
 
     def max_height_ratio(self, name_text: Mobject):
-        """Scale down the name text if its height exceeds the 0.3 maximum threshold."""
+        """Scale down the name text if its height exceeds the 0.3 maximum threshold.
+
+        Parameters
+        ----------
+        name_text : :class:`~manim.mobject.mobject.Mobject`
+            Text mobject with the element name.
+        """
         text_height = name_text.get_height()
         if text_height > 0.3:
             ratio = 0.3 / text_height
@@ -181,7 +195,18 @@ class MElementObject(VGroup):
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
     def from_csv_file_data(filename: Any, atomic_number: Any, **kwargs):
-        """Load an MElementObject from a CSV file by looking up the given atomic number."""
+        """Load an MElementObject from a CSV file by looking up the given atomic number.
+
+        Parameters
+        ----------
+        filename : :class:`~typing.Any`
+            Path to the CSV file with the element data.
+        atomic_number : :class:`~typing.Any`
+            Atomic number of the element to look up.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject`.
+        """
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
         pd = require("chemistry", "pandas")

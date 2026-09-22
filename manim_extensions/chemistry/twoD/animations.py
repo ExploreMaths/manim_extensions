@@ -113,7 +113,20 @@ class GMAnimationBuilder:
         self.bonds_copy = self.bonds.copy()
 
     def bonds_from_atoms(self, atom_a: Any, atom_b: Any):
-        """Find and return the bond edge connecting two atom indices in the molecule."""
+        """Find and return the bond edge connecting two atom indices in the molecule.
+
+        Parameters
+        ----------
+        atom_a : :class:`~typing.Any`
+            Index of one of the atoms of the bond.
+        atom_b : :class:`~typing.Any`
+            Index of the other atom of the bond.
+
+        Raises
+        ------
+        Exception
+            Raised when no bond exists between ``atom_a`` and ``atom_b``.
+        """
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
                 return bond
@@ -121,7 +134,17 @@ class GMAnimationBuilder:
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 
     def rotate_atoms_about_bond(self, atom_a: Any, atom_b: Any, angle: float = PI / 4):
-        """Return animations rotating atoms around the bond axis between atom_a and atom_b."""
+        """Return animations rotating atoms around the bond axis between atom_a and atom_b.
+
+        Parameters
+        ----------
+        atom_a : :class:`~typing.Any`
+            Index of one of the atoms of the bond.
+        atom_b : :class:`~typing.Any`
+            Index of the other atom of the bond.
+        angle : :class:`float`, optional
+            Angle of the rotation. Defaults to ``PI / 4``.
+        """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
         axis = self.molecule.edges[bond].sheen_direction
         self.atoms_copy.rotate(axis=axis, angle=angle)
@@ -132,7 +155,19 @@ class GMAnimationBuilder:
         ]
 
     def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: Optional[Any]=None, label_color: Optional[Any]=None):
-        """Return color-change animations for atoms, bonds and optionally atom labels."""
+        """Return color-change animations for atoms, bonds and optionally atom labels.
+
+        Parameters
+        ----------
+        atoms_color : :class:`~manim.utils.color.core.ManimColor`, optional
+            New color of the atoms. Defaults to ``BLACK``.
+        bonds_color : :class:`~typing.Any`, optional
+            New color of the bonds. If ``None``, bonds keep their color.
+            Defaults to ``None``.
+        label_color : :class:`~typing.Any`, optional
+            New color of the atom labels. If ``None``, labels keep their
+            color. Defaults to ``None``.
+        """
         animations = []
 
         if label_color:
