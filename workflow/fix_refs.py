@@ -471,7 +471,7 @@ def fix_file(
     if changes > 0:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
-        print(f"  {rel}: {changes} fix(es)")
+        print(f"  {rel}: {changes} fix{'es' if changes > 1 else ''}")
 
     return changes
 
@@ -535,7 +535,7 @@ def main() -> int:
         )
         total += changes
 
-    print(f"\nDone: {total} fix(es) applied.")
+    print(f"\nDone: {total} fix{'es' if total > 1 else ''} applied.")
     return 0
 
 
