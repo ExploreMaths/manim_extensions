@@ -58,6 +58,14 @@ jobs:
       - name: Run module docstring validator
         run: python workflow/validate_docstrings.py
 
+  validate-doc-sections:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+      - name: Run docstring section validator
+        run: python workflow/validate_doc_sections.py
+
   validate-api-coverage:
     runs-on: ubuntu-latest
     steps:
