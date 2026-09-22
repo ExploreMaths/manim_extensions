@@ -48,5 +48,16 @@ class Layout:
     """
 
     def layout(self) -> Any:
-        """Run the layout computation and return the root node."""
+        """Run the layout computation and return the root node.
+
+        Returns
+        -------
+        Any
+            The root node, with the layout coordinates filled in.
+
+        Raises
+        ------
+        NotImplementedError
+            Always raised; subclasses must implement the layout computation.
+        """
         raise NotImplementedError

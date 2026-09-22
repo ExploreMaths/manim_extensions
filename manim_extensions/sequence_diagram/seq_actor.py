@@ -83,7 +83,14 @@ class SeqActor(VGroup):
 
     @classmethod
     def get_deepest_actor(cls) -> "SeqActor | None":
-        """Return the actor with the greatest time depth."""
+        """Return the actor with the greatest time depth.
+
+        Returns
+        -------
+        SeqActor or None
+            The actor with the greatest time depth, or ``None`` if no
+            actors have been created.
+        """
         latest_contenter: "SeqActor | None" = None
         for actor in cls.all_actors:
             if latest_contenter is None or (
@@ -94,11 +101,23 @@ class SeqActor(VGroup):
 
     @property
     def latest_timedot(self) -> Dot:
-        """Return the newest timeline marker attached to this actor."""
+        """Return the newest timeline marker attached to this actor.
+
+        Returns
+        -------
+        Dot
+            The most recently added time dot of this actor's timeline.
+        """
         return cast(Dot, self.actor_timedots[-1])
 
     def get_time_depth(self) -> int:
-        """Return the actor's current vertical timeline depth."""
+        """Return the actor's current vertical timeline depth.
+
+        Returns
+        -------
+        int
+            The current timeline depth, in time ticks.
+        """
         timedot = self.latest_timedot
         return int(
             round(

@@ -43,8 +43,11 @@ def get_arc(
     kwargs
         other keyword arguments for the arc
 
-    Returns:
-        The constructed Arc instance
+    Returns
+    -------
+    Arc
+        The constructed :class:`~manim.mobject.geometry.arc.Arc` instance,
+        centred at ``niddle_pos`` and starting at ``pen_pos``.
 
     .. manim:: GetArcDocExample
        :save_last_frame:
@@ -85,6 +88,11 @@ def get_distance(
     The point used by the operation.
     point_end : np.ndarray
     The point used by the operation.
+
+    Returns
+    -------
+    float
+        The Euclidean distance between ``point_start`` and ``point_end``.
     """
     return float(np.linalg.norm(point_start - point_end))
 
@@ -101,6 +109,12 @@ def is_counter_clockwise(
         Starting vector used as the reference direction for the orientation test.
     vector_end : np.ndarray
         Ending vector whose orientation relative to the starting vector is evaluated.
+
+    Returns
+    -------
+    bool
+        ``True`` if ``vector_end`` is counter-clockwise from ``vector_start``,
+        otherwise ``False``.
     """
     return bool(np.cross(vector_start, vector_end)[-1] > 0)
 

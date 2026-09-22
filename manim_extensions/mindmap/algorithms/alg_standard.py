@@ -135,7 +135,11 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
     dst
         Destination tree (data receiver)
 
-
+    Raises
+    ------
+    ValueError
+        Raised when the two trees have mismatched structures: one node is
+        missing, or two corresponding nodes have different child counts.
     """
     queue = deque([(src, dst)])
 

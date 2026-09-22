@@ -160,6 +160,11 @@ class Source(VMobject):
             Additional positional arguments forwarded to the parent method.
         **kwargs
             Additional keyword arguments forwarded to the parent method.
+
+        Returns
+        -------
+        Source
+            The modified self.
         """
         super().rotate(angle, about_point=self.main_body.get_center(), *args, **kwargs)
         if not self.label == None:
@@ -302,6 +307,12 @@ class Circuit(VMobject):
             Whether the segment may be drawn diagonally.
         invert : bool, optional
             Whether to reverse the bend direction when a turn is needed.
+
+        Returns
+        -------
+        list of Point3DLike or None
+            The wire path points when a new junction node is created (the
+            first wire); ``None`` when the wire is attached to an existing node.
         """
         wire = self.__create_wire(end1, end2, diagonal, invert)
 
@@ -421,6 +432,12 @@ class Node(VMobject):
         ----------
         coord
             Coordinate to test against the node's wire paths.
+
+        Returns
+        -------
+        bool or Point3DLike
+            ``True`` if ``coord`` coincides with a wire endpoint, ``coord``
+            itself if it lies in the interior of a wire path, otherwise ``False``.
         """
         for wire in self.coords:
             # new wire is connected to an end of a wire.
@@ -550,6 +567,12 @@ def validate_forms_approx_line(
         Two-point line segment to compare against.
     tolerance : float, optional
         Relative tolerance used by the approximation check.
+
+    Returns
+    -------
+    bool
+        ``True`` if the sum of the distances from ``coord`` to both segment
+        endpoints equals the segment length within ``tolerance``.
     """
     return math.isclose(
         distance(coord, line[0]) + distance(coord, line[1]),

@@ -59,9 +59,9 @@ def VMobjectInt(
     vmob2 : :class:`~manim.mobject.types.vectorized_mobject.VMobject`
         The second vectorised mobject.
     tolerance : float
-        Distance below which two points are considered the same
-        intersection, and the base acceptance distance for the flat
-        segment closest-point test.
+        Distance below which two points are considered the same intersection,
+        and the base acceptance distance for the flat segment closest-point
+        test.
     flatness : float
         Maximum allowed deviation of a Bézier sub-curve's control points
         from its chord before the sub-curve is treated as a straight

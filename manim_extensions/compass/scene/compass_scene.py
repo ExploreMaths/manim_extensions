@@ -112,6 +112,9 @@ class CompassScene(MovingCameraScene):
             Arc to draw as part of the rotation animation.
         added_anims : list[Animation], optional
             Additional animations to combine with the rotation.
+        **kwargs
+            Additional keyword arguments forwarded to
+            :meth:`~manim.scene.scene.Scene.play()`.
         """
         anims: list[Animation] = [
             Rotate(
@@ -178,6 +181,8 @@ class CompassScene(MovingCameraScene):
             target position for the compass needle tip (niddle_tip)
         pen_pos : Point3D
             target position for the compass pen tip (pen_tip)
+        run_time : float
+            duration of the placement animation in seconds. Defaults to ``1.0``.
         """
         self.play(
             PutCompass(
@@ -220,8 +225,11 @@ class CompassScene(MovingCameraScene):
             colour of the arc
         kwargs
             other keyword arguments for the arc
-        return
-            The drawn arc
+
+        Returns
+        -------
+        Arc
+            The drawn arc.
         """
         self.set_compass(niddle_point, pen_point, run_time=move_time)
         if wait_time > 0:
@@ -356,6 +364,9 @@ class CompassScene(MovingCameraScene):
             the line is simply created with :class:`~manim.animation.creation.Create`.
         color : object
             Color of the drawn line.
+        **kwargs
+            Additional keyword arguments forwarded to
+            :class:`~manim.mobject.geometry.line.Line`.
 
         Returns
         -------

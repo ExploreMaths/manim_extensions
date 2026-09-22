@@ -175,7 +175,13 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
     @property
     def C(self) -> Tuple[Iterable[float]]:
-        """Returns a tuple of two points corresponding to the centers of curvature."""
+        """Return the centers of curvature of the two spherical surfaces.
+
+        Returns
+        -------
+        tuple of Iterable[float]
+            The center points of the two circles used to construct the lens.
+        """
         i = 0
         i += 1 if config.renderer != "opengl" else 0
         return self[i].points[0], self[i + 1].points[0]  # why is this confusing

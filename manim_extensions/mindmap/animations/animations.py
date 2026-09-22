@@ -64,6 +64,11 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
     ----------
     nodes : List[Node]
     Nodes processed by this operation.
+
+    Returns
+    -------
+    FadeOut
+        The animation fading out the given nodes and their subtrees.
     """
     mobjs = []
     for node in nodes:
@@ -123,6 +128,12 @@ def animate_of_create(
     Node styles processed by this operation.
     layout_type : LayoutType
     Layout type parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations creating the node content, its surrounding
+        rectangle, and the connector line.
     """
     anims = []
     node.set_connector(layout_type, direction, **line_styles)
@@ -202,6 +213,12 @@ def animate_of_display(
     Change dir parameter for this operation.
     change_layout : bool
     Change layout parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations moving the node content and surrounding rectangle
+        to the new position and updating the connector line.
     """
     anims = [
         node.vmobject.animate.move_to(pos),
@@ -267,6 +284,12 @@ def animate_of_scale(
     Change dir parameter for this operation.
     change_layout : bool
     Change layout parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations scaling the node content and surrounding rectangle
+        and updating the connector line.
     """
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
@@ -333,6 +356,12 @@ def animate_of_alter(
     Change dir parameter for this operation.
     change_layout : bool
     Change layout parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations replacing the node content and surrounding
+        rectangle and updating the connector line.
     """
     anims = [
         node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
@@ -397,6 +426,12 @@ def animate_of_node(
     Change dir parameter for this operation.
     change_layout : bool
     Change layout parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations matching the node's current state (create, display,
+        scale, or alter).
     """
     args = (node, pos, direction, line_styles, node_styles, layout_type)
     match node.node_state:
@@ -421,9 +456,11 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
         The root node (before first layout, or after a layout has been applied)
     layout_type : LayoutType
         The layout method to be used
-    Returns (bool): Whether the layout algorithm has changed
 
-
+    Returns
+    -------
+    bool
+        Whether the layout algorithm has changed.
     """
     origin_layout = getattr(root, "layout_type", None)
     if origin_layout is not None:
@@ -441,9 +478,11 @@ def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
         The root node (before first layout, or after a layout has been applied)
     direction
         The layout direction to be used
-    Returns (bool): Whether the layout direction has changed
 
-
+    Returns
+    -------
+    bool
+        Whether the layout direction has changed.
     """
     origin_dir = getattr(root, "direction", None)
     if origin_dir is not None:
@@ -495,6 +534,12 @@ def animate_of_layout(
     Layout config parameter for this operation.
     node_style : NodeStyle
     Node style parameter for this operation.
+
+    Returns
+    -------
+    List[Animation]
+        The animations produced by re-running the layout over the tree,
+        including a fade-out animation for any removed subtrees.
     """
     direction = layout_config.direction
     change_dir = is_direction_change(root, direction)
@@ -566,7 +611,9 @@ class AbstractLayoutAnimation(AnimationGroup):
         layout_config : LayoutConfig, optional
             Layout parameters. Defaults to LayoutConfig().
         node_style : NodeStyle, optional
-            Layout and node styles. Defaults to NodeStyle()."""
+            Layout and node styles. Defaults to NodeStyle().
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`."""
 
     def __init__(
         self,
@@ -636,7 +683,19 @@ class AbstractLayoutAnimation(AnimationGroup):
         return remove_nodes
 
     def collect_animations(self) -> List[Animation]:
-        """Collect animations: must be implemented by subclasses."""
+        """Collect animations: must be implemented by subclasses.
+
+        Returns
+        -------
+        List[Animation]
+            The collected animations.
+
+        Raises
+        ------
+        NotImplementedError
+            Always raised; subclasses must implement the animation
+            collection.
+        """
         raise NotImplementedError
 
     def get_common_root(self, nodes: List[Node]) -> Node:
@@ -646,6 +705,12 @@ class AbstractLayoutAnimation(AnimationGroup):
         ----------
         nodes : List[Node]
         Nodes processed by this operation.
+
+        Returns
+        -------
+        Node
+            The common root node, or ``None`` if the nodes do not share a
+            common root.
         """
         root = nodes[0].get_root()
         if len(nodes) == 1:
@@ -657,6 +722,21 @@ class AbstractLayoutAnimation(AnimationGroup):
 
 class LayoutAnimation(AbstractLayoutAnimation):
     r"""General layout animation: apply a layout to the whole tree and play all change animations.
+
+    Parameters
+    ----------
+    scene : Scene
+        The current scene.
+    root : Node
+        The root node.
+    layout_type : LayoutType, optional
+        Layout type. Defaults to LayoutType.MindMap.
+    layout_config : LayoutConfig, optional
+        Layout parameters. Defaults to LayoutConfig().
+    node_style : NodeStyle, optional
+        Layout and node styles. Defaults to NodeStyle().
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
     .. manim:: LayoutAnimationDocExample
 
@@ -729,6 +809,21 @@ class LayoutAnimation(AbstractLayoutAnimation):
 class RemoveNode(LayoutAnimation):
     r"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
+    Parameters
+    ----------
+    scene : Scene
+        The current scene.
+    nodes : Node or list of Node
+        The node or nodes to remove, along with their subtrees.
+    layout_type : LayoutType, optional
+        Layout type. Defaults to LayoutType.MindMap.
+    layout_config : LayoutConfig, optional
+        Layout parameters. Defaults to LayoutConfig().
+    node_style : NodeStyle, optional
+        Layout and node styles. Defaults to NodeStyle().
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
+
     .. manim:: RemoveNodeDocExample
 
        from manim import *
@@ -755,7 +850,13 @@ class RemoveNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize the RemoveNode instance."""
+        """Initialize the RemoveNode instance.
+
+        Raises
+        ------
+        Exception
+            Raised when the nodes to remove do not belong to the same tree.
+        """
         self.is_whole_tree = False
         if isinstance(nodes, Node):
             nodes = (nodes,)
@@ -785,6 +886,12 @@ class RemoveNode(LayoutAnimation):
         tuple of Animation
             Either a fade-out animation for the whole tree or the standard
             layout animation.
+
+        Raises
+        ------
+        Exception
+            Raised when the root node of the subtree is not on the current
+            scene.
         """
         if self.is_whole_tree:
             tree = self._get_whole_tree()
@@ -832,7 +939,17 @@ class InsertNode(LayoutAnimation):
     Parameters
     ----------
         father_children : dict
-            dictionary mapping parent nodes to lists of child nodes"""
+            dictionary mapping parent nodes to lists of child nodes
+        scene : Scene
+            The current scene.
+        layout_type : LayoutType, optional
+            Layout type. Defaults to LayoutType.MindMap.
+        layout_config : LayoutConfig, optional
+            Layout parameters. Defaults to LayoutConfig().
+        node_style : NodeStyle, optional
+            Layout and node styles. Defaults to NodeStyle().
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`."""
 
     def __init__(
         self,
@@ -915,7 +1032,17 @@ class ScaleNode(LayoutAnimation):
     Parameters
     ----------
         node_scale : dict
-            dictionary mapping Node instances to scale factors (float)"""
+            dictionary mapping Node instances to scale factors (float)
+        scene : Scene
+            The current scene.
+        layout_type : LayoutType, optional
+            Layout type. Defaults to LayoutType.MindMap.
+        layout_config : LayoutConfig, optional
+            Layout parameters. Defaults to LayoutConfig().
+        node_style : NodeStyle, optional
+            Layout and node styles. Defaults to NodeStyle().
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`."""
 
     def __init__(
         self,
@@ -959,7 +1086,17 @@ class AlterNode(LayoutAnimation):
     Parameters
     ----------
         node_vmobject : dict
-            dictionary mapping Node instances to the replacement VMobjects"""
+            dictionary mapping Node instances to the replacement VMobjects
+        scene : Scene
+            The current scene.
+        layout_type : LayoutType, optional
+            Layout type. Defaults to LayoutType.MindMap.
+        layout_config : LayoutConfig, optional
+            Layout parameters. Defaults to LayoutConfig().
+        node_style : NodeStyle, optional
+            Layout and node styles. Defaults to NodeStyle().
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`."""
 
     def __init__(
         self,

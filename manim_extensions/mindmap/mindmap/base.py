@@ -82,10 +82,19 @@ def generate_tree(
 
     Parameters
     ----------
+    Map : Dict
+        Dictionary describing the tree: a ``"node"`` mobject (or a string
+        rendered with the ctex template) and an optional ``"child"`` list of
+        nested dictionaries.
     node_style : NodeStyle
     Node style parameter for this operation.
     buff : float
     Buff parameter for this operation.
+
+    Returns
+    -------
+    Node
+        The root node of the generated tree.
     """
 
     def _generate_tree(ID: tuple = (0,), current_map: Optional[Dict] = None) -> Node:
@@ -207,8 +216,14 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        NodeMobject
+            The component wrapper of the node, or ``None`` if no node with
+            the given ID exists.
         """
         return self.node_data_dict.get(ID, None)
 
@@ -217,8 +232,14 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        Group
+            A group of the node's VMobject and surrounding rectangle, or
+            ``None`` if no node with the given ID exists.
         """
         node = self.node_data_dict.get(ID, None)
         if node is not None:
@@ -230,8 +251,14 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        str
+            The narration text of the node, or ``None`` if no node with the
+            given ID exists.
         """
         node = self.node_data_dict.get(ID, None)
         if node is not None:
@@ -243,8 +270,14 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        Line
+            The connector line of the node, or ``None`` if no node with the
+            given ID exists.
         """
         node = self.node_data_dict.get(ID, None)
         if node is not None:
@@ -252,7 +285,14 @@ class AbstractMap(Group):
         return None
 
     def get_all_mindmap(self) -> Group:
-        """Return all node and connector mobjects in the mind map."""
+        """Return all node and connector mobjects in the mind map.
+
+        Returns
+        -------
+        Group
+            A group of every node's VMobject and surrounding rectangle,
+            including connector lines where present.
+        """
         all_mobjects = Group()
         for node in self.node_data_dict.values():
             if node.connector is not None:
@@ -262,12 +302,26 @@ class AbstractMap(Group):
         return all_mobjects
 
     def bfs_walker(self) -> Generator:
-        """Breadth-first traversal."""
+        """Breadth-first traversal.
+
+        Returns
+        -------
+        Generator
+            A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
+            breadth-first order.
+        """
         for node in bfs_walker(self.root):
             yield self.node_data_dict[node.ID]
 
     def dfs_walker(self) -> Generator:
-        """Depth-first traversal."""
+        """Depth-first traversal.
+
+        Returns
+        -------
+        Generator
+            A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
+            depth-first pre-order.
+        """
         for node in dfs_walker(self.root):
             yield self.node_data_dict[node.ID]
 
@@ -278,6 +332,12 @@ class AbstractMap(Group):
         ----------
         id_list : List[tuple]
         Id list parameter for this operation.
+
+        Returns
+        -------
+        Generator
+            A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
+            ``id_list`` order, or ``None`` for unknown IDs.
         """
         for id in id_list:
             yield self.node_data_dict.get(id, None)
@@ -310,8 +370,14 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        Group
+            A group of the children's VMobjects and surrounding rectangles,
+            or an empty group if no node with the given ID exists.
         """
         node = self._get_origin_node(ID)
         if node is None:
@@ -323,8 +389,15 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        Group
+            A group of the VMobjects and surrounding rectangles of the node
+            and all its descendants, including connector lines where
+            present, or an empty group if no node with the given ID exists.
         """
         node = self._get_origin_node(ID)
         mondmap = Group()
@@ -342,8 +415,15 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID
+        ID : str
         Id parameter for this operation.
+
+        Returns
+        -------
+        Group
+            A group of the descendants' VMobjects and surrounding
+            rectangles, or an empty group if no node with the given ID
+            exists.
         """
         node = self._get_origin_node(ID)
         if node is None:

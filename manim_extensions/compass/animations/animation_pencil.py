@@ -41,7 +41,9 @@ class MovePencilAlongPath(MoveAlongPath):
         path : VMobject
             The target path.
         suspend_mobject_updating : Union[bool, None]
-            Whether to suspend mobject updating."""
+            Whether to suspend mobject updating.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.MoveAlongPath`."""
 
     def __init__(
         self,
@@ -78,7 +80,9 @@ class MovePencilTipTo(ApplyMethod):
         pencil : Pencil
             The pencil.
         point : Point
-            The target point."""
+            The target point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
@@ -107,7 +111,9 @@ class DrawPath(AnimationGroup):
         pencil : Pencil
             The pencil.
         path : VMobject
-            The path."""
+            The path.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
 
     def __init__(
         self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
@@ -138,7 +144,9 @@ class PutPencilAway(MovePencilTipTo):
         pencil : Pencil
             The pencil.
         point : Point
-            The placement position."""
+            The placement position.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any

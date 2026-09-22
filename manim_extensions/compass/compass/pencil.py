@@ -52,11 +52,23 @@ class Pencil(SVGMobject):
         self._nib = self.submobjects[3]
 
     def get_nib(self) -> Point3D:
-        """Return the position of the nib."""
+        """Return the position of the nib.
+
+        Returns
+        -------
+        numpy.ndarray
+            The coordinates of the pencil nib (its writing tip).
+        """
         return np.asarray(self._nib.get_all_points()[7])
 
     def get_nid_vector(self) -> Vector3D:
-        """Return the direction of the pencil body."""
+        """Return the direction of the pencil body.
+
+        Returns
+        -------
+        numpy.ndarray
+            Unit vector pointing from the nib towards the pencil body.
+        """
         return Line(self.get_nib(), self.submobjects[1].get_center()).get_unit_vector()
 
     def move_nid_to(self, point: Point3D = ORIGIN) -> "Pencil":
@@ -78,6 +90,11 @@ class Pencil(SVGMobject):
         ----------
         point
         The point used by the operation.
+
+        Returns
+        -------
+        Pencil
+            The translated self.
         """
         self.shift(point - self.get_nib())
         return self

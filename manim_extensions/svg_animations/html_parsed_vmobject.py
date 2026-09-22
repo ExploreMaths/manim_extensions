@@ -206,7 +206,18 @@ class HTMLParsedVMobject:
         self.scene.add_updater(self.updater)
     
     def updater(self, dt: float) -> None:
-        """TODO: add docstring for updater."""
+        """Export the vmobject to an SVG frame and append the JS update.
+
+        Called once per rendered frame through the scene updater registered
+        in ``__init__``: serializes ``self.vmobject`` via ``to_svg()``,
+        converts the resulting path attributes into JavaScript DOM update
+        statements and appends them to ``self.js_updates``.
+
+        Parameters
+        ----------
+        dt : float
+            Elapsed time since the previous frame, in seconds.
+        """
         if self.continue_updating is False:
             return
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
@@ -305,7 +316,26 @@ class HTMLParsedVMobject:
         linspaces: list[NDArray[np.float64]],
         animate_this: bool = True
     ) -> None:
-        """TODO: add docstring for start_interactive."""
+        """Precompute the interactive JavaScript state for value combinations.
+
+        Iterates over the cartesian product of ``linspaces``, sets each
+        combination on ``value_trackers``, exports the vmobject once per
+        combination and records the resulting JavaScript DOM updates, so
+        the generated HTML page can switch between the states interactively.
+
+        Parameters
+        ----------
+        value_trackers : list of ValueTracker
+            Value trackers, swept through every combination of
+            ``linspaces``.
+        linspaces : list of numpy.ndarray
+            Arrays of values to sweep, one per entry of ``value_trackers``.
+            Their cartesian product is enumerated.
+        animate_this : bool, optional
+            If ``False``, stop the per-frame updater before sweeping and
+            record the current scene time as ``self.last_t``.
+            Defaults to ``True``.
+        """
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:
             self.continue_updating = False

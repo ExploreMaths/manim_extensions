@@ -142,19 +142,43 @@ class Compass(VGroup):
         return self
 
     def get_niddle_tip(self) -> Point3D:
-        """Return the coordinates of the needle tip."""
+        """Return the coordinates of the needle tip.
+
+        Returns
+        -------
+        numpy.ndarray
+            The coordinates of the needle tip.
+        """
         return np.asarray(self.niddle_tip.get_vertices()[1])
 
     def get_pen_tip(self) -> Point3D:
-        """Return the coordinates of the pen tip."""
+        """Return the coordinates of the pen tip.
+
+        Returns
+        -------
+        numpy.ndarray
+            The coordinates of the pen tip.
+        """
         return np.asarray(self.pen_tip.get_vertices()[1])
 
     def get_niddle2pen_vec(self) -> Point3D:
-        """Return the vector from the needle tip to the pen tip."""
+        """Return the vector from the needle tip to the pen tip.
+
+        Returns
+        -------
+        numpy.ndarray
+            Unit vector pointing from the needle tip to the pen tip.
+        """
         return Line(self.get_niddle_tip(), self.get_pen_tip()).get_unit_vector()
 
     def get_span(self) -> float:
-        """Return the compass span: distance between pen tip and needle tip."""
+        """Return the compass span: distance between pen tip and needle tip.
+
+        Returns
+        -------
+        float
+            The distance between the pen tip and the needle tip.
+        """
         return get_distance(self.get_pen_tip(), self.get_niddle_tip())
 
     def move_niddle_tip_to(self, pos: Point3D) -> "Compass":
@@ -176,6 +200,11 @@ class Compass(VGroup):
         ----------
         pos : Point
             Target position for the compass needle tip.
+
+        Returns
+        -------
+        Compass
+            The shifted self.
         """
         self.shift(pos - self.get_niddle_tip())
         return self
@@ -201,6 +230,11 @@ class Compass(VGroup):
         ----------
         angle
             Rotation angle in radians about the needle tip.
+
+        Returns
+        -------
+        Compass
+            The rotated self.
         """
         self.rotate(angle=angle, about_point=self.get_niddle_tip())
         return self
@@ -219,6 +253,11 @@ class Compass(VGroup):
                    before = Compass()
                    after = Compass().reverse_tip().next_to(before, RIGHT, buff=1.5)
                    self.add(before, after)
+
+        Returns
+        -------
+        Compass
+            The flipped self.
         """
         self.flip(
             axis=self.head[0].get_end() - self.head[0].get_start(),
@@ -247,6 +286,11 @@ class Compass(VGroup):
         ----------
         angle : float
             Extra angular opening applied to the compass legs.
+
+        Returns
+        -------
+        Compass
+            The opened self.
         """
         self.niddle_tip.rotate(angle=-angle, about_point=self.c.get_center())
         self.pen_tip.rotate(angle=angle, about_point=self.c.get_center())
@@ -279,13 +323,25 @@ class Compass(VGroup):
             Extra angular opening applied while the needle tip stays fixed.
         niddle_tip_pos : Point
             Fixed position to keep the compass needle tip at.
+
+        Returns
+        -------
+        Compass
+            The opened self with the needle tip fixed.
         """
         self.split_copass_with_gain_angle(angle=angle)
         self.move_niddle_tip_to(niddle_tip_pos)
         return self
 
     def get_compass_rotate_angle_direction(self) -> bool:
-        """Return whether the two compass legs are counter-clockwise from each other."""
+        """Return whether the two compass legs are counter-clockwise from each other.
+
+        Returns
+        -------
+        bool
+            ``True`` if the pen tip direction is counter-clockwise from the
+            needle tip direction about the head centre, otherwise ``False``.
+        """
         return is_counter_clockwise(
             self.get_niddle_tip() - self.c.get_center(),
             self.get_pen_tip() - self.c.get_center(),
@@ -298,6 +354,13 @@ class Compass(VGroup):
         ----------
         span : float
         Span parameter for this operation.
+
+        Returns
+        -------
+        float
+            The signed angle (in radians) by which the legs must be rotated to
+            open the compass from its current span to ``span``; negative if the
+            pen tip is counter-clockwise from the needle tip.
         """
         L = self.leg_length
         distance = self.get_span()
@@ -337,6 +400,11 @@ class Compass(VGroup):
         Rotate angle parameter for this operation.
         niddle_tip_pos : Point
         Niddle tip pos processed by this operation.
+
+        Returns
+        -------
+        Compass
+            The repositioned self.
         """
         self.split_compass_with_niddle_tip_fixed(span_angle, niddle_tip_pos)
         self.rotate(angle=rotate_angle, about_point=niddle_tip_pos)

@@ -172,6 +172,17 @@ class SolowDiagram(EconDiagram):
     def shift_savings(self, s: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
         """Animate savings curve shifting due to change in savings rate.
 
+        Parameters
+        ----------
+        s : Any, optional
+            New savings rate. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+
         If shares are visible, they update automatically.
         """
         self._s = s if s is not None else self._s
@@ -184,6 +195,23 @@ class SolowDiagram(EconDiagram):
     def shift_breakeven(self, delta: Optional[Any]=None, n: Optional[Any]=None, g: Optional[Any]=None, run_time: float = 1,
                         show_arrows: bool = False):
         """Animate break-even line shifting due to changes in δ, n, or g.
+
+        Parameters
+        ----------
+        delta : Any, optional
+            New depreciation rate. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        n : Any, optional
+            New population growth rate. If ``None``, keeps the current
+            value. Defaults to ``None``.
+        g : Any, optional
+            New technological growth rate. If ``None``, keeps the current
+            value. Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
 
         If shares are visible, they update automatically.
         """
@@ -199,19 +227,55 @@ class SolowDiagram(EconDiagram):
     # ---- Common shocks ----
 
     def increase_savings(self, s: Any, show_arrows: bool = False):
-        """Higher savings rate → sf(k) shifts up → higher steady-state k."""
+        """Higher savings rate → sf(k) shifts up → higher steady-state k.
+
+        Parameters
+        ----------
+        s : Any
+            New savings rate (higher than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
     def decrease_savings(self, s: Any, show_arrows: bool = False):
-        """Lower savings rate → sf(k) shifts down → lower steady-state k."""
+        """Lower savings rate → sf(k) shifts down → lower steady-state k.
+
+        Parameters
+        ----------
+        s : Any
+            New savings rate (lower than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
     def population_growth(self, n: Optional[np.ndarray], show_arrows: bool = False):
-        """Higher population growth → break-even steeper → lower steady-state k."""
+        """Higher population growth → break-even steeper → lower steady-state k.
+
+        Parameters
+        ----------
+        n : numpy.ndarray
+            New population growth rate (higher than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
 
     def increase_depreciation(self, delta: Any, show_arrows: bool = False):
-        """Higher depreciation → break-even steeper → lower steady-state k."""
+        """Higher depreciation → break-even steeper → lower steady-state k.
+
+        Parameters
+        ----------
+        delta : Any
+            New depreciation rate (higher than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_breakeven(delta=delta, show_arrows=show_arrows)]
 
     # ---- Consumption / Investment shares ----
@@ -254,10 +318,16 @@ class SolowDiagram(EconDiagram):
 
         Call again after a shift to animate the braces to the new position.
 
-        Parameters:
-            k: Capital level. Defaults to current steady-state k*.
-            c_color: Color for consumption brace/label.
-            i_color: Color for investment brace/label.
+        Parameters
+        ----------
+        k : Any, optional
+            Capital level. Defaults to the current steady-state k*.
+        c_color : ManimColor
+            Color for consumption brace/label. Defaults to ``ORANGE``.
+        i_color : ManimColor
+            Color for investment brace/label. Defaults to ``YELLOW``.
+        run_time : float
+            Duration of the animation. Defaults to ``1``.
         """
         if k is None:
             k = self._steady_state_k()
@@ -287,6 +357,19 @@ class SolowDiagram(EconDiagram):
     def animate_shares_along(self, k_start: Any, k_end: Any,
                              c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3):
         """Animate the c/i share braces sliding from k_start to k_end.
+
+        Parameters
+        ----------
+        k_start : Any
+            Capital level where the animation starts.
+        k_end : Any
+            Capital level where the animation ends.
+        c_color : ManimColor
+            Color for consumption brace/label. Defaults to ``ORANGE``.
+        i_color : ManimColor
+            Color for investment brace/label. Defaults to ``YELLOW``.
+        run_time : float
+            Duration of the animation. Defaults to ``3``.
 
         Shows how the consumption/investment split changes at different
         capital levels along the production function.
@@ -322,6 +405,14 @@ class SolowDiagram(EconDiagram):
 
     def show_golden_rule(self, color: ManimColor = PURPLE, run_time: float = 1):
         """Mark the golden-rule capital level where consumption is maximized.
+
+        Parameters
+        ----------
+        color : ManimColor
+            Color of the golden-rule line and labels. Defaults to
+            ``PURPLE``.
+        run_time : float
+            Duration of the FadeIn animation. Defaults to ``1``.
 
         Draws a vertical dashed line at k_gold with a label. The golden rule
         is where MPK = δ+n+g, giving the savings rate that maximizes

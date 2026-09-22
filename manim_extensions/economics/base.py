@@ -40,7 +40,25 @@ def find_intersection(
     func_b: Callable[[float], float],
     x_range: Sequence[float],
 ) -> float | None:
-    """Find the x where func_a(x) == func_b(x) by sampling."""
+    """Find the x where func_a(x) == func_b(x) by sampling.
+
+    Parameters
+    ----------
+    func_a : Callable[[float], float]
+        First function of x.
+    func_b : Callable[[float], float]
+        Second function of x.
+    x_range : Sequence[float]
+        Interval ``[min, max]`` that is sampled for a sign change of
+        ``func_a(x) - func_b(x)``.
+
+    Returns
+    -------
+    float or None
+        The x where the two functions cross (linearly interpolated between
+        the bracketing samples), or ``None`` if they do not cross within
+        ``x_range``.
+    """
     xs = np.linspace(x_range[0] + 0.01, x_range[1] - 0.01, 1000)
     diffs = np.array([func_a(x) - func_b(x) for x in xs])
     sign_changes = np.where(np.diff(np.sign(diffs)))[0]
@@ -73,6 +91,19 @@ class EconDiagram(VGroup):
         Length of the y-axis in scene units (default 4).
     **kwargs
         Additional keyword arguments passed to ``VGroup``.
+
+    Examples
+    --------
+    .. manim:: EconDiagramDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.economics import EconDiagram
+
+       class EconDiagramDocExample(Scene):
+           def construct(self):
+               diagram = EconDiagram()
+               self.add(diagram)
     """
 
     def __init__(self, x_label: str = "X", y_label: str = "Y",
@@ -116,7 +147,27 @@ class EconDiagram(VGroup):
     def add_curve(self, name: str, func: Callable[[float], float],
                   x_range: Sequence[float], color: ManimColor | str,
                   label_text: str | None = None) -> ParametricFunction:
-        """Plot a curve on the axes and store it by name."""
+        """Plot a curve on the axes and store it by name.
+
+        Parameters
+        ----------
+        name : str
+            Key under which the curve is stored.
+        func : Callable[[float], float]
+            Function of x defining the curve.
+        x_range : Sequence[float]
+            Range ``[min, max, step]`` over which the curve is plotted.
+        color : ManimColor or str
+            Color of the curve.
+        label_text : str, optional
+            If given, text label placed next to the curve's end.
+            Defaults to ``None``.
+
+        Returns
+        -------
+        ParametricFunction
+            The plotted curve.
+        """
         curve = self.axes.plot(func, x_range=x_range, color=color)
         self.curves[name] = curve
         self._curve_funcs[name] = func
@@ -133,7 +184,24 @@ class EconDiagram(VGroup):
 
     def add_vertical_line(self, name: str, x: float, color: ManimColor | str,
                           label_text: str | None = None) -> Line:
-        """Add a vertical line at a given x position."""
+        """Add a vertical line at a given x position.
+
+        Parameters
+        ----------
+        name : str
+            Key under which the line is stored.
+        x : float
+            x position of the line in axis coordinates.
+        color : ManimColor or str
+            Color of the line.
+        label_text : str, optional
+            If given, text label placed above the line. Defaults to ``None``.
+
+        Returns
+        -------
+        Line
+            The vertical line.
+        """
         y_min = self.axes.y_range[0]
         y_max = self.axes.y_range[1]
         start = self.axes.c2p(x, y_min)
@@ -218,9 +286,27 @@ class EconDiagram(VGroup):
                          ) -> VGroup | None:
         """Mark the intersection of two curves with a dot and dashed lines.
 
-        Parameters:
-            numbered: If True, labels use subscripts (P₁/Y₁) that
-                increment on each shift, and old markers stay visible.
+        Parameters
+        ----------
+        curve_a : str
+            Name of the first stored curve.
+        curve_b : str
+            Name of the second stored curve.
+        label_x : str
+            Text label placed below the x-axis at the intersection.
+            Defaults to ``""``.
+        label_y : str
+            Text label placed left of the y-axis at the intersection.
+            Defaults to ``""``.
+        numbered : bool
+            If True, labels use subscripts (P₁/Y₁) that increment on each
+            shift, and old markers stay visible. Defaults to ``False``.
+
+        Returns
+        -------
+        VGroup or None
+            The equilibrium marker (dot, dashed lines and labels), or
+            ``None`` if the curves do not intersect.
         """
         self._eq_curve_names = (curve_a, curve_b)
         self._eq_label_x = label_x
@@ -307,10 +393,28 @@ class EconDiagram(VGroup):
                             ) -> AnimationGroup:
         """Return a Transform animation that shifts a curve to a new function.
 
-        Parameters:
-            show_arrows: If True, draw arrows on the axes showing
-                the direction of equilibrium change.
-            arrow_color: Color for the axis arrows (default WHITE).
+        Parameters
+        ----------
+        curve_name : str
+            Name of the stored curve to shift.
+        new_func : Callable[[float], float]
+            New function of x for the curve.
+        new_x_range : Sequence[float], optional
+            New plot range for the curve; if ``None``, the curve's original
+            range is kept. Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        arrow_color : ManimColor or str
+            Color for the axis arrows. Defaults to ``WHITE``.
+
+        Returns
+        -------
+        AnimationGroup
+            The animation shifting the curve, together with its label and
+            equilibrium marker if they are affected.
         """
         old_eq = self._get_eq_coords() if show_arrows else None
 

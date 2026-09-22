@@ -35,6 +35,20 @@ class Row(VGroup):
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: RowDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.table import Row
+
+       class RowDocExample(Scene):
+           def construct(self):
+               row = Row(["Alice", "25", "Paris"])
+               row[1].set_font_color(RED)
+               self.add(row)
     """
     
     def __init__(
@@ -102,5 +116,16 @@ class Row(VGroup):
         return iter(self.cells)
     
     def get_cell(self, index: int) -> Cell:
-        """Get a cell by index."""
+        """Get a cell by index.
+
+        Parameters
+        ----------
+        index : int
+            Index of the cell within the row (0-indexed).
+
+        Returns
+        -------
+        Cell
+            The cell at the given index.
+        """
         return self.cells[index]

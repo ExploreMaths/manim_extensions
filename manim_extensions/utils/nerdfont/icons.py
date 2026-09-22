@@ -81,10 +81,21 @@ def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
 
     https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
 
-    :param icon: The icon to be displayed. It can be an integer (Unicode code point) or a string (icon name).
-    :param kwargs: Additional keyword arguments to be passed to the Text constructor.
+    Parameters
+    ----------
+    icon : int or str
+        The icon to be displayed: an integer Unicode code point, or a
+        string giving either an icon name from the Nerd Font icon set
+        (resolved via :mod:`~manim_extensions.utils.nerdfont.icons_dict`)
+        or literal text to render.
+    **kwargs
+        Additional keyword arguments to be passed to the
+        :class:`~manim.mobject.text.text_mobject.Text` constructor.
 
-    :return: A Text object representing the specified icon.
+    Returns
+    -------
+    Text
+        A Text object representing the specified icon.
     """
     font_path = _font_path()
     _install_font_linux()

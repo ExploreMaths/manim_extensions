@@ -81,6 +81,11 @@ class CatalogNode:
         ----------
         node : Any
             Raw data object used to build the catalog node tree.
+
+        Returns
+        -------
+        CatalogNode
+            The root of the created catalog node tree.
         """
         org_node = cls()
         org_node.node = node
@@ -495,7 +500,14 @@ class CatalogLayout(Layout):
         _applay_coords_for_node(self.root)
 
     def layout(self) -> Any:
-        """Run the full layout and return the root node (with coordinates filled in)."""
+        """Run the full layout and return the root node (with coordinates filled in).
+
+        Returns
+        -------
+        Any
+            The root node of the original tree, with ``x``, ``y``, and
+            ``level`` attributes filled in.
+        """
         self._compute_base_value()
         self._compute_left_top_value()
         self._adjust_left_top_value()

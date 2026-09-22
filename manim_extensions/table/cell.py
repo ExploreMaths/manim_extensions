@@ -38,8 +38,22 @@ class Cell(VGroup):
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: CellDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.table import Cell
+
+       class CellDocExample(Scene):
+           def construct(self):
+               cell = Cell("Hello", width=2.0)
+               cell.set_background_color(BLUE, opacity=0.2)
+               self.add(cell)
     """
-    
+
     def __init__(
         self,
         value: str,
@@ -92,7 +106,19 @@ class Cell(VGroup):
             self.border = None
     
     def create_border(self, stroke_width: float) -> VGroup:
-        """Create the four border lines of the cell."""
+        """Create the four border lines of the cell.
+
+        Parameters
+        ----------
+        stroke_width : float
+            Width of the border lines. Header cells use a thicker
+            stroke (``2``) than regular cells (``0.5``).
+
+        Returns
+        -------
+        VGroup
+            The four border lines (top, right, bottom, left) of the cell.
+        """
         # Calculate corners relative to center
         half_w = self.cell_width / 2
         half_h = self.cell_height / 2
@@ -111,26 +137,42 @@ class Cell(VGroup):
         return border
     
     def get_value(self) -> str:
-        """Return the text value of this cell."""
+        """Return the text value of this cell.
+
+        Returns
+        -------
+        str
+            The text content of the cell.
+        """
         return self.value
     
     def set_value(self, new_value: str) -> Text:
         """
         Change the text value of this cell.
-        
+
+        The new text keeps the font size (and the bold weight for
+        header cells) of the old text and is placed where the old text
+        was.
+
         Parameters
         ----------
-        new_value
-            The new text content
+        new_value : str
+            The new text content.
 
-        Returns:
-            The new Text mobject (useful for animations like Transform)
-        
-        Example:
-            # Instant change
+        Returns
+        -------
+        Text
+            The new text mobject (useful for animations like
+            ``Transform``).
+
+        Examples
+        --------
+        Instant change::
+
             cell.set_value("new text")
-            
-            # Animated change
+
+        Animated change::
+
             old_text = cell.text.copy()
             new_text = cell.set_value("new text")
             self.play(Transform(old_text, new_text))
@@ -164,12 +206,14 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        new_width
-            The new width for the cell (in unscaled units)
+        new_width : float
+            The new width for the cell (in unscaled units).
 
-        Returns:
-            A new Cell with the same value and styling but different width,
-            scaled to match the current cell's scale
+        Returns
+        -------
+        Cell
+            A new cell with the same value and styling but different
+            width, scaled to match the current cell's scale.
         """
         # Calculate current scale factor using HEIGHT (stable during width resize)
         # Width-based calculation fails after Transform morphs the cell
@@ -236,8 +280,13 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color
-            A Manim color (e.g., RED, BLUE, "#FF0000")
+        color : ParsableManimColor
+            A Manim color (e.g., RED, BLUE, "#FF0000").
+
+        Returns
+        -------
+        Cell
+            This cell, for method chaining.
         """
         self._font_color = color  # Store for copying
         self.text.set_color(color)
@@ -249,8 +298,13 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color
-            A Manim color (e.g., RED, BLUE, "#FF0000")
+        color : ParsableManimColor
+            A Manim color (e.g., RED, BLUE, "#FF0000").
+
+        Returns
+        -------
+        Cell
+            This cell, for method chaining.
         """
         self._border_color = color  # Store for copying
         if self.border is not None:
@@ -265,9 +319,15 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color
-            A Manim color (e.g., RED, BLUE, "#FF0000")
-        opacity: Opacity of the background (0 to 1)
+        color : ParsableManimColor
+            A Manim color (e.g., RED, BLUE, "#FF0000").
+        opacity : float, optional
+            Opacity of the background (0 to 1). Defaults to ``0.5``.
+
+        Returns
+        -------
+        Cell
+            This cell, for method chaining.
         """
         # Store for copying
         self._background_color = color

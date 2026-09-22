@@ -282,8 +282,10 @@ class Inductor(VMobject):
         ----------
         angle : float
             Rotation angle in radians.
-        *args, **kwargs
-            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        *args
+            Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        **kwargs
+            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------
@@ -418,8 +420,10 @@ class Resistor(VMobject):
         ----------
         angle : float
             Rotation angle in radians.
-        *args, **kwargs
-            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        *args
+            Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        **kwargs
+            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------
@@ -549,8 +553,10 @@ class Capacitor(VMobject):
         ----------
         angle : float
             Rotation angle in radians.
-        *args, **kwargs
-            Additional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        *args
+            Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        **kwargs
+            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
 
         Returns
         -------

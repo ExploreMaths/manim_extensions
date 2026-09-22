@@ -95,7 +95,13 @@ class ADASDiagram(EconDiagram):
         numbered_eq: bool = False,
         **kwargs,
     ):
-        """Initializes the AD-AS diagram with AD, SRAS, and LRAS curves."""
+        """Initializes the AD-AS diagram with AD, SRAS, and LRAS curves.
+
+        Raises
+        ------
+        ValueError
+            Raised when both ``sras_only`` and ``lras_only`` are True.
+        """
         if sras_only and lras_only:
             raise ValueError("sras_only and lras_only cannot both be True")
 
@@ -165,7 +171,22 @@ class ADASDiagram(EconDiagram):
         return (self._m * self._v) / self._lras_y
 
     def shift_ad(self, m: Optional[Any]=None, v: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
-        """Animate AD shifting due to changes in M and/or V."""
+        """Animate AD shifting due to changes in M and/or V.
+
+        Parameters
+        ----------
+        m : Any, optional
+            New money supply. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        v : Any, optional
+            New velocity of money. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         self._m = m if m is not None else self._m
         self._v = v if v is not None else self._v
         new_func = self._make_ad_func(self._m, self._v)
@@ -178,7 +199,22 @@ class ADASDiagram(EconDiagram):
 
     def shift_sras(self, sras_price: Optional[Any]=None, sras_slope: Optional[Any]=None, run_time: float = 1,
                    show_arrows: bool = False):
-        """Animate SRAS shifting to a new expected price Pᵉ and/or slope."""
+        """Animate SRAS shifting to a new expected price Pᵉ and/or slope.
+
+        Parameters
+        ----------
+        sras_price : Any, optional
+            New expected price level Pᵉ. If ``None``, keeps the current
+            value. Defaults to ``None``.
+        sras_slope : Any, optional
+            New SRAS slope; ``None`` keeps the curve flat. If ``None``,
+            keeps the current value. Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         if sras_price is not None:
             self._sras_price = sras_price
         if sras_slope is not None:
@@ -191,7 +227,15 @@ class ADASDiagram(EconDiagram):
         )
 
     def shift_lras(self, new_y: Any, run_time: float = 1):
-        """Animate LRAS moving to a new potential output."""
+        """Animate LRAS moving to a new potential output.
+
+        Parameters
+        ----------
+        new_y : Any
+            New potential output (natural rate of output).
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        """
         old_line = self.curves["lras"]
         y_min = self.axes.y_range[0]
         y_max = self.axes.y_range[1]
@@ -215,6 +259,15 @@ class ADASDiagram(EconDiagram):
     def long_run_adjust(self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False):
         """SRAS slowly shifts to restore long-run equilibrium.
 
+        Parameters
+        ----------
+        run_time : float
+            Duration of the adjustment animation. Defaults to ``2``
+            seconds.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+
         After a shock moves output away from LRAS, SRAS gradually adjusts
         to P = MV / Y_potential, bringing the economy back to potential output.
         The animation is slow by default (2s) to show the gradual adjustment.
@@ -236,6 +289,24 @@ class ADASDiagram(EconDiagram):
                               lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
         """Positive demand shock (e.g. increase in M or V).
 
+        Parameters
+        ----------
+        m : Any, optional
+            New money supply. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        v : Any, optional
+            New velocity of money. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        long_run : bool
+            If True, append the long-run adjustment of SRAS. Defaults to
+            ``True``.
+        lr_run_time : Any
+            Duration of the long-run adjustment animation. Defaults to
+            ``2`` seconds.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+
         Short run: AD shifts right → output rises above potential, price unchanged.
         Long run: SRAS slowly shifts up → output returns to potential at higher price.
 
@@ -249,6 +320,24 @@ class ADASDiagram(EconDiagram):
     def negative_demand_shock(self, m: Optional[Any]=None, v: Optional[Any]=None, long_run: bool = True,
                               lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
         """Negative demand shock (e.g. decrease in M or V).
+
+        Parameters
+        ----------
+        m : Any, optional
+            New money supply. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        v : Any, optional
+            New velocity of money. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        long_run : bool
+            If True, append the long-run adjustment of SRAS. Defaults to
+            ``True``.
+        lr_run_time : Any
+            Duration of the long-run adjustment animation. Defaults to
+            ``2`` seconds.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
 
         Short run: AD shifts left → output falls below potential, price unchanged.
         Long run: SRAS slowly shifts down → output returns to potential at lower price.
@@ -266,6 +355,20 @@ class ADASDiagram(EconDiagram):
                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
         """Adverse supply shock (e.g. oil price spike, cost push).
 
+        Parameters
+        ----------
+        sras_price : Any
+            New expected price level Pᵉ for SRAS (higher than current).
+        long_run : bool
+            If True, append the long-run self-correction of SRAS. Defaults
+            to ``True``.
+        lr_run_time : Any
+            Duration of the long-run adjustment animation. Defaults to
+            ``2`` seconds.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+
         Short run: SRAS shifts up → price rises, output falls (stagflation).
         Long run: SRAS slowly shifts back down as economy self-corrects.
 
@@ -279,6 +382,20 @@ class ADASDiagram(EconDiagram):
     def positive_supply_shock(self, sras_price: Any, long_run: bool = True,
                               lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
         """Positive supply shock
+
+        Parameters
+        ----------
+        sras_price : Any
+            New expected price level Pᵉ for SRAS (lower than current).
+        long_run : bool
+            If True, append the long-run self-correction of SRAS. Defaults
+            to ``True``.
+        lr_run_time : Any
+            Duration of the long-run adjustment animation. Defaults to
+            ``2`` seconds.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
 
         Short run: SRAS shifts down → price falls, output rises.
         Long run: SRAS slowly shifts back up as economy self-corrects.

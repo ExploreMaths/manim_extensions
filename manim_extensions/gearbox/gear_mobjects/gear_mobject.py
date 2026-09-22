@@ -729,7 +729,7 @@ class Gear(VMobject):
         ----------
         gear2: the other gear this gear (self) will mesh to. gear2 will not move due to meshing, only the 'self'.
         offset: axial distance offset coefficient. The gears will be offset*module further apart than default.
-        positive_bias: When offset is used, there will play between gears. If positive_bias= True,
+        bias: When offset is used, there will play between gears. If bias is ``False``,
             this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
 
         Examples
@@ -952,6 +952,8 @@ class Gear(VMobject):
         about_point : sequence of float or None, optional
             Centre point for the rotation.  If ``None`` the gear's own
             centre is used.
+        **kwargs
+            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
         """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
@@ -1087,6 +1089,8 @@ class Rack(VMobject):
         about_point : sequence of float or None, optional
             Centre point for the rotation.  If ``None`` the rack's own
             centre is used.
+        **kwargs
+            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
         """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)

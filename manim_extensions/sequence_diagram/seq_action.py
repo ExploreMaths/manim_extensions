@@ -131,6 +131,11 @@ class SeqAction(AnimationGroup):
         ----------
         actors : SeqActor
         Actors processed by this operation.
+
+        Yields
+        ------
+        Animation
+            A single fade-in animation of the actors arranged as a group.
         """
         group = Group(*actors).move_to(ORIGIN).arrange(buff=0.25)
         animation = FadeIn(group, shift=DOWN, run_time=0.5)

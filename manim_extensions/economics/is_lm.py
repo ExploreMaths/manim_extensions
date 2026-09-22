@@ -135,7 +135,22 @@ class ISLMDiagram(EconDiagram):
         return [lo, hi]
 
     def shift_is(self, a: Optional[Any]=None, b: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
-        """Animate IS shifting due to changes in autonomous spending or interest sensitivity."""
+        """Animate IS shifting due to changes in autonomous spending or interest sensitivity.
+
+        Parameters
+        ----------
+        a : Any, optional
+            New autonomous spending. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        b : Any, optional
+            New interest sensitivity of investment. If ``None``, keeps the
+            current value. Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         self._a = a if a is not None else self._a
         self._b = b if b is not None else self._b
         new_func = self._make_is_func(self._a, self._b)
@@ -145,7 +160,25 @@ class ISLMDiagram(EconDiagram):
         )
 
     def shift_lm(self, ms: Optional[Any]=None, k: Optional[Any]=None, h: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
-        """Animate LM shifting due to changes in money supply or money demand parameters."""
+        """Animate LM shifting due to changes in money supply or money demand parameters.
+
+        Parameters
+        ----------
+        ms : Any, optional
+            New real money supply. If ``None``, keeps the current value.
+            Defaults to ``None``.
+        k : Any, optional
+            New income sensitivity of money demand. If ``None``, keeps the
+            current value. Defaults to ``None``.
+        h : Any, optional
+            New interest sensitivity of money demand. If ``None``, keeps
+            the current value. Defaults to ``None``.
+        run_time : float
+            Duration of the shift animation. Defaults to ``1``.
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         self._ms = ms if ms is not None else self._ms
         self._k = k if k is not None else self._k
         self._h = h if h is not None else self._h
@@ -158,19 +191,55 @@ class ISLMDiagram(EconDiagram):
     # ---- Monetary policy ----
 
     def monetary_expansion(self, ms: Any, show_arrows: bool = False):
-        """Increase in money supply → LM shifts right → lower r, higher Y."""
+        """Increase in money supply → LM shifts right → lower r, higher Y.
+
+        Parameters
+        ----------
+        ms : Any
+            New real money supply (higher than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     def monetary_contraction(self, ms: Any, show_arrows: bool = False):
-        """Decrease in money supply → LM shifts left → higher r, lower Y."""
+        """Decrease in money supply → LM shifts left → higher r, lower Y.
+
+        Parameters
+        ----------
+        ms : Any
+            New real money supply (lower than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     # ---- Fiscal policy ----
 
     def fiscal_expansion(self, a: np.ndarray, show_arrows: bool = False):
-        """Increase in government spending → IS shifts right → higher r, higher Y."""
+        """Increase in government spending → IS shifts right → higher r, higher Y.
+
+        Parameters
+        ----------
+        a : numpy.ndarray
+            New autonomous spending (higher than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
     def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False):
-        """Decrease in government spending → IS shifts left → lower r, lower Y."""
+        """Decrease in government spending → IS shifts left → lower r, lower Y.
+
+        Parameters
+        ----------
+        a : numpy.ndarray
+            New autonomous spending (lower than current).
+        show_arrows : bool
+            If True, draw arrows on the axes showing the direction of
+            equilibrium change. Defaults to ``False``.
+        """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
