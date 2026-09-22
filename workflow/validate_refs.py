@@ -57,7 +57,7 @@ SKIP_SUFFIXES = (".md", ".rst", ".py", ".toml", ".yml", ".yaml", ".cfg", ".ini",
 
 SKIP_PREFIXES = (
     "~typing.", "~numpy.", "~matplotlib.", "~collections.",
-    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.",
+    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.", "~sklearn.",
 )
 
 
