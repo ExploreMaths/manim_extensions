@@ -56,6 +56,14 @@ class MCMolecule:
         ----------
         atoms_dict : Dict
             Atoms dict from a parser. See BaseParser.
+        elements_data_dict : Dict
+            Dictionary of custom element data to merge over the
+            default elements data.
+
+        Raises
+        ------
+        Exception
+            Raised when ``atoms_dict`` is not a dict of atom data dicts.
         """
 
         if self.atoms and not isinstance(self.atoms, list):
@@ -82,6 +90,11 @@ class MCMolecule:
         ----------
         bonds_dict : Dict
             Bonds dict from a parser. See Base Parser.
+
+        Raises
+        ------
+        Exception
+            Raised when ``bonds_dict`` is not a dict of bond data dicts.
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -100,6 +113,11 @@ class MCMolecule:
     def add_connections_between_atoms(self):
         """
         Uses the MCBonds to add connections between MCAtoms.
+
+        Raises
+        ------
+        Exception
+            Raised when the bonds list is not a list of MCBonds.
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -130,6 +148,14 @@ class MCMolecule:
             Atoms data
         bonds_data_dict : dict
             Bonds data
+        ignore_hydrogens : :class:`bool`, optional
+            Whether to remove hydrogens bonded to carbon atoms.
+            Defaults to ``True``.
+        ignore_all_hydrogens : :class:`bool`, optional
+            Whether to remove every hydrogen atom. Defaults to ``False``.
+        elements_data_dict : :class:`dict`, optional
+            Dictionary of custom element data to merge over the
+            default elements data. Defaults to ``None``.
         """
 
         mc_molecule = MCMolecule()
@@ -161,6 +187,14 @@ class MCMolecule:
         ----------
         filepath
             File path
+        ignore_hydrogens : :class:`bool`, optional
+            Whether to remove hydrogens bonded to carbon atoms.
+            Defaults to ``True``.
+        ignore_all_hydrogens : :class:`bool`, optional
+            Whether to remove every hydrogen atom. Defaults to ``False``.
+        elements_data_dict : :class:`dict`, optional
+            Dictionary of custom element data to merge over the
+            default elements data. Defaults to ``None``.
         """
         parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 
@@ -185,6 +219,19 @@ class MCMolecule:
     ):
         """
         Similar to `construct_from_file` but returning a list of MCMolecules.
+
+        Parameters
+        ----------
+        filepath : :class:`~typing.Any`
+            Path to the molecule file.
+        ignore_hydrogens : :class:`bool`, optional
+            Whether to remove hydrogens bonded to carbon atoms.
+            Defaults to ``True``.
+        ignore_all_hydrogens : :class:`bool`, optional
+            Whether to remove every hydrogen atom. Defaults to ``False``.
+        elements_data_dict : :class:`dict`, optional
+            Dictionary of custom element data to merge over the
+            default elements data. Defaults to ``None``.
         """
 
         list_of_data_dicts = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
@@ -219,6 +266,21 @@ class MCMolecule:
         - xml
 
         Uses json format by default.
+
+        Parameters
+        ----------
+        string : :class:`str`
+            String with the molecule data.
+        format : :class:`str`, optional
+            Format of the data. Defaults to ``"json"``.
+        ignore_hydrogens : :class:`bool`, optional
+            Whether to remove hydrogens bonded to carbon atoms.
+            Defaults to ``True``.
+        ignore_all_hydrogens : :class:`bool`, optional
+            Whether to remove every hydrogen atom. Defaults to ``False``.
+        elements_data_dict : :class:`dict`, optional
+            Dictionary of custom element data to merge over the
+            default elements data. Defaults to ``None``.
         """
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
 
@@ -244,6 +306,21 @@ class MCMolecule:
     ):
         """
         Similar to `construct_from_string` but returning a list of MCMolecules.
+
+        Parameters
+        ----------
+        string : :class:`str`
+            String with the molecule data.
+        format : :class:`str`, optional
+            Format of the data. Defaults to ``"json"``.
+        ignore_hydrogens : :class:`bool`, optional
+            Whether to remove hydrogens bonded to carbon atoms.
+            Defaults to ``True``.
+        ignore_all_hydrogens : :class:`bool`, optional
+            Whether to remove every hydrogen atom. Defaults to ``False``.
+        elements_data_dict : :class:`dict`, optional
+            Dictionary of custom element data to merge over the
+            default elements data. Defaults to ``None``.
         """
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
         mc_molecules = []
@@ -289,7 +366,13 @@ class MCMolecule:
         return self.remove_hydrogens(atoms_to_be_removed)
 
     def remove_hydrogens(self, atoms_to_be_removed: list):
-        """Remove specified atoms and their associated bonds, then reindex."""
+        """Remove specified atoms and their associated bonds, then reindex.
+
+        Parameters
+        ----------
+        atoms_to_be_removed : :class:`list`
+            Indices of the atoms to remove.
+        """
         if not atoms_to_be_removed:
             return
         for atom in atoms_to_be_removed:

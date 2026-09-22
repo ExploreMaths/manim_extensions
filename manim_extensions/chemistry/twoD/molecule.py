@@ -348,7 +348,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return self
 
     def rotate_bond(self, rotate_bonds: Any):
-        """Rotate specified bonds 180 degrees around their own axis and return self."""
+        """Rotate specified bonds 180 degrees around their own axis and return self.
+
+        Parameters
+        ----------
+        rotate_bonds : :class:`~typing.Any`
+            Bond index or list of bond indices to rotate.
+        """
         if isinstance(rotate_bonds, int):
             rotate_bonds = [rotate_bonds]
 
@@ -403,17 +409,44 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             )
 
     def from_mol_file(filename: Any, *args, **kwargs):
-        """Create an MMoleculeObject by parsing a .mol file."""
+        """Create an MMoleculeObject by parsing a .mol file.
+
+        Parameters
+        ----------
+        filename : :class:`~typing.Any`
+            Path to the .mol file.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_mol_string(mol_string: Any, *args, **kwargs):
-        """Create an MMoleculeObject by parsing a mol-format string."""
+        """Create an MMoleculeObject by parsing a mol-format string.
+
+        Parameters
+        ----------
+        mol_string : :class:`~typing.Any`
+            String with the molecule data in mol format.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_sdf_file(filename: Any, *args, **kwargs):
-        """Create a list of MMoleculeObjects by parsing an .sdf file."""
+        """Create a list of MMoleculeObjects by parsing an .sdf file.
+
+        Parameters
+        ----------
+        filename : :class:`~typing.Any`
+            Path to the .sdf file.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecules = sdf_parser(filename)
         moleculeObjects = []
         for molecule in molecules:
@@ -422,7 +455,16 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return moleculeObjects
 
     def from_sdf_string(sdf_string: Any, *args, **kwargs):
-        """Create a list of MMoleculeObjects by parsing an sdf-format string."""
+        """Create a list of MMoleculeObjects by parsing an sdf-format string.
+
+        Parameters
+        ----------
+        sdf_string : :class:`~typing.Any`
+            String with the molecule data in sdf format.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecules = sdf_parser_string(sdf_string)
         moleculeObjects = []
         for molecule in molecules:
@@ -450,6 +492,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
            >>> array([ 0.9397, -0.7497,  0.    ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``atom_index`` is not a valid atom index.
+        exception
+            Re-raised when the atom lookup fails otherwise.
         """
         try:
             atom = self.atoms[atom_index]
@@ -512,6 +561,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bond_center_by_index(1))
            >>> array([0.51935, 0.59615, 0.     ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
+        exception
+            Re-raised when the bond lookup fails otherwise.
         """
         try:
             bond = self.bonds[bond_index]
@@ -543,6 +599,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         -------
         numpy.array
             [x, y, z] coordinates of the final position selected.
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
         """
 
         try:
@@ -563,7 +624,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        bondss_index_list : list
+        bonds_index_list : list
             List of bonds indices to be gotten.
 
         Returns
@@ -588,7 +649,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return bonds_positions
 
     def find_all_atoms_positions(self) -> dict:
-        """Return a dict mapping every atom index to its current position."""
+        """Return a dict mapping every atom index to its current position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping atom indices to their positions.
+        """
         atoms_positions = {}
         for atom_index in self.atoms.submob_dict.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
@@ -598,7 +665,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return atoms_positions
 
     def find_all_bonds_centers(self) -> dict:
-        """Return a dict mapping every bond index to its center position."""
+        """Return a dict mapping every bond index to its center position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping bond indices to their center positions.
+        """
         bonds_positions = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(
@@ -772,7 +845,27 @@ class NamedMolecule(VGroup):
     def from_mol_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """Create a NamedMolecule from a .mol file and a name string."""
+        """Create a NamedMolecule from a .mol file and a name string.
+
+        Parameters
+        ----------
+        name : :class:`str`
+            Name of the molecule.
+        filename : :class:`~typing.Any`
+            Path to the .mol file.
+        direction : :class:`str`, optional
+            Direction in which the name is placed relative to the molecule.
+            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        buff : :class:`float`, optional
+            Distance between the molecule and its name. Defaults to 1.
+        tex : :class:`bool`, optional
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+        font : :class:`str`, optional
+            Font of the name text. Defaults to ``""``.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
         return NamedMolecule(
@@ -789,7 +882,27 @@ class NamedMolecule(VGroup):
     def from_mol_string(
         name: str, mol_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """Create a NamedMolecule from a mol-format string and a name string."""
+        """Create a NamedMolecule from a mol-format string and a name string.
+
+        Parameters
+        ----------
+        name : :class:`str`
+            Name of the molecule.
+        mol_str : :class:`~typing.Any`
+            String with the molecule data in mol format.
+        direction : :class:`str`, optional
+            Direction in which the name is placed relative to the molecule.
+            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        buff : :class:`float`, optional
+            Distance between the molecule and its name. Defaults to 1.
+        tex : :class:`bool`, optional
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+        font : :class:`str`, optional
+            Font of the name text. Defaults to ``""``.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
         return NamedMolecule(
@@ -806,7 +919,27 @@ class NamedMolecule(VGroup):
     def from_sdf_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """Create a list of NamedMolecules from an .sdf file with a shared base name."""
+        """Create a list of NamedMolecules from an .sdf file with a shared base name.
+
+        Parameters
+        ----------
+        name : :class:`str`
+            Base name of the molecules.
+        filename : :class:`~typing.Any`
+            Path to the .sdf file.
+        direction : :class:`str`, optional
+            Direction in which the name is placed relative to the molecule.
+            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        buff : :class:`float`, optional
+            Distance between the molecule and its name. Defaults to 1.
+        tex : :class:`bool`, optional
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+        font : :class:`str`, optional
+            Font of the name text. Defaults to ``""``.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecules = MMoleculeObject.from_sdf_file(filename, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -827,7 +960,27 @@ class NamedMolecule(VGroup):
     def from_sdf_string(
         name: str, sdf_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ):
-        """Create a list of NamedMolecules from an sdf-format string with a shared base name."""
+        """Create a list of NamedMolecules from an sdf-format string with a shared base name.
+
+        Parameters
+        ----------
+        name : :class:`str`
+            Base name of the molecules.
+        sdf_str : :class:`~typing.Any`
+            String with the molecule data in sdf format.
+        direction : :class:`str`, optional
+            Direction in which the name is placed relative to the molecule.
+            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        buff : :class:`float`, optional
+            Distance between the molecule and its name. Defaults to 1.
+        tex : :class:`bool`, optional
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+        font : :class:`str`, optional
+            Font of the name text. Defaults to ``""``.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
+        """
         molecules = MMoleculeObject.from_sdf_string(sdf_str, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -846,7 +999,13 @@ class NamedMolecule(VGroup):
         return named_molecules
 
     def rotate_bond(self, bonds: int | list):
-        """Rotate specified bonds on the inner molecule and return self."""
+        """Rotate specified bonds on the inner molecule and return self.
+
+        Parameters
+        ----------
+        bonds : :class:`int` or :class:`list`
+            Bond index or list of bond indices to rotate.
+        """
         self.molecule = self.molecule.rotate_bond(bonds)
 
         return self
@@ -886,6 +1045,13 @@ class NamedMolecule(VGroup):
            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
            >>> array([ 0.9397, -0.7497,  0.    ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``atom_index`` is not a valid atom index.
+        exception
+            Re-raised when the atom lookup fails otherwise.
         """
         try:
             atom = self.atoms[atom_index]
@@ -948,6 +1114,13 @@ class NamedMolecule(VGroup):
            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bond_center_by_index(1))
            >>> array([0.51935, 0.59615, 0.     ])
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
+        exception
+            Re-raised when the bond lookup fails otherwise.
         """
         try:
             bond = self.bonds[bond_index]
@@ -980,6 +1153,11 @@ class NamedMolecule(VGroup):
         -------
         numpy.array
             [x, y, z] coordinates of the final position selected.
+
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
         """
 
         try:
@@ -1000,7 +1178,7 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        bondss_index_list : list
+        bonds_index_list : list
             List of bonds indices to be gotten.
 
         Returns
@@ -1025,7 +1203,13 @@ class NamedMolecule(VGroup):
         return bonds_positions
 
     def find_all_atoms_positions(self) -> dict:
-        """Return a dict mapping every atom index to its current position."""
+        """Return a dict mapping every atom index to its current position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping atom indices to their positions.
+        """
         atoms_positions = {}
         for atom_index in self.atoms.submob_dict.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
@@ -1035,7 +1219,13 @@ class NamedMolecule(VGroup):
         return atoms_positions
 
     def find_all_bonds_centers(self) -> dict:
-        """Return a dict mapping every bond index to its center position."""
+        """Return a dict mapping every bond index to its center position.
+
+        Returns
+        -------
+        :class:`dict`
+            Dictionary mapping bond indices to their center positions.
+        """
         bonds_positions = {}
         for bond_index, _ in enumerate(self.bonds):
             bonds_positions[bond_index] = self.find_bond_center_by_index(

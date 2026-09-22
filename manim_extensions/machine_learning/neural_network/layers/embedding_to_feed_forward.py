@@ -64,11 +64,32 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
-        """Makes dots diverge from the given location and move the decoder"""
+        """Makes dots diverge from the given location and move the decoder
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        run_time : float, optional
+            Run time of the forward pass animation, by default 1.5.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Find point to converge on by sampling from gaussian distribution
         location = self.embedding_layer.sample_point_location_from_distribution()
         # Move to location

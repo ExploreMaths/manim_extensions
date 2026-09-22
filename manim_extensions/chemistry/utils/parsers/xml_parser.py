@@ -54,7 +54,18 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> str:
-        """TODO: add docstring for read_file."""
+        """Read an XML file and return its content as a string.
+
+        Parameters
+        ----------
+        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+            Path to the XML file to parse.
+
+        Returns
+        -------
+        :class:`str`
+            String with the file data.
+        """
         with open(filename) as file:
             xml_file = file.read()
 
@@ -71,6 +82,16 @@ class XMLParser(BaseParser):
 
         The bond data follows the structure:
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
+
+        Parameters
+        ----------
+        data : :class:`str`
+            String with the XML file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.read_file`.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         xmltodict: Any = require("chemistry", "xmltodict")
         parsed_xml: Any = xmltodict.parse(data)
@@ -83,7 +104,18 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def parse_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
-        """TODO: add docstring for parse_molecule_data."""
+        """Parse a single molecule entry into atoms and bonds dicts.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
+        """
         atoms_data = XMLParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = XMLParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -91,7 +123,23 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
-        """TODO: add docstring for extract_atoms_data."""
+        """Extract the atoms data from a single molecule entry.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict`
+            Atoms data of the molecule.
+
+        Raises
+        ------
+        Exception
+            Raised when the atoms data has no dictionary structure.
+        """
         compound_atoms: Any = molecule_data.get("PC-Compound_atoms")
         atoms_data_dict = compound_atoms.get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
@@ -148,7 +196,18 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
-        """TODO: add docstring for extract_bonds_data."""
+        """Extract the bonds data from a single molecule entry.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict`
+            Bonds data of the molecule.
+        """
         compound_bonds: Any = molecule_data.get("PC-Compound_bonds")
         bonds_data_dict = compound_bonds.get("PC-Bonds")
 

@@ -85,7 +85,17 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Build the fully-connected edges between input and output layers."""
+        """Build the fully-connected edges between input and output layers.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         self.edges = self.construct_edges()
         self.add(self.edges)
         super().construct_layer(input_layer, output_layer, **kwargs)
@@ -121,7 +131,20 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     def make_forward_pass_animation(
         self, layer_args: dict = {}, run_time: float = 1, feed_forward_dropout: float = 0.0, **kwargs
     ):
-        """Animation for passing information from one FeedForwardLayer to the next"""
+        """Animation for passing information from one FeedForwardLayer to the next
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            May contain the key ``edge_indices_to_dropout`` with the indices
+            of the edges that are dropped out, by default {}.
+        run_time : float, optional
+            Run time of the dot animations, by default 1.
+        feed_forward_dropout : float, optional
+            Unused dropout rate reserved for future use, by default 0.0.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         path_animations = []
         dots = []
         for edge_index, edge in enumerate(self.edges):
@@ -157,12 +180,29 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return path_animations
 
     def modify_edge_colors(self, colors: Optional[Any]=None, magnitudes: Optional[Any]=None, color_scheme: str = "inferno"):
-        """Changes the colors of edges"""
+        """Changes the colors of edges
+
+        Parameters
+        ----------
+        colors : Any, optional
+            Colors to apply to the edges, by default None.
+        magnitudes : Any, optional
+            Magnitudes used to determine the edge colors, by default None.
+        color_scheme : str, optional
+            Name of the color scheme used when mapping magnitudes to colors,
+            by default "inferno".
+        """
         # TODO implement
         pass
 
     def modify_edge_stroke_widths(self, widths: Any):
-        """Changes the widths of the edges"""
+        """Changes the widths of the edges
+
+        Parameters
+        ----------
+        widths : Any
+            New stroke widths for the edges, one per edge.
+        """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
         widths = np.array(widths)

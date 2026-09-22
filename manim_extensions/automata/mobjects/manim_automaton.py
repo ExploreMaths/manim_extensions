@@ -171,13 +171,28 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.center()
 
     def add_manim_state(self, manim_state: ManimState) -> None:
-        """Add an existing ManimState mobject to the automaton's VGroup."""
+        """Add an existing ManimState mobject to the automaton's VGroup.
+
+        Parameters
+        ----------
+        manim_state : ManimState
+            The state mobject to add.
+        """
         # maybe need validation
         # adds an already existing manim_state to automaton
         self.add(manim_state)
 
     def construct_state(self, state: dict[str, object], scaling: float = 10) -> None:
-        """Create a ManimState from a state dict and append it to self.states."""
+        """Create a ManimState from a state dict and append it to self.states.
+
+        Parameters
+        ----------
+        state : dict
+            State definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
+            and optional ``"initial"``/``"final"`` flags.
+        scaling : float, optional
+            Coordinate scaling factor. Defaults to ``10``.
+        """
         initial = False
         final = False
         if "initial" in state.keys():
@@ -205,7 +220,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         )
 
     def construct_states(self, states: list[dict[str, object]]) -> None:
-        """Build all ManimState objects from a list of state dicts with auto-scaling."""
+        """Build all ManimState objects from a list of state dicts with auto-scaling.
+
+        Parameters
+        ----------
+        states : list of dict
+            State definitions from JSON or XML parsing.
+        """
         for state in states:
             if "initial" in state.keys():
                 self.origin_offset_x = float(state["x"])
@@ -240,7 +261,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 state_obj.scale(size_factor)
 
     def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
-        """Build ManimTransition objects from transition dicts, grouping read symbols by state pair."""
+        """Build ManimTransition objects from transition dicts, grouping read symbols by state pair.
+
+        Parameters
+        ----------
+        transitions : list of dict
+            Transition definitions from JSON or XML parsing.
+        """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[object]] = {}
         for transition in transitions:
@@ -277,7 +304,17 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_to: ManimState,
         read_symbols: list[str],
     ) -> None:
-        """Create a single ManimTransition between two states and register it."""
+        """Create a single ManimTransition between two states and register it.
+
+        Parameters
+        ----------
+        transition_from : ManimState
+            The source state of the transition.
+        transition_to : ManimState
+            The destination state of the transition.
+        read_symbols : list of str
+            The symbols that trigger this transition.
+        """
         new_transition = ManimTransition(
             transition_from,
             transition_to,
@@ -290,7 +327,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_from.add_transition_to_state(new_transition)
 
     def construct_automaton_input(self, input_string: str) -> "ManimAutomataInput":
-        """Create a ManimAutomataInput mobject from an input string."""
+        """Create a ManimAutomataInput mobject from an input string.
+
+        Parameters
+        ----------
+        input_string : str
+            The input string to display and run through the automaton.
+
+        Returns
+        -------
+        ManimAutomataInput
+            The constructed input mobject.
+        """
         return ManimAutomataInput(input_string, animation_style=self.animation_style)
 
     def set_default_position_of_input_string(self) -> None:
@@ -303,7 +351,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         self.manim_automata_input.set_y(c2 + self.height / 4)
 
     def check_automaton_result(self, state_pointers: list[State]) -> bool:
-        """Return True if any state in state_pointers is a final (accepting) state."""
+        """Return True if any state in state_pointers is a final (accepting) state.
+
+        Parameters
+        ----------
+        state_pointers : list of State
+            The currently active states.
+
+        Returns
+        -------
+        bool
+            ``True`` if any active state is a final state, otherwise ``False``.
+        """
         for state in state_pointers:
             if state.final == True:
                 return True
@@ -315,6 +374,16 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         """Checks to if input is a string or already an manim mobject,
         if it is type string then create manim_input instance using
         the input string.
+
+        Parameters
+        ----------
+        input : str or ManimAutomataInput
+            The input string, or an already constructed input mobject.
+
+        Returns
+        -------
+        ManimAutomataInput or None
+            The input mobject if it was already constructed, otherwise ``None``.
         """
         if type(input) is str:
             # create mobject of input string
@@ -331,7 +400,25 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         iteration_history: list[dict[str, object]],
         predetermined_transition: "ManimTransition | None" = None,
     ) -> tuple[list[State], bool]:
-        """Process one input token across all active state pointers and record the step history."""
+        """Process one input token across all active state pointers and record the step history.
+
+        Parameters
+        ----------
+        token : str or MathTex
+            The input token to process.
+        state_pointers : list of State
+            The currently active states.
+        iteration_history : list of dict
+            The per-step history to append this iteration's result to.
+        predetermined_transition : ManimTransition or None, optional
+            Unused; kept for interface compatibility. Defaults to ``None``.
+
+        Returns
+        -------
+        tuple
+            ``(next_states, sequence_result)`` with the reachable next states
+            and whether any active state accepted the token.
+        """
         next_states: list[State] = []
         for (
             state_pointer
@@ -387,11 +474,23 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def run_input_through_automaton(
         self, input: Union[str, "ManimAutomataInput"], automaton_path_name: Optional[str] = None
     ) -> list:
-        """
-        parameters:
-            automaton_path: provides a single path used to navigate through the nda,
-            the purpose of this is to allow the user to animate a single path through
-            the nda instead of animating all of the branches that are created by the nda.
+        """Run the input through the automaton and return the run history.
+
+        Parameters
+        ----------
+        input : str or ManimAutomataInput
+            The input string, or an already constructed input mobject.
+        automaton_path_name : str, optional
+            Path to a recorded path file that provides a single path used to
+            navigate through the NDA; the purpose of this is to allow the user
+            to animate a single path through the NDA instead of animating all
+            of the branches that are created by the NDA. Defaults to ``None``.
+
+        Returns
+        -------
+        list
+            The history of the run, including the final ``"information"``
+            entry with the active states and the automaton result.
         """
 
         # example_structure = [("q0", "q1")]
@@ -449,7 +548,20 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         state_pointer: State,
         transitions: list[ManimTransition],
     ) -> dict[int, tuple[str, ManimTransition]]:
-        """Build a dict of possible transitions from a state for the CLI NDA builder."""
+        """Build a dict of possible transitions from a state for the CLI NDA builder.
+
+        Parameters
+        ----------
+        state_pointer : State
+            The current state.
+        transitions : list of ManimTransition
+            The transitions outgoing from the current state.
+
+        Returns
+        -------
+        dict
+            Mapping of option index to ``(description, transition)`` tuples.
+        """
         options: dict[int, tuple[str, ManimTransition]] = {}
         for index, transition in enumerate(transitions):
             next_state = transition.transition_to
@@ -465,7 +577,19 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def load_recorded_path_from_file(
         self, file_name: str
     ) -> list[tuple[str, str]] | None:
-        """Load a recorded NDA path from a JSON file, or return None if invalid."""
+        """Load a recorded NDA path from a JSON file, or return None if invalid.
+
+        Parameters
+        ----------
+        file_name : str
+            Path to the JSON file with the recorded path.
+
+        Returns
+        -------
+        list of tuple of str or None
+            The recorded path as a list of ``(from_state, to_state)`` tuples,
+            or ``None`` if the file content is invalid.
+        """
         with open(f"{file_name}", "r") as fp:
             path_list = json.load(fp)
             # check that the type is a list
@@ -521,7 +645,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def generate_history_animations(self, history: dict[str, object]) -> list[object]:
         """Given a history of events of each iteration of the input ran through the manim automaton,
         generate all of the manim animations to visualise the process of the input going through the
-        automaton"""
+        automaton
+
+        Parameters
+        ----------
+        history : dict
+            The run history returned by :meth:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.run_input_through_automaton`.
+
+        Returns
+        -------
+        list
+            The animations visualising the input going through the automaton.
+        """
 
         list_of_animations: list[object] = []
 
@@ -569,7 +704,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return list_of_animations
 
     def animate_step_history(self, step_history: dict[str, object]) -> list[object]:
-        """Generate Manim animations for a single step's history entry."""
+        """Generate Manim animations for a single step's history entry.
+
+        Parameters
+        ----------
+        step_history : dict
+            A single step entry from the iteration history.
+
+        Returns
+        -------
+        list
+            The animations for this step.
+        """
         list_of_animations: list[object] = []
 
         state_pointer = step_history["state_pointer"]
@@ -589,7 +735,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return list_of_animations
 
     def highlight_initial_state(self, initial_state: ManimState) -> list[object]:
-        """Return animations to highlight the initial state and set its subscript to 1."""
+        """Return animations to highlight the initial state and set its subscript to 1.
+
+        Parameters
+        ----------
+        initial_state : ManimState
+            The initial state of the automaton.
+
+        Returns
+        -------
+        list
+            The highlight and subscript transform animations.
+        """
         new_subscript_object = Tex(1, color=PURE_YELLOW)
         new_subscript_object.set_x(initial_state.subscript.get_x())
         new_subscript_object.set_y(initial_state.subscript.get_y())
@@ -602,7 +759,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         ]
 
     def generate_accept_animations(self) -> list[object]:
-        """Return animations that transform the input text into green "ACCEPTED"."""
+        """Return animations that transform the input text into green "ACCEPTED".
+
+        Returns
+        -------
+        list
+            The accept animations.
+        """
         list_of_accept_animations: list[object] = []
 
         text = Tex("ACCEPTED", color=GREEN, font_size=100)
@@ -615,7 +778,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return list_of_accept_animations
 
     def generate_reject_animations(self) -> list[object]:
-        """Return animations that transform the input text into red "REJECTED"."""
+        """Return animations that transform the input text into red "REJECTED".
+
+        Returns
+        -------
+        list
+            The reject animations.
+        """
         list_of_reject_animations: list[object] = []
 
         text = Tex("REJECTED", color=RED, font_size=100)
@@ -635,7 +804,26 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         next_neighbour_states: list[State],
         step_result: bool,
     ) -> list[list[object]]:
-        """Generate animation sequences for a single automaton step (transitions and state highlights)."""
+        """Generate animation sequences for a single automaton step (transitions and state highlights).
+
+        Parameters
+        ----------
+        manim_transitions : list of ManimTransition
+            The transitions taken in this step.
+        token : Tex
+            The input token being processed.
+        state_pointer : State
+            The state the step starts from.
+        next_neighbour_states : list of State
+            The states reachable from the current state.
+        step_result : bool
+            Whether the token matched any transition.
+
+        Returns
+        -------
+        list of list
+            The animation sequences for this step.
+        """
         # creates a list of animations for the step
         list_of_step_animations: list[list[object]] = []
 
@@ -695,7 +883,18 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def animate_subscripts(
         self, iteration_history: list[dict[str, object]]
     ) -> list[object]:
-        """Animate state subscripts to show the count of active branches ending in each state."""
+        """Animate state subscripts to show the count of active branches ending in each state.
+
+        Parameters
+        ----------
+        iteration_history : list of dict
+            The step histories of the current iteration.
+
+        Returns
+        -------
+        list
+            The subscript transform animations.
+        """
         animations: list[object] = []
         # record the number of branches that end on each states
         state_counter = {}

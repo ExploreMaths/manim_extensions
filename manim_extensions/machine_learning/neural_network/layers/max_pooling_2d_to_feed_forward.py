@@ -48,5 +48,15 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)

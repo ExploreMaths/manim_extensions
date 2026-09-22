@@ -36,5 +36,14 @@ class ManimML3DScene(ThreeDScene):
         super().__init__(*args, **kwargs)
 
     def play(self, *args: Any, **kwargs: Any) -> None:
-        """Override :meth:`~manim.scene.three_d_scene.ThreeDScene.play` for ML scenes."""
+        """Override :meth:`~manim.scene.three_d_scene.ThreeDScene.play` for ML scenes.
+
+        Parameters
+        ----------
+        args : tuple
+            Positional arguments forwarded to
+            :meth:`~manim.scene.three_d_scene.ThreeDScene.play`.
+        **kwargs
+            Forwarded to :meth:`~manim.scene.three_d_scene.ThreeDScene.play`.
+        """
         pass

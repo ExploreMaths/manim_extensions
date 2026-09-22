@@ -53,6 +53,18 @@ class Hole(VMobject):
         Color of the hole circle. Defaults to ``WHITE``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
+    Examples
+    --------
+    .. manim:: HoleExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import Hole
+
+       class HoleExample(Scene):
+           def construct(self):
+               self.add(Hole())
     """
 
     def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
@@ -72,6 +84,18 @@ class Electron(VMobject):
         Color of the electron circle. Defaults to ``BLUE_E``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
+    Examples
+    --------
+    .. manim:: ElectronExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import Electron
+
+       class ElectronExample(Scene):
+           def construct(self):
+               self.add(Electron())
     """
 
     def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
@@ -105,6 +129,18 @@ class Element(VGroup):
         Whether to add holes at the positions of the electrons. Defaults to ``True``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: ElementExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import Element
+
+       class ElementExample(Scene):
+           def construct(self):
+               self.add(Element(element="Si", n_electrons=4, n_holes=4))
     """
 
     def __init__(
@@ -218,6 +254,18 @@ class ElementFrame(VGroup):
         Colors used for the frame gradient. Defaults to ``[BLUE, BLUE_B]``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: ElementFrameExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import ElementFrame
+
+       class ElementFrameExample(Scene):
+           def construct(self):
+               self.add(ElementFrame(element_symbol="H", element_name="Hydrogen"))
     """
 
     def __init__(
@@ -251,6 +299,18 @@ class NPNTransistor(VGroup):
         Opacity of the transistor regions. Defaults to 0.8.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: NPNTransistorExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import NPNTransistor
+
+       class NPNTransistorExample(Scene):
+           def construct(self):
+               self.add(NPNTransistor())
     """
 
     def __init__(self, regions_opacity: float = 0.8, **kwargs):
@@ -290,7 +350,21 @@ class NPNTransistor(VGroup):
         vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
         horizontal_boundary: list = [LEFT, RIGHT],
     ):
-        """Create a VGroup of scaled particle mobjects arranged in a rectangular grid."""
+        """Create a VGroup of scaled particle mobjects arranged in a rectangular grid.
+
+        Parameters
+        ----------
+        particle_type : :class:`~typing.Any`
+            Mobject class of the particles to create.
+        n_copies : :class:`int`, optional
+            Number of copies to arrange horizontally. Defaults to 5.
+        vertical_boundary : :class:`list`, optional
+            Vertical boundary points of the arrangement.
+            Defaults to ``[0.8 * UP, 0.8 * DOWN]``.
+        horizontal_boundary : :class:`list`, optional
+            Horizontal boundary points of the arrangement.
+            Defaults to ``[LEFT, RIGHT]``.
+        """
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
             particles, n_copies, vertical_boundary, horizontal_boundary
@@ -312,6 +386,18 @@ class BatterySchema(VGroup):
         Whether to invert the positive and negative terminals. Defaults to ``False``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: BatterySchemaExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import BatterySchema
+
+       class BatterySchemaExample(Scene):
+           def construct(self):
+               self.add(BatterySchema())
     """
 
     # TODO: This is not working as intended, rebuild this.
@@ -464,6 +550,18 @@ class MOSFETTransistor(VGroup):
         Whether to show the battery terminals. Defaults to ``False``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: MOSFETTransistorExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import MOSFETTransistor
+
+       class MOSFETTransistorExample(Scene):
+           def construct(self):
+               self.add(MOSFETTransistor())
     """
 
     def __init__(self, show_holes: bool = False, show_battery: bool = False, **kwargs):
@@ -497,7 +595,14 @@ class MOSFETTransistor(VGroup):
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
     def make_n_region(self, side: Any = LEFT):
-        """Create a blue n-region rectangle on the given side of the main board."""
+        """Create a blue n-region rectangle on the given side of the main board.
+
+        Parameters
+        ----------
+        side : :class:`~typing.Any`, optional
+            Direction of the n-region relative to the main board.
+            Defaults to :class:`~manim.constants.LEFT`.
+        """
         region = (
             Rectangle(fill_opacity=1)
             .set_color(BLUE)
@@ -569,6 +674,20 @@ class BatterySide(VMobject):
         The mobject to connect the terminal to.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
+
+    Examples
+    --------
+    .. manim:: BatterySideExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import BatterySide
+
+       class BatterySideExample(Scene):
+           def construct(self):
+               terminal = Dot(color=RED).shift(LEFT)
+               anchor = Square(side_length=1).shift(RIGHT)
+               self.add(terminal, anchor, BatterySide(terminal, anchor))
     """
 
     def __init__(self, terminal: Any, anchor: VGroup, **kwargs):
@@ -593,7 +712,15 @@ class BatterySide(VMobject):
 
 
 def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
-    """Evenly distribute mobjects along a 1D line between two boundary points."""
+    """Evenly distribute mobjects along a 1D line between two boundary points.
+
+    Parameters
+    ----------
+    mobs : :class:`~typing.Any`
+        Mobjects to distribute along the line.
+    boundary : :class:`list`, optional
+        Boundary points of the line. Defaults to ``[LEFT, RIGHT]``.
+    """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)
 
@@ -602,7 +729,15 @@ def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
 
 
 def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
-    """Duplicate each mobject and evenly space all copies along a 1D boundary."""
+    """Duplicate each mobject and evenly space all copies along a 1D boundary.
+
+    Parameters
+    ----------
+    mobs : :class:`~manim.mobject.mobject.Mobject`
+        Mobject or VGroup of mobjects to duplicate.
+    boundary : :class:`list`, optional
+        Boundary points of the line. Defaults to ``[LEFT, RIGHT]``.
+    """
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
@@ -612,7 +747,19 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
 
 
 def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5):
-    """Randomly distribute 'amount' copies of a mobject over a rectangular area."""
+    """Randomly distribute 'amount' copies of a mobject over a rectangular area.
+
+    Parameters
+    ----------
+    mobtype : :class:`~manim.mobject.types.point_cloud_mobject.Dot`, optional
+        Mobject to copy and distribute. Defaults to ``Dot()``.
+    amount : :class:`int`, optional
+        Number of copies to distribute. Defaults to 10.
+    height : :class:`float`, optional
+        Half height of the rectangular area. Defaults to 5.
+    width : :class:`float`, optional
+        Half width of the rectangular area. Defaults to 5.
+    """
     group = VGroup()
     for i in range(amount):
         group.add(
@@ -629,7 +776,14 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
 
 def get_element_by_data(element: dict):
-    """Create an Element mobject from a dictionary of element properties."""
+    """Create an Element mobject from a dictionary of element properties.
+
+    Parameters
+    ----------
+    element : :class:`dict`
+        Dictionary with the keys ``"symbol"``, ``"color"``, ``"electrons"``
+        and ``"holes"``.
+    """
     return Element(
         element=element["symbol"],
         color=element["color"],
@@ -639,7 +793,21 @@ def get_element_by_data(element: dict):
 
 
 def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: int = 1, up: int = 1):
-    """Randomly shift mobjects within the specified 2D bounding rectangle."""
+    """Randomly shift mobjects within the specified 2D bounding rectangle.
+
+    Parameters
+    ----------
+    mobs : :class:`~typing.Any`
+        Mobjects to shift.
+    left : :class:`int`, optional
+        Left bound of the horizontal shift. Defaults to 1.
+    right : :class:`int`, optional
+        Right bound of the horizontal shift. Defaults to 1.
+    down : :class:`int`, optional
+        Lower bound of the vertical shift. Defaults to 1.
+    up : :class:`int`, optional
+        Upper bound of the vertical shift. Defaults to 1.
+    """
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
     vertical = np.random.uniform(up, -down, n_mobs)
@@ -653,7 +821,19 @@ def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: i
 def arrange_copies_in_rectangle(
     mobs: Mobject, n_copies: int = 2, vertical_boundary: list = [UP, DOWN], horizontal_boundary: list = [LEFT, RIGHT]
 ):
-    """Create n_copies of mobs and arrange them in a rectangular grid pattern."""
+    """Create n_copies of mobs and arrange them in a rectangular grid pattern.
+
+    Parameters
+    ----------
+    mobs : :class:`~manim.mobject.mobject.Mobject`
+        Mobjects to copy and arrange.
+    n_copies : :class:`int`, optional
+        Number of copies to arrange. Defaults to 2.
+    vertical_boundary : :class:`list`, optional
+        Vertical boundary points of the arrangement. Defaults to ``[UP, DOWN]``.
+    horizontal_boundary : :class:`list`, optional
+        Horizontal boundary points of the arrangement. Defaults to ``[LEFT, RIGHT]``.
+    """
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
     for i in range(n_copies):
@@ -665,7 +845,13 @@ def arrange_copies_in_rectangle(
 
 
 def make_subpaths(group: Any):
-    """Add each mobject in the group as a subpath of the parent group."""
+    """Add each mobject in the group as a subpath of the parent group.
+
+    Parameters
+    ----------
+    group : :class:`~typing.Any`
+        Group whose mobjects are added as subpaths.
+    """
     for mob in group:
         group.add_subpath(mob.get_points())
 
@@ -673,7 +859,13 @@ def make_subpaths(group: Any):
 
 
 def zero(function: Callable):
-    """Decorator that clamps a function to return 0 outside the [0, 1] domain."""
+    """Decorator that clamps a function to return 0 outside the [0, 1] domain.
+
+    Parameters
+    ----------
+    function : :class:`~typing.Callable`
+        Function to clamp outside the [0, 1] domain.
+    """
     @wraps(function)
     def wrapper(t: Optional[np.ndarray], *args, **kwargs):
         if 0 <= t <= 1:
@@ -686,19 +878,47 @@ def zero(function: Callable):
 
 @zero
 def inverse_smooth(t: float, inflection: float = 10.0):
-    """Return the inverse of the smooth easing function (1 - t smoothed)."""
+    """Return the inverse of the smooth easing function (1 - t smoothed).
+
+    Parameters
+    ----------
+    t : :class:`float`
+        Input value of the easing function.
+    inflection : :class:`float`, optional
+        Inflection parameter passed to :func:`~manim.utils.rate_functions.smooth`.
+        Defaults to 10.0.
+    """
     new_t = 1 - t
     return smooth(new_t, inflection)
 
 
 @zero
 def inverse_linear(t: float, inflection: float = 10.0):
-    """Return the linear inverse value 1 - t."""
+    """Return the linear inverse value 1 - t.
+
+    Parameters
+    ----------
+    t : :class:`float`
+        Input value of the easing function.
+    inflection : :class:`float`, optional
+        Unused, kept for signature compatibility with the other inverse
+        easing functions. Defaults to 10.0.
+    """
     return 1 - t
 
 
 def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
-    """Create a VGroup by concatenating copies of mobject alternating left and right."""
+    """Create a VGroup by concatenating copies of mobject alternating left and right.
+
+    Parameters
+    ----------
+    mobject : :class:`~manim.mobject.mobject.Mobject`
+        Mobject to concatenate.
+    concats : :class:`~typing.Any`
+        Number of copies to concatenate.
+    buff : :class:`float`, optional
+        Buffer between the concatenated mobjects. Defaults to 0.
+    """
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):

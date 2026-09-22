@@ -35,7 +35,16 @@ from ... import config
 
 
 def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
-    """Rotates the shift vectors"""
+    """Rotates the shift vectors
+
+    Parameters
+    ----------
+    input_layer : Mobject
+        The layer whose cell width defines the base shift vectors.
+    normalized : bool, optional
+        Whether to normalize the rotated vectors to unit length,
+        by default False.
+    """
     # Make base shift vectors
     right_shift = np.array([input_layer.cell_width, 0, 0])
     down_shift = np.array([0, -input_layer.cell_width, 0])
@@ -74,6 +83,26 @@ class Filters(VGroup):
     output_feature_map_to_connect : int, optional
         Index of the output feature map to connect; None connects all of them
         at once.
+
+    Examples
+    --------
+    .. manim:: FiltersExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d import Filters
+
+       class FiltersExample(Scene):
+           def construct(self):
+               input_layer = Convolutional2DLayer(1, 5, filter_size=(2, 2))
+               output_layer = Convolutional2DLayer(2, 4, filter_size=(2, 2))
+               # construct_layer is normally called by NeuralNetwork at
+               # network construction time.
+               input_layer.construct_layer(None, None)
+               output_layer.construct_layer(None, None)
+               output_layer.next_to(input_layer, RIGHT, buff=1.5)
+               self.add(input_layer, output_layer, Filters(input_layer, output_layer))
     """
 
     def __init__(
@@ -314,7 +343,14 @@ class Filters(VGroup):
         )
 
     def make_pulse_animation(self, shift_amount: Any):
-        """Make animation of the filter pulsing"""
+        """Make animation of the filter pulsing
+
+        Parameters
+        ----------
+        shift_amount : Any
+            Amount by which the connective lines are shifted before the
+            flash is shown.
+        """
         passing_flash = ShowPassingFlash(
             self.connective_lines.shift(shift_amount).set_stroke_width(
                 self.stroke_width * 1.5
@@ -398,11 +434,28 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs,
     ):
-        """Forward to the parent construct_layer method."""
+        """Forward to the parent construct_layer method.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def animate_filters_all_at_once(self, filters: Mobject):
-        """Animates each of the filters all at once"""
+        """Animates each of the filters all at once
+
+        Parameters
+        ----------
+        filters : Mobject
+            The filters to animate; currently unused as a new
+            :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.Filters` group is created internally.
+        """
         animations = []
         # Make filters
         filters = Filters(
@@ -451,7 +504,14 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         return Succession(*animations, lag_ratio=1.0)
 
     def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True):
-        """Animates each of the filters one at a time"""
+        """Animates each of the filters one at a time
+
+        Parameters
+        ----------
+        highlight_active_feature_map : bool, optional
+            Whether to highlight the input and output feature maps of the
+            filter currently being animated, by default True.
+        """
         animations = []
         output_feature_maps = self.output_layer.feature_maps
         for feature_map_index in range(len(output_feature_maps)):
@@ -561,7 +621,24 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         run_time: float = 10.5,
         **kwargs,
     ):
-        """Forward pass animation from conv2d to conv2d"""
+        """Forward pass animation from conv2d to conv2d
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        all_filters_at_once : bool, optional
+            Whether to animate all filters simultaneously instead of one at
+            a time, by default False.
+        highlight_active_feature_map : bool, optional
+            Whether to highlight the feature map of the filter currently
+            being animated, by default True.
+        run_time : float, optional
+            Run time of the forward pass animation, by default 10.5.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         print(f"All filters at once: {all_filters_at_once}")
         # Make filter shifting animations
         if all_filters_at_once:
@@ -572,7 +649,15 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             )
 
     def scale(self, scale_factor: float, **kwargs):
-        """Scale the layer and adjust cell_width proportionally."""
+        """Scale the layer and adjust cell_width proportionally.
+
+        Parameters
+        ----------
+        scale_factor : float
+            Factor by which the layer is scaled.
+        **kwargs
+            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+        """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 

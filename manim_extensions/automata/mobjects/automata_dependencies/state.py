@@ -103,6 +103,11 @@ class State:
         ----------
         transition : Transition
             The transition to register for this state.
+
+        Returns
+        -------
+        list
+            The state's updated list of transitions.
         """
         self.transitions.append(transition)
         return self.transitions
@@ -114,6 +119,11 @@ class State:
         ----------
         id : int
             The transition identifier to look up.
+
+        Returns
+        -------
+        Transition
+            The matching transition, or ``None`` if not found.
         """
         for transition in self.transitions:
             if transition.id == id:
@@ -121,7 +131,13 @@ class State:
         return None
 
     def get_transitions(self) -> list["Transition"]:
-        """Return all transitions outgoing from this state."""
+        """Return all transitions outgoing from this state.
+
+        Returns
+        -------
+        list of Transition
+            All transitions outgoing from this state.
+        """
         return self.transitions
 
     def get_transition_by_transition_to_state_id(
@@ -133,6 +149,11 @@ class State:
         ----------
         transition_to_state_id
             Identifier of the target state.
+
+        Returns
+        -------
+        Transition or None
+            The matching transition, or ``None`` if not found.
         """
         for transition in self.transitions:
             if transition.transition_to.id == transition_to_state_id:

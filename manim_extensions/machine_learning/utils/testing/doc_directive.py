@@ -36,13 +36,27 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     pass
 
 def visit(self, node: list, name: str = ""):
-    """Visit a SkipManimNode, adding a placeholder title if missing, then render as admonition."""
+    """Visit a SkipManimNode, adding a placeholder title if missing, then render as admonition.
+
+    Parameters
+    ----------
+    node : list
+        The SkipManimNode to visit.
+    name : str, optional
+        Name of the admonition, by default "".
+    """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 def depart(self, node: Any):
-    """Depart from a SkipManimNode by closing the admonition rendering."""
+    """Depart from a SkipManimNode by closing the admonition rendering.
+
+    Parameters
+    ----------
+    node : Any
+        The SkipManimNode to depart from.
+    """
     self.depart_admonition(node)
 
 def process_name_list(option_input: str, reference_type: str) -> list[str]:
@@ -57,6 +71,18 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
         [':class:`~.Tex`', ':class:`~.TexTemplate`']
         >>> process_name_list("Scene.play Mobject.rotate", "func")
         [':func:`~.Scene.play`', ':func:`~.Mobject.rotate`']
+
+    Parameters
+    ----------
+    option_input : str
+        Space separated class names to reformat.
+    reference_type : str
+        Type of Sphinx reference to generate (e.g. "class" or "func").
+
+    Returns
+    -------
+    list[str]
+        List of strings containing valid Sphinx references.
     """
     return [f":{reference_type}:`~.{name}`" for name in option_input.split()]
 
@@ -86,7 +112,13 @@ class ManimDirective(Directive):
     final_argument_whitespace = True
 
     def run(self):
-        """Execute the directive: either render the manim example or output a placeholder."""
+        """Execute the directive: either render the manim example or output a placeholder.
+
+        Raises
+        ------
+        ValueError
+            Raised when an invalid combination of render flags is given.
+        """
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -286,7 +318,13 @@ def _delete_rendering_times(*args):
 
 
 def setup(app: Any):
-    """Register the manim directive and its nodes with the Sphinx application."""
+    """Register the manim directive and its nodes with the Sphinx application.
+
+    Parameters
+    ----------
+    app : Any
+        The Sphinx application to register the directive with.
+    """
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app

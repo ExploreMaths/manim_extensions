@@ -50,7 +50,16 @@ class AABB:
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
     def split(self, f: Any, v: Any):
-        """Split the bounding box along feature f at value v, returning left and right AABBs."""
+        """Split the bounding box along feature f at value v, returning left and right AABBs.
+
+        Parameters
+        ----------
+        f : Any
+            Index of the feature to split along.
+        v : Any
+            Threshold value; the left box gets ``[-inf, v]`` and the right
+            box ``[v, inf]`` along feature ``f``.
+        """
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -61,7 +70,17 @@ class AABB:
         return left, right
 
 def tree_bounds(tree: Mobject, n_features: Optional[Any]=None):
-    """Compute final decision rule for each node in tree"""
+    """Compute final decision rule for each node in tree.
+
+    Parameters
+    ----------
+    tree : Mobject
+        The sklearn tree structure (``tree_`` attribute of a fitted
+        :class:`~sklearn.tree.DecisionTreeClassifier`).
+    n_features : Optional[Any], optional
+        Override autodetection of the number of features. By default the
+        number of features is inferred as ``max(tree.feature) + 1``.
+    """
     ctree = require("ml", "sklearn.tree")._tree
 
     if n_features is None:
@@ -86,11 +105,19 @@ def compute_decision_areas(
 ):
     """Extract decision areas.
 
-    tree_classifier: Instance of a sklearn.tree.DecisionTreeClassifier
-    maxrange: values to insert for [left, right, top, bottom] if the interval is open (+/-inf)
-    x: index of the feature that goes on the x axis
-    y: index of the feature that goes on the y axis
-    n_features: override autodetection of number of features
+    Parameters
+    ----------
+    tree_classifier : Any
+        Instance of a :class:`~sklearn.tree.DecisionTreeClassifier`.
+    maxrange : Any
+        Values to insert for ``[left, right, top, bottom]`` if the interval
+        is open (``+/-inf``).
+    x : int, optional
+        Index of the feature that goes on the x axis. Defaults to ``0``.
+    y : int, optional
+        Index of the feature that goes on the y axis. Defaults to ``1``.
+    n_features : Optional[Any], optional
+        Override autodetection of the number of features.
     """
     ctree = require("ml", "sklearn.tree")._tree
 
@@ -122,7 +149,15 @@ def compute_decision_areas(
     return rectangles
 
 def plot_areas(rectangles: Any):
-    """Plot decision area rectangles on the current matplotlib axes."""
+    """Plot decision area rectangles on the current matplotlib axes.
+
+    Parameters
+    ----------
+    rectangles : Any
+        Array of decision-area rectangles as returned by
+        :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;
+        each row is ``[left, right, bottom, top, class_index]``.
+    """
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
         color = ["b", "r"][int(rect[4])]
@@ -137,7 +172,17 @@ def plot_areas(rectangles: Any):
         plt.gca().add_artist(rp)
 
 def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]):
-    """Merge adjacent polygons of the same color into larger contiguous polygons."""
+    """Merge adjacent polygons of the same color into larger contiguous polygons.
+
+    Parameters
+    ----------
+    all_polygons : Any
+        The polygon mobjects to merge, typically the decision-area
+        rectangles of a :class::class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
+    colors : list, optional
+        The colors to merge polygons for, in order. Defaults to
+        ``[BLUE, GREEN, ORANGE]``.
+    """
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -217,6 +262,22 @@ class IrisDatasetPlot(VGroup):
     ----------
     iris : sklearn.datasets.base.Bunch
         Loaded Iris dataset (e.g. from ``sklearn.datasets.load_iris``).
+
+    Examples
+    --------
+    .. manim:: IrisDatasetPlotExample
+       :save_last_frame:
+
+       from manim import *
+       from sklearn.datasets import load_iris
+       from manim_extensions.machine_learning.decision_tree.decision_tree_surface import IrisDatasetPlot
+
+       class IrisDatasetPlotExample(Scene):
+           def construct(self):
+               plot = IrisDatasetPlot(load_iris())
+               # VGroup.__init__ is not called by the constructor, so add
+               # the composed plot groups directly.
+               self.add(plot.all_group)
     """
 
     def __init__(self, iris: Any):
@@ -346,6 +407,29 @@ class DecisionTreeSurface(VGroup):
     class_colors : list, optional
         Colors, one per class, used to fill the decision areas.
         Defaults to ``[BLUE, ORANGE, GREEN]``.
+
+    Examples
+    --------
+    .. manim:: DecisionTreeSurfaceExample
+       :save_last_frame:
+
+       from manim import *
+       from sklearn.datasets import load_iris
+       from sklearn.tree import DecisionTreeClassifier
+       from manim_extensions.machine_learning.decision_tree.decision_tree_surface import DecisionTreeSurface
+
+       class DecisionTreeSurfaceExample(Scene):
+           def construct(self):
+               iris = load_iris()
+               points = iris.data[:, :2]
+               tree_clf = DecisionTreeClassifier(max_depth=2, random_state=0)
+               tree_clf.fit(points, iris.target)
+               axes = Axes(x_range=[3, 9, 1], y_range=[1, 5, 1],
+                           x_length=5, y_length=4)
+               surface = DecisionTreeSurface(tree_clf, points, axes)
+               # VGroup.__init__ is not called by the constructor, so add
+               # the computed surface rectangles directly.
+               self.add(axes, *surface.surface_rectangles)
     """
 
     def __init__(self, tree_clf: Any, data: Any, axes: Any, class_colors: list = [BLUE, ORANGE, GREEN]):

@@ -45,12 +45,16 @@ def frames_comparison(
 
     Parameters
     ----------
+    func
+        The test function to decorate, by default None.
     last_frame
         whether the test should test the last frame, by default True.
     renderer_class
         The base renderer to use (OpenGLRenderer/CairoRenderer), by default CairoRenderer
     base_scene
         The base class for the scene (ThreeDScene, etc.), by default Scene
+    **custom_config
+        Additional keyword arguments merged into the Manim config for the test.
 
     .. warning::
         By default, last_frame is True, which means that only the last frame is tested.

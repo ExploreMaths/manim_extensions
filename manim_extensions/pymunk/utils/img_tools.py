@@ -24,21 +24,23 @@ def get_normalized_convex_polygons(
     ----------
     pixel_array : np.ndarray
         输入图片的像素数组[H, W, C]。
-    base_width : float, optional
+    base_px_width : int, optional
         采样基准宽度，默认为512.0。
             用于控制采样精度。
     target_cell_size : float, optional
         目标单元格大小，默认为4。
             控制marchingSquares的网格密度。
-    frame_w : float, optional
+    img_manim_w : float, optional
         Manim框架宽度，默认为8。
             用于坐标映射。
-    frame_h : float, optional
+    img_manim_h : float, optional
         Manim框架高度，默认为14.22。
             用于坐标映射。
 
-    Returns:
-        list: Manim坐标系中的凸多边形列表，每个多边形为顶点坐标列表。
+    Returns
+    -------
+    list
+        Manim坐标系中的凸多边形列表，每个多边形为顶点坐标列表。
     """
     pymunk = require("physics", "pymunk")
     from pymunk.autogeometry import march_soft, simplify_vertexes, convex_decomposition
@@ -101,7 +103,8 @@ def get_normalized_convex_polygons(
         point : tuple
             (x, y)坐标。
 
-        Returns:
+        Returns
+        -------
             int: 该点的Mask值（0或255）。
         """
         x, y = int(point[0]), int(point[1])
@@ -150,17 +153,19 @@ def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_mani
     ----------
     polygons : list
         像素坐标系中的多边形列表。
-    img_w : float
+    img_px_w : int
         图片宽度（像素）。
-    img_h : float
+    img_px_h : int
         图片高度（像素）。
-    frame_w : float
+    img_manim_w : float
         Manim框架宽度。
-    frame_h : float
+    img_manim_h : float
         Manim框架高度。
 
-    Returns:
-        list: Manim坐标系中的多边形列表。
+    Returns
+    -------
+    list
+        Manim坐标系中的多边形列表。
     """
     manim_polygons = []
     for poly in polygons:

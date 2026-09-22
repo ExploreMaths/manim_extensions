@@ -64,6 +64,11 @@ class ManimAnimations:
         ----------
         state
             State mobject to recolor as a rejected branch.
+
+        Returns
+        -------
+        Animation
+            The animation marking the state as dead.
         """
         return FadeToColor(state, color=RED)
 
@@ -74,6 +79,11 @@ class ManimAnimations:
         ----------
         state
             State mobject to recolor back to its normal styling.
+
+        Returns
+        -------
+        Animation
+            The animation resetting the state color.
         """
         return FadeToColor(state, color=BLUE)
 
@@ -84,6 +94,11 @@ class ManimAnimations:
         ----------
         state
             State mobject to highlight during a transition or match.
+
+        Returns
+        -------
+        Animation
+            The animation highlighting the state.
         """
         return FadeToColor(state, color=PURE_YELLOW)
 
@@ -95,6 +110,11 @@ class ManimAnimations:
         ----------
         transition
             Transition mobject to recolor to its default appearance.
+
+        Returns
+        -------
+        Animation
+            The animation resetting the transition color.
         """
         return FadeToColor(transition, color=WHITE)
 
@@ -105,6 +125,11 @@ class ManimAnimations:
         ----------
         transition
             Transition mobject to emphasize during a successful match.
+
+        Returns
+        -------
+        Animation
+            The animation highlighting the transition.
         """
         return FadeToColor(transition, color=PURE_YELLOW)
 
@@ -116,6 +141,11 @@ class ManimAnimations:
         ----------
         token
             Input token mobject to dim after being used.
+
+        Returns
+        -------
+        Animation
+            The animation marking the token as consumed.
         """
         return token.animate.set_opacity(0.5)
 
@@ -126,6 +156,11 @@ class ManimAnimations:
         ----------
         token
             Input token mobject to highlight during processing.
+
+        Returns
+        -------
+        Animation
+            The animation highlighting the token.
         """
         return FadeToColor(token, color=PURE_YELLOW)
 
@@ -136,6 +171,11 @@ class ManimAnimations:
         ----------
         input
             Input object to fade in on the scene.
+
+        Returns
+        -------
+        Animation
+            The animation revealing the input display.
         """
         return FadeIn(input)
 
@@ -151,5 +191,10 @@ class ManimAnimations:
             The current subscript object being replaced.
         new_subscript
             The replacement subscript object.
+
+        Returns
+        -------
+        Animation
+            The transform animation between the two subscript objects.
         """
         return Transform(initial_subscript, new_subscript)

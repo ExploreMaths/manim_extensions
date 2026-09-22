@@ -145,6 +145,11 @@ class VPinJoint(VConstraint):
         """Create the Pymunk PinJoint constraint, initialize visual anchor
         markers and connecting line, add the constraint to the space, and
         register the per-frame updater.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
         """
 
         PinJoint = require("physics", "pymunk").constraints.PinJoint
@@ -183,7 +188,15 @@ class VPinJoint(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
         if not self.constraint:
             return
         a_body = self.constraint.a

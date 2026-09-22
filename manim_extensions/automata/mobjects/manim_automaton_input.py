@@ -85,6 +85,11 @@ class ManimAutomataInput(VGroup):
             The token to highlight.
         animation_style : dict
             Animation configuration containing the highlight function and color.
+
+        Returns
+        -------
+        Any
+            The animation highlighting the token.
         """
         animation_function = animation_style["token_highlight"]["animation_function"]
         color = animation_style["token_highlight"]["color"]

@@ -111,7 +111,13 @@ class VGearJoint(VConstraint):
         self.indicator_length = indicator_length
 
     def install(self, space: Space):
-        """Verify the validity of constraint parameters."""
+        """Verify the validity of constraint parameters.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
+        """
 
         GearJoint = require("physics", "pymunk").constraints.GearJoint
 
@@ -137,7 +143,15 @@ class VGearJoint(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
         if not self.constraint:
             return
 

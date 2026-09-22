@@ -97,11 +97,27 @@ class VariationalAutoencoder(VGroup):
         return Create(self.neural_network)
 
     def make_triplet_forward_pass(self, triplet: Any):
-        """Placeholder for triplet forward pass animation; currently unimplemented."""
+        """Placeholder for triplet forward pass animation; currently unimplemented.
+
+        Parameters
+        ----------
+        triplet : Any
+            The triplet of inputs passed through the network.
+        """
         pass
 
     def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5):
-        """Override forward pass animation specific to a VAE"""
+        """Override forward pass animation specific to a VAE
+
+        Parameters
+        ----------
+        input_image : Any
+            The input image fed into the encoder.
+        output_image : Any
+            The output image produced by the decoder.
+        run_time : float, optional
+            Run time of the forward pass animation, by default 1.5.
+        """
         # Make a wrapper NN with images
         wrapper_neural_network = NeuralNetwork(
             [ImageLayer(input_image), self.neural_network, ImageLayer(output_image)]

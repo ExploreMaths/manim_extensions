@@ -40,6 +40,23 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
 
     Supports downloading multiple files from a single request.
 
+    Parameters
+    ----------
+    format : :class:`~typing.Any`
+        Format of the file to be downloaded. Defaults to ``'sdf'``.
+    cid : :class:`~typing.Any`
+        CID of the molecule(s) to download.
+    name : :class:`str`
+        Name of the molecule(s) to download.
+    smiles : :class:`~typing.Any`
+        SMILES identifier of the molecule(s) to download.
+    inchi : :class:`~typing.Any`
+        InChI identifier of the molecule(s) to download.
+    three_d : :class:`~typing.Any`
+        Whether to use three-dimensional data of the molecule. Defaults to ``False``.
+    output_folder : :class:`~typing.Any`
+        Folder where the downloaded files are saved. Defaults to ``'.'``.
+
     Examples
     --------
 
@@ -56,6 +73,12 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
         >>> File .\acetone.sdf is ready!!
         >>> File .\morphine.sdf is ready!!
         >>> Finished
+
+    Raises
+    ------
+    Exception
+        Raised when no identifier (``cid``, ``name``, ``smiles``, or
+        ``inchi``) is provided.
     """
 
     identifier = cid or name or smiles or inchi

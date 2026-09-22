@@ -94,17 +94,7 @@ class MultidimensionalGaussianPosterior:
     """
 
     def __init__(self, ndim: int = 2, seed: int = 12345, scale: int = 3, mu: Optional[Any]=None, var: Optional[Any]=None):
-        """Initialize the Multidimensional Gaussian posterior distribution.
-
-        Parameters
-        ----------
-        ndim : int, optional
-            Dimension of the distribution, by default 2
-        seed : int, optional
-            Random seed, by default 12345
-        scale : int, optional
-            Scale of the prior on the mean, by default 10
-        """
+        """Initialize the MultidimensionalGaussianPosterior instance."""
         np.random.seed(seed)
         self.scale = scale
 
@@ -151,6 +141,10 @@ def metropolis_hastings_sampler(
         number of iterations of the markov chain, by default 100
     warm_up : int, optional,
         number of warm up iterations
+    ndim : int, optional
+        dimension of the state space, by default 2
+    sampling_seed : int, optional
+        random seed for the sampler, by default 1
 
     Returns
     -------
@@ -199,7 +193,17 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]):
-    """Render a KDE density plot from 2D samples and return it as an ImageMobject."""
+    """Render a KDE density plot from 2D samples and return it as an ImageMobject.
+
+    Parameters
+    ----------
+    samples : np.ndarray
+        2D array of samples used to estimate the KDE density plot.
+    ylim : list, optional
+        Limits of the y-axis as ``[ymin, ymax]``.
+    xlim : list, optional
+        Limits of the x-axis as ``[xmin, xmax]``.
+    """
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -428,8 +432,12 @@ class MCMCAxes(Group):
             Start point of the transition
         end_point : Dot
             End point of the transition
+        candidate_point : Dot
+            Candidate point proposed for the transition
         show_dots: boolean, optional
             Whether or not to show the dots
+        run_time : float, optional
+            Duration of the transition animation, by default 0.1
 
         Returns
         -------
@@ -471,7 +479,14 @@ class MCMCAxes(Group):
                 ), line
 
     def show_ground_truth_gaussian(self, distribution: Any):
-        """Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse."""
+        """Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse.
+
+        Parameters
+        ----------
+        distribution : Any
+            Gaussian distribution with ``mu`` and ``var`` attributes used to
+            construct the displayed ellipse.
+        """
         mean = distribution.mu
         var = np.eye(2) * distribution.var
         distribution_drawing = GaussianDistribution(
@@ -505,6 +520,12 @@ class MCMCAxes(Group):
             whether or not to show the dots on the screen, by default False
         iterations : int, optional
             number of iterations of the markov chain, by default 100
+        true_samples : np.ndarray, optional
+            Ground-truth samples used to render the KDE density background,
+            by default None.
+        sampling_kwargs : dict, optional
+            Additional keyword arguments forwarded to
+            :func:`~manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.metropolis_hastings_sampler`, by default {}.
 
         Returns
         -------

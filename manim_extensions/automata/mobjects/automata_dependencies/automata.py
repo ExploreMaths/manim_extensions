@@ -175,6 +175,11 @@ class FiniteStateAutomaton:
         ----------
         name
             Name of the state to retrieve.
+
+        Returns
+        -------
+        State or None
+            The matching state, or ``None`` if not found.
         """
         for state in self.states:
             if state.name == name:
@@ -188,6 +193,11 @@ class FiniteStateAutomaton:
         ----------
         id : int
             Identifier of the state to retrieve.
+
+        Returns
+        -------
+        State or None
+            The matching state, or ``None`` if not found.
         """
         for state in self.states:
             if state.id == id:
@@ -205,6 +215,13 @@ class FiniteStateAutomaton:
             Input token to consume.
         state_pointer : State
             Current state from which the step is evaluated.
+
+        Returns
+        -------
+        tuple
+            ``(accepted, next_states, transitions)`` indicating whether the
+            token was accepted, the reachable next states, and the matching
+            transitions.
         """
         next_states = []  # stores all of the next states that can be jumped to
         transitions = (

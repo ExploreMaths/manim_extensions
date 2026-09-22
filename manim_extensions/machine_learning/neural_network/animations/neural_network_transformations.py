@@ -32,6 +32,25 @@ class RemoveLayer(AnimationGroup):
         The neural network the layer belongs to.
     layer_spacing : float, optional
         Spacing between layers after the removal, by default 0.2.
+
+    Examples
+    --------
+    .. manim:: RemoveLayerExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.neural_network import NeuralNetwork
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.animations.neural_network_transformations import RemoveLayer
+
+       class RemoveLayerExample(Scene):
+           def construct(self):
+               nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(4), FeedForwardLayer(2)])
+               self.add(nn)
+               # manim >= 0.21 refuses to play the AnimationGroup built by
+               # RemoveLayer because it contains empty sub-animations, so
+               # this example only constructs the animation.
+               RemoveLayer(nn.all_layers[2], nn)
     """
 
     def __init__(self, layer: Mobject, neural_network: Any, layer_spacing: float = 0.2):
@@ -55,7 +74,13 @@ class RemoveLayer(AnimationGroup):
         super().__init__(*animations_list, lag_ratio=1.0)
 
     def get_connective_layers(self):
-        """Gets the connective layers before and after self.layer"""
+        """Gets the connective layers before and after self.layer
+
+        Raises
+        ------
+        Exception
+            Raised when ``self.layer`` is not found in the neural network.
+        """
         # Get layer index
         layer_index = self.neural_network.all_layers.index_of(self.layer)
         if layer_index == -1:
@@ -187,6 +212,27 @@ class InsertLayer(AnimationGroup):
         Index in the network's layer list at which to insert the layer.
     neural_network : NeuralNetwork
         The neural network to insert the layer into.
+
+    Examples
+    --------
+    .. manim:: InsertLayerExample
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.neural_network import NeuralNetwork
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.animations.neural_network_transformations import InsertLayer
+
+       class InsertLayerExample(Scene):
+           def construct(self):
+               nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
+               self.add(nn)
+               # all_layers includes the connective layer, so inserting at
+               # index 2 places the new layer between the two feed-forward
+               # layers.
+               new_layer = FeedForwardLayer(4)
+               new_layer.construct_layer(None, None)
+               self.play(InsertLayer(new_layer, 2, nn))
+               self.wait()
     """
 
     def __init__(self, layer: Mobject, index: int, neural_network: Any):
@@ -301,7 +347,15 @@ class InsertLayer(AnimationGroup):
     def make_create_connective_layers_animation(
         self, before_connective: Any, after_connective: Any
     ):
-        """Create connective layers"""
+        """Create connective layers
+
+        Parameters
+        ----------
+        before_connective : Any
+            The connective layer placed before the inserted layer.
+        after_connective : Any
+            The connective layer placed after the inserted layer.
+        """
         # Make the layers
         before_connective = None
         after_connective = None

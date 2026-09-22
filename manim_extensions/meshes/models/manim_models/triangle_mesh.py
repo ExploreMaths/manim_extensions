@@ -95,6 +95,12 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             Index of the second triangle face (must share an edge with the first).
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).
+
+        Raises
+        ------
+        ValueError
+            If either face is not a triangle or the faces do not share
+            exactly one edge.
         """
         face_arr_1 = self.mesh.faces[face_idx_1]
         face_arr_2 = self.mesh.faces[face_idx_2]

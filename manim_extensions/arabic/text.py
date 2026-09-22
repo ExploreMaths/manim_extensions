@@ -59,8 +59,10 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
         "Noto Naskh Arabic", "Arial Unicode MS") via fontconfig; pass a name
         explicitly to override.
 
-    Returns:
-        Configured TexTemplate for Arabic text rendering
+    Returns
+    -------
+    TexTemplate
+        Configured TexTemplate for Arabic text rendering.
 
     Examples
     --------
@@ -117,8 +119,10 @@ def create_arabic_text(
         font from a built-in candidate list; see
         :func:`~manim_extensions.arabic.text.create_arabic_template`.
 
-    Returns:
-        Tex object with Arabic text
+    Returns
+    -------
+    Tex
+        Tex object with Arabic text.
 
     Examples
     --------

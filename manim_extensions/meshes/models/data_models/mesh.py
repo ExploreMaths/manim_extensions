@@ -313,31 +313,72 @@ class Mesh:
 
     @property
     def dim(self) -> int:
-        """get the shape / dimension of every vertex"""
+        """get the shape / dimension of every vertex
+
+        Returns
+        -------
+        int
+            The number of dimensions of every vertex.
+        """
         return int(self._vertices.shape[1])
 
     @property
     def vertices(self) -> Vertices:
-        """get private property _vertices"""
+        """get private property _vertices
+
+        Returns
+        -------
+        Vertices
+            The vertex coordinate array.
+        """
         return self._vertices
 
     @property
     def faces(self) -> Faces:
-        """get private property _faces"""
+        """get private property _faces
+
+        Returns
+        -------
+        Faces
+            The list of faces referencing vertex indices.
+        """
         return self._faces
 
     @property
     def parts(self) -> Parts:
-        """get private property _parts"""
+        """get private property _parts
+
+        Returns
+        -------
+        Parts
+            The list of parts referencing face indices.
+        """
         return self._parts
 
     @property
     def edges(self) -> Edges:
-        """get private property _edges"""
+        """get private property _edges
+
+        Returns
+        -------
+        Edges
+            The sorted list of edges as vertex index tuples.
+        """
         return self._edges
 
     def get_3d_vertices(self) -> Vertices:
-        """Get 3D vertices, for 1D, 2D, 3D meshes, to be able to draw them using the manim functions"""
+        """Get 3D vertices, for 1D, 2D, 3D meshes, to be able to draw them using the manim functions
+
+        Returns
+        -------
+        Vertices
+            The vertex coordinates padded to three dimensions.
+
+        Raises
+        ------
+        InvalidRequestException
+            If the mesh dimension is greater than 3.
+        """
         if self.dim < 3:
             return np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
         if self.dim == 3:
@@ -400,7 +441,13 @@ class Mesh:
         return list(vert_ids)
 
     def convert_vertices_to_3d(self) -> None:
-        """transforms currents mesh vertices permanently to be 3D, works if dim is < 3"""
+        """transforms currents mesh vertices permanently to be 3D, works if dim is < 3
+
+        Raises
+        ------
+        InvalidRequestException
+            If the current dimensionality is greater than 3.
+        """
         if self.dim < 3:
             self._vertices = np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
         elif self.dim > 3:
@@ -573,6 +620,9 @@ class Mesh:
             out-of-range vertex indices.
         InvalidTypeException
             If *new_faces* has an unsupported type.
+        MeshIndexException
+            If a vertex index in *new_faces* is out of range or not
+            defined.
         """
         # type-check whole array
         if not is_twice_nested_iterable(new_faces):
@@ -666,6 +716,8 @@ class Mesh:
             out-of-range face indices.
         InvalidTypeException
             If *new_parts* has an unsupported type.
+        MeshIndexException
+            If a face index in *new_parts* is out of range.
         """
         # validate array type
         if not is_twice_nested_iterable(new_parts, min_lens=(1, 1)):
@@ -756,6 +808,9 @@ class Mesh:
         InvalidMeshException
             If the meshes have different vertex dimensionalities or
             the shifted indices would be out of range.
+        MeshIndexException
+            If a face or part index would be out of bounds after the
+            merge.
         """
         # Mesh has to be a correct mesh therefore many checks can be omitted
         # check if vertices have the same dimension
@@ -785,9 +840,13 @@ class Mesh:
         self._edges = self.extract_edges()
 
     def split_mesh_into_objects(self) -> List["Mesh"]:
-        """
-        given a mesh, return a list of independent meshes that are not interconnected
-        returns list of meshes with updated indices and references, does not change current mesh
+        """Split the mesh into independent, non-interconnected meshes.
+
+        Returns
+        -------
+        list of Mesh
+            A list of meshes with updated indices and references; the
+            current mesh is not changed.
         """
 
         def get_references_from_ids(ids: Set[int], nested: VarArray) -> Set[int]:
@@ -883,14 +942,26 @@ class Mesh:
         return new_meshes
 
     def dangling_vert_check(self) -> bool:
-        """check whether there are any dangling nodes - vertices that are not part of a face"""
+        """check whether there are any dangling nodes - vertices that are not part of a face
+
+        Returns
+        -------
+        bool
+            ``True`` if there are vertices that are not part of any face.
+        """
         if len(self._faces) == 0:
             return len(self._vertices) != 0
         unique = np.unique(np.concatenate(self._faces).ravel())
         return any(v_idx not in unique for v_idx in range(len(self._vertices)))
 
     def dangling_face_check(self) -> bool:
-        """check whether there are any dangling faces - faces that are not part of a part"""
+        """check whether there are any dangling faces - faces that are not part of a part
+
+        Returns
+        -------
+        bool
+            ``True`` if there are faces that are not part of any part.
+        """
         if len(self._parts) == 0:
             return len(self._faces) != 0
         if len(self._parts) > 0 and len(self._faces) == 0:
@@ -1251,7 +1322,13 @@ class Mesh:
         self.remove_duplicate_parts()
 
     def extract_edges(self) -> Edges:
-        """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)]"""
+        """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)]
+
+        Returns
+        -------
+        Edges
+            All edges of the mesh as a sorted list of 2-tuples of vertex indices.
+        """
         edges: Edges = []
         for face in self._faces:
             last_vertex = face[-1]

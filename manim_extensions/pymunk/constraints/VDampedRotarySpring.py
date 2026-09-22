@@ -134,7 +134,13 @@ class VDampedRotarySpring(VConstraint):
                 )
 
     def install(self, space: Space):
-        """Initialization of physics and visualization components"""
+        """Initialization of physics and visualization components.
+
+        Parameters
+        ----------
+        space : Space
+            The Pymunk space to add the constraint to.
+        """
 
         DampedRotarySpring = require("physics", "pymunk").constraints.DampedRotarySpring
 
@@ -169,7 +175,15 @@ class VDampedRotarySpring(VConstraint):
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
-        """Visual control updater"""
+        """Visual control updater.
+
+        Parameters
+        ----------
+        mob : Mobject
+            The constraint mobject being updated.
+        dt : float
+            Time step since the last frame, in seconds.
+        """
 
         if not self.constraint:
             return

@@ -47,7 +47,17 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Build a straight arrow connection between the feed-forward and math operation layers."""
+        """Build a straight arrow connection between the feed-forward and math operation layers.
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this connective layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this connective layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer
         self.connection = NetworkConnection(
@@ -61,7 +71,16 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes dots diverge from the given location and move to the feed forward nodes decoder"""
+        """Makes dots diverge from the given location and move to the feed forward nodes decoder
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the connected layers when making
+            their forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Make flashing pass animation on arrow
         passing_flash = ShowPassingFlash(
             self.connection.copy().set_color(self.active_color)

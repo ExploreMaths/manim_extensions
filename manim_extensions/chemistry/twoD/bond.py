@@ -13,7 +13,48 @@ from .atom import MAtomObject
 
 from typing import Any
 class BaseMBondObject(VGroup):
-    """Abstract base class for 2D chemical bond mobjects between two atoms."""
+    """Abstract base class for 2D chemical bond mobjects between two atoms.
+
+    Parameters
+    ----------
+    from_atom : MAtomObject
+        Atom at the start of the bond.
+    to_atom : MAtomObject
+        Atom at the end of the bond.
+    type : int, optional
+        Bond type: 1 for single, 2 for double, 3 for triple. Defaults to
+        ``0``.
+    subtype : str, optional
+        Subtype of the bond (e.g. ``'shorter'``, ``'shorter_from'``,
+        ``'shorter_to'``). Defaults to ``''``.
+    color : str, optional
+        Color of the bond. Defaults to ``WHITE``.
+    index : int, optional
+        Index of the bond in the molecule. Defaults to ``0``.
+    **kwargs
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: BaseMBondObjectExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import BaseMBondObject, SimpleBond
+
+       class BaseMBondObjectExample(Scene):
+           def construct(self):
+               # BaseMBondObject is abstract: create_line() must be
+               # implemented by subclasses such as SimpleBond.
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               bond = SimpleBond(carbon, oxygen)
+               assert isinstance(bond, BaseMBondObject)
+               self.add(carbon, oxygen, bond)
+    """
     def __str__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
@@ -41,7 +82,7 @@ class BaseMBondObject(VGroup):
         self.index = index
         self.add(self.bond)
 
-    def define_subtype(self, subtype: str) -> str or bool:
+    def define_subtype(self, subtype: str) -> str | bool:
         """
         Defines the subtype based on atoms' representations. Input options:
             - 'complete'
@@ -53,6 +94,18 @@ class BaseMBondObject(VGroup):
             - shorter_from: Does not touch the center of the from atom.
             - shorter_to: Does not touch the center of the to atom.
             - None or false: Touches both atoms center
+
+        Parameters
+        ----------
+        subtype : :class:`str`
+            Subtype of the bond: ``'complete'``, ``'skeleton'`` or
+            ``'over_bond'``.
+
+        Returns
+        -------
+        :class:`str` or :class:`bool`
+            One of ``'shorter'``, ``'shorter_from'``, ``'shorter_to'`` or
+            ``False`` when the line touches both atom centers.
         """
         from_representation = self.from_atom.representation
         to_representation = self.to_atom.representation
@@ -75,21 +128,41 @@ class BaseMBondObject(VGroup):
         return self.from_atom, self.to_atom
 
     def atom_is_in_bond(self, atom: Any):
-        """Return True if the given atom is one of the two atoms in this bond."""
+        """Return True if the given atom is one of the two atoms in this bond.
+
+        Parameters
+        ----------
+        atom : :class:`~typing.Any`
+            Atom to check for membership in the bond.
+        """
         if self.from_atom == atom or self.to_atom == atom:
             return True
         else:
             return False
 
     def get_bond_index_by_atom(self, atom: Any):
-        """Return the bond's index if the atom is part of this bond, otherwise None."""
+        """Return the bond's index if the atom is part of this bond, otherwise None.
+
+        Parameters
+        ----------
+        atom : :class:`~typing.Any`
+            Atom to check for membership in the bond.
+        """
         if self.atom_is_in_bond(atom):
             return self.index
 
         return
 
     def add_bond_index_by_atom_to_list(self, atom: Any, list: list):
-        """Append this bond's index to the given list if the atom is in the bond."""
+        """Append this bond's index to the given list if the atom is in the bond.
+
+        Parameters
+        ----------
+        atom : :class:`~typing.Any`
+            Atom to check for membership in the bond.
+        list : :class:`list`
+            List the bond index is appended to.
+        """
         index = self.get_bond_index_by_atom(atom)
 
         if index is not None:
@@ -98,7 +171,15 @@ class BaseMBondObject(VGroup):
         return list
 
     def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
-        """Return a unit vector perpendicular to the bond direction, in the xy plane."""
+        """Return a unit vector perpendicular to the bond direction, in the xy plane.
+
+        Parameters
+        ----------
+        point_a : :class:`~typing.Any`
+            Starting point of the bond.
+        point_b : :class:`~typing.Any`
+            Ending point of the bond.
+        """
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))
@@ -147,6 +228,11 @@ class BaseMBondObject(VGroup):
     def get_vector(self):
         """
         All bonds should contain at least a Line. This line can return the corresponding vector.
+
+        Raises
+        ------
+        exception
+            Re-raised when the underlying line vector lookup fails.
         """
         try:
             return self[0].get_vector()
@@ -156,7 +242,24 @@ class BaseMBondObject(VGroup):
 
 
 class SimpleBond(BaseMBondObject):
-    """A single-line chemical bond between two atoms."""
+    """A single-line chemical bond between two atoms.
+
+    Examples
+    --------
+    .. manim:: SimpleBondExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import SimpleBond
+
+       class SimpleBondExample(Scene):
+           def construct(self):
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               self.add(carbon, oxygen, SimpleBond(carbon, oxygen))
+    """
     def no_subtype(self):
         """Return a full-length line connecting both atom centers."""
         return Line(self.from_atom.coords, self.to_atom.coords)
@@ -166,11 +269,23 @@ class SimpleBond(BaseMBondObject):
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
     def shorter_from_subtype(self, direction: str):
-        """Return a line shortened at the from-atom end, starting from the to atom."""
+        """Return a line shortened at the from-atom end, starting from the to atom.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the to atom to the from atom.
+        """
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
 
     def shorter_to_subtype(self, direction: str):
-        """Return a line shortened at the to-atom end, starting from the from atom."""
+        """Return a line shortened at the to-atom end, starting from the from atom.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the from atom to the to atom.
+        """
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
     def longer_subtype(self):
@@ -212,6 +327,22 @@ class DoubleBond(BaseMBondObject):
         Scale applied to the secondary line of the bond. Defaults to 0.7.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.BaseMBondObject`.
+
+    Examples
+    --------
+    .. manim:: DoubleBondExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import DoubleBond
+
+       class DoubleBondExample(Scene):
+           def construct(self):
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               self.add(carbon, oxygen, DoubleBond(carbon, oxygen))
     """
 
     def __init__(
@@ -256,7 +387,17 @@ class DoubleBond(BaseMBondObject):
         return VGroup(base_line, double_line)
 
     def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
-        """Return a double bond shortened at the from-atom end, with surroundings-aware layout."""
+        """Return a double bond shortened at the from-atom end, with surroundings-aware layout.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the to atom to the from atom.
+        from_surroundings : :class:`~typing.Any`
+            Whether the from atom has single bonds to hydrogens.
+        to_surroundings : :class:`~typing.Any`
+            Whether the to atom has single bonds to hydrogens.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -283,7 +424,17 @@ class DoubleBond(BaseMBondObject):
         return VGroup(base_line, double_line)
 
     def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
-        """Return a double bond shortened at the to-atom end, with surroundings-aware layout."""
+        """Return a double bond shortened at the to-atom end, with surroundings-aware layout.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the from atom to the to atom.
+        from_surroundings : :class:`~typing.Any`
+            Whether the from atom has single bonds to hydrogens.
+        to_surroundings : :class:`~typing.Any`
+            Whether the to atom has single bonds to hydrogens.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -310,6 +461,11 @@ class DoubleBond(BaseMBondObject):
     def get_vector(self):
         """
         This contains a VGroup with two lines, we just get the vector from one of them
+
+        Raises
+        ------
+        exception
+            Re-raised when the underlying line vector lookup fails.
         """
         try:
             return self[0][0].get_vector()
@@ -388,6 +544,22 @@ class TripleBond(BaseMBondObject):
         Scale applied to the secondary lines of the bond. Defaults to 0.8.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.BaseMBondObject`.
+
+    Examples
+    --------
+    .. manim:: TripleBondExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import TripleBond
+
+       class TripleBondExample(Scene):
+           def construct(self):
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               self.add(carbon, oxygen, TripleBond(carbon, oxygen))
     """
 
     def __init__(
@@ -427,7 +599,13 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def shorter_from_subtype(self, direction: str):
-        """Return a triple bond shortened at the from-atom end."""
+        """Return a triple bond shortened at the from-atom end.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the to atom to the from atom.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -444,7 +622,13 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def shorter_to_subtype(self, direction: str):
-        """Return a triple bond shortened at the to-atom end."""
+        """Return a triple bond shortened at the to-atom end.
+
+        Parameters
+        ----------
+        direction : :class:`str`
+            Direction from the from atom to the to atom.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -461,7 +645,15 @@ class TripleBond(BaseMBondObject):
         return VGroup(base_line, double_line, triple_line)
 
     def longer_subtype(self, bond: Mobject, base_line: Mobject):
-        """Add two offset parallel lines to form a triple bond from a base line."""
+        """Add two offset parallel lines to form a triple bond from a base line.
+
+        Parameters
+        ----------
+        bond : :class:`~manim.mobject.mobject.Mobject`
+            Bond the lines are added to.
+        base_line : :class:`~manim.mobject.mobject.Mobject`
+            Base line the parallel lines are copied from.
+        """
         bond.add(base_line)
         double_line = base_line.copy().scale(self.triple_bond_scale)
         triple_line = base_line.copy().scale(self.triple_bond_scale)
@@ -493,6 +685,11 @@ class TripleBond(BaseMBondObject):
     def get_vector(self):
         """
         This contains a VGroup with two lines, we just get the vector from one of them
+
+        Raises
+        ------
+        exception
+            Re-raised when the underlying line vector lookup fails.
         """
         try:
             return self[0][0].get_vector()
@@ -502,7 +699,24 @@ class TripleBond(BaseMBondObject):
 
 
 class PlainCramBond(BaseMBondObject):
-    """A filled triangular wedge bond representing stereochemistry (coming out of the page)."""
+    """A filled triangular wedge bond representing stereochemistry (coming out of the page).
+
+    Examples
+    --------
+    .. manim:: PlainCramBondExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import PlainCramBond
+
+       class PlainCramBondExample(Scene):
+           def construct(self):
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               self.add(carbon, oxygen, PlainCramBond(carbon, oxygen))
+    """
     def no_subtype(self):
         """Return a full triangular filled polygon representing a plain cram bond."""
         direction = self.to_atom.coords - self.from_atom.coords
@@ -592,7 +806,13 @@ class PlainCramBond(BaseMBondObject):
             return subtypes.get(self.subtype) or VMobject()
 
     def get_vector(self):
-        """Return the direction vector from the from-atom to the to-atom."""
+        """Return the direction vector from the from-atom to the to-atom.
+
+        Raises
+        ------
+        exception
+            Re-raised when the underlying atom centers cannot be read.
+        """
         try:
             atom_a, atom_b = self.atoms_in_bond()
 
@@ -603,9 +823,34 @@ class PlainCramBond(BaseMBondObject):
 
 
 class DashedCramBond(BaseMBondObject):
-    """A dashed wedge bond representing stereochemistry (going into the page)."""
+    """A dashed wedge bond representing stereochemistry (going into the page).
+
+    Examples
+    --------
+    .. manim:: DashedCramBondExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.chemistry.twoD.atom import MAtomObject
+       from manim_extensions.chemistry.twoD.bond import DashedCramBond
+
+       class DashedCramBondExample(Scene):
+           def construct(self):
+               carbon = MAtomObject(element="C")
+               oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
+               self.add(carbon, oxygen, DashedCramBond(carbon, oxygen))
+    """
     def add_dashed_cram_bond(self, base_line: Mobject, direction: str):
-        """Build a dashed cram bond from progressively shorter perpendicular lines along the direction."""
+        """Build a dashed cram bond from progressively shorter perpendicular lines along the direction.
+
+        Parameters
+        ----------
+        base_line : :class:`~manim.mobject.mobject.Mobject`
+            Base line of the cram bond.
+        direction : :class:`str`
+            Direction of the cram bond.
+        """
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)
         cram_bond = VGroup()
         direction_modulus = (
@@ -678,6 +923,11 @@ class DashedCramBond(BaseMBondObject):
     def get_vector(self):
         """
         This contains a VGroup with two lines, we just get the vector from one of them
+
+        Raises
+        ------
+        exception
+            Re-raised when the underlying line center lookup fails.
         """
         try:
             starting_line = self[0][0]

@@ -158,7 +158,19 @@ class NeuralNetwork(Group):
         print(repr(self))
 
     def make_input_layers_dict(self, input_layers: list):
-        """Make dictionary of input layers"""
+        """Make dictionary of input layers
+
+        Parameters
+        ----------
+        input_layers : list or dict
+            Neural network layers to visualize; a list is converted to a dict
+            with default names, a dict is returned unchanged.
+
+        Raises
+        ------
+        Exception
+            Raised when ``input_layers`` is neither a list nor a dict.
+        """
         if isinstance(input_layers, dict):
             # If input layers is dictionary then return it
             return input_layers
@@ -180,7 +192,22 @@ class NeuralNetwork(Group):
         connection_position: str = "bottom",
         arc_direction: str = "down"
     ):
-        """Add connection from start layer to end layer"""
+        """Add connection from start layer to end layer
+
+        Parameters
+        ----------
+        start_mobject_or_name : Union[Mobject, str]
+            The layer the connection starts from, or its name in the network.
+        end_mobject_or_name : Union[Mobject, str]
+            The layer the connection ends at, or its name in the network.
+        connection_style : str, optional
+            Style of the connection; currently only "default" is supported,
+            by default "default".
+        connection_position : str, optional
+            Unused position hint reserved for future use, by default "bottom".
+        arc_direction : str, optional
+            Direction the connection arc bends, by default "down".
+        """
         assert connection_style in ["default"]
         if connection_style == "default":
             # Make arrow connection from start layer to end layer
@@ -321,18 +348,55 @@ class NeuralNetwork(Group):
             connective_layer.move_to(layer_midpoint)
 
     def insert_layer(self, layer: Mobject, insert_index: int):
-        """Inserts a layer at the given index"""
+        """Inserts a layer at the given index.
+
+        Parameters
+        ----------
+        layer : Mobject
+            The layer to insert.
+        insert_index : int
+            Position in ``all_layers`` at which to insert the layer.
+
+        Returns
+        -------
+        InsertLayer
+            Animation that inserts the layer into the network.
+        """
         neural_network = self
         insert_animation = InsertLayer(layer, insert_index, neural_network)
         return insert_animation
 
     def remove_layer(self, layer: Mobject):
-        """Removes layer object if it exists"""
+        """Removes layer object if it exists.
+
+        Parameters
+        ----------
+        layer : Mobject
+            The layer to remove.
+
+        Returns
+        -------
+        RemoveLayer
+            Animation that removes the layer from the network.
+        """
         neural_network = self
         return RemoveLayer(layer, neural_network, layer_spacing=self.layer_spacing)
 
     def replace_layer(self, old_layer: Mobject, new_layer: Mobject):
-        """Replaces given layer object"""
+        """Replaces given layer object.
+
+        Parameters
+        ----------
+        old_layer : Mobject
+            The layer to be replaced.
+        new_layer : Mobject
+            The layer that takes the place of ``old_layer``.
+
+        Raises
+        ------
+        NotImplementedError
+            Always raised; layer replacement is not yet supported.
+        """
         raise NotImplementedError()
 
     def make_forward_pass_animation(
@@ -343,7 +407,26 @@ class NeuralNetwork(Group):
         per_layer_animations: bool = False,
         **kwargs
     ):
-        """Generates an animation for feed forward propagation"""
+        """Generates an animation for feed forward propagation.
+
+        Parameters
+        ----------
+        run_time : Optional[float], optional
+            Total run time of the forward pass; the run time is divided
+            evenly across the layers.
+        passing_flash : bool, optional
+            Whether to flash the connections while the signal passes through.
+        layer_args : dict, optional
+            Extra keyword arguments for individual layers, keyed by layer
+            mobject. For connective layers the arguments of the adjacent
+            layers are merged in.
+        per_layer_animations : bool, optional
+            If True, return a mapping from each layer to its animation
+            instead of a single combined animation.
+        **kwargs
+            Additional keyword arguments forwarded to each layer's
+            ``make_forward_pass_animation``.
+        """
         all_animations = []
         per_layer_animation_map = {}
         per_layer_runtime = (
@@ -450,14 +533,34 @@ class NeuralNetwork(Group):
         return animation_group
 
     def set_z_index(self, z_index_value: float, family: bool = False):
-        """Overriden set_z_index"""
+        """Overriden set_z_index.
+
+        Parameters
+        ----------
+        z_index_value : float
+            The z-index to set on each layer.
+        family : bool, optional
+            Kept for signature compatibility; setting ``family=False`` stops
+            sub-neural networks from inheriting the parent z-index.
+        """
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
             if not isinstance(NeuralNetwork):
                 layer.set_z_index(z_index_value)
 
     def scale(self, scale_factor: float, **kwargs):
-        """Overriden scale"""
+        """Overriden scale.
+
+        Scales every layer and re-places the layers and connective layers
+        with scaled spacing, keeping the network centered.
+
+        Parameters
+        ----------
+        scale_factor : float
+            The scaling factor.
+        **kwargs
+            Additional keyword arguments forwarded to each layer's ``scale``.
+        """
         prior_center = self.get_center()
 
         for layer in self.all_layers:
@@ -476,7 +579,19 @@ class NeuralNetwork(Group):
         self.move_to(prior_center)
 
     def filter_layers(self, function: Callable):
-        """Filters layers of the network given function"""
+        """Filters layers of the network given function.
+
+        Parameters
+        ----------
+        function : Callable
+            Predicate called with each layer; it must return a boolean
+            indicating whether the layer is kept.
+
+        Returns
+        -------
+        list
+            The layers for which ``function`` returned True.
+        """
         layers_to_return = []
         for layer in self.all_layers:
             func_out = function(layer)

@@ -34,21 +34,7 @@ class FileHandler:
     """
 
     def __init__(self, file_path: Union[str, bytes, os.PathLike]):
-        """Open a chemistry file and instantiate the appropriate parser.
-
-        Parameters
-        ----------
-        file_path : str, bytes, or os.PathLike
-            Path to the chemistry file to parse. The format is inferred
-            from the file extension.
-
-        Raises
-        ------
-        FileNotFoundError
-            If the file does not exist.
-        IncorrectFormat
-            If the file extension is not in ``SUPPORTED_FORMATS``.
-        """
+        """Initialize the FileHandler instance."""
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")
 
@@ -63,11 +49,23 @@ class FileHandler:
 
     @staticmethod
     def get_file_extension(file_path: Any):
-        """Return the lowercase file extension without the leading dot."""
+        """Return the lowercase file extension without the leading dot.
+
+        Parameters
+        ----------
+        file_path : :class:`~typing.Any`
+            Path to the file.
+        """
         return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> Tuple[Dict, Dict]:
-        """Return the parsed ``(atoms_dict, bonds_dict)`` from the parser."""
+        """Return the parsed ``(atoms_dict, bonds_dict)`` from the parser.
+
+        Returns
+        -------
+        :class:`typing.Tuple` of :class:`typing.Dict`
+            ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
+        """
         return self.parser.molecule_data
 
     def parse_from_string(string: str, format: str):

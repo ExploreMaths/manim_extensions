@@ -82,7 +82,20 @@ class ThreeDCylinder(OpenGLSurface):
         self.set_direction(direction)
 
     def uv_func(self, u: float, v: float) -> np.ndarray:
-        """Compute cylinder surface point from axial u and angular v parameters."""
+        """Compute cylinder surface point from axial u and angular v parameters.
+
+        Parameters
+        ----------
+        u : :class:`float`
+            Axial parameter of the cylinder surface.
+        v : :class:`float`
+            Angular parameter of the cylinder surface.
+
+        Returns
+        -------
+        :class:`numpy.ndarray`
+            3D point on the cylinder surface.
+        """
         height = u
         phi = v
         r = self.radius
@@ -148,12 +161,24 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_phi = phi
 
     def set_direction(self, direction: np.ndarray) -> None:
-        """Align the cylinder to point along the given direction vector."""
+        """Align the cylinder to point along the given direction vector.
+
+        Parameters
+        ----------
+        direction : :class:`numpy.ndarray`
+            Direction the cylinder is aligned to.
+        """
         self.direction = direction
         self._rotate_to_direction()
 
     def get_direction(self) -> np.ndarray:
-        """Return the current direction vector of the cylinder."""
+        """Return the current direction vector of the cylinder.
+
+        Returns
+        -------
+        :class:`numpy.ndarray`
+            Direction the cylinder is aligned to.
+        """
         return self.direction
 
 
@@ -165,9 +190,9 @@ class ThreeDLine(ThreeDCylinder):
     Parameters
     ----------
     start : :class:`numpy.ndarray`, optional
-        Starting point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
+        Starting point of the line. Defaults to :class:`~manim.constants.LEFT`.
     end : :class:`numpy.ndarray`, optional
-        Ending point of the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
+        Ending point of the line. Defaults to :class:`~manim.constants.RIGHT`.
     thickness : :class:`float`, optional
         Thickness (radius) of the line. Defaults to 0.05.
     color : optional
@@ -204,6 +229,9 @@ class ThreeDLine(ThreeDCylinder):
             Starting point or :class:`~manim.mobject.mobject.Mobject`.
         end
             Ending point or :class:`~manim.mobject.mobject.Mobject`.
+        **kwargs
+            Additional keyword arguments passed to
+            :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -361,6 +389,12 @@ class ThreeDLine(ThreeDCylinder):
                         Create(Line(perpendicular.get_start(), perpendicular.get_end(), color=BLUE))
                     )
                     self.wait()
+
+        Raises
+        ------
+        ValueError
+            Raised when the point lies on the line, so no perpendicular
+            direction exists.
         """
         point = np.array(point)
 
@@ -488,7 +522,15 @@ class ThreeDBond(OpenGLGroup):
         return bond
 
     def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
-        """Return a unit vector perpendicular to the bond direction in the xy plane."""
+        """Return a unit vector perpendicular to the bond direction in the xy plane.
+
+        Parameters
+        ----------
+        point_a : :class:`~typing.Any`
+            Starting point of the bond.
+        point_b : :class:`~typing.Any`
+            Ending point of the bond.
+        """
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))

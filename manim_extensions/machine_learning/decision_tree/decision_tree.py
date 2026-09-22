@@ -52,6 +52,25 @@ class LeafNode(Group):
         List of image file paths, one per class.
     class_colors : list, optional
         List of colors, one per class, used for the border rectangle.
+
+    Examples
+    --------
+    .. manim:: LeafNodeExample
+       :save_last_frame:
+
+       import matplotlib.pyplot as plt
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.decision_tree.decision_tree import LeafNode
+
+       class LeafNodeExample(Scene):
+           def construct(self):
+               plt.imsave("leaf_class_0.png", np.ones((16, 16, 3)))
+               self.add(LeafNode(
+                   class_index=0,
+                   class_image_paths=["leaf_class_0.png"],
+                   class_colors=[BLUE],
+               ))
     """
 
     def __init__(
@@ -95,6 +114,18 @@ class SplitNode(VGroup):
         Name of the feature used for the split.
     threshold : float
         Threshold value of the split; the node text shows ``feature <= threshold``.
+
+    Examples
+    --------
+    .. manim:: SplitNodeExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.decision_tree.decision_tree import SplitNode
+
+       class SplitNodeExample(Scene):
+           def construct(self):
+               self.add(SplitNode(feature=0, threshold=0.5))
     """
 
     def __init__(self, feature: Any, threshold: Any):
@@ -301,11 +332,35 @@ class DecisionTreeDiagram(Group):
         return tree_group, nodes_map, edge_map
 
     def create_level_order_expansion_decision_tree(self, tree: Mobject):
-        """Expands the decision tree in level order"""
+        """Expands the decision tree in level order.
+
+        Parameters
+        ----------
+        tree : Mobject
+            The sklearn tree structure (``tree_`` attribute of a fitted
+            :class:`~sklearn.tree.DecisionTreeClassifier`).
+        Raises
+        ------
+        NotImplementedError
+            Always raised; level-order expansion is not yet implemented.
+        """
         raise NotImplementedError()
-    
+
     def create_bfs_expansion_decision_tree(self, tree: Mobject):
-        """Expands the tree using BFS"""
+        """Expands the tree using BFS.
+
+        Parameters
+        ----------
+        tree : Mobject
+            The sklearn tree structure (``tree_`` attribute of a fitted
+            :class:`~sklearn.tree.DecisionTreeClassifier`).
+
+        Returns
+        -------
+        tuple
+            ``(Succession, dict)`` — the expansion animation and a mapping
+            from each split node index to its split animation.
+        """
         animations = []
         split_node_animations = {} # Dictionary mapping split node to animation
         # Compute parent mapping
@@ -424,13 +479,18 @@ class DecisionTreeDiagram(Group):
         ), split_node_animations
 
     def make_expand_tree_animation(self, node_expand_order: Any):
-        """
-            Make an animation for expanding the decision tree
+        """Make an animation for expanding the decision tree.
 
-            Shows each split node as a leaf node initially, and
-            then when it comes up shows it as a split node. The 
-            reason for this is for purposes of animating each of the 
-            splits in a decision surface.    
+        Shows each split node as a leaf node initially, and then when it
+        comes up shows it as a split node. The reason for this is for
+        purposes of animating each of the splits in a decision surface.
+
+        Parameters
+        ----------
+        node_expand_order : Any
+            Node indices in the order they should be expanded, as returned
+            by the traversal helpers in
+            :mod:`~manim_extensions.machine_learning.decision_tree.helpers`.
         """
         # Show the root node as a leaf node
         # Iterate through the nodes in the traversal order
@@ -444,7 +504,19 @@ class DecisionTreeDiagram(Group):
 
     @override_animation(Create)
     def create_decision_tree(self, traversal_order: str = "bfs"):
-        """Makes a create animation for the decision tree"""
+        """Makes a create animation for the decision tree.
+
+        Parameters
+        ----------
+        traversal_order : str, optional
+            Order in which the nodes are expanded: ``"bfs"`` (breadth-first)
+            or ``"level"`` (level order). Defaults to ``"bfs"``.
+
+        Raises
+        ------
+        Exception
+            Raised when ``traversal_order`` is not recognized.
+        """
         # Comptue the node expand order
         if traversal_order == "level":
             node_expand_order = helpers.compute_level_order_traversal(self.tree)

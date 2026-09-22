@@ -114,7 +114,17 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Creates the neural network layer"""
+        """Creates the neural network layer
+
+        Parameters
+        ----------
+        input_layer : NeuralNetworkLayer
+            The layer preceding this layer in the network.
+        output_layer : NeuralNetworkLayer
+            The layer following this layer in the network.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         # Draw the operation
         self.operation_text = Text(
             self.operation_type,
@@ -154,12 +164,15 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         ----------
         layer_args : dict, optional
             layer specific arguments, by default {}
+        **kwargs
+            Forwarded to the parent layer classes.
 
         Returns
         -------
         AnimationGroup
             Forward pass animation
         """
+        # Make highlight animation
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
@@ -198,7 +211,13 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         return self.surrounding_circle.get_right()
     
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point"""
+        """Moves the center of the layer to the given mobject or point
+
+        Parameters
+        ----------
+        mobject_or_point : Mobject
+            The mobject or point whose center the layer is moved to.
+        """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):
             target_center = mobject_or_point.get_center() 

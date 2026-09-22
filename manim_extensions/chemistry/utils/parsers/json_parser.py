@@ -176,6 +176,11 @@ class JSONParser(BaseParser):
         """
         Reads the file and converts it to a string.
 
+        Parameters
+        ----------
+        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+            Path to the JSON file to parse.
+
         Returns
         -------
         str
@@ -204,6 +209,15 @@ class JSONParser(BaseParser):
         The bond data follows the structure:
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
 
+        Parameters
+        ----------
+        data : :class:`~typing.Any`
+            String with the JSON file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.read_file`.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
+            List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
         molecules_data_dicts_list: Any = list(json.loads(data).values())[0]
         molecules_parsed_data: list[MoleculeData] = []
@@ -216,7 +230,18 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def parse_single_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
-        """TODO: add docstring for parse_single_molecule_data."""
+        """Parse a single molecule entry into atoms and bonds dicts.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
+        """
         atoms_data = JSONParser.extract_atoms_data(molecule_data=molecule_data)
         bonds_data = JSONParser.extract_bonds_data(molecule_data=molecule_data)
 
@@ -224,7 +249,24 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
-        """TODO: add docstring for extract_atoms_data."""
+        """Extract the atoms data from a single molecule entry.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict`
+            Atoms data of the molecule.
+
+        Raises
+        ------
+        Exception
+            Raised when the molecule data has no valid atoms dictionary, no
+            atoms, no elements, or no coordinates.
+        """
         atoms_initial_data_dict = molecule_data.get("atoms")
         if not isinstance(atoms_initial_data_dict, dict):
             raise Exception(f"Wrong atomic data on molecule data: {molecule_data}")
@@ -274,7 +316,23 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
-        """TODO: add docstring for extract_bonds_data."""
+        """Extract the bonds data from a single molecule entry.
+
+        Parameters
+        ----------
+        molecule_data : :class:`dict`
+            Dictionary with the data of a single molecule.
+
+        Returns
+        -------
+        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict`
+            Bonds data of the molecule.
+
+        Raises
+        ------
+        Exception
+            Raised when the molecule data has no valid bonds dictionary.
+        """
         bonds_data_dict = molecule_data.get("bonds")
         if not isinstance(bonds_data_dict, dict):
             raise Exception(f"Bonds data is not defined correctly: {molecule_data}")
@@ -298,7 +356,18 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def clean_elements_data(atoms_elements_raw: list[int]) -> list[str]:
-        """TODO: add docstring for clean_elements_data."""
+        """Convert atomic numbers to element symbols.
+
+        Parameters
+        ----------
+        atoms_elements_raw : :class:`list` of :class:`int`
+            Atomic numbers of the atoms.
+
+        Returns
+        -------
+        :class:`list` of :class:`str`
+            Element symbols of the atoms.
+        """
         return [
             ELEMENTS_BY_ATOMIC_NUMBER[elemenent_atomic_number]
             for elemenent_atomic_number in atoms_elements_raw

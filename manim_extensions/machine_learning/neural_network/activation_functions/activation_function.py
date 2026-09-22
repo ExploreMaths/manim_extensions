@@ -51,6 +51,23 @@ class ActivationFunction(ABC, VGroup):
     rectangle_color : ManimColor, optional
         Color of the surrounding rectangle and axes, by default
         ``config.color_scheme.secondary_color``.
+
+    Examples
+    --------
+    .. manim:: ActivationFunctionExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.activation_functions.activation_function import ActivationFunction
+       from manim_extensions.machine_learning.neural_network.activation_functions.relu import ReLUFunction
+
+       class ActivationFunctionExample(Scene):
+           def construct(self):
+               # ActivationFunction is abstract; ReLUFunction is a concrete
+               # subclass.
+               activation = ReLUFunction()
+               assert isinstance(activation, ActivationFunction)
+               self.add(activation)
     """
 
     def __init__(
@@ -123,12 +140,25 @@ class ActivationFunction(ABC, VGroup):
 
     @abstractmethod
     def apply_function(self, x_val: Any):
-        """Evaluates function at given x_val"""
+        """Evaluates function at given x_val
+
+        Parameters
+        ----------
+        x_val : Any
+            Input value at which to evaluate the function. If ``None``,
+            a random value within ``x_range`` is used instead.
+        """
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
     def make_evaluate_animation(self, x_val: Optional[Any]=None):
-        """Evaluates the function at a random point in the x_range"""
+        """Evaluates the function at a random point in the x_range
+
+        Parameters
+        ----------
+        x_val : Any, optional
+            Input value at which to evaluate the function, by default None.
+        """
         # Highlight the graph
         # TODO: Evaluate the function at the x_val and show a highlighted dot
         animation_group = Succession(

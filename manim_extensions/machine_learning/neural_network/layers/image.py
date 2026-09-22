@@ -105,6 +105,8 @@ class ImageLayer(NeuralNetworkLayer):
             Input layer
         output_layer :
             Output layer
+        **kwargs
+            Forwarded to the parent layer classes.
         """
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
@@ -124,7 +126,17 @@ class ImageLayer(NeuralNetworkLayer):
 
     @classmethod
     def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs):
-        """Creates a query using the paths"""
+        """Creates a query using the paths
+
+        Parameters
+        ----------
+        image_path : Any
+            Path to the image file to load.
+        grayscale : bool, optional
+            Unused flag reserved for future use, by default True.
+        **kwargs
+            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.ImageLayer`.
+        """
         # Load images from path
         image = Image.open(image_path)
         numpy_image = np.asarray(image)
@@ -146,7 +158,16 @@ class ImageLayer(NeuralNetworkLayer):
             return Wait(run_time=0)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Return an empty animation group; the image layer has no forward pass effect."""
+        """Return an empty animation group; the image layer has no forward pass effect.
+
+        Parameters
+        ----------
+        layer_args : dict, optional
+            Additional arguments passed to the layers when making their
+            forward pass animations, by default {}.
+        **kwargs
+            Forwarded to the parent layer classes.
+        """
         return AnimationGroup()
 
     def get_right(self):
@@ -154,7 +175,16 @@ class ImageLayer(NeuralNetworkLayer):
         return self.image_mobject.get_right()
 
     def scale(self, scale_factor: float, **kwargs):
-        """Scales the image mobject"""
+        """Scales the image mobject
+
+        Parameters
+        ----------
+        scale_factor : float
+            Factor by which the image mobject is scaled.
+        **kwargs
+            Forwarded to
+            :meth:`~manim.mobject.mobject.Mobject.scale`.
+        """
         self.image_mobject.scale(scale_factor)
 
     @property

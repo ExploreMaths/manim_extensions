@@ -23,8 +23,10 @@ def get_moment_for_box(mass: float, width: float, height: float) -> float:
     height : float
         矩形的高度。
 
-    Returns:
-        float: 转动惯量值。
+    Returns
+    -------
+    float
+        转动惯量值。
     """
     moment_for_box = require("physics", "pymunk").moment_for_box
     return moment_for_box(mass=mass, size=(width, height))
@@ -55,8 +57,10 @@ def get_moment_for_circle(
     y_offset : float, optional
         中心Y偏移，默认为0。
 
-    Returns:
-        float: 转动惯量值。
+    Returns
+    -------
+    float
+        转动惯量值。
     """
     moment_for_circle = require("physics", "pymunk").moment_for_circle
     return moment_for_circle(
@@ -91,8 +95,10 @@ def get_moment_for_poly(
     stroke_width : float, optional
         形状的半径（用于线宽），默认为0。
 
-    Returns:
-        float: 转动惯量值。
+    Returns
+    -------
+    float
+        转动惯量值。
     """
     moment_for_poly = require("physics", "pymunk").moment_for_poly
     return moment_for_poly(
@@ -121,8 +127,10 @@ def get_moment_for_line(
     stroke_width : float
         线段的宽度（半径）。
 
-    Returns:
-        float: 转动惯量值。
+    Returns
+    -------
+    float
+        转动惯量值。
     """
     moment_for_segment = require("physics", "pymunk").moment_for_segment
     return moment_for_segment(mass=mass, a=start, b=end, radius=stroke_width)

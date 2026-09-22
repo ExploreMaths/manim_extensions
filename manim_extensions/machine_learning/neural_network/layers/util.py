@@ -16,6 +16,13 @@ from manim import Mobject
 def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
     """
     Deduces the relevant connective layer
+
+    Parameters
+    ----------
+    input_layer : Mobject
+        The layer the connection starts from.
+    output_layer : Mobject
+        The layer the connection ends at.
     """
     connective_layer_class = None
     for candidate_class in connective_layers_list:
