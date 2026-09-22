@@ -154,6 +154,12 @@ class NodeStyle:
         ----------
         level : int
             Hierarchy level whose style definition should be returned.
+
+        Returns
+        -------
+        Dict
+            The style dictionary for the node box at the given level; the
+            last defined style if ``level`` exceeds the number of levels.
         """
         if level < self.node_num:
             return self.node_style[level]
@@ -166,6 +172,12 @@ class NodeStyle:
         ----------
         level : int
             Hierarchy level whose connector style should be returned.
+
+        Returns
+        -------
+        Dict
+            The connector line style for the given level; the last defined
+            style if ``level`` exceeds the number of levels.
         """
         if level < self.line_num:
             return self.line_style[level]
@@ -178,6 +190,12 @@ class NodeStyle:
         ----------
         level : int
             Hierarchy level whose text style should be returned.
+
+        Returns
+        -------
+        Dict
+            The text style for the given level; the last defined style if
+            ``level`` exceeds the number of levels.
         """
         if level < self.text_num:
             return self.text_style[level]
@@ -191,6 +209,11 @@ def dfs_walker(root: "Node") -> Generator:
     ----------
     root : 'Node'
         Root node of the tree to traverse.
+
+    Returns
+    -------
+    Generator
+        A generator yielding the nodes in depth-first pre-order.
     """
     if not root:
         return []
@@ -209,6 +232,11 @@ def bfs_walker(root: "Node") -> Generator:
     ----------
     root : 'Node'
         Root node of the tree to traverse.
+
+    Returns
+    -------
+    Generator
+        A generator yielding the nodes in breadth-first level order.
     """
     if not root:
         return []
@@ -222,6 +250,16 @@ def bfs_walker(root: "Node") -> Generator:
 
 class Node:
     r"""Tree-node class.
+
+    Parameters
+    ----------
+    vmobject : VMobject, optional
+        The mobject displayed as the node content. Defaults to None.
+    buff : float, optional
+        Padding added around the content when sizing the surrounding
+        rectangle. Defaults to 0.2.
+    **kwargs
+        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.polygram.Rectangle`.
 
     .. manim:: NodeDocExample
        :save_last_frame:
@@ -304,6 +342,11 @@ class Node:
         ----------
         child : 'Node'
             Child node scheduled for removal from the tree.
+
+        Raises
+        ------
+        ValueError
+            Raised when ``child`` is not a child of the current node.
         """
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
@@ -414,6 +457,12 @@ class Node:
         The direction of the operation.
         kwargs
         Kwargs processed by this operation.
+
+        Returns
+        -------
+        Line
+            The connector line from this node to its parent, shaped
+            according to the layout type.
         """
         match layout_type:
             case LayoutType.MindMap:
@@ -468,6 +517,8 @@ class Node:
         Layout type parameter for this operation.
         direction : np.ndarray
         The direction of the operation.
+        **kwargs : object
+        Additional keyword arguments used as the connector line style.
         """
         current_style = getattr(self, "connector_style", None)
         if (
@@ -482,7 +533,14 @@ class Node:
             )
 
     def get_node_and_line_without_updater(self) -> Group:
-        """Return the node and its connector, removing the connector updater."""
+        """Return the node and its connector, removing the connector updater.
+
+        Returns
+        -------
+        Group
+            A group of the surrounding rectangle, the VMobject, and the
+            connector line if one exists.
+        """
         node_mobj = Group(self.surr_rect, self.vmobject)
         if hasattr(self, "connector") and self.connector is not None:
             self.connector.clear_updaters()
@@ -491,12 +549,24 @@ class Node:
         return node_mobj
 
     def get_children(self) -> List["Node"]:
-        """Return all child nodes."""
+        """Return all child nodes.
+
+        Returns
+        -------
+        List[Node]
+            The list of direct child nodes.
+        """
         return self.children
 
     def get_descendants(self) -> List["Node"]:
-        """Return all descendant nodes."""
+        """Return all descendant nodes.
 
+        Returns
+        -------
+        List[Node]
+            All descendant nodes (children, grandchildren, ...).
+
+        """
         def descendants_of_node(node: Node, descendants: list[Node] = []) -> list[Node]:
             """Recursively collect all descendant nodes of a given node.
 
@@ -521,14 +591,27 @@ class Node:
         return descendants_of_node(self)
 
     def get_children_mobjects(self) -> Group:
-        """Return mobjects for all child nodes."""
+        """Return mobjects for all child nodes.
+
+        Returns
+        -------
+        Group
+            A group of the children's VMobjects and surrounding rectangles.
+        """
         group = Group()
         for node in self.children:
             group.add(node.vmobject, node.surr_rect)
         return group
 
     def get_descendants_mobjects(self) -> Group:
-        """Return mobjects for all descendant nodes."""
+        """Return mobjects for all descendant nodes.
+
+        Returns
+        -------
+        Group
+            A group of the VMobjects and surrounding rectangles of all
+            descendant nodes.
+        """
 
         def descendants_mobjects_of_node(
             node: Node, descendants: Group = Group()
@@ -555,7 +638,13 @@ class Node:
         return descendants_mobjects_of_node(self)
 
     def get_root(self) -> "Node":
-        """Return the root node."""
+        """Return the root node.
+
+        Returns
+        -------
+        Node
+            The root node of the tree containing this node.
+        """
         if self.parent is None:
             return self
         return self.parent.get_root()

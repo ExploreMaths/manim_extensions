@@ -77,32 +77,70 @@ class Ruler(VGroup):
         self.add(self.ruler)
 
     def get_vecs_of_ruler(self) -> tuple[Vector3D, Vector3D]:
-        """Return the extension and width directions of the ruler."""
+        """Return the extension and width directions of the ruler.
+
+        Returns
+        -------
+        tuple of numpy.ndarray
+            Unit vector along the ruler's length and unit vector along the
+            ruler's width.
+        """
         A, B, C, _ = self.ruler.get_vertices()
         return Line(B, A).get_unit_vector(), Line(B, C).get_unit_vector()
 
     def get_direction_vector_of_ruler(self) -> Vector3D:
-        """Return the extension direction of the ruler."""
+        """Return the extension direction of the ruler.
+
+        Returns
+        -------
+        numpy.ndarray
+            Unit vector along the ruler's length, pointing from its end
+            towards its start.
+        """
         s, e, *_ = self.ruler.get_vertices()
         return Line(e, s).get_unit_vector()
 
     def get_width_vector_of_ruler(self) -> Vector3D:
-        """Return the width direction of the ruler."""
+        """Return the width direction of the ruler.
+
+        Returns
+        -------
+        numpy.ndarray
+            Unit vector along the ruler's width.
+        """
         _, s, e, _ = self.ruler.get_vertices()
         return Line(e, s).get_unit_vector()
 
     def get_start_and_end(self) -> tuple[Point3D, Point3D]:
-        """Return the start and end points of the ruler."""
+        """Return the start and end points of the ruler.
+
+        Returns
+        -------
+        tuple of numpy.ndarray
+            The start point and end point of the ruler's length axis.
+        """
         E, S, *_ = self.ruler.get_vertices()
         return S, E
 
     def get_middle_point(self) -> Point3D:
-        """Return the midpoint of the ruler."""
+        """Return the midpoint of the ruler.
+
+        Returns
+        -------
+        numpy.ndarray
+            The midpoint between the ruler's start and end points.
+        """
         S, E = self.get_start_and_end()
         return (S + E) / 2
 
     def get_length_of_ruler(self) -> float:
-        """Return the length of the ruler."""
+        """Return the length of the ruler.
+
+        Returns
+        -------
+        float
+            The distance between the ruler's start and end points.
+        """
         S, E = self.get_start_and_end()
         return float(np.linalg.norm(E - S))
 
@@ -129,6 +167,11 @@ class Ruler(VGroup):
                    self.add(Dot(start, color=RED), Dot(end, color=RED))
                    ruler = Ruler().set_ruler(start, end)
                    self.add(ruler)
+
+        Returns
+        -------
+        Ruler
+            The repositioned self.
         """
         direction = end - start
         current_pos = self.get_middle_point()
@@ -154,6 +197,11 @@ class Ruler(VGroup):
                    tilted = Ruler().rotate(PI / 5).shift(UP * 1.5)
                    flat = Ruler().rotate(PI / 5).put_ruler_flat().shift(DOWN * 1.5)
                    self.add(tilted, flat)
+
+        Returns
+        -------
+        Ruler
+            The flattened self.
         """
         self.rotate(angle=get_vecs_angle(self.get_direction_vector_of_ruler(), RIGHT))
         return self

@@ -79,29 +79,7 @@ class MVariable(MArrayElement):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ) -> None:
-        """Initializes the class.
-
-        Parameters
-        ----------
-        scene
-            Specifies the scene where the object is to be rendered.
-        value
-            Specifies the value of the variable.
-        index
-            Specifies the index of the variable.
-        label
-            Specifies the label of the variable.
-        mob_square_args
-            Arguments for :class:`~manim.mobject.geometry.polygram.Square` that represents the variable body.
-        mob_value_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable value.
-        mob_index_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable index.
-        mob_label_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable label.
-        **kwargs
-            Forwarded to constructor of the parent.
-        """
+        """Initialize the MVariable instance."""
 
         self.__value: Any = value
         self.__index: Union[str, int] = index
@@ -244,8 +222,8 @@ class MVariable(MArrayElement):
         ----------
         label
             New label to be assigned to the variable.
-        mob_value_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the label value.
+        mob_label_args
+            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable label.
         update_anim
             Animation to be applied to the updated :class:`~manim.mobject.text.text_mobject.Text`.
         update_anim_args

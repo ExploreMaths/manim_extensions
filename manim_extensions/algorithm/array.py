@@ -67,23 +67,7 @@ class Array(VMobject):
         text_scale: float = 1.0,
         **kwargs,
     ):
-        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from *data*.
-
-        Parameters
-        ----------
-        data : list
-            Values to display in each array slot.
-        total_width : float or Node, optional
-            Total width of the array; derived from node width if omitted.
-        box_type : type, optional
-            Shape used for each node box (``Square`` or ``Circle``).
-        box_color : ManimColor, optional
-            Fill colour applied to each node box.
-        text_scale : float, optional
-            Scale factor for the value label inside each node.
-        **kwargs
-            Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
-        """
+        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from *data*."""
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)
@@ -104,7 +88,13 @@ class Array(VMobject):
 
     @property
     def values(self) -> List[NodeValue]:
-        """Return the stored values from each node in the array."""
+        """Return the stored values from each node in the array.
+
+        Returns
+        -------
+        List[NodeValue]
+            The value of every node in the array, in order.
+        """
         return [item.value for item in self.array]
 
     def __getitem__(self, key: Union[int, slice]) -> Node:

@@ -95,6 +95,8 @@ class MArrayElement(VGroup):
         Specifies the placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
     next_to_dir
         Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
+    **kwargs
+        Forwarded to constructor of the parent.
 
     Examples
     --------
@@ -308,33 +310,7 @@ class MArrayElement(VGroup):
         next_to_dir: np.ndarray = RIGHT,
         **kwargs: Any,
     ) -> None:
-        """Initializes the class.
-
-        Parameters
-        ----------
-        scene
-            Specifies the scene where the object is to be rendered.
-        mob_square_args
-            Arguments for :class:`~manim.mobject.geometry.polygram.Square` that represents the element body.
-        mob_value_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element value.
-        mob_index_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
-        mob_label_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
-        index_pos
-            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
-        index_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
-        label_pos
-            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
-        label_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
-        next_to_mob
-            Specifies the placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
-        next_to_dir
-            Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
-        """
+        """Initialize the MArrayElement instance."""
 
         super().__init__(**kwargs)
 
@@ -613,6 +589,8 @@ class MArray(VGroup):
         If `True`, doesn't display indices.
     arr_dir
         Specifies the growth direction of the array.
+    switch_index_pos
+        If `True`, displays the element indices on the opposite side of the array growth direction. Defaults to ``False``.
     arr_label_pos
         Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     arr_label_gap
@@ -1181,41 +1159,7 @@ class MArray(VGroup):
         mob_index_args: MobProps = {},
         **kwargs: Any,
     ) -> None:
-        """Initializes the class.
-
-        Parameters
-        ----------
-        scene
-            Specifies the scene where the object is to be rendered.
-        arr
-            Specifies the array to represent.
-        label
-            Specifies the value of the array label.
-        index_offset
-            Specifies the difference between successive displayable indices.
-        index_start
-            Specifies the starting value of displayable index.
-        index_hex_display
-            If `True`, displays indices in hex.
-        hide_index
-            If `True`, doesn't display indices.
-        arr_dir
-            Specifies the growth direction of the array.
-        arr_label_pos
-            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
-        arr_label_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
-        mob_arr_label_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-        mob_square_args
-            Arguments for :class:`~manim.mobject.geometry.polygram.Square` that represents the element body.
-        mob_value_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element value.
-        mob_index_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
-        **kwargs
-            Forwarded to constructor of the parent.
-        """
+        """Initialize the MArray instance."""
 
         super().__init__(**kwargs)
 
@@ -1323,6 +1267,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
             Updated element's value mobject.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1367,6 +1316,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.text.text_mobject.Text`
             Updated element's index mobject.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1392,7 +1346,7 @@ class MArray(VGroup):
         ----------
         label
             New value to be assigned to the array label.
-        mob_label_args
+        mob_arr_label_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
         update_anim
             Animation to be applied to the updated array label.
@@ -1438,6 +1392,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1457,6 +1416,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.geometry.polygram.Square`.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1476,6 +1440,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1495,6 +1464,11 @@ class MArray(VGroup):
         -------
         :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1601,6 +1575,11 @@ class MArray(VGroup):
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
         :data:`~typing.Callable`\[[:class:`bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1929,33 +1908,7 @@ class MArrayPointer(VGroup):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ) -> None:
-        """Initializes the class.
-
-        Parameters
-        ----------
-        scene
-            Specifies the scene where the object is to be rendered.
-        arr
-            Specifies the array to which the pointer is to be attached.
-        index
-            Specifies the index of the element to which the pointer is to be attached.
-        label
-            Specifies the value of the pointer label.
-        arrow_len
-            Specifies the length of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
-        arrow_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
-        label_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
-        pointer_pos
-            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
-        mob_arrow_args
-            Arguments for :class:`~manim.mobject.geometry.line.Arrow` that represents the pointer arrow.
-        mob_label_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the pointer label.
-        **kwargs
-            Forwarded to constructor of the parent.
-        """
+        """Initialize the MArrayPointer instance."""
 
         super().__init__(**kwargs)
 
@@ -2091,6 +2044,11 @@ class MArrayPointer(VGroup):
         -------
         :class:`~manim.animation.transform.ApplyMethod`
             Shift animation.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__arr.fetch_mob_arr()):
@@ -2113,6 +2071,11 @@ class MArrayPointer(VGroup):
         ----------
         index
             Specifies the index of the element to which the pointer is to be attached.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index < 0 or index > len(self.__arr.fetch_mob_arr()):
@@ -2447,31 +2410,7 @@ class MArraySlidingWindow(VGroup):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ) -> None:
-        """Initializes the class.
-
-        Parameters
-        ----------
-        scene
-            Specifies the scene where the object is to be rendered.
-        arr
-            Specifies the array to which the sliding window is to be attached.
-        index
-            Specifies the index of the element to which the sliding window is to be attached.
-        size
-            Specifies the number of elements the sliding window should enclose.
-        label
-            Specifies the value of the sliding window label.
-        label_gap
-            Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
-        label_pos
-            Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
-        mob_window_args
-            Arguments for :class:`~manim.mobject.geometry.polygram.Rectangle` that represents the window.
-        mob_label_args
-            Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the window label.
-        **kwargs
-            Forwarded to constructor of the parent.
-        """
+        """Initialize the MArraySlidingWindow instance."""
 
         super().__init__(**kwargs)
 
@@ -2594,6 +2533,11 @@ class MArraySlidingWindow(VGroup):
         -------
         :class:`~manim.animation.transform.ApplyFunction`
             Shift animation.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:
@@ -2612,6 +2556,11 @@ class MArraySlidingWindow(VGroup):
         ----------
         index
             Specifies the index of the element to which the sliding window is to be attached.
+
+        Raises
+        ------
+        Exception
+            Raised when the element index is out of bounds.
         """
 
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:
@@ -2641,6 +2590,11 @@ class MArraySlidingWindow(VGroup):
         -------
         :class:`~manim.animation.transform.ApplyFunction`
             Resize animation.
+
+        Raises
+        ------
+        Exception
+            Raised when the requested window size is invalid.
         """
 
         if size < 1 or self.__index + size > len(self.__arr.fetch_mob_arr()):

@@ -226,7 +226,14 @@ class TimeLineLayout(Layout):
 
     # ==================== Public API ====================
     def layout(self) -> Any:
-        """Run the three-stage layout algorithm."""
+        """Run the three-stage layout algorithm.
+
+        Returns
+        -------
+        Any
+            The root node of the original tree, with ``x``, ``y``, ``side``,
+            and ``level`` attributes filled in.
+        """
         self._compute_base()
         self._compute_coords()
         self._adjust()

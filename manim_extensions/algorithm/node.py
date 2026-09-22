@@ -149,11 +149,6 @@ class Node(VMobject):
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
-    Raises
-    ------
-    ValueError
-        Raised when the provided ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
-
     Examples
     --------
     .. manim:: NodeExample
@@ -174,6 +169,11 @@ class Node(VMobject):
                    square_node, circle_node, small_node, empty_node
                ).arrange(RIGHT, buff=0.8)
                self.add(group)
+
+    Raises
+    ------
+    ValueError
+        Raised when the provided ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
     """
 
     def __init__(
@@ -232,7 +232,15 @@ class Node(VMobject):
         return self
 
     def get_box(self) -> Mobject:
-        """Return the underlying visual box for the node."""
+        """Return the underlying visual box for the node.
+
+        Returns
+        -------
+        Mobject
+            The box mobject of the node, either a
+            :class:`~manim.mobject.geometry.polygram.Square` or a
+            :class:`~manim.mobject.geometry.arc.Circle`.
+        """
         return self.box
 
     def set_value(self, value: NodeValue) -> "Node":
@@ -242,6 +250,11 @@ class Node(VMobject):
         ----------
         value : NodeValue
             The value to display inside the node.
+
+        Returns
+        -------
+        Node
+            The modified node instance.
         """
         if hasattr(self, "text"):
             self.remove(self.text)
@@ -255,7 +268,13 @@ class Node(VMobject):
         return self
 
     def get_value(self) -> NodeValue:
-        """Return the underlying data value of the node."""
+        """Return the underlying data value of the node.
+
+        Returns
+        -------
+        NodeValue
+            The value stored in the node.
+        """
         return self.value
 
     def set_fill(
@@ -274,6 +293,11 @@ class Node(VMobject):
             The desired opacity to use.
         family : bool
             Whether to apply the fill to the whole family of mobjects.
+
+        Returns
+        -------
+        Node
+            The modified node instance.
         """
         super().set_fill(color, opacity, False)
         if hasattr(self, "box"):
@@ -281,11 +305,23 @@ class Node(VMobject):
         return self
 
     def get_fill_color(self) -> ManimColor:
-        """Return the fill color of the node box."""
+        """Return the fill color of the node box.
+
+        Returns
+        -------
+        ManimColor
+            The fill color of the node box.
+        """
         return self.box.get_fill_color()
 
     def get_fill_opacity(self) -> ManimFloat:
-        """Return the fill opacity of the node box."""
+        """Return the fill opacity of the node box.
+
+        Returns
+        -------
+        ManimFloat
+            The fill opacity of the node box.
+        """
         return self.box.get_fill_opacity()
 
     def get_slot(self, direction: Vector3D, index: int) -> Point3D:
@@ -299,7 +335,7 @@ class Node(VMobject):
         Parameters
         ----------
         direction : Vector3D
-            One of :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`, :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`, or :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+            One of :class:`~manim.constants.LEFT`, :class:`~manim.constants.RIGHT`, :class:`~manim.constants.UP`, or :class:`~manim.constants.DOWN`.
         index : int
             Slot number in the range ``0`` to :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS`.
 
@@ -361,6 +397,8 @@ class Node(VMobject):
         opacity : float, optional
             Opacity applied to the highlight color. Defaults to
             :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_OPACITY` (``0.5``).
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------
@@ -404,6 +442,8 @@ class Node(VMobject):
         ----------
         *nodes : Node
             One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to unselect.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------
@@ -445,6 +485,8 @@ class Node(VMobject):
             The node whose value will be updated.
         value : NodeValue
             New value to display inside the node.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------
@@ -483,6 +525,8 @@ class Node(VMobject):
             If provided, highlights the moving node during the animation.
         select_opacity : float, optional
             Opacity of the selection highlight. Defaults to ``0.2``.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------
@@ -541,6 +585,8 @@ class Node(VMobject):
             If provided, highlights the copied node during the animation.
         select_opacity : float, optional
             Opacity of the selection highlight. Defaults to ``0.2``.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------
@@ -595,6 +641,8 @@ class Node(VMobject):
             If provided, highlights the temporary copies during the swap.
         select_opacity : float, optional
             Opacity of the selection highlight. Defaults to ``0.2``.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
         Examples
         --------

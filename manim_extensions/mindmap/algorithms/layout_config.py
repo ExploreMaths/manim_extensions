@@ -137,6 +137,12 @@ class LayoutConfig:
             Spacing between layers. Defaults to 0.5.
         sides : np.ndarray | List[np.ndarray], optional
             Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
+
+    Raises
+    ------
+    ValueError
+        Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`, :class:`~manim.constants.LEFT`,
+        :class:`~manim.constants.RIGHT`, or when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
     """
 
     def __init__(
@@ -167,7 +173,12 @@ class LayoutConfig:
         Parameters
         ----------
         direction : np.ndarray
-        The direction of the operation.
+            The direction of the operation.
+
+        Returns
+        -------
+        LayoutDirection
+            The layout direction enum matching ``direction``.
         """
         string = None
         if np.array_equal(direction, UP):
@@ -227,6 +238,12 @@ class LayoutConfig:
         mindmap : Dict
             Dictionary with ``direction``, ``node_spacing``, and
             ``level_spacing`` keys.
+
+        Raises
+        ------
+        ValueError
+            Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`,
+            :class:`~manim.constants.LEFT`, :class:`~manim.constants.RIGHT`.
         """
         direction = mindmap.get("direction", RIGHT)
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
@@ -261,6 +278,11 @@ class LayoutConfig:
         timeline : Dict
             Dictionary with ``node_spacing``, ``level_spacing``, and
             ``sides`` keys.
+
+        Raises
+        ------
+        ValueError
+            Raised when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
         """
         self.node_spacing = timeline.get("node_spacing", 0.5)
         self.level_spacing = timeline.get("level_spacing", 0.5)

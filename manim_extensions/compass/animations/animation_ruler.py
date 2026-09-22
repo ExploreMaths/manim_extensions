@@ -41,7 +41,9 @@ class PutRuler(ApplyMethod):
         start : Point
             The start point.
         end : Point
-            The end point."""
+            The end point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self,
@@ -76,7 +78,9 @@ class PutRulerAway(PutRuler):
         point : Point
             The placement position.
         is_flat : bool
-            Whether to place it horizontally (or vertically)."""
+            Whether to place it horizontally (or vertically).
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self,

@@ -151,6 +151,11 @@ class RubiksCube(VMobject):
                self.play(Indicate(VGroup(*cube.get_face("F"))))
                self.play(Indicate(cube.cubies[0, 0, 0]))
                self.wait()
+
+    Raises
+    ------
+    Exception
+        Raised when ``dim`` is less than 2.
     """
 
     # If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up

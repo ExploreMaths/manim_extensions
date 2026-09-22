@@ -100,10 +100,16 @@ class LinkedISLM_ADAS(VGroup):
     def monetary_expansion(self, ms: Any, m: Optional[Any]=None, v: Optional[Any]=None):
         """Monetary expansion: LM shifts right, AD shifts right.
 
-        Parameters:
-            ms: New money supply for IS-LM (shifts LM).
-            m: New money supply for AD-AS (shifts AD). If None, uses ms * 4.
-            v: New velocity for AD-AS. If None, unchanged.
+        Parameters
+        ----------
+        ms : Any
+            New money supply for IS-LM (shifts LM).
+        m : Any, optional
+            New money supply for AD-AS (shifts AD). If ``None``, uses
+            ``ms * 4``. Defaults to ``None``.
+        v : Any, optional
+            New velocity for AD-AS. If ``None``, unchanged. Defaults to
+            ``None``.
         """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
@@ -113,7 +119,19 @@ class LinkedISLM_ADAS(VGroup):
         )]
 
     def monetary_contraction(self, ms: Any, m: Optional[Any]=None, v: Optional[Any]=None):
-        """Monetary contraction: LM shifts left, AD shifts left."""
+        """Monetary contraction: LM shifts left, AD shifts left.
+
+        Parameters
+        ----------
+        ms : Any
+            New money supply for IS-LM (shifts LM).
+        m : Any, optional
+            New money supply for AD-AS (shifts AD). If ``None``, uses
+            ``ms * 4``. Defaults to ``None``.
+        v : Any, optional
+            New velocity for AD-AS. If ``None``, unchanged. Defaults to
+            ``None``.
+        """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -126,10 +144,16 @@ class LinkedISLM_ADAS(VGroup):
     def fiscal_expansion(self, a: np.ndarray, m: Optional[Any]=None, v: Optional[Any]=None):
         """Fiscal expansion: IS shifts right, AD shifts right.
 
-        Parameters:
-            a: New autonomous spending for IS-LM (shifts IS).
-            m: New money supply for AD-AS (shifts AD). If None, uses a * 2.
-            v: New velocity for AD-AS. If None, unchanged.
+        Parameters
+        ----------
+        a : numpy.ndarray
+            New autonomous spending for IS-LM (shifts IS).
+        m : Any, optional
+            New money supply for AD-AS (shifts AD). If ``None``, uses
+            ``a * 2``. Defaults to ``None``.
+        v : Any, optional
+            New velocity for AD-AS. If ``None``, unchanged. Defaults to
+            ``None``.
         """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
@@ -139,7 +163,19 @@ class LinkedISLM_ADAS(VGroup):
         )]
 
     def fiscal_contraction(self, a: np.ndarray, m: Optional[Any]=None, v: Optional[Any]=None):
-        """Fiscal contraction: IS shifts left, AD shifts left."""
+        """Fiscal contraction: IS shifts left, AD shifts left.
+
+        Parameters
+        ----------
+        a : numpy.ndarray
+            New autonomous spending for IS-LM (shifts IS).
+        m : Any, optional
+            New money supply for AD-AS (shifts AD). If ``None``, uses
+            ``a * 2``. Defaults to ``None``.
+        v : Any, optional
+            New velocity for AD-AS. If ``None``, unchanged. Defaults to
+            ``None``.
+        """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -150,13 +186,31 @@ class LinkedISLM_ADAS(VGroup):
     # ---- Supply shocks (AD-AS only, IS-LM unaffected) ----
 
     def adverse_supply_shock(self, sras_price: Any, long_run: bool = True):
-        """Adverse supply shock in AD-AS (IS-LM unchanged in short run)."""
+        """Adverse supply shock in AD-AS (IS-LM unchanged in short run).
+
+        Parameters
+        ----------
+        sras_price : Any
+            New expected price level Pᵉ for SRAS (higher than current).
+        long_run : bool
+            If True, append the long-run self-correction of SRAS. Defaults
+            to ``True``.
+        """
         return self.ad_as.adverse_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )
 
     def positive_supply_shock(self, sras_price: Any, long_run: bool = True):
-        """Positive supply shock in AD-AS (IS-LM unchanged in short run)."""
+        """Positive supply shock in AD-AS (IS-LM unchanged in short run).
+
+        Parameters
+        ----------
+        sras_price : Any
+            New expected price level Pᵉ for SRAS (lower than current).
+        long_run : bool
+            If True, append the long-run self-correction of SRAS. Defaults
+            to ``True``.
+        """
         return self.ad_as.positive_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )

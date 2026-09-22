@@ -160,6 +160,11 @@ class Table(VGroup):
                table.get_cell(3, 2).set_font_color(RED)
                table.get_cell(3, 2).set_background_color(RED, opacity=0.2)
                self.add(table)
+
+    Raises
+    ------
+    ValueError
+        Raised when neither ``data`` nor ``header`` is provided.
     """
     
     def __init__(
@@ -240,6 +245,12 @@ class Table(VGroup):
     def calculate_column_widths(self) -> List[float]:
         """
         Calculate the width of each column based on the longest text content.
+
+        Returns
+        -------
+        List[float]
+            Width of each column, including ``padding`` around the
+            longest text found in that column.
         """
         num_cols = len(self.header_values)
         widths = [0.0] * num_cols
@@ -266,6 +277,18 @@ class Table(VGroup):
         """
         Get a specific cell by row and column index.
         Row 0 is the header row.
+
+        Parameters
+        ----------
+        row : int
+            Row index (``0`` is the header row).
+        col : int
+            Column index (0-indexed).
+
+        Returns
+        -------
+        Cell
+            The cell at the given position.
         """
         if row == 0:
             return self.header_row[col]
@@ -274,6 +297,16 @@ class Table(VGroup):
     def get_row(self, index: int) -> Row:
         """
         Get a row by index. Index 0 returns the header row.
+
+        Parameters
+        ----------
+        index : int
+            Row index (``0`` returns the header row).
+
+        Returns
+        -------
+        Row
+            The row at the given index.
         """
         if index == 0:
             return self.header_row
@@ -283,6 +316,16 @@ class Table(VGroup):
         """
         Get all cells in a column as a VGroup.
         Includes the header cell.
+
+        Parameters
+        ----------
+        index : int
+            Column index (0-indexed).
+
+        Returns
+        -------
+        VGroup
+            All cells in the column, including the header cell.
         """
         cells = [self.header_row[index]]
         for row in self.rows:
@@ -292,6 +335,21 @@ class Table(VGroup):
     def get_column_by_name(self, name: str) -> VGroup:
         """
         Get a column by its header name.
+
+        Parameters
+        ----------
+        name : str
+            Header name of the column.
+
+        Returns
+        -------
+        VGroup
+            All cells in the column, including the header cell.
+
+        Raises
+        ------
+        ValueError
+            If no column with the given header name exists.
         """
         try:
             index = self.header_values.index(name)
@@ -300,7 +358,13 @@ class Table(VGroup):
             raise ValueError(f"Column '{name}' not found in header")
     
     def get_header_names(self) -> List[str]:
-        """Return list of column names."""
+        """Return list of column names.
+
+        Returns
+        -------
+        List[str]
+            The header names of all columns.
+        """
         return list(self.header_values)
     
     def __len__(self) -> int:
@@ -325,12 +389,17 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col
-            Column index (0-indexed)
-        color
-            A Manim color
-        include_header
-            If True, also colors the header cell
+        col : int
+            Column index (0-indexed).
+        color : ParsableManimColor
+            A Manim color.
+        include_header : bool, optional
+            If True, also colors the header cell. Defaults to ``False``.
+
+        Returns
+        -------
+        Table
+            This table, for method chaining.
         """
         if include_header:
             self.header_row[col].set_font_color(color)
@@ -344,14 +413,19 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col
-            Column index (0-indexed)
-        color
-            A Manim color
-        opacity
-            Background opacity (0 to 1)
-        include_header
-            If True, also colors the header cell
+        col : int
+            Column index (0-indexed).
+        color : ParsableManimColor
+            A Manim color.
+        opacity : float, optional
+            Background opacity (0 to 1). Defaults to ``0.5``.
+        include_header : bool, optional
+            If True, also colors the header cell. Defaults to ``False``.
+
+        Returns
+        -------
+        Table
+            This table, for method chaining.
         """
         if include_header:
             self.header_row[col].set_background_color(color, opacity)
@@ -365,12 +439,17 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col
-            Column index (0-indexed)
-        color
-            A Manim color
-        include_header
-            If True, also colors the header cell
+        col : int
+            Column index (0-indexed).
+        color : ParsableManimColor
+            A Manim color.
+        include_header : bool, optional
+            If True, also colors the header cell. Defaults to ``True``.
+
+        Returns
+        -------
+        Table
+            This table, for method chaining.
         """
         if include_header:
             self.header_row[col].set_border_color(color)
@@ -384,10 +463,15 @@ class Table(VGroup):
         
         Parameters
         ----------
-        color
-            A Manim color
-        opacity
-            Background opacity (0 to 1)
+        color : ParsableManimColor
+            A Manim color.
+        opacity : float, optional
+            Background opacity (0 to 1). Defaults to ``0.5``.
+
+        Returns
+        -------
+        Table
+            This table, for method chaining.
         """
         for cell in self.header_row:
             cell.set_background_color(color, opacity)
@@ -399,8 +483,13 @@ class Table(VGroup):
         
         Parameters
         ----------
-        color
-            A Manim color
+        color : ParsableManimColor
+            A Manim color.
+
+        Returns
+        -------
+        Table
+            This table, for method chaining.
         """
         for cell in self.header_row:
             cell.set_font_color(color)
@@ -416,15 +505,24 @@ class Table(VGroup):
     ) -> Tuple[Row, List[TableAnimation]]:
         """
         Add a new row to the bottom of the table.
-        
-        Returns:
-            Tuple of (new_row, animations) where animations includes both:
-            - Resize transforms for existing cells (if column widths change)
-            - FadeIn for the new row cells
-            
-            All animations can be played together with AnimationGroup.
-        
-        Example:
+
+        Parameters
+        ----------
+        values : List[str]
+            Values of the new row, one per column.
+
+        Returns
+        -------
+        Tuple[Row, List[TableAnimation]]
+            Tuple of ``(new_row, animations)``. The animations include
+            both resize transforms for existing cells (if column widths
+            change) and FadeIn for the new row cells, and can all be
+            played together in an AnimationGroup.
+
+        Examples
+        --------
+        ::
+
             new_row, anims = table.add_row(["Alice", "Smith", "30"])
             self.play(AnimationGroup(*anims, lag_ratio=0.05))
         """
@@ -553,20 +651,30 @@ class Table(VGroup):
         
         Parameters
         ----------
-        index
-            Row index (1-indexed, i.e., header is 0, first data row is 1)
+        index : int
+            Row index (1-indexed, i.e., header is 0, first data row is 1).
 
-        Returns:
-            Tuple of (deleted_row, animations) where animations includes:
-            - FadeOut for the deleted row
-            - Shift animations for remaining rows
-            - Resize animations if column widths change
-            
-            All animations can be played together with AnimationGroup.
-        
-        Example:
+        Returns
+        -------
+        Tuple[Row, List[TableAnimation]]
+            Tuple of ``(deleted_row, animations)``. The animations
+            include the FadeOut of the deleted row, shift animations for
+            the remaining rows and resize animations if column widths
+            change, and can all be played together in an AnimationGroup.
+
+        Examples
+        --------
+        ::
+
             deleted, anims = table.delete_row(1)
             self.play(AnimationGroup(*anims, lag_ratio=0.05))
+
+        Raises
+        ------
+        ValueError
+            Raised when ``index`` is 0 (the header row cannot be deleted).
+        IndexError
+            Raised when ``index`` is out of range.
         """
         if index == 0:
             raise ValueError("Cannot delete header row")
@@ -680,17 +788,27 @@ class Table(VGroup):
         
         Parameters
         ----------
-        header
-            Header text for the new column
-        values
-            List of values for the data rows
-        index
-            Insert index (0-indexed). Defaults to end of table.
+        header : str
+            Header text for the new column.
+        values : List[str]
+            List of values for the data rows. Its length must match the
+            number of data rows.
+        index : Optional[int], optional
+            Insert index (0-indexed). Defaults to the end of the table.
 
-        Returns:
-            Tuple of (new_column_group, shift_animations, appear_animations).
-            ``shift_animations`` is empty when appending at the end of the
-            table, so check it before wrapping it in an ``AnimationGroup``.
+        Returns
+        -------
+        Tuple[VGroup, List[TableAnimation], List[TableAnimation]]
+            Tuple of ``(new_column_group, shift_animations,
+            appear_animations)``. ``shift_animations`` is empty when
+            appending at the end of the table, so check it before
+            wrapping it in an ``AnimationGroup``.
+
+        Raises
+        ------
+        ValueError
+            Raised when the length of ``values`` does not match the number
+            of data rows.
         """
         if len(values) != len(self.rows):
             raise ValueError(f"Values length ({len(values)}) must match number of rows ({len(self.rows)})")
@@ -790,13 +908,21 @@ class Table(VGroup):
         
         Parameters
         ----------
-        index
-            Column index to delete (0-indexed)
+        index : int
+            Column index to delete (0-indexed).
 
-        Returns:
-            Tuple of (deleted_column_group, shift_animations).
-            ``shift_animations`` is empty when deleting the last column, so
-            check it before wrapping it in an ``AnimationGroup``.
+        Returns
+        -------
+        Tuple[VGroup, List[TableAnimation]]
+            Tuple of ``(deleted_column_group, shift_animations)``.
+            ``shift_animations`` is empty when deleting the last
+            column, so check it before wrapping it in an
+            ``AnimationGroup``.
+
+        Raises
+        ------
+        IndexError
+            Raised when ``index`` is out of range.
         """
         if index < 0 or index >= len(self.header_values):
             raise IndexError(f"Column index {index} out of range")

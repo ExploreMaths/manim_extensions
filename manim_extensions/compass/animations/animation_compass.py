@@ -61,7 +61,9 @@ class DrawArc(AnimationGroup):
         compass : Compass
             The compass.
         arc : Arc
-            The arc to draw."""
+            The arc to draw.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
 
     def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
         """Initialize DrawArc."""
@@ -91,7 +93,9 @@ class SplitCompass(AnimationGroup):
         compass : Compass
             The compass.
         span : float
-            The distance between the two compass tips."""
+            The distance between the two compass tips.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
 
     def __init__(
         self, compass: Compass, span: float | None = None, **kwargs: Any
@@ -140,7 +144,9 @@ class RotateCompass(Rotate):
         compass : Compass
             The compass.
         angle : float
-            The rotation angle."""
+            The rotation angle.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.Rotate`."""
 
     def __init__(
         self, compass: Compass, angle: float | None = None, **kwargs: Any
@@ -173,7 +179,9 @@ class MoveNiddleTipTo(ApplyMethod):
         compass : Compass
             The compass.
         point : Point
-            The target point."""
+            The target point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self,
@@ -210,7 +218,16 @@ class PutCompass(ApplyMethod):
         niddle_pos : Point
             Position for niddle_tip.
         pen_pos : Point
-            Position for pen_tip."""
+            Position for pen_tip.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Raises
+    ------
+    ValueError
+        Raised when the distance between ``niddle_pos`` and ``pen_pos``
+        exceeds the compass's drawing range (twice its leg length).
+    """
 
     def __init__(
         self,
@@ -257,7 +274,9 @@ class PutCompassAway(PutCompass):
         point : Point
             Position to place the compass.
         span_buff : float
-            Distance between the two tips when placed aside."""
+            Distance between the two tips when placed aside.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
 
     def __init__(
         self,

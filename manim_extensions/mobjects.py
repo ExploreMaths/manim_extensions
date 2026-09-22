@@ -54,6 +54,7 @@ from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
 from typing import Any, Optional, Union
+from typing_extensions import deprecated
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -237,7 +238,13 @@ class LabelDot(VGroup):
         self.dot_pos = dot_pos
 
     def get_center(self) -> Point3D:
-        """Return the center of the underlying dot."""
+        """Return the center of the underlying dot.
+
+        Returns
+        -------
+        Point3D
+            The center of the underlying dot.
+        """
         return self.dot.get_center()
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
@@ -247,6 +254,11 @@ class LabelDot(VGroup):
         ----------
         direction : Vector3DLike
             The direction from the center towards the boundary.
+
+        Returns
+        -------
+        Point3D
+            A point on the boundary of the underlying dot in the given direction.
         """
         return self.dot.get_boundary_point(direction)
 
@@ -806,6 +818,11 @@ class FileTree(Code):
                self.play(tree.highlight(1, YELLOW))
                self.play(tree.highlight(4, RED))
                self.wait(0.5)
+
+    Raises
+    ------
+    TypeError
+        Raised when ``tree_dict`` is not a dictionary.
     """
 
     def __init__(
@@ -847,6 +864,11 @@ class FileTree(Code):
         -------
         :class:`~manim.animation.composition.AnimationGroup`
             An animation that colours the line content.
+
+        Raises
+        ------
+        ValueError
+            Raised when the tree is empty or when ``line`` is out of range.
         """
         if not self.submobjects:
             raise ValueError("Cannot highlight an empty tree.")
@@ -1022,6 +1044,11 @@ class VideoMobject(ImageMobject):
                vid = VideoMobject(path)
                self.add(vid)
                vid.play(self)
+
+    Raises
+    ------
+    ValueError
+        Raised when the video file cannot be read.
     """
 
     def __init__(
@@ -1056,7 +1083,13 @@ class VideoMobject(ImageMobject):
 
     @property
     def duration(self) -> float:
-        """Total playback duration in seconds, adjusted by the rate."""
+        """Total playback duration in seconds, adjusted by the rate.
+
+        Returns
+        -------
+        float
+            The video duration in seconds divided by the playback rate.
+        """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
     def _video_updater(self, mob: "VideoMobject", dt: float) -> None:
@@ -1131,10 +1164,12 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        scene
+        scene : Optional[Scene], optional
             If given, the scene waits for the full video duration.
 
-        Returns:
+        Returns
+        -------
+        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         if self._finished:
@@ -1147,24 +1182,48 @@ class VideoMobject(ImageMobject):
         return self
 
     def pause(self) -> "VideoMobject":
-        """Pause playback without removing the updater."""
+        """Pause playback without removing the updater.
+
+        Returns
+        -------
+        VideoMobject
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
+        """
         self._playing = False
         return self
 
     def resume(self) -> "VideoMobject":
-        """Resume paused playback."""
+        """Resume paused playback.
+
+        Returns
+        -------
+        VideoMobject
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
+        """
         self._playing = True
         return self
 
     def stop(self) -> "VideoMobject":
-        """Stop playback and remove the updater."""
+        """Stop playback and remove the updater.
+
+        Returns
+        -------
+        VideoMobject
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
+        """
         self._playing = False
         if self._updater_ref in self.updaters:
             self.remove_updater(self._updater_ref)
         return self
 
     def reset(self) -> "VideoMobject":
-        """Seek to the first frame and reset all playback state."""
+        """Seek to the first frame and reset all playback state.
+
+        Returns
+        -------
+        VideoMobject
+            The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
+        """
         cv2 = require("video", "cv2")
 
         if self._cap.isOpened():
@@ -1179,10 +1238,12 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        time
+        time : float
             Target time in seconds, clamped to ``[0, duration]``.
 
-        Returns:
+        Returns
+        -------
+        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         cv2 = require("video", "cv2")
@@ -1385,7 +1446,14 @@ class Trail(VGroup):
             self.path_xyz.pop(0)
 
     def create_path(self) -> "VGroup":
-        """Build the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of fading trail segments."""
+        """Build the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of fading trail segments.
+
+        Returns
+        -------
+        VGroup
+            A group of line segments connecting the recorded centre points, with
+            stroke width and opacity fading from oldest to newest.
+        """
         path = VGroup()
         self.get_path_xyz()
         n = len(self.path_xyz)
@@ -1414,12 +1482,24 @@ class Trail(VGroup):
         trail.become(self.create_path())
 
     def start_trace(self) -> "Trail":
-        """Attach the trail updater and return ``self`` for chaining."""
+        """Attach the trail updater and return ``self`` for chaining.
+
+        Returns
+        -------
+        Trail
+            The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
+        """
         self.trail.add_updater(self.update_path)
         return self
 
     def stop_trace(self) -> "Trail":
-        """Remove the trail updater."""
+        """Remove the trail updater.
+
+        Returns
+        -------
+        Trail
+            The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
+        """
         self.trail.remove_updater(self.update_path)
         return self
 

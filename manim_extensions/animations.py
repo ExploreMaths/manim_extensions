@@ -132,8 +132,10 @@ def easeOutBounce(t: float) -> float:
     t
         Progress in ``[0, 1]``.
 
-    Returns:
-        Eased value used in this operation. in ``[0, 1]``.
+    Returns
+    -------
+    float
+        Eased value used in this operation, in ``[0, 1]``.
 
     Examples
     --------
@@ -187,8 +189,10 @@ def easeInBounce(t: float) -> float:
     t
         Progress in ``[0, 1]``.
 
-    Returns:
-        Eased value used in this operation. in ``[0, 1]``.
+    Returns
+    -------
+    float
+        Eased value used in this operation, in ``[0, 1]``.
 
     Examples
     --------
@@ -232,8 +236,10 @@ def easeInOutBounce(t: float) -> float:
     t
         Progress in ``[0, 1]``.
 
-    Returns:
-        Eased value used in this operation. in ``[0, 1]``.
+    Returns
+    -------
+    float
+        Eased value used in this operation, in ``[0, 1]``.
 
     Examples
     --------
@@ -283,8 +289,10 @@ def easeOutElastic(t: float) -> float:
     t
         Progress in ``[0, 1]``.
 
-    Returns:
-        Eased value used in this operation., which may exceed ``1`` near the end.
+    Returns
+    -------
+    float
+        Eased value used in this operation, which may exceed ``1`` near the end.
 
     Examples
     --------
