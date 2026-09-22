@@ -530,7 +530,7 @@ def fix_file(
     if changes > 0:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
-        print(f"  {rel}: {changes} fix(es)")
+        print(f"  {rel}: {changes} fix{'es' if changes > 1 else ''}")
 
     return changes
 
