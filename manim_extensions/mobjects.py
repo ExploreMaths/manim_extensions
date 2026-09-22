@@ -54,7 +54,6 @@ from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
 from typing import Any, Optional, Union
-from typing_extensions import deprecated
 
 from PIL import Image, ImageChops, ImageDraw
 
