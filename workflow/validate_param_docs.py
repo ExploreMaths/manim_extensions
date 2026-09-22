@@ -1,26 +1,43 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Validate that class constructor parameters are documented in the class docstring.
 
 Rules:
     - Parameter documentation MUST be in the class docstring (not in __init__).
-    - Every parameter in __init__ (except ``self``, ``*args``, and ``**kwargs``)
-      MUST have a corresponding entry in the class docstring's ``Parameters`` section.
-    - The __init__ docstring should only be a brief description, not full param docs.
+    - Every parameter in __init__ (except ``self`` and bare ``*args``) MUST
+      have a corresponding entry in the class docstring's numpydoc
+      ``Parameters`` section.
+    - The __init__ docstring should only be a brief description, not full
+      param docs.
+
+The checker is AST-based, so it handles classes whose ``__init__`` is not the
+first method, multi-line signatures, keyword-only parameters, and nested
+classes. Numpydoc sections are detected by their ``----------`` underline, so
+free-form description lines (e.g. "A Manim color") cannot be mistaken for
+section headers.
+
+Violations may be exempted via ``workflow/param_docs_exemptions.json``, which
+maps a repository-relative file path to a list of qualified class names. This
+is intended mainly for vendored subpackages that are kept in sync with
+upstream projects.
 
 Usage:
     python validate_param_docs.py [directory ...]
+    python validate_param_docs.py --write-exemptions
 
 If no directory is given, scans ``manim_extensions/`` by default.
 """
 
+import argparse
+import ast
+import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+EXEMPTIONS_FILE = Path(__file__).resolve().parent / "param_docs_exemptions.json"
 
 SKIP_FILES = {'__init__.py'}
 
@@ -32,285 +49,246 @@ KNOWN_NO_PARAMS = {
     'PushDownAutomatonRule',
 }
 
-
-def _split_params(param_str: str):
-    """Split a parameter string by commas, respecting nested brackets."""
-    params = []
-    depth = 0
-    current = []
-    for ch in param_str:
-        if ch in ('[', '(', '{'):
-            depth += 1
-        elif ch in (']', ')', '}'):
-            depth -= 1
-        elif ch == ',' and depth == 0:
-            params.append(''.join(current).strip())
-            current = []
-            continue
-        current.append(ch)
-    if current:
-        params.append(''.join(current).strip())
-    return [p for p in params if p]
+PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
+BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
+SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
 
 
-def _extract_param_name(param: str):
-    """Extract the parameter name from a raw parameter string like 'x: float = 5'."""
-    p = param.strip()
-    if not p:
-        return None
-    if p.startswith('**'):
-        return '**kwargs'
-    if p.startswith('*'):
-        name_match = re.match(r'\*(\w+)', p)
-        if name_match:
-            return name_match.group(1)
-        return '*args'
-    name_match = re.match(r'([a-zA-Z_]\w*)', p)
-    if name_match:
-        return name_match.group(1)
-    return None
+def find_init(node: ast.ClassDef) -> ast.FunctionDef | None:
+    """Return the class's own ``__init__`` method, or None."""
+    return next(
+        (item for item in node.body
+         if isinstance(item, ast.FunctionDef) and item.name == "__init__"),
+        None,
+    )
 
 
-def extract_class_init_blocks(file_path: Path):
-    """Extract class_name, class_docstring, init_docstring, init_params for each class."""
-    text = file_path.read_text(encoding='utf-8')
-    lines = text.splitlines()
+def required_params(init: ast.FunctionDef) -> list:
+    """Return constructor parameter names that must be documented.
 
-    results = []
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-
-        class_match = re.match(r'^class\s+(\w+)', line)
-        if not class_match:
-            i += 1
-            continue
-
-        class_name = class_match.group(1)
-        if class_name in SKIP_CLASSES:
-            i += 1
-            continue
-
-        j = i + 1
-        while j < len(lines) and (re.match(r'^\s*$', lines[j]) or re.match(r'^\s+#', lines[j])):
-            j += 1
-
-        class_docstring = None
-        if j < len(lines) and (lines[j].strip().startswith('"""') or lines[j].strip().startswith("'''")):
-            quote_char = '"""' if lines[j].strip().startswith('"""') else "'''"
-            doc_lines = [lines[j]]
-            if lines[j].strip().count(quote_char) < 2:
-                j += 1
-                while j < len(lines):
-                    doc_lines.append(lines[j])
-                    stripped = lines[j].strip()
-                    if quote_char in stripped:
-                        if stripped == quote_char:
-                            break
-                        if stripped.count(quote_char) >= 2:
-                            break
-                    j += 1
-            else:
-                j += 1
-            class_docstring = '\n'.join(doc_lines)
-
-        init_params = []
-        init_docstring = ''
-        k = j
-        while k < len(lines):
-            stripped = lines[k].strip()
-            if re.match(r'^\s*def\s+__init__\s*\(', lines[k]):
-                init_lines = [lines[k]]
-                paren_depth = lines[k].count('(') - lines[k].count(')')
-                k += 1
-                while k < len(lines) and paren_depth > 0:
-                    init_lines.append(lines[k])
-                    paren_depth += lines[k].count('(') - lines[k].count(')')
-                    k += 1
-                init_def = '\n'.join(init_lines)
-
-                sig_match = re.search(r'def\s+__init__\s*\(', init_def)
-                if sig_match:
-                    start = sig_match.end()
-                    depth = 1
-                    pos = start
-                    while pos < len(init_def) and depth > 0:
-                        ch = init_def[pos]
-                        if ch == '(':
-                            depth += 1
-                        elif ch == ')':
-                            depth -= 1
-                        pos += 1
-                    raw_params = init_def[start:pos - 1].strip()
-                    if raw_params:
-                        for raw in _split_params(raw_params):
-                            name = _extract_param_name(raw)
-                            if name and name != 'self':
-                                init_params.append(name)
-
-                if k < len(lines) and (lines[k].strip().startswith('"""') or lines[k].strip().startswith("'''")):
-                    qc = '"""' if lines[k].strip().startswith('"""') else "'''"
-                    doc = [lines[k]]
-                    if lines[k].strip().count(qc) < 2:
-                        k += 1
-                        while k < len(lines):
-                            doc.append(lines[k])
-                            stripped = lines[k].strip()
-                            if qc in stripped:
-                                if stripped == qc:
-                                    break
-                                if stripped.count(qc) >= 2:
-                                    break
-                            k += 1
-                    else:
-                        k += 1
-                    init_docstring = '\n'.join(doc)
-                break
-            elif re.match(r'^\s*def\s+', lines[k]) or re.match(r'^\s*class\s+', lines[k]):
-                break
-            else:
-                k += 1
-
-        results.append({
-            'class_name': class_name,
-            'line': i + 1,
-            'class_docstring': class_docstring or '',
-            'init_docstring': init_docstring,
-            'init_params': init_params,
-        })
-        i = max(k, i + 1)
-
-    return results
-
-
-def extract_documented_params(docstring: str):
-    """Extract parameter names documented in a numpy-style docstring Parameters section."""
-    params = set()
-    if not docstring:
-        return params
-    in_params = False
-    for line in docstring.split('\n'):
-        stripped = line.strip()
-        if stripped == 'Parameters':
-            in_params = True
-            continue
-        if in_params:
-            if stripped == '----------':
-                continue
-            if stripped == '':
-                continue
-            if re.match(r'^[A-Z][a-z]+$', stripped):
-                in_params = False
-                continue
-            param_match = re.match(r'^(\w[\w]*)\s*:', stripped)
-            if not param_match:
-                param_match = re.match(r'^(\w[\w]*)\s*$', stripped)
-            if not param_match:
-                param_match = re.match(r'^(\*\*kwargs?)\s*(:|$)', stripped)
-            if param_match:
-                params.add(param_match.group(1))
+    ``self`` and bare ``*args`` are conventionally undocumented; ``**kwargs``
+    is required as an entry named ``kwargs``.
+    """
+    params = [
+        a.arg
+        for a in init.args.posonlyargs + init.args.args + init.args.kwonlyargs
+        if a.arg != "self"
+    ]
+    if init.args.kwarg:
+        params.append(init.args.kwarg.arg)
     return params
 
 
-def init_docstring_has_params(docstring: str):
+def documented_params(docstring: str) -> set:
+    """Extract parameter names documented in a numpydoc Parameters section.
+
+    A line only counts as a section header when it is followed by a
+    ``----------`` underline, so description text like "A Manim color" is
+    never mistaken for a header.
+    """
+    params = set()
+    if not docstring:
+        return params
+    lines = docstring.splitlines()
+    in_params = False
+    item_indent = None
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if not in_params:
+            if (
+                stripped == "Parameters"
+                and idx + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+            ):
+                in_params = True
+                item_indent = None
+            continue
+        if not stripped:
+            continue
+        if SECTION_UNDERLINE_RE.match(stripped):
+            continue  # section underline itself (first line after the header)
+        indent = len(line) - len(line.lstrip(" \t"))
+        if item_indent is None:
+            item_indent = indent
+        if indent < item_indent:
+            in_params = False  # dedented past the entries: section ended
+            continue
+        if indent > item_indent:
+            continue  # continuation line of the previous entry
+        # An underlined header line (e.g. the next section) ends Parameters.
+        if (
+            idx + 1 < len(lines)
+            and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+        ):
+            in_params = False
+            continue
+        m = PARAM_ENTRY_RE.match(stripped)
+        if m:
+            params.add(m.group(1).lstrip("*"))
+        elif BARE_ENTRY_RE.match(stripped):
+            params.add(stripped.lstrip("*"))
+    return params
+
+
+def init_docstring_has_params(docstring: str) -> bool:
     """Check if the __init__ docstring contains parameter documentation."""
     if not docstring:
         return False
-    has_params_section = bool(re.search(r'^Parameters\s*$', docstring, re.MULTILINE))
-    has_param_content = bool(re.search(r'^\w[\w]*\s*:\s*\w', docstring, re.MULTILINE))
+    has_params_section = bool(
+        re.search(r"^Parameters\s*$", docstring, re.MULTILINE)
+    )
+    # "name : type" content lines, where the type looks like a type
+    # (uppercase/class reference/builtin) — this avoids matching prose
+    # such as "TODO: add docstring for __init__.".
+    has_param_content = bool(
+        re.search(
+            r"^\*{0,2}[\w.]+\s*:\s*(?:[A-Z`]~|(?:str|int|float|bool|list|"
+            r"dict|tuple|set|None)\b)",
+            docstring,
+            re.MULTILINE,
+        )
+    )
     return has_params_section or has_param_content
 
 
-def check_file(file_path: Path):
+def check_file(file_path: Path) -> list:
     """Check a single file for parameter documentation issues."""
-    blocks = extract_class_init_blocks(file_path)
+    try:
+        tree = ast.parse(file_path.read_text(encoding="utf-8"))
+    except (SyntaxError, UnicodeDecodeError):
+        return []
+
     issues = []
 
-    for block in blocks:
-        class_name = block['class_name']
-        init_params = block['init_params']
-        class_doc = block['class_docstring']
-        init_doc = block['init_docstring']
-        line = block['line']
+    def visit(node, prefix):
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, ast.ClassDef):
+                check_class(child, prefix)
+                visit(child, f"{prefix}{child.name}.")
+            else:
+                visit(child, prefix)
 
-        if class_name in KNOWN_NO_PARAMS:
-            continue
+    def check_class(node: ast.ClassDef, prefix: str) -> None:
+        class_name = node.name
+        if class_name in SKIP_CLASSES or class_name in KNOWN_NO_PARAMS:
+            return
+        if class_name.startswith("_"):
+            return
+        qualname = f"{prefix}{class_name}"
+        init = find_init(node)
+        if init is None:
+            return  # no own __init__; nothing to document here
 
+        init_doc = ast.get_docstring(init) or ""
         if init_doc and init_docstring_has_params(init_doc):
             issues.append({
                 'type': 'INIT_HAS_PARAM_DOCS',
-                'line': line,
-                'class_name': class_name,
+                'line': node.lineno,
+                'class_name': qualname,
                 'message': (
                     '__init__ docstring contains parameter documentation. '
                     'Move it to the class docstring.'
                 ),
             })
 
-        if not init_params:
-            continue
+        params = required_params(init)
+        documented = documented_params(ast.get_docstring(node) or "")
 
-        documented = extract_documented_params(class_doc)
+        for param in params:
+            if param not in documented:
+                issues.append({
+                    'type': 'MISSING_PARAM_DOC',
+                    'line': node.lineno,
+                    'class_name': qualname,
+                    'message': f"Parameter '{param}' not documented "
+                               f"in class docstring.",
+                })
 
-        for param in init_params:
-            if param in ('*args',):
-                continue
-            if param == '**kwargs':
-                if '**kwargs' not in documented and 'kwargs' not in documented:
-                    issues.append({
-                        'type': 'MISSING_PARAM_DOC',
-                        'line': line,
-                        'class_name': class_name,
-                        'message': 'Parameter **kwargs not documented in class docstring.',
-                    })
-            else:
-                if param not in documented:
-                    issues.append({
-                        'type': 'MISSING_PARAM_DOC',
-                        'line': line,
-                        'class_name': class_name,
-                        'message': f"Parameter '{param}' not documented in class docstring.",
-                    })
-
+    visit(tree, "")
     return issues
 
 
-def main():
-    if len(sys.argv) > 1:
-        targets = [Path(a) for a in sys.argv[1:]]
-    else:
-        targets = [ROOT / 'manim_extensions']
+def load_exemptions() -> dict:
+    """Load the exemptions JSON; return {relative_path: set(qualnames)}."""
+    if not EXEMPTIONS_FILE.exists():
+        return {}
+    data = json.loads(EXEMPTIONS_FILE.read_text(encoding="utf-8"))
+    return {path: set(names) for path, names in data.items()}
 
+
+def collect_files(targets: list) -> list:
+    """Resolve CLI targets to a sorted list of Python files."""
     py_files = []
     for target in targets:
-        if target.is_file() and target.suffix == '.py':
-            py_files.append(target)
-        elif target.is_dir():
-            py_files.extend(target.rglob('*.py'))
+        path = Path(target)
+        if path.is_file() and path.suffix == '.py':
+            py_files.append(path)
+        elif path.is_dir():
+            py_files.extend(path.rglob('*.py'))
+    return sorted(set(py_files))
+
+
+def main() -> int:
+    """Main validation function."""
+    parser = argparse.ArgumentParser(
+        description="Validate that __init__ parameters are documented in the "
+                    "class docstring; optionally (re)write the exemptions file."
+    )
+    parser.add_argument(
+        "targets", nargs="*",
+        help="Files or directories to scan (default: manim_extensions/)",
+    )
+    parser.add_argument(
+        "--write-exemptions", action="store_true",
+        help="Write ALL current violations to the exemptions file. "
+             "This blesses the current state — review the diff carefully.",
+    )
+    args = parser.parse_args()
+
+    targets = args.targets or [str(ROOT / 'manim_extensions')]
+    py_files = [
+        fp for fp in collect_files(targets) if fp.name not in SKIP_FILES
+    ]
 
     all_issues = {}
-    total_classes = 0
-
-    for fp in sorted(set(py_files)):
-        if fp.name in SKIP_FILES:
-            continue
-        blocks = extract_class_init_blocks(fp)
-        total_classes += len(blocks)
+    for fp in py_files:
         issues = check_file(fp)
         if issues:
-            all_issues[str(fp)] = issues
+            all_issues[fp] = issues
+
+    if args.write_exemptions:
+        data = {}
+        for fp, issues in all_issues.items():
+            rel = fp.resolve().relative_to(ROOT).as_posix()
+            data[rel] = sorted({i['class_name'] for i in issues})
+        EXEMPTIONS_FILE.write_text(
+            json.dumps(data, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        total = sum(len(v) for v in data.values())
+        print(f"Wrote {total} exempted classes for {len(data)} files to "
+              f"{EXEMPTIONS_FILE.name}. Review the diff before committing!")
+        return 0
+
+    exemptions = load_exemptions()
+    unexempted = {}
+    for fp, issues in all_issues.items():
+        rel = fp.resolve().relative_to(ROOT).as_posix()
+        exempt = exemptions.get(rel, set())
+        leftover = [i for i in issues if i['class_name'] not in exempt]
+        if leftover:
+            unexempted[rel] = leftover
 
     print("=" * 70)
     print("PARAMETER DOCUMENTATION VALIDATOR")
     print("=" * 70)
-    print(f"\nFiles scanned:           {len(set(py_files)) - len(SKIP_FILES)}")
-    print(f"Classes checked:         {total_classes}")
+    print(f"\nFiles scanned:           {len(py_files)}")
 
-    if all_issues:
-        total_issues = sum(len(v) for v in all_issues.values())
+    if unexempted:
+        total_issues = sum(len(v) for v in unexempted.values())
         print(f"\nISSUES FOUND: {total_issues}\n")
         print("-" * 70)
-        for fp, issues in all_issues.items():
+        for fp, issues in unexempted.items():
             print(f"\nFILE: {fp}")
             for issue in issues:
                 if issue['type'] == 'INIT_HAS_PARAM_DOCS':
@@ -324,12 +302,12 @@ def main():
         print(f"VALIDATION FAILED - {total_issues} issue(s) found")
         print("=" * 70)
         return 1
-    else:
-        print("\nAll parameter documentation is correct!")
-        print("=" * 70)
-        print("VALIDATION PASSED")
-        print("=" * 70)
-        return 0
+
+    print("\nAll parameter documentation is correct!")
+    print("=" * 70)
+    print("VALIDATION PASSED")
+    print("=" * 70)
+    return 0
 
 
 if __name__ == '__main__':
