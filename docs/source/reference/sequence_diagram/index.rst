@@ -5,6 +5,8 @@
 Sequence diagram
 ================
 
+.. vendored-status:: foxnewsnetwork/manim-sequence-diagram
+
 **Original author:** `Thomas Chen <https://github.com/foxnewsnetwork>`_
 
 **Source repository:** `GitHub <https://github.com/foxnewsnetwork/manim-sequence-diagram>`_

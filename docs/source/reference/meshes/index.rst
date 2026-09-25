@@ -5,6 +5,8 @@
 Meshes
 ======
 
+.. vendored-status:: bmmtstb/manim-meshes
+
 **Original author:** `Brizar <https://github.com/bmmtstb>`_ and `99Vicky <https://github.com/99Vicky>`_
 
 **Source repository:** `GitHub <https://github.com/bmmtstb/manim-meshes>`_

@@ -4,6 +4,8 @@
 Pymunk
 ======
 
+.. vendored-status:: HHP999/manim_pymunk
+
 **Original author:** `CoreKSets <https://github.com/HHP999>`_
 
 **Source repository:** `GitHub <https://github.com/HHP999/manim_pymunk>`_

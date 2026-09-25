@@ -4,6 +4,8 @@
 Economics
 =========
 
+.. vendored-status:: ddzhang04/manim_ec
+
 **Original author:** `ddzhang04 <https://github.com/ddzhang04>`_
 
 **Source repository:** `GitHub <https://github.com/ddzhang04/manim_ec>`_

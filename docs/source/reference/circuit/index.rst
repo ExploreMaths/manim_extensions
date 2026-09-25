@@ -5,6 +5,8 @@
 Circuit
 =======
 
+.. vendored-status:: Mr-FuzzyPenguin/manim-circuit
+
 **Original author:** `Mr-FuzzyPenguin <https://github.com/Mr-FuzzyPenguin>`_
 
 **Source repository:** `GitHub <https://github.com/Mr-FuzzyPenguin/manim-circuit>`_

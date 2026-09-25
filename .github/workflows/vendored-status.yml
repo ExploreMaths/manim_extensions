@@ -1,0 +1,59 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+name: Vendored status cache
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "VENDORED.md"
+      - "workflow/update_vendored_status.py"
+      - ".github/workflows/vendored-status.yml"
+  schedule:
+    # Refresh daily at ~02:29 UTC.
+    - cron: "29 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Fetch previous cache
+        run: |
+          git fetch --depth 1 origin vendored-status-cache || true
+          git show origin/vendored-status-cache:docs/source/_vendored_status_cache.json \
+            > /tmp/old_cache.json 2>/dev/null || echo '{}' > /tmp/old_cache.json
+
+      - name: Refresh cache
+        env:
+          # Provided automatically; raises the GitHub API rate limit.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python workflow/update_vendored_status.py \
+          --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
+
+      - name: Publish to the vendored-status-cache branch
+        run: |
+          mv docs/source/_vendored_status_cache.json /tmp/new_cache.json
+          if git rev-parse --verify --quiet origin/vendored-status-cache; then
+            git switch vendored-status-cache
+          else
+            git switch --orphan vendored-status-cache
+            git rm -rf . > /dev/null 2>&1 || true
+          fi
+          mkdir -p docs/source
+          mv /tmp/new_cache.json docs/source/_vendored_status_cache.json
+          git add docs/source/_vendored_status_cache.json
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit --allow-empty -m "$(cat /tmp/summary.txt)"
+          git push origin vendored-status-cache

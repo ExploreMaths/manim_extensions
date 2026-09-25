@@ -5,6 +5,8 @@
 GearBox
 =======
 
+.. vendored-status:: GarryBGoode/manim-GearBox
+
 **Original author:** `GarryBGoode <https://github.com/GarryBGoode>`_
 
 **Source repository:** `GitHub <https://github.com/GarryBGoode/manim-GearBox>`_

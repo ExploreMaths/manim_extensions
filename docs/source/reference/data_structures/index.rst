@@ -5,6 +5,8 @@
 Data structures
 ===============
 
+.. vendored-status:: drageelr/manim-data-structures
+
 **Original author:** `Hammad Nasir <https://github.com/drageelr>`_
 
 **Source repository:** `GitHub <https://github.com/drageelr/manim-data-structures>`_

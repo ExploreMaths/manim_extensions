@@ -4,6 +4,8 @@
 Weighted Line
 =============
 
+.. vendored-status:: mutable-learning/manim-weighted-line
+
 **Original author:** `Mutable Learning <https://github.com/mutable-learning>`_
 
 **Source repository:** `GitHub <https://github.com/mutable-learning/manim-weighted-line>`_

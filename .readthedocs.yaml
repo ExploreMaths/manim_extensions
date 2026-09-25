@@ -22,6 +22,12 @@ build:
       # (see manim_extensions/utils/nerdfont/icons.py). Examples missing from
       # the CI media cache are rendered in-process by the Sphinx build.
       - python -c "import manim_extensions.utils.nerdfont as nf; nf._install_font_linux()"
+      # Fetch the vendored-status cache maintained by the Vendored status
+      # cache workflow on the vendored-status-cache branch (refreshed
+      # daily). The vendored-status directive renders without upstream
+      # data when this file is missing. See
+      # .github/workflows/vendored-status.yml.
+      - git fetch --depth 1 origin vendored-status-cache && git checkout origin/vendored-status-cache -- docs/source/_vendored_status_cache.json || true
       # Fetch the CI-pre-rendered example media so the Sphinx build reuses
       # it instead of rendering every example (see
       # .github/workflows/docs-media.yml). Examples missing from the cache
