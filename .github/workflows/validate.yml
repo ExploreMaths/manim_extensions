@@ -31,6 +31,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-manim-env
+      - name: Install optional dependencies referenced in docs
+        run: pip install ".[ml]"
       - name: Run reference validator
         run: python workflow/validate_refs.py
 

@@ -55,11 +55,6 @@ SKIP_NAMES = frozenset({
 
 SKIP_SUFFIXES = (".md", ".rst", ".py", ".toml", ".yml", ".yaml", ".cfg", ".ini", ".txt")
 
-SKIP_PREFIXES = (
-    "~typing.", "~numpy.", "~matplotlib.", "~collections.",
-    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.", "~sklearn.",
-)
-
 
 # ---------------------------------------------------------------------------
 # 1. AST-based name-map builders (shared by all detection categories)
@@ -256,9 +251,6 @@ def validate_reference(target: str) -> tuple[bool, str]:
     Deep attribute chains are skipped because manim / manim_extensions
     use lazy-loading descriptors that make ``getattr`` unreliable.
     """
-    if any(target.startswith(p) for p in SKIP_PREFIXES):
-        return True, "skipped (external)"
-
     if not target.startswith("~"):
         return True, "skipped (relative or short)"
 
@@ -322,8 +314,6 @@ def _find_short_xrefs(filepath: Path) -> list[dict]:
                 if target.startswith("~") or target.startswith("."):
                     continue
                 if target in SKIP_NAMES:
-                    continue
-                if any(target.startswith(p) for p in SKIP_PREFIXES):
                     continue
 
                 head = target.split(".")[0]
@@ -421,9 +411,7 @@ def main() -> int:
         for lineno, line in enumerate(content.splitlines(), 1):
             for m in REF_PATTERN.finditer(line):
                 target = m.group(2)
-                if target.startswith("~") and not any(
-                    target.startswith(p) for p in SKIP_PREFIXES
-                ):
+                if target.startswith("~"):
                     ok, msg = validate_reference(target)
                     if not ok:
                         broken_refs.append({
