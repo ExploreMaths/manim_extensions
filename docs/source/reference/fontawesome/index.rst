@@ -4,6 +4,8 @@
 Font Awesome
 ============
 
+.. vendored-status:: naveen521kk/manim-fontawesome
+
 **Original author:** `Naveen M K <https://github.com/naveen521kk>`_
 
 **Source repository:** `GitHub <https://github.com/naveen521kk/manim-fontawesome>`_

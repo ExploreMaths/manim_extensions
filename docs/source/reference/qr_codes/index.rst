@@ -4,6 +4,8 @@
 QR Codes
 ========
 
+.. vendored-status:: Alexander-Nasuta/manim-qr-codes
+
 **Original author:** `Alexander Nasuta <https://github.com/Alexander-Nasuta>`_
 
 **Source repository:** `GitHub <https://github.com/Alexander-Nasuta/manim-qr-codes>`_

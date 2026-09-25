@@ -4,6 +4,8 @@
 SVG Animations
 ==============
 
+.. vendored-status:: MathItYT/manim-svg-animations
+
 **Original author:** `MathLike <https://github.com/MathItYT>`_
 
 **Source repository:** `GitHub <https://github.com/MathItYT/manim-svg-animations>`_

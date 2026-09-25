@@ -5,6 +5,8 @@
 Compass
 =======
 
+.. vendored-status:: jj-math/manim-compass
+
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
 
 **Source repository:** `GitHub <https://github.com/jj-math/manim-compass>`_

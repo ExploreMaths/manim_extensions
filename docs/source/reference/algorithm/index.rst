@@ -5,6 +5,8 @@
 Algorithm
 =========
 
+.. vendored-status:: sinianluoye/manim-algorithm
+
 **Original author:** `sinianluoye <https://github.com/sinianluoye>`_
 
 **Source repository:** `GitHub <https://github.com/sinianluoye/manim-algorithm>`_

@@ -4,6 +4,8 @@
 Table
 =====
 
+.. vendored-status:: philippe2803/manim-table
+
 **Original author:** `Philippe Oger <https://github.com/philippe2803>`_
 
 **Source repository:** `GitHub <https://github.com/philippe2803/manim-table>`_

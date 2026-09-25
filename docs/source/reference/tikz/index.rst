@@ -5,6 +5,8 @@
 TikZ
 ====
 
+.. vendored-status:: ralphieraccoon/manim-tikz
+
 **Original author:** `Ralphie Raccoon <https://github.com/ralphieraccoon>`_
 
 **Source repository:** `GitHub <https://github.com/ralphieraccoon/manim-tikz>`_

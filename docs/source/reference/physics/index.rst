@@ -5,6 +5,8 @@
 Physics
 =======
 
+.. vendored-status:: Matheart/manim-physics
+
 **Original author:** `Matheart <https://github.com/Matheart>`_
 
 **Source repository:** `GitHub <https://github.com/Matheart/manim-physics>`_

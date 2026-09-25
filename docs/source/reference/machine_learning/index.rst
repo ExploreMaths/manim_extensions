@@ -4,6 +4,8 @@
 Machine Learning
 ================
 
+.. vendored-status:: helblazer811/ManimML
+
 **Original author:** `Alec Helbling <https://github.com/helblazer811>`_
 
 **Source repository:** `GitHub <https://github.com/helblazer811/ManimML>`_

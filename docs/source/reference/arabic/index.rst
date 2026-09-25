@@ -4,6 +4,8 @@
 Arabic
 ======
 
+.. vendored-status:: razekmh/manim-arabic
+
 **Original author:** `Mahmoud Abdelrazek <https://github.com/razekmh>`_
 
 **Source repository:** `GitHub <https://github.com/razekmh/manim-arabic>`_

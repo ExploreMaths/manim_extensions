@@ -5,6 +5,8 @@
 Rubik's Cube
 ============
 
+.. vendored-status:: WampyCakes/manim-rubikscube
+
 **Original author:** `KingWampy <https://github.com/WampyCakes>`_
 
 **Source repository:** `GitHub <https://github.com/WampyCakes/manim-rubikscube>`_

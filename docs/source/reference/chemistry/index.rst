@@ -4,6 +4,8 @@
 Chemistry
 =========
 
+.. vendored-status:: UnMolDeQuimica/manim-Chemistry
+
 **Original author:** `UMDQ <https://github.com/UnMolDeQuimica>`_
 
 **Source repository:** `GitHub <https://github.com/UnMolDeQuimica/manim-Chemistry>`_

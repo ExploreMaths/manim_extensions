@@ -41,7 +41,7 @@ extensions = [
     "autodoc_all",
     "inheritance_colors",
     "autodoc_inheritance",
-    "inline_code_style",
+    "vendored_status",
 ]
 
 templates_path = ["_templates"]

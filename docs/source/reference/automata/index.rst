@@ -5,6 +5,8 @@
 Automata
 ========
 
+.. vendored-status:: SeanNelsonIO/manim-automata
+
 **Original author:** `Sean Nelson <https://github.com/SeanNelsonIO>`_
 
 **Source repository:** `GitHub <https://github.com/SeanNelsonIO/manim-automata>`_
