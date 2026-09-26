@@ -379,7 +379,7 @@ def animate_of_alter(
                self.play(*anims)
                self.wait()
                content = Group(*self.mobjects)
-               content.scale_to_fit_height(5).move_to(ORIGIN)
+               content.scale_to_fit_width(10).move_to(ORIGIN)
     """
     anims = [
         node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
