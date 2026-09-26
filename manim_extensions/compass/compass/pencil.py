@@ -76,6 +76,18 @@ class Pencil(SVGMobject):
     def move_nid_to(self, point: Point3D = ORIGIN) -> "Pencil":
         """Translate the pencil so that the nib moves to point.
 
+        Parameters
+        ----------
+        point
+            The point used by the operation.
+
+        Returns
+        -------
+        Pencil
+            The translated self.
+
+        Examples
+        --------
         .. manim:: MoveNidToDocExample
            :save_last_frame:
 
@@ -87,16 +99,6 @@ class Pencil(SVGMobject):
                    target = Dot(ORIGIN, color=RED).scale(1.5)
                    pencil = Pencil(height=3.2).move_nid_to(ORIGIN)
                    self.add(target, pencil)
-
-        Parameters
-        ----------
-        point
-            The point used by the operation.
-
-        Returns
-        -------
-        Pencil
-            The translated self.
         """
         self.shift(point - self.get_nib())
         return self

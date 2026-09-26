@@ -192,6 +192,13 @@ class Ruler(VGroup):
     def put_ruler_flat(self) -> "Ruler":
         """Lay the ruler flat.
 
+        Returns
+        -------
+        Ruler
+            The flattened self.
+
+        Examples
+        --------
         .. manim:: PutRulerFlatDocExample
            :save_last_frame:
 
@@ -206,11 +213,6 @@ class Ruler(VGroup):
                    content.arrange(DOWN, buff=0.8)
                    content.scale_to_fit_height(7).move_to(ORIGIN)
                    self.add(content)
-
-        Returns
-        -------
-        Ruler
-            The flattened self.
         """
         self.rotate(angle=get_vecs_angle(self.get_direction_vector_of_ruler(), RIGHT))
         return self

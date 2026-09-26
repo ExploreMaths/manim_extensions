@@ -36,8 +36,8 @@ class WeightedLine(Line):
     A minimal weighted edge between two points.  To use the line in a
     graph, pass the configuration to the edge object and use the
     :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` as
-        the ``edge_type``; if you are using NetworkX to
-        create your graph, you can pass the edge data in the ``edge_config``
+    the ``edge_type``; if you are using NetworkX to
+    create your graph, you can pass the edge data in the ``edge_config``
     dictionary.
 
     .. manim:: WeightedLineDocExample
