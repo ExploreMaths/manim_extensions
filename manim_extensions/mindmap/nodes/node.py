@@ -210,7 +210,7 @@ def dfs_walker(root: "Node") -> Generator:
     root : 'Node'
         Root node of the tree to traverse.
 
-    Returns
+    Yields
     -------
     Generator
         A generator yielding the nodes in depth-first pre-order.
@@ -233,7 +233,7 @@ def bfs_walker(root: "Node") -> Generator:
     root : 'Node'
         Root node of the tree to traverse.
 
-    Returns
+    Yields
     -------
     Generator
         A generator yielding the nodes in breadth-first level order.

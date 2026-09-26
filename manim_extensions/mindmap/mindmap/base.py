@@ -304,7 +304,7 @@ class AbstractMap(Group):
     def bfs_walker(self) -> Generator:
         """Breadth-first traversal.
 
-        Returns
+        Yields
         -------
         Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
@@ -316,7 +316,7 @@ class AbstractMap(Group):
     def dfs_walker(self) -> Generator:
         """Depth-first traversal.
 
-        Returns
+        Yields
         -------
         Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
@@ -333,7 +333,7 @@ class AbstractMap(Group):
         id_list : List[tuple]
         Id list parameter for this operation.
 
-        Returns
+        Yields
         -------
         Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
