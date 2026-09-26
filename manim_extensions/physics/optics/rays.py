@@ -82,7 +82,7 @@ class Ray(Line):
         Parameters
         ----------
         lenses
-            All the lenses for the ray to propagate through
+            All the lenses for the ray to propagate through.
         """
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:

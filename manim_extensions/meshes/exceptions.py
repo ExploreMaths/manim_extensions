@@ -4,7 +4,7 @@
 
 
 """
-custom exceptions
+custom exceptions.
 """
 
 # python imports
@@ -59,7 +59,7 @@ class MeshIndexException(IndexError):
     >>> mesh.update_vertex(5, np.array([1, 1, 1]))
     Traceback (most recent call last):
     ...
-    manim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2
+    manim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2.
     """
 
 
@@ -190,5 +190,5 @@ class FaultyVarArrayException(Exception):
     ...     raise FaultyVarArrayException("The given object is no VarArray")
     ... except FaultyVarArrayException as e:
     ...     print(e)
-    The given object is no VarArray
+    The given object is no VarArray.
     """

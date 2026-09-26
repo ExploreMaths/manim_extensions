@@ -60,7 +60,7 @@ def gaussian_proposal(x: int, sigma: float = 0.3):
     Returns
     -------
     np.ndarray
-        propossed point
+        The proposed point.
     """
     # Draw x_star
     x_star = x + np.random.randn(len(x)) * sigma
@@ -153,7 +153,7 @@ def metropolis_hastings_sampler(
     warm_up_samples : np.ndarray
         numpy array of 2D warm up samples  of length `warm_up`
     candidate_samples: np.ndarray
-        numpy array of the candidate samples for each time step
+        numpy array of the candidate samples for each time step.
     """
     np.random.seed(sampling_seed)
     # initialize chain, acceptance rate and lnprob
@@ -391,7 +391,7 @@ class MCMCAxes(Group):
 
     @override_animation(Create)
     def _create_override(self, **kwargs):
-        """Overrides Create animation"""
+        """Overrides Create animation."""
         return AnimationGroup(Create(self.axes))
 
     def visualize_gaussian_proposal_about_point(self, mean: np.ndarray, cov: Optional[Any]=None) -> AnimationGroup:
@@ -407,7 +407,7 @@ class MCMCAxes(Group):
         Returns
         -------
         AnimationGroup
-            animation of creating the proposal Gaussian distribution
+            animation of creating the proposal Gaussian distribution.
         """
         gaussian = GaussianDistribution(
             axes=self.axes, mean=mean, cov=cov, dist_theme="gaussian"
@@ -442,7 +442,7 @@ class MCMCAxes(Group):
         Returns
         -------
         AnimationGroup
-            Animation of the transition from start to end
+            Animation of the transition from start to end.
         """
         start_location = self.axes.point_to_coords(start_point.get_center())
         end_location = self.axes.point_to_coords(end_point.get_center())
@@ -530,7 +530,7 @@ class MCMCAxes(Group):
         Returns
         -------
         animation : AnimationGroup
-            animation for creating the markov chain
+            animation for creating the markov chain.
         """
         # Compute the chain samples using a Metropolis Hastings Sampler
         mcmc_samples, warm_up_samples, candidate_samples = metropolis_hastings_sampler(

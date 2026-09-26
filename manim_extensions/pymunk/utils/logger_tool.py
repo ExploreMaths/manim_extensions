@@ -27,7 +27,7 @@ class SingletonLogger:
         return cls._instance
 
     def _inherited_init(self):
-        """在这里配置你的日志逻辑"""
+        """在这里配置你的日志逻辑。"""
         self.logger = logging.getLogger("MySingletonLogger")
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False

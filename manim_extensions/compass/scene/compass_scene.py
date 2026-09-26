@@ -278,7 +278,7 @@ class CompassScene(MovingCameraScene):
         span_buff : float
             distance between the two compass tips when placed aside
         run_time : float
-            time required to place the compass
+            time required to place the compass.
         """
         r = 0.5 * self.compass.leg_length
         vec = r * DOWN if self.compass.get_compass_rotate_angle_direction() else r * UP
@@ -310,7 +310,7 @@ class CompassScene(MovingCameraScene):
         run_time : float
             time to place the ruler
         with_pencil : bool
-            whether to place the pencil at the same time
+            whether to place the pencil at the same time.
         """
         if with_pencil:
             self.play(

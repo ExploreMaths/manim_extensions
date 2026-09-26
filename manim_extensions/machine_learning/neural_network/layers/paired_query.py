@@ -146,7 +146,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     def make_assets(self):
         """
-        Constructs the assets needed for a query layer
+        Constructs the assets needed for a query layer.
         """
         # Handle positive
         positive_group = LabeledColorImage(

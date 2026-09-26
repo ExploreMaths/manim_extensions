@@ -514,7 +514,7 @@ class DecisionTreeSurface(VGroup):
     def make_split_to_animation_map(self):
         """
         Returns a dictionary mapping a given split
-        node to an animation to be played
+        node to an animation to be played.
         """
         # Create an initial decision tree surface
         # Go through each split node

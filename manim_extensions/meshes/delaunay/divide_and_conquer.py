@@ -4,7 +4,7 @@
 
 
 """
-functions to create delaunay meshes by divide and conquer
+functions to create delaunay meshes by divide and conquer.
 """
 
 from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate

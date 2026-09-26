@@ -4,7 +4,7 @@
 
 
 """
-define a few basic mesh-structures to be used as examples or test
+define a few basic mesh-structures to be used as examples or test.
 """
 
 # python imports

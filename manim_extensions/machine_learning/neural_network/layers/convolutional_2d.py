@@ -152,7 +152,7 @@ class FeatureMap(VGroup):
             self.add(self.exterior_rectangle)
 
     def get_corners_dict(self):
-        """Returns a dictionary of the corners"""
+        """Returns a dictionary of the corners."""
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.exterior_rectangle.get_corners_dict()
 
@@ -318,7 +318,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self):
-        """Construct the activation function"""
+        """Construct the activation function."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -334,7 +334,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             self.add(self.activation_function)
 
     def construct_feature_maps(self):
-        """Creates the neural network layer"""
+        """Creates the neural network layer."""
         # Draw rectangles that are filled in with opacity
         feature_maps = []
         for filter_index in range(self.num_feature_maps):
@@ -373,7 +373,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return VGroup(*feature_maps)
 
     def highlight_and_unhighlight_feature_maps(self):
-        """Highlights then unhighlights feature maps"""
+        """Highlights then unhighlights feature maps."""
         return Succession(
             ApplyMethod(self.feature_maps.set_color, self.active_color),
             ApplyMethod(self.feature_maps.set_color, self.color),
@@ -426,11 +426,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return self.feature_maps.get_center()
 
     def get_width(self):
-        """Overrides get width function"""
+        """Overrides get width function."""
         return self.feature_maps.length_over_dim(0)
 
     def get_height(self):
-        """Overrides get height function"""
+        """Overrides get height function."""
         return self.feature_maps.length_over_dim(1)
 
     def move_to(self, mobject_or_point: Mobject):

@@ -97,7 +97,7 @@ class ActivationFunction(ABC, VGroup):
         self.construct_activation_function()
 
     def construct_activation_function(self):
-        """Makes the activation function"""
+        """Makes the activation function."""
         # Make an axis
         self.axes = Axes(
             x_range=self.x_range,

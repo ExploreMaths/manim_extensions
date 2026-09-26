@@ -102,7 +102,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         """
         initialize super Group and set all the params
         vertices, edges and faces are groups, so we can easily access them later on
-        finally setup everything that needs to be rendered
+        finally setup everything that needs to be rendered.
         """
         self.mesh: Mesh = mesh
         self.vertices: m.Group = m.Group()
@@ -120,7 +120,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         self.setup()
 
     def setup(self) -> None:
-        """create all the necessary manim objects for the renderer"""
+        """create all the necessary manim objects for the renderer."""
         if self.display_faces:
             self.setup_faces()
         if self.display_edges:

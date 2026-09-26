@@ -135,7 +135,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
 
     def _make_output_feature_maps(self, num_input_feature_maps: int, input_feature_map_size: int):
-        """Makes a set of output feature maps"""
+        """Makes a set of output feature maps."""
         # Compute the size of the feature maps
         output_feature_map_size = (
             input_feature_map_size[0] / self.kernel_size,
@@ -179,5 +179,5 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     @override_animation(Create)
     def _create_override(self, **kwargs):
-        """Create animation for the MaxPooling operation"""
+        """Create animation for the MaxPooling operation."""
         pass

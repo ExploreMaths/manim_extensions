@@ -77,7 +77,7 @@ class VariationalAutoencoder(VGroup):
         self.neural_network, self.embedding_layer = self._construct_neural_network()
 
     def _construct_neural_network(self):
-        """Makes the VAE encoder, embedding layer, and decoder"""
+        """Makes the VAE encoder, embedding layer, and decoder."""
         embedding_layer = EmbeddingLayer()
 
         neural_network = NeuralNetwork(

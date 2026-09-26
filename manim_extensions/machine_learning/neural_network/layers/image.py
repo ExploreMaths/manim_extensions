@@ -171,7 +171,7 @@ class ImageLayer(NeuralNetworkLayer):
         return AnimationGroup()
 
     def get_right(self):
-        """Override get right"""
+        """Override get right."""
         return self.image_mobject.get_right()
 
     def scale(self, scale_factor: float, **kwargs):

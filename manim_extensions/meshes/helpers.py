@@ -4,7 +4,7 @@
 
 
 """
-some basic helpers for our models
+some basic helpers for our models.
 """
 
 # python imports

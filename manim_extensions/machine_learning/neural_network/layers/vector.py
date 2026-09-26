@@ -86,7 +86,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         self.add(self.vector_label)
 
     def make_vector(self):
-        """Makes the vector"""
+        """Makes the vector."""
         if False:
             # TODO install Latex
             values = np.array([self.value_func() for i in range(self.num_values)])
@@ -113,5 +113,5 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
     @override_animation(Create)
     def _create_override(self):
-        """Create animation"""
+        """Create animation."""
         return Write(self.vector_label)

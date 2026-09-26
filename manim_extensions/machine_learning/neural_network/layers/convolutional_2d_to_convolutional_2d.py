@@ -237,12 +237,12 @@ class Filters(VGroup):
         return feature_map_rectangles
 
     def make_connective_lines(self):
-        """Lines connecting input filter with output node"""
+        """Lines connecting input filter with output node."""
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
 
         def make_input_connective_lines():
-            """Makes connective lines between the corners of the input filters"""
+            """Makes connective lines between the corners of the input filters."""
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -262,7 +262,7 @@ class Filters(VGroup):
             return VGroup(*lines)
 
         def make_output_connective_lines():
-            """Makes connective lines between the corners of the output filters"""
+            """Makes connective lines between the corners of the output filters."""
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -282,7 +282,7 @@ class Filters(VGroup):
             return VGroup(*lines)
 
         def make_input_to_output_connective_lines():
-            """Make connective lines between last input filter and first output filter"""
+            """Make connective lines between last input filter and first output filter."""
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
             output_rectangle = self.output_rectangles[0]

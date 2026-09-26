@@ -4,7 +4,7 @@
 
 
 """
-functions to check delaunay criterion
+functions to check delaunay criterion.
 """
 
 # python imports

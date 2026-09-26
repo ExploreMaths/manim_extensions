@@ -88,7 +88,7 @@ class LeafNode(Group):
             raise NotImplementedError()
 
     def _construct_image_node(self, class_index: Any):
-        """Make an image node"""
+        """Make an image node."""
         # Get image
         image_path = self.class_image_paths[class_index]
         pil_image = Image.open(image_path)
@@ -248,7 +248,7 @@ class DecisionTreeDiagram(Group):
         return node
 
     def _make_connection(self, top: Mobject, bottom: Mobject, is_leaf: bool = False):
-        """Make a connection from top to bottom"""
+        """Make a connection from top to bottom."""
         top_node_bottom_location = top.get_center()
         top_node_bottom_location[1] -= top.height / 2
         bottom_node_top_location = bottom.get_center()
@@ -259,7 +259,7 @@ class DecisionTreeDiagram(Group):
         return line
 
     def _make_tree(self):
-        """Construct the tree diagram"""
+        """Construct the tree diagram."""
         tree_group = Group()
         max_depth = self.tree.max_depth
         # Make the root node

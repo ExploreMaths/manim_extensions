@@ -102,7 +102,7 @@ class NetworkConnection(VGroup):
         self.make_mobjects()
 
     def make_mobjects(self) -> None:
-        """Makes the submobjects"""
+        """Makes the submobjects."""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject
             right_mobject = self.end_mobject
@@ -193,7 +193,7 @@ class NetworkConnection(VGroup):
     def _override_passing_flash(
         self, run_time: float = 1.0, time_width: float = 0.2
     ) -> Animation:
-        """Passing flash animation"""
+        """Passing flash animation."""
         if self.arc_direction == "straight":
             return ShowPassingFlash(
                 self.straight_arrow.copy().set_color(self.active_color),

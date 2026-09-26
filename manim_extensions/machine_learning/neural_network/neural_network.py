@@ -232,7 +232,7 @@ class NeuralNetwork(Group):
 
     def _construct_input_layers(self):
         """Constructs each of the input layers in context
-        of their adjacent layers"""
+        of their adjacent layers."""
         prev_layer = None
         next_layer = None
         # Go through all the input layers and run their construct method
@@ -256,7 +256,7 @@ class NeuralNetwork(Group):
         layout: str = "linear", 
         layout_direction: str = "top_to_bottom"
     ):
-        """Creates the neural network"""
+        """Creates the neural network."""
         # TODO implement more sophisticated custom layouts
         # Default: Linear layout
         for layer_index in range(1, len(self.input_layers)):
@@ -309,7 +309,7 @@ class NeuralNetwork(Group):
                     )
 
     def _construct_connective_layers(self):
-        """Draws connecting lines between layers"""
+        """Draws connecting lines between layers."""
         connective_layers = ListGroup()
         all_layers = ListGroup()
         for layer_index in range(len(self.input_layers) - 1):
@@ -337,7 +337,7 @@ class NeuralNetwork(Group):
         return connective_layers, all_layers
 
     def _place_connective_layers(self):
-        """Places the connective layers
+        """Places the connective layers.
         """
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
@@ -505,7 +505,7 @@ class NeuralNetwork(Group):
 
     @override_animation(Create)
     def _create_override(self, **kwargs):
-        """Overrides Create animation"""
+        """Overrides Create animation."""
         # Stop the neural network from being created twice
         if self.created:
             # manim >= 0.21 raises when playing an empty AnimationGroup.
@@ -604,7 +604,7 @@ class NeuralNetwork(Group):
         return layers_to_return
 
     def __repr__(self, metadata: str = ["z_index", "title_text"]):
-        """Print string representation of layers"""
+        """Print string representation of layers."""
         inner_string = ""
         for layer in self.all_layers:
             inner_string += f"{repr(layer)}("

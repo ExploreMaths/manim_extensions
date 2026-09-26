@@ -5,7 +5,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 r"""
-A directive for including Manim videos in a Sphinx document
+A directive for including Manim videos in a Sphinx document.
 """
 from __future__ import annotations
 

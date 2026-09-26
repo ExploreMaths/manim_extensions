@@ -200,7 +200,7 @@ class SpaceScene(Scene):
         super().__init__(renderer=renderer, **kwargs)
 
     def setup(self):
-        """Used internally"""
+        """Used internally."""
         self.add(self.space)
         self.space.add_updater(_step)
 
