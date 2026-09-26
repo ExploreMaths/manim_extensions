@@ -100,7 +100,7 @@ class RemoveLayer(AnimationGroup):
         return before_layer, after_layer, before_connective, after_connective
 
     def make_remove_animation(self):
-        """Removes layer and the surrounding connective layers"""
+        """Removes layer and the surrounding connective layers."""
         remove_layer_animation = self.make_remove_layer_animation()
         remove_connective_animation = self.make_remove_connective_layers_animation()
         # Remove animations
@@ -111,7 +111,7 @@ class RemoveLayer(AnimationGroup):
         return remove_animations
 
     def make_remove_layer_animation(self):
-        """Removes the layer"""
+        """Removes the layer."""
         # Remove the layer
         self.neural_network.all_layers.remove(self.layer)
         # Fade out the removed layer
@@ -119,7 +119,7 @@ class RemoveLayer(AnimationGroup):
         return fade_out_removed
 
     def make_remove_connective_layers_animation(self):
-        """Removes the connective layers before and after layer if they exist"""
+        """Removes the connective layers before and after layer if they exist."""
         # Fade out the removed connective layers
         fade_out_before_connective = AnimationGroup()
         if not self.before_connective is None:
@@ -137,7 +137,7 @@ class RemoveLayer(AnimationGroup):
         return remove_connective_group
 
     def make_move_animation(self):
-        """Collapses layers"""
+        """Collapses layers."""
         # Animate the movements
         move_before_layers = AnimationGroup()
         shift_right_amount = None
@@ -174,7 +174,7 @@ class RemoveLayer(AnimationGroup):
         return move_group
 
     def make_new_connective_animation(self):
-        """Makes new connective layer"""
+        """Makes new connective layer."""
         self.anim_count = 0
 
         def create_new_connective(neural_network: Any):
@@ -271,7 +271,7 @@ class InsertLayer(AnimationGroup):
         super().__init__(*animations, lag_ratio=1.0)
 
     def get_connective_layer_widths(self):
-        """Gets the widths of the connective layers"""
+        """Gets the widths of the connective layers."""
         # Make the layers
         before_connective = None
         after_connective = None
@@ -290,7 +290,7 @@ class InsertLayer(AnimationGroup):
         return before_connective_width, after_connective_width
 
     def remove_connective_layer_animation(self):
-        """Removes the connective layer before the insertion index"""
+        """Removes the connective layer before the insertion index."""
         # Check if connective layer before exists
         if len(self.layers_before) > 0:
             removed_connective = self.layers_before[-1]
@@ -303,7 +303,7 @@ class InsertLayer(AnimationGroup):
         return None, AnimationGroup()
 
     def make_move_layers_animation(self):
-        """Shifts layers before and after"""
+        """Shifts layers before and after."""
         (
             before_connective_width,
             after_connective_width,
@@ -341,7 +341,7 @@ class InsertLayer(AnimationGroup):
         return shift_animations
 
     def make_create_layer_animation(self):
-        """Animates the creation of the layer"""
+        """Animates the creation of the layer."""
         return Create(self.layer)
 
     def make_create_connective_layers_animation(

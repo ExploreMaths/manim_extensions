@@ -41,7 +41,7 @@ class ListGroup(Mobject):
     def __getitem__(  # type: ignore[override] # list indexing may return a single item or a slice
         self, indices: int | slice
     ) -> Mobject | list[Mobject]:
-        """Traditional list indexing"""
+        """Traditional list indexing."""
         return self.items[indices]
 
     def insert(  # type: ignore[override] # intentionally returns None instead of the group
@@ -181,7 +181,7 @@ class ListGroup(Mobject):
         return -1
 
     def __len__(self) -> int:
-        """Length of items"""
+        """Length of items."""
         return len(self.items)
 
     def set_z_index(  # type: ignore[override] # intentionally returns None instead of the group

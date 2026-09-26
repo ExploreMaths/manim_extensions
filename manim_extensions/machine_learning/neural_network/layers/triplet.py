@@ -129,7 +129,7 @@ class TripletLayer(NeuralNetworkLayer):
 
     def make_assets(self):
         """
-        Constructs the assets needed for a triplet layer
+        Constructs the assets needed for a triplet layer.
         """
         # Handle anchor
         anchor_group = LabeledColorImage(

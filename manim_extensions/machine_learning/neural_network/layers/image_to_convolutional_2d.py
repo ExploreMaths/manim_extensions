@@ -110,7 +110,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         raise NotImplementedError()
 
     def grayscale_image_forward_pass_animation(self):
-        """Handles forward pass animation for 1 channel image"""
+        """Handles forward pass animation for 1 channel image."""
         animations = []
         image_mobject = self.input_layer.image_mobject
         target_feature_map = self.output_layer.feature_maps[0]

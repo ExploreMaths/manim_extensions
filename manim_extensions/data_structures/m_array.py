@@ -1877,7 +1877,7 @@ class MArrayPointer(VGroup):
             self.add(self.__mob_label)
 
     def __init_pos(self) -> None:
-        """Initializes the position of the object"""
+        """Initializes the position of the object."""
 
         arrow_pos_np = self.__calc_arrow_pos()
         self.next_to(
@@ -2390,7 +2390,7 @@ class MArraySlidingWindow(VGroup):
             self.add(self.__mob_label)
 
     def __init_pos(self) -> None:
-        """Initializes the position of the object"""
+        """Initializes the position of the object."""
 
         self.__pos_mobs(True, True)
 

@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 
-"""Magnetostatics module"""
+"""Magnetostatics module."""
 
 from __future__ import annotations
 from manim import ArrowVectorField, VMobject

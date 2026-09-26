@@ -36,7 +36,7 @@ def compute_node_depths(tree: SklearnTree) -> list[int]:
     """
 
     def depth(node_index: int, current_node_index: int = 0) -> int:
-        """Compute the height of a node"""
+        """Compute the height of a node."""
         if current_node_index == node_index:
             return 0
         elif (
@@ -77,7 +77,7 @@ def compute_level_order_traversal(tree: SklearnTree) -> list[int]:
     """
 
     def depth(node_index: int, current_node_index: int = 0) -> int:
-        """Compute the height of a node"""
+        """Compute the height of a node."""
         if current_node_index == node_index:
             return 0
         elif (

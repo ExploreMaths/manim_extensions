@@ -252,7 +252,7 @@ class Cell(VGroup):
         Parameters
         ----------
         new_width
-            The new width
+            The new width.
         """
         self.cell_width = new_width
         

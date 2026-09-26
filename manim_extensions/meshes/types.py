@@ -4,7 +4,7 @@
 
 
 """
-custom type hints for all the models
+custom type hints for all the models.
 """
 
 # python imports

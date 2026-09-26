@@ -4,7 +4,7 @@
 
 
 """
-functions to display voronoi diagram and create delaunay meshes as its dual
+functions to display voronoi diagram and create delaunay meshes as its dual.
 """
 
 # python imports

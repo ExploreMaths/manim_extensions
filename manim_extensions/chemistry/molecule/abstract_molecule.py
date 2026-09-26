@@ -70,7 +70,7 @@ class AbstractMolecule:
         Returns
         -------
         GraphMolecule
-            GraphMolecule from the file
+            GraphMolecule from the file.
         """
         mc_molecule = MCMolecule.construct_from_file(
             filepath=filepath,
@@ -173,7 +173,7 @@ class AbstractMolecule:
         Returns
         -------
         ThreeDMolecule
-            ThreeDMolecule from the string
+            ThreeDMolecule from the string.
         """
 
         mc_molecule = MCMolecule.construct_from_string(
@@ -284,7 +284,7 @@ class AbstractMolecule:
         Returns
         -------
         GraphMolecule
-            GraphMolecule
+            GraphMolecule.
         """
         pubchem_api_manager = PubchemAPIManager(
             cid=cid, name=name, smiles=smiles, inchi=inchi, three_d=three_d

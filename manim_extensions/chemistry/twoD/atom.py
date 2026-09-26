@@ -135,7 +135,7 @@ class MAtomObject(VGroup):
 
     def add_atom(self):
         """
-        Adds an atom depending on the representation
+        Adds an atom depending on the representation.
         """
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)

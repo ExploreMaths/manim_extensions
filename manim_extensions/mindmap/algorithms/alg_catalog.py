@@ -10,7 +10,7 @@ Layout characteristics:
 - Root node is centred
 - Second-level nodes are arranged horizontally below the root
 - Third-level and deeper nodes are arranged vertically below their parent (vertical tree)
-- Sibling offsets are automatically adjusted to avoid overlaps
+- Sibling offsets are automatically adjusted to avoid overlaps.
 """
 
 __all__ = ["CatalogLayout"]
@@ -384,7 +384,7 @@ class CatalogLayout(Layout):
         """
         Step 2: compute left and top of child nodes.
         - Children of the root are arranged horizontally
-        - Children of non-root nodes are arranged vertically
+        - Children of non-root nodes are arranged vertically.
         """
 
         def pre_cb(node: CatalogNode, layer: int, _idx: int):
@@ -427,7 +427,7 @@ class CatalogLayout(Layout):
         Step 3: adjust positions (handle subtree width/height offsets).
         - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings
         - Pre-order: for non-root nodes with children, adjust vertical offset
-        - Post-order: for the root, shift all children horizontally to centre the whole subtree
+        - Post-order: for the root, shift all children horizontally to centre the whole subtree.
         """
 
         # Pre-order callback

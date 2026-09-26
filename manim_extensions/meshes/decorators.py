@@ -4,7 +4,7 @@
 
 
 """
-A place for all decorators
+A place for all decorators.
 """
 
 import warnings

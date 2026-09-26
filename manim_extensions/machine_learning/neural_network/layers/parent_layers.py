@@ -174,7 +174,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
         return super()._create_override()
 
 class ThreeDLayer(ABC):
-    """Abstract class for 3D layers"""
+    """Abstract class for 3D layers."""
     pass
     # Angle of ThreeD layers is static context
 

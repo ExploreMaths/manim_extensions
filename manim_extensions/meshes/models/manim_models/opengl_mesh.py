@@ -37,7 +37,7 @@ class FastManimMesh(OpenGLMobject):
     NOTE: requires to manipulate the manim lib
         -> copy directory 'mesh' (under manim_extensions.meshes/shaders/) to manim/renderer/shaders/
 
-    HINT: the mesh must only consist of triangles
+    HINT: the mesh must only consist of triangles.
     """
 
     shader_dtype = [
@@ -52,7 +52,7 @@ class FastManimMesh(OpenGLMobject):
         shader_folder: Optional[Any]=None,
         **kwargs,
     ):
-        """Initialization. mesh must only consist of triangles"""
+        """Initialization. mesh must only consist of triangles."""
         # imported here because OGLM requires the optional moderngl dependency
         from ...params import OGLM
 

@@ -166,7 +166,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                 return FadeOut(gaussian)
 
     def sample_point_location_from_distribution(self):
-        """Samples from the current latent distribution"""
+        """Samples from the current latent distribution."""
         mean = self.latent_distribution.mean
         cov = self.latent_distribution.cov
         point = np.random.multivariate_normal(mean, cov)
@@ -176,7 +176,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return location
 
     def get_distribution_location(self):
-        """Returns mean of latent distribution in axes frame"""
+        """Returns mean of latent distribution in axes frame."""
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
     def construct_gaussian_point_cloud(

@@ -4,7 +4,7 @@
 
 
 """
-Mesh structure
+Mesh structure.
 """
 
 # python imports

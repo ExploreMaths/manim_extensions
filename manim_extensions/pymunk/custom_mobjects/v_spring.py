@@ -74,7 +74,7 @@ class VSpring(Line):
         super().__init__(start, end, stroke_width=stroke_width, color=color, **kwargs)
 
     def generate_points(self):
-        """重写 generate_points，使其不再生成直线，而是生成螺旋线"""
+        """重写 generate_points，使其不再生成直线，而是生成螺旋线."""
         # 1. 计算当前起点和终点的距离
         start = self._pointify(self.start)
         end = self._pointify(self.end)
