@@ -322,6 +322,7 @@ inline. Each example demonstrates one of the core extension modules.
            circuit.add_wire(r2.get_terminals("right"), g.get_terminals())
            circuit.add_wire(g.get_terminals(), vs.get_terminals("negative"))
 
+           circuit.scale_to_fit_height(6.5).move_to(ORIGIN)
            self.add(circuit)
 
 .. manim:: CompassExample
@@ -401,7 +402,9 @@ inline. Each example demonstrates one of the core extension modules.
            rack_center = gear1.get_center() + DOWN * gear1.rp
            rack.shift(np.array([rack_center[0] - rack_width / 2, rack_center[1], 0]))
 
-           self.add(gear1, gear2, rack)
+           content = VGroup(gear1, gear2, rack)
+           content.scale_to_fit_width(12).move_to(ORIGIN)
+           self.add(content)
 
 .. manim:: MeshesExample
    :save_last_frame:
@@ -556,7 +559,9 @@ inline. Each example demonstrates one of the core extension modules.
            c2 = Charge(-1).shift(RIGHT)
            field = ElectricField(c1, c2)
 
-           self.add(c1, c2, field)
+           content = VGroup(c1, c2, field)
+           content.scale_to_fit_width(12).move_to(ORIGIN)
+           self.add(content)
 
 .. manim:: PhysicsMechanicsExample
    :save_last_frame:

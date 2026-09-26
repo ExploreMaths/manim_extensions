@@ -757,7 +757,9 @@ class Gear(VMobject):
                    # bias selects which tooth flank engages when there is offset and play
                    gear2.mesh_to(gear1, offset=0.15, bias=False)
 
-                   self.add(gear1, gear2)
+                   mesh = VGroup(gear1, gear2)
+                   mesh.scale_to_fit_height(6.5)
+                   self.add(mesh)
                    self.play(
                        Rotate(gear1, gear1.pitch_angle, rate_func=linear),
                        Rotate(gear2, gear2.pitch_angle, rate_func=linear),

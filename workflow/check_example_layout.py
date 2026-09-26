@@ -90,11 +90,15 @@ def probe_block(task):
                 return orig_add(*mobs, **kwargs)
 
             def tracking_play(*anims, **kwargs):
+                def collect(anim, out):
+                    mobs = getattr(anim, "mobjects", None)
+                    if mobs:
+                        out.extend(mobs)
+                    for sub in getattr(anim, "animations", None) or ():
+                        collect(sub, out)
+
                 for anim in anims:
-                    try:
-                        collected.extend(anim.mobjects)
-                    except AttributeError:
-                        pass
+                    collect(anim, collected)
                 return orig_play(*anims, **kwargs)
 
             scene.add, scene.play = tracking_add, tracking_play
