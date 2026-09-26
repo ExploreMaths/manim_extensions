@@ -725,7 +725,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                # then snap all vertices onto a regular grid
                mm.move_to_grid(self, (1.0, 1.0, 1.0), (0.2, 0.2, 0.2))
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 

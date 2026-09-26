@@ -39,7 +39,7 @@ class SeqObject(VGroup):
                self.play(*SeqAction.subject_gives_gift_to_target(alice, order, bob))
                self.play(*SeqAction.subject_gives_gift_to_target(bob, order, alice))
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 

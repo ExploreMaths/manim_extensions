@@ -962,7 +962,7 @@ class CropImageMobject(ImageMobject):
                img[:] = (60, 120, 220)
                square = ImageMobject(img).scale(2.2).shift(LEFT * 2)
                rounded = CropImageMobject(img, corner_radius=0.2).scale(2.2).shift(RIGHT * 2)
-               content = VGroup(square, rounded)
+               content = Group(square, rounded)
                content.scale_to_fit_height(4).move_to(ORIGIN)
                self.add(content)
     """

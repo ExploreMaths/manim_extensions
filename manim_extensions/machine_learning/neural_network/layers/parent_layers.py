@@ -213,7 +213,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
                output_layer.construct_layer(None, None)
                connection = FeedForwardToFeedForward(input_layer, output_layer)
                assert isinstance(connection, ConnectiveLayer)
-               content = VGroup(input_layer, output_layer, connection)
+               content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
     """
@@ -302,7 +302,7 @@ class BlankConnective(ConnectiveLayer):
                input_layer.construct_layer(None, None)
                output_layer.construct_layer(None, None)
                connection = FeedForwardToFeedForward(input_layer, output_layer)
-               content = VGroup(input_layer, output_layer, connection)
+               content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
     """

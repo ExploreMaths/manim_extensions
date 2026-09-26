@@ -194,7 +194,7 @@ def animate_of_display(
                )
                self.play(*anims)
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_width(12).move_to(ORIGIN)
                if content.height > 7:
                    content.scale_to_fit_height(7).move_to(ORIGIN)
@@ -773,7 +773,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
                self.play(LayoutAnimation(self, root,
                                          layout_config=LayoutConfig(direction=UP)))
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_width(11).move_to(ORIGIN)
     """
 
@@ -1038,7 +1038,7 @@ class ScaleNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1]}))
                self.play(ScaleNode(self, {a1: 2}))
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_width(12).move_to(ORIGIN)
                if content.height > 7:
                    content.scale_to_fit_height(7).move_to(ORIGIN)

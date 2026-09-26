@@ -500,7 +500,7 @@ inline. Each example demonstrates one of the core extension modules.
                self.play(anim)
            self.wait(2)
 
-           content = VGroup(*self.mobjects)
+           content = Group(*self.mobjects)
            content.scale_to_fit_height(6).move_to(ORIGIN)
 
 .. manim:: TikzExample
