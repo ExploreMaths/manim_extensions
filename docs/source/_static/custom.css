@@ -175,3 +175,20 @@ h4, h5, h6{
     font-size: 100%;
     font-family: inherit;
 }
+
+/* Render napoleon section rubrics (Examples, ...) with the same
+   bold-with-colon look as the Parameters/Returns field-list headings. */
+p.rubric {
+    font-weight: bold;
+}
+p.rubric::after {
+    content: ":";
+}
+/* furo de-boldens and uppercases rubrics inside field-list <dd>
+   (exactly where napoleon puts Examples); restore the heading look. */
+dd p.rubric {
+    font-weight: bold;
+}
+dd p.rubric::after {
+    content: ":";
+}
