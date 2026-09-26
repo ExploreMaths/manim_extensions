@@ -69,7 +69,7 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
     -------
     FadeOut
         The animation fading out the given nodes and their subtrees.
-        """
+    """
     mobjs = []
     for node in nodes:
         for node_ in bfs_walker(node):
@@ -134,7 +134,7 @@ def animate_of_create(
     List[Animation]
         The animations creating the node content, its surrounding
         rectangle, and the connector line.
-        """
+    """
     anims = []
     node.set_connector(layout_type, direction, **line_styles)
     if isinstance(node.vmobject, ImageMobject):
@@ -219,7 +219,7 @@ def animate_of_display(
     List[Animation]
         The animations moving the node content and surrounding rectangle
         to the new position and updating the connector line.
-        """
+    """
     anims = [
         node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
@@ -290,7 +290,7 @@ def animate_of_scale(
     List[Animation]
         The animations scaling the node content and surrounding rectangle
         and updating the connector line.
-        """
+    """
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
@@ -362,7 +362,7 @@ def animate_of_alter(
     List[Animation]
         The animations replacing the node content and surrounding
         rectangle and updating the connector line.
-        """
+    """
     anims = [
         node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
         node.surr_rect.animate.become(
@@ -432,7 +432,7 @@ def animate_of_node(
     List[Animation]
         The animations matching the node's current state (create, display,
         scale, or alter).
-        """
+    """
     args = (node, pos, direction, line_styles, node_styles, layout_type)
     match node.node_state:
         case NodeSate.INSERT:
@@ -540,7 +540,7 @@ def animate_of_layout(
     List[Animation]
         The animations produced by re-running the layout over the tree,
         including a fade-out animation for any removed subtrees.
-        """
+    """
     direction = layout_config.direction
     change_dir = is_direction_change(root, direction)
     change_layout = is_layout_change(root, layout_type)
@@ -711,7 +711,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         Node
             The common root node, or ``None`` if the nodes do not share a
             common root.
-                """
+        """
         root = nodes[0].get_root()
         if len(nodes) == 1:
             return root
@@ -771,7 +771,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
                self.play(LayoutAnimation(self, root,
                                          layout_config=LayoutConfig(direction=UP)))
                self.wait()
-                """
+    """
 
     def __init__(
         self,
@@ -847,7 +847,7 @@ class RemoveNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(RemoveNode(self, [a1]))
                self.wait()
-                """
+    """
 
     def __init__(
         self,

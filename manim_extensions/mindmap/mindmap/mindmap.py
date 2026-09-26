@@ -186,7 +186,7 @@ class TimeLine(AbstractMap):
                timeline.scale_to_fit_width(12)
                self.add(timeline)
                timeline.get_node((0, 1)).set_color(YELLOW)
-        """
+    """
 
     def __init__(
         self,
@@ -294,7 +294,7 @@ class StandardMap(AbstractMap):
                mind_map.scale_to_fit_width(12)
                self.add(mind_map)
                mind_map.get_children((0, 0)).set_color(YELLOW)
-        """
+    """
 
     def __init__(
         self,
@@ -403,7 +403,7 @@ class CatalogMap(AbstractMap):
                catalog.scale_to_fit_width(12)
                self.add(catalog)
                catalog.get_descendants((0, 0)).set_color(YELLOW)
-        """
+    """
 
     def __init__(
         self,

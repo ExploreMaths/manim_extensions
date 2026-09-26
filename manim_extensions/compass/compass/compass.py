@@ -77,7 +77,7 @@ class Compass(VGroup):
                    span=2.5, head_color=BLUE, niddle_color=GREEN, pen_color=ORANGE
                ).next_to(narrow, RIGHT, buff=1.5)
                self.add(narrow, wide)
-                """
+    """
 
     def __init__(
         self,
@@ -365,7 +365,7 @@ class Compass(VGroup):
             The signed angle (in radians) by which the legs must be rotated to
             open the compass from its current span to ``span``; negative if the
             pen tip is counter-clockwise from the needle tip.
-                """
+        """
         L = self.leg_length
         distance = self.get_span()
         span_start = 2 * L if distance > 2 * L else distance
@@ -409,7 +409,7 @@ class Compass(VGroup):
         -------
         Compass
             The repositioned self.
-                """
+        """
         self.split_compass_with_niddle_tip_fixed(span_angle, niddle_tip_pos)
         self.rotate(angle=rotate_angle, about_point=niddle_tip_pos)
         return self

@@ -68,7 +68,7 @@ def get_arc(
                    Dot(2 * RIGHT, color=PURE_YELLOW),
                    arc,
                )
-        """
+    """
     arc_radius = get_distance(niddle_pos, pen_pos)
     vec_s = pen_pos - niddle_pos
     return Arc(
@@ -98,7 +98,7 @@ def get_distance(
     -------
     float
         The Euclidean distance between ``point_start`` and ``point_end``.
-        """
+    """
     return float(np.linalg.norm(point_start - point_end))
 
 

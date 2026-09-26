@@ -424,7 +424,7 @@ class Gear(VMobject):
             The color to apply.
         kwargs
             Kwargs processed by this operation.
-                """
+        """
         if "family" in kwargs:
             super().set_stroke(color, **kwargs)
         else:

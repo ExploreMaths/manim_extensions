@@ -290,7 +290,7 @@ class SpaceScene(Scene):
         ----------
         mobs : Mobject
             Mobs processed by this operation.
-                """
+        """
         for mob in mobs:
             if isinstance(mob, VGroup or Group):
                 self.stop_rigidity(*mob)
@@ -332,7 +332,7 @@ def get_shape(mob: VMobject) -> None:
     ----------
     mob : VMobject
         The mobject to manipulate.
-        """
+    """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
         mob.shape = pymunk.Circle(body=mob.body, radius=mob.radius)
@@ -362,7 +362,7 @@ def get_angle(mob: VMobject) -> None:
     ----------
     mob : VMobject
         The mobject to manipulate.
-        """
+    """
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]
         vec2 = type(mob)().get_vertices()[0] - type(mob)().get_vertices()[1]
