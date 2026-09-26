@@ -17,7 +17,14 @@ This script checks that public functions, methods, and classes in
 4. Section headers must use the numpydoc format (a bare header line
    followed by a ``----------`` underline). Google-style inline headers
    such as ``Returns:`` are rejected.
-5. Mobject subclasses (including indirect subclasses within the same file)
+5. Entry descriptions in the Parameters/Other Parameters/Returns/Yields/
+   Receives/Raises/Attributes sections must start with a capital letter
+   and end with a period. Descriptions starting with inline literals,
+   cross-reference roles or type placeholders are exempt.
+6. Every docstring must end with terminal punctuation (the last content
+   line ends with ``. ? !`` or an allowed equivalent). URLs, code-output
+   lines, formulas and TODO placeholders are exempt.
+7. Mobject subclasses (including indirect subclasses within the same file)
    must include a ``.. manim::`` example block in the class docstring.
    Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
 
@@ -106,6 +113,19 @@ NON_RENDERABLE_BASES = {
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
 BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
 SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
+
+# Sections whose entry descriptions must be style-checked.
+STYLE_SECTIONS = {
+    "Parameters", "Other Parameters", "Returns", "Yields",
+    "Receives", "Raises", "Attributes",
+}
+# Descriptions starting with these prefixes already satisfy the style
+# (inline literals, cross-reference roles, type placeholders, bullets,
+# directives) or must not be rewritten.
+DESC_SKIP_STARTS = ("``", ":", "(", "[", "-", "*", ".. ")
+ROLE_STARTS = (":class:", ":func:", ":meth:", ":mod:", ":attr:", ":data:")
+ALLOWED_DESC_END = tuple(".?!。,;`\"')]}")
+ALLOWED_DOC_END = tuple(".?!。:`\"')]}>*_–—")
 # Google-style inline section headers such as ``Returns:``; numpydoc
 # sections are a bare header line followed by a ``----------`` underline.
 INLINE_SECTION_RE = re.compile(
@@ -258,6 +278,127 @@ def raised_exceptions(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list:
     return sorted(names)
 
 
+def section_entry_descriptions(doc: str) -> list:
+    """Return ``(first_line, last_line)`` of every entry description.
+
+    Scans the numpydoc sections in :data:`STYLE_SECTIONS`. Entry names,
+    return types and exception names are not part of the result; only
+    the description body of each entry is returned. Scanning stops at
+    the next underlined section header and at directives, so example
+    blocks are never mistaken for descriptions.
+    """
+    lines = doc.splitlines()
+    n = len(lines)
+    headers = [
+        i for i in range(n - 1)
+        if lines[i].strip() in STYLE_SECTIONS
+        and SECTION_UNDERLINE_RE.match(lines[i + 1])
+    ]
+    result = []
+    for hpos in headers:
+        j = hpos + 2
+        item_indent = None
+        while j < n:
+            if lines[j].strip():
+                item_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
+                break
+            j += 1
+        if item_indent is None:
+            continue
+        entries = []
+        k = j
+        while k < n:
+            stripped = lines[k].strip()
+            indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
+            if stripped:
+                if (
+                    k + 1 < n
+                    and SECTION_UNDERLINE_RE.match(lines[k + 1])
+                    and indent <= item_indent
+                ):
+                    break
+                if indent == item_indent and stripped.startswith(".. "):
+                    break
+                if indent < item_indent:
+                    break
+                if indent == item_indent:
+                    entries.append([k, []])
+                elif entries:
+                    entries[-1][1].append(k)
+            k += 1
+        for _entry, dlines in entries:
+            dlines = [d for d in dlines if lines[d].strip()]
+            if dlines:
+                result.append(
+                    (lines[dlines[0]].strip(), lines[dlines[-1]].strip())
+                )
+    return result
+
+
+def first_bare_alpha(text: str) -> int | None:
+    """Index of the first alphabetic character outside ``...`` spans."""
+    in_lit = False
+    i = 0
+    while i < len(text):
+        if text.startswith("``", i):
+            in_lit = not in_lit
+            i += 2
+            continue
+        if text[i].isalpha() and not in_lit:
+            return i
+        i += 1
+    return None
+
+
+def check_description_style(doc, qualname, lineno, violations):
+    """Descriptions start with a capital letter and end with a period."""
+    for first, last in section_entry_descriptions(doc):
+        if not first.startswith(DESC_SKIP_STARTS):
+            idx = first_bare_alpha(first)
+            if idx is not None and first[idx].islower():
+                violations.append({
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "DESCRIPTION_NOT_CAPITALIZED",
+                    "message": f"description '{first[:50]}' should start "
+                               f"with a capital letter",
+                })
+        if last and not last.endswith(ALLOWED_DESC_END):
+            if not last.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
+                violations.append({
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "DESCRIPTION_MISSING_PERIOD",
+                    "message": f"description '{last[:50]}' should end "
+                               f"with a period",
+                })
+
+
+def check_terminal_punctuation(doc, qualname, lineno, violations):
+    """The docstring's last content line ends with terminal punctuation."""
+    last = ""
+    for line in doc.splitlines():
+        if line.strip():
+            last = line.strip()
+    if not last or last.endswith(ALLOWED_DOC_END):
+        return
+    if "http://" in last or "https://" in last or last.startswith("#"):
+        return
+    if "TODO" in last:
+        return
+    if re.fullmatch(r"[\w()\s·^+*=/.-]+", last) and (
+        "=" in last or "·" in last or "^" in last
+    ):
+        return  # formula line
+    violations.append({
+        "line": lineno,
+        "qualname": qualname,
+        "type": "DOCSTRING_MISSING_PERIOD",
+        "message": f"docstring ends without terminal punctuation: "
+                  f"'{last[:50]}'",
+    })
+
+
 def annotation_is_none(node: ast.expr | None) -> bool:
     """Return True when the return annotation is None or absent."""
     if node is None:
@@ -315,6 +456,12 @@ def check_file(filepath: Path) -> list:
     module_doc = ast.get_docstring(tree)
     if module_doc:
         check_inline_sections(module_doc, "<module>", 1)
+        check_description_style(
+            module_doc, "<module>", 1, violations
+        )
+        check_terminal_punctuation(
+            module_doc, "<module>", 1, violations
+        )
 
     def visit_body(body, prefix, in_class):
         for node in body:
@@ -342,6 +489,8 @@ def check_file(filepath: Path) -> list:
             return  # missing docstrings are enforced by validate_docstrings.py
         qualname = f"{prefix}{name}"
         check_inline_sections(doc, qualname, node.lineno)
+        check_description_style(doc, qualname, node.lineno, violations)
+        check_terminal_punctuation(doc, qualname, node.lineno, violations)
         secs = section_names(doc)
         params = function_params(node)
         # __init__ parameters are documented in the class docstring instead;
@@ -427,6 +576,8 @@ def check_file(filepath: Path) -> list:
         qualname = f"{prefix}{node.name}"
         check_raises_last(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
+        check_description_style(doc, qualname, node.lineno, violations)
+        check_terminal_punctuation(doc, qualname, node.lineno, violations)
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:
