@@ -109,6 +109,12 @@ class LayoutConfig:
         sides : np.ndarray | List[np.ndarray], optional
             Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
     
+    Raises
+    ------
+    ValueError
+        Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`, :class:`~manim.constants.LEFT`,
+        :class:`~manim.constants.RIGHT`, or when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
+    
     Examples
     --------
     .. manim:: LayoutConfigExample
@@ -138,13 +144,6 @@ class LayoutConfig:
                    mobjects.add(node.vmobject, node.surr_rect)
                mobjects.scale_to_fit_height(6)
                self.add(mobjects)
-    
-    Raises
-    ------
-    ValueError
-        Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`, :class:`~manim.constants.LEFT`,
-        :class:`~manim.constants.RIGHT`, or when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
-    
     """
 
     def __init__(

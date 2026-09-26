@@ -219,6 +219,12 @@ class PutCompass(ApplyMethod):
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
 
+    Raises
+    ------
+    ValueError
+        Raised when the distance between ``niddle_pos`` and ``pen_pos``
+        exceeds the compass's drawing range (twice its leg length).
+
     Examples
     --------
     .. manim:: PutCompassDocExample
@@ -235,12 +241,6 @@ class PutCompass(ApplyMethod):
                self.add(targets)
                self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
                self.wait()
-
-    Raises
-    ------
-    ValueError
-        Raised when the distance between ``niddle_pos`` and ``pen_pos``
-        exceeds the compass's drawing range (twice its leg length).
     """
 
     def __init__(

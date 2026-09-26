@@ -57,6 +57,12 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
     output_folder : :class:`~typing.Any`
         Folder where the downloaded files are saved. Defaults to ``'.'``.
 
+    Raises
+    ------
+    Exception
+        Raised when no identifier (``cid``, ``name``, ``smiles``, or
+        ``inchi``) is provided.
+
     Examples
     --------
     .. code-block:: console
@@ -72,12 +78,6 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
         >>> File .\acetone.sdf is ready!!
         >>> File .\morphine.sdf is ready!!
         >>> Finished
-
-    Raises
-    ------
-    Exception
-        Raised when no identifier (``cid``, ``name``, ``smiles``, or
-        ``inchi``) is provided.
     """
 
     identifier = cid or name or smiles or inchi
