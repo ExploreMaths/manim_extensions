@@ -75,7 +75,7 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
            def construct(self):
                template = create_arabic_template()
                label = Tex("مرحبا", tex_template=template, font_size=48)
-               label.scale(1.6)
+               label.scale(3)
                self.play(Write(label))
                self.wait()
     """
@@ -136,7 +136,7 @@ def create_arabic_text(
            def construct(self):
                label = create_arabic_text("مرحبا", color="arabicblue",
                                           font_size=48)
-               label.scale(1.6)
+               label.scale(3)
                self.play(Write(label))
                self.wait()
     """

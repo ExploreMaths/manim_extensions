@@ -295,9 +295,9 @@ inline. Each example demonstrates one of the core extension modules.
            q = Queue(5, init_data=[1, 2, 3], total_width=6).next_to(arr, DOWN, buff=1.2)
            q.scale_to_fit_width(8)
 
-           self.add(nodes)
-           self.add(arr)
-           self.add(q)
+           content = VGroup(nodes, arr, q)
+           content.scale_to_fit_height(7).move_to(ORIGIN)
+           self.add(content)
 
 .. manim:: CircuitExample
    :save_last_frame:

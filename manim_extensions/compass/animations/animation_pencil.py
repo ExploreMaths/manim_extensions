@@ -71,9 +71,10 @@ class MovePencilTipTo(ApplyMethod):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
                target = Dot(ORIGIN, color=RED)
-               self.add(target)
                self.play(MovePencilTipTo(pencil, ORIGIN))
                self.wait()
+               content = VGroup(pencil, target)
+               content.scale_to_fit_height(5).move_to(ORIGIN)
 
     Parameters
     ----------

@@ -53,10 +53,12 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
            def construct(self):
                self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
                wave = RadialWave(
-                   LEFT * 2 + DOWN * 3,  # Two sources of waves
-                   RIGHT * 2 + DOWN * 3,
+                   LEFT * 2 + DOWN * 2,  # Two sources of waves
+                   RIGHT * 2 + DOWN * 2,
                    checkerboard_colors=[BLUE_D],
                    stroke_width=0,
+                   x_range=(-4, 4),
+                   y_range=(-4, 4),
                )
                self.play(FadeIn(wave))
                wave.start_wave()
@@ -172,7 +174,7 @@ class LinearWave(RadialWave):
        class LinearWaveExample(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
-               wave = LinearWave().shift(UP * 0.5)
+               wave = LinearWave(x_range=(-4, 4), y_range=(-4, 4))
                self.play(FadeIn(wave))
                wave.start_wave()
                self.wait()
