@@ -302,6 +302,8 @@ def animate_of_scale(
                )
                self.play(*anims)
                self.wait()
+               content = Group(*self.mobjects)
+               content.scale_to_fit_height(5).move_to(ORIGIN)
     """
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
@@ -376,6 +378,8 @@ def animate_of_alter(
                )
                self.play(*anims)
                self.wait()
+               content = Group(*self.mobjects)
+               content.scale_to_fit_height(5).move_to(ORIGIN)
     """
     anims = [
         node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
