@@ -715,10 +715,14 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         cls, mc_molecule: MCMolecule
     ) -> Tuple[Dict, Dict]:
         """
-        Transforms the structure of a mc_molecule to a (vertices, edges) tuple
-        with the following structure:
-        - Vertices: {<atom_index>: MCAtom}
-        - Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
+        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
+
+        The tuple has the following structure:
+
+        .. code-block:: text
+
+            Vertices: {<atom_index>: MCAtom}
+            Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
 
         Parameters
         ----------

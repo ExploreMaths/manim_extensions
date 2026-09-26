@@ -20,12 +20,14 @@ class TimelineNode:
     """Timeline layout node.
 
     Input attributes (required):
-        width, height: node dimensions
-        children: list of child nodes
-        side_dir: growth direction (subtrees rooted at second-level nodes grow upward or downward)
+
+    - ``width``, ``height``: node dimensions.
+    - ``children``: list of child nodes.
+    - ``side_dir``: growth direction (subtrees rooted at second-level nodes grow upward or downward).
 
     Output attributes (filled by the algorithm):
-        x, y: top-left coordinates of the node on the canvas
+
+    - ``x``, ``y``: top-left coordinates of the node on the canvas.
 
     Examples
     --------

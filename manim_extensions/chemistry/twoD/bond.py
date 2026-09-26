@@ -86,16 +86,20 @@ class BaseMBondObject(VGroup):
 
     def define_subtype(self, subtype: str) -> str | bool:
         """
-        Defines the subtype based on atoms' representations. Input options:
-            - 'complete'
-            - 'skeleton'
-            - 'over_bond'
+        Defines the subtype based on atoms' representations.
+
+        Input options:
+
+        - ``'complete'``
+        - ``'skeleton'``
+        - ``'over_bond'``
 
         Output options:
-            - shorter: Does not touch the cener of the atoms.
-            - shorter_from: Does not touch the center of the from atom.
-            - shorter_to: Does not touch the center of the to atom.
-            - None or false: Touches both atoms center
+
+        - ``'shorter'``: Does not touch the center of the atoms.
+        - ``'shorter_from'``: Does not touch the center of the from atom.
+        - ``'shorter_to'``: Does not touch the center of the to atom.
+        - ``None`` or ``False``: Touches both atoms center.
 
         Parameters
         ----------
@@ -482,9 +486,11 @@ class DoubleBond(BaseMBondObject):
     def get_surroundings(self):
         """
         Checks the number of bonds of C atoms.
+
         Returns False if the C has a structure like central C in acetone:
-            - Not bonded to H atoms.
-            - Double bond to at least another atom.
+
+        - Not bonded to H atoms.
+        - Double bond to at least another atom.
 
         Otherwise returns True, resulting in a structure like the C with
         double bond to imidazole.

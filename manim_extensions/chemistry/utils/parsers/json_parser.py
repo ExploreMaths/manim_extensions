@@ -193,7 +193,11 @@ class JSONParser(BaseParser):
     @staticmethod
     def data_parser(data: Any) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
+
         The Json format usually follows the structure:
+
+        .. code-block:: python
+
             {
                 <Origin of the file>: [
                     {
@@ -203,9 +207,15 @@ class JSONParser(BaseParser):
             }.
 
         The atom data follows the structure:
+
+        .. code-block:: python
+
             {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}
 
         The bond data follows the structure:
+
+        .. code-block:: python
+
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
 
         Parameters

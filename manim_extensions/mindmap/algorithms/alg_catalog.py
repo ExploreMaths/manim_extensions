@@ -24,14 +24,16 @@ class CatalogNode:
     """Organisation-chart layout node.
 
     Input attributes:
-        width, height: node dimensions
-        children: list of child nodes
+
+    - ``width``, ``height``: node dimensions.
+    - ``children``: list of child nodes.
 
     Output attributes (filled by the algorithm):
-        left, top: top-left coordinates of the node on the canvas
-        layer_index: layer index (root is 0)
-        parent: reference to the parent node
-        children_area_width: total width of the root's children (used for horizontal arrangement)
+
+    - ``left``, ``top``: top-left coordinates of the node on the canvas.
+    - ``layer_index``: layer index (root is 0).
+    - ``parent``: reference to the parent node.
+    - ``children_area_width``: total width of the root's children (used for horizontal arrangement).
 
     Examples
     --------

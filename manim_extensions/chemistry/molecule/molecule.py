@@ -14,9 +14,10 @@ class Molecule:
     """Works as a proxy between different types of molecules with the same methods.
 
     Supported types of molecules are:
-        - GraphMolecule
-        - MMoleculeObject
-        - ThreeDMolecule
+
+    - :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`
+    - :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`
+    - :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule`
 
     Parameters
     ----------

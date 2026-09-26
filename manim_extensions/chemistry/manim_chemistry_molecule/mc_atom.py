@@ -199,8 +199,10 @@ class MCAtom:
             Dictionary of custom element data to merge over the
             default elements data.
 
-        Output:
-            MCAtom.
+        Returns
+        -------
+        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`
+            The constructed atom.
 
         Raises
         ------
