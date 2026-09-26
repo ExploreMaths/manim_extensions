@@ -186,7 +186,7 @@ class HTMLParsedVMobject:
     """
 
     def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the exporter and write the initial HTML page."""
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -261,7 +261,11 @@ class HTMLParsedVMobject:
         os.remove(svg_filename)
     
     def update_html(self) -> None:
-        """TODO: add docstring for update_html."""
+        """Rewrite the HTML page with the current frame and time.
+
+        Called on every scene update; embeds the current SVG frame and
+        renderer time into the HTML/JS output.
+        """
         camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(
             camera.background_color,
@@ -291,7 +295,12 @@ class HTMLParsedVMobject:
             )
     
     def finish(self) -> None:
-        """TODO: add docstring for finish."""
+        """Stop the updater and write the final HTML and JS files.
+
+        Removes the scene updater and flushes the accumulated
+        JavaScript updates to ``<scene_name>.js`` and the final page to
+        ``<scene_name>.html``.
+        """
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
         if not hasattr(self, "last_t"):

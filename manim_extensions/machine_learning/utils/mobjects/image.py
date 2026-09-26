@@ -52,7 +52,7 @@ class GrayscaleImageMobject(Group):
     """
 
     def __init__(self, numpy_image: NDArray[Any], height: float = 2.3) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the grayscale image mobject."""
         super().__init__()
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
@@ -181,7 +181,7 @@ class LabeledColorImage(Group):
         font_size: float = 24,
         buff: float = 0.2,
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the labeled image group."""
         super().__init__()
         self.image = image
         self.color = color

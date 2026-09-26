@@ -41,7 +41,7 @@ class BaseParser(ABC):
     """
 
     def __init__(self, filename: FilePath) -> None:
-        """TODO: add docstring for __init__."""
+        """Read and parse the chemistry file."""
         self.file_data: Any = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):

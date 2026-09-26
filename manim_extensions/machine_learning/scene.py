@@ -32,7 +32,7 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the scene."""
         super().__init__(*args, **kwargs)
 
     def play(self, *args: Any, **kwargs: Any) -> None:

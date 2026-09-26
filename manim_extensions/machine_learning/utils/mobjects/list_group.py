@@ -34,7 +34,7 @@ class ListGroup(Mobject):
     """
 
     def __init__(self, *layers: Mobject) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the group with the given items."""
         super().__init__()
         self.items: list[Mobject] = [*layers]
 

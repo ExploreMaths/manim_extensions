@@ -180,7 +180,8 @@ class Table(VGroup):
         padding: float = 0.3,
         **kwargs: Any
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the table from a header row plus data rows, or a
+        single data matrix whose first row is the header."""
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and

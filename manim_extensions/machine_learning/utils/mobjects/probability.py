@@ -69,7 +69,7 @@ class GaussianDistribution(VGroup):
         color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the distribution plot."""
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
         if mean is None:

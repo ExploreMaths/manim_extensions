@@ -62,7 +62,7 @@ class Row(VGroup):
         index: int = 0,
         **kwargs: Any
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the row and create one cell per value."""
         super().__init__(**kwargs)
         
         self.values = values
