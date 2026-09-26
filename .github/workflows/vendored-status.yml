@@ -38,8 +38,7 @@ jobs:
         env:
           # Provided automatically; raises the GitHub API rate limit.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python workflow/update_vendored_status.py \
-          --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
+        run: python workflow/update_vendored_status.py --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
 
       - name: Publish to the vendored-status-cache branch
         run: |
