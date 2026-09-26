@@ -57,7 +57,9 @@ class Ray(Line):
                    Ray(LEFT * 5 + UP * i, RIGHT, 8, [a, a2], color=RED)
                    for i in np.linspace(-2, 2, 10)
                ]
-               self.add(a, a2, *rays)
+               content = VGroup(a, a2, *rays)
+               content.scale_to_fit_width(12).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(
