@@ -307,6 +307,8 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Write(molecule))
                self.play(Indicate(molecule.vertices[2]))
                self.wait()
+               content = Group(*self.mobjects)
+               content.scale_to_fit_height(4.5).move_to(ORIGIN)
 
     .. manim:: GraphMoleculeFromStringThreeD
 
@@ -346,6 +348,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                molecule = GraphMolecule.molecule_from_string(
                    acetone_mol, format="mol", ignore_hydrogens=False
                )
+               molecule.scale(2)
                self.play(Write(molecule))
                self.play(Rotate(molecule, PI / 2, axis=RIGHT))
                self.wait()
