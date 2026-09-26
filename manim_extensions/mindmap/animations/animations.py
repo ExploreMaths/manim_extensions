@@ -774,7 +774,9 @@ class LayoutAnimation(AbstractLayoutAnimation):
                                          layout_config=LayoutConfig(direction=UP)))
                self.wait()
                content = Group(*self.mobjects)
-               content.scale_to_fit_width(11).move_to(ORIGIN)
+               content.scale_to_fit_height(7).move_to(ORIGIN)
+               if content.width > 12:
+                   content.scale_to_fit_width(12).move_to(ORIGIN)
     """
 
     def __init__(
