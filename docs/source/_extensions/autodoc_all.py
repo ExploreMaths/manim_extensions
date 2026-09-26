@@ -30,8 +30,9 @@ Options
 
 Member options (``members``, ``undoc-members`` ...) come from
 ``autodoc_default_options`` in conf.py; ``:show-inheritance:`` is added
-to classes here because the autodoc_inheritance source-read hook only
-sees autoclass directives written literally in the .rst sources.
+here to classes with a real base class (everything but ``object``),
+because the autodoc_inheritance source-read hook only sees autoclass
+directives written literally in the .rst sources.
 
 Usage::
 
@@ -203,7 +204,15 @@ class AutoAllDirective(Directive):
                 if missing_only and key in documented:
                     continue
                 if kind == "class":
-                    lines += [f".. autoclass:: {key}", "   :show-inheritance:", ""]
+                    lines.append(f".. autoclass:: {key}")
+                    # "Bases: object" is noise; only show inheritance for
+                    # classes with a meaningful base.
+                    meaningful_bases = [
+                        b for b in getattr(obj, "__bases__", ()) if b is not object
+                    ]
+                    if meaningful_bases:
+                        lines.append("   :show-inheritance:")
+                    lines.append("")
                 elif kind == "function":
                     lines += [f".. autofunction:: {key}", ""]
                 else:
