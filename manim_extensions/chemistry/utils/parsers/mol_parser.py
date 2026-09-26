@@ -68,6 +68,22 @@ class MolParser(BaseParser):
         return mol_file
 
     @staticmethod
+    def parse_from_string(string: str) -> tuple[AtomsDict, BondsDict]:
+        """Parse MOL data passed directly as a string.
+
+        Parameters
+        ----------
+        string : :class:`str`
+            Raw MOL data (the contents of a ``.mol`` file).
+
+        Returns
+        -------
+        :class:`typing.Tuple`
+            ``(atoms_data, bonds_data)`` tuple of dictionaries.
+        """
+        return MolParser.data_parser(string.splitlines())
+
+    @staticmethod
     def data_parser(data: list[str]) -> tuple[AtomsDict, BondsDict]:
         # Get general data
         """Parse the lines of a MOL file into atoms and bonds dicts.

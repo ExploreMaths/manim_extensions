@@ -24,12 +24,41 @@ class MCElement:
        from manim import *
        from manim_extensions.chemistry import GraphMolecule, MCElement
 
+       acetone_mol = (
+           "acetone\n"
+           "manim_extensions\n"
+           "\n"
+           "10 9 0 0 0 0 999 V2000\n"
+           "3.7320 0.7500 0.0000 O\n"
+           "2.8660 0.2500 0.0000 C\n"
+           "2.0000 0.7500 0.0000 C\n"
+           "2.8660 -0.7500 0.0000 C\n"
+           "2.3100 1.2869 0.0000 H\n"
+           "1.4631 1.0600 0.0000 H\n"
+           "1.6900 0.2131 0.0000 H\n"
+           "2.2460 -0.7500 0.0000 H\n"
+           "2.8660 -1.3700 0.0000 H\n"
+           "3.4860 -0.7500 0.0000 H\n"
+           "1 2 2\n"
+           "2 3 1\n"
+           "2 4 1\n"
+           "3 5 1\n"
+           "3 6 1\n"
+           "3 7 1\n"
+           "4 8 1\n"
+           "4 9 1\n"
+           "4 10 1\n"
+           "M  END\n"
+       )
+
        class OverwrittenCarbonElement(Scene):
            def construct(self):
-               default = GraphMolecule.molecule_from_pubchem(name="acetone")
+               default = GraphMolecule.molecule_from_string(acetone_mol, format="mol")
                custom_carbon = MCElement(symbol="C", color=PURPLE)
-               custom = GraphMolecule.molecule_from_pubchem(
-                   name="acetone", elements_data_dict={"C": custom_carbon}
+               custom = GraphMolecule.molecule_from_string(
+                   acetone_mol,
+                   format="mol",
+                   elements_data_dict={"C": custom_carbon},
                )
                molecules = VGroup(default, custom).arrange(RIGHT, buff=1.5)
                self.play(Write(molecules))
