@@ -95,4 +95,8 @@ class FileHandler:
 
         parser = SUPPORTED_FORMATS.get(format)
 
+        parse_from_string = getattr(parser, "parse_from_string", None)
+        if parse_from_string is not None:
+            return parse_from_string(string)
+
         return parser.data_parser(string)
