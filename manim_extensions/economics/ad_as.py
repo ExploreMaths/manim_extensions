@@ -381,7 +381,7 @@ class ADASDiagram(EconDiagram):
 
     def positive_supply_shock(self, sras_price: Any, long_run: bool = True,
                               lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
-        """Positive supply shock
+        """Positive supply shock.
 
         Parameters
         ----------

@@ -185,7 +185,7 @@ class MCAtom:
         atom_index: Any, atom_data_dict: Dict, elements_data_dict: Dict
     ):
         """
-        Given an atom data dict from a parser, returns an MCAtom
+        Given an atom data dict from a parser, returns an MCAtom.
 
         Parameters
         ----------

@@ -26,7 +26,7 @@ from .parent_layers import NeuralNetworkLayer
 
 
 class ImageLayer(NeuralNetworkLayer):
-    """Single Image Layer for Neural Network
+    """Single Image Layer for Neural Network.
 
     Parameters
     ----------
@@ -97,7 +97,7 @@ class ImageLayer(NeuralNetworkLayer):
         self.show_image_on_create = show_image_on_create
 
     def construct_layer(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
-        """Construct layer method
+        """Construct layer method.
 
         Parameters
         ----------
@@ -126,7 +126,7 @@ class ImageLayer(NeuralNetworkLayer):
 
     @classmethod
     def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs):
-        """Creates a query using the paths
+        """Creates a query using the paths.
 
         Parameters
         ----------
@@ -175,7 +175,7 @@ class ImageLayer(NeuralNetworkLayer):
         return self.image_mobject.get_right()
 
     def scale(self, scale_factor: float, **kwargs):
-        """Scales the image mobject
+        """Scales the image mobject.
 
         Parameters
         ----------

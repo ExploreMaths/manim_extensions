@@ -13,7 +13,7 @@ from .math_operation_layer import MathOperationLayer
 from ...utils.mobjects.connections import NetworkConnection
 
 class FeedForwardToMathOperation(ConnectiveLayer):
-    """Connective layer between a feed-forward layer and a math operation layer
+    """Connective layer between a feed-forward layer and a math operation layer.
 
     Parameters
     ----------
@@ -71,7 +71,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes dots diverge from the given location and move to the feed forward nodes decoder
+        """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
         ----------

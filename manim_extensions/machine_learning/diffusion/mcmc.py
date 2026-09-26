@@ -72,7 +72,7 @@ def gaussian_proposal(x: int, sigma: float = 0.3):
 
 class MultidimensionalGaussianPosterior:
     """
-    N-Dimensional Gaussian distribution with
+    N-Dimensional Gaussian distribution with.
 
     mu ~ Normal(0, 10)
     var ~ LogNormal(0, 1.5)
@@ -262,7 +262,7 @@ class Uncreate(Create):
         )
 
 class MCMCAxes(Group):
-    """Container object for visualizing MCMC on a 2D axis
+    """Container object for visualizing MCMC on a 2D axis.
 
     Parameters
     ----------
@@ -395,7 +395,7 @@ class MCMCAxes(Group):
         return AnimationGroup(Create(self.axes))
 
     def visualize_gaussian_proposal_about_point(self, mean: np.ndarray, cov: Optional[Any]=None) -> AnimationGroup:
-        """Creates a Gaussian distribution about a certain point
+        """Creates a Gaussian distribution about a certain point.
 
         Parameters
         ----------
@@ -424,7 +424,7 @@ class MCMCAxes(Group):
         show_dots: bool = True,
         run_time: float = 0.1
     ) -> AnimationGroup:
-        """Makes an transition animation for a single point on a Markov Chain
+        """Makes an transition animation for a single point on a Markov Chain.
 
         Parameters
         ----------
@@ -504,7 +504,7 @@ class MCMCAxes(Group):
     ):
         """
         Makes an animation for visualizing a 2D markov chain using
-        metropolis hastings samplings
+        metropolis hastings samplings.
 
         Parameters
         ----------

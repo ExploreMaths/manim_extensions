@@ -23,7 +23,7 @@ from ..utils.deps import require
 
 def create_triangle() -> Mesh:
     """
-    create most basic triangle mesh
+    create most basic triangle mesh.
 
     Returns
     -------
@@ -159,7 +159,7 @@ def create_cube(triangles_only: bool = True) -> Mesh:
 
 def create_coplanar_triangles() -> Mesh:
     """
-    create a basic 2D mesh consisting of triangles
+    create a basic 2D mesh consisting of triangles.
 
     Returns
     -------
@@ -184,7 +184,7 @@ def create_coplanar_triangles() -> Mesh:
 
 def create_coplanar_points() -> Mesh:
     """
-    create a basic 2D mesh without faces ~> exemplary 2D point cloud / set
+    create a basic 2D mesh without faces ~> exemplary 2D point cloud / set.
 
     Returns
     -------

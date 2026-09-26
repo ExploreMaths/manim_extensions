@@ -12,7 +12,7 @@ from manim import Mobject
 
 
 class ListGroup(Mobject):
-    """Indexable Group with traditional list operations
+    """Indexable Group with traditional list operations.
 
     Parameters
     ----------
@@ -47,7 +47,7 @@ class ListGroup(Mobject):
     def insert(  # type: ignore[override] # intentionally returns None instead of the group
         self, index: int, item: Mobject
     ) -> None:
-        """Inserts item at index
+        """Inserts item at index.
 
         Parameters
         ----------
@@ -60,7 +60,7 @@ class ListGroup(Mobject):
         self.submobjects = self.items
 
     def remove_at_index(self, index: int) -> Mobject:
-        """Removes item at index
+        """Removes item at index.
 
         Parameters
         ----------
@@ -86,7 +86,7 @@ class ListGroup(Mobject):
         return item
 
     def remove_at_indices(self, indices: list[int]) -> list[Mobject]:
-        """Removes items at indices
+        """Removes items at indices.
 
         Parameters
         ----------
@@ -106,7 +106,7 @@ class ListGroup(Mobject):
         return items
 
     def remove(self, item: Mobject) -> Mobject:  # type: ignore[override] # intentionally shadows Mobject.remove with list semantics
-        """Removes first instance of item
+        """Removes first instance of item.
 
         Parameters
         ----------
@@ -124,7 +124,7 @@ class ListGroup(Mobject):
         return item
 
     def get(self, index: int) -> Mobject:
-        """Gets item at index
+        """Gets item at index.
 
         Parameters
         ----------
@@ -139,7 +139,7 @@ class ListGroup(Mobject):
         return self.items[index]
 
     def add(self, item: Mobject) -> None:  # type: ignore[override] # intentionally shadows Mobject.add with list semantics
-        """Adds to end
+        """Adds to end.
 
         Parameters
         ----------
@@ -150,7 +150,7 @@ class ListGroup(Mobject):
         self.submobjects = self.items
 
     def replace(self, index: int, item: Mobject) -> None:  # type: ignore[override] # intentionally shadows Mobject.replace with list semantics
-        """Replaces item at index
+        """Replaces item at index.
 
         Parameters
         ----------
@@ -163,7 +163,7 @@ class ListGroup(Mobject):
         self.submobjects = self.items
 
     def index_of(self, item: Mobject) -> int:
-        """Returns index of item if it exists
+        """Returns index of item if it exists.
 
         Parameters
         ----------
@@ -187,7 +187,7 @@ class ListGroup(Mobject):
     def set_z_index(  # type: ignore[override] # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
     ) -> None:
-        """Sets z index of all values in ListGroup
+        """Sets z index of all values in ListGroup.
 
         Parameters
         ----------

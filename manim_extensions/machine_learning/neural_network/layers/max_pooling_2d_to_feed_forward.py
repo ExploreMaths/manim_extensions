@@ -14,7 +14,7 @@ from .parent_layers import NeuralNetworkLayer
 
 
 class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
-    """Connective layer between a max pooling 2D layer and a feed-forward layer
+    """Connective layer between a max pooling 2D layer and a feed-forward layer.
 
     Parameters
     ----------

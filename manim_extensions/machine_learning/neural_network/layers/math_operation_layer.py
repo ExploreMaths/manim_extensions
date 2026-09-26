@@ -25,7 +25,7 @@ from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 class MathOperationLayer(VGroupNeuralNetworkLayer):
-    """Handles rendering a layer for a neural network
+    """Handles rendering a layer for a neural network.
 
     Parameters
     ----------
@@ -114,7 +114,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Creates the neural network layer
+        """Creates the neural network layer.
 
         Parameters
         ----------
@@ -158,7 +158,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes the forward pass animation
+        """Makes the forward pass animation.
 
         Parameters
         ----------
@@ -211,7 +211,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         return self.surrounding_circle.get_right()
     
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point
+        """Moves the center of the layer to the given mobject or point.
 
         Parameters
         ----------

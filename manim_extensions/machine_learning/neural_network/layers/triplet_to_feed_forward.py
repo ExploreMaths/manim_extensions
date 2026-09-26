@@ -13,7 +13,7 @@ from .triplet import TripletLayer
 
 
 class TripletToFeedForward(ConnectiveLayer):
-    """Connective layer between a triplet layer and a feed-forward layer
+    """Connective layer between a triplet layer and a feed-forward layer.
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ class TripletToFeedForward(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes dots diverge from the given location and move to the feed forward nodes decoder
+        """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
         ----------

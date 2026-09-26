@@ -23,7 +23,7 @@ from ... import config
 
 
 class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Connective layer between an image layer and a convolutional 2D layer
+    """Connective layer between an image layer and a convolutional 2D layer.
 
     Parameters
     ----------
@@ -66,7 +66,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
-        """Maps image to convolutional layer
+        """Maps image to convolutional layer.
 
         Parameters
         ----------
@@ -95,7 +95,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             )
 
     def rbg_image_forward_pass_animation(self):
-        """Handles forward pass animation for 3 channel image
+        """Handles forward pass animation for 3 channel image.
 
         Raises
         ------

@@ -422,6 +422,45 @@ def check_description_style(doc, qualname, lineno, violations):
                 })
 
 
+def check_summary_period(doc, qualname, lineno, violations):
+    """The summary ends with terminal punctuation.
+
+    The summary may span several lines; it runs until the first blank
+    line (or the first section header), so the last line of that
+    paragraph is the one that must end with punctuation."""
+    lines = doc.splitlines()
+    para = []
+    for line in lines:
+        stripped = line.strip()
+        # skip an opening-quotes-only first line (empty summary)
+        if not para and not stripped.strip('"'):
+            continue
+        if not stripped:
+            break
+        if para and stripped in SECTION_NAMES:
+            break
+        para.append(stripped)
+    if not para:
+        return
+    summary = para[-1]
+    if summary.endswith((".", "?", "!", "。")):
+        return
+    if summary.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
+        return
+    if "http://" in summary or "https://" in summary or "TODO" in summary:
+        return
+    if re.fullmatch(r"[\w()\s·^+*=/.-]+", summary) and (
+        "=" in summary or "·" in summary or "^" in summary
+    ):
+        return  # formula line
+    violations.append({
+        "line": lineno,
+        "qualname": qualname,
+        "type": "SUMMARY_MISSING_PERIOD",
+        "message": f"summary '{summary[:50]}' should end with a period",
+    })
+
+
 def check_terminal_punctuation(doc, qualname, lineno, violations):
     """The docstring's last content line ends with terminal punctuation."""
     last = ""
@@ -531,8 +570,15 @@ def check_file(filepath: Path) -> list:
     """Check a single file; return a list of violation dicts."""
     try:
         tree = ast.parse(filepath.read_text(encoding="utf-8"))
-    except (SyntaxError, UnicodeDecodeError):
-        return []
+    except (SyntaxError, UnicodeDecodeError) as exc:
+        # A file that cannot be parsed is a hard failure, not a skip:
+        # silently returning [] would let corruption disable every check.
+        return [{
+            "line": 1,
+            "qualname": "<file>",
+            "type": "SYNTAX_ERROR",
+            "message": f"cannot parse file: {exc}",
+        }]
 
     local_bases = {
         node.name: [base_root_name(b) for b in node.bases]
@@ -563,6 +609,7 @@ def check_file(filepath: Path) -> list:
             module_doc, "<module>", 1, violations
         )
         check_description_indent(module_doc, "<module>", 1, violations)
+        check_summary_period(module_doc, "<module>", 1, violations)
         check_terminal_punctuation(
             module_doc, "<module>", 1, violations
         )
@@ -595,6 +642,7 @@ def check_file(filepath: Path) -> list:
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)
+        check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         secs = section_names(doc)
         params = function_params(node)
@@ -737,6 +785,7 @@ def check_file(filepath: Path) -> list:
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)
+        check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         if not is_mobject_class(node, local_bases):
             return

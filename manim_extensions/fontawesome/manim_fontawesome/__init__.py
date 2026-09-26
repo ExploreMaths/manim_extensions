@@ -4131,7 +4131,7 @@ def _get_svg_object(fp: str):
 
 
 class Brand:
-    """Brand SVG files defined in font-awesome/svgs/brands
+    """Brand SVG files defined in font-awesome/svgs/brands.
 
     Every attribute (e.g. ``brand.github``) is a brand-style Font Awesome
     icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
@@ -4157,7 +4157,7 @@ class Brand:
 
 
 class Regular:
-    """Regular SVG files defined in font-awesome/svgs/regular
+    """Regular SVG files defined in font-awesome/svgs/regular.
 
     Every attribute (e.g. ``regular.heart``) is a regular-style Font Awesome
     icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
@@ -4183,7 +4183,7 @@ class Regular:
 
 
 class Solid:
-    """Solid SVG files defined in font-awesome/svgs/solid
+    """Solid SVG files defined in font-awesome/svgs/solid.
 
     Every attribute (e.g. ``solid.rocket``) is a solid-style Font Awesome
     icon returned as an :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.

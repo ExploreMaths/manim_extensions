@@ -29,7 +29,7 @@ from ..layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
 
 
 class XMark(VGroup):
-    """X-shaped mark used to indicate dropped-out nodes
+    """X-shaped mark used to indicate dropped-out nodes.
 
     Parameters
     ----------
@@ -73,7 +73,7 @@ class XMark(VGroup):
 
 
 def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: Any):
-    """Returns edges to drop out for a given FeedForwardToFeedForward layer
+    """Returns edges to drop out for a given FeedForwardToFeedForward layer.
 
     Parameters
     ----------
@@ -111,7 +111,7 @@ def make_pre_dropout_animation(
     dropped_out_color: ManimColor = GRAY,
     dropped_out_opacity: float = 0.2,
 ):
-    """Makes an animation that sets up the NN layer for dropout
+    """Makes an animation that sets up the NN layer for dropout.
 
     Parameters
     ----------
@@ -192,7 +192,7 @@ def make_post_dropout_animation(
     layers_to_nodes_to_drop_out: Any,
     x_marks: Any,
 ):
-    """Returns the NN to normal after dropout
+    """Returns the NN to normal after dropout.
 
     Parameters
     ----------
@@ -245,7 +245,7 @@ def make_forward_pass_with_dropout_animation(
     neural_network: Any,
     layers_to_nodes_to_drop_out: Any,
 ):
-    """Makes forward pass animation with dropout
+    """Makes forward pass animation with dropout.
 
     Parameters
     ----------

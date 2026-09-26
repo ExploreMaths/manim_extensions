@@ -32,7 +32,7 @@ from ...types import Vertices
 
 # pylint: disable=too-many-instance-attributes
 class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
-    """another Mesh implementation, a bit faster + looks better
+    """another Mesh implementation, a bit faster + looks better.
 
     inspired by manim class 'Surface'
 
@@ -341,7 +341,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         return self.edges.submobjects[edge_idx]
 
     def add_vertices(self, new_vertices: Vertices, scene: m.Scene) -> None:
-        """fade in some additional vertices
+        """fade in some additional vertices.
 
         Parameters
         ----------
@@ -672,7 +672,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
 
 class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
-    """'2D' mesh implementation
+    """'2D' mesh implementation.
 
     printing Vertices in Manim is currently not supported for 2D vertices. Therefore, while printing the appropriate
     3D-vertices are used. Everything else should accept plain 2D values. Therefore, this Manim2DMesh class should

@@ -14,7 +14,7 @@ from numpy.typing import NDArray
 
 
 class GaussianDistribution(VGroup):
-    """Object for drawing a Gaussian distribution
+    """Object for drawing a Gaussian distribution.
 
     Parameters
     ----------
@@ -154,7 +154,7 @@ class GaussianDistribution(VGroup):
         color: ManimColor = ORANGE,
         num_ellipses: int = 4,
     ) -> VGroup:
-        """Returns a 2d Gaussian distribution object with given mean and covariance
+        """Returns a 2d Gaussian distribution object with given mean and covariance.
 
         Parameters
         ----------
@@ -202,7 +202,7 @@ class GaussianDistribution(VGroup):
         covariance: NDArray[np.float64],
         color: ManimColor = ORANGE,
     ) -> VGroup:
-        """Returns a 2d Gaussian distribution object with given mean and covariance
+        """Returns a 2d Gaussian distribution object with given mean and covariance.
 
         Parameters
         ----------

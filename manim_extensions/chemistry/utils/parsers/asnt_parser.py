@@ -134,7 +134,7 @@ class ASNTParser(BaseParser):
     def data_parser(data: Any) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
         The atom data follows the structure:
-            {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}
+            {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}.
 
         The bond data follows the structure:
             {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}

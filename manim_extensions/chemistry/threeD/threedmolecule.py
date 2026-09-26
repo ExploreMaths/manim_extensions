@@ -20,7 +20,7 @@ from ..molecule import AbstractMolecule
 
 
 class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
-    """Draws a 3D Molecule
+    """Draws a 3D Molecule.
 
     Requires using opengl renderer.
 

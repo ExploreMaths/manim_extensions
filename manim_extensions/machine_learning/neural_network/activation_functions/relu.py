@@ -11,7 +11,7 @@ from .activation_function import ActivationFunction
 
 from typing import Any
 class ReLUFunction(ActivationFunction):
-    """Rectified Linear Unit Activation Function
+    """Rectified Linear Unit Activation Function.
 
     Parameters
     ----------

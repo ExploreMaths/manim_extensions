@@ -39,7 +39,7 @@ import numpy as np
 from PIL import Image
 
 class LeafNode(Group):
-    """Leaf node in tree
+    """Leaf node in tree.
 
     Parameters
     ----------
@@ -108,7 +108,7 @@ class LeafNode(Group):
         self.add(node)
 
 class SplitNode(VGroup):
-    """Node for splitting decision in tree
+    """Node for splitting decision in tree.
 
     Parameters
     ----------
@@ -142,7 +142,7 @@ class SplitNode(VGroup):
         self.add(decision_text)
 
 class DecisionTreeDiagram(Group):
-    """Decision Tree Diagram Class for Manim
+    """Decision Tree Diagram Class for Manim.
 
     Parameters
     ----------
@@ -528,7 +528,7 @@ class DecisionTreeDiagram(Group):
         return expand_tree_animation
 
 class DecisionTreeContainer():
-    """Connects the DecisionTreeDiagram to the DecisionTreeEmbedding
+    """Connects the DecisionTreeDiagram to the DecisionTreeEmbedding.
 
     Parameters
     ----------
@@ -547,7 +547,7 @@ class DecisionTreeContainer():
         self.classes = classes
 
     def make_unfold_tree_animation(self):
-        """Unfolds the tree through an in order traversal
+        """Unfolds the tree through an in order traversal.
 
         This animations unfolds the tree diagram as well as showing the splitting
         of a shaded region in the Decision Tree embedding.

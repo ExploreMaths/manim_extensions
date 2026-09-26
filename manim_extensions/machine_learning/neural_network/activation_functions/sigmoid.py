@@ -13,7 +13,7 @@ from .activation_function import ActivationFunction
 
 from typing import Any
 class SigmoidFunction(ActivationFunction):
-    """Sigmoid Activation Function
+    """Sigmoid Activation Function.
 
     Parameters
     ----------

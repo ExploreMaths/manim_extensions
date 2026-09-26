@@ -315,7 +315,7 @@ class Mesh:
 
     @property
     def dim(self) -> int:
-        """get the shape / dimension of every vertex
+        """get the shape / dimension of every vertex.
 
         Returns
         -------
@@ -326,7 +326,7 @@ class Mesh:
 
     @property
     def vertices(self) -> Vertices:
-        """get private property _vertices
+        """get private property _vertices.
 
         Returns
         -------
@@ -337,7 +337,7 @@ class Mesh:
 
     @property
     def faces(self) -> Faces:
-        """get private property _faces
+        """get private property _faces.
 
         Returns
         -------
@@ -348,7 +348,7 @@ class Mesh:
 
     @property
     def parts(self) -> Parts:
-        """get private property _parts
+        """get private property _parts.
 
         Returns
         -------
@@ -359,7 +359,7 @@ class Mesh:
 
     @property
     def edges(self) -> Edges:
-        """get private property _edges
+        """get private property _edges.
 
         Returns
         -------
@@ -369,7 +369,7 @@ class Mesh:
         return self._edges
 
     def get_3d_vertices(self) -> Vertices:
-        """Get 3D vertices, for 1D, 2D, 3D meshes, to be able to draw them using the manim functions
+        """Get 3D vertices, for 1D, 2D, 3D meshes, to be able to draw them using the manim functions.
 
         Returns
         -------
@@ -443,7 +443,7 @@ class Mesh:
         return list(vert_ids)
 
     def convert_vertices_to_3d(self) -> None:
-        """transforms currents mesh vertices permanently to be 3D, works if dim is < 3
+        """transforms currents mesh vertices permanently to be 3D, works if dim is < 3.
 
         Raises
         ------
@@ -944,7 +944,7 @@ class Mesh:
         return new_meshes
 
     def dangling_vert_check(self) -> bool:
-        """check whether there are any dangling nodes - vertices that are not part of a face
+        """check whether there are any dangling nodes - vertices that are not part of a face.
 
         Returns
         -------
@@ -957,7 +957,7 @@ class Mesh:
         return any(v_idx not in unique for v_idx in range(len(self._vertices)))
 
     def dangling_face_check(self) -> bool:
-        """check whether there are any dangling faces - faces that are not part of a part
+        """check whether there are any dangling faces - faces that are not part of a part.
 
         Returns
         -------
@@ -1324,7 +1324,7 @@ class Mesh:
         self.remove_duplicate_parts()
 
     def extract_edges(self) -> Edges:
-        """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)]
+        """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)].
 
         Returns
         -------

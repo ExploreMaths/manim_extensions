@@ -74,7 +74,7 @@ class DrawArc(AnimationGroup):
 
 
 class SplitCompass(AnimationGroup):
-    """Compass-and-straightedge animation: rotate the two legs of the compass
+    """Compass-and-straightedge animation: rotate the two legs of the compass.
 
     Parameters
     ----------

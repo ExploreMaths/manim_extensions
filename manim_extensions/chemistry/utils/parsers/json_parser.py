@@ -136,7 +136,7 @@ ELEMENTS_BY_ATOMIC_NUMBER = {
 
 
 class JSONParser(BaseParser):
-    """Parses JSON files
+    """Parses JSON files.
 
     Examples
     --------
@@ -200,7 +200,7 @@ class JSONParser(BaseParser):
                         <Molecule data>
                     }
                 ]
-            }
+            }.
 
         The atom data follows the structure:
             {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}

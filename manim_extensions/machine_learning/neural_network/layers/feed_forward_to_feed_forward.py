@@ -29,7 +29,7 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from ... import config
 
 class FeedForwardToFeedForward(ConnectiveLayer):
-    """Layer for connecting FeedForward layer to FeedForwardLayer
+    """Layer for connecting FeedForward layer to FeedForwardLayer.
 
     Parameters
     ----------
@@ -131,7 +131,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     def make_forward_pass_animation(
         self, layer_args: dict = {}, run_time: float = 1, feed_forward_dropout: float = 0.0, **kwargs
     ):
-        """Animation for passing information from one FeedForwardLayer to the next
+        """Animation for passing information from one FeedForwardLayer to the next.
 
         Parameters
         ----------
@@ -180,7 +180,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return path_animations
 
     def modify_edge_colors(self, colors: Optional[Any]=None, magnitudes: Optional[Any]=None, color_scheme: str = "inferno"):
-        """Changes the colors of edges
+        """Changes the colors of edges.
 
         Parameters
         ----------
@@ -196,7 +196,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         pass
 
     def modify_edge_stroke_widths(self, widths: Any):
-        """Changes the widths of the edges
+        """Changes the widths of the edges.
 
         Parameters
         ----------

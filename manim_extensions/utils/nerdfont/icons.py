@@ -77,7 +77,7 @@ _install_font_linux()
 def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
     """
     Create a Nerd Font icon using the Symbols Nerd Font Mono font.
-    Please have a look at the documentation for an exhaustive list of available icons:
+    Please have a look at the documentation for an exhaustive list of available icons.
 
     https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
 

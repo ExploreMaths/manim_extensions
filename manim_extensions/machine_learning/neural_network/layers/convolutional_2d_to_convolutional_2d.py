@@ -35,7 +35,7 @@ from ... import config
 
 
 def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
-    """Rotates the shift vectors
+    """Rotates the shift vectors.
 
     Parameters
     ----------
@@ -64,7 +64,7 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
 
 
 class Filters(VGroup):
-    """Group for showing a collection of filters connecting two layers
+    """Group for showing a collection of filters connecting two layers.
 
     Parameters
     ----------
@@ -345,7 +345,7 @@ class Filters(VGroup):
         )
 
     def make_pulse_animation(self, shift_amount: Any):
-        """Make animation of the filter pulsing
+        """Make animation of the filter pulsing.
 
         Parameters
         ----------
@@ -366,7 +366,7 @@ class Filters(VGroup):
 
 
 class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
-    """Connective layer between two convolutional 2D layers
+    """Connective layer between two convolutional 2D layers.
 
     Parameters
     ----------
@@ -450,7 +450,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def animate_filters_all_at_once(self, filters: Mobject):
-        """Animates each of the filters all at once
+        """Animates each of the filters all at once.
 
         Parameters
         ----------
@@ -506,7 +506,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         return Succession(*animations, lag_ratio=1.0)
 
     def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True):
-        """Animates each of the filters one at a time
+        """Animates each of the filters one at a time.
 
         Parameters
         ----------
@@ -623,7 +623,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         run_time: float = 10.5,
         **kwargs,
     ):
-        """Forward pass animation from conv2d to conv2d
+        """Forward pass animation from conv2d to conv2d.
 
         Parameters
         ----------

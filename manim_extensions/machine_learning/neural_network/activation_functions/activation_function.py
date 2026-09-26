@@ -26,7 +26,7 @@ import random
 from ... import config
 
 class ActivationFunction(ABC, VGroup):
-    """Abstract parent class for defining activation functions
+    """Abstract parent class for defining activation functions.
 
     Parameters
     ----------
@@ -142,7 +142,7 @@ class ActivationFunction(ABC, VGroup):
 
     @abstractmethod
     def apply_function(self, x_val: Any):
-        """Evaluates function at given x_val
+        """Evaluates function at given x_val.
 
         Parameters
         ----------
@@ -154,7 +154,7 @@ class ActivationFunction(ABC, VGroup):
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
     def make_evaluate_animation(self, x_val: Optional[Any]=None):
-        """Evaluates the function at a random point in the x_range
+        """Evaluates the function at a random point in the x_range.
 
         Parameters
         ----------

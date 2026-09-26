@@ -16,7 +16,7 @@ from .parent_layers import NeuralNetworkLayer
 
 
 class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
-    """Connective layer between a max pooling 2D layer and a convolutional 2D layer
+    """Connective layer between a max pooling 2D layer and a convolutional 2D layer.
 
     Parameters
     ----------
@@ -64,7 +64,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Constructs the MaxPooling to Convolution3D layer
+        """Constructs the MaxPooling to Convolution3D layer.
 
         Parameters
         ----------

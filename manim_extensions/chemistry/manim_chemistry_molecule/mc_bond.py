@@ -94,7 +94,7 @@ class MCBond:
     @staticmethod
     def construct_from_bond_dict(bond_index: Any, bond_data_dict: Dict, molecule: Any):
         """
-        Given a bond data dict from a parser, returns an MCBond
+        Given a bond data dict from a parser, returns an MCBond.
 
         Parameters
         ----------

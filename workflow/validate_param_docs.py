@@ -155,8 +155,10 @@ def check_file(file_path: Path) -> list:
     """Check a single file for parameter documentation issues."""
     try:
         tree = ast.parse(file_path.read_text(encoding="utf-8"))
-    except (SyntaxError, UnicodeDecodeError):
-        return []
+    except (SyntaxError, UnicodeDecodeError) as exc:
+        # Hard-fail instead of skipping: a parse error must not disable
+        # the parameter checks for a whole file.
+        return [f"<syntax error: {exc}>"]
 
     issues = []
 

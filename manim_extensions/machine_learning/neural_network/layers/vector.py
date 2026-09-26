@@ -14,7 +14,7 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 from typing import Callable
 class VectorLayer(VGroupNeuralNetworkLayer):
-    """Shows a vector
+    """Shows a vector.
 
     Parameters
     ----------

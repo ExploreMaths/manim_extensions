@@ -23,7 +23,7 @@ from typing import Any
 
 class VoronoiDelaunay:
     """Class providing methods to visualize the voronoi diagram of a 2D point set and its dual
-    delaunay triangulation
+    delaunay triangulation.
 
     Parameters
     ----------

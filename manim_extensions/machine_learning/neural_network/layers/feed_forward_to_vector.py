@@ -13,7 +13,7 @@ from .vector import VectorLayer
 
 
 class FeedForwardToVector(ConnectiveLayer):
-    """Connective layer between a feed-forward layer and a vector layer
+    """Connective layer between a feed-forward layer and a vector layer.
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ class FeedForwardToVector(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes dots diverge from the given location and move to the feed forward nodes decoder
+        """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
         ----------

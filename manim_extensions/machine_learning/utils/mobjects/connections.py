@@ -31,7 +31,7 @@ from numpy.typing import NDArray
 class NetworkConnection(VGroup):
     """
     This class allows for creating connections
-    between locations in a network
+    between locations in a network.
 
     Parameters
     ----------

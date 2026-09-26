@@ -645,7 +645,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def generate_history_animations(self, history: dict[str, object]) -> list[object]:
         """Given a history of events of each iteration of the input ran through the manim automaton,
         generate all of the manim animations to visualise the process of the input going through the
-        automaton
+        automaton.
 
         Parameters
         ----------

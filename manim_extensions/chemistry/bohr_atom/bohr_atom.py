@@ -9,7 +9,7 @@ import random
 
 from typing import Any, Optional
 class BohrAtom(VGroup):
-    """Creates a Bohr like diagram
+    """Creates a Bohr like diagram.
 
     Parameters
     ----------

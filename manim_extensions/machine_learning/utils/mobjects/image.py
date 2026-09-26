@@ -27,7 +27,7 @@ from numpy.typing import NDArray
 from PIL import Image
 
 class GrayscaleImageMobject(Group):
-    """Mobject for creating images in Manim from numpy arrays
+    """Mobject for creating images in Manim from numpy arrays.
 
     Parameters
     ----------
@@ -73,7 +73,7 @@ class GrayscaleImageMobject(Group):
 
     @classmethod
     def from_path(cls, path: str, height: float = 2.3) -> "GrayscaleImageMobject":
-        """Loads image from path
+        """Loads image from path.
 
         Parameters
         ----------
@@ -111,7 +111,7 @@ class GrayscaleImageMobject(Group):
     def scale(  # type: ignore[override] # intentionally returns None instead of the group
         self, scale_factor: float, **kwargs: Any
     ) -> None:
-        """Scales the image mobject
+        """Scales the image mobject.
 
         Parameters
         ----------
@@ -129,7 +129,7 @@ class GrayscaleImageMobject(Group):
         # )
 
     def set_opacity(self, opacity: float) -> None:
-        """Set the opacity
+        """Set the opacity.
 
         Parameters
         ----------
@@ -140,7 +140,7 @@ class GrayscaleImageMobject(Group):
 
 
 class LabeledColorImage(Group):
-    """Labeled Color Image
+    """Labeled Color Image.
 
     Parameters
     ----------

@@ -32,7 +32,7 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 from ... import config
 
 class FeedForwardLayer(VGroupNeuralNetworkLayer):
-    """Handles rendering a layer for a neural network
+    """Handles rendering a layer for a neural network.
 
     Parameters
     ----------
@@ -139,7 +139,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         output_layer: "NeuralNetworkLayer",
         **kwargs
     ):
-        """Creates the neural network layer
+        """Creates the neural network layer.
 
         Parameters
         ----------
@@ -196,7 +196,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs):
-        """Makes a forward pass animation with dropout
+        """Makes a forward pass animation with dropout.
 
         Parameters
         ----------
@@ -291,7 +291,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return self.surrounding_rectangle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point
+        """Moves the center of the layer to the given mobject or point.
 
         Parameters
         ----------

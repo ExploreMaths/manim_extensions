@@ -37,7 +37,7 @@ from collections import deque
 from ...utils.deps import require
 
 class AABB:
-    """Axis-aligned bounding box
+    """Axis-aligned bounding box.
 
     Parameters
     ----------
@@ -256,7 +256,7 @@ def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, O
     return return_polygons
 
 class IrisDatasetPlot(VGroup):
-    """Plot of the first two features of the Iris dataset
+    """Plot of the first two features of the Iris dataset.
 
     Parameters
     ----------
@@ -394,7 +394,7 @@ class IrisDatasetPlot(VGroup):
 
 
 class DecisionTreeSurface(VGroup):
-    """Colored decision surface of a fitted decision tree
+    """Colored decision surface of a fitted decision tree.
 
     Parameters
     ----------

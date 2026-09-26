@@ -15,7 +15,7 @@ from . import connective_layers_list
 from manim import Mobject
 def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
     """
-    Deduces the relevant connective layer
+    Deduces the relevant connective layer.
 
     Parameters
     ----------

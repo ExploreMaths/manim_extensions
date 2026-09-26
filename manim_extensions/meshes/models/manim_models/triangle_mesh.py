@@ -18,7 +18,7 @@ from .basic_mesh import Manim2DMesh
 
 
 class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
-    """2D Mesh implementation that has additional methods especially for triangles
+    """2D Mesh implementation that has additional methods especially for triangles.
 
     Parameters
     ----------

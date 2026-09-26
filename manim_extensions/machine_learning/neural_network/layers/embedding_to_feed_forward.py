@@ -24,7 +24,7 @@ from .embedding import EmbeddingLayer
 
 
 class EmbeddingToFeedForward(ConnectiveLayer):
-    """Connective layer between an embedding layer and a feed-forward layer
+    """Connective layer between an embedding layer and a feed-forward layer.
 
     Parameters
     ----------
@@ -78,7 +78,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
-        """Makes dots diverge from the given location and move the decoder
+        """Makes dots diverge from the given location and move the decoder.
 
         Parameters
         ----------

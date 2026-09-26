@@ -2620,7 +2620,7 @@ class MArraySlidingWindow(VGroup):
         label_pos_np = self.__calc_label_pos_np()
 
         def resize_and_shift(mob: MArraySlidingWindow) -> MArraySlidingWindow:
-            """Resizes and shifts the sliding window
+            """Resizes and shifts the sliding window.
 
             Returns
             -------
