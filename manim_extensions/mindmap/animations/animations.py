@@ -51,10 +51,10 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
 
        class FadeoutOfSubtreesDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
+               a2 = Node(MathTex(r"	ext{A}_2", font_size=36))
+               b1 = Node(MathTex(r"	ext{B}_1", font_size=36))
                a1.add_child(b1)
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(fadeout_of_subtrees([a1]))
@@ -63,13 +63,13 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
     Parameters
     ----------
     nodes : List[Node]
-    Nodes processed by this operation.
+        Nodes processed by this operation.
 
     Returns
     -------
     FadeOut
         The animation fading out the given nodes and their subtrees.
-    """
+        """
     mobjs = []
     for node in nodes:
         for node_ in bfs_walker(node):
@@ -101,9 +101,9 @@ def animate_of_create(
 
        class AnimateOfCreateDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
-               child = Node(MathTex(r"\text{Child}", font_size=36))
+               child = Node(MathTex(r"	ext{Child}", font_size=36))
                root.add_child(child)
                anims = animate_of_create(
                    child, RIGHT * 2.5, RIGHT,
@@ -117,24 +117,24 @@ def animate_of_create(
     Parameters
     ----------
     node : Node
-    Node parameter for this operation.
+        Node parameter for this operation.
     pos : np.ndarray
-    Position value used by this operation.
+        Position value used by this operation.
     direction : np.ndarray
-    The direction of the operation.
+        The direction of the operation.
     line_styles : Dict
-    Line styles processed by this operation.
+        Line styles processed by this operation.
     node_styles : Dict
-    Node styles processed by this operation.
+        Node styles processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations creating the node content, its surrounding
         rectangle, and the connector line.
-    """
+        """
     anims = []
     node.set_connector(layout_type, direction, **line_styles)
     if isinstance(node.vmobject, ImageMobject):
@@ -183,7 +183,7 @@ def animate_of_display(
 
        class AnimateOfDisplayDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT), color=WHITE)
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT), color=WHITE)
                self.add(root.vmobject, root.surr_rect)
                root.node_state = NodeSate.DISPLAY
                anims = animate_of_display(
@@ -198,28 +198,28 @@ def animate_of_display(
     Parameters
     ----------
     node : Node
-    Node parameter for this operation.
+        Node parameter for this operation.
     pos : np.ndarray
-    Position value used by this operation.
+        Position value used by this operation.
     direction : np.ndarray
-    The direction of the operation.
+        The direction of the operation.
     line_styles : Dict
-    Line styles processed by this operation.
+        Line styles processed by this operation.
     node_styles : Dict
-    Node styles processed by this operation.
+        Node styles processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
     change_dir : bool
-    Change dir parameter for this operation.
+        Change dir parameter for this operation.
     change_layout : bool
-    Change layout parameter for this operation.
+        Change layout parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations moving the node content and surrounding rectangle
         to the new position and updating the connector line.
-    """
+        """
     anims = [
         node.vmobject.animate.move_to(pos),
         node.surr_rect.animate.become(
@@ -253,8 +253,8 @@ def animate_of_scale(
 
        class AnimateOfScaleDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
                a1.scale(2.0)
                anims = animate_of_scale(
@@ -269,28 +269,28 @@ def animate_of_scale(
     Parameters
     ----------
     node : Node
-    Node parameter for this operation.
+        Node parameter for this operation.
     pos : np.ndarray
-    Position value used by this operation.
+        Position value used by this operation.
     direction : np.ndarray
-    The direction of the operation.
+        The direction of the operation.
     line_styles : Dict
-    Line styles processed by this operation.
+        Line styles processed by this operation.
     node_styles : Dict
-    Node styles processed by this operation.
+        Node styles processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
     change_dir : bool
-    Change dir parameter for this operation.
+        Change dir parameter for this operation.
     change_layout : bool
-    Change layout parameter for this operation.
+        Change layout parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations scaling the node content and surrounding rectangle
         and updating the connector line.
-    """
+        """
     anims = [
         node.vmobject.animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
@@ -325,10 +325,10 @@ def animate_of_alter(
 
        class AnimateOfAlterDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
                self.play(InsertNode(self, {root: [a1]}))
-               a1.alter_content(MathTex(r"\text{Updated}", font_size=36))
+               a1.alter_content(MathTex(r"	ext{Updated}", font_size=36))
                anims = animate_of_alter(
                    a1, a1.vmobject.get_center(), RIGHT,
                    {'color': WHITE, 'stroke_width': 4},
@@ -341,28 +341,28 @@ def animate_of_alter(
     Parameters
     ----------
     node : Node
-    Node parameter for this operation.
+        Node parameter for this operation.
     pos : np.ndarray
-    Position value used by this operation.
+        Position value used by this operation.
     direction : np.ndarray
-    The direction of the operation.
+        The direction of the operation.
     line_styles : Dict
-    Line styles processed by this operation.
+        Line styles processed by this operation.
     node_styles : Dict
-    Node styles processed by this operation.
+        Node styles processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
     change_dir : bool
-    Change dir parameter for this operation.
+        Change dir parameter for this operation.
     change_layout : bool
-    Change layout parameter for this operation.
+        Change layout parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations replacing the node content and surrounding
         rectangle and updating the connector line.
-    """
+        """
     anims = [
         node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
         node.surr_rect.animate.become(
@@ -397,9 +397,9 @@ def animate_of_node(
 
        class AnimateOfNodeDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
                root.add_child(a1)
                args = (RIGHT, {'color': WHITE, 'stroke_width': 4},
                        {'color': BLUE, 'stroke_width': 2}, LayoutType.MindMap)
@@ -411,28 +411,28 @@ def animate_of_node(
     Parameters
     ----------
     node : Node
-    Node parameter for this operation.
+        Node parameter for this operation.
     pos : np.ndarray
-    Position value used by this operation.
+        Position value used by this operation.
     direction : np.ndarray
-    The direction of the operation.
+        The direction of the operation.
     line_styles : Dict
-    Line styles processed by this operation.
+        Line styles processed by this operation.
     node_styles : Dict
-    Node styles processed by this operation.
+        Node styles processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
     change_dir : bool
-    Change dir parameter for this operation.
+        Change dir parameter for this operation.
     change_layout : bool
-    Change layout parameter for this operation.
+        Change layout parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations matching the node's current state (create, display,
         scale, or alter).
-    """
+        """
     args = (node, pos, direction, line_styles, node_styles, layout_type)
     match node.node_state:
         case NodeSate.INSERT:
@@ -509,12 +509,12 @@ def animate_of_layout(
 
        class AnimateOfLayoutDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
                root.node_state = NodeSate.DISPLAY
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
+               a2 = Node(MathTex(r"	ext{A}_2", font_size=36))
+               b1 = Node(MathTex(r"	ext{B}_1", font_size=36))
                root.add_child(a1)
                root.add_child(a2)
                a1.add_child(b1)
@@ -525,22 +525,22 @@ def animate_of_layout(
     Parameters
     ----------
     root : Node
-    Root parameter for this operation.
+        Root parameter for this operation.
     remove_nodes : List[Node]
-    Remove nodes processed by this operation.
+        Remove nodes processed by this operation.
     layout_type : LayoutType
-    Layout type parameter for this operation.
+        Layout type parameter for this operation.
     layout_config : LayoutConfig
-    Layout config parameter for this operation.
+        Layout config parameter for this operation.
     node_style : NodeStyle
-    Node style parameter for this operation.
+        Node style parameter for this operation.
 
     Returns
     -------
     List[Animation]
         The animations produced by re-running the layout over the tree,
         including a fade-out animation for any removed subtrees.
-    """
+        """
     direction = layout_config.direction
     change_dir = is_direction_change(root, direction)
     change_layout = is_layout_change(root, layout_type)
@@ -704,14 +704,14 @@ class AbstractLayoutAnimation(AnimationGroup):
         Parameters
         ----------
         nodes : List[Node]
-        Nodes processed by this operation.
+            Nodes processed by this operation.
 
         Returns
         -------
         Node
             The common root node, or ``None`` if the nodes do not share a
             common root.
-        """
+                """
         root = nodes[0].get_root()
         if len(nodes) == 1:
             return root
@@ -721,7 +721,7 @@ class AbstractLayoutAnimation(AnimationGroup):
 
 
 class LayoutAnimation(AbstractLayoutAnimation):
-    r"""General layout animation: apply a layout to the whole tree and play all change animations.
+    """General layout animation: apply a layout to the whole tree and play all change animations.
 
     Parameters
     ----------
@@ -738,6 +738,10 @@ class LayoutAnimation(AbstractLayoutAnimation):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
+
+    Examples
+    ----------
+
     .. manim:: LayoutAnimationDocExample
 
        from manim import *
@@ -746,28 +750,28 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
        class LayoutAnimationDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
+               a2 = Node(MathTex(r"	ext{A}_2", font_size=36))
+               b1 = Node(MathTex(r"	ext{B}_1", font_size=36))
                root.add_child(a1)
                root.add_child(a2)
                a1.add_child(b1)
                # first creation
                self.play(LayoutAnimation(self, root))
                # insert a child, then re-layout
-               c1 = Node(MathTex(r"\text{C}_1", font_size=36))
+               c1 = Node(MathTex(r"	ext{C}_1", font_size=36))
                a2.add_child(c1)
                self.play(LayoutAnimation(self, root))
                # scale a node and alter the root content
                b1.scale(1.5)
-               root.alter_content(MathTex(r"\text{Root}", font_size=48, color=RED))
+               root.alter_content(MathTex(r"	ext{Root}", font_size=48, color=RED))
                self.play(LayoutAnimation(self, root))
                # change the layout direction
                self.play(LayoutAnimation(self, root,
                                          layout_config=LayoutConfig(direction=UP)))
                self.wait()
-    """
+                """
 
     def __init__(
         self,
@@ -807,7 +811,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
 
 class RemoveNode(LayoutAnimation):
-    r"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
+    """Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
     Parameters
     ----------
@@ -824,6 +828,10 @@ class RemoveNode(LayoutAnimation):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
+
+    Examples
+    ----------
+
     .. manim:: RemoveNodeDocExample
 
        from manim import *
@@ -831,15 +839,15 @@ class RemoveNode(LayoutAnimation):
 
        class RemoveNodeDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-               a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-               a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-               b1 = Node(MathTex(r"\text{B}_1", font_size=36))
+               root = Node(MathTex(r"	ext{Root}", font_size=36).to_edge(LEFT))
+               a1 = Node(MathTex(r"	ext{A}_1", font_size=36))
+               a2 = Node(MathTex(r"	ext{A}_2", font_size=36))
+               b1 = Node(MathTex(r"	ext{B}_1", font_size=36))
                a1.add_child(b1)
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(RemoveNode(self, [a1]))
                self.wait()
-    """
+                """
 
     def __init__(
         self,

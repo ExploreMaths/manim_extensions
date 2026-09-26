@@ -183,8 +183,8 @@ class SolowDiagram(EconDiagram):
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
-        If shares are visible, they update automatically.
-        """
+            If shares are visible, they update automatically.
+                """
         self._s = s if s is not None else self._s
         new_func = self._make_savings_func(self._s, self._alpha)
         anim = self.get_shift_animation(
@@ -213,8 +213,8 @@ class SolowDiagram(EconDiagram):
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
-        If shares are visible, they update automatically.
-        """
+            If shares are visible, they update automatically.
+                """
         self._delta = delta if delta is not None else self._delta
         self._n = n if n is not None else self._n
         self._g = g if g is not None else self._g
@@ -371,9 +371,9 @@ class SolowDiagram(EconDiagram):
         run_time : float
             Duration of the animation. Defaults to ``3``.
 
-        Shows how the consumption/investment split changes at different
-        capital levels along the production function.
-        """
+            Shows how the consumption/investment split changes at different
+            capital levels along the production function.
+                """
         self._shares_c_color = c_color
         self._shares_i_color = i_color
 
@@ -414,12 +414,12 @@ class SolowDiagram(EconDiagram):
         run_time : float
             Duration of the FadeIn animation. Defaults to ``1``.
 
-        Draws a vertical dashed line at k_gold with a label. The golden rule
-        is where MPK = δ+n+g, giving the savings rate that maximizes
-        steady-state consumption.
+            Draws a vertical dashed line at k_gold with a label. The golden rule
+            is where MPK = δ+n+g, giving the savings rate that maximizes
+            steady-state consumption.
 
-        Returns a FadeIn animation.
-        """
+            Returns a FadeIn animation.
+                """
         k_gold = self._golden_rule_k()
         s_gold = (self._delta + self._n + self._g) * k_gold / (k_gold ** self._alpha)
 

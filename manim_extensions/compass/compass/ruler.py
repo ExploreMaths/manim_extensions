@@ -40,6 +40,10 @@ class Ruler(VGroup):
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
+
+    Examples
+    ----------
+
     .. manim:: RulerExample
        :save_last_frame:
 
@@ -51,7 +55,7 @@ class Ruler(VGroup):
                ruler = Ruler()
                start, end = ruler.get_start_and_end()
                self.add(ruler, Dot(start, color=RED), Dot(end, color=RED))
-    """
+                """
 
     def __init__(
         self,
@@ -146,14 +150,22 @@ class Ruler(VGroup):
 
     def set_ruler(self, start: Point3D = LEFT, end: Point3D = RIGHT) -> "Ruler":
         """
-        Place the ruler so that one of its edges aligns with start and end.
 
+        Place the ruler so that one of its edges aligns with start and end.
         Parameters
         ----------
         start
             Start point of the ruler placement.
         end
             End point of the ruler placement.
+        
+        Returns
+        -------
+        Ruler
+            The repositioned self.
+        
+        Examples
+        ----------
 
         .. manim:: SetRulerDocExample
            :save_last_frame:
@@ -168,11 +180,7 @@ class Ruler(VGroup):
                    ruler = Ruler().set_ruler(start, end)
                    self.add(ruler)
 
-        Returns
-        -------
-        Ruler
-            The repositioned self.
-        """
+                """
         direction = end - start
         current_pos = self.get_middle_point()
         target_pos = (start + end) / 2

@@ -79,6 +79,10 @@ class MagneticField(ArrowVectorField):
 
     Example
     -------
+
+    Examples
+    ----------
+
     .. manim:: MagneticFieldExample
 
        from manim import Circle, Create, FadeIn, PI, ThreeDScene, UP
@@ -97,7 +101,7 @@ class MagneticField(ArrowVectorField):
                self.play(FadeIn(mag_field))
                self.wait()
 
-    """
+                """
 
     def __init__(self, *wires: Wire, **kwargs):
         """Initialize the MagneticField instance."""

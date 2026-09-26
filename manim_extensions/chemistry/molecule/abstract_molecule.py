@@ -341,6 +341,10 @@ class AbstractMolecule:
         scale : float, optional
             Scale of the text. Defaults to 0.75.
 
+
+        Examples
+        ----------
+
         .. manim:: MMoleculeWithName
 
             from manim import *
@@ -367,7 +371,7 @@ class AbstractMolecule:
                     self.play(Write(molecule.submobjects[-1]))
                     self.wait()
 
-        """
+                                """
 
         if isinstance(name, str):
             name = Text(name)

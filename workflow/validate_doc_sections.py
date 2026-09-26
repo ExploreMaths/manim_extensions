@@ -443,6 +443,61 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     })
 
 
+def flat_description_lines(doc: str) -> list:
+    """Indexes of description lines that sit at the entry indent.
+
+    In a numpydoc section every entry (``name : type``, bare type, or
+    exception name) must be followed by its description indented deeper.
+    A multi-word line at the same indent as the entry is a mis-formatted
+    (flat) description.
+    """
+    lines = doc.splitlines()
+    flagged = []
+    for _name, hpos in section_positions(doc):
+        j = hpos + 2
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        if j >= len(lines):
+            continue
+        item_indent = len(lines[j]) - len(lines[j].lstrip(" 	"))
+        prev_entry = False
+        for k in range(j, len(lines)):
+            stripped = lines[k].strip()
+            indent = (len(lines[k]) - len(lines[k].lstrip(" 	"))
+                      ) if stripped else None
+            if not stripped:
+                continue
+            if (k + 1 < len(lines)
+                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                    and (indent or 0) <= item_indent):
+                break
+            if (indent or 0) < item_indent:
+                break
+            if indent == item_indent:
+                if stripped.startswith(".. "):
+                    break
+                if (stripped in SECTION_NAMES
+                        or PARAM_ENTRY_RE.match(stripped)
+                        or BARE_ENTRY_RE.match(stripped)):
+                    prev_entry = True
+                elif prev_entry and " " in stripped:
+                    flagged.append(k)
+    return flagged
+
+
+def check_description_indent(doc, qualname, lineno, violations):
+    """Entry descriptions must be indented deeper than the entry line."""
+    lines = doc.splitlines()
+    for idx in flat_description_lines(doc):
+        violations.append({
+            "line": lineno,
+            "qualname": qualname,
+            "type": "DESCRIPTION_BAD_INDENT",
+            "message": f"description '{lines[idx].strip()[:50]}' is not "
+                       f"indented deeper than its entry",
+        })
+
+
 def annotation_is_none(node: ast.expr | None) -> bool:
     """Return True when the return annotation is None or absent."""
     if node is None:
@@ -503,6 +558,7 @@ def check_file(filepath: Path) -> list:
         check_description_style(
             module_doc, "<module>", 1, violations
         )
+        check_description_indent(module_doc, "<module>", 1, violations)
         check_terminal_punctuation(
             module_doc, "<module>", 1, violations
         )
@@ -534,6 +590,7 @@ def check_file(filepath: Path) -> list:
         qualname = f"{prefix}{name}"
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
+        check_description_indent(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         secs = section_names(doc)
         params = function_params(node)
@@ -574,6 +631,7 @@ def check_file(filepath: Path) -> list:
             })
         check_raises_last(doc, qualname, node.lineno)
         check_section_order(doc, qualname, node.lineno)
+        check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
             violations.append({
                 "line": node.lineno,
@@ -638,13 +696,46 @@ def check_file(filepath: Path) -> list:
                 })
                 return
 
+    def check_manim_examples_in_examples(doc, qualname, lineno):
+        """A '.. manim::' block after the first section needs an 'Examples'
+        header before it, otherwise napoleon mis-parses the section."""
+        lines = doc.splitlines()
+        first_sec = None
+        examples = None
+        for i in range(len(lines) - 1):
+            stripped = lines[i].strip()
+            if (
+                stripped in SECTION_NAMES
+                and SECTION_UNDERLINE_RE.match(lines[i + 1].strip() or "")
+            ):
+                if first_sec is None:
+                    first_sec = i
+                if stripped == "Examples" and examples is None:
+                    examples = i
+        if first_sec is None:
+            return
+        for i in range(first_sec + 1, len(lines)):
+            if lines[i].strip().startswith(".. manim::"):
+                if examples is None or i < examples:
+                    violations.append({
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "MANIM_BLOCK_OUTSIDE_EXAMPLES",
+                        "message": "'.. manim::' block inside a numpydoc "
+                                   "section without a preceding 'Examples' "
+                                   "header",
+                    })
+                    return
+
     def check_class(node, prefix):
         doc = ast.get_docstring(node) or ""
         qualname = f"{prefix}{node.name}"
         check_raises_last(doc, qualname, node.lineno)
+        check_manim_examples_in_examples(doc, qualname, node.lineno)
         check_section_order(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
+        check_description_indent(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         if not is_mobject_class(node, local_bases):
             return

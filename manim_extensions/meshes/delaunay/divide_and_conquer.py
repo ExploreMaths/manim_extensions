@@ -89,7 +89,7 @@ class DivideAndConquer:
         A triangle mesh containing only vertices (no faces) that has
         already been added to *scene*.
 
-    Algorithm based on http://www.geom.uiuc.edu/~samuelp/del_project.html
+        Algorithm based on http://www.geom.uiuc.edu/~samuelp/del_project.html.
 
     Examples
     --------
@@ -116,7 +116,7 @@ class DivideAndConquer:
                dc = DivideAndConquer(self, tm)
                dc.divide_and_conquer_recursive(speed=0.5)
                self.wait()
-    """
+        """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
         """Initialise the divide-and-conquer visualisation helper."""
