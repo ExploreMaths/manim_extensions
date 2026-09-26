@@ -4,12 +4,9 @@
 name: Vendored status cache
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "VENDORED.md"
-      - "workflow/update_vendored_status.py"
-      - ".github/workflows/vendored-status.yml"
+  # No push trigger: the Docs media workflow refreshes the cache on every
+  # push to main (and then triggers the RTD build), so a concurrent run
+  # here would only race it for the rtd-media branch.
   schedule:
     # Refresh daily at ~02:29 UTC.
     - cron: "29 2 * * *"
@@ -30,8 +27,8 @@ jobs:
 
       - name: Fetch previous cache
         run: |
-          git fetch --depth 1 origin vendored-status-cache || true
-          git show origin/vendored-status-cache:docs/source/_vendored_status_cache.json \
+          git fetch --depth 1 origin rtd-media || true
+          git show origin/rtd-media:_vendored_status_cache.json \
             > /tmp/old_cache.json 2>/dev/null || echo '{}' > /tmp/old_cache.json
 
       - name: Refresh cache
@@ -40,19 +37,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python workflow/update_vendored_status.py --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
 
-      - name: Publish to the vendored-status-cache branch
+      - name: Publish cache to the rtd-media branch
         run: |
-          mv docs/source/_vendored_status_cache.json /tmp/new_cache.json
-          if git rev-parse --verify --quiet origin/vendored-status-cache; then
-            git switch vendored-status-cache
-          else
-            git switch --orphan vendored-status-cache
-            git rm -rf . > /dev/null 2>&1 || true
-          fi
-          mkdir -p docs/source
-          mv /tmp/new_cache.json docs/source/_vendored_status_cache.json
-          git add docs/source/_vendored_status_cache.json
-          git -c user.name="github-actions[bot]" \
-              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit --allow-empty -m "$(cat /tmp/summary.txt)"
-          git push origin vendored-status-cache
+          git clone --depth 1 --branch rtd-media \
+            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" \
+            rtd-media-clone
+          cp docs/source/_vendored_status_cache.json \
+            rtd-media-clone/_vendored_status_cache.json
+          cd rtd-media-clone
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _vendored_status_cache.json
+          git commit --allow-empty -m "$(cat /tmp/summary.txt)"
+          git pull --rebase origin rtd-media
+          git push origin rtd-media

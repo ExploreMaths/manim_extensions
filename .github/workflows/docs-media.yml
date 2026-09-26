@@ -68,6 +68,17 @@ jobs:
         if: steps.needed.outputs.needed == 'true'
         run: python workflow/render_doc_examples.py --out media_cache --workers 6 --quality high
 
+      - name: Refresh vendored status cache
+        # Runs on every push too (not only on the daily schedule) so the
+        # rtd-media branch always carries a fresh cache when the RTD build
+        # is triggered below.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python workflow/update_vendored_status.py
+
+      - name: Include the vendored status cache in the media tree
+        run: cp docs/source/_vendored_status_cache.json media_cache/_vendored_status_cache.json
+
       - name: Push media to the rtd-media branch
         id: push
         run: |
