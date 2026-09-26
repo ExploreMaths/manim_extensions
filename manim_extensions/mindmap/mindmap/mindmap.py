@@ -141,7 +141,8 @@ class MindMap(AbstractMap):
 
 
 class TimeLine(AbstractMap):
-    r"""
+    """
+
     Timeline: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
@@ -160,6 +161,10 @@ class TimeLine(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
+
+
+    Examples
+    ----------
 
     .. manim:: TimeLineDocExample
        :save_last_frame:
@@ -181,7 +186,7 @@ class TimeLine(AbstractMap):
                timeline.scale_to_fit_width(12)
                self.add(timeline)
                timeline.get_node((0, 1)).set_color(YELLOW)
-    """
+        """
 
     def __init__(
         self,
@@ -242,7 +247,8 @@ class TimeLine(AbstractMap):
 
 
 class StandardMap(AbstractMap):
-    r"""
+    """
+
     Two-sided mind map: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
@@ -260,6 +266,10 @@ class StandardMap(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
+
+
+    Examples
+    ----------
 
     .. manim:: StandardMapDocExample
        :save_last_frame:
@@ -284,7 +294,7 @@ class StandardMap(AbstractMap):
                mind_map.scale_to_fit_width(12)
                self.add(mind_map)
                mind_map.get_children((0, 0)).set_color(YELLOW)
-    """
+        """
 
     def __init__(
         self,
@@ -347,7 +357,8 @@ class StandardMap(AbstractMap):
 
 
 class CatalogMap(AbstractMap):
-    r"""
+    """
+
     Catalog / organisation-chart: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`,
     layout direction is downwards.
 
@@ -364,6 +375,10 @@ class CatalogMap(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
+
+
+    Examples
+    ----------
 
     .. manim:: CatalogMapDocExample
        :save_last_frame:
@@ -388,7 +403,7 @@ class CatalogMap(AbstractMap):
                catalog.scale_to_fit_width(12)
                self.add(catalog)
                catalog.get_descendants((0, 0)).set_color(YELLOW)
-    """
+        """
 
     def __init__(
         self,

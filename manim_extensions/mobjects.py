@@ -703,10 +703,10 @@ class PerpendicularSign(VGroup):
         Parameters
         ----------
         line : Line
-        The geometric object involved in the operation.
+            The geometric object involved in the operation.
         point : np.ndarray
-        The point used by the operation.
-        """
+            The point used by the operation.
+                """
         start = line.get_start()
         end = line.get_end()
         d1 = start - point

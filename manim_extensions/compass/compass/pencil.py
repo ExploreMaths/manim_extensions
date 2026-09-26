@@ -30,6 +30,10 @@ class Pencil(SVGMobject):
     angle : float, optional
         Rotation angle of the pencil (in radians). Defaults to ``PI/4``.
 
+
+    Examples
+    ----------
+
     .. manim:: PencilDocExample
        :save_last_frame:
 
@@ -40,7 +44,7 @@ class Pencil(SVGMobject):
            def construct(self):
                pencil = Pencil()
                self.add(pencil, Dot(pencil.get_nib(), color=RED))
-    """
+                """
 
     def __init__(self, height: float = 2, angle: float = PI / 4) -> None:
         """Initialize the Pencil instance."""
@@ -89,12 +93,12 @@ class Pencil(SVGMobject):
         Parameters
         ----------
         point
-        The point used by the operation.
+            The point used by the operation.
 
         Returns
         -------
         Pencil
             The translated self.
-        """
+                """
         self.shift(point - self.get_nib())
         return self

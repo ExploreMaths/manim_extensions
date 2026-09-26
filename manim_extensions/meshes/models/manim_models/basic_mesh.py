@@ -346,10 +346,10 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         new_vertices : Vertices
-        New vertices processed by this operation.
+            New vertices processed by this operation.
         scene : m.Scene
-        The scene in which the action is performed.
-        """
+            The scene in which the action is performed.
+                """
         self.mesh.add_vertices(new_vertices)
         # fade out current ones, fade in all after add
         if self.display_vertices:

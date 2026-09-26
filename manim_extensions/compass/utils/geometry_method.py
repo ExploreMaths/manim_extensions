@@ -28,6 +28,7 @@ def get_arc(
     **kwargs: Any,
 ) -> Arc:
     """
+
     Construct an arc from its centre and starting point.
 
     Parameters
@@ -49,6 +50,10 @@ def get_arc(
         The constructed :class:`~manim.mobject.geometry.arc.Arc` instance,
         centred at ``niddle_pos`` and starting at ``pen_pos``.
 
+
+    Examples
+    ----------
+
     .. manim:: GetArcDocExample
        :save_last_frame:
 
@@ -63,7 +68,7 @@ def get_arc(
                    Dot(2 * RIGHT, color=PURE_YELLOW),
                    arc,
                )
-    """
+        """
     arc_radius = get_distance(niddle_pos, pen_pos)
     vec_s = pen_pos - niddle_pos
     return Arc(
@@ -85,15 +90,15 @@ def get_distance(
     Parameters
     ----------
     point_start : np.ndarray
-    The point used by the operation.
+        The point used by the operation.
     point_end : np.ndarray
-    The point used by the operation.
+        The point used by the operation.
 
     Returns
     -------
     float
         The Euclidean distance between ``point_start`` and ``point_end``.
-    """
+        """
     return float(np.linalg.norm(point_start - point_end))
 
 
