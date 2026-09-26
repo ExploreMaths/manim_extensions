@@ -85,7 +85,9 @@ Install the latest stable release from PyPI:
 
    pip install manim_extensions
 
-The only runtime dependency is `manim <https://pypi.org/project/manim/>`_.
+The only runtime dependencies are `manim <https://pypi.org/project/manim/>`_
+and `numpy <https://pypi.org/project/numpy/>`_ — everything else is
+either bundled or an optional extra (see :doc:`installation/index`).
 
 Then head over to the :doc:`tutorials/quickstart` guide for a hands-on
 introduction, or browse the :doc:`examples/index` gallery.
