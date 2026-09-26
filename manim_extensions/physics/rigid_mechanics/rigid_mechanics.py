@@ -284,7 +284,7 @@ class SpaceScene(Scene):
             self.add_body(mob)
 
     def stop_rigidity(self, *mobs: Mobject) -> None:
-        """Stop the mobjects rigidity
+        """Stop the mobjects rigidity.
 
         Parameters
         ----------
@@ -326,7 +326,7 @@ def _simulate(b: Any):
 
 
 def get_shape(mob: VMobject) -> None:
-    """Obtains the shape of the body from the mobject
+    """Obtains the shape of the body from the mobject.
 
     Parameters
     ----------

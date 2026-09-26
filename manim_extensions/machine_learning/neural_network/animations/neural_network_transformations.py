@@ -75,7 +75,7 @@ class RemoveLayer(AnimationGroup):
         super().__init__(*animations_list, lag_ratio=1.0)
 
     def get_connective_layers(self):
-        """Gets the connective layers before and after self.layer
+        """Gets the connective layers before and after self.layer.
 
         Raises
         ------
@@ -180,7 +180,7 @@ class RemoveLayer(AnimationGroup):
 
         def create_new_connective(neural_network: Any):
             """
-            Creates new connective layer
+            Creates new connective layer.
 
             This is a closure that creates a new connective layer and animates it.
             """
@@ -203,7 +203,7 @@ class RemoveLayer(AnimationGroup):
 
 
 class InsertLayer(AnimationGroup):
-    """Animation for inserting layer at given index
+    """Animation for inserting layer at given index.
 
     Parameters
     ----------
@@ -349,7 +349,7 @@ class InsertLayer(AnimationGroup):
     def make_create_connective_layers_animation(
         self, before_connective: Any, after_connective: Any
     ):
-        """Create connective layers
+        """Create connective layers.
 
         Parameters
         ----------

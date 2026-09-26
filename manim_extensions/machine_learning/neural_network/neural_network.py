@@ -4,7 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-"""Neural Network Manim Visualization
+"""Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
 manim, specifically a fully connected neural network diagram.
@@ -43,7 +43,7 @@ from .animations.neural_network_transformations import InsertLayer, RemoveLayer
 from .. import config
 
 class NeuralNetwork(Group):
-    """Neural Network Visualization Container Class
+    """Neural Network Visualization Container Class.
 
     Parameters
     ----------
@@ -158,7 +158,7 @@ class NeuralNetwork(Group):
         print(repr(self))
 
     def make_input_layers_dict(self, input_layers: list):
-        """Make dictionary of input layers
+        """Make dictionary of input layers.
 
         Parameters
         ----------
@@ -192,7 +192,7 @@ class NeuralNetwork(Group):
         connection_position: str = "bottom",
         arc_direction: str = "down"
     ):
-        """Add connection from start layer to end layer
+        """Add connection from start layer to end layer.
 
         Parameters
         ----------
@@ -232,7 +232,7 @@ class NeuralNetwork(Group):
 
     def _construct_input_layers(self):
         """Constructs each of the input layers in context
-        of their adjacent layers."""
+        of their adjacent layers.."""
         prev_layer = None
         next_layer = None
         # Go through all the input layers and run their construct method

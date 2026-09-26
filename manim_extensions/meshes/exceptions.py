@@ -12,7 +12,7 @@ from typing import Any, Tuple, Union
 
 
 class InvalidMeshException(Exception):
-    """something with the mesh is generally wrong
+    """something with the mesh is generally wrong.
 
     Raised by :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`
     (and related helpers) whenever the supplied mesh data is inconsistent,
@@ -29,7 +29,7 @@ class InvalidMeshException(Exception):
 
 
 class InvalidRequestException(InvalidMeshException):
-    """a request was made that is not defined
+    """a request was made that is not defined.
 
     Raised when a mesh operation cannot be fulfilled as requested, e.g.
     broadcasting a 4-D mesh to 3-D vertices:
@@ -47,9 +47,9 @@ class InvalidRequestException(InvalidMeshException):
 
 
 class MeshIndexException(IndexError):
-    """invalid index
+    """Invalid index.
 
-    Raised when a vertex, face, or part index is out of range, e.g.:
+    Raised when a vertex, face, or part index is out of range, e.g.
 
     Examples
     --------
@@ -64,7 +64,7 @@ class MeshIndexException(IndexError):
 
 
 class InvalidTypeException(TypeError):
-    """A mesh function did get a faulty type
+    """A mesh function did get a faulty type.
 
     Raised when a parameter has the right container type but an unexpected
     shape, e.g. a 2-D array where a 1-D vertex position is expected:
@@ -82,7 +82,7 @@ class InvalidTypeException(TypeError):
 
 
 class InvalidMeshDimensionsException(Exception):
-    """Something with the Mesh Dimensions is not as expected
+    """Something with the Mesh Dimensions is not as expected.
 
     Parameters
     ----------
@@ -125,7 +125,7 @@ class InvalidMeshDimensionsException(Exception):
 
 
 class InvalidShapeException(Exception):
-    """A new parameter has invalid shape
+    """A new parameter has invalid shape.
 
     Parameters
     ----------
@@ -160,7 +160,7 @@ class InvalidShapeException(Exception):
 
 
 class BadParameterException(Exception):
-    """Default Class for Parameter Exceptions
+    """Default Class for Parameter Exceptions.
 
     Raised by :func:`~manim_extensions.meshes.params.get_param_or_default`
     when a user-supplied mesh display parameter cannot be cast to the
@@ -177,7 +177,7 @@ class BadParameterException(Exception):
 
 
 class FaultyVarArrayException(Exception):
-    """The given object is no VarArray
+    """The given object is no VarArray.
 
     Base class for errors raised when an object that should be a
     :class:`~manim_extensions.meshes.types.VarArray` (faces, parts, edges)

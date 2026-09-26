@@ -14,7 +14,7 @@ from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath
 
 
 class MolParser(BaseParser):
-    """Parses mol files
+    """Parses mol files.
 
     Examples
     --------

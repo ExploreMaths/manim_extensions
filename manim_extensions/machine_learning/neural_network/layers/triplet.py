@@ -24,7 +24,7 @@ from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 
 
 class TripletLayer(NeuralNetworkLayer):
-    """Shows triplet images
+    """Shows triplet images.
 
     Parameters
     ----------
@@ -96,7 +96,7 @@ class TripletLayer(NeuralNetworkLayer):
         font_size: float = 22,
         buff: float = 0.2,
     ):
-        """Creates a triplet using the anchor paths
+        """Creates a triplet using the anchor paths.
 
         Parameters
         ----------
@@ -170,7 +170,7 @@ class TripletLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass for triplet
+        """Forward pass for triplet.
 
         Parameters
         ----------

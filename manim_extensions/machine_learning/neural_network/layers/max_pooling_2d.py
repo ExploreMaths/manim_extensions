@@ -13,7 +13,7 @@ from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkL
 from ... import config
 
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Max pooling layer for Convolutional2DLayer
+    """Max pooling layer for Convolutional2DLayer.
 
     Note: This is for a Convolutional2DLayer even though
     it is called MaxPooling2DLayer because the 2D corresponds

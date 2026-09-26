@@ -4,7 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-"""Variational Autoencoder Manim Visualizations
+"""Variational Autoencoder Manim Visualizations.
 
 In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
@@ -17,7 +17,7 @@ from ..neural_network import NeuralNetwork
 
 from typing import Any
 class VariationalAutoencoder(VGroup):
-    """Variational Autoencoder Manim Visualization
+    """Variational Autoencoder Manim Visualization.
 
     Parameters
     ----------
@@ -102,7 +102,7 @@ class VariationalAutoencoder(VGroup):
         pass
 
     def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5):
-        """Override forward pass animation specific to a VAE
+        """Override forward pass animation specific to a VAE.
 
         Parameters
         ----------

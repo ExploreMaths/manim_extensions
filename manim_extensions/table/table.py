@@ -181,7 +181,7 @@ class Table(VGroup):
         **kwargs: Any
     ) -> None:
         """Initialize the table from a header row plus data rows, or a
-        single data matrix whose first row is the header."""
+        single data matrix whose first row is the header.."""
         super().__init__(**kwargs)
         
         # Parse input (copy the lists: add/delete column mutate them and

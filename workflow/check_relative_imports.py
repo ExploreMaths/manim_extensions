@@ -113,8 +113,10 @@ def analyse_file(filepath: Path):
         return []
     try:
         tree = ast.parse(source)
-    except SyntaxError:
-        return []
+    except SyntaxError as exc:
+        # Hard-fail instead of skipping: a parse error must not disable
+        # the import checks for a whole file.
+        raise SystemExit(f"{filepath}: syntax error: {exc}")
 
     pkg_parts = package_parts_of_file(filepath)
     issues = []

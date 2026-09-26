@@ -17,7 +17,7 @@ from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath, MoleculeDat
 
 
 class XMLParser(BaseParser):
-    """Parses mol files
+    """Parses mol files.
 
     Examples
     --------

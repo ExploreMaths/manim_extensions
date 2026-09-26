@@ -25,7 +25,7 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 
 
 class FeedForwardToEmbedding(ConnectiveLayer):
-    """Connective layer between a feed-forward layer and an embedding layer
+    """Connective layer between a feed-forward layer and an embedding layer.
 
     Parameters
     ----------
@@ -79,7 +79,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
-        """Makes dots converge on a specific location
+        """Makes dots converge on a specific location.
 
         Parameters
         ----------

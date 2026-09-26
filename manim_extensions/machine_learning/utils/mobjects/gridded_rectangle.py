@@ -24,7 +24,7 @@ from numpy.typing import NDArray
 
 
 class GriddedRectangle(VGroup):
-    """Rectangle object with grid lines
+    """Rectangle object with grid lines.
 
     Parameters
     ----------
@@ -158,7 +158,7 @@ class GriddedRectangle(VGroup):
         self.add(*self.corners_dict.values())
 
     def make_corners_dict(self) -> dict[str, Dot]:
-        """Make corners dictionary
+        """Make corners dictionary.
 
         Returns
         -------
@@ -183,7 +183,7 @@ class GriddedRectangle(VGroup):
         return corners_dict
 
     def get_corners_dict(self) -> dict[str, Dot]:
-        """Returns a dictionary of the corners
+        """Returns a dictionary of the corners.
 
         Returns
         -------
@@ -194,7 +194,7 @@ class GriddedRectangle(VGroup):
         return self.corners_dict
 
     def make_grid_lines(self) -> VGroup:
-        """Make grid lines in rectangle
+        """Make grid lines in rectangle.
 
         Returns
         -------
@@ -270,7 +270,7 @@ class GriddedRectangle(VGroup):
     def set_color(  # type: ignore[override] # intentionally returns None instead of the group
         self, color: ManimColor
     ) -> None:
-        """Sets the color of the gridded rectangle
+        """Sets the color of the gridded rectangle.
 
         Parameters
         ----------

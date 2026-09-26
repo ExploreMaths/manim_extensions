@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 def convert_matplotlib_figure_to_image_mobject(
     fig: "Figure", dpi: int = 200
 ) -> ImageMobject:
-    """Takes a matplotlib figure and makes an image mobject from it
+    """Takes a matplotlib figure and makes an image mobject from it.
 
     Parameters
     ----------

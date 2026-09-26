@@ -27,7 +27,7 @@ from manim import (
 from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):
-    """Abstract Neural Network Layer class
+    """Abstract Neural Network Layer class.
 
     Parameters
     ----------
@@ -78,7 +78,7 @@ class NeuralNetworkLayer(ABC, Group):
         output_layer: "NeuralNetworkLayer",
         **kwargs: Any,
     ) -> None:
-        """Constructs the layer at network construction time
+        """Constructs the layer at network construction time.
 
         Parameters
         ----------
@@ -182,7 +182,7 @@ class ThreeDLayer(ABC):
 
 
 class ConnectiveLayer(VGroupNeuralNetworkLayer):
-    """Forward pass animation for a given pair of layers
+    """Forward pass animation for a given pair of layers.
 
     Parameters
     ----------
@@ -270,7 +270,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
 
 class BlankConnective(ConnectiveLayer):
-    """Connective layer to be used when the given pair of layers is undefined
+    """Connective layer to be used when the given pair of layers is undefined.
 
     Parameters
     ----------

@@ -4,7 +4,7 @@
 
 
 """
-Catalog / organisation-chart layout algorithm - Python implementation
+Catalog / organisation-chart layout algorithm - Python implementation.
 
 Layout characteristics:
 - Root node is centred

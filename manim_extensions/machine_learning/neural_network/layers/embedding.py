@@ -30,7 +30,7 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 
 class EmbeddingLayer(VGroupNeuralNetworkLayer):
-    """NeuralNetwork embedding object that can show probability distributions
+    """NeuralNetwork embedding object that can show probability distributions.
 
     Parameters
     ----------
@@ -141,7 +141,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def add_gaussian_distribution(self, gaussian_distribution: Any):
-        """Adds given GaussianDistribution to the list
+        """Adds given GaussianDistribution to the list.
 
         Parameters
         ----------
@@ -153,7 +153,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return Create(gaussian_distribution)
 
     def remove_gaussian_distribution(self, gaussian_distribution: Any):
-        """Removes the given gaussian distribution from the embedding
+        """Removes the given gaussian distribution from the embedding.
 
         Parameters
         ----------
@@ -182,7 +182,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     def construct_gaussian_point_cloud(
         self, mean: np.ndarray, covariance: np.ndarray, point_color: ManimColor = WHITE, num_points: int = 400
     ):
-        """Plots points sampled from a Gaussian with the given mean and covariance
+        """Plots points sampled from a Gaussian with the given mean and covariance.
 
         Parameters
         ----------
@@ -209,7 +209,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return point_dots
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass animation
+        """Forward pass animation.
 
         Parameters
         ----------

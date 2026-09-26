@@ -34,7 +34,7 @@ from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 
 class FeatureMap(VGroup):
-    """Class for making a feature map
+    """Class for making a feature map.
 
     Parameters
     ----------
@@ -160,7 +160,7 @@ class FeatureMap(VGroup):
 
 
 class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Handles rendering a convolutional layer for a nn
+    """Handles rendering a convolutional layer for a nn.
 
     Parameters
     ----------
@@ -382,7 +382,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
-        """Convolution forward pass animation
+        """Convolution forward pass animation.
 
         Parameters
         ----------
@@ -420,7 +420,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().scale(scale_factor, **kwargs)
 
     def get_center(self):
-        """Overrides function for getting center
+        """Overrides function for getting center.
 
         The reason for this is so that the center calculation
         does not include the activation function.
@@ -436,7 +436,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return self.feature_maps.length_over_dim(1)
 
     def move_to(self, mobject_or_point: Mobject):
-        """Moves the center of the layer to the given mobject or point
+        """Moves the center of the layer to the given mobject or point.
 
         Parameters
         ----------

@@ -23,7 +23,7 @@ from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 
 
 class PairedQueryLayer(NeuralNetworkLayer):
-    """Paired Query Layer
+    """Paired Query Layer.
 
     Parameters
     ----------
@@ -119,7 +119,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     @classmethod
     def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs):
-        """Creates a query using the paths
+        """Creates a query using the paths.
 
         Parameters
         ----------
@@ -176,7 +176,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Forward pass for query
+        """Forward pass for query.
 
         Parameters
         ----------

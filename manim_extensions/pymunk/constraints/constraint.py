@@ -108,7 +108,8 @@ class VConstraint(VGroup):
 
     def install(self, space: Space):
         """Installs physical constraints into the Pymunk physical space.
-        This method should be overridden by subclasses to implement the following:
+        This method should be overridden by subclasses to implement the
+        following steps.
 
         1. Create Pymunk constraint objects
         2. Initialize the vision component

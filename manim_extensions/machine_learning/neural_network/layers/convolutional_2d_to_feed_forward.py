@@ -13,7 +13,7 @@ from .convolutional_2d import Convolutional2DLayer
 
 
 class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
-    """Connective layer between a convolutional 2D layer and a feed-forward layer
+    """Connective layer between a convolutional 2D layer and a feed-forward layer.
 
     Parameters
     ----------
@@ -61,7 +61,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
-        """Forward pass animation from conv2d to conv2d
+        """Forward pass animation from conv2d to conv2d.
 
         Parameters
         ----------

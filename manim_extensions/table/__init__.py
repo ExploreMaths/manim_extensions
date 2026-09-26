@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 """
-Manimal - Manim Community Edition Database Animation Extension
+Manimal - Manim Community Edition Database Animation Extension.
 
 A clean, modular extension for Manim Community Edition (manim CE) to
 animate database tables, rows, columns, and cells.

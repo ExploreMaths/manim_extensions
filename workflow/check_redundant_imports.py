@@ -48,12 +48,14 @@ def get_star_exports(module_name):
     return names
 
 
-def find_star_imports(source):
+def find_star_imports(source, filepath="<unknown>"):
     """Return (has_star, [star ImportFrom nodes]) for non-init files."""
     try:
         tree = ast.parse(source)
-    except SyntaxError:
-        return False, []
+    except SyntaxError as exc:
+        # Hard-fail instead of skipping: a parse error must not silently
+        # disable the star-import check for a whole file.
+        raise SystemExit(f"{filepath}: syntax error: {exc}")
     nodes = [n for n in ast.walk(tree) if is_star_import(n)]
     return bool(nodes), nodes
 
@@ -98,7 +100,7 @@ def fix_star_imports(source, filepath):
     """
     if "__init__.py" in Path(filepath).name:
         return source, 0
-    has_star, star_nodes = find_star_imports(source)
+    has_star, star_nodes = find_star_imports(source, filepath)
     if not has_star:
         return source, 0
 
@@ -157,7 +159,7 @@ def check_file(filepath):
         return None
     if "__init__.py" in filepath.name:
         return None
-    has_star, nodes = find_star_imports(source)
+    has_star, nodes = find_star_imports(source, filepath)
     if not has_star:
         return None
     return [(n.lineno, n.module) for n in sorted(nodes, key=lambda n: n.lineno)]

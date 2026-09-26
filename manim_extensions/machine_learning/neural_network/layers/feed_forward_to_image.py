@@ -13,7 +13,7 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 
 
 class FeedForwardToImage(ConnectiveLayer):
-    """Connective layer between a feed-forward layer and an image layer
+    """Connective layer between a feed-forward layer and an image layer.
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ class FeedForwardToImage(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
-        """Makes dots diverge from the given location and move to the feed forward nodes decoder
+        """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
         ----------

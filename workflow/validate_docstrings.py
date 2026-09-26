@@ -249,8 +249,10 @@ def check_function_docstrings(filepath):
     
     try:
         tree = ast.parse(source)
-    except SyntaxError:
-        return []
+    except SyntaxError as exc:
+        # Hard-fail instead of skipping: a parse error must not disable
+        # the docstring checks for a whole file.
+        return [(filepath, f"<syntax error: {exc}>")]
     
     missing = []
     

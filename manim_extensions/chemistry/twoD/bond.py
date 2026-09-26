@@ -466,7 +466,7 @@ class DoubleBond(BaseMBondObject):
 
     def get_vector(self):
         """
-        This contains a VGroup with two lines, we just get the vector from one of them
+        This contains a VGroup with two lines, we just get the vector from one of them.
 
         Raises
         ------
@@ -692,7 +692,7 @@ class TripleBond(BaseMBondObject):
 
     def get_vector(self):
         """
-        This contains a VGroup with two lines, we just get the vector from one of them
+        This contains a VGroup with two lines, we just get the vector from one of them.
 
         Raises
         ------
@@ -934,7 +934,7 @@ class DashedCramBond(BaseMBondObject):
 
     def get_vector(self):
         """
-        This contains a VGroup with two lines, we just get the vector from one of them
+        This contains a VGroup with two lines, we just get the vector from one of them.
 
         Raises
         ------

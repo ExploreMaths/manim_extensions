@@ -13,7 +13,7 @@ from ..layers.feed_forward import FeedForwardLayer
 from typing import Any
 from manim import ManimColor
 class FeedForwardNeuralNetwork(NeuralNetwork):
-    """NeuralNetwork with just feed forward layers
+    """NeuralNetwork with just feed forward layers.
 
     Parameters
     ----------
