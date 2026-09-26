@@ -18,7 +18,6 @@ class MolParser(BaseParser):
 
     Examples
     --------
-
     .. code-block:: python
 
         parsed_mol = MolParser(filename="acetone_2d.json")

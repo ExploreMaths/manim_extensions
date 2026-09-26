@@ -67,7 +67,9 @@ class FeatureMap(VGroup):
 
        class FeatureMapExample(Scene):
            def construct(self):
-               self.add(FeatureMap(feature_map_size=(4, 4), show_grid_lines=True))
+               feature_map = FeatureMap(feature_map_size=(4, 4), show_grid_lines=True)
+               feature_map.scale_to_fit_height(5).move_to(ORIGIN)
+               self.add(feature_map)
     """
 
     def __init__(

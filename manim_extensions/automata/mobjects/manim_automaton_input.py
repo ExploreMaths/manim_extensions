@@ -45,6 +45,7 @@ class ManimAutomataInput(VGroup):
        class ManimAutomataInputExample(Scene):
            def construct(self):
                inp = ManimAutomataInput("0101", animation_style={})
+               inp.scale_to_fit_height(2.5).move_to(ORIGIN)
                self.add(inp)
                animations = ManimAnimations()
                for token in inp.tokens:
@@ -124,7 +125,9 @@ class Token(MathTex):
        class TokenExample(Scene):
            def construct(self):
                tokens = [Token(symbol, spacing) for spacing, symbol in enumerate("010")]
-               self.add(*tokens)
+               content = VGroup(*tokens)
+               content.scale_to_fit_height(2.5).move_to(ORIGIN)
+               self.add(content)
                self.play(FadeToColor(tokens[1], PURE_YELLOW))
     """
 

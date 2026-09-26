@@ -36,7 +36,7 @@ class SigmoidFunction(ActivationFunction):
        class SigmoidFunctionDocExample(Scene):
            def construct(self):
                sigmoid = SigmoidFunction(x_range=[-5, 5], y_range=[0, 1])
-               sigmoid.scale(2.5)
+               sigmoid.scale(4)
                sigmoid.move_to(ORIGIN)
                self.add(sigmoid)
                self.play(sigmoid.make_evaluate_animation())

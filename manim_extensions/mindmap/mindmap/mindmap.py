@@ -141,9 +141,7 @@ class MindMap(AbstractMap):
 
 
 class TimeLine(AbstractMap):
-    """
-
-    Timeline: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
+    r"""Timeline: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
     ----------
@@ -161,11 +159,8 @@ class TimeLine(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
-
-
     Examples
-    ----------
-
+    --------
     .. manim:: TimeLineDocExample
        :save_last_frame:
 
@@ -177,9 +172,9 @@ class TimeLine(AbstractMap):
                data = {
                    'node': MathTex(r"\text{History}"),
                    'child': [
-                       {'node': MathTex(r"2022")},
-                       {'node': MathTex(r"2023")},
-                       {'node': MathTex(r"2024")},
+                       {'node': MathTex("2022")},
+                       {'node': MathTex("2023")},
+                       {'node': MathTex("2024")},
                    ]
                }
                timeline = TimeLine(data)
@@ -247,9 +242,7 @@ class TimeLine(AbstractMap):
 
 
 class StandardMap(AbstractMap):
-    """
-
-    Two-sided mind map: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
+    r"""Two-sided mind map: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`.
 
     Parameters
     ----------
@@ -266,11 +259,8 @@ class StandardMap(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
-
-
     Examples
-    ----------
-
+    --------
     .. manim:: StandardMapDocExample
        :save_last_frame:
 
@@ -357,9 +347,7 @@ class StandardMap(AbstractMap):
 
 
 class CatalogMap(AbstractMap):
-    """
-
-    Catalog / organisation-chart: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`,
+    r"""Catalog / organisation-chart: data format is the same as :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap`,
     layout direction is downwards.
 
     Parameters
@@ -375,11 +363,8 @@ class CatalogMap(AbstractMap):
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
         Node style.
 
-
-
     Examples
-    ----------
-
+    --------
     .. manim:: CatalogMapDocExample
        :save_last_frame:
 
@@ -401,6 +386,9 @@ class CatalogMap(AbstractMap):
                }
                catalog = CatalogMap(data)
                catalog.scale_to_fit_width(12)
+               if catalog.height > 7:
+                   catalog.scale_to_fit_height(7)
+               catalog.move_to(ORIGIN)
                self.add(catalog)
                catalog.get_descendants((0, 0)).set_color(YELLOW)
     """

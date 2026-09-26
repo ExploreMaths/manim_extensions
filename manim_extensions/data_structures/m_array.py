@@ -150,7 +150,9 @@ class MArrayElement(VGroup):
                    next_to_mob=first,
                    next_to_dir=RIGHT,
                )
-               self.add(first, second)
+               content = VGroup(first, second)
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
 
     """
 

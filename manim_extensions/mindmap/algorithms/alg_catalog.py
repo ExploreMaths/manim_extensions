@@ -140,6 +140,9 @@ class CatalogLayout(Layout):
                draw(root)
                tree = Group(links, boxes)
                tree.scale_to_fit_height(6.5)
+               if tree.width > 12:
+                   tree.scale_to_fit_width(12)
+               tree.move_to(ORIGIN)
                self.add(tree)
     """
 

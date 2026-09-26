@@ -59,7 +59,6 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
 
     Examples
     --------
-
     .. code-block:: console
 
         manim_chemistry pubchem-molecule --format sdf -n acetone -n morphine

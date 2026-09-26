@@ -92,8 +92,8 @@ A wall of solid icons, staggered in and spun like on the
                icon.scale(0.75)
            # scale until the grid covers the whole frame (full bleed)
            cover = max(
-               (config.frame_width + 0.5) / icons.width,
-               (config.frame_height + 0.5) / icons.height,
+               config.frame_width / icons.width,
+               config.frame_height / icons.height,
            )
            icons.scale(cover)
            self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.01))

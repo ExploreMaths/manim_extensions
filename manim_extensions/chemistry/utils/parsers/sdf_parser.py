@@ -24,7 +24,6 @@ class SDFParser(MolParser):
 
     Examples
     --------
-
     .. code-block:: python
 
         parsed_xml = XMLParser(filename="acetone_2d.json")

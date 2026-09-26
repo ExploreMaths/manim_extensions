@@ -194,6 +194,10 @@ def animate_of_display(
                )
                self.play(*anims)
                self.wait()
+               content = VGroup(*self.mobjects)
+               content.scale_to_fit_width(12).move_to(ORIGIN)
+               if content.height > 7:
+                   content.scale_to_fit_height(7).move_to(ORIGIN)
 
     Parameters
     ----------
@@ -576,7 +580,7 @@ def animate_of_layout(
 
 
 class AbstractLayoutAnimation(AnimationGroup):
-    """Abstract base class for layout animations: collect node states and generate the full layout animation.
+    r"""Abstract base class for layout animations: collect node states and generate the full layout animation.
 
     .. manim:: AbstractLayoutAnimationDocExample
 
@@ -738,10 +742,8 @@ class LayoutAnimation(AbstractLayoutAnimation):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: LayoutAnimationDocExample
 
        from manim import *
@@ -771,6 +773,8 @@ class LayoutAnimation(AbstractLayoutAnimation):
                self.play(LayoutAnimation(self, root,
                                          layout_config=LayoutConfig(direction=UP)))
                self.wait()
+               content = VGroup(*self.mobjects)
+               content.scale_to_fit_width(11).move_to(ORIGIN)
     """
 
     def __init__(
@@ -828,10 +832,8 @@ class RemoveNode(LayoutAnimation):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: RemoveNodeDocExample
 
        from manim import *
@@ -927,7 +929,7 @@ class RemoveNode(LayoutAnimation):
 
 
 class InsertNode(LayoutAnimation):
-    """Insert one or more child nodes into the mind map.
+    r"""Insert one or more child nodes into the mind map.
 
     .. manim:: InsertNodeDocExample
 
@@ -1022,7 +1024,7 @@ class InsertNode(LayoutAnimation):
 
 
 class ScaleNode(LayoutAnimation):
-    """Scale one or more nodes in the mind map.
+    r"""Scale one or more nodes in the mind map.
 
     .. manim:: ScaleNodeDocExample
 
@@ -1036,6 +1038,10 @@ class ScaleNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1]}))
                self.play(ScaleNode(self, {a1: 2}))
                self.wait()
+               content = VGroup(*self.mobjects)
+               content.scale_to_fit_width(12).move_to(ORIGIN)
+               if content.height > 7:
+                   content.scale_to_fit_height(7).move_to(ORIGIN)
 
     Parameters
     ----------
@@ -1076,7 +1082,7 @@ class ScaleNode(LayoutAnimation):
 
 
 class AlterNode(LayoutAnimation):
-    """Replace the content of one or more nodes in the mind map.
+    r"""Replace the content of one or more nodes in the mind map.
 
     .. manim:: AlterNodeDocExample
 

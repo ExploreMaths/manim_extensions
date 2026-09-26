@@ -88,6 +88,7 @@ Quick start
            self.wait(0.5)
            var.update_label("total")
            self.wait(0.5)
+           var.scale_to_fit_width(6).move_to(ORIGIN)
 
 .. manim:: DataStructureInsertRemoveExample
 

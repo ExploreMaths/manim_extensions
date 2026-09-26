@@ -325,6 +325,9 @@ class TidyTreeLayout(Layout):
                        draw(child)
                draw(root)
                boxes.scale_to_fit_width(12)
+               if boxes.height > 7:
+                   boxes.scale_to_fit_height(7)
+               boxes.move_to(ORIGIN)
                self.add(boxes)
     """
 

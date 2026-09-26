@@ -288,7 +288,8 @@ class MathTexLine(VGroup):
 
        class MathTexLineDocExample(Scene):
            def construct(self):
-               line = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE)
+               line = MathTexLine(MathTex("y = x", font_size=72), direction=UP, color=BLUE)
+               line.scale(4)
                self.play(Write(line))
                self.wait(0.5)
     """
@@ -959,9 +960,11 @@ class CropImageMobject(ImageMobject):
            def construct(self):
                img = np.zeros((120, 120, 3), dtype=np.uint8)
                img[:] = (60, 120, 220)
-               square = ImageMobject(img).shift(LEFT)
-               rounded = CropImageMobject(img, corner_radius=0.2).shift(RIGHT)
-               self.add(square, rounded)
+               square = ImageMobject(img).scale(2.2).shift(LEFT * 2)
+               rounded = CropImageMobject(img, corner_radius=0.2).scale(2.2).shift(RIGHT * 2)
+               content = VGroup(square, rounded)
+               content.scale_to_fit_height(4).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(
@@ -1399,8 +1402,9 @@ class Trail(VGroup):
 
        class TrailDocExample(Scene):
            def construct(self):
-               dot = Dot(color=BLUE).shift(LEFT * 2)
+               dot = Dot(color=BLUE).scale(1.8).shift(LEFT * 2)
                trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
+               trail.scale(2.2)
                self.add(trail)
                self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear))
                trail.stop_trace()
@@ -1641,7 +1645,7 @@ class ObjectBorder(VGroup):
 
        class ObjectBorderDocExample(Scene):
            def construct(self):
-               t = Text("Hi").scale(2)
+               t = Text("Hi").scale(5)
                self.add(t, ObjectBorder(t))
                self.play(t.animate.shift(RIGHT * 2).scale(1.5))
                self.wait(0.5)
@@ -1736,9 +1740,9 @@ class ThreeDVector(VGroup):
        class ThreeDVectorDocExample(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
-               axes = ThreeDAxes()
-               u = ThreeDVector([2, 1, 1.5], color=YELLOW)
-               v = ThreeDVector([1, 0.5, 2], position=[-2, -1.2, 0], color=GREEN)
+               axes = ThreeDAxes(x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3])
+               u = ThreeDVector([1.5, 0.75, 1.125], color=YELLOW)
+               v = ThreeDVector([0.75, 0.375, 1.5], position=[-1.5, -0.9, 0], color=GREEN)
                self.add(axes, u, v)
     """
 

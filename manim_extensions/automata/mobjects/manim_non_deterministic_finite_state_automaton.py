@@ -36,11 +36,11 @@ nfa_automaton_json = {
 
 
 class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
-    """A non-deterministic finite automaton (NFA) with Manim visualisation.
+    r"""A non-deterministic finite automaton (NFA) with Manim visualisation.
 
     This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents an NFA where states
     may have multiple outgoing transitions for the same input symbol, including
-    epsilon (``\\epsilon``) transitions.  It supports the CLI path-builder for
+    epsilon (``\epsilon``) transitions.  It supports the CLI path-builder for
     interactively exploring accepting paths through the automaton.
 
     Parameters

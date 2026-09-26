@@ -334,7 +334,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
 
 class PushDownAutomatonRule:
-    """A single pushdown-automaton transition rule.
+    r"""A single pushdown-automaton transition rule.
 
     Parameters
     ----------
@@ -345,7 +345,7 @@ class PushDownAutomatonRule:
     push : str
         Symbol pushed onto the stack.
     empty_transition : str, optional
-        Symbol used when ``read_symbol`` is ``None``.  Defaults to ``"\\epsilon"``.
+        Symbol used when ``read_symbol`` is ``None``.  Defaults to ``"\epsilon"``.
 
     Examples
     --------

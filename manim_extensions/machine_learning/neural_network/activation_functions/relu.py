@@ -35,7 +35,7 @@ class ReLUFunction(ActivationFunction):
        class ReLUFunctionDocExample(Scene):
            def construct(self):
                relu = ReLUFunction()
-               relu.scale(2.5)
+               relu.scale(4)
                relu.move_to(ORIGIN)
                self.add(relu)
     """

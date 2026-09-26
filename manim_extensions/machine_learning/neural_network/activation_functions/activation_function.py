@@ -67,6 +67,8 @@ class ActivationFunction(ABC, VGroup):
                # subclass.
                activation = ReLUFunction()
                assert isinstance(activation, ActivationFunction)
+               activation.scale(6)
+               activation.move_to(ORIGIN)
                self.add(activation)
     """
 

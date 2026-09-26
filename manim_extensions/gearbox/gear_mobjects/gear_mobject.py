@@ -758,7 +758,7 @@ class Gear(VMobject):
                    gear2.mesh_to(gear1, offset=0.15, bias=False)
 
                    mesh = VGroup(gear1, gear2)
-                   mesh.scale_to_fit_height(6.5)
+                   mesh.scale_to_fit_height(6.5).move_to(ORIGIN)
                    self.add(mesh)
                    self.play(
                        Rotate(gear1, gear1.pitch_angle, rate_func=linear),

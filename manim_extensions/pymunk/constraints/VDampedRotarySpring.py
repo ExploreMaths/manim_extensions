@@ -59,7 +59,7 @@ class VDampedRotarySpring(VConstraint):
             def construct(self):
                 # the spinning squares are pulled back to rest_angle=PI/4 and
                 # their oscillation is damped (watch the arc indicators)
-                floor = Line(LEFT * 8, RIGHT * 8, stroke_width=8, color=GREY)
+                floor = Line(LEFT * 6.5, RIGHT * 6.5, stroke_width=8, color=GREY)
                 floor.to_edge(DOWN, buff=0.5)
                 square_1 = Square().next_to(floor, UP, buff=1)
                 square_2 = Square().move_to(square_1.get_center() + RIGHT * 4)

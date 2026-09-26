@@ -110,6 +110,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
        class MMoleculeFromFile(Scene):
            def construct(self):
                mmolecule = MMoleculeObject.molecule_from_file("acetone_2d.mol")
+               mmolecule.scale(1.6)
                self.play(Write(mmolecule))
                self.play(Indicate(mmolecule.bonds[0]))
                self.wait()

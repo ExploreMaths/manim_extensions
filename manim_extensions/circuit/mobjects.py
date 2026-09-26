@@ -465,7 +465,9 @@ class Capacitor(VMobject):
                polarized = Capacitor(label="100n", polarized=True).next_to(
                    plain, RIGHT, buff=1.5
                )
-               self.add(plain, polarized)
+               content = VGroup(plain, polarized)
+               content.scale_to_fit_height(3).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(
@@ -686,7 +688,9 @@ class Opamp(VMobject):
                both = Opamp(bias_supply="both", label=True).next_to(
                    negative, RIGHT, buff=2.5
                )
-               self.add(positive, negative, both)
+               content = VGroup(positive, negative, both)
+               content.scale_to_fit_width(12).move_to(ORIGIN)
+               self.add(content)
                for name in (
                    "positive_input",
                    "negative_input",

@@ -87,7 +87,9 @@ class Mesh:
                lines = VGroup(*[
                    Line(dots[i], dots[j]) for i, j in mesh.edges
                ])
-               self.add(lines, dots)
+               content = VGroup(lines, dots)
+               content.scale_to_fit_height(5).move_to(ORIGIN)
+               self.add(content)
     """
 
     @dangling_vert_decorator()

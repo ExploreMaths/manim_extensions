@@ -102,7 +102,9 @@ class Filters(VGroup):
                input_layer.construct_layer(None, None)
                output_layer.construct_layer(None, None)
                output_layer.next_to(input_layer, RIGHT, buff=1.5)
-               self.add(input_layer, output_layer, Filters(input_layer, output_layer))
+               content = VGroup(input_layer, output_layer, Filters(input_layer, output_layer))
+               content.scale_to_fit_width(12).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(

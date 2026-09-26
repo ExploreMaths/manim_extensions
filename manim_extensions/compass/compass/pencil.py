@@ -30,10 +30,8 @@ class Pencil(SVGMobject):
     angle : float, optional
         Rotation angle of the pencil (in radians). Defaults to ``PI/4``.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: PencilDocExample
        :save_last_frame:
 
@@ -42,8 +40,8 @@ class Pencil(SVGMobject):
 
        class PencilDocExample(Scene):
            def construct(self):
-               pencil = Pencil()
-               self.add(pencil, Dot(pencil.get_nib(), color=RED))
+               pencil = Pencil(height=3.2)
+               self.add(pencil, Dot(pencil.get_nib(), color=RED).scale(1.5))
     """
 
     def __init__(self, height: float = 2, angle: float = PI / 4) -> None:
@@ -86,8 +84,8 @@ class Pencil(SVGMobject):
 
            class MoveNidToDocExample(Scene):
                def construct(self):
-                   target = Dot(ORIGIN, color=RED)
-                   pencil = Pencil().move_nid_to(ORIGIN)
+                   target = Dot(ORIGIN, color=RED).scale(1.5)
+                   pencil = Pencil(height=3.2).move_nid_to(ORIGIN)
                    self.add(target, pencil)
 
         Parameters

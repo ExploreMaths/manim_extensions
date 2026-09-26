@@ -56,7 +56,7 @@ class MAtomObject(VGroup):
 
        class MAtomObjectExample(Scene):
            def construct(self):
-               self.add(MAtomObject(element="O"))
+               self.add(MAtomObject(element="O").scale(7))
     """
     def __str__(self):
         return f"MAtomObject of element {self.element}"

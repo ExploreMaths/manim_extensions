@@ -41,7 +41,9 @@ Quick start
        def construct(self):
            r = Resistor().shift(LEFT)
            c = Capacitor().shift(RIGHT)
-           self.add(r, c)
+           content = VGroup(r, c)
+           content.scale_to_fit_width(8).move_to(ORIGIN)
+           self.add(content)
 
 This library is especially useful for:
 

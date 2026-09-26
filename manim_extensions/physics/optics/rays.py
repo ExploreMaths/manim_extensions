@@ -58,7 +58,10 @@ class Ray(Line):
                    for i in np.linspace(-2, 2, 10)
                ]
                content = VGroup(a, a2, *rays)
-               content.scale_to_fit_width(12).move_to(ORIGIN)
+               content.scale_to_fit_width(12)
+               if content.height > 7:
+                   content.scale_to_fit_height(7)
+               content.move_to(ORIGIN)
                self.add(content)
     """
 

@@ -44,6 +44,10 @@ Quick start
                ["Alice", "30"],
                ["Bob", "25"],
            ])
+           table.scale_to_fit_width(6)
+           if table.height > 7:
+               table.scale_to_fit_height(7)
+           table.move_to(ORIGIN)
            self.add(table)
 
 .. toctree::

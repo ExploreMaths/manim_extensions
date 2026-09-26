@@ -40,6 +40,7 @@ Quick start
    class ArabicExample(Scene):
        def construct(self):
            text = create_arabic_text("مرحبا بالعالم")
+           text.scale(1.6).move_to(ORIGIN)
            self.add(text)
 
 .. toctree::

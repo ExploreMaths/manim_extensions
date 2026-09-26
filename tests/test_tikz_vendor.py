@@ -13,7 +13,7 @@ from manim_extensions.tikz.template import TikzTemplate
 
 @pytest.fixture
 def tikz_code():
-    return "\\begin{tikzpicture} \\draw (0,0) -- (1,1); \\end{tikzpicture}"
+    return r"\begin{tikzpicture} \draw (0,0) -- (1,1); \end{tikzpicture}"
 
 
 class TestTikzTemplate:
@@ -21,27 +21,27 @@ class TestTikzTemplate:
         template = TikzTemplate()
         assert template is not None
         assert template.tex_compiler == "latex"
-        assert template.documentclass == "\\documentclass[preview, tikz]{standalone}"
+        assert template.documentclass == r"\documentclass[preview, tikz]{standalone}"
 
     def test_init_with_packages(self):
         template = TikzTemplate(packages=["amsmath", "amssymb"])
         preamble = template.preamble
-        assert "\\usepackage{amsmath, amssymb}" in preamble
+        assert r"\usepackage{amsmath, amssymb}" in preamble
 
     def test_init_with_libraries(self):
         template = TikzTemplate(libraries=["arrows.meta", "positioning"])
         preamble = template.preamble
-        assert "\\usetikzlibrary{arrows.meta, positioning}" in preamble
+        assert r"\usetikzlibrary{arrows.meta, positioning}" in preamble
 
     def test_init_with_tikzset(self):
         template = TikzTemplate(tikzset=["mystyle/.style={draw=red}"])
         preamble = template.preamble
-        assert "\\tikzset{" in preamble
+        assert r"\tikzset{" in preamble
 
     def test_init_with_preamble(self):
-        template = TikzTemplate(preamble="\\usepackage{tikz-cd}")
+        template = TikzTemplate(preamble=r"\usepackage{tikz-cd}")
         preamble = template.preamble
-        assert "\\usepackage{tikz-cd}" in preamble
+        assert r"\usepackage{tikz-cd}" in preamble
 
     def test_init_use_pdf(self):
         template = TikzTemplate(use_pdf=True)
@@ -60,13 +60,13 @@ class TestTikzTemplate:
             packages=["amsmath"],
             libraries=["arrows"],
             tikzset=["style1/.style={red}"],
-            preamble="\\customcommand",
+            preamble=r"\customcommand",
         )
         preamble = template.preamble
-        assert "\\usepackage{amsmath}" in preamble
-        assert "\\usetikzlibrary{arrows}" in preamble
-        assert "\\tikzset{" in preamble
-        assert "\\customcommand" in preamble
+        assert r"\usepackage{amsmath}" in preamble
+        assert r"\usetikzlibrary{arrows}" in preamble
+        assert r"\tikzset{" in preamble
+        assert r"\customcommand" in preamble
 
 
 class TestTikz:
@@ -101,7 +101,7 @@ class TestTikz:
     def test_convert_with_preamble(self, tikz_code):
         tikz = Tikz(code=tikz_code)
         result = tikz.convert(
-            tikz_code, preamble="\\usepackage{tikz-cd}"
+            tikz_code, preamble=r"\usepackage{tikz-cd}"
         )
         assert isinstance(result, (str, Path))
 
@@ -113,7 +113,7 @@ class TestTikz:
     def test_convert_simple_circle(self, tikz_code):
         tikz = Tikz(code=tikz_code)
         result = tikz.convert(
-            "\\begin{tikzpicture} \\draw (0,0) circle (1); \\end{tikzpicture}"
+            r"\begin{tikzpicture} \draw (0,0) circle (1); \end{tikzpicture}"
         )
         assert isinstance(result, (str, Path))
 
