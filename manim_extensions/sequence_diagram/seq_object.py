@@ -39,6 +39,8 @@ class SeqObject(VGroup):
                self.play(*SeqAction.subject_gives_gift_to_target(alice, order, bob))
                self.play(*SeqAction.subject_gives_gift_to_target(bob, order, alice))
                self.wait()
+               content = VGroup(*self.mobjects)
+               content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 
     def __init__(self, name: str, font_size: float = 18):

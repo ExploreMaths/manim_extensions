@@ -241,7 +241,10 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            self.set_camera_orientation(phi=65 * DEGREES, theta=-50 * DEGREES)
 
-           axes = ThreeDAxes(x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3])
+           axes = ThreeDAxes(
+               x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3],
+               x_length=5, y_length=4, z_length=3,
+           )
            self.add(axes)
 
            v1 = ThreeDVector([2, 1, 1.5], color=PURE_YELLOW)
