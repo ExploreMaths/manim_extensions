@@ -60,7 +60,7 @@ class SeqAction(AnimationGroup):
                self.play(*SeqAction.subject_gives_gift_to_target(alice, order, bob))
                self.play(*SeqAction.subject_gives_gift_to_target(bob, receipt, alice))
                self.wait()
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
 
     .. manim:: SeqActionDocExample
@@ -124,7 +124,7 @@ class SeqAction(AnimationGroup):
                ):
                    self.play(anime)
 
-               content = VGroup(*self.mobjects)
+               content = Group(*self.mobjects)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.play(self.camera.frame.animate.move_to(ORIGIN))
     """
