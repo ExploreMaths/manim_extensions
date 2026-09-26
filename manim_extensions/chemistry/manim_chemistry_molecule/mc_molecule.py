@@ -145,9 +145,9 @@ class MCMolecule:
         Parameters
         ----------
         atoms_data_dict : dict
-            Atoms data
+            Atoms data.
         bonds_data_dict : dict
-            Bonds data
+            Bonds data.
         ignore_hydrogens : :class:`bool`, optional
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.

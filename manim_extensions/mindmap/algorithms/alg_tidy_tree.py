@@ -444,11 +444,11 @@ class TidyTreeLayout(Layout):
         Parameters
         ----------
         t : WrappedTree
-            parent node
+            Parent node.
         i : int
-            index of the current subtree
+            Index of the current subtree.
         ih : Optional[IYLNode]
-            preceding subtrees whose right contour may still collide with the current subtree.
+            Preceding subtrees whose right contour may still collide with the current subtree.
         """
         sr = t.children[
             i - 1

@@ -56,7 +56,7 @@ class AbstractMolecule:
         Parameters
         ----------
         filepath : str | Pathlike
-            Path to the file
+            Path to the file.
         ignore_hydrogens : bool, optional
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
@@ -100,7 +100,7 @@ class AbstractMolecule:
         Parameters
         ----------
         filepath : str | Pathlike
-            Path to the molecule
+            Path to the molecule.
         ignore_hydrogens : bool, optional
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
@@ -333,7 +333,7 @@ class AbstractMolecule:
         Parameters
         ----------
         name : Union[Text, Tex, str]
-            Name of the molecule. Can either be a string, a Manim Tex or a Manim Text
+            Name of the molecule. Can either be a string, a Manim Tex or a Manim Text.
         direction : numpy.ndarray, optional
             Position where to set the molecule name. Defaults to DOWN.
         buff : float, optional

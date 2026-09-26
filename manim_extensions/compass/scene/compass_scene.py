@@ -178,11 +178,11 @@ class CompassScene(MovingCameraScene):
         Parameters
         ----------
         niddle_pos : Point3D
-            target position for the compass needle tip (niddle_tip)
+            Target position for the compass needle tip (niddle_tip)
         pen_pos : Point3D
-            target position for the compass pen tip (pen_tip)
+            Target position for the compass pen tip (pen_tip)
         run_time : float
-            duration of the placement animation in seconds. Defaults to ``1.0``.
+            Duration of the placement animation in seconds. Defaults to ``1.0``.
         """
         self.play(
             PutCompass(
@@ -274,11 +274,11 @@ class CompassScene(MovingCameraScene):
         Parameters
         ----------
         aside_pos : Point3D
-            position to place the compass
+            Position to place the compass.
         span_buff : float
-            distance between the two compass tips when placed aside
+            Distance between the two compass tips when placed aside.
         run_time : float
-            time required to place the compass.
+            Time required to place the compass.
         """
         r = 0.5 * self.compass.leg_length
         vec = r * DOWN if self.compass.get_compass_rotate_angle_direction() else r * UP
@@ -302,15 +302,15 @@ class CompassScene(MovingCameraScene):
         Parameters
         ----------
         start : Point3D
-            start point of the ruler placement
+            Start point of the ruler placement.
         end : Point3D
-            end point of the ruler placement
+            End point of the ruler placement.
         lag_ratio : float
-            lag ratio between the ruler and pencil placement animations
+            Lag ratio between the ruler and pencil placement animations.
         run_time : float
-            time to place the ruler
+            Time to place the ruler.
         with_pencil : bool
-            whether to place the pencil at the same time.
+            Whether to place the pencil at the same time.
         """
         if with_pencil:
             self.play(

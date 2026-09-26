@@ -247,7 +247,7 @@ class Inductor(VMobject):
         Parameters
         ----------
         val : str
-            ``"left"`` or ``"right"``.
+            ``"left"`` Or ``"right"``.
 
         Returns
         -------
@@ -385,7 +385,7 @@ class Resistor(VMobject):
         Parameters
         ----------
         val : str
-            ``"left"`` or ``"right"``.
+            ``"left"`` Or ``"right"``.
 
         Returns
         -------
@@ -518,7 +518,7 @@ class Capacitor(VMobject):
         Parameters
         ----------
         val : str
-            ``"left"`` or ``"right"``.
+            ``"left"`` Or ``"right"``.
 
         Returns
         -------

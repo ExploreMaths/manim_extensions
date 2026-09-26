@@ -455,7 +455,7 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     root : Node
         The root node (before first layout, or after a layout has been applied)
     layout_type : LayoutType
-        The layout method to be used
+        The layout method to be used.
 
     Returns
     -------
@@ -477,7 +477,7 @@ def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
     root : Node
         The root node (before first layout, or after a layout has been applied)
     direction
-        The layout direction to be used
+        The layout direction to be used.
 
     Returns
     -------
@@ -603,9 +603,9 @@ class AbstractLayoutAnimation(AnimationGroup):
     Parameters
     ----------
         scene : Scene
-            The current scene
+            The current scene.
         root : Node
-            The root node
+            The root node.
         layout_type : LayoutType, optional
             Layout type. Defaults to LayoutType.MindMap.
         layout_config : LayoutConfig, optional
@@ -939,7 +939,7 @@ class InsertNode(LayoutAnimation):
     Parameters
     ----------
         father_children : dict
-            dictionary mapping parent nodes to lists of child nodes
+            Dictionary mapping parent nodes to lists of child nodes.
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
@@ -1032,7 +1032,7 @@ class ScaleNode(LayoutAnimation):
     Parameters
     ----------
         node_scale : dict
-            dictionary mapping Node instances to scale factors (float)
+            Dictionary mapping Node instances to scale factors (float)
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
@@ -1086,7 +1086,7 @@ class AlterNode(LayoutAnimation):
     Parameters
     ----------
         node_vmobject : dict
-            dictionary mapping Node instances to the replacement VMobjects
+            Dictionary mapping Node instances to the replacement VMobjects.
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional

@@ -53,9 +53,9 @@ def gaussian_proposal(x: int, sigma: float = 0.3):
     Parameters
     ----------
     x : np.ndarray or list
-        point to center proposal around
+        Point to center proposal around.
     sigma : float, optional
-        standard deviation of gaussian for proposal, by default 0.1
+        Standard deviation of gaussian for proposal, by default 0.1.
 
     Returns
     -------
@@ -132,19 +132,19 @@ def metropolis_hastings_sampler(
     Parameters
     ----------
     log_prob_fn : function, optional
-        Function to compute log-posterior, by default MultidimensionalGaussianPosterior
+        Function to compute log-posterior, by default MultidimensionalGaussianPosterior.
     prop_fn : function, optional
-        Function to compute proposal location, by default gaussian_proposal
+        Function to compute proposal location, by default gaussian_proposal.
     initial_location : np.ndarray, optional
-        initial location for the chain
+        Initial location for the chain.
     iterations : int, optional
-        number of iterations of the markov chain, by default 100
+        Number of iterations of the markov chain, by default 100.
     warm_up : int, optional,
-        number of warm up iterations
+        Number of warm up iterations.
     ndim : int, optional
-        dimension of the state space, by default 2
+        Dimension of the state space, by default 2.
     sampling_seed : int, optional
-        random seed for the sampler, by default 1
+        Random seed for the sampler, by default 1.
 
     Returns
     -------
@@ -400,9 +400,9 @@ class MCMCAxes(Group):
         Parameters
         ----------
         mean : np.ndarray
-            mean of proposal distribution
+            Mean of proposal distribution.
         cov : np.ndarray
-            covariance matrix of proposal distribution
+            Covariance matrix of proposal distribution.
 
         Returns
         -------
@@ -429,15 +429,15 @@ class MCMCAxes(Group):
         Parameters
         ----------
         start_point: Dot
-            Start point of the transition
+            Start point of the transition.
         end_point : Dot
-            End point of the transition
+            End point of the transition.
         candidate_point : Dot
-            Candidate point proposed for the transition
+            Candidate point proposed for the transition.
         show_dots: boolean, optional
-            Whether or not to show the dots
+            Whether or not to show the dots.
         run_time : float, optional
-            Duration of the transition animation, by default 0.1
+            Duration of the transition animation, by default 0.1.
 
         Returns
         -------
@@ -509,17 +509,17 @@ class MCMCAxes(Group):
         Parameters
         ----------
         axes : manim.mobject.graphing.coordinate_systems.Axes
-            Manim 2D axes to plot the chain on
+            Manim 2D axes to plot the chain on.
         log_prob_fn : function, optional
-            Function to compute log-posterior, by default MultidmensionalGaussianPosterior
+            Function to compute log-posterior, by default MultidmensionalGaussianPosterior.
         prop_fn : function, optional
-            Function to compute proposal location, by default gaussian_proposal
+            Function to compute proposal location, by default gaussian_proposal.
         initial_location : list, optional
-            initial location for the markov chain, by default None
+            Initial location for the markov chain, by default None.
         show_dots : bool, optional
-            whether or not to show the dots on the screen, by default False
+            Whether or not to show the dots on the screen, by default False.
         iterations : int, optional
-            number of iterations of the markov chain, by default 100
+            Number of iterations of the markov chain, by default 100.
         true_samples : np.ndarray, optional
             Ground-truth samples used to render the KDE density background,
             by default None.

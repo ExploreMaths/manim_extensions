@@ -180,7 +180,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         Parameters
         ----------
         mc_molecule : MCMolecule
-            The origin MCMolecule
+            The origin MCMolecule.
 
         Returns
         -------

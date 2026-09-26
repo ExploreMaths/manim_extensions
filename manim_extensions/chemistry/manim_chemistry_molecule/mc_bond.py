@@ -101,13 +101,13 @@ class MCBond:
         bond_index : Any
             Index of the bond in the molecule.
         bond_data_dict : Dict
-            See data_parser function from BaseParser
+            See data_parser function from BaseParser.
         molecule
             MCMolecule: Required to get the atoms by their index and
             create the MCBond using MCAtoms.
 
         Output:
-            MCBond
+            MCBond.
 
         Raises
         ------

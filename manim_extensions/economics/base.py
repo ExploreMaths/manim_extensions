@@ -191,7 +191,7 @@ class EconDiagram(VGroup):
         name : str
             Key under which the line is stored.
         x : float
-            x position of the line in axis coordinates.
+            X position of the line in axis coordinates.
         color : ManimColor or str
             Color of the line.
         label_text : str, optional

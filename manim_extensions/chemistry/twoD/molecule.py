@@ -547,7 +547,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Parameters
         ----------
         bond_index : int
-            index of the bond
+            Index of the bond.
 
         Returns
         -------
@@ -591,9 +591,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Parameters
         ----------
         bond_index : int
-            Index of the bond
+            Index of the bond.
         position_buff : float
-            Position buff
+            Position buff.
 
         Returns
         -------
@@ -1100,7 +1100,7 @@ class NamedMolecule(VGroup):
         Parameters
         ----------
         bond_index : int
-            index of the bond
+            Index of the bond.
 
         Returns
         -------
@@ -1145,9 +1145,9 @@ class NamedMolecule(VGroup):
         Parameters
         ----------
         bond_index : int
-            Index of the bond
+            Index of the bond.
         position_buff : float
-            Position buff
+            Position buff.
 
         Returns
         -------

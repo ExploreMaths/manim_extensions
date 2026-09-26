@@ -102,9 +102,9 @@ class ImageLayer(NeuralNetworkLayer):
         Parameters
         ----------
         input_layer :
-            Input layer
+            Input layer.
         output_layer :
-            Output layer
+            Output layer.
         **kwargs
             Forwarded to the parent layer classes.
         """

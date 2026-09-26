@@ -553,7 +553,7 @@ class Gear(VMobject):
                 Parameters
                 ----------
                 t : list of float
-                    ``[t_undercut, t_involute]`` parameter values.
+                    ``[t_undercut, t_involute]`` Parameter values.
 
                 Returns
                 -------
@@ -730,7 +730,7 @@ class Gear(VMobject):
         gear2: the other gear this gear (self) will mesh to. gear2 will not move due to meshing, only the 'self'.
         offset: axial distance offset coefficient. The gears will be offset*module further apart than default.
         bias: When offset is used, there will play between gears. If bias is ``False``,
-            this function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
+            This function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
 
         Examples
         --------
