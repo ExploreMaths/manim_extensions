@@ -68,6 +68,20 @@ jobs:
       - name: Run docstring section validator
         run: python workflow/validate_doc_sections.py
 
+  validate-example-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-manim-env
+        with:
+          # Examples construct MathTex/Text and import every extra, so
+          # mirror the full docs-media environment.
+          install-full-deps: "true"
+      - name: Install package with all extras
+        run: pip install ".[all]"
+      - name: Check doc example layout
+        run: python workflow/check_example_layout.py
+
   validate-api-coverage:
     runs-on: ubuntu-latest
     steps:
