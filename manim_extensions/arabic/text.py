@@ -67,6 +67,7 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
     Examples
     --------
     .. manim:: CreateArabicTemplateDocExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.arabic import create_arabic_template
@@ -76,8 +77,7 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
                template = create_arabic_template()
                label = Tex("مرحبا", tex_template=template, font_size=48)
                label.scale(3)
-               self.play(Write(label))
-               self.wait()
+               self.add(label)
     """
     font_name = _resolve_arabic_font(font_name)
     template = TexTemplate()
@@ -128,6 +128,7 @@ def create_arabic_text(
     Examples
     --------
     .. manim:: CreateArabicTextDocExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.arabic import create_arabic_text
@@ -137,8 +138,7 @@ def create_arabic_text(
                label = create_arabic_text("مرحبا", color="arabicblue",
                                           font_size=48)
                label.scale(3)
-               self.play(Write(label))
-               self.wait()
+               self.add(label)
     """
     template = create_arabic_template(font_name=font_name)
     return Tex(

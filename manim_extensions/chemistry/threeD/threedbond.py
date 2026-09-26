@@ -322,6 +322,7 @@ class ThreeDLine(ThreeDCylinder):
         Examples
         --------
         .. manim:: ParallelLineExample
+           :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
@@ -332,10 +333,9 @@ class ThreeDLine(ThreeDCylinder):
                     # ThreeDLine needs the OpenGL renderer to be drawn directly;
                     # here its resulting geometry is shown with regular mobjects.
                     parallel = ThreeDLine.parallel_to(line, point=UP, color=BLUE)
-                    self.play(Create(Line(LEFT * 2, RIGHT * 2, color=RED)))
-                    self.play(FadeIn(Dot(UP, color=YELLOW)))
-                    self.play(Create(Line(parallel.get_start(), parallel.get_end(), color=BLUE)))
-                    self.wait()
+                    self.add(Line(LEFT * 2, RIGHT * 2, color=RED))
+                    self.add(Dot(UP, color=YELLOW))
+                    self.add(Line(parallel.get_start(), parallel.get_end(), color=BLUE))
         """
         point = np.array(point)
         vect = normalize(line.vect)
@@ -371,6 +371,7 @@ class ThreeDLine(ThreeDCylinder):
         Examples
         --------
         .. manim:: PerpLineExample
+           :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
@@ -383,12 +384,9 @@ class ThreeDLine(ThreeDCylinder):
                     perpendicular = ThreeDLine.perpendicular_to(
                         line, point=UP, color=BLUE
                     )
-                    self.play(Create(Line(LEFT * 2, RIGHT * 2, color=RED)))
-                    self.play(FadeIn(Dot(UP, color=YELLOW)))
-                    self.play(
-                        Create(Line(perpendicular.get_start(), perpendicular.get_end(), color=BLUE))
-                    )
-                    self.wait()
+                    self.add(Line(LEFT * 2, RIGHT * 2, color=RED))
+                    self.add(Dot(UP, color=YELLOW))
+                    self.add(Line(perpendicular.get_start(), perpendicular.get_end(), color=BLUE))
 
         Raises
         ------

@@ -161,6 +161,7 @@ class DecisionTreeDiagram(Group):
     Examples
     --------
     .. manim:: DecisionTreeDiagramDocExample
+       :save_last_frame:
 
        from manim import *
        import tempfile
@@ -174,12 +175,6 @@ class DecisionTreeDiagram(Group):
        from manim_extensions.machine_learning.decision_tree.decision_tree import (
            DecisionTreeDiagram,
        )
-
-       # Widescreen layout used by the upstream ManimML examples
-       config.pixel_height = 700
-       config.pixel_width = 1900
-       config.frame_height = 7.0
-       config.frame_width = 7.0
 
        class DecisionTreeDiagramDocExample(Scene):
            def construct(self):
@@ -206,7 +201,7 @@ class DecisionTreeDiagram(Group):
                if diagram.height > 6:
                    diagram.scale_to_fit_height(6)
                diagram.move_to(ORIGIN)
-               self.play(FadeIn(diagram))
+               self.add(diagram)
     """
 
     def __init__(

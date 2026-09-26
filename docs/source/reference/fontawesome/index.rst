@@ -28,6 +28,7 @@ icons — attribute access returns a ready-made
 :class:`~manim.mobject.svg.svg_mobject.SVGMobject`:
 
 .. manim:: FontAwesomeHeartExample
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.fontawesome import solid, regular, brand
@@ -36,7 +37,7 @@ icons — attribute access returns a ready-made
        def construct(self):
            icon = solid.heart          # an SVGMobject, ready to add to a scene
            icon.set_color(RED)
-           self.play(FadeIn(icon))
+           self.add(icon)
 
 Available styles:
 
