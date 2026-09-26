@@ -131,9 +131,9 @@ def sync_copy_bfs(src: TreeNode, dst: Any):
     Parameters
     ----------
     src
-        Source tree (data provider)
+        Source tree (data provider).
     dst
-        Destination tree (data receiver)
+        Destination tree (data receiver).
 
     Raises
     ------

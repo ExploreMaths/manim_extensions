@@ -112,7 +112,7 @@ def create_arabic_text(
     text
         Arabic text to render.
     color
-        LaTeX color name (arabicblue, arabicgreen, arabicred, or any xcolor)
+        LaTeX color name (arabicblue, arabicgreen, arabicred, or any xcolor).
     font_size
         Font size in points.
     font_name

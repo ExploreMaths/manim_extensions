@@ -171,7 +171,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         Parameters
         ----------
         layer_args : dict, optional
-            Arguments for the layer, by default {}
+            Arguments for the layer. Defaults to ``{}``.
         **kwargs
             Forwarded to the parent layer classes.
         """

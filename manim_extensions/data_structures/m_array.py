@@ -83,7 +83,7 @@ class MArrayElement(VGroup):
     mob_label_args
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
     index_pos
-        Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
+        Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     index_gap
         Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     label_pos
@@ -111,7 +111,7 @@ class MArrayElement(VGroup):
     __mob_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
     __index_pos : :class:`numpy.ndarray`
-        The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
+        The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __index_gap : :class:`float`
         The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __label_pos : :class:`numpy.ndarray`
@@ -171,7 +171,7 @@ class MArrayElement(VGroup):
         scene
             Specifies the scene where the object is to be rendered.
         index_pos
-            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`
+            Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         index_gap
             Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         label_pos

@@ -34,7 +34,7 @@ class VDampedRotarySpring(VConstraint):
     rest_angle
         The equilibrium angle (in radians). The target angle between the two objects when the system is at rest and no external forces are applied.
     stiffness
-        The spring constant (elasticity). A higher value increases the restorative force toward the `rest_angle`, making the spring feel "stiffer."
+        The spring constant (elasticity). A higher value increases the restorative force toward the ``rest_angle``, making the spring feel stiffer.
     damping
         The damping coefficient. Used to simulate energy dissipation (like friction or air resistance). Higher values cause oscillations to decay faster.
     arc_indicator_class

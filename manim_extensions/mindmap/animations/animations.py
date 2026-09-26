@@ -473,7 +473,7 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     Parameters
     ----------
     root : Node
-        The root node (before first layout, or after a layout has been applied)
+        The root node (before first layout, or after a layout has been applied).
     layout_type : LayoutType
         The layout method to be used.
 
@@ -495,7 +495,7 @@ def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
     Parameters
     ----------
     root : Node
-        The root node (before first layout, or after a layout has been applied)
+        The root node (before first layout, or after a layout has been applied).
     direction
         The layout direction to be used.
 
@@ -1055,7 +1055,7 @@ class ScaleNode(LayoutAnimation):
     Parameters
     ----------
         node_scale : dict
-            Dictionary mapping Node instances to scale factors (float)
+            Dictionary mapping Node instances to scale factors (float).
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
