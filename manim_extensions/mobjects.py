@@ -1740,7 +1740,7 @@ class ThreeDVector(VGroup):
        class ThreeDVectorDocExample(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
-               axes = ThreeDAxes(x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3])
+               axes = ThreeDAxes(x_range=[-2.5, 2.5], y_range=[-2.5, 2.5], z_range=[-1.5, 2])
                u = ThreeDVector([1.5, 0.75, 1.125], color=YELLOW)
                v = ThreeDVector([0.75, 0.375, 1.5], position=[-1.5, -0.9, 0], color=GREEN)
                self.add(axes, u, v)
