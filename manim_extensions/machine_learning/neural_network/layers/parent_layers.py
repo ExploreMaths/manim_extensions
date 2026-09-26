@@ -55,6 +55,7 @@ class NeuralNetworkLayer(ABC, Group):
                layer = FeedForwardLayer(3)
                layer.construct_layer(None, None)
                assert isinstance(layer, NeuralNetworkLayer)
+               layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
     """
 
@@ -145,6 +146,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                layer = FeedForwardLayer(4)
                layer.construct_layer(None, None)
                assert isinstance(layer, VGroupNeuralNetworkLayer)
+               layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
     """
 
@@ -211,7 +213,9 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
                output_layer.construct_layer(None, None)
                connection = FeedForwardToFeedForward(input_layer, output_layer)
                assert isinstance(connection, ConnectiveLayer)
-               self.add(input_layer, output_layer, connection)
+               content = VGroup(input_layer, output_layer, connection)
+               content.scale_to_fit_height(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     @abstractmethod
@@ -298,7 +302,9 @@ class BlankConnective(ConnectiveLayer):
                input_layer.construct_layer(None, None)
                output_layer.construct_layer(None, None)
                connection = FeedForwardToFeedForward(input_layer, output_layer)
-               self.add(input_layer, output_layer, connection)
+               content = VGroup(input_layer, output_layer, connection)
+               content.scale_to_fit_height(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(

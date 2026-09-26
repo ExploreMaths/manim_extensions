@@ -52,7 +52,7 @@ class LayoutDirection(Enum):
 
 
 class LayoutType(Enum):
-    """Layout algorithm.
+    r"""Layout algorithm.
 
     Examples
     --------
@@ -82,6 +82,7 @@ class LayoutType(Enum):
                for mind_map in maps:
                    mind_map.scale_to_fit_width(5.2)
                maps.arrange_in_grid(rows=2, cols=2, buff=(0.8, 0.8))
+               maps.scale_to_fit_height(6.8).move_to(ORIGIN)
                self.add(maps)
                for mind_map, layout_type in zip(maps, LayoutType):
                    label = Text(layout_type.value, font_size=24)

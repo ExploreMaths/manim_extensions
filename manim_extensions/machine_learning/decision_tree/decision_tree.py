@@ -66,11 +66,13 @@ class LeafNode(Group):
        class LeafNodeExample(Scene):
            def construct(self):
                plt.imsave("leaf_class_0.png", np.ones((16, 16, 3)))
-               self.add(LeafNode(
+               leaf = LeafNode(
                    class_index=0,
                    class_image_paths=["leaf_class_0.png"],
                    class_colors=[BLUE],
-               ))
+               )
+               leaf.scale(10)
+               self.add(leaf)
     """
 
     def __init__(
@@ -200,7 +202,9 @@ class DecisionTreeDiagram(Group):
                    class_names=list(iris.target_names),
                    class_images_paths=image_paths,
                )
-               diagram.scale_to_fit_height(5)
+               diagram.scale_to_fit_width(6)
+               if diagram.height > 6:
+                   diagram.scale_to_fit_height(6)
                diagram.move_to(ORIGIN)
                self.play(FadeIn(diagram))
     """

@@ -53,6 +53,7 @@ Quick start
    class MLExample(Scene):
        def construct(self):
            nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(5)])
+           nn.scale_to_fit_height(6).move_to(ORIGIN)
            self.add(nn)
 
 .. toctree::

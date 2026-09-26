@@ -63,6 +63,8 @@ class Charge(VGroup):
                positive = Charge(2, LEFT * 2 + UP)
                negative = Charge(-1, RIGHT * 2 + UP)
                plain = Charge(1, DOWN * 2, add_glow=False)
+               content = VGroup(positive, negative, plain)
+               content.scale_to_fit_height(6.5).move_to(ORIGIN)
                self.play(FadeIn(positive), FadeIn(negative))
                self.play(FadeIn(plain))
                self.wait()
@@ -146,8 +148,9 @@ class ElectricField(ArrowVectorField):
                charge2 = Charge(2, RIGHT + DOWN)
                charge3 = Charge(-1, UP)
                field = ElectricField(charge1, charge2, charge3)
-               self.add(charge1, charge2, charge3)
-               self.add(field)
+               content = VGroup(charge1, charge2, charge3, field)
+               content.scale_to_fit_height(6.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(self, *charges: Charge, **kwargs) -> None:

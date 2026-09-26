@@ -27,9 +27,7 @@ def get_arc(
     color: ParsableManimColor = PURE_YELLOW,
     **kwargs: Any,
 ) -> Arc:
-    """
-
-    Construct an arc from its centre and starting point.
+    """Construct an arc from its centre and starting point.
 
     Parameters
     ----------
@@ -39,8 +37,8 @@ def get_arc(
         Starting point of the arc.
     angle : float
         Central angle of the arc.
-    color
-        Colour of the arc.
+    color : ParsableManimColor, optional
+        Colour of the arc.  Defaults to ``PURE_YELLOW``.
     kwargs
         Other keyword arguments for the arc.
 
@@ -50,10 +48,8 @@ def get_arc(
         The constructed :class:`~manim.mobject.geometry.arc.Arc` instance,
         centred at ``niddle_pos`` and starting at ``pen_pos``.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: GetArcDocExample
        :save_last_frame:
 
@@ -128,10 +124,10 @@ def get_vecs_angle(
     vec_s: Vector3D,
     vec_e: Vector3D,
 ) -> float:
-    """Compute the signed angle from *vec_s* to *vec_e*.
+    r"""Compute the signed angle from *vec_s* to *vec_e*.
 
     The sign is determined by the cross product
-    :math:`\\text{sign} = x_1 y_2 - x_2 y_1`:
+    :math:`\text{sign} = x_1 y_2 - x_2 y_1`:
 
     * ``> 0``: *vec_e* is counter-clockwise from *vec_s*.
     * ``< 0``: clockwise.

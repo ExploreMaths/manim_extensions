@@ -44,7 +44,9 @@ class VConstraint(VGroup):
            def construct(self):
                mob_a = Dot(LEFT)
                mob_b = Dot(RIGHT)
-               self.add(mob_a, mob_b, VConstraint(mob_a, mob_b))
+               content = VGroup(mob_a, mob_b, VConstraint(mob_a, mob_b))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(self, a_mob: Mobject = None, b_mob: Mobject = None, **kwargs):

@@ -64,7 +64,7 @@ class Hole(VMobject):
 
        class HoleExample(Scene):
            def construct(self):
-               self.add(Hole())
+               self.add(Hole().scale(7))
     """
 
     def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
@@ -95,7 +95,7 @@ class Electron(VMobject):
 
        class ElectronExample(Scene):
            def construct(self):
-               self.add(Electron())
+               self.add(Electron().scale(7))
     """
 
     def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
@@ -687,7 +687,9 @@ class BatterySide(VMobject):
            def construct(self):
                terminal = Dot(color=RED).shift(LEFT)
                anchor = Square(side_length=1).shift(RIGHT)
-               self.add(terminal, anchor, BatterySide(terminal, anchor))
+               content = VGroup(terminal, anchor, BatterySide(terminal, anchor))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(self, terminal: Any, anchor: VGroup, **kwargs):

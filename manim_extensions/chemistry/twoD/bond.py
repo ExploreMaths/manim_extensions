@@ -53,7 +53,9 @@ class BaseMBondObject(VGroup):
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
                bond = SimpleBond(carbon, oxygen)
                assert isinstance(bond, BaseMBondObject)
-               self.add(carbon, oxygen, bond)
+               content = VGroup(carbon, oxygen, bond)
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
     def __str__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
@@ -258,7 +260,9 @@ class SimpleBond(BaseMBondObject):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
-               self.add(carbon, oxygen, SimpleBond(carbon, oxygen))
+               content = VGroup(carbon, oxygen, SimpleBond(carbon, oxygen))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
     def no_subtype(self):
         """Return a full-length line connecting both atom centers."""
@@ -342,7 +346,9 @@ class DoubleBond(BaseMBondObject):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
-               self.add(carbon, oxygen, DoubleBond(carbon, oxygen))
+               content = VGroup(carbon, oxygen, DoubleBond(carbon, oxygen))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(
@@ -559,7 +565,9 @@ class TripleBond(BaseMBondObject):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
-               self.add(carbon, oxygen, TripleBond(carbon, oxygen))
+               content = VGroup(carbon, oxygen, TripleBond(carbon, oxygen))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
 
     def __init__(
@@ -715,7 +723,9 @@ class PlainCramBond(BaseMBondObject):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
-               self.add(carbon, oxygen, PlainCramBond(carbon, oxygen))
+               content = VGroup(carbon, oxygen, PlainCramBond(carbon, oxygen))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
     def no_subtype(self):
         """Return a full triangular filled polygon representing a plain cram bond."""
@@ -839,7 +849,9 @@ class DashedCramBond(BaseMBondObject):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
-               self.add(carbon, oxygen, DashedCramBond(carbon, oxygen))
+               content = VGroup(carbon, oxygen, DashedCramBond(carbon, oxygen))
+               content.scale_to_fit_width(6).move_to(ORIGIN)
+               self.add(content)
     """
     def add_dashed_cram_bond(self, base_line: Mobject, direction: str):
         """Build a dashed cram bond from progressively shorter perpendicular lines along the direction.

@@ -87,8 +87,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 self.apply_impulse_at_local_point(*stones, impulse=(0, 0.1, 0))
 
                 # segment query: locate the floor surface with a vertical ray
-                start_pt = (0, 2, 0)
-                end_pt = (0, -5, 0)
+                start_pt = (0, 1.5, 0)
+                end_pt = (0, -3.9, 0)
                 results = self.get_line_query(floor, start_pt, end_pt, stroke_width=0.1)
                 if results:
                     hit_point = results[0][2]

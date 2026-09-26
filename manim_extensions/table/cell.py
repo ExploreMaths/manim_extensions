@@ -49,7 +49,7 @@ class Cell(VGroup):
 
        class CellDocExample(Scene):
            def construct(self):
-               cell = Cell("Hello", width=2.0)
+               cell = Cell("Hello", width=3.5)
                cell.set_background_color(BLUE, opacity=0.2)
                self.add(cell)
     """

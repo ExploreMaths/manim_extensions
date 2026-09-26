@@ -60,10 +60,8 @@ class Compass(VGroup):
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: CompassExample
        :save_last_frame:
 

@@ -53,6 +53,7 @@ class WeightedLine(Line):
                    1,
                    weight=4,
                )
+               weighted_line.scale(4)
                self.add(weighted_line)
 
     .. manim:: WeightedLineGraphDocExample

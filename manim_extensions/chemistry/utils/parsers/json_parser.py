@@ -140,7 +140,6 @@ class JSONParser(BaseParser):
 
     Examples
     --------
-
     .. code-block:: python
 
         parsed_json = JSONParser(filename="acetone_2d.json")

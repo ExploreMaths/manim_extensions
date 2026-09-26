@@ -38,6 +38,7 @@ Quick start
    class WeightedLineExample(Scene):
        def construct(self):
            line = WeightedLine(LEFT, RIGHT, weight=5)
+           line.scale(3)
            self.add(line)
 
 .. toctree::

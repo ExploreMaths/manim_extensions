@@ -46,6 +46,7 @@ class RemoveLayer(AnimationGroup):
        class RemoveLayerExample(Scene):
            def construct(self):
                nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(4), FeedForwardLayer(2)])
+               nn.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(nn)
                # manim >= 0.21 refuses to play the AnimationGroup built by
                # RemoveLayer because it contains empty sub-animations, so
@@ -225,6 +226,7 @@ class InsertLayer(AnimationGroup):
        class InsertLayerExample(Scene):
            def construct(self):
                nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
+               nn.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(nn)
                # all_layers includes the connective layer, so inserting at
                # index 2 places the new layer between the two feed-forward

@@ -139,7 +139,6 @@ def easeOutBounce(t: float) -> float:
 
     Examples
     --------
-
     .. manim:: EaseOutBounceExample
 
        from manim import *
@@ -196,7 +195,6 @@ def easeInBounce(t: float) -> float:
 
     Examples
     --------
-
     .. manim:: EaseInBounceExample
 
        from manim import *
@@ -243,7 +241,6 @@ def easeInOutBounce(t: float) -> float:
 
     Examples
     --------
-
     .. manim:: EaseInOutBounceExample
 
        from manim import *
@@ -296,7 +293,6 @@ def easeOutElastic(t: float) -> float:
 
     Examples
     --------
-
     .. manim:: EaseOutElasticExample
 
        from manim import *
@@ -397,7 +393,6 @@ class ReversedWrite(LaggedStart):
 
     Examples
     --------
-
     .. manim:: ReversedWriteDocExample
 
        from manim import *
@@ -442,7 +437,6 @@ class FadeInRandom(LaggedStart):
 
     Examples
     --------
-
     .. manim:: FadeInRandomDocExample
 
        from manim import *
@@ -486,7 +480,6 @@ class FadeOutRandom(LaggedStart):
 
     Examples
     --------
-
     .. manim:: FadeOutRandomDocExample
 
        from manim import *
@@ -530,7 +523,6 @@ class GrowRandom(LaggedStart):
 
     Examples
     --------
-
     .. manim:: GrowRandomDocExample
 
        from manim import *
@@ -665,7 +657,6 @@ class LaggedCreation(Animation):
 
     Examples
     --------
-
     .. manim:: LaggedCreationDocExample
 
        from manim import *
@@ -763,7 +754,6 @@ class HighLightWithLines(AnimationGroup):
 
     Examples
     --------
-
     .. manim:: HighLightWithLinesDocExample
 
        from manim import *
@@ -845,7 +835,6 @@ class UnHighLightWithLines(AnimationGroup):
 
     Examples
     --------
-
     .. manim:: UnHighLightWithLinesDocExample
 
        from manim import *

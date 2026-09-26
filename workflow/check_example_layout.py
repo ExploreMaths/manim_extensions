@@ -110,6 +110,10 @@ def probe_block(task):
 
         frame_h = scene.camera.frame_height
         frame_w = scene.camera.frame_width
+        # MovingCameraScene moves camera.frame; measure overflow against
+        # the frame's actual position, not the origin.
+        cam_frame = getattr(scene.camera, "frame", None)
+        fc = cam_frame.get_center() if cam_frame is not None else np.zeros(3)
 
         mins = np.array([np.inf, np.inf, np.inf])
         maxs = np.array([-np.inf, -np.inf, -np.inf])
@@ -134,10 +138,10 @@ def probe_block(task):
             "height": height,
             "frame_width": frame_w,
             "frame_height": frame_h,
-            "overflow_x": max(0.0, abs(mins[0]) - frame_w / 2,
-                              maxs[0] - frame_w / 2),
-            "overflow_y": max(0.0, abs(mins[1]) - frame_h / 2,
-                              maxs[1] - frame_h / 2),
+            "overflow_x": max(0.0, fc[0] - frame_w / 2 - mins[0],
+                              maxs[0] - fc[0] - frame_w / 2),
+            "overflow_y": max(0.0, fc[1] - frame_h / 2 - mins[1],
+                              maxs[1] - fc[1] - frame_h / 2),
         }, "")
     except Exception:
         return (class_name, source, None, traceback.format_exc(limit=3))

@@ -168,8 +168,10 @@ class LabeledColorImage(Group):
 
        class LabeledColorImageExample(Scene):
            def construct(self):
-               image = ImageMobject(np.zeros((16, 16, 3), dtype=np.uint8))
-               self.add(LabeledColorImage(image, color=GREEN, label="Cat"))
+               image = ImageMobject(np.zeros((48, 48, 3), dtype=np.uint8)).scale(2.5)
+               labeled = LabeledColorImage(image, color=GREEN, label="Cat")
+               labeled.scale(6)
+               self.add(labeled)
     """
 
     def __init__(

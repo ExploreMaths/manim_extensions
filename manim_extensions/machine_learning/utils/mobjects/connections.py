@@ -64,9 +64,12 @@ class NetworkConnection(VGroup):
 
        class NetworkConnectionExample(Scene):
            def construct(self):
-               start = Dot(LEFT)
-               end = Dot(RIGHT)
-               self.add(start, end, NetworkConnection(start, end))
+               start = Dot(LEFT * 2).scale(1.5)
+               end = Dot(RIGHT * 2).scale(1.5)
+               connection = NetworkConnection(start, end)
+               content = VGroup(start, end, connection)
+               content.scale_to_fit_width(10).move_to(ORIGIN)
+               self.add(content)
     """
 
     direction_vector_map: dict[str, NDArray[np.float64]] = {

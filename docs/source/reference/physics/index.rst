@@ -41,6 +41,7 @@ Quick start
    class PhysicsLibraryExample(Scene):
        def construct(self):
            lens = Lens(f=1.0, d=0.4)
+           lens.scale(4)
            self.add(lens)
 
 This library is useful for:

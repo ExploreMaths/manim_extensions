@@ -40,10 +40,8 @@ class Ruler(VGroup):
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: RulerExample
        :save_last_frame:
 
@@ -202,9 +200,12 @@ class Ruler(VGroup):
 
            class PutRulerFlatDocExample(Scene):
                def construct(self):
-                   tilted = Ruler().rotate(PI / 5).shift(UP * 1.5)
-                   flat = Ruler().rotate(PI / 5).put_ruler_flat().shift(DOWN * 1.5)
-                   self.add(tilted, flat)
+                   tilted = Ruler().rotate(PI / 5)
+                   flat = Ruler().rotate(PI / 5).put_ruler_flat()
+                   content = VGroup(tilted, flat)
+                   content.arrange(DOWN, buff=0.8)
+                   content.scale_to_fit_height(7).move_to(ORIGIN)
+                   self.add(content)
 
         Returns
         -------

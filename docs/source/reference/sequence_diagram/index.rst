@@ -42,7 +42,9 @@ Quick start
        def construct(self):
            actor = SeqActor("User").shift(LEFT)
            obj = SeqObject("Service").shift(RIGHT)
-           self.add(actor, obj)
+           content = VGroup(actor, obj)
+           content.scale_to_fit_width(10).move_to(ORIGIN)
+           self.add(content)
 
 This library is especially useful when explaining:
 

@@ -35,7 +35,7 @@ from ..algorithms import LayoutType, LayoutDirection
 
 
 class NodeSate(Enum):
-    """Node state.
+    r"""Node state.
 
     Examples
     --------
@@ -261,10 +261,8 @@ class Node:
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.polygram.Rectangle`.
 
-
     Examples
-    ----------
-
+    --------
     .. manim:: NodeDocExample
        :save_last_frame:
 

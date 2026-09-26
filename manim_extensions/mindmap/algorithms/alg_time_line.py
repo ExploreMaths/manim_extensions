@@ -203,7 +203,10 @@ class TimeLineLayout(Layout):
                        draw(child)
                draw(root)
                tree = Group(links, boxes)
-               tree.scale_to_fit_width(13)
+               tree.scale_to_fit_width(12)
+               if tree.height > 7:
+                   tree.scale_to_fit_height(7)
+               tree.move_to(ORIGIN)
                self.add(tree)
     """
 

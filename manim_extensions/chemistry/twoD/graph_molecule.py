@@ -49,7 +49,9 @@ class SimpleLine(Line):
 
        class SimpleLineExample(Scene):
            def construct(self):
-               self.add(SimpleLine(ORIGIN, 2 * RIGHT))
+               line = SimpleLine(ORIGIN, 2 * RIGHT)
+               line.scale(3)
+               self.add(line)
     """
 
     def __init__(self, *args, **kwargs):
@@ -211,6 +213,7 @@ class GraphMolecule(Graph, AbstractMolecule):
        class GraphMoleculeFromFile(Scene):
            def construct(self):
                molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
+               molecule.scale(1.5)
                self.play(Write(molecule))
                carbons = molecule.get_connected_atoms_v_group(1, 2)
                self.play(Indicate(carbons))

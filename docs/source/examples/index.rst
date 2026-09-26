@@ -403,7 +403,10 @@ inline. Each example demonstrates one of the core extension modules.
            rack.shift(np.array([rack_center[0] - rack_width / 2, rack_center[1], 0]))
 
            content = VGroup(gear1, gear2, rack)
-           content.scale_to_fit_width(12).move_to(ORIGIN)
+           content.scale_to_fit_width(12)
+           if content.height > 7:
+               content.scale_to_fit_height(7)
+           content.move_to(ORIGIN)
            self.add(content)
 
 .. manim:: MeshesExample
@@ -493,6 +496,9 @@ inline. Each example demonstrates one of the core extension modules.
            for anim in SeqAction.subject_gives_gift_to_target(server, response, client):
                self.play(anim)
            self.wait(2)
+
+           content = VGroup(*self.mobjects)
+           content.scale_to_fit_height(6).move_to(ORIGIN)
 
 .. manim:: TikzExample
    :save_last_frame:

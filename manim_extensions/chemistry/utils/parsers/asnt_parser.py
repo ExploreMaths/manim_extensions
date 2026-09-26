@@ -28,7 +28,6 @@ class ASNTParser(BaseParser):
 
     Examples
     --------
-
     .. code-block:: python
 
         parsed_asnt = ASNTParser(filename="acetone_2d.asnt")

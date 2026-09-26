@@ -48,7 +48,7 @@ class XMark(VGroup):
 
        class XMarkExample(Scene):
            def construct(self):
-               self.add(XMark().scale(2))
+               self.add(XMark().scale(15))
     """
 
     def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
