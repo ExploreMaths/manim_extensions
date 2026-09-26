@@ -16,7 +16,11 @@ Install the latest stable release from PyPI:
 
    pip install manim_extensions
 
-The only runtime dependency is `manim <https://pypi.org/project/manim/>`_.
+The only runtime dependencies are `manim <https://pypi.org/project/manim/>`_
+and `numpy <https://pypi.org/project/numpy/>`_. Module-specific
+dependencies are optional extras — install everything at once with
+``pip install manim_extensions[all]`` or pick per-module extras, see
+:doc:`../installation/index`.
 
 If you want to use :class:`~manim_extensions.mobjects.ChineseMathTex`, make
 sure ``xelatex`` and the ``xeCJK`` LaTeX package are available on your system.
