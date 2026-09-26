@@ -371,7 +371,7 @@ class AbstractMolecule:
                     self.play(Write(molecule.submobjects[-1]))
                     self.wait()
 
-                                """
+        """
 
         if isinstance(name, str):
             name = Text(name)

@@ -271,7 +271,7 @@ class ADASDiagram(EconDiagram):
             After a shock moves output away from LRAS, SRAS gradually adjusts
             to P = MV / Y_potential, bringing the economy back to potential output.
             The animation is slow by default (2s) to show the gradual adjustment.
-                """
+        """
         return self.shift_sras(sras_price=self._lr_price, run_time=run_time,
                                show_arrows=show_arrows)
 
@@ -311,7 +311,7 @@ class ADASDiagram(EconDiagram):
             Long run: SRAS slowly shifts up → output returns to potential at higher price.
 
             Returns a list of animations to play in sequence.
-                """
+        """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
@@ -343,7 +343,7 @@ class ADASDiagram(EconDiagram):
             Long run: SRAS slowly shifts down → output returns to potential at lower price.
 
             Returns a list of animations to play in sequence.
-                """
+        """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
@@ -373,7 +373,7 @@ class ADASDiagram(EconDiagram):
             Long run: SRAS slowly shifts back down as economy self-corrects.
 
             Returns a list of animations to play in sequence.
-                """
+        """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
@@ -401,7 +401,7 @@ class ADASDiagram(EconDiagram):
             Long run: SRAS slowly shifts back up as economy self-corrects.
 
             Returns a list of animations to play in sequence.
-                """
+        """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)

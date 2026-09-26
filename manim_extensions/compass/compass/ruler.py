@@ -55,7 +55,7 @@ class Ruler(VGroup):
                ruler = Ruler()
                start, end = ruler.get_start_and_end()
                self.add(ruler, Dot(start, color=RED), Dot(end, color=RED))
-                """
+    """
 
     def __init__(
         self,
@@ -180,7 +180,7 @@ class Ruler(VGroup):
                    ruler = Ruler().set_ruler(start, end)
                    self.add(ruler)
 
-                """
+        """
         direction = end - start
         current_pos = self.get_middle_point()
         target_pos = (start + end) / 2

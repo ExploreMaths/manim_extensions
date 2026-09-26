@@ -289,7 +289,7 @@ class Node:
                self.add(connectors, root.vmobject, root.surr_rect,
                          child.vmobject, child.surr_rect,
                          leaf.vmobject, leaf.surr_rect)
-                """
+    """
 
     def __init__(
         self,
@@ -376,7 +376,7 @@ class Node:
         ----------
         direction : np.ndarray
             The direction of the operation.
-                """
+        """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")
         if np.array_equal(direction, UP):
@@ -399,7 +399,7 @@ class Node:
         ----------
         kwargs
             Kwargs processed by this operation.
-                """
+        """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")
         if self.level == 1:
@@ -428,7 +428,7 @@ class Node:
         ----------
         kwargs
             Kwargs processed by this operation.
-                """
+        """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")
         start = self.parent.surr_rect.get_bottom()
@@ -467,7 +467,7 @@ class Node:
         Line
             The connector line from this node to its parent, shaped
             according to the layout type.
-                """
+        """
         match layout_type:
             case LayoutType.MindMap:
                 return self._get_mindmap_connector(direction, **kwargs)
@@ -493,7 +493,7 @@ class Node:
             The direction of the operation.
         kwargs
             Kwargs processed by this operation.
-                """
+        """
         if self.parent is not None and not hasattr(self, "connector"):
             self.connector_style = kwargs
             self.connector = self.get_connector(layout_type, direction, **kwargs)
@@ -523,7 +523,7 @@ class Node:
             The direction of the operation.
         **kwargs : object
             Additional keyword arguments used as the connector line style.
-                """
+        """
         current_style = getattr(self, "connector_style", None)
         if (
             hasattr(self, "connector")

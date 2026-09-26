@@ -95,7 +95,7 @@ class WeightedLine(Line):
                          edge_config={(u, v): G.get_edge_data(u, v) for u, v in G.edges})
                self.add(g)
 
-        """
+    """
 
     def __init__(
         self,

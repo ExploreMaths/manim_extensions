@@ -124,7 +124,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         ----------
         transitions
             Transitions processed by this operation.
-                """
+        """
         # counts the number of transitions between two states
         transition_counter = {}
         for transition in transitions:

@@ -77,9 +77,6 @@ class MagneticField(ArrowVectorField):
     kwargs
         Additional parameters to be passed to :class:`~manim.mobject.vector_field.ArrowVectorField`.
 
-    Example
-    -------
-
     Examples
     ----------
 
@@ -101,7 +98,7 @@ class MagneticField(ArrowVectorField):
                self.play(FadeIn(mag_field))
                self.wait()
 
-                """
+    """
 
     def __init__(self, *wires: Wire, **kwargs):
         """Initialize the MagneticField instance."""
