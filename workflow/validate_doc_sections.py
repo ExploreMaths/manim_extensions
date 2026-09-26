@@ -9,7 +9,11 @@ This script checks that public functions, methods, and classes in
 1. Functions/methods with parameters must have a numpydoc ``Parameters``
    section that documents every parameter (bare ``*args`` exempted).
 2. Functions/methods with a non-``None`` return annotation must have a
-   ``Returns`` (or ``Yields``) section.
+   ``Returns`` (or ``Yields``) section. Functions that yield values must
+   have a ``Yields`` section.
+2b. Numpydoc sections must appear in the canonical order: Parameters,
+   Other Parameters, Attributes/Methods, Returns/Yields/Receives,
+   Warns, See Also/Notes/References, Examples, Raises (last).
 3. Functions/methods that raise exceptions must have a ``Raises`` section
    that mentions every directly raised exception. The ``Raises`` section
    must be the last section of the docstring. For ``__init__``, document
@@ -118,6 +122,23 @@ SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
 STYLE_SECTIONS = {
     "Parameters", "Other Parameters", "Returns", "Yields",
     "Receives", "Raises", "Attributes",
+}
+# Canonical section order (lower rank = earlier). "Raises" stays last per
+# the project convention; unknown/custom sections are not checked.
+SECTION_ORDER = {
+    "Parameters": 0,
+    "Other Parameters": 1,
+    "Attributes": 2,
+    "Methods": 2,
+    "Returns": 3,
+    "Yields": 3,
+    "Receives": 3,
+    "Warns": 4,
+    "See Also": 5,
+    "Notes": 5,
+    "References": 5,
+    "Examples": 6,
+    "Raises": 7,
 }
 # Descriptions starting with these prefixes already satisfy the style
 # (inline literals, cross-reference roles, type placeholders, bullets,
@@ -276,6 +297,29 @@ def raised_exceptions(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list:
 
     visit(node)
     return sorted(names)
+
+
+def function_yields(node: ast.FunctionDef | ast.AsyncFunctionDef) -> bool:
+    """Return True when the function body yields values.
+
+    Nested function/class/lambda definitions are not descended into.
+    """
+    found = False
+
+    def visit(current):
+        nonlocal found
+        for child in ast.iter_child_nodes(current):
+            if isinstance(
+                child,
+                (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Lambda),
+            ):
+                continue  # don't descend into nested scopes
+            if isinstance(child, (ast.Yield, ast.YieldFrom)):
+                found = True
+            visit(child)
+
+    visit(node)
+    return found
 
 
 def section_entry_descriptions(doc: str) -> list:
@@ -529,6 +573,14 @@ def check_file(filepath: Path) -> list:
                            "'Returns'/'Yields' section",
             })
         check_raises_last(doc, qualname, node.lineno)
+        check_section_order(doc, qualname, node.lineno)
+        if function_yields(node) and "Yields" not in secs:
+            violations.append({
+                "line": node.lineno,
+                "qualname": qualname,
+                "type": "MISSING_YIELDS_SECTION",
+                "message": "is a generator but has no 'Yields' section",
+            })
         # __init__ raises are documented in the class docstring instead,
         # consistent with the parameter documentation convention.
         raised = [] if name == "__init__" else raised_exceptions(node)
@@ -571,10 +623,26 @@ def check_file(filepath: Path) -> list:
                 })
                 return
 
+    def check_section_order(doc, qualname, lineno):
+        """Numpydoc sections must appear in the canonical order."""
+        names = [n for n, _ in section_positions(doc) if n in SECTION_ORDER]
+        ranks = [SECTION_ORDER[n] for n in names]
+        for i in range(len(ranks) - 1):
+            if ranks[i] > ranks[i + 1]:
+                violations.append({
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "SECTION_ORDER_WRONG",
+                    "message": f"sections out of order: '{names[i]}' must not "
+                               f"follow '{names[i + 1]}'",
+                })
+                return
+
     def check_class(node, prefix):
         doc = ast.get_docstring(node) or ""
         qualname = f"{prefix}{node.name}"
         check_raises_last(doc, qualname, node.lineno)
+        check_section_order(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)

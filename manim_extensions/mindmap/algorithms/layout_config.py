@@ -97,7 +97,17 @@ class LayoutType(Enum):
 
 class LayoutConfig:
     """Configuration options for mind-map layouts.
-
+    Parameters
+    ----------
+        direction : np.ndarray, optional
+            Layout direction. Defaults to RIGHT.
+        node_spacing : float, optional
+            Spacing between nodes. Defaults to 0.5.
+        level_spacing : float, optional
+            Spacing between layers. Defaults to 0.5.
+        sides : np.ndarray | List[np.ndarray], optional
+            Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
+    
     Examples
     --------
     .. manim:: LayoutConfigExample
@@ -127,22 +137,13 @@ class LayoutConfig:
                    mobjects.add(node.vmobject, node.surr_rect)
                mobjects.scale_to_fit_height(6)
                self.add(mobjects)
-    Parameters
-    ----------
-        direction : np.ndarray, optional
-            Layout direction. Defaults to RIGHT.
-        node_spacing : float, optional
-            Spacing between nodes. Defaults to 0.5.
-        level_spacing : float, optional
-            Spacing between layers. Defaults to 0.5.
-        sides : np.ndarray | List[np.ndarray], optional
-            Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
-
+    
     Raises
     ------
     ValueError
         Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`, :class:`~manim.constants.LEFT`,
         :class:`~manim.constants.RIGHT`, or when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
+    
     """
 
     def __init__(

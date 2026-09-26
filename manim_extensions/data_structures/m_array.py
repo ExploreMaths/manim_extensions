@@ -70,7 +70,6 @@ class _UpdateIndices(Protocol):
 
 class MArrayElement(VGroup):
     """A class that represents an array element.
-
     Parameters
     ----------
     scene
@@ -97,32 +96,7 @@ class MArrayElement(VGroup):
         Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
     **kwargs
         Forwarded to constructor of the parent.
-
-    Examples
-    --------
-    .. manim:: MArrayElementDocExample
-       :save_last_frame:
-
-       from manim import *
-       from manim_extensions.data_structures import MArrayElement
-
-       class MArrayElementDocExample(Scene):
-           def construct(self):
-               first = MArrayElement(
-                   self,
-                   mob_value_args={"text": "42"},
-                   mob_index_args={"text": "0"},
-                   mob_label_args={"text": "x"},
-               )
-               second = MArrayElement(
-                   self,
-                   mob_value_args={"text": "7"},
-                   mob_index_args={"text": "1"},
-                   next_to_mob=first,
-                   next_to_dir=RIGHT,
-               )
-               self.add(first, second)
-
+    
     Attributes
     ----------
 
@@ -152,6 +126,32 @@ class MArrayElement(VGroup):
         Represents the index of the element.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the element.
+    
+    Examples
+    --------
+    .. manim:: MArrayElementDocExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures import MArrayElement
+
+       class MArrayElementDocExample(Scene):
+           def construct(self):
+               first = MArrayElement(
+                   self,
+                   mob_value_args={"text": "42"},
+                   mob_index_args={"text": "0"},
+                   mob_label_args={"text": "x"},
+               )
+               second = MArrayElement(
+                   self,
+                   mob_value_args={"text": "7"},
+                   mob_index_args={"text": "1"},
+                   next_to_mob=first,
+                   next_to_dir=RIGHT,
+               )
+               self.add(first, second)
+
     """
 
     def __init_props(
@@ -570,7 +570,6 @@ class MArrayElement(VGroup):
 
 class MArray(VGroup):
     r"""A class that represents an array.
-
     Parameters
     ----------
     scene
@@ -605,7 +604,37 @@ class MArray(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
     **kwargs
         Forwarded to constructor of the parent.
+    
+    Attributes
+    ----------
 
+    __scene : :class:`~manim.scene.scene.Scene`
+        The scene where the object is to be rendered.
+    __arr : :class:`list`
+        The array to represent.
+    __label : :class:`str`
+        The value of the array label.
+    __index_offset : :class:`int`
+        The difference between successive displayable indices.
+    __index_start : :class:`int`
+        The starting value of displayable index.
+    __index_hex_display : :class:`bool`
+        If `True`, displays indices in hex.
+    __hide_index : :class:`bool`
+        If `True`, doesn't display indices.
+    __arr_dir : :class:`~.m_enum.MArrayDirection`
+        The growth direction of the array.
+    __arr_label_pos : :class:`~.m_enum.MArrayDirection`
+        The position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
+    __arr_label_gap : :class:`float`
+        The distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
+    __mob_arr_label_props : :class:`dict`
+        Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
+    __mob_arr : :class:`~typing.List`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+        Represents the array.
+    __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
+        Represents the array label.
+    
     Examples
     --------
     .. manim:: MArrayDocExample
@@ -662,35 +691,6 @@ class MArray(VGroup):
                )
                self.wait(0.5)
 
-    Attributes
-    ----------
-
-    __scene : :class:`~manim.scene.scene.Scene`
-        The scene where the object is to be rendered.
-    __arr : :class:`list`
-        The array to represent.
-    __label : :class:`str`
-        The value of the array label.
-    __index_offset : :class:`int`
-        The difference between successive displayable indices.
-    __index_start : :class:`int`
-        The starting value of displayable index.
-    __index_hex_display : :class:`bool`
-        If `True`, displays indices in hex.
-    __hide_index : :class:`bool`
-        If `True`, doesn't display indices.
-    __arr_dir : :class:`~.m_enum.MArrayDirection`
-        The growth direction of the array.
-    __arr_label_pos : :class:`~.m_enum.MArrayDirection`
-        The position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
-    __arr_label_gap : :class:`float`
-        The distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
-    __mob_arr_label_props : :class:`dict`
-        Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-    __mob_arr : :class:`~typing.List`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
-        Represents the array.
-    __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
-        Represents the array label.
     """
 
     __dir_map: ClassVar[list[dict[str, np.ndarray]]] = [
@@ -1606,7 +1606,6 @@ class MArray(VGroup):
 
 class MArrayPointer(VGroup):
     r"""A class that represents a pointer.
-
     Parameters
     ----------
     scene
@@ -1631,35 +1630,7 @@ class MArrayPointer(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the pointer label.
     **kwargs
         Forwarded to constructor of the parent.
-
-    Examples
-    --------
-    .. manim:: MArrayPointerDocExample
-
-       from manim import *
-       from manim_extensions.data_structures import (
-           MArray, MArrayPointer, MArrayDirection
-       )
-
-       class MArrayPointerDocExample(Scene):
-           def construct(self):
-               arr = MArray(self, [10, 20, 30, 40, 50], label="data")
-               self.add(arr)
-               ptr = MArrayPointer(
-                   self, arr, index=0, label="i",
-                   pointer_pos=MArrayDirection.UP
-               )
-               self.play(Create(ptr))
-               ptr.shift_to_elem(2)
-               self.wait(0.5)
-               arr.append_elem(60)
-               self.wait(0.5)
-               ptr.shift_to_elem(4)
-               ptr.update_mob_label("mid")
-               self.wait(0.5)
-               ptr.attach_to_elem(0)
-               self.wait(0.5)
-
+    
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -1688,6 +1659,35 @@ class MArrayPointer(VGroup):
         Represents the label of the element.
     __updater_pos : :data:`~typing.Callable`\[[], None]
         The updater function that keeps the pointer intact with the array.
+    
+    Examples
+    --------
+    .. manim:: MArrayPointerDocExample
+
+       from manim import *
+       from manim_extensions.data_structures import (
+           MArray, MArrayPointer, MArrayDirection
+       )
+
+       class MArrayPointerDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [10, 20, 30, 40, 50], label="data")
+               self.add(arr)
+               ptr = MArrayPointer(
+                   self, arr, index=0, label="i",
+                   pointer_pos=MArrayDirection.UP
+               )
+               self.play(Create(ptr))
+               ptr.shift_to_elem(2)
+               self.wait(0.5)
+               arr.append_elem(60)
+               self.wait(0.5)
+               ptr.shift_to_elem(4)
+               ptr.update_mob_label("mid")
+               self.wait(0.5)
+               ptr.attach_to_elem(0)
+               self.wait(0.5)
+
     """
 
     __dir_map: ClassVar[list[dict[str, Any]]] = [
@@ -2092,7 +2092,6 @@ class MArrayPointer(VGroup):
 
 class MArraySlidingWindow(VGroup):
     r"""A class that represents a sliding window.
-
     Parameters
     ----------
     scene
@@ -2115,33 +2114,7 @@ class MArraySlidingWindow(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the window label.
     **kwargs
         Forwarded to constructor of the parent.
-
-    Examples
-    --------
-    .. manim:: MArraySlidingWindowDocExample
-
-       from manim import *
-       from manim_extensions.data_structures import (
-           MArray, MArraySlidingWindow, MArrayDirection
-       )
-
-       class MArraySlidingWindowDocExample(Scene):
-           def construct(self):
-               arr = MArray(self, [7, 2, 5, 1, 8], label="nums")
-               self.add(arr)
-               window = MArraySlidingWindow(
-                   self, arr, index=0, size=2, label="win",
-                   label_pos=MArrayDirection.UP
-               )
-               self.play(Create(window))
-               window.shift_to_elem(1)
-               self.wait(0.5)
-               window.resize_window(3)
-               self.wait(0.5)
-               window.shift_to_elem(0)
-               window.attach_to_elem(2)
-               self.wait(0.5)
-
+    
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -2168,6 +2141,33 @@ class MArraySlidingWindow(VGroup):
         Represents the label of the sliding window.
     __updater_pos : :data:`typing.Callable`\[[], None]
         The updater function that keeps the sliding window intact with the array.
+    
+    Examples
+    --------
+    .. manim:: MArraySlidingWindowDocExample
+
+       from manim import *
+       from manim_extensions.data_structures import (
+           MArray, MArraySlidingWindow, MArrayDirection
+       )
+
+       class MArraySlidingWindowDocExample(Scene):
+           def construct(self):
+               arr = MArray(self, [7, 2, 5, 1, 8], label="nums")
+               self.add(arr)
+               window = MArraySlidingWindow(
+                   self, arr, index=0, size=2, label="win",
+                   label_pos=MArrayDirection.UP
+               )
+               self.play(Create(window))
+               window.shift_to_elem(1)
+               self.wait(0.5)
+               window.resize_window(3)
+               self.wait(0.5)
+               window.shift_to_elem(0)
+               window.attach_to_elem(2)
+               self.wait(0.5)
+
     """
 
     __dir_map: ClassVar[list[dict[str, Any]]] = [

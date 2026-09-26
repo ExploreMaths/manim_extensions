@@ -15,7 +15,6 @@ from .m_array import MArrayElement, MobProps
 
 class MVariable(MArrayElement):
     r"""A class that represents a variable.
-
     Parameters
     ----------
     scene
@@ -36,7 +35,16 @@ class MVariable(MArrayElement):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable label.
     **kwargs
         Forwarded to constructor of the parent.
-
+    
+    Attributes
+    ----------
+    __value : :class:`~typing.Any`
+        The value of the variable.
+    __index : :data:`~typing.Union`\[:class:`str`, :class:`int`]
+        The value of the index.
+    __label : :class:`str`
+        The value of the label.
+    
     Examples
     --------
     .. manim:: MVariableDocExample
@@ -57,14 +65,6 @@ class MVariable(MArrayElement):
                var.update_label("total")
                self.wait(0.5)
 
-    Attributes
-    ----------
-    __value : :class:`~typing.Any`
-        The value of the variable.
-    __index : :data:`~typing.Union`\[:class:`str`, :class:`int`]
-        The value of the index.
-    __label : :class:`str`
-        The value of the label.
     """
 
     def __init__(
