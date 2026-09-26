@@ -163,7 +163,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         Parameters
         ----------
         layer_args : dict, optional
-            Layer specific arguments, by default {}
+            Layer specific arguments. Defaults to ``{}``.
         **kwargs
             Forwarded to the parent layer classes.
 

@@ -176,11 +176,11 @@ def _make_test_comparing_frames(
     base_scene
         The base scene class.
     construct
-        The construct method (= the test function)
+        The construct method (i.e. the test function).
     renderer_class
         The renderer base class.
     show_diff
-        Whether to visually show_diff (see --show_diff)
+        Whether to visually show the diff (see ``--show_diff``).
 
     Returns
     -------

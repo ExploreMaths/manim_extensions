@@ -178,9 +178,9 @@ class CompassScene(MovingCameraScene):
         Parameters
         ----------
         niddle_pos : Point3D
-            Target position for the compass needle tip (niddle_tip)
+            Target position for the compass needle tip (niddle_tip).
         pen_pos : Point3D
-            Target position for the compass pen tip (pen_tip)
+            Target position for the compass pen tip (pen_tip).
         run_time : float
             Duration of the placement animation in seconds. Defaults to ``1.0``.
         """

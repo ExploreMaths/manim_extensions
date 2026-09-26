@@ -57,7 +57,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         * ``edges_width``: width of the lines of the edges
         * ``faces_color``: color of the faces
         * ``faces_opacity``: opacity of the faces
-        * ``verts_color``: color of the vertices
+        * ``verts_color``: color of the vertices.
         * ``pre_function_handle_to_anchor_scale_factor``: ?
 
     Examples
@@ -702,7 +702,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
         * ``edges_width``: width of the lines of the edges
         * ``faces_color``: color of the faces
         * ``faces_opacity``: opacity of the faces
-        * ``verts_color``: color of the vertices
+        * ``verts_color``: color of the vertices.
 
     Examples
     --------

@@ -41,7 +41,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         * ``edges_width``: width of the lines of the edges
         * ``faces_color``: color of the faces
         * ``faces_opacity``: opacity of the faces
-        * ``verts_color``: color of the vertices
+        * ``verts_color``: color of the vertices.
 
     Examples
     --------

@@ -149,9 +149,9 @@ def metropolis_hastings_sampler(
     Returns
     -------
     samples : np.ndarray
-        Numpy array of 2D samples of length `iterations`
+        Numpy array of 2D samples of length `iterations`.
     warm_up_samples : np.ndarray
-        Numpy array of 2D warm up samples  of length `warm_up`
+        Numpy array of 2D warm up samples of length `warm_up`.
     candidate_samples: np.ndarray
         Numpy array of the candidate samples for each time step.
     """

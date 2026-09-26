@@ -411,7 +411,7 @@ def check_description_style(doc, qualname, lineno, violations):
                     "message": f"description '{first[:50]}' should start "
                                f"with a capital letter",
                 })
-        if last and not last.endswith(ALLOWED_DESC_END):
+        if last and not last.endswith((".", "?", "!", "。")):
             if not last.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
                 violations.append({
                     "line": lineno,

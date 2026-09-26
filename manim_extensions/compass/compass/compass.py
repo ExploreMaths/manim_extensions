@@ -406,19 +406,19 @@ class Compass(VGroup):
         Compass
             The repositioned self.
 
-            Examples
-            --------
-            .. manim:: SetCompassDocExample
-               :save_last_frame:
+        Examples
+        --------
+        .. manim:: SetCompassDocExample
+           :save_last_frame:
 
-               from manim import *
-               from manim_extensions.compass import Compass
+           from manim import *
+           from manim_extensions.compass import Compass
 
-               class SetCompassDocExample(Scene):
-                   def construct(self):
-                       pivot = Dot(ORIGIN, color=RED)
-                       compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
-                       self.add(pivot, compass)
+           class SetCompassDocExample(Scene):
+               def construct(self):
+                   pivot = Dot(ORIGIN, color=RED)
+                   compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
+                   self.add(pivot, compass)
         """
         self.split_compass_with_niddle_tip_fixed(span_angle, niddle_tip_pos)
         self.rotate(angle=rotate_angle, about_point=niddle_tip_pos)
