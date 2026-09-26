@@ -12,7 +12,7 @@ from typing import Optional
 
 @dataclass
 class MCElement:
-    """Used to abstract the properties of elements.
+    r"""Used to abstract the properties of elements.
 
     The properties can be overwritten using custom MCElements and
     passing them as a dictionary to the molecule classes.

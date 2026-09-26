@@ -11,7 +11,7 @@ from ..twoD import GraphMolecule
 
 from typing import Any
 class Molecule:
-    """Works as a proxy between different types of molecules with the same methods.
+    r"""Works as a proxy between different types of molecules with the same methods.
 
     Supported types of molecules are:
 

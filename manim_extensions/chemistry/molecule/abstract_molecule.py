@@ -332,7 +332,7 @@ class AbstractMolecule:
         buff: float = 0.5,
         scale: float = 0.75,
         ):
-        """Adds the name of the molecule.
+        r"""Adds the name of the molecule.
 
         Parameters
         ----------
