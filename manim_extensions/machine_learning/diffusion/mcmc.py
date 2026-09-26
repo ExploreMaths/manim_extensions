@@ -149,11 +149,11 @@ def metropolis_hastings_sampler(
     Returns
     -------
     samples : np.ndarray
-        numpy array of 2D samples of length `iterations`
+        Numpy array of 2D samples of length `iterations`
     warm_up_samples : np.ndarray
-        numpy array of 2D warm up samples  of length `warm_up`
+        Numpy array of 2D warm up samples  of length `warm_up`
     candidate_samples: np.ndarray
-        numpy array of the candidate samples for each time step.
+        Numpy array of the candidate samples for each time step.
     """
     np.random.seed(sampling_seed)
     # initialize chain, acceptance rate and lnprob
@@ -407,7 +407,7 @@ class MCMCAxes(Group):
         Returns
         -------
         AnimationGroup
-            animation of creating the proposal Gaussian distribution.
+            Animation of creating the proposal Gaussian distribution.
         """
         gaussian = GaussianDistribution(
             axes=self.axes, mean=mean, cov=cov, dist_theme="gaussian"
@@ -530,7 +530,7 @@ class MCMCAxes(Group):
         Returns
         -------
         animation : AnimationGroup
-            animation for creating the markov chain.
+            Animation for creating the markov chain.
         """
         # Compute the chain samples using a Metropolis Hastings Sampler
         mcmc_samples, warm_up_samples, candidate_samples = metropolis_hastings_sampler(

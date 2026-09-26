@@ -151,9 +151,9 @@ class Ruler(VGroup):
         Parameters
         ----------
         start
-            start point of the ruler placement
+            Start point of the ruler placement.
         end
-            end point of the ruler placement
+            End point of the ruler placement.
 
         .. manim:: SetRulerDocExample
            :save_last_frame:

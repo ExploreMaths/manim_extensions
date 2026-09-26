@@ -210,21 +210,21 @@ class CompassScene(MovingCameraScene):
         Parameters
         ----------
         niddle_point
-            centre of the arc
+            Centre of the arc.
         pen_point
-            starting point of the arc
+            Starting point of the arc.
         angle
-            central angle of the arc
+            Central angle of the arc.
         move_time
-            time to move the compass into position
+            Time to move the compass into position.
         run_time
-            time to draw the arc
+            Time to draw the arc.
         wait_time
-            wait time between the two animations
+            Wait time between the two animations.
         arc_color
-            colour of the arc
+            Colour of the arc.
         kwargs
-            other keyword arguments for the arc
+            Other keyword arguments for the arc.
 
         Returns
         -------

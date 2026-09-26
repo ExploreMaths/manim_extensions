@@ -186,7 +186,7 @@ class MCMolecule:
         Parameters
         ----------
         filepath
-            File path
+            File path.
         ignore_hydrogens : :class:`bool`, optional
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.

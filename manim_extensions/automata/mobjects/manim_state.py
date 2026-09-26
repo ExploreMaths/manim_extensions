@@ -43,7 +43,7 @@ class ManimState(State, VGroup):
     state
         Reference to a State instance.
     circle
-        Circle Mobject
+        Circle Mobject.
     text
         Text Mobject representation of the name from State instance.
 
