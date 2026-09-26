@@ -28,6 +28,9 @@ This script checks that public functions, methods, and classes in
 6. Every docstring must end with terminal punctuation (the last content
    line ends with ``. ? !`` or an allowed equivalent). URLs, code-output
    lines, formulas and TODO placeholders are exempt.
+6b. A ``.. manim::`` block after the first numpydoc section must sit under
+   an ``Examples`` header, and entry descriptions must be indented deeper
+   than the entry line (flat descriptions break napoleon's parsing).
 7. Mobject subclasses (including indirect subclasses within the same file)
    must include a ``.. manim::`` example block in the class docstring.
    Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
