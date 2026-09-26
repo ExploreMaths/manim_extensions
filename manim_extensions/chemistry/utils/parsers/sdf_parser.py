@@ -65,7 +65,7 @@ class SDFParser(MolParser):
         Parameters
         ----------
         filename : Union[str, bytes, os.PathLike]
-            Path of the sdf file
+            Path of the sdf file.
 
         Returns
         -------

@@ -101,7 +101,7 @@ def get_normalized_convex_polygons(
         Parameters
         ----------
         point : tuple
-            (x, y)坐标。
+            (X, y)坐标。
 
         Returns
         -------

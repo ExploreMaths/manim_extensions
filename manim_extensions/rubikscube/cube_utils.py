@@ -103,7 +103,7 @@ def get_type_of_cubie(dim: int, position: tuple[int, int, int]) -> str:
     dim : int
         Size of the cube (e.g. ``3`` for a standard 3x3x3 cube).
     position : tuple of int
-        ``(x, y, z)`` coordinates of the cubie.
+        ``(x, y, z)`` Coordinates of the cubie.
 
     Returns
     -------
@@ -129,7 +129,7 @@ def get_faces_of_cubie(dim: int, position: tuple[int, int, int]) -> list:
     dim : int
         Size of the cube (e.g. ``3`` for a standard 3x3x3 cube).
     position : tuple of int
-        ``(x, y, z)`` coordinates of the cubie.
+        ``(x, y, z)`` Coordinates of the cubie.
 
     Returns
     -------

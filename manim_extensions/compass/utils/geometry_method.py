@@ -33,15 +33,15 @@ def get_arc(
     Parameters
     ----------
     niddle_pos : np.ndarray
-        centre of the arc
+        Centre of the arc.
     pen_pos : np.ndarray
-        starting point of the arc
+        Starting point of the arc.
     angle : float
-        central angle of the arc
+        Central angle of the arc.
     color
-        colour of the arc
+        Colour of the arc.
     kwargs
-        other keyword arguments for the arc
+        Other keyword arguments for the arc.
 
     Returns
     -------

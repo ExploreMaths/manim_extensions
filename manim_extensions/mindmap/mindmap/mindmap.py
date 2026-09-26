@@ -33,17 +33,17 @@ class MindMap(AbstractMap):
     Parameters
     ----------
         map : dict
-            mind-map data
+            Mind-map data.
         buff : float
-            padding between node content and node border
+            Padding between node content and node border.
         direction
-            node layout direction
+            Node layout direction.
         level_spacing : float
-            spacing between layers
+            Spacing between layers.
         node_spacing : float
-            spacing between nodes
+            Spacing between nodes.
         node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-            node style
+            Node style.
 
     Examples
     --------
@@ -147,18 +147,18 @@ class TimeLine(AbstractMap):
     Parameters
     ----------
     map : dict
-        timeline data
+        Timeline data.
     buff : float
-        padding between node content and node border
+        Padding between node content and node border.
     sides
-        node layout direction; growth direction of subtrees rooted at
-        second-level nodes
+        Node layout direction; growth direction of subtrees rooted at
+        second-level nodes.
     level_spacing : float
-        spacing between layers
+        Spacing between layers.
     node_spacing : float
-        spacing between nodes
+        Spacing between nodes.
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-        node style
+        Node style.
 
 
     .. manim:: TimeLineDocExample
@@ -248,17 +248,17 @@ class StandardMap(AbstractMap):
     Parameters
     ----------
     map : dict
-        mind-map data
+        Mind-map data.
     buff : float
-        padding between node content and node border
+        Padding between node content and node border.
     direction
-        layout direction
+        Layout direction.
     level_spacing : float
-        spacing between layers
+        Spacing between layers.
     node_spacing : float
-        spacing between nodes
+        Spacing between nodes.
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-        node style
+        Node style.
 
 
     .. manim:: StandardMapDocExample
@@ -354,15 +354,15 @@ class CatalogMap(AbstractMap):
     Parameters
     ----------
     map : dict
-        catalog data
+        Catalog data.
     buff : float
-        padding between node content and node border
+        Padding between node content and node border.
     level_spacing : float
-        spacing between layers
+        Spacing between layers.
     node_spacing : float
-        spacing between nodes
+        Spacing between nodes.
     node_style : :class:`~manim_extensions.mindmap.NodeStyle`
-        node style
+        Node style.
 
 
     .. manim:: CatalogMapDocExample

@@ -29,7 +29,7 @@ def convert_matplotlib_figure_to_image_mobject(
     Parameters
     ----------
     fig : matplotlib figure
-        matplotlib figure
+        Matplotlib figure.
     dpi : int, optional
         Resolution of the rendered figure in dots per inch, by default 200.
 

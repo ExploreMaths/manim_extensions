@@ -190,17 +190,17 @@ class MCAtom:
         Parameters
         ----------
         atom_dict : Dict
-            See data_parser function from BaseParser
+            See data_parser function from BaseParser.
         atom_index : Any
             Index of the atom in the molecule.
         atom_data_dict : Dict
-            See data_parser function from BaseParser
+            See data_parser function from BaseParser.
         elements_data_dict : Dict
             Dictionary of custom element data to merge over the
             default elements data.
 
         Output:
-            MCAtom
+            MCAtom.
 
         Raises
         ------

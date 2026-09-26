@@ -536,7 +536,7 @@ class TimeLineLayout(Layout):
         node : TimelineNode
             The root of the subtree.
         dir : str
-            ``"h"`` for horizontal boundaries or ``"v"`` for vertical
+            ``"h"`` For horizontal boundaries or ``"v"`` for vertical
             boundaries (currently unused in the return logic).
 
         Returns

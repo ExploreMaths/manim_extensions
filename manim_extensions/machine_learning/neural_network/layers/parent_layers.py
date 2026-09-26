@@ -82,9 +82,9 @@ class NeuralNetworkLayer(ABC, Group):
         Parameters
         ----------
         input_layer : NeuralNetworkLayer
-            preceding layer
+            Preceding layer.
         output_layer : NeuralNetworkLayer
-            following layer
+            Following layer.
         **kwargs
             Forwarded to the parent class; a ``"debug_mode"`` entry draws a
             surrounding rectangle around the layer.

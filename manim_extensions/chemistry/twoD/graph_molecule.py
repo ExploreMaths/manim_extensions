@@ -718,7 +718,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         Parameters
         ----------
         bond_index : tuple
-            index of the bond
+            Index of the bond.
 
         Returns
         -------
@@ -762,9 +762,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         Parameters
         ----------
         bond_tuple : int
-            Tuple of the bond
+            Tuple of the bond.
         position_buff : float
-            Position buff
+            Position buff.
 
         Returns
         -------
@@ -864,7 +864,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         Parameters
         ----------
         mc_molecule : MCMolecule
-            The origin MCMolecule
+            The origin MCMolecule.
 
         Returns
         -------

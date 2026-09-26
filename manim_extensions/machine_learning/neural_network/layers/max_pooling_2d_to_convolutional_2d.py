@@ -69,9 +69,9 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         Parameters
         ----------
         input_layer : NeuralNetworkLayer
-            input layer
+            Input layer.
         output_layer : NeuralNetworkLayer
-            output layer
+            Output layer.
         **kwargs
             Forwarded to the parent layer classes.
         """
