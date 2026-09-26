@@ -15,3 +15,6 @@ and geometric construction helpers.
 .. autoall:: manim_extensions.mobjects
    :recursive:
    :types: class
+
+.. autoall:: manim_extensions.mobjects
+   :types: data

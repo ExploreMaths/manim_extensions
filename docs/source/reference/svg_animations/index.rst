@@ -53,3 +53,4 @@ Quick start
    :hidden:
 
    classes
+   constants

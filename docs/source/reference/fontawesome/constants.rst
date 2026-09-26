@@ -8,4 +8,4 @@ Constants
    :recursive:
    :missing-only:
    :types: data
-
+   :skip: svg_dir brand_dir regular_dir solid_dir
