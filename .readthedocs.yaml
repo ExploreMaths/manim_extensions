@@ -31,7 +31,7 @@ build:
       # by the workflows) into the docs tree. The vendored-status directive
       # renders without upstream data when this file is missing. See
       # .github/workflows/vendored-status.yml.
-      - ls -la /tmp/rtd-media/_vendored_status_cache.json && cp /tmp/rtd-media/_vendored_status_cache.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"
+      - 'ls -la /tmp/rtd-media/_vendored_status_cache.json && cp /tmp/rtd-media/_vendored_status_cache.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"'
 
 sphinx:
   configuration: docs/source/conf.py
