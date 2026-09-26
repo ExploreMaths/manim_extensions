@@ -64,7 +64,7 @@ class Cell(VGroup):
         show_border: bool = True,
         **kwargs: Any
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the cell with its text and layout."""
         super().__init__(**kwargs)
         
         self.value = value

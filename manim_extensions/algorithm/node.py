@@ -46,9 +46,9 @@ class NodeConfig:
     default appearance of *all* subsequently created nodes, which is the natural
     way to switch the overall look of an algorithm scene.
 
-    .. rubric:: See Also
+    .. seealso::
 
-    :class:`~manim_extensions.mindmap.nodes.node.Node`
+       :class:`~manim_extensions.mindmap.nodes.node.Node`
 
     Examples
     --------

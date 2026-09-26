@@ -11,7 +11,22 @@ from dataclasses import dataclass
 
 @dataclass
 class ColorScheme:
-    """TODO: add docstring for ColorScheme."""
+    """Color palette used by the machine learning visualizations.
+
+    Parameters
+    ----------
+    primary_color : ManimColor
+        Main color of the visualization (e.g. neurons and edges).
+    secondary_color : ManimColor
+        Secondary color (e.g. axes and supporting elements).
+    active_color : ManimColor
+        Color used to highlight active elements during animations.
+    text_color : ManimColor
+        Color of titles and labels.
+    background_color : ManimColor
+        Scene background color; applied to ``manim.config`` when the
+        scheme is activated.
+    """
     primary_color: ManimColor
     secondary_color: ManimColor
     active_color: ManimColor

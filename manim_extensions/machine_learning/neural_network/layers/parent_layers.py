@@ -59,7 +59,7 @@ class NeuralNetworkLayer(ABC, Group):
     """
 
     def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the layer and its optional title."""
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         self.title: Text | Group
@@ -149,7 +149,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the layer group."""
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
@@ -221,7 +221,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the connective layer between two network layers."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -307,7 +307,7 @@ class BlankConnective(ConnectiveLayer):
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ) -> None:
-        """TODO: add docstring for __init__."""
+        """Initialize the blank connective layer between two layers."""
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
