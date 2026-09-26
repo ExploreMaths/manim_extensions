@@ -100,21 +100,60 @@ def defining_dotted(module, name, obj):
     return f"{mod}.{name}"
 
 
+def _defined_top_level_names(module):
+    """Names bound at the module's top level by def/class/assignment.
+
+    Complements the ``__module__`` heuristic in :func:`public_names`:
+    decorator-wrapped functions (e.g. click commands), classes rebuilt by
+    manim's ``ConvertToOpenGL`` metaclass, and instance constants (dicts,
+    loggers, type aliases) report a foreign or absent ``__module__`` even
+    though they are defined right here. Imports are excluded because only
+    Assign/AnnAssign/def/class statements are collected.
+    """
+    import ast
+
+    path = getattr(module, "__file__", None)
+    if not path or not str(path).endswith(".py"):
+        return set()
+    try:
+        source = open(path, encoding="utf-8").read()
+        tree = ast.parse(source)
+    except (OSError, SyntaxError, UnicodeDecodeError):
+        return set()
+    names = set()
+    for node in tree.body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            names.add(node.name)
+        elif isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name):
+                    names.add(target.id)
+        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            names.add(node.target.id)
+    return names
+
+
 def public_names(module):
     """Return ``(name, object)`` pairs for the module's public API.
 
-    ``__all__`` wins when defined; otherwise names defined in this very
-    module (not imported elsewhere). Submodules are never included.
+    ``__all__`` wins when defined; otherwise every name that is either
+    imported-from-nowhere (``__module__`` matches) or bound at the module's
+    top level (see :func:`_defined_top_level_names`). Submodules are never
+    included.
     """
     if hasattr(module, "__all__"):
         candidates = list(module.__all__)
     else:
+        defined = _defined_top_level_names(module)
         candidates = [
             n
             for n in dir(module)
             if not n.startswith("_")
             and getattr(module, n).__class__ is not types.ModuleType
-            and getattr(getattr(module, n), "__module__", None) == module.__name__
+            and (
+                getattr(getattr(module, n), "__module__", None) == module.__name__
+                or n in defined
+            )
         ]
     out = []
     for name in candidates:

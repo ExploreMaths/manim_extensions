@@ -24,7 +24,7 @@ def cli():
     "--format",
     "-f",
     default="sdf",
-    help="Format of the file to be downloaded. Defaults to 'sdf'. Options are 'asnt', 'json', 'sdf' and 'xlm'.",
+    help="Format of the file to be downloaded. Defaults to 'sdf'. Options are 'asnt', 'json', 'sdf' and 'xml'.",
 )
 @click.option("--cid", "-c", multiple=True, help="cid of the molecule.")
 @click.option("--name", "-n", multiple=True, help="name of the molecule.")

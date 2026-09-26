@@ -120,4 +120,5 @@ for more detailed examples and the full API.
    :hidden:
 
    classes
+   constants
    enums

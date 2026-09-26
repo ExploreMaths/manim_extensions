@@ -59,3 +59,4 @@ for more complete sequence examples and output samples.
    :hidden:
 
    classes
+   constants
