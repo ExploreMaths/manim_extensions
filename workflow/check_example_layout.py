@@ -111,16 +111,14 @@ def probe_block(task):
         maxs = np.array([-np.inf, -np.inf, -np.inf])
         counted = 0
         for mob in pool:
-            if mob.get_num_points() == 0 and not mob.submobjects:
-                continue
             try:
-                bb = mob.get_bounding_box()
+                pts = mob.get_all_points()
             except Exception:
                 continue
-            if not bb.size:
+            if len(pts) == 0:
                 continue
-            mins = np.minimum(mins, bb.min(axis=0))
-            maxs = np.maximum(maxs, bb.max(axis=0))
+            mins = np.minimum(mins, pts.min(axis=0))
+            maxs = np.maximum(maxs, pts.max(axis=0))
             counted += 1
         if counted == 0:
             return (class_name, source, None, "no mobjects in scene")
