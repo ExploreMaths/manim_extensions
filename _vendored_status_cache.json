@@ -1,0 +1,374 @@
+{
+  "generated": "2026-09-26",
+  "repos": {
+    "Alexander-Nasuta/manim-nerdfont-icons": {
+      "compare": null,
+      "latest_commit": {
+        "date": "2025-05-21",
+        "sha": "4bedf038eb44b999f822950000e88e70b88237a7"
+      },
+      "release": null,
+      "synced_commit": null
+    },
+    "Alexander-Nasuta/manim-qr-codes": {
+      "compare": {
+        "ahead_by": 4,
+        "behind_by": 0,
+        "newest_date": "2025-05-28",
+        "newest_sha": "db49a0002bda401fe8be22fb93420e4273c0da8a",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2025-05-27",
+        "sha": "d2c04e7dbb89a52f8ecec8f9e7fb021531e16933"
+      }
+    },
+    "GarryBGoode/manim-GearBox": {
+      "compare": {
+        "ahead_by": 5,
+        "behind_by": 0,
+        "newest_date": "2022-07-21",
+        "newest_sha": "5fe6d6f93c204da1966e855ea5ba3a953449bf7d",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2022-07-20",
+        "sha": "085ed74c90eefe488e5f26de990510a68d30c79e"
+      }
+    },
+    "HHP999/manim_pymunk": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2026-03-29",
+        "newest_sha": "c1122865dc90ed0a71361ef77f73ec72c87e256a",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2026-03-29",
+        "sha": "c1122865dc90ed0a71361ef77f73ec72c87e256a"
+      }
+    },
+    "MathItYT/manim-svg-animations": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2023-03-06",
+        "newest_sha": "da696ce5693d6cb57d97553a8f7534b8dbe5ace5",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2023-03-06",
+        "sha": "da696ce5693d6cb57d97553a8f7534b8dbe5ace5"
+      }
+    },
+    "Matheart/manim-physics": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2024-08-01",
+        "newest_sha": "2876741c43e5316332a56e7799e94a706a0d0e26",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2024-08-01",
+        "sha": "2876741c43e5316332a56e7799e94a706a0d0e26"
+      }
+    },
+    "Mr-FuzzyPenguin/manim-circuit": {
+      "compare": {
+        "ahead_by": 3,
+        "behind_by": 0,
+        "newest_date": "2025-01-06",
+        "newest_sha": "5d5ab2c81962be835efd1270e1eb463abb7b66b2",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2025-01-06",
+        "sha": "78bcae8a2a22ed1f1664a8826a7f9fe44ce00f3a"
+      }
+    },
+    "SeanNelsonIO/manim-automata": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2022-12-31",
+        "newest_sha": "0e572726311e4adeb5323deecc7cfcdb401cc1a6",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2022-12-31",
+        "tag": "v0.2.14"
+      },
+      "synced_commit": {
+        "date": "2022-12-31",
+        "sha": "0e572726311e4adeb5323deecc7cfcdb401cc1a6"
+      }
+    },
+    "UnMolDeQuimica/manim-Chemistry": {
+      "compare": {
+        "ahead_by": 5,
+        "behind_by": 0,
+        "newest_date": "2026-09-11",
+        "newest_sha": "c03147d4f9374cd75b58257962210e9020895d15",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2026-04-30",
+        "tag": "0.5.1"
+      },
+      "synced_commit": {
+        "date": "2025-02-17",
+        "sha": "e659aa52c2129928fa5876e3a24c2e12b5d54887"
+      }
+    },
+    "WampyCakes/manim-rubikscube": {
+      "compare": {
+        "ahead_by": 24,
+        "behind_by": 0,
+        "newest_date": "2023-06-26",
+        "newest_sha": "e117d42eb4b7484957440a4c9d67ab183bb06e0a",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2021-05-26",
+        "tag": "v0.1.0"
+      },
+      "synced_commit": {
+        "date": "2021-05-10",
+        "sha": "61e51b7077ad61f89ca020cc48aec8b411cfc6d1"
+      }
+    },
+    "bmmtstb/manim-meshes": {
+      "compare": {
+        "ahead_by": 42,
+        "behind_by": 0,
+        "newest_date": "2023-10-24",
+        "newest_sha": "9d6cb8341a7538ee6a9448d162e3de215211e9ad",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2022-09-30",
+        "tag": "v0.0.7"
+      },
+      "synced_commit": {
+        "date": "2022-09-30",
+        "sha": "9ae97feed10ca81c2380470b2bf61dc79bdb8240"
+      }
+    },
+    "ddzhang04/manim_ec": {
+      "compare": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "newest_date": "2026-04-10",
+        "newest_sha": "8e699d32196a190b8e2cb8b41c727e22050a01c6",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2026-04-10",
+        "sha": "0bdb0e1c8b69cbec8cafd1fa05f798ddbbd8482b"
+      }
+    },
+    "drageelr/manim-data-structures": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2023-01-08",
+        "newest_sha": "1465eefab154c4016b41e918b585e83132372782",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2023-01-08",
+        "tag": "0.1.7"
+      },
+      "synced_commit": {
+        "date": "2023-01-08",
+        "sha": "1465eefab154c4016b41e918b585e83132372782"
+      }
+    },
+    "foxnewsnetwork/manim-sequence-diagram": {
+      "compare": {
+        "ahead_by": 4,
+        "behind_by": 0,
+        "newest_date": "2023-01-05",
+        "newest_sha": "8232636ead85af41b720561252d4749926b03ba7",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2023-01-04",
+        "sha": "fafa44efe0060f85cf9885bb64862968f12a8f3a"
+      }
+    },
+    "helblazer811/ManimML": {
+      "compare": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "newest_date": "2023-11-04",
+        "newest_sha": "5e8f7cb69f23919f9ec7e880fb22c1ca2f841c08",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2023-03-22",
+        "tag": "v0.0.20"
+      },
+      "synced_commit": {
+        "date": "2023-11-04",
+        "sha": "e1d9db27c6f2d10f5ba85b34c5c29e3120a406d7"
+      }
+    },
+    "jj-math/manim-compass": {
+      "compare": {
+        "ahead_by": 4,
+        "behind_by": 0,
+        "newest_date": "2026-07-21",
+        "newest_sha": "4dfe83f176652e7748ca2e5b475da7fff241f5c6",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2026-06-30",
+        "sha": "bb30e2e4c408ab6ca268fc6b8c373a3ab1f14c5c"
+      }
+    },
+    "jj-math/manim-mindmap": {
+      "compare": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "newest_date": "2026-06-02",
+        "newest_sha": "7fe1e5adddfd579aa2b27a0eace3a90560344b30",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2026-06-02",
+        "sha": "2314a094967ef34e946b55a56254d62617085787"
+      }
+    },
+    "mutable-learning/manim-weighted-line": {
+      "compare": {
+        "ahead_by": 3,
+        "behind_by": 0,
+        "newest_date": "2023-07-17",
+        "newest_sha": "e2f4b42df135942d920c00bc1810688644771d75",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2023-07-17",
+        "sha": "1cf0bf538c3bec28e5653b5bda2032e068f77622"
+      }
+    },
+    "naveen521kk/manim-fontawesome": {
+      "compare": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "newest_date": "2024-01-01",
+        "newest_sha": "b3144d7abd65843a14d361754b87f7615dc59977",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2024-01-01",
+        "tag": "v6.5.1"
+      },
+      "synced_commit": {
+        "date": "2024-01-01",
+        "sha": "ab2afddf448acfb9e3ee6043b7a045845d3590f2"
+      }
+    },
+    "philippe2803/manim-table": {
+      "compare": {
+        "ahead_by": 4,
+        "behind_by": 0,
+        "newest_date": "2026-01-15",
+        "newest_sha": "7a882ccd959c8b04637268e8d2a2f4f0d7ea57b5",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2026-01-15",
+        "tag": "v1.1.1"
+      },
+      "synced_commit": {
+        "date": "2026-01-15",
+        "sha": "84a40cb9114be1d1c5dab4b5582c003d1174ef6d"
+      }
+    },
+    "ralphieraccoon/manim-tikz": {
+      "compare": {
+        "ahead_by": 16,
+        "behind_by": 0,
+        "newest_date": "2023-01-07",
+        "newest_sha": "3a3c5c6115c6412555501ffa4440899164c89385",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": null,
+      "synced_commit": {
+        "date": "2022-10-01",
+        "sha": "eaeddd03cdf1c59f4a2ca4510ca0b87cafc8742f"
+      }
+    },
+    "razekmh/manim-arabic": {
+      "compare": {
+        "ahead_by": 8,
+        "behind_by": 0,
+        "newest_date": "2026-08-08",
+        "newest_sha": "b30eb9cc44cfe1fe4771421c96a71033d712e416",
+        "status": "ahead"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2026-08-08",
+        "tag": "v0.1.1"
+      },
+      "synced_commit": {
+        "date": "2026-08-08",
+        "sha": "a4be802c34eab047c762d2462c40357871679459"
+      }
+    },
+    "sinianluoye/manim-algorithm": {
+      "compare": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "newest_date": "2024-10-06",
+        "newest_sha": "5d69236739e80facf3a98540a58785e901784a77",
+        "status": "identical"
+      },
+      "latest_commit": null,
+      "release": {
+        "date": "2024-08-10",
+        "tag": "v0.0.4"
+      },
+      "synced_commit": {
+        "date": "2024-10-06",
+        "sha": "5d69236739e80facf3a98540a58785e901784a77"
+      }
+    }
+  }
+}
