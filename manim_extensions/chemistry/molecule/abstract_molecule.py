@@ -346,6 +346,7 @@ class AbstractMolecule:
         ----------
 
         .. manim:: MMoleculeWithName
+           :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry import MMoleculeObject
@@ -353,12 +354,12 @@ class AbstractMolecule:
             class MMoleculeWithName(Scene):
                 def construct(self):
                     molecule = MMoleculeObject.molecule_from_pubchem(name="acetone")
-                    self.play(Write(molecule))
+                    self.add(molecule)
                     molecule.add_molecule_name(name="Acetone")
-                    self.play(Write(molecule[-1]))
-                    self.wait()
+                    self.add(molecule[-1])
 
         .. manim:: GraphMoleculeWithName
+           :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry import GraphMolecule
@@ -366,10 +367,9 @@ class AbstractMolecule:
             class GraphMoleculeWithName(Scene):
                 def construct(self):
                     molecule = GraphMolecule.molecule_from_pubchem(name="acetone")
-                    self.play(Write(molecule))
+                    self.add(molecule)
                     molecule.add_molecule_name(name="Acetone")
-                    self.play(Write(molecule.submobjects[-1]))
-                    self.wait()
+                    self.add(molecule.submobjects[-1])
 
         """
 

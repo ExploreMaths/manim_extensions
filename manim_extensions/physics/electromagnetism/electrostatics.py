@@ -54,6 +54,7 @@ class Charge(VGroup):
     Examples
     --------
     .. manim:: ChargeExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.electrostatics import Charge
@@ -65,9 +66,8 @@ class Charge(VGroup):
                plain = Charge(1, DOWN * 2, add_glow=False)
                content = VGroup(positive, negative, plain)
                content.scale_to_fit_height(6.5).move_to(ORIGIN)
-               self.play(FadeIn(positive), FadeIn(negative))
-               self.play(FadeIn(plain))
-               self.wait()
+               self.add(positive, negative)
+               self.add(plain)
     """
 
     def __init__(

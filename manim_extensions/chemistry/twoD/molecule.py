@@ -117,6 +117,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
 
     .. manim:: MMoleculeFromPubChem
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry import MMoleculeObject
@@ -124,10 +125,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
        class MMoleculeFromPubChem(Scene):
            def construct(self):
                mmolecule = MMoleculeObject.molecule_from_pubchem(name="acetone")
-               self.play(Write(mmolecule))
+               self.add(mmolecule)
                mmolecule.add_atom_numbering()
-               self.play(Write(mmolecule[-1]))
-               self.wait()
+               self.add(mmolecule[-1])
 
     """
 

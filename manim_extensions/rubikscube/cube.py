@@ -64,6 +64,7 @@ class RubiksCube(VMobject):
                self.wait()
 
     .. manim:: RubiksCubeColorsExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
@@ -77,8 +78,7 @@ class RubiksCube(VMobject):
                ).scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
-               self.play(FadeIn(cube))
-               self.wait()
+               self.add(cube)
 
     .. manim:: RubiksCubeDimExample
        :save_last_frame:
@@ -117,6 +117,7 @@ class RubiksCube(VMobject):
                self.wait()
 
     .. manim:: RubiksCubeSetStateExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
@@ -131,8 +132,7 @@ class RubiksCube(VMobject):
                cube.set_state("BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR")
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
-               self.play(FadeIn(cube))
-               self.wait()
+               self.add(cube)
 
     .. manim:: RubiksCubeFaceExample
 

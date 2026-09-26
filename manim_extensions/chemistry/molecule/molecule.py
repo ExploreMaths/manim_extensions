@@ -27,6 +27,7 @@ class Molecule:
     Examples
     ---------
     .. manim:: GraphMoleculeFromMolecule
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry import GraphMolecule, Molecule
@@ -35,12 +36,12 @@ class Molecule:
            def construct(self):
                molecule = Molecule(GraphMolecule).molecule_from_pubchem(name="acetone")
                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
-               self.play(Write(molecule))
-               self.play(Write(label))
-               self.wait()
+               self.add(molecule)
+               self.add(label)
 
 
     .. manim:: MMoleculeObjectFromMolecule
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry import MMoleculeObject, Molecule
@@ -49,9 +50,8 @@ class Molecule:
            def construct(self):
                molecule = Molecule(MMoleculeObject).molecule_from_pubchem(name="acetone")
                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
-               self.play(Write(molecule))
-               self.play(Write(label))
-               self.wait()
+               self.add(molecule)
+               self.add(label)
     """
 
     def __init__(self, molecule_class: Any = GraphMolecule):

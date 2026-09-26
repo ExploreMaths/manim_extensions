@@ -80,6 +80,7 @@ class MagneticField(ArrowVectorField):
     Examples
     --------
     .. manim:: MagneticFieldExample
+       :save_last_frame:
 
        from manim import Circle, Create, FadeIn, PI, ThreeDScene, UP
        from manim_extensions.physics import MagneticField, Wire
@@ -93,9 +94,8 @@ class MagneticField(ArrowVectorField):
                    y_range=[-4, 4],
                )
                self.set_camera_orientation(PI / 3, PI / 4)
-               self.play(Create(wire))
-               self.play(FadeIn(mag_field))
-               self.wait()
+               self.add(wire)
+               self.add(mag_field)
 
     """
 

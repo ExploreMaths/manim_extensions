@@ -282,6 +282,7 @@ class MathTexLine(VGroup):
     Examples
     --------
     .. manim:: MathTexLineDocExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions import MathTexLine
@@ -290,8 +291,7 @@ class MathTexLine(VGroup):
            def construct(self):
                line = MathTexLine(MathTex("y = x", font_size=72), direction=UP, color=BLUE)
                line.scale(4)
-               self.play(Write(line))
-               self.wait(0.5)
+               self.add(line)
     """
 
     def __init__(
@@ -435,6 +435,7 @@ class PerpendicularLine(Line):
     Examples
     --------
     .. manim:: PerpendicularLineDocExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions import PerpendicularLine
@@ -444,10 +445,9 @@ class PerpendicularLine(Line):
                base = Line(LEFT * 3, RIGHT * 3)
                point = Dot(UP * 1.5, color=RED)
                perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
-               self.play(Create(base), FadeIn(point))
-               self.play(Create(perp))
-               self.play(FadeIn(Dot(perp.foot, color=YELLOW)))
-               self.wait(0.5)
+               self.add(base, point)
+               self.add(perp)
+               self.add(Dot(perp.foot, color=YELLOW))
     """
 
     def __init__(
@@ -1829,6 +1829,7 @@ class TreeDiagram(VGroup):
     Examples
     --------
     .. manim:: TreeDiagramDocExample
+       :save_last_frame:
 
        from manim import *
        from manim_extensions import TreeDiagram
@@ -1837,8 +1838,7 @@ class TreeDiagram(VGroup):
            def construct(self):
                tree = {"A": {"B": {"D", "E"}, "C": {"F", "G"}}}
                diagram = TreeDiagram(tree).shift(LEFT * 2)
-               self.play(Create(diagram))
-               self.wait(0.5)
+               self.add(diagram)
     """
 
     def __init__(
