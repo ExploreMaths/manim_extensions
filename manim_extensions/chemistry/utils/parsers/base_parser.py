@@ -29,9 +29,10 @@ class BaseParser(ABC):
     This is a base class that must be extended on child classes.
 
     The purposes of the parser classes are:
-        - Read a file with chemical data.
-        - Parse the file to extract the atoms and bonds data.
-        - Return a dictionary with the atoms and bonds data.
+
+    - Read a file with chemical data.
+    - Parse the file to extract the atoms and bonds data.
+    - Return a dictionary with the atoms and bonds data.
 
     Parameters
     ----------

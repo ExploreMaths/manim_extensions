@@ -172,10 +172,14 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     @staticmethod
     def mc_molecule_to_atoms_and_bonds(mc_molecule: MCMolecule):
         """
-        Transforms the structure of a mc_molecule to a (atoms, bonds) tuple
-        with the following structure:
-        - Vertices: {<atom_index>: MCAtom}
-        - Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
+        Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
+
+        The tuple has the following structure:
+
+        .. code-block:: text
+
+            Vertices: {<atom_index>: MCAtom}
+            Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
 
         Parameters
         ----------

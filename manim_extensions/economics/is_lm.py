@@ -17,9 +17,15 @@ class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
 
     IS curve (goods market equilibrium):
+
+    .. code-block:: text
+
         Y = a - b*r  =>  r = a/b - Y/b
 
     LM curve (money market equilibrium):
+
+    .. code-block:: text
+
         Ms = k*Y - h*r  =>  r = (k*Y - Ms) / h
 
     Parameters

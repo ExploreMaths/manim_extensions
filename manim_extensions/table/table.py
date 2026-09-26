@@ -23,11 +23,10 @@ class Table(VGroup):
     
     The table can be created in two ways:
 
-    1. With a single data list where the first row is treated as the header:
-       Table([["col1", "col2"], ["val1", "val2"]])
-    
+    1. With a single data list where the first row is treated as the
+       header: ``Table([["col1", "col2"], ["val1", "val2"]])``.
     2. With explicit header and rows:
-       Table(header=["col1", "col2"], rows=[["val1", "val2"]])
+       ``Table(header=["col1", "col2"], rows=[["val1", "val2"]])``.
 
     Parameters
     ----------

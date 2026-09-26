@@ -106,8 +106,10 @@ class MCBond:
             MCMolecule: Required to get the atoms by their index and
             create the MCBond using MCAtoms.
 
-        Output:
-            MCBond.
+        Returns
+        -------
+        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`
+            The constructed bond.
 
         Raises
         ------

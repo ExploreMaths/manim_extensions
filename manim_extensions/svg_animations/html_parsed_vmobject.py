@@ -81,7 +81,7 @@ JAVASCRIPT_UPDATE_STRUCTURE = """    timeouts.push(setTimeout(function() {
     }, %f))"""
 
 
-JAVASCRIPT_INTERACTIVE_STRUCTURE = """var combsDict = {%s};
+JAVASCRIPT_INTERACTIVE_STRUCTURE = r"""var combsDict = {%s};
 var comb = [%s];
 function update(i, val) {
 if (!rendered) {
