@@ -569,10 +569,56 @@ def function_params(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list:
     return params
 
 
+def check_raw_docstrings(source: str) -> list:
+    """Flag docstrings that need an r-prefix.
+
+    A docstring embedding example code whose string literals contain
+    ``\\n`` escapes (e.g. the mol-file blocks in the chemistry examples)
+    mangles the example when Python interprets the escapes: Sphinx then
+    renders broken code that cannot be parsed or run. Such docstrings
+    must be raw. Prose escapes like ``\\n\\n`` paragraph breaks are a
+    different (acceptable) case and are not flagged.
+    """
+    import io
+    import tokenize
+
+    bs = chr(92)
+    esc_re = re.compile(re.escape(bs) + r"[\s\S]")
+    code_n_re = re.compile(re.escape(bs) + r"n[\"']")
+    violations = []
+    try:
+        toks = list(tokenize.generate_tokens(io.StringIO(source).readline))
+    except (tokenize.TokenError, IndentationError):
+        return violations
+    for tok in toks:
+        if tok.type != tokenize.STRING:
+            continue
+        s = tok.string
+        m = re.match(r"(?i)^([ubf]*)(\"\"\"|''')", s)
+        if not m or "r" in m.group(1).lower():
+            continue
+        body = s[len(m.group(1)) + 3:]
+        esc = esc_re.findall(body)
+        if not esc:
+            continue
+        code_n = len(code_n_re.findall(body))
+        if code_n and code_n == len(esc):
+            violations.append({
+                "line": tok.start[0],
+                "qualname": "<docstring>",
+                "type": "DOCSTRING_NEEDS_RAW_PREFIX",
+                "message": "docstring embeds example code with '\\n' "
+                           "escapes but is not raw; use an r-prefix or "
+                           "Sphinx renders mangled code",
+            })
+    return violations
+
+
 def check_file(filepath: Path) -> list:
     """Check a single file; return a list of violation dicts."""
     try:
-        tree = ast.parse(filepath.read_text(encoding="utf-8"))
+        source = filepath.read_text(encoding="utf-8")
+        tree = ast.parse(source)
     except (SyntaxError, UnicodeDecodeError) as exc:
         # A file that cannot be parsed is a hard failure, not a skip:
         # silently returning [] would let corruption disable every check.
@@ -583,13 +629,13 @@ def check_file(filepath: Path) -> list:
             "message": f"cannot parse file: {exc}",
         }]
 
+    violations = check_raw_docstrings(source)
+
     local_bases = {
         node.name: [base_root_name(b) for b in node.bases]
         for node in ast.walk(tree)
         if isinstance(node, ast.ClassDef)
     }
-
-    violations = []
 
     def check_inline_sections(doc, qualname, lineno):
         """Flag Google-style inline headers like ``Returns:``."""
