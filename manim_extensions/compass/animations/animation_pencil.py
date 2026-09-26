@@ -21,6 +21,19 @@ from ..compass.pencil import Pencil
 class MovePencilAlongPath(MoveAlongPath):
     """Animation of the pencil nib moving along a given path.
 
+    Parameters
+    ----------
+        mobject : Pencil
+            The pencil.
+        path : VMobject
+            The target path.
+        suspend_mobject_updating : Union[bool, None]
+            Whether to suspend mobject updating.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.MoveAlongPath`.
+
+    Examples
+    --------
     .. manim:: MovePencilAlongPathDocExample
 
        from manim import *
@@ -33,17 +46,7 @@ class MovePencilAlongPath(MoveAlongPath):
                self.add(path)
                self.play(MovePencilAlongPath(pencil, path))
                self.wait()
-
-    Parameters
-    ----------
-        mobject : Pencil
-            The pencil.
-        path : VMobject
-            The target path.
-        suspend_mobject_updating : Union[bool, None]
-            Whether to suspend mobject updating.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.MoveAlongPath`."""
+    """
 
     def __init__(
         self,
@@ -62,6 +65,17 @@ class MovePencilAlongPath(MoveAlongPath):
 class MovePencilTipTo(ApplyMethod):
     """Move the pencil so that its nib is placed at point.
 
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        point : Point
+            The target point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: MovePencilTipToDocExample
 
        from manim import *
@@ -75,15 +89,7 @@ class MovePencilTipTo(ApplyMethod):
                self.wait()
                content = VGroup(pencil, target)
                content.scale_to_fit_height(5).move_to(ORIGIN)
-
-    Parameters
-    ----------
-        pencil : Pencil
-            The pencil.
-        point : Point
-            The target point.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
@@ -95,6 +101,17 @@ class MovePencilTipTo(ApplyMethod):
 class DrawPath(AnimationGroup):
     """Animation of the pencil nib moving along the path while drawing it.
 
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        path : VMobject
+            The path.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+
+    Examples
+    --------
     .. manim:: DrawPathDocExample
 
        from manim import *
@@ -106,15 +123,7 @@ class DrawPath(AnimationGroup):
                path = Square(side_length=2.5)
                self.play(DrawPath(pencil, path))
                self.wait()
-
-    Parameters
-    ----------
-        pencil : Pencil
-            The pencil.
-        path : VMobject
-            The path.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
+    """
 
     def __init__(
         self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
@@ -127,6 +136,17 @@ class DrawPath(AnimationGroup):
 class PutPencilAway(MovePencilTipTo):
     """Put the pencil away: move the pencil to point.
 
+    Parameters
+    ----------
+        pencil : Pencil
+            The pencil.
+        point : Point
+            The placement position.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: PutPencilAwayDocExample
 
        from manim import *
@@ -139,15 +159,7 @@ class PutPencilAway(MovePencilTipTo):
                self.play(DrawPath(pencil, line))
                self.play(PutPencilAway(pencil, 3 * DOWN))
                self.wait()
-
-    Parameters
-    ----------
-        pencil : Pencil
-            The pencil.
-        point : Point
-            The placement position.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any

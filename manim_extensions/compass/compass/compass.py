@@ -186,6 +186,18 @@ class Compass(VGroup):
     def move_niddle_tip_to(self, pos: Point3D) -> "Compass":
         """Move the compass as a whole so that the needle tip is at pos.
 
+        Parameters
+        ----------
+        pos : Point
+            Target position for the compass needle tip.
+
+        Returns
+        -------
+        Compass
+            The shifted self.
+
+        Examples
+        --------
         .. manim:: CompassMoveNiddleTipToDocExample
            :save_last_frame:
 
@@ -197,16 +209,6 @@ class Compass(VGroup):
                    target = Dot(ORIGIN, color=RED)
                    compass = Compass().move_niddle_tip_to(ORIGIN)
                    self.add(target, compass)
-
-        Parameters
-        ----------
-        pos : Point
-            Target position for the compass needle tip.
-
-        Returns
-        -------
-        Compass
-            The shifted self.
         """
         self.shift(pos - self.get_niddle_tip())
         return self
@@ -214,6 +216,18 @@ class Compass(VGroup):
     def rotate_about_niddle_tip(self, angle: float = PI / 2) -> "Compass":
         """Rotate the compass as a whole around the needle tip by angle.
 
+        Parameters
+        ----------
+        angle
+            Rotation angle in radians about the needle tip.
+
+        Returns
+        -------
+        Compass
+            The rotated self.
+
+        Examples
+        --------
         .. manim:: RotateAboutNiddleTipDocExample
            :save_last_frame:
 
@@ -227,16 +241,6 @@ class Compass(VGroup):
                        ORIGIN
                    ).rotate_about_niddle_tip(PI / 4)
                    self.add(pivot, compass)
-
-        Parameters
-        ----------
-        angle
-            Rotation angle in radians about the needle tip.
-
-        Returns
-        -------
-        Compass
-            The rotated self.
         """
         self.rotate(angle=angle, about_point=self.get_niddle_tip())
         return self
@@ -244,6 +248,13 @@ class Compass(VGroup):
     def reverse_tip(self) -> "Compass":
         """Mirror-flip the needle tip and pen tip.
 
+        Returns
+        -------
+        Compass
+            The flipped self.
+
+        Examples
+        --------
         .. manim:: ReverseTipDocExample
            :save_last_frame:
 
@@ -255,11 +266,6 @@ class Compass(VGroup):
                    before = Compass()
                    after = Compass().reverse_tip().next_to(before, RIGHT, buff=1.5)
                    self.add(before, after)
-
-        Returns
-        -------
-        Compass
-            The flipped self.
         """
         self.flip(
             axis=self.head[0].get_end() - self.head[0].get_start(),
@@ -270,6 +276,18 @@ class Compass(VGroup):
     def split_copass_with_gain_angle(self, angle: float) -> "Compass":
         """Open the two compass legs by an additional angle.
 
+        Parameters
+        ----------
+        angle : float
+            Extra angular opening applied to the compass legs.
+
+        Returns
+        -------
+        Compass
+            The opened self.
+
+        Examples
+        --------
         .. manim:: SplitCompassWithGainAngleDocExample
            :save_last_frame:
 
@@ -283,16 +301,6 @@ class Compass(VGroup):
                        PI / 4
                    ).next_to(closed, RIGHT, buff=1.5)
                    self.add(closed, opened)
-
-        Parameters
-        ----------
-        angle : float
-            Extra angular opening applied to the compass legs.
-
-        Returns
-        -------
-        Compass
-            The opened self.
         """
         self.niddle_tip.rotate(angle=-angle, about_point=self.c.get_center())
         self.pen_tip.rotate(angle=angle, about_point=self.c.get_center())
@@ -305,6 +313,20 @@ class Compass(VGroup):
     ) -> "Compass":
         """Keep the needle tip fixed and open the two compass legs by angle.
 
+        Parameters
+        ----------
+        angle : float
+            Extra angular opening applied while the needle tip stays fixed.
+        niddle_tip_pos : Point
+            Fixed position to keep the compass needle tip at.
+
+        Returns
+        -------
+        Compass
+            The opened self with the needle tip fixed.
+
+        Examples
+        --------
         .. manim:: SplitCompassWithNiddleTipFixedDocExample
            :save_last_frame:
 
@@ -318,18 +340,6 @@ class Compass(VGroup):
                        PI / 4, ORIGIN
                    )
                    self.add(pivot, compass)
-
-        Parameters
-        ----------
-        angle : float
-            Extra angular opening applied while the needle tip stays fixed.
-        niddle_tip_pos : Point
-            Fixed position to keep the compass needle tip at.
-
-        Returns
-        -------
-        Compass
-            The opened self with the needle tip fixed.
         """
         self.split_copass_with_gain_angle(angle=angle)
         self.move_niddle_tip_to(niddle_tip_pos)
@@ -382,18 +392,6 @@ class Compass(VGroup):
     ) -> "Compass":
         """Set the compass span, rotation angle, and needle tip position.
 
-            .. manim:: SetCompassDocExample
-               :save_last_frame:
-
-               from manim import *
-               from manim_extensions.compass import Compass
-
-               class SetCompassDocExample(Scene):
-                   def construct(self):
-                       pivot = Dot(ORIGIN, color=RED)
-                       compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
-                       self.add(pivot, compass)
-
         Parameters
         ----------
         span_angle : float
@@ -407,6 +405,20 @@ class Compass(VGroup):
         -------
         Compass
             The repositioned self.
+
+            Examples
+            --------
+            .. manim:: SetCompassDocExample
+               :save_last_frame:
+
+               from manim import *
+               from manim_extensions.compass import Compass
+
+               class SetCompassDocExample(Scene):
+                   def construct(self):
+                       pivot = Dot(ORIGIN, color=RED)
+                       compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)
+                       self.add(pivot, compass)
         """
         self.split_compass_with_niddle_tip_fixed(span_angle, niddle_tip_pos)
         self.rotate(angle=rotate_angle, about_point=niddle_tip_pos)

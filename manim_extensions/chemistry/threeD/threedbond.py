@@ -252,7 +252,7 @@ class ThreeDLine(ThreeDCylinder):
         self.shift((self.start + self.end) / 2)
 
     def pointify(
-        self, mob_or_point: Mobject or float, direction: Optional[np.ndarray] = None
+        self, mob_or_point: Mobject | float, direction: Optional[np.ndarray] = None
     ) -> np.ndarray:
         """Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.
 

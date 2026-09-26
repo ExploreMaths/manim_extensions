@@ -28,8 +28,9 @@ This script checks that public functions, methods, and classes in
 6. Every docstring must end with terminal punctuation (the last content
    line ends with ``. ? !`` or an allowed equivalent). URLs, code-output
    lines, formulas and TODO placeholders are exempt.
-6b. A ``.. manim::`` block after the first numpydoc section must sit under
-   an ``Examples`` header, and entry descriptions must be indented deeper
+6b. A ``.. manim::`` block must sit under an ``Examples`` header — both
+   when it follows another numpydoc section and when the docstring has
+   no section header at all. Entry descriptions must be indented deeper
    than the entry line (flat descriptions break napoleon's parsing).
 7. Mobject subclasses (including indirect subclasses within the same file)
    must include a ``.. manim::`` example block in the class docstring.
@@ -462,11 +463,11 @@ def flat_description_lines(doc: str) -> list:
             j += 1
         if j >= len(lines):
             continue
-        item_indent = len(lines[j]) - len(lines[j].lstrip(" 	"))
+        item_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
         prev_entry = False
         for k in range(j, len(lines)):
             stripped = lines[k].strip()
-            indent = (len(lines[k]) - len(lines[k].lstrip(" 	"))
+            indent = (len(lines[k]) - len(lines[k].lstrip(" \t"))
                       ) if stripped else None
             if not stripped:
                 continue
@@ -700,33 +701,30 @@ def check_file(filepath: Path) -> list:
                 return
 
     def check_manim_examples_in_examples(doc, qualname, lineno):
-        """A '.. manim::' block after the first section needs an 'Examples'
-        header before it, otherwise napoleon mis-parses the section."""
+        """A '.. manim::' block must sit under an 'Examples' header.
+
+        When the docstring has no numpydoc section at all, a leading
+        '.. manim::' block would otherwise go undetected (napoleon treats
+        it as summary text), so it is flagged too."""
         lines = doc.splitlines()
-        first_sec = None
         examples = None
         for i in range(len(lines) - 1):
             stripped = lines[i].strip()
             if (
-                stripped in SECTION_NAMES
+                stripped == "Examples"
                 and SECTION_UNDERLINE_RE.match(lines[i + 1].strip() or "")
             ):
-                if first_sec is None:
-                    first_sec = i
-                if stripped == "Examples" and examples is None:
-                    examples = i
-        if first_sec is None:
-            return
-        for i in range(first_sec + 1, len(lines)):
-            if lines[i].strip().startswith(".. manim::"):
+                examples = i
+                break
+        for i, line in enumerate(lines):
+            if line.strip().startswith(".. manim::"):
                 if examples is None or i < examples:
                     violations.append({
                         "line": lineno,
                         "qualname": qualname,
                         "type": "MANIM_BLOCK_OUTSIDE_EXAMPLES",
-                        "message": "'.. manim::' block inside a numpydoc "
-                                   "section without a preceding 'Examples' "
-                                   "header",
+                        "message": "'.. manim::' block without a preceding "
+                                   "'Examples' section header",
                     })
                     return
 

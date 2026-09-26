@@ -41,6 +41,17 @@ from ..utils.geometry_method import get_vecs_angle, get_distance, is_counter_clo
 class DrawArc(AnimationGroup):
     """Compass-and-straightedge animation: draw an arc.
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        arc : Arc
+            The arc to draw.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+
+    Examples
+    --------
     .. manim:: DrawArcDocExample
 
        from manim import *
@@ -55,15 +66,7 @@ class DrawArc(AnimationGroup):
                self.play(PutCompass(compass, ORIGIN, 1.5 * RIGHT))
                self.play(DrawArc(compass, arc))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        arc : Arc
-            The arc to draw.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
+    """
 
     def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
         """Initialize DrawArc."""
@@ -73,6 +76,17 @@ class DrawArc(AnimationGroup):
 class SplitCompass(AnimationGroup):
     """Compass-and-straightedge animation: rotate the two legs of the compass
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        span : float
+            The distance between the two compass tips.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+
+    Examples
+    --------
     .. manim:: SplitCompassDocExample
 
        from manim import *
@@ -87,15 +101,7 @@ class SplitCompass(AnimationGroup):
                )
                self.add(span, MathTex("2").next_to(span, UP, buff=0.1))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        span : float
-            The distance between the two compass tips.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`."""
+    """
 
     def __init__(
         self, compass: Compass, span: float | None = None, **kwargs: Any
@@ -126,6 +132,17 @@ class SplitCompass(AnimationGroup):
 class RotateCompass(Rotate):
     """Compass-and-straightedge animation: rotate the compass around its needle tip by angle.
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        angle : float
+            The rotation angle.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.Rotate`.
+
+    Examples
+    --------
     .. manim:: RotateCompassDocExample
 
        from manim import *
@@ -138,15 +155,7 @@ class RotateCompass(Rotate):
                self.add(compass, pivot)
                self.play(RotateCompass(compass, PI / 2))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        angle : float
-            The rotation angle.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.Rotate`."""
+    """
 
     def __init__(
         self, compass: Compass, angle: float | None = None, **kwargs: Any
@@ -161,6 +170,17 @@ class RotateCompass(Rotate):
 class MoveNiddleTipTo(ApplyMethod):
     """Compass-and-straightedge animation: move the compass so that its needle tip is placed at point.
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        point : Point
+            The target point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: MoveNiddleTipToDocExample
 
        from manim import *
@@ -173,15 +193,7 @@ class MoveNiddleTipTo(ApplyMethod):
                self.add(target)
                self.play(MoveNiddleTipTo(compass, 2 * RIGHT))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        point : Point
-            The target point.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self,
@@ -196,6 +208,19 @@ class MoveNiddleTipTo(ApplyMethod):
 class PutCompass(ApplyMethod):
     """Compass-and-straightedge animation: place the compass's niddle_tip and pen_tip at the given positions.
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        niddle_pos : Point
+            Position for niddle_tip.
+        pen_pos : Point
+            Position for pen_tip.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: PutCompassDocExample
 
        from manim import *
@@ -210,17 +235,6 @@ class PutCompass(ApplyMethod):
                self.add(targets)
                self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        niddle_pos : Point
-            Position for niddle_tip.
-        pen_pos : Point
-            Position for pen_tip.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
 
     Raises
     ------
@@ -254,6 +268,19 @@ class PutCompass(ApplyMethod):
 class PutCompassAway(PutCompass):
     """Compass-and-straightedge animation: put the compass aside at point, with the two tips separated by span_buff.
 
+    Parameters
+    ----------
+        compass : Compass
+            The compass.
+        point : Point
+            Position to place the compass.
+        span_buff : float
+            Distance between the two tips when placed aside.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: PutCompassAwayDocExample
 
        from manim import *
@@ -266,17 +293,7 @@ class PutCompassAway(PutCompass):
                self.play(DrawArc(compass, arc))
                self.play(PutCompassAway(compass, 3 * RIGHT))
                self.wait()
-
-    Parameters
-    ----------
-        compass : Compass
-            The compass.
-        point : Point
-            Position to place the compass.
-        span_buff : float
-            Distance between the two tips when placed aside.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self,

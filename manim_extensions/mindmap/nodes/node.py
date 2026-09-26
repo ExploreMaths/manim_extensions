@@ -249,7 +249,7 @@ def bfs_walker(root: "Node") -> Generator:
 
 
 class Node:
-    """Tree-node class.
+    r"""Tree-node class.
 
     Parameters
     ----------
@@ -272,9 +272,9 @@ class Node:
 
        class NodeDocExample(Scene):
            def construct(self):
-               root = Node(MathTex(r"	ext{Root}", font_size=36), color=BLUE)
-               child = Node(MathTex(r"	ext{Child}", font_size=36), color=GREEN)
-               leaf = Node(MathTex(r"	ext{Leaf}", font_size=36), color=YELLOW)
+               root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
+               child = Node(MathTex(r"\text{Child}", font_size=36), color=GREEN)
+               leaf = Node(MathTex(r"\text{Leaf}", font_size=36), color=YELLOW)
                root.add_child(child)
                child.add_child(leaf)
                for node, pos in [(root, LEFT * 3), (child, ORIGIN), (leaf, RIGHT * 3)]:

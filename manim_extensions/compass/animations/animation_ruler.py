@@ -21,6 +21,19 @@ from ..compass.ruler import Ruler
 class PutRuler(ApplyMethod):
     """Compass-and-straightedge animation: rotate the ruler so that one of its edges aligns with start-end.
 
+    Parameters
+    ----------
+        ruler : Ruler
+            The ruler.
+        start : Point
+            The start point.
+        end : Point
+            The end point.
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: PutRulerDocExample
 
        from manim import *
@@ -33,17 +46,7 @@ class PutRuler(ApplyMethod):
                self.add(Dot(start, color=RED), Dot(end, color=RED))
                self.play(PutRuler(ruler, start, end))
                self.wait()
-
-    Parameters
-    ----------
-        ruler : Ruler
-            The ruler.
-        start : Point
-            The start point.
-        end : Point
-            The end point.
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self,
@@ -59,6 +62,19 @@ class PutRuler(ApplyMethod):
 class PutRulerAway(PutRuler):
     """Put the ruler away: move the ruler to point.
 
+    Parameters
+    ----------
+        ruler : Ruler
+            The ruler.
+        point : Point
+            The placement position.
+        is_flat : bool
+            Whether to place it horizontally (or vertically).
+        **kwargs
+            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+
+    Examples
+    --------
     .. manim:: PutRulerAwayDocExample
 
        from manim import *
@@ -70,17 +86,7 @@ class PutRulerAway(PutRuler):
                self.play(PutRuler(ruler, LEFT * 2, RIGHT * 2))
                self.play(PutRulerAway(ruler, 3 * UP))
                self.wait()
-
-    Parameters
-    ----------
-        ruler : Ruler
-            The ruler.
-        point : Point
-            The placement position.
-        is_flat : bool
-            Whether to place it horizontally (or vertically).
-        **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`."""
+    """
 
     def __init__(
         self,
