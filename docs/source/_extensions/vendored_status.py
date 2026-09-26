@@ -19,12 +19,13 @@ The directive renders a status block containing:
 
 All upstream data comes from the committed cache
 ``_vendored_status_cache.json`` next to ``conf.py``. The canonical copy
-lives on the repository's ``vendored-status-cache`` branch and is
-fetched into place by the ReadTheDocs ``pre_build`` step; the "Vendored
-status cache" GitHub Actions workflow refreshes it daily via
+lives on the repository's ``rtd-media`` branch and is copied into place
+by the ReadTheDocs ``pre_build`` step; the "Vendored status cache"
+GitHub Actions workflow refreshes it daily via
 ``workflow/update_vendored_status.py`` (using the automatic
-``GITHUB_TOKEN``). For a local docs build, run that script once to
-create the cache file.
+``GITHUB_TOKEN``), and the Docs media workflow refreshes it on every
+push before triggering the ReadTheDocs build. For a local docs build,
+run that script once to create the cache file.
 """
 
 from __future__ import annotations

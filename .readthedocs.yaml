@@ -22,17 +22,16 @@ build:
       # (see manim_extensions/utils/nerdfont/icons.py). Examples missing from
       # the CI media cache are rendered in-process by the Sphinx build.
       - python -c "import manim_extensions.utils.nerdfont as nf; nf._install_font_linux()"
-      # Fetch the vendored-status cache maintained by the Vendored status
-      # cache workflow on the vendored-status-cache branch (refreshed
-      # daily). The vendored-status directive renders without upstream
-      # data when this file is missing. See
-      # .github/workflows/vendored-status.yml.
-      - git fetch --depth 1 origin vendored-status-cache && git checkout origin/vendored-status-cache -- docs/source/_vendored_status_cache.json || true
       # Fetch the CI-pre-rendered example media so the Sphinx build reuses
       # it instead of rendering every example (see
       # .github/workflows/docs-media.yml). Examples missing from the cache
       # still render normally as a fallback.
       - git clone --depth 1 --branch rtd-media https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-media || true
+      # Copy the vendored-status cache (refreshed into the rtd-media branch
+      # by the workflows) into the docs tree. The vendored-status directive
+      # renders without upstream data when this file is missing. See
+      # .github/workflows/vendored-status.yml.
+      - ls -la /tmp/rtd-media/_vendored_status_cache.json && cp /tmp/rtd-media/_vendored_status_cache.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"
 
 sphinx:
   configuration: docs/source/conf.py
