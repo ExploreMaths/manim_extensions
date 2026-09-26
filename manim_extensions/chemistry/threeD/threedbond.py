@@ -368,6 +368,12 @@ class ThreeDLine(ThreeDCylinder):
         :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`
             Line perpendicular to ``line``.
 
+        Raises
+        ------
+        ValueError
+            Raised when the point lies on the line, so no perpendicular
+            direction exists.
+
         Examples
         --------
         .. manim:: PerpLineExample
@@ -387,12 +393,6 @@ class ThreeDLine(ThreeDCylinder):
                     self.add(Line(LEFT * 2, RIGHT * 2, color=RED))
                     self.add(Dot(UP, color=YELLOW))
                     self.add(Line(perpendicular.get_start(), perpendicular.get_end(), color=BLUE))
-
-        Raises
-        ------
-        ValueError
-            Raised when the point lies on the line, so no perpendicular
-            direction exists.
         """
         point = np.array(point)
 

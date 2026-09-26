@@ -82,6 +82,12 @@ def qr_code(payload: str,
         A VGroup containing the QR code as Manim objects, scaled to fit a
         width of 2 units.
 
+    Raises
+    ------
+    ValueError
+        Raised when ``data_shape`` is not one of ``'circles'`` or
+        ``'rectangles'``.
+
     Examples
     --------
     .. manim:: QrCodeDocExample
@@ -119,12 +125,6 @@ def qr_code(payload: str,
                                 icon_color=m.YELLOW, icon_size=4)
                self.play(m.ReplacementTransform(rust, python))
                self.wait(1)
-
-    Raises
-    ------
-    ValueError
-        Raised when ``data_shape`` is not one of ``'circles'`` or
-        ``'rectangles'``.
     """
     if icon_color is None:
         icon_color = m.WHITE

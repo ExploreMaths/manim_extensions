@@ -796,6 +796,11 @@ class FileTree(Code):
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.text.code_mobject.Code`.
 
+    Raises
+    ------
+    TypeError
+        Raised when ``tree_dict`` is not a dictionary.
+
     Examples
     --------
     .. manim:: FileTreeDocExample
@@ -818,11 +823,6 @@ class FileTree(Code):
                self.play(tree.highlight(1, YELLOW))
                self.play(tree.highlight(4, RED))
                self.wait(0.5)
-
-    Raises
-    ------
-    TypeError
-        Raised when ``tree_dict`` is not a dictionary.
     """
 
     def __init__(
@@ -1032,6 +1032,11 @@ class VideoMobject(ImageMobject):
     filename : str
         Path to the video file.
 
+    Raises
+    ------
+    ValueError
+        Raised when the video file cannot be read.
+
     Examples
     --------
     .. manim:: VideoMobjectDocExample
@@ -1046,11 +1051,6 @@ class VideoMobject(ImageMobject):
                vid = VideoMobject(path)
                self.add(vid)
                vid.play(self)
-
-    Raises
-    ------
-    ValueError
-        Raised when the video file cannot be read.
     """
 
     def __init__(

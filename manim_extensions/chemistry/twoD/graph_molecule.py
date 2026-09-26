@@ -715,6 +715,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         numpy.array
             Array with the [x, y, z] coordinates of the atom.
 
+        Raises
+        ------
+        KeyError
+            Raised when ``atom_index`` is not a valid atom index.
+        exception
+            Re-raised when the atom lookup fails otherwise.
+
         Examples
         --------
         .. code-block:: python
@@ -722,13 +729,6 @@ class GraphMolecule(Graph, AbstractMolecule):
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
            >>> array([ 0.9397, -0.7497,  0.    ])
-
-        Raises
-        ------
-        KeyError
-            Raised when ``atom_index`` is not a valid atom index.
-        exception
-            Re-raised when the atom lookup fails otherwise.
         """
         try:
             atom = self.atoms[atom_index]
@@ -785,6 +785,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         numpy.array
             [x, y, z] coordinates of bond center.
 
+        Raises
+        ------
+        KeyError
+            Raised when ``bond_tuple`` is not a valid bond index.
+        exception
+            Re-raised when the bond lookup fails otherwise.
+
         Examples
         --------
         .. code-block:: python
@@ -792,13 +799,6 @@ class GraphMolecule(Graph, AbstractMolecule):
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bond_center_by_index((1, 2))
            >>> array([0.51935, 0.59615, 0.     ])
-
-        Raises
-        ------
-        KeyError
-            Raised when ``bond_tuple`` is not a valid bond index.
-        exception
-            Re-raised when the bond lookup fails otherwise.
         """
         try:
             bond = self.bonds[bond_index]

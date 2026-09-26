@@ -54,6 +54,11 @@ class Table(VGroup):
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
+    Raises
+    ------
+    ValueError
+        Raised when neither ``data`` nor ``header`` is provided.
+
     Examples
     --------
     Create a table from a data list (the first row is the header) and
@@ -160,11 +165,6 @@ class Table(VGroup):
                table.get_cell(3, 2).set_font_color(RED)
                table.get_cell(3, 2).set_background_color(RED, opacity=0.2)
                self.add(table)
-
-    Raises
-    ------
-    ValueError
-        Raised when neither ``data`` nor ``header`` is provided.
     """
     
     def __init__(
@@ -663,19 +663,19 @@ class Table(VGroup):
             the remaining rows and resize animations if column widths
             change, and can all be played together in an AnimationGroup.
 
-        Examples
-        --------
-        ::
-
-            deleted, anims = table.delete_row(1)
-            self.play(AnimationGroup(*anims, lag_ratio=0.05))
-
         Raises
         ------
         ValueError
             Raised when ``index`` is 0 (the header row cannot be deleted).
         IndexError
             Raised when ``index`` is out of range.
+
+        Examples
+        --------
+        ::
+
+            deleted, anims = table.delete_row(1)
+            self.play(AnimationGroup(*anims, lag_ratio=0.05))
         """
         if index == 0:
             raise ValueError("Cannot delete header row")

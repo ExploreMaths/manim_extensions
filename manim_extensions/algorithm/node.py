@@ -149,6 +149,11 @@ class Node(VMobject):
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
+    Raises
+    ------
+    ValueError
+        Raised when the provided ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
+
     Examples
     --------
     .. manim:: NodeExample
@@ -169,11 +174,6 @@ class Node(VMobject):
                    square_node, circle_node, small_node, empty_node
                ).arrange(RIGHT, buff=0.8)
                self.add(group)
-
-    Raises
-    ------
-    ValueError
-        Raised when the provided ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
     """
 
     def __init__(

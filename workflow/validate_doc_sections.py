@@ -13,11 +13,11 @@ This script checks that public functions, methods, and classes in
    have a ``Yields`` section.
 2b. Numpydoc sections must appear in the canonical order: Parameters,
    Other Parameters, Attributes/Methods, Returns/Yields/Receives,
-   Warns, See Also/Notes/References, Examples, Raises (last).
+   Raises, Warns, See Also/Notes/References, Examples (numpydoc's
+   official order, https://numpydoc.readthedocs.io/en/latest/format.html).
 3. Functions/methods that raise exceptions must have a ``Raises`` section
-   that mentions every directly raised exception. The ``Raises`` section
-   must be the last section of the docstring. For ``__init__``, document
-   the exceptions in the class docstring instead.
+   that mentions every directly raised exception. For ``__init__``,
+   document the exceptions in the class docstring instead.
 4. Section headers must use the numpydoc format (a bare header line
    followed by a ``----------`` underline). Google-style inline headers
    such as ``Returns:`` are rejected.
@@ -127,8 +127,9 @@ STYLE_SECTIONS = {
     "Parameters", "Other Parameters", "Returns", "Yields",
     "Receives", "Raises", "Attributes",
 }
-# Canonical section order (lower rank = earlier). "Raises" stays last per
-# the project convention; unknown/custom sections are not checked.
+# Canonical section order (lower rank = earlier), following numpydoc's
+# official order: https://numpydoc.readthedocs.io/en/latest/format.html
+# Unknown/custom sections are not checked.
 SECTION_ORDER = {
     "Parameters": 0,
     "Other Parameters": 1,
@@ -137,12 +138,12 @@ SECTION_ORDER = {
     "Returns": 3,
     "Yields": 3,
     "Receives": 3,
-    "Warns": 4,
-    "See Also": 5,
-    "Notes": 5,
-    "References": 5,
-    "Examples": 6,
-    "Raises": 7,
+    "Raises": 4,
+    "Warns": 5,
+    "See Also": 6,
+    "Notes": 6,
+    "References": 6,
+    "Examples": 7,
 }
 # Descriptions starting with these prefixes already satisfy the style
 # (inline literals, cross-reference roles, type placeholders, bullets,
@@ -473,6 +474,8 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
         return
     if "TODO" in last:
         return
+    if last.startswith((">>> ", "... ")):
+        return  # doctest prompt/output line
     if re.fullmatch(r"[\w()\s·^+*=/.-]+", last) and (
         "=" in last or "·" in last or "^" in last
     ):
@@ -681,7 +684,6 @@ def check_file(filepath: Path) -> list:
                 "message": "has a non-None return annotation but no "
                            "'Returns'/'Yields' section",
             })
-        check_raises_last(doc, qualname, node.lineno)
         check_section_order(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
@@ -717,21 +719,6 @@ def check_file(filepath: Path) -> list:
                             "message": f"raised exception '{exc}' not mentioned "
                                        f"in 'Raises' section",
                         })
-
-    def check_raises_last(doc, qualname, lineno):
-        """The 'Raises' section must be the last section of the docstring."""
-        sections = section_positions(doc)
-        for pos, (name, _idx) in enumerate(sections[:-1]):
-            if name == "Raises":
-                nxt = sections[pos + 1][0]
-                violations.append({
-                    "line": lineno,
-                    "qualname": qualname,
-                    "type": "RAISES_NOT_LAST",
-                    "message": f"'Raises' section must be last, but '{nxt}' "
-                               f"follows it",
-                })
-                return
 
     def check_section_order(doc, qualname, lineno):
         """Numpydoc sections must appear in the canonical order."""
@@ -779,7 +766,6 @@ def check_file(filepath: Path) -> list:
     def check_class(node, prefix):
         doc = ast.get_docstring(node) or ""
         qualname = f"{prefix}{node.name}"
-        check_raises_last(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         check_section_order(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
