@@ -8,26 +8,38 @@ name: Docs media
 # the Sphinx build reuses the media instead of rendering hundreds of
 # examples (which used to time the RTD build out). Rendering is
 # content-hash based, so unchanged examples are skipped on re-runs.
+#
+# The same branch also carries the vendored-status cache: the `render`
+# job refreshes it on every push (so the RTD build always sees fresh
+# data), and the `vendored-cache` job refreshes it daily between pushes
+# without triggering a Read the Docs build.
 
 on:
   push:
     branches: ["main"]
     tags: ["v*"]
+  schedule:
+    # Refresh the vendored-status cache daily at ~02:29 UTC.
+    - cron: "29 2 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
-# Serialize pushes to the rtd-media branch: each run does `git push -f`, so
-# concurrent runs (e.g. a fast sequence of commits to main) would race and
-# the last push wins, even if an earlier run rendered newer media. Cancelling
-# superseded runs avoids that race and saves CI minutes.
-concurrency:
-  group: docs-media
-  cancel-in-progress: true
-
 jobs:
   render:
+    # Media rendering and the RTD trigger only happen for pushes/tags; the
+    # daily schedule is handled by the vendored-cache job below.
+    if: ${{ github.event_name != 'schedule' }}
+    # Serialize pushes to the rtd-media branch: each run does `git push -f`,
+    # so concurrent runs (e.g. a fast sequence of commits to main) would
+    # race and the last push wins, even if an earlier run rendered newer
+    # media. Cancelling superseded runs avoids that race and saves CI
+    # minutes. Scoped to this job so a scheduled vendored-cache run never
+    # cancels (or gets cancelled by) a media render.
+    concurrency:
+      group: docs-media
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -141,3 +153,43 @@ jobs:
           fi
           curl -sf -X POST -H "Authorization: Token $RTD_TOKEN" "$TARGET" \
             && echo "Read the Docs build triggered."
+
+  # Daily refresh of the vendored-status cache between pushes. Kept in this
+  # workflow so the rtd-media branch has a single writer pipeline; this job
+  # deliberately does NOT trigger a Read the Docs build.
+  vendored-cache:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Fetch previous cache
+        run: |
+          git fetch --depth 1 origin rtd-media || true
+          git show origin/rtd-media:_vendored_status_cache.json \
+            > /tmp/old_cache.json 2>/dev/null || echo '{}' > /tmp/old_cache.json
+
+      - name: Refresh cache
+        env:
+          # Provided automatically; raises the GitHub API rate limit.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python workflow/update_vendored_status.py --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
+
+      - name: Publish cache to the rtd-media branch
+        run: |
+          git clone --depth 1 --branch rtd-media \
+            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" \
+            rtd-media-clone
+          cp docs/source/_vendored_status_cache.json \
+            rtd-media-clone/_vendored_status_cache.json
+          cd rtd-media-clone
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _vendored_status_cache.json
+          git commit --allow-empty -m "$(cat /tmp/summary.txt)"
+          git pull --rebase origin rtd-media
+          git push origin rtd-media
