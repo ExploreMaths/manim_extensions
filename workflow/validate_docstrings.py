@@ -410,14 +410,15 @@ def check_args_format(py_file):
     return find_args_sections(source)
 
 
-BULLET_RE = re.compile(r"^- ")
+BULLET_RE = re.compile(r"^[-*] +")
+LIST_TABLE_ROW_RE = re.compile(r"^\* +- ")
 
 
 def check_abutting_bullets(py_file):
     """Check docstrings for bullet lists abutting the previous line.
 
-    A ``- `` bullet that directly follows a plain-text line (no blank line
-    in between) is not parsed as a list by numpydoc/RST. Consecutive
+    A ``- ``/``* `` bullet that directly follows a plain-text line (no blank
+    line in between) is not parsed as a list by numpydoc/RST. Consecutive
     bullets and list-table row cells (``* - name`` / ``- desc``) are fine.
     Returns a list of 1-based line numbers.
     """
@@ -443,6 +444,8 @@ def check_abutting_bullets(py_file):
         stripped = lines[i].strip()
         if not BULLET_RE.match(stripped):
             continue
+        if LIST_TABLE_ROW_RE.match(stripped):
+            continue  # list-table row marker, not a bullet
         if n - 1 not in doc_lines or n - 2 < 0:
             continue
         prev = lines[n - 2]
@@ -453,7 +456,7 @@ def check_abutting_bullets(py_file):
         prev_indent = len(prev) - len(prev.lstrip())
         if prev_indent > indent:
             continue  # continuation of a field/table cell
-        if re.match(r"^\* +- ", prev_s):
+        if LIST_TABLE_ROW_RE.match(prev_s):
             continue  # list-table row start
         if BULLET_RE.match(prev_s):
             continue  # consecutive bullet of the same list

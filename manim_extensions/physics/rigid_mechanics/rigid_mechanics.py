@@ -13,6 +13,7 @@ To use this feature, the :class:`~manim_extensions.physics.rigid_mechanics.rigid
 the specific functions of the space.
 
 .. note::
+
     *   This feature utilizes the pymunk package. Although unnecessary,
         it might make it easier if you knew a few things on how to use it.
 
