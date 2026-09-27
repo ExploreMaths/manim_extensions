@@ -99,6 +99,9 @@ autodoc_default_options = {
     "member-order": "bysource",
     "undoc-members": True,
 }
+# Instance constants (e.g. Zr = MCElement(...)) must not display the class
+# docstring: show a docstring only when the object itself defines one.
+autodoc_inherit_docstrings = False
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 autodoc_typehints_format = "short"
