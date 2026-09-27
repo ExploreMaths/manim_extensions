@@ -118,12 +118,22 @@ div.nboutput.container div.prompt pre {
     white-space: pre;
 }
 
-/* input/output area */
+/* input/output area: hide scrollbars and fade clipped edges instead, so
+ * overflow is hinted by the gradient shadow without a visible scrollbar */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
-    overflow: auto;
+    overflow-x: auto;
+    scrollbar-width: none;  /* Firefox */
+    -webkit-mask-image: linear-gradient(
+        to right, transparent, #000 1.5em, #000 calc(100% - 1.5em), transparent);
+    mask-image: linear-gradient(
+        to right, transparent, #000 1.5em, #000 calc(100% - 1.5em), transparent);
+}
+div.nbinput.container div.input_area::-webkit-scrollbar,
+div.nboutput.container div.output_area::-webkit-scrollbar {
+    display: none;  /* Chrome / Safari / Edge */
 }
 @media (max-width: 540px) {
     div.nbinput.container div.input_area,
