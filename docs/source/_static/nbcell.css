@@ -118,37 +118,36 @@ div.nboutput.container div.prompt pre {
     white-space: pre;
 }
 
-/* input/output area: the area is the single horizontal scroller; the
- * scrollbar stays hidden (nbcell.js adds has-left/has-right classes and
- * these inset shadows indicate clipped content on each side). */
+/* input/output area: the area is the single horizontal scroller, with a
+ * slim styled scrollbar (the inner blocks never scroll). */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
     overflow-x: auto;
-    scrollbar-width: none;  /* Firefox */
-    transition: box-shadow 0.15s ease-in-out;
-}
-div.nbinput.container div.input_area.has-left,
-div.nboutput.container div.output_area.has-left {
-    box-shadow: inset 1.5em 0 1.8em -1.2em rgba(0, 0, 0, 0.3);
-}
-div.nbinput.container div.input_area.has-right,
-div.nboutput.container div.output_area.has-right {
-    box-shadow: inset -1.5em 0 1.8em -1.2em rgba(0, 0, 0, 0.3);
-}
-div.nbinput.container div.input_area.has-left.has-right,
-div.nboutput.container div.output_area.has-left.has-right {
-    box-shadow: inset 1.5em 0 1.8em -1.2em rgba(0, 0, 0, 0.3),
-                inset -1.5em 0 1.8em -1.2em rgba(0, 0, 0, 0.3);
+    scrollbar-width: thin;  /* Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
 }
 div.nbinput.container div.input_area::-webkit-scrollbar,
-div.nboutput.container div.output_area::-webkit-scrollbar,
-div.nbinput.container div.input_area pre::-webkit-scrollbar,
-div.nboutput.container div.output_area pre::-webkit-scrollbar,
-div.nbinput.container div.input_area div.highlight::-webkit-scrollbar,
-div.nboutput.container div.output_area div.highlight::-webkit-scrollbar {
-    display: none;  /* Chrome / Safari / Edge */
+div.nboutput.container div.output_area::-webkit-scrollbar {
+    height: 6px;
+}
+div.nbinput.container div.input_area::-webkit-scrollbar-track,
+div.nboutput.container div.output_area::-webkit-scrollbar-track {
+    background: transparent;
+}
+div.nbinput.container div.input_area::-webkit-scrollbar-thumb,
+div.nboutput.container div.output_area::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 3px;
+}
+div.nbinput.container div.input_area::-webkit-scrollbar-thumb:hover,
+div.nboutput.container div.output_area::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.38);
+}
+/* no copy button on outputs */
+div.nboutput.container .copybtn {
+    display: none;
 }
 div.nbinput.container div.input_area [class*=highlight],
 div.nboutput.container div.output_area [class*=highlight],
@@ -161,10 +160,7 @@ div.nbinput.container div.input_area pre,
 div.nboutput.container div.output_area pre {
     width: max-content;
     min-width: 100%;
-}
-div.nbinput.container ::-webkit-scrollbar,
-div.nboutput.container ::-webkit-scrollbar {
-    display: none;  /* any scrollbar inside a cell stays hidden */
+    box-sizing: border-box;  /* padding must not push past the container */
 }
 @media (max-width: 540px) {
     div.nbinput.container div.input_area,

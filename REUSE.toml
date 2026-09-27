@@ -260,10 +260,6 @@ path = "docs/source/_static/nbcell.css"
 SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
-[[annotations]]
-path = "docs/source/_static/nbcell.js"
-SPDX-FileCopyrightText = ["2026 ExploreMaths"]
-SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "docs/source/_static/responsiveSvg.js"

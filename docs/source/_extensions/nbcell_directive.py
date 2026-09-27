@@ -119,10 +119,9 @@ class NBCell(Directive):
 
 
 def setup(app):
-    """Register the nbcell directive, its stylesheet and scroll-shadow JS."""
+    """Register the nbcell directive and its stylesheet."""
     app.add_directive("nbcell", NBCell)
     app.add_css_file("nbcell.css")
-    app.add_js_file("nbcell.js")
     return {
         "version": "1.0",
         "parallel_read_safe": True,
