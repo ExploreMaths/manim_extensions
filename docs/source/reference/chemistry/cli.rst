@@ -119,7 +119,7 @@ PubChem for three-dimensional coordinates (e.g. for
         File ./acetone.sdf is ready!!
         Finished
 
-    python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --three_d
+    python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --three_d True
 
 Choosing a destination folder
 -----------------------------

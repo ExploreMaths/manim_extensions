@@ -51,6 +51,7 @@ jobs:
             rtd-media-clone || { echo "No existing media cache; rendering from scratch."; exit 0; }
           mkdir -p media_cache
           cp -r rtd-media-clone/videos rtd-media-clone/images rtd-media-clone/manifest.json media_cache/ 2>/dev/null || true
+          cp rtd-media-clone/_nbcell_cache.json media_cache/ 2>/dev/null || true
 
       # Lightweight scan (no manim needed): if every example is already in
       # the cache at the requested quality, skip the whole render pipeline
@@ -58,7 +59,8 @@ jobs:
       - name: Check whether any rendering is needed
         id: needed
         run: |
-          if python workflow/render_doc_examples.py --out media_cache --quality high --check; then
+          if python workflow/render_doc_examples.py --out media_cache --quality high --check \
+            && python workflow/execute_nbcell_examples.py --check --cache media_cache/_nbcell_cache.json; then
             echo "needed=false" >> "$GITHUB_OUTPUT"
           else
             echo "needed=true" >> "$GITHUB_OUTPUT"
@@ -79,6 +81,13 @@ jobs:
       - name: Render all doc examples
         if: steps.needed.outputs.needed == 'true'
         run: python workflow/render_doc_examples.py --out media_cache --workers 6 --quality high
+
+      - name: Execute nbcell examples (real outputs)
+        # Runs every nbcell block and caches the real stdout next to the
+        # media; the Sphinx build (and Read the Docs, via the rtd-media
+        # branch) prefers the cached output over the hand-written one.
+        if: steps.needed.outputs.needed == 'true'
+        run: python workflow/execute_nbcell_examples.py --out media_cache/_nbcell_cache.json
 
       - name: Refresh vendored status cache
         # Runs on every push too (not only on the daily schedule) so the

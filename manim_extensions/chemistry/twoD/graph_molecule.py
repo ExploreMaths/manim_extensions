@@ -872,7 +872,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             :output: [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
 
             molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-            print(molecule.find_bonds_center_by_tuple([1,2,3]))
+            print(molecule.find_bonds_center_by_index([1,2,3]))
         """
         bonds_positions = []
         for bond_index in bonds_tuples_list:

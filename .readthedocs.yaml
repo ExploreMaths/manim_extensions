@@ -32,6 +32,11 @@ build:
       # renders without upstream data when this file is missing. See
       # .github/workflows/docs-media.yml.
       - 'ls -la /tmp/rtd-media/_vendored_status_cache.json && cp /tmp/rtd-media/_vendored_status_cache.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"'
+      # Same for the nbcell execution cache: the Docs media workflow runs
+      # every nbcell block and stores the real stdout here; nbcell_directive
+      # reads it from _extensions and falls back to the authored :output:
+      # when the file is absent.
+      - 'cp /tmp/rtd-media/_nbcell_cache.json docs/source/_extensions/ 2>/dev/null || echo "WARNING: nbcell cache missing; cells render with authored outputs"'
 
 sphinx:
   configuration: docs/source/conf.py

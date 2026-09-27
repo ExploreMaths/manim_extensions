@@ -37,15 +37,67 @@ Options:
 * ``:language:`` — lexer for the input cell. Defaults to ``python``.
 * ``:output-language:`` — lexer for the output. Defaults to no
   highlighting.
-* ``:prompt-in:`` / ``:prompt-out:`` — cell prompts, defaulting to
-  ``In [1]:`` and ``Out[1]:`` (nbsphinx's own default is the shorter
-  ``[%s]:``; the Jupyter-style prompts are chosen here to match the
-  classic notebook look).
+* ``:prompt-in:`` / ``:prompt-out:`` — cell prompts. When omitted, the
+  prompts are ``In [n]:`` / ``Out[n]:`` with ``n`` increasing across the
+  cells of each document, like a notebook's execution counters.
 """
+
+COUNTER_KEY = "nbcell_counter"
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from sphinx import addnodes
+
+
+
+def normalize_code(code: str) -> str:
+    """Canonical form of a cell's source for content hashing.
+
+    Shared with ``workflow/execute_nbcell_examples.py`` so a cached
+    execution result maps to the same key the directive computes at
+    build time: trim trailing spaces, drop outer blank lines, dedent.
+    """
+    import hashlib
+    import textwrap
+
+    lines = [ln.rstrip() for ln in code.split("\n")]
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    while lines and not lines[-1].strip():
+        lines.pop()
+    if not lines:
+        return ""
+    body = textwrap.dedent("\n".join(lines))
+    return hashlib.md5(body.encode()).hexdigest()
+
+
+_cache = None
+
+
+def load_execution_cache():
+    """Return {hash: stdout} from the CI-executed cache, or {} if absent.
+
+    The Docs media workflow runs every nbcell block and stores the real
+    stdout on the rtd-media branch; Read the Docs copies it next to this
+    file before building. Cells without a cache entry keep their
+    hand-written ``:output:``.
+    """
+    global _cache
+    if _cache is not None:
+        return _cache
+    _cache = {}
+    import json
+    from pathlib import Path
+
+    path = Path(__file__).with_name("nbcell_cache.json")
+    if path.exists():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            _cache = {k: v["stdout"] for k, v in data.get("cells", {}).items()
+                      if v.get("ok")}
+        except Exception:
+            _cache = {}
+    return _cache
 
 
 class NBCell(Directive):
@@ -65,9 +117,26 @@ class NBCell(Directive):
     def run(self):
         code = "\n".join(self.content)
         language = self.options.get("language", "python")
-        prompt_in = self.options.get("prompt-in", "In [1]:")
-        prompt_out = self.options.get("prompt-out", "Out[1]:")
         output = self.options.get("output")
+        cached = load_execution_cache().get(normalize_code(code))
+        if cached is not None:
+            output = cached
+
+        # Auto-number like notebook execution counters, per document.
+        document = self.state.document
+        count = document.attributes.get(COUNTER_KEY, 0)
+        if "prompt-in" in self.options:
+            prompt_in = self.options["prompt-in"]
+        else:
+            count += 1
+            document.attributes[COUNTER_KEY] = count
+            prompt_in = f"In [{count}]:"
+        if "prompt-out" in self.options:
+            prompt_out = self.options["prompt-out"]
+        elif "[" in prompt_in:
+            prompt_out = "Out[%s]:" % prompt_in.split("[")[1].split("]")[0]
+        else:
+            prompt_out = ""  # custom prompt-in without brackets: no Out prompt
 
         # Input cell: nbinput container + html-only prompt + input_area.
         input_outer = nodes.container(classes=["nbinput"])
@@ -86,9 +155,12 @@ class NBCell(Directive):
             out_lang = self.options.get("output-language", "none")
             output_text = output.rstrip("\n")
             output_outer = nodes.container(classes=["nboutput", "nblast"])
-            out_prompt = nodes.literal_block(
-                prompt_out, prompt_out, language="none", classes=["prompt"]
-            )
+            if prompt_out:
+                out_prompt = nodes.literal_block(
+                    prompt_out, prompt_out, language="none", classes=["prompt"]
+                )
+            else:
+                out_prompt = nodes.container(classes=["prompt", "empty"])
             output_outer += addnodes.only("", out_prompt, expr="html")
             output_area = nodes.container(classes=["output_area"])
             output_area += nodes.literal_block(
