@@ -28,12 +28,9 @@ class ASNTParser(BaseParser):
 
     Examples
     --------
-    .. code-block:: python
-
-        parsed_asnt = ASNTParser(filename="acetone_2d.asnt")
-        print(parsed_asnt.atoms_data)
-        print(parsed_asnt.bonds_data)
-        >>> {
+    .. nbcell::
+        :output:
+            {
             1: {"element": "O", "coords": array([3.732, 0.75, 0.0])},
             2: {"element": "C", "coords": array([2.866, 0.25, 0.0])},
             3: {"element": "C", "coords": array([2.0, 0.75, 0.0])},
@@ -44,8 +41,14 @@ class ASNTParser(BaseParser):
             8: {"element": "H", "coords": array([2.246, -0.75, 0.0])},
             9: {"element": "H", "coords": array([2.866, -1.37, 0.0])},
             10: {"element": "H", "coords": array([3.486, -0.75, 0.0])},
-        }
-        >>> {
+            }
+
+        parsed_asnt = ASNTParser(filename="acetone_2d.asnt")
+        print(parsed_asnt.atoms_data)
+
+    .. nbcell::
+        :output:
+            {
             0: {"from_atom_index": 1, "to_atom_index": 2, "bond_type": 2},
             1: {"from_atom_index": 2, "to_atom_index": 3, "bond_type": 1},
             2: {"from_atom_index": 2, "to_atom_index": 4, "bond_type": 1},
@@ -55,7 +58,9 @@ class ASNTParser(BaseParser):
             6: {"from_atom_index": 4, "to_atom_index": 8, "bond_type": 1},
             7: {"from_atom_index": 4, "to_atom_index": 9, "bond_type": 1},
             8: {"from_atom_index": 4, "to_atom_index": 10, "bond_type": 1},
-        }
+            }
+
+        print(parsed_asnt.bonds_data)
 
     """
 

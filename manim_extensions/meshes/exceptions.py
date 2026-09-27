@@ -20,11 +20,14 @@ class InvalidMeshException(Exception):
 
     Examples
     --------
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> Mesh([[0, 0, 0], [1, 0]], None)
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.InvalidMeshException: Dimensional mismatch for vertices. ...
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.InvalidMeshException: Dimensional mismatch for vertices. ...
+
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        Mesh([[0, 0, 0], [1, 0]], None)
     """
 
 
@@ -36,13 +39,16 @@ class InvalidRequestException(InvalidMeshException):
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> mesh = Mesh(np.zeros((2, 4)), None)
-    >>> mesh.get_3d_vertices()
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.InvalidRequestException: Can not Broadcast from 4-D Mesh to 3D Mesh.
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.InvalidRequestException: Can not Broadcast from 4-D Mesh to 3D Mesh.
+
+        import numpy as np
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        mesh = Mesh(np.zeros((2, 4)), None)
+        mesh.get_3d_vertices()
     """
 
 
@@ -53,13 +59,16 @@ class MeshIndexException(IndexError):
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
-    >>> mesh.update_vertex(5, np.array([1, 1, 1]))
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2.
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2.
+
+        import numpy as np
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
+        mesh.update_vertex(5, np.array([1, 1, 1]))
     """
 
 
@@ -71,13 +80,16 @@ class InvalidTypeException(TypeError):
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
-    >>> mesh.update_vertex(0, np.array([[1, 1, 1]]))
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.InvalidTypeException: Vertex [[1 1 1]] has incorrect shape, expected 1D-like array.
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.InvalidTypeException: Vertex [[1 1 1]] has incorrect shape, expected 1D-like array.
+
+        import numpy as np
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
+        mesh.update_vertex(0, np.array([[1, 1, 1]]))
     """
 
 
@@ -98,13 +110,16 @@ class InvalidMeshDimensionsException(Exception):
     Raised when a parameter has the wrong dimensionality, e.g. adding 2-D
     vertices to a 3-D mesh:
 
-    >>> import numpy as np
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
-    >>> mesh.add_vertices(np.array([[2.0, 0]]))
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2).
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2).
+
+        import numpy as np
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        mesh = Mesh(np.array([[0.0, 0, 0], [1, 0, 0]]), None)
+        mesh.add_vertices(np.array([[2.0, 0]]))
     """
 
     def __init__(
@@ -141,15 +156,18 @@ class InvalidShapeException(Exception):
     Raised by :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`
     when the target position list does not match the number of vertices:
 
-    >>> import numpy as np
-    >>> from manim import Scene
-    >>> from manim_extensions.meshes.models.data_models.mesh import Mesh
-    >>> from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
-    >>> mm = Manim2DMesh(Mesh([[0, 0, 0], [1, 0, 0], [0, 1, 0]], [[0, 1, 2]]))
-    >>> mm.move_vertices_to(Scene(), np.zeros((2, 3)))
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.InvalidShapeException: Size of new_positions is expected to be 3 but was 2.
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.InvalidShapeException: Size of new_positions is expected to be 3 but was 2.
+
+        import numpy as np
+        from manim import Scene
+        from manim_extensions.meshes.models.data_models.mesh import Mesh
+        from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
+        mm = Manim2DMesh(Mesh([[0, 0, 0], [1, 0, 0], [0, 1, 0]], [[0, 1, 2]]))
+        mm.move_vertices_to(Scene(), np.zeros((2, 3)))
     """
 
     def __init__(self, name: str, actual: int, expected: int):
@@ -168,11 +186,14 @@ class BadParameterException(Exception):
 
     Examples
     --------
-    >>> from manim_extensions.meshes.params import get_param_or_default, BM2DM
-    >>> get_param_or_default("edges_width", {"edges_width": "not a number"}, BM2DM)
-    Traceback (most recent call last):
-    ...
-    manim_extensions.meshes.exceptions.BadParameterException: Value edges_width does not have correct type ...
+    .. nbcell::
+        :output-language: pytb
+        :output: Traceback (most recent call last):
+            ...
+            manim_extensions.meshes.exceptions.BadParameterException: Value edges_width does not have correct type ...
+
+        from manim_extensions.meshes.params import get_param_or_default, BM2DM
+        get_param_or_default("edges_width", {"edges_width": "not a number"}, BM2DM)
     """
 
 
@@ -185,10 +206,12 @@ class FaultyVarArrayException(Exception):
 
     Examples
     --------
-    >>> from manim_extensions.meshes.exceptions import FaultyVarArrayException
-    >>> try:
-    ...     raise FaultyVarArrayException("The given object is no VarArray")
-    ... except FaultyVarArrayException as e:
-    ...     print(e)
-    The given object is no VarArray.
+    .. nbcell::
+        :output: The given object is no VarArray.
+
+        from manim_extensions.meshes.exceptions import FaultyVarArrayException
+        try:
+            raise FaultyVarArrayException("The given object is no VarArray")
+        except FaultyVarArrayException as e:
+            print(e)
     """

@@ -237,7 +237,7 @@ class BaseMBondObject(VGroup):
 
         Raises
         ------
-        exception
+        Exception
             Re-raised when the underlying line vector lookup fails.
         """
         try:
@@ -474,7 +474,7 @@ class DoubleBond(BaseMBondObject):
 
         Raises
         ------
-        exception
+        Exception
             Re-raised when the underlying line vector lookup fails.
         """
         try:
@@ -702,7 +702,7 @@ class TripleBond(BaseMBondObject):
 
         Raises
         ------
-        exception
+        Exception
             Re-raised when the underlying line vector lookup fails.
         """
         try:
@@ -826,7 +826,7 @@ class PlainCramBond(BaseMBondObject):
 
         Raises
         ------
-        exception
+        Exception
             Re-raised when the underlying atom centers cannot be read.
         """
         try:
@@ -944,7 +944,7 @@ class DashedCramBond(BaseMBondObject):
 
         Raises
         ------
-        exception
+        Exception
             Re-raised when the underlying line center lookup fails.
         """
         try:
