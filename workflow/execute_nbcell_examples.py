@@ -79,10 +79,10 @@ def extract_cells(text):
             if ind <= dind:
                 break
             om = OPTION_RE.match(ln)
-            if om and ind == dind + 4:
+            if om and ind == dind + 3:
                 cur_key = om.group(1)
                 options[cur_key] = om.group(2)
-            elif cur_key and ind > dind + 4:
+            elif cur_key and ind > dind + 3:
                 options[cur_key] += "\n" + ln.strip()
             j += 1
         # content block: deeper-than-directive lines until a dedent
@@ -96,7 +96,7 @@ def extract_cells(text):
             ind = len(ln) - len(ln.lstrip())
             if ind <= dind:
                 break
-            content.append(ln[dind + 4:])
+            content.append(ln[dind + 3:])
             j += 1
         while content and not content[-1].strip():
             content.pop()
