@@ -59,7 +59,7 @@ class SpaceScene(ZoomedScene):
                self.add_dynamic_body(*balls)
                self.add_shapes_filter(*balls, group=1)
                self.apply_impulse_at_world_point(
-                   balls[0], impulse=:math:`(4, 2, 0)`, point=tuple(balls[0].get_center())
+                   balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
                )
                self.wait(5)
     """

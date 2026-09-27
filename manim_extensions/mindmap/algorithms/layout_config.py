@@ -41,7 +41,7 @@ class LayoutDirection(Enum):
                    label = Text(direction.value, font_size=24)
                    label.next_to(arrow, vector, buff=0.2)
                    panels.add(VGroup(arrow, label))
-               panels.arrange_in_grid(rows=2, cols=2, buff=:math:`(1.5, 1.2)`)
+               panels.arrange_in_grid(rows=2, cols=2, buff=(1.5, 1.2))
                self.add(panels)
     """
 
@@ -81,7 +81,7 @@ class LayoutType(Enum):
                )
                for mind_map in maps:
                    mind_map.scale_to_fit_width(5.2)
-               maps.arrange_in_grid(rows=2, cols=2, buff=:math:`(0.8, 0.8)`)
+               maps.arrange_in_grid(rows=2, cols=2, buff=(0.8, 0.8))
                maps.scale_to_fit_height(6.8).move_to(ORIGIN)
                self.add(maps)
                for mind_map, layout_type in zip(maps, LayoutType):

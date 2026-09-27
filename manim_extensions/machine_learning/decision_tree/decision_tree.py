@@ -65,7 +65,7 @@ class LeafNode(Group):
 
        class LeafNodeExample(Scene):
            def construct(self):
-               plt.imsave("leaf_class_0.png", np.ones(:math:`(16, 16, 3)`))
+               plt.imsave("leaf_class_0.png", np.ones((16, 16, 3)))
                leaf = LeafNode(
                    class_index=0,
                    class_image_paths=["leaf_class_0.png"],

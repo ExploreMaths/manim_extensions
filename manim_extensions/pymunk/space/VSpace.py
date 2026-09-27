@@ -84,7 +84,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    collision_type_b=COLLISION_TYPE,
                    post_solve=post_solve_callback,
                )
-               self.apply_impulse_at_local_point(*stones, impulse=:math:`(0, 0.1, 0)`)
+               self.apply_impulse_at_local_point(*stones, impulse=(0, 0.1, 0))
 
                # segment query: locate the floor surface with a vertical ray
                start_pt = (0, 1.5, 0)

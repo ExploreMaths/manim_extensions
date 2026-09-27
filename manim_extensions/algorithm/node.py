@@ -499,7 +499,7 @@ class Node(VMobject):
                def construct(self):
                    node = Node("0")
                    self.add(node)
-                   for i in range:math:`(1, 4)`:
+                   for i in range(1, 4):
                        self.play(Node.UpdateValue(node, str(i)))
                    self.wait(0.5)
         """
