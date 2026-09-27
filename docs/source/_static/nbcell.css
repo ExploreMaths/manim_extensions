@@ -129,6 +129,12 @@ div.nboutput.container div.output_area {
     }
 }
 
+/* kill default block margins inside cells so prompts and content align */
+div.nbinput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] {
+    margin: 0;
+}
+
 /* input area */
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
