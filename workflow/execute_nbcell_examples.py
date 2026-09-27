@@ -3,8 +3,8 @@
 
 """Execute every ``.. nbcell::`` block and cache the real stdout.
 
-The Docs media workflow runs this on every push; the resulting
-``_nbcell_cache.json`` is pushed to the ``rtd-media`` branch and copied
+The Docs cache workflow runs this on every push; the resulting
+``_nbcell_cache.json`` is pushed to the ``rtd-cache`` branch and copied
 next to ``nbcell_directive.py`` before the Read the Docs build. The
 directive maps each cell's normalized source through
 :func:`nbcell_directive.normalize_code`; a cache hit replaces the

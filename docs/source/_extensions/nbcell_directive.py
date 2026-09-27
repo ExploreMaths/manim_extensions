@@ -61,8 +61,8 @@ _cache = None
 def load_execution_cache():
     """Return {hash: stdout} from the CI-executed cache, or {} if absent.
 
-    The Docs media workflow runs every nbcell block and stores the real
-    stdout on the rtd-media branch; Read the Docs copies it next to this
+    The Docs cache workflow runs every nbcell block and stores the real
+    stdout on the rtd-cache branch; Read the Docs copies it next to this
     file before building. Cells without a cache entry keep their
     hand-written ``:output:``.
     """

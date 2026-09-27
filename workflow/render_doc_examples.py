@@ -9,7 +9,7 @@ names every rendered example by a hash of its source and, when the
 produced by this script, copies the media from the cache instead of
 rendering. Read the Docs uses this to avoid rendering hundreds of
 examples on every docs build; the cache is refreshed by the
-``docs-media`` GitHub Actions workflow and stored on the ``rtd-media``
+``docs-cache`` GitHub Actions workflow and stored on the ``rtd-cache``
 branch.
 
 Cache layout::
