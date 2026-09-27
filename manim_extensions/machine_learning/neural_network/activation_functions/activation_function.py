@@ -33,9 +33,9 @@ class ActivationFunction(ABC, VGroup):
     function_name : str, optional
         Name displayed next to the plot.
     x_range : list, optional
-        Range of the x-axis, by default [-1, 1].
+        Range of the x-axis, by default :math:`[-1, 1]`.
     y_range : list, optional
-        Range of the y-axis, by default [-1, 1].
+        Range of the y-axis, by default :math:`[-1, 1]`.
     x_length : float, optional
         Length of the x-axis, by default 0.5.
     y_length : float, optional

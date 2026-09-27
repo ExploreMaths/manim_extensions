@@ -861,7 +861,7 @@ def make_subpaths(group: Any):
 
 
 def zero(function: Callable):
-    """Decorator that clamps a function to return 0 outside the [0, 1] domain.
+    """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
 
     Parameters
     ----------

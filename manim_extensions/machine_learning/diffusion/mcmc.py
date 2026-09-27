@@ -279,9 +279,9 @@ class MCMCAxes(Group):
     line_stroke_width : float, optional
         Stroke width of the transition lines, by default 2.
     x_range : list, optional
-        Range of the x-axis, by default [-3, 3].
+        Range of the x-axis, by default :math:`[-3, 3]`.
     y_range : list, optional
-        Range of the y-axis, by default [-3, 3].
+        Range of the y-axis, by default :math:`[-3, 3]`.
     x_length : float, optional
         Length of the x-axis, by default 5.
     y_length : float, optional
@@ -628,3 +628,4 @@ class MCMCAxes(Group):
         )
 
         return animation_group
+

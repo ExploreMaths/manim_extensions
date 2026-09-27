@@ -18,9 +18,9 @@ class ReLUFunction(ActivationFunction):
     function_name : str, optional
         Name displayed next to the plot, by default "ReLU".
     x_range : list, optional
-        Range of the x-axis, by default [-1, 1].
+        Range of the x-axis, by default :math:`[-1, 1]`.
     y_range : list, optional
-        Range of the y-axis, by default [-1, 1].
+        Range of the y-axis, by default :math:`[-1, 1]`.
 
     Examples
     --------

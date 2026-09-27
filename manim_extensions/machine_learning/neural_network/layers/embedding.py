@@ -37,7 +37,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     point_radius : float, optional
         Radius of the points in the point cloud, by default 0.02.
     mean : np.ndarray, optional
-        Mean of the Gaussian point cloud, by default [0, 0].
+        Mean of the Gaussian point cloud, by default :math:`[0, 0]`.
     covariance : np.ndarray, optional
         Covariance matrix of the Gaussian point cloud, by default the identity.
     dist_theme : str, optional

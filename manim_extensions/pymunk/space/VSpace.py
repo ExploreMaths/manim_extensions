@@ -583,7 +583,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. Defaults to (0, 0, 0).
+            The local point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -605,7 +605,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. Defaults to (0, 0, 0).
+            The world point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -681,7 +681,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose body is queried.
         point
             The local point (x, y, z) at which to compute velocity.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -704,7 +704,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose body is queried.
         point
             The world point (x, y, z) at which to compute velocity.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -1198,3 +1198,4 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 )
             )
         return [normal, *contact_info]
+

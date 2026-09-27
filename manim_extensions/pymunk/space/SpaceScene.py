@@ -594,7 +594,7 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The local point on the body where the force is applied.
-            Defaults to the center (0, 0, 0).
+            Defaults to the center :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_force_at_local_point(mob, force, point)
@@ -616,7 +616,7 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The world-space point where the force is applied.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
@@ -639,7 +639,7 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The local point on the body where the impulse is applied.
-            Defaults to the center (0, 0, 0).
+            Defaults to the center :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_local_point(mob, impulse, point)
@@ -661,7 +661,7 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The world-space point where the impulse is applied.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)
@@ -678,7 +678,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. Defaults to (0, 0, 0).
+            The local point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
         """
         self.vspace.local_to_world(mob, point)
 
@@ -693,7 +693,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. Defaults to (0, 0, 0).
+            The world point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
         """
         self.vspace.world_to_local(mob, point)
 
@@ -759,7 +759,7 @@ class SpaceScene(ZoomedScene):
             The Mobject whose body is queried.
         point
             The local point (x, y, z) at which to compute velocity.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -780,7 +780,7 @@ class SpaceScene(ZoomedScene):
             The Mobject whose body is queried.
         point
             The world point (x, y, z) at which to compute velocity.
-            Defaults to (0, 0, 0).
+            Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------
@@ -801,7 +801,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose shapes will be queried.
         point
-            The world point (x, y, z) to test against. Defaults to (0, 0, 0).
+            The world point (x, y, z) to test against. Defaults to :math:`(0, 0, 0)`.
 
         Returns
         -------

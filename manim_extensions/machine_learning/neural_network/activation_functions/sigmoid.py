@@ -20,9 +20,9 @@ class SigmoidFunction(ActivationFunction):
     function_name : str, optional
         Name displayed next to the plot, by default "Sigmoid".
     x_range : list, optional
-        Range of the x-axis, by default [-5, 5].
+        Range of the x-axis, by default :math:`[-5, 5]`.
     y_range : list, optional
-        Range of the y-axis, by default [0, 1].
+        Range of the y-axis, by default :math:`[0, 1]`.
 
     Examples
     --------

@@ -21,7 +21,7 @@ class GaussianDistribution(VGroup):
     axes : Axes
         Manim axes the distribution is drawn in.
     mean : np.ndarray, optional
-        Mean of the distribution; defaults to [0.0, 0.0].
+        Mean of the distribution; defaults to :math:`[0.0, 0.0]`.
     cov : np.ndarray, optional
         Covariance matrix of the distribution; defaults to the identity.
     dist_theme : str, optional
