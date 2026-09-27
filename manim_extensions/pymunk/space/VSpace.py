@@ -653,7 +653,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose physical body's velocity logic will be customized.
         callback
             A function with the signature:
-            `def callback(body: Body, gravity: Tuple[float, float], damping: float, dt: float)`
+            
+            .. code-block::
+            
+               def callback(body: Body, gravity: Tuple[float, float], damping: float, dt: float)
+               
             If None, the default Pymunk velocity update logic is restored.
         """
         if callback:
