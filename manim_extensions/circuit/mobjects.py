@@ -305,7 +305,7 @@ class Resistor(VMobject):
     Parameters
     ----------
     label : str or None, optional
-               Text label displayed next to the resistor. Defaults to ``None``.
+        Text label displayed next to the resistor. Defaults to ``None``.
     direction : np.ndarray, optional
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     **kwargs

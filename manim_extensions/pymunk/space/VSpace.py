@@ -41,7 +41,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         The gravity acceleration vector $(g_x, g_y)$. Defaults to $(0, -9.81)$.
     sub_step
         The number of sub-steps per frame for physical simulation. Increasing
-         this value improves numerical stability and collision accuracy.
+        this value improves numerical stability and collision accuracy.
         Defaults to 8.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.mobject.Mobject`.

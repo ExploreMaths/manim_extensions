@@ -299,7 +299,14 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
     # Stack of [parent_indent, expected_delta, is_code_block, skip_indent].
     # Stored as lists so the ``skip_indent`` flag can be flipped when a
     # ``:skip-indent:`` option is seen inside the block.
-    stack: list[list] = []
+    #
+    # The bottom frame is always an implicit "root" block with
+    # parent_indent=0, expected_delta=None — meaning no indentation is
+    # enforced at the top level.  Dedented docstrings and .rst files
+    # can have prose at any absolute indentation; we only care about
+    # *relative* indents inside nested blocks (directive bodies, bullets,
+    # definition descriptions, code blocks).
+    stack: list[list] = [[0, None, False, False]]
     # Indent of the first body line of the current code block (once set,
     # deeper lines are treated as code and exempt).
     code_body_indent: int | None = None
@@ -329,16 +336,23 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             continue
 
         # Pop blocks whose content region this line is no longer inside.
-        while stack and stack[-1][0] >= indent:
+        # Always keep the implicit root frame at the bottom.
+        while len(stack) > 1 and stack[-1][0] >= indent:
             stack.pop()
             code_body_indent = None
 
-        in_code = bool(stack) and stack[-1][2]
-        skip_indent = bool(stack) and stack[-1][3]
+        in_code = stack[-1][2]
+        skip_indent = stack[-1][3]
 
         # A directive option line (``:name: value``) that lives inside a
         # directive is allowed at the same indent as the body.
-        is_option = bool(stack) and FIELD_RE.match(stripped)
+        # Only meaningful inside a real block (expected_delta is set).
+        expected_delta = stack[-1][1]
+        is_option = (
+            expected_delta is not None
+            and DIRECTIVE_RE.match(stripped) is None
+            and FIELD_RE.match(stripped) is not None
+        )
         # A line deeper than the last option is a multi-line option value.
         is_option_value = (
             last_option_indent is not None
@@ -359,46 +373,61 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
         # Lines inside a skip-indent block are wholly exempt.
         if skip_indent:
             continue
-        # Lines that are purely code or option values are exempt.
+        # Code-block deeper lines are Python/TeX content — let flake8
+        # or ruff handle those, we only enforce the body boundary.
         if in_code and code_body_indent is not None and indent >= code_body_indent:
             continue
         if is_option or is_option_value:
             continue
 
-        if stack:
-            parent_indent, expected, _, _ = stack[-1]
-            delta = indent - parent_indent
-            if delta != expected:
-                # Inside a non-code block, only two indents above the
-                # parent are ever valid: the block's own body indent
-                # (+expected) and definition descriptions / code starts
-                # (+CODE_DELTA, e.g. numpydoc field descriptions).
-                # Anything else — +1, +2, +5 when +3/+4 were expected —
-                # is an accidental indent and must not be silently
-                # absorbed.
-                if not in_code and indent > parent_indent and indent != parent_indent + CODE_DELTA:
+        parent_indent = stack[-1][0]
+
+        # ---- indentation check --------------------------------------------
+        # Code-block first body line must land on body indent (parent +
+        # expected_delta).  Subsequent lines are code and exempt (above).
+        # Prose: every non-empty line must land on either the block's
+        # body indent or parent + CODE_DELTA (definition description).
+
+        if in_code:
+            # First body line (code_body_indent is None so we didn't
+            # short-circuit above): must hit expected_delta.
+            if expected_delta is not None:
+                delta = indent - parent_indent
+                if delta != expected_delta:
                     hits.append(
                         (
                             i,
                             f"unexpected indent +{delta} "
-                            f"(expected +{expected} or +{CODE_DELTA})",
+                            f"(expected +{expected_delta})",
                         )
                     )
-                else:
-                    hits.append(
-                        (
-                            i,
-                            f"indent +{delta} (expected +{expected}, "
-                            f"got {indent} want {parent_indent + expected})",
+            code_body_indent = indent
+        elif expected_delta is not None:
+            delta = indent - parent_indent
+
+            if delta == expected_delta:
+                pass  # right on the body indent — valid
+            elif (
+                not in_code
+                and indent > parent_indent
+                and indent == parent_indent + CODE_DELTA
+            ):
+                # definition-list / numpydoc field description (+4)
+                pass
+            else:
+                hits.append(
+                    (
+                        i,
+                        f"unexpected indent +{delta} "
+                        f"(expected +{expected_delta}"
+                        + (
+                            f" or +{CODE_DELTA}"
+                            if not in_code and indent > parent_indent
+                            else ""
                         )
+                        + ")",
                     )
-            if in_code:
-                # First body line of a code block: record its indent so
-                # deeper code lines are exempt (code has its own
-                # indentation).  Record even if the first line itself is
-                # wrong, to avoid cascading violations on every code
-                # line.
-                code_body_indent = indent
+                )
 
         # Open a new block if this line starts one.  Option lines and
         # their continuations never open a block.
@@ -407,12 +436,12 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
         if DIRECTIVE_RE.match(stripped):
             name = _directive_name(stripped)
             if name in CODE_DIRECTIVES:
-                expected, is_code = CODE_DELTA, True
+                ed, ic = CODE_DELTA, True
             elif name in MANIM_LIKE_DIRECTIVES:
-                expected, is_code = NORMAL_DELTA, True
+                ed, ic = NORMAL_DELTA, True
             else:
-                expected, is_code = NORMAL_DELTA, False
-            stack.append([indent, expected, is_code, pending_skip])
+                ed, ic = NORMAL_DELTA, False
+            stack.append([indent, ed, ic, pending_skip])
             code_body_indent = None
             pending_skip = False
         elif LITERAL_BLOCK_RE.search(stripped):
@@ -426,15 +455,19 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             marker_width = len(m.group(0))
             stack.append([indent, marker_width, False, pending_skip])
             pending_skip = False
-        elif stack and not in_code and indent >= stack[-1][0] + CODE_DELTA:
-            # A bare line indented +CODE_DELTA above its parent is treated
+        elif indent > parent_indent:
+            # A bare line indented deeper than its prose parent.  Treat
             # as a numpydoc definition-list term (``name : type``) whose
-            # description uses the same +CODE_DELTA convention.  Lines
-            # at other odd indents have already been flagged above as
-            # "unexpected indent" and must not be silently absorbed
-            # into the block tree.
-            parent_indent = stack[-1][0]
-            if indent >= parent_indent + CODE_DELTA:
+            # description uses the same +CODE_DELTA convention.  Never
+            # descend here when the parent is a code block — Python
+            # indentation inside code is not an RST nesting.  Also
+            # skip when the parent is the implicit root frame: prose
+            # indented deeper than root is just a docstring body
+            # (function/method docstrings start indented under the
+            # class/function), not a nested RST list.
+            parent_is_code = bool(stack[-1][2])
+            parent_is_root = expected_delta is None
+            if not parent_is_code and not parent_is_root:
                 stack.append([indent, CODE_DELTA, False, pending_skip])
                 pending_skip = False
 
