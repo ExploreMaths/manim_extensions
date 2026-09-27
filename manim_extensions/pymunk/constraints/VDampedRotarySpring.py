@@ -52,31 +52,31 @@ class VDampedRotarySpring(VConstraint):
     --------
     .. manim:: VDampedRotarySpringExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VDampedRotarySpringExample(SpaceScene):
-            def construct(self):
-                # the spinning squares are pulled back to rest_angle=PI/4 and
-                # their oscillation is damped (watch the arc indicators)
-                floor = Line(LEFT * 6.5, RIGHT * 6.5, stroke_width=8, color=GREY)
-                floor.to_edge(DOWN, buff=0.5)
-                square_1 = Square().next_to(floor, UP, buff=1)
-                square_2 = Square().move_to(square_1.get_center() + RIGHT * 4)
+       class VDampedRotarySpringExample(SpaceScene):
+           def construct(self):
+               # the spinning squares are pulled back to rest_angle=PI/4 and
+               # their oscillation is damped (watch the arc indicators)
+               floor = Line(LEFT * 6.5, RIGHT * 6.5, stroke_width=8, color=GREY)
+               floor.to_edge(DOWN, buff=0.5)
+               square_1 = Square().next_to(floor, UP, buff=1)
+               square_2 = Square().move_to(square_1.get_center() + RIGHT * 4)
 
-                spring = VDampedRotarySpring(
-                    square_1,
-                    square_2,
-                    rest_angle=PI / 4,
-                    stiffness=100,
-                    damping=1,
-                )
+               spring = VDampedRotarySpring(
+                   square_1,
+                   square_2,
+                   rest_angle=PI / 4,
+                   stiffness=100,
+                   damping=1,
+               )
 
-                self.play(FadeIn(floor), FadeIn(square_1), FadeIn(square_2))
-                self.add_static_body(floor)
-                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
-                self.add_constraints(spring)
-                self.wait(5)
+               self.play(FadeIn(floor), FadeIn(square_1), FadeIn(square_2))
+               self.add_static_body(floor)
+               self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
+               self.add_constraints(spring)
+               self.wait(5)
 
     """
 

@@ -27,26 +27,26 @@ class CatalogNode:
     Input attributes:
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``width``, ``height``
-          - Node dimensions.
-        * - ``children``
-          - List of child nodes.
+       * - ``width``, ``height``
+         - Node dimensions.
+       * - ``children``
+         - List of child nodes.
 
     Output attributes (filled by the algorithm):
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``left``, ``top``
-          - Top-left coordinates of the node on the canvas.
-        * - ``layer_index``
-          - Layer index (root is 0).
-        * - ``parent``
-          - Reference to the parent node.
-        * - ``children_area_width``
-          - Total width of the root's children (used for horizontal arrangement).
+       * - ``left``, ``top``
+         - Top-left coordinates of the node on the canvas.
+       * - ``layer_index``
+         - Layer index (root is 0).
+       * - ``parent``
+         - Reference to the parent node.
+       * - ``children_area_width``
+         - Total width of the root's children (used for horizontal arrangement).
 
     Examples
     --------

@@ -20,20 +20,20 @@ class MCAtom:
     It consists of:
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``element``
-          - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`.
-        * - ``coordinates``
-          - Its 3D coordinates.
-        * - ``bonded_atoms``
-          - The atoms bonded to it.
-        * - ``bonds``
-          - The bonds associated with it.
-        * - ``molecule``
-          - Its molecule.
-        * - ``index``
-          - Its index in the molecule.
+       * - ``element``
+         - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`.
+       * - ``coordinates``
+         - Its 3D coordinates.
+       * - ``bonded_atoms``
+         - The atoms bonded to it.
+       * - ``bonds``
+         - The bonds associated with it.
+       * - ``molecule``
+         - Its molecule.
+       * - ``index``
+         - Its index in the molecule.
 
     Parameters
     ----------

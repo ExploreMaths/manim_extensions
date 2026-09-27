@@ -35,7 +35,7 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
 
     .. note::
 
-        See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
+       See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
 
     Examples
     --------

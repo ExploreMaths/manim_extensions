@@ -310,8 +310,8 @@ class AbstractMolecule:
 
         .. code-block:: text
 
-            Vertices: {<atom_index>: MCAtom}
-            Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
+           Vertices: {<atom_index>: MCAtom}
+           Edges: {(<from_atom_index>, <to_atom_index>): MCBond}
 
         Parameters
         ----------

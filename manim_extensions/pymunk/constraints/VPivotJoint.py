@@ -64,27 +64,27 @@ class VPivotJoint(VConstraint):
     --------
     .. manim:: VPivotJointExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VPivotJointExample(SpaceScene):
-            def construct(self):
-                # both squares rotate freely around their shared pivot points
-                pivot = Dot(ORIGIN)
-                square = Square().move_to(pivot)
-                square2 = Square().move_to(pivot.get_center() + UP * 2).scale(0.5)
+       class VPivotJointExample(SpaceScene):
+           def construct(self):
+               # both squares rotate freely around their shared pivot points
+               pivot = Dot(ORIGIN)
+               square = Square().move_to(pivot)
+               square2 = Square().move_to(pivot.get_center() + UP * 2).scale(0.5)
 
-                constraints = [
-                    VPivotJoint(pivot, square),
-                    VPivotJoint(square, square2, pivot_world=UP * 3),
-                ]
+               constraints = [
+                   VPivotJoint(pivot, square),
+                   VPivotJoint(square, square2, pivot_world=UP * 3),
+               ]
 
-                self.play(FadeIn(pivot), FadeIn(square), FadeIn(square2))
-                self.add_static_body(pivot)
-                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
-                self.add_shapes_filter(pivot, square, square2, group=2)
-                self.add_constraints(*constraints)
-                self.wait(5)
+               self.play(FadeIn(pivot), FadeIn(square), FadeIn(square2))
+               self.add_static_body(pivot)
+               self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
+               self.add_shapes_filter(pivot, square, square2, group=2)
+               self.add_constraints(*constraints)
+               self.wait(5)
 
     """
 

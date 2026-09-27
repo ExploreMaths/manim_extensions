@@ -36,12 +36,12 @@ class ManimAutomataCLI:
 
     .. code-block:: python
 
-        from manim_extensions.automata import ManimNondeterministicFiniteAutomaton
+       from manim_extensions.automata import ManimNondeterministicFiniteAutomaton
 
-        nda = ManimNondeterministicFiniteAutomaton(cli=True)
-        # terminal menu:
-        # 0: Non-deterministic Automaton Path Builder
-        # Choice: 0
+       nda = ManimNondeterministicFiniteAutomaton(cli=True)
+       # terminal menu:
+       # 0: Non-deterministic Automaton Path Builder
+       # Choice: 0
     """
 
     def __init__(self) -> None:
@@ -104,8 +104,8 @@ class ManimAutomataCLI:
 
         .. note::
 
-            This method is not yet implemented and raises
-            :class:`~builtins.NotImplementedError`.
+           This method is not yet implemented and raises
+           :class:`~builtins.NotImplementedError`.
 
         Raises
         ------

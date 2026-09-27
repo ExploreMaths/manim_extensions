@@ -267,8 +267,8 @@ def create_model(filepath: Union[str, pathlib.Path] = "", name: str = "") -> Mes
 
     .. warning::
 
-        Very large meshes (> 32 GB RAM, > 30 min) may not be displayable
-        with the BasicMesh class.
+       Very large meshes (> 32 GB RAM, > 30 min) may not be displayable
+       with the BasicMesh class.
 
     Parameters
     ----------

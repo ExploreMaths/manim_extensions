@@ -444,12 +444,12 @@ def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG"):
         Element name language.
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'ENG'``
-              - English element names (default).
-            * - ``'ESP'``
-              - Spanish element names.
+           * - ``'ENG'``
+             - English element names (default).
+           * - ``'ESP'``
+             - Spanish element names.
 
     Returns
     -------

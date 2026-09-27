@@ -123,9 +123,9 @@ def easeOutBounce(t: float) -> float:
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-        Original author: @pdcxs.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+       Original author: @pdcxs.
 
     Parameters
     ----------
@@ -179,9 +179,9 @@ def easeInBounce(t: float) -> float:
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-        Original author: @pdcxs.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+       Original author: @pdcxs.
 
     Parameters
     ----------
@@ -225,9 +225,9 @@ def easeInOutBounce(t: float) -> float:
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-        Original author: @pdcxs.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+       Original author: @pdcxs.
 
     Parameters
     ----------
@@ -273,13 +273,13 @@ def easeOutElastic(t: float) -> float:
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-        Original author: @pdcxs.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
+       Original author: @pdcxs.
 
-        Because this function can return values greater than ``1`` it should not be
-        used with animations that sample ``points_from_proportion`` (e.g.
-        :class:`~manim.animation.movement.MoveAlongPath`).
+       Because this function can return values greater than ``1`` it should not be
+       used with animations that sample ``points_from_proportion`` (e.g.
+       :class:`~manim.animation.movement.MoveAlongPath`).
 
     Parameters
     ----------
@@ -334,9 +334,9 @@ class WriteRandom(LaggedStart):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw (style popularised by @贝多芬).
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+       Original author: widcardw (style popularised by @贝多芬).
 
     Parameters
     ----------
@@ -378,9 +378,9 @@ class ReversedWrite(LaggedStart):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw (style popularised by @贝多芬).
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+       Original author: widcardw (style popularised by @贝多芬).
 
     Parameters
     ----------
@@ -422,9 +422,9 @@ class FadeInRandom(LaggedStart):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+       Original author: widcardw.
 
     Parameters
     ----------
@@ -465,9 +465,9 @@ class FadeOutRandom(LaggedStart):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+       Original author: widcardw.
 
     Parameters
     ----------
@@ -508,9 +508,9 @@ class GrowRandom(LaggedStart):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-        Original author: widcardw.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
+       Original author: widcardw.
 
     Parameters
     ----------
@@ -556,9 +556,9 @@ class PassingRectangle(Animation):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-        Original author: @鹤翔万里.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+       Original author: @鹤翔万里.
 
     Parameters
     ----------
@@ -640,9 +640,9 @@ class LaggedCreation(Animation):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-        Original author: @鹤翔万里.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+       Original author: @鹤翔万里.
 
     Parameters
     ----------
@@ -735,9 +735,9 @@ class HighLightWithLines(AnimationGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-        Original author: @鹤翔万里.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+       Original author: @鹤翔万里.
 
     Parameters
     ----------
@@ -816,9 +816,9 @@ class UnHighLightWithLines(AnimationGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-        Original author: @鹤翔万里.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
+       Original author: @鹤翔万里.
 
     Parameters
     ----------

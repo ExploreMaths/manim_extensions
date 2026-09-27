@@ -22,22 +22,22 @@ class TimelineNode:
     Input attributes (required):
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``width``, ``height``
-          - Node dimensions.
-        * - ``children``
-          - List of child nodes.
-        * - ``side_dir``
-          - Growth direction (subtrees rooted at second-level nodes grow upward or downward).
+       * - ``width``, ``height``
+         - Node dimensions.
+       * - ``children``
+         - List of child nodes.
+       * - ``side_dir``
+         - Growth direction (subtrees rooted at second-level nodes grow upward or downward).
 
     Output attributes (filled by the algorithm):
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``x``, ``y``
-          - Top-left coordinates of the node on the canvas.
+       * - ``x``, ``y``
+         - Top-left coordinates of the node on the canvas.
 
     Examples
     --------

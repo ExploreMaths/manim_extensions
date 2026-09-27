@@ -21,16 +21,16 @@ class MCMolecule:
     It is made of:
 
     .. list-table::
-        :header-rows: 0
+       :header-rows: 0
 
-        * - ``atoms``
-          - MCAtoms.
-        * - ``bonds``
-          - MCBonds.
-        * - ``name``
-          - Molecule name.
-        * - ``properties``
-          - Extra properties (to be defined).
+       * - ``atoms``
+         - MCAtoms.
+       * - ``bonds``
+         - MCBonds.
+       * - ``name``
+         - Molecule name.
+       * - ``properties``
+         - Extra properties (to be defined).
 
     Parameters
     ----------
@@ -273,18 +273,18 @@ class MCMolecule:
         Supported formats are:
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``mol``
-              - MDL molfile.
-            * - ``sdf``
-              - Structure-Data File.
-            * - ``asnt``
-              - ASN.1 format.
-            * - ``json``
-              - JSON format.
-            * - ``xml``
-              - XML format.
+           * - ``mol``
+             - MDL molfile.
+           * - ``sdf``
+             - Structure-Data File.
+           * - ``asnt``
+             - ASN.1 format.
+           * - ``json``
+             - JSON format.
+           * - ``xml``
+             - XML format.
 
         Uses json format by default.
 

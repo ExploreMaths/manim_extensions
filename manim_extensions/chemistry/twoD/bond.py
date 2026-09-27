@@ -95,28 +95,28 @@ class BaseMBondObject(VGroup):
         Input options:
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'complete'``
-              - Both atoms show their element symbol.
-            * - ``'skeleton'``
-              - One or both atoms hide their symbol.
-            * - ``'over_bond'``
-              - A symbol is drawn above the bond.
+           * - ``'complete'``
+             - Both atoms show their element symbol.
+           * - ``'skeleton'``
+             - One or both atoms hide their symbol.
+           * - ``'over_bond'``
+             - A symbol is drawn above the bond.
 
         Output options:
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'shorter'``
-              - Does not touch the center of the atoms.
-            * - ``'shorter_from'``
-              - Does not touch the center of the from atom.
-            * - ``'shorter_to'``
-              - Does not touch the center of the to atom.
-            * - ``None`` or ``False``
-              - Touches both atoms' centers.
+           * - ``'shorter'``
+             - Does not touch the center of the atoms.
+           * - ``'shorter_from'``
+             - Does not touch the center of the from atom.
+           * - ``'shorter_to'``
+             - Does not touch the center of the to atom.
+           * - ``None`` or ``False``
+             - Touches both atoms' centers.
 
         Parameters
         ----------

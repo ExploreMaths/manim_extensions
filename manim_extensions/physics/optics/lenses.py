@@ -100,9 +100,9 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
     .. warning::
 
-        The current focal-length calculation does not precisely match the
-        physical point of focus.  This is a known limitation that may be
-        addressed in a future release.
+       The current focal-length calculation does not precisely match the
+       physical point of focus.  This is a known limitation that may be
+       addressed in a future release.
 
     Parameters
     ----------

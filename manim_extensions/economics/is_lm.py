@@ -20,13 +20,13 @@ class ISLMDiagram(EconDiagram):
 
     .. code-block:: text
 
-        Y = a - b*r  =>  r = a/b - Y/b
+       Y = a - b*r  =>  r = a/b - Y/b
 
     LM curve (money market equilibrium):
 
     .. code-block:: text
 
-        Ms = k*Y - h*r  =>  r = (k*Y - Ms) / h
+       Ms = k*Y - h*r  =>  r = (k*Y - Ms) / h
 
     Parameters
     ----------

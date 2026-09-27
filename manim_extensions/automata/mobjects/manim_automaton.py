@@ -55,10 +55,10 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     .. note::
 
-        This is an abstract base class.  Use one of the concrete subclasses
-        :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
-        :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`, or
-        :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton` instead.
+       This is an abstract base class.  Use one of the concrete subclasses
+       :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+       :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`, or
+       :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton` instead.
 
     Parameters
     ----------

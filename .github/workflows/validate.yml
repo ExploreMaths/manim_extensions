@@ -68,6 +68,15 @@ jobs:
       - name: Run docstring section validator
         run: python workflow/validate_doc_sections.py
 
+  validate-rst:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install docutils
+        run: pip install docutils
+      - name: Validate RST formatting in docs and docstrings
+        run: python workflow/validate_rst.py
+
   validate-example-layout:
     runs-on: ubuntu-latest
     steps:

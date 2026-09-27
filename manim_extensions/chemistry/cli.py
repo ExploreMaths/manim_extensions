@@ -46,16 +46,16 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
         Format of the file to be downloaded.
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'sdf'``
-              - Structure-Data File (default).
-            * - ``'asnt'``
-              - Abstract Syntax Notation format.
-            * - ``'json'``
-              - JSON representation.
-            * - ``'xml'``
-              - XML representation.
+           * - ``'sdf'``
+             - Structure-Data File (default).
+           * - ``'asnt'``
+             - Abstract Syntax Notation format.
+           * - ``'json'``
+             - JSON representation.
+           * - ``'xml'``
+             - XML representation.
 
     cid : :class:`~typing.Any`
         CID of the molecule(s) to download.
@@ -79,15 +79,15 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
     Examples
     --------
     .. nbcell::
-        :language: console
-        :prompt-in: "$"
-        :output: Retrieving molecule data for ('acetone', 'morphine').
-            Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
-            File .\acetone.sdf is ready!!
-            File .\morphine.sdf is ready!!
-            Finished
+       :language: console
+       :prompt-in: "$"
+       :output: Retrieving molecule data for ('acetone', 'morphine').
+           Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
+           File .\acetone.sdf is ready!!
+           File .\morphine.sdf is ready!!
+           Finished
 
-        manim_chemistry pubchem-molecule --format sdf -n acetone -n morphine
+       manim_chemistry pubchem-molecule --format sdf -n acetone -n morphine
     """
 
     identifier = cid or name or smiles or inchi

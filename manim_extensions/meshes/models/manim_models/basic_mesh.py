@@ -492,7 +492,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         .. note::
 
-            Not yet implemented for the underlying data mesh.
+           Not yet implemented for the underlying data mesh.
 
         Parameters
         ----------

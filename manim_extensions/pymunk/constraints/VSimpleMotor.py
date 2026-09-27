@@ -51,23 +51,23 @@ class VSimpleMotor(VConstraint):
     --------
     .. manim:: VSimpleMotorExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VSimpleMotorExample(SpaceScene):
-            def construct(self):
-                # the motor keeps the wheel spinning at a constant rate
-                pivot = Dot(ORIGIN)
-                wheel = Square().move_to(pivot)
+       class VSimpleMotorExample(SpaceScene):
+           def construct(self):
+               # the motor keeps the wheel spinning at a constant rate
+               pivot = Dot(ORIGIN)
+               wheel = Square().move_to(pivot)
 
-                motor = VSimpleMotor(pivot, wheel, rate=4, max_torque=500)
+               motor = VSimpleMotor(pivot, wheel, rate=4, max_torque=500)
 
-                self.play(FadeIn(pivot), FadeIn(wheel))
-                self.add_static_body(pivot)
-                self.add_dynamic_body(wheel)
-                self.add_shapes_filter(pivot, wheel, group=2)
-                self.add_constraints(motor)
-                self.wait(4)
+               self.play(FadeIn(pivot), FadeIn(wheel))
+               self.add_static_body(pivot)
+               self.add_dynamic_body(wheel)
+               self.add_shapes_filter(pivot, wheel, group=2)
+               self.add_constraints(motor)
+               self.wait(4)
 
     """
 

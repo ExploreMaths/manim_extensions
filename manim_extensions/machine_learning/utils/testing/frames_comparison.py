@@ -57,8 +57,8 @@ def frames_comparison(
         Additional keyword arguments merged into the Manim config for the test.
 
     .. warning::
-        By default, last_frame is True, which means that only the last frame is tested.
-        If the scene has a moving animation, then the test must set last_frame to False.
+       By default, last_frame is True, which means that only the last frame is tested.
+       If the scene has a moving animation, then the test must set last_frame to False.
     """
 
     def decorator_maker(tested_scene_construct: Callable):

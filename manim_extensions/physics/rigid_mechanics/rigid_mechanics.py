@@ -14,16 +14,16 @@ the specific functions of the space.
 
 .. note::
 
-    *   This feature utilizes the pymunk package. Although unnecessary,
-        it might make it easier if you knew a few things on how to use it.
+   *   This feature utilizes the pymunk package. Although unnecessary,
+       it might make it easier if you knew a few things on how to use it.
 
-        `Official Documentation <http://www.pymunk.org/en/latest/pymunk.html>`_
+       `Official Documentation <http://www.pymunk.org/en/latest/pymunk.html>`_
 
-        `Youtube Tutorial <https://youtu.be/pRk---rdrbo>`_
+       `Youtube Tutorial <https://youtu.be/pRk---rdrbo>`_
 
-    *   A low frame rate might cause some objects to pass static objects as
-        they don't register collisions finely enough. Trying to increase the
-        config frame rate might solve the problem.
+   *   A low frame rate might cause some objects to pass static objects as
+       they don't register collisions finely enough. Trying to increase the
+       config frame rate might solve the problem.
 
 """
 
@@ -150,8 +150,8 @@ class SpaceScene(Scene):
 
     .. note::
 
-        The gravity vector can be customised by overriding the class
-        attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
+       The gravity vector can be customised by overriding the class
+       attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
 
     Examples
     --------

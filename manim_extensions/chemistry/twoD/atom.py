@@ -33,14 +33,14 @@ class MAtomObject(VGroup):
         Representation of the atom label.
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'complete'``
-              - Always show the element symbol.
-            * - ``'skeleton'``
-              - Hide the element symbol.
-            * - ``'over_bond'``
-              - Show the symbol above the bond.
+           * - ``'complete'``
+             - Always show the element symbol.
+           * - ``'skeleton'``
+             - Hide the element symbol.
+           * - ``'over_bond'``
+             - Show the symbol above the bond.
 
         When None it is inferred from the element.
     color : str, optional
@@ -124,14 +124,14 @@ class MAtomObject(VGroup):
         Input options:
 
         .. list-table::
-            :header-rows: 0
+           :header-rows: 0
 
-            * - ``'complete'``
-              - Adds the element symbol.
-            * - ``'skeleton'``
-              - Does not add the symbol.
-            * - ``'over_bond'``
-              - Adds the symbol above the bond.
+           * - ``'complete'``
+             - Adds the element symbol.
+           * - ``'skeleton'``
+             - Does not add the symbol.
+           * - ``'over_bond'``
+             - Adds the symbol above the bond.
 
         Parameters
         ----------

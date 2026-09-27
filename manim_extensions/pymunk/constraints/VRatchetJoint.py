@@ -56,30 +56,30 @@ class VRatchetJoint(VConstraint):
     --------
     .. manim:: VRatchetJointExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VRatchetJointExample(SpaceScene):
-            def construct(self):
-                # the driven square can only advance in PI-sized ratchet steps
-                pivot_1 = Dot(UP * 2)
-                pivot_2 = Dot(UP * 2 + RIGHT * 4)
-                wheel_1 = Square().move_to(pivot_1)
-                wheel_2 = Square().move_to(pivot_2)
+       class VRatchetJointExample(SpaceScene):
+           def construct(self):
+               # the driven square can only advance in PI-sized ratchet steps
+               pivot_1 = Dot(UP * 2)
+               pivot_2 = Dot(UP * 2 + RIGHT * 4)
+               wheel_1 = Square().move_to(pivot_1)
+               wheel_2 = Square().move_to(pivot_2)
 
-                constraints = [
-                    VPinJoint(pivot_1, wheel_1),
-                    VPinJoint(pivot_2, wheel_2),
-                    VRatchetJoint(wheel_1, wheel_2, phase=0, ratchet=PI),
-                ]
+               constraints = [
+                   VPinJoint(pivot_1, wheel_1),
+                   VPinJoint(pivot_2, wheel_2),
+                   VRatchetJoint(wheel_1, wheel_2, phase=0, ratchet=PI),
+               ]
 
-                self.play(FadeIn(pivot_1), FadeIn(pivot_2), FadeIn(wheel_1), FadeIn(wheel_2))
-                self.add_static_body(pivot_1, pivot_2)
-                self.add_dynamic_body(wheel_1, angular_velocity=PI * 2)
-                self.add_dynamic_body(wheel_2)
-                self.add_shapes_filter(pivot_1, pivot_2, wheel_1, wheel_2, group=2)
-                self.add_constraints(*constraints)
-                self.wait(5)
+               self.play(FadeIn(pivot_1), FadeIn(pivot_2), FadeIn(wheel_1), FadeIn(wheel_2))
+               self.add_static_body(pivot_1, pivot_2)
+               self.add_dynamic_body(wheel_1, angular_velocity=PI * 2)
+               self.add_dynamic_body(wheel_2)
+               self.add_shapes_filter(pivot_1, pivot_2, wheel_1, wheel_2, group=2)
+               self.add_constraints(*constraints)
+               self.wait(5)
 
     """
 

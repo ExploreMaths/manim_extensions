@@ -187,9 +187,9 @@ class Orbital(OpenGLSurface):
 
     .. note::
 
-        :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface` requires
-        the OpenGL renderer; render scenes containing orbitals with
-        ``manim render --renderer=opengl``.
+       :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface` requires
+       the OpenGL renderer; render scenes containing orbitals with
+       ``manim render --renderer=opengl``.
 
     Parameters
     ----------

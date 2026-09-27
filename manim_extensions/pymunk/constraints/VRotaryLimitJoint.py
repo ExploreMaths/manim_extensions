@@ -50,28 +50,28 @@ class VRotaryLimitJoint(VConstraint):
     --------
     .. manim:: VRotaryLimitJointExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VRotaryLimitJointExample(SpaceScene):
-            def construct(self):
-                # gravity pulls the arm down, but the joint stops the
-                # rotation at +/- PI/6 (see the yellow arc indicators)
-                pivot = Dot(UP * 2)
-                arm = Rectangle(width=2.5, height=0.3)
-                arm.move_to(pivot.get_center() + DOWN * 1.25)
+       class VRotaryLimitJointExample(SpaceScene):
+           def construct(self):
+               # gravity pulls the arm down, but the joint stops the
+               # rotation at +/- PI/6 (see the yellow arc indicators)
+               pivot = Dot(UP * 2)
+               arm = Rectangle(width=2.5, height=0.3)
+               arm.move_to(pivot.get_center() + DOWN * 1.25)
 
-                constraints = [
-                    VPivotJoint(pivot, arm, pivot_world=pivot.get_center()),
-                    VRotaryLimitJoint(pivot, arm, min_angle=-PI / 6, max_angle=PI / 6),
-                ]
+               constraints = [
+                   VPivotJoint(pivot, arm, pivot_world=pivot.get_center()),
+                   VRotaryLimitJoint(pivot, arm, min_angle=-PI / 6, max_angle=PI / 6),
+               ]
 
-                self.play(FadeIn(pivot), FadeIn(arm))
-                self.add_static_body(pivot)
-                self.add_dynamic_body(arm)
-                self.add_shapes_filter(pivot, arm, group=2)
-                self.add_constraints(*constraints)
-                self.wait(5)
+               self.play(FadeIn(pivot), FadeIn(arm))
+               self.add_static_body(pivot)
+               self.add_dynamic_body(arm)
+               self.add_shapes_filter(pivot, arm, group=2)
+               self.add_constraints(*constraints)
+               self.wait(5)
 
     """
 

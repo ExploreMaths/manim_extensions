@@ -57,29 +57,29 @@ class VSlideJoint(VConstraint):
     --------
     .. manim:: VSlideJointExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class VSlideJointExample(SpaceScene):
-            def construct(self):
-                # the motor slowly rotates the arm; the red link keeps the
-                # small square between min_dist and max_dist
-                pivot = Dot(ORIGIN)
-                arm = Square().scale(1.5).move_to(pivot)
-                follower = Square().scale(0.4).move_to(RIGHT * 2)
+       class VSlideJointExample(SpaceScene):
+           def construct(self):
+               # the motor slowly rotates the arm; the red link keeps the
+               # small square between min_dist and max_dist
+               pivot = Dot(ORIGIN)
+               arm = Square().scale(1.5).move_to(pivot)
+               follower = Square().scale(0.4).move_to(RIGHT * 2)
 
-                constraints = [
-                    VPinJoint(pivot, arm),
-                    VSlideJoint(arm, follower, min_dist=1.0, max_dist=2.5),
-                    VSimpleMotor(pivot, arm, rate=PI / 4, max_torque=500),
-                ]
+               constraints = [
+                   VPinJoint(pivot, arm),
+                   VSlideJoint(arm, follower, min_dist=1.0, max_dist=2.5),
+                   VSimpleMotor(pivot, arm, rate=PI / 4, max_torque=500),
+               ]
 
-                self.play(FadeIn(pivot), FadeIn(arm), FadeIn(follower))
-                self.add_static_body(pivot)
-                self.add_dynamic_body(arm, follower)
-                self.add_shapes_filter(pivot, arm, follower, group=2)
-                self.add_constraints(*constraints)
-                self.wait(6)
+               self.play(FadeIn(pivot), FadeIn(arm), FadeIn(follower))
+               self.add_static_body(pivot)
+               self.add_dynamic_body(arm, follower)
+               self.add_shapes_filter(pivot, arm, follower, group=2)
+               self.add_constraints(*constraints)
+               self.wait(6)
 
     """
 

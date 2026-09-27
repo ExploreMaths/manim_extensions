@@ -1280,9 +1280,9 @@ class ColorText(Text):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ColorText.py``).
-        Original author: @鹤翔万里.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ColorText.py``).
+       Original author: @鹤翔万里.
 
     When a colour is passed it is displayed as an ``np.array([r,~g,~b])`` snippet in which
     the red, green and blue values are colour-coded and the ``~`` separators use
@@ -1370,9 +1370,9 @@ class Trail(VGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Trail.py``).
-        Original author: @cigar666.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Trail.py``).
+       Original author: @cigar666.
 
     Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
     the mobject's centre and older segments fade out according to :attr:`~manim_extensions.mobjects.Trail.rate_func`.
@@ -1512,9 +1512,9 @@ class ShadowAround(VGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Shadow_around.py``).
-        Original author: @cigar666.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Shadow_around.py``).
+       Original author: @cigar666.
 
     The shadow is built from *layer_num* concentric scaled copies whose stroke width and
     opacity fade outwards (or inwards when ``shadow_out=False``).
@@ -1612,9 +1612,9 @@ class ObjectBorder(VGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Object_Border.py``).
-        Original author: widcardw.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Object_Border.py``).
+       Original author: widcardw.
 
     If *track* is ``True`` the border continuously follows *obj* through an updater, so it
     stays aligned while *obj* moves or resizes.
@@ -1705,9 +1705,9 @@ class ThreeDVector(VGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ThreeDVector.py``).
-        Original author: @魔与方.
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ThreeDVector.py``).
+       Original author: @魔与方.
 
     The direction and length are given by *vector* and the base of the vector sits at
     *position* (i.e. the tip is at ``position + vector``).
@@ -1804,9 +1804,9 @@ class TreeDiagram(VGroup):
 
     .. note::
 
-        Adapted from `manim_sandbox
-        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/tree_diagram.py``;
-        the original source file does not record its author).
+       Adapted from `manim_sandbox
+       <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/tree_diagram.py``;
+       the original source file does not record its author).
 
     Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
     labels.  Leaf groups are wrapped with a :class:`~manim.mobject.svg.brace.Brace`.

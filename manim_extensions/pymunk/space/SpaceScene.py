@@ -39,29 +39,29 @@ class SpaceScene(ZoomedScene):
     --------
     .. manim:: SpaceSceneExample
 
-        from manim import *
-        from manim_extensions.pymunk import *
+       from manim import *
+       from manim_extensions.pymunk import *
 
-        class SpaceSceneExample(SpaceScene):
-            def construct(self):
-                # a floor and three balls driven by the Pymunk physics space
-                floor = Line(LEFT * 6, RIGHT * 6, stroke_width=8, color=GREY)
-                floor.to_edge(DOWN, buff=0.5)
-                balls = VGroup(*[
-                    Circle(radius=0.3, color=BLUE, fill_opacity=0.8).move_to(
-                        UP * 3 + (i - 1) * RIGHT
-                    )
-                    for i in range(3)
-                ])
+       class SpaceSceneExample(SpaceScene):
+           def construct(self):
+               # a floor and three balls driven by the Pymunk physics space
+               floor = Line(LEFT * 6, RIGHT * 6, stroke_width=8, color=GREY)
+               floor.to_edge(DOWN, buff=0.5)
+               balls = VGroup(*[
+                   Circle(radius=0.3, color=BLUE, fill_opacity=0.8).move_to(
+                       UP * 3 + (i - 1) * RIGHT
+                   )
+                   for i in range(3)
+               ])
 
-                self.play(FadeIn(floor), FadeIn(balls))
-                self.add_static_body(floor)
-                self.add_dynamic_body(*balls)
-                self.add_shapes_filter(*balls, group=1)
-                self.apply_impulse_at_world_point(
-                    balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
-                )
-                self.wait(5)
+               self.play(FadeIn(floor), FadeIn(balls))
+               self.add_static_body(floor)
+               self.add_dynamic_body(*balls)
+               self.add_shapes_filter(*balls, group=1)
+               self.apply_impulse_at_world_point(
+                   balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
+               )
+               self.wait(5)
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
@@ -395,8 +395,8 @@ class SpaceScene(ZoomedScene):
         as expected in the Manim render.
 
         .. note::
-            This method will block the execution of the program until the
-            pop-up window is manually closed.
+           This method will block the execution of the program until the
+           pop-up window is manually closed.
 
         Parameters
         ----------
