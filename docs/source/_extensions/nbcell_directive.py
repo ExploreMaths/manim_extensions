@@ -156,10 +156,42 @@ class NBCell(Directive):
         return result
 
 
+def _adjust_prompt_width(app, doctree, docname):
+    """Size the nbcell prompt column to the widest prompt in the document.
+
+    After the doctree is resolved we scan every ``.prompt`` literal block,
+    take the longest ``In [n]:`` / ``Out[n]:`` text, and inject a
+    ``<style>`` rule that sets the prompt column width in ``ch`` units.
+    This keeps single-digit counters visually tight while letting
+    two- (or more) digit counters render without clipping the colon.
+    """
+    max_len = 0
+    for node in doctree.findall(nodes.literal_block):
+        if "prompt" in node.get("classes", []):
+            text = node.astext()
+            if text:
+                max_len = max(max_len, len(text))
+    if max_len == 0:
+        return
+    style = nodes.raw(
+        "",
+        (
+            '<style>'
+            'div.nbinput.container div.prompt,'
+            'div.nboutput.container div.prompt'
+            f'{{width:{max_len + 1}ch}}'
+            '</style>'
+        ),
+        format="html",
+    )
+    doctree.insert(0, style)
+
+
 def setup(app):
     """Register the nbcell directive and its stylesheet."""
     app.add_directive("nbcell", NBCell)
     app.add_css_file("nbcell.css")
+    app.connect("doctree-resolved", _adjust_prompt_width)
     return {
         "version": "1.0",
         "parallel_read_safe": True,

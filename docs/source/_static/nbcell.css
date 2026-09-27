@@ -54,7 +54,11 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    width: 9ex;
+    /* Fallback width; nbcell_directive injects a per-document <style>
+       that sets width to fit the widest In/Out prompt (see
+       _adjust_prompt_width). This keeps single-digit counters tight
+       while still fitting multi-digit ones. */
+    width: 7ex;
     padding-top: 5px;
     position: relative;
     user-select: none;
