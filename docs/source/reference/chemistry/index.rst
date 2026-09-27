@@ -72,29 +72,8 @@ Command-line interface
 ----------------------
 
 The chemistry subpackage ships a small command-line client for
-downloading molecule files from PubChem, implemented with Click in
-:mod:`manim_extensions.chemistry.cli`. Run it as a module:
-
-.. code-block:: bash
-
-   python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --format sdf
-
-The ``pubchem-molecule`` command accepts the following options:
-
-``--format`` / ``-f``
-    Output format: ``asnt``, ``json``, ``sdf`` (default) or ``xml``.
-``--cid`` / ``-c``
-    PubChem compound ID; may be given multiple times.
-``--name`` / ``-n``
-    Compound name; may be given multiple times.
-``--smiles`` / ``-s``
-    SMILES identifier; may be given multiple times.
-``--inchi`` / ``-i``
-    InChI identifier; may be given multiple times.
-``--three_d`` / ``-td``
-    Request three-dimensional molecule data (default: ``False``).
-``--output_folder`` / ``-o``
-    Destination folder for the downloaded files (default: current folder).
+downloading molecule files from PubChem. See :doc:`cli` for the full
+guide with examples of every option.
 
 .. toctree::
    :hidden:
@@ -102,3 +81,4 @@ The ``pubchem-molecule`` command accepts the following options:
    classes
    functions
    constants
+   cli
