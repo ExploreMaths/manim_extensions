@@ -11,43 +11,13 @@
   <img src="docs/source/_static/cover/rubiks_cube.png" width="30%" alt="Rubik's cube" />
 </p>
 
-<table>
-  <tr>
-    <td><strong>📦 Package</strong></td>
-    <td>
-      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/v/manim-extensions?style=flat&logo=python&logoColor=white" /></a>
-      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/status/manim-extensions?style=flat&logo=python&logoColor=white" alt="PyPI Status"></a>
-      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/pyversions/manim-extensions?style=social&color=CB4040&logo=python" /></a>
-      <a href="https://pypi.org/project/manim-extensions/#files"><img src="https://img.shields.io/pypi/wheel/manim-extensions?style=flat&logo=python&logoColor=white" alt="PyPI Wheel"></a>
-      <br>
-      <a href="https://pypi.org/project/manim_extensions/"><img src="https://img.shields.io/pypi/dm/manim_extensions?style=social&logo=python" /></a>
-      <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/implementation/manim-extensions?style=social&logo=python" alt="Python Implementation"></a>
-    </td>
-  </tr>
-
-  <tr>
-    <td><strong>🚀 Repository</strong></td>
-    <td>
-      <a href="https://github.com/ExploreMaths/manim_extensions/releases/latest"><img src="https://img.shields.io/github/v/release/ExploreMaths/manim_extensions?style=flat&color=%2333fb950&logo=github&label=stable" /></a>
-      <a href="https://github.com/ExploreMaths/manim_extensions/releases/"><img src="https://img.shields.io/github/v/release/ExploreMaths/manim_extensions?include_prereleases&style=flat&color=%23ea7233&logo=github&label=latest" /></a>
-      <a href="https://github.com/ExploreMaths/manim_extensions"><img src="https://img.shields.io/github/repo-size/ExploreMaths/manim_extensions?style=social&logo=github" /></a>
-      <br>
-      <a href="https://github.com/ExploreMaths/manim_extensions/commits/main"><img src="https://img.shields.io/github/last-commit/ExploreMaths/manim_extensions?style=flat&logo=git&logoColor=white" alt="Last Commit"></a>
-      <a href="https://github.com/ExploreMaths/manim_extensions/graphs/commit-activity"><img src="https://img.shields.io/github/commit-activity/m/ExploreMaths/manim_extensions?style=social&logo=git" alt="Monthly Commit Activity"></a>
-    </td>
-  </tr>
-
-  <tr>
-    <td><strong>✅ CI & Docs</strong></td>
-    <td>
-      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" /></a>
-      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" /></a>
-      <br>
-      <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/docs-media.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/docs-media.yml/badge.svg"></a>
-      <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" /></a>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/v/manim-extensions?style=flat&logo=python&logoColor=white" alt="PyPI version" /></a>
+  <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/pyversions/manim-extensions?style=flat&logo=python&logoColor=white" alt="Python versions" /></a>
+  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" alt="CI" /></a>
+  <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" alt="Documentation" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License" /></a>
+</p>
 
 </div>
 
