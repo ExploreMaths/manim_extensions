@@ -40,7 +40,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "docs" / "source" / "_extensions"))
 
-from nbcell_directive import normalize_code  # noqa: E402
+from nbcell_hash import normalize_code  # noqa: E402
 
 NBCELL_RE = re.compile(r"( *)\.\. nbcell::")
 OPTION_RE = re.compile(r"^\s*:([\w-]+):\s*(.*)$")

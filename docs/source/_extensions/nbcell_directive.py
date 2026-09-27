@@ -48,27 +48,11 @@ from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from sphinx import addnodes
 
+try:
+    from nbcell_hash import normalize_code
+except ImportError:  # pragma: no cover - direct file execution
+    from .nbcell_hash import normalize_code
 
-
-def normalize_code(code: str) -> str:
-    """Canonical form of a cell's source for content hashing.
-
-    Shared with ``workflow/execute_nbcell_examples.py`` so a cached
-    execution result maps to the same key the directive computes at
-    build time: trim trailing spaces, drop outer blank lines, dedent.
-    """
-    import hashlib
-    import textwrap
-
-    lines = [ln.rstrip() for ln in code.split("\n")]
-    while lines and not lines[0].strip():
-        lines.pop(0)
-    while lines and not lines[-1].strip():
-        lines.pop()
-    if not lines:
-        return ""
-    body = textwrap.dedent("\n".join(lines))
-    return hashlib.md5(body.encode()).hexdigest()
 
 
 _cache = None
