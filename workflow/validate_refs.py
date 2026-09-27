@@ -382,11 +382,7 @@ def _find_inline_code(
 
 
 def main() -> int:
-    print("Building name maps...")
     classes_map, functions_map, attr_map, contexts, project_classes_map = build_name_maps()
-    print(f"  Classes: {len(classes_map)}")
-    print(f"  Functions/Methods: {len(functions_map)}")
-    print(f"  Class attributes: {len(attr_map)}")
 
     broken_refs: list[dict] = []
     short_xrefs: list[dict] = []
@@ -437,50 +433,25 @@ def main() -> int:
         "inline_code": inline_code,
         "contexts": contexts,
     }
+    # --- human-readable summary ---
+    total_issues = len(broken_refs) + len(short_xrefs) + len(inline_code)
+    if total_issues:
+        print(f"FAIL  cross-refs  {total_issues} issue(s)\n")
+        for item in broken_refs:
+            print(f"  {item['file']}:{item['lineno']}  cannot-resolve: {item['target']} -- {item['error']}")
+        for item in short_xrefs:
+            print(f"  {item['file']}:{item['lineno']}  short-xref: {item['role']}`{item['target']}`")
+        for item in inline_code:
+            print(f"  {item['file']}:{item['lineno']}  inline-code: `{item['code']}`")
+        print(f"\nTotal: {total_issues} issue(s)")
+        print("Run `python workflow/fix_refs.py` to auto-fix what it can.")
+    else:
+        print("PASS  cross-refs")
+
+    # Still write the JSON report for downstream tooling.
     json_file = ROOT / "workflow" / "_refs_report.json"
     with open(json_file, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, default=str)
-
-    # --- human-readable summary ---
-    lines: list[str] = []
-    lines.append("=== Validation Summary ===")
-    lines.append(f"Broken references:     {len(broken_refs)}")
-    lines.append(f"Short cross-references: {len(short_xrefs)}")
-    lines.append(f"Inline code candidates: {len(inline_code)}")
-
-    if broken_refs:
-        lines.append("\n--- Broken references ---")
-        for item in broken_refs:
-            lines.append(
-                f"  ERROR  {item['file']}:{item['lineno']}  "
-                f"{item['target']}  -- {item['error']}"
-            )
-
-    if short_xrefs:
-        lines.append("\n--- Short cross-references ---")
-        for item in short_xrefs:
-            lines.append(
-                f"  {item['file']}:{item['lineno']}  "
-                f"{item['role']}`{item['target']}`"
-            )
-
-    if inline_code:
-        lines.append("\n--- Inline code candidates ---")
-        for item in inline_code:
-            lines.append(f"  {item['file']}:{item['lineno']}  `{item['code']}`")
-
-    total_issues = len(broken_refs) + len(short_xrefs) + len(inline_code)
-    if total_issues:
-        lines.append(f"\nFAILED: {total_issues} issue(s) found.")
-        lines.append("Run `python workflow/fix_refs.py` to auto-fix what it can.")
-    else:
-        lines.append("\nAll references look good!")
-
-    output = "\n".join(lines)
-    outfile = ROOT / "workflow" / "_validate_result.txt"
-    with open(outfile, "w", encoding="utf-8") as f:
-        f.write(output + f"\n\n(Detailed JSON: {json_file.name})\n")
-    print(output)
 
     return 1 if total_issues else 0
 

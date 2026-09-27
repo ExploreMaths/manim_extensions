@@ -468,37 +468,22 @@ def main():
 
         checked += 1
 
-    print(f"Checked {checked} files")
-    if args.fix:
-        print(f"Fixed 'Args:' sections in {fixed_count} files")
-
-    if errors:
-        print(f"\nFound {len(errors)} files with module docstring issues:\n")
+    if errors or func_errors or args_errors:
+        total = len(errors) + len(func_errors) + len(args_errors)
+        print(f"FAIL  docstrings  {total} issue(s)\n")
         for filepath, error_type in sorted(errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
-            print(f"  {error_type}: {rel_path}")
-        print(f"\nTotal: {len(errors)} module docstring issues")
-
-    if func_errors:
-        print(f"\nFound {len(func_errors)} functions/classes without docstrings:\n")
+            print(f"  {rel_path}:-  module-docstring: {error_type}")
         for filepath, line_no, name, node_type in sorted(func_errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
-            print(f"  {node_type} '{name}' at line {line_no}: {rel_path}")
-        print(f"\nTotal: {len(func_errors)} function docstring issues")
-
-    if args_errors:
-        print(f"\nFound {len(args_errors)} 'Args:' sections "
-              f"(use numpydoc 'Parameters' instead):\n")
+            print(f"  {rel_path}:{line_no}  missing-docstring: {node_type} '{name}'")
         for filepath, line_no in sorted(args_errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
-            print(f"  line {line_no}: {rel_path}")
-        print(f"\nTotal: {len(args_errors)} 'Args:' sections")
-
-    if errors or func_errors or args_errors:
-        print("\nValidation failed!")
+            print(f"  {rel_path}:{line_no}  args-section: use numpydoc 'Parameters' instead")
+        print(f"\nTotal: {total} issue(s)")
         return 1
 
-    print("\nAll files have proper docstrings!")
+    print(f"PASS  docstrings  {checked} files scanned")
     return 0
 
 

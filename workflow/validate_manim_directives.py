@@ -172,44 +172,18 @@ def main():
             if issues:
                 all_issues[str(fp)] = issues
 
-    print("=" * 70)
-    print("MANIM DIRECTIVE VALIDATOR")
-    print("=" * 70)
-    print(f"\nFiles scanned:          {len(set(py_files)) - len(SKIP_FILES)}")
-    print(f"Files with directives:  {len(files_with_blocks)}")
-    print(f"Total .. manim:: blocks: {total_blocks}")
-
     if all_issues:
         total_issues = sum(len(v) for v in all_issues.values())
-        print(f"\nISSUES FOUND: {total_issues}\n")
-        print("-" * 70)
+        print(f"FAIL  manim-directives  {total_issues} issue(s)\n")
         for fp, issues in all_issues.items():
-            print(f"\nFILE: {fp}")
             for issue in issues:
-                if issue['type'] == 'ANIMATED_HAS_SAVE_LAST_FRAME':
-                    icon = "ANIMATED + SAVE_LAST_FRAME (remove :save_last_frame:)"
-                elif issue['type'] == 'STATIC_WITH_WAIT_MISSING_SAVE':
-                    icon = "STATIC + self.wait() MISSING SAVE (add :save_last_frame:, remove self.wait())"
-                elif issue['type'] == 'STATIC_MISSING_SAVE_LAST_FRAME':
-                    icon = "STATIC MISSING SAVE_LAST_FRAME (add :save_last_frame:)"
-                else:
-                    icon = "STATIC HAS REDUNDANT self.wait() (remove self.wait())"
-                print(f"  Line {issue['line']:4d} | {icon}")
-                print(f"         Class: {issue['class_name']}")
-                print(f"         {issue['message']}")
-                print(f"         Code preview:")
-                for line in issue['code_preview'].split('\n')[:8]:
-                    print(f"           | {line}")
-        print("\n" + "=" * 70)
-        print(f"VALIDATION FAILED - {total_issues} issue(s) found")
-        print("=" * 70)
+                rel = Path(fp).relative_to(ROOT)
+                print(f"  {rel}:{issue['line']}  {issue['type'].lower()}: {issue['message']}")
+        print(f"\nTotal: {total_issues} issue(s)")
         return 1
-    else:
-        print("\nAll directives are correct!")
-        print("=" * 70)
-        print("VALIDATION PASSED")
-        print("=" * 70)
-        return 0
+
+    print(f"PASS  manim-directives  {total_blocks} block(s) in {len(files_with_blocks)} file(s)")
+    return 0
 
 
 if __name__ == '__main__':

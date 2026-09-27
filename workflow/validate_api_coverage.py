@@ -228,14 +228,18 @@ def main():
             json.dumps(sorted(explicit), indent=1) + "\n", encoding="utf-8"
         )
         print(f"Wrote {len(explicit)} documented names to {SNAPSHOT_PATH.relative_to(ROOT)}")
+        return 0
     else:
         if not SNAPSHOT_PATH.exists():
-            print("WARNING: snapshot missing; run with --write-snapshot")
+            print("FAIL  api-coverage  1 issue(s)\n")
+            print("  -:-  stale-snapshot: api_documented.json missing; run with --write-snapshot")
+            return 1
         else:
             on_disk = set(json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8")))
             if on_disk != explicit:
+                print("FAIL  api-coverage  1 issue(s)\n")
                 print(
-                    "ERROR: api_documented.json is stale "
+                    f"  -:-  stale-snapshot: api_documented.json is stale "
                     f"({len(on_disk)} on disk vs {len(explicit)} computed). "
                     "Run: python workflow/validate_api_coverage.py --write-snapshot"
                 )
@@ -255,14 +259,13 @@ def main():
             if key not in covered and key not in IGNORED_PUBLIC_NAMES:
                 missing.append(f"{module.__name__}.{name}")
 
-    print(f"Public names checked: {total}")
     if missing:
-        print(f"\nUndocumented public names ({len(missing)}):\n")
+        print(f"FAIL  api-coverage  {len(missing)} issue(s)\n")
         for dotted in sorted(missing):
-            print(f"  {dotted}")
-        print(f"\nValidation failed: {len(missing)} public names lack API docs.")
+            print(f"  -:-  undocumented-public: {dotted}")
+        print(f"\nTotal: {len(missing)} issue(s)")
         return 1
-    print("\nEvery public constant, function, and class is API-documented.")
+    print(f"PASS  api-coverage  {total} public name(s) checked")
     return 0
 
 

@@ -694,11 +694,11 @@ def main() -> int:
             unique.append(issue)
 
     if not unique:
-        print("OK: no RST formatting issues found")
+        print("PASS  rst-format")
         return 0
 
     unique.sort(key=lambda x: (x[0], x[1]))
-    print(f"FAIL: {len(unique)} RST formatting issue(s):\n")
+    print(f"FAIL  rst-format  {len(unique)} issue(s)\n")
     for rel, line_no, msg in unique:
         print(f"  {rel}:{line_no}  {msg}")
     print(f"\nTotal: {len(unique)} issue(s)")

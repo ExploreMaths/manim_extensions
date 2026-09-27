@@ -926,18 +926,14 @@ def main() -> int:
 
     total = sum(len(v) for v in unexempted.values())
     if total:
-        print(f"Found {total} docstring section issues "
-              f"(Parameters/Returns/manim example):\n")
+        print(f"FAIL  doc-sections  {total} issue(s)\n")
         for rel, violations in sorted(unexempted.items()):
-            print(f"  {rel}")
             for v in violations:
-                print(f"    line {v['line']:4d} | {v['qualname']}: "
-                      f"{v['message']}")
-        print(f"\nTotal: {total} issues")
-        print("Validation failed!")
+                print(f"  {rel}:{v['line']}  missing-section: {v['qualname']}: {v['message']}")
+        print(f"\nTotal: {total} issue(s)")
         return 1
 
-    print("All docstring sections are properly documented!")
+    print("PASS  doc-sections")
     return 0
 
 

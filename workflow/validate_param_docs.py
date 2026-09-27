@@ -281,34 +281,18 @@ def main() -> int:
         if leftover:
             unexempted[rel] = leftover
 
-    print("=" * 70)
-    print("PARAMETER DOCUMENTATION VALIDATOR")
-    print("=" * 70)
-    print(f"\nFiles scanned:           {len(py_files)}")
-
     if unexempted:
         total_issues = sum(len(v) for v in unexempted.values())
-        print(f"\nISSUES FOUND: {total_issues}\n")
-        print("-" * 70)
+        print(f"FAIL  param-docs  {total_issues} issue(s)\n")
         for fp, issues in unexempted.items():
-            print(f"\nFILE: {fp}")
             for issue in issues:
-                if issue['type'] == 'INIT_HAS_PARAM_DOCS':
-                    icon = "PARAMS IN __init__ (move to class docstring)"
-                else:
-                    icon = "MISSING PARAM DOC (add to class docstring)"
-                print(f"  Line {issue['line']:4d} | {icon}")
-                print(f"         Class: {issue['class_name']}")
-                print(f"         {issue['message']}")
-        print("\n" + "=" * 70)
-        print(f"VALIDATION FAILED - {total_issues} issue(s) found")
-        print("=" * 70)
+                rel = fp.resolve().relative_to(ROOT)
+                stype = issue['type'].lower().replace('init_has_params_docs', 'params-in-init').replace('missing_param_doc', 'missing-param-doc')
+                print(f"  {rel}:{issue['line']}  {stype}: {issue['message']}")
+        print(f"\nTotal: {total_issues} issue(s)")
         return 1
 
-    print("\nAll parameter documentation is correct!")
-    print("=" * 70)
-    print("VALIDATION PASSED")
-    print("=" * 70)
+    print(f"PASS  param-docs  {len(py_files)} file(s)")
     return 0
 
 
