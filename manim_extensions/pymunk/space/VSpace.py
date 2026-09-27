@@ -661,7 +661,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             
             .. code-block::
             
-               def callback(body: Body, gravity: Tuple[float, float], damping: float, dt: float)
+               def callback(body: Body, gravity: tuple[float, float], damping: float, dt: float)
                
             If None, the default Pymunk velocity update logic is restored.
         """
