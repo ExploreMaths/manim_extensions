@@ -35,7 +35,7 @@ class OrbitalBase(OpenGLSurface):
     center : Any, optional
         Position of the orbital center. Defaults to ``ORIGIN``.
     resolution : tuple, optional
-        Resolution ``(u, v)`` of the surface. Defaults to ``(100, 50)``.
+        Resolution ``(u, v)`` of the surface. Defaults to :math:`(100, 50)`.
     u_range : tuple, optional
         Range of the ``u`` parameter. Defaults to ``(0, PI)``.
     v_range : tuple, optional

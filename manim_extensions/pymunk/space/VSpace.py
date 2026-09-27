@@ -84,7 +84,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    collision_type_b=COLLISION_TYPE,
                    post_solve=post_solve_callback,
                )
-               self.apply_impulse_at_local_point(*stones, impulse=(0, 0.1, 0))
+               self.apply_impulse_at_local_point(*stones, impulse=:math:`(0, 0.1, 0)`)
 
                # segment query: locate the floor surface with a vertical ray
                start_pt = (0, 1.5, 0)
@@ -200,7 +200,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self,
         mob: Mobject,
         body_type: int,
-        # body 相关
+        # body-related
         center_of_gravity: Tuple[float, float],
         velocity: Tuple[float, float],
         angular_velocity: float,
@@ -248,13 +248,13 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         body_type: int,
         is_solid: bool,
-        # shapes 相关
+        # shapes-related
         elasticity: float,
         friction: float,
         density: float,
         sensor: bool,
         surface_velocity: Tuple[float, float],
-        # body 相关
+        # body-related
         center_of_gravity: Tuple[float, float],
         velocity: Tuple[float, float],
         angular_velocity: float,
@@ -680,7 +680,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body is queried.
         point
-            The local point (x, y, z) at which to compute velocity.
+            The local point :math:`(x, y, z)` at which to compute velocity.
             Defaults to :math:`(0, 0, 0)`.
 
         Returns
@@ -703,7 +703,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body is queried.
         point
-            The world point (x, y, z) at which to compute velocity.
+            The world point :math:`(x, y, z)` at which to compute velocity.
             Defaults to :math:`(0, 0, 0)`.
 
         Returns
@@ -718,8 +718,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def __set_shape(
         self,
         mob: Mobject,
-        is_solid: bool = True,  # shapes 映射
-        # shapes 相关
+        is_solid: bool = True,  # shapes mapping
+        # shapes-related
         elasticity: float = 0.8,
         friction: float = 0.8,
         density: float = 1.0,
@@ -955,7 +955,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 sub_pts = subdivide_bezier(bezier_segment, n_divisions)
                 all_points.extend(sub_pts)
 
-        # 转为 2D 坐标并清洗重复点
+        # Convert to 2D coords and dedupe
         unique_points = []
         for p in all_points:
             p_2d = (float(p[0]), float(p[1]))
@@ -992,9 +992,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         pymunk = require("physics", "pymunk")
         from pymunk import autogeometry
 
-        # 1. 采样获取高质量点集
+        # 1. Sample for high-quality point set
         refined_points = self.__get_refined_points(mob, n_divisions)
-        # 2. 转换成相对于中心的局部坐标（物理引擎需要）
+        # 2. Convert to local coords relative to center (physics engine requirement)
         center = mob.get_center()
         local_points = [(p[0] - center[0], p[1] - center[1]) for p in refined_points]
         if len(local_points) < 3:
@@ -1058,7 +1058,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose associated physical shapes will be queried.
         point
-            A (x, y, z) coordinate representing the test location in the scene.
+            A :math:`(x, y, z)` coordinate representing the test location in the scene.
             Note: Only the (x, y) components are used for the 2D physics engine.
 
         Returns
@@ -1110,9 +1110,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose associated physical shapes will be checked for intersection.
         start
-            The (x, y, z) starting point of the query segment.
+            The :math:`(x, y, z)` starting point of the query segment.
         end
-            The (x, y, z) ending point of the query segment.
+            The :math:`(x, y, z)` ending point of the query segment.
         stroke_width
             The radius of the query segment. Effectively makes the 'laser' a
             thick cylinder/capsule for detection.

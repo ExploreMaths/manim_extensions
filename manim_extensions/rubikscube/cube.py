@@ -193,7 +193,7 @@ class RubiksCube(VMobject):
         Returns
         -------
         numpy.ndarray
-            The (x, y, z) center of the cube computed from the actual
+            The :math:`(x, y, z)` center of the cube computed from the actual
             bounding box of all cubie points.
         """
         all_points = self.get_all_points()

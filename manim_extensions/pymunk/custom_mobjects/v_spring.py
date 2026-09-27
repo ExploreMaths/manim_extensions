@@ -70,38 +70,38 @@ class VSpring(Line):
         self.turns = turns
         self.amplitude = amplitude
         self.end_length = end_length
-        # 注意：Line 内部会调用 generate_points()
+        # Note: Line.__init__ internally calls generate_points()
         super().__init__(start, end, stroke_width=stroke_width, color=color, **kwargs)
 
     def generate_points(self):
-        """重写 generate_points，使其不再生成直线，而是生成螺旋线."""
-        # 1. 计算当前起点和终点的距离
+        """Override generate_points to produce a helix instead of a straight line."""
+        # 1. Compute distance between start and end
         start = self._pointify(self.start)
         end = self._pointify(self.end)
         vec = end - start
         total_dist = np.linalg.norm(vec)
         
-        # 避免除零错误
+        # Avoid division by zero
         if total_dist < 0.001:
             self.set_points_as_corners([start, end])
             return
 
-        # 2. 在水平方向（x轴）生成螺旋点集
+        # 2. Generate helix point set along horizontal (x) axis
         helix_dist = max(total_dist - 2 * self.end_length, 0.01)
         points = []
 
-        # 起始端子
+        # Start terminal segment
         points.append([0, 0, 0])
         points.append([self.end_length, 0, 0])
 
-        # 螺旋部分
+        # Helix portion
         num_steps = self.turns * 12
         for i in range(num_steps + 1):
             t = i / num_steps
             angle = 2 * PI * self.turns * t
             x = self.end_length + t * helix_dist
             
-            # 渐收系数，确保与端子水平衔接
+            # Taper factor for smooth horizontal join with terminals
             taper = 1.0
             if t < 0.1: taper = t / 0.1
             elif t > 0.9: taper = (1 - t) / 0.1
@@ -109,20 +109,20 @@ class VSpring(Line):
             y = self.amplitude * np.sin(angle) * taper
             points.append([x, y, 0])
 
-        # 结束端子
+        # End terminal segment
         points.append([self.end_length + helix_dist + self.end_length, 0, 0])
 
-        # 3. 将生成的水平点集应用变换，对齐到 start -> end 向量
+        # 3. Transform horizontal point set to align with start -> end vector
         self.set_points_as_corners(points)
-        self.make_smooth() # 产生平滑的螺旋效果
+        self.make_smooth()  # Produce smooth helix
         
-        # 旋转和平移
+        # Rotate and translate
         target_angle = angle_of_vector(vec)
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
 
     def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray):
-        """当位置改变时（如被 Updater 调用），重新生成点。
+        """Regenerate points when positions change (e.g. called by an Updater).
 
         Parameters
         ----------

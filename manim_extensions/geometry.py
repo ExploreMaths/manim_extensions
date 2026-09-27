@@ -127,7 +127,7 @@ def VMobjectInt(
         Returns
         -------
         list of numpy.ndarray
-            Arrays of shape ``(4, 3)`` holding the control points of each
+            Arrays of shape :math:`(4, 3)` holding the control points of each
             cubic Bézier segment.
         """
         beziers: list[NDArray[np.float64]] = []
@@ -158,14 +158,14 @@ def VMobjectInt(
         Parameters
         ----------
         c : numpy.ndarray
-            Array of shape ``(4, 3)`` with the control points.
+            Array of shape :math:`(4, 3)` with the control points.
         t : float
             Split parameter in ``[0, 1]``.
 
         Returns
         -------
         tuple of numpy.ndarray
-            The two sub-curves, each of shape ``(4, 3)``.
+            The two sub-curves, each of shape :math:`(4, 3)`.
         """
         p0, p1, p2, p3 = c
         a0 = p0 + t * (p1 - p0)
@@ -184,7 +184,7 @@ def VMobjectInt(
         Parameters
         ----------
         c : numpy.ndarray
-            Array of shape ``(4, 3)`` with the control points.
+            Array of shape :math:`(4, 3)` with the control points.
 
         Returns
         -------
@@ -215,7 +215,7 @@ def VMobjectInt(
         Parameters
         ----------
         c1, c2 : numpy.ndarray
-            Arrays of shape ``(4, 3)`` with the control points.
+            Arrays of shape :math:`(4, 3)` with the control points.
         eps : float
             Absolute slack added to every axis interval.
 
@@ -403,18 +403,18 @@ def TangentPoint(
     Parameters
     ----------
     p1 : Union[numpy.ndarray, tuple, list]
-        First point on the circle, as ``(x, y)`` or ``(x, y, z)``.
+        First point on the circle, as :math:`(x, y)` or :math:`(x, y, z)`.
     p2 : Union[numpy.ndarray, tuple, list]
-        Second point on the circle, as ``(x, y)`` or ``(x, y, z)``.
+        Second point on the circle, as :math:`(x, y)` or :math:`(x, y, z)`.
     line_start : Union[numpy.ndarray, tuple, list]
-        Start point of the line segment, as ``(x, y)`` or ``(x, y, z)``.
+        Start point of the line segment, as :math:`(x, y)` or :math:`(x, y, z)`.
     line_end : Union[numpy.ndarray, tuple, list]
-        End point of the line segment, as ``(x, y)`` or ``(x, y, z)``.
+        End point of the line segment, as :math:`(x, y)` or :math:`(x, y, z)`.
 
     Returns
     -------
     Optional[numpy.ndarray]
-        The tangent point ``(x, y, 0)`` as a :class:`numpy.ndarray`, or
+        The tangent point :math:`(x, y, 0)` as a :class:`numpy.ndarray`, or
         ``None`` if no valid tangent point exists.
 
     Examples

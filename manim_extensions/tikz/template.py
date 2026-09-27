@@ -53,7 +53,7 @@ class TikzTemplate(TexTemplate):
                tex = Tex(
                    r"\begin{tikzpicture}"
                    r"\node[mybox] (a) at (0,0) {Template};"
-                   r"\draw[-{Stealth}, thick] (a.east) -- ++(1.5,0);"
+                   r"\draw[-{Stealth}, thick] (a.east) -- ++:math:`(1.5,0)`;"
                    r"\end{tikzpicture}",
                    tex_template=template,
                )

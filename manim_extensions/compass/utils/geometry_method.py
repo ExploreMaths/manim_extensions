@@ -136,9 +136,9 @@ def get_vecs_angle(
     Parameters
     ----------
     vec_s : np.ndarray
-        Source vector ``(x1, y1)``.
+        Source vector :math:`(x1, y1)`.
     vec_e : np.ndarray
-        Target vector ``(x2, y2)``.
+        Target vector :math:`(x2, y2)`.
 
     Returns
     -------

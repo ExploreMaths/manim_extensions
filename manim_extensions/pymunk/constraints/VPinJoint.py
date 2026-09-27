@@ -155,10 +155,10 @@ class VPinJoint(VConstraint):
         PinJoint = require("physics", "pymunk").constraints.PinJoint
 
         a_body, b_body = self._get_bodies(
-            "VPinJoint 连接的物体必须先执行 add_dynamic_body"
+            "VPinJoint connected bodies must have add_dynamic_body called first"
         )
 
-        # 1. 创建约束
+        # 1. Create constraint
         self.constraint = PinJoint(
             a_body,
             b_body,

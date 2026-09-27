@@ -50,7 +50,7 @@ class ThreeDCylinder(OpenGLSurface):
     show_ends : :class:`bool`, optional
         Whether to show the end caps of the cylinder. Defaults to ``True``.
     resolution : :class:`tuple`, optional
-        Resolution of the surface. Defaults to ``(24, 24)``.
+        Resolution of the surface. Defaults to :math:`(24, 24)`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.OpenGLSurface`.
     """

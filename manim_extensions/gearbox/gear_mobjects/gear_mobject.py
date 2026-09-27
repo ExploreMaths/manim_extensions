@@ -83,7 +83,7 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
         Returns
         -------
         numpy.ndarray
-            A 3-D point ``(x, y, 0)`` on the involute curve.
+            A 3-D point :math:`(x, y, 0)` on the involute curve.
         """
         x = (
             r * (np.cos(val) + (val - a) * np.sin(val - a))
@@ -558,7 +558,7 @@ class Gear(VMobject):
                 Returns
                 -------
                 numpy.ndarray
-                    The ``(x, y)`` difference vector.
+                    The :math:`(x, y)` difference vector.
                 """
                 invo_val = rotate_vector(
                     involute_func(-np.abs(t[1]), self.rb), -self.alpha * DEGREES

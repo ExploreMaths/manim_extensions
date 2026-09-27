@@ -59,7 +59,7 @@ class SpaceScene(ZoomedScene):
                self.add_dynamic_body(*balls)
                self.add_shapes_filter(*balls, group=1)
                self.apply_impulse_at_world_point(
-                   balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
+                   balls[0], impulse=:math:`(4, 2, 0)`, point=tuple(balls[0].get_center())
                )
                self.wait(5)
     """
@@ -110,13 +110,13 @@ class SpaceScene(ZoomedScene):
         *mobs,
         family_members: bool = False,
         is_solid: bool = True,
-        # shapes 相关
+        # shapes-related
         elasticity: float = 0.8,
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
         surface_velocity: Tuple[float, float] = (0.0, 0.0),
-        # body 相关
+        # body-related
         center_of_gravity: Tuple[float, float] = (0.0, 0.0),
         velocity: Tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
@@ -162,18 +162,18 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
             for target in targets:
-                # 显式传递每一个变量
+                # Pass every variable explicitly
                 self.vspace.set_body_and_shapes(
                     target,
                     body_type=pymunk.Body.STATIC,
                     is_solid=is_solid,
-                    # shapes 映射
+                    # shapes mapping
                     elasticity=elasticity,
                     friction=friction,
                     density=density,
                     sensor=sensor,
                     surface_velocity=surface_velocity,
-                    # body 映射
+                    # body mapping
                     center_of_gravity=center_of_gravity,
                     velocity=velocity,
                     angular_velocity=angular_velocity,
@@ -184,13 +184,13 @@ class SpaceScene(ZoomedScene):
         *mobs,
         family_members: bool = False,
         is_solid: bool = True,
-        # shapes 相关
+        # shapes-related
         elasticity: float = 0.8,
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
         surface_velocity: Tuple[float, float] = (0.0, 0.0),
-        # body 相关
+        # body-related
         center_of_gravity: Tuple[float, float] = (0.0, 0.0),
         velocity: Tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
@@ -236,18 +236,18 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
             for target in targets:
-                # 显式传递每一个变量
+                # Pass every variable explicitly
                 self.vspace.set_body_and_shapes(
                     target,
                     body_type=pymunk.Body.DYNAMIC,
                     is_solid=is_solid,
-                    # shapes 映射
+                    # shapes mapping
                     elasticity=elasticity,
                     friction=friction,
                     density=density,
                     sensor=sensor,
                     surface_velocity=surface_velocity,
-                    # body 映射
+                    # body mapping
                     center_of_gravity=center_of_gravity,
                     velocity=velocity,
                     angular_velocity=angular_velocity,
@@ -258,13 +258,13 @@ class SpaceScene(ZoomedScene):
         *mobs,
         family_members: bool = False,
         is_solid: bool = True,
-        # shapes 相关
+        # shapes-related
         elasticity: float = 0.8,
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
         surface_velocity: Tuple[float, float] = (0.0, 0.0),
-        # body 相关
+        # body-related
         center_of_gravity: Tuple[float, float] = (0.0, 0.0),
         velocity: Tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
@@ -310,18 +310,18 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             targets = mob.family_members_with_points() if family_members else [mob]
             for target in targets:
-                # 显式传递每一个变量
+                # Pass every variable explicitly
                 self.vspace.set_body_and_shapes(
                     target,
                     body_type=pymunk.Body.KINEMATIC,
                     is_solid=is_solid,
-                    # shapes 映射
+                    # shapes mapping
                     elasticity=elasticity,
                     friction=friction,
                     density=density,
                     sensor=sensor,
                     surface_velocity=surface_velocity,
-                    # body 映射
+                    # body mapping
                     center_of_gravity=center_of_gravity,
                     velocity=velocity,
                     angular_velocity=angular_velocity,
@@ -379,7 +379,7 @@ class SpaceScene(ZoomedScene):
         """
         pymunk = require("physics", "pymunk")
         for mob in mobs:
-            # 解决组的问题
+            # Resolve group issue
             family = mob.family_members_with_points()
             for sub_mob in family:
                 if (
@@ -433,7 +433,7 @@ class SpaceScene(ZoomedScene):
 
         self.vspace.space.debug_draw(draw_options)
 
-        # block=True 会阻塞程序直到你手动关闭窗口
+        # block=True blocks until the window is closed manually
         plt.show(block=True)
 
     @staticmethod
@@ -758,7 +758,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body is queried.
         point
-            The local point (x, y, z) at which to compute velocity.
+            The local point :math:`(x, y, z)` at which to compute velocity.
             Defaults to :math:`(0, 0, 0)`.
 
         Returns
@@ -779,7 +779,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body is queried.
         point
-            The world point (x, y, z) at which to compute velocity.
+            The world point :math:`(x, y, z)` at which to compute velocity.
             Defaults to :math:`(0, 0, 0)`.
 
         Returns
@@ -828,9 +828,9 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose shapes will be queried.
         start
-            Start point (x, y, z) of the query segment.
+            Start point :math:`(x, y, z)` of the query segment.
         end
-            End point (x, y, z) of the query segment.
+            End point :math:`(x, y, z)` of the query segment.
         stroke_width
             Thickness of the query segment (for hit detection).
 

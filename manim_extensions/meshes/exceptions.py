@@ -114,7 +114,7 @@ class InvalidMeshDimensionsException(Exception):
        :output-language: pytb
        :output: Traceback (most recent call last):
            ...
-           manim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2).
+           manim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was :math:`(1, 2)`.
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh

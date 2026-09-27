@@ -54,7 +54,7 @@ class Gear(VMobject):
         num_teeth: int = 12,
         radius: float = 1.0,
         tooth_height: float = 0.4,
-        width_factor: float = 0.5,  # 齿宽占单齿空间的比例，0.5 表示半齿半空
+        width_factor: float = 0.5,  # Tooth width as fraction of tooth pitch space; 0.5 = half tooth, half gap
         roundness: float = 0.05,
         hole_radius: float = 0.1,
         **kwargs
@@ -64,17 +64,17 @@ class Gear(VMobject):
         """
         super().__init__(**kwargs)
         
-        # 自动计算最佳齿宽
-        # 公式: (2 * PI * r / n) * 比例因子
+        # Auto-compute optimal tooth width
+        # Formula: (2 * PI * r / n) * ratio factor
         auto_width = (np.pi * radius / num_teeth) * width_factor
         
-        # 1. 创建基础圆盘
+        # 1. Create base disc
         res = Circle(radius=radius)
         
-        # 2. 准备所有齿
+        # 2. Prepare all teeth
         teeth_to_union = []
         for i in range(num_teeth):
-            # 使用自动计算的宽度
+            # Use auto-computed width
             p1 = [-auto_width, radius, 0]
             p2 = [auto_width, radius, 0]
             p3 = [0, radius + tooth_height, 0]
@@ -93,10 +93,10 @@ class Gear(VMobject):
             
             teeth_to_union.append(tooth)
         
-        # 3. 一次性进行布尔运算 (比循环 Union 快得多)
+        # 3. Boolean operations once (much faster than looping Union)
         res = Union(res, *teeth_to_union)
         
-        # 4. 挖洞
+        # 4. Cut holes
         if hole_radius > 0:
             hole = Circle(radius=hole_radius)
             res = Exclusion(res, hole)

@@ -95,7 +95,7 @@ class VRotaryLimitJoint(VConstraint):
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
-        # 物理限制参数
+        # Physical limit parameters
         self.min_angle = min_angle
         self.max_angle = max_angle
 
@@ -124,7 +124,7 @@ class VRotaryLimitJoint(VConstraint):
         RotaryLimitJoint = require("physics", "pymunk").constraints.RotaryLimitJoint
 
         a_body, b_body = self._get_bodies(
-            "VRotaryLimitJoint 连接的物体必须先执行 add_dynamic_body"
+            "VRotaryLimitJoint connected bodies must have add_dynamic_body called first"
         )
 
         self.constraint = RotaryLimitJoint(
@@ -174,7 +174,7 @@ class VRotaryLimitJoint(VConstraint):
         display_angle = rel_angle if abs(rel_angle) > 0.005 else 0.005
 
         buff = 0.3
-        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # 连线的绝对角度
+        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # Absolute angle of the connecting line
 
         if self.arc_indicator_a:
             new_arc_a = self.arc_indicator_class(

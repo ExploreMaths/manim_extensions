@@ -263,7 +263,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Write(without_h))
                self.play(Write(with_h))
                hydrogens = VGroup(
-                   *[with_h.vertices[index] for index in range(5, 11)]
+                   *[with_h.vertices[index] for index in range:math:`(5, 11)`]
                )
                self.play(Indicate(hydrogens))
                self.wait()
@@ -801,7 +801,7 @@ class GraphMolecule(Graph, AbstractMolecule):
            :output: array([0.51935, 0.59615, 0.     ])
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-           print(molecule.find_bond_center_by_index((1, 2)))
+           print(molecule.find_bond_center_by_index(:math:`(1, 2)`))
         """
         try:
             bond = self.bonds[bond_index]

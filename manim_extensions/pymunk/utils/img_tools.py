@@ -1,9 +1,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
-"""图片工具模块。
+"""Image-to-shape utilities for Pymunk physics.
 
-该模块提供将图片转换为Pymunk物理形状的工具函数，支持透明背景图和实色背景图的智能处理。
+This module provides functions for converting images into Pymunk collision
+shapes. Both transparent-background and solid-color images are handled.
 """
 
 import numpy as np
@@ -15,37 +16,39 @@ from ...utils.deps import require
 def get_normalized_convex_polygons(
     pixel_array: np.ndarray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
 ):
-    """从像素数组中提取规范化的凸多边形集合。
+    """Extract normalized convex polygons from a pixel array.
 
-    该函数通过marchingSquares算法和凸分解，从图片中智能提取
-    碰撞用的凸多边形。支持透明背景和实色背景的自动识别。
+    Uses the marching-squares algorithm with convex decomposition to extract
+    collision-ready convex polygons from an image. Automatically distinguishes
+    transparent-background from solid-color images.
 
     Parameters
     ----------
     pixel_array : np.ndarray
-        输入图片的像素数组[H, W, C]。
+        Input image pixel array of shape ``[H, W, C]``.
     base_px_width : int, optional
-        采样基准宽度，默认为512.0。
-            用于控制采样精度。
+        Base width for downsampling, defaults to 512.0.
+            Controls sampling precision.
     target_cell_size : float, optional
-        目标单元格大小，默认为4。
-            控制marchingSquares的网格密度。
+        Target cell size for the marching-squares grid, defaults to 4.
+            Controls grid density.
     img_manim_w : float, optional
-        Manim框架宽度，默认为8。
-            用于坐标映射。
+        Manim frame width, defaults to 8.
+            Used for coordinate mapping.
     img_manim_h : float, optional
-        Manim框架高度，默认为14.22。
-            用于坐标映射。
+        Manim frame height, defaults to 14.22.
+            Used for coordinate mapping.
 
     Returns
     -------
     list
-        Manim坐标系中的凸多边形列表，每个多边形为顶点坐标列表。
+        List of convex polygons in Manim coordinates, each polygon being a
+        list of vertex coordinates.
     """
     pymunk = require("physics", "pymunk")
     from pymunk.autogeometry import march_soft, simplify_vertexes, convex_decomposition
 
-    # 1. 基础维度获取
+    # 1. Get base dimensions
     orig_h, orig_w = pixel_array.shape[:2]
     is_rgba = pixel_array.shape[2] == 4 if len(pixel_array.shape) > 2 else False
 
@@ -53,26 +56,26 @@ def get_normalized_convex_polygons(
     scale_factor = orig_w / actual_base_width
     actual_base_height = int(orig_h / scale_factor)
 
-    # 2. 智能判断：这是"透明背景图"还是"带Alpha通道的实色图"？
+    # 2. Heuristic: "transparent background" or "solid-color with alpha"?
     use_alpha_mask = False
     if is_rgba:
         alpha_channel = pixel_array[:, :, 3]
-        # 计算透明像素占比：如果透明像素超过 1%，通常认为它是抠好图的透明背景
+        # Compute transparent pixel ratio: if > 1%, treat as cutout with transparent bg
         transparent_ratio = np.mean(alpha_channel < 32)
         if transparent_ratio > 0.1:
             use_alpha_mask = True
 
-    # 3. 根据判断结果生成 Mask
+    # 3. Generate Mask based on heuristic
     if use_alpha_mask:
-        # --- 路径 A: 透明背景处理 ---
-        # 直接使用 Alpha 通道，这比任何颜色分析都准
+        # --- Path A: Transparent background ---
+        # Use alpha channel directly — more reliable than color analysis
         img_obj = Image.fromarray(pixel_array[:, :, 3]).convert("L")
         img_resized = img_obj.resize(
             (int(actual_base_width), actual_base_height), Image.Resampling.LANCZOS
         )
         mask_np = np.where(np.array(img_resized) > 128, 255, 0).astype(np.uint8)
     else:
-        # --- 路径 B: 实色背景处理 (保留你原有的对比度拉伸逻辑) ---
+        # --- Path B: Solid-color background (preserves original contrast-stretch logic) ---
         img_rgb = Image.fromarray(pixel_array[:, :, :3].astype("uint8")).convert("L")
         img_obj = ImageOps.autocontrast(img_rgb, cutoff=0.5)
         img_resized = img_obj.resize(
@@ -80,7 +83,7 @@ def get_normalized_convex_polygons(
         )
         img_np = np.array(img_resized)
 
-        # 环形边缘采样逻辑
+        # Ring-shaped border sampling
         border_pixels = np.concatenate(
             [img_np[0, :], img_np[-1, :], img_np[:, 0], img_np[:, -1]]
         )
@@ -90,22 +93,23 @@ def get_normalized_convex_polygons(
         dynamic_threshold = max(10, bg_std * 3)
         mask_np = np.where(diff > dynamic_threshold, 255, 0).astype(np.uint8)
 
-    # 4. 后处理与采样
+    # 4. Post-process and sample
     mask = Image.fromarray(mask_np)
-    # 闭运算：连接断裂的高光位
+    # Closing operation: bridge broken highlight regions
     mask = mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
 
     def sample_func(point: np.ndarray):
-        """采样函数：根据坐标返回Mask值。
+        """Return the mask value at the given coordinate.
 
         Parameters
         ----------
         point : tuple
-            (X, y)坐标。
+            Coordinate :math:`(x, y)`.
 
         Returns
         -------
-            int: 该点的Mask值（0或255）。
+        int
+            Mask value at that point (0 or 255).
         """
         x, y = int(point[0]), int(point[1])
         if 0 <= x < actual_base_width and 0 <= y < actual_base_height:
@@ -118,7 +122,7 @@ def get_normalized_convex_polygons(
 
     pl_set = march_soft(bb, x_samples, y_samples, 128.0, sample_func)
 
-    # 4. 顶点映射还原
+    # 4. Vertex mapping reconstruction
     pixel_polygons = []
     for polyline in pl_set:
         simplified = simplify_vertexes(polyline, 0.4)
@@ -133,7 +137,7 @@ def get_normalized_convex_polygons(
                 # convex decomposition failed for this shape; skip it
                 continue
 
-    # 坐标转换
+    # Coordinate conversion
     manim_polygons = map_polygons_to_manim(
         pixel_polygons,
         img_px_w=orig_w,
@@ -145,33 +149,34 @@ def get_normalized_convex_polygons(
 
 
 def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float):
-    """将像素坐标系中的多边形映射到Manim坐标系。
+    """Map pixel-coordinate polygons into Manim coordinates.
 
-    执行坐标系转换：从图片像素坐标转换为Manim的笛卡尔坐标系。
+    Performs the coordinate transform from image pixel space into Manim's
+    Cartesian scene coordinates.
 
     Parameters
     ----------
     polygons : list
-        像素坐标系中的多边形列表。
+        List of polygons in pixel coordinates.
     img_px_w : int
-        图片宽度（像素）。
+        Image width in pixels.
     img_px_h : int
-        图片高度（像素）。
+        Image height in pixels.
     img_manim_w : float
-        Manim框架宽度。
+        Manim frame width.
     img_manim_h : float
-        Manim框架高度。
+        Manim frame height.
 
     Returns
     -------
     list
-        Manim坐标系中的多边形列表。
+        List of polygons in Manim coordinates.
     """
     manim_polygons = []
     for poly in polygons:
         manim_vertices = []
         for x, y in poly:
-            # 执行坐标映射
+            # Apply coordinate mapping
             m_x = (x / img_px_w - 0.5) * img_manim_w
             m_y = (0.5 - y / img_px_h) * img_manim_h
             manim_vertices.append([m_x, m_y])

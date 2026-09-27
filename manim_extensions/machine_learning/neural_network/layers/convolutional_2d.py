@@ -49,7 +49,7 @@ class FeatureMap(VGroup):
     cell_width : float, optional
         Width of a single cell, by default 0.2.
     padding : tuple, optional
-        Padding around the feature map as (x, y), by default (0, 0).
+        Padding around the feature map as :math:`(x, y)`, by default :math:`(0, 0)`.
     stroke_width : float, optional
         Stroke width of the border, by default 2.0.
     show_grid_lines : bool, optional

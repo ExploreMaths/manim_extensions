@@ -103,13 +103,13 @@ class VDampedRotarySpring(VConstraint):
         self.stiffness = stiffness
         self.damping = damping
 
-        # 样式配置存储
+        # Style config storage
         self.arc_indicator_class = arc_indicator_class
         self.arc_indicator_config = arc_indicator_config
         self.connect_line_class = connect_line_class
         self.connect_line_config = connect_line_config
 
-        # 视觉组件占位
+        # Visual component placeholder
         self.arc_a: Optional[VMobject] = None
         self.arc_b: Optional[VMobject] = None
         self.conn_line: Optional[VMobject] = None
@@ -145,14 +145,14 @@ class VDampedRotarySpring(VConstraint):
         DampedRotarySpring = require("physics", "pymunk").constraints.DampedRotarySpring
 
         a_body, b_body = self._get_bodies(
-            "VDampedRotarySpring 连接的物体必须先执行 add_dynamic_body"
+            "VDampedRotarySpring connected bodies must have add_dynamic_body called first"
         )
 
         self.constraint = DampedRotarySpring(
             a_body, b_body, self.rest_angle, self.stiffness, self.damping
         )
 
-        # 初始化连接线
+        # Initialize connection line
         if self.connect_line_class:
             self.conn_line = self.connect_line_class(
                 self.a_mob.get_center(),
@@ -161,7 +161,7 @@ class VDampedRotarySpring(VConstraint):
             )
             self.add(self.conn_line)
 
-        # 初始化两个弧形指示器
+        # Initialize two arc indicators
         if self.arc_indicator_class:
             self.arc_a = self.arc_indicator_class(
                 angle=self.rest_angle, **self.arc_indicator_config
@@ -171,7 +171,7 @@ class VDampedRotarySpring(VConstraint):
             )
             self.add(self.arc_a, self.arc_b)
 
-        # 3. 注入物理世界
+        # 3. Inject into physics world
         self._finalize_install(space)
 
     def mob_updater(self, mob: Mobject, dt: float):
@@ -196,27 +196,27 @@ class VDampedRotarySpring(VConstraint):
         body_a = self.constraint.a
         body_b = self.constraint.b
 
-        # 2. 获取 Manim 坐标
+        # 2. Get Manim coordinates
         pos_a = np.array([body_a.position.x, body_a.position.y, 0])
         pos_b = np.array([body_b.position.x, body_b.position.y, 0])
 
-        # 3. 计算连线几何信息
+        # 3. Compute connection line geometry
         diff = pos_b - pos_a
         dist = np.linalg.norm(diff)
 
-        # 防止重合导致的计算除零错误
+        # Prevent division by zero from coincident points
         if dist < 0.001:
             unit_vec = np.array([1, 0, 0])
         else:
             unit_vec = diff / dist
 
-        # 4. 计算角度差
+        # 4. Compute angle difference
         rel_angle = body_b.angle - body_a.angle
         display_angle = rel_angle if abs(rel_angle) > 0.005 else 0.005
 
-        # 5. 更新弧形指示器
+        # 5. Update arc indicators
         buff = 0.3
-        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # 连线的绝对角度
+        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # Absolute angle of connecting line
 
         if self.arc_a:
             new_arc_a = self.arc_indicator_class(

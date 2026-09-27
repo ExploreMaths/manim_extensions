@@ -65,7 +65,7 @@ class Cubie(VGroup):
         Returns
         -------
         numpy.ndarray
-            The (x, y, z) position of the cubie.
+            The :math:`(x, y, z)` position of the cubie.
         """
         return self.position
 
@@ -75,7 +75,7 @@ class Cubie(VGroup):
         Returns
         -------
         tuple of float
-            The rounded (x, y, z) coordinates.
+            The rounded :math:`(x, y, z)` coordinates.
         """
         return tuple(
             [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]

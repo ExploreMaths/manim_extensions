@@ -1,32 +1,35 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
-"""物理工具函数模块。
+"""Utility functions for computing moments of inertia.
 
-该模块提供计算各种形状转动惯量的便利函数，用于配置Pymunk刚体的物理属性。
+This module provides convenience functions for computing moments of inertia
+of various shapes, used to configure the physical properties of Pymunk
+rigid bodies.
 """
 
 from ...utils.deps import require
 
 
 def get_moment_for_box(mass: float, width: float, height: float) -> float:
-    """计算矩形形状的转动惯量。
-    
-    基于矩形的质量、宽度和高度计算绕中心的转动惯量。
-    
+    """Compute the moment of inertia of a rectangular shape.
+
+    Calculates the moment of inertia about the center of a rectangle given
+    its mass, width, and height.
+
     Parameters
     ----------
     mass : float
-        矩形的质量。
+        Mass of the rectangle.
     width : float
-        矩形的宽度。
+        Width of the rectangle.
     height : float
-        矩形的高度。
+        Height of the rectangle.
 
     Returns
     -------
     float
-        转动惯量值。
+        Moment of inertia.
     """
     moment_for_box = require("physics", "pymunk").moment_for_box
     return moment_for_box(mass=mass, size=(width, height))
@@ -39,28 +42,29 @@ def get_moment_for_circle(
     x_offset: float = 0,
     y_offset: float = 0,
 ) -> float:
-    """计算圆环/圆形的转动惯量。
-    
-    基于圆环的质量、内外半径和偏移量计算转动惯量。
-    当内半径为0时，计算实心圆的转动惯量。
-    
+    """Compute the moment of inertia of a ring or solid circle.
+
+    Calculates the moment of inertia of a ring given its mass, inner and
+    outer radii, and offset. When ``inner_radius`` is 0, computes the moment
+    of inertia of a solid circle.
+
     Parameters
     ----------
     mass : float
-        圆环的质量。
+        Mass of the ring.
     inner_radius : float
-        内半径。
+        Inner radius.
     outer_radius : float
-        外半径。
+        Outer radius.
     x_offset : float, optional
-        中心X偏移，默认为0。
+        Center X offset, defaults to 0.
     y_offset : float, optional
-        中心Y偏移，默认为0。
+        Center Y offset, defaults to 0.
 
     Returns
     -------
     float
-        转动惯量值。
+        Moment of inertia.
     """
     moment_for_circle = require("physics", "pymunk").moment_for_circle
     return moment_for_circle(
@@ -78,27 +82,28 @@ def get_moment_for_poly(
     y_offset: float = 0,
     stroke_width: float = 0,
 ) -> float:
-    """计算多边形的转动惯量。
-    
-    基于多边形的质量、顶点坐标和偏移量计算转动惯量。
-    
+    """Compute the moment of inertia of a polygon.
+
+    Calculates the moment of inertia given the polygon's mass, vertex
+    coordinates, and offset.
+
     Parameters
     ----------
     mass : float
-        多边形的质量。
+        Mass of the polygon.
     vertices : list[tuple[float, float]]
-        多边形顶点列表，每个顶点为(x, y)坐标。
+        List of polygon vertices, each represented as :math:`(x, y)`.
     x_offset : float, optional
-        中心X偏移，默认为0。
+        Center X offset, defaults to 0.
     y_offset : float, optional
-        中心Y偏移，默认为0。
+        Center Y offset, defaults to 0.
     stroke_width : float, optional
-        形状的半径（用于线宽），默认为0。
+        Shape radius (used as line width), defaults to 0.
 
     Returns
     -------
     float
-        转动惯量值。
+        Moment of inertia.
     """
     moment_for_poly = require("physics", "pymunk").moment_for_poly
     return moment_for_poly(
@@ -112,26 +117,26 @@ def get_moment_for_line(
     end: tuple[float, float],
     stroke_width: float,
 ) -> float:
-    """计算线段的转动惯量。
-    
-    基于线段的质量、端点和宽度计算转动惯量。
-    
+    """Compute the moment of inertia of a line segment.
+
+    Calculates the moment of inertia given the segment's mass, endpoints,
+    and width.
+
     Parameters
     ----------
     mass : float
-        线段的质量。
+        Mass of the line segment.
     start : tuple[float, float]
-        线段起点坐标(x, y)。
+        Start point of the segment: :math:`(x, y)`.
     end : tuple[float, float]
-        线段终点坐标(x, y)。
+        End point of the segment: :math:`(x, y)`.
     stroke_width : float
-        线段的宽度（半径）。
+        Width (radius) of the segment.
 
     Returns
     -------
     float
-        转动惯量值。
+        Moment of inertia.
     """
     moment_for_segment = require("physics", "pymunk").moment_for_segment
     return moment_for_segment(mass=mass, a=start, b=end, radius=stroke_width)
-

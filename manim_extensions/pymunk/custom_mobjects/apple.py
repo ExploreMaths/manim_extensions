@@ -37,7 +37,7 @@ class Apple(VMobject):
         Bezier curve points that form the apple silhouette.
         """
         super().__init__(**kwargs)
-        # 贝塞尔曲线点集
+        # Bezier curve point set
         points = np.array(
             [
                 [0.10526316, -0.47368421, 0.0],

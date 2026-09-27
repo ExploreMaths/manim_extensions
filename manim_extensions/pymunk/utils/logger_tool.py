@@ -18,7 +18,7 @@ class SingletonLogger:
     _instance = None
 
     def __new__(cls, *args, **kwargs):
-        # 双重检查锁定，确保线程安全
+        # Double-checked locking for thread safety
         if not cls._instance:
             with cls._instance_lock:
                 if not cls._instance:
@@ -27,19 +27,19 @@ class SingletonLogger:
         return cls._instance
 
     def _inherited_init(self):
-        """在这里配置你的日志逻辑。"""
+        """Configure your logging logic here."""
         self.logger = logging.getLogger("MySingletonLogger")
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
 
-        # 避免重复添加处理器
+        # Avoid adding duplicate handlers
         if not self.logger.handlers:
-            # 1. 定义格式
+            # 1. Define format
             log_format = "manim-pymunk:[%(levelname)s]:%(asctime)s:%(filename)s:%(message)s"
             date_format = "%Y-%m-%d %H-%M-%S"
             formatter = logging.Formatter(log_format, date_format)
 
-            # 2. 控制台处理器
+            # 2. Console handler
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(formatter)
             self.logger.addHandler(console_handler)
@@ -50,5 +50,5 @@ class SingletonLogger:
         """
         return self.logger
 
-# 为了方便使用，可以直接实例化一个全局对象
+# For convenience, instantiate a global singleton
 manim_pymunk_logger = SingletonLogger().get_logger()
