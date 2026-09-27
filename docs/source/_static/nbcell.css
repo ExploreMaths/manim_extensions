@@ -101,6 +101,9 @@ div.nboutput.container div.prompt > div {
         text-align: left;
         padding: 0.4em;
     }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
 
     div.nbinput.container div.prompt > div,
     div.nboutput.container div.prompt > div {

@@ -37,11 +37,12 @@ Options:
 * ``:language:`` — lexer for the input cell. Defaults to ``python``.
 * ``:output-language:`` — lexer for the output. Defaults to no
   highlighting.
-* ``:prompt-in:`` / ``:prompt-out:`` — cell prompts, defaulting to
-  ``In [1]:`` and ``Out[1]:`` (nbsphinx's own default is the shorter
-  ``[%s]:``; the Jupyter-style prompts are chosen here to match the
-  classic notebook look).
+* ``:prompt-in:`` / ``:prompt-out:`` — cell prompts. When omitted, the
+  prompts are ``In [n]:`` / ``Out[n]:`` with ``n`` increasing across the
+  cells of each document, like a notebook's execution counters.
 """
+
+COUNTER_KEY = "nbcell_counter"
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
@@ -65,9 +66,23 @@ class NBCell(Directive):
     def run(self):
         code = "\n".join(self.content)
         language = self.options.get("language", "python")
-        prompt_in = self.options.get("prompt-in", "In [1]:")
-        prompt_out = self.options.get("prompt-out", "Out[1]:")
         output = self.options.get("output")
+
+        # Auto-number like notebook execution counters, per document.
+        document = self.state.document
+        count = document.attributes.get(COUNTER_KEY, 0)
+        if "prompt-in" in self.options:
+            prompt_in = self.options["prompt-in"]
+        else:
+            count += 1
+            document.attributes[COUNTER_KEY] = count
+            prompt_in = f"In [{count}]:"
+        if "prompt-out" in self.options:
+            prompt_out = self.options["prompt-out"]
+        elif "[" in prompt_in:
+            prompt_out = "Out[%s]:" % prompt_in.split("[")[1].split("]")[0]
+        else:
+            prompt_out = ""  # custom prompt-in without brackets: no Out prompt
 
         # Input cell: nbinput container + html-only prompt + input_area.
         input_outer = nodes.container(classes=["nbinput"])
@@ -86,9 +101,12 @@ class NBCell(Directive):
             out_lang = self.options.get("output-language", "none")
             output_text = output.rstrip("\n")
             output_outer = nodes.container(classes=["nboutput", "nblast"])
-            out_prompt = nodes.literal_block(
-                prompt_out, prompt_out, language="none", classes=["prompt"]
-            )
+            if prompt_out:
+                out_prompt = nodes.literal_block(
+                    prompt_out, prompt_out, language="none", classes=["prompt"]
+                )
+            else:
+                out_prompt = nodes.container(classes=["prompt", "empty"])
             output_outer += addnodes.only("", out_prompt, expr="html")
             output_area = nodes.container(classes=["output_area"])
             output_area += nodes.literal_block(
