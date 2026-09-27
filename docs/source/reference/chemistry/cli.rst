@@ -13,10 +13,8 @@ without writing any Python. Run it as a module:
     :language: console
     :prompt-in: "$"
     :output: Usage: python -m manim_extensions.chemistry.cli [OPTIONS] COMMAND [ARGS]...
-
         Options:
           --help  Show this message and exit.
-
         Commands:
           pubchem-molecule  Download molecule from pubchem.
 
@@ -38,7 +36,6 @@ Download by name
     :prompt-in: "$"
     :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
         File ./acetone.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone
@@ -55,7 +52,6 @@ even be mixed (names, CIDs, SMILES and InChI in one call):
     :output: Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
         File ./acetone.sdf is ready!!
         File ./morphine.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --name morphine
@@ -68,7 +64,6 @@ Choosing the identifier type
     :prompt-in: "$"
     :output: Retrieved molecule data for ('7028',). Saving file(s) to . folder.
         File ./7028.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --cid 7028
@@ -78,7 +73,6 @@ Choosing the identifier type
     :prompt-in: "$"
     :output: Retrieved molecule data for ('CC(=O)C',). Saving file(s) to . folder.
         File ./CC(=O)C.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --smiles "CC(=O)C"
@@ -88,7 +82,6 @@ Choosing the identifier type
     :prompt-in: "$"
     :output: Retrieved molecule data for ('InChI=1S/C3H6O/c1-3(2)4/h1-2H3',). Saving file(s) to . folder.
         File ./InChI=1S/C3H6O/c1-3(2)4/h1-2H3.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --inchi "InChI=1S/C3H6O/c1-3(2)4/h1-2H3"
@@ -106,7 +99,6 @@ or :meth:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.molecule
     :prompt-in: "$"
     :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
         File ./acetone.json is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --format json
@@ -125,7 +117,6 @@ PubChem for three-dimensional coordinates (e.g. for
     :prompt-in: "$"
     :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
         File ./acetone.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --three_d
@@ -138,7 +129,6 @@ Choosing a destination folder
     :prompt-in: "$"
     :output: Retrieved molecule data for ('acetone',). Saving file(s) to molecules folder.
         File molecules/acetone.sdf is ready!!
-
         Finished
 
     python -m manim_extensions.chemistry.cli pubchem-molecule --name acetone --output_folder molecules

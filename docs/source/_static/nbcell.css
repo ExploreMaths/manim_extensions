@@ -163,3 +163,15 @@ div.nboutput.container div.output_area > div[class^='highlight'] {
 div.nboutput.container .copybtn {
     display: none;
 }
+/* keep the (already small) copy button from forcing a vertical scrollbar
+ * in one-line cells, and never let the pre scroll vertically */
+div.nbinput.container .copybtn,
+div.nboutput.container .copybtn {
+    height: 0.8em;
+    top: 0.35em;
+    right: 0.35em;
+}
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre {
+    overflow-y: hidden;
+}
