@@ -93,10 +93,6 @@ h4, h5, h6{
     text-transform: none;
 }
 
-code.literal {
-    font-size: 100%;
-}
-
 /* yikes-ish attempt at bugfix for navbar on some browsers */
 .sidebar-tree a.internal.reference {
     display: table-cell;
@@ -195,22 +191,4 @@ dd p.rubric {
 }
 dd p.rubric::after {
     content: ":";
-}
-
-/* bundled-plugins list: status icons replace the bullet markers */
-ul.vendor-status {
-    list-style: none;
-    padding-left: 1.2em;
-}
-
-.vendor-status .vstatus-current {
-    /* up to date */
-}
-
-.vendor-status .vstatus-behind {
-    /* upstream has new commits */
-}
-
-.vendor-status .vstatus-unknown {
-    color: var(--color-foreground-secondary, #6e7781);
 }

@@ -278,55 +278,6 @@ class VendoredStatusDirective(SphinxDirective):
         return [admonition]
 
 
-# ---------------------------------------------------------------------------
-# Inline role: per-package status icon for the bundled-plugins list
-# ---------------------------------------------------------------------------
-
-
-def vstatus_role(name, rawtext, text, lineno, inliner, options=None, content=None):
-    """Replace the bullet of a bundled package with a live status icon.
-
-    ✅ the vendored copy is up to date with upstream, ⬆ upstream has new
-    commits since the sync point, • no upstream data (cache missing or the
-    package unknown). Reads the same registry and committed cache as the
-    ``vendored-status`` directive.
-    """
-    options = options or {}
-    env = inliner.document.settings.env
-    app = env.app
-    confdir = Path(app.confdir)
-    short = text.strip()
-
-    registry = _load_registry((confdir / app.config.vendored_registry_path).resolve())
-    slug = next(
-        (s for s, row in registry.items()
-         if row["module"].replace("/", ".") == short
-         or row["module"].replace("/", ".").endswith("." + short)),
-        None,
-    )
-
-    status = None
-    if slug:
-        cache_file = (confdir / app.config.vendored_status_cache).resolve()
-        if cache_file.exists():
-            try:
-                data = json.loads(cache_file.read_text(encoding="utf-8"))
-                compare = (data.get("repos", {}).get(slug) or {}).get("compare")
-                status = compare["status"] if compare else None
-                env.note_dependency(str(cache_file))
-            except (ValueError, OSError):
-                status = None
-
-    if status in ("identical", "behind"):
-        icon, klass = "\u2705", "vstatus-current"
-    elif status in ("ahead", "diverged"):
-        icon, klass = "\u2b06\ufe0f", "vstatus-behind"
-    else:
-        icon, klass = "\u2022", "vstatus-unknown"
-    node = nodes.inline(rawtext, icon, classes=[klass])
-    return [node], []
-
-
 def setup(app) -> dict:
     app.add_config_value(
         "vendored_registry_path", "../../VENDORED.md", rebuild="env", types=[str]
@@ -336,7 +287,6 @@ def setup(app) -> dict:
         rebuild="env", types=[str],
     )
     app.add_directive("vendored-status", VendoredStatusDirective)
-    app.add_role("vstatus", vstatus_role)
     return {
         "version": "1.0",
         "parallel_read_safe": True,
