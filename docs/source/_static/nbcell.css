@@ -1,0 +1,70 @@
+/* Notebook-style code cells (nbcell directive).
+ *
+ * HTML structure and class names mirror nbsphinx's rendered code cells
+ * (https://nbsphinx.readthedocs.io/, MIT); the stylesheet itself is
+ * adapted for the manim_extensions docs and the furo theme. */
+
+div.nbinput.container,
+div.nboutput.container {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 11ex;
+    padding-top: 0.4rem;
+    padding-right: 0.4rem;
+    text-align: right;
+    font-family: var(--font-stack--monospace, monospace);
+    color: var(--color-foreground-secondary, #6e7781);
+}
+
+div.nbinput.container div.prompt .highlight,
+div.nboutput.container div.prompt .highlight {
+    background: transparent;
+}
+
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+div.nbinput.container div.input_area {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--color-background-border, #e1e4e8);
+    border-radius: 4px;
+    background: var(--color-background-secondary, #f6f8fa);
+    padding: 0.4em;
+}
+
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+div.nboutput.container div.output_area {
+    flex: 1;
+    min-width: 0;
+    padding-top: 0.4rem;
+}
+
+div.nboutput.container div.output_area pre {
+    color: var(--color-foreground, #24292f);
+}
+
+/* The literal_block fallback is only for non-HTML builders. */
+.nbcell-fallback {
+    display: none;
+}

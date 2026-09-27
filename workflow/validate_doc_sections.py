@@ -464,10 +464,27 @@ def check_summary_period(doc, qualname, lineno, violations):
 
 def check_terminal_punctuation(doc, qualname, lineno, violations):
     """The docstring's last content line ends with terminal punctuation."""
+    lines = doc.splitlines()
+    # Lines inside directive content blocks (``.. manim::``, ``.. nbcell::``,
+    # ``.. code-block::`` ...) are code, not prose; the closing content line
+    # must not be judged as the docstring's prose ending.
+    directive_re = re.compile(r"^\s*\.\. [\w-]+::")
     last = ""
-    for line in doc.splitlines():
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        m = directive_re.match(line)
+        if m:
+            dind = len(line) - len(line.lstrip())
+            i += 1
+            while i < len(lines):
+                if lines[i].strip() and len(lines[i]) - len(lines[i].lstrip()) <= dind:
+                    break
+                i += 1
+            continue
         if line.strip():
             last = line.strip()
+        i += 1
     if not last or last.endswith(ALLOWED_DOC_END):
         return
     if "http://" in last or "https://" in last or last.startswith("#"):

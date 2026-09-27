@@ -65,19 +65,16 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
 
     Examples
     --------
-    .. code-block:: console
+    .. nbcell::
+        :language: console
+        :prompt-in: "$"
+        :output: Retrieving molecule data for ('acetone', 'morphine').
+            Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
+            File .\acetone.sdf is ready!!
+            File .\morphine.sdf is ready!!
+            Finished
 
         manim_chemistry pubchem-molecule --format sdf -n acetone -n morphine
-
-    Result:
-
-    .. code-block:: console
-
-        >>> Retrieving molecule data for ('acetone', 'morphine').
-        >>> Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
-        >>> File .\acetone.sdf is ready!!
-        >>> File .\morphine.sdf is ready!!
-        >>> Finished
     """
 
     identifier = cid or name or smiles or inchi
