@@ -35,6 +35,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
+    "sphinx_copybutton",
     "myst_parser",
     "sphinx_design",
     "manim_directive",
@@ -105,6 +106,10 @@ autodoc_inherit_docstrings = False
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 autodoc_typehints_format = "short"
+
+# sphinx-copybutton: keep nbcell/manim prompts ("In [1]:", "$") out of the
+# copied text; the buttons themselves are hidden on prompts by nbcell.css.
+copybutton_exclude = ".linenos, .gp, .prompt"
 
 # sphinx_autodoc_typehints: emit short names with leading "~" so intersphinx
 # resolves them to :py:class: references displaying just the class name.
