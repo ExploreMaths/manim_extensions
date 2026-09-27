@@ -369,13 +369,29 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             parent_indent, expected, _, _ = stack[-1]
             delta = indent - parent_indent
             if delta != expected:
-                hits.append(
-                    (
-                        i,
-                        f"indent +{delta} (expected +{expected}, "
-                        f"got {indent} want {parent_indent + expected})",
+                # Inside a non-code block, only two indents above the
+                # parent are ever valid: the block's own body indent
+                # (+expected) and definition descriptions / code starts
+                # (+CODE_DELTA, e.g. numpydoc field descriptions).
+                # Anything else — +1, +2, +5 when +3/+4 were expected —
+                # is an accidental indent and must not be silently
+                # absorbed.
+                if not in_code and indent > parent_indent and indent != parent_indent + CODE_DELTA:
+                    hits.append(
+                        (
+                            i,
+                            f"unexpected indent +{delta} "
+                            f"(expected +{expected} or +{CODE_DELTA})",
+                        )
                     )
-                )
+                else:
+                    hits.append(
+                        (
+                            i,
+                            f"indent +{delta} (expected +{expected}, "
+                            f"got {indent} want {parent_indent + expected})",
+                        )
+                    )
             if in_code:
                 # First body line of a code block: record its indent so
                 # deeper code lines are exempt (code has its own
@@ -410,13 +426,15 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             marker_width = len(m.group(0))
             stack.append([indent, marker_width, False, pending_skip])
             pending_skip = False
-        elif stack and not in_code:
-            # A bare line that is more indented than the current block
-            # opening but is not a known block start is treated as a
-            # definition-list term (numpydoc ``name : type``).  Its
-            # description uses the numpydoc convention of +4.
+        elif stack and not in_code and indent >= stack[-1][0] + CODE_DELTA:
+            # A bare line indented +CODE_DELTA above its parent is treated
+            # as a numpydoc definition-list term (``name : type``) whose
+            # description uses the same +CODE_DELTA convention.  Lines
+            # at other odd indents have already been flagged above as
+            # "unexpected indent" and must not be silently absorbed
+            # into the block tree.
             parent_indent = stack[-1][0]
-            if indent > parent_indent:
+            if indent >= parent_indent + CODE_DELTA:
                 stack.append([indent, CODE_DELTA, False, pending_skip])
                 pending_skip = False
 
