@@ -469,12 +469,11 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     # ``.. code-block::`` ...) are code, not prose; the closing content line
     # must not be judged as the docstring's prose ending.
     directive_re = re.compile(r"^\s*\.\. [\w-]+::")
-    last = ""
+    candidates = []
     i = 0
     while i < len(lines):
         line = lines[i]
-        m = directive_re.match(line)
-        if m:
+        if directive_re.match(line):
             dind = len(line) - len(line.lstrip())
             i += 1
             while i < len(lines):
@@ -482,9 +481,22 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
                     break
                 i += 1
             continue
-        if line.strip():
-            last = line.strip()
+        candidates.append(line)
         i += 1
+    # Drop numpydoc section headers (a header directly followed by its
+    # underline) so a docstring ending in a section whose body is only
+    # directives does not end on '--------'.
+    last = ""
+    for idx, line in enumerate(candidates):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if SECTION_UNDERLINE_RE.match(stripped):
+            continue
+        if (idx + 1 < len(candidates)
+                and SECTION_UNDERLINE_RE.match(candidates[idx + 1].strip() or "")):
+            continue  # this line is a section header
+        last = stripped
     if not last or last.endswith(ALLOWED_DOC_END):
         return
     if "http://" in last or "https://" in last or last.startswith("#"):
