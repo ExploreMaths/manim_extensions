@@ -45,10 +45,10 @@ class VDampedSpring(VConstraint):
         The equilibrium length of the spring. When the distance between anchors
         equals this value, the spring exerts no force.
     stiffness
-        The spring constant $k$ (Young's modulus). Determines how strongly
+        The spring constant :math:`k` (Young's modulus). Determines how strongly
         the spring pulls or pushes to return to `rest_length`.
     damping
-        The damping coefficient $c$. Used to simulate viscous friction,
+        The damping coefficient :math:`c`. Used to simulate viscous friction,
         causing the kinetic energy of the system to dissipate over time.
     mob_a_appearance
         The Mobject used to visually represent the anchor point on `a_mob`

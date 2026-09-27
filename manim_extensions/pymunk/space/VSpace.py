@@ -38,7 +38,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     Parameters
     ----------
     gravity
-        The gravity acceleration vector $(g_x, g_y)$. Defaults to $(0, -9.81)$.
+        The gravity acceleration vector :math:`(g_x, g_y)`. Defaults to :math:`(0, -9.81)`.
     sub_step
         The number of sub-steps per frame for physical simulation. Increasing
         this value improves numerical stability and collision accuracy.
@@ -218,9 +218,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         body_type
             The Pymunk body type integer (e.g., :attr:`pymunk.Body.DYNAMIC`).
         center_of_gravity
-            The center of mass position relative to the Mobject's center $(x, y)$.
+            The center of mass position relative to the Mobject's center :math:`(x, y)`.
         velocity
-            The initial linear velocity vector $(v_x, v_y)$ of the body.
+            The initial linear velocity vector :math:`(v_x, v_y)` of the body.
         angular_velocity
             The initial angular velocity (in radians per second).
         """
@@ -285,9 +285,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         surface_velocity
             A constant velocity applied to the surface of the shape (e.g., for conveyor belts).
         center_of_gravity
-            The center of mass relative to the Mobject's center $(x, y)$.
+            The center of mass relative to the Mobject's center :math:`(x, y)`.
         velocity
-            The initial linear velocity vector $(v_x, v_y)$.
+            The initial linear velocity vector :math:`(v_x, v_y)`.
         angular_velocity
             The initial angular velocity in radians per second.
         """
@@ -485,10 +485,10 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose physical body will receive the force.
         force
-            The force vector $(f_x, f_y, f_z)$ to apply. Note that Pymunk
+            The force vector :math:`(f_x, f_y, f_z)` to apply. Note that Pymunk
             operates in 2D, so the z-component is typically ignored.
         point
-            The offset from the body's center of gravity $(x, y, z)$ where
+            The offset from the body's center of gravity :math:`(x, y, z)` where
             the force is applied, in local coordinates.
         """
 
@@ -512,11 +512,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose physical body will receive the force.
         force
-            The force vector $(f_x, f_y, f_z)$ to apply. Note that Pymunk
+            The force vector :math:`(f_x, f_y, f_z)` to apply. Note that Pymunk
             typically ignores the z-component.
         point
             The absolute position in the world (scene) coordinates where the
-            force is applied. Defaults to the origin $(0, 0, 0)$.
+            force is applied. Defaults to the origin :math:`(0, 0, 0)`.
         """
         mob.body.apply_force_at_world_point(force=force[:2], point=point[:2])
 
@@ -537,10 +537,10 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose physical body will receive the impulse.
         impulse
-            The impulse vector $(i_x, i_y, i_z)$ to apply. The z-component
+            The impulse vector :math:`(i_x, i_y, i_z)` to apply. The z-component
             is typically ignored in 2D physics.
         point
-            The offset from the body's center of gravity $(x, y, z)$ where the
+            The offset from the body's center of gravity :math:`(x, y, z)` where the
             impulse is applied, in local coordinates.
         """
         mob.body.apply_impulse_at_local_point(impulse=impulse[:2], point=point[:2])
@@ -563,11 +563,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose physical body will receive the impulse.
         impulse
-            The impulse vector $(i_x, i_y, i_z)$ to apply. The z-component
+            The impulse vector :math:`(i_x, i_y, i_z)` to apply. The z-component
             is typically ignored in 2D physics.
         point
             The absolute position in world (scene) coordinates where the
-            impulse is applied. Defaults to the origin $(0, 0, 0)$.
+            impulse is applied. Defaults to the origin :math:`(0, 0, 0)`.
         """
         mob.body.apply_impulse_at_world_point(impulse=impulse[:2], point=point[:2])
 
@@ -938,7 +938,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Returns
         -------
         list
-            A list of subdivided $(x, y)$ coordinate tuples representing the
+            A list of subdivided :math:`(x, y)` coordinate tuples representing the
             sampled path.
         """
         all_points = []

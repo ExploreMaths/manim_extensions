@@ -30,8 +30,8 @@ class SpaceScene(ZoomedScene):
     Parameters
     ----------
     gravity
-        The gravity acceleration vector $(g_x, g_y)$ applied to the physical
-        space. Defaults to $(0, -9.81)$.
+        The gravity acceleration vector :math:`(g_x, g_y)` applied to the physical
+        space. Defaults to :math:`(0, -9.81)`.
     **kwargs
         Forwarded to the parent :class:`~manim.scene.zoomed_scene.ZoomedScene`.
 
