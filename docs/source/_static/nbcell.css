@@ -1,45 +1,18 @@
 /* Notebook-style code cells (nbcell directive).
  *
- * Adapted from nbsphinx's nbsphinx-code-cells.css
- * (https://github.com/spatialaudio/nbsphinx, MIT license) for the
- * manim_extensions docs; class names and layout mirror nbsphinx's
- * rendered code cells. */
+ * Layout (flex rows with In/Out prompt columns) follows nbsphinx's
+ * nbsphinx-code-cells.css (https://github.com/spatialaudio/nbsphinx, MIT).
+ * The code areas themselves are styled by the theme like any default code
+ * block -- no custom borders, padding, or font tweaks here. */
 
-/* remove conflicting styling from Sphinx themes */
+/* neutralize theme styling on the prompt column only */
 div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
+div.nboutput.container div.prompt * {
     border: none;
     padding: 0;
     margin: 0;
     box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
     background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
 }
 
 /* input/output containers */
@@ -115,7 +88,8 @@ div.nboutput.container div.prompt pre {
     white-space: pre;
 }
 
-/* input/output area */
+/* input/output area: just the flexible content column; the theme styles
+ * the code block inside exactly like a default one */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
     -webkit-flex: 1;
@@ -135,43 +109,8 @@ div.nboutput.container div[class*=highlight] {
     margin: 0;
 }
 
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /* background: #f5f5f5; */
-}
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre {
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copy button overflow problem in chromium (sphinx_copybutton) */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight'] {
-    overflow-y: hidden;
-}
-
-/* hide copy button on prompts for sphinx_copybutton */
-.prompt .copybtn {
-    display: none;
-}
-
-/* no copy button on nbcell outputs either */
+/* hide copy button on prompts and on nbcell outputs */
+.prompt .copybtn,
 div.nboutput.container .copybtn {
     display: none;
-}
-/* keep the (already small) copy button from forcing a vertical scrollbar
- * in one-line cells, and never let the pre scroll vertically */
-div.nbinput.container .copybtn,
-div.nboutput.container .copybtn {
-    height: 0.8em;
-    top: 0.35em;
-    right: 0.35em;
-}
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre {
-    overflow-y: hidden;
 }
