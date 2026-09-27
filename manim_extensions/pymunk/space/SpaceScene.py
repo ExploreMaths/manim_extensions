@@ -401,7 +401,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         option
-            Pymunk debug draw options (e.g., `pymunk.SpaceDebugDrawOptions`).
+            Pymunk debug draw options (e.g., :class:`pymunk.SpaceDebugDrawOptions`).
             Determines what physical elements (shapes, constraints, collision points) are visible.
         xlim
             The display range for the X-axis in the plot.
@@ -450,7 +450,7 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        pymunk.Body | None
+        :class:`pymunk.Body` | None
             The bound physical body.
 
         Raises
@@ -477,7 +477,7 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        list[pymunk.Shape] | None
+        list[:class:`pymunk.Shape`] | None
             A list of Pymunk shapes defining the collision boundaries.
 
         Raises
@@ -709,8 +709,13 @@ class SpaceScene(ZoomedScene):
         mobs
             The Mobjects whose bodies will use the custom position function.
         callback
-            A function with signature ``(body, dt)``. If ``None``, the
-            default Pymunk position update is restored.
+            A function with the signature:
+
+            .. code-block::
+
+               def callback(body: pymunk.Body, dt: float)
+
+            If ``None``, the default Pymunk position update is restored.
         """
         for mob in mobs:
             self.vspace.set_position_func(mob, callback)
@@ -730,7 +735,12 @@ class SpaceScene(ZoomedScene):
         mobs
             The Mobjects whose bodies will use the custom velocity function.
         callback
-            A function with signature ``(body, gravity, damping, dt)``.
+            A function with the signature:
+
+            .. code-block::
+
+               def callback(body: pymunk.Body, gravity: tuple[float, float], damping: float, dt: float)
+
             If ``None``, the default Pymunk velocity update is restored.
         """
         for mob in mobs:
