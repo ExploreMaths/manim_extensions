@@ -109,6 +109,25 @@ div.nboutput.container div[class*=highlight] {
     margin: 0;
 }
 
+/* outputs stay plain text (no code-block background or pygments colors) */
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* a bit of breathing room between the input and output rows */
+div.nboutput.container {
+    margin-top: 0.4em;
+}
+
 /* hide copy button on prompts and on nbcell outputs */
 .prompt .copybtn,
 div.nboutput.container .copybtn {
