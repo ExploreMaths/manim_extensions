@@ -11,7 +11,7 @@ import numpy as np
 from .atom import MAtomObject
 
 
-from typing import Any
+from typing import Any, Literal
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
@@ -24,9 +24,10 @@ class BaseMBondObject(VGroup):
     type : int, optional
         Bond type: 1 for single, 2 for double, 3 for triple. Defaults to
         ``0``.
-    subtype : str, optional
-        Subtype of the bond (e.g. ``'shorter'``, ``'shorter_from'``,
-        ``'shorter_to'``). Defaults to ``''``.
+    subtype : Literal['', 'complete', 'skeleton', 'over_bond'], optional
+        Representation of the bonded atoms; see
+        :meth:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype`
+        for how it maps to the rendered line style. Defaults to ``''``.
     color : str, optional
         Color of the bond. Defaults to ``WHITE``.
     index : int, optional
@@ -68,7 +69,7 @@ class BaseMBondObject(VGroup):
         from_atom: MAtomObject,
         to_atom: MAtomObject,
         type: int = 0,
-        subtype: str = "",
+        subtype: Literal["", "complete", "skeleton", "over_bond"] = "",
         color: str = WHITE,
         index: int = 0,
         **kwargs,
@@ -84,28 +85,44 @@ class BaseMBondObject(VGroup):
         self.index = index
         self.add(self.bond)
 
-    def define_subtype(self, subtype: str) -> str | bool:
+    def define_subtype(
+        self,
+        subtype: Literal["", "complete", "skeleton", "over_bond"],
+    ) -> str | bool:
         """
         Defines the subtype based on atoms' representations.
 
         Input options:
 
-        - ``'complete'``
-        - ``'skeleton'``
-        - ``'over_bond'``
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'complete'``
+              - Both atoms show their element symbol.
+            * - ``'skeleton'``
+              - One or both atoms hide their symbol.
+            * - ``'over_bond'``
+              - A symbol is drawn above the bond.
 
         Output options:
 
-        - ``'shorter'``: Does not touch the center of the atoms.
-        - ``'shorter_from'``: Does not touch the center of the from atom.
-        - ``'shorter_to'``: Does not touch the center of the to atom.
-        - ``None`` or ``False``: Touches both atoms center.
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'shorter'``
+              - Does not touch the center of the atoms.
+            * - ``'shorter_from'``
+              - Does not touch the center of the from atom.
+            * - ``'shorter_to'``
+              - Does not touch the center of the to atom.
+            * - ``None`` or ``False``
+              - Touches both atoms' centers.
 
         Parameters
         ----------
-        subtype : :class:`str`
-            Subtype of the bond: ``'complete'``, ``'skeleton'`` or
-            ``'over_bond'``.
+        subtype : Literal['', 'complete', 'skeleton', 'over_bond']
+            Representation of the bonded atoms; the rendered line style is
+            derived from it together with the atoms' representations.
 
         Returns
         -------

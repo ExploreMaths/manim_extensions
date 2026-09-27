@@ -7,7 +7,7 @@ This module provides utility functions for parsing chemical molecule data.
 """
 
 import numpy as np
-from typing import Any
+from typing import Any, Literal
 
 from ..element import (
     H,
@@ -429,7 +429,7 @@ def get_element(element: str, language: str = "ENG"):
     return element_dict[element]
 
 
-def mol_to_graph(file: Any, language: str = "ENG"):
+def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG"):
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
     Unlike ``mol_parser``, this function stores atom positions under the
@@ -440,8 +440,16 @@ def mol_to_graph(file: Any, language: str = "ENG"):
     ----------
     file : path-like
         Path to the .mol file.
-    language : str, optional
-        Element name language. ``"ENG"`` (default) or ``"ESP"``.
+    language : Literal['ENG', 'ESP'], optional
+        Element name language.
+
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'ENG'``
+              - English element names (default).
+            * - ``'ESP'``
+              - Spanish element names.
 
     Returns
     -------

@@ -13,7 +13,7 @@ import click
 from .utils import PubchemAPIManager
 
 
-from typing import Any
+from typing import Any, Literal
 @click.group
 def cli():
     """Command-line interface group for chemistry-related commands."""
@@ -34,7 +34,7 @@ def cli():
     "--three_d", "-td", default=False, help="Use three d data of the molecule."
 )
 @click.option("--output_folder", "-o", default=".", help="Output folder.")
-def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, three_d: Any, output_folder: Any):
+def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, name: str, smiles: Any, inchi: Any, three_d: Any, output_folder: Any):
     r"""
     Download molecule from pubchem.
 
@@ -42,8 +42,21 @@ def pubchem_molecule(format: Any, cid: Any, name: str, smiles: Any, inchi: Any, 
 
     Parameters
     ----------
-    format : :class:`~typing.Any`
-        Format of the file to be downloaded. Defaults to ``'sdf'``.
+    format : Literal['asnt', 'json', 'sdf', 'xml']
+        Format of the file to be downloaded.
+
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'sdf'``
+              - Structure-Data File (default).
+            * - ``'asnt'``
+              - Abstract Syntax Notation format.
+            * - ``'json'``
+              - JSON representation.
+            * - ``'xml'``
+              - XML representation.
+
     cid : :class:`~typing.Any`
         CID of the molecule(s) to download.
     name : :class:`str`

@@ -8,7 +8,7 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Literal, Optional
 
 
 class MAtomObject(VGroup):
@@ -29,10 +29,20 @@ class MAtomObject(VGroup):
     bond_to : Dict[int, Any], optional
         Mapping of bonded atom indices to their elements. Defaults to
         ``{}``.
-    representation_type : Optional[str], optional
-        Representation of the atom label: ``'complete'`` (always show the
-        symbol), ``'skeleton'`` (hide it), or ``'over_bond'`` (show it
-        above the bond). When None it is inferred from the element.
+    representation_type : Optional[Literal['complete', 'skeleton', 'over_bond']], optional
+        Representation of the atom label.
+
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'complete'``
+              - Always show the element symbol.
+            * - ``'skeleton'``
+              - Hide the element symbol.
+            * - ``'over_bond'``
+              - Show the symbol above the bond.
+
+        When None it is inferred from the element.
     color : str, optional
         Color of the atom label. Defaults to ``WHITE``.
     charge : int, optional
@@ -71,7 +81,7 @@ class MAtomObject(VGroup):
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         bond_to: Dict[int, Any] = {},
-        representation_type: Optional[str] = None,
+        representation_type: Optional[Literal["complete", "skeleton", "over_bond"]] = None,
         color: str = WHITE,
         charge: int = 0,
         index: int = 0,
@@ -104,16 +114,30 @@ class MAtomObject(VGroup):
         self.move_to(self.coords)
         self.set_atom_color(self.color)
 
-    def set_representation(self, representation_type: Any):
+    def set_representation(
+        self,
+        representation_type: Optional[Literal["complete", "skeleton", "over_bond"]],
+    ):
         """
-        - 'complete': Adds the element symbol.
-        - 'skeleton': Does not add the symbol
-        - 'over_bond': Adds the symbol above the bond
+        Determine the atom label representation from the requested type.
+
+        Input options:
+
+        .. list-table::
+            :header-rows: 0
+
+            * - ``'complete'``
+              - Adds the element symbol.
+            * - ``'skeleton'``
+              - Does not add the symbol.
+            * - ``'over_bond'``
+              - Adds the symbol above the bond.
 
         Parameters
         ----------
-        representation_type : :class:`~typing.Any`
-            Representation type of the atom.
+        representation_type : Optional[Literal['complete', 'skeleton', 'over_bond']]
+            Requested representation; when falsy it is inferred from the
+            element.
         """
         if representation_type:
             return representation_type
