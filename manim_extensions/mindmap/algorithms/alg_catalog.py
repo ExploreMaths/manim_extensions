@@ -25,15 +25,27 @@ class CatalogNode:
 
     Input attributes:
 
-    - ``width``, ``height``: node dimensions.
-    - ``children``: list of child nodes.
+    .. list-table::
+        :header-rows: 0
+
+        * - ``width``, ``height``
+          - Node dimensions.
+        * - ``children``
+          - List of child nodes.
 
     Output attributes (filled by the algorithm):
 
-    - ``left``, ``top``: top-left coordinates of the node on the canvas.
-    - ``layer_index``: layer index (root is 0).
-    - ``parent``: reference to the parent node.
-    - ``children_area_width``: total width of the root's children (used for horizontal arrangement).
+    .. list-table::
+        :header-rows: 0
+
+        * - ``left``, ``top``
+          - Top-left coordinates of the node on the canvas.
+        * - ``layer_index``
+          - Layer index (root is 0).
+        * - ``parent``
+          - Reference to the parent node.
+        * - ``children_area_width``
+          - Total width of the root's children (used for horizontal arrangement).
 
     Examples
     --------
@@ -388,6 +400,7 @@ class CatalogLayout(Layout):
     def _compute_left_top_value(self):
         """
         Step 2: compute left and top of child nodes.
+
         - Children of the root are arranged horizontally
         - Children of non-root nodes are arranged vertically.
         """
@@ -430,6 +443,7 @@ class CatalogLayout(Layout):
     def _adjust_left_top_value(self):
         """
         Step 3: adjust positions (handle subtree width/height offsets).
+        
         - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings
         - Pre-order: for non-root nodes with children, adjust vertical offset
         - Post-order: for the root, shift all children horizontally to centre the whole subtree.

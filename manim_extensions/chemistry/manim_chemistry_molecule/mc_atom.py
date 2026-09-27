@@ -15,13 +15,25 @@ from .mc_element import MC_ELEMENT_DICT, MCElement
 
 class MCAtom:
     """
-    Abstraction of an atom in a molecule:
-    - It's MCElement.
-    - It's 3D coordinates.
-    - The atoms bonded to it.
-    - The bonds associated with it.
-    - It's molecule.
-    - It's index in the molecule.
+    Abstraction of an atom in a molecule.
+
+    It consists of:
+
+    .. list-table::
+        :header-rows: 0
+
+        * - ``element``
+          - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`.
+        * - ``coordinates``
+          - Its 3D coordinates.
+        * - ``bonded_atoms``
+          - The atoms bonded to it.
+        * - ``bonds``
+          - The bonds associated with it.
+        * - ``molecule``
+          - Its molecule.
+        * - ``index``
+          - Its index in the molecule.
 
     Parameters
     ----------

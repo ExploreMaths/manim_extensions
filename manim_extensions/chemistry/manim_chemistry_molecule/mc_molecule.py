@@ -16,11 +16,21 @@ from ..utils import FileHandler
 
 class MCMolecule:
     """
-    Abstraction of a molecule made of:
-    - MCAtoms.
-    - MCBonds.
-    - Molecule name.
-    - Extra properties (To be defined)
+    Abstraction of a molecule.
+
+    It is made of:
+
+    .. list-table::
+        :header-rows: 0
+
+        * - ``atoms``
+          - MCAtoms.
+        * - ``bonds``
+          - MCBonds.
+        * - ``name``
+          - Molecule name.
+        * - ``properties``
+          - Extra properties (to be defined).
 
     Parameters
     ----------
@@ -258,12 +268,23 @@ class MCMolecule:
         elements_data_dict: Optional[dict] = None,
     ):
         """
-        Reads a string and returns a molecule. Supported formats are:
-        - mol
-        - sdf
-        - asnt
-        - json
-        - xml
+        Reads a string and returns a molecule.
+
+        Supported formats are:
+
+        .. list-table::
+            :header-rows: 0
+
+            * - ``mol``
+              - MDL molfile.
+            * - ``sdf``
+              - Structure-Data File.
+            * - ``asnt``
+              - ASN.1 format.
+            * - ``json``
+              - JSON format.
+            * - ``xml``
+              - XML format.
 
         Uses json format by default.
 
