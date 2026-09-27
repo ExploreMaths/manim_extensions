@@ -16,13 +16,16 @@ class RemoveLayer(AnimationGroup):
     """
     Animation for removing a layer from a neural network.
 
-    Note: I needed to do something strange for creating the new connective layer.
-    The issue with creating it initially is that the positions of the sides of the
-    connective layer depend upon the location of the moved layers **after** the
-    move animations are performed. However, all of these animations are performed
-    after the animations have been created. This means that the animation depends upon
-    the state of the neural network layers after previous animations have been run.
-    To fix this issue I needed to use an UpdateFromFunc.
+    .. note::
+
+       I needed to do something strange for creating the new connective layer.
+       The issue with creating it initially is that the positions of the sides of the
+       connective layer depend upon the location of the moved layers **after** the
+       move animations are performed. However, all of these animations are performed
+       after the animations have been created. This means that the animation depends upon
+       the state of the neural network layers after previous animations have been run.
+       To fix this issue I needed to use an UpdateFromFunc.
+
 
     Parameters
     ----------

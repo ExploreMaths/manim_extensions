@@ -15,9 +15,12 @@ from ... import config
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     """Max pooling layer for Convolutional2DLayer.
 
-    Note: This is for a Convolutional2DLayer even though
-    it is called MaxPooling2DLayer because the 2D corresponds
-    to the 2 spatial dimensions of the convolution.
+    .. note::
+
+       This is for a Convolutional2DLayer even though
+       it is called MaxPooling2DLayer because the 2D corresponds
+       to the 2 spatial dimensions of the convolution.
+
 
     Parameters
     ----------

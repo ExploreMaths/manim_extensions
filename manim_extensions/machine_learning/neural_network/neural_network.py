@@ -9,7 +9,8 @@
 This module is responsible for generating a neural network visualization with
 manim, specifically a fully connected neural network diagram.
 
-Example:
+.. code-block:: python
+
     # Specify how many nodes are in each node layer
     layer_node_count = [5, 3, 5]
     # Create the object with default style settings

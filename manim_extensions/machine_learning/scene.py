@@ -19,8 +19,11 @@ class ManimML3DScene(ThreeDScene):
     """
     This is a wrapper class for the Manim ThreeDScene.
 
-    Note: the primary purpose of this is to make it so
-    that everything inside of a layer
+    .. note::
+
+       the primary purpose of this is to make it so
+       that everything inside of a layer
+
 
     Parameters
     ----------

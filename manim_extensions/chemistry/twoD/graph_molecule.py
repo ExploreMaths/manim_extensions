@@ -513,8 +513,12 @@ class GraphMolecule(Graph, AbstractMolecule):
     ) -> list:
         """
         Recursive depht-first search to find connected atoms.
-        Warning: Only works properly for non cyclic structures. If you use
-        an atom from a cycle as the starting point, it will take the whole cycle.
+
+        .. warning::
+
+           Only works properly for non cyclic structures. If you use
+           an atom from a cycle as the starting point, it will take the whole cycle.
+
 
         Parameters
         ----------

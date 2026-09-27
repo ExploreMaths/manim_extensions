@@ -159,8 +159,11 @@ provided for each :class:`~manim_extensions.rubikscube.cubie.Cubie` face.
 Properties of a RubiksCube
 --------------------------
 
-Note: It is not necessary to pass any parameters to the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
-Doing so is entirely for additional functionality and stylistic tweaks.
+.. note::
+
+   It is not necessary to pass any parameters to the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
+   Doing so is entirely for additional functionality and stylistic tweaks.
+
 
 To this point, we have seen that one property of a :class:`~manim_extensions.rubikscube.cube.RubiksCube` is a
 list of colors for the cube faces. There are currently two other parameters

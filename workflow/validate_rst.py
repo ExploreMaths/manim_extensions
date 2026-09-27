@@ -105,12 +105,16 @@ CODE_DELTA = 4
 CODE_DIRECTIVES = frozenset({"raw", "math", "math-block"})
 
 # Directives whose body is code but whose top-level body indentation
-# follows the normal RST convention of +3 (``manim``, ``nbcell``,
-# ``code-block``, ...).  The first body line must be +3; subsequent
-# lines are code and are not checked.
-MANIM_LIKE_DIRECTIVES = frozenset(
-    {"manim", "nbcell", "code-block", "sourcecode", "code"}
-)
+# follows the normal RST convention of +3 (``manim``, ``nbcell``, ...).
+# The first body line must be +3; subsequent lines are code and are
+# not checked.
+MANIM_LIKE_DIRECTIVES = frozenset({"manim", "nbcell"})
+
+# Directives whose body is a code snippet with arbitrary indentation.
+# The body is completely exempt from indentation checking (any indent
+# is valid, so ``code-block`` can hold Python/TeX/... code that uses
+# its own canonical indentation).
+CODE_SNIPPET_DIRECTIVES = frozenset({"code-block", "sourcecode", "code"})
 
 # A directive option that disables indentation checking for the whole
 # block it belongs to (use for ASCII art or other intentional layouts):
@@ -439,6 +443,10 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
                 ed, ic = CODE_DELTA, True
             elif name in MANIM_LIKE_DIRECTIVES:
                 ed, ic = NORMAL_DELTA, True
+            elif name in CODE_SNIPPET_DIRECTIVES:
+                # Entirely exempt from indentation checking — the body
+                # holds code in the source language's canonical indent.
+                ed, ic = None, True
             else:
                 ed, ic = NORMAL_DELTA, False
             stack.append([indent, ed, ic, pending_skip])

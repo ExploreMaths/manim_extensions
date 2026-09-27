@@ -1059,7 +1059,10 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose associated physical shapes will be queried.
         point
             A :math:`(x, y, z)` coordinate representing the test location in the scene.
-            Note: Only the (x, y) components are used for the 2D physics engine.
+
+            .. note::
+
+               Only the (x, y) components are used for the 2D physics engine.
 
         Returns
         -------
