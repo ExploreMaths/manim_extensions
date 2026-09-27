@@ -11,7 +11,7 @@ import numpy as np
 from .atom import MAtomObject
 
 
-from typing import Any, Literal
+from typing import Any, Literal, Optional
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
@@ -24,10 +24,10 @@ class BaseMBondObject(VGroup):
     type : int, optional
         Bond type: 1 for single, 2 for double, 3 for triple. Defaults to
         ``0``.
-    subtype : Literal['', 'complete', 'skeleton', 'over_bond'], optional
+    subtype : Optional[Literal['complete', 'skeleton', 'over_bond']], optional
         Representation of the bonded atoms; see
         :meth:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype`
-        for how it maps to the rendered line style. Defaults to ``''``.
+        for how it maps to the rendered line style. Defaults to ``None``.
     color : str, optional
         Color of the bond. Defaults to ``WHITE``.
     index : int, optional
@@ -69,7 +69,7 @@ class BaseMBondObject(VGroup):
         from_atom: MAtomObject,
         to_atom: MAtomObject,
         type: int = 0,
-        subtype: Literal["", "complete", "skeleton", "over_bond"] = "",
+        subtype: Optional[Literal["complete", "skeleton", "over_bond"]] = None,
         color: str = WHITE,
         index: int = 0,
         **kwargs,
@@ -87,7 +87,7 @@ class BaseMBondObject(VGroup):
 
     def define_subtype(
         self,
-        subtype: Literal["", "complete", "skeleton", "over_bond"],
+        subtype: Optional[Literal["complete", "skeleton", "over_bond"]],
     ) -> str | bool:
         """
         Defines the subtype based on atoms' representations.
@@ -120,7 +120,7 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        subtype : Literal['', 'complete', 'skeleton', 'over_bond']
+        subtype : Optional[Literal['complete', 'skeleton', 'over_bond']]
             Representation of the bonded atoms; the rendered line style is
             derived from it together with the atoms' representations.
 
