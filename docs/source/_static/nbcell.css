@@ -54,7 +54,7 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    width: 7ex;
+    width: 9ex;
     padding-top: 5px;
     position: relative;
     user-select: none;
