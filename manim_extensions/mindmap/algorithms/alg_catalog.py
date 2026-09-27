@@ -7,6 +7,7 @@
 Catalog / organisation-chart layout algorithm - Python implementation.
 
 Layout characteristics:
+
 - Root node is centred
 - Second-level nodes are arranged horizontally below the root
 - Third-level and deeper nodes are arranged vertically below their parent (vertical tree)

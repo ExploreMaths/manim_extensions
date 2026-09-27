@@ -1056,10 +1056,18 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         -------
         query_info_list
             A list of tuples, where each tuple contains:
-            - distance: The distance from the point to the shape (negative if inside).
-            - gradient: A 3D vector representing the direction of the distance gradient.
-            - point: The closest point on the shape's surface to the query point.
-            - shape: The specific pymunk.Shape object that was queried.
+
+            .. list-table::
+                :header-rows: 0
+
+                * - ``distance``
+                  - The distance from the point to the shape (negative if inside).
+                * - ``gradient``
+                  - A 3D vector representing the direction of the distance gradient.
+                * - ``point``
+                  - The closest point on the shape's surface to the query point.
+                * - ``shape``
+                  - The specific pymunk.Shape object that was queried.
         """
 
         query_info_list = []
@@ -1105,11 +1113,18 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         query_info_list
             A list of tuples containing intersection data:
 
-            - alpha: A float (0.0 to 1.0) representing the normalized distance
-              along the segment where the hit occurred.
-            - normal: A 3D vector representing the surface normal at the impact point.
-            - point: The exact 3D coordinate of the intersection point.
-            - shape: The specific pymunk.Shape that was hit.
+            .. list-table::
+                :header-rows: 0
+
+                * - ``alpha``
+                  - A float (0.0 to 1.0) representing the normalized distance
+                    along the segment where the hit occurred.
+                * - ``normal``
+                  - A 3D vector representing the surface normal at the impact point.
+                * - ``point``
+                  - The exact 3D coordinate of the intersection point.
+                * - ``shape``
+                  - The specific pymunk.Shape that was hit.
         """
         query_info_list = []
         for shape in mob.shapes:
@@ -1144,15 +1159,22 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Returns
         -------
         contact_data
-            A list where the first element is the collision normal, followed by 
+            A list where the first element is the collision normal, followed by
             tuples of contact point details:
 
-            - normal: A 3D vector representing the direction required to resolve 
-              the collision (from shape_a to shape_b).
-            - point_a: The coordinate on the surface of shape_a involved in the contact.
-            - point_b: The coordinate on the surface of shape_b involved in the contact.
-            - distance: The penetration depth (negative if overlapping, positive if 
-              separated within the collision margin).
+            .. list-table::
+                :header-rows: 0
+
+                * - ``normal``
+                  - A 3D vector representing the direction required to resolve
+                    the collision (from shape_a to shape_b).
+                * - ``point_a``
+                  - The coordinate on the surface of shape_a involved in the contact.
+                * - ``point_b``
+                  - The coordinate on the surface of shape_b involved in the contact.
+                * - ``distance``
+                  - The penetration depth (negative if overlapping, positive if
+                    separated within the collision margin).
         """
         contactPointSet = shape_a.shapes_collide(shape_b)
         normal = [*contactPointSet.normal, 0]

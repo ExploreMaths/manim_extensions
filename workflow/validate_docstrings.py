@@ -13,6 +13,10 @@ It also checks that docstrings use the numpydoc ``Parameters`` section
 instead of the Google-style ``Args:`` section, and can auto-convert
 ``Args:`` sections with ``--fix``.
 
+It also flags bullet lists inside docstrings that directly abut the
+previous line without a blank line, which numpydoc/RST does not parse as
+a list.
+
 Usage:
     python validate_docstrings.py
     python validate_docstrings.py --fix
@@ -20,8 +24,10 @@ Usage:
 
 import argparse
 import ast
+import io
 import re
 import sys
+import tokenize
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -404,6 +410,57 @@ def check_args_format(py_file):
     return find_args_sections(source)
 
 
+BULLET_RE = re.compile(r"^- ")
+
+
+def check_abutting_bullets(py_file):
+    """Check docstrings for bullet lists abutting the previous line.
+
+    A ``- `` bullet that directly follows a plain-text line (no blank line
+    in between) is not parsed as a list by numpydoc/RST. Consecutive
+    bullets and list-table row cells (``* - name`` / ``- desc``) are fine.
+    Returns a list of 1-based line numbers.
+    """
+    try:
+        source = py_file.read_text(encoding="utf-8")
+    except Exception:
+        return []
+    try:
+        tokens = list(tokenize.generate_tokens(io.StringIO(source).readline))
+    except Exception:
+        return []
+
+    lines = source.splitlines()
+    doc_lines = set()
+    for tok in tokens:
+        if tok.type == tokenize.STRING:
+            if tok.string.lstrip("rR").startswith(('"""', "'''")):
+                doc_lines.update(range(tok.start[0], tok.end[0] + 1))
+
+    hits = []
+    for n in sorted(doc_lines):
+        i = n - 1
+        stripped = lines[i].strip()
+        if not BULLET_RE.match(stripped):
+            continue
+        if n - 1 not in doc_lines or n - 2 < 0:
+            continue
+        prev = lines[n - 2]
+        prev_s = prev.strip()
+        if not prev_s:
+            continue
+        indent = len(lines[i]) - len(lines[i].lstrip())
+        prev_indent = len(prev) - len(prev.lstrip())
+        if prev_indent > indent:
+            continue  # continuation of a field/table cell
+        if re.match(r"^\* +- ", prev_s):
+            continue  # list-table row start
+        if BULLET_RE.match(prev_s):
+            continue  # consecutive bullet of the same list
+        hits.append(n)
+    return hits
+
+
 def main():
     """Main validation function."""
     parser = argparse.ArgumentParser(
@@ -419,6 +476,7 @@ def main():
     errors = []
     func_errors = []
     args_errors = []
+    bullet_errors = []
     fixed_count = 0
     checked = 0
 
@@ -453,6 +511,8 @@ def main():
             missing_funcs = check_function_docstrings(py_file)
             for line_no, name, node_type in missing_funcs:
                 func_errors.append((py_file, line_no, name, node_type))
+            for line_no in check_abutting_bullets(py_file):
+                bullet_errors.append((py_file, line_no))
             continue
 
         result = check_file(py_file)
@@ -465,6 +525,9 @@ def main():
 
         for line_no, _indent in check_args_format(py_file):
             args_errors.append((py_file, line_no))
+
+        for line_no in check_abutting_bullets(py_file):
+            bullet_errors.append((py_file, line_no))
 
         checked += 1
 
@@ -494,7 +557,15 @@ def main():
             print(f"  line {line_no}: {rel_path}")
         print(f"\nTotal: {len(args_errors)} 'Args:' sections")
 
-    if errors or func_errors or args_errors:
+    if bullet_errors:
+        print(f"\nFound {len(bullet_errors)} bullet lists abutting the "
+              f"previous docstring line:\n")
+        for filepath, line_no in sorted(bullet_errors, key=lambda x: str(x[0])):
+            rel_path = filepath.relative_to(ROOT)
+            print(f"  line {line_no}: {rel_path}")
+        print(f"\nTotal: {len(bullet_errors)} abutting bullet lists")
+
+    if errors or func_errors or args_errors or bullet_errors:
         print("\nValidation failed!")
         return 1
 
