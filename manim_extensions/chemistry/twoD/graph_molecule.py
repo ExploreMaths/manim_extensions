@@ -550,12 +550,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         Given two atoms index, returns the connected atoms to the second atom
         after the bond between the first atom and the second one.
 
-        Example:
-        Index: 0 1 2 3 4 5
-        Atoms: C-O-C-N-C-H
-        This function applied to atoms 2 (C) and 3 (N), would return
-        [3, 4, 5], the indices of atoms N, C and H.
-
         Parameters
         ----------
         from_atom_index : :class:`int`
@@ -573,6 +567,15 @@ class GraphMolecule(Graph, AbstractMolecule):
         Exception
             Raised when there is no bond between ``from_atom_index`` and
             ``to_atom_index``.
+
+        Examples
+        --------
+        Index: ``0 1 2 3 4 5``
+
+        Atoms: ``C-O-C-N-C-H``
+
+        This function applied to atoms ``2`` (C) and ``3`` (N), would return
+        ``[3, 4, 5]``, the indices of atoms N, C and H.
         """
         if not self._graph.has_edge(from_atom_index, to_atom_index):
             raise Exception(

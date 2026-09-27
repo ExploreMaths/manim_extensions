@@ -528,7 +528,9 @@ def flat_description_lines(doc: str) -> list:
     """
     lines = doc.splitlines()
     flagged = []
-    for _name, hpos in section_positions(doc):
+    for name, hpos in section_positions(doc):
+        if name not in STYLE_SECTIONS:
+            continue  # prose sections (Examples, Notes, ...) use free rst
         j = hpos + 2
         while j < len(lines) and not lines[j].strip():
             j += 1

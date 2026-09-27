@@ -1,70 +1,154 @@
 /* Notebook-style code cells (nbcell directive).
  *
- * HTML structure and class names mirror nbsphinx's rendered code cells
- * (https://nbsphinx.readthedocs.io/, MIT); the stylesheet itself is
- * adapted for the manim_extensions docs and the furo theme. */
+ * Adapted from nbsphinx's nbsphinx-code-cells.css
+ * (https://github.com/spatialaudio/nbsphinx, MIT license) for the
+ * manim_extensions docs; class names and layout mirror nbsphinx's
+ * rendered code cells. */
 
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
 div.nbinput.container,
 div.nboutput.container {
+    display: -webkit-flex;
     display: flex;
     align-items: flex-start;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
 }
 
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 11ex;
-    padding-top: 0.4rem;
-    padding-right: 0.4rem;
-    text-align: right;
-    font-family: var(--font-stack--monospace, monospace);
-    color: var(--color-foreground-secondary, #6e7781);
+    width: 7ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
 
-div.nbinput.container div.prompt .highlight,
-div.nboutput.container div.prompt .highlight {
-    background: transparent;
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
 }
 
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
+    overflow: hidden;
+    white-space: pre;
 }
 
-div.nbinput.container div.input_area {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid var(--color-background-border, #e1e4e8);
-    border-radius: 4px;
-    background: var(--color-background-secondary, #f6f8fa);
-    padding: 0.4em;
-}
-
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre {
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-
+/* input/output area */
+div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
+    -webkit-flex: 1;
     flex: 1;
-    min-width: 0;
-    padding-top: 0.4rem;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
 }
 
-div.nboutput.container div.output_area pre {
-    color: var(--color-foreground, #24292f);
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /* background: #f5f5f5; */
 }
 
-/* The literal_block fallback is only for non-HTML builders. */
-.nbcell-fallback {
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre {
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copy button overflow problem in chromium (sphinx_copybutton) */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight'] {
+    overflow-y: hidden;
+}
+
+/* hide copy button on prompts for sphinx_copybutton */
+.prompt .copybtn {
     display: none;
 }
