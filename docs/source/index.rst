@@ -17,6 +17,7 @@ What is in this package?
 The library is organised into two areas:
 
 **Core extensions** (``manim_extensions``)
+
     Additional mobjects and helpers built directly on top of Manim:
 
     * :class:`~manim_extensions.mobjects.ChineseMathTex` – Chinese-aware LaTeX
@@ -43,31 +44,34 @@ The library is organised into two areas:
       animations.
 
 **Bundled plugins**
+
     Several popular Manim plugins are included as subpackages,
     with full API documentation and attribution to the original authors:
 
-    * :doc:`reference/algorithm/index` – algorithm visualization toolkit.
-    * :doc:`reference/arabic/index` – Arabic text rendering helpers.
-    * :doc:`reference/automata/index` – finite-state, pushdown, and Turing automata.
-    * :doc:`reference/chemistry/index` – periodic table, molecules, orbitals, and Bohr atoms.
-    * :doc:`reference/circuit/index` – circuit elements and diagrams.
-    * :doc:`reference/compass/index` – compass-and-straightedge constructions.
-    * :doc:`reference/data_structures/index` – array and variable visualization.
-    * :doc:`reference/economics/index` – supply-demand, AD-AS, IS-LM, and Solow diagrams.
-    * :doc:`reference/fontawesome/index` – 2 000+ Font Awesome SVG icons.
-    * :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.
-    * :doc:`reference/machine_learning/index` – neural networks and decision tree diagrams.
-    * :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
-    * :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
-    * :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
-    * :doc:`reference/pymunk/index` – 2-D rigid-body physics simulation with Pymunk.
-    * :doc:`reference/qr_codes/index` – QR code generation with optional Nerd Font icons.
-    * :doc:`reference/rubikscube/index` – Rubik's cube mobject and animations.
-    * :doc:`reference/sequence_diagram/index` – UML sequence diagram helpers.
-    * :doc:`reference/svg_animations/index` – export scenes as interactive HTML/SVG animations.
-    * :doc:`reference/table/index` – animated database tables, rows, and cells.
-    * :doc:`reference/tikz/index` – TikZ diagram integration.
-    * :doc:`reference/weighted_line/index` – weighted line mobject with midpoint weight labels.
+    .. rst-class:: vendor-status
+
+    * :vstatus:`algorithm` :doc:`reference/algorithm/index` – algorithm visualization toolkit.
+    * :vstatus:`arabic` :doc:`reference/arabic/index` – Arabic text rendering helpers.
+    * :vstatus:`automata` :doc:`reference/automata/index` – finite-state, pushdown, and Turing automata.
+    * :vstatus:`chemistry` :doc:`reference/chemistry/index` – periodic table, molecules, orbitals, and Bohr atoms.
+    * :vstatus:`circuit` :doc:`reference/circuit/index` – circuit elements and diagrams.
+    * :vstatus:`compass` :doc:`reference/compass/index` – compass-and-straightedge constructions.
+    * :vstatus:`data_structures` :doc:`reference/data_structures/index` – array and variable visualization.
+    * :vstatus:`economics` :doc:`reference/economics/index` – supply-demand, AD-AS, IS-LM, and Solow diagrams.
+    * :vstatus:`fontawesome` :doc:`reference/fontawesome/index` – 2 000+ Font Awesome SVG icons.
+    * :vstatus:`gearbox` :doc:`reference/gearbox/index` – realistic involute gears and mechanisms.
+    * :vstatus:`machine_learning` :doc:`reference/machine_learning/index` – neural networks and decision tree diagrams.
+    * :vstatus:`meshes` :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
+    * :vstatus:`mindmap` :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
+    * :vstatus:`physics` :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
+    * :vstatus:`pymunk` :doc:`reference/pymunk/index` – 2-D rigid-body physics simulation with Pymunk.
+    * :vstatus:`qr_codes` :doc:`reference/qr_codes/index` – QR code generation with optional Nerd Font icons.
+    * :vstatus:`rubikscube` :doc:`reference/rubikscube/index` – Rubik's cube mobject and animations.
+    * :vstatus:`sequence_diagram` :doc:`reference/sequence_diagram/index` – UML sequence diagram helpers.
+    * :vstatus:`svg_animations` :doc:`reference/svg_animations/index` – export scenes as interactive HTML/SVG animations.
+    * :vstatus:`table` :doc:`reference/table/index` – animated database tables, rows, and cells.
+    * :vstatus:`tikz` :doc:`reference/tikz/index` – TikZ diagram integration.
+    * :vstatus:`weighted_line` :doc:`reference/weighted_line/index` – weighted line mobject with midpoint weight labels.
 
 Quick Links
 ===========
