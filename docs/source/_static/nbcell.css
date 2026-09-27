@@ -123,6 +123,18 @@ div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
+/* outputs: no inner padding at all, so the Out prompt sits flush with the
+ * first output line and the text keeps no side margins */
+div.nboutput.container div.output_area pre {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+div.nboutput.container div.prompt {
+    padding-top: 0;
+}
+
 /* a bit of breathing room between the input and output rows */
 div.nboutput.container {
     margin-top: 0.4em;
