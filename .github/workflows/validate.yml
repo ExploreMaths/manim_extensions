@@ -75,7 +75,7 @@ jobs:
       - uses: ./.github/actions/setup-manim-env
         with:
           # Examples construct MathTex/Text and import every extra, so
-          # mirror the full docs-media environment.
+          # mirror the full docs-cache environment.
           install-full-deps: "true"
       - name: Install package with all extras
         run: pip install ".[all]"

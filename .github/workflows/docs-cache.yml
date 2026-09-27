@@ -1,10 +1,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-name: Docs media
+name: Docs cache
 
 # Pre-render every .. manim:: doc example and push the media tree to the
-# `rtd-media` branch. Read the Docs fetches that branch before building so
+# `rtd-cache` branch. Read the Docs fetches that branch before building so
 # the Sphinx build reuses the media instead of rendering hundreds of
 # examples (which used to time the RTD build out). Rendering is
 # content-hash based, so unchanged examples are skipped on re-runs.
@@ -31,27 +31,27 @@ jobs:
     # Media rendering and the RTD trigger only happen for pushes/tags; the
     # daily schedule is handled by the vendored-cache job below.
     if: ${{ github.event_name != 'schedule' }}
-    # Serialize pushes to the rtd-media branch: each run does `git push -f`,
+    # Serialize pushes to the rtd-cache branch: each run does `git push -f`,
     # so concurrent runs (e.g. a fast sequence of commits to main) would
     # race and the last push wins, even if an earlier run rendered newer
     # media. Cancelling superseded runs avoids that race and saves CI
     # minutes. Scoped to this job so a scheduled vendored-cache run never
     # cancels (or gets cancelled by) a media render.
     concurrency:
-      group: docs-media
+      group: docs-cache
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Seed media cache from the rtd-media branch
+      - name: Seed docs cache from the rtd-cache branch
         run: |
-          git clone --depth 1 --branch rtd-media \
+          git clone --depth 1 --branch rtd-cache \
             "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" \
-            rtd-media-clone || { echo "No existing media cache; rendering from scratch."; exit 0; }
+            rtd-cache-clone || { echo "No existing media cache; rendering from scratch."; exit 0; }
           mkdir -p media_cache
-          cp -r rtd-media-clone/videos rtd-media-clone/images rtd-media-clone/manifest.json media_cache/ 2>/dev/null || true
-          cp rtd-media-clone/_nbcell_cache.json media_cache/ 2>/dev/null || true
+          cp -r rtd-cache-clone/videos rtd-cache-clone/images rtd-cache-clone/manifest.json media_cache/ 2>/dev/null || true
+          cp rtd-cache-clone/_nbcell_cache.json media_cache/ 2>/dev/null || true
 
       # Lightweight scan (no manim needed): if every example is already in
       # the cache at the requested quality, skip the whole render pipeline
@@ -84,14 +84,14 @@ jobs:
 
       - name: Execute nbcell examples (real outputs)
         # Runs every nbcell block and caches the real stdout next to the
-        # media; the Sphinx build (and Read the Docs, via the rtd-media
+        # media; the Sphinx build (and Read the Docs, via the rtd-cache
         # branch) prefers the cached output over the hand-written one.
         if: steps.needed.outputs.needed == 'true'
         run: python workflow/execute_nbcell_examples.py --out media_cache/_nbcell_cache.json
 
       - name: Refresh vendored status cache
         # Runs on every push too (not only on the daily schedule) so the
-        # rtd-media branch always carries a fresh cache when the RTD build
+        # rtd-cache branch always carries a fresh cache when the RTD build
         # is triggered below.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,7 +100,7 @@ jobs:
       - name: Include the vendored status cache in the media tree
         run: cp docs/source/_vendored_status_cache.json media_cache/_vendored_status_cache.json
 
-      - name: Push media to the rtd-media branch
+      - name: Push docs cache to the rtd-cache branch
         id: push
         run: |
           set -e
@@ -109,20 +109,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          git fetch --depth 1 origin rtd-media || true
-          git checkout -B rtd-media
+          git fetch --depth 1 origin rtd-cache || true
+          git checkout -B rtd-cache
           git add -A
           if git diff --cached --quiet; then
             echo "Media unchanged; nothing to push."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -q -m "docs media: refresh rendered examples"
-            git push -f origin rtd-media
+            git push -f origin rtd-cache
             echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
 
       # Trigger a Read the Docs build. Branch pushes: only after fresh media
-      # is on the rtd-media branch (no point rebuilding otherwise). Tag
+      # is on the rtd-cache branch (no point rebuilding otherwise). Tag
       # pushes: always — the tagged docs version must be built even when
       # the media cache is unchanged. Without the secret this is a no-op.
       - name: Trigger Read the Docs build
@@ -164,7 +164,7 @@ jobs:
             && echo "Read the Docs build triggered."
 
   # Daily refresh of the vendored-status cache between pushes. Kept in this
-  # workflow so the rtd-media branch has a single writer pipeline; this job
+  # workflow so the rtd-cache branch has a single writer pipeline; this job
   # deliberately does NOT trigger a Read the Docs build.
   vendored-cache:
     if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
@@ -178,8 +178,8 @@ jobs:
 
       - name: Fetch previous cache
         run: |
-          git fetch --depth 1 origin rtd-media || true
-          git show origin/rtd-media:_vendored_status_cache.json \
+          git fetch --depth 1 origin rtd-cache || true
+          git show origin/rtd-cache:_vendored_status_cache.json \
             > /tmp/old_cache.json 2>/dev/null || echo '{}' > /tmp/old_cache.json
 
       - name: Refresh cache
@@ -188,17 +188,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python workflow/update_vendored_status.py --old-cache /tmp/old_cache.json --summary /tmp/summary.txt
 
-      - name: Publish cache to the rtd-media branch
+      - name: Publish cache to the rtd-cache branch
         run: |
-          git clone --depth 1 --branch rtd-media \
+          git clone --depth 1 --branch rtd-cache \
             "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" \
-            rtd-media-clone
+            rtd-cache-clone
           cp docs/source/_vendored_status_cache.json \
-            rtd-media-clone/_vendored_status_cache.json
-          cd rtd-media-clone
+            rtd-cache-clone/_vendored_status_cache.json
+          cd rtd-cache-clone
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _vendored_status_cache.json
           git commit --allow-empty -m "$(cat /tmp/summary.txt)"
-          git pull --rebase origin rtd-media
-          git push origin rtd-media
+          git pull --rebase origin rtd-cache
+          git push origin rtd-cache
