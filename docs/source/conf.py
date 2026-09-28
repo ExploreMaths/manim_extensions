@@ -113,6 +113,11 @@ autodoc_typehints_format = "short"
 # copied text; the buttons themselves are hidden on prompts by nbcell.css.
 copybutton_exclude = ".linenos, .gp, .prompt"
 
+# myst-parser: generate heading anchors so that in-document links like
+# ``[text](#getting-started)`` resolve to local headings instead of
+# falling through to intersphinx (which can match unrelated labels).
+myst_heading_anchors = 3
+
 # sphinx_autodoc_typehints: emit short names with leading "~" so intersphinx
 # resolves them to :py:class: references displaying just the class name.
 typehints_fully_qualified = False
