@@ -1,12 +1,14 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Prepend a warning admonition to the docstring of any object decorated
-with :func:`typing.deprecated` / :func:`typing_extensions.deprecated`.
+"""Prepend a DeprecationWarning admonition to the docstring of any object
+decorated with :func:`~manim_extensions.utils.deprecation.deprecated`.
 
-The decorator stores its message on the object as ``__deprecated__``; this
-extension reads that attribute during the ``autodoc-process-docstring``
-event and inserts a ``.. warning::`` block at the top of the docstring.
+The decorator stores its (RST-formatted) message on the object as
+``__deprecated__``; this extension reads that attribute during the
+``autodoc-process-docstring`` event and inserts an
+``.. admonition:: DeprecationWarning`` block (styled as a warning) at the
+top of the docstring, rendering the message verbatim as RST.
 """
 
 from __future__ import annotations
@@ -24,7 +26,7 @@ def _prepend_deprecation_warning(app, what, name, obj, options, lines):
     if not msg:
         return
 
-    block = [".. warning::", ""]
+    block = [".. admonition:: DeprecationWarning", "   :class: warning", ""]
     for msg_line in str(msg).splitlines() or [""]:
         block.append(f"   {msg_line}" if msg_line else "")
     block.append("")
