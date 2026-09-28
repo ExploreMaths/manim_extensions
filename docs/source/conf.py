@@ -44,6 +44,7 @@ extensions = [
     "autodoc_all",
     "inheritance_colors",
     "autodoc_inheritance",
+    "deprecated_warning",
     "vendored_status",
 ]
 

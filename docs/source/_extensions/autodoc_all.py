@@ -101,68 +101,80 @@ def defining_dotted(module, name, obj):
 
 
 def _defined_top_level_names(module):
-    """Names bound at the module's top level by def/class/assignment.
+    """Names bound at the module's top level, in **source definition order**.
 
-    Complements the ``__module__`` heuristic in :func:`public_names`:
-    decorator-wrapped functions (e.g. click commands), classes rebuilt by
-    manim's ``ConvertToOpenGL`` metaclass, and instance constants (dicts,
-    loggers, type aliases) report a foreign or absent ``__module__`` even
-    though they are defined right here. Imports are excluded because only
-    Assign/AnnAssign/def/class statements are collected.
+    Returns a list (first occurrence wins) of names bound by ``def``/``class``/
+    assignment at the top level. Imports are excluded because only
+    Assign/AnnAssign/def/class statements are collected. The list both drives
+    the output order of :func:`public_names` and identifies names whose
+    ``__module__`` is foreign but which are defined here (decorator-wrapped
+    functions, manim's ``ConvertToOpenGL`` metaclass-rebuilt classes, instance
+    constants).
     """
     import ast
 
     path = getattr(module, "__file__", None)
     if not path or not str(path).endswith(".py"):
-        return set()
+        return []
     try:
         source = open(path, encoding="utf-8").read()
         tree = ast.parse(source)
     except (OSError, SyntaxError, UnicodeDecodeError):
-        return set()
-    names = set()
+        return []
+    names: list[str] = []
+    seen: set[str] = set()
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            names.add(node.name)
+            candidates = [node.name]
         elif isinstance(node, ast.Assign):
-            for target in node.targets:
-                if isinstance(target, ast.Name):
-                    names.add(target.id)
+            candidates = [t.id for t in node.targets if isinstance(t, ast.Name)]
         elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-            names.add(node.target.id)
+            candidates = [node.target.id]
+        else:
+            continue
+        for nm in candidates:
+            if nm not in seen:
+                seen.add(nm)
+                names.append(nm)
     return names
 
 
 def public_names(module):
     """Return ``(name, object)`` pairs for the module's public API.
 
-    ``__all__`` wins when defined; otherwise every name that is either
-    imported-from-nowhere (``__module__`` matches) or bound at the module's
-    top level (see :func:`_defined_top_level_names`). Submodules are never
-    included.
+    Order: ``__all__`` wins when defined (author order); otherwise names
+    appear in **source definition order** (from :func:`_defined_top_level_names`),
+    followed by any qualifying names discovered via ``dir()`` that are not in
+    the source (dynamically created or re-exported with a matching
+    ``__module__``). Submodules are never included.
     """
     if hasattr(module, "__all__"):
         candidates = list(module.__all__)
     else:
         defined = _defined_top_level_names(module)
-        candidates = [
-            n
-            for n in dir(module)
-            if not n.startswith("_")
-            and getattr(module, n).__class__ is not types.ModuleType
-            and (
-                getattr(getattr(module, n), "__module__", None) == module.__name__
-                or n in defined
-            )
-        ]
+        defined_set = set(defined)
+        candidates = list(defined)
+        for n in dir(module):
+            if n.startswith("_") or n in defined_set:
+                continue
+            obj = getattr(module, n, None)
+            if obj is None or isinstance(obj, types.ModuleType):
+                continue
+            if getattr(obj, "__module__", None) == module.__name__:
+                candidates.append(n)
+
     out = []
+    seen: set[str] = set()
     for name in candidates:
+        if name in seen or name.startswith("_"):
+            continue
         try:
             obj = getattr(module, name)
         except AttributeError:
             continue
-        if isinstance(obj, types.ModuleType) or name.startswith("_"):
+        if isinstance(obj, types.ModuleType):
             continue
+        seen.add(name)
         out.append((name, obj))
     return out
 
