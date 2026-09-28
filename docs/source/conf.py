@@ -226,6 +226,9 @@ autodoc_default_options["exclude-members"] = ",".join(sorted(_MANIM_MOBJECT_ATTR
 # ``autodoc_inherit_docstrings = False`` does not prevent this, because the
 # fallback happens before autodoc's own MRO walk. Clear the docstring only when
 # it matches the owning type's docstring, so ``#:`` source comments are kept.
+#
+# Priority 0 runs this handler before sphinx.ext.napoleon (priority 500), so
+# the lines are still the raw docstring and the string comparison matches.
 def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
     if what != "data" or isinstance(obj, type) or callable(obj):
         return
@@ -236,4 +239,8 @@ def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
 
 
 def setup(app):
-    app.connect("autodoc-process-docstring", _drop_inherited_instance_docstring)
+    app.connect(
+        "autodoc-process-docstring",
+        _drop_inherited_instance_docstring,
+        priority=0,
+    )
