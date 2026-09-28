@@ -217,3 +217,23 @@ _MANIM_MOBJECT_ATTRS = _manim_mobject_attribute_names()
 
 # Update autodoc defaults to hide inherited Manim attributes (e.g. background_stroke_color).
 autodoc_default_options["exclude-members"] = ",".join(sorted(_MANIM_MOBJECT_ATTRS))
+
+
+# -- autodoc: drop inherited class docstrings on instance constants -------------
+#
+# Instance constants (e.g. ``Zr = MCElement(...)``) cannot define their own
+# ``__doc__`` attribute; ``inspect.getdoc`` falls back to the class docstring.
+# ``autodoc_inherit_docstrings = False`` does not prevent this, because the
+# fallback happens before autodoc's own MRO walk. Clear the docstring only when
+# it matches the owning type's docstring, so ``#:`` source comments are kept.
+def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
+    if what != "data" or isinstance(obj, type) or callable(obj):
+        return
+    type_doc = inspect.getdoc(type(obj)) or ""
+    rendered = "\n".join(lines).strip()
+    if type_doc.strip() == rendered:
+        lines.clear()
+
+
+def setup(app):
+    app.connect("autodoc-process-docstring", _drop_inherited_instance_docstring)

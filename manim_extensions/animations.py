@@ -6,6 +6,8 @@
 
 from typing import Any
 
+from typing_extensions import deprecated
+
 from manim import (
     Animation,
     AnimationGroup,
@@ -118,6 +120,9 @@ import random
 # --- Rate functions ------------------------------------------------
 
 
+@deprecated(
+    "easeOutBounce is deprecated; use manim.rate_functions.ease_out_bounce instead.",
+)
 def easeOutBounce(t: float) -> float:
     """Bounce easing that starts fast and bounces as it approaches ``1``.
 
@@ -174,6 +179,9 @@ def easeOutBounce(t: float) -> float:
         return 7.5625 * c * c + 0.984375
 
 
+@deprecated(
+    "easeInBounce is deprecated; use manim.rate_functions.ease_in_bounce instead.",
+)
 def easeInBounce(t: float) -> float:
     """Bounce easing that accelerates into the bounce.
 
@@ -220,6 +228,9 @@ def easeInBounce(t: float) -> float:
     return 1 - easeOutBounce(1 - t)
 
 
+@deprecated(
+    "easeInOutBounce is deprecated; use manim.rate_functions.ease_in_out_bounce instead.",
+)
 def easeInOutBounce(t: float) -> float:
     """Mirrored ease-in/out bounce.
 
@@ -268,6 +279,9 @@ def easeInOutBounce(t: float) -> float:
     return easeOutBounce(2 * t - 1)
 
 
+@deprecated(
+    "easeOutElastic is deprecated; use manim.rate_functions.ease_out_elastic instead.",
+)
 def easeOutElastic(t: float) -> float:
     """Elastic easing that overshoots and oscillates towards ``1``.
 

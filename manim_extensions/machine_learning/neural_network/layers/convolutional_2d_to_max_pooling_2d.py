@@ -11,10 +11,10 @@ from manim import (
     AnimationGroup,
     Create,
     ManimColor,
-    Mobject,
     ORANGE,
     ReplacementTransform,
     Succession,
+    Uncreate,
     VGroup,
     Wait,
 )
@@ -25,41 +25,6 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .convolutional_2d import Convolutional2DLayer
 
 from ... import config
-
-
-class Uncreate(Create):
-    """Animation that uncreates a mobject by playing :class:`~manim.animation.creation.Create` in reverse.
-
-    Parameters
-    ----------
-    mobject : Mobject
-        The mobject to uncreate.
-    reverse_rate_function : bool, optional
-        Whether to reverse the rate function, by default True.
-    introducer : bool, optional
-        Whether the animation introduces the mobject into the scene, by default True.
-    remover : bool, optional
-        Whether the animation removes the mobject from the scene, by default True.
-    **kwargs
-        Forwarded to :class:`~manim.animation.creation.Create`.
-    """
-
-    def __init__(
-        self,
-        mobject: Mobject,
-        reverse_rate_function: bool = True,
-        introducer: bool = True,
-        remover: bool = True,
-        **kwargs,
-    ) -> None:
-        """Initialize the Uncreate animation by reversing a Create animation."""
-        super().__init__(
-            mobject,
-            reverse_rate_function=reverse_rate_function,
-            introducer=introducer,
-            remover=remover,
-            **kwargs,
-        )
 
 
 class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):

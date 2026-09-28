@@ -22,6 +22,7 @@ from manim import (
     Mobject,
     RED,
     Succession,
+    Uncreate,
     VGroup,
     override_animation,
 )
@@ -226,40 +227,6 @@ def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xli
     image_mobject = convert_matplotlib_figure_to_image_mobject(fig)
 
     return image_mobject
-
-class Uncreate(Create):
-    """Animation that uncreates a mobject by playing :class:`~manim.animation.creation.Create` in reverse.
-
-    Parameters
-    ----------
-    mobject : Mobject
-        The mobject to uncreate.
-    reverse_rate_function : bool, optional
-        Whether to reverse the rate function, by default True.
-    introducer : bool, optional
-        Whether the animation introduces the mobject into the scene, by default True.
-    remover : bool, optional
-        Whether the animation removes the mobject from the scene, by default True.
-    **kwargs
-        Forwarded to :class:`~manim.animation.creation.Create`.
-    """
-
-    def __init__(
-        self,
-        mobject: Mobject,
-        reverse_rate_function: bool = True,
-        introducer: bool = True,
-        remover: bool = True,
-        **kwargs,
-    ) -> None:
-        """Initialize the Uncreate animation by reversing a Create animation."""
-        super().__init__(
-            mobject,
-            reverse_rate_function=reverse_rate_function,
-            introducer=introducer,
-            remover=remover,
-            **kwargs,
-        )
 
 class MCMCAxes(Group):
     """Container object for visualizing MCMC on a 2D axis.

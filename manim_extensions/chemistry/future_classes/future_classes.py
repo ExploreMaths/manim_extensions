@@ -41,6 +41,8 @@ from manim import (
 )
 from typing import Any, Callable, Optional
 
+from typing_extensions import deprecated
+
 
 class Hole(VMobject):
     """A dashed circle representing a hole (absence of an electron).
@@ -860,6 +862,9 @@ def make_subpaths(group: Any):
     return group
 
 
+@deprecated(
+    "zero is deprecated; use manim.rate_functions.zero instead.",
+)
 def zero(function: Callable):
     """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
 
