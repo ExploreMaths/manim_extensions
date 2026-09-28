@@ -121,7 +121,7 @@ import random
 
 
 @deprecated(
-    "``easeOutBounce`` is deprecated; use :func:`manim.rate_functions.ease_out_bounce` instead.",
+    "``easeOutBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_bounce` instead.",
 )
 def easeOutBounce(t: float) -> float:
     """Bounce easing that starts fast and bounces as it approaches ``1``.
@@ -180,7 +180,7 @@ def easeOutBounce(t: float) -> float:
 
 
 @deprecated(
-    "``easeInBounce`` is deprecated; use :func:`manim.rate_functions.ease_in_bounce` instead.",
+    "``easeInBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_bounce` instead.",
 )
 def easeInBounce(t: float) -> float:
     """Bounce easing that accelerates into the bounce.
@@ -229,7 +229,7 @@ def easeInBounce(t: float) -> float:
 
 
 @deprecated(
-    "``easeInOutBounce`` is deprecated; use :func:`manim.rate_functions.ease_in_out_bounce` instead.",
+    "``easeInOutBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_out_bounce` instead.",
 )
 def easeInOutBounce(t: float) -> float:
     """Mirrored ease-in/out bounce.
@@ -280,7 +280,7 @@ def easeInOutBounce(t: float) -> float:
 
 
 @deprecated(
-    "``easeOutElastic`` is deprecated; use :func:`manim.rate_functions.ease_out_elastic` instead.",
+    "``easeOutElastic`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_elastic` instead.",
 )
 def easeOutElastic(t: float) -> float:
     """Elastic easing that overshoots and oscillates towards ``1``.

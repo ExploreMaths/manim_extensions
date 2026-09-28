@@ -863,7 +863,7 @@ def make_subpaths(group: Any):
 
 
 @deprecated(
-    "``zero`` is deprecated; use :func:`manim.rate_functions.zero` instead.",
+    "``zero`` is deprecated; use :func:`manim.utils.rate_functions.zero` instead.",
 )
 def zero(function: Callable):
     """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
