@@ -1,19 +1,19 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Patched :func:`deprecated` decorator.
+"""Patched :func:`~manim_extensions.utils.deprecation.deprecated` decorator.
 
 Drop-in replacement for :func:`typing_extensions.deprecated` that accepts a
 message written in **RST**. The RST markup is preserved on the decorated
 object's ``__deprecated__`` attribute (used by the Sphinx
 ``deprecated_warning`` extension to render a styled admonition), while the
-runtime :class:`DeprecationWarning` strips the inline markup so it stays
+runtime ``DeprecationWarning`` strips the inline markup so it stays
 readable on the console.
 
 Examples
 --------
 >>> from manim_extensions.utils.deprecation import deprecated
->>> @deprecated("``old`` is deprecated; use :func:`new` instead.")
+>>> @deprecated("``old`` is deprecated; use ``new`` instead.")
 ... def old():
 ...     pass
 """
@@ -46,13 +46,15 @@ def deprecated(msg: str, *args: Any, **kwargs: Any):
         Deprecation message. May contain RST inline markup (``:func:``
         roles, double-backtick code, ...) which is kept for the docs but
         stripped from the runtime warning.
-    *args, **kwargs
+    *args
+        Forwarded to :func:`typing_extensions.deprecated`.
+    **kwargs
         Forwarded to :func:`typing_extensions.deprecated`
         (``category``, ``stacklevel``).
     """
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 
-    def wrapper(obj):
+    def wrapper(obj: Any):
         decorated = outer(obj)
         # Restore the RST version for Sphinx (typing_extensions stored the
         # stripped one).
