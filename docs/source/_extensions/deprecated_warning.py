@@ -14,7 +14,13 @@ from __future__ import annotations
 
 def _prepend_deprecation_warning(app, what, name, obj, options, lines):
     """Insert a deprecation warning at the top of *lines* when applicable."""
-    msg = getattr(obj, "__deprecated__", None)
+    try:
+        msg = getattr(obj, "__deprecated__", None)
+    except Exception:
+        # Objects with a custom __getattr__ (e.g. manim_fontawesome's module
+        # __getattr__) may raise arbitrary exceptions (KeyError, ...) for
+        # unknown names instead of AttributeError. Treat as "not deprecated".
+        return
     if not msg:
         return
 
