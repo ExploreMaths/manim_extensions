@@ -4,6 +4,25 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+**Changed**
+
+* Changed the default character interval of
+  :class:`~manim_extensions.animations.TypeWriter` from ``2`` seconds to
+  ``0.1`` seconds. The old default stretched a typical line of text over
+  tens of seconds; every documentation example already overrode it.
+* :class:`~manim_extensions.mobjects.ChineseMathTex` now defaults
+  ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
+  so instances no longer risk mutating each other's colour map.
+
+**Removed**
+
+* Removed the ``[tool.flake8]`` section from ``pyproject.toml``. Flake8
+  does not read ``pyproject.toml``; the section was dead configuration,
+  and CI passes every flake8 option on the command line.
+
 v1.0.5 :bdg-success-line:`Latest`
 ---------------------------------
 
