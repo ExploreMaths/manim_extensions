@@ -112,7 +112,7 @@ class ChineseMathTex(MathTex):
         self,
         *texts: str,
         font: str = DEFAULT_CJK_FONT,
-        tex_to_color_map: Optional[dict] = None,
+        tex_to_color_map: Optional[dict[str, ParsableManimColor]] = None,
         **kwargs,
     ) -> None:
         """Initialize the ChineseMathTex instance."""
