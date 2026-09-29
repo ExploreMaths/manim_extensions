@@ -82,7 +82,10 @@ pytest tests/ -v
 
 - **Every function and method parameter must have a type annotation**, except `self`, `cls`, `*args`, and `**kwargs`.
 - Return annotations are strongly encouraged; a non-`None` return annotation requires a `Returns` (or `Yields`) docstring section (see [Docstrings](#docstrings)).
-- `mypy --strict` is configured in `pyproject.toml`.
+- `mypy --strict` is configured in `pyproject.toml` for local type checking,
+  but it is **not currently enforced in CI**, and the codebase does not pass
+  it (mostly `type-arg` / `no-untyped-def` noise in vendored modules). Run
+  it locally as advisory only.
 
 ### Imports
 
