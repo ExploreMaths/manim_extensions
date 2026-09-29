@@ -79,7 +79,8 @@ class ChineseMathTex(MathTex):
     font : str, optional
         Name of the Chinese font to use. Defaults to ``"SimSun"``.
     tex_to_color_map : dict, optional
-        Mapping from text substrings to colours. Defaults to ``{}``.
+        Mapping from text substrings to colours. Defaults to ``None``
+        (no colouring).
     tex_template : :class:`~manim.utils.tex.TexTemplate`, optional
         Custom TeX template to build on. When provided, its preamble,
         documentclass, and post-document commands are preserved; only the
@@ -111,10 +112,12 @@ class ChineseMathTex(MathTex):
         self,
         *texts: str,
         font: str = DEFAULT_CJK_FONT,
-        tex_to_color_map: dict = {},
+        tex_to_color_map: Optional[dict] = None,
         **kwargs,
     ) -> None:
         """Initialize the ChineseMathTex instance."""
+        if tex_to_color_map is None:
+            tex_to_color_map = {}
         user_template = kwargs.pop("tex_template", None)
         if user_template is not None:
             # Reuse the user's template (preamble, documentclass, etc.) but
