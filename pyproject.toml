@@ -176,13 +176,3 @@ module = [
 ]
 ignore_missing_imports = true
 
-[tool.flake8]
-per-file-ignores = [
-    ["**/__init__.py", "F401 F403"],
-]
-exclude = [
-    "docs",
-    "tests",
-    "*.egg-info",
-    "build",
-]
