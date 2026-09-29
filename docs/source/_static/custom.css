@@ -94,7 +94,7 @@ h4, h5, h6{
 }
 
 code.literal {
-    font-size: 100%;
+    font-size: 95%;
 }
 
 /* yikes-ish attempt at bugfix for navbar on some browsers */
