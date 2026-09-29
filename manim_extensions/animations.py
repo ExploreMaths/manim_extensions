@@ -54,7 +54,7 @@ class TypeWriter(Animation):
         The :class:`~manim.mobject.text.text_mobject.Text` object to animate.
     interval : float, optional
         Display interval between consecutive characters in seconds.
-        Defaults to ``2``.
+        Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -81,7 +81,7 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 2, **kwargs: Any) -> None:
+    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any) -> None:
         """Initialize the TypeWriter instance."""
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
