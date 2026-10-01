@@ -1,33 +1,35 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Sync vendored modules from upstream, preserving local annotations and docstrings.
+"""Sync vendored modules from upstream, preserving local patches.
 
 For every module listed in ``VENDORED.md`` this script:
 
-1. Clones the upstream repository at the recorded sync commit (or a ref
-   supplied via ``--ref``).
+1. Clones the upstream repository and fetches both the *recorded* sync
+   commit (the merge base) and the *target* ref supplied via ``--ref``
+   (defaults to the recorded commit, i.e. a no-op check).
 2. Maps each local ``.py`` file to its upstream counterpart by relative
    path inside the module directory.
-3. Merges each matching file:
-   - the local **signature** (parameter list with type annotations and
-     the return annotation) is kept;
-   - the local **docstring** is kept;
-   - the upstream **function body** is taken (bug fixes / new logic).
-   When a function's parameter names differ between local and upstream
-   the function is left untouched and the change is reported for manual
-   review.
-4. Reports API surface changes (added / removed functions, methods,
-   classes and parameters) as a human-readable summary and a machine
-   readable JSON file.
+3. Runs a **three-way merge** of every matching file:
 
-The file header (SPDX tags, module docstring), imports and module-level
-statements are always taken from the local copy — upstream star imports
-and other style differences are intentionally not reintroduced.
+   - *base* = upstream at the recorded commit
+   - *ours* = the current local file (with all local patches: SPDX
+     headers, explicit imports, type annotations, numpydoc docstrings,
+     bug fixes)
+   - *theirs* = upstream at the target ref
+
+   Regions changed by only one side merge cleanly; regions changed by
+   both sides are left as conflict markers and reported for manual
+   resolution.  No local patch is ever silently overwritten.
+4. Reports API surface changes (added / removed functions, methods,
+   classes and parameters) by comparing the local AST against upstream.
+
+Files that exist only upstream or only locally are reported but never
+created or deleted automatically.
 
 Usage::
 
-    python workflow/sync_vendored.py                        # all modules, recorded refs
+    python workflow/sync_vendored.py                        # all modules, recorded refs (check)
     python workflow/sync_vendored.py --module algorithm      # one module only
     python workflow/sync_vendored.py --module algorithm --ref main
     python workflow/sync_vendored.py --dry-run               # report only, no writes
@@ -44,13 +46,10 @@ import sys
 import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "VENDORED.md"
 REPORT_JSON = ROOT / "workflow" / "_sync_report.json"
-
-GITHUB_API = "https://api.github.com"
 
 
 # ---------------------------------------------------------------------------
@@ -74,8 +73,6 @@ def parse_registry() -> list[VendoredEntry]:
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) < 3 or cells[0].startswith("Local module"):
             continue
-        # Local module cell may list multiple files joined by ", " — take
-        # the first directory-style entry for sync purposes.
         local = cells[0].strip("`").split(",")[0].strip()
         if not local.startswith("manim_extensions/"):
             continue
@@ -93,35 +90,40 @@ def parse_registry() -> list[VendoredEntry]:
 # ---------------------------------------------------------------------------
 
 
-def clone_upstream(slug: str, ref: str, dest: Path) -> None:
-    """Shallow-clone *slug* at *ref* into *dest*."""
+def clone_upstream(slug: str, refs: list[str], dest: Path) -> dict[str, str]:
+    """Clone *slug* and fetch every ref in *refs* (shallow).
+
+    Returns ``{ref: resolved_sha}`` so callers can address each fetched
+    revision unambiguously (``FETCH_HEAD`` only keeps the last one).
+    """
     url = f"https://github.com/{slug}.git"
     if dest.exists():
         import shutil
 
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
-    # Fetch the ref explicitly so commit SHAs work with shallow clones.
-    subprocess.run(
-        ["git", "init", "-q", str(dest)],
-        check=True,
-    )
-    subprocess.run(
-        ["git", "-C", str(dest), "remote", "add", "origin", url],
-        check=True,
-    )
-    subprocess.run(
-        ["git", "-C", str(dest), "fetch", "-q", "--depth", "1", "origin", ref],
-        check=True,
-    )
-    subprocess.run(
-        ["git", "-C", str(dest), "checkout", "-q", "FETCH_HEAD"],
-        check=True,
-    )
+    subprocess.run(["git", "init", "-q", str(dest)], check=True)
+    subprocess.run(["git", "-C", str(dest), "remote", "add", "origin", url], check=True)
+    shas: dict[str, str] = {}
+    for ref in refs:
+        if not ref:
+            continue
+        subprocess.run(
+            ["git", "-C", str(dest), "fetch", "-q", "--depth", "1", "origin", ref],
+            check=True,
+        )
+        sha = subprocess.run(
+            ["git", "-C", str(dest), "rev-parse", "FETCH_HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+        shas[ref] = sha
+    return shas
 
 
-def detect_upstream_subdir(upstream_root: Path, local_module: Path) -> Path:
-    """Find the upstream subdirectory whose file layout best matches local."""
+def detect_upstream_subdir(upstream_root: Path, sha: str, local_module: Path) -> Path:
+    """Find the upstream subdirectory (at *sha*) whose layout best matches local."""
     local_files = {
         p.relative_to(local_module).as_posix()
         for p in local_module.rglob("*.py")
@@ -130,30 +132,50 @@ def detect_upstream_subdir(upstream_root: Path, local_module: Path) -> Path:
     if not local_files:
         return upstream_root
 
-    best: tuple[int, Path] = (0, upstream_root)
-    for candidate in [upstream_root, *upstream_root.rglob("*")]:
-        if not candidate.is_dir():
-            continue
-        if ".git" in candidate.parts:
-            continue
-        upstream_files = {
-            p.relative_to(candidate).as_posix()
-            for p in candidate.rglob("*.py")
-            if "__pycache__" not in str(p)
-        }
-        overlap = len(local_files & upstream_files)
+    result = subprocess.run(
+        ["git", "-C", str(upstream_root), "ls-tree", "-r", "--name-only", sha],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    upstream_files = {
+        line for line in result.stdout.splitlines() if line.endswith(".py")
+    }
+
+    best: tuple[int, str] = (0, "")
+    # Try the repo root first, then every directory prefix that appears.
+    candidates = {""}
+    for f in upstream_files:
+        parts = f.split("/")
+        for i in range(1, len(parts)):
+            candidates.add("/".join(parts[:i]))
+    for candidate in candidates:
+        prefix = candidate + "/" if candidate else ""
+        overlap = sum(1 for f in local_files if (prefix + f) in upstream_files)
         if overlap > best[0]:
             best = (overlap, candidate)
-    return best[1]
+    return upstream_root / best[1] if best[1] else upstream_root
+
+
+def git_show(repo: Path, sha: str, path: str) -> str | None:
+    """Return the contents of *path* at *sha*, or None if absent."""
+    result = subprocess.run(
+        ["git", "-C", str(repo), "show", f"{sha}:{path}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return None
+    return result.stdout
 
 
 # ---------------------------------------------------------------------------
-# AST helpers
+# AST helpers (API change detection)
 # ---------------------------------------------------------------------------
 
 
 def _qualified_name(node: ast.AST, prefix: str = "") -> str:
-    """Return a dotted name for a class/function node under *prefix*."""
     name = getattr(node, "name", "")
     return f"{prefix}.{name}" if prefix else name
 
@@ -161,8 +183,7 @@ def _qualified_name(node: ast.AST, prefix: str = "") -> str:
 def collect_functions(
     tree: ast.AST,
 ) -> dict[str, ast.FunctionDef | ast.AsyncFunctionDef]:
-    """Map dotted qualified name -> function node (module + class methods)."""
-    result: dict[str, Any] = {}
+    result: dict[str, object] = {}
 
     def visit(node: ast.AST, prefix: str = "") -> None:
         for child in ast.iter_child_nodes(node):
@@ -171,8 +192,7 @@ def collect_functions(
                 result[qn] = child
                 visit(child, qn)
             elif isinstance(child, ast.ClassDef):
-                qn = _qualified_name(child, prefix)
-                visit(child, qn)
+                visit(child, _qualified_name(child, prefix))
             else:
                 visit(child, prefix)
 
@@ -195,7 +215,6 @@ def collect_classes(tree: ast.AST) -> dict[str, ast.ClassDef]:
 
 
 def param_names(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list[str]:
-    """Return parameter names in declaration order (excluding self/cls)."""
     args = node.args
     names: list[str] = []
     names.extend(a.arg for a in args.posonlyargs)
@@ -212,7 +231,6 @@ def signature_diff(
     local: ast.FunctionDef | ast.AsyncFunctionDef,
     upstream: ast.FunctionDef | ast.AsyncFunctionDef,
 ) -> dict[str, list[str]]:
-    """Compare parameter sets; return added/removed parameter names."""
     lp = param_names(local)
     up = param_names(upstream)
     return {
@@ -221,193 +239,94 @@ def signature_diff(
     }
 
 
-# ---------------------------------------------------------------------------
-# Text-level merge
-# ---------------------------------------------------------------------------
-
-
-def _find_def_line(lines: list[str], node: ast.AST) -> int:
-    """1-based line number of the ``def``/``async def`` keyword."""
-    start = node.lineno - 1
-    for i in range(start, min(start + 20, len(lines))):
-        stripped = lines[i].lstrip()
-        if stripped.startswith(("def ", "async def ")):
-            return i + 1
-    return node.lineno
-
-
-def _docstring_node(node: ast.AST) -> ast.Expr | None:
-    """Return the docstring expression node if the first stmt is a string."""
-    body = getattr(node, "body", [])
-    if not body:
-        return None
-    first = body[0]
-    if (
-        isinstance(first, ast.Expr)
-        and isinstance(first.value, ast.Constant)
-        and isinstance(first.value.value, str)
-    ):
-        return first
-    return None
-
-
-def _body_start_line(node: ast.AST, lines: list[str]) -> int:
-    """1-based line number where the function body begins (after docstring)."""
-    doc = _docstring_node(node)
-    if doc is not None:
-        return doc.end_lineno + 1
-    # No docstring: scan forward from the def line for the line ending with ':'.
-    def_line = _find_def_line(lines, node) - 1
-    for i in range(def_line, min(def_line + 40, len(lines))):
-        if lines[i].rstrip().endswith(":"):
-            return i + 2  # body starts on the next line
-    return node.lineno + 1
-
-
-def _reindent(text: str, target_indent: int) -> str:
-    """Re-indent *text* (a block of code) so its first non-blank line has *target_indent* spaces."""
-    src_lines = text.splitlines(keepends=True)
-    if not src_lines:
-        return text
-    current_indent = 0
-    for ln in src_lines:
-        if ln.strip():
-            current_indent = len(ln) - len(ln.lstrip(" "))
-            break
-    delta = target_indent - current_indent
-    if delta == 0:
-        return text
-    out = []
-    for ln in src_lines:
-        if ln.strip() == "":
-            out.append("\n" if ln.endswith("\n") else "")
-            continue
-        if delta > 0:
-            out.append(" " * delta + ln)
-        else:
-            stripped = ln.lstrip(" ")
-            out.append(" " * max(0, len(ln) - len(stripped) + delta) + stripped)
-    return "".join(out)
-
-
-def merge_file(local_path: Path, upstream_path: Path) -> tuple[str, list[dict]]:
-    """Merge *upstream_path* into *local_path*.
-
-    Returns ``(merged_text, changes)`` where *changes* is a list of API
-    change records for this file.
-    """
-    local_src = local_path.read_text(encoding="utf-8")
-    upstream_src = upstream_path.read_text(encoding="utf-8")
-
+def detect_api_changes(local_src: str, upstream_src: str, file_rel: str) -> list[dict]:
+    """Compare local and upstream ASTs; return API change records."""
+    changes: list[dict] = []
     try:
         local_tree = ast.parse(local_src)
         upstream_tree = ast.parse(upstream_src)
     except SyntaxError:
-        return local_src, [{"type": "parse_error", "file": str(local_path)}]
+        return [{"type": "parse_error", "file": file_rel}]
 
     local_funcs = collect_functions(local_tree)
     upstream_funcs = collect_functions(upstream_tree)
 
-    changes: list[dict] = []
-    # We collect body swaps as (start_line, end_line, replacement_text)
-    # using 1-based, inclusive line numbers on the LOCAL file.
-    swaps: list[tuple[int, int, str]] = []
-
-    local_lines = local_src.splitlines(keepends=True)
-    upstream_lines = upstream_src.splitlines(keepends=True)
-
-    # --- functions present in both ---
     for qn, up_node in upstream_funcs.items():
         if qn not in local_funcs:
-            changes.append(
-                {
-                    "type": "added",
-                    "file": str(local_path.relative_to(ROOT)),
-                    "name": qn,
-                }
-            )
+            changes.append({"type": "added", "file": file_rel, "name": qn})
             continue
-        loc_node = local_funcs[qn]
-        diff = signature_diff(loc_node, up_node)
+        diff = signature_diff(local_funcs[qn], up_node)
         if diff["added"] or diff["removed"]:
             changes.append(
                 {
                     "type": "signature_changed",
-                    "file": str(local_path.relative_to(ROOT)),
+                    "file": file_rel,
                     "name": qn,
                     "added_params": diff["added"],
                     "removed_params": diff["removed"],
                 }
             )
-            continue  # leave local untouched for manual review
 
-        # Same parameter names: take upstream body, keep local signature + docstring.
-        loc_body_start = _body_start_line(loc_node, local_lines)
-        loc_body_end = loc_node.end_lineno  # inclusive
-        up_body_start = _body_start_line(up_node, upstream_lines)
-        up_body_end = up_node.end_lineno  # inclusive
-
-        if up_body_start > up_body_end:
-            # Upstream function has no body (e.g. "pass" only, or docstring-only).
-            upstream_body = ""
-        else:
-            upstream_body = "".join(upstream_lines[up_body_start - 1 : up_body_end])
-
-        # Determine local body indentation from the first non-blank body line.
-        local_indent = 4
-        for ln_idx in range(loc_body_start - 1, min(loc_body_end, len(local_lines))):
-            candidate = local_lines[ln_idx]
-            if candidate.strip():
-                local_indent = len(candidate) - len(candidate.lstrip(" "))
-                break
-
-        if upstream_body.strip():
-            replacement = _reindent(upstream_body, local_indent)
-        else:
-            replacement = ""
-
-        swaps.append((loc_body_start, loc_body_end, replacement))
-
-    # --- functions only in local (removed upstream) ---
     for qn in local_funcs:
         if qn not in upstream_funcs:
-            changes.append(
-                {
-                    "type": "removed",
-                    "file": str(local_path.relative_to(ROOT)),
-                    "name": qn,
-                }
-            )
+            changes.append({"type": "removed", "file": file_rel, "name": qn})
 
-    # --- class-level changes (added / removed) ---
     local_classes = collect_classes(local_tree)
     upstream_classes = collect_classes(upstream_tree)
     for qn in upstream_classes:
         if qn not in local_classes:
-            changes.append(
-                {
-                    "type": "class_added",
-                    "file": str(local_path.relative_to(ROOT)),
-                    "name": qn,
-                }
-            )
+            changes.append({"type": "class_added", "file": file_rel, "name": qn})
     for qn in local_classes:
         if qn not in upstream_classes:
-            changes.append(
-                {
-                    "type": "class_removed",
-                    "file": str(local_path.relative_to(ROOT)),
-                    "name": qn,
-                }
-            )
+            changes.append({"type": "class_removed", "file": file_rel, "name": qn})
 
-    # --- apply swaps from bottom to top so line numbers stay valid ---
-    swaps.sort(key=lambda s: s[0], reverse=True)
-    for start, end, repl in swaps:
-        # Convert to 0-based slice
-        local_lines[start - 1 : end] = [repl] if repl else []
+    return changes
 
-    return "".join(local_lines), changes
+
+# ---------------------------------------------------------------------------
+# Three-way merge
+# ---------------------------------------------------------------------------
+
+_CONFLICT_RE = re.compile(r"^(<<<<<<<|=======|>>>>>>>)", re.MULTILINE)
+
+
+def has_conflicts(text: str) -> bool:
+    return bool(_CONFLICT_RE.search(text))
+
+
+def three_way_merge(local_path: Path, base: str, theirs: str) -> tuple[str, bool]:
+    """Merge *theirs* into *local_path* using *base* as the common ancestor.
+
+    Returns ``(merged_text, had_conflicts)``.
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        base_path = Path(tmp) / "base.py"
+        theirs_path = Path(tmp) / "theirs.py"
+        merged_path = Path(tmp) / "merged.py"
+        base_path.write_text(base, encoding="utf-8")
+        theirs_path.write_text(theirs, encoding="utf-8")
+        merged_path.write_text(local_path.read_text(encoding="utf-8"))
+
+        subprocess.run(
+            [
+                "git",
+                "merge-file",
+                "-L",
+                "local",
+                "-L",
+                "base",
+                "-L",
+                "upstream",
+                str(merged_path),
+                str(base_path),
+                str(theirs_path),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        merged = merged_path.read_text(encoding="utf-8")
+        return merged, has_conflicts(merged)
 
 
 # ---------------------------------------------------------------------------
@@ -419,9 +338,11 @@ def merge_file(local_path: Path, upstream_path: Path) -> tuple[str, list[dict]]:
 class ModuleReport:
     module: str
     repo: str
-    ref: str
+    base_ref: str
+    target_ref: str
     upstream_subdir: str = ""
     files_merged: list[str] = field(default_factory=list)
+    files_conflict: list[str] = field(default_factory=list)
     files_missing_upstream: list[str] = field(default_factory=list)
     files_new_upstream: list[str] = field(default_factory=list)
     changes: list[dict] = field(default_factory=list)
@@ -431,62 +352,124 @@ def sync_module(
     entry: VendoredEntry, target_ref: str | None, dry_run: bool
 ) -> ModuleReport:
     repo = entry.repo_slug
-    ref = target_ref or entry.sync_ref or "HEAD"
-    report = ModuleReport(entry.local_module, repo, ref)
+    base_ref = entry.sync_ref
+    their_ref = target_ref or base_ref or "HEAD"
+    report = ModuleReport(entry.local_module, repo, base_ref, their_ref)
 
     local_module = ROOT / entry.local_module
     if not local_module.exists():
         report.changes.append({"type": "module_missing", "module": entry.local_module})
         return report
 
+    refs_to_fetch = [r for r in dict.fromkeys([base_ref, their_ref]) if r]
     with tempfile.TemporaryDirectory() as tmp:
         upstream_root = Path(tmp) / "upstream"
         try:
-            clone_upstream(repo, ref, upstream_root)
+            shas = clone_upstream(repo, refs_to_fetch, upstream_root)
         except subprocess.CalledProcessError as exc:
             report.changes.append(
                 {
                     "type": "clone_failed",
                     "repo": repo,
-                    "ref": ref,
+                    "ref": their_ref,
                     "error": str(exc),
                 }
             )
             return report
 
-        subdir = detect_upstream_subdir(upstream_root, local_module)
-        report.upstream_subdir = str(subdir.relative_to(upstream_root))
+        base_sha = shas.get(base_ref, "")
+        their_sha = shas.get(their_ref, "")
+        if not their_sha:
+            report.changes.append(
+                {
+                    "type": "clone_failed",
+                    "repo": repo,
+                    "ref": their_ref,
+                    "error": "could not resolve target ref",
+                }
+            )
+            return report
+
+        subdir = detect_upstream_subdir(upstream_root, their_sha, local_module)
+        subdir_rel = (
+            str(subdir.relative_to(upstream_root)) if subdir != upstream_root else ""
+        )
+        report.upstream_subdir = subdir_rel
 
         local_files = {
             p.relative_to(local_module).as_posix()
             for p in local_module.rglob("*.py")
             if "__pycache__" not in str(p)
-            and not p.name.startswith("_")
-            and p.name != "__init__.py"
-        }
-        # include __init__.py files explicitly
-        local_files |= {
-            p.relative_to(local_module).as_posix()
-            for p in local_module.rglob("__init__.py")
         }
 
+        result = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(upstream_root),
+                "ls-tree",
+                "-r",
+                "--name-only",
+                their_sha,
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
         upstream_files = {
-            p.relative_to(subdir).as_posix()
-            for p in subdir.rglob("*.py")
-            if "__pycache__" not in str(p)
+            line[len(subdir_rel) + 1 :] if subdir_rel else line
+            for line in result.stdout.splitlines()
+            if line.endswith(".py")
+            and (not subdir_rel or line.startswith(subdir_rel + "/"))
         }
 
         for rel in sorted(local_files):
             local_path = local_module / rel
-            upstream_path = subdir / rel
-            if not upstream_path.exists():
+            up_path = f"{subdir_rel}/{rel}" if subdir_rel else rel
+
+            base = git_show(upstream_root, base_sha, up_path) if base_sha else None
+            theirs = git_show(upstream_root, their_sha, up_path)
+
+            if theirs is None:
                 report.files_missing_upstream.append(rel)
                 continue
-            merged, changes = merge_file(local_path, upstream_path)
-            report.changes.extend(changes)
-            report.files_merged.append(rel)
+
+            # API change detection: local vs upstream (theirs).
+            report.changes.extend(
+                detect_api_changes(local_path.read_text(encoding="utf-8"), theirs, rel)
+            )
+
+            if base is None:
+                # No recorded base — cannot 3-way merge; report only.
+                report.changes.append(
+                    {
+                        "type": "no_base",
+                        "file": rel,
+                        "note": "no recorded sync commit; manual diff required",
+                    }
+                )
+                continue
+
+            if base == theirs:
+                # Upstream unchanged since recorded commit.
+                continue
+
+            merged, conflicted = three_way_merge(local_path, base, theirs)
+            if conflicted:
+                report.files_conflict.append(rel)
+                report.changes.append(
+                    {
+                        "type": "merge_conflict",
+                        "file": rel,
+                        "note": "conflict markers present; resolve manually",
+                    }
+                )
+                # Do NOT write a conflicted file — keep local as-is.
+                continue
+
             if not dry_run and merged != local_path.read_text(encoding="utf-8"):
                 local_path.write_text(merged, encoding="utf-8")
+            report.files_merged.append(rel)
 
         for rel in sorted(upstream_files - local_files):
             report.files_new_upstream.append(rel)
@@ -505,9 +488,13 @@ def print_summary(reports: list[ModuleReport]) -> None:
                 f"\n[{r.module}]  {len(r.files_merged)} file(s) merged — no API changes"
             )
             continue
-        print(f"\n[{r.module}]  {r.repo} @ {r.ref}")
+        print(
+            f"\n[{r.module}]  {r.repo} @ {r.target_ref} (base {r.base_ref or 'none'})"
+        )
         if r.files_merged:
             print(f"  merged {len(r.files_merged)} file(s)")
+        for rel in r.files_conflict:
+            print(f"  ! CONFLICT:         {rel}")
         for rel in r.files_new_upstream:
             print(f"  NEW FILE (upstream): {rel}")
         for rel in r.files_missing_upstream:
@@ -521,13 +508,13 @@ def print_summary(reports: list[ModuleReport]) -> None:
             elif t == "signature_changed":
                 added = ", ".join(c.get("added_params", []))
                 removed = ", ".join(c.get("removed_params", []))
-                print(
-                    f"  ~ signature change: {c['name']}  " f"(+[{added}] -[{removed}])"
-                )
+                print(f"  ~ signature change: {c['name']}  (+[{added}] -[{removed}])")
             elif t == "class_added":
                 print(f"  + added class:      {c['name']}")
             elif t == "class_removed":
                 print(f"  - removed class:    {c['name']}")
+            elif t == "merge_conflict":
+                pass  # already printed above
             elif t == "clone_failed":
                 print(
                     f"  ! clone failed:     {c['repo']} @ {c['ref']}: {c.get('error')}"
@@ -536,14 +523,14 @@ def print_summary(reports: list[ModuleReport]) -> None:
                 print(f"  ! module missing locally: {c['module']}")
             elif t == "parse_error":
                 print(f"  ! parse error: {c.get('file')}")
+            elif t == "no_base":
+                print(f"  ~ no base recorded: {c['file']} ({c.get('note')})")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--module",
-        default=None,
-        help="sync only this module (e.g. 'algorithm')",
+        "--module", default=None, help="sync only this module (e.g. 'algorithm')"
     )
     parser.add_argument(
         "--ref",
@@ -551,9 +538,7 @@ def main() -> int:
         help="upstream ref to sync to (default: recorded commit in VENDORED.md)",
     )
     parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="report changes without writing files",
+        "--dry-run", action="store_true", help="report changes without writing files"
     )
     parser.add_argument(
         "--report",
@@ -577,7 +562,6 @@ def main() -> int:
 
     print_summary(reports)
 
-    # Write JSON report
     report_data = {
         "generated": __import__("datetime").datetime.now().isoformat(),
         "ref_overrides": args.ref,
@@ -586,9 +570,11 @@ def main() -> int:
             {
                 "module": r.module,
                 "repo": r.repo,
-                "ref": r.ref,
+                "base_ref": r.base_ref,
+                "target_ref": r.target_ref,
                 "upstream_subdir": r.upstream_subdir,
                 "files_merged": r.files_merged,
+                "files_conflict": r.files_conflict,
                 "files_new_upstream": r.files_new_upstream,
                 "files_missing_upstream": r.files_missing_upstream,
                 "changes": r.changes,
