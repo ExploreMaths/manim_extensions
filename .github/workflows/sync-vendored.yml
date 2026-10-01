@@ -1,0 +1,111 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+name: Sync vendored
+
+# Manually triggered workflow to sync one or all vendored modules from
+# their upstream repositories. The sync script pulls upstream code,
+# preserves local type annotations and docstrings, and reports every API
+# surface change (added / removed functions, methods, classes, and
+# parameters) for manual review.
+#
+# When files change, this workflow pushes them to a dedicated branch and
+# opens a pull request whose body contains the human-readable change
+# summary. Review the diff (especially the reported signature changes),
+# resolve anything the script could not merge automatically, and merge.
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: "Module to sync (e.g. 'algorithm'). Leave empty to sync all modules."
+        required: false
+        default: ""
+      ref:
+        description: "Upstream ref (commit / tag / branch). Leave empty to use the recorded commit in VENDORED.md."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run vendored sync
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          ARGS=""
+          if [ -n "${{ inputs.module }}" ]; then
+            ARGS="$ARGS --module ${{ inputs.module }}"
+          fi
+          if [ -n "${{ inputs.ref }}" ]; then
+            ARGS="$ARGS --ref ${{ inputs.ref }}"
+          fi
+          python workflow/sync_vendored.py $ARGS --report /tmp/sync_report.json 2>&1 | tee /tmp/sync_output.txt
+          # Capture the summary section for the PR body.
+          awk '/^SYNC SUMMARY/{flag=1} flag' /tmp/sync_output.txt > /tmp/sync_summary.txt || true
+          {
+            echo "summary<<SUMMARY_EOF"
+            cat /tmp/sync_summary.txt
+            echo "SUMMARY_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No file changes detected."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected."
+          fi
+
+      - name: Create pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-vendored
+          delete-branch: true
+          title: "chore: sync vendored modules from upstream"
+          body: |
+            Automated vendored sync.
+
+            ## Change summary
+
+            ```
+            ${{ steps.sync.outputs.summary }}
+            ```
+
+            ## Review checklist
+
+            - [ ] Signature changes (marked with `~`) were reviewed and resolved manually.
+            - [ ] Added functions / classes (marked with `+`) were checked for needed annotations and docstrings.
+            - [ ] Removed functions / classes (marked with `-`) were confirmed as intentional upstream removals.
+            - [ ] New upstream files (under *NEW FILE (upstream)*) were evaluated for inclusion.
+            - [ ] `python -m black` / `ruff` formatting applied.
+            - [ ] Validate workflow passes.
+
+            Full JSON report attached as a workflow artifact.
+          commit-message: "chore: sync vendored modules from upstream"
+          labels: |
+            vendored-sync
+
+      - name: Upload sync report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-report
+          path: /tmp/sync_report.json
