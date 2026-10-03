@@ -91,7 +91,6 @@ The :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` method takes 
 have a RubiksCube that is flattened to 2D as below:
 
 .. code-block:: text
-   :skip-indent:
 
                |************|
                |*U1**U2**U3*|
