@@ -126,6 +126,7 @@ all = [
 
 [project.urls]
 Homepage = "https://github.com/ExploreMaths/manim_extensions"
+Repository = "https://github.com/ExploreMaths/manim_extensions"
 Documentation = "https://manim-extensions.readthedocs.io/"
 Issues = "https://github.com/ExploreMaths/manim_extensions/issues"
 
