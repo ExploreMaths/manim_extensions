@@ -34,10 +34,11 @@ class FastManimMesh(OpenGLMobject):
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.opengl.opengl_mobject.OpenGLMobject`.
 
-    NOTE: requires to manipulate the manim lib
-        Copy the directory ``mesh`` (under ``manim_extensions/meshes/shaders/``) to ``manim/renderer/shaders/``.
+    .. note:: Requires manipulating the manim lib:
+        copy the directory ``mesh`` (under ``manim_extensions/meshes/shaders/``)
+        to ``manim/renderer/shaders/``.
 
-    HINT: the mesh must only consist of triangles.
+    .. hint:: The mesh must only consist of triangles.
     """
 
     shader_dtype = [

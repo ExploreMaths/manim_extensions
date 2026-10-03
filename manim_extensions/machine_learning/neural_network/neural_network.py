@@ -436,10 +436,8 @@ class NeuralNetwork(Group):
         for layer_index, layer in enumerate(self.all_layers):
             # Get the layer args
             if isinstance(layer, ConnectiveLayer):
-                """
-                NOTE: By default a connective layer will get the combined
-                layer_args of the layers it is connecting and itself.
-                """
+                # NOTE: By default a connective layer will get the combined
+                # layer_args of the layers it is connecting and itself.
                 before_layer_args = {}
                 current_layer_args = {}
                 after_layer_args = {}
