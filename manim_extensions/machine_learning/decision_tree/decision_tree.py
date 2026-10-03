@@ -5,11 +5,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 """
-    Module for visualizing decision trees in Manim. 
-    It parses a decision tree classifier from sklearn. 
+Module for visualizing decision trees in Manim.
+It parses a decision tree classifier from sklearn.
 
-    TODO return a map from nodes to split animation for BFS tree expansion
-    TODO reimplement the decision 2D decision tree surface drawing. 
+TODO return a map from nodes to split animation for BFS tree expansion
+TODO reimplement the decision 2D decision tree surface drawing.
 """
 from manim import (
     AnimationGroup,

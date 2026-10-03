@@ -416,7 +416,7 @@ class Gear(VMobject):
 
     def set_stroke(self, color: Optional[ManimColor] = None, **kwargs):
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
-            If family is specified, it will still do it.
+        If family is specified, it will still do it.
 
         Parameters
         ----------

@@ -5,7 +5,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 """
-    Transformations for manipulating a neural network object. 
+Transformations for manipulating a neural network object.
 """
 from manim import AnimationGroup, Create, FadeOut, Group, Mobject, UpdateFromFunc, np
 from ..layers.util import get_connective_layer

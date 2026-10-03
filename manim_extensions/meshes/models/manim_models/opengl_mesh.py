@@ -21,9 +21,9 @@ from ...params import get_param_or_default
 from typing import Any, Optional
 class FastManimMesh(OpenGLMobject):
     """More efficient mesh implementation.
-        Uses custom shaders and stores vertices and faces in a single VAO
-        Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,
-        no mesh manipulations.
+    Uses custom shaders and stores vertices and faces in a single VAO
+    Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,
+    no mesh manipulations.
 
     .. note::
 

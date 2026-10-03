@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import matplotlib/seaborn (ml extra)
 """
-    Tool for animating Markov Chain Monte Carlo simulations in 2D. 
+Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
 from manim import (
     AnimationGroup,

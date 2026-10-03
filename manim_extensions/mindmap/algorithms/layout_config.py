@@ -100,14 +100,14 @@ class LayoutConfig:
     """Configuration options for mind-map layouts.
     Parameters
     ----------
-        direction : np.ndarray, optional
-            Layout direction. Defaults to RIGHT.
-        node_spacing : float, optional
-            Spacing between nodes. Defaults to 0.5.
-        level_spacing : float, optional
-            Spacing between layers. Defaults to 0.5.
-        sides : np.ndarray | List[np.ndarray], optional
-            Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
+    direction : np.ndarray, optional
+        Layout direction. Defaults to RIGHT.
+    node_spacing : float, optional
+        Spacing between nodes. Defaults to 0.5.
+    level_spacing : float, optional
+        Spacing between layers. Defaults to 0.5.
+    sides : np.ndarray | List[np.ndarray], optional
+        Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
     
     Raises
     ------

@@ -5,8 +5,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 """
-    Code for making a dropout animation for the
-    feed forward layers of a neural network. 
+Code for making a dropout animation for the
+feed forward layers of a neural network.
 """
 from manim import (
     AnimationGroup,
