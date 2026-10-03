@@ -4,30 +4,23 @@
 Changelog
 =========
 
-Unreleased
-----------
-
-**Changed**
-
-* Changed the default character interval of
-  :class:`~manim_extensions.animations.TypeWriter` from ``2`` seconds to
-  ``0.1`` seconds. The old default stretched a typical line of text over
-  tens of seconds; every documentation example already overrode it.
-* :class:`~manim_extensions.mobjects.ChineseMathTex` now defaults
-  ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
-  so instances no longer risk mutating each other's colour map.
-
-**Removed**
-
-* Removed the ``[tool.flake8]`` section from ``pyproject.toml``. Flake8
-  does not read ``pyproject.toml``; the section was dead configuration,
-  and CI passes every flake8 option on the command line.
-
 v1.0.5 :bdg-success-line:`Latest`
 ---------------------------------
 
 **Added**
 
+* Added a Simplified Chinese (``zh_CN``) translation of the
+  documentation: all narrative pages (index, installation, tutorials,
+  examples, changelog, and every bundled-plugin reference introduction)
+  are translated, while the API reference falls back to English and can
+  be translated incrementally. On Read the Docs it builds as a separate
+  project linked to the English one (catalogs in
+  ``docs/source/locale/zh_CN/``).
+* Added ``workflow/sync_vendored.py`` and a manually triggered
+  ``sync-vendored`` workflow that pulls upstream updates for vendored
+  modules, preserves local patches via a 3-way merge, reports every API
+  surface change (added / removed functions, methods, classes, and
+  parameters), and opens a pull request for review.
 * Bundled 10 additional third-party Manim plugins as subpackages:
   ``arabic``, ``chemistry``, ``economics``, ``fontawesome``,
   ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
@@ -55,8 +48,8 @@ v1.0.5 :bdg-success-line:`Latest`
   regressions, optional-dependency guards, and per-module behaviour.
 * Added CI: a ``manim-latest`` job that upgrades to the newest manim
   release and runs the full suite (turning ``manim>=0.21.0`` from a
-  claim into a tested guarantee); a ``docs-media`` workflow that
-  pre-renders every doc example at high quality into the ``rtd-media``
+  claim into a tested guarantee); a ``docs-cache`` workflow that
+  pre-renders every doc example at high quality into the ``rtd-cache``
   branch (content-hash incremental, pytest-style progress output) so
   Read the Docs reuses the media instead of timing out; and an RTD API
   trigger that also builds tagged versions after syncing them.
@@ -72,6 +65,13 @@ v1.0.5 :bdg-success-line:`Latest`
 
 **Changed**
 
+* Changed the default character interval of
+  :class:`~manim_extensions.animations.TypeWriter` from ``2`` seconds to
+  ``0.1`` seconds. The old default stretched a typical line of text over
+  tens of seconds; every documentation example already overrode it.
+* :class:`~manim_extensions.mobjects.ChineseMathTex` now defaults
+  ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
+  so instances no longer risk mutating each other's colour map.
 * Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0`` and
   migrated the ``table`` module from ``manimlib`` (ManimGL) to Manim
   Community Edition.
@@ -94,6 +94,12 @@ v1.0.5 :bdg-success-line:`Latest`
   changelog gained a sphinx-design ``Latest`` badge.
 * :class:`~manim_extensions.rubikscube.cube.RubiksCube` doc examples now
   use the default realistic colour scheme instead of an ad-hoc palette.
+
+**Removed**
+
+* Removed the ``[tool.flake8]`` section from ``pyproject.toml``. Flake8
+  does not read ``pyproject.toml``; the section was dead configuration,
+  and CI passes every flake8 option on the command line.
 
 **Fixed**
 
@@ -123,7 +129,7 @@ v1.0.5 :bdg-success-line:`Latest`
   Font Awesome SVGs, compass assets, the Nerd Font TTF, REUSE sidecars),
   which broke non-editable installs.
 * Repaired mojibake characters in ``mesh.py`` and ``manim_directive.py``.
-* Fixed CI authentication and incremental seeding for the docs-media
+* Fixed CI authentication and incremental seeding for the docs-cache
   workflow, and made tests skip gracefully when optional extras
   (``sklearn``, the ``manim-mobject-svg`` plugin on Python 3.13+) are
   absent.
@@ -133,7 +139,7 @@ v1.0.5 :bdg-success-line:`Latest`
   and related functions.
 * Fixed missing closing parentheses in four docstring manim example
   blocks (MCMCAxes, MultiPendulum, GMAnimationBuilder, VMobjectInt)
-  that caused the docs-media render workflow to fail.
+  that caused the docs-cache render workflow to fail.
 * Fixed misplaced type annotations that caused ``NameError`` in five
   files (algorithm/array.py, chemistry/utils/utils.py,
   chemistry/manim_chemistry_molecule/mc_atom.py,
