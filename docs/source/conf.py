@@ -51,6 +51,20 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["build", "Thumbs.db", ".DS_Store"]
 
+# -- Internationalization ----------------------------------------------------
+# Translation catalogs live under ``locale/<lang>/LC_MESSAGES``. Read the Docs
+# builds the Chinese version by setting the project language to ``zh_CN`` on a
+# translation project linked to the English one (RTD passes the language to
+# Sphinx automatically). To refresh the catalogs locally:
+#
+#   sphinx-build -b gettext docs/source docs/build/gettext
+#   sphinx-intl update -p docs/build/gettext -l zh_CN
+#
+# ``gettext_compact`` groups every document into a single ``docs.po`` catalog
+# so translators only have one file to maintain.
+locale_dirs = ["locale/"]
+gettext_compact = "docs"
+
 # -- Options for HTML output -------------------------------------------------
 html_theme = "furo"
 html_static_path = ["_static"]

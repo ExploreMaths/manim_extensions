@@ -24,8 +24,21 @@ if errorlevel 9009 (
 )
 
 if "%1" == "" goto help
+if "%1" == "gettext" goto gettext
+if "%1" == "html-zh" goto htmlzh
 
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+goto end
+
+:gettext
+REM Rebuild .pot catalogs and merge them into the zh_CN .po files.
+%SPHINXBUILD% -b gettext %SOURCEDIR% %BUILDDIR%\gettext %SPHINXOPTS% %O%
+sphinx-intl update -p %BUILDDIR%\gettext -d %SOURCEDIR%\locale -l zh_CN
+goto end
+
+:htmlzh
+REM Build the Chinese version locally (skips Manim rendering).
+%SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR%-zh -t skip-manim -D language=zh_CN %SPHINXOPTS% %O%
 goto end
 
 :help

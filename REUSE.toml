@@ -287,6 +287,11 @@ SPDX-FileCopyrightText = ["2015 3Blue1Brown"]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "docs/source/locale/**"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = "docs/source/**/*.rst"
 SPDX-FileCopyrightText = ["2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
