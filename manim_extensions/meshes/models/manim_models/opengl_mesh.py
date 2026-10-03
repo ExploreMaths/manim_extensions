@@ -25,6 +25,16 @@ class FastManimMesh(OpenGLMobject):
         Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,
         no mesh manipulations.
 
+    .. note::
+
+       Requires manipulating the manim lib:
+       copy the directory ``mesh`` (under ``manim_extensions/meshes/shaders/``)
+       to ``manim/renderer/shaders/``.
+
+    .. hint::
+
+       The mesh must only consist of triangles.
+
     Parameters
     ----------
     mesh : Mesh
@@ -33,12 +43,6 @@ class FastManimMesh(OpenGLMobject):
         Path to the shader folder. Defaults to ``None`` (uses ``"mesh"``).
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.opengl.opengl_mobject.OpenGLMobject`.
-
-    .. note:: Requires manipulating the manim lib:
-        copy the directory ``mesh`` (under ``manim_extensions/meshes/shaders/``)
-        to ``manim/renderer/shaders/``.
-
-    .. hint:: The mesh must only consist of triangles.
     """
 
     shader_dtype = [
