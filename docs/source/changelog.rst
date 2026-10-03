@@ -9,13 +9,6 @@ v1.0.5 :bdg-success-line:`Latest`
 
 **Added**
 
-* Added a Simplified Chinese (``zh_CN``) translation of the
-  documentation: all narrative pages (index, installation, tutorials,
-  examples, changelog, and every bundled-plugin reference introduction)
-  are translated, while the API reference falls back to English and can
-  be translated incrementally. On Read the Docs it builds as a separate
-  project linked to the English one (catalogs in
-  ``docs/source/locale/zh_CN/``).
 * Added ``workflow/sync_vendored.py`` and a manually triggered
   ``sync-vendored`` workflow that pulls upstream updates for vendored
   modules, preserves local patches via a 3-way merge, reports every API

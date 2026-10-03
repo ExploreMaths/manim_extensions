@@ -1,11 +1,5 @@
 version: 2
 
-# This configuration is shared by the Chinese (zh_CN) translation build.
-# RTD builds translations as separate projects linked to this one (set the
-# project language to "Chinese (Simplified)" on the translation project);
-# RTD then passes the language to Sphinx, which picks up the catalogs in
-# docs/source/locale/zh_CN/LC_MESSAGES/ (see locale_dirs in conf.py).
-
 build:
   os: ubuntu-24.04
   tools:
