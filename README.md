@@ -1,14 +1,14 @@
 <div align="center">
 
-# <img src="docs/source/_static/favicon.svg" align="top" width=45> Manim Extensions
+# <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/favicon.svg" align="top" width=45> Manim Extensions
 
 
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
 <p align="center">
-  <img src="docs/source/_static/cover/magnetic_field.png" width="30%" alt="Magnetic field of a current loop" />
-  <img src="docs/source/_static/cover/multi_pendulum.png" width="30%" alt="Chaotic double pendulum" />
-  <img src="docs/source/_static/cover/rubiks_cube.png" width="30%" alt="Rubik's cube" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/magnetic_field.png" width="30%" alt="Magnetic field of a current loop" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/multi_pendulum.png" width="30%" alt="Chaotic double pendulum" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/rubiks_cube.png" width="30%" alt="Rubik's cube" />
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" alt="CI" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" alt="Validate" /></a>
   <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" alt="Documentation" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License" /></a>
+  <a href="https://github.com/ExploreMaths/manim_extensions/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License" /></a>
 </p>
 
 </div>
@@ -162,10 +162,10 @@ coherent, tested whole. The motivations:
   feature remains a `pip install manim_extensions[...]` away.
 
 Every vendored package's upstream repository, sync version and local
-patches are tracked in [VENDORED.md](VENDORED.md); patched files carry a
+patches are tracked in [VENDORED.md](https://github.com/ExploreMaths/manim_extensions/blob/main/VENDORED.md); patched files carry a
 `# patched: <reason>` marker in their header. Licensing and attribution
-are kept per-package in [REUSE.toml](REUSE.toml).
+are kept per-package in [REUSE.toml](https://github.com/ExploreMaths/manim_extensions/blob/main/REUSE.toml).
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/ExploreMaths/manim_extensions/blob/main/LICENSE)
