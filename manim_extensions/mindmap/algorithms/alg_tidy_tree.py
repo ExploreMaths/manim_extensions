@@ -4,7 +4,7 @@
 
 
 """
-Non-layered Tidy Tree Layout Algorithm (Python Implementation)
+Non-layered Tidy Tree Layout Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
 
 Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"

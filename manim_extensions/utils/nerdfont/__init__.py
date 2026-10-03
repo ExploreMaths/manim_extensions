@@ -4,7 +4,7 @@
 
 """Vendored copy of manim-nerdfont-icons (code and font licensed MIT).
 
-Upstream: https://github.com/Alexander-Nasuta/manim-nerdfont-icons (v1.0.2)
+Upstream: https://github.com/Alexander-Nasuta/manim-nerdfont-icons (v1.0.2).
 Vendored because the 1.0.x PyPI release pins ``manim>=0.19,<0.20`` even
 though the package works with current manim.
 """
