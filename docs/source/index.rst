@@ -7,7 +7,7 @@
 Manim Extensions
 ================
 
-**manim_extensions** is an extension toolkit for `Manim Community <https://www.manim.community/>`_,
+**Manim Extensions** is an extension toolkit for `Manim Community <https://www.manim.community/>`_,
 providing extra mobjects, geometric utilities, animation effects, and curated
 third-party plugins to help you create mathematical animations more efficiently.
 
