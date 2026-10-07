@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Run manim directive validator
         run: python workflow/validate_manim_directives.py
 
@@ -22,7 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Run parameter docs validator
         run: python workflow/validate_param_docs.py
 
@@ -30,7 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Install optional dependencies referenced in docs
         run: pip install ".[ml]"
       - name: Run reference validator
@@ -40,7 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Run import style checker
         run: python workflow/check_redundant_imports.py
 
@@ -48,7 +56,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Check that all in-package imports use relative imports
         run: python workflow/check_relative_imports.py
 
@@ -56,7 +66,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Run module docstring validator
         run: python workflow/validate_docstrings.py
 
@@ -64,7 +76,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Run docstring section validator
         run: python workflow/validate_doc_sections.py
 
@@ -81,9 +95,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
         with:
           # Examples construct MathTex/Text and import every extra, so
+          install-editable: "true"
           # mirror the full docs-cache environment.
           install-full-deps: "true"
       - name: Install package with all extras
@@ -95,7 +110,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Check API documentation coverage
         run: python workflow/validate_api_coverage.py
 
@@ -128,7 +145,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
       - name: Install package with all extras
         run: pip install ".[all]"
       - name: Install pip-audit

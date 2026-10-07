@@ -66,13 +66,14 @@ jobs:
             echo "needed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: ./.github/actions/setup-manim-env
+      - uses: ExploreMaths/setup-manim-env@v1
         if: steps.needed.outputs.needed == 'true'
         with:
           # 3.12 so the manim-mobject-svg plugin (python<3.13 pin) installs
           # and HTMLParsedVMobject examples render; matches the RTD build.
           python-version: "3.12"
           install-full-deps: "true"
+          install-editable: "true"
 
       - name: Install package with all extras
         if: steps.needed.outputs.needed == 'true'
