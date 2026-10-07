@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "cells": {
+  "3c1962835904bab37928eeb39accb63b": {
+   "ok": true,
+   "stdout": "Usage: python -m manim_extensions.chemistry.cli [OPTIONS] COMMAND [ARGS]...\n\n  Command-line interface group for chemistry-related commands.\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  pubchem-molecule  Download molecule from pubchem."
+  },
+  "babd17d5f82ff6a0eecb1fd1fef077f5": {
+   "ok": false,
+   "stdout": ""
+  },
+  "50cb1f8c27e458bcb439acca1400aeb8": {
+   "ok": false,
+   "stdout": ""
+  },
+  "26b5c4c8600ad91956715dcfdc838603": {
+   "ok": false,
+   "stdout": ""
+  },
+  "d52567fc46babf6b540213ad212a9355": {
+   "ok": false,
+   "stdout": ""
+  },
+  "86cb6212ab5ba446226fed9bfe467e99": {
+   "ok": false,
+   "stdout": ""
+  },
+  "fe2c2a5b4f4c63dd70b35a80eb86f5f3": {
+   "ok": false,
+   "stdout": ""
+  },
+  "f984f57bff12b21d40c981fe37474ca7": {
+   "ok": false,
+   "stdout": ""
+  },
+  "4f24ba114aef22c91e60e3ad6b7c395f": {
+   "ok": false,
+   "stdout": ""
+  },
+  "823b9f23733d840bad4750863bdedc09": {
+   "ok": false,
+   "stdout": ""
+  },
+  "8efaac3fc1fb91809640f9e91499c7a1": {
+   "ok": false,
+   "stdout": ""
+  },
+  "9e5137065e5310f4c00e47b5aa48919d": {
+   "ok": false,
+   "stdout": ""
+  },
+  "f13020d25fe9c28da1d1ca94c5875dda": {
+   "ok": false,
+   "stdout": ""
+  },
+  "9a74b7d8967ea3a37f308388fee96030": {
+   "ok": false,
+   "stdout": ""
+  },
+  "ad4795db90bb750fa4fb79a18290c027": {
+   "ok": false,
+   "stdout": ""
+  },
+  "e3f22e4d4115ae609d488b2dd7a388f6": {
+   "ok": false,
+   "stdout": ""
+  },
+  "6336e4951352a491b4f2b5d5ae843999": {
+   "ok": false,
+   "stdout": ""
+  },
+  "9c90b7f5b8febf0f8442e01de949c103": {
+   "ok": false,
+   "stdout": ""
+  },
+  "b45f0f0b22066b2e6f67e8bfd62d9219": {
+   "ok": false,
+   "stdout": ""
+  },
+  "72c21d5b3767843ff9f22d72d894cf66": {
+   "ok": false,
+   "stdout": ""
+  },
+  "9e39a022bc5c5dd1e3d9b2acf9bb46a3": {
+   "ok": false,
+   "stdout": ""
+  },
+  "27da9fad822b693de0e037a2e0dec809": {
+   "ok": false,
+   "stdout": ""
+  },
+  "18b3b7793869817ae623f7850254d8b4": {
+   "ok": false,
+   "stdout": ""
+  },
+  "bbee669f338ff731321a11935a6aa158": {
+   "ok": false,
+   "stdout": ""
+  },
+  "093811c188269171445d96c7a2ce23f5": {
+   "ok": false,
+   "stdout": ""
+  },
+  "4287c0896f46dec62bb7ae763808d264": {
+   "ok": false,
+   "stdout": ""
+  },
+  "d54bbc5b9591f2682147a6ad96242c24": {
+   "ok": false,
+   "stdout": ""
+  },
+  "dc57288b6c5cfe4afa406c91618148cd": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 121, in __init__\n    conv_vertices = np.array(vertices, dtype=float)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 2, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/decorators.py\", line 53, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/decorators.py\", line 99, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 129, in __init__\n    raise InvalidMeshException(\nmanim_extensions.meshes.exceptions.InvalidMeshException: Dimensional mismatch for vertices. All vertices should have the same number of dimensions."
+  },
+  "4a8557b9ee135876f27682b70194ba92": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 4, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 388, in get_3d_vertices\n    raise InvalidRequestException(\nmanim_extensions.meshes.exceptions.InvalidRequestException: Can not Broadcast from 4-D Mesh to 3D Mesh."
+  },
+  "db39d989250c5bcd1831268707bc5999": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 4, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 589, in update_vertex\n    raise MeshIndexException(\nmanim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2"
+  },
+  "88772788c2a29086c47f8813c8627d66": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 4, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 593, in update_vertex\n    raise InvalidTypeException(\nmanim_extensions.meshes.exceptions.InvalidTypeException: Vertex [[1 1 1]] has incorrect shape, expected 1D-like array."
+  },
+  "461d67428eed917f26e7cab49a80e32e": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 4, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/decorators.py\", line 53, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/data_models/mesh.py\", line 539, in add_vertices\n    raise InvalidMeshDimensionsException(\nmanim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2)."
+  },
+  "5e2285d3f31362bd84628bb5be5eb9d6": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 6, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/models/manim_models/basic_mesh.py\", line 606, in move_vertices_to\n    raise InvalidShapeException(\nmanim_extensions.meshes.exceptions.InvalidShapeException: Size of new_positions is expected to be 3 but was 2."
+  },
+  "8281d8819dddb5582260e019cdc4034a": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/params.py\", line 122, in get_param_or_default\n    return default[value][0](params[value])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: could not convert string to float: 'not a number'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/manim_extensions/manim_extensions/workflow/execute_nbcell_examples.py\", line 293, in runner_mode\n    exec(cell[\"code\"], namespace)  # noqa: S102\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 2, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/manim_extensions/meshes/params.py\", line 124, in get_param_or_default\n    raise BadParameterException(\nmanim_extensions.meshes.exceptions.BadParameterException: Value edges_width does not have correct type <class 'float'> and can not be cast."
+  },
+  "2d88da83807edd0c3903df2b2e1373bd": {
+   "ok": true,
+   "stdout": "The given object is no VarArray"
+  },
+  "c0f3c3b9c23a245e5d314fb047efda85": {
+   "ok": false,
+   "stdout": ""
+  },
+  "8b783ec67a0d0271ba993f62bdc68f01": {
+   "ok": false,
+   "stdout": ""
+  },
+  "47841a5f3363aded3db24655dac1523b": {
+   "ok": false,
+   "stdout": ""
+  },
+  "1750752e8a7a57726f39ae843b27fa1b": {
+   "ok": false,
+   "stdout": ""
+  },
+  "e94f06b241fb09ce9c5337b8b5e2c8e4": {
+   "ok": false,
+   "stdout": ""
+  },
+  "06befe93ae12d9b29dc2a1bcc2d31b7c": {
+   "ok": false,
+   "stdout": ""
+  },
+  "0ded04e5b9232c6029e25ae9be9aaf95": {
+   "ok": false,
+   "stdout": ""
+  },
+  "553de603e402b1df966fa71be95d3961": {
+   "ok": false,
+   "stdout": ""
+  },
+  "4ad7e305debbe9ba52e03f8080b945d5": {
+   "ok": false,
+   "stdout": ""
+  },
+  "b37ef63d49ee87618ba7b1d770f7b6e0": {
+   "ok": false,
+   "stdout": ""
+  },
+  "f1ee47dd8057cc8e5d69344073272969": {
+   "ok": false,
+   "stdout": ""
+  },
+  "06f428ac7c520236ab1b7fdb9abb9744": {
+   "ok": false,
+   "stdout": ""
+  },
+  "957ed5635af18b3de5cb29824e098f6f": {
+   "ok": false,
+   "stdout": ""
+  },
+  "cb52705655e94e7e5eabe818128c3be2": {
+   "ok": false,
+   "stdout": ""
+  },
+  "11c8c975a1a4c1f9660d4e93f53cc32d": {
+   "ok": false,
+   "stdout": ""
+  },
+  "55a2baa00b14ac356721cbc3596afbcb": {
+   "ok": false,
+   "stdout": ""
+  },
+  "9a19bd71ffe67d721f3aa6affc305892": {
+   "ok": false,
+   "stdout": ""
+  },
+  "cf2146fd0aa61fc17b79ecb52628e2e7": {
+   "ok": false,
+   "stdout": ""
+  },
+  "35d87dbeaa2aaedaf96d0e9b224f11f0": {
+   "ok": false,
+   "stdout": ""
+  },
+  "16a3403125d3ee84be96de16b08051e1": {
+   "ok": false,
+   "stdout": ""
+  },
+  "d6b2a5b67a8843f3ba25aec4c1529820": {
+   "ok": false,
+   "stdout": ""
+  },
+  "43358689589470d073138a9fa5ff088a": {
+   "ok": false,
+   "stdout": ""
+  },
+  "60d12eb8c6460c28bea37aac657ca4ec": {
+   "ok": false,
+   "stdout": ""
+  },
+  "d7a9c837246c6aa1fec76c13e169551f": {
+   "ok": false,
+   "stdout": ""
+  },
+  "6faf0e043c8a03f072e439a790508d00": {
+   "ok": false,
+   "stdout": ""
+  },
+  "13e9490585d072a845f479a750b5ea29": {
+   "ok": false,
+   "stdout": ""
+  },
+  "633dfaf08ea2ec0d99e625c70ebe1c69": {
+   "ok": false,
+   "stdout": ""
+  },
+  "d01a6d0d76e08cd54ed0347fe03272d5": {
+   "ok": false,
+   "stdout": ""
+  },
+  "91135d388db49854c99f136582c91727": {
+   "ok": false,
+   "stdout": ""
+  },
+  "6e40fb5a0941a6d4c928a49dac1d00ac": {
+   "ok": false,
+   "stdout": ""
+  },
+  "01f2a8cd2a1702e5128969296382069e": {
+   "ok": false,
+   "stdout": ""
+  },
+  "c4d5f437e21e9b28f36d9531d1c61bc9": {
+   "ok": false,
+   "stdout": ""
+  },
+  "4e7a7673fae74ebd93365409fe20541b": {
+   "ok": false,
+   "stdout": ""
+  },
+  "e65d9a05b911e6b3a75af8ac3f6c2635": {
+   "ok": false,
+   "stdout": ""
+  },
+  "94fd927ab39eae0cfcc012a4258c9eda": {
+   "ok": false,
+   "stdout": ""
+  }
+ }
+}
