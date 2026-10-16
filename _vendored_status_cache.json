@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15",
+  "generated": "2026-10-16",
   "repos": {
     "Alexander-Nasuta/manim-nerdfont-icons": {
       "compare": null,
@@ -72,11 +72,11 @@
     },
     "Matheart/manim-physics": {
       "compare": {
-        "ahead_by": 0,
+        "ahead_by": 2,
         "behind_by": 0,
-        "newest_date": "2024-08-01",
-        "newest_sha": "2876741c43e5316332a56e7799e94a706a0d0e26",
-        "status": "identical"
+        "newest_date": "2026-10-15",
+        "newest_sha": "d37580e07ac67d06c8dfbb78804b8a0256d1502b",
+        "status": "ahead"
       },
       "latest_commit": null,
       "release": null,
