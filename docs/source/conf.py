@@ -59,8 +59,10 @@ html_static_path = ["_static"]
 html_favicon = "_static/favicon.svg"
 # Self-host MathJax (vendored under _static/mathjax) instead of loading it
 # from the jsdelivr CDN: the CDN is intermittently unreachable from some
-# regions, which made formulas randomly fail to render.
-mathjax_path = "mathjax/tex-mml-chtml.js"
+# regions, which made formulas randomly fail to render.  The SVG output
+# component is used because MathJax 4's CHTML output loads its math fonts
+# from a separate package (chtml/woff2) that would also need vendoring.
+mathjax_path = "mathjax/tex-mml-svg.js"
 html_title = f"Manim Extensions v{release}"
 html_short_title = "manim_extensions"
 
