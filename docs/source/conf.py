@@ -45,6 +45,7 @@ extensions = [
     "autodoc_all",
     "inheritance_colors",
     "inline_link_colors",
+    "default_value_links",
     "autodoc_inheritance",
     "deprecated_warning",
     "vendored_status",
@@ -108,6 +109,11 @@ autodoc_inherit_docstrings = False
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 autodoc_typehints_format = "short"
+
+# Keep the source spelling of default values (``color=WHITE``) instead of
+# repr-ing them (``color=ManimColor('#FFFFFF')``) so signatures stay short
+# and the names stay recognisable.
+autodoc_preserve_defaults = True
 
 # manim 0.22 annotates Scene.__init__ as ``CairoRenderer | OpenGLRenderer``
 # under ``from __future__ import annotations``; sphinx-autodoc-typehints'
