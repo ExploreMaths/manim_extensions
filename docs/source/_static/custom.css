@@ -268,20 +268,11 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
         background-color: #124B76;
     }
 }
-/* Inheritance diagrams (graphviz SVG): the node fills are baked into the
-   SVG in light palette colors, so under a dark theme we invert the whole
-   diagram — white canvas becomes dark, light node fills become dark fills
-   and the dark node text becomes light text, keeping the same hue family
-   as the colored inline-code links above.  The dark condition matches
-   furo's own (body[data-theme="dark"], or no light attribute while the OS
-   prefers dark), so the inversion also applies when the page renders dark
-   before/without furo.js setting data-theme on <body>. */
-body[data-theme="dark"] div.graphviz {
-    filter: invert(88%) hue-rotate(180deg);
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) div.graphviz {
-        filter: invert(88%) hue-rotate(180deg);
-    }
-}
+/* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
+   entirely by responsiveSvg.js, which injects an inline <style> into the
+   SVG (background + edge/arrow colors per theme).  A CSS ``filter`` on
+   div.graphviz must NOT be used here: it either has no effect on the
+   <object>-embedded SVG (Chromium) or, where it does apply, inverts the
+   already-dark-adapted colors and turns the diagram into a light canvas
+   with dark arrows (double adaptation). */
 
