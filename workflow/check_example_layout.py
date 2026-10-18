@@ -45,6 +45,14 @@ OUT_OF_FRAME_FRACTION = 0.05
 # Content smaller than this fraction of the frame in BOTH dimensions is
 # flagged as too small.
 MIN_COVER_FRACTION = 0.25
+# A slender strip (short in one dimension and not filling the other)
+# renders as an unusably tiny figure even though one dimension covers
+# more than MIN_COVER_FRACTION; e.g. a lone formula that is 35% wide but
+# only 9% tall.  The thresholds are deliberately tight (really short
+# side, other side below 70% of the frame) so wide banners, tall narrow
+# axes and ordinary medium-size figures are not caught.
+MIN_TINY_FRACTION = 0.10
+MIN_TINY_OTHER_FRACTION = 0.60
 
 def _worker_init(workdir):
     """Import manim once per worker and silence it."""
@@ -153,8 +161,15 @@ def classify(class_name: str, m: dict) -> str | None:
         return "OUT_OF_FRAME"
     if m["overflow_y"] > OUT_OF_FRAME_FRACTION * m["frame_height"]:
         return "OUT_OF_FRAME"
-    if (m["height"] < MIN_COVER_FRACTION * m["frame_height"]
-            and m["width"] < MIN_COVER_FRACTION * m["frame_width"]):
+    h_ratio = m["height"] / m["frame_height"]
+    w_ratio = m["width"] / m["frame_width"]
+    if (h_ratio < MIN_COVER_FRACTION and w_ratio < MIN_COVER_FRACTION):
+        return "TOO_SMALL"
+    if (h_ratio < MIN_TINY_FRACTION
+            and w_ratio < MIN_TINY_OTHER_FRACTION):
+        return "TOO_SMALL"
+    if (w_ratio < MIN_TINY_FRACTION
+            and h_ratio < MIN_TINY_OTHER_FRACTION):
         return "TOO_SMALL"
     return None
 

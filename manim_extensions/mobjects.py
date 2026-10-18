@@ -103,7 +103,7 @@ class ChineseMathTex(MathTex):
                formula = ChineseMathTex(
                    r"面积 = \frac{1}{2} \times 底 \times 高",
                    tex_to_color_map={"底": BLUE, "高": YELLOW},
-               )
+               ).scale(2)
                self.add(formula)
 
     """
