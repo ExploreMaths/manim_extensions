@@ -207,7 +207,14 @@ a.reference:visited:hover {
     color: var(--color-link--hover);
     text-decoration-color: var(--color-link-underline--hover);
 }
-/* Inline code xref links: strip the code-look border and round the fill
+/* Dark theme: plain links keep the same red as the light theme.  The
+   dark-mode --color-link is set in conf.py's dark_css_variables (Furo
+   theme options), not here; this comment exists so nobody re-adds a
+   body[data-theme="dark"] override that ties with Furo's generated
+   inline <style> and loses by source order.  The colored attribute-type
+   spans and inline-code blocks (sig-type-ref-*, ref-ext/ref-manim) use
+   literal colors, so they keep their palette in both themes.  The
+   :visited rules above read var(--color-link), so they follow too. *//* Inline code xref links: strip the code-look border and round the fill
    (furo gives p code.literal a 1px border and .2em corners, which leaves
    type links such as float | ndarray looking boxy). */
 a.reference code.xref {
