@@ -196,3 +196,86 @@ dd p.rubric {
 dd p.rubric::after {
     content: ":";
 }
+/* Inline code xref links: strip the code-look border and round the fill
+   (furo gives p code.literal a 1px border and .2em corners, which leaves
+   type links such as float | ndarray looking boxy). */
+a.reference code.xref {
+    border: none;
+    border-radius: 0.25rem;
+}
+/* Inline code cross-reference links use the inheritance-graph palette
+   (tags added by the inline_link_colors extension: a.reference.ref-ext for
+   manim_extensions targets, .ref-manim for manim targets).  Colors match
+   the node fills/fonts produced by inheritance_colors.py; the code-look
+   border is stripped and the fill gets a rounded corner. */
+a.reference.ref-ext code.xref {
+    color: #1E8449;
+    background-color: #D5F5E3;
+    border: none;
+    border-radius: 0.25rem;
+}
+a.reference.ref-manim code.xref {
+    color: #1A5276;
+    background-color: #EBF5FB;
+    border: none;
+    border-radius: 0.25rem;
+}
+/* Hover: deepen the fill slightly (light theme). */
+a.reference.ref-ext code.xref:hover {
+    background-color: #C8E6C9;
+}
+a.reference.ref-manim code.xref:hover {
+    background-color: #D4E8FA;
+}
+/* Dark theme: keep the light inheritance-graph foreground text, but sink
+   the fill a notch darker than the default so it reads quietly on the dark
+   canvas; hover brightens the text. */
+body[data-theme="dark"] a.reference.ref-ext code.xref {
+    color: #D5F5E3;
+    background-color: #145A32;
+}
+body[data-theme="dark"] a.reference.ref-manim code.xref {
+    color: #EBF5FB;
+    background-color: #0F3B5F;
+}
+body[data-theme="dark"] a.reference.ref-ext code.xref:hover {
+    color: #F0FDF4;
+    background-color: #166B3C;
+}
+body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
+    color: #F2F9FF;
+    background-color: #124B76;
+}
+/* Auto theme: follow the OS dark preference the same way. */
+@media (prefers-color-scheme: dark) {
+    body[data-theme="auto"] a.reference.ref-ext code.xref {
+        color: #D5F5E3;
+        background-color: #145A32;
+    }
+    body[data-theme="auto"] a.reference.ref-manim code.xref {
+        color: #EBF5FB;
+        background-color: #0F3B5F;
+    }
+    body[data-theme="auto"] a.reference.ref-ext code.xref:hover {
+        color: #F0FDF4;
+        background-color: #166B3C;
+    }
+    body[data-theme="auto"] a.reference.ref-manim code.xref:hover {
+        color: #F2F9FF;
+        background-color: #124B76;
+    }
+}
+/* Inheritance diagrams (graphviz SVG): the node fills are baked into the
+   SVG in light palette colors, so under a dark theme we invert the whole
+   diagram — white canvas becomes dark, light node fills become dark fills
+   and the dark node text becomes light text, keeping the same hue family
+   as the colored inline-code links above. */
+body[data-theme="dark"] div.graphviz {
+    filter: invert(88%) hue-rotate(180deg);
+}
+@media (prefers-color-scheme: dark) {
+    body[data-theme="auto"] div.graphviz {
+        filter: invert(88%) hue-rotate(180deg);
+    }
+}
+

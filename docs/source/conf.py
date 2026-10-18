@@ -5,6 +5,7 @@
 """Sphinx configuration for manim_extensions documentation."""
 
 from manim import Mobject, VMobject
+import importlib
 import os
 import sys
 
@@ -43,6 +44,7 @@ extensions = [
     "nbcell_directive",
     "autodoc_all",
     "inheritance_colors",
+    "inline_link_colors",
     "autodoc_inheritance",
     "deprecated_warning",
     "vendored_status",
@@ -121,6 +123,31 @@ myst_heading_anchors = 3
 # sphinx_autodoc_typehints: emit short names with leading "~" so intersphinx
 # resolves them to :py:class: references displaying just the class name.
 typehints_fully_qualified = False
+
+# Collapse selected union aliases instead of expanding every member type.
+# ``ParsableManimColor`` is a bare ``types.UnionType`` (manim assigns
+# ``ParsableManimColor = str | int | ManimColor | ...``), so the typehints
+# formatter cannot recover its name at runtime and would otherwise render a
+# parameter as a 15-item union. ``typehints_formatter`` is the extension's
+# official per-annotation hook: return a reST string to override rendering.
+_TYPE_ALIASES = {
+    "ParsableManimColor": "manim.utils.color.core.ParsableManimColor",
+}
+
+
+def _typehints_formatter(annotation, *args):
+    for _name, _dotted in _TYPE_ALIASES.items():
+        try:
+            _module, _, _attr = _dotted.rpartition(".")
+            _target = getattr(importlib.import_module(_module), _attr)
+        except Exception:
+            continue
+        if annotation is _target or annotation == _target:
+            return f":py:obj:`~{_name}`"
+    return None
+
+
+typehints_formatter = _typehints_formatter
 
 # napoleon (Google / NumPy style docstrings)
 napoleon_google_docstring = False
