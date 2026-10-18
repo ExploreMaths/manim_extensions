@@ -215,9 +215,9 @@ article a.reference:visited:hover {
 .sidebar-tree .reference:visited:hover {
     color: var(--color-sidebar-link-text);
 }
-/* Dark theme: plain links keep the same red as the light theme.  The
-   dark-mode --color-link is set in conf.py's dark_css_variables (Furo
-   theme options), not here; this comment exists so nobody re-adds a
+/* Plain links use Furo's native --color-link (blue): no custom link
+   color is set in conf.py's css_variables anymore, so there is nothing
+   to override here; this comment exists so nobody re-adds a
    body[data-theme="dark"] override that ties with Furo's generated
    inline <style> and loses by source order.  The colored attribute-type
    spans and inline-code blocks (sig-type-ref-*, ref-ext/ref-manim) use
