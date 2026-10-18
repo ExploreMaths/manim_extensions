@@ -31,9 +31,9 @@ class GrayscaleImageMobject(Group):
 
     Parameters
     ----------
-    numpy_image : np.ndarray
+    numpy_image
         2D grayscale image data.
-    height : float, optional
+    height
         Height of the rendered image, by default 2.3.
 
     Examples
@@ -77,14 +77,13 @@ class GrayscaleImageMobject(Group):
 
         Parameters
         ----------
-        path : str
+        path
             Path to the image file to load.
-        height : float, optional
+        height
             Height of the rendered image, by default 2.3.
 
         Returns
         -------
-        GrayscaleImageMobject
             Grayscale image mobject built from the loaded image.
         """
         image = Image.open(path)
@@ -98,12 +97,11 @@ class GrayscaleImageMobject(Group):
 
         Parameters
         ----------
-        run_time : float, optional
+        run_time
             Duration of the fade-in animation, by default 2.
 
         Returns
         -------
-        Animation
             Fade-in animation of the image mobject.
         """
         return FadeIn(self)
@@ -115,7 +113,7 @@ class GrayscaleImageMobject(Group):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Factor by which to scale the image mobject.
         **kwargs
             Additional keyword arguments for scaling.
@@ -133,7 +131,7 @@ class GrayscaleImageMobject(Group):
 
         Parameters
         ----------
-        opacity : float
+        opacity
             Opacity to apply to the image mobject.
         """
         self.image_mobject.set_opacity(opacity)
@@ -144,17 +142,17 @@ class LabeledColorImage(Group):
 
     Parameters
     ----------
-    image : Mobject
+    image
         The image to label.
-    color : ManimColor, optional
+    color
         Color of the surrounding rectangle, by default RED.
-    label : str, optional
+    label
         Text displayed above the image, by default "Positive".
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the surrounding rectangle, by default 5.
-    font_size : float, optional
+    font_size
         Font size of the label, by default 24.
-    buff : float, optional
+    buff
         Buffer between the image and the label, by default 0.2.
 
     Examples

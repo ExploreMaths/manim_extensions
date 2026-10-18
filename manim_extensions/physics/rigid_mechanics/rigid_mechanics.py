@@ -93,7 +93,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
 
     Parameters
     ----------
-    gravity : tuple of float, optional
+    gravity
         Gravity vector :math:`(x, y)`.  Defaults to :math:`(0, -9.81)`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.mobject.Mobject`.
@@ -143,7 +143,7 @@ class SpaceScene(Scene):
 
     Parameters
     ----------
-    renderer : str or None, optional
+    renderer
         Renderer name forwarded to the parent :class:`~manim.Scene`.
     **kwargs
         Forwarded to the parent :class:`~manim.Scene`.
@@ -210,7 +210,7 @@ class SpaceScene(Scene):
 
         Parameters
         ----------
-        body : Mobject
+        body
             A mobject whose ``body`` and ``shape`` attributes are pymunk
             objects to be added to the simulation space.
         """
@@ -289,7 +289,7 @@ class SpaceScene(Scene):
 
         Parameters
         ----------
-        mobs : Mobject
+        mobs
             Mobs processed by this operation.
         """
         for mob in mobs:
@@ -304,9 +304,9 @@ def _step(space: "Space", dt: float):
 
     Parameters
     ----------
-    space : Space
+    space
         The physics space containing the simulation.
-    dt : float
+    dt
         Time step size in seconds.
     """
     space.space.step(dt)
@@ -317,7 +317,7 @@ def _simulate(b: Any):
 
     Parameters
     ----------
-    b : Body
+    b
         The physics body whose state is synchronised to its mobject.
     """
     x, y = b.body.position
@@ -331,7 +331,7 @@ def get_shape(mob: VMobject) -> None:
 
     Parameters
     ----------
-    mob : VMobject
+    mob
         The mobject to manipulate.
     """
     pymunk = require("physics", "pymunk")
@@ -361,7 +361,7 @@ def get_angle(mob: VMobject) -> None:
 
     Parameters
     ----------
-    mob : VMobject
+    mob
         The mobject to manipulate.
     """
     if issubclass(type(mob), Polygon):

@@ -21,7 +21,6 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
 
     Returns
     -------
-    callable
         The decorator that wraps a mesh operation function.
     """
 
@@ -30,12 +29,11 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
 
         Parameters
         ----------
-        func : callable
+        func
             The mesh operation to wrap.
 
         Returns
         -------
-        callable
             The wrapped function.
         """
 
@@ -67,7 +65,6 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
 
     Returns
     -------
-    callable
         The decorator that wraps a mesh operation function.
     """
 
@@ -76,12 +73,11 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
 
         Parameters
         ----------
-        func : callable
+        func
             The mesh operation to wrap.
 
         Returns
         -------
-        callable
             The wrapped function.
         """
 

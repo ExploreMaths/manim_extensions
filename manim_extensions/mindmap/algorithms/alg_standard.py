@@ -19,9 +19,9 @@ class TreeNode:
 
     Parameters
     ----------
-    height : float, optional
+    height
         Height of the tree node. Defaults to ``0``.
-    width : float, optional
+    width
         Width of the tree node. Defaults to ``0``.
 
     Examples
@@ -73,7 +73,7 @@ class TreeNode:
 
         Parameters
         ----------
-        child : TreeNode
+        child
             The child node to add.
         """
         self.children.append(child)
@@ -85,13 +85,12 @@ def copy_node(node: Any) -> "TreeNode":
 
     Parameters
     ----------
-    node : Any
+    node
         The source node (must expose ``height``, ``width``, and
         ``children`` attributes).
 
     Returns
     -------
-    TreeNode
         The root of the copied tree, or ``None`` if *node* is ``None``.
     """
 
@@ -108,7 +107,7 @@ def split_integer(n: int):
 
     Parameters
     ----------
-    n : int
+    n
         The integer to split.
 
     Returns
@@ -169,13 +168,13 @@ class StandardLayout(Layout):
 
     Parameters
     ----------
-    root : Any
+    root
         Root node of the tree to lay out.
-    direction : LayoutDirection, optional
+    direction
         Primary layout direction. Defaults to :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`.
-    node_spacing : float, optional
+    node_spacing
         Spacing between sibling nodes. Defaults to ``0.5``.
-    level_spacing : float, optional
+    level_spacing
         Spacing between tree levels. Defaults to ``0.5``.
 
     Examples
@@ -227,12 +226,11 @@ class StandardLayout(Layout):
 
         Parameters
         ----------
-        direction : LayoutDirection
+        direction
             The direction to flip.
 
         Returns
         -------
-        LayoutDirection
             The opposite direction.
         """
         match direction:
@@ -281,11 +279,11 @@ class StandardLayout(Layout):
 
         Parameters
         ----------
-        node : Any
+        node
             The root of the subtree to translate.
-        x : float
+        x
             Horizontal offset.
-        y : float
+        y
             Vertical offset.
         """
         node.x += x

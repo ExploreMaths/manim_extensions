@@ -27,9 +27,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Parameters
     ----------
-    input_layer : ImageLayer
+    input_layer
         The input image layer.
-    output_layer : Convolutional2DLayer
+    output_layer
         The output convolutional layer.
     **kwargs
         Forwarded to the parent layer classes.
@@ -56,9 +56,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -70,9 +70,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 5.
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
         **kwargs
@@ -171,7 +171,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.

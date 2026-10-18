@@ -42,7 +42,7 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
 
     Parameters
     ----------
-    format : Literal['asnt', 'json', 'sdf', 'xml']
+    format
         Format of the file to be downloaded.
 
         .. list-table::
@@ -57,17 +57,17 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
            * - ``'xml'``
              - XML representation.
 
-    cid : :class:`~typing.Any`
+    cid
         CID of the molecule(s) to download.
-    name : :class:`str`
+    name
         Name of the molecule(s) to download.
-    smiles : :class:`~typing.Any`
+    smiles
         SMILES identifier of the molecule(s) to download.
-    inchi : :class:`~typing.Any`
+    inchi
         InChI identifier of the molecule(s) to download.
-    three_d : :class:`~typing.Any`
+    three_d
         Whether to use three-dimensional data of the molecule. Defaults to ``False``.
-    output_folder : :class:`~typing.Any`
+    output_folder
         Folder where the downloaded files are saved. Defaults to ``'.'``.
 
     Raises

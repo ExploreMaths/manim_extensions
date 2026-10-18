@@ -62,12 +62,11 @@ class XMLParser(BaseParser):
 
         Parameters
         ----------
-        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+        filename
             Path to the XML file to parse.
 
         Returns
         -------
-        :class:`str`
             String with the file data.
         """
         with open(filename) as file:
@@ -95,12 +94,11 @@ class XMLParser(BaseParser):
 
         Parameters
         ----------
-        data : :class:`str`
+        data
             String with the XML file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.read_file`.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         xmltodict: Any = require("chemistry", "xmltodict")
@@ -118,12 +116,11 @@ class XMLParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         atoms_data = XMLParser.extract_atoms_data(molecule_data=molecule_data)
@@ -137,12 +134,11 @@ class XMLParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict`
             Atoms data of the molecule.
 
         Raises
@@ -210,12 +206,11 @@ class XMLParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict`
             Bonds data of the molecule.
         """
         compound_bonds: Any = molecule_data.get("PC-Compound_bonds")

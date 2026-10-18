@@ -21,12 +21,11 @@ class NumpyHelper:
 
         Parameters
         ----------
-        v : NDArray
+        v
             Input vector (NumPy array).
 
         Returns
         -------
-        NDArray
             Unit-length vector.  If the norm of *v* is zero, the original
             vector is returned unchanged.
         """
@@ -46,18 +45,17 @@ class NumpyHelper:
 
         Parameters
         ----------
-        v1 : NDArray
+        v1
             First vector.
-        v2 : NDArray
+        v2
             Second vector.
-        rtol : float
+        rtol
             Relative tolerance.
-        atol : float
+        atol
             Absolute tolerance.
 
         Returns
         -------
-        bool
             ``True`` if ``v1`` and ``v2`` are element-wise close.
         """
         return bool(np.isclose(v1, v2, rtol=rtol, atol=atol).all())
@@ -75,18 +73,17 @@ class NumpyHelper:
 
         Parameters
         ----------
-        v1 : NDArray
+        v1
             First vector.
-        v2 : NDArray
+        v2
             Second vector.
-        rtol : float
+        rtol
             Relative tolerance.
-        atol : float
+        atol
             Absolute tolerance.
 
         Returns
         -------
-        bool
             ``True`` if the normalized vectors are equal within tolerance.
         """
         return NumpyHelper.is_equal_vector(

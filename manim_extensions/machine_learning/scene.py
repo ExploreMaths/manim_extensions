@@ -27,7 +27,7 @@ class ManimML3DScene(ThreeDScene):
 
     Parameters
     ----------
-    args : tuple
+    args
         Positional arguments forwarded to
         :class:`~manim.scene.three_d_scene.ThreeDScene`.
     **kwargs
@@ -43,7 +43,7 @@ class ManimML3DScene(ThreeDScene):
 
         Parameters
         ----------
-        args : tuple
+        args
             Positional arguments forwarded to
             :meth:`~manim.scene.three_d_scene.ThreeDScene.play`.
         **kwargs

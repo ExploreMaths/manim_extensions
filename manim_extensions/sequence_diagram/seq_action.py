@@ -135,12 +135,11 @@ class SeqAction(AnimationGroup):
 
         Parameters
         ----------
-        actors : SeqActor
+        actors
             Actors processed by this operation.
 
         Yields
         ------
-        Animation
             A single fade-in animation of the actors arranged as a group.
         """
         group = Group(*actors).move_to(ORIGIN).arrange(buff=0.25)
@@ -155,16 +154,15 @@ class SeqAction(AnimationGroup):
 
         Parameters
         ----------
-        subject : SeqActor
+        subject
             The actor sending the gift.
-        gift : SeqObject
+        gift
             The object being passed between actors.
-        target : SeqActor
+        target
             The actor receiving the gift.
 
         Yields
         ------
-        Animation
             A sequence of animations to be played by the scene.
         """
         if subject is target:

@@ -33,24 +33,24 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     Parameters
     ----------
-    input_layer : FeedForwardLayer
+    input_layer
         The input feed-forward layer.
-    output_layer : FeedForwardLayer
+    output_layer
         The output feed-forward layer.
-    passing_flash : bool, optional
+    passing_flash
         Whether to flash the edges during the forward pass animation,
         by default True.
-    dot_radius : float, optional
+    dot_radius
         Radius of the dots in the forward pass animation, by default 0.05.
-    animation_dot_color : ManimColor, optional
+    animation_dot_color
         Color of the dots in the forward pass animation, by default
         ``config.color_scheme.active_color``.
-    edge_color : ManimColor, optional
+    edge_color
         Color of the edges between the layers, by default
         ``config.color_scheme.secondary_color``.
-    edge_width : float, optional
+    edge_width
         Stroke width of the edges, by default 1.5.
-    camera : object, optional
+    camera
         Unused camera reference reserved for future use, by default None.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
@@ -89,9 +89,9 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -135,12 +135,12 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             May contain the key ``edge_indices_to_dropout`` with the indices
             of the edges that are dropped out, by default {}.
-        run_time : float, optional
+        run_time
             Run time of the dot animations, by default 1.
-        feed_forward_dropout : float, optional
+        feed_forward_dropout
             Unused dropout rate reserved for future use, by default 0.0.
         **kwargs
             Forwarded to the parent layer classes.
@@ -184,11 +184,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        colors : Any, optional
+        colors
             Colors to apply to the edges, by default None.
-        magnitudes : Any, optional
+        magnitudes
             Magnitudes used to determine the edge colors, by default None.
-        color_scheme : str, optional
+        color_scheme
             Name of the color scheme used when mapping magnitudes to colors,
             by default "inferno".
         """
@@ -200,7 +200,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        widths : Any
+        widths
             New stroke widths for the edges, one per edge.
         """
         assert len(widths) > 0

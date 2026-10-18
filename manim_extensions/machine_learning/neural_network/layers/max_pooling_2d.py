@@ -24,21 +24,21 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Parameters
     ----------
-    kernel_size : int or tuple, optional
+    kernel_size
         Width/Height of max pooling kernel, by default 2.
-    stride : int, optional
+    stride
         Stride of the max pooling operation, by default 1.
-    cell_highlight_color : ManimColor, optional
+    cell_highlight_color
         Color used to highlight the pooled cells, by default ORANGE.
-    cell_width : float, optional
+    cell_width
         Width of a single cell, by default 0.2.
-    filter_spacing : float, optional
+    filter_spacing
         Spacing between feature maps, by default 0.1.
-    color : ManimColor, optional
+    color
         Color of the feature map borders, by default BLUE.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the borders, by default 2.0.
     **kwargs
         Forwarded to the parent layer classes.
@@ -113,9 +113,9 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -173,7 +173,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Arguments for the layer. Defaults to ``{}``.
         **kwargs
             Forwarded to the parent layer classes.

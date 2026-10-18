@@ -135,16 +135,16 @@ class Node(VMobject):
 
     Parameters
     ----------
-    value : str | int | float | None, optional
+    value
         Value displayed inside the node. If the value is empty, a zero-radius dot
         is displayed as a placeholder.
-    width : float, optional
+    width
         Width of the node box. Defaults to ``2``.
-    text_scale : float, optional
+    text_scale
         Scale factor applied to the displayed text. Defaults to ``1.0``.
-    box_type : type, optional
+    box_type
         Shape used for the node box. Must be :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
-    box_color : ManimColor, optional
+    box_color
         Fill color of the node box. Defaults to ``WHITE``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -201,17 +201,16 @@ class Node(VMobject):
 
         Parameters
         ----------
-        box_type : type
+        box_type
             Box shape, either :class:`~manim.mobject.geometry.polygram.Square`
             or :class:`~manim.mobject.geometry.arc.Circle`.
-        width : float
+        width
             Width of the box (diameter for :class:`~manim.mobject.geometry.arc.Circle`).
-        color : ManimColor
+        color
             Fill colour applied to the box.
 
         Returns
         -------
-        Node
             The modified node instance.
 
         Raises
@@ -236,7 +235,6 @@ class Node(VMobject):
 
         Returns
         -------
-        Mobject
             The box mobject of the node, either a
             :class:`~manim.mobject.geometry.polygram.Square` or a
             :class:`~manim.mobject.geometry.arc.Circle`.
@@ -248,12 +246,11 @@ class Node(VMobject):
 
         Parameters
         ----------
-        value : NodeValue
+        value
             The value to display inside the node.
 
         Returns
         -------
-        Node
             The modified node instance.
         """
         if hasattr(self, "text"):
@@ -272,7 +269,6 @@ class Node(VMobject):
 
         Returns
         -------
-        NodeValue
             The value stored in the node.
         """
         return self.value
@@ -287,16 +283,15 @@ class Node(VMobject):
 
         Parameters
         ----------
-        color : ParsableManimColor | None
+        color
             The fill color to apply.
-        opacity : float | None
+        opacity
             The desired opacity to use.
-        family : bool
+        family
             Whether to apply the fill to the whole family of mobjects.
 
         Returns
         -------
-        Node
             The modified node instance.
         """
         super().set_fill(color, opacity, False)
@@ -309,7 +304,6 @@ class Node(VMobject):
 
         Returns
         -------
-        ManimColor
             The fill color of the node box.
         """
         return self.box.get_fill_color()
@@ -319,7 +313,6 @@ class Node(VMobject):
 
         Returns
         -------
-        ManimFloat
             The fill opacity of the node box.
         """
         return self.box.get_fill_opacity()
@@ -334,14 +327,13 @@ class Node(VMobject):
 
         Parameters
         ----------
-        direction : Vector3D
+        direction
             One of :class:`~manim.constants.LEFT`, :class:`~manim.constants.RIGHT`, :class:`~manim.constants.UP`, or :class:`~manim.constants.DOWN`.
-        index : int
+        index
             Slot number in the range ``0`` to :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS`.
 
         Returns
         -------
-        Point3D
             The point on the node's boundary at the requested slot.
 
         Raises
@@ -389,12 +381,12 @@ class Node(VMobject):
 
         Parameters
         ----------
-        *nodes : Node
+        *nodes
             One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to highlight.
-        color : ManimColor, optional
+        color
             Fill color used for highlighting. Defaults to
             :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_COLOR` (``RED``).
-        opacity : float, optional
+        opacity
             Opacity applied to the highlight color. Defaults to
             :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_OPACITY` (``0.5``).
         **kwargs
@@ -440,7 +432,7 @@ class Node(VMobject):
 
         Parameters
         ----------
-        *nodes : Node
+        *nodes
             One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to unselect.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
@@ -481,9 +473,9 @@ class Node(VMobject):
 
         Parameters
         ----------
-        node : Node
+        node
             The node whose value will be updated.
-        value : NodeValue
+        value
             New value to display inside the node.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
@@ -517,13 +509,13 @@ class Node(VMobject):
 
         Parameters
         ----------
-        node : Node
+        node
             The node that will be moved and whose value will be copied.
-        target : Node
+        target
             The destination node that will receive the new value.
-        select_color : ManimColor, optional
+        select_color
             If provided, highlights the moving node during the animation.
-        select_opacity : float, optional
+        select_opacity
             Opacity of the selection highlight. Defaults to ``0.2``.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
@@ -577,13 +569,13 @@ class Node(VMobject):
 
         Parameters
         ----------
-        node : Node
+        node
             The node whose value will be copied.
-        target : Node
+        target
             The destination node that will receive the new value.
-        select_color : ManimColor, optional
+        select_color
             If provided, highlights the copied node during the animation.
-        select_opacity : float, optional
+        select_opacity
             Opacity of the selection highlight. Defaults to ``0.2``.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
@@ -633,13 +625,13 @@ class Node(VMobject):
 
         Parameters
         ----------
-        node1 : Node
+        node1
             First node to swap.
-        node2 : Node
+        node2
             Second node to swap.
-        select_color : ManimColor, optional
+        select_color
             If provided, highlights the temporary copies during the swap.
-        select_opacity : float, optional
+        select_opacity
             Opacity of the selection highlight. Defaults to ``0.2``.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.

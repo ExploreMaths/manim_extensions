@@ -31,17 +31,17 @@ class Source(VMobject):
 
     Parameters
     ----------
-    mobject_group : VGroup
+    mobject_group
         Group of markings (symbols) displayed on the source.
-    letter : str
+    letter
         Letter label for the source (e.g. ``"V"`` or ``"A"``).
-    value : int or float
+    value
         Numeric value displayed next to the source.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
-    label : bool, optional
+    label
         Whether to display the value/letter label. Defaults to ``True``.
-    dependent : bool, optional
+    dependent
         Whether the source is dependent (uses a diamond symbol). Defaults to ``True``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -117,12 +117,11 @@ class Source(VMobject):
 
         Parameters
         ----------
-        val : str
+        val
             Which terminal to retrieve: ``"positive"`` or ``"negative"``.
 
         Returns
         -------
-        np.ndarray
             The 3D position of the requested terminal.
         """
         if type(self.main_body) is Circle:
@@ -140,7 +139,6 @@ class Source(VMobject):
 
         Returns
         -------
-        Source
             The modified self.
         """
         self.shift(
@@ -163,7 +161,6 @@ class Source(VMobject):
 
         Returns
         -------
-        Source
             The modified self.
         """
         super().rotate(angle, about_point=self.main_body.get_center(), *args, **kwargs)
@@ -258,9 +255,9 @@ class Circuit(VMobject):
             First endpoint of the wire.
         end2
             Second endpoint of the wire.
-        diagonal : bool, optional
+        diagonal
             Whether the wire may be drawn diagonally.
-        invert : bool, optional
+        invert
             Whether to invert the bend direction when turning.
         """
         if (
@@ -303,9 +300,9 @@ class Circuit(VMobject):
             First endpoint of the new wire.
         end2
             Second endpoint of the new wire.
-        diagonal : bool, optional
+        diagonal
             Whether the segment may be drawn diagonally.
-        invert : bool, optional
+        invert
             Whether to reverse the bend direction when a turn is needed.
 
         Returns
@@ -546,7 +543,6 @@ def distance(a: Point3DLike, b: Point3DLike) -> float:
 
     Returns
     -------
-    float
         Euclidean distance between the two points.
     """
     return float(np.sqrt(np.sum([i * i for i in np.array(a) - np.array(b)])))
@@ -565,12 +561,11 @@ def validate_forms_approx_line(
         Point being checked.
     line
         Two-point line segment to compare against.
-    tolerance : float, optional
+    tolerance
         Relative tolerance used by the approximation check.
 
     Returns
     -------
-    bool
         ``True`` if the sum of the distances from ``coord`` to both segment
         endpoints equals the segment length within ``tolerance``.
     """

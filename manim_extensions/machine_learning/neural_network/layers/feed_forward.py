@@ -36,34 +36,34 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     Parameters
     ----------
-    num_nodes : int
+    num_nodes
         Number of nodes in the layer.
-    layer_buffer : float, optional
+    layer_buffer
         Buffer between the nodes and the surrounding rectangle,
         by default ``SMALL_BUFF / 2``.
-    node_radius : float, optional
+    node_radius
         Radius of each node, by default 0.08.
-    node_color : ManimColor, optional
+    node_color
         Color of each node, by default ``config.color_scheme.primary_color``.
-    node_outline_color : ManimColor, optional
+    node_outline_color
         Outline color of each node, by default
         ``config.color_scheme.secondary_color``.
-    rectangle_color : ManimColor, optional
+    rectangle_color
         Color of the surrounding rectangle, by default
         ``config.color_scheme.secondary_color``.
-    node_spacing : float, optional
+    node_spacing
         Spacing between the nodes, by default 0.3.
-    rectangle_fill_color : ManimColor, optional
+    rectangle_fill_color
         Fill color of the surrounding rectangle, by default
         ``config.color_scheme.background_color``.
-    node_stroke_width : float, optional
+    node_stroke_width
         Stroke width of the node circles, by default 2.0.
-    rectangle_stroke_width : float, optional
+    rectangle_stroke_width
         Stroke width of the surrounding rectangle, by default 2.0.
-    animation_dot_color : ManimColor, optional
+    animation_dot_color
         Color of the dots in the forward pass animation, by default
         ``config.color_scheme.active_color``.
-    activation_function : ActivationFunction or str, optional
+    activation_function
         Activation function displayed next to the layer; a string is looked up
         by name.
     **kwargs
@@ -143,9 +143,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -200,7 +200,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict
+        layer_args
             Must contain the key ``dropout_node_indices`` with the indices
             of the nodes that are dropped out.
         **kwargs
@@ -231,7 +231,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             May contain the key ``dropout_node_indices`` with the indices of
             the nodes that are dropped out, by default {}.
         **kwargs
@@ -295,7 +295,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        mobject_or_point : Mobject
+        mobject_or_point
             The mobject or point whose center the layer is moved to.
         """
         layer_center = self.surrounding_rectangle.get_center()

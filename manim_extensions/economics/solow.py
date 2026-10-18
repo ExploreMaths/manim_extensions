@@ -174,12 +174,12 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        s : Any, optional
+        s
             New savings rate. If ``None``, keeps the current value.
             Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -198,18 +198,18 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        delta : Any, optional
+        delta
             New depreciation rate. If ``None``, keeps the current value.
             Defaults to ``None``.
-        n : Any, optional
+        n
             New population growth rate. If ``None``, keeps the current
             value. Defaults to ``None``.
-        g : Any, optional
+        g
             New technological growth rate. If ``None``, keeps the current
             value. Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -231,9 +231,9 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        s : Any
+        s
             New savings rate (higher than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -244,9 +244,9 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        s : Any
+        s
             New savings rate (lower than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -257,9 +257,9 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        n : numpy.ndarray
+        n
             New population growth rate (higher than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -270,9 +270,9 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        delta : Any
+        delta
             New depreciation rate (higher than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -320,13 +320,13 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        k : Any, optional
+        k
             Capital level. Defaults to the current steady-state k*.
-        c_color : ManimColor
+        c_color
             Color for consumption brace/label. Defaults to ``ORANGE``.
-        i_color : ManimColor
+        i_color
             Color for investment brace/label. Defaults to ``YELLOW``.
-        run_time : float
+        run_time
             Duration of the animation. Defaults to ``1``.
         """
         if k is None:
@@ -360,15 +360,15 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        k_start : Any
+        k_start
             Capital level where the animation starts.
-        k_end : Any
+        k_end
             Capital level where the animation ends.
-        c_color : ManimColor
+        c_color
             Color for consumption brace/label. Defaults to ``ORANGE``.
-        i_color : ManimColor
+        i_color
             Color for investment brace/label. Defaults to ``YELLOW``.
-        run_time : float
+        run_time
             Duration of the animation. Defaults to ``3``.
 
             Shows how the consumption/investment split changes at different
@@ -408,10 +408,10 @@ class SolowDiagram(EconDiagram):
 
         Parameters
         ----------
-        color : ManimColor
+        color
             Color of the golden-rule line and labels. Defaults to
             ``PURPLE``.
-        run_time : float
+        run_time
             Duration of the FadeIn animation. Defaults to ``1``.
 
             Draws a vertical dashed line at k_gold with a label. The golden rule

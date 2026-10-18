@@ -26,15 +26,15 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
     Parameters
     ----------
-    atoms_dict : :class:`dict`
+    atoms_dict
         Dictionary with the atom data of the molecule.
-    bonds_dict : :class:`dict`
+    bonds_dict
         Dictionary with the bond data of the molecule.
-    source_csv : :class:`str`, optional
+    source_csv
         Path to a csv file with element data. Defaults to ``None``.
-    add_bonds : :class:`bool`, optional
+    add_bonds
         Whether to add the bonds to the molecule. Defaults to ``True``.
-    add_atoms : :class:`bool`, optional
+    add_atoms
         Whether to add the atoms to the molecule. Defaults to ``True``.
     mobjects
         Additional mobjects to add to the group.
@@ -183,7 +183,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Parameters
         ----------
-        mc_molecule : MCMolecule
+        mc_molecule
             The origin MCMolecule.
 
         Returns
@@ -238,9 +238,9 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Parameters
         ----------
-        filename : :class:`~typing.Any`
+        filename
             Path to the .mol file.
-        source_csv : :class:`~typing.Any`
+        source_csv
             Path to a csv file with element data.
         """
         atoms, bonds = mol_parser(file=filename)
@@ -251,9 +251,9 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Parameters
         ----------
-        mol_string : :class:`~typing.Any`
+        mol_string
             String with the molecule data in mol format.
-        source_csv : :class:`~typing.Any`
+        source_csv
             Path to a csv file with element data.
         """
         atoms, bonds = mol_parser_string(mol_string)

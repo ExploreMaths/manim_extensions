@@ -145,15 +145,15 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        a : Any, optional
+        a
             New autonomous spending. If ``None``, keeps the current value.
             Defaults to ``None``.
-        b : Any, optional
+        b
             New interest sensitivity of investment. If ``None``, keeps the
             current value. Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -170,18 +170,18 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        ms : Any, optional
+        ms
             New real money supply. If ``None``, keeps the current value.
             Defaults to ``None``.
-        k : Any, optional
+        k
             New income sensitivity of money demand. If ``None``, keeps the
             current value. Defaults to ``None``.
-        h : Any, optional
+        h
             New interest sensitivity of money demand. If ``None``, keeps
             the current value. Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -201,9 +201,9 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        ms : Any
+        ms
             New real money supply (higher than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -214,9 +214,9 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        ms : Any
+        ms
             New real money supply (lower than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -229,9 +229,9 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        a : numpy.ndarray
+        a
             New autonomous spending (higher than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -242,9 +242,9 @@ class ISLMDiagram(EconDiagram):
 
         Parameters
         ----------
-        a : numpy.ndarray
+        a
             New autonomous spending (lower than current).
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """

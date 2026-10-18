@@ -99,14 +99,13 @@ class WrappedTree:
         node
             The source node (must expose ``width``, ``height``, and
             ``children`` attributes).
-        is_horizontal : bool
+        is_horizontal
             Whether the layout direction is horizontal (swaps width/height).
-        level : int
+        level
             The starting depth level (root is 0).
 
         Returns
         -------
-        WrappedTree
             The root of the newly created wrapper tree.
         """
         wt = cls()
@@ -176,11 +175,11 @@ def move_right(node: Any, move: float, is_horizontal: bool):
 
     Parameters
     ----------
-    node : WrappedTree
+    node
         The subtree root.
-    move : float
+    move
         The offset to apply.
-    is_horizontal : bool
+    is_horizontal
         If ``True``, shifts ``y``; otherwise shifts ``x``.
     """
     if is_horizontal:
@@ -196,14 +195,13 @@ def get_min(node: Any, is_horizontal: bool) -> float:
 
     Parameters
     ----------
-    node : WrappedTree
+    node
         The subtree root.
-    is_horizontal : bool
+    is_horizontal
         If ``True``, inspects ``y``; otherwise inspects ``x``.
 
     Returns
     -------
-    float
         The minimum coordinate value.
     """
     res = node.y if is_horizontal else node.x
@@ -217,9 +215,9 @@ def normalize(node: Any, is_horizontal: bool):
 
     Parameters
     ----------
-    node : WrappedTree
+    node
         The subtree root.
-    is_horizontal : bool
+    is_horizontal
         Whether the layout is horizontal.
     """
     min_val = get_min(node, is_horizontal)
@@ -234,11 +232,11 @@ def convert_back(converted: WrappedTree, root: Any, is_horizontal: bool):
 
     Parameters
     ----------
-    converted : WrappedTree
+    converted
         The wrapper tree root containing computed coordinates.
     root
         The original node to update.
-    is_horizontal : bool
+    is_horizontal
         Whether the layout is horizontal.
     """
     if is_horizontal:
@@ -261,9 +259,9 @@ def layer(node: Any, direction: str, level_spacing: float):
     ----------
     node
         The current node.
-    direction : LayoutDirection
+    direction
         The layout direction.
-    level_spacing : float
+    level_spacing
         Spacing between adjacent layers.
     """
     if (parent := node.parent) is not None:
@@ -286,13 +284,13 @@ class TidyTreeLayout(Layout):
 
     Parameters
     ----------
-    root : Any
+    root
         Root node of the tree to lay out.
-    direction : LayoutDirection, optional
+    direction
         Primary layout direction. Defaults to :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`.
-    node_spacing : float, optional
+    node_spacing
         Spacing between sibling nodes. Defaults to ``0.5``.
-    level_spacing : float, optional
+    level_spacing
         Spacing between tree levels. Defaults to ``0.5``.
 
     Examples
@@ -351,12 +349,11 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        direction : LayoutDirection
+        direction
             The layout direction to test.
 
         Returns
         -------
-        bool
             ``True`` if the direction is left-to-right or right-to-left.
         """
         return direction in (LayoutDirection.LeftToRight, LayoutDirection.RightToLeft)
@@ -376,7 +373,7 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The root of the subtree to process.
         """
         if t.child_number == 0:
@@ -402,7 +399,7 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The subtree root.
         """
         if t.child_number == 0:
@@ -424,16 +421,15 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        low : float
+        low
             The low end of the current subtree's right contour.
-        index : int
+        index
             The index of the current subtree among its siblings.
-        ih : Optional[IYLNode]
+        ih
             The previous head of the IYL list.
 
         Returns
         -------
-        IYLNode
             The new head of the IYL list.
         """
         while ih is not None and low >= ih.low:
@@ -446,11 +442,11 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             Parent node.
-        i : int
+        i
             Index of the current subtree.
-        ih : Optional[IYLNode]
+        ih
             Preceding subtrees whose right contour may still collide with the current subtree.
         """
         sr = t.children[
@@ -504,13 +500,13 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The parent node.
-        i : int
+        i
             Index of the subtree to move.
-        si : int
+        si
             Index of the leftmost sibling that was moved.
-        dist : float
+        dist
             The shift distance.
         """
         t.children[i].mod += dist
@@ -523,13 +519,13 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The parent node.
-        i : int
+        i
             Index of the moved subtree.
-        si : int
+        si
             Index of the leftmost sibling that was moved.
-        dist : float
+        dist
             The total extra distance to distribute.
         """
         if si != i - 1:
@@ -543,12 +539,11 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The current contour node.
 
         Returns
         -------
-        Optional[WrappedTree]
             The next left-contour node, or ``None`` if exhausted.
         """
         return t.thread_left if t.child_number == 0 else t.children[0]
@@ -558,12 +553,11 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The current contour node.
 
         Returns
         -------
-        Optional[WrappedTree]
             The next right-contour node, or ``None`` if exhausted.
         """
         return t.thread_right if t.child_number == 0 else t.children[-1]
@@ -573,12 +567,11 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The node whose extent is computed.
 
         Returns
         -------
-        float
             The extent used for contour comparison.
         """
         if self.is_horizontal:
@@ -590,13 +583,13 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The parent node.
-        i : int
+        i
             Index of the current subtree.
-        cl : WrappedTree
+        cl
             The left-contour node of the current subtree.
-        modsumcl : float
+        modsumcl
             The accumulated modifier sum along the left contour.
         """
         li = t.children[0].extreme_left
@@ -614,13 +607,13 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The parent node.
-        i : int
+        i
             Index of the current subtree.
-        sr : WrappedTree
+        sr
             The right-contour node of the current subtree.
-        modsumsr : float
+        modsumsr
             The accumulated modifier sum along the right contour.
         """
         ri = t.children[i].extreme_right
@@ -636,7 +629,7 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The subtree root.
         """
         t.prelim = (
@@ -651,9 +644,9 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The subtree root.
-        modsum : float
+        modsum
             Sum of all ancestor mod values from the root to the current node.
         """
         modsum += t.mod
@@ -671,7 +664,7 @@ class TidyTreeLayout(Layout):
 
         Parameters
         ----------
-        t : WrappedTree
+        t
             The parent node whose children are updated.
         """
         d = 0
@@ -689,12 +682,11 @@ class TidyTreeLayout(Layout):
 
             Parameters
             ----------
-            node : Any
+            node
                 The child node.
 
             Returns
             -------
-            VMobject
                 The connector line/curve.
             """
             parent = node.parent

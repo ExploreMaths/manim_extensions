@@ -34,23 +34,23 @@ class MElementObject(VGroup):
 
     Parameters
     ----------
-    atomic_number : :class:`int`, optional
+    atomic_number
         Atomic number of the element. Defaults to 1.
-    atomic_mass : :class:`float`, optional
+    atomic_mass
         Atomic mass of the element. Defaults to 1.
-    element_name : :class:`str`, optional
+    element_name
         Name of the element. Defaults to ``"Hydrogen"``.
-    element_symbol : :class:`str`, optional
+    element_symbol
         Symbol of the element. Defaults to ``"H"``.
-    coloring : optional
+    coloring
         Color of the element frame. Defaults to ``BLACK``.
-    fill_colors : :class:`tuple`, optional
+    fill_colors
         Colors used for the frame gradient fill. Defaults to ``(WHITE, BLUE)``.
-    gradient : :class:`int`, optional
+    gradient
         Number of colors in the frame gradient. Defaults to 10.
-    opacity : :class:`float`, optional
+    opacity
         Fill opacity of the element frame. Defaults to 1.
-    text_color : optional
+    text_color
         Color of the element texts. Defaults to ``BLACK``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -118,9 +118,9 @@ class MElementObject(VGroup):
 
         Parameters
         ----------
-        frame : :class:`~manim.mobject.mobject.Mobject`
+        frame
             Frame rectangle containing the element name.
-        name_text : :class:`~manim.mobject.mobject.Mobject`
+        name_text
             Text mobject with the element name.
         """
         return frame.get_width() / (1.25 * name_text.get_width())
@@ -130,7 +130,7 @@ class MElementObject(VGroup):
 
         Parameters
         ----------
-        name_text : :class:`~manim.mobject.mobject.Mobject`
+        name_text
             Text mobject with the element name.
         """
         text_height = name_text.get_height()
@@ -199,9 +199,9 @@ class MElementObject(VGroup):
 
         Parameters
         ----------
-        filename : :class:`~typing.Any`
+        filename
             Path to the CSV file with the element data.
-        atomic_number : :class:`~typing.Any`
+        atomic_number
             Atomic number of the element to look up.
         **kwargs
             Additional keyword arguments passed to
@@ -227,7 +227,7 @@ class PeriodicTable(VGroup):
 
     Parameters
     ----------
-    data_file : :class:`str` or Path-like
+    data_file
         Path to the csv file with the element data.
     vmobjects
         Additional vmobjects to add to the group.

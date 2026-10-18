@@ -17,11 +17,11 @@ class GMAnimationBuilder:
 
     Parameters
     ----------
-    molecule : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`
+    molecule
         The molecule the animations are built for.
-    atoms : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.VGroup`, optional
+    atoms
         The atoms to animate. Defaults to all vertices of the molecule.
-    bonds : :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.VGroup`, optional
+    bonds
         The bonds to animate. Defaults to all edges of the molecule.
 
     Examples
@@ -117,9 +117,9 @@ class GMAnimationBuilder:
 
         Parameters
         ----------
-        atom_a : :class:`~typing.Any`
+        atom_a
             Index of one of the atoms of the bond.
-        atom_b : :class:`~typing.Any`
+        atom_b
             Index of the other atom of the bond.
 
         Raises
@@ -138,11 +138,11 @@ class GMAnimationBuilder:
 
         Parameters
         ----------
-        atom_a : :class:`~typing.Any`
+        atom_a
             Index of one of the atoms of the bond.
-        atom_b : :class:`~typing.Any`
+        atom_b
             Index of the other atom of the bond.
-        angle : :class:`float`, optional
+        angle
             Angle of the rotation. Defaults to ``PI / 4``.
         """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
@@ -159,12 +159,12 @@ class GMAnimationBuilder:
 
         Parameters
         ----------
-        atoms_color : :class:`~manim.utils.color.core.ManimColor`, optional
+        atoms_color
             New color of the atoms. Defaults to ``BLACK``.
-        bonds_color : :class:`~typing.Any`, optional
+        bonds_color
             New color of the bonds. If ``None``, bonds keep their color.
             Defaults to ``None``.
-        label_color : :class:`~typing.Any`, optional
+        label_color
             New color of the atom labels. If ``None``, labels keep their
             color. Defaults to ``None``.
         """

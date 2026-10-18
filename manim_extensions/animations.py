@@ -50,9 +50,9 @@ class TypeWriter(Animation):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.text.text_mobject.Text`
+    mobject
         The :class:`~manim.mobject.text.text_mobject.Text` object to animate.
-    interval : float, optional
+    interval
         Display interval between consecutive characters in seconds.
         Defaults to ``0.1``.
     **kwargs
@@ -101,7 +101,7 @@ class TypeWriter(Animation):
 
         Parameters
         ----------
-        alpha : float
+        alpha
             Animation progress from ``0`` to ``1``.
         """
         current_index = int(alpha * self.char_count)
@@ -139,7 +139,6 @@ def easeOutBounce(t: float) -> float:
 
     Returns
     -------
-    float
         Eased value used in this operation, in ``[0, 1]``.
 
     Examples
@@ -198,7 +197,6 @@ def easeInBounce(t: float) -> float:
 
     Returns
     -------
-    float
         Eased value used in this operation, in ``[0, 1]``.
 
     Examples
@@ -247,7 +245,6 @@ def easeInOutBounce(t: float) -> float:
 
     Returns
     -------
-    float
         Eased value used in this operation, in ``[0, 1]``.
 
     Examples
@@ -302,7 +299,6 @@ def easeOutElastic(t: float) -> float:
 
     Returns
     -------
-    float
         Eased value used in this operation, which may exceed ``1`` near the end.
 
     Examples
@@ -354,9 +350,9 @@ class WriteRandom(LaggedStart):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose submobjects are written.
-    lag_ratio : float, optional
+    lag_ratio
         Delay between consecutive submobjects.  Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
@@ -398,9 +394,9 @@ class ReversedWrite(LaggedStart):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose submobjects are written.
-    lag_ratio : float, optional
+    lag_ratio
         Delay between consecutive submobjects.  Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
@@ -442,9 +438,9 @@ class FadeInRandom(LaggedStart):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose submobjects are faded in.
-    lag_ratio : float, optional
+    lag_ratio
         Delay between consecutive submobjects.  Defaults to ``0.08``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
@@ -485,9 +481,9 @@ class FadeOutRandom(LaggedStart):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose submobjects are faded out.
-    lag_ratio : float, optional
+    lag_ratio
         Delay between consecutive submobjects.  Defaults to ``0.08``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
@@ -528,9 +524,9 @@ class GrowRandom(LaggedStart):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose submobjects are grown.
-    lag_ratio : float, optional
+    lag_ratio
         Delay between consecutive submobjects.  Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
@@ -576,13 +572,13 @@ class PassingRectangle(Animation):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject the rectangle sweeps across.
-    color : :class:`~manim.utils.color.core.ManimColor`, optional
+    color
         Fill colour of the sweep.  Defaults to ``RED``.
-    buff : float, optional
+    buff
         Extra width/height around *mobject*.  Defaults to ``0.05``.
-    fill_opacity : float, optional
+    fill_opacity
         Fill opacity of the sweep.  Defaults to ``0.6``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
@@ -630,7 +626,7 @@ class PassingRectangle(Animation):
 
         Parameters
         ----------
-        alpha : float
+        alpha
             Animation progress from ``0`` to ``1``.
         """
         a_left = rush_into(alpha)
@@ -660,11 +656,11 @@ class LaggedCreation(Animation):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject to reveal.
-    lag_ratio : float, optional
+    lag_ratio
         Fraction of the mobject revealed per unit time.  Defaults to ``1.0``.
-    start_ratio : float, optional
+    start_ratio
         Fraction of the mobject visible at the start.  Defaults to ``1/6``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
@@ -701,7 +697,7 @@ class LaggedCreation(Animation):
 
         Parameters
         ----------
-        alpha : float
+        alpha
             Animation progress between ``0`` and ``1``.
 
         Returns
@@ -726,12 +722,11 @@ class LaggedCreation(Animation):
             The submobject being animated.
         starting_submobject
             The initial state of the submobject.
-        alpha : float
+        alpha
             Animation progress from ``0`` to ``1``.
 
         Returns
         -------
-        :class:`~manim.animation.animation.Animation`
             This animation, matching the signature of the superclass method.
         """
         a, b = self.get_bounds(alpha)
@@ -755,13 +750,13 @@ class HighLightWithLines(AnimationGroup):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject to highlight.
-    color : :class:`~manim.utils.color.core.ManimColor`, optional
+    color
         Colour of the lines and rectangle.  Defaults to ``RED``.
-    buff : float, optional
+    buff
         Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
-    rec_opacity : float, optional
+    rec_opacity
         Fill opacity of the rectangle.  Defaults to ``0.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -836,13 +831,13 @@ class UnHighLightWithLines(AnimationGroup):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         The mobject whose highlight is removed.
-    color : :class:`~manim.utils.color.core.ManimColor`, optional
+    color
         Colour used for the lines and rectangle.  Defaults to ``RED``.
-    buff : float, optional
+    buff
         Distance of the lines / rectangle from *mobject*.  Defaults to ``0.05``.
-    rec_opacity : float, optional
+    rec_opacity
         Fill opacity of the rectangle.  Defaults to ``0.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.

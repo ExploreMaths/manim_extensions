@@ -34,42 +34,42 @@ def qr_code(payload: str,
 
     Parameters
     ----------
-    payload : str
+    payload
         The data to encode in the QR code.
-    corner_size : int, optional
+    corner_size
         The size of the corner elements in QR pixels. Might need to be
         adjusted for larger or very small QR codes. Defaults to ``7``.
-    icon : str or int or None, optional
+    icon
         A Nerd Font icon to place in the center of the QR code, either an
         icon name or a Unicode code point. See
         https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
         for available icons. Defaults to ``None``.
-    icon_color : str or manim.ManimColor or None, optional
+    icon_color
         The color of the icon. Defaults to ``WHITE``.
-    icon_size : float, optional
+    icon_size
         The size of the icon in QR pixels. Pixels in the middle of the QR
         code are removed to make space for the icon. Defaults to ``10``.
-    icon_margin_size : float, optional
+    icon_margin_size
         A margin around the icon in QR pixels; the space left around the
         icon. Defaults to ``0.1``.
-    white_color : str or manim.ManimColor or None, optional
+    white_color
         The color of the rectangles or data points, which are typically
         white in a QR code. Defaults to ``WHITE``.
-    corner_color : str or manim.ManimColor or None, optional
+    corner_color
         The color for the corner elements of the QR code. Defaults to ``white_color``.
-    data_shape : str, optional
+    data_shape
         Shape of the data modules; either ``'rectangles'`` or ``'circles'``.
         Defaults to ``'rectangles'``.
-    rectangles_kwargs : dict or None, optional
+    rectangles_kwargs
         Additional keyword arguments for the rectangles, which represent
         the QR code data. Defaults to ``None``.
-    circle_kwargs : dict or None, optional
+    circle_kwargs
         Additional keyword arguments for the circles, which represent the
         QR code data. Defaults to ``None``.
-    error_correction : str, optional
+    error_correction
         The error correction level for the QR code, as accepted by
         :func:`segno.make`. Defaults to ``'H'``.
-    segno_kwargs : dict or None, optional
+    segno_kwargs
         Additional keyword arguments for the :func:`segno.make` function.
         Defaults to ``None``.
     **kwargs
@@ -78,7 +78,6 @@ def qr_code(payload: str,
 
     Returns
     -------
-    manim.VGroup
         A VGroup containing the QR code as Manim objects, scaled to fit a
         width of 2 units.
 

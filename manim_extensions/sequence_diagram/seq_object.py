@@ -58,12 +58,11 @@ class SeqObject(VGroup):
 
         Parameters
         ----------
-        font_size : float, optional
+        font_size
             Font size used for the label (default ``18``).
 
         Returns
         -------
-        Text
             A white :class:`~manim.mobject.text.text_mobject.Text` mobject
             displaying the object name.
         """

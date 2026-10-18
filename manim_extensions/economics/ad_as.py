@@ -175,15 +175,15 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        m : Any, optional
+        m
             New money supply. If ``None``, keeps the current value.
             Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity of money. If ``None``, keeps the current value.
             Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -203,15 +203,15 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        sras_price : Any, optional
+        sras_price
             New expected price level Pᵉ. If ``None``, keeps the current
             value. Defaults to ``None``.
-        sras_slope : Any, optional
+        sras_slope
             New SRAS slope; ``None`` keeps the curve flat. If ``None``,
             keeps the current value. Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
         """
@@ -231,9 +231,9 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        new_y : Any
+        new_y
             New potential output (natural rate of output).
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
         """
         old_line = self.curves["lras"]
@@ -261,10 +261,10 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        run_time : float
+        run_time
             Duration of the adjustment animation. Defaults to ``2``
             seconds.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -291,19 +291,19 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        m : Any, optional
+        m
             New money supply. If ``None``, keeps the current value.
             Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity of money. If ``None``, keeps the current value.
             Defaults to ``None``.
-        long_run : bool
+        long_run
             If True, append the long-run adjustment of SRAS. Defaults to
             ``True``.
-        lr_run_time : Any
+        lr_run_time
             Duration of the long-run adjustment animation. Defaults to
             ``2`` seconds.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -323,19 +323,19 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        m : Any, optional
+        m
             New money supply. If ``None``, keeps the current value.
             Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity of money. If ``None``, keeps the current value.
             Defaults to ``None``.
-        long_run : bool
+        long_run
             If True, append the long-run adjustment of SRAS. Defaults to
             ``True``.
-        lr_run_time : Any
+        lr_run_time
             Duration of the long-run adjustment animation. Defaults to
             ``2`` seconds.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -357,15 +357,15 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        sras_price : Any
+        sras_price
             New expected price level Pᵉ for SRAS (higher than current).
-        long_run : bool
+        long_run
             If True, append the long-run self-correction of SRAS. Defaults
             to ``True``.
-        lr_run_time : Any
+        lr_run_time
             Duration of the long-run adjustment animation. Defaults to
             ``2`` seconds.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 
@@ -385,15 +385,15 @@ class ADASDiagram(EconDiagram):
 
         Parameters
         ----------
-        sras_price : Any
+        sras_price
             New expected price level Pᵉ for SRAS (lower than current).
-        long_run : bool
+        long_run
             If True, append the long-run self-correction of SRAS. Defaults
             to ``True``.
-        lr_run_time : Any
+        lr_run_time
             Duration of the long-run adjustment animation. Defaults to
             ``2`` seconds.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
 

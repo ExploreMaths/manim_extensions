@@ -18,16 +18,16 @@ class Array(VMobject):
 
     Parameters
     ----------
-    data : list
+    data
         Values to display in the array.
-    total_width : float or Node, optional
+    total_width
         Total width of the array. If omitted, it is derived from the configured
         node width times the number of elements.
     box_type
         Shape of each node box.
     box_color
         Fill color used for each node.
-    text_scale : float, optional
+    text_scale
         Scale applied to each node label.
     **kwargs
         Additional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -92,7 +92,6 @@ class Array(VMobject):
 
         Returns
         -------
-        List[NodeValue]
             The value of every node in the array, in order.
         """
         return [item.value for item in self.array]
@@ -102,12 +101,11 @@ class Array(VMobject):
 
         Parameters
         ----------
-        key : int or slice
+        key
             The index or slice selecting the target node or nodes.
 
         Returns
         -------
-        Node
             The selected node or a new array slice.
         """
         if isinstance(key, slice):

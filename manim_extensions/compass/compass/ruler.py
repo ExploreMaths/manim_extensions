@@ -27,15 +27,15 @@ class Ruler(VGroup):
 
     Parameters
     ----------
-    length : float, optional
+    length
         Length of the ruler. Defaults to ``12``.
-    width : float, optional
+    width
         Width (height) of the ruler. Defaults to ``0.8``.
-    ruler_color : ManimColor, optional
+    ruler_color
         Fill color of the ruler. Defaults to ``WHITE``.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the ruler border. Defaults to ``2``.
-    fill_opacity : float, optional
+    fill_opacity
         Fill opacity of the ruler. Defaults to ``0.4``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -95,7 +95,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             Unit vector along the ruler's length, pointing from its end
             towards its start.
         """
@@ -107,7 +106,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             Unit vector along the ruler's width.
         """
         _, s, e, _ = self.ruler.get_vertices()
@@ -129,7 +127,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             The midpoint between the ruler's start and end points.
         """
         S, E = self.get_start_and_end()
@@ -140,7 +137,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        float
             The distance between the ruler's start and end points.
         """
         S, E = self.get_start_and_end()
@@ -159,7 +155,6 @@ class Ruler(VGroup):
         
         Returns
         -------
-        Ruler
             The repositioned self.
         
         Examples
@@ -194,7 +189,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        Ruler
             The flattened self.
 
         Examples

@@ -48,25 +48,25 @@ class NeuralNetwork(Group):
 
     Parameters
     ----------
-    input_layers : list or dict
+    input_layers
         Neural network layers to visualize; a list is converted to a dict with
         default names.
-    layer_spacing : float, optional
+    layer_spacing
         Spacing between the layers, by default 0.2.
-    animation_dot_color : ManimColor, optional
+    animation_dot_color
         Color of the dots in the forward pass animation, by default
         ``config.color_scheme.active_color``.
-    edge_width : float, optional
+    edge_width
         Stroke width of the connective edges, by default 2.5.
-    dot_radius : float, optional
+    dot_radius
         Radius of the dots in the forward pass animation, by default 0.03.
-    title : str, optional
+    title
         Title displayed above the network, by default a blank string.
-    layout : str, optional
+    layout
         Layout of the network, by default "linear".
-    layout_direction : str, optional
+    layout_direction
         Direction of the linear layout, by default "left_to_right".
-    debug_mode : bool, optional
+    debug_mode
         Whether to enable debug visuals, by default False.
 
     Examples
@@ -163,7 +163,7 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        input_layers : list or dict
+        input_layers
             Neural network layers to visualize; a list is converted to a dict
             with default names, a dict is returned unchanged.
 
@@ -197,16 +197,16 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        start_mobject_or_name : Union[Mobject, str]
+        start_mobject_or_name
             The layer the connection starts from, or its name in the network.
-        end_mobject_or_name : Union[Mobject, str]
+        end_mobject_or_name
             The layer the connection ends at, or its name in the network.
-        connection_style : str, optional
+        connection_style
             Style of the connection; currently only "default" is supported,
             by default "default".
-        connection_position : str, optional
+        connection_position
             Unused position hint reserved for future use, by default "bottom".
-        arc_direction : str, optional
+        arc_direction
             Direction the connection arc bends, by default "down".
         """
         assert connection_style in ["default"]
@@ -353,14 +353,13 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        layer : Mobject
+        layer
             The layer to insert.
-        insert_index : int
+        insert_index
             Position in ``all_layers`` at which to insert the layer.
 
         Returns
         -------
-        InsertLayer
             Animation that inserts the layer into the network.
         """
         neural_network = self
@@ -372,12 +371,11 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        layer : Mobject
+        layer
             The layer to remove.
 
         Returns
         -------
-        RemoveLayer
             Animation that removes the layer from the network.
         """
         neural_network = self
@@ -388,9 +386,9 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        old_layer : Mobject
+        old_layer
             The layer to be replaced.
-        new_layer : Mobject
+        new_layer
             The layer that takes the place of ``old_layer``.
 
         Raises
@@ -412,16 +410,16 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        run_time : Optional[float], optional
+        run_time
             Total run time of the forward pass; the run time is divided
             evenly across the layers.
-        passing_flash : bool, optional
+        passing_flash
             Whether to flash the connections while the signal passes through.
-        layer_args : dict, optional
+        layer_args
             Extra keyword arguments for individual layers, keyed by layer
             mobject. For connective layers the arguments of the adjacent
             layers are merged in.
-        per_layer_animations : bool, optional
+        per_layer_animations
             If True, return a mapping from each layer to its animation
             instead of a single combined animation.
         **kwargs
@@ -536,9 +534,9 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        z_index_value : float
+        z_index_value
             The z-index to set on each layer.
-        family : bool, optional
+        family
             Kept for signature compatibility; setting ``family=False`` stops
             sub-neural networks from inheriting the parent z-index.
         """
@@ -555,7 +553,7 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             The scaling factor.
         **kwargs
             Additional keyword arguments forwarded to each layer's ``scale``.
@@ -582,13 +580,12 @@ class NeuralNetwork(Group):
 
         Parameters
         ----------
-        function : Callable
+        function
             Predicate called with each layer; it must return a boolean
             indicating whether the layer is kept.
 
         Returns
         -------
-        list
             The layers for which ``function`` returned True.
         """
         layers_to_return = []

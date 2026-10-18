@@ -44,19 +44,19 @@ class ManimTransition(Transition, VGroup):
 
     Parameters
     ----------
-    transition_from : ManimState
+    transition_from
         State at which the transition starts.
-    transition_to : ManimState
+    transition_to
         State at which the transition ends.
-    read_symbols : sequence of str
+    read_symbols
         Symbols associated with the transition.
-    parent_automaton : ManimAutomaton
+    parent_automaton
         Parent automaton owning the transition.
-    animation_style : dict
+    animation_style
         Styling configuration used for animation playback.
-    font_size : int, optional
+    font_size
         Font size for the read-symbol labels.  Defaults to ``100``.
-    buffer : int, optional
+    buffer
         Spacing buffer for label positioning.  Defaults to ``1``.
     **kwargs
         Additional parameters for :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -144,12 +144,11 @@ class ManimTransition(Transition, VGroup):
 
         Parameters
         ----------
-        transition_result : bool
+        transition_result
             Whether the transition is accepted by the automaton.
 
         Returns
         -------
-        Animation
             The animation of the transition arrow.
         """
         animation_function = self.animation_style["animate_transition"][
@@ -182,9 +181,9 @@ class ManimTransition(Transition, VGroup):
 
         Parameters
         ----------
-        point1 : numpy.ndarray
+        point1
             Start point on the state circle.
-        point2 : numpy.ndarray
+        point2
             End point on the state circle.
         """
         self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
@@ -205,7 +204,7 @@ class ManimTransition(Transition, VGroup):
 
         Parameters
         ----------
-        normal_vector_choice : int
+        normal_vector_choice
             Side of the transition line on which the symbol label should be placed.
 
         Returns
@@ -352,7 +351,6 @@ class ManimTransition(Transition, VGroup):
 
         Returns
         -------
-        bool
             ``True`` if a read symbol matches the token, otherwise ``False``.
         """
         for read_symbol in self.read_symbols:
@@ -373,7 +371,6 @@ class ManimTransition(Transition, VGroup):
 
         Returns
         -------
-        float
             The slope (``dy/dx``) of the arrow, or ``0`` if the arrow is
             degenerate (reflexive case).
         """
@@ -400,19 +397,19 @@ class ManimPushDownAutomatonTransition(ManimTransition):
 
     Parameters
     ----------
-    transition_from : ManimState
+    transition_from
         Source state of the transition.
-    transition_to : ManimState
+    transition_to
         Target state of the transition.
-    rules : list
+    rules
         Pushdown automaton rules associated with this transition.
-    parent_automaton : ManimAutomaton
+    parent_automaton
         The owning automaton instance.
-    animation_style : dict
+    animation_style
         Animation configuration.
-    font_size : int, optional
+    font_size
         Font size for the rule labels.
-    buffer : int, optional
+    buffer
         Spacing buffer for label positioning.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.

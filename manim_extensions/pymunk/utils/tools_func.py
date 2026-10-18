@@ -19,16 +19,15 @@ def get_moment_for_box(mass: float, width: float, height: float) -> float:
 
     Parameters
     ----------
-    mass : float
+    mass
         Mass of the rectangle.
-    width : float
+    width
         Width of the rectangle.
-    height : float
+    height
         Height of the rectangle.
 
     Returns
     -------
-    float
         Moment of inertia.
     """
     moment_for_box = require("physics", "pymunk").moment_for_box
@@ -50,20 +49,19 @@ def get_moment_for_circle(
 
     Parameters
     ----------
-    mass : float
+    mass
         Mass of the ring.
-    inner_radius : float
+    inner_radius
         Inner radius.
-    outer_radius : float
+    outer_radius
         Outer radius.
-    x_offset : float, optional
+    x_offset
         Center X offset, defaults to 0.
-    y_offset : float, optional
+    y_offset
         Center Y offset, defaults to 0.
 
     Returns
     -------
-    float
         Moment of inertia.
     """
     moment_for_circle = require("physics", "pymunk").moment_for_circle
@@ -89,20 +87,19 @@ def get_moment_for_poly(
 
     Parameters
     ----------
-    mass : float
+    mass
         Mass of the polygon.
-    vertices : list[tuple[float, float]]
+    vertices
         List of polygon vertices, each represented as :math:`(x, y)`.
-    x_offset : float, optional
+    x_offset
         Center X offset, defaults to 0.
-    y_offset : float, optional
+    y_offset
         Center Y offset, defaults to 0.
-    stroke_width : float, optional
+    stroke_width
         Shape radius (used as line width), defaults to 0.
 
     Returns
     -------
-    float
         Moment of inertia.
     """
     moment_for_poly = require("physics", "pymunk").moment_for_poly
@@ -124,18 +121,17 @@ def get_moment_for_line(
 
     Parameters
     ----------
-    mass : float
+    mass
         Mass of the line segment.
-    start : tuple[float, float]
+    start
         Start point of the segment: :math:`(x, y)`.
-    end : tuple[float, float]
+    end
         End point of the segment: :math:`(x, y)`.
-    stroke_width : float
+    stroke_width
         Width (radius) of the segment.
 
     Returns
     -------
-    float
         Moment of inertia.
     """
     moment_for_segment = require("physics", "pymunk").moment_for_segment

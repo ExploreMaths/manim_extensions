@@ -22,17 +22,17 @@ class PubchemAPIManager:
 
     Parameters
     ----------
-    cid : :class:`int`, optional
+    cid
         PubChem compound id of the molecule. Defaults to ``None``.
-    name : :class:`str`, optional
+    name
         Name of the molecule. Defaults to ``None``.
-    smiles : :class:`str`, optional
+    smiles
         SMILES identifier of the molecule. Defaults to ``None``.
-    inchi : :class:`str`, optional
+    inchi
         InChI identifier of the molecule. Defaults to ``None``.
-    three_d : :class:`bool`, optional
+    three_d
         Whether to retrieve the 3D structure of the molecule. Defaults to ``False``.
-    format : :class:`str`, optional
+    format
         Format of the response data. Defaults to ``"json"``.
     """
 
@@ -66,14 +66,13 @@ class PubchemAPIManager:
 
         Parameters
         ----------
-        request : requests.Response
+        request
             The response object returned by the requests library.
         identifier
             The identifier used in the request (for error messages).
 
         Returns
         -------
-        str
             JSON string of the response body, or the raw decoded content
             if JSON parsing fails.
 
@@ -149,7 +148,6 @@ class PubchemAPIManager:
 
         Returns
         -------
-        str
             Parsed molecule data as a JSON string.
 
         Raises

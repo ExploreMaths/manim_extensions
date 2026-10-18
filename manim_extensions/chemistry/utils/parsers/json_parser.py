@@ -182,12 +182,11 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+        filename
             Path to the JSON file to parse.
 
         Returns
         -------
-        str
             String with the file data.
         """
         with open(filename) as file:
@@ -225,12 +224,11 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        data : :class:`~typing.Any`
+        data
             String with the JSON file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.read_file`.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
             List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
         molecules_data_dicts_list: Any = list(json.loads(data).values())[0]
@@ -248,12 +246,11 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         atoms_data = JSONParser.extract_atoms_data(molecule_data=molecule_data)
@@ -267,12 +264,11 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict`
             Atoms data of the molecule.
 
         Raises
@@ -334,12 +330,11 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        molecule_data : :class:`dict`
+        molecule_data
             Dictionary with the data of a single molecule.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict`
             Bonds data of the molecule.
 
         Raises
@@ -374,7 +369,7 @@ class JSONParser(BaseParser):
 
         Parameters
         ----------
-        atoms_elements_raw : :class:`list` of :class:`int`
+        atoms_elements_raw
             Atomic numbers of the atoms.
 
         Returns

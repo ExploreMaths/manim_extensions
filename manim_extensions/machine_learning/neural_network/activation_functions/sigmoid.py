@@ -17,11 +17,11 @@ class SigmoidFunction(ActivationFunction):
 
     Parameters
     ----------
-    function_name : str, optional
+    function_name
         Name displayed next to the plot, by default "Sigmoid".
-    x_range : list, optional
+    x_range
         Range of the x-axis, by default :math:`[-5, 5]`.
-    y_range : list, optional
+    y_range
         Range of the y-axis, by default :math:`[0, 1]`.
 
     Examples
@@ -51,7 +51,7 @@ class SigmoidFunction(ActivationFunction):
 
         Parameters
         ----------
-        x_val : Any
+        x_val
             Input value to which the sigmoid is applied.
         """
         return 1 / (1 + np.exp(-1 * x_val))

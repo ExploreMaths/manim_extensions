@@ -38,7 +38,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     Parameters
     ----------
-    mesh : Mesh
+    mesh
         The mesh data model containing vertices, faces, and parts.
     args
         Positional arguments forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.Group`.
@@ -135,7 +135,6 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`~manim.mobject.types.vectorized_mobject.Group`
             Group containing the vertex sphere mobjects.
         """
         # clear previous work if wanted
@@ -153,7 +152,6 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             Vector group containing the edge mobjects.
         """
         # clear previous work if wanted
@@ -186,7 +184,6 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             Vector group containing the face mobjects.
         """
         # clear previous work if wanted
@@ -217,14 +214,13 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        face : np.ndarray
+        face
             Array of vertex indices defining the face to add.
         color
             Optional colour for the new face; defaults to ``self.faces_color``.
 
         Returns
         -------
-        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, list[:class:`~manim.mobject.types.vectorized_mobject.VGroup`]]
             The newly created face mobject and a list of newly created edge mobjects.
         """
         if color is None:
@@ -271,12 +267,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        face_idx : int
+        face_idx
             Index of the face to remove.
 
         Returns
         -------
-        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, list[:class:`~manim.mobject.types.vectorized_mobject.VGroup`]]
             The removed face mobject and a list of removed edge mobjects.
         """
         old_edges = self.mesh.edges
@@ -300,12 +295,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        vertex_idx : int
+        vertex_idx
             Index of the vertex to retrieve.
 
         Returns
         -------
-        :class:`~manim.mobject.mobject.Mobject`
             The vertex mobject (e.g. :class:`~manim.mobject.three_d.three_dimensions.Sphere` or :class:`~manim.mobject.geometry.arc.Dot`).
         """
         return self.vertices.submobjects[vertex_idx]
@@ -315,12 +309,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        face_idx : int
+        face_idx
             Index of the face to retrieve.
 
         Returns
         -------
-        :class:`~manim.mobject.mobject.Mobject`
             The face mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.faces.submobjects[face_idx]
@@ -330,12 +323,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        edge_idx : int
+        edge_idx
             Index of the edge to retrieve.
 
         Returns
         -------
-        :class:`~manim.mobject.mobject.Mobject`
             The edge mobject (a :class:`~manim.mobject.three_d.three_dimensions.ThreeDVMobject`).
         """
         return self.edges.submobjects[edge_idx]
@@ -345,9 +337,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        new_vertices : Vertices
+        new_vertices
             New vertices processed by this operation.
-        scene : m.Scene
+        scene
             The scene in which the action is performed.
         """
         self.mesh.add_vertices(new_vertices)
@@ -364,9 +356,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        vertex_idx : int
+        vertex_idx
             Index of the vertex to update.
-        pos : np.ndarray
+        pos
             New position for the vertex (2-D or 3-D coordinates).
         """
         # update mesh
@@ -393,7 +385,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        edge : Tuple[int, int]
+        edge
             A pair of vertex indices defining the edge to update.
         """
         e = self.get_edge(self.mesh.get_edge_index(edge))
@@ -409,7 +401,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        vectors : np.ndarray
+        vectors
             One or more displacement vectors to apply.
         """
         total_shift = np.sum(vectors, axis=0)
@@ -423,7 +415,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             The uniform scale factor to apply.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
@@ -437,9 +429,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        factor : float
+        factor
             Stretch factor (e.g. ``2.0`` doubles the size along *dim*).
-        dim : int
+        dim
             The axis index to stretch (0 = x, 1 = y, 2 = z).
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.stretch`.
@@ -469,11 +461,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
-        axis : np.ndarray
+        axis
             Axis vector for the rotation (default ``OUT``).
-        about_point : np.ndarray, optional
+        about_point
             Pivot point for the rotation; defaults to the mesh centre.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
@@ -496,7 +488,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        axis : np.ndarray
+        axis
             Axis about which to flip (default :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`).
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
@@ -516,11 +508,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        vertex_idx : int
+        vertex_idx
             Index of the vertex to move.
-        shift : np.ndarray
+        shift
             Displacement vector (same dimensionality as ``mesh.dim``).
         **kwargs
             May include ``shift_vertex_runtime`` (animation duration in seconds).
@@ -551,9 +543,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        shift : np.ndarray
+        shift
             Array of displacement vectors, one per vertex (same length as
             ``self.mesh.vertices``).
         **kwargs
@@ -590,9 +582,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        new_positions : np.ndarray
+        new_positions
             Target positions for every vertex (same shape as ``self.mesh.vertices``).
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertices`.
@@ -616,11 +608,11 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        vertex_idx : int
+        vertex_idx
             Index of the vertex to move.
-        pos : np.ndarray
+        pos
             Target position for the vertex (must match ``mesh.dim``).
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertex`.
@@ -652,13 +644,13 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        grid_sizes : Tuple[float, ...]
+        grid_sizes
             Grid spacing per dimension.
-        threshold : Tuple[float, ...]
+        threshold
             Per-dimensional snap thresholds.
-        nof_steps : int
+        nof_steps
             Number of intermediate snap steps (default ``1``).
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
@@ -683,7 +675,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
     Parameters
     ----------
-    mesh : Mesh
+    mesh
         The mesh data model containing vertices and faces.
     args
         Positional arguments forwarded to the parent :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`.
@@ -755,7 +747,6 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`~manim.mobject.types.vectorized_mobject.Group`
             Group containing the vertex mobjects.
         """
         # clear previous work if wanted
@@ -774,12 +765,11 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        indices : list[int]
+        indices
             Vertex indices for which to create tracking dots.
 
         Returns
         -------
-        list[:class:`~manim.mobject.geometry.arc.Dot`]
             A list of :class:`~manim.mobject.geometry.arc.Dot` mobjects bound to the requested vertices.
         """
         dots = []

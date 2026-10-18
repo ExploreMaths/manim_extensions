@@ -77,12 +77,11 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
 
         Parameters
         ----------
-        val : float
+        val
             The involute parameter angle.
 
         Returns
         -------
-        numpy.ndarray
             A 3-D point :math:`(x, y, 0)` on the involute curve.
         """
         x = (
@@ -159,12 +158,11 @@ def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs:
 
         Parameters
         ----------
-        val : float
+        val
             The involute parameter angle.
 
         Returns
         -------
-        numpy.ndarray
             A 3-D derivative vector ``(dx, dy, 0)``.
         """
         x = (
@@ -289,29 +287,29 @@ class Gear(VMobject):
 
     Parameters
     ----------
-    num_of_teeth : int
+    num_of_teeth
         Number of gear teeth.
-    module : float, optional
+    module
         Standard size scaling parameter. ``diameter = module * num_of_teeth``.
         Defaults to ``0.2``.
-    alpha : float, optional
+    alpha
         Pressure angle in degrees. Affects tooth curvature. Suggested values
         are between ``10`` and ``30``. Defaults to ``20``.
-    h_a : float, optional
+    h_a
         Addendum coefficient (tooth height above the pitch circle).
         Defaults to ``1``.
-    h_f : float, optional
+    h_f
         Dedendum coefficient (tooth height below the pitch circle).
         Defaults to ``1.2``.
-    inner_teeth : bool, optional
+    inner_teeth
         If ``True``, generate a ring gear with teeth pointing inward.
         Defaults to ``False``.
-    profile_shift : float, optional
+    profile_shift
         Profile-shift coefficient. Changes the tooth shape and diameter
         slightly and reduces undercut. Defaults to ``0``.
-    cutout_teeth_num : int, optional
+    cutout_teeth_num
         Number of teeth to omit. Defaults to ``0``.
-    nppc : int, optional
+    nppc
         Number of points per involute curve. One tooth is built from four to
         six curve pieces depending on undercut. Defaults to ``5``.
     **kwargs
@@ -466,12 +464,11 @@ class Gear(VMobject):
 
             Parameters
             ----------
-            t : float
+            t
                 The involute parameter angle.
 
             Returns
             -------
-            float
                 The y-coordinate of the rotated involute point.
             """
             p1 = rotate_vector(
@@ -531,12 +528,11 @@ class Gear(VMobject):
 
             Parameters
             ----------
-            t : float
+            t
                 The involute parameter angle.
 
             Returns
             -------
-            numpy.ndarray
                 A point on the undercut curve.
             """
             return involute_func(t, self.rp, rad_offs=rad_ucut, tan_offs=tan_ucut)
@@ -552,12 +548,11 @@ class Gear(VMobject):
 
                 Parameters
                 ----------
-                t : list of float
+                t
                     ``[t_undercut, t_involute]`` Parameter values.
 
                 Returns
                 -------
-                numpy.ndarray
                     The :math:`(x, y)` difference vector.
                 """
                 invo_val = rotate_vector(
@@ -676,9 +671,9 @@ class Gear(VMobject):
 
             Parameters
             ----------
-            curve1 : VMobject
+            curve1
                 The first curve (modified in place).
-            curve2 : VMobject
+            curve2
                 The second curve (modified in place).
             """
             mid_point = (curve2.points[1, :] + curve1.points[-2, :]) / 2
@@ -947,11 +942,11 @@ class Gear(VMobject):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
-        axis : np.ndarray, optional
+        axis
             Rotation axis (default ``OUT``).
-        about_point : sequence of float or None, optional
+        about_point
             Centre point for the rotation.  If ``None`` the gear's own
             centre is used.
         **kwargs
@@ -972,16 +967,16 @@ class Rack(VMobject):
 
     Parameters
     ----------
-    num_of_teeth : int
+    num_of_teeth
         Number of teeth on the rack.
-    module : float, optional
+    module
         Standard size scaling parameter.  Defaults to ``0.2``.
-    alpha : float, optional
+    alpha
         Pressure angle in degrees.  Defaults to ``20``.
-    h_a : float, optional
+    h_a
         Addendum coefficient (tooth height above the pitch line).
         Defaults to ``1``.
-    h_f : float, optional
+    h_f
         Dedendum coefficient (tooth height below the pitch line).
         Defaults to ``1.17``.
     **kwargs
@@ -1084,11 +1079,11 @@ class Rack(VMobject):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
-        axis : np.ndarray, optional
+        axis
             Rotation axis (default ``OUT``).
-        about_point : sequence of float or None, optional
+        about_point
             Centre point for the rotation.  If ``None`` the rack's own
             centre is used.
         **kwargs

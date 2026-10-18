@@ -61,7 +61,6 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
 
     Returns
     -------
-    TexTemplate
         Configured TexTemplate for Arabic text rendering.
 
     Examples
@@ -122,7 +121,6 @@ def create_arabic_text(
 
     Returns
     -------
-    Tex
         Tex object with Arabic text.
 
     Examples

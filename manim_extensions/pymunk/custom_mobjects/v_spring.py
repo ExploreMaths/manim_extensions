@@ -126,9 +126,9 @@ class VSpring(Line):
 
         Parameters
         ----------
-        start : np.ndarray
+        start
             The starting point of the spring.
-        end : np.ndarray
+        end
             The ending point of the spring.
         """
         self.start = np.array(start)

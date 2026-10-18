@@ -15,11 +15,11 @@ class ReLUFunction(ActivationFunction):
 
     Parameters
     ----------
-    function_name : str, optional
+    function_name
         Name displayed next to the plot, by default "ReLU".
-    x_range : list, optional
+    x_range
         Range of the x-axis, by default :math:`[-1, 1]`.
-    y_range : list, optional
+    y_range
         Range of the y-axis, by default :math:`[-1, 1]`.
 
     Examples
@@ -49,7 +49,7 @@ class ReLUFunction(ActivationFunction):
 
         Parameters
         ----------
-        x_val : Any
+        x_val
             Input value to which the ReLU activation is applied.
         """
         if x_val < 0:

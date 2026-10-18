@@ -47,7 +47,7 @@ class FiniteStateAutomaton:
 
     Parameters
     ----------
-    json_template : dict, optional
+    json_template
         JSON dictionary describing the automaton states and transitions.
 
     Examples
@@ -101,7 +101,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        xml_file : str
+        xml_file
             Path to the XML file describing the automaton.
         """
         self.construct_from_json(parse_xml_file(xml_file))
@@ -111,7 +111,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        json_dictionary : dict
+        json_dictionary
             Structured automaton data containing the state and transition lists.
         """
         states = json_dictionary["structure"]["automaton"]["state"]
@@ -125,7 +125,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        states : list of dict
+        states
             State definitions from JSON or XML parsing.
         """
         for state_data in states:
@@ -140,7 +140,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        transitions : list of dict
+        transitions
             Transition definitions from JSON or XML parsing.
         """
         for trans_data in transitions:
@@ -161,7 +161,6 @@ class FiniteStateAutomaton:
 
         Returns
         -------
-        State
             The initial state.
         """
         for state in self.states:
@@ -191,7 +190,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        id : int
+        id
             Identifier of the state to retrieve.
 
         Returns
@@ -211,14 +210,13 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        token : str
+        token
             Input token to consume.
-        state_pointer : State
+        state_pointer
             Current state from which the step is evaluated.
 
         Returns
         -------
-        tuple
             ``(accepted, next_states, transitions)`` indicating whether the
             token was accepted, the reachable next states, and the matching
             transitions.
@@ -268,7 +266,7 @@ class FiniteStateAutomaton:
 
         Parameters
         ----------
-        id : int
+        id
             The transition's unique id.
 
         Returns
@@ -336,16 +334,15 @@ class PushDownAutomaton(FiniteStateAutomaton):
 
         Parameters
         ----------
-        token : str
+        token
             The input token to process.
-        state_pointer : State
+        state_pointer
             The current state.
-        deterministic : bool
+        deterministic
             If ``True``, return as soon as the first matching transition is found.
 
         Returns
         -------
-        tuple
             ``(accepted, next_states, transition_ids)`` indicating whether the
             token was accepted, the reachable next states, and the matching
             transition ids.

@@ -28,14 +28,13 @@ def convert_matplotlib_figure_to_image_mobject(
 
     Parameters
     ----------
-    fig : matplotlib figure
+    fig
         Matplotlib figure.
-    dpi : int, optional
+    dpi
         Resolution of the rendered figure in dots per inch, by default 200.
 
     Returns
     -------
-    ImageMobject
         Image mobject containing the rendered figure.
     """
     plt = cast(ModuleType, require("ml", "matplotlib.pyplot"))

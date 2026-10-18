@@ -104,7 +104,6 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :class:`~typing.Any`
             :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
         """
 
@@ -126,7 +125,6 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :class:`str`
             :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
         """
 
@@ -160,7 +158,6 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
         """
 
@@ -198,7 +195,6 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
         """
 
@@ -236,7 +232,6 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
         """
 

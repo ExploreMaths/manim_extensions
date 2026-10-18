@@ -98,7 +98,6 @@ class TimelineNode:
 
         Returns
         -------
-        TimelineNode
             The root of the newly created wrapper tree.
         """
         tl = cls()
@@ -129,21 +128,21 @@ def walk(
 
     Parameters
     ----------
-    node : TimelineNode
+    node
         The current node to visit.
-    parent : Optional[TimelineNode]
+    parent
         The parent of the current node, or ``None`` for the root.
-    before_callback : Optional[Callable]
+    before_callback
         A callback invoked before descending into children.  Signature:
         ``(node, parent, is_root, layer_index, index) -> bool``.
-    after_callback : Optional[Callable]
+    after_callback
         A callback invoked after descending into children.  Signature:
         ``(node, parent, is_root, layer_index, index) -> None``.
-    is_root : bool
+    is_root
         Whether ``node`` is the root of the traversal.
-    layer_index : int
+    layer_index
         The depth of the current node (root is 0).
-    index : int
+    index
         The index of ``node`` within its parent's children list.
     """
     # Pre-order callback
@@ -169,14 +168,14 @@ class TimeLineLayout(Layout):
 
     Parameters
     ----------
-    root : Any
+    root
         Root node of the tree to lay out.
-    sides : tuple of LayoutDirection, optional
+    sides
         Directions for the two sides of the timeline. Defaults to
         ``(LayoutDirection.TopToBottom, LayoutDirection.BottomToTop)``.
-    level_spacing : float, optional
+    level_spacing
         Spacing between tree levels. Defaults to ``0.5``.
-    node_spacing : float, optional
+    node_spacing
         Spacing between sibling nodes. Defaults to ``0.5``.
 
     Examples
@@ -245,7 +244,6 @@ class TimeLineLayout(Layout):
 
         Returns
         -------
-        Any
             The root node of the original tree, with ``x``, ``y``, ``side``,
             and ``level`` attributes filled in.
         """
@@ -270,15 +268,15 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            node : TimelineNode
+            node
                 The current node.
-            parent : Optional[TimelineNode]
+            parent
                 The parent node, or ``None`` for the root.
-            is_root : bool
+            is_root
                 Whether this is the root node.
-            layer_index : int
+            layer_index
                 The depth of the current node.
-            index : int
+            index
                 The index of the node within its parent's children.
             """
             node._parent = parent
@@ -321,15 +319,15 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            node : TimelineNode
+            node
                 The current node.
-            parent : Optional[TimelineNode]
+            parent
                 The parent node, or ``None`` for the root.
-            is_root : bool
+            is_root
                 Whether this is the root node.
-            layer_index : int
+            layer_index
                 The depth of the current node.
-            index : int
+            index
                 The index of the node within its parent's children.
             """
             if not node.children:
@@ -370,15 +368,15 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            node : TimelineNode
+            node
                 The current node.
-            parent : Optional[TimelineNode]
+            parent
                 The parent node, or ``None`` for the root.
-            is_root : bool
+            is_root
                 Whether this is the root node.
-            layer_index : int
+            layer_index
                 The depth of the current node.
-            index : int
+            index
                 The index of the node within its parent's children.
             """
             if node._is_root:
@@ -405,15 +403,15 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            node : TimelineNode
+            node
                 The current node.
-            parent : Optional[TimelineNode]
+            parent
                 The parent node, or ``None`` for the root.
-            is_root : bool
+            is_root
                 Whether this is the root node.
-            layer_index : int
+            layer_index
                 The depth of the current node.
-            index : int
+            index
                 The index of the node within its parent's children.
             """
             if (
@@ -441,7 +439,7 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The root node whose children are examined.
         """
         children_list = node.children
@@ -467,9 +465,9 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The node whose siblings need to be shifted.
-        add_height : float
+        add_height
             The vertical offset to apply to younger siblings.
         """
         if node._parent and not node._parent._is_root:
@@ -498,12 +496,11 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The node to inspect.
 
         Returns
         -------
-        int
             ``len(node.children)``.
         """
         return len(node.children)
@@ -516,12 +513,11 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The root of the subtree.
 
         Returns
         -------
-        float
             The cumulative area height.
         """
         total_height = 0.0
@@ -531,7 +527,7 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            n : TimelineNode
+            n
                 The current node.
             """
             nonlocal total_height
@@ -548,9 +544,9 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The root of the subtree.
-        dir : str
+        dir
             ``"h"`` For horizontal boundaries or ``"v"`` for vertical
             boundaries (currently unused in the return logic).
 
@@ -566,7 +562,7 @@ class TimeLineLayout(Layout):
 
             Parameters
             ----------
-            root : TimelineNode
+            root
                 The root of the subtree.
             """
             _left = float("inf")
@@ -602,11 +598,11 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        children : List[TimelineNode]
+        children
             The list of child nodes to update.
-        prop : str
+        prop
             The attribute name to modify (e.g. ``"x"`` or ``"y"``).
-        offset : float
+        offset
             The offset to add to the current value.
         """
         for item in children:
@@ -624,7 +620,7 @@ class TimeLineLayout(Layout):
 
         Parameters
         ----------
-        node : TimelineNode
+        node
             The root of the (sub)tree whose coordinates should be applied.
         """
         if node.node:

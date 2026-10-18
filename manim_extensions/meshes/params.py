@@ -93,16 +93,15 @@ def get_param_or_default(
 
     Parameters
     ----------
-    value : str
+    value
         The parameter name to look up.
-    params : Parameters
+    params
         Dictionary of user-supplied parameters (may be ``None``).
-    default : DefaultParameters
+    default
         Dictionary mapping parameter names to ``(type, default_value)`` tuples.
 
     Returns
     -------
-    Any
         The resolved parameter value.
 
     Raises

@@ -33,13 +33,13 @@ class NodeMobject:
 
     Parameters
     ----------
-    vmobject : VMobject
+    vmobject
         The main visual mobject for the node.
-    surr_rect : Rectangle
+    surr_rect
         Surrounding rectangle for the node.
-    connector : Line
+    connector
         Connector line to the parent node.
-    text : str
+    text
         Text content of the node.
 
     Examples
@@ -82,18 +82,17 @@ def generate_tree(
 
     Parameters
     ----------
-    Map : Dict
+    Map
         Dictionary describing the tree: a ``"node"`` mobject (or a string
         rendered with the ctex template) and an optional ``"child"`` list of
         nested dictionaries.
-    node_style : NodeStyle
+    node_style
         Node style parameter for this operation.
-    buff : float
+    buff
         Buff parameter for this operation.
 
     Returns
     -------
-    Node
         The root node of the generated tree.
     """
 
@@ -102,14 +101,13 @@ def generate_tree(
 
         Parameters
         ----------
-        ID : tuple of int
+        ID
             Hierarchical index tuple for the current node.
-        current_map : Dict
+        current_map
             Dictionary describing the node and its children.
 
         Returns
         -------
-        Node
             The root of the generated subtree.
         """
         level = len(ID)
@@ -151,7 +149,7 @@ class AbstractMap(Group):
 
     Parameters
     ----------
-    layout_method : Layout, optional
+    layout_method
         Layout algorithm used to position nodes. Defaults to ``Layout()``.
 
     Examples
@@ -198,7 +196,7 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        node : Node
+        node
             The root of the subtree to position.
         """
         pos = np.array([node.x, node.y, 0])
@@ -216,12 +214,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        NodeMobject
             The component wrapper of the node, or ``None`` if no node with
             the given ID exists.
         """
@@ -232,12 +229,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        Group
             A group of the node's VMobject and surrounding rectangle, or
             ``None`` if no node with the given ID exists.
         """
@@ -251,12 +247,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        str
             The narration text of the node, or ``None`` if no node with the
             given ID exists.
         """
@@ -270,12 +265,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        Line
             The connector line of the node, or ``None`` if no node with the
             given ID exists.
         """
@@ -289,7 +283,6 @@ class AbstractMap(Group):
 
         Returns
         -------
-        Group
             A group of every node's VMobject and surrounding rectangle,
             including connector lines where present.
         """
@@ -306,7 +299,6 @@ class AbstractMap(Group):
 
         Yields
         -------
-        Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
             breadth-first order.
         """
@@ -318,7 +310,6 @@ class AbstractMap(Group):
 
         Yields
         -------
-        Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
             depth-first pre-order.
         """
@@ -330,12 +321,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        id_list : List[tuple]
+        id_list
             Id list parameter for this operation.
 
         Yields
         -------
-        Generator
             A generator yielding the :class:`~manim_extensions.mindmap.mindmap.base.NodeMobject` of each node in
             ``id_list`` order, or ``None`` for unknown IDs.
         """
@@ -360,7 +350,7 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        level : int
+        level
             Level parameter for this operation.
         """
         return self.node_style.get_line_style(level=level)
@@ -370,12 +360,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        Group
             A group of the children's VMobjects and surrounding rectangles,
             or an empty group if no node with the given ID exists.
         """
@@ -389,12 +378,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        Group
             A group of the VMobjects and surrounding rectangles of the node
             and all its descendants, including connector lines where
             present, or an empty group if no node with the given ID exists.
@@ -415,12 +403,11 @@ class AbstractMap(Group):
 
         Parameters
         ----------
-        ID : str
+        ID
             Id parameter for this operation.
 
         Returns
         -------
-        Group
             A group of the descendants' VMobjects and surrounding
             rectangles, or an empty group if no node with the given ID
             exists.

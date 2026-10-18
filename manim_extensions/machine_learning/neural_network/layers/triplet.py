@@ -28,17 +28,17 @@ class TripletLayer(NeuralNetworkLayer):
 
     Parameters
     ----------
-    anchor : Mobject
+    anchor
         Mobject shown as the anchor example.
-    positive : Mobject
+    positive
         Mobject shown as the positive example.
-    negative : Mobject
+    negative
         Mobject shown as the negative example.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the surrounding rectangles, by default 5.
-    font_size : float, optional
+    font_size
         Font size of the labels, by default 22.
-    buff : float, optional
+    buff
         Buffer between the images, by default 0.2.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
@@ -74,9 +74,9 @@ class TripletLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -100,17 +100,17 @@ class TripletLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        anchor_path : str
+        anchor_path
             Path to the image used as the anchor example.
-        positive_path : str
+        positive_path
             Path to the image used as the positive example.
-        negative_path : str
+        negative_path
             Path to the image used as the negative example.
-        grayscale : bool, optional
+        grayscale
             Whether to load the images as grayscale mobjects, by default True.
-        font_size : float, optional
+        font_size
             Font size of the labels, by default 22.
-        buff : float, optional
+        buff
             Buffer between the images, by default 0.2.
         """
         # Load images from path
@@ -174,7 +174,7 @@ class TripletLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the layers when making their
             forward pass animations, by default {}.
         **kwargs

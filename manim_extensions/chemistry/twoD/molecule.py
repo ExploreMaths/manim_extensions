@@ -50,23 +50,23 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     Parameters
     ----------
-    atoms_dict : :class:`dict`
+    atoms_dict
         Dictionary with the atom data of the molecule.
-    bonds_dict : :class:`dict`
+    bonds_dict
         Dictionary with the bond data of the molecule.
-    representation_type : :class:`str`, optional
+    representation_type
         Type of atom representation. Defaults to ``None``.
-    explicit_carbons : :class:`bool`, optional
+    explicit_carbons
         Whether to explicitly show carbon atoms. Defaults to ``False``.
-    explicit_hydrogens : :class:`bool`, optional
+    explicit_hydrogens
         Whether to explicitly show hydrogen atoms. Defaults to ``False``.
-    planar : :class:`bool`, optional
+    planar
         Whether the molecule is rendered in 2D. Defaults to ``True``.
-    add_atoms_numbering : :class:`bool`, optional
+    add_atoms_numbering
         Whether to add numbering to the atoms. Defaults to ``False``.
-    add_bonds_numbering : :class:`bool`, optional
+    add_bonds_numbering
         Whether to add numbering to the bonds. Defaults to ``False``.
-    rotate_bonds : :class:`list`, optional
+    rotate_bonds
         Bonds to rotate. Defaults to an empty list.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -382,7 +382,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        rotate_bonds : :class:`~typing.Any`
+        rotate_bonds
             Bond index or list of bond indices to rotate.
         """
         if isinstance(rotate_bonds, int):
@@ -443,7 +443,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        filename : :class:`~typing.Any`
+        filename
             Path to the .mol file.
         **kwargs
             Additional keyword arguments passed to
@@ -457,7 +457,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        mol_string : :class:`~typing.Any`
+        mol_string
             String with the molecule data in mol format.
         **kwargs
             Additional keyword arguments passed to
@@ -471,7 +471,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        filename : :class:`~typing.Any`
+        filename
             Path to the .sdf file.
         **kwargs
             Additional keyword arguments passed to
@@ -489,7 +489,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        sdf_string : :class:`~typing.Any`
+        sdf_string
             String with the molecule data in sdf format.
         **kwargs
             Additional keyword arguments passed to
@@ -507,12 +507,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        atom_index : int
+        atom_index
             Index of the atom inside the VDict.
 
         Returns
         -------
-        numpy.array
             Array with the [x, y, z] coordinates of the atom.
 
         Raises
@@ -547,12 +546,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        atoms_index_list : list
+        atoms_index_list
             List of atoms indices to be gotten.
 
         Returns
         -------
-        list
             List of the atoms positions.
 
         Examples
@@ -576,12 +574,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        bond_index : int
+        bond_index
             Index of the bond.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of bond center.
 
         Raises
@@ -620,14 +617,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        bond_index : int
+        bond_index
             Index of the bond.
-        position_buff : float
+        position_buff
             Position buff.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of the final position selected.
 
         Raises
@@ -654,12 +650,11 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        bonds_index_list : list
+        bonds_index_list
             List of bonds indices to be gotten.
 
         Returns
         -------
-        list
             List of the bonds positions.
 
         Examples
@@ -683,7 +678,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping atom indices to their positions.
         """
         atoms_positions = {}
@@ -699,7 +693,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping bond indices to their center positions.
         """
         bonds_positions = {}
@@ -726,7 +719,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Parameters
         ----------
-        mc_molecule : MCMolecule
+        mc_molecule
             The MCMolecule object to transform.
 
         Returns
@@ -788,11 +781,11 @@ class NamedMolecule(VGroup):
     direction
         Direction in which the name is placed relative to the molecule.
         Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-    buff : :class:`float`, optional
+    buff
         Distance between the molecule and its name. Defaults to 1.
-    tex : :class:`bool`, optional
+    tex
         Whether to render the name with :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MathTex`. Defaults to ``False``.
-    font : :class:`str`, optional
+    font
         Font of the name text. Defaults to ``""``.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
@@ -883,18 +876,18 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        name : :class:`str`
+        name
             Name of the molecule.
-        filename : :class:`~typing.Any`
+        filename
             Path to the .mol file.
-        direction : :class:`str`, optional
+        direction
             Direction in which the name is placed relative to the molecule.
             Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-        buff : :class:`float`, optional
+        buff
             Distance between the molecule and its name. Defaults to 1.
-        tex : :class:`bool`, optional
+        tex
             Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
-        font : :class:`str`, optional
+        font
             Font of the name text. Defaults to ``""``.
         **kwargs
             Additional keyword arguments passed to
@@ -920,18 +913,18 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        name : :class:`str`
+        name
             Name of the molecule.
-        mol_str : :class:`~typing.Any`
+        mol_str
             String with the molecule data in mol format.
-        direction : :class:`str`, optional
+        direction
             Direction in which the name is placed relative to the molecule.
             Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-        buff : :class:`float`, optional
+        buff
             Distance between the molecule and its name. Defaults to 1.
-        tex : :class:`bool`, optional
+        tex
             Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
-        font : :class:`str`, optional
+        font
             Font of the name text. Defaults to ``""``.
         **kwargs
             Additional keyword arguments passed to
@@ -957,18 +950,18 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        name : :class:`str`
+        name
             Base name of the molecules.
-        filename : :class:`~typing.Any`
+        filename
             Path to the .sdf file.
-        direction : :class:`str`, optional
+        direction
             Direction in which the name is placed relative to the molecule.
             Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-        buff : :class:`float`, optional
+        buff
             Distance between the molecule and its name. Defaults to 1.
-        tex : :class:`bool`, optional
+        tex
             Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
-        font : :class:`str`, optional
+        font
             Font of the name text. Defaults to ``""``.
         **kwargs
             Additional keyword arguments passed to
@@ -998,18 +991,18 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        name : :class:`str`
+        name
             Base name of the molecules.
-        sdf_str : :class:`~typing.Any`
+        sdf_str
             String with the molecule data in sdf format.
-        direction : :class:`str`, optional
+        direction
             Direction in which the name is placed relative to the molecule.
             Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-        buff : :class:`float`, optional
+        buff
             Distance between the molecule and its name. Defaults to 1.
-        tex : :class:`bool`, optional
+        tex
             Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
-        font : :class:`str`, optional
+        font
             Font of the name text. Defaults to ``""``.
         **kwargs
             Additional keyword arguments passed to
@@ -1037,7 +1030,7 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        bonds : :class:`int` or :class:`list`
+        bonds
             Bond index or list of bond indices to rotate.
         """
         self.molecule = self.molecule.rotate_bond(bonds)
@@ -1064,12 +1057,11 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        atom_index : int
+        atom_index
             Index of the atom inside the VDict.
 
         Returns
         -------
-        numpy.array
             Array with the [x, y, z] coordinates of the atom.
 
         Raises
@@ -1104,12 +1096,11 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        atoms_index_list : list
+        atoms_index_list
             List of atoms indices to be gotten.
 
         Returns
         -------
-        list
             List of the atoms positions.
 
         Examples
@@ -1133,12 +1124,11 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        bond_index : int
+        bond_index
             Index of the bond.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of bond center.
 
         Raises
@@ -1178,14 +1168,13 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        bond_index : int
+        bond_index
             Index of the bond.
-        position_buff : float
+        position_buff
             Position buff.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of the final position selected.
 
         Raises
@@ -1212,12 +1201,11 @@ class NamedMolecule(VGroup):
 
         Parameters
         ----------
-        bonds_index_list : list
+        bonds_index_list
             List of bonds indices to be gotten.
 
         Returns
         -------
-        list
             List of the bonds positions.
 
         Examples
@@ -1241,7 +1229,6 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping atom indices to their positions.
         """
         atoms_positions = {}
@@ -1257,7 +1244,6 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping bond indices to their center positions.
         """
         bonds_positions = {}

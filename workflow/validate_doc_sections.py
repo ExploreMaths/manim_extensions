@@ -518,6 +518,23 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     })
 
 
+def _prose_after_colon(line: str) -> bool:
+    """True when ``name : ...`` actually starts a prose description.
+
+    ``The :math:`(x, y, z)` center ...`` is a description line, not a
+    ``name : type`` entry; treating it as an entry makes flat-description
+    checks flag valid return descriptions.  An inline role or a trailing
+    period marks prose rather than a type.
+    """
+    m = PARAM_ENTRY_RE.match(line)
+    if not m:
+        return False
+    typ = m.group(2)
+    if typ.startswith((":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:", ":ref:")):
+        return False  # a role-based type is a real entry
+    return "`" in typ or typ.endswith((".", "。", "．"))
+
+
 def flat_description_lines(doc: str) -> list:
     """Indexes of description lines that sit at the entry indent.
 
@@ -554,8 +571,9 @@ def flat_description_lines(doc: str) -> list:
                 if stripped.startswith(".. "):
                     break
                 if (stripped in SECTION_NAMES
-                        or PARAM_ENTRY_RE.match(stripped)
-                        or BARE_ENTRY_RE.match(stripped)):
+                        or BARE_ENTRY_RE.match(stripped)
+                        or (PARAM_ENTRY_RE.match(stripped)
+                            and not _prose_after_colon(stripped))):
                     prev_entry = True
                 elif prev_entry and " " in stripped:
                     flagged.append(k)

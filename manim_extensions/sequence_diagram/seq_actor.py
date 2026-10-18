@@ -105,7 +105,6 @@ class SeqActor(VGroup):
 
         Returns
         -------
-        Dot
             The most recently added time dot of this actor's timeline.
         """
         return cast(Dot, self.actor_timedots[-1])
@@ -115,7 +114,6 @@ class SeqActor(VGroup):
 
         Returns
         -------
-        int
             The current timeline depth, in time ticks.
         """
         timedot = self.latest_timedot
@@ -131,12 +129,11 @@ class SeqActor(VGroup):
 
         Parameters
         ----------
-        ticks_to_elapse : int, optional
+        ticks_to_elapse
             Number of time ticks to add to the current actor timeline. Defaults to ``1``.
 
         Returns
         -------
-        tuple
             A ``(timeline, animation)`` pair describing the elapsed time motion.
         """
         deepest_actor = SeqActor.get_deepest_actor()

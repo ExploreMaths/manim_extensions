@@ -30,24 +30,24 @@ class Table(VGroup):
 
     Parameters
     ----------
-    data : Optional[List[List[str]]], optional
+    data
         List of rows where the first row is treated as the header. Ignored if
         ``header`` is provided.
-    header : Optional[List[str]], optional
+    header
         Explicit header row (list of column names). Requires ``rows``.
-    rows : Optional[List[List[str]]], optional
+    rows
         Data rows (list of lists). Required if ``header`` is provided.
-    cell_width : float, optional
+    cell_width
         Default cell width, used only when ``auto_fit=False``. Defaults to ``1.5``.
-    cell_height : float, optional
+    cell_height
         Height of each cell. Defaults to ``0.5``.
-    font_size : int, optional
+    font_size
         Font size for cell text. Defaults to ``20``.
-    show_border : bool, optional
+    show_border
         If True, cells have visible borders.
-    auto_fit : bool, optional
+    auto_fit
         If True, column widths auto-fit to the longest content. Defaults to True.
-    padding : float, optional
+    padding
         Extra padding around text when ``auto_fit=True``. Defaults to ``0.3``.
     **kwargs
         Additional arguments passed to
@@ -248,7 +248,6 @@ class Table(VGroup):
 
         Returns
         -------
-        List[float]
             Width of each column, including ``padding`` around the
             longest text found in that column.
         """
@@ -280,14 +279,13 @@ class Table(VGroup):
 
         Parameters
         ----------
-        row : int
+        row
             Row index (``0`` is the header row).
-        col : int
+        col
             Column index (0-indexed).
 
         Returns
         -------
-        Cell
             The cell at the given position.
         """
         if row == 0:
@@ -300,12 +298,11 @@ class Table(VGroup):
 
         Parameters
         ----------
-        index : int
+        index
             Row index (``0`` returns the header row).
 
         Returns
         -------
-        Row
             The row at the given index.
         """
         if index == 0:
@@ -319,12 +316,11 @@ class Table(VGroup):
 
         Parameters
         ----------
-        index : int
+        index
             Column index (0-indexed).
 
         Returns
         -------
-        VGroup
             All cells in the column, including the header cell.
         """
         cells = [self.header_row[index]]
@@ -338,12 +334,11 @@ class Table(VGroup):
 
         Parameters
         ----------
-        name : str
+        name
             Header name of the column.
 
         Returns
         -------
-        VGroup
             All cells in the column, including the header cell.
 
         Raises
@@ -362,7 +357,6 @@ class Table(VGroup):
 
         Returns
         -------
-        List[str]
             The header names of all columns.
         """
         return list(self.header_values)
@@ -389,16 +383,15 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col : int
+        col
             Column index (0-indexed).
-        color : ParsableManimColor
+        color
             A Manim color.
-        include_header : bool, optional
+        include_header
             If True, also colors the header cell. Defaults to ``False``.
 
         Returns
         -------
-        Table
             This table, for method chaining.
         """
         if include_header:
@@ -413,18 +406,17 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col : int
+        col
             Column index (0-indexed).
-        color : ParsableManimColor
+        color
             A Manim color.
-        opacity : float, optional
+        opacity
             Background opacity (0 to 1). Defaults to ``0.5``.
-        include_header : bool, optional
+        include_header
             If True, also colors the header cell. Defaults to ``False``.
 
         Returns
         -------
-        Table
             This table, for method chaining.
         """
         if include_header:
@@ -439,16 +431,15 @@ class Table(VGroup):
         
         Parameters
         ----------
-        col : int
+        col
             Column index (0-indexed).
-        color : ParsableManimColor
+        color
             A Manim color.
-        include_header : bool, optional
+        include_header
             If True, also colors the header cell. Defaults to ``True``.
 
         Returns
         -------
-        Table
             This table, for method chaining.
         """
         if include_header:
@@ -463,14 +454,13 @@ class Table(VGroup):
         
         Parameters
         ----------
-        color : ParsableManimColor
+        color
             A Manim color.
-        opacity : float, optional
+        opacity
             Background opacity (0 to 1). Defaults to ``0.5``.
 
         Returns
         -------
-        Table
             This table, for method chaining.
         """
         for cell in self.header_row:
@@ -483,12 +473,11 @@ class Table(VGroup):
         
         Parameters
         ----------
-        color : ParsableManimColor
+        color
             A Manim color.
 
         Returns
         -------
-        Table
             This table, for method chaining.
         """
         for cell in self.header_row:
@@ -508,7 +497,7 @@ class Table(VGroup):
 
         Parameters
         ----------
-        values : List[str]
+        values
             Values of the new row, one per column.
 
         Returns
@@ -651,7 +640,7 @@ class Table(VGroup):
         
         Parameters
         ----------
-        index : int
+        index
             Row index (1-indexed, i.e., header is 0, first data row is 1).
 
         Returns
@@ -788,12 +777,12 @@ class Table(VGroup):
         
         Parameters
         ----------
-        header : str
+        header
             Header text for the new column.
-        values : List[str]
+        values
             List of values for the data rows. Its length must match the
             number of data rows.
-        index : Optional[int], optional
+        index
             Insert index (0-indexed). Defaults to the end of the table.
 
         Returns
@@ -908,7 +897,7 @@ class Table(VGroup):
         
         Parameters
         ----------
-        index : int
+        index
             Column index to delete (0-indexed).
 
         Returns

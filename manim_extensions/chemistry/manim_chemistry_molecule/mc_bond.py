@@ -26,19 +26,19 @@ class MCBond:
 
     Parameters
     ----------
-    bond_type : :class:`int`
+    bond_type
         Type of the bond: 1 for simple, 2 for double, 3 for triple.
-    from_atom : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.MCAtom`, optional
+    from_atom
         Atom the bond starts from. Defaults to ``None``.
-    to_atom : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.MCAtom`, optional
+    to_atom
         Atom the bond ends at. Defaults to ``None``.
-    stereo : :class:`int`, optional
+    stereo
         Stereo type of the bond. Defaults to ``None``.
-    molecule_index : :class:`int`, optional
+    molecule_index
         Index of the bond in the molecule. Defaults to ``None``.
-    topology : :class:`int`, optional
+    topology
         Topology of the bond. Defaults to ``None``.
-    reacting_center_status : :class:`int`, optional
+    reacting_center_status
         Reacting center status of the bond. Defaults to ``None``.
     """
 
@@ -66,7 +66,7 @@ class MCBond:
 
         Parameters
         ----------
-        from_atom : MCAtom
+        from_atom
             Atom the bond starts from.
         """
         self.from_atom = from_atom
@@ -76,7 +76,7 @@ class MCBond:
 
         Parameters
         ----------
-        to_atom : MCAtom
+        to_atom
             Atom the bond ends at.
         """
         self.to_atom = to_atom
@@ -86,7 +86,7 @@ class MCBond:
 
         Parameters
         ----------
-        stereo : :class:`~typing.Any`
+        stereo
             Stereo type of the bond.
         """
         self.stereo = stereo
@@ -98,9 +98,9 @@ class MCBond:
 
         Parameters
         ----------
-        bond_index : Any
+        bond_index
             Index of the bond in the molecule.
-        bond_data_dict : Dict
+        bond_data_dict
             See data_parser function from BaseParser.
         molecule
             MCMolecule: Required to get the atoms by their index and
@@ -108,7 +108,6 @@ class MCBond:
 
         Returns
         -------
-        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`
             The constructed bond.
 
         Raises

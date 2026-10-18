@@ -100,13 +100,13 @@ class LayoutConfig:
     """Configuration options for mind-map layouts.
     Parameters
     ----------
-    direction : np.ndarray, optional
+    direction
         Layout direction. Defaults to RIGHT.
-    node_spacing : float, optional
+    node_spacing
         Spacing between nodes. Defaults to 0.5.
-    level_spacing : float, optional
+    level_spacing
         Spacing between layers. Defaults to 0.5.
-    sides : np.ndarray | List[np.ndarray], optional
+    sides
         Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (UP,DOWN).
     
     Raises
@@ -173,12 +173,11 @@ class LayoutConfig:
 
         Parameters
         ----------
-        direction : np.ndarray
+        direction
             The direction of the operation.
 
         Returns
         -------
-        LayoutDirection
             The layout direction enum matching ``direction``.
         """
         string = None
@@ -212,7 +211,7 @@ class LayoutConfig:
 
         Parameters
         ----------
-        catalog : Dict
+        catalog
             Dictionary with ``node_spacing`` and ``level_spacing`` keys.
         """
         self.node_spacing = catalog.get("node_spacing", 0.5)
@@ -236,7 +235,7 @@ class LayoutConfig:
 
         Parameters
         ----------
-        mindmap : Dict
+        mindmap
             Dictionary with ``direction``, ``node_spacing``, and
             ``level_spacing`` keys.
 
@@ -276,7 +275,7 @@ class LayoutConfig:
 
         Parameters
         ----------
-        timeline : Dict
+        timeline
             Dictionary with ``node_spacing``, ``level_spacing``, and
             ``sides`` keys.
 

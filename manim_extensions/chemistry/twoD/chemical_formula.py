@@ -18,13 +18,13 @@ class ChemicalFormula(MarkupText):
 
     Parameters
     ----------
-    formula : :class:`str`
+    formula
         The chemical formula to render, e.g. ``"H2O"``.
-    metal_color : :class:`str`, optional
+    metal_color
         Color of the metal element. Defaults to ``WHITE``.
-    non_metal_color : :class:`str`, optional
+    non_metal_color
         Color of the non-metal element. Defaults to ``WHITE``.
-    oxygen_color : :class:`str`, optional
+    oxygen_color
         Color of the oxygen element. Defaults to ``WHITE``.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
@@ -61,7 +61,7 @@ class ChemicalFormula(MarkupText):
 
         Parameters
         ----------
-        formula : :class:`str`
+        formula
             The chemical formula to parse, e.g. ``"H2O"``.
         """
         FORMULA_PATTERN = r"([A-Z][a-z]*)(\d*)"
@@ -84,13 +84,13 @@ class ChemicalFormula(MarkupText):
 
         Parameters
         ----------
-        parsed_formula : :class:`~typing.Any`
+        parsed_formula
             Parsed formula mapping element symbols to their counts.
-        metal_color : :class:`str`, optional
+        metal_color
             Color of the metal element. Defaults to ``WHITE``.
-        non_metal_color : :class:`str`, optional
+        non_metal_color
             Color of the non-metal element. Defaults to ``WHITE``.
-        oxygen_color : :class:`str`, optional
+        oxygen_color
             Color of the oxygen element. Defaults to ``WHITE``.
         """
         parsed_list = enumerate(list(parsed_formula))
@@ -113,11 +113,11 @@ class ChemicalFormula(MarkupText):
 
         Parameters
         ----------
-        atom : :class:`~typing.Any`
+        atom
             Element symbol of the atom.
-        subindex : :class:`~typing.Any`
+        subindex
             Subscript count of the atom.
-        color : :class:`~manim.utils.color.core.ManimColor`
+        color
             Color of the atom text.
         """
         colored_atom = f"<span fgcolor='{color}'>{atom}"
@@ -135,24 +135,24 @@ class NamedFormula(VGroup):
 
     Parameters
     ----------
-    metal_name : :class:`str`
+    metal_name
         Name of the metal element.
-    non_metal_name : :class:`str`
+    non_metal_name
         Name of the non-metal element.
-    formula : :class:`str`
+    formula
         The chemical formula to render.
-    metal_color : :class:`str`, optional
+    metal_color
         Color of the metal element. Defaults to ``WHITE``.
-    non_metal_color : :class:`str`, optional
+    non_metal_color
         Color of the non-metal element. Defaults to ``WHITE``.
-    oxygen_color : :class:`str`, optional
+    oxygen_color
         Color of the oxygen element. Defaults to ``WHITE``.
-    font : :class:`str`, optional
+    font
         Font of the name text. Defaults to ``""``.
-    spanish_structure : :class:`bool`, optional
+    spanish_structure
         Whether to use the spanish name ordering (non-metal first).
         Defaults to ``False``.
-    buff : :class:`float`, optional
+    buff
         Distance between the formula and its name. Defaults to
         ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
     direction
@@ -253,7 +253,7 @@ class ComplexFormula(MarkupText):
 
     Parameters
     ----------
-    formula_dict : :class:`dict`
+    formula_dict
         Dictionary mapping formula strings to their colors.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.MarkupText`.
@@ -276,7 +276,7 @@ class ComplexFormula(MarkupText):
 
         Parameters
         ----------
-        formula_part : :class:`~typing.Any`
+        formula_part
             Formula string to add subscript tags to.
         """
         pattern = r"([^\d\s]+)(\d+)"
@@ -289,7 +289,7 @@ class ComplexFormula(MarkupText):
 
         Parameters
         ----------
-        formula_part : :class:`~typing.Any`
+        formula_part
             Formula string to add superscript tags to.
         """
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
@@ -303,7 +303,7 @@ class ComplexFormula(MarkupText):
 
         Parameters
         ----------
-        formula_part : :class:`~typing.Any`
+        formula_part
             Formula string to add subscript and superscript tags to.
         """
         result = self.add_tags_around_numbers(formula_part)
@@ -318,14 +318,14 @@ class NamedComplexFormula(VGroup):
 
     Parameters
     ----------
-    name_dict : :class:`dict`
+    name_dict
         Dictionary mapping name strings to their colors.
-    formula_dict : :class:`dict`
+    formula_dict
         Dictionary mapping formula strings to their colors.
     direction
         Direction in which the name is placed relative to the formula.
         Defaults to :class:`~manim.constants.DOWN`.
-    buff : :class:`float`, optional
+    buff
         Distance between the formula and its name. Defaults to
         ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
     args

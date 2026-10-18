@@ -45,12 +45,11 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
 
     Parameters
     ----------
-    nodes : List[Node]
+    nodes
         Nodes processed by this operation.
 
     Returns
     -------
-    FadeOut
         The animation fading out the given nodes and their subtrees.
 
     Examples
@@ -96,22 +95,21 @@ def animate_of_create(
 
     Parameters
     ----------
-    node : Node
+    node
         Node parameter for this operation.
-    pos : np.ndarray
+    pos
         Position value used by this operation.
-    direction : np.ndarray
+    direction
         The direction of the operation.
-    line_styles : Dict
+    line_styles
         Line styles processed by this operation.
-    node_styles : Dict
+    node_styles
         Node styles processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations creating the node content, its surrounding
         rectangle, and the connector line.
 
@@ -179,26 +177,25 @@ def animate_of_display(
 
     Parameters
     ----------
-    node : Node
+    node
         Node parameter for this operation.
-    pos : np.ndarray
+    pos
         Position value used by this operation.
-    direction : np.ndarray
+    direction
         The direction of the operation.
-    line_styles : Dict
+    line_styles
         Line styles processed by this operation.
-    node_styles : Dict
+    node_styles
         Node styles processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
-    change_dir : bool
+    change_dir
         Change dir parameter for this operation.
-    change_layout : bool
+    change_layout
         Change layout parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations moving the node content and surrounding rectangle
         to the new position and updating the connector line.
 
@@ -256,26 +253,25 @@ def animate_of_scale(
 
     Parameters
     ----------
-    node : Node
+    node
         Node parameter for this operation.
-    pos : np.ndarray
+    pos
         Position value used by this operation.
-    direction : np.ndarray
+    direction
         The direction of the operation.
-    line_styles : Dict
+    line_styles
         Line styles processed by this operation.
-    node_styles : Dict
+    node_styles
         Node styles processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
-    change_dir : bool
+    change_dir
         Change dir parameter for this operation.
-    change_layout : bool
+    change_layout
         Change layout parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations scaling the node content and surrounding rectangle
         and updating the connector line.
 
@@ -332,26 +328,25 @@ def animate_of_alter(
 
     Parameters
     ----------
-    node : Node
+    node
         Node parameter for this operation.
-    pos : np.ndarray
+    pos
         Position value used by this operation.
-    direction : np.ndarray
+    direction
         The direction of the operation.
-    line_styles : Dict
+    line_styles
         Line styles processed by this operation.
-    node_styles : Dict
+    node_styles
         Node styles processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
-    change_dir : bool
+    change_dir
         Change dir parameter for this operation.
-    change_layout : bool
+    change_layout
         Change layout parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations replacing the node content and surrounding
         rectangle and updating the connector line.
 
@@ -408,26 +403,25 @@ def animate_of_node(
 
     Parameters
     ----------
-    node : Node
+    node
         Node parameter for this operation.
-    pos : np.ndarray
+    pos
         Position value used by this operation.
-    direction : np.ndarray
+    direction
         The direction of the operation.
-    line_styles : Dict
+    line_styles
         Line styles processed by this operation.
-    node_styles : Dict
+    node_styles
         Node styles processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
-    change_dir : bool
+    change_dir
         Change dir parameter for this operation.
-    change_layout : bool
+    change_layout
         Change layout parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations matching the node's current state (create, display,
         scale, or alter).
 
@@ -472,14 +466,13 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
 
     Parameters
     ----------
-    root : Node
+    root
         The root node (before first layout, or after a layout has been applied).
-    layout_type : LayoutType
+    layout_type
         The layout method to be used.
 
     Returns
     -------
-    bool
         Whether the layout algorithm has changed.
     """
     origin_layout = getattr(root, "layout_type", None)
@@ -494,14 +487,13 @@ def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
 
     Parameters
     ----------
-    root : Node
+    root
         The root node (before first layout, or after a layout has been applied).
     direction
         The layout direction to be used.
 
     Returns
     -------
-    bool
         Whether the layout direction has changed.
     """
     origin_dir = getattr(root, "direction", None)
@@ -521,20 +513,19 @@ def animate_of_layout(
 
     Parameters
     ----------
-    root : Node
+    root
         Root parameter for this operation.
-    remove_nodes : List[Node]
+    remove_nodes
         Remove nodes processed by this operation.
-    layout_type : LayoutType
+    layout_type
         Layout type parameter for this operation.
-    layout_config : LayoutConfig
+    layout_config
         Layout config parameter for this operation.
-    node_style : NodeStyle
+    node_style
         Node style parameter for this operation.
 
     Returns
     -------
-    List[Animation]
         The animations produced by re-running the layout over the tree,
         including a fade-out animation for any removed subtrees.
 
@@ -712,7 +703,6 @@ class AbstractLayoutAnimation(AnimationGroup):
 
         Returns
         -------
-        List[Animation]
             The collected animations.
 
         Raises
@@ -728,12 +718,11 @@ class AbstractLayoutAnimation(AnimationGroup):
 
         Parameters
         ----------
-        nodes : List[Node]
+        nodes
             Nodes processed by this operation.
 
         Returns
         -------
-        Node
             The common root node, or ``None`` if the nodes do not share a
             common root.
         """
@@ -750,15 +739,15 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
     Parameters
     ----------
-    scene : Scene
+    scene
         The current scene.
-    root : Node
+    root
         The root node.
-    layout_type : LayoutType, optional
+    layout_type
         Layout type. Defaults to LayoutType.MindMap.
-    layout_config : LayoutConfig, optional
+    layout_config
         Layout parameters. Defaults to LayoutConfig().
-    node_style : NodeStyle, optional
+    node_style
         Layout and node styles. Defaults to NodeStyle().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -842,15 +831,15 @@ class RemoveNode(LayoutAnimation):
 
     Parameters
     ----------
-    scene : Scene
+    scene
         The current scene.
-    nodes : Node or list of Node
+    nodes
         The node or nodes to remove, along with their subtrees.
-    layout_type : LayoutType, optional
+    layout_type
         Layout type. Defaults to LayoutType.MindMap.
-    layout_config : LayoutConfig, optional
+    layout_config
         Layout parameters. Defaults to LayoutConfig().
-    node_style : NodeStyle, optional
+    node_style
         Layout and node styles. Defaults to NodeStyle().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -939,7 +928,6 @@ class RemoveNode(LayoutAnimation):
 
         Returns
         -------
-        Group
             A group of node mobjects to fade out.
         """
         group = Group()
@@ -1013,12 +1001,11 @@ class InsertNode(LayoutAnimation):
 
         Parameters
         ----------
-        nodes : List of Node
+        nodes
             Nodes to find the common root for.
 
         Returns
         -------
-        Node
             The common ancestor node.
 
         Raises

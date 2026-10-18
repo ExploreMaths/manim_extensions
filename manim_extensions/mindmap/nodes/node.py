@@ -74,12 +74,12 @@ class NodeStyle:
 
     Parameters
     ----------
-    node_style : list of dict or None, optional
+    node_style
         List of style dictionaries for node boxes, indexed by level.
         Each dict may contain keys like ``'color'`` and ``'stroke_width'``.
-    line_style : list of dict or None, optional
+    line_style
         List of style dictionaries for connector lines, indexed by level.
-    text_style : list of dict or None, optional
+    text_style
         List of style dictionaries for node text, indexed by level.
         Each dict may contain keys like ``'color'`` and ``'font_size'``.
 
@@ -152,12 +152,11 @@ class NodeStyle:
 
         Parameters
         ----------
-        level : int
+        level
             Hierarchy level whose style definition should be returned.
 
         Returns
         -------
-        Dict
             The style dictionary for the node box at the given level; the
             last defined style if ``level`` exceeds the number of levels.
         """
@@ -170,12 +169,11 @@ class NodeStyle:
 
         Parameters
         ----------
-        level : int
+        level
             Hierarchy level whose connector style should be returned.
 
         Returns
         -------
-        Dict
             The connector line style for the given level; the last defined
             style if ``level`` exceeds the number of levels.
         """
@@ -188,12 +186,11 @@ class NodeStyle:
 
         Parameters
         ----------
-        level : int
+        level
             Hierarchy level whose text style should be returned.
 
         Returns
         -------
-        Dict
             The text style for the given level; the last defined style if
             ``level`` exceeds the number of levels.
         """
@@ -207,12 +204,11 @@ def dfs_walker(root: "Node") -> Generator:
 
     Parameters
     ----------
-    root : 'Node'
+    root
         Root node of the tree to traverse.
 
     Yields
     -------
-    Generator
         A generator yielding the nodes in depth-first pre-order.
     """
     if not root:
@@ -230,12 +226,11 @@ def bfs_walker(root: "Node") -> Generator:
 
     Parameters
     ----------
-    root : 'Node'
+    root
         Root node of the tree to traverse.
 
     Yields
     -------
-    Generator
         A generator yielding the nodes in breadth-first level order.
     """
     if not root:
@@ -253,9 +248,9 @@ class Node:
 
     Parameters
     ----------
-    vmobject : VMobject, optional
+    vmobject
         The mobject displayed as the node content. Defaults to None.
-    buff : float, optional
+    buff
         Padding added around the content when sizing the surrounding
         rectangle. Defaults to 0.2.
     **kwargs
@@ -315,7 +310,7 @@ class Node:
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Uniform scaling factor applied to the node dimensions.
         """
         self.node_state = NodeSate.SCALE
@@ -328,7 +323,7 @@ class Node:
 
         Parameters
         ----------
-        child : 'Node'
+        child
             Child node to insert beneath the current parent.
         """
         if self.children:
@@ -342,7 +337,7 @@ class Node:
 
         Parameters
         ----------
-        child : 'Node'
+        child
             Child node scheduled for removal from the tree.
 
         Raises
@@ -359,7 +354,7 @@ class Node:
 
         Parameters
         ----------
-        vmobject : VMobject
+        vmobject
             New mobject used to render the node content.
         """
         self.node_state = NodeSate.ALTER
@@ -372,7 +367,7 @@ class Node:
 
         Parameters
         ----------
-        direction : np.ndarray
+        direction
             The direction of the operation.
         """
         if self.parent is None:
@@ -462,7 +457,6 @@ class Node:
 
         Returns
         -------
-        Line
             The connector line from this node to its parent, shaped
             according to the layout type.
         """
@@ -511,15 +505,15 @@ class Node:
 
         Parameters
         ----------
-        change_dir : bool
+        change_dir
             Change dir parameter for this operation.
-        change_layout : bool
+        change_layout
             Change layout parameter for this operation.
-        layout_type : LayoutType
+        layout_type
             Layout type parameter for this operation.
-        direction : np.ndarray
+        direction
             The direction of the operation.
-        **kwargs : object
+        **kwargs
             Additional keyword arguments used as the connector line style.
         """
         current_style = getattr(self, "connector_style", None)
@@ -539,7 +533,6 @@ class Node:
 
         Returns
         -------
-        Group
             A group of the surrounding rectangle, the VMobject, and the
             connector line if one exists.
         """
@@ -555,7 +548,6 @@ class Node:
 
         Returns
         -------
-        List[Node]
             The list of direct child nodes.
         """
         return self.children
@@ -565,7 +557,6 @@ class Node:
 
         Returns
         -------
-        List[Node]
             All descendant nodes (children, grandchildren, ...).
 
         """
@@ -574,9 +565,9 @@ class Node:
 
             Parameters
             ----------
-            node : Node
+            node
                 The starting node.
-            descendants : list of Node
+            descendants
                 Accumulator list for the result (mutated in place).
 
             Returns
@@ -597,7 +588,6 @@ class Node:
 
         Returns
         -------
-        Group
             A group of the children's VMobjects and surrounding rectangles.
         """
         group = Group()
@@ -610,7 +600,6 @@ class Node:
 
         Returns
         -------
-        Group
             A group of the VMobjects and surrounding rectangles of all
             descendant nodes.
         """
@@ -622,14 +611,13 @@ class Node:
 
             Parameters
             ----------
-            node : Node
+            node
                 The starting node.
-            descendants : Group
+            descendants
                 Accumulator group for the result (mutated in place).
 
             Returns
             -------
-            Group
                 A group containing the mobjects of all descendant nodes.
             """
             for node_ in node.children:
@@ -644,7 +632,6 @@ class Node:
 
         Returns
         -------
-        Node
             The root node of the tree containing this node.
         """
         if self.parent is None:

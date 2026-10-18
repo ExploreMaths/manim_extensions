@@ -41,7 +41,7 @@ class AABB:
 
     Parameters
     ----------
-    n_features : int
+    n_features
         Number of features; each feature gets a ``[-inf, inf]`` limit pair.
     """
 
@@ -54,9 +54,9 @@ class AABB:
 
         Parameters
         ----------
-        f : Any
+        f
             Index of the feature to split along.
-        v : Any
+        v
             Threshold value; the left box gets ``[-inf, v]`` and the right
             box ``[v, inf]`` along feature ``f``.
         """
@@ -74,10 +74,10 @@ def tree_bounds(tree: Mobject, n_features: Optional[Any]=None):
 
     Parameters
     ----------
-    tree : Mobject
+    tree
         The sklearn tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
-    n_features : Optional[Any], optional
+    n_features
         Override autodetection of the number of features. By default the
         number of features is inferred as ``max(tree.feature) + 1``.
     """
@@ -107,16 +107,16 @@ def compute_decision_areas(
 
     Parameters
     ----------
-    tree_classifier : Any
+    tree_classifier
         Instance of a :class:`~sklearn.tree.DecisionTreeClassifier`.
-    maxrange : Any
+    maxrange
         Values to insert for ``[left, right, top, bottom]`` if the interval
         is open (``+/-inf``).
-    x : int, optional
+    x
         Index of the feature that goes on the x axis. Defaults to ``0``.
-    y : int, optional
+    y
         Index of the feature that goes on the y axis. Defaults to ``1``.
-    n_features : Optional[Any], optional
+    n_features
         Override autodetection of the number of features.
     """
     ctree = require("ml", "sklearn.tree")._tree
@@ -153,7 +153,7 @@ def plot_areas(rectangles: Any):
 
     Parameters
     ----------
-    rectangles : Any
+    rectangles
         Array of decision-area rectangles as returned by
         :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;
         each row is ``[left, right, bottom, top, class_index]``.
@@ -176,10 +176,10 @@ def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, O
 
     Parameters
     ----------
-    all_polygons : Any
+    all_polygons
         The polygon mobjects to merge, typically the decision-area
         rectangles of a :class::class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
-    colors : list, optional
+    colors
         The colors to merge polygons for, in order. Defaults to
         ``[BLUE, GREEN, ORANGE]``.
     """
@@ -260,7 +260,7 @@ class IrisDatasetPlot(VGroup):
 
     Parameters
     ----------
-    iris : sklearn.datasets.base.Bunch
+    iris
         Loaded Iris dataset (e.g. from ``sklearn.datasets.load_iris``).
 
     Examples
@@ -398,13 +398,13 @@ class DecisionTreeSurface(VGroup):
 
     Parameters
     ----------
-    tree_clf : sklearn.tree.DecisionTreeClassifier
+    tree_clf
         Fitted scikit-learn decision tree classifier.
-    data : np.ndarray
+    data
         Two-dimensional data points the tree was fitted on.
-    axes : Axes
+    axes
         Manim axes the surface rectangles are drawn in.
-    class_colors : list, optional
+    class_colors
         Colors, one per class, used to fill the decision areas.
         Defaults to ``[BLUE, ORANGE, GREEN]``.
 

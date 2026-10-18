@@ -31,9 +31,9 @@ class NeuralNetworkLayer(ABC, Group):
 
     Parameters
     ----------
-    text : str, optional
+    text
         Text of the layer title; unused in the base implementation.
-    args : tuple
+    args
         Positional arguments forwarded to the parent class.
     **kwargs
         Forwarded to the parent class; a ``"title"`` entry adds a title above
@@ -82,9 +82,9 @@ class NeuralNetworkLayer(ABC, Group):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             Preceding layer.
-        output_layer : NeuralNetworkLayer
+        output_layer
             Following layer.
         **kwargs
             Forwarded to the parent class; a ``"debug_mode"`` entry draws a
@@ -106,7 +106,6 @@ class NeuralNetworkLayer(ABC, Group):
 
         Returns
         -------
-        Animation
             The forward pass animation.
         """
         pass
@@ -125,7 +124,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
     Parameters
     ----------
-    args : tuple
+    args
         Positional arguments forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
@@ -166,7 +165,6 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Animation
             The forward pass animation.
         """
         pass
@@ -186,9 +184,9 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     Parameters
     ----------
-    input_layer : NeuralNetworkLayer
+    input_layer
         The layer the forward pass animation starts from.
-    output_layer : NeuralNetworkLayer
+    output_layer
         The layer the forward pass animation ends at.
     **kwargs
         Forwarded to the parent layer classes.
@@ -241,9 +239,9 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 2.0.
-        layer_args : Any, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
         **kwargs
@@ -251,7 +249,6 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Animation
             The forward pass animation.
         """
         pass
@@ -274,9 +271,9 @@ class BlankConnective(ConnectiveLayer):
 
     Parameters
     ----------
-    input_layer : NeuralNetworkLayer
+    input_layer
         The layer the connection starts from.
-    output_layer : NeuralNetworkLayer
+    output_layer
         The layer the connection ends at.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
@@ -323,9 +320,9 @@ class BlankConnective(ConnectiveLayer):
 
         Parameters
         ----------
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 1.5.
-        layer_args : Any, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
         **kwargs
@@ -333,7 +330,6 @@ class BlankConnective(ConnectiveLayer):
 
         Returns
         -------
-        Animation
             The forward pass animation.
         """
         return AnimationGroup(run_time=run_time)

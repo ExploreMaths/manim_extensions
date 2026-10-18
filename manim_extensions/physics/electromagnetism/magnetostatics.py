@@ -124,17 +124,16 @@ class MagneticField(ArrowVectorField):
 
         Parameters
         ----------
-        p : numpy.ndarray
+        p
             Field point at which the magnetic field is evaluated.
-        dls : iterable of tuple
+        dls
             Line segments (pairs of points) representing current-carrying
             wire segments.
-        currents : iterable of float
+        currents
             Current magnitudes (in Amperes) flowing through each wire.
 
         Returns
         -------
-        numpy.ndarray
             The magnetic field vector at point *p*.
         """
         B_field = np.zeros(3)

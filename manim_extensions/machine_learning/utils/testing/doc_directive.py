@@ -40,9 +40,9 @@ def visit(self, node: list, name: str = ""):
 
     Parameters
     ----------
-    node : list
+    node
         The SkipManimNode to visit.
-    name : str, optional
+    name
         Name of the admonition, by default "".
     """
     self.visit_admonition(node, name)
@@ -54,7 +54,7 @@ def depart(self, node: Any):
 
     Parameters
     ----------
-    node : Any
+    node
         The SkipManimNode to depart from.
     """
     self.depart_admonition(node)
@@ -74,14 +74,13 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
 
     Parameters
     ----------
-    option_input : str
+    option_input
         Space separated class names to reformat.
-    reference_type : str
+    reference_type
         Type of Sphinx reference to generate (e.g. "class" or "func").
 
     Returns
     -------
-    list[str]
         List of strings containing valid Sphinx references.
     """
     return [f":{reference_type}:`~.{name}`" for name in option_input.split()]
@@ -322,7 +321,7 @@ def setup(app: Any):
 
     Parameters
     ----------
-    app : Any
+    app
         The Sphinx application to register the directive with.
     """
     app.add_node(SkipManimNode, html=(visit, depart))

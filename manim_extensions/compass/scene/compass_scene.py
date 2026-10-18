@@ -106,11 +106,11 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        angle_or_arc : float or Arc
+        angle_or_arc
             Angle to rotate by, or an arc whose angle should be used.
-        arc : Arc, optional
+        arc
             Arc to draw as part of the rotation animation.
-        added_anims : list[Animation], optional
+        added_anims
             Additional animations to combine with the rotation.
         **kwargs
             Additional keyword arguments forwarded to
@@ -177,11 +177,11 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        niddle_pos : Point3D
+        niddle_pos
             Target position for the compass needle tip (niddle_tip).
-        pen_pos : Point3D
+        pen_pos
             Target position for the compass pen tip (pen_tip).
-        run_time : float
+        run_time
             Duration of the placement animation in seconds. Defaults to ``1.0``.
         """
         self.play(
@@ -228,7 +228,6 @@ class CompassScene(MovingCameraScene):
 
         Returns
         -------
-        Arc
             The drawn arc.
         """
         self.set_compass(niddle_point, pen_point, run_time=move_time)
@@ -257,7 +256,7 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        run_time : float
+        run_time
             Duration of the flip animation in seconds.
         """
         self.play(self.compass.animate.reverse_tip(), run_time=run_time)
@@ -273,11 +272,11 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        aside_pos : Point3D
+        aside_pos
             Position to place the compass.
-        span_buff : float
+        span_buff
             Distance between the two compass tips when placed aside.
-        run_time : float
+        run_time
             Time required to place the compass.
         """
         r = 0.5 * self.compass.leg_length
@@ -301,15 +300,15 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        start : Point3D
+        start
             Start point of the ruler placement.
-        end : Point3D
+        end
             End point of the ruler placement.
-        lag_ratio : float
+        lag_ratio
             Lag ratio between the ruler and pencil placement animations.
-        run_time : float
+        run_time
             Time to place the ruler.
-        with_pencil : bool
+        with_pencil
             Whether to place the pencil at the same time.
         """
         if with_pencil:
@@ -329,9 +328,9 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        pos : Point3D
+        pos
             Target position for the pencil nib.
-        run_time : float
+        run_time
             Duration of the move animation in seconds.
         """
         self.play(
@@ -353,16 +352,16 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        start : Point3D
+        start
             Start point of the line.
-        end : Point3D
+        end
             End point of the line.
-        run_time : float
+        run_time
             Duration of the drawing animation in seconds.
-        with_pencil : bool
+        with_pencil
             If ``True``, animate the pencil tracing the line.  Otherwise
             the line is simply created with :class:`~manim.animation.creation.Create`.
-        color : object
+        color
             Color of the drawn line.
         **kwargs
             Additional keyword arguments forwarded to
@@ -370,7 +369,6 @@ class CompassScene(MovingCameraScene):
 
         Returns
         -------
-        Line
             The drawn line segment.
         """
         self.set_ruler(
@@ -388,9 +386,9 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        pos : Point3D
+        pos
             Target position for the pencil.
-        run_time : float
+        run_time
             Duration of the translation animation in seconds.
         """
         curr_pos = self.pencil.get_center()
@@ -409,11 +407,11 @@ class CompassScene(MovingCameraScene):
 
         Parameters
         ----------
-        aside_pos : Point3D
+        aside_pos
             Target position for the ruler.
-        horizontal_or_vertical : bool
+        horizontal_or_vertical
             If ``True``, align the ruler horizontally; otherwise vertically.
-        run_time : float
+        run_time
             Total duration of the put-away animation in seconds.
         """
         vec_w = self.ruler.get_direction_vector_of_ruler()

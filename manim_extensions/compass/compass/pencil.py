@@ -25,9 +25,9 @@ class Pencil(SVGMobject):
 
     Parameters
     ----------
-    height : float, optional
+    height
         Height of the pencil SVG. Defaults to ``2``.
-    angle : float, optional
+    angle
         Rotation angle of the pencil (in radians). Defaults to ``PI/4``.
 
     Examples
@@ -58,7 +58,6 @@ class Pencil(SVGMobject):
 
         Returns
         -------
-        numpy.ndarray
             The coordinates of the pencil nib (its writing tip).
         """
         return np.asarray(self._nib.get_all_points()[7])
@@ -68,7 +67,6 @@ class Pencil(SVGMobject):
 
         Returns
         -------
-        numpy.ndarray
             Unit vector pointing from the nib towards the pencil body.
         """
         return Line(self.get_nib(), self.submobjects[1].get_center()).get_unit_vector()
@@ -83,7 +81,6 @@ class Pencil(SVGMobject):
 
         Returns
         -------
-        Pencil
             The translated self.
 
         Examples

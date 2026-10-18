@@ -329,7 +329,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.geometry.polygram.Square`
             :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
@@ -340,7 +339,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
@@ -351,7 +349,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
@@ -362,7 +359,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
@@ -378,7 +374,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject.Mobject`
             Mobject of the class.
         """
 
@@ -418,7 +413,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
@@ -462,7 +456,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
@@ -506,7 +499,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
@@ -530,7 +522,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
@@ -541,7 +532,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
@@ -552,7 +542,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
@@ -563,7 +552,6 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
@@ -715,7 +703,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`int`
             Sum of ``side_length`` of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr` in the specified range.
         """
 
@@ -737,9 +724,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.geometry.polygram.Square`
             Square mobject next to which the array label is positioned.
-        :class:`numpy.ndarray`
             The relative position of the array label.
         """
 
@@ -806,7 +791,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             Index position.
         """
 
@@ -826,7 +810,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`float`
             Factor by which to shift the :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
@@ -943,7 +926,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
         :data:`~typing.Callable`\[[:class:`bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
@@ -988,15 +970,14 @@ class MArray(VGroup):
             Parameters
             ----------
 
-            play_anim : :class:`bool`, default: `True`
+            play_anim
                 Specifies whether to play the update :class:`manim.Animation`.
-            play_anim_args : :class:`dict`, default: `{}`
+            play_anim_args
                 Arguments for :meth:`manim.Scene.play`.
 
             Returns
             -------
 
-            List[:class:`manim.Animation`]
                 Represents :class:`~manim.animation.animation.Animation` for indices update.
             """
 
@@ -1197,7 +1178,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`list`
             :attr:`~manim_extensions.data_structures.m_array.MArray.__arr`.
         """
 
@@ -1208,7 +1188,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~typing.List`
             :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         """
 
@@ -1219,7 +1198,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
@@ -1230,7 +1208,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~.m_enum.MArrayDirection`
             :attr:`~manim_extensions.data_structures.m_array.MArray.__arr_dir`.
         """
 
@@ -1267,7 +1244,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated element's value mobject.
 
         Raises
@@ -1316,7 +1292,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated element's index mobject.
 
         Raises
@@ -1361,7 +1336,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
@@ -1392,7 +1366,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
 
         Raises
@@ -1416,7 +1389,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.geometry.polygram.Square`.
 
         Raises
@@ -1440,7 +1412,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
 
         Raises
@@ -1464,7 +1435,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :class:`~manim.mobject.text.text_mobject.Text`.
 
         Raises
@@ -1573,7 +1543,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.composition.Succession`
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
         :data:`~typing.Callable`\[[:class:`bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
@@ -1705,7 +1674,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             Position vector for :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
@@ -1730,7 +1698,7 @@ class MArrayPointer(VGroup):
 
             Parameters
             ----------
-            mob : Mobject
+            mob
                 The pointer mobject being updated.
             """
 
@@ -1753,7 +1721,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             A vector that represents how much the pointer should shift.
         """
 
@@ -1934,7 +1901,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.geometry.line.Arrow`
             :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
@@ -1945,7 +1911,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
@@ -1956,7 +1921,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`int`
             :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__index`.
         """
 
@@ -1990,7 +1954,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
@@ -2016,7 +1979,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
@@ -2027,7 +1989,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
@@ -2049,7 +2010,6 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.transform.ApplyMethod`
             Shift animation.
 
         Raises
@@ -2185,9 +2145,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`float`
             Height of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
-        :class:`float`
             Width of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
@@ -2206,9 +2164,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             Position vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`
-        :class:`numpy.ndarray`
             Align vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`
         """
 
@@ -2241,7 +2197,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             Position vector for :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`
         """
 
@@ -2290,7 +2245,7 @@ class MArraySlidingWindow(VGroup):
 
             Parameters
             ----------
-            mob : Mobject
+            mob
                 The pointer mobject being updated.
             """
 
@@ -2439,7 +2394,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.geometry.polygram.Rectangle`
             :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
@@ -2450,7 +2404,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
@@ -2484,7 +2437,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.text.text_mobject.Text`
             Updated :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
@@ -2510,7 +2462,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
@@ -2521,7 +2472,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.mobject.mobject._AnimationBuilder`
             Animate property of :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
@@ -2543,7 +2493,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.transform.ApplyFunction`
             Shift animation.
 
         Raises
@@ -2600,7 +2549,6 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.transform.ApplyFunction`
             Resize animation.
 
         Raises
@@ -2625,7 +2573,6 @@ class MArraySlidingWindow(VGroup):
             Returns
             -------
 
-            :class:`~manim_extensions.data_structures.m_array.MArraySlidingWindow`
                 Represents the modified mobject.
             """
 

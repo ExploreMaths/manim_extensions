@@ -34,13 +34,13 @@ class MCMolecule:
 
     Parameters
     ----------
-    atoms : :class:`list`, optional
+    atoms
         List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCAtom` objects of the molecule. Defaults to an empty list.
-    bonds : :class:`list`, optional
+    bonds
         List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCBond` objects of the molecule. Defaults to an empty list.
-    name : :class:`str`, optional
+    name
         Name of the molecule. Defaults to ``None``.
-    elements : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCElement`, optional
+    elements
         Elements data of the molecule. Defaults to an empty dict.
     """
 
@@ -64,9 +64,9 @@ class MCMolecule:
 
         Parameters
         ----------
-        atoms_dict : Dict
+        atoms_dict
             Atoms dict from a parser. See BaseParser.
-        elements_data_dict : Dict
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data.
 
@@ -98,7 +98,7 @@ class MCMolecule:
 
         Parameters
         ----------
-        bonds_dict : Dict
+        bonds_dict
             Bonds dict from a parser. See Base Parser.
 
         Raises
@@ -154,16 +154,16 @@ class MCMolecule:
 
         Parameters
         ----------
-        atoms_data_dict : dict
+        atoms_data_dict
             Atoms data.
-        bonds_data_dict : dict
+        bonds_data_dict
             Bonds data.
-        ignore_hydrogens : :class:`bool`, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : :class:`bool`, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : :class:`dict`, optional
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
         """
@@ -197,12 +197,12 @@ class MCMolecule:
         ----------
         filepath
             File path.
-        ignore_hydrogens : :class:`bool`, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : :class:`bool`, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : :class:`dict`, optional
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
         """
@@ -232,14 +232,14 @@ class MCMolecule:
 
         Parameters
         ----------
-        filepath : :class:`~typing.Any`
+        filepath
             Path to the molecule file.
-        ignore_hydrogens : :class:`bool`, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : :class:`bool`, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : :class:`dict`, optional
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
         """
@@ -290,16 +290,16 @@ class MCMolecule:
 
         Parameters
         ----------
-        string : :class:`str`
+        string
             String with the molecule data.
-        format : :class:`str`, optional
+        format
             Format of the data. Defaults to ``"json"``.
-        ignore_hydrogens : :class:`bool`, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : :class:`bool`, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : :class:`dict`, optional
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
         """
@@ -330,16 +330,16 @@ class MCMolecule:
 
         Parameters
         ----------
-        string : :class:`str`
+        string
             String with the molecule data.
-        format : :class:`str`, optional
+        format
             Format of the data. Defaults to ``"json"``.
-        ignore_hydrogens : :class:`bool`, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : :class:`bool`, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : :class:`dict`, optional
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
         """
@@ -391,7 +391,7 @@ class MCMolecule:
 
         Parameters
         ----------
-        atoms_to_be_removed : :class:`list`
+        atoms_to_be_removed
             Indices of the atoms to remove.
         """
         if not atoms_to_be_removed:

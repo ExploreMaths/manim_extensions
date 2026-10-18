@@ -59,7 +59,7 @@ class MolParser(BaseParser):
 
         Parameters
         ----------
-        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+        filename
             Path to the MOL file to parse.
 
         Returns
@@ -78,12 +78,11 @@ class MolParser(BaseParser):
 
         Parameters
         ----------
-        string : :class:`str`
+        string
             Raw MOL data (the contents of a ``.mol`` file).
 
         Returns
         -------
-        :class:`typing.Tuple`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         return MolParser.data_parser(string.splitlines())
@@ -95,12 +94,11 @@ class MolParser(BaseParser):
 
         Parameters
         ----------
-        data : :class:`list` of :class:`str`
+        data
             Lines of the MOL file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file`.
 
         Returns
         -------
-        :class:`typing.Tuple`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         mol_name = data[0].strip()  # This info is not always available  # noqa F841

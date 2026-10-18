@@ -115,7 +115,7 @@ class VGearJoint(VConstraint):
 
         Parameters
         ----------
-        space : Space
+        space
             The Pymunk space to add the constraint to.
         """
 
@@ -147,9 +147,9 @@ class VGearJoint(VConstraint):
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The constraint mobject being updated.
-        dt : float
+        dt
             Time step since the last frame, in seconds.
         """
         if not self.constraint:

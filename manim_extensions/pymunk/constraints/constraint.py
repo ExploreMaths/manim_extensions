@@ -78,7 +78,6 @@ class VConstraint(VGroup):
 
         Returns
         -------
-        tuple
             A (a_body, b_body) tuple of pymunk Body objects.
 
         Raises
@@ -118,7 +117,7 @@ class VConstraint(VGroup):
 
         Parameters
         ----------
-        space : Space
+        space
             The Pymunk space to install the constraint into.
         """
         pass
@@ -130,9 +129,9 @@ class VConstraint(VGroup):
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The constraint mobject being updated.
-        dt : float
+        dt
             Time step since the last frame, in seconds.
         """
         pass

@@ -68,12 +68,11 @@ class SDFParser(MolParser):
 
         Parameters
         ----------
-        filename : Union[str, bytes, os.PathLike]
+        filename
             Path of the sdf file.
 
         Returns
         -------
-        List[List[str]]
             List with all the molecules data.
         """
         with open(filename) as file:
@@ -88,7 +87,7 @@ class SDFParser(MolParser):
 
         Parameters
         ----------
-        molecules_data : :class:`list` of :class:`list` of :class:`str`
+        molecules_data
             Molecules of the SDF file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file`.
 
         Returns

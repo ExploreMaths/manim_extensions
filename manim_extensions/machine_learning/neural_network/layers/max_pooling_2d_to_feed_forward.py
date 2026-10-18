@@ -18,11 +18,11 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
 
     Parameters
     ----------
-    input_layer : MaxPooling2DLayer
+    input_layer
         The input max pooling layer.
-    output_layer : FeedForwardLayer
+    output_layer
         The output feed-forward layer.
-    passing_flash_color : ManimColor, optional
+    passing_flash_color
         Color of the flash animation during the forward pass, by default ORANGE.
     **kwargs
         Forwarded to
@@ -52,9 +52,9 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.

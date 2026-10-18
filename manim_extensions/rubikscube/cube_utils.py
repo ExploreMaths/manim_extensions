@@ -23,13 +23,12 @@ def get_axis_from_face(face: str) -> NDArray[np.float64]:
 
     Parameters
     ----------
-    face : str
+    face
         Face identifier. One of ``"F"`` (front), ``"B"`` (back), ``"U"`` (up),
         ``"D"`` (down), ``"L"`` (left), or ``"R"`` (right).
 
     Returns
     -------
-    numpy.ndarray
         The axis vector (``X_AXIS``, ``Y_AXIS``, or ``Z_AXIS``) about which the
         specified face rotates.
     """
@@ -46,12 +45,11 @@ def get_direction_from_face(face: str) -> int:
 
     Parameters
     ----------
-    face : str
+    face
         Face identifier (``"F"``, ``"B"``, ``"U"``, ``"D"``, ``"L"``, or ``"R"``).
 
     Returns
     -------
-    int
         ``1`` for clockwise, ``-1`` for counter-clockwise rotation
         when viewed from the face's perspective.
     """
@@ -68,12 +66,11 @@ def get_cubie_colors_from_state(state: str) -> list:
 
     Parameters
     ----------
-    state : str
+    state
         Cube state string (e.g. from ``kociemba``).
 
     Returns
     -------
-    list
         A list of colour characters grouped by cubie.
     """
     pass
@@ -84,12 +81,11 @@ def get_all_states(cube: "RubiksCube") -> str:
 
     Parameters
     ----------
-    cube : RubiksCube
+    cube
         The cube whose state is queried.
 
     Returns
     -------
-    str
         Concatenated face-state string for all cubies.
     """
     pass
@@ -100,14 +96,13 @@ def get_type_of_cubie(dim: int, position: tuple[int, int, int]) -> str:
 
     Parameters
     ----------
-    dim : int
+    dim
         Size of the cube (e.g. ``3`` for a standard 3x3x3 cube).
-    position : tuple of int
+    position
         :math:`(x, y, z)` Coordinates of the cubie.
 
     Returns
     -------
-    str
         One of ``"corner"``, ``"edge"``, or ``"center"`` depending on the
         cubie's location.
     """
@@ -126,9 +121,9 @@ def get_faces_of_cubie(dim: int, position: tuple[int, int, int]) -> list:
 
     Parameters
     ----------
-    dim : int
+    dim
         Size of the cube (e.g. ``3`` for a standard 3x3x3 cube).
-    position : tuple of int
+    position
         :math:`(x, y, z)` Coordinates of the cubie.
 
     Returns

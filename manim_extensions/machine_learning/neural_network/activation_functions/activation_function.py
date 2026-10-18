@@ -30,25 +30,25 @@ class ActivationFunction(ABC, VGroup):
 
     Parameters
     ----------
-    function_name : str, optional
+    function_name
         Name displayed next to the plot.
-    x_range : list, optional
+    x_range
         Range of the x-axis, by default :math:`[-1, 1]`.
-    y_range : list, optional
+    y_range
         Range of the y-axis, by default :math:`[-1, 1]`.
-    x_length : float, optional
+    x_length
         Length of the x-axis, by default 0.5.
-    y_length : float, optional
+    y_length
         Length of the y-axis, by default 0.3.
-    show_function_name : bool, optional
+    show_function_name
         Whether to display the function name, by default True.
-    active_color : ManimColor, optional
+    active_color
         Color used when highlighting the function, by default
         ``config.color_scheme.active_color``.
-    plot_color : ManimColor, optional
+    plot_color
         Color of the function plot, by default
         ``config.color_scheme.primary_color``.
-    rectangle_color : ManimColor, optional
+    rectangle_color
         Color of the surrounding rectangle and axes, by default
         ``config.color_scheme.secondary_color``.
 
@@ -146,7 +146,7 @@ class ActivationFunction(ABC, VGroup):
 
         Parameters
         ----------
-        x_val : Any
+        x_val
             Input value at which to evaluate the function. If ``None``,
             a random value within ``x_range`` is used instead.
         """
@@ -158,7 +158,7 @@ class ActivationFunction(ABC, VGroup):
 
         Parameters
         ----------
-        x_val : Any, optional
+        x_val
             Input value at which to evaluate the function, by default None.
         """
         # Highlight the graph

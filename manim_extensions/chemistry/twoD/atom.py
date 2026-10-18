@@ -16,20 +16,20 @@ class MAtomObject(VGroup):
 
     Parameters
     ----------
-    coords : np.array, optional
+    coords
         Position of the atom. Defaults to ``np.array([0, 0, 0])``.
-    element : str, optional
+    element
         Chemical symbol of the element. Defaults to ``"H"``.
-    explicit_carbons : bool, optional
+    explicit_carbons
         If True, carbon atoms display their element symbol. Defaults to
         ``False``.
-    explicit_hydrogens : bool, optional
+    explicit_hydrogens
         If True, hydrogen atoms display their element symbol. Defaults to
         ``False``.
-    bond_to : Dict[int, Any], optional
+    bond_to
         Mapping of bonded atom indices to their elements. Defaults to
         ``{}``.
-    representation_type : Optional[Literal['complete', 'skeleton', 'over_bond']], optional
+    representation_type
         Representation of the atom label.
 
         .. list-table::
@@ -43,13 +43,13 @@ class MAtomObject(VGroup):
              - Show the symbol above the bond.
 
         When None it is inferred from the element.
-    color : str, optional
+    color
         Color of the atom label. Defaults to ``WHITE``.
-    charge : int, optional
+    charge
         Formal charge of the atom. Defaults to ``0``.
-    index : int, optional
+    index
         Index of the atom in the molecule. Defaults to ``0``.
-    planar : bool, optional
+    planar
         If True, forces the z coordinate of ``coords`` to zero. Defaults
         to ``True``.
     **kwargs
@@ -135,7 +135,7 @@ class MAtomObject(VGroup):
 
         Parameters
         ----------
-        representation_type : Optional[Literal['complete', 'skeleton', 'over_bond']]
+        representation_type
             Requested representation; when falsy it is inferred from the
             element.
         """
@@ -194,9 +194,9 @@ class MAtomObject(VGroup):
 
         Parameters
         ----------
-        new_element : :class:`~typing.Any`
+        new_element
             Element symbol of the new atom.
-        bonds_direction : :class:`~typing.Any`
+        bonds_direction
             Direction of the bond, used to shift the renamed atom.
         """
         self.element = new_element
@@ -226,7 +226,7 @@ class MAtomObject(VGroup):
 
         Parameters
         ----------
-        color : :class:`~manim.utils.color.core.ManimColor`
+        color
             New color of the atom.
         """
         pass

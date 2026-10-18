@@ -21,17 +21,17 @@ class VariationalAutoencoder(VGroup):
 
     Parameters
     ----------
-    encoder_nodes_per_layer : list, optional
+    encoder_nodes_per_layer
         Number of nodes in each encoder layer, by default [5, 3].
-    decoder_nodes_per_layer : list, optional
+    decoder_nodes_per_layer
         Number of nodes in each decoder layer, by default [3, 5].
-    point_color : ManimColor, optional
+    point_color
         Color of the points in the embedding layer, by default BLUE.
-    dot_radius : float, optional
+    dot_radius
         Radius of the points in the embedding layer, by default 0.05.
-    ellipse_stroke_width : float, optional
+    ellipse_stroke_width
         Stroke width of the embedding ellipse, by default 1.0.
-    layer_spacing : float, optional
+    layer_spacing
         Spacing between the neural network layers, by default 0.5.
 
     Examples
@@ -96,7 +96,7 @@ class VariationalAutoencoder(VGroup):
 
         Parameters
         ----------
-        triplet : Any
+        triplet
             The triplet of inputs passed through the network.
         """
         pass
@@ -106,11 +106,11 @@ class VariationalAutoencoder(VGroup):
 
         Parameters
         ----------
-        input_image : Any
+        input_image
             The input image fed into the encoder.
-        output_image : Any
+        output_image
             The output image produced by the decoder.
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 1.5.
         """
         # Make a wrapper NN with images

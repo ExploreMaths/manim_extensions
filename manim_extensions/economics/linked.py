@@ -102,12 +102,12 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        ms : Any
+        ms
             New money supply for IS-LM (shifts LM).
-        m : Any, optional
+        m
             New money supply for AD-AS (shifts AD). If ``None``, uses
             ``ms * 4``. Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity for AD-AS. If ``None``, unchanged. Defaults to
             ``None``.
         """
@@ -123,12 +123,12 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        ms : Any
+        ms
             New money supply for IS-LM (shifts LM).
-        m : Any, optional
+        m
             New money supply for AD-AS (shifts AD). If ``None``, uses
             ``ms * 4``. Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity for AD-AS. If ``None``, unchanged. Defaults to
             ``None``.
         """
@@ -146,12 +146,12 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        a : numpy.ndarray
+        a
             New autonomous spending for IS-LM (shifts IS).
-        m : Any, optional
+        m
             New money supply for AD-AS (shifts AD). If ``None``, uses
             ``a * 2``. Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity for AD-AS. If ``None``, unchanged. Defaults to
             ``None``.
         """
@@ -167,12 +167,12 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        a : numpy.ndarray
+        a
             New autonomous spending for IS-LM (shifts IS).
-        m : Any, optional
+        m
             New money supply for AD-AS (shifts AD). If ``None``, uses
             ``a * 2``. Defaults to ``None``.
-        v : Any, optional
+        v
             New velocity for AD-AS. If ``None``, unchanged. Defaults to
             ``None``.
         """
@@ -190,9 +190,9 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        sras_price : Any
+        sras_price
             New expected price level Pᵉ for SRAS (higher than current).
-        long_run : bool
+        long_run
             If True, append the long-run self-correction of SRAS. Defaults
             to ``True``.
         """
@@ -205,9 +205,9 @@ class LinkedISLM_ADAS(VGroup):
 
         Parameters
         ----------
-        sras_price : Any
+        sras_price
             New expected price level Pᵉ for SRAS (lower than current).
-        long_run : bool
+        long_run
             If True, append the long-run self-correction of SRAS. Defaults
             to ``True``.
         """

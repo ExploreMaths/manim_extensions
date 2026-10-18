@@ -132,16 +132,16 @@ class HTMLParsedVMobject:
 
     Parameters
     ----------
-    vmobject : VMobject
+    vmobject
         The Manim object to export and animate in the HTML output.
-    scene : Scene
+    scene
         The scene in which ``vmobject`` lives. Its camera state and
         background color are used for the HTML output, and the per-frame
         updater is registered on it.
-    width : str, optional
+    width
         Width of the embedded SVG element, e.g. ``"500px"``.
         Defaults to ``"500px"``.
-    basic_html : bool, optional
+    basic_html
         If ``True``, generate a minimal HTML wrapper without the full page
         structure and script tag. Defaults to ``False``.
 
@@ -215,7 +215,7 @@ class HTMLParsedVMobject:
 
         Parameters
         ----------
-        dt : float
+        dt
             Elapsed time since the previous frame, in seconds.
         """
         if self.continue_updating is False:
@@ -334,13 +334,13 @@ class HTMLParsedVMobject:
 
         Parameters
         ----------
-        value_trackers : list of ValueTracker
+        value_trackers
             Value trackers, swept through every combination of
             ``linspaces``.
-        linspaces : list of numpy.ndarray
+        linspaces
             Arrays of values to sweep, one per entry of ``value_trackers``.
             Their cartesian product is enumerated.
-        animate_this : bool, optional
+        animate_this
             If ``False``, stop the per-frame updater before sweeping and
             record the current scene time as ``self.last_t``.
             Defaults to ``True``.

@@ -31,20 +31,19 @@ def get_arc(
 
     Parameters
     ----------
-    niddle_pos : np.ndarray
+    niddle_pos
         Centre of the arc.
-    pen_pos : np.ndarray
+    pen_pos
         Starting point of the arc.
-    angle : float
+    angle
         Central angle of the arc.
-    color : ParsableManimColor, optional
+    color
         Colour of the arc.  Defaults to ``PURE_YELLOW``.
     kwargs
         Other keyword arguments for the arc.
 
     Returns
     -------
-    Arc
         The constructed :class:`~manim.mobject.geometry.arc.Arc` instance,
         centred at ``niddle_pos`` and starting at ``pen_pos``.
 
@@ -85,14 +84,13 @@ def get_distance(
 
     Parameters
     ----------
-    point_start : np.ndarray
+    point_start
         The point used by the operation.
-    point_end : np.ndarray
+    point_end
         The point used by the operation.
 
     Returns
     -------
-    float
         The Euclidean distance between ``point_start`` and ``point_end``.
     """
     return float(np.linalg.norm(point_start - point_end))
@@ -106,14 +104,13 @@ def is_counter_clockwise(
 
     Parameters
     ----------
-    vector_start : np.ndarray
+    vector_start
         Starting vector used as the reference direction for the orientation test.
-    vector_end : np.ndarray
+    vector_end
         Ending vector whose orientation relative to the starting vector is evaluated.
 
     Returns
     -------
-    bool
         ``True`` if ``vector_end`` is counter-clockwise from ``vector_start``,
         otherwise ``False``.
     """
@@ -135,14 +132,13 @@ def get_vecs_angle(
 
     Parameters
     ----------
-    vec_s : np.ndarray
+    vec_s
         Source vector :math:`(x1, y1)`.
-    vec_e : np.ndarray
+    vec_e
         Target vector :math:`(x2, y2)`.
 
     Returns
     -------
-    float
         Signed angle in radians (positive counter-clockwise).
     """
     angle = np.arccos(

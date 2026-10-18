@@ -29,20 +29,20 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
     Parameters
     ----------
-    operation_type : str
+    operation_type
         Math operation to display; one of ``+``, ``-``, ``*``, ``/``.
-    node_radius : float, optional
+    node_radius
         Radius of the surrounding circle, by default 0.5.
-    node_color : ManimColor, optional
+    node_color
         Color of the surrounding circle, by default BLUE.
-    node_stroke_width : float, optional
+    node_stroke_width
         Stroke width of the surrounding circle, by default 2.0.
-    active_color : ManimColor, optional
+    active_color
         Color used when highlighting the layer, by default ORANGE.
-    activation_function : ActivationFunction or str, optional
+    activation_function
         Activation function displayed next to the layer; a string is looked up
         by name.
-    font_size : float, optional
+    font_size
         Font size of the operation text, by default 20.
     **kwargs
         Forwarded to the parent layer classes.
@@ -118,9 +118,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -162,14 +162,13 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Layer specific arguments. Defaults to ``{}``.
         **kwargs
             Forwarded to the parent layer classes.
 
         Returns
         -------
-        AnimationGroup
             Forward pass animation.
         """
         # Make highlight animation
@@ -215,7 +214,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        mobject_or_point : Mobject
+        mobject_or_point
             The mobject or point whose center the layer is moved to.
         """
         layer_center = self.surrounding_circle.get_center()

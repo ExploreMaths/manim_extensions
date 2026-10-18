@@ -38,23 +38,23 @@ class FeatureMap(VGroup):
 
     Parameters
     ----------
-    color : ManimColor, optional
+    color
         Color of the feature map border, by default ORANGE.
-    feature_map_size : tuple, optional
+    feature_map_size
         Size of the feature map as (width, height) in cells.
-    fill_color : ManimColor, optional
+    fill_color
         Fill color of the feature map, by default ORANGE.
-    fill_opacity : float, optional
+    fill_opacity
         Fill opacity of the feature map, by default 0.2.
-    cell_width : float, optional
+    cell_width
         Width of a single cell, by default 0.2.
-    padding : tuple, optional
+    padding
         Padding around the feature map as :math:`(x, y)`, by default :math:`(0, 0)`.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the border, by default 2.0.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
-    padding_dashed : bool, optional
+    padding_dashed
         Whether the padding region is drawn with dashed lines, by default False.
 
     Examples
@@ -164,37 +164,37 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Parameters
     ----------
-    num_feature_maps : int
+    num_feature_maps
         Number of feature maps in the layer.
-    feature_map_size : int or tuple, optional
+    feature_map_size
         Size of each feature map in cells; an int makes a square feature map.
-    filter_size : int or tuple, optional
+    filter_size
         Size of the filter in cells; an int makes a square filter.
-    cell_width : float, optional
+    cell_width
         Width of a single cell, by default 0.2.
-    filter_spacing : float, optional
+    filter_spacing
         Spacing between feature maps, by default 0.1.
-    color : ManimColor, optional
+    color
         Color of the feature map borders, by default BLUE.
-    active_color : ManimColor, optional
+    active_color
         Color used when highlighting the layer, by default ORANGE.
-    filter_color : ManimColor, optional
+    filter_color
         Color of the filter rectangle, by default ORANGE.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
-    fill_opacity : float, optional
+    fill_opacity
         Fill opacity of the feature maps, by default 0.3.
-    stride : int, optional
+    stride
         Stride of the convolution, by default 1.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the borders, by default 2.0.
-    activation_function : ActivationFunction or str, optional
+    activation_function
         Activation function displayed above the layer; a string is looked up
         by name.
-    padding : int or tuple, optional
+    padding
         Padding around the feature maps; an int applies to both axes,
         by default 0.
-    padding_dashed : bool, optional
+    padding_dashed
         Whether the padding region is drawn with dashed lines, by default True.
     **kwargs
         Forwarded to the parent layer classes.
@@ -298,9 +298,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -386,9 +386,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 5.
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the layers when making their
             forward pass animations, by default {}.
         **kwargs
@@ -411,7 +411,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
@@ -440,7 +440,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Parameters
         ----------
-        mobject_or_point : Mobject
+        mobject_or_point
             The mobject or point whose center the layer is moved to.
         """
         layer_center = self.feature_maps.get_center()

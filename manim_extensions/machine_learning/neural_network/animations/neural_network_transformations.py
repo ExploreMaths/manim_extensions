@@ -29,11 +29,11 @@ class RemoveLayer(AnimationGroup):
 
     Parameters
     ----------
-    layer : NeuralNetworkLayer
+    layer
         The layer to remove from the network.
-    neural_network : NeuralNetwork
+    neural_network
         The neural network the layer belongs to.
-    layer_spacing : float, optional
+    layer_spacing
         Spacing between layers after the removal, by default 0.2.
 
     Examples
@@ -210,11 +210,11 @@ class InsertLayer(AnimationGroup):
 
     Parameters
     ----------
-    layer : NeuralNetworkLayer
+    layer
         The layer to insert into the network.
-    index : int
+    index
         Index in the network's layer list at which to insert the layer.
-    neural_network : NeuralNetwork
+    neural_network
         The neural network to insert the layer into.
 
     Examples
@@ -356,9 +356,9 @@ class InsertLayer(AnimationGroup):
 
         Parameters
         ----------
-        before_connective : Any
+        before_connective
             The connective layer placed before the inserted layer.
-        after_connective : Any
+        after_connective
             The connective layer placed after the inserted layer.
         """
         # Make the layers

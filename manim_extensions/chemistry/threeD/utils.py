@@ -44,9 +44,9 @@ class OpenGLSphere(OpenGLSurface):
 
         Parameters
         ----------
-        u : :class:`numpy.ndarray`, optional
+        u
             Azimuthal angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Polar angle.
         """
         return np.array(

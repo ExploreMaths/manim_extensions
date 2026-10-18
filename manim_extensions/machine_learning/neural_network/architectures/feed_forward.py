@@ -17,11 +17,11 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
 
     Parameters
     ----------
-    layer_node_count : list
+    layer_node_count
         Number of nodes in each feed forward layer.
-    node_radius : float, optional
+    node_radius
         Radius of each node, by default 0.08.
-    node_color : ManimColor, optional
+    node_color
         Color of each node, by default ``config.color_scheme.primary_color``.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`.

@@ -17,20 +17,20 @@ class BaseMBondObject(VGroup):
 
     Parameters
     ----------
-    from_atom : MAtomObject
+    from_atom
         Atom at the start of the bond.
-    to_atom : MAtomObject
+    to_atom
         Atom at the end of the bond.
-    type : int, optional
+    type
         Bond type: 1 for single, 2 for double, 3 for triple. Defaults to
         ``0``.
-    subtype : Optional[Literal['complete', 'skeleton', 'over_bond']], optional
+    subtype
         Representation of the bonded atoms; see
         :meth:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype`
         for how it maps to the rendered line style. Defaults to ``None``.
-    color : str, optional
+    color
         Color of the bond. Defaults to ``WHITE``.
-    index : int, optional
+    index
         Index of the bond in the molecule. Defaults to ``0``.
     **kwargs
         Additional keyword arguments forwarded to
@@ -120,7 +120,7 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        subtype : Optional[Literal['complete', 'skeleton', 'over_bond']]
+        subtype
             Representation of the bonded atoms; the rendered line style is
             derived from it together with the atoms' representations.
 
@@ -155,7 +155,7 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        atom : :class:`~typing.Any`
+        atom
             Atom to check for membership in the bond.
         """
         if self.from_atom == atom or self.to_atom == atom:
@@ -168,7 +168,7 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        atom : :class:`~typing.Any`
+        atom
             Atom to check for membership in the bond.
         """
         if self.atom_is_in_bond(atom):
@@ -181,9 +181,9 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        atom : :class:`~typing.Any`
+        atom
             Atom to check for membership in the bond.
-        list : :class:`list`
+        list
             List the bond index is appended to.
         """
         index = self.get_bond_index_by_atom(atom)
@@ -198,9 +198,9 @@ class BaseMBondObject(VGroup):
 
         Parameters
         ----------
-        point_a : :class:`~typing.Any`
+        point_a
             Starting point of the bond.
-        point_b : :class:`~typing.Any`
+        point_b
             Ending point of the bond.
         """
         direction = point_b - point_a
@@ -298,7 +298,7 @@ class SimpleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the to atom to the from atom.
         """
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
@@ -308,7 +308,7 @@ class SimpleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the from atom to the to atom.
         """
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
@@ -340,15 +340,15 @@ class DoubleBond(BaseMBondObject):
 
     Parameters
     ----------
-    from_atom : :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.MAtomObject`
+    from_atom
         The atom the bond starts from.
-    to_atom : :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.MAtomObject`
+    to_atom
         The atom the bond ends at.
-    side : :class:`int`, optional
+    side
         Side of the double bond line. Defaults to 0.
-    distance : :class:`float`, optional
+    distance
         Distance between the two lines of the bond. Defaults to 0.15.
-    double_bond_scale : :class:`float`, optional
+    double_bond_scale
         Scale applied to the secondary line of the bond. Defaults to 0.7.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.BaseMBondObject`.
@@ -418,11 +418,11 @@ class DoubleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the to atom to the from atom.
-        from_surroundings : :class:`~typing.Any`
+        from_surroundings
             Whether the from atom has single bonds to hydrogens.
-        to_surroundings : :class:`~typing.Any`
+        to_surroundings
             Whether the to atom has single bonds to hydrogens.
         """
         unit_vector = (
@@ -455,11 +455,11 @@ class DoubleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the from atom to the to atom.
-        from_surroundings : :class:`~typing.Any`
+        from_surroundings
             Whether the from atom has single bonds to hydrogens.
-        to_surroundings : :class:`~typing.Any`
+        to_surroundings
             Whether the to atom has single bonds to hydrogens.
         """
         unit_vector = (
@@ -561,15 +561,15 @@ class TripleBond(BaseMBondObject):
 
     Parameters
     ----------
-    from_atom : :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.MAtomObject`
+    from_atom
         The atom the bond starts from.
-    to_atom : :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.MAtomObject`
+    to_atom
         The atom the bond ends at.
-    side : :class:`int`, optional
+    side
         Side of the triple bond lines. Defaults to 0.
-    distance : :class:`float`, optional
+    distance
         Distance between the lines of the bond. Defaults to 0.3.
-    triple_bond_scale : :class:`float`, optional
+    triple_bond_scale
         Scale applied to the secondary lines of the bond. Defaults to 0.8.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.BaseMBondObject`.
@@ -634,7 +634,7 @@ class TripleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the to atom to the from atom.
         """
         unit_vector = (
@@ -657,7 +657,7 @@ class TripleBond(BaseMBondObject):
 
         Parameters
         ----------
-        direction : :class:`str`
+        direction
             Direction from the from atom to the to atom.
         """
         unit_vector = (
@@ -680,9 +680,9 @@ class TripleBond(BaseMBondObject):
 
         Parameters
         ----------
-        bond : :class:`~manim.mobject.mobject.Mobject`
+        bond
             Bond the lines are added to.
-        base_line : :class:`~manim.mobject.mobject.Mobject`
+        base_line
             Base line the parallel lines are copied from.
         """
         bond.add(base_line)
@@ -881,9 +881,9 @@ class DashedCramBond(BaseMBondObject):
 
         Parameters
         ----------
-        base_line : :class:`~manim.mobject.mobject.Mobject`
+        base_line
             Base line of the cram bond.
-        direction : :class:`str`
+        direction
             Direction of the cram bond.
         """
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)

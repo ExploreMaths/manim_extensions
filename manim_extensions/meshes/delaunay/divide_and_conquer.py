@@ -32,14 +32,13 @@ def get_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
 
     Parameters
     ----------
-    a : numpy.ndarray
+    a
         First 2D vector.
-    b : numpy.ndarray
+    b
         Second 2D vector.
 
     Returns
     -------
-    float
         Clockwise angle in radians between 0 and 2π.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
@@ -55,14 +54,13 @@ def get_counter_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
 
     Parameters
     ----------
-    a : numpy.ndarray
+    a
         First 2D vector.
-    b : numpy.ndarray
+    b
         Second 2D vector.
 
     Returns
     -------
-    float
         Counter-clockwise angle in radians between 0 and 2π.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
@@ -83,9 +81,9 @@ class DivideAndConquer:
 
     Parameters
     ----------
-    scene : :class:`~manim.scene.scene.Scene`
+    scene
         The scene in which the triangulation will be animated.
-    triangle_mesh : TriangleManim2DMesh
+    triangle_mesh
         A triangle mesh containing only vertices (no faces) that has
         already been added to *scene*.
 
@@ -132,13 +130,13 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        vert_indices : list of int
+        vert_indices
             Indices of the vertices to split.
-        dash_length : float, optional
+        dash_length
             Dash length of the separator line.
-        line_width : float, optional
+        line_width
             Stroke width of the separator line.
-        speed : float, optional
+        speed
             Animation speed multiplier (lower is faster).
 
         Returns
@@ -187,7 +185,7 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        vert_indices : list of int
+        vert_indices
             Indices of the vertices to triangulate.  The list must contain
             at most three entries.
 
@@ -218,11 +216,11 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        base_lr : tuple of int
+        base_lr
             Indices ``(l, r)`` forming the base edge of the merge.
-        rr_edges : set of tuple
+        rr_edges
             Right-right edges currently present in the mesh.
-        speed : float, optional
+        speed
             Animation speed multiplier.
 
         Returns
@@ -290,11 +288,11 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        base_lr : tuple of int
+        base_lr
             Indices ``(l, r)`` forming the base edge of the merge.
-        ll_edges : set of tuple
+        ll_edges
             Left-left edges currently present in the mesh.
-        speed : float, optional
+        speed
             Animation speed multiplier.
 
         Returns
@@ -365,14 +363,14 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        indices_left : list of int
+        indices_left
             Indices of the vertices in the left set.
-        indices_right : list of int
+        indices_right
             Indices of the vertices in the right set.
-        split_line : :class:`~manim.mobject.geometry.line.DashedLine`
+        split_line
             The separator line drawn during :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer.split_points`; it is
             removed as part of the merge animation.
-        speed : float, optional
+        speed
             Animation speed multiplier.
 
         Returns
@@ -452,9 +450,9 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        indices_left : list of int
+        indices_left
             Indices of the vertices in the left set.
-        indices_right : list of int
+        indices_right
             Indices of the vertices in the right set.
 
         Returns
@@ -468,9 +466,9 @@ class DivideAndConquer:
 
             Parameters
             ----------
-            cur_idx : int
+            cur_idx
                 The current index.
-            indices : list of int
+            indices
                 The full sequence of indices.
 
             Returns
@@ -488,14 +486,13 @@ class DivideAndConquer:
 
             Parameters
             ----------
-            tangent : tuple of numpy.ndarray
+            tangent
                 The two endpoints of the tangent line.
-            point : numpy.ndarray
+            point
                 The point to test.
 
             Returns
             -------
-            bool
                 ``True`` if the point is to the right of the tangent.
             """
             return (
@@ -555,7 +552,7 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        speed : float, optional
+        speed
             Animation speed multiplier.
 
         Raises
@@ -580,9 +577,9 @@ class DivideAndConquer:
 
         Parameters
         ----------
-        vert_indices : list of int
+        vert_indices
             Indices of the vertices to process.
-        speed : float, optional
+        speed
             Animation speed multiplier.
 
         Returns

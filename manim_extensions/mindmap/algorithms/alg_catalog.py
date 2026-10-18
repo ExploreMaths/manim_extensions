@@ -94,12 +94,11 @@ class CatalogNode:
 
         Parameters
         ----------
-        node : Any
+        node
             Raw data object used to build the catalog node tree.
 
         Returns
         -------
-        CatalogNode
             The root of the created catalog node tree.
         """
         org_node = cls()
@@ -174,7 +173,7 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        layer_index : int
+        layer_index
             Layer depth whose spacing rule should be selected.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
@@ -184,7 +183,7 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        layer_index : int
+        layer_index
             Layer depth whose vertical spacing rule should be selected.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
@@ -194,11 +193,11 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        nodes : List[CatalogNode]
+        nodes
             Child nodes to shift together.
-        prop : str
+        prop
             Attribute name to update, such as left or top.
-        offset : float
+        offset
             Amount added to each node coordinate.
         """
         for node in nodes:
@@ -211,9 +210,9 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        nodes : List[CatalogNode]
+        nodes
             Child nodes whose attributes should be adjusted.
-        props : dict
+        props
             Mapping of attribute names to offset values.
         """
         for node in nodes:
@@ -234,15 +233,15 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             Current node in the tree traversal.
-        pre_cb : Optional[Callable]
+        pre_cb
             Callback invoked before visiting each child subtree.
-        post_cb : Optional[Callable]
+        post_cb
             Callback invoked after visiting each child subtree.
-        layer : int
+        layer
             Current depth of the node in the tree.
-        index : int
+        index
             Position of the node within its parent children list.
         """
         if pre_cb:
@@ -259,7 +258,7 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             Root node of the subtree whose horizontal bounds should be computed.
         """
         left = node.left
@@ -275,7 +274,7 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             Root node of the subtree whose width should be measured.
         """
         min_l, max_r = self._get_node_boundaries_horizontal(node)
@@ -286,12 +285,11 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             The root of the subtree.
 
         Returns
         -------
-        float
             The cumulative area height.
         """
         total = node.height
@@ -309,9 +307,9 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             The node whose younger siblings must shift.
-        add_width : float
+        add_width
             The horizontal offset to apply.
         """
         if node.parent is None:
@@ -331,9 +329,9 @@ class CatalogLayout(Layout):
 
         Parameters
         ----------
-        node : CatalogNode
+        node
             The node whose younger siblings must shift.
-        add_height : float
+        add_height
             The vertical offset to apply.
         """
         if node.parent and not node.parent.layer_index == 0:  # parent is not the root
@@ -359,11 +357,11 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The current node.
-            layer : int
+            layer
                 The depth of the current node.
-            _idx : int
+            _idx
                 The index of the current node within its parent's children.
             """
             if layer:
@@ -378,11 +376,11 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The current node.
-            layer : int
+            layer
                 The depth of the current node.
-            _idx : int
+            _idx
                 The index of the current node within its parent's children.
             """
             if layer == 0:
@@ -411,11 +409,11 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The current node.
-            layer : int
+            layer
                 The depth of the current node.
-            _idx : int
+            _idx
                 The index of the current node within its parent's children.
             """
             margin_x = self._get_margin_x(layer + 1)
@@ -457,11 +455,11 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The current node.
-            layer : int
+            layer
                 The depth of the current node.
-            _idx : int
+            _idx
                 The index of the current node within its parent's children.
             """
             if node.parent and node.parent.layer_index == 0:
@@ -481,11 +479,11 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The current node.
-            layer : int
+            layer
                 The depth of the current node.
-            _idx : int
+            _idx
                 The index of the current node within its parent's children.
             """
             if layer == 0:
@@ -508,7 +506,7 @@ class CatalogLayout(Layout):
 
             Parameters
             ----------
-            node : CatalogNode
+            node
                 The root of the subtree to update.
             """
             node.node.x = node.left + node.width / 2
@@ -524,7 +522,6 @@ class CatalogLayout(Layout):
 
         Returns
         -------
-        Any
             The root node of the original tree, with ``x``, ``y``, and
             ``level`` attributes filled in.
         """

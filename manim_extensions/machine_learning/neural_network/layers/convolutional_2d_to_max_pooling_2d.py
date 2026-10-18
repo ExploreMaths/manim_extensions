@@ -32,11 +32,11 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
     Parameters
     ----------
-    input_layer : Convolutional2DLayer
+    input_layer
         The input convolutional layer.
-    output_layer : MaxPooling2DLayer
+    output_layer
         The output max pooling layer.
-    active_color : ManimColor, optional
+    active_color
         Color used to highlight the kernel windows, by default ORANGE.
     **kwargs
         Forwarded to the parent layer classes.
@@ -66,9 +66,9 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -80,10 +80,10 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 1.5.
         **kwargs
             Forwarded to the parent layer classes.

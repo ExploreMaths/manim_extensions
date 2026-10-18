@@ -24,13 +24,12 @@ def compute_node_depths(tree: SklearnTree) -> list[int]:
 
     Parameters
     ----------
-    tree : SklearnTree
+    tree
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
     Returns
     -------
-    list[int]
         The depth of each node, indexed by node index. Leaf nodes that are
         never reached get a depth of ``-1``.
     """
@@ -66,13 +65,12 @@ def compute_level_order_traversal(tree: SklearnTree) -> list[int]:
 
     Parameters
     ----------
-    tree : SklearnTree
+    tree
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
     Returns
     -------
-    list[int]
         Node indices sorted by ascending depth, i.e. in level order.
     """
 
@@ -109,13 +107,12 @@ def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
 
     Parameters
     ----------
-    tree : SklearnTree
+    tree
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
     Returns
     -------
-    list[int]
         Node indices in breadth-first order, starting from the root.
     """
     traversal_order = []
@@ -139,7 +136,7 @@ def compute_best_first_traversal(tree: SklearnTree) -> None:
 
     Parameters
     ----------
-    tree : SklearnTree
+    tree
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
@@ -155,7 +152,7 @@ def compute_node_to_parent_mapping(tree: SklearnTree) -> dict[int, int]:
 
     Parameters
     ----------
-    tree : SklearnTree
+    tree
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 

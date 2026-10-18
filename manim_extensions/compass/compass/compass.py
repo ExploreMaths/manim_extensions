@@ -41,21 +41,21 @@ class Compass(VGroup):
 
     Parameters
     ----------
-    span : float, optional
+    span
         Span of the compass legs. Defaults to ``1.5``.
-    head_color : ManimColor, optional
+    head_color
         Color of the compass head. Defaults to ``WHITE``.
-    niddle_color : ManimColor, optional
+    niddle_color
         Color of the compass needle. Defaults to ``RED``.
-    pen_color : ManimColor, optional
+    pen_color
         Color of the compass pen. Defaults to ``PURE_YELLOW``.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the compass lines. Defaults to ``2``.
-    leg_length : float, optional
+    leg_length
         Length of the compass legs. Defaults to ``3.1``.
-    leg_width : float, optional
+    leg_width
         Width of the compass legs. Defaults to ``0.12``.
-    r : float, optional
+    r
         Radius of the compass head circle. Defaults to ``0.2``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -105,7 +105,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        Compass
             The modified self.
         """
         s, l, r, w = self.span, self.leg_length, self.r, self.leg_width
@@ -148,7 +147,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             The coordinates of the needle tip.
         """
         return np.asarray(self.niddle_tip.get_vertices()[1])
@@ -158,7 +156,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             The coordinates of the pen tip.
         """
         return np.asarray(self.pen_tip.get_vertices()[1])
@@ -168,7 +165,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             Unit vector pointing from the needle tip to the pen tip.
         """
         return Line(self.get_niddle_tip(), self.get_pen_tip()).get_unit_vector()
@@ -178,7 +174,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        float
             The distance between the pen tip and the needle tip.
         """
         return get_distance(self.get_pen_tip(), self.get_niddle_tip())
@@ -188,12 +183,11 @@ class Compass(VGroup):
 
         Parameters
         ----------
-        pos : Point
+        pos
             Target position for the compass needle tip.
 
         Returns
         -------
-        Compass
             The shifted self.
 
         Examples
@@ -223,7 +217,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        Compass
             The rotated self.
 
         Examples
@@ -250,7 +243,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        Compass
             The flipped self.
 
         Examples
@@ -278,12 +270,11 @@ class Compass(VGroup):
 
         Parameters
         ----------
-        angle : float
+        angle
             Extra angular opening applied to the compass legs.
 
         Returns
         -------
-        Compass
             The opened self.
 
         Examples
@@ -315,14 +306,13 @@ class Compass(VGroup):
 
         Parameters
         ----------
-        angle : float
+        angle
             Extra angular opening applied while the needle tip stays fixed.
-        niddle_tip_pos : Point
+        niddle_tip_pos
             Fixed position to keep the compass needle tip at.
 
         Returns
         -------
-        Compass
             The opened self with the needle tip fixed.
 
         Examples
@@ -350,7 +340,6 @@ class Compass(VGroup):
 
         Returns
         -------
-        bool
             ``True`` if the pen tip direction is counter-clockwise from the
             needle tip direction about the head centre, otherwise ``False``.
         """
@@ -364,12 +353,11 @@ class Compass(VGroup):
 
         Parameters
         ----------
-        span : float
+        span
             Span parameter for this operation.
 
         Returns
         -------
-        float
             The signed angle (in radians) by which the legs must be rotated to
             open the compass from its current span to ``span``; negative if the
             pen tip is counter-clockwise from the needle tip.
@@ -394,16 +382,15 @@ class Compass(VGroup):
 
         Parameters
         ----------
-        span_angle : float
+        span_angle
             Span angle parameter for this operation.
-        rotate_angle : float
+        rotate_angle
             Rotate angle parameter for this operation.
-        niddle_tip_pos : Point
+        niddle_tip_pos
             Niddle tip pos processed by this operation.
 
         Returns
         -------
-        Compass
             The repositioned self.
 
         Examples

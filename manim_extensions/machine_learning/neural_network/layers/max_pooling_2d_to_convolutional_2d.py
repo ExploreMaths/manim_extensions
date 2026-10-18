@@ -20,17 +20,17 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
 
     Parameters
     ----------
-    input_layer : MaxPooling2DLayer
+    input_layer
         The input max pooling layer.
-    output_layer : Convolutional2DLayer
+    output_layer
         The output convolutional layer.
-    passing_flash_color : ManimColor, optional
+    passing_flash_color
         Color of the flash animation during the forward pass, by default ORANGE.
-    cell_width : float, optional
+    cell_width
         Width of a single grid cell, by default 1.0.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the filter rectangles, by default 2.0.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
     **kwargs
         Forwarded to
@@ -68,9 +68,9 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             Input layer.
-        output_layer : NeuralNetworkLayer
+        output_layer
             Output layer.
         **kwargs
             Forwarded to the parent layer classes.

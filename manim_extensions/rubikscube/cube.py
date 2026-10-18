@@ -29,15 +29,15 @@ class RubiksCube(VMobject):
 
     Parameters
     ----------
-    dim : int, optional
+    dim
         Cube dimension. Must be at least 2.
-    colors : list, optional
+    colors
         Face colours in the order Up, Right, Front, Down, Left, Back.
-    x_offset : float, optional
+    x_offset
         Spatial offset along the X axis used to lay out the cubies.
-    y_offset : float, optional
+    y_offset
         Spatial offset along the Y axis used to lay out the cubies.
-    z_offset : float, optional
+    z_offset
         Spatial offset along the Z axis used to lay out the cubies.
 
     Raises
@@ -192,7 +192,6 @@ class RubiksCube(VMobject):
 
         Returns
         -------
-        numpy.ndarray
             The :math:`(x, y, z)` center of the cube computed from the actual
             bounding box of all cubie points.
         """
@@ -206,7 +205,6 @@ class RubiksCube(VMobject):
 
         Returns
         -------
-        None
             The cubies are added as submobjects of the cube.
         """
         for x in range(self.dimensions):
@@ -225,7 +223,7 @@ class RubiksCube(VMobject):
 
         Parameters
         ----------
-        positions : iterable
+        positions
             A sequence of face letters specifying the cube state.
         """
         colors = {
@@ -260,12 +258,11 @@ class RubiksCube(VMobject):
 
         Parameters
         ----------
-        state : str
+        state
             The cube state in the usual facelet notation accepted by kociemba.
 
         Returns
         -------
-        list[str]
             A list of move tokens.
         """
         sv = require("rubikscube", "kociemba")
@@ -276,11 +273,11 @@ class RubiksCube(VMobject):
 
         Parameters
         ----------
-        position : int
+        position
             The cubie position along the cube axis.
-        offset : list
+        offset
             The offset metadata used to translate the cubie.
-        tile : Cubie
+        tile
             The cubie to transform.
         """
         offsets_nr = len(offset)
@@ -302,15 +299,14 @@ class RubiksCube(VMobject):
 
         Parameters
         ----------
-        face : str
+        face
             The face label to retrieve: one of ``"U"``, ``"R"``, ``"F"``,
             ``"D"``, ``"L"``, or ``"B"``.
-        flatten : bool, optional
+        flatten
             Whether to flatten the selected face into a 1D iterable.
 
         Returns
         -------
-        numpy.ndarray
             The selected face values, either as a 2D grid or a flattened array.
         """
         if face == "F":
@@ -341,7 +337,7 @@ class RubiksCube(VMobject):
 
         Parameters
         ----------
-        cubies : numpy.ndarray
+        cubies
             The cubies whose positions should be reindexed.
         """
         for c in cubies.flatten():

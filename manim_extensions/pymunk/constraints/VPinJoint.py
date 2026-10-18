@@ -148,7 +148,7 @@ class VPinJoint(VConstraint):
 
         Parameters
         ----------
-        space : Space
+        space
             The Pymunk space to add the constraint to.
         """
 
@@ -192,9 +192,9 @@ class VPinJoint(VConstraint):
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The constraint mobject being updated.
-        dt : float
+        dt
             Time step since the last frame, in seconds.
         """
         if not self.constraint:

@@ -477,7 +477,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        list[:class:`pymunk.Shape`] | None
             A list of Pymunk shapes defining the collision boundaries.
 
         Raises
@@ -805,7 +804,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        list
             A list of point query results for each shape of the Mobject.
         """
         return self.vspace.get_point_query_info(
@@ -836,7 +834,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        list
             A list of segment query hit results.
         """
         return self.vspace.get_line_query(mob, start, end, stroke_width)
@@ -856,7 +853,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        list
             Collision information between the two shapes.
         """
         return self.vspace.get_shapea_shapeb_info(

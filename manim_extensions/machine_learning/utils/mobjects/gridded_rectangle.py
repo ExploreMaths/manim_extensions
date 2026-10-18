@@ -28,33 +28,33 @@ class GriddedRectangle(VGroup):
 
     Parameters
     ----------
-    color : ManimColor, optional
+    color
         Color of the rectangle, by default ORANGE.
-    height : float, optional
+    height
         Height of the rectangle, by default 2.0.
-    width : float, optional
+    width
         Width of the rectangle, by default 4.0.
-    mark_paths_closed : bool, optional
+    mark_paths_closed
         Whether paths are marked closed, by default True.
-    close_new_points : bool, optional
+    close_new_points
         Whether new points close the path, by default True.
-    grid_xstep : float, optional
+    grid_xstep
         Horizontal step of the grid lines.
-    grid_ystep : float, optional
+    grid_ystep
         Vertical step of the grid lines.
-    grid_stroke_width : float, optional
+    grid_stroke_width
         Stroke width of the grid lines, by default 0.0.
-    grid_stroke_color : ManimColor, optional
+    grid_stroke_color
         Color of the grid lines, by default ORANGE.
-    grid_stroke_opacity : float, optional
+    grid_stroke_opacity
         Opacity of the grid lines, by default 1.0.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the rectangle border, by default 2.0.
-    fill_opacity : float, optional
+    fill_opacity
         Fill opacity of the rectangle, by default 0.2.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
-    dotted_lines : bool, optional
+    dotted_lines
         Whether the border is drawn with dotted lines, by default False.
     **kwargs
         Forwarded to the parent class.
@@ -198,7 +198,6 @@ class GriddedRectangle(VGroup):
 
         Returns
         -------
-        VGroup
             Group of the vertical and horizontal grid lines.
         """
         grid_lines = VGroup()
@@ -246,7 +245,6 @@ class GriddedRectangle(VGroup):
 
         Returns
         -------
-        np.ndarray
             Center point of the rectangle.
         """
         return self.rectangle.get_center()
@@ -256,7 +254,6 @@ class GriddedRectangle(VGroup):
 
         Returns
         -------
-        np.ndarray
             Normal vector computed from the rectangle's vertices.
         """
         vertex_1 = self.rectangle.get_vertices()[0]
@@ -274,7 +271,7 @@ class GriddedRectangle(VGroup):
 
         Parameters
         ----------
-        color : ManimColor
+        color
             Color to apply to the rectangle border and fill.
         """
         self.color = color

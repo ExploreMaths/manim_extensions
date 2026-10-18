@@ -24,24 +24,23 @@ def get_normalized_convex_polygons(
 
     Parameters
     ----------
-    pixel_array : np.ndarray
+    pixel_array
         Input image pixel array of shape ``[H, W, C]``.
-    base_px_width : int, optional
+    base_px_width
         Base width for downsampling, defaults to 512.0.
             Controls sampling precision.
-    target_cell_size : float, optional
+    target_cell_size
         Target cell size for the marching-squares grid, defaults to 4.
             Controls grid density.
-    img_manim_w : float, optional
+    img_manim_w
         Manim frame width, defaults to 8.
             Used for coordinate mapping.
-    img_manim_h : float, optional
+    img_manim_h
         Manim frame height, defaults to 14.22.
             Used for coordinate mapping.
 
     Returns
     -------
-    list
         List of convex polygons in Manim coordinates, each polygon being a
         list of vertex coordinates.
     """
@@ -103,12 +102,11 @@ def get_normalized_convex_polygons(
 
         Parameters
         ----------
-        point : tuple
+        point
             Coordinate :math:`(x, y)`.
 
         Returns
         -------
-        int
             Mask value at that point (0 or 255).
         """
         x, y = int(point[0]), int(point[1])
@@ -156,20 +154,19 @@ def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_mani
 
     Parameters
     ----------
-    polygons : list
+    polygons
         List of polygons in pixel coordinates.
-    img_px_w : int
+    img_px_w
         Image width in pixels.
-    img_px_h : int
+    img_px_h
         Image height in pixels.
-    img_manim_w : float
+    img_manim_w
         Manim frame width.
-    img_manim_h : float
+    img_manim_h
         Manim frame height.
 
     Returns
     -------
-    list
         List of polygons in Manim coordinates.
     """
     manim_polygons = []

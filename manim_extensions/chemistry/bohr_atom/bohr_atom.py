@@ -13,22 +13,22 @@ class BohrAtom(VGroup):
 
     Parameters
     ----------
-    e : :class:`int`, optional
+    e
         Number of electrons of the atom. Defaults to 14.
-    p : :class:`int`, optional
+    p
         Number of protons of the atom. Defaults to 14.
-    n : :class:`int`, optional
+    n
         Number of neutrons of the atom. Defaults to 10.
-    level : :class:`int`, optional
+    level
         Number of orbit levels. If ``None``, it is calculated
         from the number of electrons. Defaults to ``None``.
-    orbit_color : optional
+    orbit_color
         Color of the orbit circles. Defaults to ``WHITE``.
-    electron_color : optional
+    electron_color
         Color of the electron dots. Defaults to ``BLUE``.
-    proton_color : optional
+    proton_color
         Color of the proton dots. Defaults to ``RED``.
-    neutron_color : optional
+    neutron_color
         Color of the neutron dots. Defaults to ``WHITE``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -162,9 +162,9 @@ class BohrAtom(VGroup):
 
         Parameters
         ----------
-        n_electrons : :class:`~typing.Any`
+        n_electrons
             Number of electrons to arrange on the orbit.
-        level : :class:`int`
+        level
             Energy level of the orbit, used as its radius.
         """
         level_group = VGroup()

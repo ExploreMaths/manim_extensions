@@ -24,16 +24,15 @@ def is_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True) -> b
 
     Parameters
     ----------
-    array : VarArray
+    array
         The list of arrays to search.
-    item : np.ndarray
+    item
         The array to look for.
-    rolling : bool
+    rolling
         When ``True``, compare up to cyclic rotations of *item*.
 
     Returns
     -------
-    bool
         ``True`` if *item* (or a rotation of it) is found in *array*.
     """
     if rolling:
@@ -50,18 +49,17 @@ def find_in_vararray(
 
     Parameters
     ----------
-    array : VarArray
+    array
         The list of arrays to search.
-    item : np.ndarray
+    item
         The array to look for.
-    rolling : bool
+    rolling
         When ``True``, compare up to cyclic rotations of *item*.
-    start : int
+    start
         Index at which to begin the search (useful to skip self-references).
 
     Returns
     -------
-    List[int]
         Indices of every matching entry.
     """
     if rolling:
@@ -84,16 +82,15 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
 
     Parameters
     ----------
-    array1 : VarArray
+    array1
         First array collection.
-    array2 : VarArray
+    array2
         Second array collection.
-    rolling : bool
+    rolling
         When ``True``, compare up to cyclic rotations.
 
     Returns
     -------
-    bool
         ``True`` if both collections contain the same elements.
     """
     return all(
@@ -111,14 +108,13 @@ def is_twice_nested_iterable(obj: Any, min_lens: Tuple[int, int] = (1, 3)) -> bo
 
     Parameters
     ----------
-    obj : Any
+    obj
         The object to inspect.
-    min_lens : Tuple[int, int]
+    min_lens
         Minimum lengths for the outer and inner layers.
 
     Returns
     -------
-    bool
         ``True`` if *obj* is a twice-nested iterable meeting the size
         requirements.
     """
@@ -152,14 +148,13 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
 
     Parameters
     ----------
-    edges1 : Edges
+    edges1
         First list of edges.
-    edges2 : Edges
+    edges2
         Second list of edges.
 
     Returns
     -------
-    bool
         ``True`` if both lists contain the same edges regardless of order.
     """
     return all(e1 in edges2 for e1 in edges1) and all(e2 in edges1 for e2 in edges2)
@@ -174,14 +169,13 @@ def fix_references(
 
     Parameters
     ----------
-    original : VarArray
+    original
         The collection of sub-arrays to clean up.
-    indices : Union[np.ndarray, List[int]]
+    indices
         Indices whose references should be removed.
 
     Returns
     -------
-    List[int]
         Indices in *original* where entries were removed.
     """
     # reverse sort indices in place to delete back to front and change given indices accordingly
@@ -215,9 +209,9 @@ def remove_keys_from_dict(d: Dict[str, Any], keys: List[str]) -> Dict[str, Any]:
 
     Parameters
     ----------
-    d : dict
+    d
         The dictionary to mutate.
-    keys : List[str]
+    keys
         Keys to remove.
 
     Returns

@@ -27,15 +27,15 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     Parameters
     ----------
-    positive : Mobject
+    positive
         Mobject shown as the positive query example.
-    negative : Mobject
+    negative
         Mobject shown as the negative query example.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the surrounding rectangles, by default 5.
-    font_size : float, optional
+    font_size
         Font size of the labels, by default 18.
-    spacing : float, optional
+    spacing
         Spacing between the two images, by default 0.5.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
@@ -108,9 +108,9 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -123,11 +123,11 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        positive_path : str
+        positive_path
             Path to the image used as the positive query example.
-        negative_path : str
+        negative_path
             Path to the image used as the negative query example.
-        grayscale : bool, optional
+        grayscale
             Whether to load the images as grayscale mobjects, by default True.
         **kwargs
             Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.PairedQueryLayer`.
@@ -180,7 +180,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the layers when making their
             forward pass animations, by default {}.
         **kwargs

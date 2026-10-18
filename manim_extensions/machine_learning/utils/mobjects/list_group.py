@@ -16,7 +16,7 @@ class ListGroup(Mobject):
 
     Parameters
     ----------
-    layers : Mobject
+    layers
         Initial items stored in the group.
 
     Examples
@@ -51,9 +51,9 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        index : int
+        index
             Index at which to insert the item.
-        item : Mobject
+        item
             Item to insert into the group.
         """
         self.items.insert(index, item)
@@ -64,12 +64,11 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        index : int
+        index
             Index of the item to remove.
 
         Returns
         -------
-        Mobject
             The removed item.
 
         Raises
@@ -90,12 +89,11 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        indices : list[int]
+        indices
             Indices of the items to remove.
 
         Returns
         -------
-        list[Mobject]
             The removed items, in the order of the given indices.
         """
         items = []
@@ -110,12 +108,11 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        item : Mobject
+        item
             Item to remove from the group.
 
         Returns
         -------
-        Mobject
             The removed item.
         """
         self.items.remove(item)
@@ -128,12 +125,11 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        index : int
+        index
             Index of the item to retrieve.
 
         Returns
         -------
-        Mobject
             The item stored at the given index.
         """
         return self.items[index]
@@ -143,7 +139,7 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        item : Mobject
+        item
             Item to append to the end of the group.
         """
         self.items.append(item)
@@ -154,9 +150,9 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        index : int
+        index
             Index of the item to replace.
-        item : Mobject
+        item
             Item to store at the given index.
         """
         self.items[index] = item
@@ -167,12 +163,11 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        item : Mobject
+        item
             Item to look up in the group.
 
         Returns
         -------
-        int
             Index of the item, or -1 if it is not in the group.
         """
         for index, obj in enumerate(self.items):
@@ -191,9 +186,9 @@ class ListGroup(Mobject):
 
         Parameters
         ----------
-        z_index_value : int
+        z_index_value
             Z-index to apply to all items in the group.
-        family : bool, optional
+        family
             Whether to also set the z-index of submobjects, by default True.
         """
         for item in self.items:

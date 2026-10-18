@@ -18,16 +18,16 @@ class GaussianDistribution(VGroup):
 
     Parameters
     ----------
-    axes : Axes
+    axes
         Manim axes the distribution is drawn in.
-    mean : np.ndarray, optional
+    mean
         Mean of the distribution; defaults to :math:`[0.0, 0.0]`.
-    cov : np.ndarray, optional
+    cov
         Covariance matrix of the distribution; defaults to the identity.
-    dist_theme : str, optional
+    dist_theme
         Drawing style; "gaussian" draws confidence ellipses and "ellipse" a
         single ellipse, by default "gaussian".
-    color : ManimColor, optional
+    color
         Color of the ellipses, by default ORANGE.
     **kwargs
         Forwarded to the parent class.
@@ -107,7 +107,7 @@ class GaussianDistribution(VGroup):
 
         Parameters
         ----------
-        covariance : np.ndarray
+        covariance
             2D covariance matrix of the Gaussian distribution.
 
         Returns
@@ -158,18 +158,17 @@ class GaussianDistribution(VGroup):
 
         Parameters
         ----------
-        mean : np.ndarray
+        mean
             Mean of the Gaussian distribution.
-        covariance : np.ndarray
+        covariance
             Covariance matrix of the Gaussian distribution.
-        color : ManimColor, optional
+        color
             Color of the ellipses, by default ORANGE.
-        num_ellipses : int, optional
+        num_ellipses
             Number of concentric confidence ellipses, by default 4.
 
         Returns
         -------
-        VGroup
             Group of concentric ellipses visualizing the distribution.
         """
         # map mean and covariance to frame coordinates
@@ -206,16 +205,15 @@ class GaussianDistribution(VGroup):
 
         Parameters
         ----------
-        mean : np.ndarray
+        mean
             Mean of the Gaussian distribution.
-        covariance : np.ndarray
+        covariance
             Covariance matrix of the Gaussian distribution.
-        color : ManimColor, optional
+        color
             Color of the ellipse, by default ORANGE.
 
         Returns
         -------
-        VGroup
             Group containing the single ellipse visualizing the distribution.
         """
         # Map mean and covariance to frame coordinates

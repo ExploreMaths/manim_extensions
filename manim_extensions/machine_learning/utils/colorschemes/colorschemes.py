@@ -15,15 +15,15 @@ class ColorScheme:
 
     Parameters
     ----------
-    primary_color : ManimColor
+    primary_color
         Main color of the visualization (e.g. neurons and edges).
-    secondary_color : ManimColor
+    secondary_color
         Secondary color (e.g. axes and supporting elements).
-    active_color : ManimColor
+    active_color
         Color used to highlight active elements during animations.
-    text_color : ManimColor
+    text_color
         Color of titles and labels.
-    background_color : ManimColor
+    background_color
         Scene background color; applied to ``manim.config`` when the
         scheme is activated.
     """

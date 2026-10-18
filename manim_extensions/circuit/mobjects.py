@@ -44,13 +44,13 @@ class VoltageSource(Source):
 
     Parameters
     ----------
-    value : int or float, optional
+    value
         Voltage value displayed next to the source. Defaults to ``1``.
-    label : bool, optional
+    label
         Whether to display the value label. Defaults to ``True``.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
-    dependent : bool, optional
+    dependent
         Whether the source is dependent. Defaults to ``True``.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
@@ -113,13 +113,13 @@ class CurrentSource(Source):
 
     Parameters
     ----------
-    value : int or float, optional
+    value
         Current value displayed next to the source. Defaults to ``1``.
-    label : bool, optional
+    label
         Whether to display the value label. Defaults to ``True``.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
-    dependent : bool, optional
+    dependent
         Whether the source is dependent. Defaults to ``True``.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
@@ -167,9 +167,9 @@ class Inductor(VMobject):
 
     Parameters
     ----------
-    label : str or None, optional
+    label
         Text label displayed next to the inductor (e.g. ``"10mH"``). Defaults to ``None``.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -246,12 +246,11 @@ class Inductor(VMobject):
 
         Parameters
         ----------
-        val : str
+        val
             ``"left"`` Or ``"right"``.
 
         Returns
         -------
-        numpy.ndarray
             The terminal point.
         """
         if val == "left":
@@ -264,7 +263,6 @@ class Inductor(VMobject):
 
         Returns
         -------
-        Inductor
             The modified self.
         """
         self.shift(
@@ -280,7 +278,7 @@ class Inductor(VMobject):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
         *args
             Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
@@ -289,7 +287,6 @@ class Inductor(VMobject):
 
         Returns
         -------
-        Inductor
             The modified self.
         """
         super().rotate(angle, about_point=self.main_body.get_center(), *args, **kwargs)
@@ -304,9 +301,9 @@ class Resistor(VMobject):
 
     Parameters
     ----------
-    label : str or None, optional
+    label
         Text label displayed next to the resistor. Defaults to ``None``.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -384,12 +381,11 @@ class Resistor(VMobject):
 
         Parameters
         ----------
-        val : str
+        val
             ``"left"`` Or ``"right"``.
 
         Returns
         -------
-        numpy.ndarray
             The terminal point.
         """
         if val == "left":
@@ -402,7 +398,6 @@ class Resistor(VMobject):
 
         Returns
         -------
-        Resistor
             The modified self.
         """
         self.shift(
@@ -418,7 +413,7 @@ class Resistor(VMobject):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
         *args
             Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
@@ -427,7 +422,6 @@ class Resistor(VMobject):
 
         Returns
         -------
-        Resistor
             The modified self.
         """
         super().rotate(angle, about_point=self.main_body.get_center(), *args, **kwargs)
@@ -442,11 +436,11 @@ class Capacitor(VMobject):
 
     Parameters
     ----------
-    label : str or None, optional
+    label
         Text label displayed next to the capacitor. Defaults to ``None``.
-    direction : np.ndarray, optional
+    direction
         Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-    polarized : bool, optional
+    polarized
         Whether the capacitor is polarized (shows an arc symbol). Defaults to ``False``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -519,12 +513,11 @@ class Capacitor(VMobject):
 
         Parameters
         ----------
-        val : str
+        val
             ``"left"`` Or ``"right"``.
 
         Returns
         -------
-        numpy.ndarray
             The terminal midpoint.
         """
         if val == "left":
@@ -537,7 +530,6 @@ class Capacitor(VMobject):
 
         Returns
         -------
-        Capacitor
             The mobject itself (allows method chaining).
         """
         self.shift(
@@ -553,7 +545,7 @@ class Capacitor(VMobject):
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
         *args
             Additional positional arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
@@ -562,7 +554,6 @@ class Capacitor(VMobject):
 
         Returns
         -------
-        Capacitor
             The modified self.
         """
         super().rotate(angle, about_point=self.main_body.get_center(), *args, **kwargs)
@@ -577,9 +568,9 @@ class Ground(VMobject):
 
     Parameters
     ----------
-    ground_type : str, optional
+    ground_type
         Type of ground symbol (``"ground"`` or ``"earth"``). Defaults to ``"ground"``.
-    label : str or None, optional
+    label
         Optional label for the ground (e.g. ``"D"`` or ``"A"``). Defaults to ``None``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -650,7 +641,6 @@ class Ground(VMobject):
 
         Returns
         -------
-        numpy.ndarray
             The terminal point on the top horizontal line.
         """
         if len(self.main_body) != 3:
@@ -664,9 +654,9 @@ class Opamp(VMobject):
 
     Parameters
     ----------
-    bias_supply : str or None, optional
+    bias_supply
         Bias supply configuration (e.g. ``"both"``). Defaults to ``None``.
-    label : bool, optional
+    label
         Whether to display the op-amp label. Defaults to ``False``.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -824,13 +814,12 @@ class Opamp(VMobject):
 
         Parameters
         ----------
-        val : str
+        val
             One of ``"positive_input"``, ``"negative_input"``,
             ``"positive_bias"``, ``"negative_bias"``, or ``"output"``.
 
         Returns
         -------
-        numpy.ndarray
             The terminal point.
         """
         return self._terminals[val]

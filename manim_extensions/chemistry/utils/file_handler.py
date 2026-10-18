@@ -29,7 +29,7 @@ class FileHandler:
 
     Parameters
     ----------
-    file_path : :class:`str`, :class:`~manim_extensions.chemistry.utils.file_handler.FileHandler.bytes` or Path-like
+    file_path
         Path to the chemistry file to parse.
     """
 
@@ -53,7 +53,7 @@ class FileHandler:
 
         Parameters
         ----------
-        file_path : :class:`~typing.Any`
+        file_path
             Path to the file.
         """
         return os.path.splitext(file_path)[1][1:]
@@ -73,9 +73,9 @@ class FileHandler:
 
         Parameters
         ----------
-        string : str
+        string
             Raw molecule data as a string (e.g. the contents of a .mol file).
-        format : str
+        format
             Format identifier matching a key in ``SUPPORTED_FORMATS``.
 
         Returns

@@ -20,11 +20,11 @@ class ManimAutomataInput(VGroup):
 
     Parameters
     ----------
-    input_string : str
+    input_string
         The string to display as input tokens.
-    animation_style : dict
+    animation_style
         Styling configuration used to animate token highlighting.
-    font_size : int, optional
+    font_size
         Font size used for each token. Defaults to ``100``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -84,12 +84,11 @@ class ManimAutomataInput(VGroup):
         ----------
         token
             The token to highlight.
-        animation_style : dict
+        animation_style
             Animation configuration containing the highlight function and color.
 
         Returns
         -------
-        Any
             The animation highlighting the token.
         """
         animation_function = animation_style["token_highlight"]["animation_function"]
@@ -106,11 +105,11 @@ class Token(MathTex):
 
     Parameters
     ----------
-    token_symbol : str
+    token_symbol
         The character or symbol to display.
-    spacing : int
+    spacing
         Horizontal offset applied when positioning the token.
-    font_size : int, optional
+    font_size
         Font size for the token text.  Defaults to ``100``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.MathTex`.

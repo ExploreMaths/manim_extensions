@@ -62,16 +62,15 @@ class LayoutFactory:
 
         Parameters
         ----------
-        layout_type : LayoutType
+        layout_type
             The desired layout type.
         root
             The root node of the tree to lay out.
-        layout_config : LayoutConfig
+        layout_config
             Configuration object providing layout-specific parameters.
 
         Returns
         -------
-        Layout
             A concrete layout algorithm instance.
 
         Raises

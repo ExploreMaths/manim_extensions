@@ -28,11 +28,11 @@ def get_triangle_circum_circle_params(
 
     Parameters
     ----------
-    pt1 : np.ndarray
+    pt1
         First corner point of the triangle.
-    pt2 : np.ndarray
+    pt2
         Second corner point of the triangle.
-    pt3 : np.ndarray
+    pt3
         Third corner point of the triangle.
 
     Returns
@@ -62,9 +62,9 @@ def get_circum_circle(
 
     Parameters
     ----------
-    triangle_mesh : TriangleManim2DMesh
+    triangle_mesh
         The triangle mesh containing the face.
-    face_idx : int
+    face_idx
         Index of the face to draw the circle around.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.arc.Circle`
@@ -72,7 +72,6 @@ def get_circum_circle(
 
     Returns
     -------
-    :class:`~manim.mobject.geometry.arc.Circle`
         A Manim circle mobject positioned at the circumscribed centre.
     """
     face = triangle_mesh.mesh.faces[face_idx]
@@ -95,9 +94,9 @@ def get_point_indices_violating_delaunay(
 
     Parameters
     ----------
-    triangle_mesh : TriangleManim2DMesh
+    triangle_mesh
         The triangle mesh.
-    face_id : int
+    face_id
         Index of the face (triangle) to test.
 
     Returns
@@ -127,16 +126,15 @@ def is_point_violating_delaunay(
 
     Parameters
     ----------
-    triangle_mesh : TriangleManim2DMesh
+    triangle_mesh
         The triangle mesh.
-    vertex_idx : int
+    vertex_idx
         Index of the vertex to test.
-    face_idx : int
+    face_idx
         Index of the face (triangle) whose circumscribed circle is tested.
 
     Returns
     -------
-    bool
         ``True`` if the vertex lies strictly inside the circumscribed
         circle of the triangle.
     """

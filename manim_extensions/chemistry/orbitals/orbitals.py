@@ -32,21 +32,21 @@ class OrbitalBase(OpenGLSurface):
 
     Parameters
     ----------
-    center : Any, optional
+    center
         Position of the orbital center. Defaults to ``ORIGIN``.
-    resolution : tuple, optional
+    resolution
         Resolution ``(u, v)`` of the surface. Defaults to :math:`(100, 50)`.
-    u_range : tuple, optional
+    u_range
         Range of the ``u`` parameter. Defaults to ``(0, PI)``.
-    v_range : tuple, optional
+    v_range
         Range of the ``v`` parameter. Defaults to ``(0, TAU)``.
-    n_value : int, optional
+    n_value
         Principal quantum number. Defaults to ``1``.
-    l_value : int, optional
+    l_value
         Azimuthal quantum number. Defaults to ``0``.
-    m_value : int, optional
+    m_value
         Magnetic quantum number. Defaults to ``0``.
-    size : int, optional
+    size
         Scale factor applied to the orbital surface. Defaults to ``1``.
     **kwargs
         Additional keyword arguments forwarded to
@@ -90,13 +90,13 @@ class OrbitalBase(OpenGLSurface):
 
         Parameters
         ----------
-        phi : :class:`~typing.Any`
+        phi
             Azimuthal angle.
-        theta : :class:`~typing.Any`
+        theta
             Polar angle.
-        l : :class:`int`, optional
+        l
             Azimuthal (angular momentum) quantum number. Defaults to 0.
-        m : :class:`int`, optional
+        m
             Magnetic quantum number. Defaults to 0.
         """
         sphHarm = _sph_harm(m, l, phi, theta)
@@ -108,11 +108,11 @@ class OrbitalBase(OpenGLSurface):
 
         Parameters
         ----------
-        psi : :class:`~typing.Any`
+        psi
             Value of the wave function at the given angles.
-        u : :class:`numpy.ndarray`, optional
+        u
             Polar angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Azimuthal angle.
         """
         x = np.sin(u) * np.cos(v) * abs(psi)
@@ -126,9 +126,9 @@ class OrbitalBase(OpenGLSurface):
 
         Parameters
         ----------
-        u : :class:`numpy.ndarray`, optional
+        u
             Polar angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Azimuthal angle.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
@@ -146,9 +146,9 @@ class OrbitalPositive(OrbitalBase):
 
         Parameters
         ----------
-        u : :class:`numpy.ndarray`, optional
+        u
             Polar angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Azimuthal angle.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
@@ -168,9 +168,9 @@ class OrbitalNegative(OrbitalBase):
 
         Parameters
         ----------
-        u : :class:`numpy.ndarray`, optional
+        u
             Polar angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Azimuthal angle.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
@@ -193,14 +193,14 @@ class Orbital(OpenGLSurface):
 
     Parameters
     ----------
-    n : :class:`int`, optional
+    n
         Principal quantum number. If ``None``, it is set to ``l + 1``.
         Defaults to ``None``.
-    l : :class:`int`, optional
+    l
         Azimuthal (angular momentum) quantum number. Defaults to 0.
-    m : :class:`int`, optional
+    m
         Magnetic quantum number. Defaults to 0.
-    size : :class:`float`, optional
+    size
         Scale of the orbital surface. Defaults to 3.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface`.
@@ -230,9 +230,9 @@ class Orbital(OpenGLSurface):
 
         Parameters
         ----------
-        u : :class:`numpy.ndarray`, optional
+        u
             Polar angle. Defaults to ``None``.
-        v : :class:`~typing.Any`
+        v
             Azimuthal angle.
         """
         return np.array([0, 0, 0])

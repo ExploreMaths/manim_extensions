@@ -39,9 +39,9 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
 
     Parameters
     ----------
-    input_layer : Mobject
+    input_layer
         The layer whose cell width defines the base shift vectors.
-    normalized : bool, optional
+    normalized
         Whether to normalize the rotated vectors to unit length,
         by default False.
     """
@@ -68,19 +68,19 @@ class Filters(VGroup):
 
     Parameters
     ----------
-    input_layer : Convolutional2DLayer
+    input_layer
         The input convolutional layer.
-    output_layer : Convolutional2DLayer
+    output_layer
         The output convolutional layer.
-    line_color : ManimColor, optional
+    line_color
         Color of the connective lines, by default ORANGE.
-    cell_width : float, optional
+    cell_width
         Width of a single grid cell, by default 1.0.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the filter rectangles, by default 2.0.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default False.
-    output_feature_map_to_connect : int, optional
+    output_feature_map_to_connect
         Index of the output feature map to connect; None connects all of them
         at once.
 
@@ -349,7 +349,7 @@ class Filters(VGroup):
 
         Parameters
         ----------
-        shift_amount : Any
+        shift_amount
             Amount by which the connective lines are shifted before the
             flash is shown.
         """
@@ -370,23 +370,23 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     Parameters
     ----------
-    input_layer : Convolutional2DLayer
+    input_layer
         The input convolutional layer.
-    output_layer : Convolutional2DLayer
+    output_layer
         The output convolutional layer.
-    color : ManimColor, optional
+    color
         Color of the filter rectangles, by default ORANGE.
-    filter_opacity : float, optional
+    filter_opacity
         Fill opacity of the filter rectangles, by default 0.3.
-    line_color : ManimColor, optional
+    line_color
         Color of the connective lines, by default ORANGE.
-    active_color : ManimColor, optional
+    active_color
         Color used when highlighting the layer, by default ORANGE.
-    cell_width : float, optional
+    cell_width
         Width of a single grid cell, by default 0.2.
-    show_grid_lines : bool, optional
+    show_grid_lines
         Whether to show the grid lines, by default True.
-    highlight_color : ManimColor, optional
+    highlight_color
         Color used to highlight cells during animations, by default ORANGE.
     **kwargs
         Forwarded to the parent layer classes.
@@ -440,9 +440,9 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -454,7 +454,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        filters : Mobject
+        filters
             The filters to animate; currently unused as a new
             :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.Filters` group is created internally.
         """
@@ -510,7 +510,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        highlight_active_feature_map : bool, optional
+        highlight_active_feature_map
             Whether to highlight the input and output feature maps of the
             filter currently being animated, by default True.
         """
@@ -627,16 +627,16 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
-        all_filters_at_once : bool, optional
+        all_filters_at_once
             Whether to animate all filters simultaneously instead of one at
             a time, by default False.
-        highlight_active_feature_map : bool, optional
+        highlight_active_feature_map
             Whether to highlight the feature map of the filter currently
             being animated, by default True.
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 10.5.
         **kwargs
             Forwarded to the parent layer classes.
@@ -655,7 +655,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.

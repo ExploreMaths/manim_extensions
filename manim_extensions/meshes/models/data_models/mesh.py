@@ -56,16 +56,16 @@ class Mesh:
 
     Parameters
     ----------
-    vertices : array-like
+    vertices
         List of vertices, all with the same dimensionality
         (shape ``[N, d]``).
-    faces : 2D array-like or None
+    faces
         List of faces, each face being a list of vertex indices.
         Entries may have different lengths.
-    parts : 2D array-like or None, optional
+    parts
         List of parts (3D objects), each part being a list of face
         indices. Cannot be set when *faces* is ``None``.
-    dangling : bool, optional
+    dangling
         If ``True``, check and warn about dangling vertices and faces
         after initialisation. Defaults to ``False``.
 
@@ -146,12 +146,11 @@ class Mesh:
 
         Parameters
         ----------
-        other : Mesh
+        other
             Another mesh to merge into this one.
 
         Returns
         -------
-        Mesh
             The modified mesh instance.
 
         Raises
@@ -169,12 +168,11 @@ class Mesh:
 
         Parameters
         ----------
-        other : Mesh
+        other
             Another mesh to merge into this one.
 
         Returns
         -------
-        Mesh
             The modified mesh instance.
 
         Raises
@@ -196,12 +194,11 @@ class Mesh:
 
         Parameters
         ----------
-        other : Mesh
+        other
             Another mesh to compare against.
 
         Returns
         -------
-        bool
             ``True`` if the meshes are equal.
 
         Raises
@@ -217,16 +214,15 @@ class Mesh:
 
             Parameters
             ----------
-            parts : Parts
+            parts
                 Part definitions referencing face indices.
-            faces : Faces
+            faces
                 Face definitions referencing vertex indices.
-            vertices : Vertices
+            vertices
                 Vertex coordinate array.
 
             Returns
             -------
-            VarArray
                 A list of coordinate arrays, one per part.
             """
             return [
@@ -246,14 +242,13 @@ class Mesh:
 
             Parameters
             ----------
-            faces : Faces
+            faces
                 Face definitions referencing vertex indices.
-            vertices : Vertices
+            vertices
                 Vertex coordinate array.
 
             Returns
             -------
-            VarArray
                 A list of coordinate arrays, one per face.
             """
             return [
@@ -294,12 +289,11 @@ class Mesh:
 
         Parameters
         ----------
-        other : Mesh
+        other
             Another mesh to compare against.
 
         Returns
         -------
-        bool
             ``True`` if the meshes are not equal.
 
         Raises
@@ -319,7 +313,6 @@ class Mesh:
 
         Returns
         -------
-        int
             The number of dimensions of every vertex.
         """
         return int(self._vertices.shape[1])
@@ -330,7 +323,6 @@ class Mesh:
 
         Returns
         -------
-        Vertices
             The vertex coordinate array.
         """
         return self._vertices
@@ -341,7 +333,6 @@ class Mesh:
 
         Returns
         -------
-        Faces
             The list of faces referencing vertex indices.
         """
         return self._faces
@@ -352,7 +343,6 @@ class Mesh:
 
         Returns
         -------
-        Parts
             The list of parts referencing face indices.
         """
         return self._parts
@@ -363,7 +353,6 @@ class Mesh:
 
         Returns
         -------
-        Edges
             The sorted list of edges as vertex index tuples.
         """
         return self._edges
@@ -373,7 +362,6 @@ class Mesh:
 
         Returns
         -------
-        Vertices
             The vertex coordinates padded to three dimensions.
 
         Raises
@@ -394,12 +382,11 @@ class Mesh:
 
         Parameters
         ----------
-        edge : Edge
+        edge
             A sorted ``(v_a, v_b)`` tuple representing the edge.
 
         Returns
         -------
-        int
             Index of the edge, or raises if not found.
         """
         # currently edges are sorted indices and not start->end, therefore check for inverse is not necessary
@@ -410,12 +397,11 @@ class Mesh:
 
         Parameters
         ----------
-        vertex_idx : int
+        vertex_idx
             Index of the vertex.
 
         Returns
         -------
-        Edges
             List of edges incident to *vertex_idx*.
         """
         vertex_edges = []
@@ -429,7 +415,7 @@ class Mesh:
 
         Parameters
         ----------
-        part_id : int
+        part_id
             Index of the part.
 
         Returns
@@ -462,9 +448,9 @@ class Mesh:
 
         Parameters
         ----------
-        vertex : np.ndarray
+        vertex
             Coordinates to search for.
-        start : int, optional
+        start
             Index from which the search starts (default ``0``).
 
         Returns
@@ -486,9 +472,9 @@ class Mesh:
 
         Parameters
         ----------
-        face : np.ndarray
+        face
             Face vertex indices to search for.
-        start : int, optional
+        start
             Index from which the search starts (default ``0``).
 
         Returns
@@ -503,9 +489,9 @@ class Mesh:
 
         Parameters
         ----------
-        part : np.ndarray
+        part
             Part face indices to search for.
-        start : int, optional
+        start
             Index from which the search starts (default ``0``).
 
         Returns
@@ -523,7 +509,7 @@ class Mesh:
 
         Parameters
         ----------
-        new_vertices : Vertices
+        new_vertices
             Array of vertex coordinates to add.
 
         Raises
@@ -546,7 +532,7 @@ class Mesh:
 
         Parameters
         ----------
-        indices : Union[np.ndarray, List[int]]
+        indices
             Indices of the vertices to remove.  Negative indexing is not
             supported.
 
@@ -571,9 +557,9 @@ class Mesh:
 
         Parameters
         ----------
-        idx : int
+        idx
             Index of the vertex to update.  Negative indexing is not supported.
-        new_vert : Vertex
+        new_vert
             New coordinates for the vertex.
 
         Raises
@@ -612,7 +598,7 @@ class Mesh:
 
         Parameters
         ----------
-        new_faces : Faces
+        new_faces
             Faces to add.  Each face is an iterable of vertex indices.
 
         Raises
@@ -651,7 +637,7 @@ class Mesh:
 
         Parameters
         ----------
-        indices : Union[np.ndarray, List[int]]
+        indices
             Indices of the faces to remove.  Negative indexing is not
             supported.
 
@@ -677,9 +663,9 @@ class Mesh:
 
         Parameters
         ----------
-        idx : int
+        idx
             Index of the face to update.  Negative indexing is not supported.
-        new_face : Face
+        new_face
             New vertex indices for the face.
 
         Raises
@@ -708,7 +694,7 @@ class Mesh:
 
         Parameters
         ----------
-        new_parts : Parts
+        new_parts
             Parts to add.  Each part is an iterable of face indices.
 
         Raises
@@ -745,7 +731,7 @@ class Mesh:
 
         Parameters
         ----------
-        indices : Union[np.ndarray, List[int]]
+        indices
             Indices of the parts to remove.  Negative indexing is not
             supported.
 
@@ -767,9 +753,9 @@ class Mesh:
 
         Parameters
         ----------
-        idx : int
+        idx
             Index of the part to update.  Negative indexing is not supported.
-        new_part : Part
+        new_part
             New face indices for the part.
 
         Raises
@@ -802,7 +788,7 @@ class Mesh:
 
         Parameters
         ----------
-        other : Mesh
+        other
             Another mesh to merge into this one.
 
         Raises
@@ -856,9 +842,9 @@ class Mesh:
 
             Parameters
             ----------
-            ids : set of int
+            ids
                 Set of identifiers to look up.
-            nested : VarArray
+            nested
                 Nested array of references (e.g. faces referencing vertices).
 
             Returns
@@ -875,9 +861,9 @@ class Mesh:
 
             Parameters
             ----------
-            ids : set of int
+            ids
                 Indices into *referenced*.
-            referenced : VarArray
+            referenced
                 Array of reference lists.
 
             Returns
@@ -948,7 +934,6 @@ class Mesh:
 
         Returns
         -------
-        bool
             ``True`` if there are vertices that are not part of any face.
         """
         if len(self._faces) == 0:
@@ -961,7 +946,6 @@ class Mesh:
 
         Returns
         -------
-        bool
             ``True`` if there are faces that are not part of any part.
         """
         if len(self._parts) == 0:
@@ -976,9 +960,9 @@ class Mesh:
 
         Parameters
         ----------
-        scaling : float
+        scaling
             Scale factor applied to every vertex.
-        about_point : numpy.ndarray or None, optional
+        about_point
             If given, the scaling is performed around this point.
         """
         if about_point is not None:
@@ -995,11 +979,11 @@ class Mesh:
 
         Parameters
         ----------
-        factor : float
+        factor
             Stretch factor.
-        dim : int
+        dim
             Index of the dimension to stretch.
-        about_point : numpy.ndarray or None, optional
+        about_point
             If given, the stretch is performed around this point.
         """
         if about_point is not None:
@@ -1014,7 +998,7 @@ class Mesh:
 
         Parameters
         ----------
-        translation : np.ndarray
+        translation
             Translation vector.  Its length must equal the mesh
             dimension.
 
@@ -1040,9 +1024,9 @@ class Mesh:
 
         Parameters
         ----------
-        v_id : int
+        v_id
             Index of the vertex to translate.
-        translation : np.ndarray
+        translation
             Translation vector.  Its length must equal the mesh
             dimension.
 
@@ -1083,11 +1067,11 @@ class Mesh:
 
         Parameters
         ----------
-        angle : float
+        angle
             Rotation angle in radians.
-        axis : np.ndarray, optional
+        axis
             Rotation axis (only used for 3D).  Defaults to the z-axis.
-        about_point : np.ndarray or None, optional
+        about_point
             If given, the rotation is performed around this point.
 
         Raises
@@ -1104,14 +1088,13 @@ class Mesh:
 
             Parameters
             ----------
-            angle : float
+            angle
                 Rotation angle in radians.
-            axis : np.ndarray
+            axis
                 Rotation axis (will be normalised internally).
 
             Returns
             -------
-            np.ndarray
                 A 3×3 rotation matrix.
             """
             rot_mat = Rotation.from_rotvec(
@@ -1162,24 +1145,23 @@ class Mesh:
 
         Parameters
         ----------
-        grid_sizes : tuple of float
+        grid_sizes
             Grid resolution in every axis direction (length must equal
             :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
-        threshold : tuple of float
+        threshold
             Maximum allowed movement per axis to snap into the next grid
             position (length must equal :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
-        steps : int, optional
+        steps
             Number of intermediate steps to the grid position (useful for
             animations).  Must be positive.
-        update_verts : bool, optional
+        update_verts
             If ``True``, :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh._vertices` is updated in-place and
             duplicates are removed.
-        precision : int, optional
+        precision
             Decimal places used for rounding the result (default ``10``).
 
         Returns
         -------
-        np.ndarray
             New vertex positions after snapping.
 
         Raises
@@ -1244,7 +1226,7 @@ class Mesh:
 
         Parameters
         ----------
-        precision : int, optional
+        precision
             Decimal places used when comparing vertices (default ``10``,
             i.e. equality up to ``1e-10``).
         """
@@ -1315,7 +1297,7 @@ class Mesh:
 
         Parameters
         ----------
-        precision : int, optional
+        precision
             Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`
             (default ``10``).
         """
@@ -1328,7 +1310,6 @@ class Mesh:
 
         Returns
         -------
-        Edges
             All edges of the mesh as a sorted list of 2-tuples of vertex indices.
         """
         edges: Edges = []

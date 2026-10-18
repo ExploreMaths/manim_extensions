@@ -17,20 +17,20 @@ class Row(VGroup):
 
     Parameters
     ----------
-    values : List[str]
+    values
         List of string values for each cell.
-    cell_widths : Union[float, List[float]], optional
+    cell_widths
         Either a single width for all cells, or a list of widths per column.
         Defaults to ``1.5``.
-    cell_height : float, optional
+    cell_height
         Height of each cell. Defaults to ``0.5``.
-    font_size : int, optional
+    font_size
         Font size for cell text. Defaults to ``20``.
-    is_header : bool, optional
+    is_header
         If True, renders cells as header cells (bold, thicker border).
-    show_border : bool, optional
+    show_border
         If True, cells have visible borders.
-    index : int, optional
+    index
         Row index in the parent table (useful for animations). Defaults to ``0``.
     **kwargs
         Additional arguments passed to
@@ -120,12 +120,11 @@ class Row(VGroup):
 
         Parameters
         ----------
-        index : int
+        index
             Index of the cell within the row (0-indexed).
 
         Returns
         -------
-        Cell
             The cell at the given index.
         """
         return self.cells[index]

@@ -62,19 +62,19 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     Parameters
     ----------
-    json_template : dict, optional
+    json_template
         JSON dictionary describing the automaton states and transitions.
-    xml_file : str, optional
+    xml_file
         Path to an XML file (e.g. JFLAP format) describing the automaton.
-    camera_follow : bool, optional
+    camera_follow
         If ``True``, the camera follows the active state during playback.
-    animation_style : dict, optional
+    animation_style
         Style configuration for state and transition animations.
-    manim_animations : ManimAnimations, optional
+    manim_animations
         Custom animation strategy.  Defaults to :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations`.
-    cli : bool, optional
+    cli
         If ``True``, launch the interactive CLI for building NDA paths.
-    animate_subscripts : bool, optional
+    animate_subscripts
         If ``True`` (default), animate state subscripts to show
         the number of branches ending in each state.
     **kwargs
@@ -175,7 +175,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        manim_state : ManimState
+        manim_state
             The state mobject to add.
         """
         # maybe need validation
@@ -187,10 +187,10 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        state : dict
+        state
             State definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
             and optional ``"initial"``/``"final"`` flags.
-        scaling : float, optional
+        scaling
             Coordinate scaling factor. Defaults to ``10``.
         """
         initial = False
@@ -224,7 +224,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        states : list of dict
+        states
             State definitions from JSON or XML parsing.
         """
         for state in states:
@@ -265,7 +265,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        transitions : list of dict
+        transitions
             Transition definitions from JSON or XML parsing.
         """
         # counts the number of transitions between two states
@@ -308,11 +308,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        transition_from : ManimState
+        transition_from
             The source state of the transition.
-        transition_to : ManimState
+        transition_to
             The destination state of the transition.
-        read_symbols : list of str
+        read_symbols
             The symbols that trigger this transition.
         """
         new_transition = ManimTransition(
@@ -331,12 +331,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        input_string : str
+        input_string
             The input string to display and run through the automaton.
 
         Returns
         -------
-        ManimAutomataInput
             The constructed input mobject.
         """
         return ManimAutomataInput(input_string, animation_style=self.animation_style)
@@ -355,12 +354,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        state_pointers : list of State
+        state_pointers
             The currently active states.
 
         Returns
         -------
-        bool
             ``True`` if any active state is a final state, otherwise ``False``.
         """
         for state in state_pointers:
@@ -377,7 +375,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        input : str or ManimAutomataInput
+        input
             The input string, or an already constructed input mobject.
 
         Returns
@@ -404,18 +402,17 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        token : str or MathTex
+        token
             The input token to process.
-        state_pointers : list of State
+        state_pointers
             The currently active states.
-        iteration_history : list of dict
+        iteration_history
             The per-step history to append this iteration's result to.
-        predetermined_transition : ManimTransition or None, optional
+        predetermined_transition
             Unused; kept for interface compatibility. Defaults to ``None``.
 
         Returns
         -------
-        tuple
             ``(next_states, sequence_result)`` with the reachable next states
             and whether any active state accepted the token.
         """
@@ -478,9 +475,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        input : str or ManimAutomataInput
+        input
             The input string, or an already constructed input mobject.
-        automaton_path_name : str, optional
+        automaton_path_name
             Path to a recorded path file that provides a single path used to
             navigate through the NDA; the purpose of this is to allow the user
             to animate a single path through the NDA instead of animating all
@@ -488,7 +485,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list
             The history of the run, including the final ``"information"``
             entry with the active states and the automaton result.
         """
@@ -552,14 +548,13 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        state_pointer : State
+        state_pointer
             The current state.
-        transitions : list of ManimTransition
+        transitions
             The transitions outgoing from the current state.
 
         Returns
         -------
-        dict
             Mapping of option index to ``(description, transition)`` tuples.
         """
         options: dict[int, tuple[str, ManimTransition]] = {}
@@ -581,7 +576,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        file_name : str
+        file_name
             Path to the JSON file with the recorded path.
 
         Returns
@@ -602,7 +597,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        input : str or :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput`
+        input
             The input string, or an already constructed input mobject.
 
         Returns
@@ -649,12 +644,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        history : dict
+        history
             The run history returned by :meth:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.run_input_through_automaton`.
 
         Returns
         -------
-        list
             The animations visualising the input going through the automaton.
         """
 
@@ -708,12 +702,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        step_history : dict
+        step_history
             A single step entry from the iteration history.
 
         Returns
         -------
-        list
             The animations for this step.
         """
         list_of_animations: list[object] = []
@@ -739,12 +732,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        initial_state : ManimState
+        initial_state
             The initial state of the automaton.
 
         Returns
         -------
-        list
             The highlight and subscript transform animations.
         """
         new_subscript_object = Tex(1, color=PURE_YELLOW)
@@ -763,7 +755,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list
             The accept animations.
         """
         list_of_accept_animations: list[object] = []
@@ -782,7 +773,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list
             The reject animations.
         """
         list_of_reject_animations: list[object] = []
@@ -808,15 +798,15 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        manim_transitions : list of ManimTransition
+        manim_transitions
             The transitions taken in this step.
-        token : Tex
+        token
             The input token being processed.
-        state_pointer : State
+        state_pointer
             The state the step starts from.
-        next_neighbour_states : list of State
+        next_neighbour_states
             The states reachable from the current state.
-        step_result : bool
+        step_result
             Whether the token matched any transition.
 
         Returns
@@ -887,12 +877,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Parameters
         ----------
-        iteration_history : list of dict
+        iteration_history
             The step histories of the current iteration.
 
         Returns
         -------
-        list
             The subscript transform animations.
         """
         animations: list[object] = []

@@ -14,15 +14,15 @@ class Element:
 
     Parameters
     ----------
-    symbol : str, optional
+    symbol
         Chemical symbol of the element. Defaults to ``"H"``.
-    name : str, optional
+    name
         Full name of the element. Defaults to ``"H"``.
-    atomic_number : int, optional
+    atomic_number
         Atomic number of the element. Defaults to ``1``.
-    mass : float, optional
+    mass
         Atomic mass of the element. Defaults to ``1.008``.
-    color : Optional[str], optional
+    color
         Display color of the element. Falls back to ``"#ff00ff"`` when
         falsy. Defaults to ``"#FFFFFF"``.
     """
@@ -49,9 +49,9 @@ class Element:
 
         Parameters
         ----------
-        filename : :class:`str`
+        filename
             Path to the CSV file containing element data.
-        element : :class:`str` or :class:`int`
+        element
             Symbol or atomic number of the element to look up.
 
         Raises

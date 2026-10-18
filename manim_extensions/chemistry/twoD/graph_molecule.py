@@ -70,13 +70,13 @@ class DoubleLine(ArcBetweenPoints):
 
     Parameters
     ----------
-    start : :class:`list`, optional
+    start
         Starting point of the arcs. Defaults to ``[-1, 0, 0]``.
-    end : :class:`list`, optional
+    end
         Ending point of the arcs. Defaults to ``[1, 0, 0]``.
-    angle : :class:`float`, optional
+    angle
         Angle of the arcs. Defaults to ``PI / 4``.
-    radius : :class:`float`, optional
+    radius
         Radius of the arcs. Defaults to ``None``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.ArcBetweenPoints`.
@@ -115,9 +115,9 @@ class DoubleLine(ArcBetweenPoints):
 
         Parameters
         ----------
-        start : :class:`numpy.ndarray`
+        start
             New starting point of the double bond.
-        end : :class:`numpy.ndarray`
+        end
             New ending point of the double bond.
         **kwargs
             Additional keyword arguments passed to
@@ -131,11 +131,11 @@ class TripleLine(DoubleLine):
 
     Parameters
     ----------
-    start : :class:`list`, optional
+    start
         Starting point of the lines. Defaults to ``[-1, 0, 0]``.
-    end : :class:`list`, optional
+    end
         Ending point of the lines. Defaults to ``[1, 0, 0]``.
-    angle : :class:`float`, optional
+    angle
         Angle of the arcs. Defaults to ``PI / 4``.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
@@ -158,16 +158,16 @@ class GraphMolecule(Graph, AbstractMolecule):
 
     Parameters
     ----------
-    vertices_dict : :class:`dict`
+    vertices_dict
         Dictionary mapping vertex indices to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCAtom` objects.
-    edges_dict : :class:`dict`
+    edges_dict
         Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCBond` objects.
-    label : :class:`bool`, optional
+    label
         Whether to add a label with the element symbol to each atom.
         Defaults to ``False``.
-    numeric_label : :class:`bool`, optional
+    numeric_label
         Whether to add a numeric label to each atom. Defaults to ``False``.
-    label_color : :class:`str`, optional
+    label_color
         Color of the atom labels. Defaults to ``BLACK``.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
@@ -409,7 +409,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        edge : :class:`~typing.Any`
+        edge
             Edge tuple of the molecule.
         """
         bond_type = self.edges_dict[edge].bond_type
@@ -420,7 +420,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        bond_type : :class:`int`
+        bond_type
             Type of the bond: 1 for single, 2 for double, 3 for triple.
 
         Raises
@@ -442,7 +442,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        vertices_dict : :class:`dict`
+        vertices_dict
             Dictionary mapping vertex indices to their atoms.
         """
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
@@ -452,7 +452,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        vertices_dict : :class:`dict`
+        vertices_dict
             Dictionary mapping vertex indices to their atoms.
         """
         v_dict = {}
@@ -469,7 +469,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        edges : :class:`dict`
+        edges
             Dictionary mapping edge tuples to their bonds.
         """
         edge_config = {}
@@ -491,11 +491,11 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        vertices_dict : :class:`dict`
+        vertices_dict
             Dictionary mapping vertex indices to their atoms.
-        numeric_label : :class:`bool`
+        numeric_label
             Whether to add a numeric label to each atom.
-        label_color : :class:`str`
+        label_color
             Color of the atom labels.
         """
         if numeric_label:
@@ -522,18 +522,17 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        graph : :class:`networkx.Graph`
+        graph
             Graph of the molecule.
-        atom : :class:`int`
+        atom
             Index of the atom to search from.
-        visited_atoms : :class:`set`
+        visited_atoms
             Set of already visited atom indices.
-        connected_atoms : :class:`list`
+        connected_atoms
             Accumulated list of connected atom indices.
 
         Returns
         -------
-        :class:`list`
             List of the connected atom indices.
         """
         for neighbor in graph.neighbors(atom):
@@ -556,14 +555,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        from_atom_index : :class:`int`
+        from_atom_index
             Index of the atom on one side of the bond.
-        to_atom_index : :class:`int`
+        to_atom_index
             Index of the atom on the other side of the bond.
 
         Returns
         -------
-        :class:`list`
             List of the connected atom indices.
 
         Raises
@@ -601,7 +599,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        atoms_indices : :class:`~typing.Any`
+        atoms_indices
             Atom indices to get the vertex mobjects for.
         """
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
@@ -613,14 +611,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        from_atom_index : :class:`int`
+        from_atom_index
             Index of the atom on one side of the bond.
-        to_atom_index : :class:`int`
+        to_atom_index
             Index of the atom on the other side of the bond.
 
         Returns
         -------
-        :class:`list`
             VGroup of the connected atoms.
         """
         connected_atoms = self.get_connected_atoms(
@@ -636,14 +633,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        connected_atoms : :class:`list`
+        connected_atoms
             List of atom indices to get the bonds from.
-        excluded_atom : :class:`int`, optional
+        excluded_atom
             Atom index to exclude from the bonds. Defaults to 0.
 
         Returns
         -------
-        :class:`list`
             List of the bond tuples related to the atoms.
         """
         edges = []
@@ -659,9 +655,9 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        connected_atoms : :class:`list`
+        connected_atoms
             List of atom indices to get the bonds from.
-        excluded_atom : :class:`int`
+        excluded_atom
             Atom index to exclude from the bonds.
         """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
@@ -674,9 +670,9 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        connected_atoms : :class:`list`
+        connected_atoms
             List of connected atom indices.
-        excluded_atom : :class:`int`, optional
+        excluded_atom
             Atom index to exclude from the bonds. Defaults to 0.
         """
         return VGroup(
@@ -691,14 +687,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        from_atom : :class:`int`
+        from_atom
             Index of the atom on one side of the bond.
-        to_atom : :class:`int`
+        to_atom
             Index of the atom on the other side of the bond.
 
         Returns
         -------
-        :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             VGroup with the connected atoms and their bonds.
         """
         connected_atoms = self.get_connected_atoms(
@@ -714,12 +709,11 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        atom_index : int
+        atom_index
             Index of the atom inside the VDict.
 
         Returns
         -------
-        numpy.array
             Array with the [x, y, z] coordinates of the atom.
 
         Raises
@@ -754,12 +748,11 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        atoms_index_list : list
+        atoms_index_list
             List of atoms indices to be gotten.
 
         Returns
         -------
-        list
             List of the atoms positions.
 
         Examples
@@ -784,12 +777,11 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        bond_index : tuple
+        bond_index
             Index of the bond.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of bond center.
 
         Raises
@@ -828,14 +820,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        bond_tuple : int
+        bond_tuple
             Tuple of the bond.
-        position_buff : float
+        position_buff
             Position buff.
 
         Returns
         -------
-        numpy.array
             [x, y, z] coordinates of the final position selected.
 
         Raises
@@ -862,12 +853,11 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        bonds_tuples_list : list
+        bonds_tuples_list
             List of bonds indices to be gotten.
 
         Returns
         -------
-        list
             List of the bonds positions.
 
         Examples
@@ -891,7 +881,6 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping atom indices to their positions.
         """
         atoms_positions = {}
@@ -907,7 +896,6 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        :class:`dict`
             Dictionary mapping bond tuples to their center positions.
         """
         bonds_positions = {}
@@ -934,7 +922,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Parameters
         ----------
-        mc_molecule : MCMolecule
+        mc_molecule
             The origin MCMolecule.
 
         Returns

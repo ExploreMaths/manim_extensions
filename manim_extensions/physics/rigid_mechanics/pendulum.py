@@ -38,14 +38,14 @@ class MultiPendulum(VGroup):
 
     Parameters
     ----------
-    bobs : iterable of numpy.ndarray
+    bobs
         Positions of the pendulum bobs from the pivot outward.
-    pivot_point : numpy.ndarray, optional
+    pivot_point
         Position of the fixed pivot.  Defaults to ``UP * 2``.
-    rod_style : dict, optional
+    rod_style
         Keyword arguments forwarded to the :class:`~manim.mobject.geometry.line.Line`
         constructor used for each rod.
-    bob_style : dict, optional
+    bob_style
         Keyword arguments forwarded to the :class:`~manim.mobject.geometry.arc.Circle`
         constructor used for each bob.
     **kwargs
@@ -115,11 +115,11 @@ class MultiPendulum(VGroup):
 
         Parameters
         ----------
-        mob1 : Mobject
+        mob1
             First body mobject (must have a ``body`` attribute).
-        mob2 : Mobject or numpy.ndarray
+        mob2
             Second body mobject, or a fixed point in space.
-        spacescene : SpaceScene
+        spacescene
             The physics scene to which the joint is added.
         """
         pymunk = require("physics", "pymunk")
@@ -137,11 +137,11 @@ class MultiPendulum(VGroup):
 
         Parameters
         ----------
-        mob : Line
+        mob
             The rod line mobject to update.
-        pins : list
+        pins
             List of pin joints or positions.
-        i : int
+        i
             Index of the first pin; the rod connects ``pins[i]`` to ``pins[i+1]``.
         """
         try:
@@ -179,16 +179,16 @@ class Pendulum(MultiPendulum):
 
     Parameters
     ----------
-    length : float, optional
+    length
         Length of the pendulum rod.  Defaults to ``3.5``.
-    initial_theta : float, optional
+    initial_theta
         Initial angle of deviation from the vertical, in radians.
         Defaults to ``0.3``.
-    pivot_point : numpy.ndarray, optional
+    pivot_point
         Position of the fixed pivot.  Defaults to ``UP * 2``.
-    rod_style : dict, optional
+    rod_style
         Forwarded to the :class:`~manim.mobject.geometry.line.Line` constructor.
-    bob_style : dict, optional
+    bob_style
         Forwarded to the :class:`~manim.mobject.geometry.arc.Circle` constructor.
     **kwargs
         Additional parameters for :class:`~manim.mobject.types.vectorized_mobject.VGroup`.

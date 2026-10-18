@@ -27,7 +27,6 @@ def create_triangle() -> Mesh:
 
     Returns
     -------
-    Mesh
         The triangle mesh.
     """
     vertices = [
@@ -49,13 +48,12 @@ def create_pyramid(triangles_only: bool = True) -> Mesh:
 
     Parameters
     ----------
-    triangles_only : bool
+    triangles_only
         When ``True``, faces are triangulated; otherwise the square base is
         kept as a single quad face.
 
     Returns
     -------
-    Mesh
         The pyramid mesh.
     """
     vertices = [
@@ -100,13 +98,12 @@ def create_cube(triangles_only: bool = True) -> Mesh:
 
     Parameters
     ----------
-    triangles_only : bool
+    triangles_only
         When ``True``, each face is split into two triangles; otherwise
         quad faces are preserved.
 
     Returns
     -------
-    Mesh
         The cube mesh.
     """
     vertices = [
@@ -163,7 +160,6 @@ def create_coplanar_triangles() -> Mesh:
 
     Returns
     -------
-    Mesh
         The 2D mesh consisting of triangles.
     """
     vertices = [
@@ -188,7 +184,6 @@ def create_coplanar_points() -> Mesh:
 
     Returns
     -------
-    Mesh
         The 2D point cloud mesh without faces.
     """
     vertices = np.array(
@@ -213,12 +208,11 @@ def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
 
     Parameters
     ----------
-    areas : List[Tuple[float, float, int]]
+    areas
         One tuple per dimension: ``(min, max, point_count)``.
 
     Returns
     -------
-    Mesh
         A grid mesh with vertices placed at the generated grid points and
         quad faces connecting them (2-D) or no faces (1-D).
 
@@ -272,15 +266,14 @@ def create_model(filepath: Union[str, pathlib.Path] = "", name: str = "") -> Mes
 
     Parameters
     ----------
-    filepath : str
+    filepath
         Full path to the model file (supports ``.ply`` and ``.stl``).
-    name : str
+    name
         Shorthand for built-in models: ``"armadillo"``, ``"suzanne"``,
         or ``"tail_topper"``.
 
     Returns
     -------
-    Mesh
         The loaded mesh.
 
     Raises

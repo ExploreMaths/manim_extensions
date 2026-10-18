@@ -83,7 +83,7 @@ def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
 
     Parameters
     ----------
-    icon : int or str
+    icon
         The icon to be displayed: an integer Unicode code point, or a
         string giving either an icon name from the Nerd Font icon set
         (resolved via :mod:`~manim_extensions.utils.nerdfont.icons_dict`)
@@ -94,7 +94,6 @@ def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
 
     Returns
     -------
-    Text
         A Text object representing the specified icon.
     """
     font_path = _font_path()

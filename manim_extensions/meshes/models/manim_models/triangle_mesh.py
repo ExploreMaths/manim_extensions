@@ -22,7 +22,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     Parameters
     ----------
-    mesh : Mesh
+    mesh
         The mesh data model. Must consist only of triangles.
     args
         Positional arguments forwarded to the parent :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh`.
@@ -87,11 +87,11 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        scene : m.Scene
+        scene
             The scene in which the animation is played.
-        face_idx_1 : int
+        face_idx_1
             Index of the first triangle face.
-        face_idx_2 : int
+        face_idx_2
             Index of the second triangle face (must share an edge with the first).
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).

@@ -17,11 +17,11 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
     Parameters
     ----------
-    input_layer : Convolutional2DLayer
+    input_layer
         The input convolutional layer.
-    output_layer : FeedForwardLayer
+    output_layer
         The output feed-forward layer.
-    passing_flash_color : ManimColor, optional
+    passing_flash_color
         Color of the flash animation during the forward pass, by default ORANGE.
     **kwargs
         Forwarded to the parent layer classes.
@@ -51,9 +51,9 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -65,10 +65,10 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
-        run_time : float, optional
+        run_time
             Run time of the forward pass animation, by default 1.5.
         **kwargs
             Forwarded to the parent layer classes.

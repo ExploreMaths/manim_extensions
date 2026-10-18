@@ -43,14 +43,14 @@ class LeafNode(Group):
 
     Parameters
     ----------
-    class_index : int
+    class_index
         Index of the predicted class, used to look up the class image and color.
-    display_type : str, optional
+    display_type
         How to display the leaf content; ``"image"`` shows the class image,
         ``"text"`` is not yet implemented.
-    class_image_paths : list, optional
+    class_image_paths
         List of image file paths, one per class.
-    class_colors : list, optional
+    class_colors
         List of colors, one per class, used for the border rectangle.
 
     Examples
@@ -112,9 +112,9 @@ class SplitNode(VGroup):
 
     Parameters
     ----------
-    feature : str
+    feature
         Name of the feature used for the split.
-    threshold : float
+    threshold
         Threshold value of the split; the node text shows ``feature <= threshold``.
 
     Examples
@@ -146,15 +146,15 @@ class DecisionTreeDiagram(Group):
 
     Parameters
     ----------
-    sklearn_tree : sklearn.tree.DecisionTreeClassifier
+    sklearn_tree
         Fitted scikit-learn decision tree classifier to visualize.
-    feature_names : list, optional
+    feature_names
         Names of the features, used to label the split nodes.
-    class_names : list, optional
+    class_names
         Names of the classes.
-    class_images_paths : list, optional
+    class_images_paths
         Image file paths, one per class, used for the leaf nodes.
-    class_colors : list, optional
+    class_colors
         Colors, one per class, used for the leaf node borders.
         Defaults to ``[RED, GREEN, BLUE]``.
 
@@ -335,7 +335,7 @@ class DecisionTreeDiagram(Group):
 
         Parameters
         ----------
-        tree : Mobject
+        tree
             The sklearn tree structure (``tree_`` attribute of a fitted
             :class:`~sklearn.tree.DecisionTreeClassifier`).
         Raises
@@ -350,13 +350,12 @@ class DecisionTreeDiagram(Group):
 
         Parameters
         ----------
-        tree : Mobject
+        tree
             The sklearn tree structure (``tree_`` attribute of a fitted
             :class:`~sklearn.tree.DecisionTreeClassifier`).
 
         Returns
         -------
-        tuple
             ``(Succession, dict)`` — the expansion animation and a mapping
             from each split node index to its split animation.
         """
@@ -486,7 +485,7 @@ class DecisionTreeDiagram(Group):
 
         Parameters
         ----------
-        node_expand_order : Any
+        node_expand_order
             Node indices in the order they should be expanded, as returned
             by the traversal helpers in
             :mod:`~manim_extensions.machine_learning.decision_tree.helpers`.
@@ -507,7 +506,7 @@ class DecisionTreeDiagram(Group):
 
         Parameters
         ----------
-        traversal_order : str, optional
+        traversal_order
             Order in which the nodes are expanded: ``"bfs"`` (breadth-first)
             or ``"level"`` (level order). Defaults to ``"bfs"``.
 
@@ -532,11 +531,11 @@ class DecisionTreeContainer():
 
     Parameters
     ----------
-    sklearn_tree : sklearn.tree.DecisionTreeClassifier
+    sklearn_tree
         Fitted scikit-learn decision tree classifier to visualize.
-    points : np.ndarray
+    points
         Data points of the embedding the tree is fitted on.
-    classes : np.ndarray
+    classes
         Class label of each point in ``points``.
     """
 

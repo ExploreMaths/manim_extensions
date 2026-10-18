@@ -44,11 +44,11 @@ def find_intersection(
 
     Parameters
     ----------
-    func_a : Callable[[float], float]
+    func_a
         First function of x.
-    func_b : Callable[[float], float]
+    func_b
         Second function of x.
-    x_range : Sequence[float]
+    x_range
         Interval ``[min, max]`` that is sampled for a sign change of
         ``func_a(x) - func_b(x)``.
 
@@ -151,21 +151,20 @@ class EconDiagram(VGroup):
 
         Parameters
         ----------
-        name : str
+        name
             Key under which the curve is stored.
-        func : Callable[[float], float]
+        func
             Function of x defining the curve.
-        x_range : Sequence[float]
+        x_range
             Range ``[min, max, step]`` over which the curve is plotted.
-        color : ManimColor or str
+        color
             Color of the curve.
-        label_text : str, optional
+        label_text
             If given, text label placed next to the curve's end.
             Defaults to ``None``.
 
         Returns
         -------
-        ParametricFunction
             The plotted curve.
         """
         curve = self.axes.plot(func, x_range=x_range, color=color)
@@ -188,18 +187,17 @@ class EconDiagram(VGroup):
 
         Parameters
         ----------
-        name : str
+        name
             Key under which the line is stored.
-        x : float
+        x
             X position of the line in axis coordinates.
-        color : ManimColor or str
+        color
             Color of the line.
-        label_text : str, optional
+        label_text
             If given, text label placed above the line. Defaults to ``None``.
 
         Returns
         -------
-        Line
             The vertical line.
         """
         y_min = self.axes.y_range[0]
@@ -288,17 +286,17 @@ class EconDiagram(VGroup):
 
         Parameters
         ----------
-        curve_a : str
+        curve_a
             Name of the first stored curve.
-        curve_b : str
+        curve_b
             Name of the second stored curve.
-        label_x : str
+        label_x
             Text label placed below the x-axis at the intersection.
             Defaults to ``""``.
-        label_y : str
+        label_y
             Text label placed left of the y-axis at the intersection.
             Defaults to ``""``.
-        numbered : bool
+        numbered
             If True, labels use subscripts (P₁/Y₁) that increment on each
             shift, and old markers stay visible. Defaults to ``False``.
 
@@ -395,24 +393,23 @@ class EconDiagram(VGroup):
 
         Parameters
         ----------
-        curve_name : str
+        curve_name
             Name of the stored curve to shift.
-        new_func : Callable[[float], float]
+        new_func
             New function of x for the curve.
-        new_x_range : Sequence[float], optional
+        new_x_range
             New plot range for the curve; if ``None``, the curve's original
             range is kept. Defaults to ``None``.
-        run_time : float
+        run_time
             Duration of the shift animation. Defaults to ``1``.
-        show_arrows : bool
+        show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        arrow_color : ManimColor or str
+        arrow_color
             Color for the axis arrows. Defaults to ``WHITE``.
 
         Returns
         -------
-        AnimationGroup
             The animation shifting the curve, together with its label and
             equilibrium marker if they are affected.
         """

@@ -37,17 +37,17 @@ class MCAtom:
 
     Parameters
     ----------
-    element : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`
+    element
         The chemical element of the atom.
-    coords : :class:`numpy.array`, optional
+    coords
         3D coordinates of the atom. Defaults to the origin.
-    atoms : :class:`list`, optional
+    atoms
         List of bonded atoms. Defaults to an empty list.
-    bonds : :class:`list`, optional
+    bonds
         List of bonds associated with the atom. Defaults to an empty list.
-    molecule : :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCMolecule`, optional
+    molecule
         The molecule the atom belongs to. Defaults to ``None``.
-    molecule_index : :class:`int`, optional
+    molecule_index
         Index of the atom in the molecule. Defaults to ``None``.
     """
 
@@ -74,7 +74,7 @@ class MCAtom:
 
         Parameters
         ----------
-        atoms : MCAtom or List[MCAtom]
+        atoms
             Bonded atoms to assign.
 
         Raises
@@ -108,7 +108,7 @@ class MCAtom:
 
         Parameters
         ----------
-        bonds : MCBond or List[MCBond]
+        bonds
             Bonds to assign to the atom.
 
         Raises
@@ -145,7 +145,7 @@ class MCAtom:
 
         Parameters
         ----------
-        molecule : MCMolecule
+        molecule
             The molecule the atom belongs to.
 
         Raises
@@ -172,7 +172,7 @@ class MCAtom:
 
         Parameters
         ----------
-        molecule_index : :class:`int`
+        molecule_index
             Index of the atom in the molecule.
 
         Raises
@@ -201,19 +201,18 @@ class MCAtom:
 
         Parameters
         ----------
-        atom_dict : Dict
+        atom_dict
             See data_parser function from BaseParser.
-        atom_index : Any
+        atom_index
             Index of the atom in the molecule.
-        atom_data_dict : Dict
+        atom_data_dict
             See data_parser function from BaseParser.
-        elements_data_dict : Dict
+        elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data.
 
         Returns
         -------
-        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`
             The constructed atom.
 
         Raises

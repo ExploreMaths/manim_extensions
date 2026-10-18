@@ -35,23 +35,23 @@ class NetworkConnection(VGroup):
 
     Parameters
     ----------
-    start_mobject : Mobject
+    start_mobject
         Mobject where the start of the connection is from.
-    end_mobject : Mobject
+    end_mobject
         Mobject where the end of the connection goes to.
-    arc_direction : str, optional
+    arc_direction
         Direction that the connection arcs; one of "straight", "up", "down",
         "left", "right", by default "straight".
-    buffer : float, optional
+    buffer
         Amount of space between the connection and the mobjects at the ends,
         by default 0.0.
-    arc_distance : float, optional
+    arc_distance
         Distance from start and end mobject that the arc bends, by default 0.2.
-    stroke_width : float, optional
+    stroke_width
         Stroke width of the connection, by default 2.0.
-    color : ManimColor, optional
+    color
         Color of the connection, by default WHITE.
-    active_color : ManimColor, optional
+    active_color
         Color of active animations for this mobject, by default ORANGE.
 
     Examples

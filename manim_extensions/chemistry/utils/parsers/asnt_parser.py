@@ -70,7 +70,7 @@ class ASNTParser(BaseParser):
 
         Parameters
         ----------
-        filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.bytes` or Path-like
+        filename
             Path to the ASNT file to parse.
 
         Returns
@@ -89,12 +89,11 @@ class ASNTParser(BaseParser):
 
         Parameters
         ----------
-        line : str
+        line
             Line being read at that moment.
 
         Returns
         -------
-        str
             Line with replaced strings.
         """
         line = line.strip().replace("\n", "")
@@ -153,7 +152,7 @@ class ASNTParser(BaseParser):
 
         Parameters
         ----------
-        data : :class:`~typing.Any`
+        data
             Lines of the ASNT file as returned by :meth:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file`.
 
         Returns

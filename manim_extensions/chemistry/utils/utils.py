@@ -254,7 +254,7 @@ def mol_parser_string(mol_string: list):
 
     Parameters
     ----------
-    mol_string : list of str
+    mol_string
         Lines of a MOL file, with the first line being the molecule name.
 
     Returns
@@ -360,7 +360,7 @@ def mol_parser(file: Any):
 
     Parameters
     ----------
-    file : :class:`~typing.Any`
+    file
         Path to the .mol file.
     """
     with open(file) as file:
@@ -375,7 +375,7 @@ def sdf_parser_string(sdf_string: str):
 
     Parameters
     ----------
-    sdf_string : str
+    sdf_string
         Raw SDF file content as a single string.
 
     Returns
@@ -398,7 +398,7 @@ def sdf_parser(file: Any):
 
     Parameters
     ----------
-    file : :class:`~typing.Any`
+    file
         Path to the .sdf file.
     """
     with open(file) as file:
@@ -411,14 +411,13 @@ def get_element(element: str, language: str = "ENG"):
 
     Parameters
     ----------
-    element : str
+    element
         Chemical element symbol (e.g. ``"H"``, ``"C"``, ``"Fe"``).
-    language : str, optional
+    language
         Language of the element name dictionary. ``"ENG"`` (default) or ``"ESP"``.
 
     Returns
     -------
-    Element
         The Element class instance matching the symbol.
     """
     if language == "ENG":
@@ -438,9 +437,9 @@ def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG"):
 
     Parameters
     ----------
-    file : path-like
+    file
         Path to the .mol file.
-    language : Literal['ENG', 'ESP'], optional
+    language
         Element name language.
 
         .. list-table::

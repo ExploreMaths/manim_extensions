@@ -28,13 +28,13 @@ class Ray(Line):
 
     Parameters
     ----------
-    start : array-like
+    start
         Starting point of the ray.
-    direction : array-like
+    direction
         Direction vector of the ray.
-    init_length : float, optional
+    init_length
         Initial length of the ray.  Defaults to ``5``.
-    propagate : iterable of Lens, optional
+    propagate
         Lenses to propagate the ray through immediately upon construction.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
@@ -142,7 +142,7 @@ class Ray(Line):
 
         Parameters
         ----------
-        lenses : iterable of Lens
+        lenses
             Lenses to sort.
 
         Returns
@@ -169,7 +169,7 @@ class Ray(Line):
 
         Parameters
         ----------
-        intersections : iterable of iterable of float
+        intersections
             Intersection coordinates to sort.
 
         Returns

@@ -19,9 +19,9 @@ def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
 
     Parameters
     ----------
-    input_layer : Mobject
+    input_layer
         The layer the connection starts from.
-    output_layer : Mobject
+    output_layer
         The layer the connection ends at.
     """
     connective_layer_class = None

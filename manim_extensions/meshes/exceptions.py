@@ -98,11 +98,11 @@ class InvalidMeshDimensionsException(Exception):
 
     Parameters
     ----------
-    actual : int or tuple
+    actual
         The actual dimension value that was found.
-    expected : int or tuple
+    expected
         The expected dimension value.
-    name : str, optional
+    name
         Optional name of the parameter whose dimensions are invalid.
 
     Examples
@@ -144,11 +144,11 @@ class InvalidShapeException(Exception):
 
     Parameters
     ----------
-    name : str
+    name
         Name of the parameter with the invalid shape.
-    actual : int
+    actual
         The actual size that was found.
-    expected : int
+    expected
         The expected size.
 
     Examples

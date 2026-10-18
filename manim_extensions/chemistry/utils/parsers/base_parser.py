@@ -36,7 +36,7 @@ class BaseParser(ABC):
 
     Parameters
     ----------
-    filename : :class:`str`, :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bytes` or Path-like
+    filename
         Path to the file to parse.
 
     """
@@ -62,12 +62,11 @@ class BaseParser(ABC):
 
         Parameters
         ----------
-        filename : :data:`~manim_extensions.chemistry.utils.parsers.base_parser.FilePath`
+        filename
             Path to the file to parse.
 
         Returns
         -------
-        str
             String with the file data.
         """
         ...
@@ -87,12 +86,11 @@ class BaseParser(ABC):
 
         Parameters
         ----------
-        data : :class:`~typing.Any`
+        data
             Raw file data as returned by :meth:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file`.
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
             Parsed ``(atoms_data, bonds_data)`` tuple, or a list of such
             tuples for multi-molecule formats.
         """
@@ -104,7 +102,6 @@ class BaseParser(ABC):
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
             (atom_data, bond_data)
         """
         return self.data_parser(self.file_data)
@@ -116,7 +113,6 @@ class BaseParser(ABC):
 
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.ParsedData`
             Parsed molecule data.
 
         Raises

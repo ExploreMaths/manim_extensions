@@ -45,15 +45,15 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
 
     Parameters
     ----------
-    json_template : dict, optional
+    json_template
         JSON dictionary describing the automaton states and transitions.
-    xml_file : str, optional
+    xml_file
         Path to an XML file (e.g. JFLAP format) describing the automaton.
-    camera_follow : bool, optional
+    camera_follow
         If ``True``, the camera follows the active state during playback.
-    animation_style : dict, optional
+    animation_style
         Style configuration for state and transition animations.
-    cli : bool, optional
+    cli
         If ``True``, launch the interactive CLI for building NDA paths.
     **kwargs
         Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.

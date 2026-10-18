@@ -54,20 +54,20 @@ def VMobjectInt(
 
     Parameters
     ----------
-    vmob1 : :class:`~manim.mobject.types.vectorized_mobject.VMobject`
+    vmob1
         The first vectorised mobject.
-    vmob2 : :class:`~manim.mobject.types.vectorized_mobject.VMobject`
+    vmob2
         The second vectorised mobject.
-    tolerance : float
+    tolerance
         Distance below which two points are considered the same intersection,
         and the base acceptance distance for the flat segment closest-point
         test.
-    flatness : float
+    flatness
         Maximum allowed deviation of a Bézier sub-curve's control points
         from its chord before the sub-curve is treated as a straight
         segment.  Smaller values yield more accurate intersection points
         at the cost of more subdivision.
-    max_depth : int
+    max_depth
         Maximum number of recursive subdivision levels.  Guarantees
         termination for pathological configurations such as tangencies.
 
@@ -121,7 +121,7 @@ def VMobjectInt(
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The mobject to traverse.
 
         Returns
@@ -157,9 +157,9 @@ def VMobjectInt(
 
         Parameters
         ----------
-        c : numpy.ndarray
+        c
             Array of shape :math:`(4, 3)` with the control points.
-        t : float
+        t
             Split parameter in ``[0, 1]``.
 
         Returns
@@ -183,12 +183,11 @@ def VMobjectInt(
 
         Parameters
         ----------
-        c : numpy.ndarray
+        c
             Array of shape :math:`(4, 3)` with the control points.
 
         Returns
         -------
-        float
             Squared flatness of the curve.
         """
         a, b = c[0], c[3]
@@ -216,12 +215,11 @@ def VMobjectInt(
         ----------
         c1, c2 : numpy.ndarray
             Arrays of shape :math:`(4, 3)` with the control points.
-        eps : float
+        eps
             Absolute slack added to every axis interval.
 
         Returns
         -------
-        bool
             ``True`` if the bounding boxes overlap (intersection possible),
             ``False`` otherwise.
         """
@@ -247,7 +245,7 @@ def VMobjectInt(
             Endpoints of the first segment.
         b0, b1 : numpy.ndarray
             Endpoints of the second segment.
-        dist_tol : float
+        dist_tol
             Maximum distance for the segments to count as meeting.
 
         Returns
@@ -402,18 +400,17 @@ def TangentPoint(
 
     Parameters
     ----------
-    p1 : Union[numpy.ndarray, tuple, list]
+    p1
         First point on the circle, as :math:`(x, y)` or :math:`(x, y, z)`.
-    p2 : Union[numpy.ndarray, tuple, list]
+    p2
         Second point on the circle, as :math:`(x, y)` or :math:`(x, y, z)`.
-    line_start : Union[numpy.ndarray, tuple, list]
+    line_start
         Start point of the line segment, as :math:`(x, y)` or :math:`(x, y, z)`.
-    line_end : Union[numpy.ndarray, tuple, list]
+    line_end
         End point of the line segment, as :math:`(x, y)` or :math:`(x, y, z)`.
 
     Returns
     -------
-    Optional[numpy.ndarray]
         The tangent point :math:`(x, y, 0)` as a :class:`numpy.ndarray`, or
         ``None`` if no valid tangent point exists.
 
@@ -445,12 +442,11 @@ def TangentPoint(
 
         Parameters
         ----------
-        point : numpy.ndarray, tuple, or list
+        point
             Point coordinates (2-D or 3-D).
 
         Returns
         -------
-        numpy.ndarray
             3-D point as a ``float64`` array.  If the input is 2-D the
             z-coordinate is set to ``0.0``.
         """

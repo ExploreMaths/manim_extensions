@@ -68,12 +68,11 @@ class ManimAutomataCLI:
 
         Parameters
         ----------
-        options : list of str
+        options
             The options to display.
 
         Returns
         -------
-        int
             The user's zero-based choice index.
         """
         for index, option in enumerate(options):
@@ -86,12 +85,11 @@ class ManimAutomataCLI:
 
         Parameters
         ----------
-        options : dict
+        options
             Mapping from option keys to tuples whose first element is shown.
 
         Returns
         -------
-        int
             The user's chosen key.
         """
         for index in options:

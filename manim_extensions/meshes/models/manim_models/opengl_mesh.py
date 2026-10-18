@@ -37,9 +37,9 @@ class FastManimMesh(OpenGLMobject):
 
     Parameters
     ----------
-    mesh : Mesh
+    mesh
         The mesh data model. Must consist only of triangles.
-    shader_folder : str or None, optional
+    shader_folder
         Path to the shader folder. Defaults to ``None`` (uses ``"mesh"``).
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.opengl.opengl_mobject.OpenGLMobject`.
@@ -82,7 +82,6 @@ class FastManimMesh(OpenGLMobject):
 
         Returns
         -------
-        numpy.ndarray
             Triangle vertex indices concatenated into a 1-D array.
         """
         return self.triangle_indices
@@ -93,7 +92,6 @@ class FastManimMesh(OpenGLMobject):
 
         Returns
         -------
-        numpy.ndarray
             A structured array with the shader dtype.
         """
         shader_data = np.zeros(len(self.points), dtype=self.shader_dtype)
@@ -107,12 +105,11 @@ class FastManimMesh(OpenGLMobject):
 
         Parameters
         ----------
-        shader_data : numpy.ndarray
+        shader_data
             The structured shader data array to modify.
 
         Returns
         -------
-        numpy.ndarray
             The updated shader data array.
         """
         self.read_data_to_shader(shader_data, "color", "rgbas")
@@ -123,7 +120,6 @@ class FastManimMesh(OpenGLMobject):
 
         Returns
         -------
-        numpy.ndarray
             The same array as :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices`.
         """
         return self.get_triangle_indices()

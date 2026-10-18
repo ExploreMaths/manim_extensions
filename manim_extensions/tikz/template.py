@@ -23,15 +23,15 @@ class TikzTemplate(TexTemplate):
 
     Parameters
     ----------
-    packages : list[str], optional
+    packages
         Additional LaTeX packages to include (e.g. ``["pgfplots"]``).
-    libraries : list[str], optional
+    libraries
         TikZ libraries to load (e.g. ``["arrows.meta", "calc"]``).
-    tikzset : list[str], optional
+    tikzset
         Custom TikZ style definitions passed through ``\tikzset{...}``.
-    preamble : str, optional
+    preamble
         Extra raw LaTeX code appended to the preamble.
-    use_pdf : bool, optional
+    use_pdf
         If ``True``, use the PDF pipeline instead of the default DVI path.
     **kwargs
         Forwarded to :class:`~manim.utils.tex.TexTemplate`.

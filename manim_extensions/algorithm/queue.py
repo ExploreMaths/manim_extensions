@@ -30,13 +30,13 @@ class Queue(VMobject):
 
     Parameters
     ----------
-    capacity : int
+    capacity
         Maximum number of entries that may be stored.
-    init_data : list, optional
+    init_data
         Initial values to render inside the queue.
-    total_width : int, optional
+    total_width
         Total width occupied by the queue visualisation.
-    font_size : int, optional
+    font_size
         Text size used for embedded nodes.
     box_type
         Shape used for each node box.
@@ -109,9 +109,9 @@ class Queue(VMobject):
 
         Parameters
         ----------
-        queue : Queue
+        queue
             The queue that will receive the new item.
-        item : Node
+        item
             The node to enqueue. It is placed to the right of the queue
             before the animation starts.
         **kwargs
@@ -162,9 +162,9 @@ class Queue(VMobject):
 
         Parameters
         ----------
-        queue : Queue
+        queue
             The queue from which the front item will be removed.
-        target_pos : Point3D, optional
+        target_pos
             Destination point for the dequeued item. When omitted the
             item simply leaves the queue and fades out.
         **kwargs

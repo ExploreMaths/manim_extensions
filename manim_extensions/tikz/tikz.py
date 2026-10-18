@@ -21,18 +21,18 @@ class Tikz(SVGMobject):
 
     Parameters
     ----------
-    code : str
+    code
         The TikZ markup to convert into a rendered SVG.
-    packages : list[str] | None, optional
+    packages
         Additional LaTeX packages to include in the preamble, such as
         ``\usepackage{...}`` definitions.
-    libraries : list[str] | None, optional
+    libraries
         TikZ libraries to load, such as ``arrows.meta`` or ``calc``.
-    tikzset : list[str] | None, optional
+    tikzset
         Custom TikZ style definitions to inject through ``\tikzset{...}``.
-    preamble : str | None, optional
+    preamble
         Extra LaTeX code appended directly to the document preamble.
-    use_pdf : bool, optional
+    use_pdf
         Whether to render through the PDF pipeline instead of the default DVI
         path when compatibility issues arise.
     **kwargs
@@ -103,23 +103,22 @@ class Tikz(SVGMobject):
 
         Parameters
         ----------
-        code : str
+        code
             The TikZ markup to be rendered.
-        packages : list[str] | None, optional
+        packages
             Additional LaTeX packages required by the TikZ code.
-        libraries : list[str] | None, optional
+        libraries
             TikZ libraries required by the drawing commands.
-        tikzset : list[str] | None, optional
+        tikzset
             Custom TikZ style definitions to add to the preamble.
-        preamble : str | None, optional
+        preamble
             Additional raw LaTeX content added to the document preamble.
-        use_pdf : bool, optional
+        use_pdf
             Whether to use the PDF rendering path for compatibility with some
             TikZ commands.
 
         Returns
         -------
-        pathlib.Path
             The generated SVG file path.
         """
         return tex_to_svg_file(

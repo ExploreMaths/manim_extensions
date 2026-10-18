@@ -20,9 +20,9 @@ class ThreeDAtom(OpenGLSphere):
 
     Parameters
     ----------
-    element : :class:`~manim_extensions.chemistry.element.Element`
+    element
         The element whose data (color) is used to draw the atom.
-    coords : :class:`numpy.array`, optional
+    coords
         3D coordinates of the atom center. Defaults to the origin.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom.OpenGLSphere`.

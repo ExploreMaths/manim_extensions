@@ -53,14 +53,13 @@ def gaussian_proposal(x: int, sigma: float = 0.3):
 
     Parameters
     ----------
-    x : np.ndarray or list
+    x
         Point to center proposal around.
-    sigma : float, optional
+    sigma
         Standard deviation of gaussian for proposal, by default 0.1.
 
     Returns
     -------
-    np.ndarray
         The proposed point.
     """
     # Draw x_star
@@ -82,15 +81,15 @@ class MultidimensionalGaussianPosterior:
 
     Parameters
     ----------
-    ndim : int, optional
+    ndim
         Dimension of the distribution, by default 2.
-    seed : int, optional
+    seed
         Random seed, by default 12345.
-    scale : int, optional
+    scale
         Scale of the prior on the mean, by default 3.
-    mu : np.ndarray, optional
+    mu
         Mean of the distribution; drawn from the prior if None.
-    var : np.ndarray, optional
+    var
         Variance of the distribution; drawn from the prior if None.
     """
 
@@ -132,28 +131,25 @@ def metropolis_hastings_sampler(
 
     Parameters
     ----------
-    log_prob_fn : function, optional
+    log_prob_fn
         Function to compute log-posterior, by default MultidimensionalGaussianPosterior.
-    prop_fn : function, optional
+    prop_fn
         Function to compute proposal location, by default gaussian_proposal.
-    initial_location : np.ndarray, optional
+    initial_location
         Initial location for the chain.
-    iterations : int, optional
+    iterations
         Number of iterations of the markov chain, by default 100.
-    warm_up : int, optional,
+    warm_up
         Number of warm up iterations.
-    ndim : int, optional
+    ndim
         Dimension of the state space, by default 2.
-    sampling_seed : int, optional
+    sampling_seed
         Random seed for the sampler, by default 1.
 
     Returns
     -------
-    samples : np.ndarray
         Numpy array of 2D samples of length `iterations`.
-    warm_up_samples : np.ndarray
         Numpy array of 2D warm up samples of length `warm_up`.
-    candidate_samples: np.ndarray
         Numpy array of the candidate samples for each time step.
     """
     np.random.seed(sampling_seed)
@@ -198,11 +194,11 @@ def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xli
 
     Parameters
     ----------
-    samples : np.ndarray
+    samples
         2D array of samples used to estimate the KDE density plot.
-    ylim : list, optional
+    ylim
         Limits of the y-axis as ``[ymin, ymax]``.
-    xlim : list, optional
+    xlim
         Limits of the x-axis as ``[xmin, xmax]``.
     """
     matplotlib = require("ml", "matplotlib")
@@ -233,25 +229,25 @@ class MCMCAxes(Group):
 
     Parameters
     ----------
-    dot_color : ManimColor, optional
+    dot_color
         Color of the dots marking chain samples, by default BLUE.
-    dot_radius : float, optional
+    dot_radius
         Radius of the dots marking chain samples, by default 0.02.
-    accept_line_color : ManimColor, optional
+    accept_line_color
         Color of the lines for accepted transitions, by default GREEN.
-    reject_line_color : ManimColor, optional
+    reject_line_color
         Color of the lines for rejected transitions, by default RED.
-    line_color : ManimColor, optional
+    line_color
         Color of the transition lines, by default BLUE.
-    line_stroke_width : float, optional
+    line_stroke_width
         Stroke width of the transition lines, by default 2.
-    x_range : list, optional
+    x_range
         Range of the x-axis, by default :math:`[-3, 3]`.
-    y_range : list, optional
+    y_range
         Range of the y-axis, by default :math:`[-3, 3]`.
-    x_length : float, optional
+    x_length
         Length of the x-axis, by default 5.
-    y_length : float, optional
+    y_length
         Length of the y-axis, by default 5.
 
     Examples
@@ -366,14 +362,13 @@ class MCMCAxes(Group):
 
         Parameters
         ----------
-        mean : np.ndarray
+        mean
             Mean of proposal distribution.
-        cov : np.ndarray
+        cov
             Covariance matrix of proposal distribution.
 
         Returns
         -------
-        AnimationGroup
             Animation of creating the proposal Gaussian distribution.
         """
         gaussian = GaussianDistribution(
@@ -395,20 +390,19 @@ class MCMCAxes(Group):
 
         Parameters
         ----------
-        start_point: Dot
+        start_point
             Start point of the transition.
-        end_point : Dot
+        end_point
             End point of the transition.
-        candidate_point : Dot
+        candidate_point
             Candidate point proposed for the transition.
-        show_dots: boolean, optional
+        show_dots
             Whether or not to show the dots.
-        run_time : float, optional
+        run_time
             Duration of the transition animation, by default 0.1.
 
         Returns
         -------
-        AnimationGroup
             Animation of the transition from start to end.
         """
         start_location = self.axes.point_to_coords(start_point.get_center())
@@ -450,7 +444,7 @@ class MCMCAxes(Group):
 
         Parameters
         ----------
-        distribution : Any
+        distribution
             Gaussian distribution with ``mu`` and ``var`` attributes used to
             construct the displayed ellipse.
         """
@@ -475,28 +469,27 @@ class MCMCAxes(Group):
 
         Parameters
         ----------
-        axes : manim.mobject.graphing.coordinate_systems.Axes
+        axes
             Manim 2D axes to plot the chain on.
-        log_prob_fn : function, optional
+        log_prob_fn
             Function to compute log-posterior, by default MultidmensionalGaussianPosterior.
-        prop_fn : function, optional
+        prop_fn
             Function to compute proposal location, by default gaussian_proposal.
-        initial_location : list, optional
+        initial_location
             Initial location for the markov chain, by default None.
-        show_dots : bool, optional
+        show_dots
             Whether or not to show the dots on the screen, by default False.
-        iterations : int, optional
+        iterations
             Number of iterations of the markov chain, by default 100.
-        true_samples : np.ndarray, optional
+        true_samples
             Ground-truth samples used to render the KDE density background,
             by default None.
-        sampling_kwargs : dict, optional
+        sampling_kwargs
             Additional keyword arguments forwarded to
             :func:`~manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.metropolis_hastings_sampler`, by default {}.
 
         Returns
         -------
-        animation : AnimationGroup
             Animation for creating the markov chain.
         """
         # Compute the chain samples using a Metropolis Hastings Sampler

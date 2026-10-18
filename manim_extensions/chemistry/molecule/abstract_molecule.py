@@ -55,21 +55,20 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        filepath : str | Pathlike
+        filepath
             Path to the file.
-        ignore_hydrogens : bool, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : bool, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : dict, optional
+        elements_data_dict
             Dictionary of custom element data. Defaults to ``None``.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
         Returns
         -------
-        GraphMolecule
             GraphMolecule from the file.
         """
         mc_molecule = MCMolecule.construct_from_file(
@@ -99,21 +98,20 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        filepath : str | Pathlike
+        filepath
             Path to the molecule.
-        ignore_hydrogens : bool, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : bool, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : dict, optional
+        elements_data_dict
             Dictionary of custom element data. Defaults to ``None``.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
         Returns
         -------
-        OpenGLGroup
             OpenGLGroup with the molecules inside.
 
         Raises
@@ -156,23 +154,22 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        string : str
+        string
             String with the molecule data.
-        format : str, optional
+        format
             Format of the data. Defaults to ``"json"``.
-        ignore_hydrogens : bool, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : bool, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : dict, optional
+        elements_data_dict
             Dictionary of custom element data. Defaults to ``None``.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
         Returns
         -------
-        ThreeDMolecule
             ThreeDMolecule from the string.
         """
 
@@ -205,23 +202,22 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        string : str
+        string
             String with the molecule data.
-        format : str, optional
+        format
             Format of the data. Defaults to ``"json"``.
-        ignore_hydrogens : bool, optional
+        ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
             Defaults to ``True``.
-        ignore_all_hydrogens : bool, optional
+        ignore_all_hydrogens
             Whether to remove every hydrogen atom. Defaults to ``False``.
-        elements_data_dict : dict, optional
+        elements_data_dict
             Dictionary of custom element data. Defaults to ``None``.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
         Returns
         -------
-        OpenGLGroup
             OpenGLGroup with the molecules inside.
 
         Raises
@@ -265,25 +261,24 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        cid : Optional[str], optional
+        cid
             Molecule cid. Defaults to None.
-        name : Optional[str], optional
+        name
             Molecule name. Defaults to None.
-        smiles : Optional[str], optional
+        smiles
             Molecule SMILES. Defaults to None.
-        inchi : Optional[str], optional
+        inchi
             Molecule InChi. Defaults to None.
-        three_d : bool, optional
+        three_d
             Whether to use three-dimensional data of the molecule.
             Defaults to ``False``.
-        elements_data_dict : dict, optional
+        elements_data_dict
             Dictionary of custom element data. Defaults to ``None``.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
         Returns
         -------
-        GraphMolecule
             GraphMolecule.
         """
         pubchem_api_manager = PubchemAPIManager(
@@ -315,7 +310,7 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        mc_molecule : MCMolecule
+        mc_molecule
             The MCMolecule object to transform.
 
         Returns
@@ -336,13 +331,13 @@ class AbstractMolecule:
 
         Parameters
         ----------
-        name : Union[Text, Tex, str]
+        name
             Name of the molecule. Can either be a string, a Manim Tex or a Manim Text.
-        direction : numpy.ndarray, optional
+        direction
             Position where to set the molecule name. Defaults to DOWN.
-        buff : float, optional
+        buff
             Distance between the name and the molecule. Defaults to 0.5.
-        scale : float, optional
+        scale
             Scale of the text. Defaults to 0.75.
 
 

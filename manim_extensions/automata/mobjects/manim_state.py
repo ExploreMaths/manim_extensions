@@ -18,21 +18,21 @@ class ManimState(State, VGroup):
 
     Parameters
     ----------
-    name : str
+    name
         Name of the state (e.g. ``"q0"``).
-    x : float
+    x
         X coordinate of the state in the automaton layout.
-    y : float
+    y
         Y coordinate of the state in the automaton layout.
-    animation_style : dict
+    animation_style
         Styling configuration for state and transition animations.
-    initial : bool, optional
+    initial
         If ``True``, mark this state as the initial state.
-    final : bool, optional
+    final
         If ``True``, mark this state as a final (accepting) state.
-    scaling : float, optional
+    scaling
         Coordinate-scaling factor applied to the state position.
-    id : int, optional
+    id
         Numeric identifier matching the JFLAP XML state id.
     **kwargs
         Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -109,7 +109,7 @@ class ManimState(State, VGroup):
 
         Parameters
         ----------
-        number : int or str
+        number
             New subscript content.
         """
         self.remove(self.subscript)

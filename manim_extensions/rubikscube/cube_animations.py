@@ -23,9 +23,9 @@ class CubeMove(Animation):
 
     Parameters
     ----------
-    mobject : RubiksCube
+    mobject
         The cube to animate.
-    face : str
+    face
         Face notation (``R``, ``L``, ``U``, ``D``, ``F``, ``B``) with
         optional ``2`` for a double turn and/or ``'`` for counter-clockwise.
     **kwargs
@@ -69,7 +69,6 @@ class CubeMove(Animation):
 
         Returns
         -------
-        RubiksCube
             A copy of the cube with indices initialised if needed.
         """
         starting_mobject = self.mobject.copy()
@@ -82,7 +81,7 @@ class CubeMove(Animation):
 
         Parameters
         ----------
-        alpha : float
+        alpha
             Animation progress between ``0`` and ``1``.
         """
         self.mobject.become(self.starting_mobject)

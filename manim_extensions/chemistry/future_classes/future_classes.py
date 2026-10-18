@@ -49,9 +49,9 @@ class Hole(VMobject):
 
     Parameters
     ----------
-    radius : :class:`float`, optional
+    radius
         Radius of the hole circle. Defaults to 0.25.
-    color : optional
+    color
         Color of the hole circle. Defaults to ``WHITE``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -80,9 +80,9 @@ class Electron(VMobject):
 
     Parameters
     ----------
-    radius : :class:`float`, optional
+    radius
         Radius of the electron circle. Defaults to 0.2.
-    color : optional
+    color
         Color of the electron circle. Defaults to ``BLUE_E``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -111,23 +111,23 @@ class Element(VGroup):
 
     Parameters
     ----------
-    element : :class:`str`, optional
+    element
         Symbol of the chemical element. Defaults to ``"H"``.
-    radius : :class:`float`, optional
+    radius
         Radius of the element group. Defaults to 1.
-    color : optional
+    color
         Fill color of the central atom. Defaults to ``ORANGE``.
-    label_color : optional
+    label_color
         Color of the element symbol label. Defaults to ``BLACK``.
-    n_electrons : :class:`int`, optional
+    n_electrons
         Number of electrons around the atom. Defaults to 2.
-    n_holes : :class:`int`, optional
+    n_holes
         Number of holes around the atom. Defaults to 2.
-    add_electrons : :class:`bool`, optional
+    add_electrons
         Whether to add electrons to the element. Defaults to ``True``.
-    add_holes : :class:`bool`, optional
+    add_holes
         Whether to add holes to the element. Defaults to ``True``.
-    subelectron_holes : :class:`bool`, optional
+    subelectron_holes
         Whether to add holes at the positions of the electrons. Defaults to ``True``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -248,11 +248,11 @@ class ElementFrame(VGroup):
 
     Parameters
     ----------
-    element_symbol : :class:`str`, optional
+    element_symbol
         Symbol of the chemical element. Defaults to ``"H"``.
-    element_name : :class:`str`, optional
+    element_name
         Name of the chemical element. Defaults to ``"Hidrógeno"``.
-    frame_colors : :class:`list`, optional
+    frame_colors
         Colors used for the frame gradient. Defaults to ``[BLUE, BLUE_B]``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -297,7 +297,7 @@ class NPNTransistor(VGroup):
 
     Parameters
     ----------
-    regions_opacity : :class:`float`, optional
+    regions_opacity
         Opacity of the transistor regions. Defaults to 0.8.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -356,14 +356,14 @@ class NPNTransistor(VGroup):
 
         Parameters
         ----------
-        particle_type : :class:`~typing.Any`
+        particle_type
             Mobject class of the particles to create.
-        n_copies : :class:`int`, optional
+        n_copies
             Number of copies to arrange horizontally. Defaults to 5.
-        vertical_boundary : :class:`list`, optional
+        vertical_boundary
             Vertical boundary points of the arrangement.
             Defaults to ``[0.8 * UP, 0.8 * DOWN]``.
-        horizontal_boundary : :class:`list`, optional
+        horizontal_boundary
             Horizontal boundary points of the arrangement.
             Defaults to ``[LEFT, RIGHT]``.
         """
@@ -379,12 +379,12 @@ class BatterySchema(VGroup):
 
     Parameters
     ----------
-    mob : :class:`~manim.mobject.mobject.Mobject`, optional
+    mob
         The mobject the battery schema is attached to. Defaults to ``Square()``.
-    schema_type : :class:`str`, optional
+    schema_type
         Type of the schema, either ``"horizontal"`` or ``"corner"``.
         Defaults to ``"horizontal"``.
-    inverted_terminals : :class:`bool`, optional
+    inverted_terminals
         Whether to invert the positive and negative terminals. Defaults to ``False``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -546,9 +546,9 @@ class MOSFETTransistor(VGroup):
 
     Parameters
     ----------
-    show_holes : :class:`bool`, optional
+    show_holes
         Whether to show holes in the transistor. Defaults to ``False``.
-    show_battery : :class:`bool`, optional
+    show_battery
         Whether to show the battery terminals. Defaults to ``False``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -601,7 +601,7 @@ class MOSFETTransistor(VGroup):
 
         Parameters
         ----------
-        side : :class:`~typing.Any`, optional
+        side
             Direction of the n-region relative to the main board.
             Defaults to :class:`~manim.constants.LEFT`.
         """
@@ -670,9 +670,9 @@ class BatterySide(VMobject):
 
     Parameters
     ----------
-    terminal : :class:`~manim.mobject.mobject.Mobject`
+    terminal
         The battery terminal to connect from.
-    anchor : :class:`~manim.mobject.mobject.Mobject`
+    anchor
         The mobject to connect the terminal to.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
@@ -720,9 +720,9 @@ def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
 
     Parameters
     ----------
-    mobs : :class:`~typing.Any`
+    mobs
         Mobjects to distribute along the line.
-    boundary : :class:`list`, optional
+    boundary
         Boundary points of the line. Defaults to ``[LEFT, RIGHT]``.
     """
     divisions = len(mobs)
@@ -737,9 +737,9 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
 
     Parameters
     ----------
-    mobs : :class:`~manim.mobject.mobject.Mobject`
+    mobs
         Mobject or VGroup of mobjects to duplicate.
-    boundary : :class:`list`, optional
+    boundary
         Boundary points of the line. Defaults to ``[LEFT, RIGHT]``.
     """
     if isinstance(mobs, VGroup):
@@ -755,13 +755,13 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
     Parameters
     ----------
-    mobtype : :class:`~manim.mobject.types.point_cloud_mobject.Dot`, optional
+    mobtype
         Mobject to copy and distribute. Defaults to ``Dot()``.
-    amount : :class:`int`, optional
+    amount
         Number of copies to distribute. Defaults to 10.
-    height : :class:`float`, optional
+    height
         Half height of the rectangular area. Defaults to 5.
-    width : :class:`float`, optional
+    width
         Half width of the rectangular area. Defaults to 5.
     """
     group = VGroup()
@@ -784,7 +784,7 @@ def get_element_by_data(element: dict):
 
     Parameters
     ----------
-    element : :class:`dict`
+    element
         Dictionary with the keys ``"symbol"``, ``"color"``, ``"electrons"``
         and ``"holes"``.
     """
@@ -801,15 +801,15 @@ def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: i
 
     Parameters
     ----------
-    mobs : :class:`~typing.Any`
+    mobs
         Mobjects to shift.
-    left : :class:`int`, optional
+    left
         Left bound of the horizontal shift. Defaults to 1.
-    right : :class:`int`, optional
+    right
         Right bound of the horizontal shift. Defaults to 1.
-    down : :class:`int`, optional
+    down
         Lower bound of the vertical shift. Defaults to 1.
-    up : :class:`int`, optional
+    up
         Upper bound of the vertical shift. Defaults to 1.
     """
     n_mobs = len(mobs)
@@ -829,13 +829,13 @@ def arrange_copies_in_rectangle(
 
     Parameters
     ----------
-    mobs : :class:`~manim.mobject.mobject.Mobject`
+    mobs
         Mobjects to copy and arrange.
-    n_copies : :class:`int`, optional
+    n_copies
         Number of copies to arrange. Defaults to 2.
-    vertical_boundary : :class:`list`, optional
+    vertical_boundary
         Vertical boundary points of the arrangement. Defaults to ``[UP, DOWN]``.
-    horizontal_boundary : :class:`list`, optional
+    horizontal_boundary
         Horizontal boundary points of the arrangement. Defaults to ``[LEFT, RIGHT]``.
     """
     arrange_in_1D_boundary(mobs, vertical_boundary)
@@ -853,7 +853,7 @@ def make_subpaths(group: Any):
 
     Parameters
     ----------
-    group : :class:`~typing.Any`
+    group
         Group whose mobjects are added as subpaths.
     """
     for mob in group:
@@ -870,7 +870,7 @@ def zero(function: Callable):
 
     Parameters
     ----------
-    function : :class:`~typing.Callable`
+    function
         Function to clamp outside the [0, 1] domain.
     """
     @wraps(function)
@@ -889,9 +889,9 @@ def inverse_smooth(t: float, inflection: float = 10.0):
 
     Parameters
     ----------
-    t : :class:`float`
+    t
         Input value of the easing function.
-    inflection : :class:`float`, optional
+    inflection
         Inflection parameter passed to :func:`~manim.utils.rate_functions.smooth`.
         Defaults to 10.0.
     """
@@ -905,9 +905,9 @@ def inverse_linear(t: float, inflection: float = 10.0):
 
     Parameters
     ----------
-    t : :class:`float`
+    t
         Input value of the easing function.
-    inflection : :class:`float`, optional
+    inflection
         Unused, kept for signature compatibility with the other inverse
         easing functions. Defaults to 10.0.
     """
@@ -919,11 +919,11 @@ def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
 
     Parameters
     ----------
-    mobject : :class:`~manim.mobject.mobject.Mobject`
+    mobject
         Mobject to concatenate.
-    concats : :class:`~typing.Any`
+    concats
         Number of copies to concatenate.
-    buff : :class:`float`, optional
+    buff
         Buffer between the concatenated mobjects. Defaults to 0.
     """
     group = VGroup(mobject.copy())

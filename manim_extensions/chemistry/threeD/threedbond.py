@@ -39,17 +39,17 @@ class ThreeDCylinder(OpenGLSurface):
 
     Parameters
     ----------
-    radius : :class:`float`, optional
+    radius
         Radius of the cylinder. Defaults to 1.
-    height : :class:`float`, optional
+    height
         Height of the cylinder. Defaults to 2.
-    direction : :class:`numpy.ndarray`, optional
+    direction
         Direction the cylinder is aligned to. Defaults to ``Z_AXIS``.
-    v_range : :class:`list`, optional
+    v_range
         Range of the v parameter of the surface. Defaults to ``[0, TAU]``.
-    show_ends : :class:`bool`, optional
+    show_ends
         Whether to show the end caps of the cylinder. Defaults to ``True``.
-    resolution : :class:`tuple`, optional
+    resolution
         Resolution of the surface. Defaults to :math:`(24, 24)`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.OpenGLSurface`.
@@ -86,14 +86,13 @@ class ThreeDCylinder(OpenGLSurface):
 
         Parameters
         ----------
-        u : :class:`float`
+        u
             Axial parameter of the cylinder surface.
-        v : :class:`float`
+        v
             Angular parameter of the cylinder surface.
 
         Returns
         -------
-        :class:`numpy.ndarray`
             3D point on the cylinder surface.
         """
         height = u
@@ -165,7 +164,7 @@ class ThreeDCylinder(OpenGLSurface):
 
         Parameters
         ----------
-        direction : :class:`numpy.ndarray`
+        direction
             Direction the cylinder is aligned to.
         """
         self.direction = direction
@@ -176,7 +175,6 @@ class ThreeDCylinder(OpenGLSurface):
 
         Returns
         -------
-        :class:`numpy.ndarray`
             Direction the cylinder is aligned to.
         """
         return self.direction
@@ -189,13 +187,13 @@ class ThreeDLine(ThreeDCylinder):
 
     Parameters
     ----------
-    start : :class:`numpy.ndarray`, optional
+    start
         Starting point of the line. Defaults to :class:`~manim.constants.LEFT`.
-    end : :class:`numpy.ndarray`, optional
+    end
         Ending point of the line. Defaults to :class:`~manim.constants.RIGHT`.
-    thickness : :class:`float`, optional
+    thickness
         Thickness (radius) of the line. Defaults to 0.05.
-    color : optional
+    color
         Color of the line. Defaults to ``None``.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.ThreeDCylinder`.
@@ -265,7 +263,6 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        :class:`numpy.array`
             Center of the :class:`~manim.mobject.mobject.Mobject` or point, or edge if direction is given.
         """
         if isinstance(mob_or_point, (Mobject, OpenGLMobject)):
@@ -281,7 +278,6 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        start : :class:`numpy.array`
             Starting point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
         """
         return self.start
@@ -291,7 +287,6 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        end : :class:`numpy.array`
             Ending point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
         """
         return self.end
@@ -316,7 +311,6 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`
             Line parallel to ``line``.
 
         Examples
@@ -365,7 +359,6 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-        :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`
             Line perpendicular to ``line``.
 
         Raises
@@ -416,11 +409,11 @@ class ThreeDBond(OpenGLGroup):
 
     Parameters
     ----------
-    from_atom : :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.ThreeDAtom`
+    from_atom
         The atom the bond starts from.
-    to_atom : :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.ThreeDAtom`
+    to_atom
         The atom the bond ends at.
-    bond_type : :class:`int`
+    bond_type
         Type of the bond: 1 for single, 2 (also 5, 7) for double, 3 for triple.
     mobjects
         Additional mobjects to add to the group.
@@ -524,9 +517,9 @@ class ThreeDBond(OpenGLGroup):
 
         Parameters
         ----------
-        point_a : :class:`~typing.Any`
+        point_a
             Starting point of the bond.
-        point_b : :class:`~typing.Any`
+        point_b
             Ending point of the bond.
         """
         direction = point_b - point_a

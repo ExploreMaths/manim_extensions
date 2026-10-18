@@ -34,15 +34,15 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
     Parameters
     ----------
-    point_radius : float, optional
+    point_radius
         Radius of the points in the point cloud, by default 0.02.
-    mean : np.ndarray, optional
+    mean
         Mean of the Gaussian point cloud, by default :math:`[0, 0]`.
-    covariance : np.ndarray, optional
+    covariance
         Covariance matrix of the Gaussian point cloud, by default the identity.
-    dist_theme : str, optional
+    dist_theme
         Theme of the latent distribution visualization, by default "gaussian".
-    paired_query_mode : bool, optional
+    paired_query_mode
         Whether the embedding shows positive/negative query images,
         by default False.
     **kwargs
@@ -111,9 +111,9 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -145,7 +145,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        gaussian_distribution : GaussianDistribution
+        gaussian_distribution
             The Gaussian distribution to add to the embedding.
         """
         self.gaussian_distributions.add(gaussian_distribution)
@@ -157,7 +157,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        gaussian_distribution : GaussianDistribution
+        gaussian_distribution
             The Gaussian distribution to remove from the embedding.
         """
         for gaussian in self.gaussian_distributions:
@@ -186,13 +186,13 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        mean : np.ndarray
+        mean
             Mean of the Gaussian distribution to sample from.
-        covariance : np.ndarray
+        covariance
             Covariance matrix of the Gaussian distribution to sample from.
-        point_color : ManimColor, optional
+        point_color
             Color of the sampled points, by default ``WHITE``.
-        num_points : int, optional
+        num_points
             Number of points to sample, by default 400.
         """
         # Sample points from a Gaussian
@@ -213,7 +213,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments controlling the forward pass, such as
             ``triplet_args``, ``dist_args``, ``scale_factor``,
             ``positive_dist_args``, and ``negative_dist_args``,

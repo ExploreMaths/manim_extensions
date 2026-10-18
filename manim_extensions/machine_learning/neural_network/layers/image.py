@@ -30,11 +30,11 @@ class ImageLayer(NeuralNetworkLayer):
 
     Parameters
     ----------
-    numpy_image : np.ndarray
+    numpy_image
         Image data as a numpy array; 2D is treated as grayscale and 3D as RGB.
-    height : float, optional
+    height
         Height of the rendered image, by default 1.5.
-    show_image_on_create : bool, optional
+    show_image_on_create
         Whether the image is shown when the layer is created, by default True.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
@@ -130,9 +130,9 @@ class ImageLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        image_path : Any
+        image_path
             Path to the image file to load.
-        grayscale : bool, optional
+        grayscale
             Unused flag reserved for future use, by default True.
         **kwargs
             Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.ImageLayer`.
@@ -162,7 +162,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the layers when making their
             forward pass animations, by default {}.
         **kwargs
@@ -179,7 +179,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Parameters
         ----------
-        scale_factor : float
+        scale_factor
             Factor by which the image mobject is scaled.
         **kwargs
             Forwarded to

@@ -18,16 +18,15 @@ def index_paragraph_labels(
 
     Parameters
     ----------
-    paragraph : Paragraph
+    paragraph
         The paragraph whose lines will be labelled.
-    label_height : float
+    label_height
         Height of each label mobject.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.text.numbers.Integer`.
 
     Returns
     -------
-    VGroup
         A group of :class:`~manim.mobject.text.numbers.Integer` labels, one per paragraph line.
     """
     labels = VGroup()

@@ -145,18 +145,18 @@ class TimeLine(AbstractMap):
 
     Parameters
     ----------
-    map : dict
+    map
         Timeline data.
-    buff : float
+    buff
         Padding between node content and node border.
     sides
         Node layout direction; growth direction of subtrees rooted at
         second-level nodes.
-    level_spacing : float
+    level_spacing
         Spacing between layers.
-    node_spacing : float
+    node_spacing
         Spacing between nodes.
-    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+    node_style
         Node style.
 
     Examples
@@ -246,17 +246,17 @@ class StandardMap(AbstractMap):
 
     Parameters
     ----------
-    map : dict
+    map
         Mind-map data.
-    buff : float
+    buff
         Padding between node content and node border.
     direction
         Layout direction.
-    level_spacing : float
+    level_spacing
         Spacing between layers.
-    node_spacing : float
+    node_spacing
         Spacing between nodes.
-    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+    node_style
         Node style.
 
     Examples
@@ -352,15 +352,15 @@ class CatalogMap(AbstractMap):
 
     Parameters
     ----------
-    map : dict
+    map
         Catalog data.
-    buff : float
+    buff
         Padding between node content and node border.
-    level_spacing : float
+    level_spacing
         Spacing between layers.
-    node_spacing : float
+    node_spacing
         Spacing between nodes.
-    node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+    node_style
         Node style.
 
     Examples

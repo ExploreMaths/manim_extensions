@@ -33,14 +33,13 @@ def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:
 
     Parameters
     ----------
-    vmob1 : VMobject
+    vmob1
         First curve.
-    vmob2 : VMobject
+    vmob2
         Second curve.
 
     Returns
     -------
-    Iterable[Iterable[float]]
         Array of 3-D intersection coordinates (possibly empty).
     """
     gm = require("physics", "shapely").geometry
@@ -60,14 +59,13 @@ def snell(i_ang: float, n: float) -> float:
 
     Parameters
     ----------
-    i_ang : float
+    i_ang
         Incident angle in radians.
-    n : float
+    n
         Refractive index ratio ``n2 / n1``.
 
     Returns
     -------
-    float
         Refracted angle in radians.
     """
     return np.arcsin(np.sin(i_ang) / n)
@@ -78,14 +76,13 @@ def antisnell(r_ang: float, n: float) -> float:
 
     Parameters
     ----------
-    r_ang : float
+    r_ang
         Refracted angle in radians.
-    n : float
+    n
         Refractive index ratio ``n2 / n1``.
 
     Returns
     -------
-    float
         Incident angle in radians.
     """
     return np.arcsin(np.sin(r_ang) * n)
@@ -106,12 +103,12 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
     Parameters
     ----------
-    f : float
+    f
         Focal length.  Positive values produce a convex lens, negative
         values produce a concave lens.
-    d : float
+    d
         Lens thickness.
-    n : float, optional
+    n
         Refractive index of the lens material.  Defaults to ``1.52``
         (glass).
     **kwargs

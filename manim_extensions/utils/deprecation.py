@@ -42,7 +42,7 @@ def deprecated(msg: str, *args: Any, **kwargs: Any):
 
     Parameters
     ----------
-    msg : str
+    msg
         Deprecation message. May contain RST inline markup (``:func:``
         roles, double-backtick code, ...) which is kept for the docs but
         stripped from the runtime warning.

@@ -52,7 +52,6 @@ class Layout:
 
         Returns
         -------
-        Any
             The root node, with the layout coordinates filled in.
 
         Raises

@@ -44,13 +44,13 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
     Parameters
     ----------
-    json_template : dict, optional
+    json_template
         JSON dictionary describing the automaton states and transitions.
-    xml_file : str, optional
+    xml_file
         Path to an XML file (e.g. JFLAP format) describing the automaton.
-    camera_follow : bool, optional
+    camera_follow
         If ``True``, the camera follows the active state during playback.
-    animation_style : dict, optional
+    animation_style
         Style configuration for state and transition animations.
     **kwargs
         Key words arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -162,11 +162,11 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Parameters
         ----------
-        transition_from : ManimState
+        transition_from
             Source state of the transition.
-        transition_to : ManimState
+        transition_to
             Target state of the transition.
-        rules : list of PushDownAutomatonRule
+        rules
             Pushdown rules (input symbol, pop symbol, push symbol)
             associated with this transition.
         """
@@ -186,7 +186,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Parameters
         ----------
-        push_item : str
+        push_item
             Symbol to push onto the stack.
 
         Returns
@@ -220,9 +220,9 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Parameters
         ----------
-        input : str or ManimAutomataInput
+        input
             The input string or pre-constructed input mobject.
-        automaton_path_name : str or None
+        automaton_path_name
             Optional path name for the automaton traversal.
 
         Returns
@@ -272,14 +272,13 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Parameters
         ----------
-        token : str
+        token
             The input token to process.
-        state_pointer : State
+        state_pointer
             The current state.
 
         Returns
         -------
-        tuple
             ``(accepted, next_states, transitions)`` indicating whether the
             token was accepted, the reachable next states, and the
             corresponding transitions.
@@ -338,13 +337,13 @@ class PushDownAutomatonRule:
 
     Parameters
     ----------
-    read_symbol : str
+    read_symbol
         Input symbol consumed by this rule.
-    pop : str
+    pop
         Symbol popped from the stack.
-    push : str
+    push
         Symbol pushed onto the stack.
-    empty_transition : str, optional
+    empty_transition
         Symbol used when ``read_symbol`` is ``None``.  Defaults to ``"\epsilon"``.
 
     Examples

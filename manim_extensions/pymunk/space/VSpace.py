@@ -937,7 +937,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        list
             A list of subdivided :math:`(x, y)` coordinate tuples representing the
             sampled path.
         """
@@ -1066,7 +1065,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        query_info_list
             A list of tuples, where each tuple contains:
 
             .. list-table::
@@ -1122,7 +1120,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        query_info_list
             A list of tuples containing intersection data:
 
             .. list-table::
@@ -1170,7 +1167,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        contact_data
             A list where the first element is the collision normal, followed by
             tuples of contact point details:
 

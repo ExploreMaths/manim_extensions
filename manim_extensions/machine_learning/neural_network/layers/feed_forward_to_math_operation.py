@@ -17,11 +17,11 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
     Parameters
     ----------
-    input_layer : FeedForwardLayer
+    input_layer
         The input feed-forward layer.
-    output_layer : MathOperationLayer
+    output_layer
         The output math operation layer.
-    active_color : ManimColor, optional
+    active_color
         Color used when highlighting the connection, by default ORANGE.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
@@ -51,9 +51,9 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -75,7 +75,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
         **kwargs

@@ -23,17 +23,17 @@ class Cell(VGroup):
 
     Parameters
     ----------
-    value : str
+    value
         The text content of the cell.
-    width : float, optional
+    width
         Width of the cell. Defaults to ``1.5``.
-    height : float, optional
+    height
         Height of the cell. Defaults to ``0.5``.
-    font_size : int, optional
+    font_size
         Font size for the text. Defaults to ``20``.
-    is_header : bool, optional
+    is_header
         If True, renders the text in bold with a thicker border.
-    show_border : bool, optional
+    show_border
         If True, draws border lines around the cell.
     **kwargs
         Additional arguments passed to
@@ -110,13 +110,12 @@ class Cell(VGroup):
 
         Parameters
         ----------
-        stroke_width : float
+        stroke_width
             Width of the border lines. Header cells use a thicker
             stroke (``2``) than regular cells (``0.5``).
 
         Returns
         -------
-        VGroup
             The four border lines (top, right, bottom, left) of the cell.
         """
         # Calculate corners relative to center
@@ -141,7 +140,6 @@ class Cell(VGroup):
 
         Returns
         -------
-        str
             The text content of the cell.
         """
         return self.value
@@ -156,12 +154,11 @@ class Cell(VGroup):
 
         Parameters
         ----------
-        new_value : str
+        new_value
             The new text content.
 
         Returns
         -------
-        Text
             The new text mobject (useful for animations like
             ``Transform``).
 
@@ -206,12 +203,11 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        new_width : float
+        new_width
             The new width for the cell (in unscaled units).
 
         Returns
         -------
-        Cell
             A new cell with the same value and styling but different
             width, scaled to match the current cell's scale.
         """
@@ -280,12 +276,11 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color : ParsableManimColor
+        color
             A Manim color (e.g., RED, BLUE, "#FF0000").
 
         Returns
         -------
-        Cell
             This cell, for method chaining.
         """
         self._font_color = color  # Store for copying
@@ -298,12 +293,11 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color : ParsableManimColor
+        color
             A Manim color (e.g., RED, BLUE, "#FF0000").
 
         Returns
         -------
-        Cell
             This cell, for method chaining.
         """
         self._border_color = color  # Store for copying
@@ -319,14 +313,13 @@ class Cell(VGroup):
         
         Parameters
         ----------
-        color : ParsableManimColor
+        color
             A Manim color (e.g., RED, BLUE, "#FF0000").
-        opacity : float, optional
+        opacity
             Opacity of the background (0 to 1). Defaults to ``0.5``.
 
         Returns
         -------
-        Cell
             This cell, for method chaining.
         """
         # Store for copying

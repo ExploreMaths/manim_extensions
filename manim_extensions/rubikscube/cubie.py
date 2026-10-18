@@ -21,15 +21,15 @@ class Cubie(VGroup):
 
     Parameters
     ----------
-    x : int
+    x
         X coordinate of the cubie within the cube grid.
-    y : int
+    y
         Y coordinate of the cubie within the cube grid.
-    z : int
+    z
         Z coordinate of the cubie within the cube grid.
-    dim : int
+    dim
         Dimension of the parent cube (e.g. 3 for a 3x3x3 cube).
-    colors : list
+    colors
         Face colours in the order Up, Right, Front, Down, Left, Back.
 
     Examples
@@ -64,7 +64,6 @@ class Cubie(VGroup):
 
         Returns
         -------
-        numpy.ndarray
             The :math:`(x, y, z)` position of the cubie.
         """
         return self.position
@@ -115,7 +114,6 @@ class Cubie(VGroup):
 
         Returns
         -------
-        Mobject
             The face tile mobject for the given label.
         """
         if face == "F":

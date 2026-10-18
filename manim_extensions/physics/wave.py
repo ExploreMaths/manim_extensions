@@ -96,16 +96,15 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        u : float
+        u
             The x-coordinate in the wave field.
-        v : float
+        v
             The y-coordinate in the wave field.
-        sources : iterable of numpy.ndarray
+        sources
             Source points that contribute to the disturbance.
 
         Returns
         -------
-        float
             The cumulative wave height.
         """
         z: float = 0
@@ -122,9 +121,9 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The surface mobject being updated.
-        dt : float
+        dt
             The time step since the last update.
         """
         self.time += dt
@@ -206,16 +205,15 @@ class LinearWave(RadialWave):
 
         Parameters
         ----------
-        u : float
+        u
             The x-coordinate in the wave field.
-        v : float
+        v
             The y-coordinate in the wave field (unused for linear waves).
-        sources : iterable of numpy.ndarray
+        sources
             Source points (unused for linear waves).
 
         Returns
         -------
-        float
             The wave height.
         """
         return float(
@@ -291,9 +289,9 @@ class StandingWave(ParametricFunction):
 
         Parameters
         ----------
-        mob : Mobject
+        mob
             The parametric curve object being updated.
-        dt : float
+        dt
             The time step since the last update.
         """
         self.time += dt

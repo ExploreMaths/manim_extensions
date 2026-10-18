@@ -17,13 +17,13 @@ class TripletToFeedForward(ConnectiveLayer):
 
     Parameters
     ----------
-    input_layer : TripletLayer
+    input_layer
         The input triplet layer.
-    output_layer : FeedForwardLayer
+    output_layer
         The output feed-forward layer.
-    animation_dot_color : ManimColor, optional
+    animation_dot_color
         Color of the dots in the forward pass animation, by default RED.
-    dot_radius : float, optional
+    dot_radius
         Radius of the dots in the forward pass animation, by default 0.02.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
@@ -58,9 +58,9 @@ class TripletToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        input_layer : NeuralNetworkLayer
+        input_layer
             The layer preceding this connective layer in the network.
-        output_layer : NeuralNetworkLayer
+        output_layer
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
@@ -72,7 +72,7 @@ class TripletToFeedForward(ConnectiveLayer):
 
         Parameters
         ----------
-        layer_args : dict, optional
+        layer_args
             Additional arguments passed to the connected layers when making
             their forward pass animations, by default {}.
         **kwargs

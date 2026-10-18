@@ -74,14 +74,14 @@ class ChineseMathTex(MathTex):
 
     Parameters
     ----------
-    *texts : str
+    *texts
         LaTeX text strings to render.
-    font : str, optional
+    font
         Name of the Chinese font to use. Defaults to ``"SimSun"``.
-    tex_to_color_map : dict, optional
+    tex_to_color_map
         Mapping from text substrings to colours. Defaults to ``None``
         (no colouring).
-    tex_template : :class:`~manim.utils.tex.TexTemplate`, optional
+    tex_template
         Custom TeX template to build on. When provided, its preamble,
         documentclass, and post-document commands are preserved; only the
         ``xelatex`` toolchain and the ``xeCJK`` / ``\setCJKmainfont`` lines
@@ -186,13 +186,13 @@ class LabelDot(VGroup):
 
     Parameters
     ----------
-    dot_label : str
+    dot_label
         Text content of the label.
-    dot_pos : numpy.ndarray
+    dot_pos
         Position of the dot.
-    label_pos : numpy.ndarray, optional
+    label_pos
         Direction of the label relative to the dot. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
-    buff : float, optional
+    buff
         Buffer between the label and the dot. Defaults to ``0.1``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -244,7 +244,6 @@ class LabelDot(VGroup):
 
         Returns
         -------
-        Point3D
             The center of the underlying dot.
         """
         return self.dot.get_center()
@@ -254,12 +253,11 @@ class LabelDot(VGroup):
 
         Parameters
         ----------
-        direction : Vector3DLike
+        direction
             The direction from the center towards the boundary.
 
         Returns
         -------
-        Point3D
             A point on the boundary of the underlying dot in the given direction.
         """
         return self.dot.get_boundary_point(direction)
@@ -273,11 +271,11 @@ class MathTexLine(VGroup):
 
     Parameters
     ----------
-    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
+    formula
         The formula to place beside the line.
-    direction : numpy.ndarray, optional
+    direction
         Direction of the formula relative to the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
-    buff : float, optional
+    buff
         Buffer between the formula and the line. Defaults to ``0.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
@@ -319,14 +317,14 @@ class MathTexBrace(VGroup):
 
     Parameters
     ----------
-    target : :class:`~manim.mobject.mobject.Mobject`
+    target
         The mobject to be braced (e.g. a line, rectangle, etc.).
-    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
+    formula
         The formula to place beside the brace.
-    direction : numpy.ndarray, optional
+    direction
         Direction of the brace and formula relative to the target.
         Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
-    buff : float, optional
+    buff
         Buffer between the formula and the brace. Defaults to ``0.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.svg.brace.Brace`.
@@ -369,12 +367,12 @@ class MathTexDoublearrow(VGroup):
 
     Parameters
     ----------
-    formula : :class:`~manim.mobject.text.tex_mobject.MathTex`
+    formula
         The formula to place beside the double arrow.
-    direction : numpy.ndarray, optional
+    direction
         Direction of the formula relative to the double arrow.
         Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
-    buff : float, optional
+    buff
         Buffer between the formula and the double arrow. Defaults to ``0.5``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.DoubleArrow`.
@@ -417,10 +415,10 @@ class PerpendicularLine(Line):
 
     Parameters
     ----------
-    point : Union[numpy.ndarray, tuple, list, :class:`~manim.mobject.mobject.Mobject`]
+    point
         The point from which the perpendicular is dropped.  If an
         :class:`~manim.mobject.mobject.Mobject` is given, its centre is used.
-    line : :class:`~manim.mobject.geometry.line.Line`
+    line
         The target line.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
@@ -473,7 +471,6 @@ class PerpendicularLine(Line):
 
         Returns
         -------
-        numpy.ndarray
             The 3-D coordinates of the perpendicular foot.  If the target line
             is degenerate (start and end coincide), the start point is returned.
         """
@@ -498,9 +495,9 @@ class ExtendedLine(Line):
 
     Parameters
     ----------
-    line : :class:`~manim.mobject.geometry.line.Line`
+    line
         The original line segment to extend.
-    extend_distance : float
+    extend_distance
         Distance to extend at each end.
 
     Examples
@@ -545,9 +542,9 @@ class ShortenedLine(Line):
 
     Parameters
     ----------
-    line : :class:`~manim.mobject.geometry.line.Line`
+    line
         The original line segment to shorten.
-    shorten_distance : float
+    shorten_distance
         Distance to shorten at each end.
 
     Examples
@@ -592,13 +589,13 @@ class PerpendicularSign(VGroup):
 
     Parameters
     ----------
-    line1 : :class:`~manim.mobject.geometry.line.Line`
+    line1
         The first line.
-    line2 : :class:`~manim.mobject.geometry.line.Line`
+    line2
         The second line.
-    length : float, optional
+    length
         Length of each leg of the corner. Defaults to ``0.25``.
-    corner_direction : Union[numpy.ndarray, tuple, list, None], optional
+    corner_direction
         A direction vector that selects on which side of the intersection
         the corner is drawn.  If ``None`` (the default), the side that
         points toward the nearer endpoints of the two lines is chosen
@@ -672,9 +669,9 @@ class PerpendicularSign(VGroup):
 
         Parameters
         ----------
-        line1 : Line
+        line1
             First line.
-        line2 : Line
+        line2
             Second line.
 
         Returns
@@ -706,9 +703,9 @@ class PerpendicularSign(VGroup):
 
         Parameters
         ----------
-        line : Line
+        line
             The geometric object involved in the operation.
-        point : np.ndarray
+        point
             The point used by the operation.
         """
         start = line.get_start()
@@ -740,11 +737,11 @@ class PerpendicularSign(VGroup):
 
         Parameters
         ----------
-        dirs1 : tuple[np.ndarray, np.ndarray]
+        dirs1
             First pair of candidate directions.
-        dirs2 : tuple[np.ndarray, np.ndarray]
+        dirs2
             Second pair of candidate directions.
-        corner_direction : Union[np.ndarray, tuple, list, None]
+        corner_direction
             Desired corner direction; pairs pointing toward it are favoured.
             When ``None`` the pair pointing toward the nearer endpoints is
             selected.
@@ -787,13 +784,13 @@ class FileTree(Code):
 
     Parameters
     ----------
-    tree_dict : dict[str, dict | None]
+    tree_dict
         Nested dictionary representing the tree.  ``None`` or ``{}`` denotes
         an empty directory; a non-empty ``dict`` denotes a directory with
         children.
-    font_size : float, optional
+    font_size
         Font size of the rendered text.  Defaults to ``DEFAULT_FONT_SIZE``.
-    color : :class:`~manim.utils.color.ParsableManimColor`, optional
+    color
         Default colour of the tree text.  Defaults to ``WHITE``.
     **kwargs
         Additional keyword arguments forwarded to
@@ -858,14 +855,13 @@ class FileTree(Code):
 
         Parameters
         ----------
-        line : int
+        line
             Zero-based line index.
-        color : :class:`~manim.utils.color.ParsableManimColor`, optional
+        color
             Highlight colour.  Defaults to ``WHITE``.
 
         Returns
         -------
-        :class:`~manim.animation.composition.AnimationGroup`
             An animation that colours the line content.
 
         Raises
@@ -901,14 +897,13 @@ class FileTree(Code):
         ----------
         data
             The (sub)tree node — either a dict or a leaf value.
-        prefix : str
+        prefix
             Indentation prefix already accumulated for the current depth.
-        is_root : bool
+        is_root
             Whether *data* is the root node (no connector prefix).
 
         Returns
         -------
-        list[str]
             A list of ASCII-art lines representing the tree.
         """
         lines: list[str] = []
@@ -941,9 +936,9 @@ class CropImageMobject(ImageMobject):
 
     Parameters
     ----------
-    filename_or_array : Union[str, numpy.ndarray, :class:`~PIL.Image.Image`]
+    filename_or_array
         The image source: a path to an image file, a NumPy array, or a PIL image.
-    corner_radius : Union[int, float], optional
+    corner_radius
         Radius of the rounded corners.  A value in ``(0, 1]`` is interpreted as
         a fraction of the smaller image dimension; larger values are treated as
         pixel radii.  Defaults to ``0.1``.
@@ -1020,11 +1015,11 @@ class VideoMobject(ImageMobject):
 
     Parameters
     ----------
-    filename : str
+    filename
         Path to the video file.
-    loop : bool, optional
+    loop
         Whether the video loops once it reaches the end.  Defaults to ``False``.
-    rate : float, optional
+    rate
         Playback speed multiplier.  Defaults to ``1.0``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
@@ -1092,7 +1087,6 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        float
             The video duration in seconds divided by the playback rate.
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
@@ -1102,9 +1096,9 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        mob : VideoMobject
+        mob
             The mobject this updater is attached to.
-        dt : float
+        dt
             Elapsed time (in seconds) since the last frame.
         """
         cv2 = require("video", "cv2")
@@ -1138,13 +1132,12 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        memo : dict
+        memo
             Memo dictionary used by :func:`~manim_extensions.fontawesome.manim_fontawesome._Solid.copy.deepcopy` to track already
             copied objects.
 
         Returns
         -------
-        VideoMobject
             A new instance with its own video capture handle.
         """
         cv2 = require("video", "cv2")
@@ -1169,12 +1162,11 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        scene : Optional[Scene], optional
+        scene
             If given, the scene waits for the full video duration.
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         if self._finished:
@@ -1191,7 +1183,6 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         self._playing = False
@@ -1202,7 +1193,6 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         self._playing = True
@@ -1213,7 +1203,6 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         self._playing = False
@@ -1226,7 +1215,6 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         cv2 = require("video", "cv2")
@@ -1243,12 +1231,11 @@ class VideoMobject(ImageMobject):
 
         Parameters
         ----------
-        time : float
+        time
             Target time in seconds, clamped to ``[0, duration]``.
 
         Returns
         -------
-        VideoMobject
             The :class:`~manim_extensions.mobjects.VideoMobject` instance for chaining.
         """
         cv2 = require("video", "cv2")
@@ -1293,17 +1280,17 @@ class ColorText(Text):
 
     Parameters
     ----------
-    color : sequence[float] or str
+    color
         The colour to display.  Either a Manim colour (name / hex string) or an RGB
         sequence with values either normalized to ``[0, 1]`` or in ``[0, 255]``.
-    name : str, optional
+    name
         If given, display this exact text coloured with *color* instead of the
         ``np.array`` snippet.
-    background_color : :class:`~manim.utils.color.core.ManimColor`, optional
+    background_color
         Colour used for the ``~`` separator glyphs.  Defaults to ``WHITE``.
-    font : str, optional
+    font
         Font used for the snippet.  Defaults to ``"Consolas"``.
-    font_size : float, optional
+    font_size
         Font size in Manim units.  Defaults to ``28``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`.
@@ -1382,15 +1369,15 @@ class Trail(VGroup):
 
     Parameters
     ----------
-    mob : :class:`~manim.mobject.mobject.Mobject`
+    mob
         The mobject to trace.
-    max_width : float, optional
+    max_width
         Stroke width of the newest segment.  Defaults to ``5``.
-    nums : int, optional
+    nums
         Maximum number of stored segments.  Defaults to ``500``.
-    trail_color : :class:`~manim.utils.color.core.ManimColor`, optional
+    trail_color
         Colour of the trail.  Defaults to ``BLUE_B``.
-    rate_func : callable, optional
+    rate_func
         Fading function mapping a proportion in ``[0, 1]`` to opacity/width.
         Defaults to ``lambda t: t ** 1.25``.
     **kwargs
@@ -1456,7 +1443,6 @@ class Trail(VGroup):
 
         Returns
         -------
-        VGroup
             A group of line segments connecting the recorded centre points, with
             stroke width and opacity fading from oldest to newest.
         """
@@ -1492,7 +1478,6 @@ class Trail(VGroup):
 
         Returns
         -------
-        Trail
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
         self.trail.add_updater(self.update_path)
@@ -1503,7 +1488,6 @@ class Trail(VGroup):
 
         Returns
         -------
-        Trail
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
         self.trail.remove_updater(self.update_path)
@@ -1524,22 +1508,22 @@ class ShadowAround(VGroup):
 
     Parameters
     ----------
-    mob_or_points : :class:`~manim.mobject.mobject.Mobject` or list[Sequence[float]]
+    mob_or_points
         Either a mobject whose outline is shadowed, or a list of points used to build a
         :class:`~manim.mobject.geometry.polygram.Polygon`.
-    shadow_color : :class:`~manim.utils.color.core.ManimColor`, optional
+    shadow_color
         Colour of the shadow.  Defaults to ``DARK_GRAY``.
-    shadow_opacity : float, optional
+    shadow_opacity
         Maximum opacity of the shadow layers.  Defaults to ``0.6``.
-    blur_width : float, optional
+    blur_width
         Total width of the blurred band.  Defaults to ``0.25``.
-    layer_num : int, optional
+    layer_num
         Number of concentric layers used for the blur.  Defaults to ``40``.
-    scale_factor : float, optional
+    scale_factor
         Overall scale applied to the shadow.  Defaults to ``1.0``.
-    shadow_out : bool, optional
+    shadow_out
         If ``True`` the shadow grows outwards, otherwise inwards.  Defaults to ``True``.
-    show_basic_shape : bool, optional
+    show_basic_shape
         Whether to keep the solid inner shape visible.  Defaults to ``True``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -1624,17 +1608,17 @@ class ObjectBorder(VGroup):
 
     Parameters
     ----------
-    obj : :class:`~manim.mobject.mobject.Mobject`
+    obj
         The mobject to surround.
-    buff : float, optional
+    buff
         Gap between *obj* and the border.  Defaults to ``0.08``.
-    add_corner : bool, optional
+    add_corner
         Whether to draw a marker dot at each corner.  Defaults to ``True``.
-    track : bool, optional
+    track
         Whether the border follows *obj* with an updater.  Defaults to ``True``.
-    border_color : :class:`~manim.utils.color.core.ManimColor`, optional
+    border_color
         Stroke colour of the border.  Defaults to ``WHITE``.
-    corner_radius : float, optional
+    corner_radius
         Radius of the corner marker dots.  Defaults to ``0.06``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -1717,17 +1701,17 @@ class ThreeDVector(VGroup):
 
     Parameters
     ----------
-    vector : Sequence[float], optional
+    vector
         Direction (and length) of the vector.  Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
-    position : Sequence[float], optional
+    position
         Base point of the vector.  Defaults to ``ORIGIN``.
-    radius : float, optional
+    radius
         Radius of the body and of the base of the tip.  Defaults to ``0.12``.
-    color : :class:`~manim.utils.color.core.ManimColor`, optional
+    color
         Colour of the vector.  Defaults to ``BLUE``.
-    tip_fraction : float, optional
+    tip_fraction
         Fraction of the total length used for the conical tip.  Defaults to ``0.25``.
-    fill_opacity : float, optional
+    fill_opacity
         Opacity of the body and tip.  Defaults to ``0.9``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -1816,15 +1800,15 @@ class TreeDiagram(VGroup):
 
     Parameters
     ----------
-    tree : Mapping
+    tree
         The nested structure to render.
-    branch_color : :class:`~manim.utils.color.core.ManimColor`, optional
+    branch_color
         Colour of the braces.  Defaults to ``GREY``.
-    branch_opacity : float, optional
+    branch_opacity
         Opacity of the braces.  Defaults to ``1``.
-    item_v_buff : float, optional
+    item_v_buff
         Vertical spacing between items.  Defaults to ``0.3``.
-    item_scale : float, optional
+    item_scale
         Scale applied to labels.  Defaults to ``0.7``.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -1867,12 +1851,11 @@ class TreeDiagram(VGroup):
 
         Parameters
         ----------
-        leaves : iterable
+        leaves
             Leaf node values to display as text.
 
         Returns
         -------
-        VGroup
             A vertically arranged group of scaled :class:`~manim.mobject.text.text_mobject.Text` mobjects.
         """
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
@@ -1883,13 +1866,12 @@ class TreeDiagram(VGroup):
 
         Parameters
         ----------
-        tree : dict or list or set
+        tree
             Tree structure defined as nested dictionaries (internal nodes) or
             iterables (leaf nodes).
 
         Returns
         -------
-        VGroup
             The composed tree diagram with braces and labels.
         """
         if isinstance(tree, (set, list, tuple)):

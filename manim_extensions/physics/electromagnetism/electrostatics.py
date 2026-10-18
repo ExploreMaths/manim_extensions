@@ -42,11 +42,11 @@ class Charge(VGroup):
 
     Parameters
     ----------
-    magnitude : float, optional
+    magnitude
         Charge strength; positive values are red, negative values are blue.
-    point : numpy.ndarray, optional
+    point
         Location of the charge in the scene.
-    add_glow : bool, optional
+    add_glow
         Whether to draw a soft glow around the charge.
     kwargs
         Additional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -173,16 +173,15 @@ class ElectricField(ArrowVectorField):
 
         Parameters
         ----------
-        p : numpy.ndarray
+        p
             Field point at which the electric field is evaluated.
-        positions : iterable of numpy.ndarray
+        positions
             Positions of the source charges.
-        magnitudes : iterable of float
+        magnitudes
             Charge magnitudes (in arbitrary units) for each source charge.
 
         Returns
         -------
-        numpy.ndarray
             The net electric field vector at point *p*.
         """
         field_vect = np.zeros(3)

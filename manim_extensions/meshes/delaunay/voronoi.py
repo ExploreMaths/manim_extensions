@@ -27,9 +27,9 @@ class VoronoiDelaunay:
 
     Parameters
     ----------
-    scene : m.Scene
+    scene
         The scene in which the Voronoi/Delaunay diagrams will be drawn.
-    triangle_mesh : TriangleManim2DMesh
+    triangle_mesh
         A triangle mesh whose vertices are used to build the Voronoi
         diagram. The mesh must already have been added to *scene*.
 
@@ -81,7 +81,6 @@ class VoronoiDelaunay:
 
         Returns
         -------
-        tuple[:class:`~manim.mobject.types.vectorized_mobject.VGroup`, :class:`~manim.mobject.types.vectorized_mobject.VGroup`]
             A pair of :class:`~manim.mobject.types.vectorized_mobject.VGroup`
             containers holding the Voronoi vertices (dots) and the connecting
             ridge lines, respectively.
@@ -145,10 +144,10 @@ class VoronoiDelaunay:
 
         Parameters
         ----------
-        voronoi_vertex_index : int
+        voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle's circumcircle
             is computed.
-        color : ManimColor, optional
+        color
             Stroke colour of the returned circle. Defaults to ``ORANGE``.
 
         Returns
@@ -181,7 +180,7 @@ class VoronoiDelaunay:
 
         Parameters
         ----------
-        voronoi_vertex_index : int
+        voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle is created.
         """
 
