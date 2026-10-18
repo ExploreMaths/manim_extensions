@@ -27,16 +27,11 @@ from manim import (
     WHITE,
 )
 from typing import List, TypeAlias
-from manim.typing import ManimFloat, Point3D as ManimPoint3D
-from manim.typing import Vector3DLike
+from manim.typing import ManimFloat, Point3D, Vector3DLike
 from .utils.numpy_helper import NumpyHelper
 
 NodeValue: TypeAlias = str | int | float | None
 NodeBoxType: TypeAlias = type[Square] | type[Circle]
-Vector3D: TypeAlias = Vector3DLike
-Point3D: TypeAlias = ManimPoint3D
-
-
 class NodeConfig:
     """Default visual settings shared by algorithm nodes.
 
@@ -317,7 +312,7 @@ class Node(VMobject):
         """
         return self.box.get_fill_opacity()
 
-    def get_slot(self, direction: Vector3D, index: int) -> Point3D:
+    def get_slot(self, direction: Vector3DLike, index: int) -> Point3D:
         """Return a point on the node's boundary at the given slot index.
 
         The slot numbering scheme divides each edge of the box into
