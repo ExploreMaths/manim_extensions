@@ -99,6 +99,7 @@ introduction, or browse the :doc:`examples/index` gallery.
    examples/index
    installation/index
    tutorials/index
+   constants
    reference/index
    changelog
    contributing
