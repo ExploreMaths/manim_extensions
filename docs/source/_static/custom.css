@@ -246,21 +246,24 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
     color: #F2F9FF;
     background-color: #124B76;
 }
-/* Auto theme: follow the OS dark preference the same way. */
+/* Auto theme (and the no-JS / pre-JS state where furo leaves <body>
+   without a data-theme attribute): furo paints the page dark whenever
+   the OS prefers dark unless the user explicitly picked light, so mirror
+   that exact condition instead of requiring a data-theme attribute. */
 @media (prefers-color-scheme: dark) {
-    body[data-theme="auto"] a.reference.ref-ext code.xref {
+    body:not([data-theme="light"]) a.reference.ref-ext code.xref {
         color: #D5F5E3;
         background-color: #145A32;
     }
-    body[data-theme="auto"] a.reference.ref-manim code.xref {
+    body:not([data-theme="light"]) a.reference.ref-manim code.xref {
         color: #EBF5FB;
         background-color: #0F3B5F;
     }
-    body[data-theme="auto"] a.reference.ref-ext code.xref:hover {
+    body:not([data-theme="light"]) a.reference.ref-ext code.xref:hover {
         color: #F0FDF4;
         background-color: #166B3C;
     }
-    body[data-theme="auto"] a.reference.ref-manim code.xref:hover {
+    body:not([data-theme="light"]) a.reference.ref-manim code.xref:hover {
         color: #F2F9FF;
         background-color: #124B76;
     }
@@ -269,12 +272,15 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    SVG in light palette colors, so under a dark theme we invert the whole
    diagram — white canvas becomes dark, light node fills become dark fills
    and the dark node text becomes light text, keeping the same hue family
-   as the colored inline-code links above. */
+   as the colored inline-code links above.  The dark condition matches
+   furo's own (body[data-theme="dark"], or no light attribute while the OS
+   prefers dark), so the inversion also applies when the page renders dark
+   before/without furo.js setting data-theme on <body>. */
 body[data-theme="dark"] div.graphviz {
     filter: invert(88%) hue-rotate(180deg);
 }
 @media (prefers-color-scheme: dark) {
-    body[data-theme="auto"] div.graphviz {
+    body:not([data-theme="light"]) div.graphviz {
         filter: invert(88%) hue-rotate(180deg);
     }
 }
