@@ -57,6 +57,10 @@ exclude_patterns = ["build", "Thumbs.db", ".DS_Store"]
 html_theme = "furo"
 html_static_path = ["_static"]
 html_favicon = "_static/favicon.svg"
+# Self-host MathJax (vendored under _static/mathjax) instead of loading it
+# from the jsdelivr CDN: the CDN is intermittently unreachable from some
+# regions, which made formulas randomly fail to render.
+mathjax_path = "mathjax/tex-mml-chtml.js"
 html_title = f"Manim Extensions v{release}"
 html_short_title = "manim_extensions"
 
