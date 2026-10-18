@@ -70,6 +70,7 @@ class _UpdateIndices(Protocol):
 
 class MArrayElement(VGroup):
     """A class that represents an array element.
+
     Parameters
     ----------
     scene
@@ -560,6 +561,7 @@ class MArrayElement(VGroup):
 
 class MArray(VGroup):
     r"""A class that represents an array.
+
     Parameters
     ----------
     scene
@@ -1577,6 +1579,7 @@ class MArray(VGroup):
 
 class MArrayPointer(VGroup):
     r"""A class that represents a pointer.
+
     Parameters
     ----------
     scene
@@ -2054,6 +2057,7 @@ class MArrayPointer(VGroup):
 
 class MArraySlidingWindow(VGroup):
     r"""A class that represents a sliding window.
+
     Parameters
     ----------
     scene

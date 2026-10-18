@@ -338,6 +338,7 @@ class DecisionTreeDiagram(Group):
         tree
             The sklearn tree structure (``tree_`` attribute of a fitted
             :class:`~sklearn.tree.DecisionTreeClassifier`).
+
         Raises
         ------
         NotImplementedError

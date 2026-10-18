@@ -98,6 +98,7 @@ class LayoutType(Enum):
 
 class LayoutConfig:
     """Configuration options for mind-map layouts.
+
     Parameters
     ----------
     direction

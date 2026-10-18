@@ -15,6 +15,7 @@ from .m_array import MArrayElement, MobProps
 
 class MVariable(MArrayElement):
     r"""A class that represents a variable.
+
     Parameters
     ----------
     scene

@@ -146,6 +146,7 @@ class Ruler(VGroup):
         """
 
         Place the ruler so that one of its edges aligns with start and end.
+
         Parameters
         ----------
         start

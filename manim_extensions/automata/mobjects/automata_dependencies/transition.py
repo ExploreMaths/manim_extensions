@@ -26,6 +26,7 @@ class Transition:
         Path of XML format file describing an automaton.
     input_symbol
         The class' input symbol.
+
     Attributes
     ----------
     id
