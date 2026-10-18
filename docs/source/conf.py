@@ -111,6 +111,14 @@ autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 autodoc_typehints_format = "short"
 
+# manim 0.22 annotates Scene.__init__ as ``CairoRenderer | OpenGLRenderer``
+# under ``from __future__ import annotations``; sphinx-autodoc-typehints'
+# guarded import then evaluates ``type | str`` and raises
+# ``TypeError: unsupported operand type(s) for |`` on every build.  This
+# lives in third-party code, so suppress the specific warning class
+# rather than the whole typehints machinery.
+suppress_warnings = ["sphinx_autodoc_typehints.guarded_import"]
+
 # sphinx-copybutton: keep nbcell/manim prompts ("In [1]:", "$") out of the
 # copied text; the buttons themselves are hidden on prompts by nbcell.css.
 copybutton_exclude = ".linenos, .gp, .prompt"

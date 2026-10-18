@@ -7,6 +7,7 @@
 A place for all decorators.
 """
 
+import functools
 import warnings
 from typing import Any, Callable, ParamSpec, TypeVar, cast
 
@@ -37,6 +38,7 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             The wrapped function.
         """
 
+        @functools.wraps(func)
         def wrapper_func(*args: P.args, **kwargs: P.kwargs) -> R:
             """Execute the function and warn about dangling vertices.
 
@@ -81,6 +83,7 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             The wrapped function.
         """
 
+        @functools.wraps(func)
         def wrapper_func(*args: P.args, **kwargs: P.kwargs) -> R:
             """Execute the function and warn about dangling faces.
 
