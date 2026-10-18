@@ -5,6 +5,9 @@
 Classes
 =======
 
+.. inheritance-diagram:: manim_extensions.rubikscube.cube.RubiksCube manim_extensions.rubikscube.cubie.Cubie
+   :parts: 1
+
 .. autoall:: manim_extensions.rubikscube
    :recursive:
    :types: class

@@ -5,6 +5,9 @@
 Classes
 =======
 
+.. inheritance-diagram:: manim_extensions.tikz.template.TikzTemplate manim_extensions.tikz.tikz.Tikz
+   :parts: 1
+
 .. autoall:: manim_extensions.tikz.template
    :types: class
 
