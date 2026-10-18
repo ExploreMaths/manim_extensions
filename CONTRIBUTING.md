@@ -137,6 +137,8 @@ Every **public** function, method, and class must have a docstring. This include
 
 Sections use a bare header line followed by a `----------` underline. **Google-style inline headers like `Args:` or `Returns:` are rejected** — use `Parameters` and `Returns` instead.
 
+Spacing is enforced too: a section header must be **separated from the preceding paragraph by a blank line**, and the entry list must **directly follow the underline** (a blank line between the underline and the first entry is rejected). A header that is flush against the summary is absorbed into the summary paragraph by napoleon, and sphinx-autodoc-typehints then injects `:type:` lines into that paragraph so docutils renders raw reST text in the reference pages. `validate_doc_sections.py` rejects both mistakes (`SECTION_MISSING_BLANK_BEFORE`, `SECTION_BLANK_AFTER_UNDERLINE`).
+
 ```python
 def scale(self, factor: float, about_point: np.ndarray | None = None) -> "Mobject":
     """Scale the mobject by *factor*.

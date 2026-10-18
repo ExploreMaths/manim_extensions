@@ -21,6 +21,12 @@ This script checks that public functions, methods, and classes in
 4. Section headers must use the numpydoc format (a bare header line
    followed by a ``----------`` underline). Google-style inline headers
    such as ``Returns:`` are rejected.
+4b. Section headers must be separated from the preceding paragraph by a
+   blank line, and the entry list must immediately follow the underline
+   (a blank line between the underline and the first entry is rejected).
+   Napoleon parses a header that is flush against the summary as summary
+   text, and sphinx-autodoc-typehints then injects the ``:type:`` line
+   into the summary paragraph, which docutils renders as raw reST text.
 5. Entry descriptions in the Parameters/Other Parameters/Returns/Yields/
    Receives/Raises/Attributes sections must start with a capital letter
    and end with a period. Descriptions starting with inline literals,
@@ -518,6 +524,43 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     })
 
 
+def check_section_spacing(doc, qualname, lineno, violations):
+    """Section headers must be blank-line separated and tightly underlined.
+
+    A section header that directly follows a summary line (no blank line)
+    is absorbed into the summary paragraph by napoleon, and the typehints
+    plugin then injects ``:type:`` into that paragraph so docutils renders
+    raw reST text in the reference pages.  A blank line between the
+    underline and the first entry is likewise rejected: numpydoc sections
+    are a header, an underline, and the entries immediately after.
+    """
+    lines = doc.splitlines()
+    for name, idx in section_positions(doc):
+        if idx > 0 and lines[idx - 1].strip():
+            violations.append({
+                "line": lineno,
+                "qualname": qualname,
+                "type": "SECTION_MISSING_BLANK_BEFORE",
+                "message": f"section header '{name}' directly follows "
+                           f"'{lines[idx - 1].strip()[:40]}' without a blank "
+                           f"line; napoleon absorbs it into the summary and "
+                           f"raw ':param:/:type:' text leaks into the docs",
+            })
+        if (
+            idx + 2 < len(lines)
+            and not lines[idx + 2].strip()
+            and not SECTION_UNDERLINE_RE.match(lines[idx + 2])
+        ):
+            violations.append({
+                "line": lineno,
+                "qualname": qualname,
+                "type": "SECTION_BLANK_AFTER_UNDERLINE",
+                "message": f"section header '{name}' is followed by a blank "
+                           f"line after the underline; entries must directly "
+                           f"follow the underline",
+            })
+
+
 def _prose_after_colon(line: str) -> bool:
     """True when ``name : ...`` actually starts a prose description.
 
@@ -711,6 +754,7 @@ def check_file(filepath: Path) -> list:
         check_terminal_punctuation(
             module_doc, "<module>", 1, violations
         )
+        check_section_spacing(module_doc, "<module>", 1, violations)
 
     def visit_body(body, prefix, in_class):
         for node in body:
@@ -742,6 +786,7 @@ def check_file(filepath: Path) -> list:
         check_description_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
+        check_section_spacing(doc, qualname, node.lineno, violations)
         secs = section_names(doc)
         params = function_params(node)
         # __init__ parameters are documented in the class docstring instead;
@@ -868,6 +913,7 @@ def check_file(filepath: Path) -> list:
         check_description_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
+        check_section_spacing(doc, qualname, node.lineno, violations)
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:
