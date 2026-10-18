@@ -6,11 +6,12 @@ Constants
 
 Manim's official documentation lists the ten direction vectors and the
 colour palette, but the Manim intersphinx inventory contains *no*
-constant entries at all — ``WHITE``, ``UP``, ``SMALL_BUFF`` etc. cannot
-be linked to the official docs.  They are collected here so every
+constant entries at all — :data:`~manim.utils.color.manim_colors.WHITE`,
+:data:`~manim.constants.UP` and :data:`~manim.constants.SMALL_BUFF`
+cannot be linked to the official docs.  They are collected here so every
 constant name has a link target, and you can write the name (``from
 manim import *`` gives you all of them) instead of expanding the value
-by hand, e.g. use ``SMALL_BUFF`` instead of ``0.2``.
+by hand, e.g. use :data:`~manim.constants.SMALL_BUFF` instead of ``0.2``.
 
 The constants are grouped by category:
 
