@@ -222,6 +222,10 @@ When multiple sections are present they must follow numpydoc's canonical order:
 
 If a docstring embeds example code whose string literals contain `\n` escapes (e.g. MOL/SDF file blocks), the docstring **must** use an `r"""` raw prefix. Without it, Python interprets the escapes and Sphinx renders mangled, unrunnable code.
 
+### Interactive examples use `.. nbcell::`, not doctest prompts
+
+An interactive example (code the reader is meant to run and see output for) must be written as a `.. nbcell::` block — the notebook-style cell directive — **not** as `>>>` / `...` doctest prompts. `nbcell` renders `In [n]:` / `Out[n]:` prompts with input/output areas styled by `nbcell.css`, keeps an optional `:output:` verbatim, and works both in `.rst` files and inside docstrings. `>>>` prompts in a docstring render as a plain code block, which the docs treat as a defect (no cell chrome, no output area).
+
 ### Mobject subclasses need a `.. manim::` example
 
 Every class that subclasses a Manim mobject (`Mobject`, `VMobject`, `VGroup`, `Line`, `Circle`, `Text`, ...) must include a `.. manim::` example block in its **class docstring**. Pure `Enum`/`ABC` classes and non-mobject helpers are exempt.

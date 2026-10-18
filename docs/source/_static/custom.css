@@ -196,6 +196,31 @@ dd p.rubric {
 dd p.rubric::after {
     content: ":";
 }
+/* Plain reference links: use a violet family so they are unmistakably
+   distinct from the colored inheritance inline-code links below (green
+   ref-ext / blue ref-manim blocks).  Furo's default link blue reads too
+   close to the manim-blue code links, so override it.  The colored
+   code.xref rules below have higher specificity and stay untouched. */
+a.reference {
+    color: #6C4CC7;
+}
+a.reference:hover {
+    color: #8250DF;
+}
+body[data-theme="dark"] a.reference {
+    color: #B794F6;
+}
+body[data-theme="dark"] a.reference:hover {
+    color: #C9B1FF;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) a.reference {
+        color: #B794F6;
+    }
+    body:not([data-theme="light"]) a.reference:hover {
+        color: #C9B1FF;
+    }
+}
 /* Inline code xref links: strip the code-look border and round the fill
    (furo gives p code.literal a 1px border and .2em corners, which leaves
    type links such as float | ndarray looking boxy). */

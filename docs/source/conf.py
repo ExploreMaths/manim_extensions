@@ -332,7 +332,11 @@ def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
         return
     type_doc = inspect.getdoc(type(obj)) or ""
     rendered = "\n".join(lines).strip()
-    if type_doc.strip() == rendered:
+    # The instance's ``__doc__`` falls back to the owning type's docstring,
+    # but numpy versions can differ between the instance attribute (e.g. the
+    # two-signature ndarray docstring with a ``--`` separator) and the one
+    # ``inspect.getdoc`` returns, so match containment rather than equality.
+    if rendered.startswith(type_doc) or type_doc in rendered:
         lines.clear()
 
 

@@ -12,10 +12,13 @@ readable on the console.
 
 Examples
 --------
->>> from manim_extensions.utils.deprecation import deprecated
->>> @deprecated("``old`` is deprecated; use ``new`` instead.")
-... def old():
-...     pass
+.. nbcell::
+
+   from manim_extensions.utils.deprecation import deprecated
+
+   @deprecated("``old`` is deprecated; use ``new`` instead.")
+   def old():
+       pass
 """
 
 from __future__ import annotations
