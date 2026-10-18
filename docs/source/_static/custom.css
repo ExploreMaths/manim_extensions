@@ -304,14 +304,15 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
    version resolves the annotation, as an intersphinx link (a.reference).
    inline_link_colors.py tags the signature with sig-ext-attr /
    sig-manim-attr by the type's origin; both forms are colored
-   identically and links drop their underline. */
+   identically.  The link form keeps Furo's default underline
+   (text-decoration comes from Furo's a rule, which this block does not
+   override), so a colored type still reads as a link. */
 dt.sig-object.py.sig-ext-attr .property > .pre,
 dt.sig-object.py.sig-ext-attr .property > a.reference {
     color: #1E8449;
     background-color: #D5F5E3;
     border-radius: 0.25rem;
     padding: 0 0.2em;
-    text-decoration: none;
 }
 dt.sig-object.py.sig-manim-attr .property > .pre,
 dt.sig-object.py.sig-manim-attr .property > a.reference {
@@ -319,7 +320,6 @@ dt.sig-object.py.sig-manim-attr .property > a.reference {
     background-color: #EBF5FB;
     border-radius: 0.25rem;
     padding: 0 0.2em;
-    text-decoration: none;
 }
 body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > .pre,
 body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > a.reference {
