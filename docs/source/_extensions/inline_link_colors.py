@@ -50,7 +50,13 @@ def _known_type_names():
 
 
 def _type_origin_class(signature, manim_types, ext_types):
-    """Color class for an attribute signature's type text, or None."""
+    """Color class for an attribute signature's type text, or None.
+
+    The type can render either as plain text (``tex_template : TexTemplate``)
+    or, depending on the sphinx-autodoc-typehints version, as an intersphinx
+    link (``a.reference`` to the Manim docs / internal reference).  Handle
+    both forms.
+    """
     for annotation in signature.findall(desc_annotation):
         for child in annotation.children:
             if isinstance(child, nodes.Text) and child.strip():
@@ -58,6 +64,12 @@ def _type_origin_class(signature, manim_types, ext_types):
                 if text in manim_types:
                     return "sig-manim-attr"
                 if text in ext_types:
+                    return "sig-ext-attr"
+            elif isinstance(child, nodes.reference):
+                link_class = _classify(child)
+                if link_class == "ref-manim":
+                    return "sig-manim-attr"
+                if link_class == "ref-ext":
                     return "sig-ext-attr"
     return None
 

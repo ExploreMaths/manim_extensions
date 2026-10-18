@@ -323,37 +323,47 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
     }
 }
 /* Class-attribute signature types (e.g. ``tex_template : TexTemplate``)
-   colored like inline-code links.  The type text is plain text, not a
-   reference, so inline_link_colors.py tags the signature with
-   sig-ext-attr / sig-manim-attr by the type's origin; the type span is
-   the direct-child .pre of the signature's .property (the colon's .pre
-   is nested inside .p and stays untouched). */
-dt.sig-object.py.sig-ext-attr .property > .pre {
+   colored like inline-code links.  The type renders either as the
+   direct-child .pre of the signature's .property (the colon's .pre is
+   nested inside .p and stays untouched) or, when the autodoc-typehints
+   version resolves the annotation, as an intersphinx link (a.reference).
+   inline_link_colors.py tags the signature with sig-ext-attr /
+   sig-manim-attr by the type's origin; both forms are colored
+   identically and links drop their underline. */
+dt.sig-object.py.sig-ext-attr .property > .pre,
+dt.sig-object.py.sig-ext-attr .property > a.reference {
     color: #1E8449;
     background-color: #D5F5E3;
     border-radius: 0.25rem;
     padding: 0 0.2em;
+    text-decoration: none;
 }
-dt.sig-object.py.sig-manim-attr .property > .pre {
+dt.sig-object.py.sig-manim-attr .property > .pre,
+dt.sig-object.py.sig-manim-attr .property > a.reference {
     color: #1A5276;
     background-color: #EBF5FB;
     border-radius: 0.25rem;
     padding: 0 0.2em;
+    text-decoration: none;
 }
-body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > .pre {
+body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > .pre,
+body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > a.reference {
     color: #D5F5E3;
     background-color: #145A32;
 }
-body[data-theme="dark"] dt.sig-object.py.sig-manim-attr .property > .pre {
+body[data-theme="dark"] dt.sig-object.py.sig-manim-attr .property > .pre,
+body[data-theme="dark"] dt.sig-object.py.sig-manim-attr .property > a.reference {
     color: #EBF5FB;
     background-color: #0F3B5F;
 }
 @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) dt.sig-object.py.sig-ext-attr .property > .pre {
+    body:not([data-theme="light"]) dt.sig-object.py.sig-ext-attr .property > .pre,
+    body:not([data-theme="light"]) dt.sig-object.py.sig-ext-attr .property > a.reference {
         color: #D5F5E3;
         background-color: #145A32;
     }
-    body:not([data-theme="light"]) dt.sig-object.py.sig-manim-attr .property > .pre {
+    body:not([data-theme="light"]) dt.sig-object.py.sig-manim-attr .property > .pre,
+    body:not([data-theme="light"]) dt.sig-object.py.sig-manim-attr .property > a.reference {
         color: #EBF5FB;
         background-color: #0F3B5F;
     }
