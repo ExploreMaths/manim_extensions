@@ -82,7 +82,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     Attributes
     ----------
-
     automaton : FiniteStateAutomaton
         The underlying formal automaton model.
     initial_state : State

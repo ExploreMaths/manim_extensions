@@ -39,7 +39,6 @@ class ManimState(State, VGroup):
 
     Attributes
     ----------
-
     state
         Reference to a State instance.
     circle

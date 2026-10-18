@@ -343,7 +343,6 @@ class AbstractMolecule:
 
         Examples
         ----------
-
         .. manim:: MMoleculeWithName
            :save_last_frame:
 

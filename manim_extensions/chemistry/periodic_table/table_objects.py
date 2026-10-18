@@ -236,7 +236,6 @@ class PeriodicTable(VGroup):
 
     Examples
     ---------
-
     .. manim:: PeriodicTableScene
        :save_last_frame:
 

@@ -199,7 +199,6 @@ class LabelDot(VGroup):
 
     Attributes
     ----------
-
     dot : :class:`~manim.mobject.geometry.arc.Dot`
         The underlying dot mobject.
     dot_pos : numpy.ndarray
@@ -425,7 +424,6 @@ class PerpendicularLine(Line):
 
     Attributes
     ----------
-
     point : numpy.ndarray
         The 3‑D point from which the perpendicular is drawn.
     target_line : :class:`~manim.mobject.geometry.line.Line`
@@ -605,7 +603,6 @@ class PerpendicularSign(VGroup):
 
     Attributes
     ----------
-
     intersection : numpy.ndarray
         The 3‑D intersection point of the two lines.  If the lines are
         parallel this attribute is not set.
@@ -1026,7 +1023,6 @@ class VideoMobject(ImageMobject):
 
     Attributes
     ----------
-
     filename : str
         Path to the video file.
 

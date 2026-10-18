@@ -160,7 +160,6 @@ class Ruler(VGroup):
         
         Examples
         ----------
-
         .. manim:: SetRulerDocExample
            :save_last_frame:
 

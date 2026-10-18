@@ -100,7 +100,6 @@ class MArrayElement(VGroup):
     
     Attributes
     ----------
-
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
     __mob_square_props : :class:`dict`
@@ -599,7 +598,6 @@ class MArray(VGroup):
     
     Attributes
     ----------
-
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
     __arr : :class:`list`
@@ -971,7 +969,6 @@ class MArray(VGroup):
 
             Parameters
             ----------
-
             play_anim
                 Specifies whether to play the update :class:`manim.Animation`.
             play_anim_args
@@ -979,7 +976,6 @@ class MArray(VGroup):
 
             Returns
             -------
-
                 Represents :class:`~manim.animation.animation.Animation` for indices update.
             """
 
@@ -2576,7 +2572,6 @@ class MArraySlidingWindow(VGroup):
 
             Returns
             -------
-
                 Represents the modified mobject.
             """
 
