@@ -27,9 +27,6 @@ from manim import (
     VGroup,
     YELLOW,
 )
-
-from ..constants import DASHED_LINE_GREY
-
 from typing import Any, Optional
 
 import numpy as np
@@ -302,7 +299,7 @@ class SolowDiagram(EconDiagram):
         p_mid = self.axes.c2p(k, y_invest)
         p_bot = self.axes.c2p(k, 0)
 
-        stem = DashedLine(p_bot, p_top, color=DASHED_LINE_GREY, dash_length=0.06)
+        stem = DashedLine(p_bot, p_top, color="#888888", dash_length=0.06)
 
         i_line = Line(p_bot, p_mid)
         i_brace = Brace(i_line, direction=RIGHT, buff=0.05, color=i_color)

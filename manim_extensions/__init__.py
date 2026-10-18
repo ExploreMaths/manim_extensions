@@ -32,7 +32,6 @@ from . import pymunk
 from . import arabic
 from . import machine_learning
 from . import svg_animations
-from .constants import *
 
 __all__ = [
     "ChineseMathTex",
@@ -40,15 +39,6 @@ __all__ = [
     "CropImageMobject",
     "DEFAULT_CJK_FONT",
     "DEFAULT_MONO_FONT",
-    "DASHED_LINE_GREY",
-    "FIELD_LAYER_BLUE",
-    "FIELD_LAYER_LIGHT_BLUE",
-    "HALF_DOWN",
-    "RUBIKS_RED",
-    "RUBIKS_GREEN",
-    "RUBIKS_YELLOW",
-    "RUBIKS_ORANGE",
-    "RUBIKS_BLUE",
     "ExtendedLine",
     "FadeInRandom",
     "FadeOutRandom",

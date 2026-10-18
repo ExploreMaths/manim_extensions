@@ -29,8 +29,6 @@ from manim import (
     color_gradient,
     normalize,
 )
-
-from ...constants import FIELD_LAYER_BLUE, FIELD_LAYER_LIGHT_BLUE
 from typing import Iterable
 
 __all__ = [
@@ -96,7 +94,7 @@ class Charge(VGroup):
         else:
             label = Rectangle(width=0.27, height=0.003)
             color = BLUE
-            layer_colors = [FIELD_LAYER_BLUE, FIELD_LAYER_LIGHT_BLUE]
+            layer_colors = ["#3399FF", "#66B2FF"]
             layer_radius = 2
 
         if add_glow:  # use many arcs to simulate glowing
