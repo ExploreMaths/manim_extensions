@@ -10,8 +10,10 @@ The palette is imported from :mod:`inheritance_colors` so the diagram nodes
 and the inline links can never drift apart.
 """
 
+import re
+
 from docutils import nodes
-from sphinx.addnodes import desc_annotation, desc_signature
+from sphinx.addnodes import desc, desc_annotation, desc_content, desc_signature
 
 from inheritance_colors import (
     _EXTENSIONS_FILL,
@@ -31,7 +33,11 @@ def _known_type_names():
     reference classifier below cannot see it.  Match the type text against
     the manim / manim_extensions class names instead and tag the whole
     signature; custom.css then colors the type like an inline-code link.
+    Type aliases (``ParsableManimColor = str | ...``) render as
+    ``types.UnionType`` rather than ``type``, so collect those too.
     """
+    import types
+
     import manim
     import manim_extensions
 
@@ -46,25 +52,44 @@ def _known_type_names():
         if isinstance(obj, type)
         and getattr(obj, "__module__", "").startswith("manim_extensions")
     }
-    return manim_types, ext_types
+    manim_aliases = {
+        name
+        for name, obj in vars(manim).items()
+        if isinstance(obj, types.UnionType)
+    }
+    ext_aliases = {
+        name
+        for name, obj in vars(manim_extensions).items()
+        if isinstance(obj, types.UnionType) and name not in manim_aliases
+    }
+    return manim_types | manim_aliases, ext_types | ext_aliases
 
 
-def _type_origin_class(signature, manim_types, ext_types):
+def _type_pattern(manim_types, ext_types):
+    """Compile a pattern matching any manim / manim_extensions type name at an
+    identifier boundary, longest names first (so ParsableManimColor wins over
+    ManimColor)."""
+    names = sorted(manim_types | ext_types, key=len, reverse=True)
+    return re.compile(
+        r"(?<![A-Za-z0-9_])(" + "|".join(re.escape(n) for n in names) + r")(?![A-Za-z0-9_])"
+    )
+
+
+def _type_origin_class(signature, pattern, manim_types, ext_types):
     """Color class for an attribute signature's type text, or None.
 
-    The type can render either as plain text (``tex_template : TexTemplate``)
-    or, depending on the sphinx-autodoc-typehints version, as an intersphinx
-    link (``a.reference`` to the Manim docs / internal reference).  Handle
-    both forms.
+    The type can render either as plain text (``tex_template : TexTemplate``,
+    possibly a generic like ``dict[str, ParsableManimColor]``) or, depending
+    on the sphinx-autodoc-typehints version, as an intersphinx link
+    (``a.reference`` to the Manim docs / internal reference).  Handle
+    both forms; for plain text, any embedded type name qualifies.
     """
     for annotation in signature.findall(desc_annotation):
         for child in annotation.children:
             if isinstance(child, nodes.Text) and child.strip():
-                text = child.strip()
-                if text in manim_types:
-                    return "sig-manim-attr"
-                if text in ext_types:
-                    return "sig-ext-attr"
+                m = pattern.search(child)
+                if m:
+                    return "sig-manim-attr" if m.group(1) in manim_types else "sig-ext-attr"
             elif isinstance(child, nodes.reference):
                 link_class = _classify(child)
                 if link_class == "ref-manim":
@@ -72,6 +97,35 @@ def _type_origin_class(signature, manim_types, ext_types):
                 if link_class == "ref-ext":
                     return "sig-ext-attr"
     return None
+
+
+def _split_type_refs(annotation, pattern, manim_types, ext_types):
+    """Color only the manim / manim_extensions names inside a plain-text type.
+
+    A generic type renders as one text node (``dict[str,
+    ParsableManimColor]``); coloring the whole node would also tint the
+    builtins and brackets.  Split the text at each embedded type name and
+    wrap those names in inline spans tagged sig-type-ref-manim /
+    sig-type-ref-ext, which custom.css colors like inline-code links.
+    Builtins (dict, str, list, ...) and syntax stay untouched.
+    """
+    for child in list(annotation.children):
+        if not isinstance(child, nodes.Text) or not child.strip():
+            continue
+        parts = pattern.split(child)
+        if len(parts) == 1:
+            continue
+        new_children = []
+        for i, part in enumerate(parts):
+            if i % 2 == 1:
+                ref_cls = "sig-type-ref-manim" if part in manim_types else "sig-type-ref-ext"
+                ref = nodes.inline(classes=[ref_cls], rawsource=part)
+                ref += nodes.Text(part)
+                new_children.append(ref)
+            elif part:
+                new_children.append(nodes.Text(part))
+        idx = annotation.children.index(child)
+        annotation.children[idx:idx + 1] = new_children
 
 
 def _has_inline_code(node):
@@ -99,6 +153,7 @@ def _classify(node):
 def _process_doctree(app, doctree, docname):
     """Tag every inline code xref link with its inheritance-graph color class."""
     manim_types, ext_types = _known_type_names()
+    pattern = _type_pattern(manim_types, ext_types)
     for node in doctree.findall(nodes.reference):
         if not _has_inline_code(node):
             continue
@@ -113,17 +168,67 @@ def _process_doctree(app, doctree, docname):
     # type is plain text, not a reference, so tag the signature by the type's
     # origin and let custom.css color the type like an inline-code link.
     # Autodoc marks the *desc* (the <dl>) as an attribute; the signature
-    # (the <dt>) itself only carries sig/sig-object classes.
+    # (the <dt>) itself only carries sig/sig-object classes.  Plain-text
+    # types are then split so only the embedded type names get colored
+    # (builtins such as dict/str inside generics stay uncolored).
     for sig in doctree.findall(desc_signature):
         parent_desc = sig.parent
         if not parent_desc or "attribute" not in parent_desc.get("classes", ()):
             continue
-        attr_class = _type_origin_class(sig, manim_types, ext_types)
+        attr_class = _type_origin_class(sig, pattern, manim_types, ext_types)
         if not attr_class:
             continue
         classes = list(sig.get("classes", ()))
         if attr_class not in classes:
             sig["classes"] = classes + [attr_class]
+        for ann in sig.findall(desc_annotation):
+            for child in ann.children:
+                if isinstance(child, nodes.reference):
+                    link_class = _classify(child)
+                    if link_class:
+                        classes = list(child.get("classes", ()))
+                        if link_class not in classes:
+                            child["classes"] = classes + [link_class]
+            _split_type_refs(ann, pattern, manim_types, ext_types)
+
+    _add_attribute_headings(doctree)
+
+
+def _add_attribute_headings(doctree):
+    """Insert an ``Attributes`` rubric heading before a class's attributes.
+
+    Autodoc renders class attributes (``:members:``) as bare
+    ``py.attribute`` entries with no heading, while the docstring's
+    Parameters section gets a field-list heading (``Parameters:``).  Add a
+    rubric in the same position so the attribute block reads
+    ``Attributes:`` — styled identically by custom.css (bold, capitalize,
+    trailing colon).  Classes whose docstring already carries a numpydoc
+    Attributes section are skipped.
+    """
+    for d in list(doctree.findall(desc)):
+        if "class" not in d.get("classes", ()):
+            continue
+        content = next(
+            (c for c in d.children if isinstance(c, desc_content)), None
+        )
+        if content is None:
+            continue
+        attr_descs = [
+            c for c in content.children
+            if isinstance(c, desc) and "attribute" in c.get("classes", ())
+        ]
+        if not attr_descs:
+            continue
+        # A numpydoc Attributes section already supplies the heading.
+        first_attr = attr_descs[0]
+        preceding = content.children[:content.children.index(first_attr)]
+        if any(
+            isinstance(c, nodes.rubric) and c.astext().strip() == "Attributes"
+            for c in preceding
+        ):
+            continue
+        idx = content.children.index(first_attr)
+        content.insert(idx, nodes.rubric("", "Attributes"))
 
 
 def setup(app):

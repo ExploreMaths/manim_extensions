@@ -196,6 +196,17 @@ dd p.rubric {
 dd p.rubric::after {
     content: ":";
 }
+/* Visited links keep the unvisited color: no purple history tint, and the
+   colored inline-code blocks below keep their palette (their selectors
+   have higher specificity than :visited). */
+a.reference:visited {
+    color: var(--color-link);
+    text-decoration-color: var(--color-link-underline);
+}
+a.reference:visited:hover {
+    color: var(--color-link--hover);
+    text-decoration-color: var(--color-link-underline--hover);
+}
 /* Inline code xref links: strip the code-look border and round the fill
    (furo gives p code.literal a 1px border and .2em corners, which leaves
    type links such as float | ndarray looking boxy). */
@@ -298,47 +309,46 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
     }
 }
 /* Class-attribute signature types (e.g. ``tex_template : TexTemplate``)
-   colored like inline-code links.  The type renders either as the
-   direct-child .pre of the signature's .property (the colon's .pre is
-   nested inside .p and stays untouched) or, when the autodoc-typehints
-   version resolves the annotation, as an intersphinx link (a.reference).
-   inline_link_colors.py tags the signature with sig-ext-attr /
-   sig-manim-attr by the type's origin; both forms are colored
-   identically.  The link form keeps Furo's default underline
-   (text-decoration comes from Furo's a rule, which this block does not
-   override), so a colored type still reads as a link. */
-dt.sig-object.py.sig-ext-attr .property > .pre,
-dt.sig-object.py.sig-ext-attr .property > a.reference {
+   colored like inline-code links.  inline_link_colors.py splits plain-text
+   types and wraps each embedded manim / manim_extensions name in a
+   sig-type-ref-manim / sig-type-ref-ext span, so builtins (dict, str,
+   list, ...) and syntax brackets stay uncolored; a type that autodoc
+   resolves to an intersphinx link (a.reference) keeps the signature's
+   sig-ext-attr / sig-manim-attr tag and is colored whole.  The link form
+   keeps Furo's default underline (text-decoration comes from Furo's a
+   rule, which this block does not override). */
+dt.sig-object.py .property > .sig-type-ref-ext,
+dt.sig-object.py .property > a.reference.ref-ext {
     color: #1E8449;
     background-color: #D5F5E3;
     border-radius: 0.25rem;
     padding: 0 0.2em;
 }
-dt.sig-object.py.sig-manim-attr .property > .pre,
-dt.sig-object.py.sig-manim-attr .property > a.reference {
+dt.sig-object.py .property > .sig-type-ref-manim,
+dt.sig-object.py .property > a.reference.ref-manim {
     color: #1A5276;
     background-color: #EBF5FB;
     border-radius: 0.25rem;
     padding: 0 0.2em;
 }
-body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > .pre,
-body[data-theme="dark"] dt.sig-object.py.sig-ext-attr .property > a.reference {
+body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-ext,
+body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-ext {
     color: #D5F5E3;
     background-color: #145A32;
 }
-body[data-theme="dark"] dt.sig-object.py.sig-manim-attr .property > .pre,
-body[data-theme="dark"] dt.sig-object.py.sig-manim-attr .property > a.reference {
+body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-manim,
+body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-manim {
     color: #EBF5FB;
     background-color: #0F3B5F;
 }
 @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) dt.sig-object.py.sig-ext-attr .property > .pre,
-    body:not([data-theme="light"]) dt.sig-object.py.sig-ext-attr .property > a.reference {
+    body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-ext,
+    body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-ext {
         color: #D5F5E3;
         background-color: #145A32;
     }
-    body:not([data-theme="light"]) dt.sig-object.py.sig-manim-attr .property > .pre,
-    body:not([data-theme="light"]) dt.sig-object.py.sig-manim-attr .property > a.reference {
+    body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-manim,
+    body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-manim {
         color: #EBF5FB;
         background-color: #0F3B5F;
     }
