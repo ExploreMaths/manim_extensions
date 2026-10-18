@@ -383,3 +383,19 @@ dt.sig-object.py .default_value a .pre {
     color: inherit;
 }
 
+/* Parameter-list default values in the description (e.g. "color
+   (ParsableManimColor | None) – ..."): sphinx-autodoc-typehints >= 3.17
+   wraps None/True/False in <span class="highlight
+   sphinx_autodoc_typehints-value"> with a pygments .kc token whose green
+   overrides the link color, so only the None link turns green.  Re-inherit
+   the surrounding color (the intersphinx link color, like float/bool and
+   like stable). */
+html body .highlight.sphinx_autodoc_typehints-value,
+html body .highlight.sphinx_autodoc_typehints-value code.xref,
+html body .highlight.sphinx_autodoc_typehints-value .kc,
+html body .highlight.sphinx_autodoc_typehints-value a,
+html body .highlight.sphinx_autodoc_typehints-value a .pre {
+    color: inherit;
+    font-weight: normal;
+}
+
