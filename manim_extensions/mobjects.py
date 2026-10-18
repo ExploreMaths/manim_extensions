@@ -786,9 +786,11 @@ class FileTree(Code):
         an empty directory; a non-empty ``dict`` denotes a directory with
         children.
     font_size
-        Font size of the rendered text.  Defaults to ``DEFAULT_FONT_SIZE``.
+        Font size of the rendered text.  Defaults to
+        :data:`~manim.constants.DEFAULT_FONT_SIZE`.
     color
-        Default colour of the tree text.  Defaults to ``WHITE``.
+        Default colour of the tree text.  Defaults to
+        :data:`~manim.utils.color.manim_colors.WHITE`.
     **kwargs
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.text.code_mobject.Code`.
@@ -855,7 +857,8 @@ class FileTree(Code):
         line
             Zero-based line index.
         color
-            Highlight colour.  Defaults to ``WHITE``.
+            Highlight colour.  Defaults to
+            :data:`~manim.utils.color.manim_colors.WHITE`.
 
         Returns
         -------
@@ -1283,7 +1286,8 @@ class ColorText(Text):
         If given, display this exact text coloured with *color* instead of the
         ``np.array`` snippet.
     background_color
-        Colour used for the ``~`` separator glyphs.  Defaults to ``WHITE``.
+        Colour used for the ``~`` separator glyphs.  Defaults to
+        :data:`~manim.utils.color.manim_colors.WHITE`.
     font
         Font used for the snippet.  Defaults to ``"Consolas"``.
     font_size
@@ -1613,7 +1617,8 @@ class ObjectBorder(VGroup):
     track
         Whether the border follows *obj* with an updater.  Defaults to ``True``.
     border_color
-        Stroke colour of the border.  Defaults to ``WHITE``.
+        Stroke colour of the border.  Defaults to
+        :data:`~manim.utils.color.manim_colors.WHITE`.
     corner_radius
         Radius of the corner marker dots.  Defaults to ``0.06``.
     **kwargs
