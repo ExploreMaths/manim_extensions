@@ -8,7 +8,7 @@ This module provides object class for sequence diagrams.
 
 """
 
-from manim import ORIGIN, Rectangle, Text, VGroup, WHITE
+from manim import ORIGIN, Rectangle, Text, VGroup, WHITE, GREEN
 
 
 class SeqObject(VGroup):
@@ -48,7 +48,7 @@ class SeqObject(VGroup):
         self.obj_name = name
         obj_label = self.create_obj_label(font_size)
         obj_ctn = Rectangle(
-            color="#00FF00", height=obj_label.height + 0.5, width=obj_label.width + 0.4
+            color=GREEN, height=obj_label.height + 0.5, width=obj_label.width + 0.4
         )
         obj_label.align_to(obj_ctn, ORIGIN)
         super().__init__(obj_ctn, obj_label)

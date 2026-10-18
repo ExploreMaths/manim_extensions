@@ -111,6 +111,7 @@ Module Index
 .. toctree::
    :maxdepth: 3
 
+   constants
    basic/index
    algorithm/index
    arabic/index

@@ -14,6 +14,7 @@ visual demonstrations, and algorithm walkthroughs.
 from manim import Mobject, ORIGIN, VMobject, WHITE
 import numpy as np
 from .cubie import Cubie
+from ..constants import RUBIKS_RED, RUBIKS_GREEN, RUBIKS_YELLOW, RUBIKS_ORANGE, RUBIKS_BLUE
 
 from ..utils.deps import require
 
@@ -77,9 +78,9 @@ class RubiksCube(VMobject):
        class RubiksCubeColorsExample(ThreeDScene):
            def construct(self):
                # Colors are passed in the order [Up, Right, Front, Down, Left, Back]
-               # Default is [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"]
+               # Default is [WHITE, RUBIKS_RED, RUBIKS_GREEN, RUBIKS_YELLOW, RUBIKS_ORANGE, RUBIKS_BLUE]
                cube = RubiksCube(
-                   colors=[WHITE, ORANGE, DARK_BLUE, YELLOW, PINK, "#00FF00"]
+                   colors=[WHITE, ORANGE, DARK_BLUE, YELLOW, PINK, GREEN]
                ).scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                                 frame_center=cube.get_center())
@@ -168,7 +169,7 @@ class RubiksCube(VMobject):
     def __init__(
         self,
         dim: int = 3,
-        colors: list = [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"],
+        colors: list = [WHITE, RUBIKS_RED, RUBIKS_GREEN, RUBIKS_YELLOW, RUBIKS_ORANGE, RUBIKS_BLUE],
         x_offset: float = 2.1,
         y_offset: float = 2.1,
         z_offset: float = 2.1,

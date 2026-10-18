@@ -67,7 +67,7 @@ class SeqActor(VGroup):
         self.actor_name = name
         actor_label = Text(name, font_size=font_size).set_color(WHITE)
         self.actor_ctn = Rectangle(
-            color="#FFFFFF",
+            color=WHITE,
             height=actor_label.height + 0.2,
             width=actor_label.width + 0.2,
         )
