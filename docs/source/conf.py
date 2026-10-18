@@ -130,20 +130,85 @@ typehints_fully_qualified = False
 # formatter cannot recover its name at runtime and would otherwise render a
 # parameter as a 15-item union. ``typehints_formatter`` is the extension's
 # official per-annotation hook: return a reST string to override rendering.
+# The four ``manim_extensions.algorithm.node`` aliases are likewise bare
+# objects at runtime (``Vector3D is manim.typing.Vector3DLike`` etc.), and
+# sphinx-autodoc-typehints would otherwise expand them into
+# ``GenericAlias[numpy.double]``-style numpy 2.x scalar text.  Each value is
+# the dotted path of the *project* alias, so the rendered reference resolves
+# to the local ``.. autodata::`` entry on the algorithm constants page and
+# displays the project name.  Matching is deliberately layered:
+# identity first (true alias annotations), then flattened unions (Python
+# flattens ``ParsableManimColor | None`` into its atomic members, so the
+# alias object itself is no longer present), then structural equality
+# (``Point3DLike`` and ``Vector3DLike`` are separate objects with
+# identical members; one name per object, the project alias wins).
+# ``numpy.typing.NDArray`` generics are handled separately because the
+# plugin mis-renders them as ``GenericAlias[...]``.
+import types as _types
+import typing as _typing
+
 _TYPE_ALIASES = {
     "ParsableManimColor": "manim.utils.color.core.ParsableManimColor",
+    "NodeValue": "manim_extensions.algorithm.node.NodeValue",
+    "NodeBoxType": "manim_extensions.algorithm.node.NodeBoxType",
+    "Vector3D": "manim_extensions.algorithm.node.Vector3D",
+    "Point3D": "manim_extensions.algorithm.node.Point3D",
 }
+
+
+def _resolve_alias(_dotted):
+    _module, _, _attr = _dotted.rpartition(".")
+    return getattr(importlib.import_module(_module), _attr)
+
+
+def _simple_type_repr(x):
+    if x is _typing.Any:
+        return ":py:obj:`~typing.Any`"
+    if x is type(None):
+        return ":py:obj:`None`"
+    if isinstance(x, type):
+        _mod = x.__module__
+        _q = x.__qualname__
+        if _mod == "builtins":
+            return f":py:obj:`{_q}`"
+        return f":py:obj:`~{_mod}.{_q}`"
+    return str(x)
 
 
 def _typehints_formatter(annotation, *args):
     for _name, _dotted in _TYPE_ALIASES.items():
         try:
-            _module, _, _attr = _dotted.rpartition(".")
-            _target = getattr(importlib.import_module(_module), _attr)
+            _target = _resolve_alias(_dotted)
         except Exception:
             continue
-        if annotation is _target or annotation == _target:
-            return f":py:obj:`~{_name}`"
+        if annotation is _target:  # exact alias object
+            return f":py:obj:`~{_dotted}`"
+        if isinstance(annotation, _types.UnionType) and isinstance(_target, _types.UnionType):
+            _ann = set(annotation.__args__)
+            _tgt = set(_target.__args__)
+            if _tgt <= _ann and _ann - _tgt <= {type(None)}:
+                _none = " | :py:obj:`None`" if _ann - _tgt else ""
+                return f":py:obj:`~{_dotted}`{_none}"
+        # Structural match (the typehints plugin rebuilds annotations via
+        # ``get_all_type_hints``, so identity is lost for every alias; the
+        # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` etc.).
+        if annotation == _target:
+            return f":py:obj:`~{_dotted}`"
+    # numpy 2.x: ``numpy.typing.NDArray`` is a TypeAliasType; the plugin
+    # renders ``NDArray[...]`` generics as ``GenericAlias[...]``.  Only
+    # reaches here for args that do not structurally match ``Point3D``
+    # (``NDArray[numpy.float64]``), e.g. ``NDArray[Any]``.
+    _origin = getattr(annotation, "__origin__", None)
+    if (
+        type(annotation) is _types.GenericAlias
+        and isinstance(_origin, _typing.TypeAliasType)
+        and getattr(_origin, "__name__", None) == "NDArray"
+        and getattr(_origin, "__module__", "").startswith("numpy")
+    ):
+        _args = ", ".join(_simple_type_repr(a) for a in annotation.__args__)
+        # ``\ \[`` mirrors the plugin's own generic-args escaping (a bare
+        # ``[`` right after a role would be mis-parsed as reference suffix).
+        return f":py:obj:`~numpy.typing.NDArray`\\ \\[{_args}]"
     return None
 
 
