@@ -222,9 +222,9 @@ def qr_code(payload: str,
 
     if icon is not None:
         # add icon to the center
-        from ..utils.nerdfont import nerdfont_icon
+        from ..utils.nerdfont import NerdFontIcon
 
-        center_icon = nerdfont_icon(icon)
+        center_icon = NerdFontIcon(icon)
         center_icon.set_color(icon_color)
         # scale icon to fit the qr center mask
 

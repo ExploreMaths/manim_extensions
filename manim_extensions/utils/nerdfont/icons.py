@@ -74,9 +74,10 @@ def _install_font_linux() -> None:
 _install_font_linux()
 
 
-def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
+class NerdFontIcon(Text):
     """
-    Create a Nerd Font icon using the Symbols Nerd Font Mono font.
+    A Nerd Font icon mobject rendered with the Symbols Nerd Font Mono font.
+
     Please have a look at the documentation for an exhaustive list of available icons.
 
     https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
@@ -91,19 +92,18 @@ def nerdfont_icon(icon: int | str, **kwargs: Any) -> Text:
     **kwargs
         Additional keyword arguments to be passed to the
         :class:`~manim.mobject.text.text_mobject.Text` constructor.
-
-    Returns
-    -------
-        A Text object representing the specified icon.
     """
-    font_path = _font_path()
-    _install_font_linux()
-    with m.register_font(font_path):
-        kwargs["font"] = "Symbols Nerd Font Mono"
-        if isinstance(icon, str):
-            if icon in SYMBOLS_UNICODE.keys():
-                return m.Text(chr(SYMBOLS_UNICODE[icon]), **kwargs)
-            else:
-                return m.Text(icon, **kwargs)
-        elif isinstance(icon, int):
-            return m.Text(chr(icon), **kwargs)
+
+    def __init__(self, icon: int | str, **kwargs: Any) -> None:
+        font_path = _font_path()
+        _install_font_linux()
+        with m.register_font(font_path):
+            kwargs["font"] = "Symbols Nerd Font Mono"
+            if isinstance(icon, str):
+                if icon in SYMBOLS_UNICODE:
+                    text = chr(SYMBOLS_UNICODE[icon])
+                else:
+                    text = icon
+            else:  # int code point
+                text = chr(icon)
+            super().__init__(text, **kwargs)
