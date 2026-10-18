@@ -384,4 +384,21 @@ html body .highlight.sphinx_autodoc_typehints-value a:hover .kc,
 html body .highlight.sphinx_autodoc_typehints-value a:hover .pre {
     color: var(--color-link--hover);
 }
+/* String/number/operator tokens inside typehints values (e.g. the
+   Literal['complete', ...] strings): strip the pygments gold and the
+   furo code.literal border/background so they read like plain text in
+   the parameter description, matching stable.  The None link rules above
+   keep their higher specificity, so None stays link-colored. */
+html body .highlight.sphinx_autodoc_typehints-value code,
+html body .highlight.sphinx_autodoc_typehints-value code .s1,
+html body .highlight.sphinx_autodoc_typehints-value code .s2,
+html body .highlight.sphinx_autodoc_typehints-value code .kc,
+html body .highlight.sphinx_autodoc_typehints-value code .m,
+html body .highlight.sphinx_autodoc_typehints-value code .n,
+html body .highlight.sphinx_autodoc_typehints-value code .o {
+    color: inherit;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
 
