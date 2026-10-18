@@ -116,6 +116,31 @@ window.addEventListener("load", function () {
                 edge: "#d0d0d0",
                 background: "#131416"
             };
+            // Node dark-mode adaptation, mirroring the inline-code link
+            // palette (custom.css): keep the light foreground text on a
+            // deeper fill.  Extensions #D5F5E3/#1E8449 -> #145A32/#D5F5E3,
+            // manim #EBF5FB/#1A5276 -> #0F3B5F/#EBF5FB, Python
+            // white/black -> #26282B/#D0D0D0.
+            additions = `
+            g.node polygon[fill="#d5f5e3"] {
+                fill: #145a32;
+            }
+            g.node polygon[fill="#ebf5fb"] {
+                fill: #0f3b5f;
+            }
+            g.node polygon[fill="white"] {
+                fill: #26282b;
+            }
+            g.node text[fill="#1e8449"] {
+                fill: #d5f5e3;
+            }
+            g.node text[fill="#1a5276"] {
+                fill: #ebf5fb;
+            }
+            g.node text:not([fill]) {
+                fill: #d0d0d0;
+            }
+            `;
         } else {
             colors = {
                 edge: "#413c3c",

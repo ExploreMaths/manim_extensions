@@ -268,6 +268,35 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
         background-color: #124B76;
     }
 }
+/* Dark theme: legend swatches follow the same deep fills as the
+   dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
+   consistent with the nodes it describes. */
+body[data-theme="dark"] .inheritance-legend .manim-swatch {
+    background-color: #0F3B5F;
+    border-color: #EBF5FB;
+}
+body[data-theme="dark"] .inheritance-legend .extensions-swatch {
+    background-color: #145A32;
+    border-color: #D5F5E3;
+}
+body[data-theme="dark"] .inheritance-legend .python-swatch {
+    background-color: #26282B;
+    border-color: #D0D0D0;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .inheritance-legend .manim-swatch {
+        background-color: #0F3B5F;
+        border-color: #EBF5FB;
+    }
+    body:not([data-theme="light"]) .inheritance-legend .extensions-swatch {
+        background-color: #145A32;
+        border-color: #D5F5E3;
+    }
+    body:not([data-theme="light"]) .inheritance-legend .python-swatch {
+        background-color: #26282B;
+        border-color: #D0D0D0;
+    }
+}
 /* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
    entirely by responsiveSvg.js, which injects an inline <style> into the
    SVG (background + edge/arrow colors per theme).  A CSS ``filter`` on
