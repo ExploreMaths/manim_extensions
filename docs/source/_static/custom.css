@@ -413,6 +413,19 @@ html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python
     font-weight: normal;
 }
 
+/* Parameter type spans (sphinx-autodoc-typehints wraps the type links of
+   a Parameters entry, e.g. "(str)" or "(ParsableManimColor | None)"):
+   strip the furo inline-code border and background so types read as
+   plain text next to the value spans, but keep the link colours (Python
+   links inherit body colour via the rule above; numpy/pillow/manim links
+   stay link-blue). */
+html body .sphinx_autodoc_typehints-type code,
+html body .sphinx_autodoc_typehints-type a code.xref {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
 /* Signature default-value links rendered as inline code (e.g. "font
    = DEFAULT_CJK_FONT" in a signature): plain text links without the
    inline-code background and border.  Scoped to the signature default
