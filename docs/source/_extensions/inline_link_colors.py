@@ -158,14 +158,17 @@ def _classify(node):
 
 
 def _drop_auto_attribute_members(doctree):
-    """Remove attribute members from classes whose docstring has no
-    Attributes section.
+    """Remove inherited attribute members from classes whose docstring has
+    no Attributes section.
 
     autodoc ``members`` collects inherited public attributes (e.g.
     ``FileTree.code`` from ``Code``) even when the class docstring never
     documents them, producing a bare ``Attributes`` block out of nowhere.
-    Classes that do document an Attributes section keep their members —
-    numpydoc renders those entries from the docstring.
+    Attributes the class defines itself (e.g. ``NodeConfig.BOX_TYPE``) are
+    kept — they are real API surface the sidebar links to, and removing
+    them leaves dangling anchors.  Classes that do document an Attributes
+    section keep all their members — numpydoc renders those entries from
+    the docstring.
     """
     import importlib
     import inspect
@@ -199,8 +202,24 @@ def _drop_auto_attribute_members(doctree):
         if content is None:
             continue
         for c in list(content.children):
-            if isinstance(c, desc) and "attribute" in c.get("classes", ()):
-                content.remove(c)
+            if not (isinstance(c, desc) and "attribute" in c.get("classes", ())):
+                continue
+            # Only inherited members are dropped: autodoc's id for an
+            # attribute member is ``<class dotted>.<name>``; if the name is
+            # not in the class's own ``__dict__`` it comes from a base
+            # class.  Guard against odd id shapes (no dot / module-level).
+            attr_id = c.get("ids") or (
+                next(
+                    (s.get("ids") for s in c.findall(desc_signature) if s.get("ids")),
+                    None,
+                )
+            )
+            if not attr_id:
+                continue
+            name = attr_id[0].rpartition(".")[2]
+            if name and name in getattr(cls, "__dict__", {}):
+                continue
+            content.remove(c)
 
 
 def _process_doctree(app, doctree, docname):

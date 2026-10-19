@@ -92,6 +92,10 @@ _PROJECT_CONSTANTS: dict[str, tuple[str, str]] = {
         "reference/basic/mobjects",
         "manim_extensions.mobjects.DEFAULT_CJK_FONT",
     ),
+    "NodeConfig.BOX_TYPE": (
+        "reference/algorithm/classes",
+        "manim_extensions.algorithm.node.NodeConfig.BOX_TYPE",
+    ),
 }
 
 # manim.utils.color.manim_colors names (all of them).
