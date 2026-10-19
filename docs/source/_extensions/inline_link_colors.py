@@ -150,8 +150,55 @@ def _classify(node):
     return None
 
 
+def _drop_auto_attribute_members(doctree):
+    """Remove attribute members from classes whose docstring has no
+    Attributes section.
+
+    autodoc ``members`` collects inherited public attributes (e.g.
+    ``FileTree.code`` from ``Code``) even when the class docstring never
+    documents them, producing a bare ``Attributes`` block out of nowhere.
+    Classes that do document an Attributes section keep their members —
+    numpydoc renders those entries from the docstring.
+    """
+    import importlib
+    import inspect
+
+    attr_section_re = re.compile(r"^\s*Attributes\s*$", re.M)
+    for d in list(doctree.findall(desc)):
+        if "class" not in d.get("classes", ()):
+            continue
+        node_id = d.get("ids") or (
+            next(
+                (s.get("ids") for s in d.findall(desc_signature) if s.get("ids")),
+                None,
+            )
+        )
+        if not node_id:
+            continue
+        dotted = node_id[0]
+        if not dotted.startswith("manim_extensions"):
+            continue
+        try:
+            modname, _, clsname = dotted.rpartition(".")
+            cls = getattr(importlib.import_module(modname), clsname)
+            doc = inspect.getdoc(cls) or ""
+        except Exception:
+            continue
+        if attr_section_re.search(doc):
+            continue
+        content = next(
+            (c for c in d.children if isinstance(c, desc_content)), None
+        )
+        if content is None:
+            continue
+        for c in list(content.children):
+            if isinstance(c, desc) and "attribute" in c.get("classes", ()):
+                content.remove(c)
+
+
 def _process_doctree(app, doctree, docname):
     """Tag every inline code xref link with its inheritance-graph color class."""
+    _drop_auto_attribute_members(doctree)
     manim_types, ext_types = _known_type_names()
     pattern = _type_pattern(manim_types, ext_types)
     for node in doctree.findall(nodes.reference):
