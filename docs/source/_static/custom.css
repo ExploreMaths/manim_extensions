@@ -437,3 +437,20 @@ html body .sig .default_value a code {
     border: none;
     padding: 0;
 }
+
+/* Auto-listed attribute members (autodoc "members" collects inherited
+   public attributes — e.g. FileTree.code — and renders them after the
+   class docstring): keep the block flush top-level like the
+   Parameters/Returns field-list headings — no indent, not nested under
+   the example/highlight blocks. */
+dl.py.attribute {
+    margin-left: 0;
+    padding-left: 0;
+}
+dl.py.attribute > dt.sig {
+    padding-left: 0;
+    margin-left: 0;
+}
+p.rubric {
+    margin-left: 0;
+}
