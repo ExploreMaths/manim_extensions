@@ -203,13 +203,7 @@ dd p.rubric::after {
    Furo's generated inline <style> and loses by source order.  The
    colored attribute-type spans and inline-code blocks (sig-type-ref-*,
    ref-ext/ref-manim) use literal colors, so they keep their palette in
-   both themes. *//* Inline code xref links: strip the code-look border and round the fill
-   (furo gives p code.literal a 1px border and .2em corners, which leaves
-   type links such as float | ndarray looking boxy). */
-a.reference code.xref {
-    border: none;
-    border-radius: 0.25rem;
-}
+   both themes. */
 /* Inline code cross-reference links use the inheritance-graph palette
    (tags added by the inline_link_colors extension: a.reference.ref-ext for
    manim_extensions targets, .ref-manim for manim targets).  Colors match
@@ -419,11 +413,11 @@ html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python
     font-weight: normal;
 }
 
-/* Constant / cross-reference links rendered as inline code (signature
-   default values, "Defaults to WHITE" in Parameters): plain text links
-   without the inline-code background and border. */
-html body a code.xref,
-html body a code.literal,
+/* Signature default-value links rendered as inline code (e.g. "font
+   = DEFAULT_CJK_FONT" in a signature): plain text links without the
+   inline-code background and border.  Scoped to the signature default
+   value only — inline code xrefs elsewhere keep the theme's default
+   code-literal look. */
 html body .sig .default_value a,
 html body .sig .default_value a code {
     background: transparent;
