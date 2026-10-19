@@ -163,8 +163,12 @@ _TYPE_ALIASES = {
     "ParsableManimColor": "manim.utils.color.core.ParsableManimColor",
     "NodeValue": "manim_extensions.algorithm.node.NodeValue",
     "NodeBoxType": "manim_extensions.algorithm.node.NodeBoxType",
-    "Vector3D": "manim_extensions.algorithm.node.Vector3D",
-    "Point3D": "manim_extensions.algorithm.node.Point3D",
+    # ``manim_extensions.algorithm.node`` re-exports these names from
+    # ``manim.typing`` (``Vector3D is manim.typing.Vector3DLike``), so the
+    # rendered reference must point at Manim's own inventory entry —
+    # the project has no ``autodata`` anchor for an imported name.
+    "Vector3D": "manim.typing.Vector3D",
+    "Point3D": "manim.typing.Point3D",
 }
 
 
@@ -188,24 +192,35 @@ def _simple_type_repr(x):
 
 
 def _typehints_formatter(annotation, *args):
+    # Identity match first: the annotation is the exact alias object, so
+    # each alias keeps its own name and target (Point3D -> manim.typing
+    # Point3D, Vector3D -> manim.typing Vector3D).
     for _name, _dotted in _TYPE_ALIASES.items():
         try:
             _target = _resolve_alias(_dotted)
         except Exception:
             continue
-        if annotation is _target:  # exact alias object
+        if annotation is _target:
             return f":py:obj:`~{_dotted}`"
-        if isinstance(annotation, _types.UnionType) and isinstance(_target, _types.UnionType):
+    # Structural match (the typehints plugin rebuilds annotations via
+    # ``get_all_type_hints``, so identity is lost for every alias; the
+    # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` and
+    # ``Vector3D`` alike).  Only Point3D takes part here so the rebuilt
+    # scalar types render with one stable name (the most common one)
+    # instead of whichever alias sorts first.
+    try:
+        _point = _resolve_alias("manim.typing.Point3D")
+    except Exception:
+        _point = None
+    if _point is not None:
+        if isinstance(annotation, _types.UnionType) and isinstance(_point, _types.UnionType):
             _ann = set(annotation.__args__)
-            _tgt = set(_target.__args__)
+            _tgt = set(_point.__args__)
             if _tgt <= _ann and _ann - _tgt <= {type(None)}:
                 _none = " | :py:obj:`None`" if _ann - _tgt else ""
-                return f":py:obj:`~{_dotted}`{_none}"
-        # Structural match (the typehints plugin rebuilds annotations via
-        # ``get_all_type_hints``, so identity is lost for every alias; the
-        # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` etc.).
-        if annotation == _target:
-            return f":py:obj:`~{_dotted}`"
+                return f":py:obj:`~manim.typing.Point3D`{_none}"
+        if annotation == _point:
+            return ":py:obj:`~manim.typing.Point3D`"
     # numpy 2.x: ``numpy.typing.NDArray`` is a TypeAliasType; the plugin
     # renders ``NDArray[...]`` generics as ``GenericAlias[...]``.  Only
     # reaches here for args that do not structurally match ``Point3D``
