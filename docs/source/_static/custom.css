@@ -442,14 +442,19 @@ html body .sig .default_value a code {
    public attributes — e.g. FileTree.code — and renders them after the
    class docstring): keep the block flush top-level like the
    Parameters/Returns field-list headings — no indent, not nested under
-   the example/highlight blocks. */
+   the example/highlight blocks.  Furo's .sig rule hangs the first line
+   with ``text-indent: -2.5em`` + ``padding-left: 3em``; clearing the
+   padding is not enough, the negative text-indent still pushes the
+   attribute name left of the Attributes rubric heading, so zero it too. */
 dl.py.attribute {
     margin-left: 0;
     padding-left: 0;
 }
-dl.py.attribute > dt.sig {
+dl.py.attribute > dt.sig,
+dl.py.property > dt.sig {
     padding-left: 0;
     margin-left: 0;
+    text-indent: 0;
 }
 p.rubric {
     margin-left: 0;
