@@ -418,3 +418,15 @@ html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python
     text-decoration: none;
     font-weight: normal;
 }
+
+/* Constant / cross-reference links rendered as inline code (signature
+   default values, "Defaults to WHITE" in Parameters): plain text links
+   without the inline-code background and border. */
+html body a code.xref,
+html body a code.literal,
+html body .sig .default_value a,
+html body .sig .default_value a code {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
