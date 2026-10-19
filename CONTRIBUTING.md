@@ -208,6 +208,19 @@ When multiple sections are present they must follow numpydoc's canonical order:
 
 `Parameters` → `Other Parameters` → `Attributes` / `Methods` → `Returns` / `Yields` / `Receives` → `Raises` → `Warns` → `See Also` / `Notes` / `References` → `Examples`
 
+### Types come from the signature, not the docstring
+
+`sphinx-autodoc-typehints` (with `autodoc_typehints = "description"`) injects every parameter, attribute and return type from the code signature into the rendered reference page. Docstrings must **not** hand-write the parenthesised numpydoc type — a `name (type) - description` entry would render the type twice (once handwritten, once injected). Write plain `name` entries:
+
+```python
+Parameters
+----------
+factor
+    The scaling factor.
+```
+
+This is enforced by `validate_doc_sections.py` (`MANUAL_TYPE_ANNOTATION`).
+
 ### Entry description style
 
 - Parameter / return / raises / attribute entry **descriptions must start with a capital letter and end with a period** (or `?`, `!`). Descriptions that start with inline literals (`` `` `` ``), cross-reference roles (`:class:`, `:func:`, ...), or type placeholders are exempt from the capital-letter rule.

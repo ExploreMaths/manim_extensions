@@ -267,6 +267,27 @@ def _process_doctree(app, doctree, docname):
     _add_attribute_headings(doctree)
 
 
+def _find_examples_start(content, first_attr):
+    """Return the node that opens the docstring's Examples block, if any.
+
+    Autodoc renders an ``.. admonition:: Example`` (or numpydoc-style
+    example section) as a ``rubric`` titled "Examples" followed by raw
+    HTML/imagery/literal blocks.  Only blocks that sit *before* the first
+    attribute member count — an Examples section after the members keeps
+    its natural place.
+    """
+    for c in content.children:
+        if c is first_attr:
+            break
+        if isinstance(c, nodes.rubric) and c.astext().strip().lower() == "examples":
+            return c
+        if isinstance(c, nodes.raw):
+            body = c.astext().lower()
+            if "admonition" in body and "example" in body:
+                return c
+    return None
+
+
 def _add_attribute_headings(doctree):
     """Insert an ``Attributes`` rubric heading before a class's attributes.
 
@@ -277,6 +298,11 @@ def _add_attribute_headings(doctree):
     ``Attributes:`` — styled identically by custom.css (bold, capitalize,
     trailing colon).  Classes whose docstring already carries a numpydoc
     Attributes section are skipped.
+
+    The whole attribute block is also moved before the docstring's
+    Examples section (when one precedes it), so the members read in the
+    order ``description → Attributes → Examples`` instead of trailing the
+    example imagery.
     """
     for d in list(doctree.findall(desc)):
         if "class" not in d.get("classes", ()):
@@ -300,8 +326,29 @@ def _add_attribute_headings(doctree):
             for c in preceding
         ):
             continue
-        idx = content.children.index(first_attr)
-        content.insert(idx, nodes.rubric("", "Attributes"))
+        ex_start = _find_examples_start(content, first_attr)
+        rubric = nodes.rubric("", "Attributes")
+        if ex_start is None:
+            idx = content.children.index(first_attr)
+            content.insert(idx, rubric)
+            continue
+        # Move rubric + attribute members in front of the Examples block.
+        # ``index`` nodes sit between members and must travel with them.
+        idx_attr = content.children.index(first_attr)
+        block = []
+        for c in content.children[idx_attr:]:
+            if c in attr_descs or (
+                getattr(c, "tagname", None) == "index" and block
+            ):
+                block.append(c)
+            elif getattr(c, "tagname", None) == "index":
+                continue
+            else:
+                break
+        idx_ex = content.children.index(ex_start)
+        head = content.children[:idx_ex]
+        tail = [c for c in content.children[idx_ex:] if c not in block]
+        content.children[:] = head + [rubric] + block + tail
 
 
 def setup(app):

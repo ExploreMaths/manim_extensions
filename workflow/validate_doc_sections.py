@@ -38,6 +38,11 @@ This script checks that public functions, methods, and classes in
    when it follows another numpydoc section and when the docstring has
    no section header at all. Entry descriptions must be indented deeper
    than the entry line (flat descriptions break napoleon's parsing).
+6c. Numpydoc entries must not hand-write a parenthesised type
+   (``name (type) - description``): sphinx-autodoc-typehints injects
+   every parameter/attribute/return type from the code signature
+   (``autodoc_typehints = "description"``), so a manual type renders
+   twice.
 7. Mobject subclasses (including indirect subclasses within the same file)
    must include a ``.. manim::`` example block in the class docstring.
    Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
@@ -127,6 +132,14 @@ NON_RENDERABLE_BASES = {
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
 BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
 SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
+# numpydoc's hand-written entry form ``name (type) - description``.  The
+# parenthesised type is rejected because autodoc_typehints injects the
+# type from the signature and the manual one would render twice.  Both
+# inline (``name (type) - desc``) and stacked (``name (type)`` on its own
+# entry line) forms are caught.
+NUMPYDOC_TYPE_ENTRY_RE = re.compile(
+    r"^(\*{0,2}[\w.]+)\s*\(\s*[^)]*\)\s*([–—-].*)?$"
+)
 
 # Sections whose entry descriptions must be style-checked.
 STYLE_SECTIONS = {
@@ -524,6 +537,52 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     })
 
 
+def check_no_manual_types(doc, qualname, lineno, violations):
+    """Numpydoc entries must not hand-write a parenthesised type.
+
+    With ``autodoc_typehints = "description"`` every parameter, attribute
+    and return type is injected from the code signature at render time, so
+    a manual ``name (type) - description`` entry would display the type
+    twice.  Only first-level entry lines are checked (continuation
+    descriptions legitimately mention types in prose).
+    """
+    lines = doc.splitlines()
+    for name, hpos in section_positions(doc):
+        if name not in ("Parameters", "Other Parameters", "Attributes",
+                        "Returns", "Yields", "Receives", "Raises"):
+            continue
+        j = hpos + 2
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        if j >= len(lines):
+            continue
+        item_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
+        for k in range(j, len(lines)):
+            stripped = lines[k].strip()
+            if not stripped:
+                continue
+            indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
+            if (k + 1 < len(lines)
+                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                    and indent <= item_indent):
+                break
+            if indent < item_indent:
+                break
+            if indent == item_indent:
+                m = NUMPYDOC_TYPE_ENTRY_RE.match(stripped)
+                if m:
+                    violations.append({
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "MANUAL_TYPE_ANNOTATION",
+                        "message": f"entry '{stripped[:50]}' hand-writes a "
+                                   f"parenthesised type; types are injected "
+                                   f"from the signature "
+                                   f"(autodoc_typehints = \"description\"), "
+                                   f"so it would render twice",
+                    })
+
+
 def check_section_spacing(doc, qualname, lineno, violations):
     """Section headers must be blank-line separated and tightly underlined.
 
@@ -787,6 +846,7 @@ def check_file(filepath: Path) -> list:
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
+        check_no_manual_types(doc, qualname, node.lineno, violations)
         secs = section_names(doc)
         params = function_params(node)
         # __init__ parameters are documented in the class docstring instead;
@@ -914,6 +974,7 @@ def check_file(filepath: Path) -> list:
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
+        check_no_manual_types(doc, qualname, node.lineno, violations)
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:
