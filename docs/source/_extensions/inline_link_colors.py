@@ -147,6 +147,13 @@ def _classify(node):
     uri = node.get("refuri") or ""
     if _MANIM_DOCS_HOST in uri and "/reference/manim." in uri:
         return "ref-manim"
+    # Cross-page internal references carry a relative refuri whose fragment
+    # is the canonical dotted target, e.g. ``../mindmap/nodes.html#manim_
+    # extensions.mindmap.nodes.node.Node`` — classify from the fragment.
+    if "#manim_extensions." in uri:
+        return "ref-ext"
+    if "#manim." in uri:
+        return "ref-manim"
     return None
 
 
