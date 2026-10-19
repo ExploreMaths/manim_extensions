@@ -454,3 +454,11 @@ dl.py.attribute > dt.sig {
 p.rubric {
     margin-left: 0;
 }
+/* Attribute-member signature types (e.g. FileTree.code : VMobject):
+   Python builtin type links (str, dict, ...) must match the bold look
+   of the other attribute types — the global "python links inherit body
+   colour" rule strips boldness; restore it inside the attribute list. */
+dl.py.attribute > dt.sig a[href^="https://docs.python.org"],
+dl.py.attribute > dt.sig a[href^="https://docs.python.org"] .pre {
+    font-weight: inherit;
+}
