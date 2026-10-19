@@ -14,5 +14,6 @@ dependency loading), ``manim_extensions.utils.deprecation`` (RST-aware
 .. toctree::
    :hidden:
 
+   classes
    functions
    constants

@@ -92,9 +92,23 @@ class NerdFontIcon(Text):
     **kwargs
         Additional keyword arguments to be passed to the
         :class:`~manim.mobject.text.text_mobject.Text` constructor.
+
+    Examples
+    --------
+    .. manim:: NerdFontIconExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.utils.nerdfont import NerdFontIcon
+
+       class NerdFontIconExample(Scene):
+           def construct(self):
+               icon = NerdFontIcon("heart").scale(8)
+               self.add(icon)
     """
 
     def __init__(self, icon: int | str, **kwargs: Any) -> None:
+        """Construct a Nerd Font icon mobject."""
         font_path = _font_path()
         _install_font_linux()
         with m.register_font(font_path):
