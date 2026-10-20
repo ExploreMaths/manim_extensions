@@ -39,6 +39,10 @@
     border: none;
 }
 
+/* Example cards nest pre inside the admonition container whose em chain
+   shrinks text; leaving pre at the inherited size renders ~11.6px, too
+   small. 15px keeps the example code close to the plain code-block size
+   (14.3px furo default) while staying legible inside the card. */
 .admonition-manim-example .highlight pre {
     font-size: 15px;
 }
