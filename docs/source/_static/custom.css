@@ -269,6 +269,30 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
         background-color: #124B76;
     }
 }
+/* Plain references whose fragment resolves to a manim_extensions / manim
+   object (module index pages and toctree entries list classes as ordinary
+   links — the doctree extension cannot see those, they are expanded by the
+   HTML theme): color them with the same inheritance-graph palette. */
+a.reference[href*="#manim_extensions."]:not(.default_value) {
+    color: #1E8449;
+}
+a.reference[href*="#manim."]:not(.default_value) {
+    color: #1A5276;
+}
+body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
+    color: #D5F5E3;
+}
+body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) {
+    color: #EBF5FB;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) {
+        color: #D5F5E3;
+    }
+    body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) {
+        color: #EBF5FB;
+    }
+}
 /* Dark theme: legend swatches follow the same deep fills as the
    dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
    consistent with the nodes it describes. */

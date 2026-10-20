@@ -128,14 +128,6 @@ def _split_type_refs(annotation, pattern, manim_types, ext_types):
         annotation.children[idx:idx + 1] = new_children
 
 
-def _has_inline_code(node):
-    """True if this reference renders as an inline-code link (code.xref)."""
-    return any(
-        isinstance(child, nodes.Element) and "xref" in child.get("classes", ())
-        for child in node.children
-    )
-
-
 def _classify(node):
     """Return the inheritance-graph color class for a resolved reference."""
     target = node.get("refid") or ""
@@ -227,9 +219,11 @@ def _process_doctree(app, doctree, docname):
     _drop_auto_attribute_members(doctree)
     manim_types, ext_types = _known_type_names()
     pattern = _type_pattern(manim_types, ext_types)
+    # Color every reference that resolves to a project (manim_extensions) or
+    # manim object, not only those embedding inline code: module index pages
+    # list their classes/functions as plain links and those should carry the
+    # same inheritance-graph color.
     for node in doctree.findall(nodes.reference):
-        if not _has_inline_code(node):
-            continue
         link_class = _classify(node)
         if not link_class:
             continue
