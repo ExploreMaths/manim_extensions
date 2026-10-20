@@ -36,25 +36,25 @@ class VPivotJoint(VConstraint):
         The second Mobject to be connected.
     pivot_world
         The global coordinate position of the pivot point. If provided,
-        `anchor_a_local` and `anchor_b_local` are calculated automatically based on this.
+        ``anchor_a_local`` and ``anchor_b_local`` are calculated automatically based on this.
     anchor_a_local
-        The local anchor point on `a_mob` corresponding to the pivot,
+        The local anchor point on ``a_mob`` corresponding to the pivot,
         relative to the Mobject's center.
     anchor_b_local
-        The local anchor point on `b_mob` corresponding to the pivot,
+        The local anchor point on ``b_mob`` corresponding to the pivot,
         relative to the Mobject's center.
     anchor_a_appearance
-        The Mobject used to visually represent the anchor point on `a_mob`
-        (defaults to a red `Dot`).
+        The Mobject used to visually represent the anchor point on ``a_mob``
+        (defaults to a red ``Dot``).
     anchor_b_appearance
-        The Mobject used to visually represent the anchor point on `b_mob`
-        (defaults to a red `Dot`).
+        The Mobject used to visually represent the anchor point on ``b_mob``
+        (defaults to a red ``Dot``).
     pivot_appearance
         The Mobject used to visually represent the pivot point
-        (defaults to a white `Dot` with 0.05 radius).
+        (defaults to a white ``Dot`` with 0.05 radius).
     connect_line_class
         The Manim class used to draw the line connecting the anchors to the
-        pivot (e.g., `Line`). Pass `None` to disable the connecting lines.
+        pivot (e.g., ``Line``). Pass ``None`` to disable the connecting lines.
     connect_line_config
         Configuration dictionary for the styling of the connecting lines.
     **kwargs

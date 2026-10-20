@@ -123,7 +123,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """Executes a single frame update step for the physical simulation.
 
         Divides the frame duration into multiple sub-steps and performs incremental
-        `step` calculations on the physical space. This significantly improves
+        ``step`` calculations on the physical space. This significantly improves
         numerical stability and precision, preventing high-speed objects from
         tunneling through boundaries.
 
@@ -141,7 +141,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def __simulate_updater(self, mob: Mobject):
         """Synchronizes a Mobject's position and rotation with its associated physical body.
 
-        Reads the latest kinematic state (position and angle) from the Pymunk `Body`
+        Reads the latest kinematic state (position and angle) from the Pymunk ``Body``
         and updates the Mobject's transform. This ensures that the visual
         representation in Manim stays perfectly aligned with the physics simulation.
 
@@ -339,7 +339,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     ):
         """Registers a wildcard collision handler for a specific collision type.
 
-        This handler triggers whenever a shape with `collision_type_a` collides
+        This handler triggers whenever a shape with ``collision_type_a`` collides
         with any other shape in the space, regardless of the other shape's
         collision type. It is useful for global behaviors, such as playing a
         sound whenever a specific object hits anything.

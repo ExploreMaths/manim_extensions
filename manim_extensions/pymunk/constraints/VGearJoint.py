@@ -31,21 +31,21 @@ class VGearJoint(VConstraint):
         The first Mobject to be connected. Typically represents the driving
         or reference gear.
     b_mob
-        The second Mobject to be connected. Its rotation is linked to `a_mob`
-        based on the defined `ratio`.
+        The second Mobject to be connected. Its rotation is linked to ``a_mob``
+        based on the defined ``ratio``.
     phase
         The angular offset (in radians) between the two bodies. Adjusts the
         initial relative orientation alignment.
     ratio
-        The gear ratio. Defines how the angular velocity of `b_mob` relates to
-        `a_mob`. For example, a ratio of 2.0 means `b_mob` rotates twice as
-        fast as `a_mob`.
+        The gear ratio. Defines how the angular velocity of ``b_mob`` relates to
+        ``a_mob``. For example, a ratio of 2.0 means ``b_mob`` rotates twice as
+        fast as ``a_mob``.
     indicator_line_class
         The class used to visualize the rotational direction or connection
-        (defaults to `Arrow`). If set to `None`, no indicator will be rendered.
+        (defaults to ``Arrow``). If set to ``None``, no indicator will be rendered.
     indicator_line_config
         A dictionary defining the visual style of the indicator line,
-        including `color` and `stroke_width`.
+        including ``color`` and ``stroke_width``.
     indicator_length
         The visual length of the indicator arrows drawn on each Mobject.
     **kwargs

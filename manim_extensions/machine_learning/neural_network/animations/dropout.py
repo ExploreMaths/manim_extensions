@@ -283,7 +283,7 @@ def make_neural_network_dropout_animation(
     NOTE Does dropout only on feed forward layers.
 
     1. Does dropout
-    2. If `do_forward_pass` then do forward pass animation
+    2. If ``do_forward_pass`` then do forward pass animation
     3. Revert network to pre-dropout appearance
 
     Parameters

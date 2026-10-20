@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 class VPinJoint(VConstraint):
     """A pin joint keeps a fixed distance between two anchor points on two rigid bodies.
     It acts like a solid, weightless rod connecting two points, allowing them
-    to rotate freely around the anchors while maintaining the specified `distance`.
+    to rotate freely around the anchors while maintaining the specified ``distance``.
 
     Parameters
     ----------
@@ -32,26 +32,26 @@ class VPinJoint(VConstraint):
     b_mob
         The second Mobject to be connected.
     anchor_a_local
-        The local anchor point on `a_mob` where the pin is attached,
+        The local anchor point on ``a_mob`` where the pin is attached,
         relative to the Mobject's center.
     anchor_b_local
-        The local anchor point on `b_mob` where the pin is attached,
+        The local anchor point on ``b_mob`` where the pin is attached,
         relative to the Mobject's center.
     distance
-        The fixed distance to maintain between the two anchors. If `None`,
+        The fixed distance to maintain between the two anchors. If ``None``,
         it is automatically calculated as the initial distance between anchors.
     anchor_a_appearance
-        The Mobject used to visually represent the anchor point on `a_mob`
-        (e.g., a red `Dot`).
+        The Mobject used to visually represent the anchor point on ``a_mob``
+        (e.g., a red ``Dot``).
     anchor_b_appearance
-        The Mobject used to visually represent the anchor point on `b_mob`
-        (e.g., a red `Dot`).
+        The Mobject used to visually represent the anchor point on ``b_mob``
+        (e.g., a red ``Dot``).
     connect_line_class
-        The class used to draw the connecting rod (e.g., `Line`).
-        Defaults to `None` for no visible connection.
+        The class used to draw the connecting rod (e.g., ``Line``).
+        Defaults to ``None`` for no visible connection.
     connect_line_config
         A dictionary defining the visual style of the connecting line,
-        such as `color` and `stroke_width`.
+        such as ``color`` and ``stroke_width``.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 

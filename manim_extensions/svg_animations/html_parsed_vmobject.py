@@ -117,8 +117,8 @@ def _ensure_to_svg_plugin() -> None:
         raise ImportError(
             "HTMLParsedVMobject requires the manim-mobject-svg plugin "
             "(it provides VMobject.to_svg()). Install it with "
-            "`pip install manim-mobject-svg`; on Python 3.13+ use "
-            "`pip install --ignore-requires-python manim-mobject-svg`."
+            "``pip install manim-mobject-svg``; on Python 3.13+ use "
+            "``pip install --ignore-requires-python manim-mobject-svg``."
         ) from exc
 
 

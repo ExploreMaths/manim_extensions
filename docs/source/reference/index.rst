@@ -102,6 +102,7 @@ from base Manim in blue.
    manim_extensions.table.row.Row
    manim_extensions.table.cell.Cell
    manim_extensions.weighted_line.weighted_line.WeightedLine
+   manim_extensions.utils.nerdfont.icons.NerdFontIcon
    :parts: 1
    :top-classes: manim.mobject.mobject.Mobject, manim.animation.animation.Animation, manim.mobject.types.vectorized_mobject.VMobject, manim.mobject.types.vectorized_mobject.SVGMobject, manim.mobject.geometry.line.Line, manim.animation.composition.AnimationGroup
 

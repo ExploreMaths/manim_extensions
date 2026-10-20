@@ -39,11 +39,11 @@ class VGrooveJoint(VConstraint):
     b_mob
         The Mobject that contains the sliding anchor (the slider).
     groove_a_local
-        The start point of the groove, in `a_mob`'s local coordinates.
+        The start point of the groove, in ``a_mob``'s local coordinates.
     groove_b_local
-        The end point of the groove, in `a_mob`'s local coordinates.
+        The end point of the groove, in ``a_mob``'s local coordinates.
     anchor_b_local
-        The anchor point on `b_mob` that slides within the groove, in local coordinates.
+        The anchor point on ``b_mob`` that slides within the groove, in local coordinates.
     groove_a_appearance
         Visual Mobject representing the start of the groove.
     groove_b_appearance

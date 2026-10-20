@@ -33,35 +33,35 @@ class VDampedSpring(VConstraint):
         The first Mobject to be connected. Acts as one of the anchor points
         for the spring.
     b_mob
-        The second Mobject to be connected. Linked to `a_mob` via the
+        The second Mobject to be connected. Linked to ``a_mob`` via the
         physical spring constraint.
     anchor_a_local
-        The local anchor point on `a_mob` where the spring is attached,
+        The local anchor point on ``a_mob`` where the spring is attached,
         relative to the Mobject's center.
     anchor_b_local
-        The local anchor point on `b_mob` where the spring is attached,
+        The local anchor point on ``b_mob`` where the spring is attached,
         relative to the Mobject's center.
     rest_length
         The equilibrium length of the spring. When the distance between anchors
         equals this value, the spring exerts no force.
     stiffness
         The spring constant :math:`k` (Young's modulus). Determines how strongly
-        the spring pulls or pushes to return to `rest_length`.
+        the spring pulls or pushes to return to ``rest_length``.
     damping
         The damping coefficient :math:`c`. Used to simulate viscous friction,
         causing the kinetic energy of the system to dissipate over time.
     mob_a_appearance
-        The Mobject used to visually represent the anchor point on `a_mob`
+        The Mobject used to visually represent the anchor point on ``a_mob``
         (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     mob_b_appearance
-        The Mobject used to visually represent the anchor point on `b_mob`
+        The Mobject used to visually represent the anchor point on ``b_mob``
         (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     connect_line_class
         The class used to visualize the spring body (defaults to :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`).
-        If set to `None`, the spring connection will be invisible.
+        If set to ``None``, the spring connection will be invisible.
     connect_line_config
-        A dictionary defining the visual style of the `connect_line_class`,
-        such as `color` and `stroke_width`.
+        A dictionary defining the visual style of the ``connect_line_class``,
+        such as ``color`` and ``stroke_width``.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 

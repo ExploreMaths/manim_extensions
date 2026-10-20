@@ -30,7 +30,7 @@ class VDampedRotarySpring(VConstraint):
     a_mob
         The first Mobject to be connected. Typically acts as the pivot point or one of the bodies under physical influence.
     b_mob
-        The second Mobject to be connected. It is linked to `a_mob` via a physical constraint such as a spring or hinge.
+        The second Mobject to be connected. It is linked to ``a_mob`` via a physical constraint such as a spring or hinge.
     rest_angle
         The equilibrium angle (in radians). The target angle between the two objects when the system is at rest and no external forces are applied.
     stiffness
@@ -38,13 +38,13 @@ class VDampedRotarySpring(VConstraint):
     damping
         The damping coefficient. Used to simulate energy dissipation (like friction or air resistance). Higher values cause oscillations to decay faster.
     arc_indicator_class
-        The class used to visualize the angle (defaults to `Arc`). If set to `None`, no angular arc will be rendered.
+        The class used to visualize the angle (defaults to ``Arc``). If set to ``None``, no angular arc will be rendered.
     arc_indicator_config
-        A dictionary defining the visual style of the arc indicator, including `radius`, `color`, and `stroke_width`.
+        A dictionary defining the visual style of the arc indicator, including ``radius``, ``color``, and ``stroke_width``.
     connect_line_class
-        The class used to draw a connecting line between the two objects (e.g., `Line`). Defaults to `None` for no visible connection.
+        The class used to draw a connecting line between the two objects (e.g., ``Line``). Defaults to ``None`` for no visible connection.
     connect_line_config
-        A dictionary defining the visual style of the connecting line, such as `color` and `stroke_width`.
+        A dictionary defining the visual style of the connecting line, such as ``color`` and ``stroke_width``.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
 

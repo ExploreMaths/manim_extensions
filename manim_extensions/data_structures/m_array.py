@@ -244,13 +244,13 @@ class MArrayElement(VGroup):
         Parameters
         ----------
         init_square
-            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Square` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
+            If ``True``, instantiates a :class:`~manim.mobject.geometry.polygram.Square` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         init_value
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         init_index
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         next_to_mob
             Specifies placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
         next_to_dir
@@ -285,7 +285,7 @@ class MArrayElement(VGroup):
             self.add(self.__mob_label)
 
     def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayElement":
-        """Deepcopy that excludes attributes specified in `exclude_list`."""
+        """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayElement__scene"]
 
@@ -407,7 +407,7 @@ class MArrayElement(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -450,7 +450,7 @@ class MArrayElement(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -493,7 +493,7 @@ class MArrayElement(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -574,13 +574,13 @@ class MArray(VGroup):
     index_start
         Specifies the starting value of displayable index.
     index_hex_display
-        If `True`, displays indices in hex.
+        If ``True``, displays indices in hex.
     hide_index
-        If `True`, doesn't display indices.
+        If ``True``, doesn't display indices.
     arr_dir
         Specifies the growth direction of the array.
     switch_index_pos
-        If `True`, displays the element indices on the opposite side of the array growth direction. Defaults to ``False``.
+        If ``True``, displays the element indices on the opposite side of the array growth direction. Defaults to ``False``.
     arr_label_pos
         Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     arr_label_gap
@@ -609,9 +609,9 @@ class MArray(VGroup):
     __index_start : :class:`int`
         The starting value of displayable index.
     __index_hex_display : :class:`bool`
-        If `True`, displays indices in hex.
+        If ``True``, displays indices in hex.
     __hide_index : :class:`bool`
-        If `True`, doesn't display indices.
+        If ``True``, doesn't display indices.
     __arr_dir : :class:`~.m_enum.MArrayDirection`
         The growth direction of the array.
     __arr_label_pos : :class:`~.m_enum.MArrayDirection`
@@ -843,7 +843,7 @@ class MArray(VGroup):
         value
             Specifies the value of the new element.
         shift_label
-            If `True`, shifts the :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` to center of the array.
+            If ``True``, shifts the :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` to center of the array.
         append_anim
             Animation to be applied to the new element.
         append_anim_args
@@ -1035,9 +1035,9 @@ class MArray(VGroup):
         index_start
             Specifies the starting value of displayable index.
         index_hex_display
-            If `True`, displays indices in hex.
+            If ``True``, displays indices in hex.
         hide_index
-            If `True`, doesn't display indices.
+            If ``True``, doesn't display indices.
         arr_dir
             Specifies the growth direction of the array.
         arr_label_pos
@@ -1091,7 +1091,7 @@ class MArray(VGroup):
         Parameters
         ----------
         init_arr_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         if init_arr_label:
@@ -1109,7 +1109,7 @@ class MArray(VGroup):
             self.add(self.__mob_arr_label)
 
     def __deepcopy__(self, memo: dict[int, Any]) -> "MArray":
-        """Deepcopy that excludes attributes specified in `exclude_list`."""
+        """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArray__scene"]
 
@@ -1236,7 +1236,7 @@ class MArray(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -1284,7 +1284,7 @@ class MArray(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -1328,7 +1328,7 @@ class MArray(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -1477,7 +1477,7 @@ class MArray(VGroup):
         mob_index_args
             Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -1535,7 +1535,7 @@ class MArray(VGroup):
         update_anim_target
             Specifies the target :class:`~manim.mobject.mobject.Mobject` of the :class:`~manim_extensions.data_structures.m_array.MArrayElement` on which the update :class:`~manim.animation.animation.Animation` is to be played.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -1816,9 +1816,9 @@ class MArrayPointer(VGroup):
         Parameters
         ----------
         init_arrow
-            If `True`, instantiates a :class:`~manim.mobject.geometry.line.Arrow` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
+            If ``True``, instantiates a :class:`~manim.mobject.geometry.line.Arrow` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         if init_arrow:
@@ -1855,7 +1855,7 @@ class MArrayPointer(VGroup):
         )
 
     def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayPointer":
-        """Deepcopy that excludes attributes specified in `exclude_list`."""
+        """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
 
@@ -1947,7 +1947,7 @@ class MArrayPointer(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -2003,7 +2003,7 @@ class MArrayPointer(VGroup):
         index
             Specifies the index of the element to which the pointer is to be shifted.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -2221,9 +2221,9 @@ class MArraySlidingWindow(VGroup):
         Parameters
         ----------
         pos_window
-            If `True`, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
+            If ``True``, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         pos_label
-            If `True`, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
+            If ``True``, correctly positions :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         if pos_window:
@@ -2328,9 +2328,9 @@ class MArraySlidingWindow(VGroup):
         Parameters
         ----------
         init_arrow
-            If `True`, instantiates a :class:`~manim.mobject.geometry.polygram.Rectangle` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
+            If ``True``, instantiates a :class:`~manim.mobject.geometry.polygram.Rectangle` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         init_label
-            If `True`, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
+            If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         if init_window:
@@ -2352,7 +2352,7 @@ class MArraySlidingWindow(VGroup):
         self.__pos_mobs(True, True)
 
     def __deepcopy__(self, memo: dict[int, Any]) -> "MArraySlidingWindow":
-        """Deepcopy that excludes attributes specified in `exclude_list`."""
+        """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]
 
@@ -2431,7 +2431,7 @@ class MArraySlidingWindow(VGroup):
         update_anim_args
             Arguments for update :class:`~manim.animation.animation.Animation`.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -2487,7 +2487,7 @@ class MArraySlidingWindow(VGroup):
         index
             Specifies the index of the element to which the sliding window is to be shifted.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 
@@ -2543,7 +2543,7 @@ class MArraySlidingWindow(VGroup):
         size
             Specifies the number of elements the sliding window should enclose.
         play_anim
-            If `True`, plays the animation(s).
+            If ``True``, plays the animation(s).
         play_anim_args
             Arguments for :meth:`~manim.scene.scene.Scene.play()`.
 

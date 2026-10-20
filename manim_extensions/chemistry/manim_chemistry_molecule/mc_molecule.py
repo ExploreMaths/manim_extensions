@@ -228,7 +228,7 @@ class MCMolecule:
         elements_data_dict: Optional[dict] = None,
     ):
         """
-        Similar to `construct_from_file` but returning a list of MCMolecules.
+        Similar to ``construct_from_file`` but returning a list of MCMolecules.
 
         Parameters
         ----------
@@ -326,7 +326,7 @@ class MCMolecule:
         elements_data_dict: Optional[dict] = None,
     ):
         """
-        Similar to `construct_from_string` but returning a list of MCMolecules.
+        Similar to ``construct_from_string`` but returning a list of MCMolecules.
 
         Parameters
         ----------

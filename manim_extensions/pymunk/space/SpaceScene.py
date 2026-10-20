@@ -335,7 +335,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mobs
-            The VConstraint objects to be added. Each must implement an `install`
+            The VConstraint objects to be added. Each must implement an ``install``
             method to link with the physical space.
         """
         self.add(*mobs)
