@@ -200,6 +200,50 @@ def _process_literals(app, doctree, docname) -> None:
             _link_tokens(node, text, app, docdir)
 
 
+def _process_color_codes(app, doctree, docname) -> None:
+    """Link manim color names inside inline code in prose.
+
+    Docstrings often write colors as `` `WHITE` `` / `` `[BLUE, GREEN]` ``;
+    without a cross-reference they render as plain text.  Replace the color
+    tokens with links to ``constants/colors`` so they carry the link color,
+    like the signature-default links do.  The constants category pages are
+    skipped: there the names are the documented objects themselves.
+    """
+    if docname.startswith("constants/"):
+        return
+    docdir = posixpath.dirname(docname) or "."
+    for node in doctree.findall(nodes.literal):
+        text = node.astext().strip()
+        if not _TOKEN_RE.search(text):
+            continue
+        if not any(name in text for name in _color_names()):
+            continue
+        parts = []
+        pos = 0
+        for m in _TOKEN_RE.finditer(text):
+            if m.start() > pos:
+                parts.append(nodes.Text(text[pos:m.start()]))
+            name = m.group(0)
+            if name in _color_names():
+                rel = posixpath.relpath("constants/colors.html",
+                                        start=docdir)
+                ref = nodes.reference(
+                    "", "", internal=True,
+                    refuri=f"{rel}#manim.utils.color.manim_colors.{name}",
+                )
+                ref += nodes.Text(name)
+                parts.append(ref)
+            else:
+                parts.append(nodes.Text(name))
+            pos = m.end()
+        if pos < len(text):
+            parts.append(nodes.Text(text[pos:]))
+        del node[:]
+        for part in parts:
+            node.append(part)
+
+
 def setup(app):
     app.connect("doctree-resolved", _process_literals)
+    app.connect("doctree-resolved", _process_color_codes)
     return {"version": "1.1", "parallel_read_safe": True, "parallel_write_safe": True}
