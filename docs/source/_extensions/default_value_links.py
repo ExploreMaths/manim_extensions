@@ -18,6 +18,7 @@ pick up the inline-code background/border.
 from __future__ import annotations
 
 import posixpath
+import re
 
 from docutils import nodes
 
@@ -86,18 +87,6 @@ _CONSTANT_PAGES: dict[str, str] = {
     "SHIFT_VALUE": "constants/messages",
 }
 
-# manim_extensions constants used as signature defaults -> (rst path, anchor).
-_PROJECT_CONSTANTS: dict[str, tuple[str, str]] = {
-    "DEFAULT_CJK_FONT": (
-        "reference/basic/mobjects",
-        "manim_extensions.mobjects.DEFAULT_CJK_FONT",
-    ),
-    "NodeConfig.BOX_TYPE": (
-        "reference/algorithm/classes",
-        "manim_extensions.algorithm.node.NodeConfig.BOX_TYPE",
-    ),
-}
-
 # manim.utils.color.manim_colors names (all of them).
 _COLOR_NAMES: frozenset[str] | None = None
 
@@ -116,17 +105,77 @@ def _color_names() -> frozenset[str]:
     return _COLOR_NAMES
 
 
-def _link_for(name: str) -> tuple[str, str] | None:
-    """Return ``(rst_path, anchor)`` for a known constant name, else None."""
-    proj = _PROJECT_CONSTANTS.get(name)
-    if proj is not None:
-        return proj
+def _link_for(name: str, app, docdir: str) -> tuple[str, str] | None:
+    """Return ``(rst_path, anchor)`` for a known constant name, else None.
+
+    Resolution order:
+    1. manim.utils.color.manim_colors names (auto-collected, all of them);
+    2. hard-coded manim.constants category pages;
+    3. any object the py domain registered this build — the default text is
+       matched as a suffix of the fully-qualified object name
+       (``NodeConfig.BOX_TYPE`` → ``...node.NodeConfig.BOX_TYPE``) and, when
+       the match is unique, linked to its autodoc page.  This keeps every
+       project constant/attribute covered without maintaining the list.
+    """
+    if name in _color_names():
+        return "constants/colors", f"manim.utils.color.manim_colors.{name}"
     page = _CONSTANT_PAGES.get(name)
     if page is not None:
         return page, f"manim.constants.{name}"
-    if name in _color_names():
-        return "constants/colors", f"manim.utils.color.manim_colors.{name}"
+    # Fall back to whatever the py domain registered (project objects).
+    try:
+        objects = app.env.domains["py"].data["objects"]
+    except (KeyError, AttributeError):
+        objects = {}
+    matches = [
+        full for full in objects
+        if full == name or full.endswith("." + name)
+    ]
+    if len(matches) == 1:
+        entry = objects[matches[0]]
+        rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
+        return rel, entry.node_id
     return None
+
+
+# A constant-looking token inside a default expression: an ALL-CAPS name
+# (``WHITE``, ``PI``) or a dotted name (``NodeConfig.BOX_TYPE``).
+_TOKEN_RE = re.compile(
+    r"(?:[A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_.]*)"
+    r"|\b[A-Z][A-Z0-9_]{1,}\b"
+)
+# Defaults that are composite expressions (tuple/list/dict/call): link the
+# constant tokens inside instead of leaving the whole text plain.
+_COMPOSITE_RE = re.compile(r"[({[\<]")
+
+
+def _link_tokens(node, text: str, app, docdir: str) -> None:
+    """Replace linkable constant tokens inside ``text`` with references."""
+    parts = []
+    pos = 0
+    for m in _TOKEN_RE.finditer(text):
+        if m.start() > pos:
+            parts.append(nodes.Text(text[pos:m.start()]))
+        name = m.group(0)
+        target = _link_for(name, app, docdir)
+        if target is None:
+            parts.append(nodes.Text(name))
+        else:
+            page, anchor = target
+            rel = posixpath.relpath(f"{page}.html", start=docdir)
+            ref = nodes.reference("", "", internal=True,
+                                  refuri=f"{rel}#{anchor}")
+            ref += nodes.Text(name)
+            parts.append(ref)
+        pos = m.end()
+    if pos < len(text):
+        parts.append(nodes.Text(text[pos:]))
+    # Rebuild via append so docutils sets .parent on each child
+    # (a bare ``node.children = parts`` leaves them parentless, which
+    # breaks the HTML writer's reference checks).
+    del node[:]
+    for part in parts:
+        node.append(part)
 
 
 def _process_literals(app, doctree, docname) -> None:
@@ -136,14 +185,19 @@ def _process_literals(app, doctree, docname) -> None:
         if "default_value" not in classes:
             continue
         text = node.astext().strip()
-        target = _link_for(text)
-        if target is None:
+        target = _link_for(text, app, docdir)
+        if target is not None:
+            page, anchor = target
+            rel = posixpath.relpath(f"{page}.html", start=docdir)
+            ref = nodes.reference("", "", internal=True,
+                                  refuri=f"{rel}#{anchor}")
+            ref += nodes.Text(text)
+            node.replace_self(ref)
             continue
-        page, anchor = target
-        rel = posixpath.relpath(f"{page}.html", start=docdir)
-        ref = nodes.reference("", "", internal=True, refuri=f"{rel}#{anchor}")
-        ref += nodes.Text(text)
-        node.replace_self(ref)
+        # Composite default (``(UP, LEFT)``, ``[WHITE, BLUE]``, ...): link
+        # the constant tokens it embeds.
+        if _COMPOSITE_RE.search(text) and _TOKEN_RE.search(text):
+            _link_tokens(node, text, app, docdir)
 
 
 def setup(app):
