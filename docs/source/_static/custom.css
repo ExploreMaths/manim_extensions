@@ -272,25 +272,55 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
 /* Plain references whose fragment resolves to a manim_extensions / manim
    object (module index pages and toctree entries list classes as ordinary
    links — the doctree extension cannot see those, they are expanded by the
-   HTML theme): color them with the same inheritance-graph palette. */
+   HTML theme): color them with the same inheritance-graph palette.  The
+   embedded code block keeps its rounded fill so the entry reads like the
+   inline-code xrefs elsewhere. */
 a.reference[href*="#manim_extensions."]:not(.default_value) {
     color: #1E8449;
+}
+a.reference[href*="#manim_extensions."]:not(.default_value) code {
+    color: #1E8449;
+    background-color: #D5F5E3;
+    border: none;
+    border-radius: 0.25rem;
 }
 a.reference[href*="#manim."]:not(.default_value) {
     color: #1A5276;
 }
+a.reference[href*="#manim."]:not(.default_value) code {
+    color: #1A5276;
+    background-color: #EBF5FB;
+    border: none;
+    border-radius: 0.25rem;
+}
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
     color: #D5F5E3;
 }
+body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) code {
+    color: #D5F5E3;
+    background-color: #145A32;
+}
 body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) {
     color: #EBF5FB;
+}
+body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
+    color: #EBF5FB;
+    background-color: #0F3B5F;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) {
         color: #D5F5E3;
     }
+    body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) code {
+        color: #D5F5E3;
+        background-color: #145A32;
+    }
     body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) {
         color: #EBF5FB;
+    }
+    body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) code {
+        color: #EBF5FB;
+        background-color: #0F3B5F;
     }
 }
 /* Dark theme: legend swatches follow the same deep fills as the
