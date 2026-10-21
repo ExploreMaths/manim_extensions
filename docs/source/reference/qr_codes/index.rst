@@ -26,21 +26,7 @@ The code is bundled inside ``manim_extensions`` as the
    ``manim<0.20``). Install it separately with
    ``pip install --no-deps manim-nerdfont-icons``.
 
-Quick start
------------
-
-.. manim:: QRCodeExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.qr_codes import qr_code
-
-   class QRCodeExample(Scene):
-       def construct(self):
-           qr = qr_code("https://example.com")
-           self.add(qr)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    functions

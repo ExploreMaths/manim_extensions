@@ -29,33 +29,8 @@ Features
 - electrostatics and magnetostatics helpers.
 - scene-level physics objects designed for educational visualisation.
 
-Quick start
------------
-
-.. manim:: PhysicsLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.physics import Lens
-
-   class PhysicsLibraryExample(Scene):
-       def construct(self):
-           lens = Lens(f=1.0, d=0.4)
-           lens.scale(4)
-           self.add(lens)
-
-This library is useful for:
-
-* optics demonstrations,
-* wave propagation scenes,
-* pendulum and motion examples,
-* educational visual explanations in mechanics and E&M.
-
-See the `original repository <https://github.com/Matheart/manim-physics>`_
-for the full physics API and additional examples.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    electromagnetism
    optics

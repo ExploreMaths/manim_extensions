@@ -29,34 +29,8 @@ Features
 - simple composition for actor-to-actor communication flows.
 - diagrams for software engineering and protocol explanations.
 
-Quick start
------------
-
-.. manim:: SequenceDiagramLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.sequence_diagram import SeqActor, SeqObject
-
-   class SequenceDiagramLibraryExample(Scene):
-       def construct(self):
-           actor = SeqActor("User").shift(LEFT)
-           obj = SeqObject("Service").shift(RIGHT)
-           content = VGroup(actor, obj)
-           content.scale_to_fit_width(10).move_to(ORIGIN)
-           self.add(content)
-
-This library is especially useful when explaining:
-
-* API request / response flows,
-* lifecycle and event sequences,
-* software interaction diagrams and protocol walkthroughs.
-
-See the `original project <https://github.com/foxnewsnetwork/manim-sequence-diagram>`_
-for more complete sequence examples and output samples.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    constants

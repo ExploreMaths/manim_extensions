@@ -34,23 +34,8 @@ Features
   scene as an updater, writes per-frame SVG paths, and produces a finished
   ``.html`` + ``.js`` pair on ``finish()``.
 
-Quick start
------------
-
-.. code-block:: python
-
-   from manim import *
-   from manim_extensions.svg_animations.html_parsed_vmobject import HTMLParsedVMobject
-
-   class SvgAnimationExample(Scene):
-       def construct(self):
-           square = Square()
-           html = HTMLParsedVMobject(square, self)
-           self.play(square.animate.rotate(PI))
-           html.finish()
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    constants

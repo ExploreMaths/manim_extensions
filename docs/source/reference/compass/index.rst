@@ -31,40 +31,6 @@ Features
 - :class:`~manim_extensions.compass.scene.compass_scene.CompassScene` – a convenience :class:`~manim.scene.scene.Scene` subclass pre-equipped with a
   compass, ruler, and pencil.
 
-Quick start
------------
-
-Import directly from ``manim_extensions`` (``from manim_extensions.compass import *``).
-
-.. manim:: CompassExample
-
-   from manim import *
-   from manim_extensions.compass import Compass, MoveNiddleTipTo, SplitCompass, RotateCompass
-
-   class CompassExample(Scene):
-       def construct(self):
-           compass = Compass().to_edge(LEFT)
-           self.play(MoveNiddleTipTo(compass, ORIGIN))
-           self.play(SplitCompass(compass, 2))
-           self.play(RotateCompass(compass, PI / 2))
-
-.. manim:: DrawLineExample
-
-   from manim import *
-   from manim_extensions.compass import Ruler, Pencil, PutRuler, MovePencilTipTo, DrawPath
-
-   class DrawLineExample(Scene):
-       def construct(self):
-           ruler = Ruler().to_edge(LEFT)
-           pencil = Pencil().to_edge(LEFT)
-           path = Line(LEFT, UR)
-
-           self.play(
-               PutRuler(ruler, start=LEFT, end=UR),
-               MovePencilTipTo(pencil, LEFT),
-           )
-           self.play(DrawPath(pencil, path))
-
 Using :class:`~manim_extensions.compass.scene.compass_scene.CompassScene`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -75,7 +41,7 @@ attributes plus helper methods such as ``draw_arc`` and ``draw_line``. See the
 example.
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    mobjects
    scene

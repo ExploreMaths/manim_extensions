@@ -41,33 +41,6 @@ Features
 - :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` –
   PubChem REST API client.
 
-Quick start
------------
-
-.. manim:: ChemistryExample
-   :save_last_frame:
-
-   import pandas as pd
-   from manim import *
-   from manim_extensions.chemistry import Element, PeriodicTable
-   from manim_extensions.chemistry.manim_chemistry_molecule import MC_ELEMENT_DICT
-
-   class ChemistryExample(Scene):
-       def construct(self):
-           data = pd.DataFrame(
-               {
-                   "AtomicNumber": [e.atomic_number for e in MC_ELEMENT_DICT.values()],
-                   "AtomicMass": [e.mass for e in MC_ELEMENT_DICT.values()],
-                   "Name": [e.name for e in MC_ELEMENT_DICT.values()],
-                   "Symbol": [e.symbol for e in MC_ELEMENT_DICT.values()],
-                   "Color": [e.color for e in MC_ELEMENT_DICT.values()],
-               }
-           )
-           data.to_csv("element_data.csv", index=False)
-           table = PeriodicTable(data_file="element_data.csv")
-           table.scale(1.3)
-           self.add(table)
-
 Command-line interface
 ----------------------
 
@@ -76,7 +49,7 @@ downloading molecule files from PubChem. See :doc:`cli` for the full
 guide with examples of every option.
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

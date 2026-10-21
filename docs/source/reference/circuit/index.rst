@@ -28,34 +28,8 @@ Features
 - labeled component support and circuit assembly helpers.
 - educational scene objects for engineering and electronics demos.
 
-Quick start
------------
-
-.. manim:: CircuitLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.circuit.mobjects import Resistor, Capacitor
-
-   class CircuitLibraryExample(Scene):
-       def construct(self):
-           r = Resistor().shift(LEFT)
-           c = Capacitor().shift(RIGHT)
-           content = VGroup(r, c)
-           content.scale_to_fit_width(8).move_to(ORIGIN)
-           self.add(content)
-
-This library is especially useful for:
-
-* electrical engineering tutorials,
-* circuit diagrams in lecture scenes,
-* component-by-component introductions to circuitry.
-
-See the `original repository <https://github.com/Mr-FuzzyPenguin/manim-circuit>`_
-for more advanced wiring examples and circuit layouts.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    mobjects
    helpers

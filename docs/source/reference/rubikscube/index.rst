@@ -502,7 +502,7 @@ See the `original project <https://github.com/WampyCakes/manim-rubikscube>`_
 for the full spec, examples, and documentation.
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    animations

@@ -28,22 +28,7 @@ Features
 - :func:`~manim_extensions.arabic.text.create_arabic_text` – create a
   Manim ``Text`` mobject with proper Arabic shaping.
 
-Quick start
------------
-
-.. manim:: ArabicExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.arabic import create_arabic_text
-
-   class ArabicExample(Scene):
-       def construct(self):
-           text = create_arabic_text("مرحبا بالعالم")
-           text.scale(1.6).move_to(ORIGIN)
-           self.add(text)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    functions

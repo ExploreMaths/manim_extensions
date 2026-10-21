@@ -33,22 +33,8 @@ Features
 - :class:`~manim_extensions.economics.solow.SolowDiagram` – Solow growth
   model diagram.
 
-Quick start
------------
-
-.. manim:: EconomicsExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.economics import SupplyDemandDiagram
-
-   class EconomicsExample(Scene):
-       def construct(self):
-           diagram = SupplyDemandDiagram()
-           self.add(diagram)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

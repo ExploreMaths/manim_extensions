@@ -28,30 +28,8 @@ Features
 - :class:`~manim_extensions.table.cell.Cell` – a single table cell with
   border, background, and text.
 
-Quick start
------------
-
-.. manim:: TableExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.table import Table
-
-   class TableExample(Scene):
-       def construct(self):
-           table = Table([
-               ["Name", "Age"],
-               ["Alice", "30"],
-               ["Bob", "25"],
-           ])
-           table.scale_to_fit_width(6)
-           if table.height > 7:
-               table.scale_to_fit_height(7)
-           table.move_to(ORIGIN)
-           self.add(table)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    constants

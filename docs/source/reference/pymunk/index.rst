@@ -33,23 +33,8 @@ Features
   :class:`~manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor`, :class:`~manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint`, :class:`~manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring`.
 - Custom mobjects: :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`, :class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple`, :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.
 
-Quick start
------------
-
-.. manim:: PymunkExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.pymunk.space.SpaceScene import SpaceScene
-   from manim_extensions.pymunk.space.VSpace import VSpace
-
-   class PymunkExample(SpaceScene):
-       def construct(self):
-           space = VSpace()
-           self.add(space)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

@@ -30,63 +30,8 @@ Features
 - Profile-shifted gears
 - Meshing calculation with distance variation via :meth:`~manim_extensions.gearbox.Gear.mesh_to`
 
-Quick start
------------
-
-Because the module is included in ``manim_extensions``, you can import it
-directly (``from manim_extensions.gearbox import *``). A common rendering
-style is ``stroke_opacity=0`` and ``fill_opacity=1``, because the stroke
-slightly enlarges the gear and can look like interference.
-
-.. manim:: GearExample
-
-   from manim import *
-   from manim_extensions.gearbox import Gear
-
-   class GearExample(Scene):
-       def construct(self):
-           gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
-           gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
-           gear1.shift(-gear1.rp * 1.5 * RIGHT)
-           gear2.mesh_to(gear1)
-
-           self.add(gear1, gear2)
-           self.play(
-               Rotate(gear1, gear1.pitch_angle, rate_func=linear),
-               Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
-               run_time=4,
-           )
-
-.. manim:: InnerGearExample
-
-   from manim import *
-   from manim_extensions.gearbox import Gear
-
-   class InnerGearExample(Scene):
-       def construct(self):
-           gear1 = Gear(
-               12, module=1, profile_shift=0.3,
-               stroke_opacity=0, fill_color=WHITE, fill_opacity=1,
-           )
-           gear2 = Gear(
-               36, module=1, inner_teeth=True, profile_shift=0.1,
-               stroke_opacity=0, fill_color=RED, fill_opacity=1,
-           )
-           gear1.shift(gear1.rp * UP)
-           gear2.shift(gear2.rp * UP)
-           gear2.mesh_to(gear1, offset=0.15, bias=False)
-
-           mesh = VGroup(gear1, gear2)
-           mesh.scale_to_fit_height(6.5).move_to(ORIGIN)
-           self.add(mesh)
-           self.play(
-               Rotate(gear1, gear1.pitch_angle, rate_func=linear),
-               Rotate(gear2, gear2.pitch_angle, rate_func=linear),
-               run_time=4,
-           )
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

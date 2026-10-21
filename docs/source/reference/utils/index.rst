@@ -12,7 +12,7 @@ dependency loading), ``manim_extensions.utils.deprecation`` (RST-aware
 ``manim_extensions.utils.nerdfont`` (vendored Nerd Font icons).
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

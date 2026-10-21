@@ -28,34 +28,8 @@ Features
 - :class:`~manim_extensions.algorithm.queue.Queue` – queue animation helpers and visual containers.
 - animation helpers for selection, overwrite, update, and value transitions.
 
-Quick start
------------
-
-.. manim:: AlgorithmLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.algorithm import Node, Queue
-
-   class AlgorithmLibraryExample(Scene):
-       def construct(self):
-           left = Node("A")
-           right = Node("B")
-           queue = Queue(capacity=3, init_data=[left, right])
-           self.add(queue)
-
-The library is most useful when explaining:
-
-* sorting and traversal steps,
-* data structures in motion,
-* algorithmic state updates and pointer movement,
-* code-plus-visual narration during lectures.
-
-See the `original README <https://github.com/sinianluoye/manim-algorithm>`_
-for more complete examples and API details.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    constants

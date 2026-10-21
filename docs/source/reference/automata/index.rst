@@ -29,32 +29,8 @@ Features
 - input token and machine-step rendering for state execution demos.
 - animation helpers for demonstrating transitions and accepted strings.
 
-Quick start
------------
-
-.. manim:: AutomataLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.automata import ManimAutomaton
-
-   class AutomataLibraryExample(Scene):
-       def construct(self):
-           automaton = ManimAutomaton()
-           self.add(automaton)
-
-This library is most useful for:
-
-* formal-language lectures,
-* state-machine explanations,
-* parsing and acceptance demonstrations,
-* visual explanations of nondeterministic and stack-like transitions.
-
-See the `original README <https://github.com/SeanNelsonIO/manim-automata>`_
-for more complete examples and API walkthroughs.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    mobjects
    animations

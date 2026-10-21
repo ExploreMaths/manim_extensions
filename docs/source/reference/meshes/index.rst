@@ -29,11 +29,6 @@ Features
 - :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh` for faster scene rendering when available.
 - Delaunay and Voronoi-related tooling in the bundled mesh utilities.
 
-Quick start
------------
-
-Import the package directly from the vendored namespace:
-
 Building a mesh structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -59,7 +54,7 @@ See the `original project page <https://github.com/bmmtstb/manim-meshes>`_
 for details on the mesh model and more advanced examples.
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    data_model
    mobjects

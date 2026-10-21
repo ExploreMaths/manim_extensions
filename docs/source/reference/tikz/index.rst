@@ -28,30 +28,7 @@ Features
 - integration for drawings that already exist in TikZ format.
 - suitable for academic slides and diagram-heavy explanatory scenes.
 
-Quick start
------------
-
-.. manim:: TikzLibraryExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.tikz import Tikz
-
-   class TikzLibraryExample(Scene):
-       def construct(self):
-           tikz = Tikz(r"\draw[magenta] (0,0) rectangle (1,1);")
-           self.add(tikz)
-
-This package is best for:
-
-* reusing existing TikZ diagrams inside Manim,
-* LaTeX-style technical visuals in an animated presentation,
-* diagrams that are easier to author in TikZ than by hand in Python.
-
-See the `original repository <https://github.com/ralphieraccoon/manim-tikz>`_
-for implementation details and more advanced TikZ conversion examples.
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes

@@ -26,22 +26,7 @@ Features
 - :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` – a
   line with an attached weight label and background.
 
-Quick start
------------
-
-.. manim:: WeightedLineExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.weighted_line import WeightedLine
-
-   class WeightedLineExample(Scene):
-       def construct(self):
-           line = WeightedLine(LEFT, RIGHT, weight=5)
-           line.scale(3)
-           self.add(line)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes

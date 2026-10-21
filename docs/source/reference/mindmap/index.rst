@@ -28,48 +28,6 @@ Features
   :class:`~manim_extensions.mindmap.animations.animations.ScaleNode`, :class:`~manim_extensions.mindmap.animations.animations.AlterNode`.
 - Styling / layout options: :class:`~manim_extensions.mindmap.nodes.node.NodeStyle`, :class:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType`, :class:`~manim_extensions.mindmap.algorithms.layout_config.LayoutConfig`.
 
-Quick start
------------
-
-Import directly from ``manim_extensions`` (``from manim_extensions.mindmap import *``).
-
-.. manim:: MindMapInsertExample
-
-   from manim import *
-   from manim_extensions.mindmap import Node, InsertNode
-
-   class MindMapInsertExample(Scene):
-       def construct(self):
-           root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-           a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-           a3 = Node(MathTex(r"\text{A}_3", font_size=36))
-
-           self.play(
-               InsertNode(self, {root: [a1, a2, a3]}),
-               run_time=2,
-           )
-
-.. manim:: LayoutAnimationExample
-
-   from manim import *
-   from manim_extensions.mindmap import Node, LayoutAnimation
-
-   class LayoutAnimationExample(Scene):
-       def construct(self):
-           root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
-           a1 = Node(MathTex(r"\text{A}_1", font_size=36))
-           a2 = Node(MathTex(r"\text{A}_2", font_size=36))
-           a21 = Node(MathTex(r"\text{A}_{2-1}", font_size=36))
-           a22 = Node(MathTex(r"\text{A}_{2-2}", font_size=36))
-
-           root.add_child(a1)
-           root.add_child(a2)
-           a2.add_child(a21)
-           a2.add_child(a22)
-
-           self.play(LayoutAnimation(self, root))
-
 Layout types
 ^^^^^^^^^^^^
 
@@ -81,7 +39,7 @@ The ``layout_type`` argument of the animation classes accepts:
 - :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.Catalog` – top-down catalog / directory layout.
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    nodes
    maps

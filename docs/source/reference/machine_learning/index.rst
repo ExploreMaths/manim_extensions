@@ -39,25 +39,8 @@ Features
 - :class:`~manim_extensions.machine_learning.ManimMLConfig` – global
   colour-scheme and 3-D rotation configuration.
 
-Quick start
------------
-
-.. manim:: MLExample
-   :save_last_frame:
-
-   from manim import *
-   from manim_extensions.machine_learning.neural_network import (
-       NeuralNetwork, FeedForwardLayer,
-   )
-
-   class MLExample(Scene):
-       def construct(self):
-           nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(5)])
-           nn.scale_to_fit_height(6).move_to(ORIGIN)
-           self.add(nn)
-
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    classes
    functions

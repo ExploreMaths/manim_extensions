@@ -108,7 +108,7 @@ A wall of solid icons, staggered in and spun like on the
            self.wait()
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    functions
    constants
