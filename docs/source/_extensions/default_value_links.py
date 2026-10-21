@@ -22,6 +22,9 @@ import re
 
 from docutils import nodes
 from sphinx.addnodes import desc_signature
+from sphinx.util import logging
+
+logger = logging.getLogger(__name__)
 
 _CONSTANT_PAGES: dict[str, str] = {
     # manim.constants names -> rst path of the category page (no extension)
@@ -306,18 +309,40 @@ def _process_prose_literals(app, doctree, docname) -> None:
         if _in_signature(node) or _in_reference(node):
             continue
         text = node.astext().strip()
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", text):
+        if len(text) < 2 or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", text):
+            # Single letters (e.g. Rubik's cube turn notation U/F/B that
+            # collide with chemical element symbols) are never meant as
+            # object references.
             continue
-        matches = [
-            full for full in objects
-            if full == text or full.endswith("." + text)
+        candidates = [
+            (full, entry) for full, entry in objects.items()
+            if (full == text or full.endswith("." + text))
+            and full.startswith("manim_extensions")
         ]
+        # Methods, properties and attributes are member names, not
+        # reference targets: a bare ``install`` / ``scale`` / ``text``
+        # in prose is a generic word, not an attempt to link a specific
+        # member.  Only top-level classes, functions and module-level
+        # data participate.
+        matches = [
+            (full, entry) for full, entry in candidates
+            if entry.objtype not in ("method", "property", "attribute")
+        ]
+        if len(matches) > 1:
+            # An inline-code name that names several objects is a doc
+            # smell: the reader cannot tell which object it points to.
+            # Warn so CI (validate_refs) can fail on it; fix by narrowing
+            # the reference (e.g. an explicit :class: with a full path).
+            logger.warning(
+                "ambiguous inline-code class name %r resolves to %s",
+                text,
+                ", ".join(sorted(full for full, _ in matches)),
+                location=docname,
+            )
+            continue
         if len(matches) != 1:
             continue
-        full = matches[0]
-        if not full.startswith("manim_extensions"):
-            continue
-        entry = objects[full]
+        full, entry = matches[0]
         docdir = posixpath.dirname(docname) or "."
         rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
         ref = nodes.reference("", "", internal=True,

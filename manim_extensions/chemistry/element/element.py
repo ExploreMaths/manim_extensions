@@ -45,7 +45,7 @@ class Element:
         self.color = color or "#ff00ff"
 
     def from_csv_file(filename: str, element: str | int):
-        """Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element.Element` from a CSV file.
+        """Create an :class:`~manim_extensions.chemistry.element.element.Element` from a CSV file.
 
         Parameters
         ----------

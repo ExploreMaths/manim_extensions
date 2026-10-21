@@ -45,7 +45,7 @@ Available styles:
 - ``regular`` – regular (outline) icons (Font Awesome ``far`` set).
 - ``brand`` – brand / logo icons (Font Awesome ``fab`` set).
 
-The variable ``FONT_AWESOME_VERSION`` reports the bundled Font Awesome
+The variable :data:`~manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION` reports the bundled Font Awesome
 version string.
 
 Gallery

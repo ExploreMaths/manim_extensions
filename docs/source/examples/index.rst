@@ -388,7 +388,7 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: GearboxExample
    :save_last_frame:
-   :ref_classes: Gear Rack
+   :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear Rack
 
    from manim import *
    import numpy as np

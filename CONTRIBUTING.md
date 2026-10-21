@@ -308,6 +308,14 @@ Short targets like `:attr:`__mob_index`` or `:meth:`Mobject.scale`` are rejected
 
 - **Broken references are rejected.** A `~package.module.Class.attr` target whose module cannot be imported or whose class does not exist fails the check.
 
+- **Ambiguous names must not appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as `manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` and `manim_extensions.pymunk.custom_mobjects.gear.Gear`), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Disambiguate every occurrence by writing an explicit role with the full module path:
+
+  ```rst
+  :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`
+  ```
+
+  `validate_refs.py` fails on any bare back-ticked ambiguous class name, and the Sphinx build emits an `ambiguous inline-code class name` warning for ambiguous data/function names. Same-name classes *are* allowed in the codebase; the references to them just have to be explicit.
+
 Run `python workflow/fix_refs.py` to auto-fix fixable issues.
 
 ---

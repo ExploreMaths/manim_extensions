@@ -18,6 +18,15 @@ Scans .py and .rst files for three categories of problems:
 3. inline_code    - back-ticked API names that should be cross-references
                    (e.g. `Mobject.scale` -> :meth:`~manim.mobject.mobject.Mobject.scale`).
 
+4. ambiguous_classes - back-ticked class names that resolve to several
+                   project classes (e.g. ``Gear`` names both
+                   ``manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear``
+                   and ``manim_extensions.pymunk.custom_mobjects.gear.Gear``).
+                   Ambiguous names are never auto-linked by the Sphinx
+                   extension, so a bare back-tick leaves the reader with a
+                   plain code span.  Disambiguate by writing an explicit
+                   role with the full module path (``:class:`~...``).
+
 Outputs a structured JSON report (``_refs_report.json``) consumable by
 ``fix_refs.py``, plus a human-readable summary on stdout /
 ``_validate_result.txt``.
@@ -173,13 +182,15 @@ def _mod_path_for(py_file: Path, base: Path) -> str:
 
 def build_name_maps():
     """Scan ``manim_extensions`` + installed ``manim`` and return
-    ``(classes_map, functions_map, attr_map, contexts, project_classes_map)``."""
+    ``(classes_map, functions_map, attr_map, contexts, project_classes_map,
+    ambiguous_classes)``."""
 
     classes_map: dict[str, str] = {}
     functions_map: dict[str, str] = {}
     attr_map: dict[str, str] = {}
     contexts: dict[str, dict[int, dict[str, str]]] = {}
     project_classes_map: dict[str, str] = {}
+    class_fqns: dict[str, set[str]] = {}
 
     # --- manim_extensions (highest priority) ---
     for py_file in _iter_py_files(SRC):
@@ -194,6 +205,8 @@ def build_name_maps():
         visitor.visit(tree)
         classes_map.update(visitor.classes)
         project_classes_map.update(visitor.classes)
+        for name, fqn in visitor.classes.items():
+            class_fqns.setdefault(name, set()).add(fqn)
         functions_map.update(visitor.functions)
 
         attr_collector = _AttrCollector(mod_path)
@@ -235,7 +248,20 @@ def build_name_maps():
             for k, v in attr_collector.attrs.items():
                 attr_map.setdefault(k, v)
 
-    return classes_map, functions_map, attr_map, contexts, project_classes_map
+    ambiguous_classes = {
+        name: sorted(fqns)
+        for name, fqns in class_fqns.items()
+        if len(fqns) > 1
+    }
+
+    return (
+        classes_map,
+        functions_map,
+        attr_map,
+        contexts,
+        project_classes_map,
+        ambiguous_classes,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -377,16 +403,62 @@ def _find_inline_code(
 
 
 # ---------------------------------------------------------------------------
-# 5. Orchestration
+# 5. Ambiguous-class detection
+# ---------------------------------------------------------------------------
+
+
+ROLE_ROLE_PREFIX = re.compile(r':(?:class|meth|func|attr|mod|exc|obj|data):$')
+
+
+def _find_ambiguous_classes(
+    filepath: Path, ambiguous_classes: dict[str, list[str]]
+) -> list[dict]:
+    """Return every bare back-ticked name that names several project
+    classes.  A name preceded by an explicit Sphinx role (``:class:``,
+    ``:data:``, ...) is already disambiguated and skipped."""
+    results: list[dict] = []
+    with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+        for lineno, line in enumerate(f, 1):
+            for m in INLINE_CODE_PATTERN.finditer(line):
+                full = m.group(1)
+                if full in SKIP_NAMES:
+                    continue
+                if any(full.endswith(suf) for suf in SKIP_SUFFIXES):
+                    continue
+                if full not in ambiguous_classes:
+                    continue
+                # Skip names written as explicit roles (`:class:`Gear``).
+                if ROLE_ROLE_PREFIX.search(line[: m.start()]):
+                    continue
+                results.append({
+                    "lineno": lineno,
+                    "code": full,
+                    "targets": ambiguous_classes[full],
+                    "match_start": m.start(),
+                    "match_end": m.end(),
+                })
+    return results
+
+
+# ---------------------------------------------------------------------------
+# 6. Orchestration
 # ---------------------------------------------------------------------------
 
 
 def main() -> int:
-    classes_map, functions_map, attr_map, contexts, project_classes_map = build_name_maps()
+    (
+        classes_map,
+        functions_map,
+        attr_map,
+        contexts,
+        project_classes_map,
+        ambiguous_classes,
+    ) = build_name_maps()
 
     broken_refs: list[dict] = []
     short_xrefs: list[dict] = []
     inline_code: list[dict] = []
+    ambiguous: list[dict] = []
 
     py_files = list(SRC.rglob("*.py"))
     rst_files = list(DOCS.rglob("*.rst"))
@@ -426,15 +498,22 @@ def main() -> int:
         for item in _find_inline_code(filepath, project_classes_map, attr_map):
             inline_code.append({"file": rel, **item})
 
+        # --- ambiguous classes ---
+        for item in _find_ambiguous_classes(filepath, ambiguous_classes):
+            ambiguous.append({"file": rel, **item})
+
     # --- write JSON report ---
     report = {
         "broken_refs": broken_refs,
         "short_xrefs": short_xrefs,
         "inline_code": inline_code,
+        "ambiguous_classes": ambiguous,
         "contexts": contexts,
     }
     # --- human-readable summary ---
-    total_issues = len(broken_refs) + len(short_xrefs) + len(inline_code)
+    total_issues = (
+        len(broken_refs) + len(short_xrefs) + len(inline_code) + len(ambiguous)
+    )
     if total_issues:
         print(f"FAIL  cross-refs  {total_issues} issue(s)\n")
         for item in broken_refs:
@@ -443,6 +522,12 @@ def main() -> int:
             print(f"  {item['file']}:{item['lineno']}  short-xref: {item['role']}`{item['target']}`")
         for item in inline_code:
             print(f"  {item['file']}:{item['lineno']}  inline-code: `{item['code']}`")
+        for item in ambiguous:
+            print(
+                f"  {item['file']}:{item['lineno']}  ambiguous-class: "
+                f"`{item['code']}` -> "
+                + ", ".join(item["targets"])
+            )
         print(f"\nTotal: {total_issues} issue(s)")
         print("Run `python workflow/fix_refs.py` to auto-fix what it can.")
     else:

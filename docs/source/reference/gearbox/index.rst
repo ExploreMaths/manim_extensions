@@ -23,9 +23,9 @@ subpackage.
 Features
 --------
 
-- Basic spur gears (:class:`~manim_extensions.gearbox.Gear`)
+- Basic spur gears (:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`)
 - Inside ring-gears (``inner_teeth=True``)
-- Basic rack (:class:`~manim_extensions.gearbox.Rack`)
+- Basic rack (:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack`)
 - Undercutting for gears with fewer than 17 teeth
 - Profile-shifted gears
 - Meshing calculation with distance variation via :meth:`~manim_extensions.gearbox.Gear.mesh_to`
