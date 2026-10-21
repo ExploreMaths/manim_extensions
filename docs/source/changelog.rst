@@ -264,14 +264,14 @@ v1.0.4
   :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
   :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton_transition.ManimPushDownAutomatonTransition`,
   :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput`,
-  :class:`~manim_extensions.automata.mobjects.token.Token`, and
+  :class:`~manim_extensions.automata.mobjects.manim_automaton_input.Token`, and
   :class:`~manim_extensions.automata.mobjects.pushdown_automaton_rule.PushDownAutomatonRule`
   to ``__all__`` so they are importable via ``from manim_extensions.automata import ...``.
 * Fixed Sphinx "Title underline too short" warnings in
   ``docs/source/reference/automata/mobjects.rst`` by extending underlines
   for :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
-  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_automaton.ManimdeterministicFiniteAutomaton`,
-  and :class:`~manim_extensions.automata.mobjects.manim_nondeterministic_finite_automaton.ManimNondeterministicFiniteAutomaton`
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+  and :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`
   headings.
 
 v1.0.3

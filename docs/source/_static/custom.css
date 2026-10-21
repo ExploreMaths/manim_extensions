@@ -313,6 +313,42 @@ body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference:hover
         background-color: #124B76;
     }
 }
+/* Project class/function names linked by default_value_links' prose
+   handler (``code > a`` shape again): the extension palette fill. */
+code.docutils.literal.color-link-ext {
+    background-color: #D5F5E3;
+    border: none;
+    border-radius: 0.25rem;
+}
+code.docutils.literal.color-link-ext a.reference {
+    color: #1E8449;
+}
+code.docutils.literal.color-link-ext a.reference:hover {
+    color: #166B3C;
+    background-color: #C8E6C9;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-ext {
+    background-color: #145A32;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference {
+    color: #D5F5E3;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference:hover {
+    color: #F0FDF4;
+    background-color: #166B3C;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) code.docutils.literal.color-link-ext {
+        background-color: #145A32;
+    }
+    body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference {
+        color: #D5F5E3;
+    }
+    body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference:hover {
+        color: #F0FDF4;
+        background-color: #166B3C;
+    }
+}
 /* Plain references whose fragment resolves to a manim_extensions / manim
    object (module index pages and toctree entries list classes as ordinary
    links — the doctree extension cannot see those, they are expanded by the
