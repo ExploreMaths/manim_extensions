@@ -149,8 +149,8 @@ v1.0.4
   workflow for license compliance and unused import detection.
 * Added custom Sphinx extension ``inheritance_colors`` that color-codes
   inheritance diagram nodes by module origin — Manim nodes in green
-  (#87C2A5), Manim Extensions nodes in teal (#4DB8D4), with dark
-  foreground (#1E1E2E) for both, and uncolored Python nodes in gray —
+  (``#87C2A5``), Manim Extensions nodes in teal (``#4DB8D4``), with dark
+  foreground (``#1E1E2E``) for both, and uncolored Python nodes in gray —
   with a dynamic legend auto-generated above each diagram.
 * Added legend display above inheritance diagrams with color swatches for
   Manim, Manim Extensions, and Python (auto-detected when third-party
@@ -158,7 +158,7 @@ v1.0.4
 
 **Changed**
 
-* Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (#FFFF00)
+* Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (``#FFFF00``)
   across the entire codebase (58 occurrences, 20 files), matching the original
   bright yellow that Manim's ``YELLOW`` constant used to represent.
 * Simplified :class:`~manim_extensions.mobjects.ExtendedLine` by removing the
@@ -200,10 +200,10 @@ v1.0.4
 
 **Removed**
 
-* Deleted :class:`~manim.mobject.text.code_mobject.Code`, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
+* Deleted ``Code``, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
   from the ``algorithm`` module (unused code block classes).
 * Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
-  (was only used by the deleted :class:`~manim.mobject.text.code_mobject.Code` class).
+  (was only used by the deleted ``Code`` class).
 
 **Fixed**
 
@@ -236,7 +236,7 @@ v1.0.4
   is absent and those names are not covered by star exports.
 * Fixed ``validate_refs.py`` false positives: separated project class map
   (``manim_extensions``) from installed ``manim`` so that manim-internal names
-  like :class:`~manim.mobject.text.code_mobject.Code` no longer trigger inline-code suggestions in changelog/docs.
+  like ``Code`` no longer trigger inline-code suggestions in changelog/docs.
 * Fixed ``flake8-unused-imports`` CI job by correcting the ``--exclude``
   glob pattern (``*__init__.py*``) so that all ``__init__.py`` files are
   properly excluded from the F401 check.
