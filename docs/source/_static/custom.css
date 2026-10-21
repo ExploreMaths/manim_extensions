@@ -273,6 +273,46 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
         background-color: #124B76;
     }
 }
+/* Color-name literals linked by the default_value_links extension put the
+   reference *inside* the code element (``code > a``), the reverse of
+   inline_link_colors' ``a > code.xref`` shape.  The code carries a
+   ``color-link-manim`` marker class: give the code the manim palette fill
+   and the embedded link the palette text color, matching the ref-manim
+   inline-code xrefs. */
+code.docutils.literal.color-link-manim {
+    background-color: #EBF5FB;
+    border: none;
+    border-radius: 0.25rem;
+}
+code.docutils.literal.color-link-manim a.reference {
+    color: #1A5276;
+}
+code.docutils.literal.color-link-manim a.reference:hover {
+    color: #124B76;
+    background-color: #D4E8FA;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-manim {
+    background-color: #0F3B5F;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference {
+    color: #EBF5FB;
+}
+body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference:hover {
+    color: #F2F9FF;
+    background-color: #124B76;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) code.docutils.literal.color-link-manim {
+        background-color: #0F3B5F;
+    }
+    body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference {
+        color: #EBF5FB;
+    }
+    body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference:hover {
+        color: #F2F9FF;
+        background-color: #124B76;
+    }
+}
 /* Plain references whose fragment resolves to a manim_extensions / manim
    object (module index pages and toctree entries list classes as ordinary
    links — the doctree extension cannot see those, they are expanded by the

@@ -149,8 +149,8 @@ v1.0.4
   workflow for license compliance and unused import detection.
 * Added custom Sphinx extension ``inheritance_colors`` that color-codes
   inheritance diagram nodes by module origin — Manim nodes in green
-  (``#87C2A5``), Manim Extensions nodes in teal (``#4DB8D4``), with dark
-  foreground (``#1E1E2E``) for both, and uncolored Python nodes in gray —
+  (#87C2A5), Manim Extensions nodes in teal (#4DB8D4), with dark
+  foreground (#1E1E2E) for both, and uncolored Python nodes in gray —
   with a dynamic legend auto-generated above each diagram.
 * Added legend display above inheritance diagrams with color swatches for
   Manim, Manim Extensions, and Python (auto-detected when third-party
@@ -158,7 +158,7 @@ v1.0.4
 
 **Changed**
 
-* Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (``#FFFF00``)
+* Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (#FFFF00)
   across the entire codebase (58 occurrences, 20 files), matching the original
   bright yellow that Manim's ``YELLOW`` constant used to represent.
 * Simplified :class:`~manim_extensions.mobjects.ExtendedLine` by removing the

@@ -219,6 +219,7 @@ def _process_color_codes(app, doctree, docname) -> None:
         if not any(name in text for name in _color_names()):
             continue
         parts = []
+        linked = False
         pos = 0
         for m in _TOKEN_RE.finditer(text):
             if m.start() > pos:
@@ -231,13 +232,25 @@ def _process_color_codes(app, doctree, docname) -> None:
                     "", "", internal=True,
                     refuri=f"{rel}#manim.utils.color.manim_colors.{name}",
                 )
+                # Tag as a manim link so inline_link_colors' palette (which
+                # runs earlier on doctree-resolved and cannot see these
+                # nodes) still colors the text and fill of this inline code.
+                ref["classes"] = ["ref-manim"]
                 ref += nodes.Text(name)
                 parts.append(ref)
+                linked = True
             else:
                 parts.append(nodes.Text(name))
             pos = m.end()
         if pos < len(text):
             parts.append(nodes.Text(text[pos:]))
+        if linked:
+            # The link sits *inside* the code element here (unlike
+            # inline_link_colors, where the code is inside the link), so
+            # custom.css fills the code via this marker class.
+            classes = list(node.get("classes", ()))
+            if "color-link-manim" not in classes:
+                node["classes"] = classes + ["color-link-manim"]
         del node[:]
         for part in parts:
             node.append(part)
