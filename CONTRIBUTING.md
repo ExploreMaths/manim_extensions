@@ -293,30 +293,30 @@ Exceptions for intentional cases can be added to `workflow/example_layout_exempt
 
 ## Cross-References
 
-Docstrings and `.rst` files use Sphinx cross-reference roles to link to other APIs. The `validate_refs.py` checker enforces:
+Docstrings and `.rst` files use Sphinx cross-reference roles to link to other APIs. The following conventions are *advisory*, not hard requirements — please try to follow them so the docs stay consistent; anything that slips through will be cleaned up by the maintainers (we handle formatting on merge).
 
-- **Use fully-qualified targets.** Roles like `:class:`, `:meth:`, `:func:`, `:attr:`, `:mod:` must point to fully-qualified names, usually with a leading `~` to display only the last component:
+- **Prefer fully-qualified targets.** Roles like `:class:`, `:meth:`, `:func:`, `:attr:`, `:mod:` ideally point to fully-qualified names, usually with a leading `~` to display only the last component:
 
   ```rst
   :meth:`~manim.mobject.mobject.Mobject.scale`
   :class:`~manim_extensions.table.table.Table`
   ```
 
-Short targets like `:attr:`__mob_index`` or `:meth:`Mobject.scale`` are rejected.
+Short targets like `:attr:`__mob_index`` or `:meth:`Mobject.scale`` are best avoided (the `validate_refs.py` checker flags them).
 
-- **API names must be cross-references, not inline code.** Back-ticked names that look like APIs (e.g. `` `Mobject.scale` ``) should be proper roles. Built-in types (`int`, `str`, `list`, ...) and common exceptions are exempt.
+- **API names should be cross-references, not inline code.** Back-ticked names that look like APIs (e.g. `` `Mobject.scale` ``) are better written as proper roles. Built-in types (`int`, `str`, `list`, ...) and common exceptions are exempt.
 
-- **Broken references are rejected.** A `~package.module.Class.attr` target whose module cannot be imported or whose class does not exist fails the check.
+- **Broken references should be avoided.** A `~package.module.Class.attr` target whose module cannot be imported or whose class does not exist fails the check — prefer double-checking the target resolves.
 
-- **Ambiguous names must not appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as `manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` and `manim_extensions.pymunk.custom_mobjects.gear.Gear`), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Disambiguate every occurrence by writing an explicit role with the full module path:
+- **Ambiguous names shouldn't appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as `manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` and `manim_extensions.pymunk.custom_mobjects.gear.Gear`), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Where convenient, disambiguate by writing an explicit role with the full module path:
 
   ```rst
   :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`
   ```
 
-  `validate_refs.py` fails on any bare back-ticked ambiguous class name, and the Sphinx build emits an `ambiguous inline-code class name` warning for ambiguous data/function names. Same-name classes *are* allowed in the codebase; the references to them just have to be explicit.
+  `validate_refs.py` reports bare back-ticked ambiguous class names, and the Sphinx build emits an `ambiguous inline-code class name` warning for ambiguous data/function names. Same-name classes *are* allowed in the codebase; references to them just need to be explicit, and the maintainers will fix any that slip through.
 
-Run `python workflow/fix_refs.py` to auto-fix fixable issues.
+You can run `python workflow/fix_refs.py` to auto-fix fixable issues if you like.
 
 ---
 
