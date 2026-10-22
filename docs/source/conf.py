@@ -24,8 +24,8 @@ if os.environ.get("READTHEDOCS") == "True" and os.path.isdir("/tmp/rtd-cache"):
 project = "manim_extensions"
 copyright = "2026, ExploreMaths"
 author = "ExploreMaths"
-release = "1.0.5"
-version = "1.0.5"
+release = "1.0.6.dev0"
+version = "1.0.6.dev0"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
