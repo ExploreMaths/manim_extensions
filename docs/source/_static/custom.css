@@ -606,26 +606,37 @@ dl.py.property > dt.sig a[href^="https://docs.python.org"] .pre {
 }
 
 /* Attributes rendered as a simple bulleted list: each autodoc
-   attribute/property entry keeps its own dt + dd block, prefixed by a
-   bullet.  A block with exactly one entry drops the bullet — the
-   attributes-single.js script detects that case and adds the class. */
+   attribute/property entry keeps its own dt + dd block, prefixed by the
+   native list marker (disc — same rendering as Parameters' list items).
+   A block with exactly one entry drops the bullet — the
+   attributes-single.js script detects that case and removes the marker. */
 dl.py.attribute {
-    margin: 0.3em 0 0.3em calc(1.2em + 14px);
-    padding-left: 0;
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 0.3em 0 0.3em 14px;
+    padding-left: 21px;
 }
 dl.py.property {
-    margin: 0.3em 0 0.3em calc(1.2em + 14px);
-    padding-left: 0;
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 0.3em 0 0.3em 14px;
+    padding-left: 21px;
+}
+/* Match the Parameters list-marker size (rendered at the li font size,
+   ~1.15x the attribute signature size). */
+dl.py.attribute::marker,
+dl.py.property::marker {
+    font-size: 1.15em;
+}
+dl.py.attribute.attributes-single,
+dl.py.property.attributes-single {
+    list-style-type: none;
 }
 dl.py.attribute > dt.sig::before,
 dl.py.property > dt.sig::before {
-    content: "•  ";
-    margin-left: -1.2em;
-}
-dl.py.attribute.attributes-single > dt.sig::before,
-dl.py.property.attributes-single > dt.sig::before {
     content: none;
-    margin-left: 0;
 }
 dl.py.attribute > dt.sig a.headerlink,
 dl.py.property > dt.sig a.headerlink {
