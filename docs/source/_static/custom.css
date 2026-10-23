@@ -642,3 +642,61 @@ dl.py.attribute > dt.sig a.headerlink,
 dl.py.property > dt.sig a.headerlink {
     display: none;
 }
+
+/* Signature default-value links (default_value_links extension): the link
+   is plain text, not wrapped in a code element, but it gets the same
+   palette as the inline-code xrefs — blue manim fill for manim constants
+   and colors, green extensions fill for manim_extensions objects. */
+a.default_value.reference.internal.ref-manim,
+a.default_value.reference.internal.ref-ext {
+    border-radius: 0.25rem;
+    padding: 0.1em 0.2em;
+}
+a.default_value.reference.internal.ref-manim {
+    color: #1A5276;
+    background-color: #EBF5FB;
+}
+a.default_value.reference.internal.ref-ext {
+    color: #1E8449;
+    background-color: #D5F5E3;
+}
+a.default_value.reference.internal.ref-manim:hover {
+    background-color: #D4E8FA;
+}
+a.default_value.reference.internal.ref-ext:hover {
+    background-color: #C8E6C9;
+}
+body[data-theme="dark"] a.default_value.reference.internal.ref-manim {
+    color: #EBF5FB;
+    background-color: #0F3B5F;
+}
+body[data-theme="dark"] a.default_value.reference.internal.ref-ext {
+    color: #D5F5E3;
+    background-color: #145A32;
+}
+body[data-theme="dark"] a.default_value.reference.internal.ref-manim:hover {
+    color: #F2F9FF;
+    background-color: #124B76;
+}
+body[data-theme="dark"] a.default_value.reference.internal.ref-ext:hover {
+    color: #F0FDF4;
+    background-color: #166B3C;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim {
+        color: #EBF5FB;
+        background-color: #0F3B5F;
+    }
+    body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext {
+        color: #D5F5E3;
+        background-color: #145A32;
+    }
+    body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim:hover {
+        color: #F2F9FF;
+        background-color: #124B76;
+    }
+    body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext:hover {
+        color: #F0FDF4;
+        background-color: #166B3C;
+    }
+}

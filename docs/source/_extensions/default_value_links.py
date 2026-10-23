@@ -109,8 +109,13 @@ def _color_names() -> frozenset[str]:
     return _COLOR_NAMES
 
 
-def _link_for(name: str, app, docdir: str) -> tuple[str, str] | None:
-    """Return ``(rst_path, anchor)`` for a known constant name, else None.
+def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
+    """Return ``(rst_path, anchor, kind)`` for a known constant name.
+
+    ``kind`` is ``"manim"`` for manim colors/constants pages and
+    ``"ext"`` for objects living in ``manim_extensions``; the HTML
+    writer's palette (custom.css) uses it to color signature-default
+    links the same way as inline-code cross-references.
 
     Resolution order:
     1. manim.utils.color.manim_colors names (auto-collected, all of them);
@@ -122,10 +127,10 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str] | None:
        project constant/attribute covered without maintaining the list.
     """
     if name in _color_names():
-        return "constants/colors", f"manim.utils.color.manim_colors.{name}"
+        return "constants/colors", f"manim.utils.color.manim_colors.{name}", "manim"
     page = _CONSTANT_PAGES.get(name)
     if page is not None:
-        return page, f"manim.constants.{name}"
+        return page, f"manim.constants.{name}", "manim"
     # Fall back to whatever the py domain registered (project objects).
     try:
         objects = app.env.domains["py"].data["objects"]
@@ -138,7 +143,7 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str] | None:
     if len(matches) == 1:
         entry = objects[matches[0]]
         rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
-        return rel, entry.node_id
+        return rel, entry.node_id, "ext"
     return None
 
 
@@ -165,10 +170,11 @@ def _link_tokens(node, text: str, app, docdir: str) -> None:
         if target is None:
             parts.append(nodes.Text(name))
         else:
-            page, anchor = target
+            page, anchor, kind = target
             rel = posixpath.relpath(f"{page}.html", start=docdir)
             ref = nodes.reference("", "", internal=True,
                                   refuri=f"{rel}#{anchor}")
+            ref["classes"] = [f"ref-{kind}"]
             ref += nodes.Text(name)
             parts.append(ref)
         pos = m.end()
@@ -191,10 +197,11 @@ def _process_literals(app, doctree, docname) -> None:
         text = node.astext().strip()
         target = _link_for(text, app, docdir)
         if target is not None:
-            page, anchor = target
+            page, anchor, kind = target
             rel = posixpath.relpath(f"{page}.html", start=docdir)
             ref = nodes.reference("", "", internal=True,
                                   refuri=f"{rel}#{anchor}")
+            ref["classes"] = [f"ref-{kind}"]
             ref += nodes.Text(text)
             node.replace_self(ref)
             continue
