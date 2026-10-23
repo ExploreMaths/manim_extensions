@@ -28,6 +28,16 @@ Features
 - :class:`~manim_extensions.algorithm.queue.Queue` – queue animation helpers and visual containers.
 - animation helpers for selection, overwrite, update, and value transitions.
 
+Status
+------
+
+The upstream project is still under internal development. It experiments with
+Manim encapsulations that make it easier to display algorithms and data
+structures, such as linked lists, arrays, and binary trees. It does not yet
+accept external code contributions until it reaches a certain scale, though
+suggestions and requests are welcome in the upstream repository. The package
+targets Manim Community Edition (CE).
+
 .. toctree::
    :maxdepth: 1
 
