@@ -44,6 +44,64 @@ or combine meshes before rendering.
    those are not installed, the :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`
    data model is still fully importable and usable for computing mesh structures.
 
+Rendering backends
+^^^^^^^^^^^^^^^^^^
+
+All renderers wrap a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`
+node-face data model (meshes can also be imported from the ``trimesh``
+library). The Cairo renderer will not work for these scenes — run them with
+the OpenGL renderer (``--renderer=opengl``):
+
+.. code-block:: python
+
+   from manim import *
+
+   from manim_extensions.meshes.models.data_models.mesh import Mesh
+   from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+
+   class ConeScene(Scene):
+       def construct(self):
+           # build the node-face data model, then wrap it in a renderer
+           mesh = Mesh(vertices=[[0, 0, 0], [1, 0, 0], [0, 1, 0]],
+                       faces=[[0, 1, 2]])
+           renderable = ManimMesh(mesh)
+           self.add(renderable)
+
+You can shift (translate) and scale the whole mesh or single vertices, and
+most manim coloring functions are available on individual mesh objects.
+Note that ``Rotate`` does not update the wrapped mesh, because it only updates
+a copy of the rotation.
+
+Renderer classes:
+
+- :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` /
+  :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` –
+  basic renderers for smaller meshes (under roughly 1 000 nodes). They suit 2D
+  and small 3D explanatory videos rather than high-resolution rendering;
+  shift / rotate / scale are available, but not every ``Mobject`` method is
+  re-implemented.
+- :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh` –
+  2-D triangle meshes, designed for educational use, with Delaunay-oriented
+  operations.
+- :class:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh` –
+  a faster renderer based on a custom shader that can render large meshes;
+  at the moment it is rendering-only.
+
+The bundled ``delaunay`` package provides Delaunay-triangulation helpers:
+Voronoi diagrams, checking the Delaunay criterion, and a divide-and-conquer
+triangulation algorithm.
+
+Default rendering parameters (which parts are displayed, edge / face /
+vertex colors and sizes) live in ``params.py``; pass the kwargs you want to
+override when constructing a mesh. Upstream example scenes (``ConeScene``,
+``PyramidScene``, ``SnapToGridScene``) live in the upstream ``tests/``
+directory.
+
+.. note::
+
+   The package is not fully optimized and is intended for smaller meshes;
+   the OpenGL renderer integration is still rough.
+
 This package is most appropriate for:
 
 * geometry lessons,
