@@ -464,6 +464,16 @@ Given the state of the Cube, it returned the necessary moves to execute to
 solve it. All moves returned by the method are able to be read by
 :class:`~manim_extensions.rubikscube.cube_animations.CubeMove`.
 
+Calling :meth:`~manim_extensions.rubikscube.cube.RubiksCube.solve_by_kociemba`
+with a state string returns the move list directly, e.g.:
+
+.. code-block:: python
+
+   moves = cube.solve_by_kociemba(
+       "BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR")
+   # ['F2', 'B2', "R'", "B'", 'R2', "L'", 'D', "F'", 'U', 'B', 'U2',
+   #  'L', 'U2', "R'", 'D2', 'R', 'L', 'D2', 'F2', 'B2']
+
 Putting it All Together
 -----------------------
 
@@ -497,6 +507,15 @@ This package is especially useful for:
 * cubing tutorials,
 * algorithm explanations for cube solving,
 * puzzle-state visualisations in lecture material.
+
+Roadmap
+-------
+
+The upstream project lists these planned additions: solving from the live cube
+state instead of a state string, executing a whole string of moves at once,
+checking solvability, rotating multiple slices together, transforming between
+cubes of different dimensions, coloring the inner faces of cubies, and passing
+construction parameters through to the underlying square faces.
 
 See the `original project <https://github.com/WampyCakes/manim-rubikscube>`_
 for the full spec, examples, and documentation.
