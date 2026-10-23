@@ -111,6 +111,7 @@ Module Index
 
 .. toctree::
    :maxdepth: 3
+   :titlesonly:
 
    basic/index
    algorithm/index
