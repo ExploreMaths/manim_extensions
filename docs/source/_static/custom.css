@@ -610,11 +610,11 @@ dl.py.property > dt.sig a[href^="https://docs.python.org"] .pre {
    bullet.  A block with exactly one entry drops the bullet — the
    attributes-single.js script detects that case and adds the class. */
 dl.py.attribute {
-    margin: 0.3em 0 0.3em 1.2em;
+    margin: 0.3em 0 0.3em calc(1.2em + 14px);
     padding-left: 0;
 }
 dl.py.property {
-    margin: 0.3em 0 0.3em 1.2em;
+    margin: 0.3em 0 0.3em calc(1.2em + 14px);
     padding-left: 0;
 }
 dl.py.attribute > dt.sig::before,
