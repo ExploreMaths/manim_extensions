@@ -26,6 +26,39 @@ The code is bundled inside ``manim_extensions`` as the
    ``manim<0.20``). Install it separately with
    ``pip install --no-deps manim-nerdfont-icons``.
 
+Usage
+-----
+
+.. code-block:: python
+
+   import manim as m
+
+   from manim_extensions.qr_codes.qr import qr_code
+
+
+   class MyQrCodeScene(m.Scene):
+
+       def construct(self):
+
+           qr_code_without_icon = qr_code("https://fishshell.com")
+           qr_code_with_icon = qr_code(
+               payload="https://fishshell.com",
+               icon="terminal",
+               icon_size=6,
+           )
+
+           qr_code_group = m.VGroup(
+               qr_code_without_icon,
+               qr_code_with_icon).arrange(m.RIGHT, buff=0.75)
+
+           label = m.Text("https://fishshell.com")
+           label.to_edge(m.UP, buff=0.75)
+
+           self.add(qr_code_group, label)
+
+See the `example gallery <https://manim-qr-codes.readthedocs.io/en/latest/example-gallery.html>`_
+of the upstream documentation for more animated examples.
+
 .. toctree::
    :maxdepth: 1
 
