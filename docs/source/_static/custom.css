@@ -605,26 +605,17 @@ dl.py.property > dt.sig a[href^="https://docs.python.org"] .pre {
     font-weight: inherit;
 }
 
-/* Render Attributes entries like Parameters entries: one line per
-   attribute, "name (Type) – description", no bullets and no separate
-   indented TYPE: row.  The attribute signature itself carries no type
-   (autodoc puts it in the nested "Type" field-list), so merge that
-   field-list inline: hide its "Type" label and emit ") – " after the
-   value.  dl.py.property signatures already carry the type (e.g.
-   "values : List[NodeValue]"), so only inline the description and
-   drop the duplicated "Return type" explanation. */
+/* Attributes rendered as a simple bulleted list: each autodoc
+   attribute/property entry keeps its own dt + dd block, prefixed by a
+   bullet.  A block with exactly one entry drops the bullet — the
+   attributes-single.js script detects that case and adds the class. */
 dl.py.attribute {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
     margin: 0.3em 0 0.3em 1.2em;
     padding-left: 0;
 }
-dl.py.attribute > dt.sig {
-    flex: 0 0 auto;
+dl.py.property {
+    margin: 0.3em 0 0.3em 1.2em;
     padding-left: 0;
-    margin-left: 0;
-    text-indent: 0;
 }
 dl.py.attribute > dt.sig::before,
 dl.py.property > dt.sig::before {
@@ -638,77 +629,5 @@ dl.py.property.attributes-single > dt.sig::before {
 }
 dl.py.attribute > dt.sig a.headerlink,
 dl.py.property > dt.sig a.headerlink {
-    display: none;
-}
-dl.py.attribute:has(> dd > dl.field-list) > dt.sig::after {
-    content: " (";
-}
-dl.py.attribute > dd {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin: 0;
-    padding: 0;
-}
-dl.py.attribute > dd > p {
-    order: 2;
-    margin: 0;
-}
-/* Typed attributes end with ") – " from the Type field-list; untyped
-   attributes with a description only get the separator here (the
-   description <p> is then the dd's only child). */
-dl.py.attribute > dd > p:only-child::before {
-    content: " – ";
-}
-dl.py.attribute > dd > dl.field-list {
-    order: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin: 0;
-    padding: 0;
-}
-dl.py.attribute > dd > dl.field-list > dt {
-    display: none;
-}
-dl.py.attribute > dd > dl.field-list > dd {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-dl.py.attribute > dd > dl.field-list > dd > p {
-    display: inline;
-    margin: 0;
-}
-dl.py.attribute > dd > dl.field-list > dd::after {
-    content: ") – ";
-}
-dl.py.property {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin: 0.3em 0;
-    padding-left: 0;
-}
-dl.py.property > dt.sig {
-    flex: 0 0 auto;
-    padding-left: 0;
-    margin-left: 0;
-    text-indent: 0;
-}
-dl.py.property > dt.sig::after {
-    content: " – ";
-}
-dl.py.property > dd {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    margin: 0;
-    padding: 0;
-}
-dl.py.property > dd > p {
-    margin: 0;
-}
-dl.py.property > dd > dl.field-list {
     display: none;
 }
