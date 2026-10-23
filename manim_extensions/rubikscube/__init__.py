@@ -12,3 +12,17 @@ visualising cube states in Manim scenes.
 
 from .cube import *
 from .cube_animations import *
+
+
+try:
+    from importlib.metadata import version as _version
+except ImportError:  # pragma: no cover
+    from importlib_metadata import version as _version
+
+try:
+    __version__ = _version("manim_extensions.rubikscube")
+except Exception:
+    try:
+        __version__ = _version("manim_extensions")
+    except Exception:
+        __version__ = "unknown"

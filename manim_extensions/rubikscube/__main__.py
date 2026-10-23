@@ -10,7 +10,7 @@ This module provides the entry point for the Rubik's Cube extension.
 
 def main() -> None:
     """Entry point for the ``python -m manim_extensions.rubikscube`` command."""
-    pass
+    print("Manim Rubik's Cube v" + __version__ + "\n")
 
 
 if __name__ == "__main__":
