@@ -60,7 +60,7 @@ of the body the label is placed on:
                Inductor(label="0.3", direction=UP),
                Capacitor(label="47", direction=UP),
            ).arrange(RIGHT, buff=1.5)
-           self.add(components)
+           self.add(components.scale(2))
 
 To wire components together, call
 :meth:`~manim_extensions.circuit.mobjects.Resistor.get_terminals` with
