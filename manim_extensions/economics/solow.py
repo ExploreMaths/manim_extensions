@@ -137,17 +137,17 @@ class SolowDiagram(EconDiagram):
 
     @staticmethod
     def _make_prod_func(alpha: Any):
-        """y = k^α"""
+        """:math:`y = k^\\alpha`"""
         return lambda k: k ** alpha
 
     @staticmethod
     def _make_savings_func(s: Any, alpha: Any):
-        """sf(k) = s·k^α"""
+        """:math:`sf(k) = s \\cdot k^\\alpha`"""
         return lambda k: s * (k ** alpha)
 
     @staticmethod
     def _make_breakeven_func(delta: Any, n: Optional[np.ndarray], g: Any):
-        """(δ + n + g)·k"""
+        """:math:`(\\delta + n + g) \\cdot k`"""
         rate = delta + n + g
         return lambda k: rate * k
 
@@ -311,7 +311,7 @@ class SolowDiagram(EconDiagram):
     # ---- Consumption / Investment shares ----
 
     def _steady_state_k(self):
-        """Compute steady-state capital: sf(k*) = (δ+n+g)k*."""
+        """Compute steady-state capital: :math:`sf(k^*) = (\\delta+n+g)k^*`."""
         from .base import find_intersection
         sf = self._make_savings_func(self._s, self._alpha)
         bf = self._make_breakeven_func(self._delta, self._n, self._g)
@@ -444,7 +444,7 @@ class SolowDiagram(EconDiagram):
     def _golden_rule_k(self):
         """Compute golden-rule capital: :math:`MPK = \\delta + n + g`.
 
-        f'(k) = α·k^(α-1) = δ+n+g  →  k_gold = (α / (δ+n+g))^(1/(1-α))
+        :math:`f'(k) = \\alpha k^{\\alpha-1} = \\delta+n+g \\to k_{\\mathrm{gold}} = (\\alpha/(\\delta+n+g))^{1/(1-\\alpha)}`
         """
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))

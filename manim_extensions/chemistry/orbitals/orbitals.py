@@ -86,7 +86,7 @@ class OrbitalBase(OpenGLSurface):
         self.shift(center)
 
     def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0) -> Any:
-        """Compute the real part of the spherical harmonic Y_l^m at angles phi, theta.
+        """Compute the real part of the spherical harmonic :math:`Y_l^m` at angles :math:`\\phi, \\theta`.
 
         Parameters
         ----------

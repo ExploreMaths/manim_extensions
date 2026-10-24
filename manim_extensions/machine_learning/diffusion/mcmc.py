@@ -74,10 +74,11 @@ class MultidimensionalGaussianPosterior:
     """
     N-Dimensional Gaussian distribution with.
 
-    mu ~ Normal(0, 10)
-    var ~ LogNormal(0, 1.5)
+    :math:`mu \\sim \\text{Normal}(0, 10)`
 
-    Prior on mean is U(-500, 500)
+    :math:`var \\sim \\text{LogNormal}(0, 1.5)`
+
+    Prior on mean is :math:`U(-500, 500)`
 
     Parameters
     ----------

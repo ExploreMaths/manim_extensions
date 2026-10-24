@@ -1095,7 +1095,7 @@ class Mesh:
 
             Returns
             -------
-                A 3×3 rotation matrix.
+                A :math:`3 \\times 3` rotation matrix.
             """
             rot_mat = Rotation.from_rotvec(
                 angle * np.array(axis) / np.linalg.norm(np.array(axis))
@@ -1171,7 +1171,7 @@ class Mesh:
             the mesh dimension.
         InvalidRequestException
             If *grid_sizes* contains non-positive values, any threshold
-            is ≥ half the corresponding grid size, all thresholds are zero,
+            is :math:`\\geq` half the corresponding grid size, all thresholds are zero,
             or *steps* is not positive.
         """
         if len(grid_sizes) != self.dim:

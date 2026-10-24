@@ -39,7 +39,7 @@ def get_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
 
     Returns
     -------
-        Clockwise angle in radians between 0 and 2π.
+        Clockwise angle in radians between 0 and :math:`2\\pi`.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
@@ -61,7 +61,7 @@ def get_counter_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
 
     Returns
     -------
-        Counter-clockwise angle in radians between 0 and 2π.
+        Counter-clockwise angle in radians between 0 and :math:`2\\pi`.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
