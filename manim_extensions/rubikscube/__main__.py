@@ -8,7 +8,7 @@ This module provides the entry point for the Rubik's Cube extension.
 
 """
 
-from manim_extensions.rubikscube import __version__
+from . import __version__
 
 
 def main() -> None:
