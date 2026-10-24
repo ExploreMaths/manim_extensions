@@ -195,7 +195,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs):
+    def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs) -> Succession:
         """Makes a forward pass animation with dropout.
 
         Parameters
@@ -205,7 +205,12 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             of the nodes that are dropped out.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args
         dropout_node_indices = layer_args["dropout_node_indices"]
@@ -226,7 +231,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         return succession
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Any:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 
         Parameters
@@ -236,7 +241,12 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             the nodes that are dropped out, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
             # Drop out certain nodes
@@ -274,20 +284,40 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         animation_group = AnimationGroup(*animations, lag_ratio=0.0)
         return animation_group
 
-    def get_height(self):
-        """Return the height of the surrounding rectangle."""
+    def get_height(self) -> Any:
+        """Return the height of the surrounding rectangle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_rectangle.get_height()
 
-    def get_center(self):
-        """Return the center point of the surrounding rectangle."""
+    def get_center(self) -> Any:
+        """Return the center point of the surrounding rectangle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_rectangle.get_center()
 
-    def get_left(self):
-        """Return the leftmost point of the surrounding rectangle."""
+    def get_left(self) -> Any:
+        """Return the leftmost point of the surrounding rectangle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_rectangle.get_left()
 
-    def get_right(self):
-        """Return the rightmost point of the surrounding rectangle."""
+    def get_right(self) -> Any:
+        """Return the rightmost point of the surrounding rectangle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_rectangle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):

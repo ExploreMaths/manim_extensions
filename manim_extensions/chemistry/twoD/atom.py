@@ -8,7 +8,7 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Any, Literal, Optional
+from typing import Dict, Any, Literal, Optional, Self
 
 
 class MAtomObject(VGroup):
@@ -117,7 +117,7 @@ class MAtomObject(VGroup):
     def set_representation(
         self,
         representation_type: Optional[Literal["complete", "skeleton", "over_bond"]],
-    ):
+    ) -> str:
         """
         Determine the atom label representation from the requested type.
 
@@ -138,7 +138,12 @@ class MAtomObject(VGroup):
         representation_type
             Requested representation; when falsy it is inferred from the
             element.
-        """
+
+        Returns
+        -------
+        str
+            The resulting string.
+"""
         if representation_type:
             return representation_type
 
@@ -157,15 +162,24 @@ class MAtomObject(VGroup):
 
         return representation_type
 
-    def add_atom(self):
+    def add_atom(self) -> Any:
         """
         Adds an atom depending on the representation.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result."""
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
 
-    def bonds_fulfilled(self):
-        """Check if the atom has its expected minimum number of bonds."""
+    def bonds_fulfilled(self) -> bool:
+        """Check if the atom has its expected minimum number of bonds.
+
+        Returns
+        -------
+        bool
+            Whether the operation succeeded."""
         minimum_bonds = {"O": 2, "S": 2, "N": 3, "P": 3}
         minimum_bond = minimum_bonds.get(self.element)
         if self.bond_to and minimum_bond:
@@ -173,8 +187,13 @@ class MAtomObject(VGroup):
 
         return True
 
-    def make_copy(self):
-        """Create a copy of this atom preserving all properties and coordinates."""
+    def make_copy(self) -> Self:
+        """Create a copy of this atom preserving all properties and coordinates.
+
+        Returns
+        -------
+        MAtomObject
+            A MAtomObject instance representing the result."""
         copy = MAtomObject(
             coords=self.coords,
             element=self.element,
@@ -189,7 +208,7 @@ class MAtomObject(VGroup):
         )
         return copy
 
-    def rename_atom(self, new_element: Any, bonds_direction: Any):
+    def rename_atom(self, new_element: Any, bonds_direction: Any) -> Any:
         """Replace this atom's element with new_element and adjust position by bond direction.
 
         Parameters
@@ -198,7 +217,12 @@ class MAtomObject(VGroup):
             Element symbol of the new atom.
         bonds_direction
             Direction of the bond, used to shift the renamed atom.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         self.element = new_element
         renamed_atom = self.make_copy()
 
@@ -214,8 +238,13 @@ class MAtomObject(VGroup):
 
         return renamed_atom
 
-    def copy_with_explicit_hydrogens(self):
-        """Return a copy of this atom with explicit hydrogens enabled."""
+    def copy_with_explicit_hydrogens(self) -> Any:
+        """Return a copy of this atom with explicit hydrogens enabled.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         self.explicit_hydrogens = True
 
         return self.make_copy()

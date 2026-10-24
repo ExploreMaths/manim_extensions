@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Image mobject utilities for neural network visualization."""
 
-from typing import Any
+from typing import Any, Self
 
 import numpy as np
 from manim import (
@@ -72,7 +72,7 @@ class GrayscaleImageMobject(Group):
         self.image_mobject.scale_to_fit_height(height)
 
     @classmethod
-    def from_path(cls, path: str, height: float = 2.3) -> "GrayscaleImageMobject":
+    def from_path(cls, path: str, height: float = 2.3) -> Self:
         """Loads image from path.
 
         Parameters

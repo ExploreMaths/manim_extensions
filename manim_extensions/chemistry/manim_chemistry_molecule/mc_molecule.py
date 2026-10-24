@@ -6,7 +6,7 @@ This module provides the MCMolecule class for representing molecules.
 
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Self
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -146,7 +146,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ):
+    ) -> Self:
         """
         Given data with the format provided by a parser, constructs a MCMolecule,
         the corresponding MCAtoms and MCBonds and stablishes the connections between
@@ -166,7 +166,12 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
-        """
+
+        Returns
+        -------
+        MCMolecule
+            A MCMolecule instance representing the result.
+"""
 
         mc_molecule = MCMolecule()
         mc_molecule.add_atoms_from_atoms_dict(
@@ -189,7 +194,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ):
+    ) -> Any:
         """
         Returns an MCMolecule given a file path.
 
@@ -205,7 +210,12 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 
         if isinstance(parsed_data, list):
@@ -226,7 +236,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ):
+    ) -> list:
         """
         Similar to ``construct_from_file`` but returning a list of MCMolecules.
 
@@ -242,7 +252,12 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
 
         list_of_data_dicts = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
         mc_molecules = []
@@ -266,7 +281,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ):
+    ) -> Any:
         """
         Reads a string and returns a molecule.
 
@@ -302,7 +317,12 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
 
         if isinstance(parsed_data, list):
@@ -324,7 +344,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ):
+    ) -> list:
         """
         Similar to ``construct_from_string`` but returning a list of MCMolecules.
 
@@ -342,7 +362,12 @@ class MCMolecule:
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data. Defaults to ``None``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
         mc_molecules = []
         for atoms_dict, bonds_dict in parsed_data:
@@ -358,8 +383,13 @@ class MCMolecule:
 
         return mc_molecules
 
-    def remove_carbon_hydrogens(self):
-        """Remove all hydrogen atoms that are bonded only to carbon atoms."""
+    def remove_carbon_hydrogens(self) -> Any:
+        """Remove all hydrogen atoms that are bonded only to carbon atoms.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1 or atom.element.symbol != "H":
@@ -375,8 +405,13 @@ class MCMolecule:
 
         return self.remove_hydrogens(atoms_to_be_removed)
 
-    def remove_all_hydrogens(self):
-        """Remove every hydrogen atom from the molecule."""
+    def remove_all_hydrogens(self) -> Any:
+        """Remove every hydrogen atom from the molecule.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1:

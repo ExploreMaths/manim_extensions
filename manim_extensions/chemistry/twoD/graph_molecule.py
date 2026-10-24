@@ -106,8 +106,13 @@ class DoubleLine(ArcBetweenPoints):
 
         return vector / np.linalg.norm(vector)
 
-    def get_vector(self):
-        """Return the unit direction vector of the double bond."""
+    def get_vector(self) -> Any:
+        """Return the unit direction vector of the double bond.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self._get_unit_vector()
 
     def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs) -> None:
@@ -404,18 +409,23 @@ class GraphMolecule(Graph, AbstractMolecule):
             )
             self.edges[(u, v)] = bond
 
-    def select_bond_from_edge(self, edge: Any):
+    def select_bond_from_edge(self, edge: Any) -> Any:
         """Return the bond class for a given edge tuple based on its bond type.
 
         Parameters
         ----------
         edge
             Edge tuple of the molecule.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
 
-    def select_bond_type(self, bond_type: int):
+    def select_bond_type(self, bond_type: int) -> Any:
         """Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple).
 
         Parameters
@@ -423,11 +433,16 @@ class GraphMolecule(Graph, AbstractMolecule):
         bond_type
             Type of the bond: 1 for single, 2 for double, 3 for triple.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when ``bond_type`` is not one of 1, 2, or 3.
-        """
+"""
         bond = self.SUPPORTED_BOND_TYPES.get(int(bond_type))
 
         if not bond:
@@ -437,24 +452,34 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return bond
 
-    def make_layout(self, vertices_dict: dict):
+    def make_layout(self, vertices_dict: dict) -> Any:
         """Build a layout dict mapping each atom index to its 3D coordinates.
 
         Parameters
         ----------
         vertices_dict
             Dictionary mapping vertex indices to their atoms.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
 
-    def make_vertex_config(self, vertices_dict: dict):
+    def make_vertex_config(self, vertices_dict: dict) -> dict:
         """Build a vertex config dict with element colors and dot radius.
 
         Parameters
         ----------
         vertices_dict
             Dictionary mapping vertex indices to their atoms.
-        """
+
+        Returns
+        -------
+        dict
+            A dictionary of the results.
+"""
         v_dict = {}
         for vertex_index, mc_atom in vertices_dict.items():
             v_dict[vertex_index] = {
@@ -464,14 +489,19 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return v_dict
 
-    def make_edge_config(self, edges: dict):
+    def make_edge_config(self, edges: dict) -> dict:
         """Build an edge config dict with gradient colors derived from bonded atom colors.
 
         Parameters
         ----------
         edges
             Dictionary mapping edge tuples to their bonds.
-        """
+
+        Returns
+        -------
+        dict
+            A dictionary of the results.
+"""
         edge_config = {}
         for edge_key, edge in edges.items():
             edge_config[edge_key] = {
@@ -486,7 +516,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return edge_config
 
-    def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str):
+    def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str) -> Any:
         """Create label text mobjects for each atom, either numeric or element symbols.
 
         Parameters
@@ -497,7 +527,12 @@ class GraphMolecule(Graph, AbstractMolecule):
             Whether to add a numeric label to each atom.
         label_color
             Color of the atom labels.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         if numeric_label:
             return {
                 index: Text(str(index), color=label_color).scale(0.5)
@@ -594,14 +629,19 @@ class GraphMolecule(Graph, AbstractMolecule):
             connected_atoms=connected_atoms,
         )
 
-    def get_atoms_vgroup_from_index(self, atoms_indices: Any):
+    def get_atoms_vgroup_from_index(self, atoms_indices: Any) -> VGroup:
         """Return a VGroup of vertex mobjects for the given atom indices.
 
         Parameters
         ----------
         atoms_indices
             Atom indices to get the vertex mobjects for.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
 
     def get_connected_atoms_v_group(
@@ -650,7 +690,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return edges
 
-    def get_bonds_vgroup_from_index(self, connected_atoms: list, excluded_atom: int):
+    def get_bonds_vgroup_from_index(self, connected_atoms: list, excluded_atom: int) -> VGroup:
         """Return a VGroup of bond mobjects connected to the given atoms, excluding one.
 
         Parameters
@@ -659,13 +699,18 @@ class GraphMolecule(Graph, AbstractMolecule):
             List of atom indices to get the bonds from.
         excluded_atom
             Atom index to exclude from the bonds.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
         return VGroup(*[self.edges[bond_atoms] for bond_atoms in bonds])
 
     def get_connected_atoms_and_bonds_group_from_index(
         self, connected_atoms: list, excluded_atom: int = 0
-    ):
+    ) -> VGroup:
         """Return a combined VGroup of connected atoms and their bonds, excluding one atom.
 
         Parameters
@@ -674,7 +719,12 @@ class GraphMolecule(Graph, AbstractMolecule):
             List of connected atom indices.
         excluded_atom
             Atom index to exclude from the bonds. Defaults to 0.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         return VGroup(
             self.get_atoms_vgroup_from_index(atoms_indices=connected_atoms),
             self.get_bonds_vgroup_from_index(

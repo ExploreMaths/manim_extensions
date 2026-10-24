@@ -85,8 +85,13 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         self.vector_label = self.make_vector()
         self.add(self.vector_label)
 
-    def make_vector(self):
-        """Makes the vector."""
+    def make_vector(self) -> Text:
+        """Makes the vector.
+
+        Returns
+        -------
+        Text
+            A Text instance representing the result."""
         if False:
             # TODO install Latex
             values = np.array([self.value_func() for i in range(self.num_values)])
@@ -98,7 +103,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         return vector_label
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Return an empty animation group; the vector layer has no forward pass effect.
 
         Parameters
@@ -108,7 +113,12 @@ class VectorLayer(VGroupNeuralNetworkLayer):
             forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         return AnimationGroup()
 
     @override_animation(Create)

@@ -56,14 +56,19 @@ class ChemicalFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def parse_formula(self, formula: str):
+    def parse_formula(self, formula: str) -> dict:
         """Parse a formula string into a dict mapping element symbols to their counts.
 
         Parameters
         ----------
         formula
             The chemical formula to parse, e.g. ``"H2O"``.
-        """
+
+        Returns
+        -------
+        dict
+            A dictionary of the results.
+"""
         FORMULA_PATTERN = r"([A-Z][a-z]*)(\d*)"
         elements = re.findall(FORMULA_PATTERN, formula)
         parsed_formula = {}
@@ -79,7 +84,7 @@ class ChemicalFormula(MarkupText):
         metal_color: str = WHITE,
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
-    ):
+    ) -> str:
         """Build Pango markup string with colored elements and subscripted counts.
 
         Parameters
@@ -92,7 +97,12 @@ class ChemicalFormula(MarkupText):
             Color of the non-metal element. Defaults to ``WHITE``.
         oxygen_color
             Color of the oxygen element. Defaults to ``WHITE``.
-        """
+
+        Returns
+        -------
+        str
+            The resulting string.
+"""
         parsed_list = enumerate(list(parsed_formula))
         markup = ""
 
@@ -108,7 +118,7 @@ class ChemicalFormula(MarkupText):
 
         return markup
 
-    def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor):
+    def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor) -> str:
         """Wrap an atom symbol and its subscript count in a colored span tag.
 
         Parameters
@@ -119,7 +129,12 @@ class ChemicalFormula(MarkupText):
             Subscript count of the atom.
         color
             Color of the atom text.
-        """
+
+        Returns
+        -------
+        str
+            The resulting string.
+"""
         colored_atom = f"<span fgcolor='{color}'>{atom}"
 
         if subindex > 1:
@@ -216,13 +231,17 @@ class NamedFormula(VGroup):
         )
         self.add(self.name)
 
-    def make_name(self):
+    def make_name(self) -> MarkupText:
         """
         Not all languages use the same naming structure.
         For example, in english NaCl is Sodium (Na) Chloride (Cl)
         while in spanish it is Cloruro (Cl) Sódico (Na). Reimplement it
         as you need.
-        """
+
+        Returns
+        -------
+        MarkupText
+            A MarkupText instance representing the result."""
 
         metal_text = None
         non_metal_text = None
@@ -271,41 +290,56 @@ class ComplexFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def add_tags_around_numbers(self, formula_part: Any):
+    def add_tags_around_numbers(self, formula_part: Any) -> Any:
         """Wrap trailing numbers in formula parts with HTML subscript tags.
 
         Parameters
         ----------
         formula_part
             Formula string to add subscript tags to.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
         result = re.sub(pattern, replacement, formula_part)
         return result
 
-    def add_tags_around_charges(self, formula_part: Any):
+    def add_tags_around_charges(self, formula_part: Any) -> Any:
         """Wrap charge notation (^{...}) with HTML superscript tags.
 
         Parameters
         ----------
         formula_part
             Formula string to add superscript tags to.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
         result_string = re.sub(pattern, substitution, formula_part)
 
         return result_string
 
-    def make_formula_structure(self, formula_part: Any):
+    def make_formula_structure(self, formula_part: Any) -> Any:
         """Apply subscript and superscript formatting to a formula string.
 
         Parameters
         ----------
         formula_part
             Formula string to add subscript and superscript tags to.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)
 
@@ -369,8 +403,13 @@ class NamedComplexFormula(VGroup):
 
         self.add(name)
 
-    def build_name(self):
-        """Build colored markup text from the name dictionary entries."""
+    def build_name(self) -> str:
+        """Build colored markup text from the name dictionary entries.
+
+        Returns
+        -------
+        str
+            The resulting string."""
         markup = ""
         for name, color in self.name_dict.items():
             markup += f"<span fgcolor='{color}'>{name} </span>"

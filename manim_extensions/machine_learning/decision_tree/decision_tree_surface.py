@@ -49,7 +49,7 @@ class AABB:
         """Initialize an axis-aligned bounding box with [-inf, inf] limits per feature."""
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
-    def split(self, f: Any, v: Any):
+    def split(self, f: Any, v: Any) -> tuple:
         """Split the bounding box along feature f at value v, returning left and right AABBs.
 
         Parameters
@@ -59,7 +59,12 @@ class AABB:
         v
             Threshold value; the left box gets ``[-inf, v]`` and the right
             box ``[v, inf]`` along feature ``f``.
-        """
+
+        Returns
+        -------
+        tuple
+            A tuple of the results.
+"""
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -69,7 +74,7 @@ class AABB:
 
         return left, right
 
-def tree_bounds(tree: Mobject, n_features: Optional[Any]=None):
+def tree_bounds(tree: Mobject, n_features: Optional[Any]=None) -> Any:
     """Compute final decision rule for each node in tree.
 
     Parameters
@@ -80,7 +85,12 @@ def tree_bounds(tree: Mobject, n_features: Optional[Any]=None):
     n_features
         Override autodetection of the number of features. By default the
         number of features is inferred as ``max(tree.feature) + 1``.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     ctree = require("ml", "sklearn.tree")._tree
 
     if n_features is None:
@@ -102,7 +112,7 @@ def compute_decision_areas(
     x: int = 0,
     y: int = 1, 
     n_features: Optional[Any]=None
-):
+) -> list:
     """Extract decision areas.
 
     Parameters
@@ -118,7 +128,12 @@ def compute_decision_areas(
         Index of the feature that goes on the y axis. Defaults to ``1``.
     n_features
         Override autodetection of the number of features.
-    """
+
+    Returns
+    -------
+    list
+        A list of the results.
+"""
     ctree = require("ml", "sklearn.tree")._tree
 
     tree = tree_classifier.tree_
@@ -171,7 +186,7 @@ def plot_areas(rectangles: Any):
         )
         plt.gca().add_artist(rp)
 
-def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]):
+def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]) -> list:
     """Merge adjacent polygons of the same color into larger contiguous polygons.
 
     Parameters
@@ -182,7 +197,12 @@ def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, O
     colors
         The colors to merge polygons for, in order. Defaults to
         ``[BLUE, GREEN, ORANGE]``.
-    """
+
+    Returns
+    -------
+    list
+        A list of the results.
+"""
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -307,8 +327,13 @@ class IrisDatasetPlot(VGroup):
         self.all_group.shift([0, 0.2, 0])
 
     @override_animation(Create)
-    def create_animation(self):
-        """Create animation for the Iris plot: points, axes, and legend in sequence."""
+    def create_animation(self) -> AnimationGroup:
+        """Create animation for the Iris plot: points, axes, and legend in sequence.
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result."""
         animation_group = AnimationGroup(
             # Perform the animations
             Create(self.point_group, run_time=2),
@@ -441,8 +466,13 @@ class DecisionTreeSurface(VGroup):
         self.class_colors = class_colors
         self.surface_rectangles = self.generate_surface_rectangles()
 
-    def generate_surface_rectangles(self):
-        """Compute decision areas from the tree and return them as Manim polygon mobjects."""
+    def generate_surface_rectangles(self) -> list:
+        """Compute decision areas from the tree and return them as Manim polygon mobjects.
+
+        Returns
+        -------
+        list
+            A list of the results."""
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
         right = np.amax(self.data[:, 0]) - 0.2
@@ -453,8 +483,13 @@ class DecisionTreeSurface(VGroup):
             self.tree_clf, maxrange, x=0, y=1, n_features=2
         )
         # turn the rectangle objects into manim rectangles
-        def convert_rectangle_to_polygon(rect: Any):
-            """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates."""
+        def convert_rectangle_to_polygon(rect: Any) -> Polygon:
+            """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.
+
+            Returns
+            -------
+            Polygon
+                A Polygon instance representing the result."""
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
             bottom_right = [rect[1], rect[3]]
@@ -490,8 +525,13 @@ class DecisionTreeSurface(VGroup):
         return manim_rectangles
 
     @override_animation(Create)
-    def create_override(self):
-        """Create animation that reveals all surface rectangles simultaneously."""
+    def create_override(self) -> AnimationGroup:
+        """Create animation that reveals all surface rectangles simultaneously.
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:
@@ -501,8 +541,13 @@ class DecisionTreeSurface(VGroup):
         return animation_group
 
     @override_animation(Uncreate)
-    def uncreate_override(self):
-        """Uncreate animation that removes all surface rectangles simultaneously."""
+    def uncreate_override(self) -> AnimationGroup:
+        """Uncreate animation that removes all surface rectangles simultaneously.
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:

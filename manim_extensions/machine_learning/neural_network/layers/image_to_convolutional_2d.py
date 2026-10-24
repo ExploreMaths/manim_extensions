@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Image to convolutional 2D layer connection visualization."""
 
+from typing import Any
 from manim import (
     ApplyFunction,
     ApplyMethod,
@@ -51,7 +52,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -62,10 +63,15 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> Any:
         """Maps image to convolutional layer.
 
         Parameters
@@ -78,11 +84,16 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         **kwargs
             Forwarded to the parent layer classes.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when the number of image channels is not 1 or 3.
-        """
+"""
         # Transform the image from the input layer to the
         num_image_channels = self.input_layer.num_channels
         if num_image_channels == 1 or num_image_channels == 3:  # TODO fix this later
@@ -109,8 +120,13 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # it to the feature maps of the output_layer
         raise NotImplementedError()
 
-    def grayscale_image_forward_pass_animation(self):
-        """Handles forward pass animation for 1 channel image."""
+    def grayscale_image_forward_pass_animation(self) -> Succession:
+        """Handles forward pass animation for 1 channel image.
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result."""
         animations = []
         image_mobject = self.input_layer.image_mobject
         target_feature_map = self.output_layer.feature_maps[0]
@@ -145,8 +161,13 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         set_opacity = ApplyMethod(image_mobject.set_opacity, 0.2, run_time=0.5)
         # Scale the max of width or height to the
         # width of the feature_map
-        def scale_image_func(image_mobject: Mobject):
-            """Scale the image to match the target feature map size, preserving aspect ratio."""
+        def scale_image_func(image_mobject: Mobject) -> Any:
+            """Scale the image to match the target feature map size, preserving aspect ratio.
+
+            Returns
+            -------
+            Any
+                The computed result."""
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height
             image_mobject.scale(scale_factor)

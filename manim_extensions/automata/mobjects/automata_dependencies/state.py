@@ -111,7 +111,7 @@ class State:
         self.transitions.append(transition)
         return self.transitions
 
-    def get_transition(self, id: int) -> "Transition":
+    def get_transition(self, id: int) -> Transition:
         """Return the transition matching the given identifier.
 
         Parameters
@@ -140,7 +140,7 @@ class State:
 
     def get_transition_by_transition_to_state_id(
         self, transition_to_state_id: int
-    ) -> "Transition | None":
+    ) -> Transition | None:
         """Return the transition whose destination state matches the given id.
 
         Parameters

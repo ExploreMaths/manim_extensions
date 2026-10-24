@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Utility functions for neural network layers."""
 
+from typing import Any
 import warnings
 
 from .parent_layers import BlankConnective
@@ -13,7 +14,7 @@ from . import connective_layers_list
 
 
 from manim import Mobject
-def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
+def get_connective_layer(input_layer: Mobject, output_layer: Mobject) -> Any:
     """
     Deduces the relevant connective layer.
 
@@ -23,7 +24,12 @@ def get_connective_layer(input_layer: Mobject, output_layer: Mobject):
         The layer the connection starts from.
     output_layer
         The layer the connection ends at.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     connective_layer_class = None
     for candidate_class in connective_layers_list:
         input_class = candidate_class.input_class

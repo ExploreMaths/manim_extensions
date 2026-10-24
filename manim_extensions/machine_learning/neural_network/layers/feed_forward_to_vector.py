@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to vector layer connection visualization."""
 
+from typing import Any
 from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -53,7 +54,7 @@ class FeedForwardToVector(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -64,10 +65,15 @@ class FeedForwardToVector(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
@@ -77,7 +83,12 @@ class FeedForwardToVector(ConnectiveLayer):
             their forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         animations = []
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer
         destination = self.vector_layer.get_center()

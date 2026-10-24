@@ -453,8 +453,13 @@ class ThreeDBond(OpenGLGroup):
 
         self.add(self.bonds)
 
-    def add_single_bond(self):
-        """Create a single bond as two half-cylinders colored by each connected atom."""
+    def add_single_bond(self) -> OpenGLGroup:
+        """Create a single bond as two half-cylinders colored by each connected atom.
+
+        Returns
+        -------
+        OpenGLGroup
+            A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         midpoint = (self.to_atom.coords + self.from_atom.coords) / 2
 
@@ -469,8 +474,13 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def add_double_bond(self):
-        """Create a double bond with two parallel single-bond cylinders offset perpendicularly."""
+    def add_double_bond(self) -> OpenGLGroup:
+        """Create a double bond with two parallel single-bond cylinders offset perpendicularly.
+
+        Returns
+        -------
+        OpenGLGroup
+            A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
 
@@ -490,8 +500,13 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def add_triple_bond(self):
-        """Create a triple bond with three parallel single-bond cylinders offset perpendicularly."""
+    def add_triple_bond(self) -> OpenGLGroup:
+        """Create a triple bond with three parallel single-bond cylinders offset perpendicularly.
+
+        Returns
+        -------
+        OpenGLGroup
+            A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
         perp_unit = self.get_perpendicular_unit_vector(
@@ -512,7 +527,7 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
+    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any) -> Any:
         """Return a unit vector perpendicular to the bond direction in the xy plane.
 
         Parameters
@@ -521,7 +536,12 @@ class ThreeDBond(OpenGLGroup):
             Starting point of the bond.
         point_b
             Ending point of the bond.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))

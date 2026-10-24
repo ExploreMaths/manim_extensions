@@ -169,7 +169,7 @@ class SolowDiagram(EconDiagram):
         shares_anim = ReplacementTransform(old, new_group, run_time=run_time)
         return AnimationGroup(curve_anim, shares_anim)
 
-    def shift_savings(self, s: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
+    def shift_savings(self, s: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
         """Animate savings curve shifting due to change in savings rate.
 
         Parameters
@@ -198,7 +198,7 @@ class SolowDiagram(EconDiagram):
         return self._shift_with_shares(anim, run_time)
 
     def shift_breakeven(self, delta: Optional[Any]=None, n: Optional[Any]=None, g: Optional[Any]=None, run_time: float = 1,
-                        show_arrows: bool = False):
+                        show_arrows: bool = False) -> Any:
         """Animate break-even line shifting due to changes in :math:`\\delta`, n, or g.
 
         Parameters
@@ -236,7 +236,7 @@ class SolowDiagram(EconDiagram):
 
     # ---- Common shocks ----
 
-    def increase_savings(self, s: Any, show_arrows: bool = False):
+    def increase_savings(self, s: Any, show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher savings rate → sf(k) shifts up → higher steady-state k.
 
         Parameters
@@ -254,7 +254,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def decrease_savings(self, s: Any, show_arrows: bool = False):
+    def decrease_savings(self, s: Any, show_arrows: bool = False) -> list[AnimationGroup]:
         """Lower savings rate → sf(k) shifts down → lower steady-state k.
 
         Parameters
@@ -272,7 +272,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def population_growth(self, n: Optional[np.ndarray], show_arrows: bool = False):
+    def population_growth(self, n: Optional[np.ndarray], show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher population growth → break-even steeper → lower steady-state k.
 
         Parameters
@@ -290,7 +290,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
 
-    def increase_depreciation(self, delta: Any, show_arrows: bool = False):
+    def increase_depreciation(self, delta: Any, show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher depreciation → break-even steeper → lower steady-state k.
 
         Parameters
@@ -343,7 +343,7 @@ class SolowDiagram(EconDiagram):
 
         return VGroup(stem, i_brace, i_label, c_brace, c_label)
 
-    def show_shares(self, k: Optional[Any]=None, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 1):
+    def show_shares(self, k: Optional[Any]=None, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 1) -> FadeIn | ReplacementTransform | None:
         """Show or update consumption/investment share annotations.
 
         Call again after a shift to animate the braces to the new position.
@@ -382,7 +382,7 @@ class SolowDiagram(EconDiagram):
         self._shares_group = new_group
         return FadeIn(new_group, run_time=run_time)
 
-    def hide_shares(self):
+    def hide_shares(self) -> FadeOut | None:
         """Remove the share annotations.
 
         Returns
@@ -398,7 +398,7 @@ class SolowDiagram(EconDiagram):
         return None
 
     def animate_shares_along(self, k_start: Any, k_end: Any,
-                             c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3):
+                             c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3) -> UpdateFromAlphaFunc:
         """Animate the c/i share braces sliding from ``k_start`` to ``k_end``.
 
         Parameters
@@ -449,7 +449,7 @@ class SolowDiagram(EconDiagram):
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))
 
-    def show_golden_rule(self, color: ManimColor = PURPLE, run_time: float = 1):
+    def show_golden_rule(self, color: ManimColor = PURPLE, run_time: float = 1) -> FadeIn:
         """Mark the golden-rule capital level where consumption is maximized.
 
         Parameters
@@ -488,7 +488,7 @@ class SolowDiagram(EconDiagram):
         self._golden_group = VGroup(gold_line, gold_label, s_text)
         return FadeIn(self._golden_group, run_time=run_time)
 
-    def hide_golden_rule(self):
+    def hide_golden_rule(self) -> FadeOut | None:
         """Remove the golden-rule marker.
 
         Returns

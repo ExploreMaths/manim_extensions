@@ -157,7 +157,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Any:
         """Makes the forward pass animation.
 
         Parameters
@@ -197,16 +197,31 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         else:
             return succession
 
-    def get_center(self):
-        """Return the center point of the surrounding circle."""
+    def get_center(self) -> Any:
+        """Return the center point of the surrounding circle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_circle.get_center()
 
-    def get_left(self):
-        """Return the leftmost point of the surrounding circle."""
+    def get_left(self) -> Any:
+        """Return the leftmost point of the surrounding circle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_circle.get_left()
 
-    def get_right(self):
-        """Return the rightmost point of the surrounding circle."""
+    def get_right(self) -> Any:
+        """Return the rightmost point of the surrounding circle.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.surrounding_circle.get_right()
     
     def move_to(self, mobject_or_point: Mobject):

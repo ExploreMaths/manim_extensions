@@ -140,7 +140,7 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymax, self._x_max)
         return [lo, hi]
 
-    def shift_is(self, a: Optional[Any]=None, b: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
+    def shift_is(self, a: Optional[Any]=None, b: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
         """Animate IS shifting due to changes in autonomous spending or interest sensitivity.
 
         Parameters
@@ -156,7 +156,12 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         self._a = a if a is not None else self._a
         self._b = b if b is not None else self._b
         new_func = self._make_is_func(self._a, self._b)
@@ -165,7 +170,7 @@ class ISLMDiagram(EconDiagram):
             run_time=run_time, show_arrows=show_arrows,
         )
 
-    def shift_lm(self, ms: Optional[Any]=None, k: Optional[Any]=None, h: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
+    def shift_lm(self, ms: Optional[Any]=None, k: Optional[Any]=None, h: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
         """Animate LM shifting due to changes in money supply or money demand parameters.
 
         Parameters
@@ -184,7 +189,12 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         self._ms = ms if ms is not None else self._ms
         self._k = k if k is not None else self._k
         self._h = h if h is not None else self._h
@@ -196,7 +206,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: Any, show_arrows: bool = False):
+    def monetary_expansion(self, ms: Any, show_arrows: bool = False) -> list:
         """Increase in money supply → LM shifts right → lower r, higher Y.
 
         Parameters
@@ -206,10 +216,15 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
-    def monetary_contraction(self, ms: Any, show_arrows: bool = False):
+    def monetary_contraction(self, ms: Any, show_arrows: bool = False) -> list:
         """Decrease in money supply → LM shifts left → higher r, lower Y.
 
         Parameters
@@ -219,12 +234,17 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: np.ndarray, show_arrows: bool = False):
+    def fiscal_expansion(self, a: np.ndarray, show_arrows: bool = False) -> list:
         """Increase in government spending → IS shifts right → higher r, higher Y.
 
         Parameters
@@ -234,10 +254,15 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
-    def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False):
+    def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False) -> list:
         """Decrease in government spending → IS shifts left → lower r, lower Y.
 
         Parameters
@@ -247,5 +272,10 @@ class ISLMDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         return [self.shift_is(a=a, show_arrows=show_arrows)]

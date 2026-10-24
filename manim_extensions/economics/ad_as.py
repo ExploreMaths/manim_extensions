@@ -170,7 +170,7 @@ class ADASDiagram(EconDiagram):
         """
         return (self._m * self._v) / self._lras_y
 
-    def shift_ad(self, m: Optional[Any]=None, v: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False):
+    def shift_ad(self, m: Optional[Any]=None, v: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup | list[AnimationGroup]:
         """Animate AD shifting due to changes in M and/or V.
 
         Parameters
@@ -204,7 +204,7 @@ class ADASDiagram(EconDiagram):
         )
 
     def shift_sras(self, sras_price: Optional[Any]=None, sras_slope: Optional[Any]=None, run_time: float = 1,
-                   show_arrows: bool = False):
+                   show_arrows: bool = False) -> AnimationGroup | list[AnimationGroup]:
         """Animate SRAS shifting to a new expected price Pᵉ and/or slope.
 
         Parameters
@@ -238,7 +238,7 @@ class ADASDiagram(EconDiagram):
             "sras", new_func, run_time=run_time, show_arrows=show_arrows,
         )
 
-    def shift_lras(self, new_y: Any, run_time: float = 1):
+    def shift_lras(self, new_y: Any, run_time: float = 1) -> AnimationGroup:
         """Animate LRAS moving to a new potential output.
 
         Parameters
@@ -273,7 +273,7 @@ class ADASDiagram(EconDiagram):
 
         return AnimationGroup(*anims)
 
-    def long_run_adjust(self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False):
+    def long_run_adjust(self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> AnimationGroup:
         """SRAS slowly shifts to restore long-run equilibrium.
 
         Parameters
@@ -309,7 +309,7 @@ class ADASDiagram(EconDiagram):
                                           show_arrows=show_arrows))
 
     def positive_demand_shock(self, m: Optional[Any]=None, v: Optional[Any]=None, long_run: bool = True,
-                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
+                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
         """Positive demand shock (e.g. increase in M or V).
 
         Parameters
@@ -346,7 +346,7 @@ class ADASDiagram(EconDiagram):
         return anims
 
     def negative_demand_shock(self, m: Optional[Any]=None, v: Optional[Any]=None, long_run: bool = True,
-                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
+                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
         """Negative demand shock (e.g. decrease in M or V).
 
         Parameters
@@ -385,7 +385,7 @@ class ADASDiagram(EconDiagram):
     # ---- Supply shocks ----
 
     def adverse_supply_shock(self, sras_price: Any, long_run: bool = True,
-                             lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
+                             lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
         """Adverse supply shock (e.g. oil price spike, cost push).
 
         Parameters
@@ -418,7 +418,7 @@ class ADASDiagram(EconDiagram):
         return anims
 
     def positive_supply_shock(self, sras_price: Any, long_run: bool = True,
-                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False):
+                              lr_run_time: Any = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
         """Positive supply shock.
 
         Parameters

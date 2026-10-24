@@ -13,7 +13,7 @@ Cell - A single table cell with optional border.
 # Manim Community Edition (manim CE) wildcard import for mobjects and constants
 from manim import BOLD, Line, Rectangle, Text, VGroup
 from manim.utils.color import ParsableManimColor
-from typing import Any, Optional
+from typing import Any, Optional, Self
 import numpy as np
 
 
@@ -194,7 +194,7 @@ class Cell(VGroup):
         self.add(self.text)
         return self.text
     
-    def get_resized_copy(self, new_width: float) -> "Cell":
+    def get_resized_copy(self, new_width: float) -> Self:
         """
         Create a copy of this cell with a new width.
         The copy is positioned at the same center as this cell.
@@ -270,7 +270,7 @@ class Cell(VGroup):
             self.border = self.create_border(stroke_width)
             self.add(self.border)
     
-    def set_font_color(self, color: ParsableManimColor) -> "Cell":
+    def set_font_color(self, color: ParsableManimColor) -> Self:
         """
         Set the font/text color of this cell.
         
@@ -287,7 +287,7 @@ class Cell(VGroup):
         self.text.set_color(color)
         return self
     
-    def set_border_color(self, color: ParsableManimColor) -> "Cell":
+    def set_border_color(self, color: ParsableManimColor) -> Self:
         """
         Set the border line color of this cell.
         
@@ -306,7 +306,7 @@ class Cell(VGroup):
                 line.set_color(color)
         return self
     
-    def set_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> "Cell":
+    def set_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> Self:
         """
         Set a background fill color for this cell.
         Creates a filled rectangle behind the text.

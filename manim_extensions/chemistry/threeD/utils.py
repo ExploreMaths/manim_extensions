@@ -39,7 +39,7 @@ class OpenGLSphere(OpenGLSurface):
 
         self.shift(center)
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any):
+    def uv_func(self, u: Optional[np.ndarray], v: Any) -> np.ndarray:
         """Compute sphere surface coordinates from azimuthal u and polar v angles.
 
         Parameters
@@ -48,7 +48,12 @@ class OpenGLSphere(OpenGLSurface):
             Azimuthal angle. Defaults to ``None``.
         v
             Polar angle.
-        """
+
+        Returns
+        -------
+        np.ndarray
+            The computed array.
+"""
         return np.array(
             [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
         )

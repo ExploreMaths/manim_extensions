@@ -46,12 +46,17 @@ class SigmoidFunction(ActivationFunction):
         """Initialize the sigmoid activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val: Any):
+    def apply_function(self, x_val: Any) -> Any:
         """Return 1 / (1 + exp(-x_val)), the sigmoid of the input value.
 
         Parameters
         ----------
         x_val
             Input value to which the sigmoid is applied.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return 1 / (1 + np.exp(-1 * x_val))

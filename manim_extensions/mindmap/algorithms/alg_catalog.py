@@ -16,7 +16,7 @@ Layout characteristics:
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Any, Callable, Tuple
+from typing import List, Optional, Any, Callable, Tuple, Self
 from .layout import Layout
 
 
@@ -89,7 +89,7 @@ class CatalogNode:
     children_area_width: float = 0.0
 
     @classmethod
-    def from_data(cls, node: Any) -> "CatalogNode":
+    def from_data(cls, node: Any) -> Self:
         """Recursively create a node tree from raw data.
 
         Parameters

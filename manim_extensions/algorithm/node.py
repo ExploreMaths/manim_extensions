@@ -26,7 +26,7 @@ from manim import (
     VMobject,
     WHITE,
 )
-from typing import List, TypeAlias
+from typing import List, TypeAlias, Self
 from manim.typing import ManimFloat, Point3D, Vector3DLike
 from .utils.numpy_helper import NumpyHelper
 
@@ -188,7 +188,7 @@ class Node(VMobject):
         self.set_value(value)
         self.width = width
 
-    def set_box(self, box_type: NodeBoxType, width: float, color: ManimColor) -> "Node":
+    def set_box(self, box_type: NodeBoxType, width: float, color: ManimColor) -> Self:
         """Set the shape and fill colour of the node's box.
 
         If the node already has a box it is removed first; the new box
@@ -236,7 +236,7 @@ class Node(VMobject):
         """
         return self.box
 
-    def set_value(self, value: NodeValue) -> "Node":
+    def set_value(self, value: NodeValue) -> Self:
         """Replace the node's displayed content and update the internal value.
 
         Parameters
@@ -273,7 +273,7 @@ class Node(VMobject):
         color: ParsableManimColor | None = None,
         opacity: float | None = None,
         family: bool = True,
-    ) -> "Node":
+    ) -> Self:
         """Set the fill color and transparency for the node box.
 
         Parameters

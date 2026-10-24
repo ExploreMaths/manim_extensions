@@ -39,7 +39,7 @@ from manim import (
     np,
     smooth,
 )
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Optional, Self
 
 from ...utils.deprecation import deprecated
 
@@ -180,8 +180,13 @@ class Element(VGroup):
             self.particles.add(self.subelectron_holes_group.shift([0, 0, 0]))
             self.add(self.subelectron_holes_group.shift([0, 0, 0]))
 
-    def central_atom(self):
-        """Create a labeled dot representing the central atom scaled to the element radius."""
+    def central_atom(self) -> Any:
+        """Create a labeled dot representing the central atom scaled to the element radius.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         label = Text(self.element_label)
         base_radius = 0.4 + max(label.width, label.height) / 2
 
@@ -195,22 +200,37 @@ class Element(VGroup):
         scale_ratio = self.radius / base_dot.radius
         return base_dot.scale(scale_ratio)
 
-    def get_electrons(self):
-        """Return a VGroup of electron mobjects, or None if electrons are disabled."""
+    def get_electrons(self) -> VGroup | None:
+        """Return a VGroup of electron mobjects, or None if electrons are disabled.
+
+        Returns
+        -------
+        VGroup or None
+            A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.add_electrons and self.n_electrons > 0:
             return VGroup(*[Electron() for i in range(self.n_electrons)])
 
         return None
 
-    def get_holes(self):
-        """Return a VGroup of hole mobjects, or None if holes are disabled."""
+    def get_holes(self) -> VGroup | None:
+        """Return a VGroup of hole mobjects, or None if holes are disabled.
+
+        Returns
+        -------
+        VGroup or None
+            A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.add_holes and self.n_holes > 0:
             return VGroup(*[Hole() for i in range(self.n_holes)])
 
         return None
 
-    def get_particles(self):
-        """Return a combined VGroup of all electrons and holes."""
+    def get_particles(self) -> VGroup:
+        """Return a combined VGroup of all electrons and holes.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         particles = VGroup()
         if self.electrons:
             particles.add(*self.electrons.submobjects)
@@ -220,8 +240,13 @@ class Element(VGroup):
 
         return particles
 
-    def arrange_particles(self):
-        """Evenly distribute electrons and holes in a circle around the central atom."""
+    def arrange_particles(self) -> Any:
+        """Evenly distribute electrons and holes in a circle around the central atom.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         if len(self.particles) == 0:
             return self.particles
         self.add(self.particles.shift([0, 0, 0]))
@@ -231,15 +256,25 @@ class Element(VGroup):
             particle.shift(self.radius * RIGHT + 1.2 * particle.width * RIGHT)
             particle.rotate(angles[index], about_point=self.atom.get_center())
 
-    def make_subelectron_holes(self):
-        """Create holes positioned at each electron location for visual effect."""
+    def make_subelectron_holes(self) -> VGroup | None:
+        """Create holes positioned at each electron location for visual effect.
+
+        Returns
+        -------
+        VGroup or None
+            A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.subelectron_holes:
             return VGroup(
                 *[Hole().move_to(electron.get_center()) for electron in self.electrons]
             )
 
-    def get_subelectron_holes(self):
-        """Return the VGroup of subelectron holes."""
+    def get_subelectron_holes(self) -> Any:
+        """Return the VGroup of subelectron holes.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.subelectron_holes_group
 
 
@@ -351,7 +386,7 @@ class NPNTransistor(VGroup):
         n_copies: int = 5,
         vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
         horizontal_boundary: list = [LEFT, RIGHT],
-    ):
+    ) -> VGroup:
         """Create a VGroup of scaled particle mobjects arranged in a rectangular grid.
 
         Parameters
@@ -366,7 +401,12 @@ class NPNTransistor(VGroup):
         horizontal_boundary
             Horizontal boundary points of the arrangement.
             Defaults to ``[LEFT, RIGHT]``.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
             particles, n_copies, vertical_boundary, horizontal_boundary
@@ -418,8 +458,13 @@ class BatterySchema(VGroup):
 
         self.add(self.schema)
 
-    def get_start_finish_positions(self):
-        """Return start and end positions of the schema based on layout type."""
+    def get_start_finish_positions(self) -> Any:
+        """Return start and end positions of the schema based on layout type.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         options_dict = {
             "horizontal": [self.mob.get_left(), self.mob.get_right()],
             "corner": [self.mob.get_left(), self.mob.get_top()],
@@ -427,8 +472,13 @@ class BatterySchema(VGroup):
 
         return options_dict[self.schema_type]
 
-    def horizontal_schema(self):
-        """Build a horizontal battery schema with terminals below the mobject."""
+    def horizontal_schema(self) -> VGroup:
+        """Build a horizontal battery schema with terminals below the mobject.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         if self.schema_type != "horizontal":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -476,8 +526,13 @@ class BatterySchema(VGroup):
 
         return schema
 
-    def corner_schema(self):
-        """Build a corner battery schema wrapping around the left and top sides."""
+    def corner_schema(self) -> VGroup:
+        """Build a corner battery schema wrapping around the left and top sides.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         if self.schema_type != "corner":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -522,8 +577,13 @@ class BatterySchema(VGroup):
 
         return schema
 
-    def select_schema(self):
-        """Return the schema VGroup corresponding to the configured layout type."""
+    def select_schema(self) -> Any:
+        """Return the schema VGroup corresponding to the configured layout type.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         schema_options = {
             "horizontal": self.horizontal_schema(),
             "corner": self.corner_schema(),
@@ -532,8 +592,13 @@ class BatterySchema(VGroup):
         selected_schema = schema_options[self.schema_type]
         return selected_schema
 
-    def invert_terminals(self):
-        """Swap the positive and negative battery terminal positions."""
+    def invert_terminals(self) -> Self:
+        """Swap the positive and negative battery terminal positions.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining."""
         terminals = VGroup(self.plus_terminal, self.minus_terminal)
 
         terminals.rotate(PI, UP, terminals.get_center())
@@ -592,11 +657,16 @@ class MOSFETTransistor(VGroup):
             self.right_n_side,
         )
 
-    def make_main_board(self):
-        """Create the main red rectangular board of the MOSFET transistor."""
+    def make_main_board(self) -> Any:
+        """Create the main red rectangular board of the MOSFET transistor.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
-    def make_n_region(self, side: Any = LEFT):
+    def make_n_region(self, side: Any = LEFT) -> Any:
         """Create a blue n-region rectangle on the given side of the main board.
 
         Parameters
@@ -604,7 +674,12 @@ class MOSFETTransistor(VGroup):
         side
             Direction of the n-region relative to the main board.
             Defaults to :class:`~manim.constants.LEFT`.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         region = (
             Rectangle(fill_opacity=1)
             .set_color(BLUE)
@@ -615,8 +690,13 @@ class MOSFETTransistor(VGroup):
 
         return region
 
-    def add_holes(self):
-        """Create a VGroup of holes distributed across the board, or empty if disabled."""
+    def add_holes(self) -> VGroup:
+        """Create a VGroup of holes distributed across the board, or empty if disabled.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         if not self.show_holes:
             return VGroup()
         holes = VGroup(*[Hole().scale(0.5) for i in range(4)])
@@ -630,8 +710,13 @@ class MOSFETTransistor(VGroup):
 
         return holes
 
-    def add_battery_terminals(self):
-        """Create positive and negative battery terminal lines above the main board."""
+    def add_battery_terminals(self) -> VGroup:
+        """Create positive and negative battery terminal lines above the main board.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
             .next_to(self.main_board, UP, buff=1.25)
@@ -645,15 +730,25 @@ class MOSFETTransistor(VGroup):
 
         return VGroup(negative_terminal, positive_terminal)
 
-    def add_battery_sides(self):
-        """Create elbow-shaped BatterySide connectors from terminals to n-regions."""
+    def add_battery_sides(self) -> VGroup:
+        """Create elbow-shaped BatterySide connectors from terminals to n-regions.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
 
         return VGroup(negative_elbow, positive_elbow)
 
-    def add_battery(self):
-        """Return the assembled battery VGroup if show_battery is enabled, else empty."""
+    def add_battery(self) -> VGroup:
+        """Return the assembled battery VGroup if show_battery is enabled, else empty.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         if not self.show_battery:
             return VGroup()
 
@@ -701,8 +796,13 @@ class BatterySide(VMobject):
         self.anchor = anchor
         self.make_points()
 
-    def make_points(self):
-        """Set the corner path points connecting the terminal to the anchor."""
+    def make_points(self) -> Any:
+        """Set the corner path points connecting the terminal to the anchor.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         terminal_points = self.terminal.get_center()
         anchor_points = self.anchor.get_top() + [0, -0.2, 0]
         intermediate_point = [anchor_points[0], terminal_points[1], 0]
@@ -732,7 +832,7 @@ def arrange_in_1D_boundary(mobs: Any, boundary: list = [LEFT, RIGHT]):
         mob.move_to(positions[index])
 
 
-def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
+def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VGroup:
     """Duplicate each mobject and evenly space all copies along a 1D boundary.
 
     Parameters
@@ -741,7 +841,12 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
         Mobject or VGroup of mobjects to duplicate.
     boundary
         Boundary points of the line. Defaults to ``[LEFT, RIGHT]``.
-    """
+
+    Returns
+    -------
+    VGroup
+        A VGroup instance representing the result.
+"""
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
@@ -750,7 +855,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]):
     return group
 
 
-def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5):
+def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5) -> VGroup:
     """Randomly distribute 'amount' copies of a mobject over a rectangular area.
 
     Parameters
@@ -763,7 +868,12 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
         Half height of the rectangular area. Defaults to 5.
     width
         Half width of the rectangular area. Defaults to 5.
-    """
+
+    Returns
+    -------
+    VGroup
+        A VGroup instance representing the result.
+"""
     group = VGroup()
     for i in range(amount):
         group.add(
@@ -779,7 +889,7 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
     return group
 
 
-def get_element_by_data(element: dict):
+def get_element_by_data(element: dict) -> Element:
     """Create an Element mobject from a dictionary of element properties.
 
     Parameters
@@ -787,7 +897,12 @@ def get_element_by_data(element: dict):
     element
         Dictionary with the keys ``"symbol"``, ``"color"``, ``"electrons"``
         and ``"holes"``.
-    """
+
+    Returns
+    -------
+    Element
+        A Element instance representing the result.
+"""
     return Element(
         element=element["symbol"],
         color=element["color"],
@@ -796,7 +911,7 @@ def get_element_by_data(element: dict):
     )
 
 
-def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: int = 1, up: int = 1):
+def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: int = 1, up: int = 1) -> Any:
     """Randomly shift mobjects within the specified 2D bounding rectangle.
 
     Parameters
@@ -811,7 +926,12 @@ def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: i
         Lower bound of the vertical shift. Defaults to 1.
     up
         Upper bound of the vertical shift. Defaults to 1.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
     vertical = np.random.uniform(up, -down, n_mobs)
@@ -824,7 +944,7 @@ def randomly_distributed_in_2D(mobs: Any, left: int = 1, right: int = 1, down: i
 
 def arrange_copies_in_rectangle(
     mobs: Mobject, n_copies: int = 2, vertical_boundary: list = [UP, DOWN], horizontal_boundary: list = [LEFT, RIGHT]
-):
+) -> VGroup:
     """Create n_copies of mobs and arrange them in a rectangular grid pattern.
 
     Parameters
@@ -837,7 +957,12 @@ def arrange_copies_in_rectangle(
         Vertical boundary points of the arrangement. Defaults to ``[UP, DOWN]``.
     horizontal_boundary
         Horizontal boundary points of the arrangement. Defaults to ``[LEFT, RIGHT]``.
-    """
+
+    Returns
+    -------
+    VGroup
+        A VGroup instance representing the result.
+"""
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
     for i in range(n_copies):
@@ -848,14 +973,19 @@ def arrange_copies_in_rectangle(
     return copies_group
 
 
-def make_subpaths(group: Any):
+def make_subpaths(group: Any) -> Any:
     """Add each mobject in the group as a subpath of the parent group.
 
     Parameters
     ----------
     group
         Group whose mobjects are added as subpaths.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     for mob in group:
         group.add_subpath(mob.get_points())
 
@@ -865,14 +995,19 @@ def make_subpaths(group: Any):
 @deprecated(
     "``zero`` is deprecated; use :func:`manim.utils.rate_functions.zero` instead.",
 )
-def zero(function: Callable):
+def zero(function: Callable) -> Any:
     """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
 
     Parameters
     ----------
     function
         Function to clamp outside the [0, 1] domain.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     @wraps(function)
     def wrapper(t: Optional[np.ndarray], *args, **kwargs):
         if 0 <= t <= 1:
@@ -884,7 +1019,7 @@ def zero(function: Callable):
 
 
 @zero
-def inverse_smooth(t: float, inflection: float = 10.0):
+def inverse_smooth(t: float, inflection: float = 10.0) -> Any:
     """Return the inverse of the smooth easing function (1 - t smoothed).
 
     Parameters
@@ -894,13 +1029,18 @@ def inverse_smooth(t: float, inflection: float = 10.0):
     inflection
         Inflection parameter passed to :func:`~manim.utils.rate_functions.smooth`.
         Defaults to 10.0.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     new_t = 1 - t
     return smooth(new_t, inflection)
 
 
 @zero
-def inverse_linear(t: float, inflection: float = 10.0):
+def inverse_linear(t: float, inflection: float = 10.0) -> Any:
     """Return the linear inverse value 1 - t.
 
     Parameters
@@ -910,11 +1050,16 @@ def inverse_linear(t: float, inflection: float = 10.0):
     inflection
         Unused, kept for signature compatibility with the other inverse
         easing functions. Defaults to 10.0.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     return 1 - t
 
 
-def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
+def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0) -> VGroup:
     """Create a VGroup by concatenating copies of mobject alternating left and right.
 
     Parameters
@@ -925,7 +1070,12 @@ def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0):
         Number of copies to concatenate.
     buff
         Buffer between the concatenated mobjects. Defaults to 0.
-    """
+
+    Returns
+    -------
+    VGroup
+        A VGroup instance representing the result.
+"""
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):

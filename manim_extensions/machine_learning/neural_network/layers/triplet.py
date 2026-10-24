@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Triplet layer visualization for neural networks."""
 
+from typing import Any
 from manim import (
     AnimationGroup,
     Create,
@@ -95,7 +96,7 @@ class TripletLayer(NeuralNetworkLayer):
         grayscale: bool = True,
         font_size: float = 22,
         buff: float = 0.2,
-    ):
+    ) -> Any:
         """Creates a triplet using the anchor paths.
 
         Parameters
@@ -112,7 +113,12 @@ class TripletLayer(NeuralNetworkLayer):
             Font size of the labels, by default 22.
         buff
             Buffer between the images, by default 0.2.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         # Load images from path
         if grayscale:
             anchor = GrayscaleImageMobject.from_path(anchor_path)
@@ -127,10 +133,14 @@ class TripletLayer(NeuralNetworkLayer):
 
         return triplet_layer
 
-    def make_assets(self):
+    def make_assets(self) -> Group:
         """
         Constructs the assets needed for a triplet layer.
-        """
+
+        Returns
+        -------
+        Group
+            A Group instance representing the result."""
         # Handle anchor
         anchor_group = LabeledColorImage(
             self.anchor,
@@ -169,7 +179,7 @@ class TripletLayer(NeuralNetworkLayer):
         # TODO make Create animation that is custom
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Forward pass for triplet.
 
         Parameters
@@ -179,5 +189,10 @@ class TripletLayer(NeuralNetworkLayer):
             forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         return AnimationGroup()

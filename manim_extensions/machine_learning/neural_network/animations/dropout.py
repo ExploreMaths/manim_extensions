@@ -72,7 +72,7 @@ class XMark(VGroup):
         self.add(line_two)
 
 
-def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: Any):
+def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: Any) -> tuple:
     """Returns edges to drop out for a given FeedForwardToFeedForward layer.
 
     Parameters
@@ -82,7 +82,12 @@ def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_dr
     layers_to_nodes_to_drop_out
         Mapping from layers to the indices of the nodes that are
         dropped out in each layer.
-    """
+
+    Returns
+    -------
+    tuple
+        A tuple of the results.
+"""
     prev_layer = layer.input_layer
     next_layer = layer.output_layer
     # Get the nodes to dropout in previous layer
@@ -110,7 +115,7 @@ def make_pre_dropout_animation(
     layers_to_nodes_to_drop_out: dict,
     dropped_out_color: ManimColor = GRAY,
     dropped_out_opacity: float = 0.2,
-):
+) -> tuple:
     """Makes an animation that sets up the NN layer for dropout.
 
     Parameters
@@ -124,7 +129,12 @@ def make_pre_dropout_animation(
         Color used to indicate dropped-out edges, by default ``GRAY``.
     dropped_out_opacity
         Opacity used to indicate dropped-out edges, by default 0.2.
-    """
+
+    Returns
+    -------
+    tuple
+        A tuple of the results.
+"""
     animations = []
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -191,7 +201,7 @@ def make_post_dropout_animation(
     neural_network: Any,
     layers_to_nodes_to_drop_out: Any,
     x_marks: Any,
-):
+) -> AnimationGroup:
     """Returns the NN to normal after dropout.
 
     Parameters
@@ -204,7 +214,12 @@ def make_post_dropout_animation(
     x_marks
         The X-shaped marks placed on dropped-out nodes during the
         pre-dropout animation.
-    """
+
+    Returns
+    -------
+    AnimationGroup
+        A AnimationGroup instance representing the result.
+"""
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
         lambda layer: isinstance(layer, FeedForwardLayer)
@@ -244,7 +259,7 @@ def make_post_dropout_animation(
 def make_forward_pass_with_dropout_animation(
     neural_network: Any,
     layers_to_nodes_to_drop_out: Any,
-):
+) -> Any:
     """Makes forward pass animation with dropout.
 
     Parameters
@@ -254,7 +269,12 @@ def make_forward_pass_with_dropout_animation(
     layers_to_nodes_to_drop_out
         Mapping from feed forward layers to the indices of the nodes
         that are dropped out in each layer.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     layer_args = {}
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -276,7 +296,7 @@ def make_forward_pass_with_dropout_animation(
 
 def make_neural_network_dropout_animation(
     neural_network: Any, dropout_rate: float = 0.5, do_forward_pass: bool = True, last_layer_stable: bool = False, first_layer_stable: bool = False, seed: Optional[Any]=None
-):
+) -> Succession:
     """
     Makes a dropout animation for a given neural network.
 
@@ -303,7 +323,12 @@ def make_neural_network_dropout_animation(
         by default False.
     seed
         Seed for the random number generator, by default None.
-    """
+
+    Returns
+    -------
+    Succession
+        A Succession instance representing the result.
+"""
     # Go through the network and get the FeedForwardLayer instances
     if seed is not None:
         random.seed(seed)

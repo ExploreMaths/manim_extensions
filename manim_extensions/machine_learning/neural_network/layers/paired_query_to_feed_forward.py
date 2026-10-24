@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Paired query to feed-forward layer connection visualization."""
 
+from typing import Any
 from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .paired_query import PairedQueryLayer
@@ -53,7 +54,7 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -64,10 +65,15 @@ class PairedQueryToFeedForward(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
@@ -77,7 +83,12 @@ class PairedQueryToFeedForward(ConnectiveLayer):
             their forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         animations = []
         # Loop through each image
         images = [self.paired_query_layer.positive, self.paired_query_layer.negative]

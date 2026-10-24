@@ -53,7 +53,7 @@ from manim import (
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, Self
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -1126,7 +1126,7 @@ class VideoMobject(ImageMobject):
             self._frame_idx += 1
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
-    def __deepcopy__(self, memo: dict) -> "VideoMobject":
+    def __deepcopy__(self, memo: dict) -> Self:
         """Deep-copy the mobject, reopening the video capture for the clone.
 
         Parameters
@@ -1156,7 +1156,7 @@ class VideoMobject(ImageMobject):
         result._updater_ref = lambda mob, dt: result._video_updater(mob, dt)
         return result
 
-    def play(self, scene: Optional[Scene] = None) -> "VideoMobject":
+    def play(self, scene: Optional[Scene] = None) -> Self:
         """Start video playback and optionally block the scene for its duration.
 
         Parameters
@@ -1177,7 +1177,7 @@ class VideoMobject(ImageMobject):
             scene.wait(self.duration)
         return self
 
-    def pause(self) -> "VideoMobject":
+    def pause(self) -> Self:
         """Pause playback without removing the updater.
 
         Returns
@@ -1187,7 +1187,7 @@ class VideoMobject(ImageMobject):
         self._playing = False
         return self
 
-    def resume(self) -> "VideoMobject":
+    def resume(self) -> Self:
         """Resume paused playback.
 
         Returns
@@ -1197,7 +1197,7 @@ class VideoMobject(ImageMobject):
         self._playing = True
         return self
 
-    def stop(self) -> "VideoMobject":
+    def stop(self) -> Self:
         """Stop playback and remove the updater.
 
         Returns
@@ -1209,7 +1209,7 @@ class VideoMobject(ImageMobject):
             self.remove_updater(self._updater_ref)
         return self
 
-    def reset(self) -> "VideoMobject":
+    def reset(self) -> Self:
         """Seek to the first frame and reset all playback state.
 
         Returns
@@ -1225,7 +1225,7 @@ class VideoMobject(ImageMobject):
         self._finished = False
         return self
 
-    def seek(self, time: float) -> "VideoMobject":
+    def seek(self, time: float) -> Self:
         """Seek to a specific timestamp in seconds.
 
         Parameters
@@ -1438,7 +1438,7 @@ class Trail(VGroup):
         while len(self.path_xyz) > self.nums:
             self.path_xyz.pop(0)
 
-    def create_path(self) -> "VGroup":
+    def create_path(self) -> VGroup:
         """Build the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of fading trail segments.
 
         Returns
@@ -1473,7 +1473,7 @@ class Trail(VGroup):
         """
         trail.become(self.create_path())
 
-    def start_trace(self) -> "Trail":
+    def start_trace(self) -> Self:
         """Attach the trail updater and return ``self`` for chaining.
 
         Returns
@@ -1483,7 +1483,7 @@ class Trail(VGroup):
         self.trail.add_updater(self.update_path)
         return self
 
-    def stop_trace(self) -> "Trail":
+    def stop_trace(self) -> Self:
         """Remove the trail updater.
 
         Returns
@@ -1847,7 +1847,7 @@ class TreeDiagram(VGroup):
         self.tree = tree
         self.add(self._generate(tree)[1])
 
-    def _lowest(self, leaves: list) -> "VGroup":
+    def _lowest(self, leaves: list) -> VGroup:
         """Create a vertical group of text mobjects for the leaf nodes.
 
         Parameters

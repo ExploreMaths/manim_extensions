@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to math operation layer connection visualization."""
 
+from typing import Any
 from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -46,7 +47,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Build a straight arrow connection between the feed-forward and math operation layers.
 
         Parameters
@@ -57,7 +58,12 @@ class FeedForwardToMathOperation(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer
         self.connection = NetworkConnection(
@@ -70,7 +76,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> ShowPassingFlash:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters
@@ -80,7 +86,12 @@ class FeedForwardToMathOperation(ConnectiveLayer):
             their forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        ShowPassingFlash
+            A ShowPassingFlash instance representing the result.
+"""
         # Make flashing pass animation on arrow
         passing_flash = ShowPassingFlash(
             self.connection.copy().set_color(self.active_color)

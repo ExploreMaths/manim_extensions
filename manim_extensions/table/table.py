@@ -10,7 +10,7 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import Any, List, Optional, Tuple, Union, overload
+from typing import Any, List, Optional, Tuple, Union, overload, Self
 
 # An animation produced by the mutation methods: either a real Animation
 # (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
@@ -377,7 +377,7 @@ class Table(VGroup):
     # Styling methods
     # -------------------------------------------------------------------------
     
-    def set_column_font_color(self, col: int, color: ParsableManimColor, include_header: bool = False) -> "Table":
+    def set_column_font_color(self, col: int, color: ParsableManimColor, include_header: bool = False) -> Self:
         """
         Set the font color for all cells in a column.
         
@@ -400,7 +400,7 @@ class Table(VGroup):
             row[col].set_font_color(color)
         return self
     
-    def set_column_background_color(self, col: int, color: ParsableManimColor, opacity: float = 0.5, include_header: bool = False) -> "Table":
+    def set_column_background_color(self, col: int, color: ParsableManimColor, opacity: float = 0.5, include_header: bool = False) -> Self:
         """
         Set the background color for all cells in a column.
         
@@ -425,7 +425,7 @@ class Table(VGroup):
             row[col].set_background_color(color, opacity)
         return self
     
-    def set_column_border_color(self, col: int, color: ParsableManimColor, include_header: bool = True) -> "Table":
+    def set_column_border_color(self, col: int, color: ParsableManimColor, include_header: bool = True) -> Self:
         """
         Set the border color for all cells in a column.
         
@@ -448,7 +448,7 @@ class Table(VGroup):
             row[col].set_border_color(color)
         return self
     
-    def set_header_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> "Table":
+    def set_header_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> Self:
         """
         Set the background color for all header cells.
         
@@ -467,7 +467,7 @@ class Table(VGroup):
             cell.set_background_color(color, opacity)
         return self
     
-    def set_header_font_color(self, color: ParsableManimColor) -> "Table":
+    def set_header_font_color(self, color: ParsableManimColor) -> Self:
         """
         Set the font color for all header cells.
         

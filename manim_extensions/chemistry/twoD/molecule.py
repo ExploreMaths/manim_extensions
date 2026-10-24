@@ -23,7 +23,7 @@ from manim import (
     VGroup,
     np,
 )
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple, Self
 from ..utils import (
     mol_parser,
     mol_parser_string,
@@ -192,8 +192,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self.complete_missing_hydrogens()
         self.move_to(ORIGIN)
 
-    def get_atoms(self):
-        """Build MAtomObject instances from the atoms dict and return them as VDict + index dict."""
+    def get_atoms(self) -> tuple:
+        """Build MAtomObject instances from the atoms dict and return them as VDict + index dict.
+
+        Returns
+        -------
+        tuple
+            A tuple of the results."""
         atoms = VDict()
         atoms_by_index = {}
         for index, atom in self.atoms_dict.items():
@@ -211,8 +216,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             atoms_by_index[index] = matom
         return atoms, atoms_by_index
 
-    def get_bonds(self):
-        """Build bond mobjects (single/double/triple/cram) from the bonds dict and return a VGroup."""
+    def get_bonds(self) -> VGroup:
+        """Build bond mobjects (single/double/triple/cram) from the bonds dict and return a VGroup.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         bonds = VGroup()
         bond_index = 0
         for index, bond_list in self.bonds_dict.items():
@@ -333,8 +343,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return bonds
 
-    def add_atom_numbering(self):
-        """Add numeric index labels next to each atom and return self."""
+    def add_atom_numbering(self) -> Self:
+        """Add numeric index labels next to each atom and return self.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining."""
         numbering = VGroup()
         for atom in self.atoms:
             if not self.explicit_hydrogens:
@@ -357,8 +372,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def add_bond_numbering(self):
-        """Add numeric index labels next to each bond and return self."""
+    def add_bond_numbering(self) -> Self:
+        """Add numeric index labels next to each bond and return self.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining."""
         numbering = VGroup()
         for bond in self.bonds:
             if (
@@ -377,14 +397,19 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def rotate_bond(self, rotate_bonds: Any):
+    def rotate_bond(self, rotate_bonds: Any) -> Self:
         """Rotate specified bonds 180 degrees around their own axis and return self.
 
         Parameters
         ----------
         rotate_bonds
             Bond index or list of bond indices to rotate.
-        """
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining.
+"""
         if isinstance(rotate_bonds, int):
             rotate_bonds = [rotate_bonds]
 
@@ -438,7 +463,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 atom.element + "H", bonds_direction
                             )
 
-    def from_mol_file(filename: Any, *args, **kwargs):
+    def from_mol_file(filename: Any, *args, **kwargs) -> Self:
         """Create an MMoleculeObject by parsing a .mol file.
 
         Parameters
@@ -448,11 +473,16 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        MMoleculeObject
+            A MMoleculeObject instance representing the result.
+"""
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_mol_string(mol_string: Any, *args, **kwargs):
+    def from_mol_string(mol_string: Any, *args, **kwargs) -> Self:
         """Create an MMoleculeObject by parsing a mol-format string.
 
         Parameters
@@ -462,11 +492,16 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        MMoleculeObject
+            A MMoleculeObject instance representing the result.
+"""
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_sdf_file(filename: Any, *args, **kwargs):
+    def from_sdf_file(filename: Any, *args, **kwargs) -> list:
         """Create a list of MMoleculeObjects by parsing an .sdf file.
 
         Parameters
@@ -476,7 +511,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         molecules = sdf_parser(filename)
         moleculeObjects = []
         for molecule in molecules:
@@ -484,7 +524,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def from_sdf_string(sdf_string: Any, *args, **kwargs):
+    def from_sdf_string(sdf_string: Any, *args, **kwargs) -> list:
         """Create a list of MMoleculeObjects by parsing an sdf-format string.
 
         Parameters
@@ -494,7 +534,12 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         molecules = sdf_parser_string(sdf_string)
         moleculeObjects = []
         for molecule in molecules:
@@ -871,7 +916,7 @@ class NamedMolecule(VGroup):
 
     def from_mol_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ):
+    ) -> Self:
         """Create a NamedMolecule from a .mol file and a name string.
 
         Parameters
@@ -892,7 +937,12 @@ class NamedMolecule(VGroup):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        NamedMolecule
+            A NamedMolecule instance representing the result.
+"""
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
         return NamedMolecule(
@@ -908,7 +958,7 @@ class NamedMolecule(VGroup):
 
     def from_mol_string(
         name: str, mol_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ):
+    ) -> Self:
         """Create a NamedMolecule from a mol-format string and a name string.
 
         Parameters
@@ -929,7 +979,12 @@ class NamedMolecule(VGroup):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        NamedMolecule
+            A NamedMolecule instance representing the result.
+"""
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
         return NamedMolecule(
@@ -945,7 +1000,7 @@ class NamedMolecule(VGroup):
 
     def from_sdf_file(
         name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ):
+    ) -> list:
         """Create a list of NamedMolecules from an .sdf file with a shared base name.
 
         Parameters
@@ -966,7 +1021,12 @@ class NamedMolecule(VGroup):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         molecules = MMoleculeObject.from_sdf_file(filename, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -986,7 +1046,7 @@ class NamedMolecule(VGroup):
 
     def from_sdf_string(
         name: str, sdf_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ):
+    ) -> list:
         """Create a list of NamedMolecules from an sdf-format string with a shared base name.
 
         Parameters
@@ -1007,7 +1067,12 @@ class NamedMolecule(VGroup):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         molecules = MMoleculeObject.from_sdf_string(sdf_str, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -1025,27 +1090,42 @@ class NamedMolecule(VGroup):
             )
         return named_molecules
 
-    def rotate_bond(self, bonds: int | list):
+    def rotate_bond(self, bonds: int | list) -> Self:
         """Rotate specified bonds on the inner molecule and return self.
 
         Parameters
         ----------
         bonds
             Bond index or list of bond indices to rotate.
-        """
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining.
+"""
         self.molecule = self.molecule.rotate_bond(bonds)
 
         return self
 
-    def add_bond_numbering(self):
-        """Add bond numbering to the inner molecule and return self."""
+    def add_bond_numbering(self) -> Self:
+        """Add bond numbering to the inner molecule and return self.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining."""
         self.molecule = self.molecule.add_bond_numbering()
         self.molecule[-1].move_to(self.molecule[1].get_center())
 
         return self
 
-    def add_atom_numbering(self):
-        """Add atom numbering to the inner molecule and return self."""
+    def add_atom_numbering(self) -> Self:
+        """Add atom numbering to the inner molecule and return self.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining."""
         # Atom numbering is not working correctly.
         self.molecule = self.molecule.add_atom_numbering()
         self.molecule[-1].move_to(self.molecule[0].get_center())

@@ -35,7 +35,7 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Union, Any
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -158,7 +158,7 @@ class NeuralNetwork(Group):
         # Print neural network
         print(repr(self))
 
-    def make_input_layers_dict(self, input_layers: list):
+    def make_input_layers_dict(self, input_layers: list) -> dict | None:
         """Make dictionary of input layers.
 
         Parameters
@@ -167,11 +167,16 @@ class NeuralNetwork(Group):
             Neural network layers to visualize; a list is converted to a dict
             with default names, a dict is returned unchanged.
 
+        Returns
+        -------
+        dict or None
+            A dictionary of the results. ``None`` if there is no result.
+
         Raises
         ------
         Exception
             Raised when ``input_layers`` is neither a list nor a dict.
-        """
+"""
         if isinstance(input_layers, dict):
             # If input layers is dictionary then return it
             return input_layers
@@ -348,7 +353,7 @@ class NeuralNetwork(Group):
             ) / 2
             connective_layer.move_to(layer_midpoint)
 
-    def insert_layer(self, layer: Mobject, insert_index: int):
+    def insert_layer(self, layer: Mobject, insert_index: int) -> InsertLayer:
         """Inserts a layer at the given index.
 
         Parameters
@@ -366,7 +371,7 @@ class NeuralNetwork(Group):
         insert_animation = InsertLayer(layer, insert_index, neural_network)
         return insert_animation
 
-    def remove_layer(self, layer: Mobject):
+    def remove_layer(self, layer: Mobject) -> RemoveLayer:
         """Removes layer object if it exists.
 
         Parameters
@@ -405,7 +410,7 @@ class NeuralNetwork(Group):
         layer_args: dict = {}, 
         per_layer_animations: bool = False,
         **kwargs
-    ):
+    ) -> Any:
         """Generates an animation for feed forward propagation.
 
         Parameters
@@ -581,7 +586,7 @@ class NeuralNetwork(Group):
 
         self.move_to(prior_center)
 
-    def filter_layers(self, function: Callable):
+    def filter_layers(self, function: Callable) -> list:
         """Filters layers of the network given function.
 
         Parameters

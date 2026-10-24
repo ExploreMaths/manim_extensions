@@ -29,7 +29,7 @@ from manim.utils.color import ParsableManimColor
 __all__ = [
     "Compass",
 ]
-from typing import Any
+from typing import Any, Self
 
 import numpy as np
 
@@ -100,7 +100,7 @@ class Compass(VGroup):
         self.leg_width = leg_width
         self._init_compass()
 
-    def _init_compass(self) -> "Compass":
+    def _init_compass(self) -> Self:
         """Build the compass geometry (head, legs, and tip) from parameters.
 
         Returns
@@ -178,7 +178,7 @@ class Compass(VGroup):
         """
         return get_distance(self.get_pen_tip(), self.get_niddle_tip())
 
-    def move_niddle_tip_to(self, pos: Point3D) -> "Compass":
+    def move_niddle_tip_to(self, pos: Point3D) -> Self:
         """Move the compass as a whole so that the needle tip is at pos.
 
         Parameters
@@ -207,7 +207,7 @@ class Compass(VGroup):
         self.shift(pos - self.get_niddle_tip())
         return self
 
-    def rotate_about_niddle_tip(self, angle: float = PI / 2) -> "Compass":
+    def rotate_about_niddle_tip(self, angle: float = PI / 2) -> Self:
         """Rotate the compass as a whole around the needle tip by angle.
 
         Parameters
@@ -238,7 +238,7 @@ class Compass(VGroup):
         self.rotate(angle=angle, about_point=self.get_niddle_tip())
         return self
 
-    def reverse_tip(self) -> "Compass":
+    def reverse_tip(self) -> Self:
         """Mirror-flip the needle tip and pen tip.
 
         Returns
@@ -265,7 +265,7 @@ class Compass(VGroup):
         )
         return self
 
-    def split_copass_with_gain_angle(self, angle: float) -> "Compass":
+    def split_copass_with_gain_angle(self, angle: float) -> Self:
         """Open the two compass legs by an additional angle.
 
         Parameters
@@ -301,7 +301,7 @@ class Compass(VGroup):
         self,
         angle: float,
         niddle_tip_pos: Point3D,
-    ) -> "Compass":
+    ) -> Self:
         """Keep the needle tip fixed and open the two compass legs by angle.
 
         Parameters
@@ -377,7 +377,7 @@ class Compass(VGroup):
         span_angle: float,
         rotate_angle: float,
         niddle_tip_pos: Point3D,
-    ) -> "Compass":
+    ) -> Self:
         """Set the compass span, rotation angle, and needle tip position.
 
         Parameters

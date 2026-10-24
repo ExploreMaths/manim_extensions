@@ -125,7 +125,7 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs):
+    def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs) -> Any:
         """Creates a query using the paths.
 
         Parameters
@@ -136,7 +136,12 @@ class ImageLayer(NeuralNetworkLayer):
             Unused flag reserved for future use, by default True.
         **kwargs
             Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.ImageLayer`.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         # Load images from path
         image = Image.open(image_path)
         numpy_image = np.asarray(image)
@@ -157,7 +162,7 @@ class ImageLayer(NeuralNetworkLayer):
             # groups, so return a zero-duration Wait instead.
             return Wait(run_time=0)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Return an empty animation group; the image layer has no forward pass effect.
 
         Parameters
@@ -167,11 +172,21 @@ class ImageLayer(NeuralNetworkLayer):
             forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         return AnimationGroup()
 
-    def get_right(self):
-        """Override get right."""
+    def get_right(self) -> Any:
+        """Override get right.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.image_mobject.get_right()
 
     def scale(self, scale_factor: float, **kwargs):
@@ -188,11 +203,21 @@ class ImageLayer(NeuralNetworkLayer):
         self.image_mobject.scale(scale_factor)
 
     @property
-    def width(self):
-        """Return the width of the image mobject."""
+    def width(self) -> Any:
+        """Return the width of the image mobject.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.image_mobject.width
 
     @property
-    def height(self):
-        """Return the height of the image mobject."""
+    def height(self) -> Any:
+        """Return the height of the image mobject.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.image_mobject.height

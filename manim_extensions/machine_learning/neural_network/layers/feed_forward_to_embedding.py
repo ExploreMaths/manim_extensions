@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to embedding layer connection visualization."""
 
+from typing import Any
 from manim import (
     AnimationGroup,
     Create,
@@ -64,7 +65,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -75,10 +76,15 @@ class FeedForwardToEmbedding(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
         """Makes dots converge on a specific location.
 
         Parameters
@@ -90,7 +96,12 @@ class FeedForwardToEmbedding(ConnectiveLayer):
             Run time of the forward pass animation, by default 1.5.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         # Find point to converge on by sampling from gaussian distribution
         location = self.embedding_layer.sample_point_location_from_distribution()
         # Set the embedding layer latent distribution

@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
+from typing import Any
 import random
 from manim import (
     AnimationGroup,
@@ -61,7 +62,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -72,10 +73,15 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
         """Forward pass animation from conv2d to max pooling.
 
         Parameters
@@ -87,7 +93,12 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
             Run time of the forward pass animation, by default 1.5.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         cell_width = self.input_layer.cell_width
         feature_map_size = self.input_layer.feature_map_size
         kernel_size = self.output_layer.kernel_size

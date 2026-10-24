@@ -4,7 +4,7 @@
 """Chemical element data structure."""
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Self
 
 from ...utils.deps import require
 
@@ -44,7 +44,7 @@ class Element:
         self.mass = mass
         self.color = color or "#ff00ff"
 
-    def from_csv_file(filename: str, element: str | int):
+    def from_csv_file(filename: str, element: str | int) -> Self:
         """Create an :class:`~manim_extensions.chemistry.element.element.Element` from a CSV file.
 
         Parameters
@@ -54,13 +54,18 @@ class Element:
         element
             Symbol or atomic number of the element to look up.
 
+        Returns
+        -------
+        Element
+            A Element instance representing the result.
+
         Raises
         ------
         Exception
             Raised when ``element`` is neither a valid symbol nor an atomic
             number below 118, or when no matching element is found in the
             CSV file.
-        """
+"""
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
         pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)

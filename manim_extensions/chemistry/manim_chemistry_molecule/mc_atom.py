@@ -6,7 +6,7 @@ This module provides the MCAtom class for representing atoms in molecules.
 
 """
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Self
 
 import numpy as np
 
@@ -68,7 +68,7 @@ class MCAtom:
         self.molecule = molecule
         self.molecule_index = molecule_index
 
-    def add_atoms(self, atoms: Any):
+    def add_atoms(self, atoms: Any) -> Any:
         """
         Assigns bonded atoms to MCAtom.
 
@@ -77,11 +77,16 @@ class MCAtom:
         atoms
             Bonded atoms to assign.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             In case the atoms are not MCAtoms or a list.
-        """
+"""
         if not atoms:
             pass
 
@@ -103,7 +108,7 @@ class MCAtom:
 
         return self.atoms
 
-    def add_bonds(self, bonds: Any):
+    def add_bonds(self, bonds: Any) -> Any:
         """Add one or more MCBond objects to the atom's bond list.
 
         Parameters
@@ -111,12 +116,17 @@ class MCAtom:
         bonds
             Bonds to assign to the atom.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when ``bonds`` is neither an MCBond nor a list of
             MCBonds.
-        """
+"""
         from .mc_bond import MCBond
 
         if not bonds:
@@ -140,7 +150,7 @@ class MCAtom:
 
         return self.bonds
 
-    def assign_molecule(self, molecule: Any):
+    def assign_molecule(self, molecule: Any) -> Any:
         """Set the parent MCMolecule this atom belongs to.
 
         Parameters
@@ -148,11 +158,16 @@ class MCAtom:
         molecule
             The molecule the atom belongs to.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when ``molecule`` is not an MCMolecule.
-        """
+"""
         from .mc_molecule import MCMolecule
 
         if not molecule:
@@ -167,7 +182,7 @@ class MCAtom:
 
         return self.molecule
 
-    def assign_molecule_index(self, molecule_index: int):
+    def assign_molecule_index(self, molecule_index: int) -> Any:
         """Set the index of this atom within its parent molecule.
 
         Parameters
@@ -175,11 +190,16 @@ class MCAtom:
         molecule_index
             Index of the atom in the molecule.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when ``molecule_index`` is not an int.
-        """
+"""
         if isinstance(molecule_index, None):
             pass
 
@@ -195,7 +215,7 @@ class MCAtom:
     @staticmethod
     def construct_from_atom_dict(
         atom_index: Any, atom_data_dict: Dict, elements_data_dict: Dict
-    ):
+    ) -> Self:
         """
         Given an atom data dict from a parser, returns an MCAtom.
 

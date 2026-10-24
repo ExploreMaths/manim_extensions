@@ -85,7 +85,7 @@ class OrbitalBase(OpenGLSurface):
 
         self.shift(center)
 
-    def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0):
+    def psi_ang(self, phi: Any, theta: Any, l: int = 0, m: int = 0) -> Any:
         """Compute the real part of the spherical harmonic Y_l^m at angles phi, theta.
 
         Parameters
@@ -98,12 +98,17 @@ class OrbitalBase(OpenGLSurface):
             Azimuthal (angular momentum) quantum number. Defaults to 0.
         m
             Magnetic quantum number. Defaults to 0.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
 
-    def calculate_coordinates(self, psi: Any, u: Optional[np.ndarray], v: Any):
+    def calculate_coordinates(self, psi: Any, u: Optional[np.ndarray], v: Any) -> Any:
         """Convert spherical psi value and angles u,v to scaled 3D Cartesian coordinates.
 
         Parameters
@@ -114,14 +119,19 @@ class OrbitalBase(OpenGLSurface):
             Polar angle. Defaults to ``None``.
         v
             Azimuthal angle.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
         z = np.cos(u) * abs(psi)
 
         return self.size * np.array([x, y, z])
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any):
+    def uv_func(self, u: Optional[np.ndarray], v: Any) -> Any:
         """Base uv function: compute orbital surface coordinates from spherical angles u, v.
 
         Parameters
@@ -130,7 +140,12 @@ class OrbitalBase(OpenGLSurface):
             Polar angle. Defaults to ``None``.
         v
             Azimuthal angle.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
@@ -141,7 +156,7 @@ class OrbitalPositive(OrbitalBase):
     Calculates the positive values of the orbital.
     """
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any):
+    def uv_func(self, u: Optional[np.ndarray], v: Any) -> Any:
         """Compute positive-lobe orbital coordinates, clamping negative psi values to zero.
 
         Parameters
@@ -150,7 +165,12 @@ class OrbitalPositive(OrbitalBase):
             Polar angle. Defaults to ``None``.
         v
             Azimuthal angle.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
             psi = 0
@@ -163,7 +183,7 @@ class OrbitalNegative(OrbitalBase):
     Calculates the negative values of the orbital.
     """
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any):
+    def uv_func(self, u: Optional[np.ndarray], v: Any) -> Any:
         """Compute negative-lobe orbital coordinates, clamping positive psi values to zero.
 
         Parameters
@@ -172,7 +192,12 @@ class OrbitalNegative(OrbitalBase):
             Polar angle. Defaults to ``None``.
         v
             Azimuthal angle.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
             psi = 0
@@ -225,7 +250,7 @@ class Orbital(OpenGLSurface):
         self.add(pos, neg)
         self.needs_new_bounding_box = True
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any):
+    def uv_func(self, u: Optional[np.ndarray], v: Any) -> np.ndarray:
         """Placeholder uv function returning origin; actual geometry is in child positive/negative orbitals.
 
         Parameters
@@ -234,5 +259,10 @@ class Orbital(OpenGLSurface):
             Polar angle. Defaults to ``None``.
         v
             Azimuthal angle.
-        """
+
+        Returns
+        -------
+        np.ndarray
+            The computed array.
+"""
         return np.array([0, 0, 0])

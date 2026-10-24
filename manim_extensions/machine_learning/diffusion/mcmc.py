@@ -40,7 +40,7 @@ from ..utils.mobjects.probability import GaussianDistribution
 
 ######################## MCMC Algorithms #########################
 
-def gaussian_proposal(x: int, sigma: float = 0.3):
+def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
     """
     Gaussian proposal distribution.
 
@@ -126,7 +126,7 @@ def metropolis_hastings_sampler(
     warm_up: int = 0,
     ndim: int = 2,
     sampling_seed: int = 1
-):
+) -> tuple:
     """Samples using a Metropolis-Hastings sampler.
 
     Parameters
@@ -189,7 +189,7 @@ def metropolis_hastings_sampler(
 
 #################### MCMC Visualization Tools ######################
 
-def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]):
+def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xlim: Optional[list]) -> Any:
     """Render a KDE density plot from 2D samples and return it as an ImageMobject.
 
     Parameters
@@ -200,7 +200,12 @@ def make_dist_image_mobject_from_samples(samples: Any, ylim: Optional[list], xli
         Limits of the y-axis as ``[ymin, ymax]``.
     xlim
         Limits of the x-axis as ``[xmin, xmax]``.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -439,7 +444,7 @@ class MCMCAxes(Group):
                     run_time=run_time
                 ), line
 
-    def show_ground_truth_gaussian(self, distribution: Any):
+    def show_ground_truth_gaussian(self, distribution: Any) -> AnimationGroup:
         """Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse.
 
         Parameters
@@ -447,7 +452,12 @@ class MCMCAxes(Group):
         distribution
             Gaussian distribution with ``mu`` and ``var`` attributes used to
             construct the displayed ellipse.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         mean = distribution.mu
         var = np.eye(2) * distribution.var
         distribution_drawing = GaussianDistribution(
@@ -462,7 +472,7 @@ class MCMCAxes(Group):
         show_dots: bool = False,
         true_samples: Optional[Any]=None,
         sampling_kwargs: dict = {},
-    ):
+    ) -> Succession:
         """
         Makes an animation for visualizing a 2D markov chain using
         metropolis hastings samplings.

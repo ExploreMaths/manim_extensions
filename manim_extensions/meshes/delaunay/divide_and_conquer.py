@@ -10,7 +10,7 @@ functions to create delaunay meshes by divide and conquer.
 from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate
 
 # python imports
-from typing import List
+from typing import List, Any
 
 # third-party imports
 import numpy as np
@@ -121,7 +121,7 @@ class DivideAndConquer:
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
-    def split_points(self, vert_indices: list, dash_length: float = 0.2, line_width: float = 1, speed: float = 1.0):
+    def split_points(self, vert_indices: list, dash_length: float = 0.2, line_width: float = 1, speed: float = 1.0) -> tuple[list[int], list[int], DashedLine]:
         """Split the vertex set into two halves along the x-coordinate median.
 
         The vertices referenced by *vert_indices* are sorted by their
@@ -353,7 +353,7 @@ class DivideAndConquer:
         indices_right: List,
         split_line: DashedLine,
         speed: float = 1.0,
-    ):
+    ) -> list[int]:
         """Merge two Delaunay-triangulated vertex sets into a combined triangulation.
 
         The method removes the split separator line, locates the base edge
@@ -461,7 +461,7 @@ class DivideAndConquer:
             The ``(l, r)`` vertex indices forming the initial base edge.
         """
 
-        def next_index(cur_idx: int, indices: list):
+        def next_index(cur_idx: int, indices: list) -> int | None:
             """Return the next index in a cyclic sequence.
 
             Parameters
@@ -481,7 +481,7 @@ class DivideAndConquer:
                     return indices[(i + 1) % len(indices)]
             return None
 
-        def on_right(tangent: np.ndarray, point: np.ndarray):
+        def on_right(tangent: np.ndarray, point: np.ndarray) -> Any:
             """Check whether a point lies to the right of a tangent line.
 
             Parameters

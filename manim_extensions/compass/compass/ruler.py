@@ -8,7 +8,7 @@ This module provides ruler visualization for geometry.
 
 """
 
-from typing import Any
+from typing import Any, Self
 
 from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
 from manim.typing import Point3D, Vector3D
@@ -142,7 +142,7 @@ class Ruler(VGroup):
         S, E = self.get_start_and_end()
         return float(np.linalg.norm(E - S))
 
-    def set_ruler(self, start: Point3D = LEFT, end: Point3D = RIGHT) -> "Ruler":
+    def set_ruler(self, start: Point3D = LEFT, end: Point3D = RIGHT) -> Self:
         """
 
         Place the ruler so that one of its edges aligns with start and end.
@@ -184,7 +184,7 @@ class Ruler(VGroup):
         ).shift(target_pos - current_pos)
         return self
 
-    def put_ruler_flat(self) -> "Ruler":
+    def put_ruler_flat(self) -> Self:
         """Lay the ruler flat.
 
         Returns

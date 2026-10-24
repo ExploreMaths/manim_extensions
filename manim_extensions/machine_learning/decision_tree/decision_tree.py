@@ -346,7 +346,7 @@ class DecisionTreeDiagram(Group):
         """
         raise NotImplementedError()
 
-    def create_bfs_expansion_decision_tree(self, tree: Mobject):
+    def create_bfs_expansion_decision_tree(self, tree: Mobject) -> tuple:
         """Expands the tree using BFS.
 
         Parameters
@@ -502,7 +502,7 @@ class DecisionTreeDiagram(Group):
         pass
 
     @override_animation(Create)
-    def create_decision_tree(self, traversal_order: str = "bfs"):
+    def create_decision_tree(self, traversal_order: str = "bfs") -> Any:
         """Makes a create animation for the decision tree.
 
         Parameters
@@ -511,11 +511,16 @@ class DecisionTreeDiagram(Group):
             Order in which the nodes are expanded: ``"bfs"`` (breadth-first)
             or ``"level"`` (level order). Defaults to ``"bfs"``.
 
+        Returns
+        -------
+        Any
+            The computed result.
+
         Raises
         ------
         Exception
             Raised when ``traversal_order`` is not recognized.
-        """
+"""
         # Comptue the node expand order
         if traversal_order == "level":
             node_expand_order = helpers.compute_level_order_traversal(self.tree)

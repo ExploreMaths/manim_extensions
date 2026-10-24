@@ -80,7 +80,7 @@ class TreeNode:
         child.parent = self
 
 
-def copy_node(node: Any) -> "TreeNode":
+def copy_node(node: Any) -> TreeNode:
     """Recursively create a deep copy of a node tree.
 
     Parameters
@@ -102,7 +102,7 @@ def copy_node(node: Any) -> "TreeNode":
     return root
 
 
-def split_integer(n: int):
+def split_integer(n: int) -> tuple[int, int]:
     """Split an integer into two roughly equal parts.
 
     Parameters
@@ -257,8 +257,13 @@ class StandardLayout(Layout):
                 for child in children[m::]:
                     self.right.add_child(child)
 
-    def layout(self):
-        """Run the two-sided layout and return the original root node."""
+    def layout(self) -> Any:
+        """Run the two-sided layout and return the original root node.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         self._split()
         self.left = TidyTreeLayout(
             self.left, self.direction, self.node_spacing, self.level_spacing

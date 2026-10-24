@@ -7,7 +7,7 @@ This module provides the AbstractMolecule class as a template for all molecule i
 """
 
 from manim import DOWN, Tex, Text, VGroup
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union, Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 
@@ -47,7 +47,7 @@ class AbstractMolecule:
         elements_data_dict: Optional[dict] = None,
         *args,
         **kwargs,
-    ):
+    ) -> Any:
         """
         Reads a file and returns a single molecule from that file.
 
@@ -146,7 +146,7 @@ class AbstractMolecule:
         elements_data_dict: Optional[dict] = None,
         *args,
         **kwargs,
-    ):
+    ) -> Any:
         """
         Reads a file and returns a single molecule from that file.
 
@@ -255,7 +255,7 @@ class AbstractMolecule:
         elements_data_dict: Optional[dict] = None,
         *args,
         **kwargs,
-    ):
+    ) -> Self:
         """
         Generates a GraphMolecule from an identifier using PubChem API.
 
@@ -326,7 +326,7 @@ class AbstractMolecule:
         direction: np.ndarray = DOWN,
         buff: float = 0.5,
         scale: float = 0.75,
-        ):
+        ) -> Self:
         r"""Adds the name of the molecule.
 
         Parameters
@@ -339,6 +339,11 @@ class AbstractMolecule:
             Distance between the name and the molecule. Defaults to 0.5.
         scale
             Scale of the text. Defaults to 0.75.
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining.
 
 
         Examples
@@ -426,8 +431,7 @@ class AbstractMolecule:
                     self.add(molecule)
                     molecule.add_molecule_name(name="Acetone")
                     self.add(molecule.submobjects[-1])
-
-        """
+"""
 
         if isinstance(name, str):
             name = Text(name)

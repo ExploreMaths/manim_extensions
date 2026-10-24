@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Max pooling 2D to feed-forward layer connection visualization."""
 
+from typing import Any
 from manim import ManimColor, ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .feed_forward import FeedForwardLayer
@@ -47,7 +48,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -58,5 +59,10 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)

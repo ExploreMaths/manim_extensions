@@ -7,6 +7,7 @@ This module provides functions for converting images into Pymunk collision
 shapes. Both transparent-background and solid-color images are handled.
 """
 
+from typing import Any
 import numpy as np
 from PIL import Image, ImageFilter, ImageOps
 
@@ -15,7 +16,7 @@ from ...utils.deps import require
 
 def get_normalized_convex_polygons(
     pixel_array: np.ndarray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
-):
+) -> Any:
     """Extract normalized convex polygons from a pixel array.
 
     Uses the marching-squares algorithm with convex decomposition to extract
@@ -97,7 +98,7 @@ def get_normalized_convex_polygons(
     # Closing operation: bridge broken highlight regions
     mask = mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
 
-    def sample_func(point: np.ndarray):
+    def sample_func(point: np.ndarray) -> int:
         """Return the mask value at the given coordinate.
 
         Parameters
@@ -146,7 +147,7 @@ def get_normalized_convex_polygons(
     return manim_polygons
 
 
-def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float):
+def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float) -> list:
     """Map pixel-coordinate polygons into Manim coordinates.
 
     Performs the coordinate transform from image pixel space into Manim's

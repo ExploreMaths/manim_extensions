@@ -11,7 +11,7 @@ Mesh structure.
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Optional, Set, Tuple, Union
+from typing import List, Optional, Set, Tuple, Union, Self
 import numpy as np
 
 # local imports
@@ -141,7 +141,7 @@ class Mesh:
         self._edges = self.extract_edges()
         self.test_for_dangling = dangling
 
-    def __add__(self, other: "Mesh") -> "Mesh":
+    def __add__(self, other: "Mesh") -> Self:
         """Concatenate *other* mesh into this mesh (``mesh + other``).
 
         Parameters
@@ -163,7 +163,7 @@ class Mesh:
             return self
         raise NotImplementedError
 
-    def __iadd__(self, other: "Mesh") -> "Mesh":
+    def __iadd__(self, other: "Mesh") -> Self:
         """Concatenate *other* mesh in-place (``mesh += other``).
 
         Parameters

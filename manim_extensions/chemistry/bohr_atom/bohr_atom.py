@@ -83,8 +83,13 @@ class BohrAtom(VGroup):
             182: 6,
         }
 
-    def calculate_levels(self):
-        """Calculate how many orbital levels are needed to hold all electrons."""
+    def calculate_levels(self) -> Any:
+        """Calculate how many orbital levels are needed to hold all electrons.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
             2: 1,
@@ -101,8 +106,13 @@ class BohrAtom(VGroup):
             next(x for x in list(TOTAL_ELECTRONS_PER_LEVEL.keys()) if x >= self.e)
         ]
 
-    def orbitals_group(self):
-        """Return a VGroup of concentric circle orbitals for each occupied level."""
+    def orbitals_group(self) -> VGroup:
+        """Return a VGroup of concentric circle orbitals for each occupied level.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         return VGroup(
             *[
                 Circle(radius=1 + i, color=self.orbit_color)
@@ -110,8 +120,13 @@ class BohrAtom(VGroup):
             ]
         )
 
-    def nuclei_groups(self):
-        """Return a VGroup of randomly positioned proton and neutron dots forming the nucleus."""
+    def nuclei_groups(self) -> VGroup:
+        """Return a VGroup of randomly positioned proton and neutron dots forming the nucleus.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         protons = [
             Dot(color=self.proton_color)
             .scale(2)
@@ -129,8 +144,13 @@ class BohrAtom(VGroup):
 
         return VGroup(*nuclei)
 
-    def electrons_group(self):
-        """Return a VGroup of electrons distributed across orbital levels according to Bohr model rules."""
+    def electrons_group(self) -> VGroup:
+        """Return a VGroup of electrons distributed across orbital levels according to Bohr model rules.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         ELECTRONS_PER_LEVEL = {
             # Level: Electrons that fit in each level
             1: 2,
@@ -157,7 +177,7 @@ class BohrAtom(VGroup):
 
         return electrons_group
 
-    def arrange_electrons(self, n_electrons: Any, level: int):
+    def arrange_electrons(self, n_electrons: Any, level: int) -> VGroup:
         """Evenly arrange n_electrons around a circular orbit at the given energy level radius.
 
         Parameters
@@ -166,7 +186,12 @@ class BohrAtom(VGroup):
             Number of electrons to arrange on the orbit.
         level
             Energy level of the orbit, used as its radius.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)
@@ -176,14 +201,29 @@ class BohrAtom(VGroup):
 
         return level_group
 
-    def get_orbitals(self):
-        """Return the orbitals VGroup (first child of the atom group)."""
+    def get_orbitals(self) -> Any:
+        """Return the orbitals VGroup (first child of the atom group).
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self[0]
 
-    def get_electrons(self):
-        """Return the electrons VGroup (second child of the atom group)."""
+    def get_electrons(self) -> Any:
+        """Return the electrons VGroup (second child of the atom group).
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self[1]
 
-    def get_nuclei(self):
-        """Return the nuclei VGroup (third child of the atom group)."""
+    def get_nuclei(self) -> Any:
+        """Return the nuclei VGroup (third child of the atom group).
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self[2]

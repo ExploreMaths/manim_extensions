@@ -187,7 +187,7 @@ class RubiksCube(VMobject):
         self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
         self.generate_cubies()  # **kwargs)
 
-    def get_center(self):
+    def get_center(self) -> Any:
         """Return the geometric center of the cube's bounding box.
 
         Returns
@@ -253,7 +253,7 @@ class RubiksCube(VMobject):
         for cubie in np.rot90(np.flip(self.get_face("B", False), (0, 1)), -1).flatten():
             cubie.get_face("B").set_fill(colors[positions.pop(0)], 1)
 
-    def solve_by_kociemba(self, state: np.ndarray):
+    def solve_by_kociemba(self, state: np.ndarray) -> Any:
         """Solve a cube state using the kociemba solver.
 
         Parameters
@@ -294,7 +294,7 @@ class RubiksCube(VMobject):
                         tile, magnitude * np.array(offset[i][1 + j * 2])
                     )
 
-    def get_face(self, face: np.ndarray, flatten: bool = True):
+    def get_face(self, face: np.ndarray, flatten: bool = True) -> Any:
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters

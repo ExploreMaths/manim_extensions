@@ -40,7 +40,7 @@ def _strip_rst(text: str) -> str:
     )
 
 
-def deprecated(msg: str, *args: Any, **kwargs: Any):
+def deprecated(msg: str, *args: Any, **kwargs: Any) -> Any:
     """Mark *obj* as deprecated.
 
     Parameters
@@ -54,7 +54,12 @@ def deprecated(msg: str, *args: Any, **kwargs: Any):
     **kwargs
         Forwarded to :func:`typing_extensions.deprecated`
         (``category``, ``stacklevel``).
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 
     def wrapper(obj: Any):

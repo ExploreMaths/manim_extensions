@@ -34,7 +34,7 @@ from ... import config
 
 
 
-def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
+def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) -> tuple:
     """Rotates the shift vectors.
 
     Parameters
@@ -44,7 +44,12 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False):
     normalized
         Whether to normalize the rotated vectors to unit length,
         by default False.
-    """
+
+    Returns
+    -------
+    tuple
+        A tuple of the results.
+"""
     # Make base shift vectors
     right_shift = np.array([input_layer.cell_width, 0, 0])
     down_shift = np.array([0, -input_layer.cell_width, 0])
@@ -137,8 +142,13 @@ class Filters(VGroup):
         # self.connective_lines.set_z_index(5)
         # self.add(self.connective_lines)
 
-    def make_input_feature_map_rectangles(self):
-        """Create filter-sized rectangles over each input feature map."""
+    def make_input_feature_map_rectangles(self) -> VGroup:
+        """Create filter-sized rectangles over each input feature map.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         rectangles = []
         rectangle_width = (
             self.output_layer.filter_size[0] * self.output_layer.cell_width
@@ -183,8 +193,13 @@ class Filters(VGroup):
 
         return feature_map_rectangles
 
-    def make_output_feature_map_rectangles(self):
-        """Create single-cell rectangles on each output feature map."""
+    def make_output_feature_map_rectangles(self) -> VGroup:
+        """Create single-cell rectangles on each output feature map.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         rectangles = []
 
         rectangle_width = self.output_layer.cell_width
@@ -238,13 +253,23 @@ class Filters(VGroup):
 
         return feature_map_rectangles
 
-    def make_connective_lines(self):
-        """Lines connecting input filter with output node."""
+    def make_connective_lines(self) -> VGroup:
+        """Lines connecting input filter with output node.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
 
-        def make_input_connective_lines():
-            """Makes connective lines between the corners of the input filters."""
+        def make_input_connective_lines() -> VGroup:
+            """Makes connective lines between the corners of the input filters.
+
+            Returns
+            -------
+            VGroup
+                A VGroup instance representing the result."""
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -263,8 +288,13 @@ class Filters(VGroup):
 
             return VGroup(*lines)
 
-        def make_output_connective_lines():
-            """Makes connective lines between the corners of the output filters."""
+        def make_output_connective_lines() -> VGroup:
+            """Makes connective lines between the corners of the output filters.
+
+            Returns
+            -------
+            VGroup
+                A VGroup instance representing the result."""
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -283,8 +313,13 @@ class Filters(VGroup):
 
             return VGroup(*lines)
 
-        def make_input_to_output_connective_lines():
-            """Make connective lines between last input filter and first output filter."""
+        def make_input_to_output_connective_lines() -> VGroup:
+            """Make connective lines between last input filter and first output filter.
+
+            Returns
+            -------
+            VGroup
+                A VGroup instance representing the result."""
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
             output_rectangle = self.output_rectangles[0]
@@ -328,8 +363,13 @@ class Filters(VGroup):
         TODO Fix this
         """
 
-        def add_content(object: Mobject):
-            """Add the filter rectangles and connective lines to the mobject."""
+        def add_content(object: Mobject) -> Any:
+            """Add the filter rectangles and connective lines to the mobject.
+
+            Returns
+            -------
+            Any
+                The computed result."""
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
             object.add(self.output_rectangles)
@@ -344,7 +384,7 @@ class Filters(VGroup):
             lag_ratio=0.0,
         )
 
-    def make_pulse_animation(self, shift_amount: Any):
+    def make_pulse_animation(self, shift_amount: Any) -> ShowPassingFlash:
         """Make animation of the filter pulsing.
 
         Parameters
@@ -352,7 +392,12 @@ class Filters(VGroup):
         shift_amount
             Amount by which the connective lines are shifted before the
             flash is shown.
-        """
+
+        Returns
+        -------
+        ShowPassingFlash
+            A ShowPassingFlash instance representing the result.
+"""
         passing_flash = ShowPassingFlash(
             self.connective_lines.shift(shift_amount).set_stroke_width(
                 self.stroke_width * 1.5
@@ -435,7 +480,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -446,10 +491,15 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def animate_filters_all_at_once(self, filters: Mobject):
+    def animate_filters_all_at_once(self, filters: Mobject) -> Succession:
         """Animates each of the filters all at once.
 
         Parameters
@@ -457,7 +507,12 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         filters
             The filters to animate; currently unused as a new
             :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.Filters` group is created internally.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         animations = []
         # Make filters
         filters = Filters(
@@ -505,7 +560,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         animations.append(FadeOut(filters))
         return Succession(*animations, lag_ratio=1.0)
 
-    def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True):
+    def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True) -> Succession:
         """Animates each of the filters one at a time.
 
         Parameters
@@ -513,7 +568,12 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         highlight_active_feature_map
             Whether to highlight the input and output feature maps of the
             filter currently being animated, by default True.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         animations = []
         output_feature_maps = self.output_layer.feature_maps
         for feature_map_index in range(len(output_feature_maps)):
@@ -622,7 +682,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         highlight_active_feature_map: bool = True,
         run_time: float = 10.5,
         **kwargs,
-    ):
+    ) -> Any:
         """Forward pass animation from conv2d to conv2d.
 
         Parameters
@@ -640,7 +700,12 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             Run time of the forward pass animation, by default 10.5.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         print(f"All filters at once: {all_filters_at_once}")
         # Make filter shifting animations
         if all_filters_at_once:

@@ -146,37 +146,52 @@ class BaseMBondObject(VGroup):
 
         return False
 
-    def atoms_in_bond(self):
-        """Return a tuple of the two atoms connected by this bond."""
+    def atoms_in_bond(self) -> tuple:
+        """Return a tuple of the two atoms connected by this bond.
+
+        Returns
+        -------
+        tuple
+            A tuple of the results."""
         return self.from_atom, self.to_atom
 
-    def atom_is_in_bond(self, atom: Any):
+    def atom_is_in_bond(self, atom: Any) -> bool | None:
         """Return True if the given atom is one of the two atoms in this bond.
 
         Parameters
         ----------
         atom
             Atom to check for membership in the bond.
-        """
+
+        Returns
+        -------
+        bool or None
+            Whether the operation succeeded. ``None`` if there is no result.
+"""
         if self.from_atom == atom or self.to_atom == atom:
             return True
         else:
             return False
 
-    def get_bond_index_by_atom(self, atom: Any):
+    def get_bond_index_by_atom(self, atom: Any) -> Any:
         """Return the bond's index if the atom is part of this bond, otherwise None.
 
         Parameters
         ----------
         atom
             Atom to check for membership in the bond.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         if self.atom_is_in_bond(atom):
             return self.index
 
         return
 
-    def add_bond_index_by_atom_to_list(self, atom: Any, list: list):
+    def add_bond_index_by_atom_to_list(self, atom: Any, list: list) -> Any:
         """Append this bond's index to the given list if the atom is in the bond.
 
         Parameters
@@ -185,7 +200,12 @@ class BaseMBondObject(VGroup):
             Atom to check for membership in the bond.
         list
             List the bond index is appended to.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         index = self.get_bond_index_by_atom(atom)
 
         if index is not None:
@@ -193,7 +213,7 @@ class BaseMBondObject(VGroup):
 
         return list
 
-    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any):
+    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any) -> Any:
         """Return a unit vector perpendicular to the bond direction, in the xy plane.
 
         Parameters
@@ -202,7 +222,12 @@ class BaseMBondObject(VGroup):
             Starting point of the bond.
         point_b
             Ending point of the bond.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))
@@ -248,15 +273,20 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def get_vector(self):
+    def get_vector(self) -> Any:
         """
         All bonds should contain at least a Line. This line can return the corresponding vector.
+
+        Returns
+        -------
+        Any
+            The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-        """
+"""
         try:
             return self[0].get_vector()
 
@@ -285,40 +315,70 @@ class SimpleBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
-    def no_subtype(self):
-        """Return a full-length line connecting both atom centers."""
+    def no_subtype(self) -> Line:
+        """Return a full-length line connecting both atom centers.
+
+        Returns
+        -------
+        Line
+            A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords)
 
-    def shorter_subtype(self):
-        """Return a shorter line with buffer space at both atom ends."""
+    def shorter_subtype(self) -> Line:
+        """Return a shorter line with buffer space at both atom ends.
+
+        Returns
+        -------
+        Line
+            A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
-    def shorter_from_subtype(self, direction: str):
+    def shorter_from_subtype(self, direction: str) -> Line:
         """Return a line shortened at the from-atom end, starting from the to atom.
 
         Parameters
         ----------
         direction
             Direction from the to atom to the from atom.
-        """
+
+        Returns
+        -------
+        Line
+            A Line instance representing the result.
+"""
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
 
-    def shorter_to_subtype(self, direction: str):
+    def shorter_to_subtype(self, direction: str) -> Line:
         """Return a line shortened at the to-atom end, starting from the from atom.
 
         Parameters
         ----------
         direction
             Direction from the from atom to the to atom.
-        """
+
+        Returns
+        -------
+        Line
+            A Line instance representing the result.
+"""
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
-    def longer_subtype(self):
-        """Return a zero-length line at the from atom (degenerate bond)."""
+    def longer_subtype(self) -> Line:
+        """Return a zero-length line at the from atom (degenerate bond).
+
+        Returns
+        -------
+        Line
+            A Line instance representing the result."""
         return Line(self.from_atom.coords, self.from_atom.coords)
 
-    def create_line(self):
-        """Build the bond line based on the configured subtype."""
+    def create_line(self) -> Any:
+        """Build the bond line based on the configured subtype.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -381,8 +441,13 @@ class DoubleBond(BaseMBondObject):
         self.double_bond_scale = double_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)
 
-    def no_subtype(self):
-        """Return two parallel lines: one full-length and one shorter offset line."""
+    def no_subtype(self) -> VGroup:
+        """Return two parallel lines: one full-length and one shorter offset line.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -396,8 +461,13 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(long_line, short_line)
 
-    def shorter_subtype(self):
-        """Return two parallel shortened lines offset perpendicularly from the bond axis."""
+    def shorter_subtype(self) -> VGroup:
+        """Return two parallel shortened lines offset perpendicularly from the bond axis.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -413,7 +483,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
+    def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any) -> VGroup:
         """Return a double bond shortened at the from-atom end, with surroundings-aware layout.
 
         Parameters
@@ -424,7 +494,12 @@ class DoubleBond(BaseMBondObject):
             Whether the from atom has single bonds to hydrogens.
         to_surroundings
             Whether the to atom has single bonds to hydrogens.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -450,7 +525,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any):
+    def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any) -> VGroup:
         """Return a double bond shortened at the to-atom end, with surroundings-aware layout.
 
         Parameters
@@ -461,7 +536,12 @@ class DoubleBond(BaseMBondObject):
             Whether the from atom has single bonds to hydrogens.
         to_surroundings
             Whether the to atom has single bonds to hydrogens.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -485,22 +565,27 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def get_vector(self):
+    def get_vector(self) -> Any:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
+
+        Returns
+        -------
+        Any
+            The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-        """
+"""
         try:
             return self[0][0].get_vector()
 
         except Exception as exception:
             raise exception
 
-    def get_surroundings(self):
+    def get_surroundings(self) -> tuple:
         """
         Checks the number of bonds of C atoms.
 
@@ -513,7 +598,11 @@ class DoubleBond(BaseMBondObject):
         double bond to imidazole.
 
         TODO: Refactor this to make it more logical and way less verbose.
-        """
+
+        Returns
+        -------
+        tuple
+            A tuple of the results."""
         from_surroundings, to_surroundings = (False, False)
         if self.from_atom.bond_to:
             from_surroundings = (
@@ -530,8 +619,13 @@ class DoubleBond(BaseMBondObject):
 
         return from_surroundings, to_surroundings
 
-    def create_line(self):
-        """Build the double bond VGroup based on the configured subtype."""
+    def create_line(self) -> Any:
+        """Build the double bond VGroup based on the configured subtype.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -601,8 +695,13 @@ class TripleBond(BaseMBondObject):
         self.triple_bond_scale = triple_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)
 
-    def no_subtype(self):
-        """Return three parallel lines forming a full triple bond."""
+    def no_subtype(self) -> VGroup:
+        """Return three parallel lines forming a full triple bond.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -615,8 +714,13 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def shorter_subtype(self):
-        """Return three parallel shortened lines forming a triple bond."""
+    def shorter_subtype(self) -> VGroup:
+        """Return three parallel shortened lines forming a triple bond.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -629,14 +733,19 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def shorter_from_subtype(self, direction: str):
+    def shorter_from_subtype(self, direction: str) -> VGroup:
         """Return a triple bond shortened at the from-atom end.
 
         Parameters
         ----------
         direction
             Direction from the to atom to the from atom.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -652,14 +761,19 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def shorter_to_subtype(self, direction: str):
+    def shorter_to_subtype(self, direction: str) -> VGroup:
         """Return a triple bond shortened at the to-atom end.
 
         Parameters
         ----------
         direction
             Direction from the from atom to the to atom.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -697,8 +811,13 @@ class TripleBond(BaseMBondObject):
         triple_line.move_to(pivot_line.get_start())
         bond.add(double_line, triple_line)
 
-    def create_line(self):
-        """Build the triple bond VGroup based on the configured subtype."""
+    def create_line(self) -> Any:
+        """Build the triple bond VGroup based on the configured subtype.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -713,15 +832,20 @@ class TripleBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self):
+    def get_vector(self) -> Any:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
+
+        Returns
+        -------
+        Any
+            The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-        """
+"""
         try:
             return self[0][0].get_vector()
 
@@ -750,8 +874,13 @@ class PlainCramBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
-    def no_subtype(self):
-        """Return a full triangular filled polygon representing a plain cram bond."""
+    def no_subtype(self) -> Polygram:
+        """Return a full triangular filled polygon representing a plain cram bond.
+
+        Returns
+        -------
+        Polygram
+            A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
@@ -765,8 +894,13 @@ class PlainCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def shorter_subtype(self):
-        """Return a shortened triangular filled cram bond with buffer at both ends."""
+    def shorter_subtype(self) -> Polygram:
+        """Return a shortened triangular filled cram bond with buffer at both ends.
+
+        Returns
+        -------
+        Polygram
+            A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         pivot_line = (
@@ -780,8 +914,13 @@ class PlainCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def shorter_from_subtype(self):
-        """Return a triangular cram bond shortened at the from-atom end."""
+    def shorter_from_subtype(self) -> Polygram:
+        """Return a triangular cram bond shortened at the from-atom end.
+
+        Returns
+        -------
+        Polygram
+            A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         pivot_line = (
@@ -795,8 +934,13 @@ class PlainCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def shorter_to_subtype(self):
-        """Return a triangular cram bond shortened at the to-atom end."""
+    def shorter_to_subtype(self) -> Polygram:
+        """Return a triangular cram bond shortened at the to-atom end.
+
+        Returns
+        -------
+        Polygram
+            A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         pivot_line = (
@@ -809,8 +953,13 @@ class PlainCramBond(BaseMBondObject):
         )
         return cram_bond
 
-    def longer_subtype(self):
-        """Return a degenerate zero-length cram bond at the from atom."""
+    def longer_subtype(self) -> Polygram:
+        """Return a degenerate zero-length cram bond at the from atom.
+
+        Returns
+        -------
+        Polygram
+            A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         pivot_line = (
@@ -824,8 +973,13 @@ class PlainCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def create_line(self):
-        """Build the plain cram bond polygon based on the configured subtype."""
+    def create_line(self) -> Any:
+        """Build the plain cram bond polygon based on the configured subtype.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         if not self.subtype:
             return self.no_subtype()
 
@@ -838,14 +992,19 @@ class PlainCramBond(BaseMBondObject):
             }
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self):
+    def get_vector(self) -> Any:
         """Return the direction vector from the from-atom to the to-atom.
+
+        Returns
+        -------
+        Any
+            The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying atom centers cannot be read.
-        """
+"""
         try:
             atom_a, atom_b = self.atoms_in_bond()
 
@@ -876,7 +1035,7 @@ class DashedCramBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
-    def add_dashed_cram_bond(self, base_line: Mobject, direction: str):
+    def add_dashed_cram_bond(self, base_line: Mobject, direction: str) -> VGroup:
         """Build a dashed cram bond from progressively shorter perpendicular lines along the direction.
 
         Parameters
@@ -885,7 +1044,12 @@ class DashedCramBond(BaseMBondObject):
             Base line of the cram bond.
         direction
             Direction of the cram bond.
-        """
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result.
+"""
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)
         cram_bond = VGroup()
         direction_modulus = (
@@ -901,47 +1065,77 @@ class DashedCramBond(BaseMBondObject):
             )  # TODO: Change this 5 to be an option
         return cram_bond
 
-    def no_subtype(self):
-        """Return a full-length dashed cram bond between both atoms."""
+    def no_subtype(self) -> Any:
+        """Return a full-length dashed cram bond between both atoms.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
         return cram_bond
 
-    def shorter_subtype(self):
-        """Return a shortened dashed cram bond with buffer space at both ends."""
+    def shorter_subtype(self) -> Any:
+        """Return a shortened dashed cram bond with buffer space at both ends.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
 
         return cram_bond
 
-    def shorter_from_subtype(self):
-        """Return a dashed cram bond shortened at the from-atom end."""
+    def shorter_from_subtype(self) -> Any:
+        """Return a dashed cram bond shortened at the from-atom end.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
 
         return cram_bond
 
-    def shorter_to_subtype(self):
-        """Return a dashed cram bond shortened at the to-atom end."""
+    def shorter_to_subtype(self) -> Any:
+        """Return a dashed cram bond shortened at the to-atom end.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
 
         return cram_bond
 
-    def longer_subtype(self):
-        """Return a degenerate zero-length dashed cram bond at the from atom."""
+    def longer_subtype(self) -> Any:
+        """Return a degenerate zero-length dashed cram bond at the from atom.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
 
         return cram_bond
 
-    def create_line(self):
-        """Build the dashed cram bond VGroup based on the configured subtype."""
+    def create_line(self) -> Any:
+        """Build the dashed cram bond VGroup based on the configured subtype.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         if not self.subtype:
             return self.no_subtype()
 
@@ -955,15 +1149,20 @@ class DashedCramBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self):
+    def get_vector(self) -> Any:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
+
+        Returns
+        -------
+        Any
+            The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line center lookup fails.
-        """
+"""
         try:
             starting_line = self[0][0]
             ending_line = self[0][len(self[0]) - 1]

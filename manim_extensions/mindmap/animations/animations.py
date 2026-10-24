@@ -32,7 +32,7 @@ __all__ = [
     "ScaleNode",
     "AlterNode",
 ]
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 import numpy as np
 
@@ -808,7 +808,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
             **kwargs,
         )
 
-    def collect_animations(self):
+    def collect_animations(self) -> tuple[Animation]:
         """Collect the animations needed to re-layout the mind map.
 
         Returns
@@ -900,7 +900,7 @@ class RemoveNode(LayoutAnimation):
             **kwargs,
         )
 
-    def collect_animations(self):
+    def collect_animations(self) -> tuple[Animation]:
         """Collect animations for removing nodes (or the whole tree).
 
         Returns
@@ -996,7 +996,7 @@ class InsertNode(LayoutAnimation):
             **kwargs,
         )
 
-    def get_root(self, nodes: List[Node]):
+    def get_root(self, nodes: List[Node]) -> Any:
         """Return the common root of the given nodes.
 
         Parameters

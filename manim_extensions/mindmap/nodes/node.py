@@ -27,7 +27,7 @@ from manim import (
 __all__ = ["Node", "NodeSate", "NodeStyle", "dfs_walker", "bfs_walker"]
 from enum import Enum
 from collections import deque
-from typing import Generator, List, Dict
+from typing import Generator, List, Dict, Self
 
 import numpy as np
 
@@ -627,7 +627,7 @@ class Node:
 
         return descendants_mobjects_of_node(self)
 
-    def get_root(self) -> "Node":
+    def get_root(self) -> Self:
         """Return the root node.
 
         Returns

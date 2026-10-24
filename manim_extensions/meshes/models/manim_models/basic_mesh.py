@@ -262,7 +262,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         return new_face, new_edges
 
-    def remove_face(self, face_idx: int):
+    def remove_face(self, face_idx: int) -> tuple:
         """Remove a face (and its orphaned edges) by index.
 
         Parameters

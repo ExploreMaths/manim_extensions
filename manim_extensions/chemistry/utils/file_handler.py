@@ -48,14 +48,19 @@ class FileHandler:
         self.parser = SUPPORTED_FORMATS.get(file_extension)(filename=file_path)
 
     @staticmethod
-    def get_file_extension(file_path: Any):
+    def get_file_extension(file_path: Any) -> Any:
         """Return the lowercase file extension without the leading dot.
 
         Parameters
         ----------
         file_path
             Path to the file.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> Tuple[Dict, Dict]:
@@ -68,7 +73,7 @@ class FileHandler:
         """
         return self.parser.molecule_data
 
-    def parse_from_string(string: str, format: str):
+    def parse_from_string(string: str, format: str) -> tuple | list:
         """Parse molecule data directly from a string using the given format.
 
         Parameters

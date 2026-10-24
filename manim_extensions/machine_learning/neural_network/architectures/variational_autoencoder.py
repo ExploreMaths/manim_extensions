@@ -101,7 +101,7 @@ class VariationalAutoencoder(VGroup):
         """
         pass
 
-    def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5):
+    def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5) -> AnimationGroup:
         """Override forward pass animation specific to a VAE.
 
         Parameters
@@ -112,7 +112,12 @@ class VariationalAutoencoder(VGroup):
             The output image produced by the decoder.
         run_time
             Run time of the forward pass animation, by default 1.5.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         # Make a wrapper NN with images
         wrapper_neural_network = NeuralNetwork(
             [ImageLayer(input_image), self.neural_network, ImageLayer(output_image)]

@@ -249,7 +249,7 @@ from ..element import (
 )
 
 
-def mol_parser_string(mol_string: list):
+def mol_parser_string(mol_string: list) -> tuple[dict]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
 
     Parameters
@@ -355,20 +355,25 @@ def mol_parser_string(mol_string: list):
     return atoms, bonds  # Should return atoms and bonds
 
 
-def mol_parser(file: Any):
+def mol_parser(file: Any) -> Any:
     """Read a .mol file from disk and return parsed ``(atoms, bonds)``.
 
     Parameters
     ----------
     file
         Path to the .mol file.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     with open(file) as file:
         mol_file = file.readlines()
     return mol_parser_string(mol_file)
 
 
-def sdf_parser_string(sdf_string: str):
+def sdf_parser_string(sdf_string: str) -> list[tuple]:
     """Parse an SDF-format string into a list of ``(atoms, bonds)`` tuples.
 
     SDF files can contain multiple molecules separated by ``$$$$`` delimiters.
@@ -393,20 +398,25 @@ def sdf_parser_string(sdf_string: str):
     return mol_list
 
 
-def sdf_parser(file: Any):
+def sdf_parser(file: Any) -> Any:
     """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.
 
     Parameters
     ----------
     file
         Path to the .sdf file.
-    """
+
+    Returns
+    -------
+    Any
+        The computed result.
+"""
     with open(file) as file:
         sdf_file = file.read()
     return sdf_parser_string(sdf_file)
 
 
-def get_element(element: str, language: str = "ENG"):
+def get_element(element: str, language: str = "ENG") -> Any:
     """Return the Element class instance for a given element symbol.
 
     Parameters
@@ -428,7 +438,7 @@ def get_element(element: str, language: str = "ENG"):
     return element_dict[element]
 
 
-def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG"):
+def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
     Unlike ``mol_parser``, this function stores atom positions under the

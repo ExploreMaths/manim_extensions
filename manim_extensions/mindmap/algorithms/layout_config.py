@@ -193,8 +193,13 @@ class LayoutConfig:
         return string
 
     @property
-    def catalog(self):
-        """Return the catalog layout settings as a dictionary."""
+    def catalog(self) -> dict:
+        """Return the catalog layout settings as a dictionary.
+
+        Returns
+        -------
+        dict
+            A dictionary of the results."""
         return {
             "node_spacing": self.node_spacing,
             "level_spacing": self.level_spacing,
@@ -219,8 +224,13 @@ class LayoutConfig:
         self.level_spacing = catalog.get("level_spacing", 0.5)
 
     @property
-    def mindmap(self):
-        """Return the mind map layout settings as a dictionary."""
+    def mindmap(self) -> dict:
+        """Return the mind map layout settings as a dictionary.
+
+        Returns
+        -------
+        dict
+            A dictionary of the results."""
         return {
             "direction": self.layout_direction,
             "node_spacing": self.node_spacing,
@@ -255,8 +265,13 @@ class LayoutConfig:
         self.level_spacing = mindmap.get("level_spacing", 0.5)
 
     @property
-    def timeline(self):
-        """Return the timeline layout settings as a dictionary."""
+    def timeline(self) -> dict:
+        """Return the timeline layout settings as a dictionary.
+
+        Returns
+        -------
+        dict
+            A dictionary of the results."""
         return {
             "node_spacing": self.node_spacing,
             "level_spacing": self.level_spacing,

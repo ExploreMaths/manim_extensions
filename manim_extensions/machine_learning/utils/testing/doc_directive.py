@@ -110,14 +110,19 @@ class ManimDirective(Directive):
     }
     final_argument_whitespace = True
 
-    def run(self):
+    def run(self) -> list:
         """Execute the directive: either render the manim example or output a placeholder.
+
+        Returns
+        -------
+        list
+            A list of the results.
 
         Raises
         ------
         ValueError
             Raised when an invalid combination of render flags is given.
-        """
+"""
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -316,14 +321,19 @@ def _delete_rendering_times(*args):
         rendering_times_file_path.unlink()
 
 
-def setup(app: Any):
+def setup(app: Any) -> dict:
     """Register the manim directive and its nodes with the Sphinx application.
 
     Parameters
     ----------
     app
         The Sphinx application to register the directive with.
-    """
+
+    Returns
+    -------
+    dict
+        A dictionary of the results.
+"""
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app

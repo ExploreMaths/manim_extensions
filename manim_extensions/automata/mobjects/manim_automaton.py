@@ -325,7 +325,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         # add the transition to the from_states link list
         transition_from.add_transition_to_state(new_transition)
 
-    def construct_automaton_input(self, input_string: str) -> "ManimAutomataInput":
+    def construct_automaton_input(self, input_string: str) -> ManimAutomataInput:
         """Create a ManimAutomataInput mobject from an input string.
 
         Parameters
@@ -367,7 +367,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     def determine_input(
         self, input: str | "ManimAutomataInput"
-    ) -> "ManimAutomataInput | None":
+    ) -> ManimAutomataInput | None:
         """Checks to if input is a string or already an manim mobject,
         if it is type string then create manim_input instance using
         the input string.

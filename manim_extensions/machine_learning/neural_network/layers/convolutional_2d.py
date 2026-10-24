@@ -153,8 +153,13 @@ class FeatureMap(VGroup):
             )
             self.add(self.exterior_rectangle)
 
-    def get_corners_dict(self):
-        """Returns a dictionary of the corners."""
+    def get_corners_dict(self) -> Any:
+        """Returns a dictionary of the corners.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.exterior_rectangle.get_corners_dict()
 
@@ -335,8 +340,13 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def construct_feature_maps(self):
-        """Creates the neural network layer."""
+    def construct_feature_maps(self) -> VGroup:
+        """Creates the neural network layer.
+
+        Returns
+        -------
+        VGroup
+            A VGroup instance representing the result."""
         # Draw rectangles that are filled in with opacity
         feature_maps = []
         for filter_index in range(self.num_feature_maps):
@@ -374,14 +384,19 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return VGroup(*feature_maps)
 
-    def highlight_and_unhighlight_feature_maps(self):
-        """Highlights then unhighlights feature maps."""
+    def highlight_and_unhighlight_feature_maps(self) -> Succession:
+        """Highlights then unhighlights feature maps.
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result."""
         return Succession(
             ApplyMethod(self.feature_maps.set_color, self.active_color),
             ApplyMethod(self.feature_maps.set_color, self.color),
         )
 
-    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Convolution forward pass animation.
 
         Parameters
@@ -393,7 +408,12 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer
         if not self.activation_function is None:
             animation_group = AnimationGroup(
@@ -419,20 +439,34 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 
-    def get_center(self):
+    def get_center(self) -> Any:
         """Overrides function for getting center.
 
         The reason for this is so that the center calculation
         does not include the activation function.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.feature_maps.get_center()
 
-    def get_width(self):
-        """Overrides get width function."""
+    def get_width(self) -> Any:
+        """Overrides get width function.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.feature_maps.length_over_dim(0)
 
-    def get_height(self):
-        """Overrides get height function."""
+    def get_height(self) -> Any:
+        """Overrides get height function.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         return self.feature_maps.length_over_dim(1)
 
     def move_to(self, mobject_or_point: Mobject):

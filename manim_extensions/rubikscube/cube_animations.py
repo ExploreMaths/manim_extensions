@@ -64,7 +64,7 @@ class CubeMove(Animation):
         self.angle = -self.angle if "'" in face else self.angle
         super().__init__(mobject, **kwargs)
 
-    def create_starting_mobject(self):
+    def create_starting_mobject(self) -> Any:
         """Create a copy of the cube as the starting state for the animation.
 
         Returns

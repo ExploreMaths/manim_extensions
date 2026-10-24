@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Any, Callable, Tuple
+from typing import List, Optional, Dict, Any, Callable, Tuple, Self
 from .layout import Layout
 from .layout_config import LayoutDirection
 
@@ -84,7 +84,7 @@ class TimelineNode:
     _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node: Any) -> "TimelineNode":
+    def from_node(cls, node: Any) -> Self:
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references
@@ -557,14 +557,19 @@ class TimeLineLayout(Layout):
             ``"bottom"`` representing the bounding box of the subtree.
         """
 
-        def walk_tree(root: TimelineNode):
+        def walk_tree(root: TimelineNode) -> dict:
             """Recursively walk the subtree to find boundary values.
 
             Parameters
             ----------
             root
                 The root of the subtree.
-            """
+
+            Returns
+            -------
+            dict
+                A dictionary of the results.
+"""
             _left = float("inf")
             _right = float("-inf")
             _top = float("inf")

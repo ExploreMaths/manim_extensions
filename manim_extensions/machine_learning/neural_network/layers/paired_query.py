@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MIT
 """Paired query layer visualization for neural networks."""
 
+from typing import Any
 from manim import (
     AnimationGroup,
     BLUE,
@@ -103,7 +104,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ):
+    ) -> Any:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -114,11 +115,16 @@ class PairedQueryLayer(NeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs):
+    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs) -> Any:
         """Creates a query using the paths.
 
         Parameters
@@ -131,7 +137,12 @@ class PairedQueryLayer(NeuralNetworkLayer):
             Whether to load the images as grayscale mobjects, by default True.
         **kwargs
             Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.PairedQueryLayer`.
-        """
+
+        Returns
+        -------
+        Any
+            The computed result.
+"""
         # Load images from path
         if grayscale:
             positive = GrayscaleImageMobject.from_path(positive_path)
@@ -144,10 +155,14 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         return query_layer
 
-    def make_assets(self):
+    def make_assets(self) -> Group:
         """
         Constructs the assets needed for a query layer.
-        """
+
+        Returns
+        -------
+        Group
+            A Group instance representing the result."""
         # Handle positive
         positive_group = LabeledColorImage(
             self.positive,
@@ -175,7 +190,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         # TODO make Create animation that is custom
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs):
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
         """Forward pass for query.
 
         Parameters
@@ -185,5 +200,10 @@ class PairedQueryLayer(NeuralNetworkLayer):
             forward pass animations, by default {}.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         return AnimationGroup()

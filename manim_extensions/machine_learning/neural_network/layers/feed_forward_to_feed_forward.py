@@ -100,8 +100,13 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         self.add(self.edges)
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_edges(self):
-        """Create all connecting lines between input and output layer nodes."""
+    def construct_edges(self) -> list:
+        """Create all connecting lines between input and output layer nodes.
+
+        Returns
+        -------
+        list
+            A list of the results."""
         # Go through each node in the two layers and make a connecting line
         edges = []
         for node_i in self.input_layer.node_group:
@@ -130,7 +135,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def make_forward_pass_animation(
         self, layer_args: dict = {}, run_time: float = 1, feed_forward_dropout: float = 0.0, **kwargs
-    ):
+    ) -> list:
         """Animation for passing information from one FeedForwardLayer to the next.
 
         Parameters
@@ -144,7 +149,12 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             Unused dropout rate reserved for future use, by default 0.0.
         **kwargs
             Forwarded to the parent layer classes.
-        """
+
+        Returns
+        -------
+        list
+            A list of the results.
+"""
         path_animations = []
         dots = []
         for edge_index, edge in enumerate(self.edges):
@@ -195,14 +205,19 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         # TODO implement
         pass
 
-    def modify_edge_stroke_widths(self, widths: Any):
+    def modify_edge_stroke_widths(self, widths: Any) -> AnimationGroup:
         """Changes the widths of the edges.
 
         Parameters
         ----------
         widths
             New stroke widths for the edges, one per edge.
-        """
+
+        Returns
+        -------
+        AnimationGroup
+            A AnimationGroup instance representing the result.
+"""
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
         widths = np.array(widths)

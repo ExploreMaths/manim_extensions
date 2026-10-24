@@ -3,6 +3,7 @@
 # patched: lazy-import pymunk (physics extra)
 """Spring Mobject for Pymunk physics simulations."""
 
+from typing import Self
 import numpy as np
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 
@@ -121,7 +122,7 @@ class VSpring(Line):
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
 
-    def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray):
+    def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray) -> Self:
         """Regenerate points when positions change (e.g. called by an Updater).
 
         Parameters
@@ -130,7 +131,12 @@ class VSpring(Line):
             The starting point of the spring.
         end
             The ending point of the spring.
-        """
+
+        Returns
+        -------
+        Self
+            The object itself, for method chaining.
+"""
         self.start = np.array(start)
         self.end = np.array(end)
         self.generate_points()

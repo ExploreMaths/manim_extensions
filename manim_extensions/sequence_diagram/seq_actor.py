@@ -23,7 +23,7 @@ from manim import (
     VGroup,
     WHITE,
 )
-from typing import cast
+from typing import cast, Self
 
 from .constants import HALF_DOWN
 
@@ -82,7 +82,7 @@ class SeqActor(VGroup):
         super().__init__(self.actor_ctn, actor_label, self.actor_timedots)
 
     @classmethod
-    def get_deepest_actor(cls) -> "SeqActor | None":
+    def get_deepest_actor(cls) -> Self | None:
         """Return the actor with the greatest time depth.
 
         Returns

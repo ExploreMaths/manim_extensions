@@ -12,7 +12,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Self
 from .layout_config import LayoutDirection
 from .layout import Layout
 
@@ -87,7 +87,7 @@ class WrappedTree:
     thread_right: Optional["WrappedTree"] = None
 
     @classmethod
-    def from_node(cls, node: Any, is_horizontal: bool, level: int = 0) -> "WrappedTree":
+    def from_node(cls, node: Any, is_horizontal: bool, level: int = 0) -> Self:
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
@@ -358,8 +358,13 @@ class TidyTreeLayout(Layout):
         """
         return direction in (LayoutDirection.LeftToRight, LayoutDirection.RightToLeft)
 
-    def layout(self):
-        """Run the layout computation."""
+    def layout(self) -> Any:
+        """Run the layout computation.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         layer(self.root, self.direction, self.level_spacing)
         self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
         self.first_walk(self.wt)

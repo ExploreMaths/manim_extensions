@@ -47,6 +47,7 @@ from typing import (
     List,
     Optional,
     Protocol,
+    Self,
     Tuple,
     Union,
     cast,
@@ -284,7 +285,7 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayElement":
+    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayElement__scene"]
@@ -517,7 +518,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_square(self) -> "_AnimationBuilder | Square":
+    def animate_mob_square(self) -> _AnimationBuilder | Square:
         """Invokes the animate property over square mobject.
 
         Returns
@@ -527,7 +528,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_square.animate
 
-    def animate_mob_value(self) -> "_AnimationBuilder | Text":
+    def animate_mob_value(self) -> _AnimationBuilder | Text:
         """Invokes the animate property over value mobject.
 
         Returns
@@ -537,7 +538,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_value.animate
 
-    def animate_mob_index(self) -> "_AnimationBuilder | Text":
+    def animate_mob_index(self) -> _AnimationBuilder | Text:
         """Invokes the animate property over index mobject.
 
         Returns
@@ -547,7 +548,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_index.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder | Text":
+    def animate_mob_label(self) -> _AnimationBuilder | Text:
         """Invokes the animate property over label mobject.
 
         Returns
@@ -1108,7 +1109,7 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> "MArray":
+    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArray__scene"]
@@ -1354,7 +1355,7 @@ class MArray(VGroup):
 
         return self.__mob_arr_label
 
-    def animate_elem(self, index: int) -> "_AnimationBuilder | MArrayElement":
+    def animate_elem(self, index: int) -> _AnimationBuilder | MArrayElement:
         """Invokes the animate property over element mobject specified.
 
         Parameters
@@ -1377,7 +1378,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate
 
-    def animate_elem_square(self, index: int) -> "_AnimationBuilder | Square":
+    def animate_elem_square(self, index: int) -> _AnimationBuilder | Square:
         """Invokes the animate property over square mobject of the specified element.
 
         Parameters
@@ -1400,7 +1401,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate_mob_square()
 
-    def animate_elem_value(self, index: int) -> "_AnimationBuilder | Text":
+    def animate_elem_value(self, index: int) -> _AnimationBuilder | Text:
         """Invokes the animate property over value mobject of the specified element.
 
         Parameters
@@ -1423,7 +1424,7 @@ class MArray(VGroup):
 
         return self.__mob_arr[index].animate_mob_value()
 
-    def animate_elem_index(self, index: int) -> "_AnimationBuilder | Text":
+    def animate_elem_index(self, index: int) -> _AnimationBuilder | Text:
         """Invokes the animate property over index mobject of the specified element.
 
         Parameters
@@ -1854,7 +1855,7 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> "MArrayPointer":
+    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
@@ -1973,7 +1974,7 @@ class MArrayPointer(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_arrow(self) -> "_AnimationBuilder | Arrow":
+    def animate_mob_arrow(self) -> _AnimationBuilder | Arrow:
         """Invokes the animate property over arrow mobject.
 
         Returns
@@ -1983,7 +1984,7 @@ class MArrayPointer(VGroup):
 
         return self.__mob_arrow.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder | Text":
+    def animate_mob_label(self) -> _AnimationBuilder | Text:
         """Invokes the animate property over label mobject.
 
         Returns
@@ -2351,7 +2352,7 @@ class MArraySlidingWindow(VGroup):
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> "MArraySlidingWindow":
+    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]
@@ -2457,7 +2458,7 @@ class MArraySlidingWindow(VGroup):
 
         return self.__mob_label
 
-    def animate_mob_window(self) -> "_AnimationBuilder | Rectangle":
+    def animate_mob_window(self) -> _AnimationBuilder | Rectangle:
         """Invokes the animate property over window mobject.
 
         Returns
@@ -2467,7 +2468,7 @@ class MArraySlidingWindow(VGroup):
 
         return self.__mob_window.animate
 
-    def animate_mob_label(self) -> "_AnimationBuilder | Text":
+    def animate_mob_label(self) -> _AnimationBuilder | Text:
         """Invokes the animate property over label mobject.
 
         Returns

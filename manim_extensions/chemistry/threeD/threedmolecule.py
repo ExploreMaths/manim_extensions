@@ -9,7 +9,7 @@ This module provides the ThreeDMolecule class for rendering molecules in 3D.
 
 
 from manim import ORIGIN, RendererType, config
-from typing import Any, Optional
+from typing import Any, Optional, Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from ..element import Element
 from ..utils import mol_parser, mol_parser_string
@@ -133,8 +133,13 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             self.add(self.atoms)
         self.move_to(ORIGIN)
 
-    def get_atoms_from_csv(self):
-        """Build ThreeDAtom objects from the atoms dict, optionally loading element data from CSV."""
+    def get_atoms_from_csv(self) -> OpenGLGroup:
+        """Build ThreeDAtom objects from the atoms dict, optionally loading element data from CSV.
+
+        Returns
+        -------
+        OpenGLGroup
+            A OpenGLGroup instance representing the result."""
         elements_data_dict = {}
         for atom in self.atoms_dict.values():
             elements_data_dict[atom.get("element").symbol] = atom.get("element")
@@ -153,8 +158,13 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         return atoms
 
-    def get_bonds(self):
-        """Build ThreeDBond objects connecting atoms based on the bonds dict."""
+    def get_bonds(self) -> OpenGLGroup:
+        """Build ThreeDBond objects connecting atoms based on the bonds dict.
+
+        Returns
+        -------
+        OpenGLGroup
+            A OpenGLGroup instance representing the result."""
         bonds = OpenGLGroup()
         for index, bonds_list in self.bonds_dict.items():
             from_atom = self.atoms[index - 1]
@@ -170,7 +180,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return bonds
 
     @staticmethod
-    def mc_molecule_to_atoms_and_bonds(mc_molecule: MCMolecule):
+    def mc_molecule_to_atoms_and_bonds(mc_molecule: MCMolecule) -> tuple[dict, dict]:
         """
         Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
 
@@ -233,7 +243,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         return atoms, bonds
 
-    def from_mol_file(filename: Any, source_csv: Any):
+    def from_mol_file(filename: Any, source_csv: Any) -> Self:
         """Create a ThreeDMolecule by parsing a .mol file.
 
         Parameters
@@ -242,11 +252,16 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             Path to the .mol file.
         source_csv
             Path to a csv file with element data.
-        """
+
+        Returns
+        -------
+        ThreeDMolecule
+            A ThreeDMolecule instance representing the result.
+"""
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
-    def from_mol_string(mol_string: Any, source_csv: Any):
+    def from_mol_string(mol_string: Any, source_csv: Any) -> Self:
         """Create a ThreeDMolecule by parsing a mol-format string.
 
         Parameters
@@ -255,6 +270,11 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             String with the molecule data in mol format.
         source_csv
             Path to a csv file with element data.
-        """
+
+        Returns
+        -------
+        ThreeDMolecule
+            A ThreeDMolecule instance representing the result.
+"""
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

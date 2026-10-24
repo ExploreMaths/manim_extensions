@@ -6,7 +6,7 @@ This module provides the MCBond class for representing chemical bonds in molecul
 
 """
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Self
 
 BOND_TYPES = {
     1: "simple",
@@ -92,7 +92,7 @@ class MCBond:
         self.stereo = stereo
 
     @staticmethod
-    def construct_from_bond_dict(bond_index: Any, bond_data_dict: Dict, molecule: Any):
+    def construct_from_bond_dict(bond_index: Any, bond_data_dict: Dict, molecule: Any) -> Self:
         """
         Given a bond data dict from a parser, returns an MCBond.
 

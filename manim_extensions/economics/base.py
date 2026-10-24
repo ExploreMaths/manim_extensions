@@ -470,7 +470,7 @@ class EconDiagram(VGroup):
 
         return AnimationGroup(*anims)
 
-    def clear_arrows(self):
+    def clear_arrows(self) -> FadeOut | None:
         """Clear any existing axis arrows.
 
         Returns

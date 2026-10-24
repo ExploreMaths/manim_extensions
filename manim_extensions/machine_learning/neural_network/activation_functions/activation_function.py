@@ -153,14 +153,19 @@ class ActivationFunction(ABC, VGroup):
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
-    def make_evaluate_animation(self, x_val: Optional[Any]=None):
+    def make_evaluate_animation(self, x_val: Optional[Any]=None) -> Succession:
         """Evaluates the function at a random point in the x_range.
 
         Parameters
         ----------
         x_val
             Input value at which to evaluate the function, by default None.
-        """
+
+        Returns
+        -------
+        Succession
+            A Succession instance representing the result.
+"""
         # Highlight the graph
         # TODO: Evaluate the function at the x_val and show a highlighted dot
         animation_group = Succession(

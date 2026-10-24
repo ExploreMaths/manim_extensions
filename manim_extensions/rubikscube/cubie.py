@@ -5,6 +5,7 @@
 
 """Individual cubie used by the Rubik's Cube mobject."""
 
+from typing import Any
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
 from manim.utils.color import BLACK
 from manim import Square, VGroup, z_to_vector
@@ -59,7 +60,7 @@ class Cubie(VGroup):
         self.faces = {}
         super().__init__()
 
-    def get_position(self):
+    def get_position(self) -> Any:
         """Return the cubie's current position in 3-D space.
 
         Returns
@@ -68,7 +69,7 @@ class Cubie(VGroup):
         """
         return self.position
 
-    def get_rounded_center(self):
+    def get_rounded_center(self) -> tuple[float]:
         """Return the cubie's position with coordinates rounded to 3 decimal places.
 
         Returns
@@ -103,7 +104,7 @@ class Cubie(VGroup):
             self.add(face)
             i += 1
 
-    def get_face(self, face: str):
+    def get_face(self, face: str) -> Any:
         """Return the face tile corresponding to a cube label.
 
         Parameters

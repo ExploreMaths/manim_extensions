@@ -70,7 +70,7 @@ class VoronoiDelaunay:
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         self.voronoi = Voronoi(verts[:, :2])
 
-    def create_voronoi(self):
+    def create_voronoi(self) -> tuple:
         """Build the Voronoi diagram for the mesh vertices and return it as Manim groups.
 
         The diagram is constructed from the :class:`scipy.spatial.Voronoi`

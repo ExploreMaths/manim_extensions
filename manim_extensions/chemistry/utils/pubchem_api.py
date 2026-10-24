@@ -59,7 +59,7 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: 'requests.models.Response', identifier: Any):
+    def handle_request(self, request: 'requests.models.Response', identifier: Any) -> Any:
         """Validate a PubChem API response and return the decoded payload.
 
         Adds a small sleep after the request to avoid rate-limiting the PubChem API.
@@ -101,8 +101,13 @@ class PubchemAPIManager:
             f"An error occurred when calling the Pub Chem API. Status code: {request.status_code}. Request response: {request.json}"
         )
 
-    def from_cid(self):
-        """Fetch molecule data from PubChem using the compound ID (CID)."""
+    def from_cid(self) -> Any:
+        """Fetch molecule data from PubChem using the compound ID (CID).
+
+        Returns
+        -------
+        Any
+            The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
@@ -111,8 +116,13 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.cid)
 
-    def from_name(self):
-        """Fetch molecule data from PubChem using the common name."""
+    def from_name(self) -> Any:
+        """Fetch molecule data from PubChem using the common name.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
@@ -121,8 +131,13 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.name)
 
-    def from_smiles(self):
-        """Fetch molecule data from PubChem using a SMILES string."""
+    def from_smiles(self) -> Any:
+        """Fetch molecule data from PubChem using a SMILES string.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
@@ -131,8 +146,13 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.smiles)
 
-    def from_inchi(self):
-        """Fetch molecule data from PubChem using an InChI key."""
+    def from_inchi(self) -> Any:
+        """Fetch molecule data from PubChem using an InChI key.
+
+        Returns
+        -------
+        Any
+            The computed result."""
         requests = require("chemistry", "requests")
         request_url = (
             f"{PubchemAPIManager.BASE_URL}/inchikey/{self.inchi}/{self.format}"
@@ -143,7 +163,7 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.inchi)
 
-    def get_molecule(self):
+    def get_molecule(self) -> Any:
         """Dispatch to the correct ``from_*`` method based on the set identifier.
 
         Returns

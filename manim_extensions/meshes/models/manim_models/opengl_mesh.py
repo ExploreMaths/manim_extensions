@@ -77,7 +77,7 @@ class FastManimMesh(OpenGLMobject):
         """Set the mesh vertices as the mobject's points."""
         self.set_points(self.mesh.vertices)
 
-    def get_triangle_indices(self):
+    def get_triangle_indices(self) -> Any:
         """Return the flat array of triangle indices.
 
         Returns
@@ -87,7 +87,7 @@ class FastManimMesh(OpenGLMobject):
         return self.triangle_indices
 
     # For shaders
-    def get_shader_data(self):
+    def get_shader_data(self) -> Any:
         """Build the shader data array from the mobject's points and colours.
 
         Returns
@@ -100,7 +100,7 @@ class FastManimMesh(OpenGLMobject):
         self.fill_in_shader_color_info(shader_data)
         return shader_data
 
-    def fill_in_shader_color_info(self, shader_data: Any):
+    def fill_in_shader_color_info(self, shader_data: Any) -> Any:
         """Write colour information into the shader data array.
 
         Parameters
@@ -115,7 +115,7 @@ class FastManimMesh(OpenGLMobject):
         self.read_data_to_shader(shader_data, "color", "rgbas")
         return shader_data
 
-    def get_shader_vert_indices(self):
+    def get_shader_vert_indices(self) -> Any:
         """Return the triangle indices used for shader rendering.
 
         Returns

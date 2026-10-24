@@ -44,14 +44,19 @@ class ReLUFunction(ActivationFunction):
         """Initialize the ReLU activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val: Any):
+    def apply_function(self, x_val: Any) -> int | None:
         """Return max(0, x_val), the ReLU activation applied to the input value.
 
         Parameters
         ----------
         x_val
             Input value to which the ReLU activation is applied.
-        """
+
+        Returns
+        -------
+        int or None
+            The computed integer value. ``None`` if there is no result.
+"""
         if x_val < 0:
             return 0
         else:
