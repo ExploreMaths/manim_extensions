@@ -142,8 +142,9 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
     ]
     if len(matches) == 1:
         entry = objects[matches[0]]
-        rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
-        return rel, entry.node_id, "ext"
+        # Return the site-relative docname (no extension), exactly like the
+        # constant/color branches: every caller appends ".html" itself.
+        return entry.docname, entry.node_id, "ext"
     return None
 
 

@@ -1,4 +1,7 @@
-/* Move auto-listed attribute/property members above the "Examples"
+/* SPDX-FileCopyrightText: 2026 ExploreMaths
+ * SPDX-License-Identifier: MIT
+ *
+ * Move auto-listed attribute/property members above the "Examples"
    rubric of their class block.  autodoc renders the class docstring
    (description + Examples) first and the collected members after it,
    so a property such as ``Array.values`` lands below the example video.
