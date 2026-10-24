@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
 """CI checker: every public function with a docstring and a non-trivial
 ``return`` statement must declare a return annotation (``-> ...``).
 
