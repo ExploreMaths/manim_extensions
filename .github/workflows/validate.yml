@@ -132,6 +132,13 @@ jobs:
       - name: Check that all function parameters have type annotations
         run: python scripts/check_type_annotations.py
 
+  validate-return-annotations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that documented public functions with return values declare a return annotation
+        run: python scripts/check_return_annotations.py
+
   flake8-unused-imports:
     runs-on: ubuntu-latest
     steps:
