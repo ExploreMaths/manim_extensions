@@ -216,9 +216,17 @@ dd p.rubric::after {
    inline-code look). */
 a.reference.ref-ext code.xref {
     color: #1E8449;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 a.reference.ref-manim code.xref {
     color: #1A5276;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 /* Hover: deepen the text colour slightly (light theme). */
 a.reference.ref-ext code.xref:hover {
@@ -263,7 +271,15 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    reference *inside* the code element (``code > a``), the reverse of
    inline_link_colors' ``a > code.xref`` shape.  The code carries a
    ``color-link-manim`` marker class: give the embedded link the palette
-   text colour, matching the ref-manim inline-code xrefs. */
+   text colour, matching the ref-manim inline-code xrefs.  The literal
+   itself keeps no inline-code background — colour-only. */
+code.docutils.literal.color-link-manim,
+code.docutils.literal.color-link-ext {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
 code.docutils.literal.color-link-manim a.reference {
     color: #1A5276;
 }
@@ -316,12 +332,20 @@ a.reference[href*="#manim_extensions."]:not(.default_value) {
 }
 a.reference[href*="#manim_extensions."]:not(.default_value) code {
     color: #1E8449;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 a.reference[href*="#manim."]:not(.default_value) {
     color: #1A5276;
 }
 a.reference[href*="#manim."]:not(.default_value) code {
     color: #1A5276;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
     color: #D5F5E3;
@@ -348,6 +372,23 @@ body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
     body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) code {
         color: #EBF5FB;
     }
+}
+/* The on-this-page sidebar (toc-tree) lists the same class/member names,
+   but its entries keep Furo's native TOC colours — no palette text
+   colouring there.  Written after the palette rules above so the same
+   specificity wins by source order; the current entry (li.scroll-current)
+   keeps its native active colour. */
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."],
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."],
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."],
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."] {
+    color: var(--color-toc-item-text);
+}
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."]:hover,
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."]:hover,
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."]:hover,
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."]:hover {
+    color: var(--color-toc-item-text--hover);
 }
 /* Dark theme: legend swatches follow the same deep fills as the
    dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
@@ -561,15 +602,7 @@ dl.py.attribute {
     margin: 0.3rem 0 0.3rem calc(1.2em + 0.8rem);
     padding-left: 0;
 }
-dl.py.property {
-    display: list-item;
-    list-style-type: disc;
-    list-style-position: outside;
-    margin: 0.3rem 0 0.3rem calc(1.2em + 0.8rem);
-    padding-left: 0;
-}
-dl.py.attribute.attributes-single,
-dl.py.property.attributes-single {
+dl.py.attribute.attributes-single {
     list-style-type: none;
 }
 dl.py.attribute > dt.sig a.headerlink,
