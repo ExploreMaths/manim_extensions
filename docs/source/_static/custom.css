@@ -377,11 +377,16 @@ body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
    but its entries keep Furo's native TOC colours — no palette text
    colouring there.  Written after the palette rules above so the same
    specificity wins by source order; the current entry (li.scroll-current)
-   keeps its native active colour. */
+   keeps its native active colour.  The links wrap the member name in a
+   code element, so both the link and its code child are reset. */
 .toc-tree li:not(.scroll-current) > a.reference[href*="#manim."],
 .toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."],
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."] code,
+.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."] code,
 .toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."],
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."] {
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."],
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."] code,
+.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."] code {
     color: var(--color-toc-item-text);
 }
 .toc-tree li:not(.scroll-current) > a.reference[href*="#manim."]:hover,
