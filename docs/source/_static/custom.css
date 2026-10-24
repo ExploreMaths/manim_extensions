@@ -544,17 +544,6 @@ html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python
 html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python.org"] .pre {
     color: inherit;
     text-decoration: none;
-    font-weight: normal;
-}
-
-/* Attribute-signature type annotations (e.g. ``QUALITIES: dict[str,
-   QualityDict]``): the global rule above renders the Python builtin links
-   (dict/str/list/int/float/...) in body colour, no underline, normal weight.
-   Inside a .property signature, bold the builtin links so they stand out as
-   much as custom types (like QualityDict) do in the same signature.  The
-   inherited color/text-decoration from the global rule are kept. */
-dt.sig-object.py .property > a.reference[href^="https://docs.python.org"] {
-    font-weight: bold;
 }
 
 /* Parameter type spans (sphinx-autodoc-typehints wraps the type links of
