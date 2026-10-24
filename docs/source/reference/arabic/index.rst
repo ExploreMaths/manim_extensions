@@ -52,7 +52,7 @@ Usage
    class ArabicGreeting(Scene):
        def construct(self):
            label = create_arabic_text("مرحبا", color="arabicblue", font_size=48)
-           self.play(Write(label))
+           self.play(Write(label.scale(4)))
            self.wait()
 
 :func:`~manim_extensions.arabic.text.create_arabic_text` takes

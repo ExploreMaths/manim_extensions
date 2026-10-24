@@ -55,7 +55,7 @@ between two points and pass it a ``weight`` to label:
                1,
                weight=4,
            )
-           self.add(weighted_line)
+           self.add(weighted_line.scale(3))
 
 To use the line in a graph, pass the configuration to the edge object and
 use :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` as

@@ -61,7 +61,7 @@ with the ``manim`` command.
 
            icon = NerdFontIcon("language-python", color=m.BLUE)
 
-           self.add(icon)
+           self.add(icon.scale(6))
 
 Icon sets and lookup
 ^^^^^^^^^^^^^^^^^^^^

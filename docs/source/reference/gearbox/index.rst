@@ -87,7 +87,9 @@ to control the axial distance and which tooth flank engages:
            gear2.shift(gear2.rp * UP)
            # mesh with 0.15*module larger distance than default
            gear2.mesh_to(gear1, offset=0.15, bias=False)
-           self.add(gear1, gear2)
+           group = VGroup(gear1, gear2).scale_to_fit_height(8)
+           group.move_to(ORIGIN)
+           self.add(group)
 
 .. toctree::
    :hidden:
