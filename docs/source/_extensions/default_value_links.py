@@ -309,6 +309,16 @@ def _process_prose_literals(app, doctree, docname) -> None:
         objects = app.env.domains["py"].data["objects"]
     except (KeyError, AttributeError):
         objects = {}
+    # Prose words that are generic numpydoc/section vocabulary: even if a
+    # project object happens to share the name (e.g. Parameters), a bare
+    # ``Parameters`` in prose means the section, not the class.  Never
+    # auto-link these.
+    GENERIC_PROSE_NAMES = {
+        "Parameters", "OtherParameters", "Returns", "Yields", "Receives",
+        "Raises", "Warns", "Attributes", "Methods", "Examples", "Notes",
+        "References", "SeeAlso", "Condition", "Command", "Check", "Checks",
+        "Warning", "Fields", "Modules", "Arguments", "Args", "KeywordArgs",
+    }
     for node in list(doctree.findall(nodes.literal)):
         if any(isinstance(c, nodes.reference) for c in node.children):
             continue
@@ -321,6 +331,8 @@ def _process_prose_literals(app, doctree, docname) -> None:
             # Single letters (e.g. Rubik's cube turn notation U/F/B that
             # collide with chemical element symbols) are never meant as
             # object references.
+            continue
+        if text in GENERIC_PROSE_NAMES:
             continue
         candidates = [
             (full, entry) for full, entry in objects.items()
