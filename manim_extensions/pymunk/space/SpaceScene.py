@@ -351,6 +351,7 @@ class SpaceScene(ZoomedScene):
         ----------
         mobs
             The Mobjects whose associated physical bodies should be activated.
+
             This includes all sub-mobjects within the family tree of each provided Mobject.
         """
         pymunk = require("physics", "pymunk")
@@ -374,6 +375,7 @@ class SpaceScene(ZoomedScene):
         ----------
         mobs
             The Mobjects whose associated physical bodies should be put to sleep.
+
             This iterates through all sub-mobjects within the family tree of
             each provided Mobject.
         """

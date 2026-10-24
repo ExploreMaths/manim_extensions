@@ -270,6 +270,7 @@ class ADASDiagram(EconDiagram):
 
             After a shock moves output away from LRAS, SRAS gradually adjusts
             to P = MV / Y_potential, bringing the economy back to potential output.
+
             The animation is slow by default (2s) to show the gradual adjustment.
         """
         return self.shift_sras(sras_price=self._lr_price, run_time=run_time,
@@ -308,6 +309,7 @@ class ADASDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             Short run: AD shifts right → output rises above potential, price unchanged.
+
             Long run: SRAS slowly shifts up → output returns to potential at higher price.
 
             Returns a list of animations to play in sequence.
@@ -340,6 +342,7 @@ class ADASDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             Short run: AD shifts left → output falls below potential, price unchanged.
+
             Long run: SRAS slowly shifts down → output returns to potential at lower price.
 
             Returns a list of animations to play in sequence.
@@ -370,6 +373,7 @@ class ADASDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             Short run: SRAS shifts up → price rises, output falls (stagflation).
+
             Long run: SRAS slowly shifts back down as economy self-corrects.
 
             Returns a list of animations to play in sequence.
@@ -398,6 +402,7 @@ class ADASDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             Short run: SRAS shifts down → price falls, output rises.
+
             Long run: SRAS slowly shifts back up as economy self-corrects.
 
             Returns a list of animations to play in sequence.
