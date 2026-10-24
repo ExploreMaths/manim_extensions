@@ -45,7 +45,8 @@ to another. The methods on
 :class:`~manim_extensions.sequence_diagram.seq_action.SeqAction` are
 generators that yield the animations to play:
 
-.. code-block:: python
+.. manim:: ClientRaceDatabaseNetwork
+   :ref_classes: SeqActor SeqAction SeqObject
 
    from manim import *
    from manim_extensions.sequence_diagram import (
@@ -53,7 +54,6 @@ generators that yield the animations to play:
        SeqAction,
        SeqObject,
    )
-
 
    class ClientRaceDatabaseNetwork(MovingCameraScene):
        def construct(self):
@@ -81,6 +81,7 @@ generators that yield the animations to play:
                self.play(anim)
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes
