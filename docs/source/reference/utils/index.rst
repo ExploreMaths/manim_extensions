@@ -76,6 +76,7 @@ do not always match the names in this library — in that case use the
 Unicode codepoint to find the icon you want.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

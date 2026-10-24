@@ -110,6 +110,7 @@ for a `finite-state machine <https://youtu.be/beKkjIGdeQc>`_ and a
 linked from the README.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    mobjects

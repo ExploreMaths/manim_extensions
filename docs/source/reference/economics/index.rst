@@ -280,6 +280,7 @@ Ready-to-run scenes live in the upstream ``examples/`` directory (AD-AS,
 Solow shares, IS-LM monetary expansion, and a linked-diagram scene).
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

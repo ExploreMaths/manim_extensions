@@ -74,6 +74,7 @@ Any other color name supported by ``xcolor`` can be passed to ``color`` as
 well.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    functions

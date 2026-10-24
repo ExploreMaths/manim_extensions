@@ -197,6 +197,7 @@ algorithm itself with the ``layout_type`` argument of any animation (see
    )
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    nodes

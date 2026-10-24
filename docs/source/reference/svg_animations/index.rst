@@ -182,6 +182,7 @@ generated HTML and JS files in your own pages. If the size of the animation
 does not look right, fix it with CSS.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

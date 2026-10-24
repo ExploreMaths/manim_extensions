@@ -207,6 +207,7 @@ downloading molecule files from PubChem. See :doc:`cli` for the full
 guide with examples of every option.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

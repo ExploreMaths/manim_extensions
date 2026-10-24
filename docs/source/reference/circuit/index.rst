@@ -64,6 +64,7 @@ repositioned, and animated. Planned additions include transistors and logic
 gates, and the upstream repository ships example scenes under ``examples/``.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    mobjects

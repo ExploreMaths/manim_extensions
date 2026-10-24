@@ -39,6 +39,7 @@ suggestions and requests are welcome in the upstream repository. The package
 targets Manim Community Edition (CE).
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

@@ -121,6 +121,7 @@ different undirected and directed graphs, showing how to configure the weight
 label and its background.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

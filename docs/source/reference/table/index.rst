@@ -87,6 +87,7 @@ Change colors and styles per header, column, or individual cell:
    table.get_cell(1, 1).set_font_color(RED)
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

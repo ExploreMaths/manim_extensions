@@ -97,6 +97,7 @@ friction, density, sensor flags and collision callbacks are all configurable on
 the body-adding calls, with sensible defaults provided.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

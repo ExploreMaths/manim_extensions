@@ -120,6 +120,7 @@ draw a current-carrying
    self.add(charge, ElectricField(charge))
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    electromagnetism

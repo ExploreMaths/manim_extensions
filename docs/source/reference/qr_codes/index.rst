@@ -60,6 +60,7 @@ See the `example gallery <https://manim-qr-codes.readthedocs.io/en/latest/exampl
 of the upstream documentation for more animated examples.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    functions

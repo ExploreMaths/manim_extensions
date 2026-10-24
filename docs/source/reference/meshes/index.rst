@@ -112,6 +112,7 @@ See the `original project page <https://github.com/bmmtstb/manim-meshes>`_
 for details on the mesh model and more advanced examples.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    data_model

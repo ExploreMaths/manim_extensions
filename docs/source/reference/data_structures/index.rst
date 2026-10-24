@@ -277,6 +277,7 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
            self.max_k_sum(arr, 4)
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

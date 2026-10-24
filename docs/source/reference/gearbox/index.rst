@@ -81,6 +81,7 @@ to control the axial distance and which tooth flank engages:
    gear2.mesh_to(gear1, offset=0.15, bias=False)
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

@@ -165,6 +165,7 @@ constructions (one ruler, one pencil, with a ``draw_line_with_pencil``
 method); see ``demo/ruler_scene_demo.py``.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    mobjects

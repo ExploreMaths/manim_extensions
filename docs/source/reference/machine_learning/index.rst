@@ -258,6 +258,7 @@ Upstream design notes describe each layer as owning its visual content; more
 elaborate animations can be built by composing smaller networks as layers.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes

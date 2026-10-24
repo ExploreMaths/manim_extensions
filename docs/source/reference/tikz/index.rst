@@ -99,6 +99,7 @@ currently supported. Attempting to use them will likely result in an
 incorrect or empty shape.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    classes
