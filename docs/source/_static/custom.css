@@ -614,15 +614,15 @@ dl.py.attribute {
     display: list-item;
     list-style-type: disc;
     list-style-position: outside;
-    margin: 0.3em 0 0.3em 14px;
-    padding-left: 21px;
+    margin: 0.3em 0 0.3em 0.8em;
+    padding-left: 1.2em;
 }
 dl.py.property {
     display: list-item;
     list-style-type: disc;
     list-style-position: outside;
-    margin: 0.3em 0 0.3em 14px;
-    padding-left: 21px;
+    margin: 0.3em 0 0.3em 0.8em;
+    padding-left: 1.2em;
 }
 /* Match the Parameters list-marker size (rendered at the li font size,
    ~1.15x the attribute signature size). */
