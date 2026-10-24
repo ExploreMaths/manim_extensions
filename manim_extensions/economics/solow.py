@@ -37,11 +37,11 @@ from .base import EconDiagram
 class SolowDiagram(EconDiagram):
     """Solow growth model diagram.
 
-    Production function: y = k^α
-    Savings/investment: sf(k) = s·k^α
-    Break-even investment: (δ + n + g)·k
+    Production function: :math:`y = k^{\\alpha}`
+    Savings/investment: :math:`sf(k) = s \\cdot k^{\\alpha}`
+    Break-even investment: :math:`(\\delta + n + g) \\cdot k`
 
-    Steady state where sf(k*) = (δ + n + g)·k*.
+    Steady state where :math:`sf(k^*) = (\\delta + n + g) \\cdot k^*`.
 
     Parameters
     ----------
@@ -184,6 +184,11 @@ class SolowDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             If shares are visible, they update automatically.
+
+        Returns
+        -------
+            The curve-shift animation, together with the share update
+            if shares are visible.
         """
         self._s = s if s is not None else self._s
         new_func = self._make_savings_func(self._s, self._alpha)
@@ -194,7 +199,7 @@ class SolowDiagram(EconDiagram):
 
     def shift_breakeven(self, delta: Optional[Any]=None, n: Optional[Any]=None, g: Optional[Any]=None, run_time: float = 1,
                         show_arrows: bool = False):
-        """Animate break-even line shifting due to changes in δ, n, or g.
+        """Animate break-even line shifting due to changes in :math:`\\delta`, n, or g.
 
         Parameters
         ----------
@@ -214,6 +219,11 @@ class SolowDiagram(EconDiagram):
             equilibrium change. Defaults to ``False``.
 
             If shares are visible, they update automatically.
+
+        Returns
+        -------
+            The curve-shift animation, together with the share update
+            if shares are visible.
         """
         self._delta = delta if delta is not None else self._delta
         self._n = n if n is not None else self._n
@@ -236,6 +246,11 @@ class SolowDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
@@ -249,6 +264,11 @@ class SolowDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
@@ -262,6 +282,11 @@ class SolowDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
 
@@ -275,6 +300,11 @@ class SolowDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         return [self.shift_breakeven(delta=delta, show_arrows=show_arrows)]
 
@@ -328,6 +358,12 @@ class SolowDiagram(EconDiagram):
             Color for investment brace/label. Defaults to ``YELLOW``.
         run_time
             Duration of the animation. Defaults to ``1``.
+
+        Returns
+        -------
+        :class:`~manim.animation.fading.FadeIn` or :class:`~manim.animation.transform.ReplacementTransform` or ``None``
+            The animation revealing the consumption/investment shares, or
+            ``None`` if there is no steady-state capital.
         """
         if k is None:
             k = self._steady_state_k()
@@ -347,7 +383,14 @@ class SolowDiagram(EconDiagram):
         return FadeIn(new_group, run_time=run_time)
 
     def hide_shares(self):
-        """Return a FadeOut animation to remove the share annotations."""
+        """Remove the share annotations.
+
+        Returns
+        -------
+        :class:`~manim.animation.fading.FadeOut` or ``None``
+            A FadeOut animation removing the shares, or ``None`` if the
+            shares are not visible.
+        """
         if hasattr(self, '_shares_group') and self._shares_group is not None:
             old = self._shares_group
             self._shares_group = None
@@ -356,7 +399,7 @@ class SolowDiagram(EconDiagram):
 
     def animate_shares_along(self, k_start: Any, k_end: Any,
                              c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3):
-        """Animate the c/i share braces sliding from k_start to k_end.
+        """Animate the c/i share braces sliding from ``k_start`` to ``k_end``.
 
         Parameters
         ----------
@@ -371,8 +414,11 @@ class SolowDiagram(EconDiagram):
         run_time
             Duration of the animation. Defaults to ``3``.
 
-            Shows how the consumption/investment split changes at different
-            capital levels along the production function.
+        Returns
+        -------
+        :class:`~manim.animation.updaters.update.UpdateFromAlphaFunc`
+            The animation sliding the consumption/investment shares along
+            the capital axis.
         """
         self._shares_c_color = c_color
         self._shares_i_color = i_color
@@ -396,7 +442,7 @@ class SolowDiagram(EconDiagram):
     # ---- Golden rule ----
 
     def _golden_rule_k(self):
-        """Compute golden-rule capital: MPK = δ+n+g.
+        """Compute golden-rule capital: :math:`MPK = \\delta + n + g`.
 
         f'(k) = α·k^(α-1) = δ+n+g  →  k_gold = (α / (δ+n+g))^(1/(1-α))
         """
@@ -414,11 +460,14 @@ class SolowDiagram(EconDiagram):
         run_time
             Duration of the FadeIn animation. Defaults to ``1``.
 
-            Draws a vertical dashed line at k_gold with a label. The golden rule
-            is where MPK = δ+n+g, giving the savings rate that maximizes
-            steady-state consumption.
+            Draws a vertical dashed line at ``k_gold`` with a label. The golden rule
+            is where :math:`MPK = \\delta + n + g`, giving the savings rate that
+            maximizes steady-state consumption.
 
-            Returns a FadeIn animation.
+        Returns
+        -------
+        :class:`~manim.animation.fading.FadeIn`
+            A FadeIn animation of the golden-rule line and labels.
         """
         k_gold = self._golden_rule_k()
         s_gold = (self._delta + self._n + self._g) * k_gold / (k_gold ** self._alpha)
@@ -440,7 +489,14 @@ class SolowDiagram(EconDiagram):
         return FadeIn(self._golden_group, run_time=run_time)
 
     def hide_golden_rule(self):
-        """Return a FadeOut animation to remove the golden-rule marker."""
+        """Remove the golden-rule marker.
+
+        Returns
+        -------
+        :class:`~manim.animation.fading.FadeOut` or ``None``
+            A FadeOut animation removing the marker, or ``None`` if the
+            marker is not present.
+        """
         if hasattr(self, '_golden_group') and self._golden_group is not None:
             old = self._golden_group
             self._golden_group = None

@@ -471,9 +471,13 @@ class EconDiagram(VGroup):
         return AnimationGroup(*anims)
 
     def clear_arrows(self):
-        """Return a FadeOut animation for any existing axis arrows.
+        """Clear any existing axis arrows.
 
-        Returns ``None`` if there are no arrows to clear.
+        Returns
+        -------
+        :class:`~manim.animation.fading.FadeOut` or ``None``
+            A FadeOut animation removing the arrows, or ``None`` if there
+            are no arrows to clear.
         """
         if hasattr(self, '_axis_arrows') and self._axis_arrows is not None:
             old = self._axis_arrows

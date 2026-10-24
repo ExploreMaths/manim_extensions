@@ -186,6 +186,12 @@ class ADASDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~manim.animation.animation.Animation` or :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            The curve-shift animation, together with the share update
+            if shares are visible.
         """
         self._m = m if m is not None else self._m
         self._v = v if v is not None else self._v
@@ -214,6 +220,12 @@ class ADASDiagram(EconDiagram):
         show_arrows
             If True, draw arrows on the axes showing the direction of
             equilibrium change. Defaults to ``False``.
+
+        Returns
+        -------
+        :class:`~manim.animation.animation.Animation` or :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            The curve-shift animation, together with the share update
+            if shares are visible.
         """
         if sras_price is not None:
             self._sras_price = sras_price
@@ -235,6 +247,11 @@ class ADASDiagram(EconDiagram):
             New potential output (natural rate of output).
         run_time
             Duration of the shift animation. Defaults to ``1``.
+
+        Returns
+        -------
+        :class:`~manim.animation.composition.AnimationGroup`
+            The animation shifting the LRAS line.
         """
         old_line = self.curves["lras"]
         y_min = self.axes.y_range[0]
@@ -271,6 +288,12 @@ class ADASDiagram(EconDiagram):
             After a shock moves output away from LRAS, SRAS gradually adjusts
             to P = MV / Y_potential, bringing the economy back to potential output.
             The animation is slow by default (2s) to show the gradual adjustment.
+
+        Returns
+        -------
+        :class:`~manim.animation.composition.AnimationGroup`
+            The animation shifting the SRAS curve back toward long-run
+            equilibrium.
         """
         return self.shift_sras(sras_price=self._lr_price, run_time=run_time,
                                show_arrows=show_arrows)
@@ -311,7 +334,11 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts up → output returns to potential at higher price.
 
-            Returns a list of animations to play in sequence.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
@@ -344,7 +371,11 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts down → output returns to potential at lower price.
 
-            Returns a list of animations to play in sequence.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
@@ -375,7 +406,11 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts back down as economy self-corrects.
 
-            Returns a list of animations to play in sequence.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:
@@ -404,7 +439,11 @@ class ADASDiagram(EconDiagram):
 
             Long run: SRAS slowly shifts back up as economy self-corrects.
 
-            Returns a list of animations to play in sequence.
+
+        Returns
+        -------
+        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
+            A list of animations to play in sequence.
         """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:

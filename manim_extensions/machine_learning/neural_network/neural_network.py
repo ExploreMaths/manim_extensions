@@ -425,6 +425,12 @@ class NeuralNetwork(Group):
         **kwargs
             Additional keyword arguments forwarded to each layer's
             ``make_forward_pass_animation``.
+
+        Returns
+        -------
+        :class:`~manim.animation.animation.Animation` or :class:`~typing.Dict` of :class:`~manim.mobject.mobject.Mobject` to :class:`~manim.animation.animation.Animation`
+            The forward-pass animation, or a mapping from each layer to
+            its animation when ``per_layer_animations`` is ``True``.
         """
         all_animations = []
         per_layer_animation_map = {}
