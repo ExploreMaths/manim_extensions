@@ -395,6 +395,24 @@ body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
 .toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."]:hover {
     color: var(--color-toc-item-text--hover);
 }
+/* The currently-selected entry (li.scroll-current) is bolded by Furo and
+   keeps its native active colour (Sphinx blue).  The palette rules above
+   would otherwise colour it green because they don't exclude the current
+   entry; written after them so the same specificity wins by source order. */
+.toc-tree li.scroll-current > a.reference[href*="#manim."],
+.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."],
+.toc-tree li.scroll-current > a.reference[href*="#manim."] code,
+.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."] code,
+.toc-drawer li.scroll-current > a.reference[href*="#manim."],
+.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."],
+.toc-drawer li.scroll-current > a.reference[href*="#manim."] code,
+.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."] code,
+.toc-tree li.scroll-current > a.reference[href*="#manim."]:hover,
+.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."]:hover,
+.toc-drawer li.scroll-current > a.reference[href*="#manim."]:hover,
+.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."]:hover {
+    color: var(--color-toc-item-text--active);
+}
 /* Dark theme: legend swatches follow the same deep fills as the
    dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
    consistent with the nodes it describes. */
