@@ -1,25 +1,28 @@
 /* -- Code fonts ------------------------------------------------------------
-   JetBrains Mono is bundled so the code face is identical on every device
-   (Windows falls back to Consolas, iOS to Menlo without this; both look
-   different).  Latin/other glyphs come from the webfont; CJK glyphs that the
-   webfont lacks fall back to the system stack as before. */
+   Consolas is bundled so the code face is identical on every device
+   (iOS has no Consolas and falls back to Menlo without this).  The webfont
+   takes precedence over any local copy because @font-face definitions
+   override the system font of the same name.  CJK glyphs that the webfont
+   lacks fall back to the system stack.  Note: Consolas is Microsoft
+   proprietary; the bundled files are redistributed here for rendering the
+   docs, which may need review if this project's licence matters. */
 @font-face {
-    font-family: "JetBrains Mono";
-    src: url("fonts/JetBrainsMono-Regular.woff2") format("woff2");
+    font-family: "Consolas";
+    src: url("fonts/Consolas-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: "JetBrains Mono";
-    src: url("fonts/JetBrainsMono-Bold.woff2") format("woff2");
+    font-family: "Consolas";
+    src: url("fonts/Consolas-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 body {
-    --font-stack--monospace: "JetBrains Mono", "SFMono-Regular", Menlo,
-        Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
+    --font-stack--monospace: "Consolas", "SFMono-Regular", Menlo,
+        Monaco, "Liberation Mono", "Lucida Console", monospace;
 }
 
 .sidebar-brand img {
