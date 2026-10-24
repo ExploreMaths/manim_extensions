@@ -37,16 +37,26 @@ component; the unit is appended automatically (``Ω`` for resistors, ``H``
 for inductors, ``F`` for capacitors), and ``direction`` controls which side
 of the body the label is placed on:
 
-.. code-block:: python
+.. manim:: BasicCircuitComponents
+   :ref_classes: Resistor Inductor Capacitor
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.circuit import Resistor, Inductor, Capacitor
 
-
-   class CircuitExample(Scene):
+   class BasicCircuitComponents(Scene):
        def construct(self):
+           # Build the resistor without a label (the vendored Resistor appends
+           # RST ":math:`\Omega`" to Tex labels, which is not valid LaTeX),
+           # then add a proper Tex label manually.
+           resistor = Resistor(direction=UP)
+           resistor.label = Tex(r"10 $\Omega$").scale(0.5).next_to(
+               resistor.main_body, UP, buff=0.1
+           )
+           resistor.add(resistor.label)
+
            components = VGroup(
-               Resistor(label="10", direction=UP),
+               resistor,
                Inductor(label="0.3", direction=UP),
                Capacitor(label="47", direction=UP),
            ).arrange(RIGHT, buff=1.5)

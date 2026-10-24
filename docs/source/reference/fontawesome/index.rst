@@ -48,14 +48,15 @@ Available styles:
 Any bundled icon name works as an attribute on its style namespace — for
 example, the regular-style angry face:
 
-.. code-block:: python
+.. manim:: AngryEmoji
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.fontawesome import regular
 
    class AngryEmoji(Scene):
        def construct(self):
-           self.add(regular.angry)
+           self.add(regular.face_angry)
 
 The variable :data:`~manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION` reports the bundled Font Awesome
 version string.

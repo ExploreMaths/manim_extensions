@@ -33,7 +33,8 @@ Usage
 
 Create a table from a list of rows; the first row is treated as the header.
 
-.. code-block:: python
+.. manim:: TableExample
+   :ref_classes: Table
 
    from manim import *
 

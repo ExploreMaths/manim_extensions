@@ -44,7 +44,9 @@ All extra keyword arguments are forwarded to
 and the usual ``Text`` options work as expected. Render the scene normally
 with the ``manim`` command.
 
-.. code-block:: python
+.. manim:: NerdfontIconExample
+   :ref_classes: NerdFontIcon
+   :save_last_frame:
 
    import manim as m
 

@@ -44,12 +44,13 @@ and ``stroke_opacity=0`` when you do not want the stroke, since the stroke
 increases the gear size by a couple of pixels and gives the feeling of
 interference.
 
-.. code-block:: python
+.. manim:: GearMeshExample
+   :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear
 
    from manim import *
    from manim_extensions.gearbox import Gear
 
-   class gear_example(Scene):
+   class GearMeshExample(Scene):
        def construct(self):
            # small gear
            gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
@@ -69,16 +70,24 @@ For ring gears with inner teeth, pass ``inner_teeth=True`` and use the
 ``offset`` and ``bias`` arguments of :meth:`~manim_extensions.gearbox.Gear.mesh_to`
 to control the axial distance and which tooth flank engages:
 
-.. code-block:: python
+.. manim:: RingGearMeshExample
+   :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear
+   :save_last_frame:
 
-   gear1 = Gear(12, module=1, profile_shift=0.3, stroke_opacity=0,
-                fill_color=WHITE, fill_opacity=1)
-   gear2 = Gear(36, module=1, inner_teeth=True, profile_shift=0.1,
-                stroke_opacity=0, fill_color=RED, fill_opacity=1)
-   gear1.shift(gear1.rp * UP)
-   gear2.shift(gear2.rp * UP)
-   # mesh with 0.15*module larger distance than default
-   gear2.mesh_to(gear1, offset=0.15, bias=False)
+   from manim import *
+   from manim_extensions.gearbox import Gear
+
+   class RingGearMeshExample(Scene):
+       def construct(self):
+           gear1 = Gear(12, module=1, profile_shift=0.3, stroke_opacity=0,
+               fill_color=WHITE, fill_opacity=1)
+           gear2 = Gear(36, module=1, inner_teeth=True, profile_shift=0.1,
+               stroke_opacity=0, fill_color=RED, fill_opacity=1)
+           gear1.shift(gear1.rp * UP)
+           gear2.shift(gear2.rp * UP)
+           # mesh with 0.15*module larger distance than default
+           gear2.mesh_to(gear1, offset=0.15, bias=False)
+           self.add(gear1, gear2)
 
 .. toctree::
    :hidden:

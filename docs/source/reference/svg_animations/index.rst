@@ -56,16 +56,15 @@ When later animations introduce more mobjects, just add them to ``vg``. Call
 :meth:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish`
 once the animations are done.
 
-.. code-block:: python
+.. manim:: SVGAnimationUsageExample
+   :ref_classes: HTMLParsedVMobject
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
 
-
    VMobject.set_default(color=BLACK)
 
-
-   class SceneExample(Scene):
+   class SVGAnimationUsageExample(Scene):
        def construct(self):
            self.camera.background_color = WHITE
            ax = Axes().add_coordinates()

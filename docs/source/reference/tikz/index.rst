@@ -38,7 +38,9 @@ Usage
 Import :class:`~manim_extensions.tikz.tikz.Tikz` and construct it with the
 TikZ code to render inside a scene:
 
-.. code-block:: python
+.. manim:: TikzScene
+   :ref_classes: Tikz
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.tikz import Tikz

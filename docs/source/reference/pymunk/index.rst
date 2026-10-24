@@ -43,12 +43,12 @@ Manim mobjects, register them as static or dynamic bodies, optionally set
 collision filters and constraints, and play — the scene steps the Pymunk space
 on every frame.
 
-.. code-block:: python
+.. manim:: VPivotJointExample
+   :ref_classes: manim_extensions.pymunk.space.SpaceScene.SpaceScene VPivotJoint
 
    from manim import *
    from manim_extensions.pymunk import SpaceScene
    from manim_extensions.pymunk.constraints import VPivotJoint
-
 
    class VPivotJointExample(SpaceScene):
        def construct(self):
@@ -60,6 +60,8 @@ on every frame.
                VPivotJoint(static_dot, square),
                VPivotJoint(square, square2, pivot_world=UP * 3),
            ]
+
+           self.play(FadeIn(static_dot), FadeIn(square), FadeIn(square2))
 
            # register the physics bodies (shapes, mass, angle, ...)
            self.add_static_body(static_dot)

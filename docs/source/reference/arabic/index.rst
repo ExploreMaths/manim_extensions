@@ -43,13 +43,13 @@ given explicitly.
 Usage
 -----
 
-.. code-block:: python
+.. manim:: ArabicGreeting
+   :ref_functions: create_arabic_text
 
    from manim import Scene, Write
    from manim_extensions.arabic import create_arabic_text
 
-
-   class ArabicExample(Scene):
+   class ArabicGreeting(Scene):
        def construct(self):
            label = create_arabic_text("مرحبا", color="arabicblue", font_size=48)
            self.play(Write(label))

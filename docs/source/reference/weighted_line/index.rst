@@ -40,7 +40,9 @@ Usage
 After importing, construct a :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine`
 between two points and pass it a ``weight`` to label:
 
-.. code-block:: python
+.. manim:: SimpleExample
+   :ref_classes: WeightedLine
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
@@ -60,7 +62,9 @@ use :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` as
 the ``edge_type``. Per-edge options (including ``weight`` and
 ``stroke_color``) go in the ``edge_config`` dictionary keyed by edge:
 
-.. code-block:: python
+.. manim:: WeightedGraph
+   :ref_classes: WeightedLine
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
@@ -84,7 +88,9 @@ If you build your graph with NetworkX, use
 :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` as the
 ``edge_type`` and pass the edge data through the ``edge_config`` dictionary:
 
-.. code-block:: python
+.. manim:: NetworkXGraph
+   :ref_classes: WeightedLine
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.weighted_line import WeightedLine

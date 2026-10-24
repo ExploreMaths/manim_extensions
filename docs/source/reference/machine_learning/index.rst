@@ -57,7 +57,8 @@ Build a scene by extending ``Scene`` (or ``ThreeDScene`` when the network has
 3-D content). Neural networks are composed from a list of layers, which
 ManimML pieces together automatically:
 
-.. code-block:: python
+.. manim:: BasicScene
+   :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
    from manim import *
 

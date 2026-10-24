@@ -38,7 +38,8 @@ All constructors take the current ``Scene`` as their first argument. Animations
 triggered on an array play automatically through that scene; pass
 ``play_anim=False`` to receive the animation objects and play them yourself.
 
-.. code-block:: python
+.. manim:: MainScene
+   :ref_classes: MArray
 
    from manim import *
 

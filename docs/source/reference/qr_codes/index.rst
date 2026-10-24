@@ -29,7 +29,9 @@ The code is bundled inside ``manim_extensions`` as the
 Usage
 -----
 
-.. code-block:: python
+.. manim:: MyQrCodeScene
+   :save_last_frame:
+   :ref_functions: qr_code
 
    import manim as m
 

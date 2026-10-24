@@ -47,13 +47,14 @@ Usage
 Quick start: build a diagram, create it, then play the animation list
 returned by a shock method one animation at a time.
 
-.. code-block:: python
+.. manim:: ADASQuickStart
+   :ref_classes: ADASDiagram
 
    from manim import Create, Scene
 
    from manim_extensions.economics import ADASDiagram
 
-   class MyScene(Scene):
+   class ADASQuickStart(Scene):
        def construct(self):
            diagram = ADASDiagram()
            self.play(Create(diagram))
