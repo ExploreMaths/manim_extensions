@@ -884,6 +884,28 @@ def check_file(filepath: Path) -> list:
                 "message": "has a non-None return annotation but no "
                            "'Returns'/'Yields' section",
             })
+        # Functions without a return annotation may still describe their
+        # return value somewhere in the docstring. When such a return
+        # description appears after the summary line and no numpydoc
+        # Returns/Yields section exists, the description must be moved
+        # into a proper Returns section (the summary line itself is
+        # allowed to open with "Returns a ..." / "Return a ...").
+        if (
+            "Returns" not in secs
+            and "Yields" not in secs
+            and "Receives" not in secs
+        ):
+            doc_lines = doc.strip().split("\n")
+            for i, ln in enumerate(doc_lines[1:], start=1):
+                if re.search(r"\bReturns? (a|an|the)\b", ln, re.I):
+                    violations.append({
+                        "line": node.lineno + i,
+                        "qualname": qualname,
+                        "type": "RETURNS_DESCRIPTION_OUTSIDE_SECTION",
+                        "message": "describes its return value in the docstring "
+                                   "body but has no 'Returns'/'Yields' section",
+                    })
+                    break
         check_section_order(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
