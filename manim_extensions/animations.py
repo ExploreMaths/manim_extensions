@@ -130,7 +130,7 @@ def easeOutBounce(t: float) -> float:
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-       Original author: @pdcxs.
+       Original author: `@pdcxs <https://github.com/pdcxs>`_ (`Bilibili <https://space.bilibili.com/10707223/>`_, `site <https://pdcxs.github.io/>`_).
 
     Parameters
     ----------
@@ -188,7 +188,7 @@ def easeInBounce(t: float) -> float:
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-       Original author: @pdcxs.
+       Original author: `@pdcxs <https://github.com/pdcxs>`_ (`Bilibili <https://space.bilibili.com/10707223/>`_, `site <https://pdcxs.github.io/>`_).
 
     Parameters
     ----------
@@ -236,7 +236,7 @@ def easeInOutBounce(t: float) -> float:
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-       Original author: @pdcxs.
+       Original author: `@pdcxs <https://github.com/pdcxs>`_ (`Bilibili <https://space.bilibili.com/10707223/>`_, `site <https://pdcxs.github.io/>`_).
 
     Parameters
     ----------
@@ -286,7 +286,7 @@ def easeOutElastic(t: float) -> float:
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/functions/calculation.py``).
-       Original author: @pdcxs.
+       Original author: `@pdcxs <https://github.com/pdcxs>`_ (`Bilibili <https://space.bilibili.com/10707223/>`_, `site <https://pdcxs.github.io/>`_).
 
        Because this function can return values greater than ``1`` it should not be
        used with animations that sample ``points_from_proportion`` (e.g.
@@ -346,7 +346,7 @@ class WriteRandom(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: widcardw (style popularised by @贝多芬).
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @贝多芬).
 
     Parameters
     ----------
@@ -390,7 +390,7 @@ class ReversedWrite(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: widcardw (style popularised by @贝多芬).
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @贝多芬).
 
     Parameters
     ----------
@@ -434,7 +434,7 @@ class FadeInRandom(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: widcardw.
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_).
 
     Parameters
     ----------
@@ -477,7 +477,7 @@ class FadeOutRandom(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: widcardw.
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_).
 
     Parameters
     ----------
@@ -520,7 +520,7 @@ class GrowRandom(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: widcardw.
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_).
 
     Parameters
     ----------
@@ -568,7 +568,7 @@ class PassingRectangle(Animation):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: @鹤翔万里.
+       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -652,7 +652,7 @@ class LaggedCreation(Animation):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: @鹤翔万里.
+       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -746,7 +746,7 @@ class HighLightWithLines(AnimationGroup):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: @鹤翔万里.
+       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -827,7 +827,7 @@ class UnHighLightWithLines(AnimationGroup):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: @鹤翔万里.
+       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
