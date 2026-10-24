@@ -78,11 +78,15 @@ class BaseParser(ABC):
 
         The atom data follows the structure:
 
-            {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}
+        .. code-block:: python
+
+           {<atom_index>: {"element": <atom_element>, "position": [<x_pos>, <y_pos>, <z_pos>]}}
 
         The bond data follows the structure:
 
-            {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
+        .. code-block:: python
+
+           {<bond_index>: {"from_atom_index": <from_atom_index>, "to_atom_index": <to_atom_index>, "bond_type": <bond_type>}}
 
         Parameters
         ----------
