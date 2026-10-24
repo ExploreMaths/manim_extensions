@@ -531,13 +531,17 @@ html body .highlight.sphinx_autodoc_typehints-value code .o {
 }
 
 
-/* Python builtin type links (dict, str, float, None, ...) in signatures
-   and typehint values: render them in the surrounding body colour with no
-   underline, so reference pages don't read as a wall of links.  Links to
-   numpy / pillow / manim / pymunk docs keep their native link look. */
-html body a[href^="https://docs.python.org"],
-html body a[href^="https://docs.python.org"]:hover,
-html body a[href^="https://docs.python.org"]:visited,
+/* Python builtin type links (dict, str, float, None, ...): render them in
+   the surrounding body colour with no underline ONLY inside the parameter
+   list (sphinx-autodoc_typehints-type, italicized) and typehint default
+   values, where a single entry can carry many type links.  Everywhere else
+   (Bases, Returns / Return Type, signatures) Python links keep Furo's
+   default link colour, so classes like Protocol in ``Bases: Protocol``
+   read as normal links.  numpy / pillow / manim / pymunk links keep their
+   native link look everywhere. */
+html body .sphinx_autodoc_typehints-type a[href^="https://docs.python.org"],
+html body .sphinx_autodoc_typehints-type a[href^="https://docs.python.org"] code.xref,
+html body .sphinx_autodoc_typehints-type a[href^="https://docs.python.org"] .pre,
 html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python.org"],
 html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python.org"] code.xref,
 html body .highlight.sphinx_autodoc_typehints-value a[href^="https://docs.python.org"] .kc,
