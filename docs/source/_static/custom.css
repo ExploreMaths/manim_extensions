@@ -610,25 +610,27 @@ dl.py.property > dt.sig a[href^="https://docs.python.org"] .pre {
    native list marker (disc — same rendering as Parameters' list items).
    A block with exactly one entry drops the bullet — the
    attributes-single.js script detects that case and removes the marker. */
-/* Attributes rendered exactly like the Parameters list: same box
-   geometry as the field-list ul (margin = 2rem dd indent − 1.2rem ul
-   margin = 0.8rem, padding 1.2em), with the native list-item disc
-   marker, so text and bullet land on the same columns at any font
-   size.  A block with exactly one entry drops the bullet
-   (attributes-single.js). */
+/* Attributes rendered exactly like the Parameters list items: the
+   native list marker of a list-item is anchored to the *li* box, not
+   the ul box — li sits at ul left-edge + 1.2em (ul padding).  So the
+   attribute/property dl must place its box at the same column as the
+   li box: ul left-edge = field-list dd (2rem) − ul margin (1.2rem),
+   i.e. parent + 0.8rem, then +1.2em for the ul padding.  Box, marker
+   and text then land pixel-identical at any font size.  A block with
+   exactly one entry drops the bullet (attributes-single.js). */
 dl.py.attribute {
     display: list-item;
     list-style-type: disc;
     list-style-position: outside;
-    margin: 0.3rem 0 0.3rem 0.8rem;
-    padding-left: 1.2em;
+    margin: 0.3rem 0 0.3rem calc(1.2em + 0.8rem);
+    padding-left: 0;
 }
 dl.py.property {
     display: list-item;
     list-style-type: disc;
     list-style-position: outside;
-    margin: 0.3rem 0 0.3rem 0.8rem;
-    padding-left: 1.2em;
+    margin: 0.3rem 0 0.3rem calc(1.2em + 0.8rem);
+    padding-left: 0;
 }
 dl.py.attribute.attributes-single,
 dl.py.property.attributes-single {
