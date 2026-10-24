@@ -81,7 +81,7 @@ pytest tests/ -v
 ### Type annotations
 
 - **Every function and method parameter must have a type annotation**, except `self`, `cls`, `*args`, and `**kwargs`.
-- **Every documented public function or method that returns a value must declare a return annotation** (enforced by `scripts/check_return_annotations.py`). Return the enclosing class from a method with `Self`; declare `-> None` explicitly for no-value returns.
+- **Documented public functions and methods that return a value should declare a return annotation** where practical. This is advisory, not CI-blocking — the maintainer will help refine missing or imperfect annotations. Return the enclosing class from a method with `Self`; use `-> None` for no-value returns when it helps readers.
 - A non-`None` return annotation requires a `Returns` (or `Yields`) docstring section (see [Docstrings](#docstrings)).
 - `mypy --strict` is configured in `pyproject.toml` for local type checking,
   but it is **not currently enforced in CI**, and the codebase does not pass
@@ -392,7 +392,7 @@ Run these locally before opening a PR. Each corresponds to a CI job in `.github/
 | Unused imports (F401) | `flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples"` |
 | License headers | `reuse lint` |
 | Type annotations on all params | *(CI; `scripts/check_type_annotations.py`)* |
-| Return annotations on documented public functions with return values | *(CI; `scripts/check_return_annotations.py`)* |
+| Return annotations on documented public functions with return values | *(advisory; `scripts/check_return_annotations.py`, not in CI)* |
 | Dependencies audit | `pip-audit --desc on` |
 
 Several checkers have a `--fix` mode for auto-repairable issues:
