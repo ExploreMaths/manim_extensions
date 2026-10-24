@@ -38,7 +38,7 @@ class Source(VMobject):
     value
         Numeric value displayed next to the source.
     direction
-        Direction in which the label is placed. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.LEFT`.
+        Direction in which the label is placed. Defaults to :obj:`~manim.constants.LEFT`.
     label
         Whether to display the value/letter label. Defaults to ``True``.
     dependent

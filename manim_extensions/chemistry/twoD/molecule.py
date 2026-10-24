@@ -780,7 +780,7 @@ class NamedMolecule(VGroup):
         An :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MMoleculeObject` or the molecule data to construct one.
     direction
         Direction in which the name is placed relative to the molecule.
-        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        Defaults to :obj:`~manim.constants.DOWN`.
     buff
         Distance between the molecule and its name. Defaults to 1.
     tex
@@ -882,7 +882,7 @@ class NamedMolecule(VGroup):
             Path to the .mol file.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+            Defaults to :obj:`~manim.constants.DOWN`.
         buff
             Distance between the molecule and its name. Defaults to 1.
         tex
@@ -919,7 +919,7 @@ class NamedMolecule(VGroup):
             String with the molecule data in mol format.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+            Defaults to :obj:`~manim.constants.DOWN`.
         buff
             Distance between the molecule and its name. Defaults to 1.
         tex
@@ -956,7 +956,7 @@ class NamedMolecule(VGroup):
             Path to the .sdf file.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+            Defaults to :obj:`~manim.constants.DOWN`.
         buff
             Distance between the molecule and its name. Defaults to 1.
         tex
@@ -997,7 +997,7 @@ class NamedMolecule(VGroup):
             String with the molecule data in sdf format.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+            Defaults to :obj:`~manim.constants.DOWN`.
         buff
             Distance between the molecule and its name. Defaults to 1.
         tex

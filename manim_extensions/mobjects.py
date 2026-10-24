@@ -191,7 +191,7 @@ class LabelDot(VGroup):
     dot_pos
         Position of the dot.
     label_pos
-        Direction of the label relative to the dot. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.DOWN`.
+        Direction of the label relative to the dot. Defaults to :obj:`~manim.constants.DOWN`.
     buff
         Buffer between the label and the dot. Defaults to ``0.1``.
     **kwargs
@@ -273,7 +273,7 @@ class MathTexLine(VGroup):
     formula
         The formula to place beside the line.
     direction
-        Direction of the formula relative to the line. Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
+        Direction of the formula relative to the line. Defaults to :obj:`~manim.constants.UP`.
     buff
         Buffer between the formula and the line. Defaults to ``0.5``.
     **kwargs
@@ -322,7 +322,7 @@ class MathTexBrace(VGroup):
         The formula to place beside the brace.
     direction
         Direction of the brace and formula relative to the target.
-        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
+        Defaults to :obj:`~manim.constants.UP`.
     buff
         Buffer between the formula and the brace. Defaults to ``0.5``.
     **kwargs
@@ -370,7 +370,7 @@ class MathTexDoublearrow(VGroup):
         The formula to place beside the double arrow.
     direction
         Direction of the formula relative to the double arrow.
-        Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`.
+        Defaults to :obj:`~manim.constants.UP`.
     buff
         Buffer between the formula and the double arrow. Defaults to ``0.5``.
     **kwargs
@@ -1703,7 +1703,7 @@ class ThreeDVector(VGroup):
     Parameters
     ----------
     vector
-        Direction (and length) of the vector.  Defaults to :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.RIGHT`.
+        Direction (and length) of the vector.  Defaults to :obj:`~manim.constants.RIGHT`.
     position
         Base point of the vector.  Defaults to ``ORIGIN``.
     radius

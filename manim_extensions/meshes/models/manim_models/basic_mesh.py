@@ -489,7 +489,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         axis
-            Axis about which to flip (default :attr:`~manim_extensions.data_structures.m_enum.MArrayDirection.UP`).
+            Axis about which to flip (default :obj:`~manim.constants.UP`).
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
 
