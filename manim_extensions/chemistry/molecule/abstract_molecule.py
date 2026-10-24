@@ -334,7 +334,7 @@ class AbstractMolecule:
         name
             Name of the molecule. Can either be a string, a Manim Tex or a Manim Text.
         direction
-            Position where to set the molecule name. Defaults to DOWN.
+            Position where to set the molecule name. Defaults to :obj:`~manim.constants.DOWN`.
         buff
             Distance between the name and the molecule. Defaults to 0.5.
         scale
