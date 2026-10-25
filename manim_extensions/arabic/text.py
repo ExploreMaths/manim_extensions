@@ -53,7 +53,7 @@ def create_arabic_template(font_name: Optional[str] = None) -> TexTemplate:
     Parameters
     ----------
     font_name
-        Name of the Arabic-supporting font to use. ``None`` (the default)
+        Name of the Arabic-supporting font to use. ``None``
         picks the first installed font from a built-in candidate list
         ("Al Bayan", "Geeza Pro", "Amiri", "Scheherazade",
         "Noto Naskh Arabic", "Arial Unicode MS") via fontconfig; pass a name
@@ -115,7 +115,7 @@ def create_arabic_text(
     font_size
         Font size in points.
     font_name
-        Arabic font name. ``None`` (the default) picks the first installed
+        Arabic font name. ``None`` picks the first installed
         font from a built-in candidate list; see
         :func:`~manim_extensions.arabic.text.create_arabic_template`.
 

@@ -33,21 +33,21 @@ class OrbitalBase(OpenGLSurface):
     Parameters
     ----------
     center
-        Position of the orbital center. Defaults to ``ORIGIN``.
+        Position of the orbital center. 
     resolution
-        Resolution ``(u, v)`` of the surface. Defaults to :math:`(100, 50)`.
+        Resolution ``(u, v)`` of the surface. 
     u_range
-        Range of the ``u`` parameter. Defaults to ``(0, PI)``.
+        Range of the ``u`` parameter. 
     v_range
-        Range of the ``v`` parameter. Defaults to ``(0, TAU)``.
+        Range of the ``v`` parameter. 
     n_value
-        Principal quantum number. Defaults to ``1``.
+        Principal quantum number. 
     l_value
-        Azimuthal quantum number. Defaults to ``0``.
+        Azimuthal quantum number. 
     m_value
-        Magnetic quantum number. Defaults to ``0``.
+        Magnetic quantum number. 
     size
-        Scale factor applied to the orbital surface. Defaults to ``1``.
+        Scale factor applied to the orbital surface. 
     **kwargs
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.three_d.three_dimensional_space_opengl.OpenGLSurface`.
@@ -95,9 +95,9 @@ class OrbitalBase(OpenGLSurface):
         theta
             Polar angle.
         l
-            Azimuthal (angular momentum) quantum number. Defaults to 0.
+            Azimuthal (angular momentum) quantum number. 
         m
-            Magnetic quantum number. Defaults to 0.
+            Magnetic quantum number. 
 
         Returns
         -------
@@ -116,7 +116,7 @@ class OrbitalBase(OpenGLSurface):
         psi
             Value of the wave function at the given angles.
         u
-            Polar angle. Defaults to ``None``.
+            Polar angle. 
         v
             Azimuthal angle.
 
@@ -137,7 +137,7 @@ class OrbitalBase(OpenGLSurface):
         Parameters
         ----------
         u
-            Polar angle. Defaults to ``None``.
+            Polar angle. 
         v
             Azimuthal angle.
 
@@ -162,7 +162,7 @@ class OrbitalPositive(OrbitalBase):
         Parameters
         ----------
         u
-            Polar angle. Defaults to ``None``.
+            Polar angle. 
         v
             Azimuthal angle.
 
@@ -189,7 +189,7 @@ class OrbitalNegative(OrbitalBase):
         Parameters
         ----------
         u
-            Polar angle. Defaults to ``None``.
+            Polar angle. 
         v
             Azimuthal angle.
 
@@ -220,13 +220,13 @@ class Orbital(OpenGLSurface):
     ----------
     n
         Principal quantum number. If ``None``, it is set to ``l + 1``.
-        Defaults to ``None``.
+        
     l
-        Azimuthal (angular momentum) quantum number. Defaults to 0.
+        Azimuthal (angular momentum) quantum number. 
     m
-        Magnetic quantum number. Defaults to 0.
+        Magnetic quantum number. 
     size
-        Scale of the orbital surface. Defaults to 3.
+        Scale of the orbital surface. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface`.
     """
@@ -256,7 +256,7 @@ class Orbital(OpenGLSurface):
         Parameters
         ----------
         u
-            Polar angle. Defaults to ``None``.
+            Polar angle. 
         v
             Azimuthal angle.
 

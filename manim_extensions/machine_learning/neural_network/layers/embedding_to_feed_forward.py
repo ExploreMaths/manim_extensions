@@ -34,9 +34,9 @@ class EmbeddingToFeedForward(ConnectiveLayer):
     output_layer
         The output feed-forward layer.
     animation_dot_color
-        Color of the dots in the forward pass animation, by default RED.
+        Color of the dots in the forward pass animation.
     dot_radius
-        Radius of the dots in the forward pass animation, by default 0.03.
+        Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
     """
@@ -90,9 +90,9 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         ----------
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         run_time
-            Run time of the forward pass animation, by default 1.5.
+            Run time of the forward pass animation.
         **kwargs
             Forwarded to the parent layer classes.
 

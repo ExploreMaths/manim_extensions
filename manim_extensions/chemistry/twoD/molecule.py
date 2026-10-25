@@ -55,19 +55,19 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     bonds_dict
         Dictionary with the bond data of the molecule.
     representation_type
-        Type of atom representation. Defaults to ``None``.
+        Type of atom representation. 
     explicit_carbons
-        Whether to explicitly show carbon atoms. Defaults to ``False``.
+        Whether to explicitly show carbon atoms. 
     explicit_hydrogens
-        Whether to explicitly show hydrogen atoms. Defaults to ``False``.
+        Whether to explicitly show hydrogen atoms. 
     planar
-        Whether the molecule is rendered in 2D. Defaults to ``True``.
+        Whether the molecule is rendered in 2D. 
     add_atoms_numbering
-        Whether to add numbering to the atoms. Defaults to ``False``.
+        Whether to add numbering to the atoms. 
     add_bonds_numbering
-        Whether to add numbering to the bonds. Defaults to ``False``.
+        Whether to add numbering to the bonds. 
     rotate_bonds
-        Bonds to rotate. Defaults to an empty list.
+        Bonds to rotate. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -825,13 +825,13 @@ class NamedMolecule(VGroup):
         An :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MMoleculeObject` or the molecule data to construct one.
     direction
         Direction in which the name is placed relative to the molecule.
-        Defaults to :obj:`~manim.constants.DOWN`.
+        
     buff
-        Distance between the molecule and its name. Defaults to 1.
+        Distance between the molecule and its name. 
     tex
-        Whether to render the name with :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MathTex`. Defaults to ``False``.
+        Whether to render the name with :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MathTex`. 
     font
-        Font of the name text. Defaults to ``""``.
+        Font of the name text. 
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
     **kwargs
@@ -927,13 +927,13 @@ class NamedMolecule(VGroup):
             Path to the .mol file.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :obj:`~manim.constants.DOWN`.
+            
         buff
-            Distance between the molecule and its name. Defaults to 1.
+            Distance between the molecule and its name. 
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
         font
-            Font of the name text. Defaults to ``""``.
+            Font of the name text. 
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -969,13 +969,13 @@ class NamedMolecule(VGroup):
             String with the molecule data in mol format.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :obj:`~manim.constants.DOWN`.
+            
         buff
-            Distance between the molecule and its name. Defaults to 1.
+            Distance between the molecule and its name. 
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
         font
-            Font of the name text. Defaults to ``""``.
+            Font of the name text. 
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -1011,13 +1011,13 @@ class NamedMolecule(VGroup):
             Path to the .sdf file.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :obj:`~manim.constants.DOWN`.
+            
         buff
-            Distance between the molecule and its name. Defaults to 1.
+            Distance between the molecule and its name. 
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
         font
-            Font of the name text. Defaults to ``""``.
+            Font of the name text. 
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -1057,13 +1057,13 @@ class NamedMolecule(VGroup):
             String with the molecule data in sdf format.
         direction
             Direction in which the name is placed relative to the molecule.
-            Defaults to :obj:`~manim.constants.DOWN`.
+            
         buff
-            Distance between the molecule and its name. Defaults to 1.
+            Distance between the molecule and its name. 
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. Defaults to ``False``.
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
         font
-            Font of the name text. Defaults to ``""``.
+            Font of the name text. 
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.

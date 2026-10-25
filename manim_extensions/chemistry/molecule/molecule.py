@@ -23,7 +23,7 @@ class Molecule:
     ----------
     molecule_class
         The molecule class to proxy to, such as :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`,
-        :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` or :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule`. Defaults to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`.
+        :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` or :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule`. 
 
     Examples
     ---------

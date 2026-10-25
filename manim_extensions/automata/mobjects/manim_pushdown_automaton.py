@@ -344,7 +344,7 @@ class PushDownAutomatonRule:
     push
         Symbol pushed onto the stack.
     empty_transition
-        Symbol used when ``read_symbol`` is ``None``.  Defaults to ``"\epsilon"``.
+        Symbol used when ``read_symbol`` is ``None``.  
 
     Examples
     --------

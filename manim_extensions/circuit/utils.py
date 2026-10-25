@@ -38,11 +38,11 @@ class Source(VMobject):
     value
         Numeric value displayed next to the source.
     direction
-        Direction in which the label is placed. Defaults to :obj:`~manim.constants.LEFT`.
+        Direction in which the label is placed. 
     label
-        Whether to display the value/letter label. Defaults to ``True``.
+        Whether to display the value/letter label. 
     dependent
-        Whether the source is dependent (uses a diamond symbol). Defaults to ``True``.
+        Whether the source is dependent (uses a diamond symbol). 
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 

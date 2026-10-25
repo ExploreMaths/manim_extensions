@@ -40,17 +40,17 @@ class ThreeDCylinder(OpenGLSurface):
     Parameters
     ----------
     radius
-        Radius of the cylinder. Defaults to 1.
+        Radius of the cylinder. 
     height
-        Height of the cylinder. Defaults to 2.
+        Height of the cylinder. 
     direction
-        Direction the cylinder is aligned to. Defaults to ``Z_AXIS``.
+        Direction the cylinder is aligned to. 
     v_range
-        Range of the v parameter of the surface. Defaults to ``[0, TAU]``.
+        Range of the v parameter of the surface. 
     show_ends
-        Whether to show the end caps of the cylinder. Defaults to ``True``.
+        Whether to show the end caps of the cylinder. 
     resolution
-        Resolution of the surface. Defaults to :math:`(24, 24)`.
+        Resolution of the surface. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.OpenGLSurface`.
     """
@@ -188,13 +188,13 @@ class ThreeDLine(ThreeDCylinder):
     Parameters
     ----------
     start
-        Starting point of the line. Defaults to :class:`~manim.constants.LEFT`.
+        Starting point of the line. 
     end
-        Ending point of the line. Defaults to :class:`~manim.constants.RIGHT`.
+        Ending point of the line. 
     thickness
-        Thickness (radius) of the line. Defaults to 0.05.
+        Thickness (radius) of the line. 
     color
-        Color of the line. Defaults to ``None``.
+        Color of the line. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.ThreeDCylinder`.
     """

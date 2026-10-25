@@ -57,7 +57,7 @@ class VDampedSpring(VConstraint):
         The Mobject used to visually represent the anchor point on ``b_mob``
         (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     connect_line_class
-        The class used to visualize the spring body (defaults to :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`).
+        The class used to visualize the spring body.
         If set to ``None``, the spring connection will be invisible.
     connect_line_config
         A dictionary defining the visual style of the ``connect_line_class``,

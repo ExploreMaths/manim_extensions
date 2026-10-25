@@ -83,8 +83,8 @@ def tree_bounds(tree: Mobject, n_features: Optional[Any]=None) -> Any:
         The sklearn tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
     n_features
-        Override autodetection of the number of features. By default the
-        number of features is inferred as ``max(tree.feature) + 1``.
+        Override autodetection of the number of features. The number of
+        features is inferred as ``max(tree.feature) + 1``.
 
     Returns
     -------
@@ -123,9 +123,9 @@ def compute_decision_areas(
         Values to insert for ``[left, right, top, bottom]`` if the interval
         is open (``+/-inf``).
     x
-        Index of the feature that goes on the x axis. Defaults to ``0``.
+        Index of the feature that goes on the x axis. 
     y
-        Index of the feature that goes on the y axis. Defaults to ``1``.
+        Index of the feature that goes on the y axis. 
     n_features
         Override autodetection of the number of features.
 
@@ -195,8 +195,7 @@ def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, O
         The polygon mobjects to merge, typically the decision-area
         rectangles of a :class::class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
     colors
-        The colors to merge polygons for, in order. Defaults to
-        ``[BLUE, GREEN, ORANGE]``.
+        The colors to merge polygons for, in order. 
 
     Returns
     -------
@@ -431,7 +430,7 @@ class DecisionTreeSurface(VGroup):
         Manim axes the surface rectangles are drawn in.
     class_colors
         Colors, one per class, used to fill the decision areas.
-        Defaults to ``[BLUE, ORANGE, GREEN]``.
+        
 
     Examples
     --------

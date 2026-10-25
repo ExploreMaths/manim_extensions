@@ -22,16 +22,15 @@ class BaseMBondObject(VGroup):
     to_atom
         Atom at the end of the bond.
     type
-        Bond type: 1 for single, 2 for double, 3 for triple. Defaults to
-        ``0``.
+        Bond type: 1 for single, 2 for double, 3 for triple. 
     subtype
         Representation of the bonded atoms; see
         :meth:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype`
-        for how it maps to the rendered line style. Defaults to ``None``.
+        for how it maps to the rendered line style. 
     color
-        Color of the bond. Defaults to ``WHITE``.
+        Color of the bond. 
     index
-        Index of the bond in the molecule. Defaults to ``0``.
+        Index of the bond in the molecule. 
     **kwargs
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -405,11 +404,11 @@ class DoubleBond(BaseMBondObject):
     to_atom
         The atom the bond ends at.
     side
-        Side of the double bond line. Defaults to 0.
+        Side of the double bond line. 
     distance
-        Distance between the two lines of the bond. Defaults to 0.15.
+        Distance between the two lines of the bond. 
     double_bond_scale
-        Scale applied to the secondary line of the bond. Defaults to 0.7.
+        Scale applied to the secondary line of the bond. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.BaseMBondObject`.
 
@@ -660,11 +659,11 @@ class TripleBond(BaseMBondObject):
     to_atom
         The atom the bond ends at.
     side
-        Side of the triple bond lines. Defaults to 0.
+        Side of the triple bond lines. 
     distance
-        Distance between the lines of the bond. Defaults to 0.3.
+        Distance between the lines of the bond. 
     triple_bond_scale
-        Scale applied to the secondary lines of the bond. Defaults to 0.8.
+        Scale applied to the secondary lines of the bond. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.BaseMBondObject`.
 

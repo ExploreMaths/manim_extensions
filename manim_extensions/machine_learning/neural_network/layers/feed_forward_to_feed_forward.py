@@ -38,20 +38,17 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     output_layer
         The output feed-forward layer.
     passing_flash
-        Whether to flash the edges during the forward pass animation,
-        by default True.
+        Whether to flash the edges during the forward pass animation.
     dot_radius
-        Radius of the dots in the forward pass animation, by default 0.05.
+        Radius of the dots in the forward pass animation.
     animation_dot_color
-        Color of the dots in the forward pass animation, by default
-        ``config.color_scheme.active_color``.
+        Color of the dots in the forward pass animation.
     edge_color
-        Color of the edges between the layers, by default
-        ``config.color_scheme.secondary_color``.
+        Color of the edges between the layers.
     edge_width
-        Stroke width of the edges, by default 1.5.
+        Stroke width of the edges.
     camera
-        Unused camera reference reserved for future use, by default None.
+        Unused camera reference reserved for future use.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
     """
@@ -142,11 +139,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         ----------
         layer_args
             May contain the key ``edge_indices_to_dropout`` with the indices
-            of the edges that are dropped out, by default {}.
+            of the edges that are dropped out.
         run_time
-            Run time of the dot animations, by default 1.
+            Run time of the dot animations.
         feed_forward_dropout
-            Unused dropout rate reserved for future use, by default 0.0.
+            Unused dropout rate reserved for future use.
         **kwargs
             Forwarded to the parent layer classes.
 
@@ -195,12 +192,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         Parameters
         ----------
         colors
-            Colors to apply to the edges, by default None.
+            Colors to apply to the edges.
         magnitudes
-            Magnitudes used to determine the edge colors, by default None.
+            Magnitudes used to determine the edge colors.
         color_scheme
-            Name of the color scheme used when mapping magnitudes to colors,
-            by default "inferno".
+            Name of the color scheme used when mapping magnitudes to colors.
         """
         # TODO implement
         pass

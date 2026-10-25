@@ -156,7 +156,7 @@ class DecisionTreeDiagram(Group):
         Image file paths, one per class, used for the leaf nodes.
     class_colors
         Colors, one per class, used for the leaf node borders.
-        Defaults to ``[RED, GREEN, BLUE]``.
+        
 
     Examples
     --------
@@ -509,7 +509,7 @@ class DecisionTreeDiagram(Group):
         ----------
         traversal_order
             Order in which the nodes are expanded: ``"bfs"`` (breadth-first)
-            or ``"level"`` (level order). Defaults to ``"bfs"``.
+            or ``"level"`` (level order). 
 
         Returns
         -------

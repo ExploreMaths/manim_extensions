@@ -23,7 +23,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
     output_layer
         The output math operation layer.
     active_color
-        Color used when highlighting the connection, by default ORANGE.
+        Color used when highlighting the connection.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
     """
@@ -83,7 +83,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         ----------
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         **kwargs
             Forwarded to the parent layer classes.
 

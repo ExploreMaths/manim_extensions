@@ -134,13 +134,13 @@ class Node(VMobject):
         Value displayed inside the node. If the value is empty, a zero-radius dot
         is displayed as a placeholder.
     width
-        Width of the node box. Defaults to ``2``.
+        Width of the node box. 
     text_scale
-        Scale factor applied to the displayed text. Defaults to ``1.0``.
+        Scale factor applied to the displayed text. 
     box_type
         Shape used for the node box. Must be :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
     box_color
-        Fill color of the node box. Defaults to ``WHITE``.
+        Fill color of the node box. 
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -379,11 +379,9 @@ class Node(VMobject):
         *nodes
             One or more :class:`~manim_extensions.mindmap.nodes.node.Node` instances to highlight.
         color
-            Fill color used for highlighting. Defaults to
-            :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_COLOR` (``RED``).
+            Fill color used for highlighting. (``RED``).
         opacity
-            Opacity applied to the highlight color. Defaults to
-            :attr:`~manim_extensions.algorithm.node.NodeConfig.SELECT_OPACITY` (``0.5``).
+            Opacity applied to the highlight color. (``0.5``).
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
@@ -511,7 +509,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the moving node during the animation.
         select_opacity
-            Opacity of the selection highlight. Defaults to ``0.2``.
+            Opacity of the selection highlight. 
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
@@ -571,7 +569,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the copied node during the animation.
         select_opacity
-            Opacity of the selection highlight. Defaults to ``0.2``.
+            Opacity of the selection highlight. 
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
@@ -627,7 +625,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the temporary copies during the swap.
         select_opacity
-            Opacity of the selection highlight. Defaults to ``0.2``.
+            Opacity of the selection highlight. 
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 

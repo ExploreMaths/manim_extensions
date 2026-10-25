@@ -52,22 +52,21 @@ class NeuralNetwork(Group):
         Neural network layers to visualize; a list is converted to a dict with
         default names.
     layer_spacing
-        Spacing between the layers, by default 0.2.
+        Spacing between the layers.
     animation_dot_color
-        Color of the dots in the forward pass animation, by default
-        ``config.color_scheme.active_color``.
+        Color of the dots in the forward pass animation.
     edge_width
-        Stroke width of the connective edges, by default 2.5.
+        Stroke width of the connective edges.
     dot_radius
-        Radius of the dots in the forward pass animation, by default 0.03.
+        Radius of the dots in the forward pass animation.
     title
-        Title displayed above the network, by default a blank string.
+        Title displayed above the network.
     layout
-        Layout of the network, by default "linear".
+        Layout of the network.
     layout_direction
-        Direction of the linear layout, by default "left_to_right".
+        Direction of the linear layout.
     debug_mode
-        Whether to enable debug visuals, by default False.
+        Whether to enable debug visuals.
 
     Examples
     --------
@@ -207,12 +206,11 @@ class NeuralNetwork(Group):
         end_mobject_or_name
             The layer the connection ends at, or its name in the network.
         connection_style
-            Style of the connection; currently only "default" is supported,
-            by default "default".
+            Style of the connection; currently only "default" is supported.
         connection_position
-            Unused position hint reserved for future use, by default "bottom".
+            Unused position hint reserved for future use.
         arc_direction
-            Direction the connection arc bends, by default "down".
+            Direction the connection arc bends.
         """
         assert connection_style in ["default"]
         if connection_style == "default":

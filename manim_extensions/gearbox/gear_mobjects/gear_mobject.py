@@ -311,27 +311,27 @@ class Gear(VMobject):
         Number of gear teeth.
     module
         Standard size scaling parameter. ``diameter = module * num_of_teeth``.
-        Defaults to ``0.2``.
+        
     alpha
         Pressure angle in degrees. Affects tooth curvature. Suggested values
-        are between ``10`` and ``30``. Defaults to ``20``.
+        are between ``10`` and ``30``. 
     h_a
         Addendum coefficient (tooth height above the pitch circle).
-        Defaults to ``1``.
+        
     h_f
         Dedendum coefficient (tooth height below the pitch circle).
-        Defaults to ``1.2``.
+        
     inner_teeth
         If ``True``, generate a ring gear with teeth pointing inward.
-        Defaults to ``False``.
+        
     profile_shift
         Profile-shift coefficient. Changes the tooth shape and diameter
-        slightly and reduces undercut. Defaults to ``0``.
+        slightly and reduces undercut. 
     cutout_teeth_num
-        Number of teeth to omit. Defaults to ``0``.
+        Number of teeth to omit. 
     nppc
         Number of points per involute curve. One tooth is built from four to
-        six curve pieces depending on undercut. Defaults to ``5``.
+        six curve pieces depending on undercut. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -973,14 +973,14 @@ class Gear(VMobject):
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
     ) -> Any:
-        """Rotate the gear around its centre by default.
+        """Rotate the gear around its centre.
 
         Parameters
         ----------
         angle
             Rotation angle in radians.
         axis
-            Rotation axis (default ``OUT``).
+            Rotation axis.
         about_point
             Centre point for the rotation.  If ``None`` the gear's own
             centre is used.
@@ -1010,15 +1010,15 @@ class Rack(VMobject):
     num_of_teeth
         Number of teeth on the rack.
     module
-        Standard size scaling parameter.  Defaults to ``0.2``.
+        Standard size scaling parameter.  
     alpha
-        Pressure angle in degrees.  Defaults to ``20``.
+        Pressure angle in degrees.  
     h_a
         Addendum coefficient (tooth height above the pitch line).
-        Defaults to ``1``.
+        
     h_f
         Dedendum coefficient (tooth height below the pitch line).
-        Defaults to ``1.17``.
+        
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -1130,14 +1130,14 @@ class Rack(VMobject):
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
     ) -> Any:
-        """Rotate the rack around its centre by default.
+        """Rotate the rack around its centre.
 
         Parameters
         ----------
         angle
             Rotation angle in radians.
         axis
-            Rotation axis (default ``OUT``).
+            Rotation axis.
         about_point
             Centre point for the rotation.  If ``None`` the rack's own
             centre is used.

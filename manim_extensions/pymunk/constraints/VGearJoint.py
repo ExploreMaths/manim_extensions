@@ -42,7 +42,7 @@ class VGearJoint(VConstraint):
         fast as ``a_mob``.
     indicator_line_class
         The class used to visualize the rotational direction or connection
-        (defaults to ``Arrow``). If set to ``None``, no indicator will be rendered.
+        . If set to ``None``, no indicator will be rendered.
     indicator_line_config
         A dictionary defining the visual style of the indicator line,
         including ``color`` and ``stroke_width``.

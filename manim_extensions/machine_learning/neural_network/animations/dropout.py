@@ -34,9 +34,9 @@ class XMark(VGroup):
     Parameters
     ----------
     stroke_width
-        Stroke width of the two lines, by default 1.0.
+        Stroke width of the two lines.
     color
-        Color of the mark, by default GRAY.
+        Color of the mark.
 
     Examples
     --------
@@ -126,9 +126,9 @@ def make_pre_dropout_animation(
         Mapping from feed forward layers to the indices of the nodes
         that are dropped out in each layer.
     dropped_out_color
-        Color used to indicate dropped-out edges, by default ``GRAY``.
+        Color used to indicate dropped-out edges.
     dropped_out_opacity
-        Opacity used to indicate dropped-out edges, by default 0.2.
+        Opacity used to indicate dropped-out edges.
 
     Returns
     -------
@@ -311,18 +311,15 @@ def make_neural_network_dropout_animation(
     neural_network
         The neural network the dropout animation is applied to.
     dropout_rate
-        Probability that each node is dropped out, by default 0.5.
+        Probability that each node is dropped out.
     do_forward_pass
-        Whether to run a forward pass animation after dropout,
-        by default True.
+        Whether to run a forward pass animation after dropout.
     last_layer_stable
-        Whether to keep the last feed forward layer stable (no dropout),
-        by default False.
+        Whether to keep the last feed forward layer stable (no dropout).
     first_layer_stable
-        Whether to keep the first feed forward layer stable (no dropout),
-        by default False.
+        Whether to keep the first feed forward layer stable (no dropout).
     seed
-        Seed for the random number generator, by default None.
+        Seed for the random number generator.
 
     Returns
     -------

@@ -56,7 +56,7 @@ def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
     x
         Point to center proposal around.
     sigma
-        Standard deviation of gaussian for proposal, by default 0.1.
+        Standard deviation of gaussian for proposal.
 
     Returns
     -------
@@ -83,11 +83,11 @@ class MultidimensionalGaussianPosterior:
     Parameters
     ----------
     ndim
-        Dimension of the distribution, by default 2.
+        Dimension of the distribution.
     seed
-        Random seed, by default 12345.
+        Random seed.
     scale
-        Scale of the prior on the mean, by default 3.
+        Scale of the prior on the mean.
     mu
         Mean of the distribution; drawn from the prior if None.
     var
@@ -133,19 +133,19 @@ def metropolis_hastings_sampler(
     Parameters
     ----------
     log_prob_fn
-        Function to compute log-posterior, by default MultidimensionalGaussianPosterior.
+        Function to compute log-posterior.
     prop_fn
-        Function to compute proposal location, by default gaussian_proposal.
+        Function to compute proposal location.
     initial_location
         Initial location for the chain.
     iterations
-        Number of iterations of the markov chain, by default 100.
+        Number of iterations of the markov chain.
     warm_up
         Number of warm up iterations.
     ndim
-        Dimension of the state space, by default 2.
+        Dimension of the state space.
     sampling_seed
-        Random seed for the sampler, by default 1.
+        Random seed for the sampler.
 
     Returns
     -------
@@ -236,25 +236,25 @@ class MCMCAxes(Group):
     Parameters
     ----------
     dot_color
-        Color of the dots marking chain samples, by default BLUE.
+        Color of the dots marking chain samples.
     dot_radius
-        Radius of the dots marking chain samples, by default 0.02.
+        Radius of the dots marking chain samples.
     accept_line_color
-        Color of the lines for accepted transitions, by default GREEN.
+        Color of the lines for accepted transitions.
     reject_line_color
-        Color of the lines for rejected transitions, by default RED.
+        Color of the lines for rejected transitions.
     line_color
-        Color of the transition lines, by default BLUE.
+        Color of the transition lines.
     line_stroke_width
-        Stroke width of the transition lines, by default 2.
+        Stroke width of the transition lines.
     x_range
-        Range of the x-axis, by default :math:`[-3, 3]`.
+        Range of the x-axis.
     y_range
-        Range of the y-axis, by default :math:`[-3, 3]`.
+        Range of the y-axis.
     x_length
-        Length of the x-axis, by default 5.
+        Length of the x-axis.
     y_length
-        Length of the y-axis, by default 5.
+        Length of the y-axis.
 
     Examples
     --------
@@ -405,7 +405,7 @@ class MCMCAxes(Group):
         show_dots
             Whether or not to show the dots.
         run_time
-            Duration of the transition animation, by default 0.1.
+            Duration of the transition animation.
 
         Returns
         -------
@@ -483,21 +483,20 @@ class MCMCAxes(Group):
         axes
             Manim 2D axes to plot the chain on.
         log_prob_fn
-            Function to compute log-posterior, by default MultidmensionalGaussianPosterior.
+            Function to compute log-posterior.
         prop_fn
-            Function to compute proposal location, by default gaussian_proposal.
+            Function to compute proposal location.
         initial_location
-            Initial location for the markov chain, by default None.
+            Initial location for the markov chain.
         show_dots
-            Whether or not to show the dots on the screen, by default False.
+            Whether or not to show the dots on the screen.
         iterations
-            Number of iterations of the markov chain, by default 100.
+            Number of iterations of the markov chain.
         true_samples
-            Ground-truth samples used to render the KDE density background,
-            by default None.
+            Ground-truth samples used to render the KDE density background.
         sampling_kwargs
             Additional keyword arguments forwarded to
-            :func:`~manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.metropolis_hastings_sampler`, by default {}.
+            :func:`~manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.metropolis_hastings_sampler`.
 
         Returns
         -------

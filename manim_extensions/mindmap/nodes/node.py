@@ -249,10 +249,10 @@ class Node:
     Parameters
     ----------
     vmobject
-        The mobject displayed as the node content. Defaults to None.
+        The mobject displayed as the node content. 
     buff
         Padding added around the content when sizing the surrounding
-        rectangle. Defaults to 0.2.
+        rectangle. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.polygram.Rectangle`.
 

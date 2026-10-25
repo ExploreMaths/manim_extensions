@@ -31,17 +31,17 @@ class ISLMDiagram(EconDiagram):
     Parameters
     ----------
     a
-        Autonomous spending (default 9.5).
+        Autonomous spending.
     b
-        Interest sensitivity of investment (default 1.5).
+        Interest sensitivity of investment.
     ms
-        Real money supply (default 2).
+        Real money supply.
     k
-        Income sensitivity of money demand (default 1).
+        Income sensitivity of money demand.
     h
-        Interest sensitivity of money demand (default 1).
+        Interest sensitivity of money demand.
     show_equilibrium
-        If True (default), mark the IS–LM intersection as the equilibrium.
+        If True, mark the IS–LM intersection as the equilibrium.
     numbered_eq
         If True, label equilibria with subscripts that increment on each shift.
     **kwargs
@@ -147,15 +147,15 @@ class ISLMDiagram(EconDiagram):
         ----------
         a
             New autonomous spending. If ``None``, keeps the current value.
-            Defaults to ``None``.
+            
         b
             New interest sensitivity of investment. If ``None``, keeps the
-            current value. Defaults to ``None``.
+            current value. 
         run_time
-            Duration of the shift animation. Defaults to ``1``.
+            Duration of the shift animation. 
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -177,18 +177,18 @@ class ISLMDiagram(EconDiagram):
         ----------
         ms
             New real money supply. If ``None``, keeps the current value.
-            Defaults to ``None``.
+            
         k
             New income sensitivity of money demand. If ``None``, keeps the
-            current value. Defaults to ``None``.
+            current value. 
         h
             New interest sensitivity of money demand. If ``None``, keeps
-            the current value. Defaults to ``None``.
+            the current value. 
         run_time
-            Duration of the shift animation. Defaults to ``1``.
+            Duration of the shift animation. 
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -215,7 +215,7 @@ class ISLMDiagram(EconDiagram):
             New real money supply (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -233,7 +233,7 @@ class ISLMDiagram(EconDiagram):
             New real money supply (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -253,7 +253,7 @@ class ISLMDiagram(EconDiagram):
             New autonomous spending (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -271,7 +271,7 @@ class ISLMDiagram(EconDiagram):
             New autonomous spending (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------

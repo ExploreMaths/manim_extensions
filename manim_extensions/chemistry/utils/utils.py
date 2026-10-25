@@ -424,7 +424,7 @@ def get_element(element: str, language: str = "ENG") -> Any:
     element
         Chemical element symbol (e.g. ``"H"``, ``"C"``, ``"Fe"``).
     language
-        Language of the element name dictionary. ``"ENG"`` (default) or ``"ESP"``.
+        Language of the element name dictionary. ``"ENG"`` or ``"ESP"``.
 
     Returns
     -------
@@ -456,7 +456,7 @@ def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
            :header-rows: 0
 
            * - ``'ENG'``
-             - English element names (default).
+             - English element names.
            * - ``'ESP'``
              - Spanish element names.
 

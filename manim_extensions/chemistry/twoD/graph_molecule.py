@@ -71,13 +71,13 @@ class DoubleLine(ArcBetweenPoints):
     Parameters
     ----------
     start
-        Starting point of the arcs. Defaults to ``[-1, 0, 0]``.
+        Starting point of the arcs. 
     end
-        Ending point of the arcs. Defaults to ``[1, 0, 0]``.
+        Ending point of the arcs. 
     angle
-        Angle of the arcs. Defaults to ``PI / 4``.
+        Angle of the arcs. 
     radius
-        Radius of the arcs. Defaults to ``None``.
+        Radius of the arcs. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.ArcBetweenPoints`.
     """
@@ -137,11 +137,11 @@ class TripleLine(DoubleLine):
     Parameters
     ----------
     start
-        Starting point of the lines. Defaults to ``[-1, 0, 0]``.
+        Starting point of the lines. 
     end
-        Ending point of the lines. Defaults to ``[1, 0, 0]``.
+        Ending point of the lines. 
     angle
-        Angle of the arcs. Defaults to ``PI / 4``.
+        Angle of the arcs. 
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
     **kwargs
@@ -169,11 +169,11 @@ class GraphMolecule(Graph, AbstractMolecule):
         Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCBond` objects.
     label
         Whether to add a label with the element symbol to each atom.
-        Defaults to ``False``.
+        
     numeric_label
-        Whether to add a numeric label to each atom. Defaults to ``False``.
+        Whether to add a numeric label to each atom. 
     label_color
-        Color of the atom labels. Defaults to ``BLACK``.
+        Color of the atom labels. 
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
     **kwargs
@@ -676,7 +676,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms
             List of atom indices to get the bonds from.
         excluded_atom
-            Atom index to exclude from the bonds. Defaults to 0.
+            Atom index to exclude from the bonds. 
 
         Returns
         -------
@@ -718,7 +718,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms
             List of connected atom indices.
         excluded_atom
-            Atom index to exclude from the bonds. Defaults to 0.
+            Atom index to exclude from the bonds. 
 
         Returns
         -------

@@ -598,11 +598,11 @@ class AbstractLayoutAnimation(AnimationGroup):
         root : Node
             The root node.
         layout_type : LayoutType, optional
-            Layout type. Defaults to LayoutType.MindMap.
+            Layout type. 
         layout_config : LayoutConfig, optional
-            Layout parameters. Defaults to LayoutConfig().
+            Layout parameters. ().
         node_style : NodeStyle, optional
-            Layout and node styles. Defaults to NodeStyle().
+            Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -744,11 +744,11 @@ class LayoutAnimation(AbstractLayoutAnimation):
     root
         The root node.
     layout_type
-        Layout type. Defaults to LayoutType.MindMap.
+        Layout type. 
     layout_config
-        Layout parameters. Defaults to LayoutConfig().
+        Layout parameters. ().
     node_style
-        Layout and node styles. Defaults to NodeStyle().
+        Layout and node styles. ().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -836,11 +836,11 @@ class RemoveNode(LayoutAnimation):
     nodes
         The node or nodes to remove, along with their subtrees.
     layout_type
-        Layout type. Defaults to LayoutType.MindMap.
+        Layout type. 
     layout_config
-        Layout parameters. Defaults to LayoutConfig().
+        Layout parameters. ().
     node_style
-        Layout and node styles. Defaults to NodeStyle().
+        Layout and node styles. ().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -949,11 +949,11 @@ class InsertNode(LayoutAnimation):
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
-            Layout type. Defaults to LayoutType.MindMap.
+            Layout type. 
         layout_config : LayoutConfig, optional
-            Layout parameters. Defaults to LayoutConfig().
+            Layout parameters. ().
         node_style : NodeStyle, optional
-            Layout and node styles. Defaults to NodeStyle().
+            Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -1046,11 +1046,11 @@ class ScaleNode(LayoutAnimation):
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
-            Layout type. Defaults to LayoutType.MindMap.
+            Layout type. 
         layout_config : LayoutConfig, optional
-            Layout parameters. Defaults to LayoutConfig().
+            Layout parameters. ().
         node_style : NodeStyle, optional
-            Layout and node styles. Defaults to NodeStyle().
+            Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -1107,11 +1107,11 @@ class AlterNode(LayoutAnimation):
         scene : Scene
             The current scene.
         layout_type : LayoutType, optional
-            Layout type. Defaults to LayoutType.MindMap.
+            Layout type. 
         layout_config : LayoutConfig, optional
-            Layout parameters. Defaults to LayoutConfig().
+            Layout parameters. ().
         node_style : NodeStyle, optional
-            Layout and node styles. Defaults to NodeStyle().
+            Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 

@@ -22,17 +22,17 @@ class VariationalAutoencoder(Group):
     Parameters
     ----------
     encoder_nodes_per_layer
-        Number of nodes in each encoder layer, by default [5, 3].
+        Number of nodes in each encoder layer.
     decoder_nodes_per_layer
-        Number of nodes in each decoder layer, by default [3, 5].
+        Number of nodes in each decoder layer.
     point_color
-        Color of the points in the embedding layer, by default BLUE.
+        Color of the points in the embedding layer.
     dot_radius
-        Radius of the points in the embedding layer, by default 0.05.
+        Radius of the points in the embedding layer.
     ellipse_stroke_width
-        Stroke width of the embedding ellipse, by default 1.0.
+        Stroke width of the embedding ellipse.
     layer_spacing
-        Spacing between the neural network layers, by default 0.5.
+        Spacing between the neural network layers.
 
     Examples
     --------
@@ -115,7 +115,7 @@ class VariationalAutoencoder(Group):
         output_image
             The output image produced by the decoder.
         run_time
-            Run time of the forward pass animation, by default 1.5.
+            Run time of the forward pass animation.
 
         Returns
         -------

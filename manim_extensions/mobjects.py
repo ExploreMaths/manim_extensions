@@ -77,9 +77,9 @@ class ChineseMathTex(MathTex):
     *texts
         LaTeX text strings to render.
     font
-        Name of the Chinese font to use. Defaults to ``"SimSun"``.
+        Name of the Chinese font to use. 
     tex_to_color_map
-        Mapping from text substrings to colours. Defaults to ``None``
+        Mapping from text substrings to colours. 
         (no colouring).
     tex_template
         Custom TeX template to build on. When provided, its preamble,
@@ -191,9 +191,9 @@ class LabelDot(VGroup):
     dot_pos
         Position of the dot.
     label_pos
-        Direction of the label relative to the dot. Defaults to :obj:`~manim.constants.DOWN`.
+        Direction of the label relative to the dot. 
     buff
-        Buffer between the label and the dot. Defaults to ``0.1``.
+        Buffer between the label and the dot. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -271,9 +271,9 @@ class MathTexLine(VGroup):
     formula
         The formula to place beside the line.
     direction
-        Direction of the formula relative to the line. Defaults to :obj:`~manim.constants.UP`.
+        Direction of the formula relative to the line. 
     buff
-        Buffer between the formula and the line. Defaults to ``0.5``.
+        Buffer between the formula and the line. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.Line`.
 
@@ -320,9 +320,9 @@ class MathTexBrace(VGroup):
         The formula to place beside the brace.
     direction
         Direction of the brace and formula relative to the target.
-        Defaults to :obj:`~manim.constants.UP`.
+        
     buff
-        Buffer between the formula and the brace. Defaults to ``0.5``.
+        Buffer between the formula and the brace. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.svg.brace.Brace`.
 
@@ -368,9 +368,9 @@ class MathTexDoublearrow(VGroup):
         The formula to place beside the double arrow.
     direction
         Direction of the formula relative to the double arrow.
-        Defaults to :obj:`~manim.constants.UP`.
+        
     buff
-        Buffer between the formula and the double arrow. Defaults to ``0.5``.
+        Buffer between the formula and the double arrow. 
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.line.DoubleArrow`.
 
@@ -590,10 +590,10 @@ class PerpendicularSign(VGroup):
     line2
         The second line.
     length
-        Length of each leg of the corner. Defaults to ``0.25``.
+        Length of each leg of the corner. 
     corner_direction
         A direction vector that selects on which side of the intersection
-        the corner is drawn.  If ``None`` (the default), the side that
+        the corner is drawn.  If ``None``, the side that
         points toward the nearer endpoints of the two lines is chosen
         automatically.
     **kwargs
@@ -784,11 +784,9 @@ class FileTree(Code):
         an empty directory; a non-empty ``dict`` denotes a directory with
         children.
     font_size
-        Font size of the rendered text.  Defaults to
-        :data:`~manim.constants.DEFAULT_FONT_SIZE`.
+        Font size of the rendered text.  
     color
-        Default colour of the tree text.  Defaults to
-        :data:`~manim.utils.color.manim_colors.WHITE`.
+        Default colour of the tree text.  
     **kwargs
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.text.code_mobject.Code`.
@@ -855,8 +853,7 @@ class FileTree(Code):
         line
             Zero-based line index.
         color
-            Highlight colour.  Defaults to
-            :data:`~manim.utils.color.manim_colors.WHITE`.
+            Highlight colour.  
 
         Returns
         -------
@@ -939,7 +936,7 @@ class CropImageMobject(ImageMobject):
     corner_radius
         Radius of the rounded corners.  A value in ``(0, 1]`` is interpreted as
         a fraction of the smaller image dimension; larger values are treated as
-        pixel radii.  Defaults to ``0.1``.
+        pixel radii.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
@@ -1016,9 +1013,9 @@ class VideoMobject(ImageMobject):
     filename
         Path to the video file.
     loop
-        Whether the video loops once it reaches the end.  Defaults to ``False``.
+        Whether the video loops once it reaches the end.  
     rate
-        Playback speed multiplier.  Defaults to ``1.0``.
+        Playback speed multiplier.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
@@ -1284,12 +1281,11 @@ class ColorText(Text):
         If given, display this exact text coloured with *color* instead of the
         ``np.array`` snippet.
     background_color
-        Colour used for the ``~`` separator glyphs.  Defaults to
-        :data:`~manim.utils.color.manim_colors.WHITE`.
+        Colour used for the ``~`` separator glyphs.  
     font
-        Font used for the snippet.  Defaults to ``"Consolas"``.
+        Font used for the snippet.  
     font_size
-        Font size in Manim units.  Defaults to ``28``.
+        Font size in Manim units.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.text.text_mobject.Text`.
 
@@ -1370,14 +1366,14 @@ class Trail(VGroup):
     mob
         The mobject to trace.
     max_width
-        Stroke width of the newest segment.  Defaults to ``5``.
+        Stroke width of the newest segment.  
     nums
-        Maximum number of stored segments.  Defaults to ``500``.
+        Maximum number of stored segments.  
     trail_color
-        Colour of the trail.  Defaults to ``BLUE_B``.
+        Colour of the trail.  
     rate_func
         Fading function mapping a proportion in ``[0, 1]`` to opacity/width.
-        Defaults to ``lambda t: t ** 1.25``.
+        
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -1510,19 +1506,19 @@ class ShadowAround(VGroup):
         Either a mobject whose outline is shadowed, or a list of points used to build a
         :class:`~manim.mobject.geometry.polygram.Polygon`.
     shadow_color
-        Colour of the shadow.  Defaults to ``DARK_GRAY``.
+        Colour of the shadow.  
     shadow_opacity
-        Maximum opacity of the shadow layers.  Defaults to ``0.6``.
+        Maximum opacity of the shadow layers.  
     blur_width
-        Total width of the blurred band.  Defaults to ``0.25``.
+        Total width of the blurred band.  
     layer_num
-        Number of concentric layers used for the blur.  Defaults to ``40``.
+        Number of concentric layers used for the blur.  
     scale_factor
-        Overall scale applied to the shadow.  Defaults to ``1.0``.
+        Overall scale applied to the shadow.  
     shadow_out
-        If ``True`` the shadow grows outwards, otherwise inwards.  Defaults to ``True``.
+        If ``True`` the shadow grows outwards, otherwise inwards.  
     show_basic_shape
-        Whether to keep the solid inner shape visible.  Defaults to ``True``.
+        Whether to keep the solid inner shape visible.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -1609,16 +1605,15 @@ class ObjectBorder(VGroup):
     obj
         The mobject to surround.
     buff
-        Gap between *obj* and the border.  Defaults to ``0.08``.
+        Gap between *obj* and the border.  
     add_corner
-        Whether to draw a marker dot at each corner.  Defaults to ``True``.
+        Whether to draw a marker dot at each corner.  
     track
-        Whether the border follows *obj* with an updater.  Defaults to ``True``.
+        Whether the border follows *obj* with an updater.  
     border_color
-        Stroke colour of the border.  Defaults to
-        :data:`~manim.utils.color.manim_colors.WHITE`.
+        Stroke colour of the border.  
     corner_radius
-        Radius of the corner marker dots.  Defaults to ``0.06``.
+        Radius of the corner marker dots.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -1701,17 +1696,17 @@ class ThreeDVector(VGroup):
     Parameters
     ----------
     vector
-        Direction (and length) of the vector.  Defaults to :obj:`~manim.constants.RIGHT`.
+        Direction (and length) of the vector.  
     position
-        Base point of the vector.  Defaults to ``ORIGIN``.
+        Base point of the vector.  
     radius
-        Radius of the body and of the base of the tip.  Defaults to ``0.12``.
+        Radius of the body and of the base of the tip.  
     color
-        Colour of the vector.  Defaults to ``BLUE``.
+        Colour of the vector.  
     tip_fraction
-        Fraction of the total length used for the conical tip.  Defaults to ``0.25``.
+        Fraction of the total length used for the conical tip.  
     fill_opacity
-        Opacity of the body and tip.  Defaults to ``0.9``.
+        Opacity of the body and tip.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -1802,13 +1797,13 @@ class TreeDiagram(VGroup):
     tree
         The nested structure to render.
     branch_color
-        Colour of the braces.  Defaults to ``GREY``.
+        Colour of the braces.  
     branch_opacity
-        Opacity of the braces.  Defaults to ``1``.
+        Opacity of the braces.  
     item_v_buff
-        Vertical spacing between items.  Defaults to ``0.3``.
+        Vertical spacing between items.  
     item_scale
-        Scale applied to labels.  Defaults to ``0.7``.
+        Scale applied to labels.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 

@@ -218,7 +218,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         face
             Array of vertex indices defining the face to add.
         color
-            Optional colour for the new face; defaults to ``self.faces_color``.
+            Optional colour for the new face.
 
         Returns
         -------
@@ -465,9 +465,9 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         angle
             Rotation angle in radians.
         axis
-            Axis vector for the rotation (default ``OUT``).
+            Axis vector for the rotation.
         about_point
-            Pivot point for the rotation; defaults to the mesh centre.
+            Pivot point for the rotation.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
         """
@@ -490,7 +490,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         axis
-            Axis about which to flip (default :obj:`~manim.constants.UP`).
+            Axis about which to flip.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
 
@@ -652,7 +652,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         threshold
             Per-dimensional snap thresholds.
         nof_steps
-            Number of intermediate snap steps (default ``1``).
+            Number of intermediate snap steps.
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
         """

@@ -40,7 +40,7 @@ class FastManimMesh(OpenGLMobject):
     mesh
         The mesh data model. Must consist only of triangles.
     shader_folder
-        Path to the shader folder. Defaults to ``None`` (uses ``"mesh"``).
+        Path to the shader folder. (uses ``"mesh"``).
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.opengl.opengl_mobject.OpenGLMobject`.
     """

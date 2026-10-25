@@ -21,17 +21,17 @@ class Row(VGroup):
         List of string values for each cell.
     cell_widths
         Either a single width for all cells, or a list of widths per column.
-        Defaults to ``1.5``.
+        
     cell_height
-        Height of each cell. Defaults to ``0.5``.
+        Height of each cell. 
     font_size
-        Font size for cell text. Defaults to ``20``.
+        Font size for cell text. 
     is_header
         If True, renders cells as header cells (bold, thicker border).
     show_border
         If True, cells have visible borders.
     index
-        Row index in the parent table (useful for animations). Defaults to ``0``.
+        Row index in the parent table (useful for animations). 
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.

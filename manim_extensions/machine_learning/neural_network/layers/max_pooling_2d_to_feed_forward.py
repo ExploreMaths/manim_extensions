@@ -24,7 +24,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
     output_layer
         The output feed-forward layer.
     passing_flash_color
-        Color of the flash animation during the forward pass, by default ORANGE.
+        Color of the flash animation during the forward pass.
     **kwargs
         Forwarded to
         :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward.Convolutional2DToFeedForward`.

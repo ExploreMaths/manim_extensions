@@ -43,7 +43,7 @@ def visit(self, node: list, name: str = ""):
     node
         The SkipManimNode to visit.
     name
-        Name of the admonition, by default "".
+        Name of the admonition.
     """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):

@@ -40,15 +40,15 @@ class MCAtom:
     element
         The chemical element of the atom.
     coords
-        3D coordinates of the atom. Defaults to the origin.
+        3D coordinates of the atom. 
     atoms
-        List of bonded atoms. Defaults to an empty list.
+        List of bonded atoms. 
     bonds
-        List of bonds associated with the atom. Defaults to an empty list.
+        List of bonds associated with the atom. 
     molecule
-        The molecule the atom belongs to. Defaults to ``None``.
+        The molecule the atom belongs to. 
     molecule_index
-        Index of the atom in the molecule. Defaults to ``None``.
+        Index of the atom in the molecule. 
     """
 
     def __init__(

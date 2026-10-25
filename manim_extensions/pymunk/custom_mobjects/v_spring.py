@@ -17,20 +17,20 @@ class VSpring(Line):
     Parameters
     ----------
     start
-        The start point of the spring. Defaults to :class:`~manim.constants.LEFT`.
+        The start point of the spring. 
     end
-        The end point of the spring. Defaults to :class:`~manim.constants.RIGHT`.
+        The end point of the spring. 
     turns
-        The number of helical turns in the spring. Defaults to ``18``.
+        The number of helical turns in the spring. 
     amplitude
-        The amplitude (radius) of the helical oscillation. Defaults to ``0.1``.
+        The amplitude (radius) of the helical oscillation. 
     end_length
         The length of the straight terminal segments at both ends of the
-        spring. Defaults to ``0.2``.
+        spring. 
     stroke_width
-        The stroke width used to draw the spring. Defaults to ``1``.
+        The stroke width used to draw the spring. 
     color
-        The color of the spring. Defaults to ``WHITE``.
+        The color of the spring. 
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.geometry.line.Line`.
 

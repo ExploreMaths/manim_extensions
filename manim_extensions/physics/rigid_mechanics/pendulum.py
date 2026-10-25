@@ -41,7 +41,7 @@ class MultiPendulum(VGroup):
     bobs
         Positions of the pendulum bobs from the pivot outward.
     pivot_point
-        Position of the fixed pivot.  Defaults to ``UP * 2``.
+        Position of the fixed pivot.  
     rod_style
         Keyword arguments forwarded to the :class:`~manim.mobject.geometry.line.Line`
         constructor used for each rod.
@@ -180,12 +180,12 @@ class Pendulum(MultiPendulum):
     Parameters
     ----------
     length
-        Length of the pendulum rod.  Defaults to ``3.5``.
+        Length of the pendulum rod.  
     initial_theta
         Initial angle of deviation from the vertical, in radians.
-        Defaults to ``0.3``.
+        
     pivot_point
-        Position of the fixed pivot.  Defaults to ``UP * 2``.
+        Position of the fixed pivot.  
     rod_style
         Forwarded to the :class:`~manim.mobject.geometry.line.Line` constructor.
     bob_style

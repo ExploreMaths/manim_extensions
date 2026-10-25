@@ -148,7 +148,7 @@ class VoronoiDelaunay:
             Index of the Voronoi vertex whose dual triangle's circumcircle
             is computed.
         color
-            Stroke colour of the returned circle. Defaults to ``ORANGE``.
+            Stroke colour of the returned circle. 
 
         Returns
         -------

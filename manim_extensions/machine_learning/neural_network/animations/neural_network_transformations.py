@@ -34,7 +34,7 @@ class RemoveLayer(AnimationGroup):
     neural_network
         The neural network the layer belongs to.
     layer_spacing
-        Spacing between layers after the removal, by default 0.2.
+        Spacing between layers after the removal.
 
     Examples
     --------

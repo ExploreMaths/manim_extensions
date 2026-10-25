@@ -38,7 +38,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
     output_layer
         The output max pooling layer.
     active_color
-        Color used to highlight the kernel windows, by default ORANGE.
+        Color used to highlight the kernel windows.
     **kwargs
         Forwarded to the parent layer classes.
     """
@@ -88,9 +88,9 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         ----------
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         run_time
-            Run time of the forward pass animation, by default 1.5.
+            Run time of the forward pass animation.
         **kwargs
             Forwarded to the parent layer classes.
 

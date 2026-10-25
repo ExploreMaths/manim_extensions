@@ -25,13 +25,13 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
     output_layer
         The output convolutional layer.
     passing_flash_color
-        Color of the flash animation during the forward pass, by default ORANGE.
+        Color of the flash animation during the forward pass.
     cell_width
-        Width of a single grid cell, by default 1.0.
+        Width of a single grid cell.
     stroke_width
-        Stroke width of the filter rectangles, by default 2.0.
+        Stroke width of the filter rectangles.
     show_grid_lines
-        Whether to show the grid lines, by default False.
+        Whether to show the grid lines.
     **kwargs
         Forwarded to
         :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D`.

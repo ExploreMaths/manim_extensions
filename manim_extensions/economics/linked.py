@@ -30,7 +30,7 @@ class LinkedISLM_ADAS(VGroup):
     ad_as_kwargs
         Extra keyword arguments forwarded to :class:`~manim_extensions.economics.ad_as.ADASDiagram`.
     spacing
-        Horizontal gap between the two diagrams (default 1.0).
+        Horizontal gap between the two diagrams.
     numbered_eq
         Use numbered equilibrium labels in both diagrams.
     show_arrows
@@ -106,10 +106,9 @@ class LinkedISLM_ADAS(VGroup):
             New money supply for IS-LM (shifts LM).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``ms * 4``. Defaults to ``None``.
+            ``ms * 4``. 
         v
-            New velocity for AD-AS. If ``None``, unchanged. Defaults to
-            ``None``.
+            New velocity for AD-AS. If ``None``, unchanged. 
 
         Returns
         -------
@@ -132,10 +131,9 @@ class LinkedISLM_ADAS(VGroup):
             New money supply for IS-LM (shifts LM).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``ms * 4``. Defaults to ``None``.
+            ``ms * 4``. 
         v
-            New velocity for AD-AS. If ``None``, unchanged. Defaults to
-            ``None``.
+            New velocity for AD-AS. If ``None``, unchanged. 
 
         Returns
         -------
@@ -160,10 +158,9 @@ class LinkedISLM_ADAS(VGroup):
             New autonomous spending for IS-LM (shifts IS).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``a * 2``. Defaults to ``None``.
+            ``a * 2``. 
         v
-            New velocity for AD-AS. If ``None``, unchanged. Defaults to
-            ``None``.
+            New velocity for AD-AS. If ``None``, unchanged. 
 
         Returns
         -------
@@ -186,10 +183,9 @@ class LinkedISLM_ADAS(VGroup):
             New autonomous spending for IS-LM (shifts IS).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``a * 2``. Defaults to ``None``.
+            ``a * 2``. 
         v
-            New velocity for AD-AS. If ``None``, unchanged. Defaults to
-            ``None``.
+            New velocity for AD-AS. If ``None``, unchanged. 
 
         Returns
         -------
@@ -213,8 +209,7 @@ class LinkedISLM_ADAS(VGroup):
         sras_price
             New expected price level Pᵉ for SRAS (higher than current).
         long_run
-            If True, append the long-run self-correction of SRAS. Defaults
-            to ``True``.
+            If True, append the long-run self-correction of SRAS.
 
         Returns
         -------
@@ -233,8 +228,7 @@ class LinkedISLM_ADAS(VGroup):
         sras_price
             New expected price level Pᵉ for SRAS (lower than current).
         long_run
-            If True, append the long-run self-correction of SRAS. Defaults
-            to ``True``.
+            If True, append the long-run self-correction of SRAS.
 
         Returns
         -------

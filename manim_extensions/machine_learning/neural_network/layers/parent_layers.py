@@ -240,10 +240,10 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         Parameters
         ----------
         run_time
-            Run time of the forward pass animation, by default 2.0.
+            Run time of the forward pass animation.
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         **kwargs
             Forwarded to the layer's forward pass animation.
 
@@ -321,10 +321,10 @@ class BlankConnective(ConnectiveLayer):
         Parameters
         ----------
         run_time
-            Run time of the forward pass animation, by default 1.5.
+            Run time of the forward pass animation.
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         **kwargs
             Forwarded to the layer's forward pass animation.
 

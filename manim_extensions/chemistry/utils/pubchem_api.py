@@ -23,17 +23,17 @@ class PubchemAPIManager:
     Parameters
     ----------
     cid
-        PubChem compound id of the molecule. Defaults to ``None``.
+        PubChem compound id of the molecule. 
     name
-        Name of the molecule. Defaults to ``None``.
+        Name of the molecule. 
     smiles
-        SMILES identifier of the molecule. Defaults to ``None``.
+        SMILES identifier of the molecule. 
     inchi
-        InChI identifier of the molecule. Defaults to ``None``.
+        InChI identifier of the molecule. 
     three_d
-        Whether to retrieve the 3D structure of the molecule. Defaults to ``False``.
+        Whether to retrieve the 3D structure of the molecule. 
     format
-        Format of the response data. Defaults to ``"json"``.
+        Format of the response data. 
     """
 
     BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"

@@ -39,23 +39,23 @@ class FeatureMap(VGroup):
     Parameters
     ----------
     color
-        Color of the feature map border, by default ORANGE.
+        Color of the feature map border.
     feature_map_size
         Size of the feature map as (width, height) in cells.
     fill_color
-        Fill color of the feature map, by default ORANGE.
+        Fill color of the feature map.
     fill_opacity
-        Fill opacity of the feature map, by default 0.2.
+        Fill opacity of the feature map.
     cell_width
-        Width of a single cell, by default 0.2.
+        Width of a single cell.
     padding
-        Padding around the feature map as :math:`(x, y)`, by default :math:`(0, 0)`.
+        Padding around the feature map as :math:`(x, y)`.
     stroke_width
-        Stroke width of the border, by default 2.0.
+        Stroke width of the border.
     show_grid_lines
-        Whether to show the grid lines, by default False.
+        Whether to show the grid lines.
     padding_dashed
-        Whether the padding region is drawn with dashed lines, by default False.
+        Whether the padding region is drawn with dashed lines.
 
     Examples
     --------
@@ -176,31 +176,30 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     filter_size
         Size of the filter in cells; an int makes a square filter.
     cell_width
-        Width of a single cell, by default 0.2.
+        Width of a single cell.
     filter_spacing
-        Spacing between feature maps, by default 0.1.
+        Spacing between feature maps.
     color
-        Color of the feature map borders, by default BLUE.
+        Color of the feature map borders.
     active_color
-        Color used when highlighting the layer, by default ORANGE.
+        Color used when highlighting the layer.
     filter_color
-        Color of the filter rectangle, by default ORANGE.
+        Color of the filter rectangle.
     show_grid_lines
-        Whether to show the grid lines, by default False.
+        Whether to show the grid lines.
     fill_opacity
-        Fill opacity of the feature maps, by default 0.3.
+        Fill opacity of the feature maps.
     stride
-        Stride of the convolution, by default 1.
+        Stride of the convolution.
     stroke_width
-        Stroke width of the borders, by default 2.0.
+        Stroke width of the borders.
     activation_function
         Activation function displayed above the layer; a string is looked up
         by name.
     padding
-        Padding around the feature maps; an int applies to both axes,
-        by default 0.
+        Padding around the feature maps; an int applies to both axes.
     padding_dashed
-        Whether the padding region is drawn with dashed lines, by default True.
+        Whether the padding region is drawn with dashed lines.
     **kwargs
         Forwarded to the parent layer classes.
 
@@ -402,10 +401,10 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         Parameters
         ----------
         run_time
-            Run time of the forward pass animation, by default 5.
+            Run time of the forward pass animation.
         layer_args
             Additional arguments passed to the layers when making their
-            forward pass animations, by default {}.
+            forward pass animations.
         **kwargs
             Forwarded to the parent layer classes.
 

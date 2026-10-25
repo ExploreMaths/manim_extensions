@@ -39,30 +39,25 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     num_nodes
         Number of nodes in the layer.
     layer_buffer
-        Buffer between the nodes and the surrounding rectangle,
-        by default ``SMALL_BUFF / 2``.
+        Buffer between the nodes and the surrounding rectangle.
     node_radius
-        Radius of each node, by default 0.08.
+        Radius of each node.
     node_color
-        Color of each node, by default ``config.color_scheme.primary_color``.
+        Color of each node.
     node_outline_color
-        Outline color of each node, by default
-        ``config.color_scheme.secondary_color``.
+        Outline color of each node.
     rectangle_color
-        Color of the surrounding rectangle, by default
-        ``config.color_scheme.secondary_color``.
+        Color of the surrounding rectangle.
     node_spacing
-        Spacing between the nodes, by default 0.3.
+        Spacing between the nodes.
     rectangle_fill_color
-        Fill color of the surrounding rectangle, by default
-        ``config.color_scheme.background_color``.
+        Fill color of the surrounding rectangle.
     node_stroke_width
-        Stroke width of the node circles, by default 2.0.
+        Stroke width of the node circles.
     rectangle_stroke_width
-        Stroke width of the surrounding rectangle, by default 2.0.
+        Stroke width of the surrounding rectangle.
     animation_dot_color
-        Color of the dots in the forward pass animation, by default
-        ``config.color_scheme.active_color``.
+        Color of the dots in the forward pass animation.
     activation_function
         Activation function displayed next to the layer; a string is looked up
         by name.
@@ -238,7 +233,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         ----------
         layer_args
             May contain the key ``dropout_node_indices`` with the indices of
-            the nodes that are dropped out, by default {}.
+            the nodes that are dropped out.
         **kwargs
             Forwarded to the parent layer classes.
 

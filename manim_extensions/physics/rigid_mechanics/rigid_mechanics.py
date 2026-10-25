@@ -94,7 +94,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
     Parameters
     ----------
     gravity
-        Gravity vector :math:`(x, y)`.  Defaults to :math:`(0, -9.81)`.
+        Gravity vector :math:`(x, y)`.  
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.mobject.Mobject`.
 

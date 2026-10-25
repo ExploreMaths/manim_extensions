@@ -27,9 +27,9 @@ class Pencil(SVGMobject):
     Parameters
     ----------
     height
-        Height of the pencil SVG. Defaults to ``2``.
+        Height of the pencil SVG. 
     angle
-        Rotation angle of the pencil (in radians). Defaults to ``PI/4``.
+        Rotation angle of the pencil (in radians). 
 
     Examples
     --------

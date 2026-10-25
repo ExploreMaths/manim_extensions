@@ -44,19 +44,19 @@ def frames_comparison(
     Note that this decorator can be use with or without parentheses.
 
     .. warning::
-       By default, last_frame is True, which means that only the last frame is tested.
+       last_frame is True, which means that only the last frame is tested.
        If the scene has a moving animation, then the test must set last_frame to False.
 
     Parameters
     ----------
     func
-        The test function to decorate, by default None.
+        The test function to decorate.
     last_frame
-        Whether the test should test the last frame, by default True.
+        Whether the test should test the last frame.
     renderer_class
-        The base renderer to use (OpenGLRenderer/CairoRenderer), by default CairoRenderer.
+        The base renderer to use (OpenGLRenderer/CairoRenderer).
     base_scene
-        The base class for the scene (ThreeDScene, etc.), by default Scene.
+        The base class for the scene (ThreeDScene, etc.).
     **custom_config
         Additional keyword arguments merged into the Manim config for the test.
 

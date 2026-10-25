@@ -23,9 +23,9 @@ class FeedForwardToVector(ConnectiveLayer):
     output_layer
         The output vector layer.
     animation_dot_color
-        Color of the dots in the forward pass animation, by default RED.
+        Color of the dots in the forward pass animation.
     dot_radius
-        Radius of the dots in the forward pass animation, by default 0.05.
+        Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
     """
@@ -80,7 +80,7 @@ class FeedForwardToVector(ConnectiveLayer):
         ----------
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         **kwargs
             Forwarded to the parent layer classes.
 

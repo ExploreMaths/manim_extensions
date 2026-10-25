@@ -38,11 +38,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     Parameters
     ----------
     gravity
-        The gravity acceleration vector :math:`(g_x, g_y)`. Defaults to :math:`(0, -9.81)`.
+        The gravity acceleration vector :math:`(g_x, g_y)`. 
     sub_step
         The number of sub-steps per frame for physical simulation. Increasing
         this value improves numerical stability and collision accuracy.
-        Defaults to 8.
+        
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.mobject.Mobject`.
 
@@ -516,7 +516,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             typically ignores the z-component.
         point
             The absolute position in the world (scene) coordinates where the
-            force is applied. Defaults to the origin :math:`(0, 0, 0)`.
+            force is applied. :math:`(0, 0, 0)`.
         """
         mob.body.apply_force_at_world_point(force=force[:2], point=point[:2])
 
@@ -567,7 +567,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             is typically ignored in 2D physics.
         point
             The absolute position in world (scene) coordinates where the
-            impulse is applied. Defaults to the origin :math:`(0, 0, 0)`.
+            impulse is applied. :math:`(0, 0, 0)`.
         """
         mob.body.apply_impulse_at_world_point(impulse=impulse[:2], point=point[:2])
 
@@ -583,7 +583,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
+            The local point (x, y, z) to convert. 
 
         Returns
         -------
@@ -605,7 +605,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
+            The world point (x, y, z) to convert. 
 
         Returns
         -------
@@ -621,7 +621,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     ):
         """Assigns a custom position update callback to a Mobject's physical body.
 
-        By default, Pymunk updates a body's position based on its velocity. This
+        Pymunk updates a body's position based on its velocity. This
         method allows you to override that behavior with custom logic. The callback
         is executed during every physical simulation step.
 
@@ -681,7 +681,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
-            Defaults to :math:`(0, 0, 0)`.
+            
 
         Returns
         -------
@@ -704,7 +704,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The Mobject whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-            Defaults to :math:`(0, 0, 0)`.
+            
 
         Returns
         -------
@@ -1030,10 +1030,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             ignoring collisions between parts of the same complex object.
         categories
             A bitmask representing the categories this shape belongs to.
-            Default is all categories (32 bits set to 1).
         mask
             A bitmask representing which categories this shape will collide with.
-            Default is all categories.
         """
         pymunk = require("physics", "pymunk")
 

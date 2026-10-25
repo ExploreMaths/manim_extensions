@@ -233,6 +233,10 @@ This is enforced by `validate_doc_sections.py` (`MANUAL_TYPE_ANNOTATION`).
 - The **summary line** (first paragraph) must end with terminal punctuation (`.`, `?`, `!`, or equivalent).
 - The **last content line** of the docstring must end with terminal punctuation. URLs, formula lines, doctest prompts (`>>>`, `...`), and `TODO` placeholders are exempt.
 
+### No default-value descriptions in docstrings
+
+Do not describe parameter/attribute **default values** in the docstring. Default values already appear in the rendered signature (injected by `sphinx-autodoc-typehints`), so any repetition such as `Defaults to X`, `by default X`, `(default X)`, `defaults to X`, `Default is X`, `By default X`, or `(the default)` is redundant and must be omitted. Write plain descriptions that state what the parameter *means*, not what it defaults to. (Ordinary uses of the word "default" that are not default-value descriptions — e.g. "the default colour", "reset to its default appearance", "the default DVI path", `get_param_or_default` — are fine to keep.)
+
 ### Raw docstrings for example code
 
 If a docstring embeds example code whose string literals contain `\n` escapes (e.g. MOL/SDF file blocks), the docstring **must** use an `r"""` raw prefix. Without it, Python interprets the escapes and Sphinx renders mangled, unrunnable code.

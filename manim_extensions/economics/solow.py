@@ -46,21 +46,21 @@ class SolowDiagram(EconDiagram):
     Parameters
     ----------
     s
-        Savings rate (default 0.3).
+        Savings rate.
     alpha
-        Capital share / production function exponent (default 0.5).
+        Capital share / production function exponent.
     delta
-        Depreciation rate (default 0.1).
+        Depreciation rate.
     n
-        Population growth rate (default 0.05).
+        Population growth rate.
     g
-        Technological growth rate (default 0.05).
+        Technological growth rate.
     show_equilibrium
-        If True (default), mark the steady-state equilibrium.
+        If True, mark the steady-state equilibrium.
     numbered_eq
         If True, label equilibria with subscripts that increment on each shift.
     show_production
-        If True (default), also draw the production function f(k).
+        If True, also draw the production function f(k).
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
 
@@ -176,12 +176,12 @@ class SolowDiagram(EconDiagram):
         ----------
         s
             New savings rate. If ``None``, keeps the current value.
-            Defaults to ``None``.
+            
         run_time
-            Duration of the shift animation. Defaults to ``1``.
+            Duration of the shift animation. 
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
             If shares are visible, they update automatically.
 
@@ -205,18 +205,18 @@ class SolowDiagram(EconDiagram):
         ----------
         delta
             New depreciation rate. If ``None``, keeps the current value.
-            Defaults to ``None``.
+            
         n
             New population growth rate. If ``None``, keeps the current
-            value. Defaults to ``None``.
+            value. 
         g
             New technological growth rate. If ``None``, keeps the current
-            value. Defaults to ``None``.
+            value. 
         run_time
-            Duration of the shift animation. Defaults to ``1``.
+            Duration of the shift animation. 
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
             If shares are visible, they update automatically.
 
@@ -245,7 +245,7 @@ class SolowDiagram(EconDiagram):
             New savings rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -263,7 +263,7 @@ class SolowDiagram(EconDiagram):
             New savings rate (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -281,7 +281,7 @@ class SolowDiagram(EconDiagram):
             New population growth rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -299,7 +299,7 @@ class SolowDiagram(EconDiagram):
             New depreciation rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
 
         Returns
         -------
@@ -351,13 +351,13 @@ class SolowDiagram(EconDiagram):
         Parameters
         ----------
         k
-            Capital level. Defaults to the current steady-state k*.
+            Capital level. *.
         c_color
-            Color for consumption brace/label. Defaults to ``ORANGE``.
+            Color for consumption brace/label. 
         i_color
-            Color for investment brace/label. Defaults to ``YELLOW``.
+            Color for investment brace/label. 
         run_time
-            Duration of the animation. Defaults to ``1``.
+            Duration of the animation. 
 
         Returns
         -------
@@ -408,11 +408,11 @@ class SolowDiagram(EconDiagram):
         k_end
             Capital level where the animation ends.
         c_color
-            Color for consumption brace/label. Defaults to ``ORANGE``.
+            Color for consumption brace/label. 
         i_color
-            Color for investment brace/label. Defaults to ``YELLOW``.
+            Color for investment brace/label. 
         run_time
-            Duration of the animation. Defaults to ``3``.
+            Duration of the animation. 
 
         Returns
         -------
@@ -455,10 +455,9 @@ class SolowDiagram(EconDiagram):
         Parameters
         ----------
         color
-            Color of the golden-rule line and labels. Defaults to
-            ``PURPLE``.
+            Color of the golden-rule line and labels. 
         run_time
-            Duration of the FadeIn animation. Defaults to ``1``.
+            Duration of the FadeIn animation. 
 
             Draws a vertical dashed line at ``k_gold`` with a label. The golden rule
             is where :math:`MPK = \\delta + n + g`, giving the savings rate that

@@ -20,9 +20,9 @@ class GMAnimationBuilder:
     molecule
         The molecule the animations are built for.
     atoms
-        The atoms to animate. Defaults to all vertices of the molecule.
+        The atoms to animate. 
     bonds
-        The bonds to animate. Defaults to all edges of the molecule.
+        The bonds to animate. 
 
     Examples
     --------
@@ -148,7 +148,7 @@ class GMAnimationBuilder:
         atom_b
             Index of the other atom of the bond.
         angle
-            Angle of the rotation. Defaults to ``PI / 4``.
+            Angle of the rotation. 
 
         Returns
         -------
@@ -170,13 +170,13 @@ class GMAnimationBuilder:
         Parameters
         ----------
         atoms_color
-            New color of the atoms. Defaults to ``BLACK``.
+            New color of the atoms. 
         bonds_color
             New color of the bonds. If ``None``, bonds keep their color.
-            Defaults to ``None``.
+            
         label_color
             New color of the atom labels. If ``None``, labels keep their
-            color. Defaults to ``None``.
+            color. 
 
         Returns
         -------

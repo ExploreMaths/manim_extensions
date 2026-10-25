@@ -31,7 +31,7 @@ class SpaceScene(ZoomedScene):
     ----------
     gravity
         The gravity acceleration vector :math:`(g_x, g_y)` applied to the physical
-        space. Defaults to :math:`(0, -9.81)`.
+        space. 
     **kwargs
         Forwarded to the parent :class:`~manim.scene.zoomed_scene.ZoomedScene`.
 
@@ -98,9 +98,9 @@ class SpaceScene(ZoomedScene):
             A group ID. Shapes in the same non-zero group do not collide.
             Useful for creating multi-part objects where internal parts ignore each other.
         categories
-            A bitmask of the categories this shape belongs to. Default is all categories (0xFFFFFFFF).
+            A bitmask of the categories this shape belongs to.
         mask
-            A bitmask of the categories this shape can collide with. Default is all categories (0xFFFFFFFF).
+            A bitmask of the categories this shape can collide with.
         """
         for mob in mobs:
             self.vspace._add_shape_filter(mob, group, categories, mask)
@@ -499,7 +499,7 @@ class SpaceScene(ZoomedScene):
         mobs
             The Mobjects whose shapes will have their collision type set.
         collision_type
-            Integer identifier for the collision category (default 4).
+            Integer identifier for the collision category.
         """
         for mob in mobs:
             self.vspace._set_collision_type(mob, collision_type)
@@ -593,7 +593,7 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The local point on the body where the force is applied.
-            Defaults to the center :math:`(0, 0, 0)`.
+            :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_force_at_local_point(mob, force, point)
@@ -615,7 +615,7 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The world-space point where the force is applied.
-            Defaults to :math:`(0, 0, 0)`.
+            
         """
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
@@ -638,7 +638,7 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The local point on the body where the impulse is applied.
-            Defaults to the center :math:`(0, 0, 0)`.
+            :math:`(0, 0, 0)`.
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_local_point(mob, impulse, point)
@@ -660,7 +660,7 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The world-space point where the impulse is applied.
-            Defaults to :math:`(0, 0, 0)`.
+            
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)
@@ -677,7 +677,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
+            The local point (x, y, z) to convert. 
         """
         self.vspace.local_to_world(mob, point)
 
@@ -692,7 +692,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. Defaults to :math:`(0, 0, 0)`.
+            The world point (x, y, z) to convert. 
         """
         self.vspace.world_to_local(mob, point)
 
@@ -758,7 +758,7 @@ class SpaceScene(ZoomedScene):
             The Mobject whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
-            Defaults to :math:`(0, 0, 0)`.
+            
 
         Returns
         -------
@@ -779,7 +779,7 @@ class SpaceScene(ZoomedScene):
             The Mobject whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-            Defaults to :math:`(0, 0, 0)`.
+            
 
         Returns
         -------
@@ -800,7 +800,7 @@ class SpaceScene(ZoomedScene):
         mob
             The Mobject whose shapes will be queried.
         point
-            The world point (x, y, z) to test against. Defaults to :math:`(0, 0, 0)`.
+            The world point (x, y, z) to test against. 
 
         Returns
         -------

@@ -28,16 +28,16 @@ def get_normalized_convex_polygons(
     pixel_array
         Input image pixel array of shape ``[H, W, C]``.
     base_px_width
-        Base width for downsampling, defaults to 512.0.
+        Base width for downsampling.
             Controls sampling precision.
     target_cell_size
-        Target cell size for the marching-squares grid, defaults to 4.
+        Target cell size for the marching-squares grid.
             Controls grid density.
     img_manim_w
-        Manim frame width, defaults to 8.
+        Manim frame width.
             Used for coordinate mapping.
     img_manim_h
-        Manim frame height, defaults to 14.22.
+        Manim frame height.
             Used for coordinate mapping.
 
     Returns

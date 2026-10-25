@@ -31,11 +31,11 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     bonds_dict
         Dictionary with the bond data of the molecule.
     source_csv
-        Path to a csv file with element data. Defaults to ``None``.
+        Path to a csv file with element data. 
     add_bonds
-        Whether to add the bonds to the molecule. Defaults to ``True``.
+        Whether to add the bonds to the molecule. 
     add_atoms
-        Whether to add the atoms to the molecule. Defaults to ``True``.
+        Whether to add the atoms to the molecule. 
     mobjects
         Additional mobjects to add to the group.
     **kwargs

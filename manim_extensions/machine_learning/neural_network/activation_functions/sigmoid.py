@@ -18,11 +18,11 @@ class SigmoidFunction(ActivationFunction):
     Parameters
     ----------
     function_name
-        Name displayed next to the plot, by default "Sigmoid".
+        Name displayed next to the plot.
     x_range
-        Range of the x-axis, by default :math:`[-5, 5]`.
+        Range of the x-axis.
     y_range
-        Range of the y-axis, by default :math:`[0, 1]`.
+        Range of the y-axis.
 
     Examples
     --------

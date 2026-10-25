@@ -19,7 +19,7 @@ class OpenGLSphere(OpenGLSurface):
     Parameters
     ----------
     center
-        Center point of the sphere. Defaults to ``ORIGIN``.
+        Center point of the sphere. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere.OpenGLSurface`.
     """
@@ -45,7 +45,7 @@ class OpenGLSphere(OpenGLSurface):
         Parameters
         ----------
         u
-            Azimuthal angle. Defaults to ``None``.
+            Azimuthal angle. 
         v
             Polar angle.
 

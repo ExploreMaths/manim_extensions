@@ -25,7 +25,7 @@ class ManimAutomataInput(VGroup):
     animation_style
         Styling configuration used to animate token highlighting.
     font_size
-        Font size used for each token. Defaults to ``100``.
+        Font size used for each token. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -110,7 +110,7 @@ class Token(MathTex):
     spacing
         Horizontal offset applied when positioning the token.
     font_size
-        Font size for the token text.  Defaults to ``100``.
+        Font size for the token text.  
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.MathTex`.
 

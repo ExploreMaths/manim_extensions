@@ -41,18 +41,17 @@ class NetworkConnection(VGroup):
         Mobject where the end of the connection goes to.
     arc_direction
         Direction that the connection arcs; one of "straight", "up", "down",
-        "left", "right", by default "straight".
+        "left", "right".
     buffer
-        Amount of space between the connection and the mobjects at the ends,
-        by default 0.0.
+        Amount of space between the connection and the mobjects at the ends.
     arc_distance
-        Distance from start and end mobject that the arc bends, by default 0.2.
+        Distance from start and end mobject that the arc bends.
     stroke_width
-        Stroke width of the connection, by default 2.0.
+        Stroke width of the connection.
     color
-        Color of the connection, by default WHITE.
+        Color of the connection.
     active_color
-        Color of active animations for this mobject, by default ORANGE.
+        Color of active animations for this mobject.
 
     Examples
     --------

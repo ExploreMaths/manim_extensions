@@ -28,15 +28,15 @@ class Ruler(VGroup):
     Parameters
     ----------
     length
-        Length of the ruler. Defaults to ``12``.
+        Length of the ruler. 
     width
-        Width (height) of the ruler. Defaults to ``0.8``.
+        Width (height) of the ruler. 
     ruler_color
-        Fill color of the ruler. Defaults to ``WHITE``.
+        Fill color of the ruler. 
     stroke_width
-        Stroke width of the ruler border. Defaults to ``2``.
+        Stroke width of the ruler border. 
     fill_opacity
-        Fill opacity of the ruler. Defaults to ``0.4``.
+        Fill opacity of the ruler. 
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 

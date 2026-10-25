@@ -32,3 +32,8 @@ _preview/
 docs/source/_extensions/nbcell_cache.json
 media_cache/
 docs/build_check
+docs/_build/
+
+# Local example build artifacts
+docs/SVGAnimationUsageExample.*
+docs/leaf_class_*.png

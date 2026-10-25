@@ -21,14 +21,14 @@ class GaussianDistribution(VGroup):
     axes
         Manim axes the distribution is drawn in.
     mean
-        Mean of the distribution; defaults to :math:`[0.0, 0.0]`.
+        Mean of the distribution.
     cov
-        Covariance matrix of the distribution; defaults to the identity.
+        Covariance matrix of the distribution.
     dist_theme
         Drawing style; "gaussian" draws confidence ellipses and "ellipse" a
-        single ellipse, by default "gaussian".
+        single ellipse.
     color
-        Color of the ellipses, by default ORANGE.
+        Color of the ellipses.
     **kwargs
         Forwarded to the parent class.
 
@@ -163,9 +163,9 @@ class GaussianDistribution(VGroup):
         covariance
             Covariance matrix of the Gaussian distribution.
         color
-            Color of the ellipses, by default ORANGE.
+            Color of the ellipses.
         num_ellipses
-            Number of concentric confidence ellipses, by default 4.
+            Number of concentric confidence ellipses.
 
         Returns
         -------
@@ -210,7 +210,7 @@ class GaussianDistribution(VGroup):
         covariance
             Covariance matrix of the Gaussian distribution.
         color
-            Color of the ellipse, by default ORANGE.
+            Color of the ellipse.
 
         Returns
         -------

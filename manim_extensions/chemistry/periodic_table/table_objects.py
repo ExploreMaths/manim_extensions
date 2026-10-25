@@ -35,23 +35,23 @@ class MElementObject(VGroup):
     Parameters
     ----------
     atomic_number
-        Atomic number of the element. Defaults to 1.
+        Atomic number of the element. 
     atomic_mass
-        Atomic mass of the element. Defaults to 1.
+        Atomic mass of the element. 
     element_name
-        Name of the element. Defaults to ``"Hydrogen"``.
+        Name of the element. 
     element_symbol
-        Symbol of the element. Defaults to ``"H"``.
+        Symbol of the element. 
     coloring
-        Color of the element frame. Defaults to ``BLACK``.
+        Color of the element frame. 
     fill_colors
-        Colors used for the frame gradient fill. Defaults to ``(WHITE, BLUE)``.
+        Colors used for the frame gradient fill. 
     gradient
-        Number of colors in the frame gradient. Defaults to 10.
+        Number of colors in the frame gradient. 
     opacity
-        Fill opacity of the element frame. Defaults to 1.
+        Fill opacity of the element frame. 
     text_color
-        Color of the element texts. Defaults to ``BLACK``.
+        Color of the element texts. 
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 

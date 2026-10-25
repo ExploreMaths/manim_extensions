@@ -56,9 +56,9 @@ def get_moment_for_circle(
     outer_radius
         Outer radius.
     x_offset
-        Center X offset, defaults to 0.
+        Center X offset.
     y_offset
-        Center Y offset, defaults to 0.
+        Center Y offset.
 
     Returns
     -------
@@ -92,11 +92,11 @@ def get_moment_for_poly(
     vertices
         List of polygon vertices, each represented as :math:`(x, y)`.
     x_offset
-        Center X offset, defaults to 0.
+        Center X offset.
     y_offset
-        Center Y offset, defaults to 0.
+        Center Y offset.
     stroke_width
-        Shape radius (used as line width), defaults to 0.
+        Shape radius (used as line width).
 
     Returns
     -------

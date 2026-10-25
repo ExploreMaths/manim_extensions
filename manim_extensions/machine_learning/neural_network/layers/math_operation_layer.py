@@ -32,18 +32,18 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     operation_type
         Math operation to display; one of ``+``, ``-``, ``*``, ``/``.
     node_radius
-        Radius of the surrounding circle, by default 0.5.
+        Radius of the surrounding circle.
     node_color
-        Color of the surrounding circle, by default BLUE.
+        Color of the surrounding circle.
     node_stroke_width
-        Stroke width of the surrounding circle, by default 2.0.
+        Stroke width of the surrounding circle.
     active_color
-        Color used when highlighting the layer, by default ORANGE.
+        Color used when highlighting the layer.
     activation_function
         Activation function displayed next to the layer; a string is looked up
         by name.
     font_size
-        Font size of the operation text, by default 20.
+        Font size of the operation text.
     **kwargs
         Forwarded to the parent layer classes.
 
@@ -163,7 +163,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         Parameters
         ----------
         layer_args
-            Layer specific arguments. Defaults to ``{}``.
+            Layer specific arguments. 
         **kwargs
             Forwarded to the parent layer classes.
 

@@ -48,7 +48,7 @@ class VPinJoint(VConstraint):
         (e.g., a red ``Dot``).
     connect_line_class
         The class used to draw the connecting rod (e.g., ``Line``).
-        Defaults to ``None`` for no visible connection.
+        for no visible connection.
     connect_line_config
         A dictionary defining the visual style of the connecting line,
         such as ``color`` and ``stroke_width``.

@@ -38,40 +38,40 @@ def qr_code(payload: str,
         The data to encode in the QR code.
     corner_size
         The size of the corner elements in QR pixels. Might need to be
-        adjusted for larger or very small QR codes. Defaults to ``7``.
+        adjusted for larger or very small QR codes. 
     icon
         A Nerd Font icon to place in the center of the QR code, either an
         icon name or a Unicode code point. See
         https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
-        for available icons. Defaults to ``None``.
+        for available icons. 
     icon_color
-        The color of the icon. Defaults to ``WHITE``.
+        The color of the icon. 
     icon_size
         The size of the icon in QR pixels. Pixels in the middle of the QR
-        code are removed to make space for the icon. Defaults to ``10``.
+        code are removed to make space for the icon. 
     icon_margin_size
         A margin around the icon in QR pixels; the space left around the
-        icon. Defaults to ``0.1``.
+        icon. 
     white_color
         The color of the rectangles or data points, which are typically
-        white in a QR code. Defaults to ``WHITE``.
+        white in a QR code. 
     corner_color
-        The color for the corner elements of the QR code. Defaults to ``white_color``.
+        The color for the corner elements of the QR code. 
     data_shape
         Shape of the data modules; either ``'rectangles'`` or ``'circles'``.
-        Defaults to ``'rectangles'``.
+        
     rectangles_kwargs
         Additional keyword arguments for the rectangles, which represent
-        the QR code data. Defaults to ``None``.
+        the QR code data. 
     circle_kwargs
         Additional keyword arguments for the circles, which represent the
-        QR code data. Defaults to ``None``.
+        QR code data. 
     error_correction
         The error correction level for the QR code, as accepted by
-        :func:`segno.make`. Defaults to ``'H'``.
+        :func:`segno.make`. 
     segno_kwargs
         Additional keyword arguments for the :func:`segno.make` function.
-        Defaults to ``None``.
+        
     **kwargs
         Placeholder for additional keyword arguments, which are not used
         in this function.

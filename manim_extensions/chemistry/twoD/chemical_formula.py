@@ -21,11 +21,11 @@ class ChemicalFormula(MarkupText):
     formula
         The chemical formula to render, e.g. ``"H2O"``.
     metal_color
-        Color of the metal element. Defaults to ``WHITE``.
+        Color of the metal element. 
     non_metal_color
-        Color of the non-metal element. Defaults to ``WHITE``.
+        Color of the non-metal element. 
     oxygen_color
-        Color of the oxygen element. Defaults to ``WHITE``.
+        Color of the oxygen element. 
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
     **kwargs
@@ -92,11 +92,11 @@ class ChemicalFormula(MarkupText):
         parsed_formula
             Parsed formula mapping element symbols to their counts.
         metal_color
-            Color of the metal element. Defaults to ``WHITE``.
+            Color of the metal element. 
         non_metal_color
-            Color of the non-metal element. Defaults to ``WHITE``.
+            Color of the non-metal element. 
         oxygen_color
-            Color of the oxygen element. Defaults to ``WHITE``.
+            Color of the oxygen element. 
 
         Returns
         -------
@@ -157,22 +157,21 @@ class NamedFormula(VGroup):
     formula
         The chemical formula to render.
     metal_color
-        Color of the metal element. Defaults to ``WHITE``.
+        Color of the metal element. 
     non_metal_color
-        Color of the non-metal element. Defaults to ``WHITE``.
+        Color of the non-metal element. 
     oxygen_color
-        Color of the oxygen element. Defaults to ``WHITE``.
+        Color of the oxygen element. 
     font
-        Font of the name text. Defaults to ``""``.
+        Font of the name text. 
     spanish_structure
         Whether to use the spanish name ordering (non-metal first).
-        Defaults to ``False``.
+        
     buff
-        Distance between the formula and its name. Defaults to
-        ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
+        Distance between the formula and its name. 
     direction
         Direction in which the name is placed relative to the formula.
-        Defaults to :class:`~manim.constants.DOWN`.
+        
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
     **kwargs
@@ -358,10 +357,9 @@ class NamedComplexFormula(VGroup):
         Dictionary mapping formula strings to their colors.
     direction
         Direction in which the name is placed relative to the formula.
-        Defaults to :class:`~manim.constants.DOWN`.
+        
     buff
-        Distance between the formula and its name. Defaults to
-        ``DEFAULT_MOBJECT_TO_MOBJECT_BUFFER``.
+        Distance between the formula and its name. 
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
     **kwargs

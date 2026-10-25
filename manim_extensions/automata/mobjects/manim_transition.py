@@ -55,9 +55,9 @@ class ManimTransition(Transition, VGroup):
     animation_style
         Styling configuration used for animation playback.
     font_size
-        Font size for the read-symbol labels.  Defaults to ``100``.
+        Font size for the read-symbol labels.  
     buffer
-        Spacing buffer for label positioning.  Defaults to ``1``.
+        Spacing buffer for label positioning.  
     **kwargs
         Additional parameters for :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 

@@ -581,7 +581,7 @@ class MArray(VGroup):
     arr_dir
         Specifies the growth direction of the array.
     switch_index_pos
-        If ``True``, displays the element indices on the opposite side of the array growth direction. Defaults to ``False``.
+        If ``True``, displays the element indices on the opposite side of the array growth direction. 
     arr_label_pos
         Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     arr_label_gap

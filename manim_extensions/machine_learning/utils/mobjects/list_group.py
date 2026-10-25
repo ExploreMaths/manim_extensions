@@ -192,7 +192,7 @@ class ListGroup(Mobject):
         z_index_value
             Z-index to apply to all items in the group.
         family
-            Whether to also set the z-index of submobjects, by default True.
+            Whether to also set the z-index of submobjects.
         """
         for item in self.items:
             item.set_z_index(z_index_value, family=True)

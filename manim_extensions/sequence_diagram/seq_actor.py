@@ -36,7 +36,7 @@ class SeqActor(VGroup):
         name : str
             Actor name displayed in the diagram.
         font_size : float, optional
-            Size of the label text. Defaults to ``24``.
+            Size of the label text. 
 
     Examples
     --------
@@ -130,7 +130,7 @@ class SeqActor(VGroup):
         Parameters
         ----------
         ticks_to_elapse
-            Number of time ticks to add to the current actor timeline. Defaults to ``1``.
+            Number of time ticks to add to the current actor timeline. 
 
         Returns
         -------

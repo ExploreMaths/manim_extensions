@@ -19,7 +19,7 @@ class SeqObject(VGroup):
         name : str
             Object name displayed inside the box.
         font_size : float, optional
-            Font size of the label. Defaults to ``18``.
+            Font size of the label. 
 
     Examples
     --------
@@ -59,7 +59,7 @@ class SeqObject(VGroup):
         Parameters
         ----------
         font_size
-            Font size used for the label (default ``18``).
+            Font size used for the label.
 
         Returns
         -------

@@ -29,33 +29,33 @@ class GriddedRectangle(VGroup):
     Parameters
     ----------
     color
-        Color of the rectangle, by default ORANGE.
+        Color of the rectangle.
     height
-        Height of the rectangle, by default 2.0.
+        Height of the rectangle.
     width
-        Width of the rectangle, by default 4.0.
+        Width of the rectangle.
     mark_paths_closed
-        Whether paths are marked closed, by default True.
+        Whether paths are marked closed.
     close_new_points
-        Whether new points close the path, by default True.
+        Whether new points close the path.
     grid_xstep
         Horizontal step of the grid lines.
     grid_ystep
         Vertical step of the grid lines.
     grid_stroke_width
-        Stroke width of the grid lines, by default 0.0.
+        Stroke width of the grid lines.
     grid_stroke_color
-        Color of the grid lines, by default ORANGE.
+        Color of the grid lines.
     grid_stroke_opacity
-        Opacity of the grid lines, by default 1.0.
+        Opacity of the grid lines.
     stroke_width
-        Stroke width of the rectangle border, by default 2.0.
+        Stroke width of the rectangle border.
     fill_opacity
-        Fill opacity of the rectangle, by default 0.2.
+        Fill opacity of the rectangle.
     show_grid_lines
-        Whether to show the grid lines, by default False.
+        Whether to show the grid lines.
     dotted_lines
-        Whether the border is drawn with dotted lines, by default False.
+        Whether the border is drawn with dotted lines.
     **kwargs
         Forwarded to the parent class.
 

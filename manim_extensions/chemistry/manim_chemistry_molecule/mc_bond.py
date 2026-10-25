@@ -29,17 +29,17 @@ class MCBond:
     bond_type
         Type of the bond: 1 for simple, 2 for double, 3 for triple.
     from_atom
-        Atom the bond starts from. Defaults to ``None``.
+        Atom the bond starts from. 
     to_atom
-        Atom the bond ends at. Defaults to ``None``.
+        Atom the bond ends at. 
     stereo
-        Stereo type of the bond. Defaults to ``None``.
+        Stereo type of the bond. 
     molecule_index
-        Index of the bond in the molecule. Defaults to ``None``.
+        Index of the bond in the molecule. 
     topology
-        Topology of the bond. Defaults to ``None``.
+        Topology of the bond. 
     reacting_center_status
-        Reacting center status of the bond. Defaults to ``None``.
+        Reacting center status of the bond. 
     """
 
     def __init__(

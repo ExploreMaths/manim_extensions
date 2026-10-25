@@ -29,8 +29,7 @@ class ManimMLConfig:
         Parameters
         ----------
         default_color_scheme : ColorScheme, optional
-            Color scheme used before any override. Defaults to
-            ``dark_mode``.
+            Color scheme used before any override. 
         """
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(

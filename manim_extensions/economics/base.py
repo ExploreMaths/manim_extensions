@@ -78,17 +78,17 @@ class EconDiagram(VGroup):
     Parameters
     ----------
     x_label
-        Label for the x-axis (default ``"X"``).
+        Label for the x-axis.
     y_label
-        Label for the y-axis (default ``"Y"``).
+        Label for the y-axis.
     x_range
-        Range of the x-axis as ``[min, max, step]`` (default ``[0, 10, 1]``).
+        Range of the x-axis as ``[min, max, step]``.
     y_range
-        Range of the y-axis as ``[min, max, step]`` (default ``[0, 10, 1]``).
+        Range of the y-axis as ``[min, max, step]``.
     x_length
-        Length of the x-axis in scene units (default 6).
+        Length of the x-axis in scene units.
     y_length
-        Length of the y-axis in scene units (default 4).
+        Length of the y-axis in scene units.
     **kwargs
         Additional keyword arguments passed to ``VGroup``.
 
@@ -161,7 +161,7 @@ class EconDiagram(VGroup):
             Color of the curve.
         label_text
             If given, text label placed next to the curve's end.
-            Defaults to ``None``.
+            
 
         Returns
         -------
@@ -194,7 +194,7 @@ class EconDiagram(VGroup):
         color
             Color of the line.
         label_text
-            If given, text label placed above the line. Defaults to ``None``.
+            If given, text label placed above the line. 
 
         Returns
         -------
@@ -292,13 +292,13 @@ class EconDiagram(VGroup):
             Name of the second stored curve.
         label_x
             Text label placed below the x-axis at the intersection.
-            Defaults to ``""``.
+            
         label_y
             Text label placed left of the y-axis at the intersection.
-            Defaults to ``""``.
+            
         numbered
             If True, labels use subscripts (P₁/Y₁) that increment on each
-            shift, and old markers stay visible. Defaults to ``False``.
+            shift, and old markers stay visible. 
 
         Returns
         -------
@@ -399,14 +399,14 @@ class EconDiagram(VGroup):
             New function of x for the curve.
         new_x_range
             New plot range for the curve; if ``None``, the curve's original
-            range is kept. Defaults to ``None``.
+            range is kept. 
         run_time
-            Duration of the shift animation. Defaults to ``1``.
+            Duration of the shift animation. 
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. Defaults to ``False``.
+            equilibrium change. 
         arrow_color
-            Color for the axis arrows. Defaults to ``WHITE``.
+            Color for the axis arrows. 
 
         Returns
         -------

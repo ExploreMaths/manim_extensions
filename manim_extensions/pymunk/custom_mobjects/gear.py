@@ -12,21 +12,21 @@ class Gear(VMobject):
     Parameters
     ----------
     num_teeth
-        The number of teeth distributed around the gear. Defaults to ``12``.
+        The number of teeth distributed around the gear. 
     radius
-        The radius of the base disc of the gear. Defaults to ``1.0``.
+        The radius of the base disc of the gear. 
     tooth_height
         The height of each tooth, measured from the base disc outward.
-        Defaults to ``0.4``.
+        
     width_factor
         The ratio of tooth width to the space available for a single tooth.
-        Defaults to ``0.5`` (half tooth, half gap).
+        (half tooth, half gap).
     roundness
         The corner rounding radius applied to each tooth. Set to ``0`` for
-        sharp corners. Defaults to ``0.05``.
+        sharp corners. 
     hole_radius
         The radius of the hole cut out of the gear's center. Set to ``0`` for
-        a solid gear. Defaults to ``0.1``.
+        a solid gear. 
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 

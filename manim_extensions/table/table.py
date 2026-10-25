@@ -38,17 +38,17 @@ class Table(VGroup):
     rows
         Data rows (list of lists). Required if ``header`` is provided.
     cell_width
-        Default cell width, used only when ``auto_fit=False``. Defaults to ``1.5``.
+        Default cell width, used only when ``auto_fit=False``. 
     cell_height
-        Height of each cell. Defaults to ``0.5``.
+        Height of each cell. 
     font_size
-        Font size for cell text. Defaults to ``20``.
+        Font size for cell text. 
     show_border
         If True, cells have visible borders.
     auto_fit
-        If True, column widths auto-fit to the longest content. Defaults to True.
+        If True, column widths auto-fit to the longest content. 
     padding
-        Extra padding around text when ``auto_fit=True``. Defaults to ``0.3``.
+        Extra padding around text when ``auto_fit=True``. 
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -388,7 +388,7 @@ class Table(VGroup):
         color
             A Manim color.
         include_header
-            If True, also colors the header cell. Defaults to ``False``.
+            If True, also colors the header cell. 
 
         Returns
         -------
@@ -411,9 +411,9 @@ class Table(VGroup):
         color
             A Manim color.
         opacity
-            Background opacity (0 to 1). Defaults to ``0.5``.
+            Background opacity (0 to 1). 
         include_header
-            If True, also colors the header cell. Defaults to ``False``.
+            If True, also colors the header cell. 
 
         Returns
         -------
@@ -436,7 +436,7 @@ class Table(VGroup):
         color
             A Manim color.
         include_header
-            If True, also colors the header cell. Defaults to ``True``.
+            If True, also colors the header cell. 
 
         Returns
         -------
@@ -457,7 +457,7 @@ class Table(VGroup):
         color
             A Manim color.
         opacity
-            Background opacity (0 to 1). Defaults to ``0.5``.
+            Background opacity (0 to 1). 
 
         Returns
         -------
@@ -783,7 +783,7 @@ class Table(VGroup):
             List of values for the data rows. Its length must match the
             number of data rows.
         index
-            Insert index (0-indexed). Defaults to the end of the table.
+            Insert index (0-indexed). 
 
         Returns
         -------

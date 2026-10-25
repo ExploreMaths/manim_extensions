@@ -33,11 +33,11 @@ class PairedQueryLayer(NeuralNetworkLayer):
     negative
         Mobject shown as the negative query example.
     stroke_width
-        Stroke width of the surrounding rectangles, by default 5.
+        Stroke width of the surrounding rectangles.
     font_size
-        Font size of the labels, by default 18.
+        Font size of the labels.
     spacing
-        Spacing between the two images, by default 0.5.
+        Spacing between the two images.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
 
@@ -134,7 +134,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         negative_path
             Path to the image used as the negative query example.
         grayscale
-            Whether to load the images as grayscale mobjects, by default True.
+            Whether to load the images as grayscale mobjects.
         **kwargs
             Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.PairedQueryLayer`.
 
@@ -197,7 +197,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         ----------
         layer_args
             Additional arguments passed to the layers when making their
-            forward pass animations, by default {}.
+            forward pass animations.
         **kwargs
             Forwarded to the parent layer classes.
 

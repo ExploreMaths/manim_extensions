@@ -102,13 +102,13 @@ class LayoutConfig:
     Parameters
     ----------
     direction
-        Layout direction. Defaults to :obj:`~manim.constants.RIGHT`.
+        Layout direction. 
     node_spacing
-        Spacing between nodes. Defaults to 0.5.
+        Spacing between nodes. 
     level_spacing
-        Spacing between layers. Defaults to 0.5.
+        Spacing between layers. 
     sides
-        Sides used for alternating timeline layouts; a single value means single-sided. Defaults to (:obj:`~manim.constants.UP`, :obj:`~manim.constants.DOWN`).
+        Sides used for alternating timeline layouts; a single value means single-sided.
     
     Raises
     ------

@@ -171,12 +171,11 @@ class TimeLineLayout(Layout):
     root
         Root node of the tree to lay out.
     sides
-        Directions for the two sides of the timeline. Defaults to
-        ``(LayoutDirection.TopToBottom, LayoutDirection.BottomToTop)``.
+        Directions for the two sides of the timeline. 
     level_spacing
-        Spacing between tree levels. Defaults to ``0.5``.
+        Spacing between tree levels. 
     node_spacing
-        Spacing between sibling nodes. Defaults to ``0.5``.
+        Spacing between sibling nodes. 
 
     Examples
     --------

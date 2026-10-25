@@ -42,8 +42,7 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) ->
     input_layer
         The layer whose cell width defines the base shift vectors.
     normalized
-        Whether to normalize the rotated vectors to unit length,
-        by default False.
+        Whether to normalize the rotated vectors to unit length.
 
     Returns
     -------
@@ -78,13 +77,13 @@ class Filters(VGroup):
     output_layer
         The output convolutional layer.
     line_color
-        Color of the connective lines, by default ORANGE.
+        Color of the connective lines.
     cell_width
-        Width of a single grid cell, by default 1.0.
+        Width of a single grid cell.
     stroke_width
-        Stroke width of the filter rectangles, by default 2.0.
+        Stroke width of the filter rectangles.
     show_grid_lines
-        Whether to show the grid lines, by default False.
+        Whether to show the grid lines.
     output_feature_map_to_connect
         Index of the output feature map to connect; None connects all of them
         at once.
@@ -420,19 +419,19 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
     output_layer
         The output convolutional layer.
     color
-        Color of the filter rectangles, by default ORANGE.
+        Color of the filter rectangles.
     filter_opacity
-        Fill opacity of the filter rectangles, by default 0.3.
+        Fill opacity of the filter rectangles.
     line_color
-        Color of the connective lines, by default ORANGE.
+        Color of the connective lines.
     active_color
-        Color used when highlighting the layer, by default ORANGE.
+        Color used when highlighting the layer.
     cell_width
-        Width of a single grid cell, by default 0.2.
+        Width of a single grid cell.
     show_grid_lines
-        Whether to show the grid lines, by default True.
+        Whether to show the grid lines.
     highlight_color
-        Color used to highlight cells during animations, by default ORANGE.
+        Color used to highlight cells during animations.
     **kwargs
         Forwarded to the parent layer classes.
     """
@@ -567,7 +566,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         ----------
         highlight_active_feature_map
             Whether to highlight the input and output feature maps of the
-            filter currently being animated, by default True.
+            filter currently being animated.
 
         Returns
         -------
@@ -689,15 +688,15 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         ----------
         layer_args
             Additional arguments passed to the connected layers when making
-            their forward pass animations, by default {}.
+            their forward pass animations.
         all_filters_at_once
             Whether to animate all filters simultaneously instead of one at
-            a time, by default False.
+            a time.
         highlight_active_feature_map
             Whether to highlight the feature map of the filter currently
-            being animated, by default True.
+            being animated.
         run_time
-            Run time of the forward pass animation, by default 10.5.
+            Run time of the forward pass animation.
         **kwargs
             Forwarded to the parent layer classes.
 

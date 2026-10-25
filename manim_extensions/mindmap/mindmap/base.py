@@ -150,7 +150,7 @@ class AbstractMap(Group):
     Parameters
     ----------
     layout_method
-        Layout algorithm used to position nodes. Defaults to ``Layout()``.
+        Layout algorithm used to position nodes. 
 
     Examples
     --------

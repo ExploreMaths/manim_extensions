@@ -18,11 +18,11 @@ class SupplyDemandDiagram(EconDiagram):
     Parameters
     ----------
     demand_func
-        Demand function ``P = D(Q)`` (default ``8 - 0.5·Q``).
+        Demand function ``P = D(Q)``.
     supply_func
-        Supply function ``P = S(Q)`` (default ``2 + 0.5·Q``).
+        Supply function ``P = S(Q)``.
     show_equilibrium
-        If True (default), mark the supply–demand intersection as the equilibrium.
+        If True, mark the supply–demand intersection as the equilibrium.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
 

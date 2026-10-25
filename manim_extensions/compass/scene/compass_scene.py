@@ -182,7 +182,7 @@ class CompassScene(MovingCameraScene):
         pen_pos
             Target position for the compass pen tip (pen_tip).
         run_time
-            Duration of the placement animation in seconds. Defaults to ``1.0``.
+            Duration of the placement animation in seconds. 
         """
         self.play(
             PutCompass(

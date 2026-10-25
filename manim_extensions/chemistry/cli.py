@@ -49,7 +49,7 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
            :header-rows: 0
 
            * - ``'sdf'``
-             - Structure-Data File (default).
+             - Structure-Data File.
            * - ``'asnt'``
              - Abstract Syntax Notation format.
            * - ``'json'``
@@ -66,9 +66,9 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: Any, na
     inchi
         InChI identifier of the molecule(s) to download.
     three_d
-        Whether to use three-dimensional data of the molecule. Defaults to ``False``.
+        Whether to use three-dimensional data of the molecule. 
     output_folder
-        Folder where the downloaded files are saved. Defaults to ``'.'``.
+        Folder where the downloaded files are saved. 
 
     Raises
     ------

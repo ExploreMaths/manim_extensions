@@ -109,7 +109,7 @@ class RubiksCube(VMobject):
        class RubiksCubeOffsetExample(ThreeDScene):
            def construct(self):
                # x_offset, y_offset and z_offset control the gap between cubies
-               # (the default for all three is 2.1). Passing all three spreads
+               # . Passing all three spreads
                # the cube apart along every axis:
                spread = RubiksCube(x_offset=3, y_offset=3, z_offset=3).scale(0.5)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,

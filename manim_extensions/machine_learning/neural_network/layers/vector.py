@@ -21,7 +21,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
     num_values
         Number of values in the vector.
     value_func
-        Function generating the displayed value; by default samples uniformly
+        Function generating the displayed value;
         from [0, 1].
     **kwargs
         Forwarded to the parent layer classes.
@@ -110,7 +110,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         ----------
         layer_args
             Additional arguments passed to the layers when making their
-            forward pass animations, by default {}.
+            forward pass animations.
         **kwargs
             Forwarded to the parent layer classes.
 

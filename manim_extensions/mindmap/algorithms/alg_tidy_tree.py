@@ -287,11 +287,11 @@ class TidyTreeLayout(Layout):
     root
         Root node of the tree to lay out.
     direction
-        Primary layout direction. Defaults to :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`.
+        Primary layout direction. 
     node_spacing
-        Spacing between sibling nodes. Defaults to ``0.5``.
+        Spacing between sibling nodes. 
     level_spacing
-        Spacing between tree levels. Defaults to ``0.5``.
+        Spacing between tree levels. 
 
     Examples
     --------

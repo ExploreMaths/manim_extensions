@@ -140,10 +140,10 @@ class HTMLParsedVMobject:
         updater is registered on it.
     width
         Width of the embedded SVG element, e.g. ``"500px"``.
-        Defaults to ``"500px"``.
+        
     basic_html
         If ``True``, generate a minimal HTML wrapper without the full page
-        structure and script tag. Defaults to ``False``.
+        structure and script tag. 
 
     Examples
     --------
@@ -343,7 +343,7 @@ class HTMLParsedVMobject:
         animate_this
             If ``False``, stop the per-frame updater before sweeping and
             record the current scene time as ``self.last_t``.
-            Defaults to ``True``.
+            
         """
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:

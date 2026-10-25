@@ -33,24 +33,21 @@ class ActivationFunction(ABC, VGroup):
     function_name
         Name displayed next to the plot.
     x_range
-        Range of the x-axis, by default :math:`[-1, 1]`.
+        Range of the x-axis.
     y_range
-        Range of the y-axis, by default :math:`[-1, 1]`.
+        Range of the y-axis.
     x_length
-        Length of the x-axis, by default 0.5.
+        Length of the x-axis.
     y_length
-        Length of the y-axis, by default 0.3.
+        Length of the y-axis.
     show_function_name
-        Whether to display the function name, by default True.
+        Whether to display the function name.
     active_color
-        Color used when highlighting the function, by default
-        ``config.color_scheme.active_color``.
+        Color used when highlighting the function.
     plot_color
-        Color of the function plot, by default
-        ``config.color_scheme.primary_color``.
+        Color of the function plot.
     rectangle_color
-        Color of the surrounding rectangle and axes, by default
-        ``config.color_scheme.secondary_color``.
+        Color of the surrounding rectangle and axes.
 
     Examples
     --------
@@ -159,7 +156,7 @@ class ActivationFunction(ABC, VGroup):
         Parameters
         ----------
         x_val
-            Input value at which to evaluate the function, by default None.
+            Input value at which to evaluate the function.
 
         Returns
         -------

@@ -35,16 +35,15 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     Parameters
     ----------
     point_radius
-        Radius of the points in the point cloud, by default 0.02.
+        Radius of the points in the point cloud.
     mean
-        Mean of the Gaussian point cloud, by default :math:`[0, 0]`.
+        Mean of the Gaussian point cloud.
     covariance
-        Covariance matrix of the Gaussian point cloud, by default the identity.
+        Covariance matrix of the Gaussian point cloud.
     dist_theme
-        Theme of the latent distribution visualization, by default "gaussian".
+        Theme of the latent distribution visualization.
     paired_query_mode
-        Whether the embedding shows positive/negative query images,
-        by default False.
+        Whether the embedding shows positive/negative query images.
     **kwargs
         Forwarded to the parent layer classes.
 
@@ -211,9 +210,9 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         covariance
             Covariance matrix of the Gaussian distribution to sample from.
         point_color
-            Color of the sampled points, by default ``WHITE``.
+            Color of the sampled points.
         num_points
-            Number of points to sample, by default 400.
+            Number of points to sample.
 
         Returns
         -------
@@ -241,8 +240,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         layer_args
             Additional arguments controlling the forward pass, such as
             ``triplet_args``, ``dist_args``, ``scale_factor``,
-            ``positive_dist_args``, and ``negative_dist_args``,
-            by default {}.
+            ``positive_dist_args``, and ``negative_dist_args``.
         **kwargs
             Forwarded to the parent layer classes.
 

@@ -34,7 +34,7 @@ class GrayscaleImageMobject(Group):
     numpy_image
         2D grayscale image data.
     height
-        Height of the rendered image, by default 2.3.
+        Height of the rendered image.
 
     Examples
     --------
@@ -80,7 +80,7 @@ class GrayscaleImageMobject(Group):
         path
             Path to the image file to load.
         height
-            Height of the rendered image, by default 2.3.
+            Height of the rendered image.
 
         Returns
         -------
@@ -98,7 +98,7 @@ class GrayscaleImageMobject(Group):
         Parameters
         ----------
         run_time
-            Duration of the fade-in animation, by default 2.
+            Duration of the fade-in animation.
 
         Returns
         -------
@@ -145,15 +145,15 @@ class LabeledColorImage(Group):
     image
         The image to label.
     color
-        Color of the surrounding rectangle, by default RED.
+        Color of the surrounding rectangle.
     label
-        Text displayed above the image, by default "Positive".
+        Text displayed above the image.
     stroke_width
-        Stroke width of the surrounding rectangle, by default 5.
+        Stroke width of the surrounding rectangle.
     font_size
-        Font size of the label, by default 24.
+        Font size of the label.
     buff
-        Buffer between the image and the label, by default 0.2.
+        Buffer between the image and the label.
 
     Examples
     --------

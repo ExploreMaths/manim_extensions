@@ -44,14 +44,11 @@ class VPivotJoint(VConstraint):
         The local anchor point on ``b_mob`` corresponding to the pivot,
         relative to the Mobject's center.
     anchor_a_appearance
-        The Mobject used to visually represent the anchor point on ``a_mob``
-        (defaults to a red ``Dot``).
+        The Mobject used to visually represent the anchor point on ``a_mob``.
     anchor_b_appearance
-        The Mobject used to visually represent the anchor point on ``b_mob``
-        (defaults to a red ``Dot``).
+        The Mobject used to visually represent the anchor point on ``b_mob``.
     pivot_appearance
-        The Mobject used to visually represent the pivot point
-        (defaults to a white ``Dot`` with 0.05 radius).
+        The Mobject used to visually represent the pivot point.
     connect_line_class
         The Manim class used to draw the line connecting the anchors to the
         pivot (e.g., ``Line``). Pass ``None`` to disable the connecting lines.

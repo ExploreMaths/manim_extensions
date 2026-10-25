@@ -26,11 +26,11 @@ class Cell(VGroup):
     value
         The text content of the cell.
     width
-        Width of the cell. Defaults to ``1.5``.
+        Width of the cell. 
     height
-        Height of the cell. Defaults to ``0.5``.
+        Height of the cell. 
     font_size
-        Font size for the text. Defaults to ``20``.
+        Font size for the text. 
     is_header
         If True, renders the text in bold with a thicker border.
     show_border
@@ -316,7 +316,7 @@ class Cell(VGroup):
         color
             A Manim color (e.g., RED, BLUE, "#FF0000").
         opacity
-            Opacity of the background (0 to 1). Defaults to ``0.5``.
+            Opacity of the background (0 to 1). 
 
         Returns
         -------

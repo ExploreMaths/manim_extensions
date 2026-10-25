@@ -67,7 +67,7 @@ class Mesh:
         indices. Cannot be set when *faces* is ``None``.
     dangling
         If ``True``, check and warn about dangling vertices and faces
-        after initialisation. Defaults to ``False``.
+        after initialisation. 
 
     Examples
     --------
@@ -451,7 +451,7 @@ class Mesh:
         vertex
             Coordinates to search for.
         start
-            Index from which the search starts (default ``0``).
+            Index from which the search starts.
 
         Returns
         -------
@@ -475,7 +475,7 @@ class Mesh:
         face
             Face vertex indices to search for.
         start
-            Index from which the search starts (default ``0``).
+            Index from which the search starts.
 
         Returns
         -------
@@ -492,7 +492,7 @@ class Mesh:
         part
             Part face indices to search for.
         start
-            Index from which the search starts (default ``0``).
+            Index from which the search starts.
 
         Returns
         -------
@@ -1070,7 +1070,7 @@ class Mesh:
         angle
             Rotation angle in radians.
         axis
-            Rotation axis (only used for 3D).  Defaults to the z-axis.
+            Rotation axis (only used for 3D).  
         about_point
             If given, the rotation is performed around this point.
 
@@ -1158,7 +1158,7 @@ class Mesh:
             If ``True``, :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh._vertices` is updated in-place and
             duplicates are removed.
         precision
-            Decimal places used for rounding the result (default ``10``).
+            Decimal places used for rounding the result.
 
         Returns
         -------
@@ -1227,8 +1227,7 @@ class Mesh:
         Parameters
         ----------
         precision
-            Decimal places used when comparing vertices (default ``10``,
-            i.e. equality up to ``1e-10``).
+            Decimal places used when comparing vertices; i.e. equality up to ``1e-10``.
         """
         old_vertices = deepcopy(self._vertices)
         # get unique vertices, indices, and the inverse references
@@ -1299,7 +1298,7 @@ class Mesh:
         ----------
         precision
             Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`
-            (default ``10``).
+            .
         """
         self.remove_duplicate_vertices(precision=precision)
         self.remove_duplicate_faces()
