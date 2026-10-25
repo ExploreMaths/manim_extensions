@@ -702,3 +702,21 @@ body[data-theme="dark"] a.default_value.reference.internal.ref-ext:hover {
         color: #45A06E;
     }
 }
+
+/* Vendored out-of-sync warning icon in the Reference Manual module index.
+   Reuses Furo's own warning icon (mask + theme colour) so it matches the
+   theme's warning admonitions and adapts to light/dark automatically. */
+.module-index .lagging-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.3rem;
+    background-color: var(--color-admonition-title--warning);
+    -webkit-mask-image: var(--icon-warning);
+    mask-image: var(--icon-warning);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    vertical-align: middle;
+}

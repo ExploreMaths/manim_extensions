@@ -109,31 +109,29 @@ from base Manim in blue.
 Module Index
 ------------
 
-.. toctree::
-   :maxdepth: 3
-   :titlesonly:
+.. module-index::
 
-   basic/index
-   algorithm/index
-   arabic/index
-   automata/index
-   chemistry/index
-   circuit/index
-   compass/index
-   data_structures/index
-   economics/index
-   fontawesome/index
-   gearbox/index
-   machine_learning/index
-   meshes/index
-   mindmap/index
-   physics/index
-   pymunk/index
-   qr_codes/index
-   rubikscube/index
-   sequence_diagram/index
-   svg_animations/index
-   table/index
-   tikz/index
-   utils/index
-   weighted_line/index
+   basic
+   algorithm
+   arabic
+   automata
+   chemistry
+   circuit
+   compass
+   data_structures
+   economics
+   fontawesome
+   gearbox
+   machine_learning
+   meshes
+   mindmap
+   physics
+   pymunk
+   qr_codes
+   rubikscube
+   sequence_diagram
+   svg_animations
+   table
+   tikz
+   utils
+   weighted_line

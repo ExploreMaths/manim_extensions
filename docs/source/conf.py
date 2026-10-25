@@ -57,6 +57,7 @@ extensions = [
     "autodoc_inheritance",
     "deprecated_warning",
     "vendored_status",
+    "reference_module_index",
 ]
 
 templates_path = ["_templates"]
