@@ -84,8 +84,10 @@ class ModuleIndexDirective(SphinxDirective):
             item = nodes.list_item()
             para = nodes.paragraph()
             ref = nodes.reference(rawsource=page, text=page, refuri=f"{page}/index.html")
-            para += ref
             if page in lagging:
+                badge = nodes.inline()
+                badge["classes"].append("lagging-badge")
+                badge += ref
                 icon = nodes.raw(
                     "",
                     '<span class="lagging-icon" '
@@ -93,7 +95,10 @@ class ModuleIndexDirective(SphinxDirective):
                     'aria-label="out of sync"></span>',
                     format="html",
                 )
-                para += icon
+                badge += icon
+                para += badge
+            else:
+                para += ref
             item += para
             bullet_list += item
 
