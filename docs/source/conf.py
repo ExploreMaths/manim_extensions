@@ -13,6 +13,13 @@ import sys
 sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("_extensions"))
 
+# Workaround for a manim 0.21/0.22 camera regression that fails every
+# ImageMobject render ("Invalid mode for data type"). Applied before any
+# .. manim:: example is rendered.
+from manim_image_patch import apply_manim_image_patch
+
+apply_manim_image_patch()
+
 # Reuse CI-pre-rendered example media on Read the Docs instead of rendering
 # every example during the build (see .github/workflows/docs-cache.yml and
 # workflow/render_doc_examples.py). Examples missing from the cache still

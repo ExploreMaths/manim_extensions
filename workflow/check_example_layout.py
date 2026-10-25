@@ -37,6 +37,25 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "workflow"))
 
+# Mirror docs/source/_extensions/manim_image_patch.py: manim 0.21/0.22
+# builds its camera overlay with Image.fromarray(np.zeros((h, w)),
+# mode="RGBA"), which Pillow rejects ("Invalid mode for data type") and
+# fails every ImageMobject render. Expand 2-D arrays to 4 channels so the
+# probe measures the same rendered content the docs build produces.
+import numpy as np
+from PIL import Image as _PILImage
+
+_orig_fromarray = _PILImage.fromarray
+
+
+def _patched_fromarray(obj, mode=None):
+    if mode == "RGBA" and getattr(obj, "ndim", 0) == 2:
+        obj = np.repeat(obj[:, :, None], 4, axis=2).astype(np.uint8)
+    return _orig_fromarray(obj, mode=mode)
+
+
+_PILImage.fromarray = _patched_fromarray
+
 EXEMPTIONS_FILE = Path(__file__).resolve().parent / "example_layout_exemptions.json"
 
 # A margin of 5% of the frame size is allowed before content counts as
