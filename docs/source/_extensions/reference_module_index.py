@@ -78,12 +78,18 @@ class ModuleIndexDirective(SphinxDirective):
         bullet_list = nodes.bullet_list()
         bullet_list["classes"].append("module-index")
         for raw_line in self.content:
-            page = raw_line.strip()
-            if not page:
+            line = raw_line.strip()
+            if not line:
                 continue
+            if "=" in line:
+                title, page = [x.strip() for x in line.split("=", 1)]
+            else:
+                title = page = line
             item = nodes.list_item()
             para = nodes.paragraph()
-            ref = nodes.reference(rawsource=page, text=page, refuri=f"{page}/index.html")
+            ref = nodes.reference(
+                rawsource=title, text=title, refuri=f"{page}/index.html"
+            )
             if page in lagging:
                 badge = nodes.inline()
                 badge["classes"].append("lagging-badge")

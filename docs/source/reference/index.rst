@@ -109,29 +109,62 @@ from base Manim in blue.
 Module Index
 ------------
 
+The module index below is also exposed as a navigable tree in the sidebar
+(hidden from the main content).
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+   :titlesonly:
+
+   basic/index
+   algorithm/index
+   arabic/index
+   automata/index
+   chemistry/index
+   circuit/index
+   compass/index
+   data_structures/index
+   economics/index
+   fontawesome/index
+   gearbox/index
+   machine_learning/index
+   meshes/index
+   mindmap/index
+   physics/index
+   pymunk/index
+   qr_codes/index
+   rubikscube/index
+   sequence_diagram/index
+   svg_animations/index
+   table/index
+   tikz/index
+   utils/index
+   weighted_line/index
+
 .. module-index::
 
-   basic
-   algorithm
-   arabic
-   automata
-   chemistry
-   circuit
-   compass
-   data_structures
-   economics
-   fontawesome
-   gearbox
-   machine_learning
-   meshes
-   mindmap
-   physics
-   pymunk
-   qr_codes
-   rubikscube
-   sequence_diagram
-   svg_animations
-   table
-   tikz
-   utils
-   weighted_line
+   Basic = basic
+   Algorithm = algorithm
+   Arabic = arabic
+   Automata = automata
+   Chemistry = chemistry
+   Circuit = circuit
+   Compass = compass
+   Data structures = data_structures
+   Economics = economics
+   Font Awesome = fontawesome
+   GearBox = gearbox
+   Machine Learning = machine_learning
+   Meshes = meshes
+   MindMap = mindmap
+   Physics = physics
+   Pymunk = pymunk
+   QR Codes = qr_codes
+   Rubik's Cube = rubikscube
+   Sequence diagram = sequence_diagram
+   SVG Animations = svg_animations
+   Table = table
+   TikZ = tikz
+   Utilities = utils
+   Weighted Line = weighted_line
