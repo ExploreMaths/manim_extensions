@@ -63,7 +63,7 @@ class GrayscaleImageMobject(Group):
         input_image = np.rollaxis(input_image, 0, start=3)
         self.image_mobject = ImageMobject(
             input_image,
-            image_mode="RBG",
+            image_mode="RGB",
         )
         self.add(self.image_mobject)
         self.image_mobject.set_resampling_algorithm(

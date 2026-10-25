@@ -30,13 +30,16 @@ class ListGroup(Mobject):
        class ListGroupExample(Scene):
            def construct(self):
                self.add(ListGroup(Circle(radius=0.3), Square(side_length=0.6),
-                                  Triangle()))
+                                  Triangle()).scale(3))
     """
 
     def __init__(self, *layers: Mobject) -> None:
         """Initialize the group with the given items."""
         super().__init__()
         self.items: list[Mobject] = [*layers]
+        # Add the items as submobjects so the group is visible when rendered
+        # (Mobject.add bypasses ListGroup's list-semantics `add` override).
+        Mobject.add(self, *layers)
 
     def __getitem__(  # type: ignore[override] # list indexing may return a single item or a slice
         self, indices: int | slice

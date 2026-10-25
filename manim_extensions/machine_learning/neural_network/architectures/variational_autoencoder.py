@@ -10,13 +10,13 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 
 """
-from manim import AnimationGroup, BLUE, Create, ManimColor, VGroup, override_animation
+from manim import AnimationGroup, BLUE, Create, Group, ManimColor, override_animation
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer
 from ..neural_network import NeuralNetwork
 
 
 from typing import Any
-class VariationalAutoencoder(VGroup):
+class VariationalAutoencoder(Group):
     """Variational Autoencoder Manim Visualization.
 
     Parameters
@@ -48,7 +48,7 @@ class VariationalAutoencoder(VGroup):
            def construct(self):
                vae = VariationalAutoencoder()
                vae.move_to(ORIGIN)
-               self.add(vae)
+               self.add(vae.scale(2))
     """
 
     def __init__(
@@ -61,7 +61,7 @@ class VariationalAutoencoder(VGroup):
         layer_spacing: float = 0.5,
     ):
         """Initialize the VAE visualization with encoder, embedding, and decoder layers."""
-        super(VGroup, self).__init__()
+        super().__init__()
         self.encoder_nodes_per_layer = encoder_nodes_per_layer
         self.decoder_nodes_per_layer = decoder_nodes_per_layer
         self.point_color = point_color
@@ -70,6 +70,10 @@ class VariationalAutoencoder(VGroup):
         self.ellipse_stroke_width = ellipse_stroke_width
         # Make the VMobjects
         self.neural_network, self.embedding_layer = self._construct_neural_network()
+        # The network is a Group (not a VMobject), and VAE is a VGroup whose
+        # add() rejects non-VMobjects; append directly so the VAE renders its
+        # network as subcontent.
+        self.submobjects.extend([self.neural_network])
 
     def _construct_neural_network(self):
         """Makes the VAE encoder, embedding layer, and decoder."""
