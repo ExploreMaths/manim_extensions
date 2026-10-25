@@ -9,7 +9,6 @@ These modules form the core of ``manim_extensions`` and are imported directly
 from the package namespace.
 
 .. toctree::
-   :hidden:
    :maxdepth: 2
 
    mobjects
