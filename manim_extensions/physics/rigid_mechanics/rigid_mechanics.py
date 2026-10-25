@@ -12,7 +12,7 @@ and collision) or a static body (stays still within the scene).
 To use this feature, the :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene` must be used, to access
 the specific functions of the space.
 
-.. note::
+.. tip::
 
    *   This feature utilizes the pymunk package. Although unnecessary,
        it might make it easier if you knew a few things on how to use it.
@@ -148,7 +148,7 @@ class SpaceScene(Scene):
     **kwargs
         Forwarded to the parent :class:`~manim.Scene`.
 
-    .. note::
+    .. tip::
 
        The gravity vector can be customised by overriding the class
        attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
