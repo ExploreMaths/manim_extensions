@@ -33,7 +33,7 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
         Additional parameters passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
 
-    .. tip::
+    .. seealso::
 
        See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
 
