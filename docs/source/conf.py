@@ -180,6 +180,13 @@ _TYPE_ALIASES = {
     # the project has no ``autodata`` anchor for an imported name.
     "Vector3D": "manim.typing.Vector3D",
     "Point3D": "manim.typing.Point3D",
+    # ``Point3DLike`` / ``Vector3DLike`` are unions expanded by
+    # ``typing.get_type_hints`` into ``Point3D | tuple[...]``; we patch
+    # the plugin below to hand the formatter the alias object itself (kept
+    # from ``__annotations__``) so the reference shows the alias name and
+    # links to Manim's own inventory entry.
+    "Point3DLike": "manim.typing.Point3DLike",
+    "Vector3DLike": "manim.typing.Vector3DLike",
 }
 
 
@@ -379,6 +386,54 @@ def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
 
 
 def setup(app):
+    # Patch sphinx-autodoc-typehints so Manim typing aliases are not
+    # expanded into their unions (``Point3DLike`` -> ``Point3D |
+    # tuple[float, float, float]``): restore the alias object from the
+    # original ``__annotations__`` so the typehints formatter's identity
+    # branch renders the alias name and links to Manim's inventory.  The
+    # original name is read from ``__annotations__`` (kept unevaluated by
+    # ``from __future__ import annotations``), which is how we can tell
+    # ``Point3DLike`` apart from the structurally identical
+    # ``Vector3DLike``.
+    _LIKE_ALIASES = {
+        "Point3DLike": "manim.typing.Point3DLike",
+        "Vector3DLike": "manim.typing.Vector3DLike",
+    }
+    try:
+        from sphinx_autodoc_typehints._resolve.evaluate import type_hints as _th_mod
+    except Exception:
+        _th_mod = None
+    if _th_mod is not None and getattr(_th_mod, "get_type_hints", None) is not None:
+        _orig_th = _th_mod.get_type_hints
+
+        def _restore_aliases(_hints, _obj):
+            _ann = getattr(_obj, "__annotations__", None) or {}
+            for _name, _src in _ann.items():
+                if _name not in _hints:
+                    continue
+                _dotted = None
+                if isinstance(_src, str):
+                    _dotted = _LIKE_ALIASES.get(_src.strip())
+                else:
+                    for _n, _d in _LIKE_ALIASES.items():
+                        try:
+                            if _src is _resolve_alias(_d):
+                                _dotted = _d
+                                break
+                        except Exception:
+                            continue
+                if _dotted:
+                    try:
+                        _hints[_name] = _resolve_alias(_dotted)
+                    except Exception:
+                        pass
+            return _hints
+
+        def _patched_th(_obj, _globalns=None, _localns=None, **_kw):
+            return _restore_aliases(_orig_th(_obj, _globalns, _localns, **_kw), _obj)
+
+        _th_mod.get_type_hints = _patched_th
+
     app.connect(
         "autodoc-process-docstring",
         _drop_inherited_instance_docstring,
