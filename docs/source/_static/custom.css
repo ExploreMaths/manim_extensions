@@ -349,13 +349,17 @@ a.reference[href*="#manim."]:not(.default_value) code {
     padding: 0;
 }
 
-/* Python cross-references inside autodoc attribute blocks (dl.py.attribute):
-   keep them unstyled — plain inherited text colour, no underline, in both
-   colour schemes and on hover. */
+/* Python cross-references inside autodoc attribute and property blocks
+   (dl.py.attribute, dl.py.property): keep them unstyled — plain inherited
+   text colour, no underline, in both colour schemes and on hover. */
 dl.py.attribute a.reference,
+dl.py.property a.reference,
 dl.py.attribute a.reference code,
+dl.py.property a.reference code,
 dl.py.attribute a.reference:hover,
-dl.py.attribute a.reference code:hover {
+dl.py.property a.reference:hover,
+dl.py.attribute a.reference code:hover,
+dl.py.property a.reference code:hover {
     color: inherit;
     text-decoration: none;
     background: none;
