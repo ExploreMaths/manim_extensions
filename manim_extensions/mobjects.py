@@ -1267,15 +1267,15 @@ class VideoMobject(ImageMobject):
 class ColorText(Text):
     r"""A :class:`~manim.mobject.text.text_mobject.Text` that renders a colour as a code snippet.
 
+    When a colour is passed it is displayed as an ``np.array([r,~g,~b])`` snippet in which
+    the red, green and blue values are colour-coded and the ``~`` separators use
+    *background_color*.
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ColorText.py``).
        Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
-
-    When a colour is passed it is displayed as an ``np.array([r,~g,~b])`` snippet in which
-    the red, green and blue values are colour-coded and the ``~`` separators use
-    *background_color*.
 
     Parameters
     ----------
@@ -1358,14 +1358,14 @@ class ColorText(Text):
 class Trail(VGroup):
     r"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.
 
+    Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
+    the mobject's centre and older segments fade out according to :attr:`~manim_extensions.mobjects.Trail.rate_func`.
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Trail.py``).
        Original author: `@cigar666 <https://github.com/cigar666>`_ (`Bilibili <https://space.bilibili.com/66806831/>`_).
-
-    Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
-    the mobject's centre and older segments fade out according to :attr:`~manim_extensions.mobjects.Trail.rate_func`.
 
     Parameters
     ----------
@@ -1497,14 +1497,14 @@ class Trail(VGroup):
 class ShadowAround(VGroup):
     r"""A soft, blurred shadow surrounding the outline of a mobject.
 
+    The shadow is built from *layer_num* concentric scaled copies whose stroke width and
+    opacity fade outwards (or inwards when ``shadow_out=False``).
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Shadow_around.py``).
        Original author: `@cigar666 <https://github.com/cigar666>`_ (`Bilibili <https://space.bilibili.com/66806831/>`_).
-
-    The shadow is built from *layer_num* concentric scaled copies whose stroke width and
-    opacity fade outwards (or inwards when ``shadow_out=False``).
 
     Parameters
     ----------
@@ -1597,14 +1597,14 @@ class ShadowAround(VGroup):
 class ObjectBorder(VGroup):
     r"""A border (and optional corner markers) that surrounds a mobject.
 
+    If *track* is ``True`` the border continuously follows *obj* through an updater, so it
+    stays aligned while *obj* moves or resizes.
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/Object_Border.py``).
        Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_).
-
-    If *track* is ``True`` the border continuously follows *obj* through an updater, so it
-    stays aligned while *obj* moves or resizes.
 
     Parameters
     ----------
@@ -1691,14 +1691,14 @@ class ObjectBorder(VGroup):
 class ThreeDVector(VGroup):
     r"""A 3D vector drawn as a cylindrical body with a conical tip.
 
+    The direction and length are given by *vector* and the base of the vector sits at
+    *position* (i.e. the tip is at ``position + vector``).
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ThreeDVector.py``).
        Original author: `@魔与方 <https://github.com/moyufang>`_ (`Bilibili <https://space.bilibili.com/443084043/>`_).
-
-    The direction and length are given by *vector* and the base of the vector sits at
-    *position* (i.e. the tip is at ``position + vector``).
 
     Parameters
     ----------
@@ -1790,14 +1790,14 @@ class ThreeDVector(VGroup):
 class TreeDiagram(VGroup):
     r"""A recursive tree diagram built from a nested dictionary.
 
+    Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
+    labels.  Leaf groups are wrapped with a :class:`~manim.mobject.svg.brace.Brace`.
+
     .. note::
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/tree_diagram.py``;
        the original source file does not record its author).
-
-    Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
-    labels.  Leaf groups are wrapped with a :class:`~manim.mobject.svg.brace.Brace`.
 
     Parameters
     ----------
