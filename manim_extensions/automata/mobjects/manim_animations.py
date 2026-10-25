@@ -52,7 +52,7 @@ class ManimAnimations:
                self.play(animations.animate_state_to_default_color(state))
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the ManimAnimations instance."""
         pass
 

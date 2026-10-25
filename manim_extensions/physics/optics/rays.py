@@ -72,7 +72,7 @@ class Ray(Line):
         init_length: float = 5,
         propagate: Iterable[Lens] | None = None,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize Ray."""
         self.init_length = init_length
         self.propagated = False
@@ -80,7 +80,7 @@ class Ray(Line):
         if propagate:
             self.propagate(*propagate)
 
-    def propagate(self, *lenses: Lens) -> None:
+    def propagate(self, *lenses: Lens):
         """Let the ray propagate through the list
         of lenses passed.
 

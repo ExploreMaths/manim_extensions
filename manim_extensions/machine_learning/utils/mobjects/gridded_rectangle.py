@@ -89,7 +89,7 @@ class GriddedRectangle(VGroup):
         show_grid_lines: bool = False,
         dotted_lines: bool = False,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the rectangle and store the grid configuration.
 
         All parameters are stored as attributes for later use by
@@ -266,7 +266,7 @@ class GriddedRectangle(VGroup):
 
     def set_color(  # type: ignore[override] # intentionally returns None instead of the group
         self, color: ManimColor
-    ) -> None:
+    ):
         """Sets the color of the gridded rectangle.
 
         Parameters

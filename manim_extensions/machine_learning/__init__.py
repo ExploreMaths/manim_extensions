@@ -23,7 +23,7 @@ class ManimMLConfig:
     orientation used by neural-network scenes.
     """
 
-    def __init__(self, default_color_scheme: ColorScheme = dark_mode) -> None:
+    def __init__(self, default_color_scheme: ColorScheme = dark_mode):
         """Initialize the configuration.
 
         Parameters
@@ -48,7 +48,7 @@ class ManimMLConfig:
         return self._color_scheme
 
     @color_scheme.setter
-    def color_scheme(self, value: ColorScheme | str) -> None:
+    def color_scheme(self, value: ColorScheme | str):
         """Set the active color scheme and apply its background color.
 
         Parameters

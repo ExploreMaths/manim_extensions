@@ -85,7 +85,7 @@ class FiniteStateAutomaton:
 
     id_iter = itertools.count()
 
-    def __init__(self, json_template: dict | None = None) -> None:
+    def __init__(self, json_template: dict | None = None):
         """Initialize the FiniteStateAutomaton instance."""
         self.id = next(self.id_iter)
         self.states: list[State] = []
@@ -96,7 +96,7 @@ class FiniteStateAutomaton:
         if json_template:
             self.construct_from_json(json_template)
 
-    def process_xml(self, xml_file: str) -> None:
+    def process_xml(self, xml_file: str):
         """Construct the automaton from an XML file.
 
         Parameters
@@ -106,7 +106,7 @@ class FiniteStateAutomaton:
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
-    def construct_from_json(self, json_dictionary: dict) -> None:
+    def construct_from_json(self, json_dictionary: dict):
         """Construct the automaton from a JSON-like dictionary.
 
         Parameters
@@ -120,7 +120,7 @@ class FiniteStateAutomaton:
         self.construct_states(states)
         self.construct_transitions(transitions)
 
-    def construct_states(self, states: list[dict[str, object]]) -> None:
+    def construct_states(self, states: list[dict[str, object]]):
         """Construct state objects from a list of state dictionaries.
 
         Parameters
@@ -135,7 +135,7 @@ class FiniteStateAutomaton:
             name = state_data.get("@name", str(state_id))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
-    def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
+    def construct_transitions(self, transitions: list[dict[str, object]]):
         """Construct transition objects from a list of transition dictionaries.
 
         Parameters
@@ -323,7 +323,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
                self.add(info)
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the PushDownAutomaton instance."""
         super().__init__()
 

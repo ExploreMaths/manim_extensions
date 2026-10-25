@@ -44,7 +44,7 @@ def _font_path() -> str:
     return str(pkg_resources.files("manim_extensions.utils.nerdfont") / _FONT_FILENAME)
 
 
-def _install_font_linux() -> None:
+def _install_font_linux():
     """Install the TTF into the fontconfig user font dir (Linux only).
 
     Idempotent and best-effort: a missing ``fc-cache`` binary or an
@@ -107,7 +107,7 @@ class NerdFontIcon(Text):
                self.add(icon)
     """
 
-    def __init__(self, icon: int | str, **kwargs: Any) -> None:
+    def __init__(self, icon: int | str, **kwargs: Any):
         """Construct a Nerd Font icon mobject."""
         font_path = _font_path()
         _install_font_linux()

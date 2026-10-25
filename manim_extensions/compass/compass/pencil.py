@@ -45,7 +45,7 @@ class Pencil(SVGMobject):
                self.add(pencil, Dot(pencil.get_nib(), color=RED).scale(1.5))
     """
 
-    def __init__(self, height: float = 2, angle: float = PI / 4) -> None:
+    def __init__(self, height: float = 2, angle: float = PI / 4):
         """Initialize the Pencil instance."""
         super().__init__(
             file_name=Path(__file__).resolve().parent / "assets/pencil.svg",

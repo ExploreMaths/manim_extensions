@@ -110,7 +110,7 @@ class EconDiagram(VGroup):
                  x_range: Sequence[float] | None = None,
                  y_range: Sequence[float] | None = None,
                  x_length: float = 6, y_length: float = 4,
-                 **kwargs: Any) -> None:
+                 **kwargs: Any):
         """Initialize the diagram axes and axis labels."""
         super().__init__(**kwargs)
 

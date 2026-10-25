@@ -65,7 +65,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     """
 
     # pylint:disable=abstract-method
-    def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
+    def __init__(self, mesh: Mesh, *args, **kwargs):
         """Initialize the TriangleManim2DMesh instance."""
         if any(len(face) != 3 for face in mesh.faces):
             raise InvalidMeshException("Mesh must only consist of triangles!")
@@ -78,7 +78,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     def edge_flip(
         self, scene: m.Scene, face_idx_1: int, face_idx_2: int, **kwargs
-    ) -> None:
+    ):
         """Flip the shared edge between two adjacent triangle faces.
 
         The edge connecting the two non-shared vertices of the original

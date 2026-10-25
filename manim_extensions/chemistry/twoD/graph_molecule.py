@@ -115,7 +115,7 @@ class DoubleLine(ArcBetweenPoints):
             The computed result."""
         return self._get_unit_vector()
 
-    def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs) -> None:
+    def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs):
         """Reposition both arcs of the double bond to span from start to end.
 
         Parameters

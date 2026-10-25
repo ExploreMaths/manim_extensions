@@ -63,7 +63,7 @@ class Ruler(VGroup):
         stroke_width: float = 2,
         fill_opacity: float = 0.4,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the Ruler instance."""
         super().__init__(**kwargs)
         self.ruler_length = length

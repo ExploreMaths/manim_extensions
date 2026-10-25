@@ -64,7 +64,7 @@ class ThreeDCylinder(OpenGLSurface):
         show_ends: bool = True,
         resolution: tuple = (24, 24),
         **kwargs,
-    ) -> None:
+    ):
         """Initialize an OpenGL cylinder with given radius, height, direction and resolution."""
         self._height = height
         self.radius = radius
@@ -100,7 +100,7 @@ class ThreeDCylinder(OpenGLSurface):
         r = self.radius
         return np.array([r * np.cos(phi), r * np.sin(phi), height])
 
-    def add_bases(self) -> None:
+    def add_bases(self):
         """Adds the end caps of the cylinder."""
         if config.renderer == RendererType.OPENGL:
             color = self.color
@@ -159,7 +159,7 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_theta = theta
         self._current_phi = phi
 
-    def set_direction(self, direction: np.ndarray) -> None:
+    def set_direction(self, direction: np.ndarray):
         """Align the cylinder to point along the given direction vector.
 
         Parameters
@@ -215,7 +215,7 @@ class ThreeDLine(ThreeDCylinder):
 
     def set_start_and_end_attrs(
         self, start: np.ndarray, end: np.ndarray, **kwargs
-    ) -> None:
+    ):
         """Sets the start and end points of the line.
 
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,

@@ -68,7 +68,7 @@ class GaussianDistribution(VGroup):
         dist_theme: str = "gaussian",
         color: ManimColor = ORANGE,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the distribution plot."""
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes

@@ -54,7 +54,7 @@ class PutRuler(ApplyMethod):
         start: Point3D | None = None,
         end: Point3D | None = None,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize PutRuler."""
         super().__init__(ruler.set_ruler, start, end, **kwargs)
 
@@ -94,7 +94,7 @@ class PutRulerAway(PutRuler):
         point: Point3D | None = None,
         is_flat: bool = True,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize PutRulerAway."""
         assert point is not None
         if is_flat:

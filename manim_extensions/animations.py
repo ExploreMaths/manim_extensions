@@ -81,7 +81,7 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any):
         """Initialize the TypeWriter instance."""
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
@@ -93,7 +93,7 @@ class TypeWriter(Animation):
 
         super().__init__(mobject, **kwargs)
 
-    def interpolate_mobject(self, alpha: float) -> None:
+    def interpolate_mobject(self, alpha: float):
         """Set the visible characters based on the animation progress *alpha*.
 
         This method is called internally by Manim during the animation.  It
@@ -371,7 +371,7 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
         """Initialize the WriteRandom instance."""
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects)))
@@ -416,7 +416,7 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
         """Initialize the ReversedWrite instance."""
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects) - 1, -1, -1))
@@ -459,7 +459,7 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
         """Initialize the FadeInRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -502,7 +502,7 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
         """Initialize the FadeOutRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -547,7 +547,7 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
         """Initialize the GrowRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
@@ -605,7 +605,7 @@ class PassingRectangle(Animation):
         buff: float = 0.05,
         fill_opacity: float = 0.6,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the PassingRectangle instance."""
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
@@ -621,7 +621,7 @@ class PassingRectangle(Animation):
         rect.move_to((self.mob_left + self.mob_right) / 2)
         super().__init__(rect, rate_func=linear, **kwargs)
 
-    def interpolate_mobject(self, alpha: float) -> None:
+    def interpolate_mobject(self, alpha: float):
         """Slide and resize the sweep rectangle based on *alpha*.
 
         Parameters
@@ -686,7 +686,7 @@ class LaggedCreation(Animation):
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the LaggedCreation instance."""
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
@@ -787,7 +787,7 @@ class HighLightWithLines(AnimationGroup):
         buff: float = 0.05,
         rec_opacity: float = 0.5,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the HighLightWithLines instance."""
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
@@ -866,7 +866,7 @@ class UnHighLightWithLines(AnimationGroup):
         buff: float = 0.05,
         rec_opacity: float = 0.5,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the UnHighLightWithLines instance."""
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:

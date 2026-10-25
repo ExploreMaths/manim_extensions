@@ -106,7 +106,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
         **kwargs: object,
-    ) -> None:
+    ):
         """Initialize the ManimPushDownAutomaton instance."""
         if json_template is None and xml_file is None:
             json_template = pushdown_automaton_json
@@ -117,7 +117,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self.stack = ["Z"]
 
     # override ManimAutomaton method
-    def construct_transitions(self, transitions: list[dict[str, object]]) -> None:
+    def construct_transitions(self, transitions: list[dict[str, object]]):
         """Build pushdown-automaton transitions from XML or JSON definitions.
 
         Parameters
@@ -157,7 +157,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         transition_from: ManimState,
         transition_to: ManimState,
         rules: list[PushDownAutomatonRule],
-    ) -> None:
+    ):
         """Create and attach a pushdown transition between two states.
 
         Parameters
@@ -375,7 +375,7 @@ class PushDownAutomatonRule:
 
     def __init__(
         self, read_symbol: str, pop: str, push: str, empty_transition: str = r"\epsilon"
-    ) -> None:
+    ):
         """Initialize the PushDownAutomatonRule instance."""
         if read_symbol is None:
             self.read_symbol = empty_transition

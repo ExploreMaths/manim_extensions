@@ -100,7 +100,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
         animation_style: dict[str, object] | None = None,
         cli: bool = False,
         **kwargs: object,
-    ) -> None:
+    ):
         """Initialize the ManimNondeterministicFiniteAutomaton instance."""
         if json_template is None and xml_file is None:
             json_template = nfa_automaton_json

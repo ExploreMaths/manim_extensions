@@ -116,7 +116,7 @@ class DivideAndConquer:
                self.wait()
     """
 
-    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
+    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
         """Initialise the divide-and-conquer visualisation helper."""
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
@@ -177,7 +177,7 @@ class DivideAndConquer:
             split_line,
         )
 
-    def triangulate_leq_3(self, vert_indices: List) -> None:
+    def triangulate_leq_3(self, vert_indices: List):
         """Triangulate a base case of at most three vertices.
 
         Creates a triangle (or a degenerate segment when only two vertices

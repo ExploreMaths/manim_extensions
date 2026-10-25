@@ -89,7 +89,7 @@ class NetworkConnection(VGroup):
         stroke_width: float = 2.0,
         color: ManimColor = WHITE,
         active_color: ManimColor = ORANGE,
-    ) -> None:
+    ):
         """Initialize the NetworkConnection instance."""
         super().__init__()
         assert arc_direction in ["straight", "up", "down", "left", "right"]
@@ -104,7 +104,7 @@ class NetworkConnection(VGroup):
 
         self.make_mobjects()
 
-    def make_mobjects(self) -> None:
+    def make_mobjects(self):
         """Makes the submobjects."""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject

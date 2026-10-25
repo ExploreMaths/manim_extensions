@@ -33,7 +33,7 @@ class ListGroup(Mobject):
                                   Triangle()).scale(3))
     """
 
-    def __init__(self, *layers: Mobject) -> None:
+    def __init__(self, *layers: Mobject):
         """Initialize the group with the given items."""
         super().__init__()
         self.items: list[Mobject] = [*layers]
@@ -49,7 +49,7 @@ class ListGroup(Mobject):
 
     def insert(  # type: ignore[override] # intentionally returns None instead of the group
         self, index: int, item: Mobject
-    ) -> None:
+    ):
         """Inserts item at index.
 
         Parameters
@@ -137,7 +137,7 @@ class ListGroup(Mobject):
         """
         return self.items[index]
 
-    def add(self, item: Mobject) -> None:  # type: ignore[override] # intentionally shadows Mobject.add with list semantics
+    def add(self, item: Mobject):  # type: ignore[override] # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
         Parameters
@@ -148,7 +148,7 @@ class ListGroup(Mobject):
         self.items.append(item)
         self.submobjects = self.items
 
-    def replace(self, index: int, item: Mobject) -> None:  # type: ignore[override] # intentionally shadows Mobject.replace with list semantics
+    def replace(self, index: int, item: Mobject):  # type: ignore[override] # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
         Parameters
@@ -184,7 +184,7 @@ class ListGroup(Mobject):
 
     def set_z_index(  # type: ignore[override] # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
-    ) -> None:
+    ):
         """Sets z index of all values in ListGroup.
 
         Parameters

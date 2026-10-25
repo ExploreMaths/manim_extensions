@@ -159,7 +159,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     # =============================== space  ==================================
     def remove_body_shapes_constraints(
         self, *items: Union[pymunk.Body, pymunk.Shape, pymunk.constraints.Constraint]
-    ) -> None:
+    ):
         """Removes physical bodies, shapes, or constraints from the physical space.
 
         This method handles the unregistration of Pymunk objects. It is crucial for
@@ -174,7 +174,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """
         self.space.remove(*items)
 
-    def _add_body2space(self, mob: Mobject) -> None:
+    def _add_body2space(self, mob: Mobject):
         """Registers the physical body and shapes of a Mobject into the simulation space.
 
         If the body is static, only the shapes are added to the space. For dynamic
@@ -204,7 +204,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         center_of_gravity: Tuple[float, float],
         velocity: Tuple[float, float],
         angular_velocity: float,
-    ) -> None:
+    ):
         """Initializes and configures the Pymunk physical body for a Mobject.
 
         This internal method creates a :class:`pymunk.Body` instance, sets its motion
@@ -258,7 +258,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         center_of_gravity: Tuple[float, float],
         velocity: Tuple[float, float],
         angular_velocity: float,
-    ) -> None:
+    ):
         """Sets up both the physical body and its collision shapes for a Mobject.
 
         This method acts as a high-level initializer that configures the motion
@@ -473,7 +473,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Applies a force to a Mobject's physical body at a point defined in local coordinates.
 
         The force is applied relative to the body's current orientation. If the point
@@ -499,7 +499,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         force: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Applies a force to a Mobject's physical body at a point defined in world coordinates.
 
         The force vector is applied at an absolute position in the scene. If the
@@ -525,7 +525,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Applies an instantaneous impulse to a Mobject's physical body at a local point.
 
         Impulses cause an immediate change in velocity (linear and angular) without
@@ -550,7 +550,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         impulse: tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Applies an instantaneous impulse to a Mobject's physical body at a world coordinate.
 
         The impulse vector is applied at an absolute position in the scene. This causes
@@ -725,7 +725,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         density: float = 1.0,
         sensor: bool = False,
         surface_velocity: Tuple[float, float] = (0.0, 0.0),
-    ) -> None:
+    ):
         """Configures and attaches collision shapes to a Mobject's physical body.
 
         This internal method defines the 'material' and 'boundary' properties of the
@@ -771,7 +771,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             shape.sensor = sensor
             shape.surface_velocity = surface_velocity
 
-    def __calculate_solid_shape(self, mob: Mobject) -> None:
+    def __calculate_solid_shape(self, mob: Mobject):
         """Generates Pymunk collision shapes for a solid Mobject.
 
         This method maps Manim primitives (Circle, Line, Polygon, etc.) to their
@@ -835,7 +835,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                         pymunk.Poly(mob.body, hull_verts, radius=stroke_width / 2)
                     )
 
-    def __calculate_hollow_shape(self, mob: Mobject, n_divisions: int = 4) -> None:
+    def __calculate_hollow_shape(self, mob: Mobject, n_divisions: int = 4):
         """Generates Pymunk collision shapes for a hollow Mobject (outline only).
 
         Instead of a solid polygon, this method constructs a collision boundary using
@@ -878,7 +878,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             )
             mob.shapes.append(seg)
 
-    def __calculate_img_shape(self, mob: ImageMobject) -> None:
+    def __calculate_img_shape(self, mob: ImageMobject):
         """Generates Pymunk collision shapes from ImageMobject pixel data.
 
         This method analyzes the image's transparency (alpha channel) or pixel

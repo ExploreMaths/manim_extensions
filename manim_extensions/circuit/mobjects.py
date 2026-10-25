@@ -90,7 +90,7 @@ class VoltageSource(Source):
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
         **kwargs: Any,
-    ) -> None:
+    ):
         # + and -
         """Initialize the VoltageSource instance."""
         markings = VGroup()
@@ -148,7 +148,7 @@ class CurrentSource(Source):
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
         **kwargs: Any,
-    ) -> None:
+    ):
         # Arrow
         """Initialize the CurrentSource instance."""
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
@@ -203,7 +203,7 @@ class Inductor(VMobject):
         label: str | None = None,
         direction: Vector3DLike = DOWN,
         **kwargs: Any,
-    ) -> None:
+    ):
         # initialize the vmobject
         """Initialize the Inductor instance."""
         super().__init__(**kwargs)
@@ -330,7 +330,7 @@ class Resistor(VMobject):
         label: str | None = None,
         direction: Vector3DLike = DOWN,
         **kwargs: Any,
-    ) -> None:
+    ):
         # initialize the vmobject
         """Initialize the Resistor instance."""
         super().__init__(**kwargs)
@@ -470,7 +470,7 @@ class Capacitor(VMobject):
         direction: Vector3DLike = DOWN,
         polarized: bool = False,
         **kwargs: Any,
-    ) -> None:
+    ):
         # initialize the vmobject
         """Initialize the Capacitor instance."""
         super().__init__(**kwargs)
@@ -603,7 +603,7 @@ class Ground(VMobject):
         ground_type: str = "ground",
         label: str | None = None,
         **kwargs: Any,
-    ) -> None:
+    ):
         # initialize the vmobject
         """Initialize the Ground instance."""
         super().__init__(**kwargs)
@@ -696,7 +696,7 @@ class Opamp(VMobject):
         bias_supply: str | None = None,
         label: bool = False,
         **kwargs: Any,
-    ) -> None:
+    ):
         # initialize the vmobject
         """Initialize the Opamp instance."""
         super().__init__(**kwargs)

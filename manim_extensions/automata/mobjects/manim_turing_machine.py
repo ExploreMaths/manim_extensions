@@ -40,7 +40,7 @@ class ManimTuringMachine(VGroup):
                self.add(tm)
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the ManimTuringMachine instance."""
         super().__init__()
         self.tape = VGroup()

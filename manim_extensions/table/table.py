@@ -178,7 +178,7 @@ class Table(VGroup):
         auto_fit: bool = True,
         padding: float = 0.3,
         **kwargs: Any
-    ) -> None:
+    ):
         """Initialize the table from a header row plus data rows, or a
         single data matrix whose first row is the header.."""
         super().__init__(**kwargs)

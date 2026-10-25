@@ -73,7 +73,7 @@ class Transition:
 
     id_iter = itertools.count()
 
-    def __init__(self, transition_from: State, transition_to: State) -> None:
+    def __init__(self, transition_from: State, transition_to: State):
         """Initialize the Transition instance."""
         self.id = next(self.id_iter)
         self.transition_from = transition_from

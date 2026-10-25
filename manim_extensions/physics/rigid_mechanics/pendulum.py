@@ -86,7 +86,7 @@ class MultiPendulum(VGroup):
             "fill_opacity": 1,
         },
         **kwargs,
-    ) -> None:
+    ):
         """Initialize MultiPendulum."""
         self.pivot_point = pivot_point
         self.bobs = VGroup(*[Circle(**bob_style).move_to(i) for i in bobs])
@@ -110,7 +110,7 @@ class MultiPendulum(VGroup):
 
     def _make_joints(
         self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene
-    ) -> None:
+    ):
         """Create a pymont pin joint between two bodies (or a body and a fixed point).
 
         Parameters
@@ -155,7 +155,7 @@ class MultiPendulum(VGroup):
             RIGHT * x1 + UP * y1,
         )
 
-    def start_swinging(self) -> None:
+    def start_swinging(self):
         """Creates pymunk joints between bobs and starts the physics simulation."""
         spacescene: SpaceScene = self.bobs[0].spacescene
         pins = [self.pivot_point]
@@ -165,7 +165,7 @@ class MultiPendulum(VGroup):
             self._make_joints(pins[i + 1], pins[i], spacescene)
             self.rods[i].add_updater(lambda mob, i=i: self._redraw_rods(mob, pins, i))
 
-    def end_swinging(self) -> None:
+    def end_swinging(self):
         """Stop swinging."""
         spacescene = self.bobs[0].spacescene
         spacescene.stop_rigidity(self.bobs)

@@ -44,11 +44,11 @@ class ManimAutomataCLI:
        # Choice: 0
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the ManimAutomataCLI instance."""
         print(cli_logo)
 
-    def creation_menu(self) -> None:
+    def creation_menu(self):
         """Prompt the user to choose an automaton type and schema file path."""
         options = [
             "Deterministic Finite Automaton",
@@ -58,7 +58,7 @@ class ManimAutomataCLI:
         self.creation_option = self.display_options(options)
         self.file_path = input("Schema File Path: ")
 
-    def display_nda_options(self) -> None:
+    def display_nda_options(self):
         """Prompt the user to choose an NDA-specific option."""
         options = ["Non-deterministic Automaton Path Builder"]
         self.nda_option = self.display_options(options)
@@ -97,7 +97,7 @@ class ManimAutomataCLI:
 
         return int(input("Choice: "))
 
-    def non_deterministic_finite_automata_path_builder_callback(self) -> None:
+    def non_deterministic_finite_automata_path_builder_callback(self):
         """Handle the NDA path-builder menu callback.
 
         .. todo::

@@ -88,7 +88,7 @@ class Compass(VGroup):
         leg_width: float = 0.12,
         r: float = 0.2,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the Compass instance."""
         super().__init__(stroke_width=stroke_width, **kwargs)
         self.head_color = head_color

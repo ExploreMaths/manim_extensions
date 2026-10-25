@@ -164,7 +164,7 @@ class MArrayElement(VGroup):
         index_gap: float,
         label_pos: np.ndarray,
         label_gap: float,
-    ) -> None:
+    ):
         """Initializes the attributes for the class.
 
         Parameters
@@ -202,7 +202,7 @@ class MArrayElement(VGroup):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-    ) -> None:
+    ):
         """Updates the attributes of the class.
 
         Parameters
@@ -239,7 +239,7 @@ class MArrayElement(VGroup):
         init_label: bool = False,
         next_to_mob: Optional["MArrayElement"] = None,
         next_to_dir: np.ndarray = RIGHT,
-    ) -> None:
+    ):
         """Initializes the mobjects for the class.
 
         Parameters
@@ -312,7 +312,7 @@ class MArrayElement(VGroup):
         next_to_mob: Optional["MArrayElement"] = None,
         next_to_dir: np.ndarray = RIGHT,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the MArrayElement instance."""
 
         super().__init__(**kwargs)
@@ -1020,7 +1020,7 @@ class MArray(VGroup):
         switch_index_pos: bool,
         arr_label_pos: MArrayDirection,
         arr_label_gap: float,
-    ) -> None:
+    ):
         """Initializes the attributes for the class.
 
         Parameters
@@ -1068,7 +1068,7 @@ class MArray(VGroup):
     def __update_props(
         self,
         mob_arr_label_args: MobProps = {},
-    ) -> None:
+    ):
         """Updates the attributes of the class.
 
         Parameters
@@ -1086,7 +1086,7 @@ class MArray(VGroup):
     def __init_mobs(
         self,
         init_arr_label: bool = False,
-    ) -> None:
+    ):
         """Initializes the mobjects for the class.
 
         Parameters
@@ -1140,7 +1140,7 @@ class MArray(VGroup):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the MArray instance."""
 
         super().__init__(**kwargs)
@@ -1690,10 +1690,10 @@ class MArrayPointer(VGroup):
 
         return arrow_pos_np
 
-    def __add_updater(self) -> None:
+    def __add_updater(self):
         """Attaches the position updater function with the pointer."""
 
-        def updater_pos(mob: Mobject) -> None:
+        def updater_pos(mob: Mobject):
             """Reposition the pointer to its element on every frame.
 
             Parameters
@@ -1706,7 +1706,7 @@ class MArrayPointer(VGroup):
 
         self.add_updater(self.__updater_pos)
 
-    def __remove_updater(self) -> None:
+    def __remove_updater(self):
         """Removes the attached position updater function from the pointer."""
 
         self.remove_updater(self.__updater_pos)
@@ -1755,7 +1755,7 @@ class MArrayPointer(VGroup):
         arrow_gap: float,
         label_gap: float,
         pointer_pos: MArrayDirection,
-    ) -> None:
+    ):
         """Initializes the attributes for the class.
 
         Parameters
@@ -1793,7 +1793,7 @@ class MArrayPointer(VGroup):
 
     def __update_props(
         self, mob_arrow_args: MobProps = {}, mob_label_args: MobProps = {}
-    ) -> None:
+    ):
         """Updates the attributes of the class.
 
         Parameters
@@ -1811,7 +1811,7 @@ class MArrayPointer(VGroup):
         if type(self.__mob_label_props["text"]) != str:
             self.__mob_label_props["text"] = str(self.__mob_label_props["text"])
 
-    def __init_mobs(self, init_arrow: bool = False, init_label: bool = False) -> None:
+    def __init_mobs(self, init_arrow: bool = False, init_label: bool = False):
         """Initializes the mobjects for the class.
 
         Parameters
@@ -1845,7 +1845,7 @@ class MArrayPointer(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __init_pos(self) -> None:
+    def __init_pos(self):
         """Initializes the position of the object."""
 
         arrow_pos_np = self.__calc_arrow_pos()
@@ -1881,7 +1881,7 @@ class MArrayPointer(VGroup):
         mob_arrow_args: MobProps = {},
         mob_label_args: MobProps = {},
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the MArrayPointer instance."""
 
         super().__init__(**kwargs)
@@ -2031,7 +2031,7 @@ class MArrayPointer(VGroup):
 
         return shift_anim
 
-    def attach_to_elem(self, index: int) -> None:
+    def attach_to_elem(self, index: int):
         """Attaches pointer to the specified element.
 
         Parameters
@@ -2216,7 +2216,7 @@ class MArraySlidingWindow(VGroup):
         else:
             return self.__dir_map[self.__label_pos.value]["np"]
 
-    def __pos_mobs(self, pos_window: bool = False, pos_label: bool = False) -> None:
+    def __pos_mobs(self, pos_window: bool = False, pos_label: bool = False):
         """Positions mobjects of the class.
 
         Parameters
@@ -2238,10 +2238,10 @@ class MArraySlidingWindow(VGroup):
                 self.__label_gap,
             )
 
-    def __add_updater(self) -> None:
+    def __add_updater(self):
         """Attaches the position updater function with the pointer."""
 
-        def updater_pos(mob: Mobject) -> None:
+        def updater_pos(mob: Mobject):
             """Reposition the pointer to its element on every frame.
 
             Parameters
@@ -2254,7 +2254,7 @@ class MArraySlidingWindow(VGroup):
 
         self.add_updater(self.__updater_pos)
 
-    def __remove_updater(self) -> None:
+    def __remove_updater(self):
         """Removes the attached position updater function from the pointer."""
 
         self.remove_updater(self.__updater_pos)
@@ -2268,7 +2268,7 @@ class MArraySlidingWindow(VGroup):
         label: str,
         label_gap: float,
         label_pos: MArrayDirection,
-    ) -> None:
+    ):
         """Initializes the attributes for the class.
 
         Parameters
@@ -2305,7 +2305,7 @@ class MArraySlidingWindow(VGroup):
 
     def __update_props(
         self, mob_window_args: MobProps = {}, mob_label_args: MobProps = {}
-    ) -> None:
+    ):
         """Updates the attributes of the class.
 
         Parameters
@@ -2323,7 +2323,7 @@ class MArraySlidingWindow(VGroup):
         if type(self.__mob_label_props["text"]) != str:
             self.__mob_label_props["text"] = str(self.__mob_label_props["text"])
 
-    def __init_mobs(self, init_window: bool = False, init_label: bool = False) -> None:
+    def __init_mobs(self, init_window: bool = False, init_label: bool = False):
         """Initializes the mobjects for the class.
 
         Parameters
@@ -2347,7 +2347,7 @@ class MArraySlidingWindow(VGroup):
             self.__pos_mobs(pos_label=True)
             self.add(self.__mob_label)
 
-    def __init_pos(self) -> None:
+    def __init_pos(self):
         """Initializes the position of the object."""
 
         self.__pos_mobs(True, True)
@@ -2377,7 +2377,7 @@ class MArraySlidingWindow(VGroup):
         mob_window_args: MobProps = {},
         mob_label_args: MobProps = {},
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the MArraySlidingWindow instance."""
 
         super().__init__(**kwargs)
@@ -2511,7 +2511,7 @@ class MArraySlidingWindow(VGroup):
         self.__index = index
         return self.resize_window(self.__size, play_anim, play_anim_args)
 
-    def attach_to_elem(self, index: int) -> None:
+    def attach_to_elem(self, index: int):
         """Attaches pointer to the specified element.
 
         Parameters

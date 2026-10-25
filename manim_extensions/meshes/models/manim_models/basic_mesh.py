@@ -99,7 +99,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     # pylint:disable=abstract-method
 
-    def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
+    def __init__(self, mesh: Mesh, *args, **kwargs):
         """
         initialize super Group and set all the params
         vertices, edges and faces are groups, so we can easily access them later on
@@ -120,7 +120,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
         self.setup()
 
-    def setup(self) -> None:
+    def setup(self):
         """create all the necessary manim objects for the renderer."""
         if self.display_faces:
             self.setup_faces()
@@ -333,7 +333,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         """
         return self.edges.submobjects[edge_idx]
 
-    def add_vertices(self, new_vertices: Vertices, scene: m.Scene) -> None:
+    def add_vertices(self, new_vertices: Vertices, scene: m.Scene):
         """fade in some additional vertices.
 
         Parameters
@@ -348,7 +348,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         if self.display_vertices:
             scene.play(m.FadeOut(self.vertices), m.FadeIn(self.setup_vertices()))
 
-    def _update_vertex(self, vertex_idx: int, pos: np.ndarray) -> None:
+    def _update_vertex(self, vertex_idx: int, pos: np.ndarray):
         """Change the position of a vertex and update all dependent mobjects.
 
         If vertices are displayed the corresponding vertex object is moved.
@@ -381,7 +381,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             for edge in self.mesh.get_vertex_edges(vertex_idx):
                 self._update_edge(edge)
 
-    def _update_edge(self, edge: Tuple[int, int]) -> None:
+    def _update_edge(self, edge: Tuple[int, int]):
         """Update the Manim object of *edge* to reflect the latest vertex positions.
 
         Parameters
@@ -394,7 +394,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         vert_2 = self.mesh.get_3d_vertices()[edge[1]]
         e.set_points_as_corners([vert_1, vert_2])
 
-    def shift(self, *vectors: np.ndarray) -> None:
+    def shift(self, *vectors: np.ndarray):
         """Shift the mesh and its underlying data by the sum of *vectors*.
 
         Multiple vectors of the same dimensionality are summed to produce
@@ -504,7 +504,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     def shift_vertex(
         self, scene: m.Scene, vertex_idx: int, shift: np.ndarray, **kwargs
-    ) -> None:
+    ):
         """Animate a single vertex and update all adjacent faces/edges.
 
         Parameters
@@ -539,7 +539,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def shift_vertices(self, scene: m.Scene, shift: np.ndarray, **kwargs) -> None:
+    def shift_vertices(self, scene: m.Scene, shift: np.ndarray, **kwargs):
         """Animate all vertices simultaneously with per-vertex offsets.
 
         Parameters
@@ -578,7 +578,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     def move_vertices_to(
         self, scene: m.Scene, new_positions: np.ndarray, **kwargs
-    ) -> None:
+    ):
         """Animate all vertices to *new_positions* and update the underlying mesh.
 
         Parameters
@@ -604,7 +604,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
 
     def move_vertex_to(
         self, scene: m.Scene, vertex_idx: int, pos: np.ndarray, **kwargs
-    ) -> None:
+    ):
         """Animate a single vertex to a new absolute position.
 
         Parameters
@@ -637,7 +637,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         threshold: Tuple[float, ...],
         nof_steps: int = 1,
         **kwargs,
-    ) -> None:
+    ):
         """Animate vertices snapping to a regular grid.
 
         Uses :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid` to compute the target positions and
@@ -723,7 +723,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     """
 
     # pylint:disable=abstract-method
-    def __init__(self, mesh: Mesh, *args, **kwargs) -> None:
+    def __init__(self, mesh: Mesh, *args, **kwargs):
         # validate if we have a useful 2D mesh
         """Initialize the Manim2DMesh instance."""
         if mesh.dim == 3:

@@ -322,7 +322,7 @@ def VMobjectInt(
 
     def _intersect_curves(
         c1: NDArray[np.float64], c2: NDArray[np.float64], depth: int
-    ) -> None:
+    ):
         """Recursively intersect two cubic Bézier curves."""
         if not _bbox_overlap(c1, c2, tolerance):
             return

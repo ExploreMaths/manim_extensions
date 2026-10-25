@@ -41,7 +41,7 @@ class BaseParser(ABC):
 
     """
 
-    def __init__(self, filename: FilePath) -> None:
+    def __init__(self, filename: FilePath):
         """Read and parse the chemistry file."""
         self.file_data: Any = self.read_file(filename)
         parsed_data = self.parse_file_data()

@@ -76,7 +76,7 @@ class Charge(VGroup):
         point: np.ndarray = ORIGIN,
         add_glow: bool = True,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize Charge."""
         VGroup.__init__(self, **kwargs)
         self.magnitude = magnitude
@@ -153,7 +153,7 @@ class ElectricField(ArrowVectorField):
                self.add(content)
     """
 
-    def __init__(self, *charges: Charge, **kwargs) -> None:
+    def __init__(self, *charges: Charge, **kwargs):
         """Initialize ElectricField."""
         self.charges = charges
         positions = []

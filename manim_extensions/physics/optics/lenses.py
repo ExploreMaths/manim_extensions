@@ -135,7 +135,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
                )
     """
 
-    def __init__(self, f: float, d: float, n: float = 1.52, **kwargs) -> None:
+    def __init__(self, f: float, d: float, n: float = 1.52, **kwargs):
         """Initialize Lens."""
         super().__init__(**kwargs)
         self.f = f

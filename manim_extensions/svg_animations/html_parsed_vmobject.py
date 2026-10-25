@@ -105,7 +105,7 @@ combsDict[comb]();
 """
 
 
-def _ensure_to_svg_plugin() -> None:
+def _ensure_to_svg_plugin():
     """Import the manim-mobject-svg plugin, which registers VMobject.to_svg().
 
     The import is done lazily so that :mod:`manim_extensions.svg_animations`
@@ -185,7 +185,7 @@ class HTMLParsedVMobject:
                parsed.finish()
     """
 
-    def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False) -> None:
+    def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False):
         """Initialize the exporter and write the initial HTML page."""
         self.vmobject = vmobject
         self.scene = scene
@@ -205,7 +205,7 @@ class HTMLParsedVMobject:
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
     
-    def updater(self, dt: float) -> None:
+    def updater(self, dt: float):
         """Export the vmobject to an SVG frame and append the JS update.
 
         Called once per rendered frame through the scene updater registered
@@ -260,7 +260,7 @@ class HTMLParsedVMobject:
         self.current_index += 1
         os.remove(svg_filename)
     
-    def update_html(self) -> None:
+    def update_html(self):
         """Rewrite the HTML page with the current frame and time.
 
         Called on every scene update; embeds the current SVG frame and
@@ -294,7 +294,7 @@ class HTMLParsedVMobject:
                 bg_color_css
             )
     
-    def finish(self) -> None:
+    def finish(self):
         """Stop the updater and write the final HTML and JS files.
 
         Removes the scene updater and flushes the accumulated
@@ -324,7 +324,7 @@ class HTMLParsedVMobject:
         value_trackers: list[ValueTracker],
         linspaces: list[NDArray[np.float64]],
         animate_this: bool = True
-    ) -> None:
+    ):
         """Precompute the interactive JavaScript state for value combinations.
 
         Iterates over the cartesian product of ``linspaces``, sets each

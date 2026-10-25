@@ -82,7 +82,7 @@ class Tikz(SVGMobject):
         preamble: Optional[str] = None,
         use_pdf: bool = False,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the TikZ instance."""
         file_name = self.convert(code, packages, libraries, tikzset, preamble, use_pdf)
         super().__init__(

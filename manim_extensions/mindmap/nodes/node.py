@@ -124,7 +124,7 @@ class NodeStyle:
             {"color": GREEN, "font_size": 48},
             {"color": WHITE, "font_size": 36},
         ],
-    ) -> None:
+    ):
         """Initialize the NodeStyle instance."""
         self.node_num = len(node_style)
         if self.node_num:
@@ -289,7 +289,7 @@ class Node:
         vmobject: VMobject | None = None,
         buff: float = 0.2,
         **kwargs: object,
-    ) -> None:
+    ):
         """Initialize the Node instance."""
         self.vmobject = vmobject
         self.height = self.vmobject.height + 2 * buff
@@ -305,7 +305,7 @@ class Node:
         self.node_state = NodeSate.INSERT  # node state
         self.side = None
 
-    def scale(self, scale_factor: float) -> None:
+    def scale(self, scale_factor: float):
         """Scale the node around its current center.
 
         Parameters
@@ -318,7 +318,7 @@ class Node:
         self.width *= scale_factor
         self.height *= scale_factor
 
-    def add_child(self, child: "Node") -> None:
+    def add_child(self, child: "Node"):
         """Attach a child node to the current node.
 
         Parameters
@@ -332,7 +332,7 @@ class Node:
         self.children.append(child)
         child.parent = self
 
-    def remove_child(self, child: "Node") -> None:
+    def remove_child(self, child: "Node"):
         """Mark a child node for removal from the current node.
 
         Parameters
@@ -349,7 +349,7 @@ class Node:
             raise ValueError(f"Node {child} is not a child of {self}")
         child.node_state = NodeSate.REMOVE
 
-    def alter_content(self, vmobject: VMobject) -> None:
+    def alter_content(self, vmobject: VMobject):
         """Replace the displayed content of the node.
 
         Parameters
@@ -474,7 +474,7 @@ class Node:
 
     def set_connector(
         self, layout_type: LayoutType, direction: np.ndarray = RIGHT, **kwargs: object
-    ) -> None:
+    ):
         """Set the connector line.
 
         Parameters
@@ -500,7 +500,7 @@ class Node:
         layout_type: LayoutType,
         direction: np.ndarray = RIGHT,
         **kwargs: object,
-    ) -> None:
+    ):
         """Change the connector line.
 
         Parameters

@@ -263,7 +263,7 @@ class SpaceScene(Scene):
 
     def make_static_body(
         self, *mobs: Mobject, elasticity: float = 1, friction: float = 0.8
-    ) -> None:
+    ):
         """Make any mobject interactable by rigid objects.
 
         Parameters
@@ -284,7 +284,7 @@ class SpaceScene(Scene):
             mob.shape.friction = friction
             self.add_body(mob)
 
-    def stop_rigidity(self, *mobs: Mobject) -> None:
+    def stop_rigidity(self, *mobs: Mobject):
         """Stop the mobjects rigidity.
 
         Parameters
@@ -326,7 +326,7 @@ def _simulate(b: Any):
     b.angle = b.body.angle
 
 
-def get_shape(mob: VMobject) -> None:
+def get_shape(mob: VMobject):
     """Obtains the shape of the body from the mobject.
 
     Parameters
@@ -355,7 +355,7 @@ def get_shape(mob: VMobject) -> None:
         mob.shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
 
 
-def get_angle(mob: VMobject) -> None:
+def get_angle(mob: VMobject):
     """Obtains the angle of the body from the mobject.
     Used internally for updaters.
 

@@ -119,7 +119,7 @@ class MindMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> None:
+    def _set_connectors(self):
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -220,7 +220,7 @@ class TimeLine(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> None:
+    def _set_connectors(self):
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -325,7 +325,7 @@ class StandardMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> None:
+    def _set_connectors(self):
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -430,7 +430,7 @@ class CatalogMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self) -> None:
+    def _set_connectors(self):
         """Set connection lines."""
         for node in bfs_walker(self.root):
             node.connector = (

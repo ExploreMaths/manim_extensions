@@ -114,7 +114,7 @@ class ChineseMathTex(MathTex):
         font: str = DEFAULT_CJK_FONT,
         tex_to_color_map: Optional[dict[str, ParsableManimColor]] = None,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the ChineseMathTex instance."""
         if tex_to_color_map is None:
             tex_to_color_map = {}
@@ -229,7 +229,7 @@ class LabelDot(VGroup):
         label_pos: np.ndarray = DOWN,
         buff: float = 0.1,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the LabelDot instance."""
         super().__init__(**kwargs)
         dot = Dot().move_to(dot_pos)
@@ -300,7 +300,7 @@ class MathTexLine(VGroup):
         direction: np.ndarray = UP,
         buff: float = 0.5,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the MathTexLine instance."""
         super().__init__()
         line = Line(**kwargs)
@@ -350,7 +350,7 @@ class MathTexBrace(VGroup):
         direction: np.ndarray = UP,
         buff: float = 0.5,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the MathTexBrace instance."""
         super().__init__()
         brace = Brace(target, direction=direction, **kwargs)
@@ -398,7 +398,7 @@ class MathTexDoublearrow(VGroup):
         direction: np.ndarray = UP,
         buff: float = 0.5,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the MathTexDoublearrow instance."""
         super().__init__()
         doublearrow = DoubleArrow(**kwargs)
@@ -454,7 +454,7 @@ class PerpendicularLine(Line):
         point: Union[np.ndarray, tuple, list, Mobject],
         line: Line,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the PerpendicularLine instance."""
         if isinstance(point, Mobject):
             self.point = point.get_center()
@@ -514,7 +514,7 @@ class ExtendedLine(Line):
                self.add(extended, ends)
     """
 
-    def __init__(self, line: Line, extend_distance: float) -> None:
+    def __init__(self, line: Line, extend_distance: float):
         """Initialize the ExtendedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
@@ -561,7 +561,7 @@ class ShortenedLine(Line):
                self.add(ghost, shortened)
     """
 
-    def __init__(self, line: Line, shorten_distance: float) -> None:
+    def __init__(self, line: Line, shorten_distance: float):
         """Initialize the ShortenedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
@@ -630,7 +630,7 @@ class PerpendicularSign(VGroup):
         length: float = 0.25,
         corner_direction: Optional[Union[np.ndarray, tuple, list, None]] = None,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the PerpendicularSign instance."""
         super().__init__(**kwargs)
 
@@ -830,7 +830,7 @@ class FileTree(Code):
         font_size: float = DEFAULT_FONT_SIZE,
         color: ParsableManimColor = WHITE,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the FileTree instance."""
         if not isinstance(tree_dict, dict):
             raise TypeError(f"tree_dict must be a dict, got {type(tree_dict).__name__}")
@@ -970,7 +970,7 @@ class CropImageMobject(ImageMobject):
         filename_or_array: Union[str, np.ndarray, Image.Image],
         corner_radius: Union[int, float] = 0.1,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the CropImageMobject instance."""
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
@@ -1052,7 +1052,7 @@ class VideoMobject(ImageMobject):
 
     def __init__(
         self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize the VideoMobject instance."""
         cv2 = require("video", "cv2")
 
@@ -1090,7 +1090,7 @@ class VideoMobject(ImageMobject):
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
-    def _video_updater(self, mob: "VideoMobject", dt: float) -> None:
+    def _video_updater(self, mob: "VideoMobject", dt: float):
         """Internal updater that advances the video frame on each render step.
 
         Parameters
@@ -1251,7 +1251,7 @@ class VideoMobject(ImageMobject):
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         return self
 
-    def __del__(self) -> None:
+    def __del__(self):
         """Release the OpenCV capture on garbage collection."""
         if hasattr(self, "_cap") and self._cap is not None and self._cap.isOpened():
             self._cap.release()
@@ -1318,7 +1318,7 @@ class ColorText(Text):
         font: str = "Consolas",
         font_size: float = 28,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the ColorText instance."""
         if name is not None:
             super().__init__(
@@ -1409,7 +1409,7 @@ class Trail(VGroup):
         trail_color: ManimColor = BLUE_B,
         rate_func: Optional[Any]=None,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the Trail instance."""
         super().__init__(**kwargs)
         self.max_width = max_width
@@ -1422,7 +1422,7 @@ class Trail(VGroup):
         self.add(self.trail)
         self.pos_old = self[0].get_center()
 
-    def get_path_xyz(self, err: float = 1e-4) -> None:
+    def get_path_xyz(self, err: float = 1e-4):
         """Record the latest centre position if the mobject has moved.
 
         Parameters
@@ -1462,7 +1462,7 @@ class Trail(VGroup):
             )
         return path
 
-    def update_path(self, trail: Any) -> None:
+    def update_path(self, trail: Any):
         """Updater: replace *trail* by the freshly created path.
 
         Parameters
@@ -1557,7 +1557,7 @@ class ShadowAround(VGroup):
         shadow_out: bool = True,
         show_basic_shape: bool = True,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the ShadowAround instance."""
         super().__init__(**kwargs)
         self.shadow_color = shadow_color
@@ -1648,7 +1648,7 @@ class ObjectBorder(VGroup):
         border_color: ManimColor = WHITE,
         corner_radius: float = 0.06,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the ObjectBorder instance."""
         super().__init__(**kwargs)
         self.obj = obj
@@ -1663,7 +1663,7 @@ class ObjectBorder(VGroup):
         if track:
             self.add_updater(lambda m: self._rebuild())
 
-    def _rebuild(self) -> None:
+    def _rebuild(self):
         """Recreate the border and corner markers around the current position of *obj*."""
         border = Rectangle(
             width=self.obj.width + 2 * self.buff,
@@ -1746,7 +1746,7 @@ class ThreeDVector(VGroup):
         tip_fraction: float = 0.25,
         fill_opacity: float = 0.9,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the ThreeDVector instance."""
         super().__init__(**kwargs)
         self.radius = radius
@@ -1837,7 +1837,7 @@ class TreeDiagram(VGroup):
         item_v_buff: float = 0.3,
         item_scale: float = 0.7,
         **kwargs,
-    ) -> None:
+    ):
         """Initialize the TreeDiagram instance."""
         super().__init__(**kwargs)
         self.branch_color = branch_color

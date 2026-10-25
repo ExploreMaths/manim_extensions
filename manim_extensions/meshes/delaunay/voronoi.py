@@ -63,7 +63,7 @@ class VoronoiDelaunay:
                self.wait()
     """
 
-    def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh) -> None:
+    def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh):
         """Initialise the Voronoi-Delaunay visualisation helper."""
         self.scene: m.Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh

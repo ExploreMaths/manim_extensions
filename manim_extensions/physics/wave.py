@@ -75,7 +75,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize a radial wave surface."""
         self.wavelength = wavelength
         self.period = period
@@ -116,7 +116,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         return z
 
-    def _update_wave(self, mob: Mobject, dt: float) -> None:
+    def _update_wave(self, mob: Mobject, dt: float):
         """Advance the wave simulation by *dt* seconds and refresh the surface.
 
         Parameters
@@ -136,11 +136,11 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         )
 
-    def start_wave(self) -> None:
+    def start_wave(self):
         """Animate the wave propagation."""
         self.add_updater(self._update_wave)
 
-    def stop_wave(self) -> None:
+    def stop_wave(self):
         """Stop animating the wave propagation."""
         self.remove_updater(self._update_wave)
 
@@ -188,7 +188,7 @@ class LinearWave(RadialWave):
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize a linear wave surface."""
         super().__init__(
             ORIGIN,
@@ -268,7 +268,7 @@ class StandingWave(ParametricFunction):
         period: float = 1,
         amplitude: float = 1,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize a standing wave."""
         self.n = n
         self.length = length
@@ -284,7 +284,7 @@ class StandingWave(ParametricFunction):
         )
         self.shift((-self.length / 2, 0, 0))
 
-    def _update_wave(self, mob: Mobject, dt: float) -> None:
+    def _update_wave(self, mob: Mobject, dt: float):
         """Advance the standing-wave simulation and refresh the curve.
 
         Parameters
@@ -311,11 +311,11 @@ class StandingWave(ParametricFunction):
             ).shift(self.wave_center + (-self.length / 2, 0, 0))
         )
 
-    def start_wave(self) -> None:
+    def start_wave(self):
         """Begin the standing-wave animation and store its current center."""
         self.wave_center = self.get_center()
         self.add_updater(self._update_wave)
 
-    def stop_wave(self) -> None:
+    def stop_wave(self):
         """Stop the standing-wave animation."""
         self.remove_updater(self._update_wave)

@@ -59,7 +59,7 @@ class ManimAutomataInput(VGroup):
         animation_style: dict[str, Any],
         font_size: int = 100,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize the ManimAutomataInput instance."""
         super().__init__(**kwargs)
 
@@ -134,7 +134,7 @@ class Token(MathTex):
 
     def __init__(
         self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize the Token instance."""
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 

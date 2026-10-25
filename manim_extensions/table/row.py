@@ -61,7 +61,7 @@ class Row(VGroup):
         show_border: bool = True,
         index: int = 0,
         **kwargs: Any
-    ) -> None:
+    ):
         """Initialize the row and create one cell per value."""
         super().__init__(**kwargs)
         
@@ -80,7 +80,7 @@ class Row(VGroup):
         self.cells: List[Cell] = []
         self.create_cells()
     
-    def create_cells(self) -> None:
+    def create_cells(self):
         """Create and position all cells in this row."""
         for i, value in enumerate(self.values):
             cell = Cell(

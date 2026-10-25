@@ -4148,7 +4148,7 @@ class Brand:
            def construct(self):
                self.add(brand.python)
     """
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the Brand icon accessor."""
         pass
 
@@ -4174,7 +4174,7 @@ class Regular:
            def construct(self):
                self.add(regular.heart)
     """
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the Regular icon accessor."""
         pass
 
@@ -4202,7 +4202,7 @@ class Solid:
                rocket.set_color(ORANGE)
                self.add(rocket)
     """
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize the Solid icon accessor."""
         pass
 

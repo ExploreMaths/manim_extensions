@@ -133,7 +133,7 @@ class WeightedLine(Line):
         if self.weight is not None:
             self._add_weight()
 
-    def _add_weight(self) -> None:
+    def _add_weight(self):
         """
         Clears any current weight and then displays the weight is not none.
 

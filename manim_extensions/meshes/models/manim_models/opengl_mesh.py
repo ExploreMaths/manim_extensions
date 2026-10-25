@@ -73,7 +73,7 @@ class FastManimMesh(OpenGLMobject):
             **remove_keys_from_dict(kwargs, list(OGLM.keys())),
         )
 
-    def init_points(self) -> None:
+    def init_points(self):
         """Set the mesh vertices as the mobject's points."""
         self.set_points(self.mesh.vertices)
 

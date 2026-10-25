@@ -342,7 +342,7 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             mob.install(space=self.vspace.space)
 
-    def active_body(self, *mobs: Mobject) -> None:
+    def active_body(self, *mobs: Mobject):
         """Activates the physical bodies of the given Mobjects if they are sleeping.
         In physics simulations, bodies that have come to rest are often put to 'sleep'
         to save computation. This method forces those bodies back into an active state.
@@ -364,7 +364,7 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.activate()
 
-    def sleep_body(self, *mobs: Mobject) -> None:
+    def sleep_body(self, *mobs: Mobject):
         """Forces the physical bodies of the given Mobjects into a sleeping state.
         Sleeping bodies are removed from the physics simulation update loop until
         they are touched by another active body or manually activated, which
@@ -388,7 +388,7 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.sleep()
 
-    def draw_debug_img(self, option: Optional[int] = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)) -> None:
+    def draw_debug_img(self, option: Optional[int] = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)):
         """Pops up a Matplotlib window to render a debug view of the physical space.
         This is an essential diagnostic tool used to verify if collision shapes,
         constraints, and pivots are correctly aligned when they are not behaving
@@ -626,7 +626,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Apply an instantaneous impulse to each given Mobject at a local
         point relative to the body's center.
 
@@ -648,7 +648,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         impulse: Tuple[float, float, float],
         point: Tuple[float, float, float] = (0, 0, 0),
-    ) -> None:
+    ):
         """Apply an instantaneous impulse to each given Mobject at a point
         in world (scene) coordinates.
 

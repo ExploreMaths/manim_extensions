@@ -131,7 +131,7 @@ def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
     return traversal_order
 
 
-def compute_best_first_traversal(tree: SklearnTree) -> None:
+def compute_best_first_traversal(tree: SklearnTree):
     """Traverses the tree according to the best split first order.
 
     Parameters

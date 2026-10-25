@@ -68,7 +68,7 @@ class DrawArc(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
+    def __init__(self, compass: Compass, arc: Arc, **kwargs: Any):
         """Initialize DrawArc."""
         super().__init__(Create(arc), RotateCompass(compass, arc.angle), **kwargs)
 
@@ -105,7 +105,7 @@ class SplitCompass(AnimationGroup):
 
     def __init__(
         self, compass: Compass, span: float | None = None, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize SplitCompass."""
         assert span is not None
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
@@ -159,7 +159,7 @@ class RotateCompass(Rotate):
 
     def __init__(
         self, compass: Compass, angle: float | None = None, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize RotateCompass."""
         assert angle is not None
         super().__init__(
@@ -200,7 +200,7 @@ class MoveNiddleTipTo(ApplyMethod):
         compass: Compass,
         point: Point3D | None = None,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize MoveNiddleTipTo."""
         super().__init__(compass.move_niddle_tip_to, point, **kwargs)
 
@@ -249,7 +249,7 @@ class PutCompass(ApplyMethod):
         niddle_pos: Point3D | None = None,
         pen_pos: Point3D | None = None,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize PutCompass."""
         assert niddle_pos is not None and pen_pos is not None
         arc_radius = get_distance(niddle_pos, pen_pos)
@@ -301,7 +301,7 @@ class PutCompassAway(PutCompass):
         point: Point3D = RIGHT,
         span_buff: float = 0.1,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize PutCompassAway."""
         r = 0.5 * compass.leg_length
         vec = r * DOWN if compass.get_compass_rotate_angle_direction() else r * UP

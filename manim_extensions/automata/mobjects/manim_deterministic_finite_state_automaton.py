@@ -73,7 +73,7 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
         animation_style: dict[str, object] | None = None,
         cli: bool = False,
         **kwargs: object,
-    ) -> None:
+    ):
         """Initialize the ManimdeterministicFiniteAutomaton instance."""
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)

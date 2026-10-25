@@ -104,7 +104,7 @@ class Mesh:
             Union[np.ndarray, List[np.ndarray], List[List[int]], List[Tuple[int, ...]]]
         ] = None,
         dangling: bool = False,
-    ) -> None:
+    ):
         """Initialize mesh with the correct internal structure for all variables."""
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
@@ -428,7 +428,7 @@ class Mesh:
             vert_ids.update(set(int(vert_id) for vert_id in self._faces[face_id]))
         return list(vert_ids)
 
-    def convert_vertices_to_3d(self) -> None:
+    def convert_vertices_to_3d(self):
         """transforms currents mesh vertices permanently to be 3D, works if dim is < 3.
 
         Raises
@@ -504,7 +504,7 @@ class Mesh:
         return find_in_vararray(array=self._parts, item=part, start=start)
 
     @dangling_vert_decorator()
-    def add_vertices(self, new_vertices: Vertices) -> None:
+    def add_vertices(self, new_vertices: Vertices):
         """Append new vertices to the mesh.
 
         Parameters
@@ -527,7 +527,7 @@ class Mesh:
             )
         self._vertices = np.vstack([self._vertices, new_vertices])
 
-    def remove_vertices(self, indices: Union[np.ndarray, List[int]]) -> None:
+    def remove_vertices(self, indices: Union[np.ndarray, List[int]]):
         """Remove vertices at the given indices and update references.
 
         Parameters
@@ -552,7 +552,7 @@ class Mesh:
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
-    def update_vertex(self, idx: int, new_vert: Vertex) -> None:
+    def update_vertex(self, idx: int, new_vert: Vertex):
         """Update the coordinates of a single vertex.
 
         Parameters
@@ -593,7 +593,7 @@ class Mesh:
             ) from e
 
     @dangling_face_decorator()
-    def add_faces(self, new_faces: Faces) -> None:
+    def add_faces(self, new_faces: Faces):
         """Append new faces to the mesh.
 
         Parameters
@@ -632,7 +632,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def remove_faces(self, indices: Union[np.ndarray, List[int]]) -> None:
+    def remove_faces(self, indices: Union[np.ndarray, List[int]]):
         """Remove faces at the given indices and update parts.
 
         Parameters
@@ -658,7 +658,7 @@ class Mesh:
         self._edges = self.extract_edges()
 
     @dangling_vert_decorator()
-    def update_face(self, idx: int, new_face: Face) -> None:
+    def update_face(self, idx: int, new_face: Face):
         """Update the vertices of a single face.
 
         Parameters
@@ -689,7 +689,7 @@ class Mesh:
         self._edges = self.extract_edges()
 
     @dangling_face_decorator()
-    def add_parts(self, new_parts: Parts) -> None:
+    def add_parts(self, new_parts: Parts):
         """Append new parts to the mesh.
 
         Parameters
@@ -726,7 +726,7 @@ class Mesh:
             raise InvalidTypeException(f"unknown type for new_part {type(new_parts)}")
 
     @dangling_face_decorator()
-    def remove_parts(self, indices: Union[np.ndarray, List[int]]) -> None:
+    def remove_parts(self, indices: Union[np.ndarray, List[int]]):
         """Remove parts at the given indices.
 
         Parameters
@@ -748,7 +748,7 @@ class Mesh:
             del self._parts[idx]
 
     @dangling_face_decorator()
-    def update_part(self, idx: int, new_part: Part) -> None:
+    def update_part(self, idx: int, new_part: Part):
         """Update the faces of a single part.
 
         Parameters
@@ -778,7 +778,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def add_to_mesh(self, other: "Mesh") -> None:
+    def add_to_mesh(self, other: "Mesh"):
         """Merge another mesh into this one by shifting its indices.
 
         The vertices, faces and parts of *other* are appended with
@@ -955,7 +955,7 @@ class Mesh:
         unique = np.unique(np.concatenate(self._parts).ravel())
         return any(f_idx not in unique for f_idx in range(len(self._faces)))
 
-    def scale_mesh(self, scaling: float, about_point: Optional[np.ndarray] = None) -> None:
+    def scale_mesh(self, scaling: float, about_point: Optional[np.ndarray] = None):
         """Scale all vertices by a uniform factor.
 
         Parameters
@@ -974,7 +974,7 @@ class Mesh:
 
     def stretch_mesh(
         self, factor: float, dim: int, about_point: Optional[np.ndarray] = None
-    ) -> None:
+    ):
         """Stretch all vertices along a single dimension.
 
         Parameters
@@ -993,7 +993,7 @@ class Mesh:
         else:
             self._vertices[:, dim] *= float(factor)
 
-    def translate_mesh(self, translation: np.ndarray) -> None:
+    def translate_mesh(self, translation: np.ndarray):
         """Translate (shift) all vertices by the given vector.
 
         Parameters
@@ -1019,7 +1019,7 @@ class Mesh:
             )
         self._vertices += np.array(translation)
 
-    def translate_vertex(self, v_id: int, translation: np.ndarray) -> None:
+    def translate_vertex(self, v_id: int, translation: np.ndarray):
         """Translate a single vertex by the given vector.
 
         Parameters
@@ -1058,7 +1058,7 @@ class Mesh:
         angle: float,
         axis: np.ndarray = np.array([0, 0, 1]),
         about_point: Optional[np.ndarray] = None,
-    ) -> None:
+    ):
         """Rotate all vertices around a given axis.
 
         Only 2D and 3D rotations are supported.  For 2D meshes the
@@ -1221,7 +1221,7 @@ class Mesh:
             self.remove_duplicates()
         return vertices
 
-    def remove_duplicate_vertices(self, precision: int = 10) -> None:
+    def remove_duplicate_vertices(self, precision: int = 10):
         """Remove duplicate vertices and update all face references.
 
         Parameters
@@ -1251,7 +1251,7 @@ class Mesh:
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
-    def remove_duplicate_faces(self) -> None:
+    def remove_duplicate_faces(self):
         """Remove duplicate faces and update part references.
 
         Faces are considered equal when their vertex indices match
@@ -1274,7 +1274,7 @@ class Mesh:
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
-    def remove_duplicate_parts(self) -> None:
+    def remove_duplicate_parts(self):
         """Remove duplicate parts from the mesh.
 
         Parts are considered equal when their face indices match
@@ -1292,7 +1292,7 @@ class Mesh:
             # exact duplicates can be removed
             del self._parts[del_p_idx]
 
-    def remove_duplicates(self, precision: int = 10) -> None:
+    def remove_duplicates(self, precision: int = 10):
         """Remove all duplicate vertices, faces and parts.
 
         Parameters

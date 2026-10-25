@@ -51,7 +51,7 @@ class GrayscaleImageMobject(Group):
                self.add(GrayscaleImageMobject(gradient))
     """
 
-    def __init__(self, numpy_image: NDArray[Any], height: float = 2.3) -> None:
+    def __init__(self, numpy_image: NDArray[Any], height: float = 2.3):
         """Initialize the grayscale image mobject."""
         super().__init__()
         self.numpy_image = numpy_image
@@ -108,7 +108,7 @@ class GrayscaleImageMobject(Group):
 
     def scale(  # type: ignore[override] # intentionally returns None instead of the group
         self, scale_factor: float, **kwargs: Any
-    ) -> None:
+    ):
         """Scales the image mobject.
 
         Parameters
@@ -126,7 +126,7 @@ class GrayscaleImageMobject(Group):
         #     lambda points: scale_factor * points, **kwargs
         # )
 
-    def set_opacity(self, opacity: float) -> None:
+    def set_opacity(self, opacity: float):
         """Set the opacity.
 
         Parameters
@@ -180,7 +180,7 @@ class LabeledColorImage(Group):
         stroke_width: float = 5,
         font_size: float = 24,
         buff: float = 0.2,
-    ) -> None:
+    ):
         """Initialize the labeled image group."""
         super().__init__()
         self.image = image

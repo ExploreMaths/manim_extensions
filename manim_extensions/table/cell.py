@@ -63,7 +63,7 @@ class Cell(VGroup):
         is_header: bool = False,
         show_border: bool = True,
         **kwargs: Any
-    ) -> None:
+    ):
         """Initialize the cell with its text and layout."""
         super().__init__(**kwargs)
         
@@ -240,7 +240,7 @@ class Cell(VGroup):
         
         return new_cell
     
-    def resize_width(self, new_width: float) -> None:
+    def resize_width(self, new_width: float):
         """
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.

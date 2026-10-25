@@ -54,7 +54,7 @@ class MovePencilAlongPath(MoveAlongPath):
         path: VMobject | None = None,
         suspend_mobject_updating: bool = False,
         **kwargs: Any,
-    ) -> None:
+    ):
         """Initialize MovePencilAlongPath."""
         assert path is not None
         start = path.get_start()
@@ -93,7 +93,7 @@ class MovePencilTipTo(ApplyMethod):
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize MovePencilTipTo."""
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
@@ -127,7 +127,7 @@ class DrawPath(AnimationGroup):
 
     def __init__(
         self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize DrawPath."""
         assert path is not None
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
@@ -163,6 +163,6 @@ class PutPencilAway(MovePencilTipTo):
 
     def __init__(
         self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
-    ) -> None:
+    ):
         """Initialize PutPencilAway."""
         super().__init__(pencil, point, **kwargs)
