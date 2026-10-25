@@ -160,8 +160,9 @@ start, and draw the path, then put the tools away:
        PutPencilAway(pencil, point=LEFT),
    )
 
-The upstream repository also ships a ``SingleRulerScene`` for single-ruler
-constructions (one ruler, one pencil, with a ``draw_line_with_pencil``
+The upstream repository also ships a :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`
+for single-ruler constructions (one ruler, one pencil, with a
+:meth:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene.draw_line_with_pencil`
 method); see ``demo/ruler_scene_demo.py``.
 
 .. toctree::

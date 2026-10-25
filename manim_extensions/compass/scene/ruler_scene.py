@@ -4,9 +4,10 @@
 
 """Scene that draws lines with a ruler and a pencil.
 
-:class:`SingleRulerScene` extends :class:`~manim.scene.moving_camera_scene.MovingCameraScene`
-with helper methods to lay down a ruler, draw a line with the pencil, and
-return the ruler to its resting position.
+:class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` extends
+:class:`~manim.scene.moving_camera_scene.MovingCameraScene` with helper
+methods to lay down a ruler, draw a line with the pencil, and return the
+ruler to its resting position.
 """
 
 __all__ = ["SingleRulerScene"]
@@ -16,6 +17,7 @@ from manim.animation.transform import Restore
 from manim.constants import DOWN, RIGHT
 from manim.mobject.geometry.line import Line
 from manim.scene.moving_camera_scene import MovingCameraScene
+from manim.typing import Point3D
 from manim.utils.color import WHITE
 
 from ..animations import DrawPath
@@ -27,7 +29,6 @@ class SingleRulerScene(MovingCameraScene):
 
     Examples
     --------
-
     .. manim:: SingleRulerSceneExample
        :save_last_frame:
 
@@ -39,7 +40,7 @@ class SingleRulerScene(MovingCameraScene):
                self.put_ruler_back()
     """
 
-    def setup(self) -> None:
+    def setup(self):
         """Place the ruler at the bottom edge and the pencil at the right edge."""
         self.ruler = Ruler(width=0.4, length=8).to_edge(DOWN)
         self.pencil = Pencil(height=1).to_edge(RIGHT)
@@ -47,24 +48,26 @@ class SingleRulerScene(MovingCameraScene):
         self.ruler.save_state()
 
     def draw_line_with_pencil(
-        self, start, end, added_anims=None, **kwargs
-    ):
+        self,
+        start: Point3D,
+        end: Point3D,
+        added_anims: list | None = None,
+        **kwargs,
+    ) -> Line:
         """Draw a :class:`~manim.mobject.geometry.line.Line` from ``start`` to ``end``.
 
         Parameters
         ----------
-        start
+        start : Point3D
             The start point of the line.
-        end
+        end : Point3D
             The end point of the line.
-        added_anims
+        added_anims : list | None
             Extra animations to play alongside the drawing, if any.
-        run_time
-            Total run time for the two plays.
-        color
-            The stroke color of the line.
-        stroke_width
-            The stroke width of the line.
+        **kwargs
+            Additional keyword arguments: ``run_time`` (total run time for
+            the two plays), ``color`` (the stroke color of the line) and
+            ``stroke_width`` (the stroke width of the line).
 
         Returns
         -------
@@ -89,8 +92,20 @@ class SingleRulerScene(MovingCameraScene):
         self.play(*anims, run_time=0.5 * run_time, **kwargs)
         return line
 
-    def put_ruler_back(self, added_anims=None, run_time=0.5, **kwargs):
-        """Restore the ruler to its saved state and move the pencil back."""
+    def put_ruler_back(
+        self, added_anims: list | None = None, run_time: float = 0.5, **kwargs
+    ):
+        """Restore the ruler to its saved state and move the pencil back.
+
+        Parameters
+        ----------
+        added_anims : list | None
+            Extra animations to play alongside the restoration, if any.
+        run_time : float
+            Run time for the play.
+        **kwargs
+            Additional keyword arguments passed to the play.
+        """
         anims = [
             Restore(self.ruler),
             self.pencil.animate.move_to(self.pen_pos),

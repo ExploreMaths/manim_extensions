@@ -275,6 +275,7 @@
  "manim_extensions.compass.compass.pencil.Pencil",
  "manim_extensions.compass.compass.ruler.Ruler",
  "manim_extensions.compass.scene.compass_scene.CompassScene",
+ "manim_extensions.compass.scene.ruler_scene.SingleRulerScene",
  "manim_extensions.compass.utils.geometry_method.get_arc",
  "manim_extensions.compass.utils.geometry_method.get_distance",
  "manim_extensions.compass.utils.geometry_method.get_vecs_angle",
