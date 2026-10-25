@@ -24,9 +24,11 @@ Examples
 from __future__ import annotations
 
 import re
-from typing import Any
+from typing import Any, Callable, TypeVar
 
 from typing_extensions import deprecated as _deprecated
+
+T = TypeVar("T")
 
 # Matches RST inline roles (:role:`target`) and interpreted text / code
 # (``...`` or `...`); captures the inner text so it can be recovered.
@@ -40,7 +42,7 @@ def _strip_rst(text: str) -> str:
     )
 
 
-def deprecated(msg: str, *args: Any, **kwargs: Any) -> Any:
+def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
     """Mark *obj* as deprecated.
 
     Parameters
@@ -62,7 +64,7 @@ def deprecated(msg: str, *args: Any, **kwargs: Any) -> Any:
 """
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 
-    def wrapper(obj: Any):
+    def wrapper(obj: T) -> T:
         decorated = outer(obj)
         # Restore the RST version for Sphinx (typing_extensions stored the
         # stripped one).

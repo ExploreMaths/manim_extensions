@@ -5,8 +5,6 @@
 """Logger utility for Pymunk physics simulations."""
 
 __all__ = ["manim_pymunk_logger"]
-
-from typing import Any
 import logging
 import threading
 
@@ -45,7 +43,7 @@ class SingletonLogger:
             console_handler.setFormatter(formatter)
             self.logger.addHandler(console_handler)
 
-    def get_logger(self) -> Any:
+    def get_logger(self) -> logging.Logger:
         """Return the singleton Python logging.Logger instance configured
         for the manim-pymunk module.
 

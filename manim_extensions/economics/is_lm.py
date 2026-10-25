@@ -7,11 +7,10 @@ This module provides the IS-LM model diagram.
 """
 
 
-from manim import BLUE, RED
+from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
 
 
-from typing import Any, Optional
 import numpy as np
 class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
@@ -118,7 +117,7 @@ class ISLMDiagram(EconDiagram):
         return lambda y: a / b - y / b
 
     @staticmethod
-    def _make_lm_func(ms: Any, k: Any, h: Any):
+    def _make_lm_func(ms: float, k: float, h: float):
         """r = (k*Y - Ms) / h"""
         return lambda y: (k * y - ms) / h
 
@@ -131,7 +130,7 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymin, self._x_max)
         return [lo, hi]
 
-    def _clamp_lm(self, ms: Any, k: Any, h: Any):
+    def _clamp_lm(self, ms: float, k: float, h: float):
         """X range so LM (r = (kY - Ms)/h) stays within visible y range."""
         # r = (kY - Ms)/h => Y = (h*r + Ms) / k
         x_at_ymin = (h * self._y_min + ms) / k
@@ -140,7 +139,7 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymax, self._x_max)
         return [lo, hi]
 
-    def shift_is(self, a: Optional[Any]=None, b: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
+    def shift_is(self, a: float | None = None, b: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
         """Animate IS shifting due to changes in autonomous spending or interest sensitivity.
 
         Parameters
@@ -170,7 +169,7 @@ class ISLMDiagram(EconDiagram):
             run_time=run_time, show_arrows=show_arrows,
         )
 
-    def shift_lm(self, ms: Optional[Any]=None, k: Optional[Any]=None, h: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
+    def shift_lm(self, ms: float | None = None, k: float | None = None, h: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
         """Animate LM shifting due to changes in money supply or money demand parameters.
 
         Parameters
@@ -206,7 +205,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: Any, show_arrows: bool = False) -> list:
+    def monetary_expansion(self, ms: float, show_arrows: bool = False) -> list:
         """Increase in money supply → LM shifts right → lower r, higher Y.
 
         Parameters
@@ -224,7 +223,7 @@ class ISLMDiagram(EconDiagram):
 """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
-    def monetary_contraction(self, ms: Any, show_arrows: bool = False) -> list:
+    def monetary_contraction(self, ms: float, show_arrows: bool = False) -> list:
         """Decrease in money supply → LM shifts left → higher r, lower Y.
 
         Parameters

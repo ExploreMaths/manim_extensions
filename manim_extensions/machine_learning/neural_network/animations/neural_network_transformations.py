@@ -7,11 +7,16 @@
 """
 Transformations for manipulating a neural network object.
 """
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from manim import AnimationGroup, Create, FadeOut, Group, Mobject, UpdateFromFunc, np
 from ..layers.util import get_connective_layer
 
+if TYPE_CHECKING:
+    from ..neural_network import NeuralNetwork
 
-from typing import Any
 class RemoveLayer(AnimationGroup):
     """
     Animation for removing a layer from a neural network.
@@ -57,7 +62,7 @@ class RemoveLayer(AnimationGroup):
                RemoveLayer(nn.all_layers[2], nn)
     """
 
-    def __init__(self, layer: Mobject, neural_network: Any, layer_spacing: float = 0.2):
+    def __init__(self, layer: Mobject, neural_network: NeuralNetwork, layer_spacing: float = 0.2):
         """Initialize the remove-layer animation with the target layer and network."""
         self.layer = layer
         self.neural_network = neural_network
@@ -211,7 +216,7 @@ class RemoveLayer(AnimationGroup):
             A UpdateFromFunc instance representing the result."""
         self.anim_count = 0
 
-        def create_new_connective(neural_network: Any):
+        def create_new_connective(neural_network: NeuralNetwork):
             """
             Creates new connective layer.
 
@@ -270,7 +275,7 @@ class InsertLayer(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, layer: Mobject, index: int, neural_network: Any):
+    def __init__(self, layer: Mobject, index: int, neural_network: NeuralNetwork):
         """Initialize the insert-layer animation with the new layer, index, and network."""
         self.layer = layer
         self.index = index
@@ -400,7 +405,7 @@ class InsertLayer(AnimationGroup):
         return Create(self.layer)
 
     def make_create_connective_layers_animation(
-        self, before_connective: Any, after_connective: Any
+        self, before_connective: Mobject | None, after_connective: Mobject | None
     ) -> AnimationGroup:
         """Create connective layers.
 

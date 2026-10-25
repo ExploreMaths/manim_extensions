@@ -7,11 +7,11 @@ This module provides the GMAnimationBuilder class for building molecule animatio
 """
 
 
-from manim import BLACK, ManimColor, PI, VGroup
+from manim import Animation, BLACK, ManimColor, PI, VGroup
 from .graph_molecule import GraphMolecule
 
 
-from typing import Any, Optional
+from typing import Optional
 class GMAnimationBuilder:
     r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`.
 
@@ -112,7 +112,7 @@ class GMAnimationBuilder:
         self.bonds = bonds or self.molecule.edges.values()
         self.bonds_copy = self.bonds.copy()
 
-    def bonds_from_atoms(self, atom_a: Any, atom_b: Any) -> Any:
+    def bonds_from_atoms(self, atom_a: int, atom_b: int) -> tuple[int, int]:
         """Find and return the bond edge connecting two atom indices in the molecule.
 
         Parameters
@@ -124,7 +124,7 @@ class GMAnimationBuilder:
 
         Returns
         -------
-        Any
+        tuple[int, int]
             The computed result.
 
         Raises
@@ -138,7 +138,7 @@ class GMAnimationBuilder:
 
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 
-    def rotate_atoms_about_bond(self, atom_a: Any, atom_b: Any, angle: float = PI / 4) -> Any:
+    def rotate_atoms_about_bond(self, atom_a: int, atom_b: int, angle: float = PI / 4) -> list[Animation]:
         """Return animations rotating atoms around the bond axis between atom_a and atom_b.
 
         Parameters
@@ -148,11 +148,11 @@ class GMAnimationBuilder:
         atom_b
             Index of the other atom of the bond.
         angle
-            Angle of the rotation. 
+            Angle of the rotation.
 
         Returns
         -------
-        Any
+        list[Animation]
             The computed result.
 """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
@@ -164,7 +164,7 @@ class GMAnimationBuilder:
             for atom, atom_copy in zip(self.atoms, self.atoms_copy)
         ]
 
-    def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: Optional[Any]=None, label_color: Optional[Any]=None) -> list:
+    def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: Optional[ManimColor]=None, label_color: Optional[ManimColor]=None) -> list:
         """Return color-change animations for atoms, bonds and optionally atom labels.
 
         Parameters

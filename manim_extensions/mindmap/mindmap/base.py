@@ -20,7 +20,7 @@ from manim import (
 )
 
 __all__ = ["NodeMobject", "generate_tree", "AbstractMap"]
-from typing import Any, Dict, Generator, List, Optional
+from typing import Dict, Generator, List, Optional
 
 import numpy as np
 
@@ -74,7 +74,7 @@ class NodeMobject:
 
 
 def generate_tree(
-    Map: Optional[Any]=None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
+    Map: Optional[Dict] = None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
 ) -> Node:
     """Recursively traverse *Map* and return the root node of the generated tree.
 

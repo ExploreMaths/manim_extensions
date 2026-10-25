@@ -6,6 +6,8 @@
 # SPDX-License-Identifier: MIT
 """Math operation layer visualization for neural networks."""
 
+import numpy as np
+
 from manim import (
     AnimationGroup,
     ApplyMethod,
@@ -18,7 +20,7 @@ from manim import (
     Text,
     Wait,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -92,7 +94,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         node_color: ManimColor = BLUE,
         node_stroke_width: float = 2.0,
         active_color: ManimColor = ORANGE,
-        activation_function: Optional[Any]=None,
+        activation_function: Optional[ActivationFunction | str] = None,
         font_size: float = 20,
         **kwargs
     ):
@@ -157,7 +159,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Any:
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Succession | AnimationGroup:
         """Makes the forward pass animation.
 
         Parameters
@@ -197,7 +199,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         else:
             return succession
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Return the center point of the surrounding circle.
 
         Returns
@@ -206,7 +208,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_circle.get_center()
 
-    def get_left(self) -> Any:
+    def get_left(self) -> np.ndarray:
         """Return the leftmost point of the surrounding circle.
 
         Returns
@@ -215,7 +217,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_circle.get_left()
 
-    def get_right(self) -> Any:
+    def get_right(self) -> np.ndarray:
         """Return the rightmost point of the surrounding circle.
 
         Returns

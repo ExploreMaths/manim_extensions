@@ -9,7 +9,6 @@ This module provides base class for layout algorithms.
 """
 
 __all__ = ["Layout"]
-from typing import Any
 
 
 class Layout:
@@ -47,7 +46,7 @@ class Layout:
                self.add(mobjects)
     """
 
-    def layout(self) -> Any:
+    def layout(self) -> object:
         """Run the layout computation and return the root node.
 
         Returns

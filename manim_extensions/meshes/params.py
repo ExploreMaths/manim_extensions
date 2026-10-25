@@ -11,7 +11,6 @@ Parameters can get out of hand for the meshes, store defaults and casting in sep
 from manim import ManimColor
 
 # python imports
-from typing import Any
 
 # third-party imports
 import manim as m
@@ -74,7 +73,7 @@ def _build_oglm() -> DefaultParameters:
     }
 
 
-def __getattr__(name: str) -> Any:
+def __getattr__(name: str) -> DefaultParameters:
     # PEP 562: build OGLM on first attribute access so that importing this
     # module does not require the optional moderngl dependency.
     if name == "OGLM":
@@ -84,7 +83,7 @@ def __getattr__(name: str) -> Any:
 
 def get_param_or_default(
     value: str, params: Parameters, default: DefaultParameters
-) -> Any:
+) -> ManimColor | bool | float | int:
     """Return the user-supplied parameter or its default value.
 
     If *params* contains *value*, the value is cast to the expected type

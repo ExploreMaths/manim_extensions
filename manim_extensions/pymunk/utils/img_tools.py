@@ -7,7 +7,6 @@ This module provides functions for converting images into Pymunk collision
 shapes. Both transparent-background and solid-color images are handled.
 """
 
-from typing import Any
 import numpy as np
 from PIL import Image, ImageFilter, ImageOps
 
@@ -16,7 +15,7 @@ from ...utils.deps import require
 
 def get_normalized_convex_polygons(
     pixel_array: np.ndarray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
-) -> Any:
+) -> list[list[list[float]]]:
     """Extract normalized convex polygons from a pixel array.
 
     Uses the marching-squares algorithm with convex decomposition to extract

@@ -25,11 +25,13 @@ from manim import (
     normalize,
     perpendicular_bisector,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
+
+from .threedatom import ThreeDAtom
 
 
 class ThreeDCylinder(OpenGLSurface):
@@ -427,7 +429,7 @@ class ThreeDBond(OpenGLGroup):
     def __repr__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __init__(self, from_atom: Any, to_atom: Any, bond_type: Any, *mobjects, **kwargs):
+    def __init__(self, from_atom: ThreeDAtom, to_atom: ThreeDAtom, bond_type: int, *mobjects, **kwargs):
         """Initialize a 3D chemical bond between two atoms with the given bond order (1/2/3)."""
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -527,7 +529,7 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any) -> Any:
+    def get_perpendicular_unit_vector(self, point_a: np.ndarray, point_b: np.ndarray) -> np.ndarray:
         """Return a unit vector perpendicular to the bond direction in the xy plane.
 
         Parameters

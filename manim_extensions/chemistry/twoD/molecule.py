@@ -6,6 +6,8 @@ This module provides the MMoleculeObject class for rendering molecules in 2D.
 
 """
 
+from __future__ import annotations
+
 import logging
 
 
@@ -23,7 +25,7 @@ from manim import (
     VGroup,
     np,
 )
-from typing import Any, Dict, Optional, Tuple, Self
+from typing import Dict, Optional, Tuple, Self
 from ..utils import (
     mol_parser,
     mol_parser_string,
@@ -397,7 +399,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def rotate_bond(self, rotate_bonds: Any) -> Self:
+    def rotate_bond(self, rotate_bonds: int | list[int]) -> Self:
         """Rotate specified bonds 180 degrees around their own axis and return self.
 
         Parameters
@@ -463,7 +465,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 atom.element + "H", bonds_direction
                             )
 
-    def from_mol_file(filename: Any, *args, **kwargs) -> Self:
+    def from_mol_file(filename: str, *args, **kwargs) -> Self:
         """Create an MMoleculeObject by parsing a .mol file.
 
         Parameters
@@ -482,7 +484,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_mol_string(mol_string: Any, *args, **kwargs) -> Self:
+    def from_mol_string(mol_string: str, *args, **kwargs) -> Self:
         """Create an MMoleculeObject by parsing a mol-format string.
 
         Parameters
@@ -501,7 +503,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_sdf_file(filename: Any, *args, **kwargs) -> list:
+    def from_sdf_file(filename: str, *args, **kwargs) -> list[MMoleculeObject]:
         """Create a list of MMoleculeObjects by parsing an .sdf file.
 
         Parameters
@@ -524,7 +526,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def from_sdf_string(sdf_string: Any, *args, **kwargs) -> list:
+    def from_sdf_string(sdf_string: str, *args, **kwargs) -> list[MMoleculeObject]:
         """Create a list of MMoleculeObjects by parsing an sdf-format string.
 
         Parameters
@@ -885,7 +887,7 @@ class NamedMolecule(VGroup):
     def __init__(
         self,
         name: str,
-        molecule_data: Any,
+        molecule_data: MMoleculeObject | dict,
         direction: str = DOWN,
         buff: float = 1,
         tex: bool = False,
@@ -915,7 +917,7 @@ class NamedMolecule(VGroup):
         self.bonds = self.molecule.bonds
 
     def from_mol_file(
-        name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str, filename: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ) -> Self:
         """Create a NamedMolecule from a .mol file and a name string.
 
@@ -957,7 +959,7 @@ class NamedMolecule(VGroup):
         )
 
     def from_mol_string(
-        name: str, mol_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str, mol_str: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
     ) -> Self:
         """Create a NamedMolecule from a mol-format string and a name string.
 
@@ -999,8 +1001,8 @@ class NamedMolecule(VGroup):
         )
 
     def from_sdf_file(
-        name: str, filename: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ) -> list:
+        name: str, filename: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+    ) -> list[NamedMolecule]:
         """Create a list of NamedMolecules from an .sdf file with a shared base name.
 
         Parameters
@@ -1045,8 +1047,8 @@ class NamedMolecule(VGroup):
         return named_molecules
 
     def from_sdf_string(
-        name: str, sdf_str: Any, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
-    ) -> list:
+        name: str, sdf_str: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+    ) -> list[NamedMolecule]:
         """Create a list of NamedMolecules from an sdf-format string with a shared base name.
 
         Parameters

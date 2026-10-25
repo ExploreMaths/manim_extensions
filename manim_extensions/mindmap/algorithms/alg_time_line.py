@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Any, Callable, Tuple, Self
+from typing import List, Optional, Dict, Callable, Tuple, Self
 from .layout import Layout
 from .layout_config import LayoutDirection
 
@@ -67,7 +67,7 @@ class TimelineNode:
                self.add(boxes)
     """
 
-    node: Optional[Any] = None
+    node: Optional[object] = None
     width: float = 0.0
     height: float = 0.0
     children: List["TimelineNode"] = field(default_factory=list)
@@ -84,7 +84,7 @@ class TimelineNode:
     _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node: Any) -> Self:
+    def from_node(cls, node: object) -> Self:
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references
@@ -222,7 +222,7 @@ class TimeLineLayout(Layout):
 
     def __init__(
         self,
-        root: Any,
+        root: object,
         sides: Tuple[LayoutDirection] = (
             LayoutDirection.TopToBottom,
             LayoutDirection.BottomToTop,
@@ -238,7 +238,7 @@ class TimeLineLayout(Layout):
         self.is_two_sides = len(sides) == 2
 
     # ==================== Public API ====================
-    def layout(self) -> Any:
+    def layout(self) -> object:
         """Run the three-stage layout algorithm.
 
         Returns

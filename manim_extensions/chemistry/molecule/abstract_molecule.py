@@ -7,7 +7,7 @@ This module provides the AbstractMolecule class as a template for all molecule i
 """
 
 from manim import DOWN, Tex, Text, VGroup
-from typing import Any, Dict, Optional, Tuple, Union, Self
+from typing import Dict, Optional, Tuple, Union, Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 
@@ -41,13 +41,13 @@ class AbstractMolecule:
     @classmethod
     def molecule_from_file(
         cls,
-        filepath: Any,
+        filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
         *args,
         **kwargs,
-    ) -> Any:
+    ) -> Self:
         """
         Reads a file and returns a single molecule from that file.
 
@@ -86,7 +86,7 @@ class AbstractMolecule:
     @classmethod
     def multiple_molecules_from_file(
         cls,
-        filepath: Any,
+        filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
@@ -146,7 +146,7 @@ class AbstractMolecule:
         elements_data_dict: Optional[dict] = None,
         *args,
         **kwargs,
-    ) -> Any:
+    ) -> Self:
         """
         Reads a file and returns a single molecule from that file.
 

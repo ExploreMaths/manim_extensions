@@ -7,7 +7,7 @@ import numpy as np
 import random
 
 
-from typing import Any, Optional
+from typing import Optional
 class BohrAtom(VGroup):
     """Creates a Bohr like diagram.
 
@@ -54,7 +54,7 @@ class BohrAtom(VGroup):
         e: int = 14,  # Electrons
         p: int = 14,  # Protons
         n: int = 10,  # Neutrons
-        level: Optional[Any]=None,  # Levels
+        level: Optional[int]=None,  # Levels
         orbit_color: ManimColor = WHITE,
         electron_color: ManimColor = BLUE,
         proton_color: ManimColor = RED,
@@ -83,12 +83,12 @@ class BohrAtom(VGroup):
             182: 6,
         }
 
-    def calculate_levels(self) -> Any:
+    def calculate_levels(self) -> int:
         """Calculate how many orbital levels are needed to hold all electrons.
 
         Returns
         -------
-        Any
+        int
             The computed result."""
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
@@ -177,7 +177,7 @@ class BohrAtom(VGroup):
 
         return electrons_group
 
-    def arrange_electrons(self, n_electrons: Any, level: int) -> VGroup:
+    def arrange_electrons(self, n_electrons: int, level: int) -> VGroup:
         """Evenly arrange n_electrons around a circular orbit at the given energy level radius.
 
         Parameters
@@ -201,29 +201,29 @@ class BohrAtom(VGroup):
 
         return level_group
 
-    def get_orbitals(self) -> Any:
+    def get_orbitals(self) -> VGroup:
         """Return the orbitals VGroup (first child of the atom group).
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         return self[0]
 
-    def get_electrons(self) -> Any:
+    def get_electrons(self) -> VGroup:
         """Return the electrons VGroup (second child of the atom group).
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         return self[1]
 
-    def get_nuclei(self) -> Any:
+    def get_nuclei(self) -> VGroup:
         """Return the nuclei VGroup (third child of the atom group).
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         return self[2]

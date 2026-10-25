@@ -7,7 +7,7 @@ This module provides the PubchemAPIManager class for fetching molecular data fro
 
 """
 
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 import json
 import time
 
@@ -59,7 +59,7 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: 'requests.models.Response', identifier: Any) -> Any:
+    def handle_request(self, request: 'requests.models.Response', identifier: int | str) -> str:
         """Validate a PubChem API response and return the decoded payload.
 
         Adds a small sleep after the request to avoid rate-limiting the PubChem API.
@@ -101,7 +101,7 @@ class PubchemAPIManager:
             f"An error occurred when calling the Pub Chem API. Status code: {request.status_code}. Request response: {request.json}"
         )
 
-    def from_cid(self) -> Any:
+    def from_cid(self) -> str:
         """Fetch molecule data from PubChem using the compound ID (CID).
 
         Returns
@@ -116,7 +116,7 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.cid)
 
-    def from_name(self) -> Any:
+    def from_name(self) -> str:
         """Fetch molecule data from PubChem using the common name.
 
         Returns
@@ -131,7 +131,7 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.name)
 
-    def from_smiles(self) -> Any:
+    def from_smiles(self) -> str:
         """Fetch molecule data from PubChem using a SMILES string.
 
         Returns
@@ -146,7 +146,7 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.smiles)
 
-    def from_inchi(self) -> Any:
+    def from_inchi(self) -> str:
         """Fetch molecule data from PubChem using an InChI key.
 
         Returns
@@ -163,7 +163,7 @@ class PubchemAPIManager:
         request = requests.get(request_url)
         return self.handle_request(request=request, identifier=self.inchi)
 
-    def get_molecule(self) -> Any:
+    def get_molecule(self) -> str:
         """Dispatch to the correct ``from_*`` method based on the set identifier.
 
         Returns

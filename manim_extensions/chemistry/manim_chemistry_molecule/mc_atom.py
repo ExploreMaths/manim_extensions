@@ -6,11 +6,17 @@ This module provides the MCAtom class for representing atoms in molecules.
 
 """
 
-from typing import Any, Dict, Optional, Self
+from __future__ import annotations
+
+from typing import Dict, Optional, Self, TYPE_CHECKING
 
 import numpy as np
 
 from .mc_element import MC_ELEMENT_DICT, MCElement
+
+if TYPE_CHECKING:
+    from .mc_bond import MCBond
+    from .mc_molecule import MCMolecule
 
 
 class MCAtom:
@@ -68,7 +74,7 @@ class MCAtom:
         self.molecule = molecule
         self.molecule_index = molecule_index
 
-    def add_atoms(self, atoms: Any) -> Any:
+    def add_atoms(self, atoms: MCAtom | list[MCAtom]) -> list[MCAtom]:
         """
         Assigns bonded atoms to MCAtom.
 
@@ -108,7 +114,7 @@ class MCAtom:
 
         return self.atoms
 
-    def add_bonds(self, bonds: Any) -> Any:
+    def add_bonds(self, bonds: MCBond | list[MCBond]) -> list[MCBond]:
         """Add one or more MCBond objects to the atom's bond list.
 
         Parameters
@@ -150,7 +156,7 @@ class MCAtom:
 
         return self.bonds
 
-    def assign_molecule(self, molecule: Any) -> Any:
+    def assign_molecule(self, molecule: MCMolecule) -> MCMolecule:
         """Set the parent MCMolecule this atom belongs to.
 
         Parameters
@@ -182,7 +188,7 @@ class MCAtom:
 
         return self.molecule
 
-    def assign_molecule_index(self, molecule_index: int) -> Any:
+    def assign_molecule_index(self, molecule_index: int) -> int:
         """Set the index of this atom within its parent molecule.
 
         Parameters
@@ -214,7 +220,7 @@ class MCAtom:
 
     @staticmethod
     def construct_from_atom_dict(
-        atom_index: Any, atom_data_dict: Dict, elements_data_dict: Dict
+        atom_index: int, atom_data_dict: Dict, elements_data_dict: Dict
     ) -> Self:
         """
         Given an atom data dict from a parser, returns an MCAtom.

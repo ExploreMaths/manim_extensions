@@ -6,7 +6,7 @@ This module provides the ASNTParser class for parsing ASNT format chemical files
 
 """
 
-from typing import Any, Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union
 import os
 
 import numpy as np
@@ -135,7 +135,7 @@ class ASNTParser(BaseParser):
         return line
 
     @staticmethod
-    def data_parser(data: Any) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
+    def data_parser(data: list[str]) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:

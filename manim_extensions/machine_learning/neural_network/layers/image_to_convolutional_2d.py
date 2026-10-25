@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Image to convolutional 2D layer connection visualization."""
 
-from typing import Any
 from manim import (
     ApplyFunction,
     ApplyMethod,
@@ -52,7 +51,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -71,7 +70,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> Any:
+    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> Succession:
         """Maps image to convolutional layer.
 
         Parameters
@@ -161,7 +160,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         set_opacity = ApplyMethod(image_mobject.set_opacity, 0.2, run_time=0.5)
         # Scale the max of width or height to the
         # width of the feature_map
-        def scale_image_func(image_mobject: Mobject) -> Any:
+        def scale_image_func(image_mobject: Mobject) -> Mobject:
             """Scale the image to match the target feature map size, preserving aspect ratio.
 
             Returns

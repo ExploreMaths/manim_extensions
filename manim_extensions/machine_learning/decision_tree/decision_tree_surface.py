@@ -16,6 +16,7 @@ from manim import (
     GREEN,
     Group,
     LEFT,
+    ManimColor,
     Mobject,
     ORANGE,
     Polygon,
@@ -29,12 +30,16 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Any, Optional
+from typing import TYPE_CHECKING
 
 import numpy as np
 from collections import deque
 
 from ...utils.deps import require
+
+if TYPE_CHECKING:
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.utils import Bunch
 
 class AABB:
     """Axis-aligned bounding box.
@@ -45,11 +50,11 @@ class AABB:
         Number of features; each feature gets a ``[-inf, inf]`` limit pair.
     """
 
-    def __init__(self, n_features: Any):
+    def __init__(self, n_features: int):
         """Initialize an axis-aligned bounding box with [-inf, inf] limits per feature."""
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
-    def split(self, f: Any, v: Any) -> tuple:
+    def split(self, f: int, v: float) -> tuple:
         """Split the bounding box along feature f at value v, returning left and right AABBs.
 
         Parameters
@@ -74,7 +79,7 @@ class AABB:
 
         return left, right
 
-def tree_bounds(tree: Mobject, n_features: Optional[Any]=None) -> Any:
+def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
     """Compute final decision rule for each node in tree.
 
     Parameters
@@ -107,11 +112,11 @@ def tree_bounds(tree: Mobject, n_features: Optional[Any]=None) -> Any:
     return aabbs
 
 def compute_decision_areas(
-    tree_classifier: Any, 
-    maxrange: Any, 
+    tree_classifier: "DecisionTreeClassifier",
+    maxrange: list[float],
     x: int = 0,
-    y: int = 1, 
-    n_features: Optional[Any]=None
+    y: int = 1,
+    n_features: int | None = None
 ) -> list:
     """Extract decision areas.
 
@@ -163,7 +168,7 @@ def compute_decision_areas(
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
 
-def plot_areas(rectangles: Any):
+def plot_areas(rectangles: np.ndarray):
     """Plot decision area rectangles on the current matplotlib axes.
 
     Parameters
@@ -186,7 +191,7 @@ def plot_areas(rectangles: Any):
         )
         plt.gca().add_artist(rp)
 
-def merge_overlapping_polygons(all_polygons: Any, colors: list = [BLUE, GREEN, ORANGE]) -> list:
+def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimColor] = [BLUE, GREEN, ORANGE]) -> list:
     """Merge adjacent polygons of the same color into larger contiguous polygons.
 
     Parameters
@@ -299,7 +304,7 @@ class IrisDatasetPlot(VGroup):
                self.add(plot.all_group)
     """
 
-    def __init__(self, iris: Any):
+    def __init__(self, iris: "Bunch"):
         """Initialize the Iris dataset plot with points, axes, and a legend."""
         points = iris.data[:, 0:2]
         labels = iris.feature_names
@@ -344,7 +349,7 @@ class IrisDatasetPlot(VGroup):
         )
         return animation_group
 
-    def _make_point_group(self, points: Any, targets: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
+    def _make_point_group(self, points: np.ndarray, targets: np.ndarray, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
         point_group = VGroup()
         for point_index, point in enumerate(points):
             # draw the dot
@@ -355,7 +360,7 @@ class IrisDatasetPlot(VGroup):
             point_group.add(dot)
         return point_group
 
-    def _make_legend(self, class_colors: Any, feature_labels: Any, axes: Any):
+    def _make_legend(self, class_colors: list[ManimColor], feature_labels: list[str], axes: VGroup):
         legend_group = VGroup()
         # Make Text
         setosa = Text("Setosa", color=BLUE)
@@ -377,7 +382,7 @@ class IrisDatasetPlot(VGroup):
 
         return legend_group
 
-    def _make_axes_group(self, points: Any, labels: Any, font: str = "Source Han Sans", font_scale: float = 0.75):
+    def _make_axes_group(self, points: np.ndarray, labels: list[str], font: str = "Source Han Sans", font_scale: float = 0.75):
         axes_group = VGroup()
         # make the axes
         x_range = [
@@ -456,7 +461,7 @@ class DecisionTreeSurface(VGroup):
                self.add(axes, *surface.surface_rectangles)
     """
 
-    def __init__(self, tree_clf: Any, data: Any, axes: Any, class_colors: list = [BLUE, ORANGE, GREEN]):
+    def __init__(self, tree_clf: "DecisionTreeClassifier", data: np.ndarray, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
         """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
@@ -482,7 +487,7 @@ class DecisionTreeSurface(VGroup):
             self.tree_clf, maxrange, x=0, y=1, n_features=2
         )
         # turn the rectangle objects into manim rectangles
-        def convert_rectangle_to_polygon(rect: Any) -> Polygon:
+        def convert_rectangle_to_polygon(rect: np.ndarray) -> Polygon:
             """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.
 
             Returns

@@ -12,6 +12,7 @@ TODO return a map from nodes to split animation for BFS tree expansion
 TODO reimplement the decision 2D decision tree surface drawing.
 """
 from manim import (
+    Animation,
     AnimationGroup,
     BLUE,
     Create,
@@ -31,7 +32,6 @@ from manim import (
     WHITE,
     override_animation,
 )
-from typing import Any, Optional
 
 from . import helpers
 
@@ -76,7 +76,7 @@ class LeafNode(Group):
     """
 
     def __init__(
-        self, class_index: Any, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
+        self, class_index: int, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
     ):
         """Initialize the leaf node with a class image or text and colored border."""
         super().__init__()
@@ -89,7 +89,7 @@ class LeafNode(Group):
         else:
             raise NotImplementedError()
 
-    def _construct_image_node(self, class_index: Any):
+    def _construct_image_node(self, class_index: int):
         """Make an image node."""
         # Get image
         image_path = self.class_image_paths[class_index]
@@ -130,7 +130,7 @@ class SplitNode(VGroup):
                self.add(SplitNode(feature=0, threshold=0.5))
     """
 
-    def __init__(self, feature: Any, threshold: Any):
+    def __init__(self, feature: int | str, threshold: float):
         """Initialize the split node showing the feature name and threshold value."""
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f} cm"
@@ -206,10 +206,10 @@ class DecisionTreeDiagram(Group):
 
     def __init__(
         self,
-        sklearn_tree: Any,
-        feature_names: Optional[Any]=None,
-        class_names: Optional[Any]=None,
-        class_images_paths: Optional[Any]=None,
+        sklearn_tree: helpers.SklearnTree,
+        feature_names: list[str] | None = None,
+        class_names: list[str] | None = None,
+        class_images_paths: list[str] | None = None,
         class_colors: list = [RED, GREEN, BLUE],
     ):
         """Initialize the decision tree diagram by building nodes, edges, and the tree layout."""
@@ -225,7 +225,7 @@ class DecisionTreeDiagram(Group):
 
     def _make_node(
         self,
-        node_index: Any,
+        node_index: int,
     ):
         """Create a split or leaf node mobject for the given tree node index."""
         is_split_node = (
@@ -277,7 +277,7 @@ class DecisionTreeDiagram(Group):
         tree_height = scale_factor * node_height * max_depth
         tree_width = scale_factor * 2**max_depth * node_width
         # traverse tree
-        def recurse(node_index: Any, depth: Any, direction: str, parent_object: Any, parent_node: Any):
+        def recurse(node_index: int, depth: int, direction: str, parent_object: Mobject, parent_node: int):
             """Recursively build tree nodes and connections at the given depth."""
             # make the node object
             is_leaf = (
@@ -477,7 +477,7 @@ class DecisionTreeDiagram(Group):
             lag_ratio=1.0
         ), split_node_animations
 
-    def make_expand_tree_animation(self, node_expand_order: Any):
+    def make_expand_tree_animation(self, node_expand_order: list[int]):
         """Make an animation for expanding the decision tree.
 
         Shows each split node as a leaf node initially, and then when it
@@ -502,7 +502,7 @@ class DecisionTreeDiagram(Group):
         pass
 
     @override_animation(Create)
-    def create_decision_tree(self, traversal_order: str = "bfs") -> Any:
+    def create_decision_tree(self, traversal_order: str = "bfs") -> Animation | None:
         """Makes a create animation for the decision tree.
 
         Parameters
@@ -545,7 +545,7 @@ class DecisionTreeContainer():
         Class label of each point in ``points``.
     """
 
-    def __init__(self, sklearn_tree: Any, points: Any, classes: Any):
+    def __init__(self, sklearn_tree: helpers.SklearnTree, points: np.ndarray, classes: np.ndarray):
         """Store the fitted tree, data points, and class labels for coordinated visualization."""
         self.sklearn_tree = sklearn_tree
         self.points = points

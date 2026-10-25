@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Paired query to feed-forward layer connection visualization."""
 
-from typing import Any
 from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .paired_query import PairedQueryLayer
@@ -54,7 +53,7 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters

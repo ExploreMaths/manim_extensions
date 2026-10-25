@@ -7,7 +7,7 @@ This module provides file parsing utilities for chemistry file formats.
 """
 
 import os
-from typing import Any, Dict, Tuple, Union
+from typing import Dict, Tuple, Union
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
@@ -48,7 +48,7 @@ class FileHandler:
         self.parser = SUPPORTED_FORMATS.get(file_extension)(filename=file_path)
 
     @staticmethod
-    def get_file_extension(file_path: Any) -> Any:
+    def get_file_extension(file_path: str | bytes | os.PathLike) -> str:
         """Return the lowercase file extension without the leading dot.
 
         Parameters

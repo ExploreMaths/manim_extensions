@@ -22,7 +22,7 @@ from manim import (
     WHITE,
     color_gradient,
 )
-from typing import Any, Self
+from typing import Self
 
 import numpy as np
 
@@ -113,7 +113,7 @@ class MElementObject(VGroup):
 
         self.add(element_frame)
 
-    def frame_name_width_ratio(self, frame: Mobject, name_text: Mobject) -> Any:
+    def frame_name_width_ratio(self, frame: Mobject, name_text: Mobject) -> float:
         """Calculate the scale factor needed to fit the element name within the frame width.
 
         Parameters
@@ -130,7 +130,7 @@ class MElementObject(VGroup):
 """
         return frame.get_width() / (1.25 * name_text.get_width())
 
-    def max_height_ratio(self, name_text: Mobject) -> Any:
+    def max_height_ratio(self, name_text: Mobject) -> Text:
         """Scale down the name text if its height exceeds the 0.3 maximum threshold.
 
         Parameters
@@ -150,7 +150,7 @@ class MElementObject(VGroup):
 
         return name_text
 
-    def create_frame_base(self) -> Any:
+    def create_frame_base(self) -> Rectangle:
         """Create the gradient-filled rectangle that forms the element tile background.
 
         Returns
@@ -214,7 +214,7 @@ class MElementObject(VGroup):
 
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
-    def from_csv_file_data(filename: Any, atomic_number: Any, **kwargs) -> Self:
+    def from_csv_file_data(filename: str, atomic_number: int, **kwargs) -> Self:
         """Load an MElementObject from a CSV file by looking up the given atomic number.
 
         Parameters
@@ -288,7 +288,7 @@ class PeriodicTable(VGroup):
     """
 
     # TODO Change to english database
-    def __init__(self, data_file: Any, *vmobjects, **kwargs):
+    def __init__(self, data_file: str, *vmobjects, **kwargs):
         """Initialize the periodic table by loading elements from a CSV data file."""
         VGroup.__init__(self, *vmobjects, **kwargs)
         self.data_file = data_file

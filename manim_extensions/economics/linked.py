@@ -12,7 +12,6 @@ from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
 
-from typing import Any, Optional
 import numpy as np
 class LinkedISLM_ADAS(VGroup):
     """Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.
@@ -61,8 +60,8 @@ class LinkedISLM_ADAS(VGroup):
 
     def __init__(
         self,
-        is_lm_kwargs: Optional[Any]=None,
-        ad_as_kwargs: Optional[Any]=None,
+        is_lm_kwargs: dict[str, float | int | bool | str] | None = None,
+        ad_as_kwargs: dict[str, float | int | bool | str] | None = None,
         spacing: float = 1.0,
         numbered_eq: bool = False,
         show_arrows: bool = False,
@@ -97,7 +96,7 @@ class LinkedISLM_ADAS(VGroup):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: Any, m: Optional[Any]=None, v: Optional[Any]=None) -> list:
+    def monetary_expansion(self, ms: float, m: float | None = None, v: float | None = None) -> list:
         """Monetary expansion: LM shifts right, AD shifts right.
 
         Parameters
@@ -122,7 +121,7 @@ class LinkedISLM_ADAS(VGroup):
             self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
         )]
 
-    def monetary_contraction(self, ms: Any, m: Optional[Any]=None, v: Optional[Any]=None) -> list:
+    def monetary_contraction(self, ms: float, m: float | None = None, v: float | None = None) -> list:
         """Monetary contraction: LM shifts left, AD shifts left.
 
         Parameters
@@ -149,7 +148,7 @@ class LinkedISLM_ADAS(VGroup):
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: np.ndarray, m: Optional[Any]=None, v: Optional[Any]=None) -> list:
+    def fiscal_expansion(self, a: np.ndarray, m: float | None = None, v: float | None = None) -> list:
         """Fiscal expansion: IS shifts right, AD shifts right.
 
         Parameters
@@ -174,7 +173,7 @@ class LinkedISLM_ADAS(VGroup):
             self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
         )]
 
-    def fiscal_contraction(self, a: np.ndarray, m: Optional[Any]=None, v: Optional[Any]=None) -> list:
+    def fiscal_contraction(self, a: np.ndarray, m: float | None = None, v: float | None = None) -> list:
         """Fiscal contraction: IS shifts left, AD shifts left.
 
         Parameters
@@ -201,7 +200,7 @@ class LinkedISLM_ADAS(VGroup):
 
     # ---- Supply shocks (AD-AS only, IS-LM unaffected) ----
 
-    def adverse_supply_shock(self, sras_price: Any, long_run: bool = True) -> Any:
+    def adverse_supply_shock(self, sras_price: float, long_run: bool = True) -> list[AnimationGroup]:
         """Adverse supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters
@@ -220,7 +219,7 @@ class LinkedISLM_ADAS(VGroup):
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )
 
-    def positive_supply_shock(self, sras_price: Any, long_run: bool = True) -> Any:
+    def positive_supply_shock(self, sras_price: float, long_run: bool = True) -> list[AnimationGroup]:
         """Positive supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters

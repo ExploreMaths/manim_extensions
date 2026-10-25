@@ -8,8 +8,7 @@ This module provides the Molecule class as a unified interface for different mol
 
 from ..twoD import GraphMolecule
 
-
-from typing import Any
+from manim import VGroup
 class Molecule:
     r"""Works as a proxy between different types of molecules with the same methods.
 
@@ -113,11 +112,11 @@ class Molecule:
                self.add(label)
     """
 
-    def __init__(self, molecule_class: Any = GraphMolecule):
+    def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule):
         """Initialize the proxy with a target molecule class to delegate calls to."""
         self.molecule_class = molecule_class
 
-    def molecule_from_file(self, *args, **kwargs) -> Any:
+    def molecule_from_file(self, *args, **kwargs) -> GraphMolecule:
         """Delegate to the wrapped molecule class to construct a molecule from a file.
 
         Parameters
@@ -134,7 +133,7 @@ class Molecule:
 """
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
-    def multiple_molecules_from_file(self, *args, **kwargs) -> Any:
+    def multiple_molecules_from_file(self, *args, **kwargs) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a file.
 
         Parameters
@@ -151,7 +150,7 @@ class Molecule:
 """
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
-    def molecule_from_string(self, *args, **kwargs) -> Any:
+    def molecule_from_string(self, *args, **kwargs) -> GraphMolecule:
         """Delegate to the wrapped molecule class to construct a molecule from a string.
 
         Parameters
@@ -168,7 +167,7 @@ class Molecule:
 """
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
-    def multiple_molecules_from_string(self, *args, **kwargs) -> Any:
+    def multiple_molecules_from_string(self, *args, **kwargs) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a string.
 
         Parameters
@@ -185,7 +184,7 @@ class Molecule:
 """
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
-    def molecule_from_pubchem(self, *args, **kwargs) -> Any:
+    def molecule_from_pubchem(self, *args, **kwargs) -> GraphMolecule:
         """Delegate to the wrapped molecule class to fetch a molecule from PubChem.
 
         Parameters
@@ -202,7 +201,7 @@ class Molecule:
 """
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
-    def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs) -> Any:
+    def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs) -> tuple[dict, dict]:
         """Delegate to the wrapped molecule class to convert an MCMolecule to atoms and bonds.
 
         Parameters

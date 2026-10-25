@@ -18,7 +18,6 @@ from .cubie import Cubie
 from ..utils.deps import require
 
 
-from typing import Any
 class RubiksCube(VMobject):
     """A Manim-backed Rubik's Cube model.
 
@@ -187,7 +186,7 @@ class RubiksCube(VMobject):
         self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
         self.generate_cubies()  # **kwargs)
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Return the geometric center of the cube's bounding box.
 
         Returns
@@ -253,7 +252,7 @@ class RubiksCube(VMobject):
         for cubie in np.rot90(np.flip(self.get_face("B", False), (0, 1)), -1).flatten():
             cubie.get_face("B").set_fill(colors[positions.pop(0)], 1)
 
-    def solve_by_kociemba(self, state: np.ndarray) -> Any:
+    def solve_by_kociemba(self, state: np.ndarray) -> list[str]:
         """Solve a cube state using the kociemba solver.
 
         Parameters
@@ -268,7 +267,7 @@ class RubiksCube(VMobject):
         sv = require("rubikscube", "kociemba")
         return sv.solve(state).replace("3", "'").replace("1", "").split()
 
-    def transform_cubie(self, position: np.ndarray, offset: np.ndarray, tile: Any):
+    def transform_cubie(self, position: np.ndarray, offset: np.ndarray, tile: Cubie):
         """Apply translation offsets to a cubie based on its position.
 
         Parameters
@@ -294,7 +293,7 @@ class RubiksCube(VMobject):
                         tile, magnitude * np.array(offset[i][1 + j * 2])
                     )
 
-    def get_face(self, face: np.ndarray, flatten: bool = True) -> Any:
+    def get_face(self, face: np.ndarray, flatten: bool = True) -> np.ndarray:
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters

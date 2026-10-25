@@ -147,7 +147,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
         """Rotate the source symbol around its center.
 
         Parameters

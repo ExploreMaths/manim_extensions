@@ -43,7 +43,7 @@ class BaseParser(ABC):
 
     def __init__(self, filename: FilePath):
         """Read and parse the chemistry file."""
-        self.file_data: Any = self.read_file(filename)
+        self.file_data: str | list[str] = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):
             self.molecular_data: list[MoleculeData] | None = parsed_data
@@ -56,7 +56,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def read_file(filename: FilePath) -> Any:
+    def read_file(filename: FilePath) -> str | list[str]:
         """
         Reads the file and converts it to a string.
 
@@ -73,7 +73,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def data_parser(data: Any) -> ParsedData:
+    def data_parser(data: str | list[str]) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:

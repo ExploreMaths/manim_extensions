@@ -16,7 +16,6 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Any
 
 import numpy as np
 from PIL import Image
@@ -85,7 +84,7 @@ class ImageLayer(NeuralNetworkLayer):
 
     def __init__(
         self, 
-        numpy_image: Any, 
+        numpy_image: np.ndarray,
         height: float = 1.5, 
         show_image_on_create: bool = True, 
         **kwargs
@@ -125,7 +124,7 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(cls, image_path: Any, grayscale: bool = True, **kwargs) -> Any:
+    def from_path(cls, image_path: str, grayscale: bool = True, **kwargs) -> "ImageLayer":
         """Creates a query using the paths.
 
         Parameters
@@ -180,7 +179,7 @@ class ImageLayer(NeuralNetworkLayer):
 """
         return AnimationGroup()
 
-    def get_right(self) -> Any:
+    def get_right(self) -> np.ndarray:
         """Override get right.
 
         Returns
@@ -203,7 +202,7 @@ class ImageLayer(NeuralNetworkLayer):
         self.image_mobject.scale(scale_factor)
 
     @property
-    def width(self) -> Any:
+    def width(self) -> float:
         """Return the width of the image mobject.
 
         Returns
@@ -213,7 +212,7 @@ class ImageLayer(NeuralNetworkLayer):
         return self.image_mobject.width
 
     @property
-    def height(self) -> Any:
+    def height(self) -> float:
         """Return the height of the image mobject.
 
         Returns

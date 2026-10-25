@@ -18,7 +18,6 @@ import manim as m
 from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
-from typing import Any
 
 
 class VoronoiDelaunay:
@@ -136,7 +135,7 @@ class VoronoiDelaunay:
 
         return vert_group, line_group
 
-    def get_circum_circle(self, voronoi_vertex_index: Any, color: m.ManimColor = m.ORANGE) -> m.Circle:
+    def get_circum_circle(self, voronoi_vertex_index: int, color: m.ManimColor = m.ORANGE) -> m.Circle:
         """Return the circumscribed circle of the triangle dual to a Voronoi vertex.
 
         The circle is centred at the Voronoi vertex and passes through the
@@ -172,7 +171,7 @@ class VoronoiDelaunay:
                 return circle
         return None  # should never get here
 
-    def create_triangle(self, voronoi_vertex_index: Any):
+    def create_triangle(self, voronoi_vertex_index: int):
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.
 
         The triangle is formed by the three mesh vertices whose Voronoi

@@ -12,7 +12,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Any, Self
+from typing import List, Optional, Self
 from .layout_config import LayoutDirection
 from .layout import Layout
 
@@ -50,7 +50,7 @@ class WrappedTree:
     """
 
     # Reference to the original node
-    node: Optional[Any] = None
+    node: Optional[object] = None
     # Basic attributes
     x: float = 0.0
     y: float = 0.0
@@ -87,7 +87,7 @@ class WrappedTree:
     thread_right: Optional["WrappedTree"] = None
 
     @classmethod
-    def from_node(cls, node: Any, is_horizontal: bool, level: int = 0) -> Self:
+    def from_node(cls, node: object, is_horizontal: bool, level: int = 0) -> Self:
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
@@ -170,7 +170,7 @@ class IYLNode:
     )
 
 
-def move_right(node: Any, move: float, is_horizontal: bool):
+def move_right(node: object, move: float, is_horizontal: bool):
     """Move a node and all its descendants by *move* in the non-layered direction.
 
     Parameters
@@ -190,7 +190,7 @@ def move_right(node: Any, move: float, is_horizontal: bool):
         move_right(child, move, is_horizontal)
 
 
-def get_min(node: Any, is_horizontal: bool) -> float:
+def get_min(node: object, is_horizontal: bool) -> float:
     """Return the minimum non-layered coordinate in a subtree.
 
     Parameters
@@ -210,7 +210,7 @@ def get_min(node: Any, is_horizontal: bool) -> float:
     return res
 
 
-def normalize(node: Any, is_horizontal: bool):
+def normalize(node: object, is_horizontal: bool):
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -224,7 +224,7 @@ def normalize(node: Any, is_horizontal: bool):
     move_right(node, -min_val, is_horizontal)
 
 
-def convert_back(converted: WrappedTree, root: Any, is_horizontal: bool):
+def convert_back(converted: WrappedTree, root: object, is_horizontal: bool):
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
@@ -249,7 +249,7 @@ def convert_back(converted: WrappedTree, root: Any, is_horizontal: bool):
             convert_back(child, root.children[i], is_horizontal)
 
 
-def layer(node: Any, direction: str, level_spacing: float):
+def layer(node: object, direction: str, level_spacing: float):
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -331,7 +331,7 @@ class TidyTreeLayout(Layout):
 
     def __init__(
         self,
-        root: Any,
+        root: object,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
@@ -358,7 +358,7 @@ class TidyTreeLayout(Layout):
         """
         return direction in (LayoutDirection.LeftToRight, LayoutDirection.RightToLeft)
 
-    def layout(self) -> Any:
+    def layout(self) -> object:
         """Run the layout computation.
 
         Returns
@@ -682,7 +682,7 @@ class TidyTreeLayout(Layout):
     def compute_connectors(self):
         """Compute connector paths between each node and its parent in the layout."""
 
-        def compute_node(node: Any):
+        def compute_node(node: object):
             """Compute the connector path from a node to its parent.
 
             Parameters

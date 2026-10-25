@@ -10,6 +10,7 @@ import numpy as np
 
 from manim import (
     AnimationGroup,
+    Camera,
     Create,
     Dot,
     FadeOut,
@@ -22,7 +23,7 @@ from manim import (
     override_animation,
     sigmoid,
 )
-from typing import Any, Optional
+from typing import Optional, Sequence
 
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -63,9 +64,9 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         passing_flash: bool = True,
         dot_radius: float = 0.05,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
-        edge_color: Any = config.color_scheme.secondary_color,
+        edge_color: ManimColor = config.color_scheme.secondary_color,
         edge_width: float = 1.5,
-        camera: Optional[Any]=None,
+        camera: Optional[Camera] = None,
         **kwargs
     ):
         """Initialize the feed-forward connective layer with edges and animation settings."""
@@ -186,7 +187,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         return path_animations
 
-    def modify_edge_colors(self, colors: Optional[Any]=None, magnitudes: Optional[Any]=None, color_scheme: str = "inferno"):
+    def modify_edge_colors(self, colors: Optional[list[ManimColor]] = None, magnitudes: Optional[np.ndarray] = None, color_scheme: str = "inferno"):
         """Changes the colors of edges.
 
         Parameters
@@ -201,7 +202,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         # TODO implement
         pass
 
-    def modify_edge_stroke_widths(self, widths: Any) -> AnimationGroup:
+    def modify_edge_stroke_widths(self, widths: Sequence[float]) -> AnimationGroup:
         """Changes the widths of the edges.
 
         Parameters

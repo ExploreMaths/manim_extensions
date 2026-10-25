@@ -6,15 +6,14 @@
 # SPDX-License-Identifier: MIT
 """Utility functions for neural network layers."""
 
-from typing import Any
 import warnings
 
-from .parent_layers import BlankConnective
+from .parent_layers import BlankConnective, ConnectiveLayer
 from . import connective_layers_list
 
 
 from manim import Mobject
-def get_connective_layer(input_layer: Mobject, output_layer: Mobject) -> Any:
+def get_connective_layer(input_layer: Mobject, output_layer: Mobject) -> ConnectiveLayer:
     """
     Deduces the relevant connective layer.
 

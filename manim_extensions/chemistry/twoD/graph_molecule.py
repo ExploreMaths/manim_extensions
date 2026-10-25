@@ -19,7 +19,7 @@ from manim import (
     VGroup,
     color_gradient,
 )
-from typing import Any, Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple
 import numpy as np
 import networkx as nx
 
@@ -106,12 +106,12 @@ class DoubleLine(ArcBetweenPoints):
 
         return vector / np.linalg.norm(vector)
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """Return the unit direction vector of the double bond.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result."""
         return self._get_unit_vector()
 
@@ -396,7 +396,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.atoms = self.vertices
         self.bonds = self.edges
 
-    def _populate_edge_dict(self, edges: Any, _: Optional[np.ndarray]):
+    def _populate_edge_dict(self, edges: list[tuple[int, int]], _: Optional[np.ndarray]):
         self.edges = {}
 
         for u, v in edges:
@@ -409,7 +409,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             )
             self.edges[(u, v)] = bond
 
-    def select_bond_from_edge(self, edge: Any) -> Any:
+    def select_bond_from_edge(self, edge: tuple[int, int]) -> type[Line] | type[ArcBetweenPoints]:
         """Return the bond class for a given edge tuple based on its bond type.
 
         Parameters
@@ -419,13 +419,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        Any
+        type[Line] | type[ArcBetweenPoints]
             The computed result.
 """
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
 
-    def select_bond_type(self, bond_type: int) -> Any:
+    def select_bond_type(self, bond_type: int) -> type[Line] | type[ArcBetweenPoints]:
         """Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple).
 
         Parameters
@@ -435,7 +435,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        Any
+        type[Line] | type[ArcBetweenPoints]
             The computed result.
 
         Raises
@@ -452,7 +452,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return bond
 
-    def make_layout(self, vertices_dict: dict) -> Any:
+    def make_layout(self, vertices_dict: dict) -> dict[int, np.ndarray]:
         """Build a layout dict mapping each atom index to its 3D coordinates.
 
         Parameters
@@ -462,7 +462,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        Any
+        dict[int, np.ndarray]
             The computed result.
 """
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
@@ -516,7 +516,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return edge_config
 
-    def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str) -> Any:
+    def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str) -> dict[int, Text]:
         """Create label text mobjects for each atom, either numeric or element symbols.
 
         Parameters
@@ -530,7 +530,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        Any
+        dict[int, Text]
             The computed result.
 """
         if numeric_label:
@@ -629,7 +629,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             connected_atoms=connected_atoms,
         )
 
-    def get_atoms_vgroup_from_index(self, atoms_indices: Any) -> VGroup:
+    def get_atoms_vgroup_from_index(self, atoms_indices: list[int]) -> VGroup:
         """Return a VGroup of vertex mobjects for the given atom indices.
 
         Parameters

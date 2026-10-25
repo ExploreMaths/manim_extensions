@@ -12,7 +12,7 @@ import numpy as np
 
 
 
-from typing import Any, Optional
+from typing import Optional
 class OpenGLSphere(OpenGLSurface):
     """A sphere rendered as an OpenGL surface.
 
@@ -26,7 +26,7 @@ class OpenGLSphere(OpenGLSurface):
 
     def __init__(
         self,
-        center: Any = ORIGIN,
+        center: np.ndarray = ORIGIN,
         **kwargs,
     ):
         """Initialize an OpenGL sphere surface at the given center point."""
@@ -39,7 +39,7 @@ class OpenGLSphere(OpenGLSurface):
 
         self.shift(center)
 
-    def uv_func(self, u: Optional[np.ndarray], v: Any) -> np.ndarray:
+    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
         """Compute sphere surface coordinates from azimuthal u and polar v angles.
 
         Parameters

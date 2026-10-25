@@ -7,7 +7,7 @@
 __all__ = [
     "StandardLayout",
 ]
-from typing import List, Any
+from typing import List
 from collections import deque
 from .alg_tidy_tree import TidyTreeLayout
 from .layout_config import LayoutDirection
@@ -80,7 +80,7 @@ class TreeNode:
         child.parent = self
 
 
-def copy_node(node: Any) -> TreeNode:
+def copy_node(node: object) -> TreeNode:
     """Recursively create a deep copy of a node tree.
 
     Parameters
@@ -123,7 +123,7 @@ def split_integer(n: int) -> tuple[int, int]:
     return k, k
 
 
-def sync_copy_bfs(src: TreeNode, dst: Any):
+def sync_copy_bfs(src: TreeNode, dst: object):
     """
     Synchronously traverse two trees and copy data from src to dst.
 
@@ -209,7 +209,7 @@ class StandardLayout(Layout):
 
     def __init__(
         self,
-        root: Any,
+        root: object,
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
@@ -257,7 +257,7 @@ class StandardLayout(Layout):
                 for child in children[m::]:
                     self.right.add_child(child)
 
-    def layout(self) -> Any:
+    def layout(self) -> object:
         """Run the two-sided layout and return the original root node.
 
         Returns
@@ -279,7 +279,7 @@ class StandardLayout(Layout):
         sync_copy_bfs(self.left, self.root)
         return self.root
 
-    def _offset(self, node: Any, x: float, y: float):
+    def _offset(self, node: TreeNode, x: float, y: float):
         """Translate a subtree by *(x, y)* and mark it as flipped.
 
         Parameters

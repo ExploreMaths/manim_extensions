@@ -8,6 +8,7 @@ This module provides QR code generation functionality with customization options
 """
 
 from typing import Any
+from types import ModuleType
 
 import manim as m
 
@@ -23,10 +24,10 @@ def qr_code(payload: str,
             white_color: str | m.ManimColor | None = None,
             corner_color: str | m.ManimColor | None = None,
             data_shape: str = 'rectangles',
-            rectangles_kwargs: dict[str, Any] | None = None,
-            circle_kwargs: dict[str, Any] | None = None,
+            rectangles_kwargs: dict[str, object] | None = None,
+            circle_kwargs: dict[str, object] | None = None,
             error_correction: str = 'H',
-            segno_kwargs: dict[str, Any] | None = None,
+            segno_kwargs: dict[str, object] | None = None,
             **kwargs: Any, ) -> m.VGroup:
     """
     Create a QR code as a VGroup of Manim objects.
@@ -133,7 +134,7 @@ def qr_code(payload: str,
         corner_color = white_color
     if data_shape not in ['circles', 'rectangles']:
         raise ValueError(f"Invalid data_shape: {data_shape}. valid values are 'circles' and 'rectangles'")
-    segno: Any = require("qr", "segno")  # segno ships no type stubs
+    segno: ModuleType = require("qr", "segno")  # segno ships no type stubs
     if rectangles_kwargs is None:
         rectangles_kwargs = {}
     if circle_kwargs is None:

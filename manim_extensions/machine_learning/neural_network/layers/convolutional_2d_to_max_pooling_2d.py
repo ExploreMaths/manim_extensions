@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
-from typing import Any
 import random
 from manim import (
     AnimationGroup,
@@ -62,7 +61,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters

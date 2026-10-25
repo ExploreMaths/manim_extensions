@@ -7,7 +7,7 @@ This module provides the XMLParser class for parsing XML format chemical files.
 
 """
 
-from typing import Any
+from types import ModuleType
 
 import numpy as np
 
@@ -101,8 +101,8 @@ class XMLParser(BaseParser):
         -------
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
-        xmltodict: Any = require("chemistry", "xmltodict")
-        parsed_xml: Any = xmltodict.parse(data)
+        xmltodict: ModuleType = require("chemistry", "xmltodict")
+        parsed_xml: dict[str, object] = xmltodict.parse(data)
         molecule_data = parsed_xml.get("PC-Compounds").get("PC-Compound")
         molecule_parsed_data = XMLParser.parse_molecule_data(
             molecule_data=molecule_data
@@ -111,7 +111,7 @@ class XMLParser(BaseParser):
         return molecule_parsed_data
 
     @staticmethod
-    def parse_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
+    def parse_molecule_data(molecule_data: dict[str, object]) -> MoleculeData:
         """Parse a single molecule entry into atoms and bonds dicts.
 
         Parameters
@@ -129,7 +129,7 @@ class XMLParser(BaseParser):
         return atoms_data, bonds_data
 
     @staticmethod
-    def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
+    def extract_atoms_data(molecule_data: dict[str, object]) -> AtomsDict:
         """Extract the atoms data from a single molecule entry.
 
         Parameters
@@ -146,37 +146,37 @@ class XMLParser(BaseParser):
         Exception
             Raised when the atoms data has no dictionary structure.
         """
-        compound_atoms: Any = molecule_data.get("PC-Compound_atoms")
+        compound_atoms: dict[str, object] = molecule_data.get("PC-Compound_atoms")
         atoms_data_dict = compound_atoms.get("PC-Atoms")
         if not isinstance(atoms_data_dict, dict):
             raise Exception(f"Atoms data has no dictionary structure {atoms_data_dict}")
 
-        atoms_aid: Any = atoms_data_dict.get("PC-Atoms_aid")
+        atoms_aid: dict[str, object] = atoms_data_dict.get("PC-Atoms_aid")
         atoms_indices_raw = atoms_aid.get("PC-Atoms_aid_E")
         atoms_indices = [int(atom_index) for atom_index in atoms_indices_raw]
 
-        atoms_element: Any = atoms_data_dict.get("PC-Atoms_element")
+        atoms_element: dict[str, object] = atoms_data_dict.get("PC-Atoms_element")
         atoms_elements_raw = atoms_element.get("PC-Element")
-        atoms_elements: list[Any] = []
+        atoms_elements: list[str] = []
         for atom_element_dict in atoms_elements_raw:
             atoms_elements.append(atom_element_dict.get("@value"))
 
-        compound_coords: Any = molecule_data.get("PC-Compound_coords")
+        compound_coords: dict[str, object] = molecule_data.get("PC-Compound_coords")
         coords_data_dict = compound_coords.get("PC-Coordinates")
-        conformers_section: Any = coords_data_dict.get("PC-Coordinates_conformers")
+        conformers_section: dict[str, object] = coords_data_dict.get("PC-Coordinates_conformers")
         atoms_coords_raw = conformers_section.get("PC-Conformer")
 
-        conformer_x: Any = atoms_coords_raw.get("PC-Conformer_x")
+        conformer_x: dict[str, object] = atoms_coords_raw.get("PC-Conformer_x")
         coords_x = [
             float(coord)
             for coord in conformer_x.get("PC-Conformer_x_E")
         ]
-        conformer_y: Any = atoms_coords_raw.get("PC-Conformer_y")
+        conformer_y: dict[str, object] = atoms_coords_raw.get("PC-Conformer_y")
         coords_y = [
             float(coord)
             for coord in conformer_y.get("PC-Conformer_y_E")
         ]
-        conformer_z: Any = atoms_coords_raw.get("PC-Conformer_z")
+        conformer_z: dict[str, object] | None = atoms_coords_raw.get("PC-Conformer_z")
         if conformer_z:
             coords_z = [
                 float(coord)
@@ -201,7 +201,7 @@ class XMLParser(BaseParser):
         return atoms_data
 
     @staticmethod
-    def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
+    def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:
         """Extract the bonds data from a single molecule entry.
 
         Parameters
@@ -213,20 +213,20 @@ class XMLParser(BaseParser):
         -------
             Bonds data of the molecule.
         """
-        compound_bonds: Any = molecule_data.get("PC-Compound_bonds")
+        compound_bonds: dict[str, object] = molecule_data.get("PC-Compound_bonds")
         bonds_data_dict = compound_bonds.get("PC-Bonds")
 
-        aid1_section: Any = bonds_data_dict.get("PC-Bonds_aid1")
+        aid1_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_aid1")
         from_atoms_raw_data = aid1_section.get("PC-Bonds_aid1_E")
         from_atoms_data = [
             int(from_atom_index) for from_atom_index in from_atoms_raw_data
         ]
 
-        aid2_section: Any = bonds_data_dict.get("PC-Bonds_aid2")
+        aid2_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_aid2")
         to_atoms_raw_data = aid2_section.get("PC-Bonds_aid2_E")
         to_atoms_data = [int(to_atom_index) for to_atom_index in to_atoms_raw_data]
 
-        order_section: Any = bonds_data_dict.get("PC-Bonds_order")
+        order_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_order")
         bonds_type_raw_data = order_section.get("PC-BondType")
         bonds_type_data = [
             int(bond_type_data.get("#text")) for bond_type_data in bonds_type_raw_data

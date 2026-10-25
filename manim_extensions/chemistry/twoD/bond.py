@@ -11,7 +11,7 @@ import numpy as np
 from .atom import MAtomObject
 
 
-from typing import Any, Literal, Optional
+from typing import Literal, Optional
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
@@ -154,7 +154,7 @@ class BaseMBondObject(VGroup):
             A tuple of the results."""
         return self.from_atom, self.to_atom
 
-    def atom_is_in_bond(self, atom: Any) -> bool | None:
+    def atom_is_in_bond(self, atom: MAtomObject) -> bool | None:
         """Return True if the given atom is one of the two atoms in this bond.
 
         Parameters
@@ -172,7 +172,7 @@ class BaseMBondObject(VGroup):
         else:
             return False
 
-    def get_bond_index_by_atom(self, atom: Any) -> Any:
+    def get_bond_index_by_atom(self, atom: MAtomObject) -> int | None:
         """Return the bond's index if the atom is part of this bond, otherwise None.
 
         Parameters
@@ -190,7 +190,7 @@ class BaseMBondObject(VGroup):
 
         return
 
-    def add_bond_index_by_atom_to_list(self, atom: Any, list: list) -> Any:
+    def add_bond_index_by_atom_to_list(self, atom: MAtomObject, list: list[int]) -> list[int]:
         """Append this bond's index to the given list if the atom is in the bond.
 
         Parameters
@@ -212,7 +212,7 @@ class BaseMBondObject(VGroup):
 
         return list
 
-    def get_perpendicular_unit_vector(self, point_a: Any, point_b: Any) -> Any:
+    def get_perpendicular_unit_vector(self, point_a: np.ndarray, point_b: np.ndarray) -> np.ndarray:
         """Return a unit vector perpendicular to the bond direction, in the xy plane.
 
         Parameters
@@ -272,13 +272,13 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """
         All bonds should contain at least a Line. This line can return the corresponding vector.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result.
 
         Raises
@@ -371,12 +371,12 @@ class SimpleBond(BaseMBondObject):
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.from_atom.coords)
 
-    def create_line(self) -> Any:
+    def create_line(self) -> Line | VMobject:
         """Build the bond line based on the configured subtype.
 
         Returns
         -------
-        Any
+        Line | VMobject
             The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -432,7 +432,7 @@ class DoubleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.15, double_bond_scale: float = 0.7, **kwargs
+        self, from_atom: MAtomObject, to_atom: MAtomObject, side: int = 0, distance: float = 0.15, double_bond_scale: float = 0.7, **kwargs
     ):
         """Initialize a double bond with side offset, line distance and scale parameters."""
         self.side = side
@@ -482,7 +482,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_from_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any) -> VGroup:
+    def shorter_from_subtype(self, direction: str, from_surroundings: bool, to_surroundings: bool) -> VGroup:
         """Return a double bond shortened at the from-atom end, with surroundings-aware layout.
 
         Parameters
@@ -524,7 +524,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_to_subtype(self, direction: str, from_surroundings: Any, to_surroundings: Any) -> VGroup:
+    def shorter_to_subtype(self, direction: str, from_surroundings: bool, to_surroundings: bool) -> VGroup:
         """Return a double bond shortened at the to-atom end, with surroundings-aware layout.
 
         Parameters
@@ -564,13 +564,13 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result.
 
         Raises
@@ -618,12 +618,12 @@ class DoubleBond(BaseMBondObject):
 
         return from_surroundings, to_surroundings
 
-    def create_line(self) -> Any:
+    def create_line(self) -> VGroup | VMobject:
         """Build the double bond VGroup based on the configured subtype.
 
         Returns
         -------
-        Any
+        VGroup | VMobject
             The computed result."""
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
@@ -687,7 +687,7 @@ class TripleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom: Any, to_atom: Any, side: int = 0, distance: float = 0.3, triple_bond_scale: float = 0.8, **kwargs
+        self, from_atom: MAtomObject, to_atom: MAtomObject, side: int = 0, distance: float = 0.3, triple_bond_scale: float = 0.8, **kwargs
     ):
         """Initialize a triple bond with line distance and scale parameters."""
         self.distance = distance
@@ -810,12 +810,12 @@ class TripleBond(BaseMBondObject):
         triple_line.move_to(pivot_line.get_start())
         bond.add(double_line, triple_line)
 
-    def create_line(self) -> Any:
+    def create_line(self) -> VGroup | VMobject:
         """Build the triple bond VGroup based on the configured subtype.
 
         Returns
         -------
-        Any
+        VGroup | VMobject
             The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -831,13 +831,13 @@ class TripleBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result.
 
         Raises
@@ -972,12 +972,12 @@ class PlainCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def create_line(self) -> Any:
+    def create_line(self) -> Polygram | VMobject:
         """Build the plain cram bond polygon based on the configured subtype.
 
         Returns
         -------
-        Any
+        Polygram | VMobject
             The computed result."""
         if not self.subtype:
             return self.no_subtype()
@@ -991,12 +991,12 @@ class PlainCramBond(BaseMBondObject):
             }
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """Return the direction vector from the from-atom to the to-atom.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result.
 
         Raises
@@ -1064,24 +1064,24 @@ class DashedCramBond(BaseMBondObject):
             )  # TODO: Change this 5 to be an option
         return cram_bond
 
-    def no_subtype(self) -> Any:
+    def no_subtype(self) -> VGroup:
         """Return a full-length dashed cram bond between both atoms.
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
         return cram_bond
 
-    def shorter_subtype(self) -> Any:
+    def shorter_subtype(self) -> VGroup:
         """Return a shortened dashed cram bond with buffer space at both ends.
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
@@ -1089,12 +1089,12 @@ class DashedCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def shorter_from_subtype(self) -> Any:
+    def shorter_from_subtype(self) -> VGroup:
         """Return a dashed cram bond shortened at the from-atom end.
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
@@ -1102,12 +1102,12 @@ class DashedCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def shorter_to_subtype(self) -> Any:
+    def shorter_to_subtype(self) -> VGroup:
         """Return a dashed cram bond shortened at the to-atom end.
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
@@ -1115,12 +1115,12 @@ class DashedCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def longer_subtype(self) -> Any:
+    def longer_subtype(self) -> VGroup:
         """Return a degenerate zero-length dashed cram bond at the from atom.
 
         Returns
         -------
-        Any
+        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
@@ -1128,12 +1128,12 @@ class DashedCramBond(BaseMBondObject):
 
         return cram_bond
 
-    def create_line(self) -> Any:
+    def create_line(self) -> VGroup | VMobject:
         """Build the dashed cram bond VGroup based on the configured subtype.
 
         Returns
         -------
-        Any
+        VGroup | VMobject
             The computed result."""
         if not self.subtype:
             return self.no_subtype()
@@ -1148,13 +1148,13 @@ class DashedCramBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> Any:
+    def get_vector(self) -> np.ndarray:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------
-        Any
+        np.ndarray
             The computed result.
 
         Raises

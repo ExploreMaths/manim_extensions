@@ -27,7 +27,7 @@ from manim import (
     VGroup,
     YELLOW,
 )
-from typing import Any, Optional
+from typing import Optional
 
 import numpy as np
 
@@ -136,17 +136,17 @@ class SolowDiagram(EconDiagram):
                                   numbered=numbered_eq)
 
     @staticmethod
-    def _make_prod_func(alpha: Any):
+    def _make_prod_func(alpha: float):
         """:math:`y = k^\\alpha`"""
         return lambda k: k ** alpha
 
     @staticmethod
-    def _make_savings_func(s: Any, alpha: Any):
+    def _make_savings_func(s: float, alpha: float):
         """:math:`sf(k) = s \\cdot k^\\alpha`"""
         return lambda k: s * (k ** alpha)
 
     @staticmethod
-    def _make_breakeven_func(delta: Any, n: Optional[np.ndarray], g: Any):
+    def _make_breakeven_func(delta: float, n: Optional[np.ndarray], g: float):
         """:math:`(\\delta + n + g) \\cdot k`"""
         rate = delta + n + g
         return lambda k: rate * k
@@ -155,7 +155,7 @@ class SolowDiagram(EconDiagram):
     def _shares_visible(self):
         return hasattr(self, '_shares_group') and self._shares_group is not None
 
-    def _shift_with_shares(self, curve_anim: Any, run_time: float):
+    def _shift_with_shares(self, curve_anim: AnimationGroup, run_time: float):
         """Bundle a curve shift with a shares update if shares are visible."""
         if not self._shares_visible:
             return curve_anim
@@ -169,7 +169,7 @@ class SolowDiagram(EconDiagram):
         shares_anim = ReplacementTransform(old, new_group, run_time=run_time)
         return AnimationGroup(curve_anim, shares_anim)
 
-    def shift_savings(self, s: Optional[Any]=None, run_time: float = 1, show_arrows: bool = False) -> Any:
+    def shift_savings(self, s: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
         """Animate savings curve shifting due to change in savings rate.
 
         Parameters
@@ -197,8 +197,8 @@ class SolowDiagram(EconDiagram):
         )
         return self._shift_with_shares(anim, run_time)
 
-    def shift_breakeven(self, delta: Optional[Any]=None, n: Optional[Any]=None, g: Optional[Any]=None, run_time: float = 1,
-                        show_arrows: bool = False) -> Any:
+    def shift_breakeven(self, delta: float | None = None, n: float | None = None, g: float | None = None, run_time: float = 1,
+                        show_arrows: bool = False) -> AnimationGroup:
         """Animate break-even line shifting due to changes in :math:`\\delta`, n, or g.
 
         Parameters
@@ -236,7 +236,7 @@ class SolowDiagram(EconDiagram):
 
     # ---- Common shocks ----
 
-    def increase_savings(self, s: Any, show_arrows: bool = False) -> list[AnimationGroup]:
+    def increase_savings(self, s: float, show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher savings rate → sf(k) shifts up → higher steady-state k.
 
         Parameters
@@ -254,7 +254,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def decrease_savings(self, s: Any, show_arrows: bool = False) -> list[AnimationGroup]:
+    def decrease_savings(self, s: float, show_arrows: bool = False) -> list[AnimationGroup]:
         """Lower savings rate → sf(k) shifts down → lower steady-state k.
 
         Parameters
@@ -290,7 +290,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
 
-    def increase_depreciation(self, delta: Any, show_arrows: bool = False) -> list[AnimationGroup]:
+    def increase_depreciation(self, delta: float, show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher depreciation → break-even steeper → lower steady-state k.
 
         Parameters
@@ -317,7 +317,7 @@ class SolowDiagram(EconDiagram):
         bf = self._make_breakeven_func(self._delta, self._n, self._g)
         return find_intersection(sf, bf, self.axes.x_range)
 
-    def _build_shares(self, k: Any, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW):
+    def _build_shares(self, k: float, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW):
         """Build the share annotation VGroup at capital level k."""
         prod = self._make_prod_func(self._alpha)
         sav = self._make_savings_func(self._s, self._alpha)
@@ -343,7 +343,7 @@ class SolowDiagram(EconDiagram):
 
         return VGroup(stem, i_brace, i_label, c_brace, c_label)
 
-    def show_shares(self, k: Optional[Any]=None, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 1) -> FadeIn | ReplacementTransform | None:
+    def show_shares(self, k: float | None = None, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 1) -> FadeIn | ReplacementTransform | None:
         """Show or update consumption/investment share annotations.
 
         Call again after a shift to animate the braces to the new position.
@@ -397,7 +397,7 @@ class SolowDiagram(EconDiagram):
             return FadeOut(old)
         return None
 
-    def animate_shares_along(self, k_start: Any, k_end: Any,
+    def animate_shares_along(self, k_start: float, k_end: float,
                              c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3) -> UpdateFromAlphaFunc:
         """Animate the c/i share braces sliding from ``k_start`` to ``k_end``.
 
@@ -430,7 +430,7 @@ class SolowDiagram(EconDiagram):
 
         container = self._shares_group
 
-        def updater(mob: Mobject, alpha: Any):
+        def updater(mob: Mobject, alpha: float):
             """Rebuilds the consumption/investment shares mobject at capital level k."""
             k = k_start + (k_end - k_start) * alpha
             new = self._build_shares(k, c_color, i_color)

@@ -6,8 +6,6 @@ This module provides the MolParser class for parsing MOL format chemical files.
 
 """
 
-from typing import Any
-
 import numpy as np
 
 from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath
@@ -113,7 +111,7 @@ class MolParser(BaseParser):
         number_of_bonds = int(mol_general_info[1])
 
         atoms: AtomsDict = {}
-        bonds: dict[int, list[dict[str, Any]]] = {}
+        bonds: dict[int, list[dict[str, object]]] = {}
         for index, line in enumerate(data[3 : 3 + number_of_atoms]):
             line_data = line.split()
             x_position = float(line_data[0])
@@ -130,7 +128,7 @@ class MolParser(BaseParser):
             first_atom_index = int(float(line_data[0]))
             second_atom_index = int(float(line_data[1]))
             bond_type = line_data[2]
-            bond_data: dict[str, Any] = {
+            bond_data: dict[str, object] = {
                 "to_atom_index": first_atom_index,
                 "from_atom_index": second_atom_index,
                 "bond_type": bond_type,

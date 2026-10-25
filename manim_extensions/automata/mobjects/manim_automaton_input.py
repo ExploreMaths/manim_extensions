@@ -9,7 +9,7 @@ This module provides the ManimAutomataInput class for representing input strings
 """
 
 
-from manim import MathTex, VGroup
+from manim import Animation, MathTex, VGroup
 from typing import Any
 
 import itertools
@@ -56,7 +56,7 @@ class ManimAutomataInput(VGroup):
     def __init__(
         self,
         input_string: str,
-        animation_style: dict[str, Any],
+        animation_style: dict[str, object],
         font_size: int = 100,
         **kwargs: Any,
     ):
@@ -77,7 +77,7 @@ class ManimAutomataInput(VGroup):
             spacing = spacing + 1
 
     @staticmethod
-    def highlight_token(token: MathTex, animation_style: dict[str, Any]) -> Any:
+    def highlight_token(token: MathTex, animation_style: dict[str, object]) -> Animation:
         """Highlight a token using the configured animation style.
 
         Parameters

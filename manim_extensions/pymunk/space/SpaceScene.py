@@ -9,7 +9,7 @@ This module provides the SpaceScene class for creating physics simulations with 
 from __future__ import annotations
 
 from manim import Mobject, ZoomedScene
-from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Tuple
+from typing import Callable, Dict, Optional, TYPE_CHECKING, Tuple
 
 from . import VSpace
 from ..constraints.constraint import VConstraint
@@ -512,7 +512,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[Any, Any]] = None,
+        data: Optional[Dict[object, object]] = None,
     ):
         """Register a wildcard collision handler that matches any collision
         involving the given collision type.
@@ -544,7 +544,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[Any, Any]] = None,
+        data: Optional[Dict[object, object]] = None,
     ):
         """Register a collision handler between two specific collision types.
 

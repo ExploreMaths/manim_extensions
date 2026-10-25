@@ -9,7 +9,6 @@
 
 from .activation_function import ActivationFunction
 
-from typing import Any
 class ReLUFunction(ActivationFunction):
     """Rectified Linear Unit Activation Function.
 
@@ -44,7 +43,7 @@ class ReLUFunction(ActivationFunction):
         """Initialize the ReLU activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val: Any) -> int | None:
+    def apply_function(self, x_val: float) -> int | None:
         """Return max(0, x_val), the ReLU activation applied to the input value.
 
         Parameters

@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Feed-forward to math operation layer connection visualization."""
 
-from typing import Any
 from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -47,7 +46,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ) -> Any:
+    ) -> None:
         """Build a straight arrow connection between the feed-forward and math operation layers.
 
         Parameters

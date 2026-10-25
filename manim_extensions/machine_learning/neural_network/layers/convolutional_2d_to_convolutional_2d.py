@@ -25,7 +25,7 @@ from manim import (
     override_animation,
     rotation_matrix,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from .convolutional_2d import Convolutional2DLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
@@ -119,7 +119,7 @@ class Filters(VGroup):
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
-        output_feature_map_to_connect: Optional[Any]=None,  # None means all at once
+        output_feature_map_to_connect: Optional[int] = None,  # None means all at once
     ):
         """Initialize the filter visualization connecting input and output feature maps."""
         super().__init__()
@@ -362,7 +362,7 @@ class Filters(VGroup):
         TODO Fix this
         """
 
-        def add_content(object: Mobject) -> Any:
+        def add_content(object: Mobject) -> Mobject:
             """Add the filter rectangles and connective lines to the mobject.
 
             Returns
@@ -383,7 +383,7 @@ class Filters(VGroup):
             lag_ratio=0.0,
         )
 
-    def make_pulse_animation(self, shift_amount: Any) -> ShowPassingFlash:
+    def make_pulse_animation(self, shift_amount: np.ndarray) -> ShowPassingFlash:
         """Make animation of the filter pulsing.
 
         Parameters
@@ -479,7 +479,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs,
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters
@@ -681,7 +681,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         highlight_active_feature_map: bool = True,
         run_time: float = 10.5,
         **kwargs,
-    ) -> Any:
+    ) -> Succession:
         """Forward pass animation from conv2d to conv2d.
 
         Parameters

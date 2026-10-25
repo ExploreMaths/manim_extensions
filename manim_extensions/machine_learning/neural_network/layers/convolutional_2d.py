@@ -10,6 +10,8 @@ This module provides the convolutional 2D layer class for neural network visuali
 
 """
 
+import numpy as np
+
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from manim import (
@@ -17,6 +19,7 @@ from manim import (
     ApplyMethod,
     BLUE,
     Create,
+    Dot,
     FadeIn,
     ManimColor,
     Mobject,
@@ -25,7 +28,7 @@ from manim import (
     VGroup,
     override_animation,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from ... import config
 
@@ -75,7 +78,7 @@ class FeatureMap(VGroup):
     def __init__(
         self,
         color: ManimColor = ORANGE,
-        feature_map_size: Optional[Any]=None,
+        feature_map_size: Optional[tuple[int, int]] = None,
         fill_color: ManimColor = ORANGE,
         fill_opacity: float = 0.2,
         cell_width: float = 0.2,
@@ -153,7 +156,7 @@ class FeatureMap(VGroup):
             )
             self.add(self.exterior_rectangle)
 
-    def get_corners_dict(self) -> Any:
+    def get_corners_dict(self) -> dict[str, Dot]:
         """Returns a dictionary of the corners.
 
         Returns
@@ -242,9 +245,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def __init__(
         self,
-        num_feature_maps: Any,
-        feature_map_size: Optional[Any]=None,
-        filter_size: Optional[Any]=None,
+        num_feature_maps: int,
+        feature_map_size: Optional[int | tuple[int, int]] = None,
+        filter_size: Optional[int | tuple[int, int]] = None,
         cell_width: float = 0.2,
         filter_spacing: float = 0.1,
         color: ManimColor = BLUE,
@@ -254,7 +257,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         fill_opacity: float = 0.3,
         stride: int = 1,
         stroke_width: float = 2.0,
-        activation_function: Optional[Any]=None,
+        activation_function: Optional[ActivationFunction | str] = None,
         padding: int = 0,
         padding_dashed: bool = True,
         **kwargs,
@@ -438,7 +441,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Overrides function for getting center.
 
         The reason for this is so that the center calculation
@@ -450,7 +453,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The computed result."""
         return self.feature_maps.get_center()
 
-    def get_width(self) -> Any:
+    def get_width(self) -> float:
         """Overrides get width function.
 
         Returns
@@ -459,7 +462,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The computed result."""
         return self.feature_maps.length_over_dim(0)
 
-    def get_height(self) -> Any:
+    def get_height(self) -> float:
         """Overrides get height function.
 
         Returns

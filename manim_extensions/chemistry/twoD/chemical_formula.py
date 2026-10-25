@@ -9,9 +9,6 @@ This module provides the ChemicalFormula class for rendering chemical formulas.
 import re
 
 from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, ManimColor, MarkupText, VGroup, WHITE
-
-
-from typing import Any
 class ChemicalFormula(MarkupText):
     """
     Mostly usefull for simple compounds like binary salts or oxoanions.
@@ -80,7 +77,7 @@ class ChemicalFormula(MarkupText):
 
     def make_markup(
         self,
-        parsed_formula: Any,
+        parsed_formula: dict[str, int],
         metal_color: str = WHITE,
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
@@ -118,7 +115,7 @@ class ChemicalFormula(MarkupText):
 
         return markup
 
-    def set_atom_color(self, atom: Any, subindex: Any, color: ManimColor) -> str:
+    def set_atom_color(self, atom: str, subindex: int, color: ManimColor) -> str:
         """Wrap an atom symbol and its subscript count in a colored span tag.
 
         Parameters
@@ -289,7 +286,7 @@ class ComplexFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def add_tags_around_numbers(self, formula_part: Any) -> Any:
+    def add_tags_around_numbers(self, formula_part: str) -> str:
         """Wrap trailing numbers in formula parts with HTML subscript tags.
 
         Parameters
@@ -299,7 +296,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        Any
+        str
             The computed result.
 """
         pattern = r"([^\d\s]+)(\d+)"
@@ -307,7 +304,7 @@ class ComplexFormula(MarkupText):
         result = re.sub(pattern, replacement, formula_part)
         return result
 
-    def add_tags_around_charges(self, formula_part: Any) -> Any:
+    def add_tags_around_charges(self, formula_part: str) -> str:
         """Wrap charge notation (^{...}) with HTML superscript tags.
 
         Parameters
@@ -317,7 +314,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        Any
+        str
             The computed result.
 """
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
@@ -326,7 +323,7 @@ class ComplexFormula(MarkupText):
 
         return result_string
 
-    def make_formula_structure(self, formula_part: Any) -> Any:
+    def make_formula_structure(self, formula_part: str) -> str:
         """Apply subscript and superscript formatting to a formula string.
 
         Parameters
@@ -336,7 +333,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        Any
+        str
             The computed result.
 """
         result = self.add_tags_around_numbers(formula_part)

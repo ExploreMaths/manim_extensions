@@ -10,7 +10,7 @@ functions to create delaunay meshes by divide and conquer.
 from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate
 
 # python imports
-from typing import List, Any
+from typing import List
 
 # third-party imports
 import numpy as np
@@ -481,7 +481,7 @@ class DivideAndConquer:
                     return indices[(i + 1) % len(indices)]
             return None
 
-        def on_right(tangent: np.ndarray, point: np.ndarray) -> Any:
+        def on_right(tangent: np.ndarray, point: np.ndarray) -> bool:
             """Check whether a point lies to the right of a tangent line.
 
             Parameters

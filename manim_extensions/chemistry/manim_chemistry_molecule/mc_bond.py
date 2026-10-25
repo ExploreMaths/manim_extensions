@@ -6,7 +6,13 @@ This module provides the MCBond class for representing chemical bonds in molecul
 
 """
 
-from typing import Any, Dict, Optional, Self
+from __future__ import annotations
+
+from typing import Dict, Optional, Self, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .mc_atom import MCAtom
+    from .mc_molecule import MCMolecule
 
 BOND_TYPES = {
     1: "simple",
@@ -45,8 +51,8 @@ class MCBond:
     def __init__(
         self,
         bond_type: int,
-        from_atom: Optional[Any]=None,
-        to_atom: Optional[Any]=None,
+        from_atom: Optional[MCAtom]=None,
+        to_atom: Optional[MCAtom]=None,
         stereo: Optional[int] = None,
         molecule_index: Optional[int] = None,
         topology: Optional[int] = None,
@@ -61,7 +67,7 @@ class MCBond:
         self.topology = topology
         self.reacting_center_status = reacting_center_status
 
-    def assign_from_atom(self, from_atom: Any):
+    def assign_from_atom(self, from_atom: MCAtom):
         """Set the atom the bond originates from.
 
         Parameters
@@ -71,7 +77,7 @@ class MCBond:
         """
         self.from_atom = from_atom
 
-    def assign_to_atom(self, to_atom: Any):
+    def assign_to_atom(self, to_atom: MCAtom):
         """Set the atom the bond points to.
 
         Parameters
@@ -81,7 +87,7 @@ class MCBond:
         """
         self.to_atom = to_atom
 
-    def assign_stereo(self, stereo: Any):
+    def assign_stereo(self, stereo: Optional[int]):
         """Set the stereochemistry type of the bond.
 
         Parameters
@@ -92,7 +98,7 @@ class MCBond:
         self.stereo = stereo
 
     @staticmethod
-    def construct_from_bond_dict(bond_index: Any, bond_data_dict: Dict, molecule: Any) -> Self:
+    def construct_from_bond_dict(bond_index: int, bond_data_dict: Dict, molecule: MCMolecule) -> Self:
         """
         Given a bond data dict from a parser, returns an MCBond.
 

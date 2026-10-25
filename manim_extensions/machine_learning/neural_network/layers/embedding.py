@@ -23,7 +23,6 @@ from manim import (
     np,
     override_animation,
 )
-from typing import Any
 
 from ...utils.mobjects.probability import GaussianDistribution
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
@@ -139,7 +138,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         )  # Use defaults
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def add_gaussian_distribution(self, gaussian_distribution: Any) -> Create:
+    def add_gaussian_distribution(self, gaussian_distribution: GaussianDistribution) -> Create:
         """Adds given GaussianDistribution to the list.
 
         Parameters
@@ -156,7 +155,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         return Create(gaussian_distribution)
 
-    def remove_gaussian_distribution(self, gaussian_distribution: Any) -> FadeOut | None:
+    def remove_gaussian_distribution(self, gaussian_distribution: GaussianDistribution) -> FadeOut | None:
         """Removes the given gaussian distribution from the embedding.
 
         Parameters
@@ -174,7 +173,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                 self.gaussian_distributions.remove(gaussian_distribution)
                 return FadeOut(gaussian)
 
-    def sample_point_location_from_distribution(self) -> Any:
+    def sample_point_location_from_distribution(self) -> np.ndarray:
         """Samples from the current latent distribution.
 
         Returns
@@ -189,7 +188,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         return location
 
-    def get_distribution_location(self) -> Any:
+    def get_distribution_location(self) -> np.ndarray:
         """Returns mean of latent distribution in axes frame.
 
         Returns

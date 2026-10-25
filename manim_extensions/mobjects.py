@@ -53,7 +53,7 @@ from manim import (
 from manim.typing import Point3D, Vector3DLike
 import numpy as np
 import platform
-from typing import Any, Optional, Union, Self
+from typing import Any, Callable, Optional, Union, Self
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -343,7 +343,7 @@ class MathTexBrace(VGroup):
 
     def __init__(
         self,
-        target: Any,
+        target: Mobject,
         formula: MathTex,
         direction: np.ndarray = UP,
         buff: float = 0.5,
@@ -1401,7 +1401,7 @@ class Trail(VGroup):
         max_width: float = 5,
         nums: int = 500,
         trail_color: ManimColor = BLUE_B,
-        rate_func: Optional[Any]=None,
+        rate_func: Optional[Callable[[float], float]] = None,
         **kwargs,
     ):
         """Initialize the Trail instance."""
@@ -1456,7 +1456,7 @@ class Trail(VGroup):
             )
         return path
 
-    def update_path(self, trail: Any):
+    def update_path(self, trail: VGroup):
         """Updater: replace *trail* by the freshly created path.
 
         Parameters
@@ -1732,7 +1732,7 @@ class ThreeDVector(VGroup):
 
     def __init__(
         self,
-        vector: Any = RIGHT,
+        vector: Vector3DLike = RIGHT,
         position: np.ndarray = ORIGIN,
         radius: float = 0.12,
         color: ManimColor = BLUE,

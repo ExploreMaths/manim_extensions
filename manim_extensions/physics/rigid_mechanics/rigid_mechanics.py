@@ -29,7 +29,7 @@ the specific functions of the space.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Protocol, Tuple, cast
+from typing import TYPE_CHECKING, Protocol, Tuple, cast
 
 import numpy as np
 
@@ -193,7 +193,7 @@ class SpaceScene(Scene):
 
     GRAVITY: Tuple[float, float] = 0, -9.81
 
-    def __init__(self, renderer: Any = None, **kwargs):
+    def __init__(self, renderer: str | None = None, **kwargs):
         """A basis scene for all of rigid mechanics. The gravity vector
         can be adjusted with ``self.GRAVITY``.
         """
@@ -312,7 +312,7 @@ def _step(space: "Space", dt: float):
     space.space.step(dt)
 
 
-def _simulate(b: Any):
+def _simulate(b: Mobject):
     """Read the current state of a pymont body and update the Manim mobject.
 
     Parameters

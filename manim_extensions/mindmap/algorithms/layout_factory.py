@@ -8,10 +8,10 @@ This module provides factory for creating layout algorithms.
 
 """
 
-from typing import Any
 __all__ = [
     "LayoutFactory",
 ]
+from .layout import Layout
 from .layout_config import LayoutType, LayoutConfig
 from .alg_tidy_tree import TidyTreeLayout
 from .alg_standard import StandardLayout
@@ -57,7 +57,7 @@ class LayoutFactory:
     """
 
     @staticmethod
-    def create_layout(layout_type: LayoutType, root: Any, layout_config: LayoutConfig) -> Any:
+    def create_layout(layout_type: LayoutType, root: object, layout_config: LayoutConfig) -> Layout:
         """Create the appropriate layout algorithm instance.
 
         Parameters

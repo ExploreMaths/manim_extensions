@@ -18,7 +18,7 @@ from manim import (
     VGroup,
     Wait,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from abc import ABC, abstractmethod
 import random
@@ -71,15 +71,15 @@ class ActivationFunction(ABC, VGroup):
 
     def __init__(
         self,
-        function_name: Optional[Any]=None,
+        function_name: Optional[str] = None,
         x_range: list = [-1, 1],
         y_range: list = [-1, 1],
         x_length: float = 0.5,
         y_length: float = 0.3,
         show_function_name: bool = True,
         active_color: ManimColor = config.color_scheme.active_color,
-        plot_color: Any = config.color_scheme.primary_color,
-        rectangle_color: Any = config.color_scheme.secondary_color,
+        plot_color: ManimColor = config.color_scheme.primary_color,
+        rectangle_color: ManimColor = config.color_scheme.secondary_color,
     ):
         """Initialize the activation function plot with axes, graph, and optional label."""
         super(VGroup, self).__init__()
@@ -138,7 +138,7 @@ class ActivationFunction(ABC, VGroup):
             self.add(function_name_text)
 
     @abstractmethod
-    def apply_function(self, x_val: Any):
+    def apply_function(self, x_val: float | None):
         """Evaluates function at given x_val.
 
         Parameters
@@ -150,7 +150,7 @@ class ActivationFunction(ABC, VGroup):
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
-    def make_evaluate_animation(self, x_val: Optional[Any]=None) -> Succession:
+    def make_evaluate_animation(self, x_val: Optional[float] = None) -> Succession:
         """Evaluates the function at a random point in the x_range.
 
         Parameters

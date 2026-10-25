@@ -6,7 +6,7 @@ This module provides the MCMolecule class for representing molecules.
 
 """
 
-from typing import Any, Dict, List, Optional, Self
+from typing import Dict, List, Optional, Self
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -190,11 +190,11 @@ class MCMolecule:
 
     @staticmethod
     def construct_from_file(
-        filepath: Any,
+        filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ) -> Any:
+    ) -> Self:
         """
         Returns an MCMolecule given a file path.
 
@@ -232,7 +232,7 @@ class MCMolecule:
 
     @staticmethod
     def construct_multiples_from_file(
-        filepath: Any,
+        filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
@@ -281,7 +281,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: Optional[dict] = None,
-    ) -> Any:
+    ) -> Self:
         """
         Reads a string and returns a molecule.
 
@@ -383,7 +383,7 @@ class MCMolecule:
 
         return mc_molecules
 
-    def remove_carbon_hydrogens(self) -> Any:
+    def remove_carbon_hydrogens(self) -> None:
         """Remove all hydrogen atoms that are bonded only to carbon atoms.
 
         Returns
@@ -405,7 +405,7 @@ class MCMolecule:
 
         return self.remove_hydrogens(atoms_to_be_removed)
 
-    def remove_all_hydrogens(self) -> Any:
+    def remove_all_hydrogens(self) -> None:
         """Remove every hydrogen atom from the molecule.
 
         Returns

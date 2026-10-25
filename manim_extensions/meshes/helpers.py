@@ -8,7 +8,7 @@ some basic helpers for our models.
 """
 
 # python imports
-from typing import Any, Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union
 
 # third-party imports
 import numpy as np
@@ -100,7 +100,7 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
     )
 
 
-def is_twice_nested_iterable(obj: Any, min_lens: Tuple[int, int] = (1, 3)) -> bool:
+def is_twice_nested_iterable(obj: object, min_lens: Tuple[int, int] = (1, 3)) -> bool:
     """Check whether *obj* is a 2-D array-like structure.
 
     Examples of valid structures include 2-D NumPy arrays,
@@ -204,7 +204,7 @@ def fix_references(
     return sorted(sub_removed)
 
 
-def remove_keys_from_dict(d: Dict[str, Any], keys: List[str]) -> Dict[str, Any]:
+def remove_keys_from_dict(d: Dict[str, object], keys: List[str]) -> Dict[str, object]:
     """Remove *keys* from dictionary *d* without raising ``KeyError``.
 
     Parameters

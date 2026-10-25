@@ -7,7 +7,7 @@ This module provides utility functions for parsing chemical molecule data.
 """
 
 import numpy as np
-from typing import Any, Literal
+from typing import Literal
 
 from ..element import (
     H,
@@ -248,6 +248,8 @@ from ..element import (
     Og_ESP,
 )
 
+from ..element.element import Element
+
 
 def mol_parser_string(mol_string: list) -> tuple[dict]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
@@ -355,7 +357,7 @@ def mol_parser_string(mol_string: list) -> tuple[dict]:
     return atoms, bonds  # Should return atoms and bonds
 
 
-def mol_parser(file: Any) -> Any:
+def mol_parser(file: str) -> tuple[dict, dict]:
     """Read a .mol file from disk and return parsed ``(atoms, bonds)``.
 
     Parameters
@@ -398,7 +400,7 @@ def sdf_parser_string(sdf_string: str) -> list[tuple]:
     return mol_list
 
 
-def sdf_parser(file: Any) -> Any:
+def sdf_parser(file: str) -> list[tuple[dict, dict]]:
     """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.
 
     Parameters
@@ -416,7 +418,7 @@ def sdf_parser(file: Any) -> Any:
     return sdf_parser_string(sdf_file)
 
 
-def get_element(element: str, language: str = "ENG") -> Any:
+def get_element(element: str, language: str = "ENG") -> Element:
     """Return the Element class instance for a given element symbol.
 
     Parameters
@@ -438,7 +440,7 @@ def get_element(element: str, language: str = "ENG") -> Any:
     return element_dict[element]
 
 
-def mol_to_graph(file: Any, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
+def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
     Unlike ``mol_parser``, this function stores atom positions under the

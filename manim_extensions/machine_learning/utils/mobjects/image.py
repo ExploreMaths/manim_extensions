@@ -51,7 +51,7 @@ class GrayscaleImageMobject(Group):
                self.add(GrayscaleImageMobject(gradient))
     """
 
-    def __init__(self, numpy_image: NDArray[Any], height: float = 2.3):
+    def __init__(self, numpy_image: NDArray[np.uint8], height: float = 2.3):
         """Initialize the grayscale image mobject."""
         super().__init__()
         self.numpy_image = numpy_image
@@ -174,7 +174,7 @@ class LabeledColorImage(Group):
 
     def __init__(
         self,
-        image: Any,
+        image: ImageMobject,
         color: ManimColor = RED,
         label: str = "Positive",
         stroke_width: float = 5,

@@ -20,9 +20,9 @@ from manim import (
     VMobject,
     linear,
 )
-from typing import Any, List, Optional
+from typing import List, Optional
 from manim.typing import Point3D
-from .node import Node
+from .node import Node, NodeBoxType
 
 
 class Queue(VMobject):
@@ -69,7 +69,7 @@ class Queue(VMobject):
         init_data: Optional[List[Node]] = None,
         total_width: int = 12,
         font_size: int = 48,
-        box_type: Any = Square,
+        box_type: NodeBoxType = Square,
         bound_color: ManimColor = RED,
         **kwargs,
     ):

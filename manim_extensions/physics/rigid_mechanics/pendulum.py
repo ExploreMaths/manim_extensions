@@ -13,7 +13,7 @@ r"""Pendulums.
 from __future__ import annotations
 
 from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup
-from typing import Any, Iterable
+from typing import Iterable
 
 import numpy as np
 
@@ -132,7 +132,7 @@ class MultiPendulum(VGroup):
         joint = pymunk.PinJoint(a, b)
         spacescene.space.space.add(joint)
 
-    def _redraw_rods(self, mob: Line, pins: list, i: Any):
+    def _redraw_rods(self, mob: Line, pins: list, i: int):
         """Update a rod line to connect the positions of two consecutive pins.
 
         Parameters

@@ -16,7 +16,7 @@ Layout characteristics:
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Any, Callable, Tuple, Self
+from typing import List, Optional, Callable, Tuple, Self
 from .layout import Layout
 
 
@@ -76,7 +76,7 @@ class CatalogNode:
                self.add(boxes)
     """
 
-    data: Optional[Any] = None
+    data: Optional[object] = None
     width: float = 0.0
     height: float = 0.0
     children: List["CatalogNode"] = field(default_factory=list)
@@ -89,7 +89,7 @@ class CatalogNode:
     children_area_width: float = 0.0
 
     @classmethod
-    def from_data(cls, node: Any) -> Self:
+    def from_data(cls, node: object) -> Self:
         """Recursively create a node tree from raw data.
 
         Parameters
@@ -161,7 +161,7 @@ class CatalogLayout(Layout):
     """
 
     def __init__(
-        self, root: Any, node_spacing: float = 0.5, level_spacing: float = 0.5
+        self, root: object, node_spacing: float = 0.5, level_spacing: float = 0.5
     ):
         """Initialize CatalogLayout."""
         self.root = CatalogNode.from_data(root)
@@ -517,7 +517,7 @@ class CatalogLayout(Layout):
 
         _applay_coords_for_node(self.root)
 
-    def layout(self) -> Any:
+    def layout(self) -> object:
         """Run the full layout and return the root node (with coordinates filled in).
 
         Returns

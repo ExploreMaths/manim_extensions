@@ -72,7 +72,7 @@ class MVariable(MArrayElement):
     def __init__(
         self,
         scene: Scene,
-        value: Any = "",
+        value: object = "",
         index: Union[str, int] = "",
         label: str = "",
         mob_square_args: MobProps = {},
@@ -83,7 +83,7 @@ class MVariable(MArrayElement):
     ):
         """Initialize the MVariable instance."""
 
-        self.__value: Any = value
+        self.__value: object = value
         self.__index: Union[str, int] = index
         self.__label: str = label
 
@@ -100,7 +100,7 @@ class MVariable(MArrayElement):
             **kwargs,
         )
 
-    def fetch_value(self) -> Any:
+    def fetch_value(self) -> object:
         """Fetches the value of the variable.
 
         Returns
@@ -133,7 +133,7 @@ class MVariable(MArrayElement):
 
     def update_value(
         self,
-        value: Any,
+        value: object,
         mob_value_args: dict = {},
         update_anim: Animation = Indicate,
         update_anim_args: dict = {},

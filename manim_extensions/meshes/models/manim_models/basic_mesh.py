@@ -12,7 +12,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 import copy
-from typing import Any, List, Optional, Tuple
+from typing import List, Optional, Tuple
 
 # third-party imports
 import manim as m
@@ -452,7 +452,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         self,
         angle: float,
         axis: np.ndarray = m.OUT,
-        about_point: Optional[Any]=None,
+        about_point: Optional[np.ndarray]=None,
         **kwargs,
     ):
         """Rotate the mesh (data and Manim objects) about *about_point*.

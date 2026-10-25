@@ -8,7 +8,7 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Any, Literal, Optional, Self
+from typing import Dict, Literal, Optional, Self
 
 
 class MAtomObject(VGroup):
@@ -76,7 +76,7 @@ class MAtomObject(VGroup):
         element: str = "H",
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
-        bond_to: Dict[int, Any] = {},
+        bond_to: Dict[int, str] = {},
         representation_type: Optional[Literal["complete", "skeleton", "over_bond"]] = None,
         color: str = WHITE,
         charge: int = 0,
@@ -158,13 +158,13 @@ class MAtomObject(VGroup):
 
         return representation_type
 
-    def add_atom(self) -> Any:
+    def add_atom(self) -> MarkupText | None:
         """
         Adds an atom depending on the representation.
 
         Returns
         -------
-        Any
+        MarkupText | None
             The computed result."""
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
@@ -204,7 +204,7 @@ class MAtomObject(VGroup):
         )
         return copy
 
-    def rename_atom(self, new_element: Any, bonds_direction: Any) -> Any:
+    def rename_atom(self, new_element: str, bonds_direction: float) -> Self:
         """Replace this atom's element with new_element and adjust position by bond direction.
 
         Parameters
@@ -216,7 +216,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        Any
+        Self
             The computed result.
 """
         self.element = new_element
@@ -234,12 +234,12 @@ class MAtomObject(VGroup):
 
         return renamed_atom
 
-    def copy_with_explicit_hydrogens(self) -> Any:
+    def copy_with_explicit_hydrogens(self) -> Self:
         """Return a copy of this atom with explicit hydrogens enabled.
 
         Returns
         -------
-        Any
+        Self
             The computed result."""
         self.explicit_hydrogens = True
 

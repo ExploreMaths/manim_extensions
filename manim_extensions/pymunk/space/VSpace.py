@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Tuple, Union
+from typing import Callable, Dict, Optional, TYPE_CHECKING, Tuple, Union
 import numpy as np
 
 from ...utils.deps import require
@@ -119,7 +119,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self.add_updater(self.__step_updater)
 
     # ================================== updater ==================================
-    def __step_updater(self, vspace: Any, dt: float):
+    def __step_updater(self, vspace: VSpace, dt: float):
         """Executes a single frame update step for the physical simulation.
 
         Divides the frame duration into multiple sub-steps and performs incremental
@@ -335,7 +335,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[Any, Any]] = None,
+        data: Optional[Dict[object, object]] = None,
     ):
         """Registers a wildcard collision handler for a specific collision type.
 
@@ -402,7 +402,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[Any, Any]] = None,
+        data: Optional[Dict[object, object]] = None,
     ):
         """Registers a collision handler between two specific collision types.
 

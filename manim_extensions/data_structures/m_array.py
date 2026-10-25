@@ -285,7 +285,7 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayElement__scene"]
@@ -828,7 +828,7 @@ class MArray(VGroup):
 
     def __append_elem(
         self,
-        value: Any,
+        value: object,
         shift_label: bool = True,
         append_anim: type[Animation] = Write,
         append_anim_args: MobProps = {},
@@ -1010,7 +1010,7 @@ class MArray(VGroup):
     def __init_props(
         self,
         scene: Scene,
-        arr: list[Any],
+        arr: list[object],
         label: str,
         index_offset: int,
         index_start: int,
@@ -1053,7 +1053,7 @@ class MArray(VGroup):
             "font_size": 38,
         }
         self.__scene: Scene = scene
-        self.__arr: List[Any] = arr
+        self.__arr: List[object] = arr
         self.__label: str = label
         self.__mob_arr: List[MArrayElement] = []
         self.__index_offset: int = index_offset
@@ -1109,7 +1109,7 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArray__scene"]
@@ -1125,7 +1125,7 @@ class MArray(VGroup):
     def __init__(
         self,
         scene: Scene,
-        arr: list[Any] = [],
+        arr: list[object] = [],
         label: str = "",
         index_offset: int = 1,
         index_start: int = 0,
@@ -1172,7 +1172,7 @@ class MArray(VGroup):
 
         self.__init_mobs(True)
 
-    def fetch_arr(self) -> list[Any]:
+    def fetch_arr(self) -> list[object]:
         """Fetches the original array.
 
         Returns
@@ -1215,7 +1215,7 @@ class MArray(VGroup):
     def update_elem_value(
         self,
         index: int,
-        value: Any,
+        value: object,
         mob_value_args: MobProps = {},
         update_anim: type[Animation] = Write,
         update_anim_args: MobProps = {},
@@ -1263,7 +1263,7 @@ class MArray(VGroup):
     def update_elem_index(
         self,
         index: int,
-        value: Any,
+        value: object,
         mob_index_args: MobProps = {},
         update_anim: type[Animation] = Write,
         update_anim_args: MobProps = {},
@@ -1449,7 +1449,7 @@ class MArray(VGroup):
 
     def append_elem(
         self,
-        value: Any,
+        value: object,
         append_anim: type[Animation] = Write,
         append_anim_args: MobProps = {},
         append_anim_target: Optional[MArrayElementComp] = None,
@@ -1661,7 +1661,7 @@ class MArrayPointer(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, Any]]] = [
+    __dir_map: ClassVar[list[dict[str, np.ndarray | MArrayDirection]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -1855,7 +1855,7 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
@@ -2133,7 +2133,7 @@ class MArraySlidingWindow(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, Any]]] = [
+    __dir_map: ClassVar[list[dict[str, np.ndarray | MArrayDirection]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -2352,7 +2352,7 @@ class MArraySlidingWindow(VGroup):
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo: dict[int, Any]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> Self:
         """Deepcopy that excludes attributes specified in ``exclude_list``."""
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]

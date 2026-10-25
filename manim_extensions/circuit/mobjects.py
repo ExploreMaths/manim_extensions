@@ -271,7 +271,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -406,7 +406,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -538,7 +538,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -631,7 +631,7 @@ class Ground(VMobject):
 
         self.main_body.center().scale(0.25).center()
 
-    def get_terminals(self, *args: Any) -> Point3D:
+    def get_terminals(self, *args: object) -> Point3D:
         """Return the top connection point of the ground symbol.
 
         Parameters
@@ -809,7 +809,7 @@ class Opamp(VMobject):
             self._terminals["negative_bias"] = self._plots[-1].get_center()
         self.add(self.rails, self._labels, self._plots)
 
-    def get_terminals(self, val: str) -> Any:
+    def get_terminals(self, val: str) -> Point3D | None:
         """Return the position of a named terminal.
 
         Parameters

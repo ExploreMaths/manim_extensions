@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Embedding to feed-forward layer connection visualization."""
 
-from typing import Any
 from manim import (
     AnimationGroup,
     Create,
@@ -64,7 +63,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters

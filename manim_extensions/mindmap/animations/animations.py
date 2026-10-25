@@ -32,7 +32,7 @@ __all__ = [
     "ScaleNode",
     "AlterNode",
 ]
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional
 
 import numpy as np
 
@@ -996,7 +996,7 @@ class InsertNode(LayoutAnimation):
             **kwargs,
         )
 
-    def get_root(self, nodes: List[Node]) -> Any:
+    def get_root(self, nodes: List[Node]) -> Node:
         """Return the common root of the given nodes.
 
         Parameters

@@ -10,6 +10,8 @@ This module provides the feed forward layer class for neural network visualizati
 
 """
 
+import numpy as np
+
 from manim import (
     AnimationGroup,
     ApplyMethod,
@@ -24,7 +26,7 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Any, Optional
+from typing import Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -97,18 +99,18 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     def __init__(
         self,
-        num_nodes: Any,
-        layer_buffer: Any = SMALL_BUFF / 2,
+        num_nodes: int,
+        layer_buffer: float = SMALL_BUFF / 2,
         node_radius: float = 0.08,
         node_color: ManimColor = config.color_scheme.primary_color,
-        node_outline_color: Any = config.color_scheme.secondary_color,
-        rectangle_color: Any = config.color_scheme.secondary_color,
+        node_outline_color: ManimColor = config.color_scheme.secondary_color,
+        rectangle_color: ManimColor = config.color_scheme.secondary_color,
         node_spacing: float = 0.3,
-        rectangle_fill_color: Any = config.color_scheme.background_color,
+        rectangle_fill_color: ManimColor = config.color_scheme.background_color,
         node_stroke_width: float = 2.0,
         rectangle_stroke_width: float = 2.0,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
-        activation_function: Optional[Any]=None,
+        activation_function: Optional[ActivationFunction | str] = None,
         **kwargs
     ):
         """Initialize the feed-forward layer storing node count, colors, and styling parameters."""
@@ -226,7 +228,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         return succession
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Any:
+    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Succession | AnimationGroup:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 
         Parameters
@@ -279,7 +281,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         animation_group = AnimationGroup(*animations, lag_ratio=0.0)
         return animation_group
 
-    def get_height(self) -> Any:
+    def get_height(self) -> float:
         """Return the height of the surrounding rectangle.
 
         Returns
@@ -288,7 +290,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_height()
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Return the center point of the surrounding rectangle.
 
         Returns
@@ -297,7 +299,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_center()
 
-    def get_left(self) -> Any:
+    def get_left(self) -> np.ndarray:
         """Return the leftmost point of the surrounding rectangle.
 
         Returns
@@ -306,7 +308,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_left()
 
-    def get_right(self) -> Any:
+    def get_right(self) -> np.ndarray:
         """Return the rightmost point of the surrounding rectangle.
 
         Returns

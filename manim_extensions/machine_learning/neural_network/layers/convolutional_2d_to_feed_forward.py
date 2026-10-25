@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Convolutional 2D to feed-forward layer connection visualization."""
 
-from typing import Any
 from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .feed_forward import FeedForwardLayer
@@ -47,7 +46,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
         **kwargs
-    ) -> Any:
+    ) -> None:
         """Forward to the parent construct_layer method.
 
         Parameters

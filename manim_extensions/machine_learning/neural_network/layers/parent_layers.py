@@ -59,7 +59,7 @@ class NeuralNetworkLayer(ABC, Group):
                self.add(layer)
     """
 
-    def __init__(self, text: str | None = None, *args: Any, **kwargs: Any):
+    def __init__(self, text: str | None = None, *args: object, **kwargs: Any):
         """Initialize the layer and its optional title."""
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
@@ -95,7 +95,7 @@ class NeuralNetworkLayer(ABC, Group):
 
     @abstractmethod
     def make_forward_pass_animation(
-        self, *args: Any, **kwargs: Any
+        self, *args: object, **kwargs: Any
     ) -> Animation:
         """Makes the forward pass animation for the layer.
 
@@ -149,13 +149,13 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                self.add(layer)
     """
 
-    def __init__(self, *args: Any, **kwargs: Any):
+    def __init__(self, *args: object, **kwargs: Any):
         """Initialize the layer group."""
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(self, *args: object, **kwargs: Any) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -233,7 +233,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(
-        self, run_time: float = 2.0, layer_args: Any = {}, **kwargs: Any
+        self, run_time: float = 2.0, layer_args: dict = {}, **kwargs: Any
     ) -> Animation:
         """Makes the forward pass animation between the connected layers.
 
@@ -314,7 +314,7 @@ class BlankConnective(ConnectiveLayer):
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 1.5, layer_args: Any = {}, **kwargs: Any
+        self, run_time: float = 1.5, layer_args: dict = {}, **kwargs: Any
     ) -> Animation:
         """Makes an empty forward pass animation for the blank connection.
 

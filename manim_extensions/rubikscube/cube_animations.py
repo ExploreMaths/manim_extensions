@@ -9,10 +9,10 @@ This module provides animations for Rubik's Cube manipulations.
 """
 
 from manim import Animation, Mobject, PI, VGroup
+from .cube import RubiksCube
 from .cube_utils import get_axis_from_face
 
 
-from typing import Any
 class CubeMove(Animation):
     """Animate a single face turn on a :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 
@@ -64,7 +64,7 @@ class CubeMove(Animation):
         self.angle = -self.angle if "'" in face else self.angle
         super().__init__(mobject, **kwargs)
 
-    def create_starting_mobject(self) -> Any:
+    def create_starting_mobject(self) -> RubiksCube:
         """Create a copy of the cube as the starting state for the animation.
 
         Returns
@@ -76,7 +76,7 @@ class CubeMove(Animation):
             starting_mobject.set_indices()
         return starting_mobject
 
-    def interpolate_mobject(self, alpha: Any):
+    def interpolate_mobject(self, alpha: float):
         """Interpolate the cube rotation at progress *alpha*.
 
         Parameters

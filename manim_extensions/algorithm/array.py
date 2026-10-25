@@ -4,10 +4,10 @@
 
 """Array data structure for algorithm visualization."""
 
-from manim import VMobject
-from typing import Any, List, Union
+from manim import ManimColor, VMobject
+from typing import List, Union
 
-from .node import Node, NodeConfig, NodeValue
+from .node import Node, NodeBoxType, NodeConfig, NodeValue
 
 
 class Array(VMobject):
@@ -62,8 +62,8 @@ class Array(VMobject):
         self,
         data: List[NodeValue],
         total_width: float | Node = None,
-        box_type: Any = NodeConfig.BOX_TYPE,
-        box_color: Any = NodeConfig.BOX_COLOR,
+        box_type: NodeBoxType = NodeConfig.BOX_TYPE,
+        box_color: ManimColor = NodeConfig.BOX_COLOR,
         text_scale: float = 1.0,
         **kwargs,
     ):

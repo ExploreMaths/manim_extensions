@@ -10,12 +10,10 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 
 """
+import numpy as np
 from manim import AnimationGroup, BLUE, Create, Group, ManimColor, override_animation
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer
 from ..neural_network import NeuralNetwork
-
-
-from typing import Any
 class VariationalAutoencoder(Group):
     """Variational Autoencoder Manim Visualization.
 
@@ -95,7 +93,7 @@ class VariationalAutoencoder(Group):
     def _create_vae(self):
         return Create(self.neural_network)
 
-    def make_triplet_forward_pass(self, triplet: Any):
+    def make_triplet_forward_pass(self, triplet: tuple[np.ndarray, np.ndarray, np.ndarray]):
         """Placeholder for triplet forward pass animation; currently unimplemented.
 
         Parameters
@@ -105,7 +103,7 @@ class VariationalAutoencoder(Group):
         """
         pass
 
-    def make_image_forward_pass(self, input_image: Any, output_image: Any, run_time: float = 1.5) -> AnimationGroup:
+    def make_image_forward_pass(self, input_image: np.ndarray, output_image: np.ndarray, run_time: float = 1.5) -> AnimationGroup:
         """Override forward pass animation specific to a VAE.
 
         Parameters

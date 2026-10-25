@@ -26,7 +26,7 @@ from manim import (
     VMobject,
     rotate_vector,
 )
-from typing import Any, Optional, Sequence
+from typing import Optional, Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
@@ -41,7 +41,7 @@ __all__ = [
 ]
 
 
-def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Any:
+def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> np.ndarray:
     """
     Returns the x-y-z values of the involute function.
 
@@ -77,7 +77,7 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
                self.add(base_circle, curve, Dot(points[-1], color=RED))
 """
 
-    def involute_val(val: Any) -> np.ndarray:
+    def involute_val(val: float) -> np.ndarray:
         """Compute a single point on the involute tooth profile.
 
         Parameters
@@ -113,7 +113,7 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
         return involute_val(t)
 
 
-def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Any:
+def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> np.ndarray:
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -163,7 +163,7 @@ def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs:
                self.add(base_circle, curve, vectors)
 """
 
-    def diff_val(val: Any) -> np.ndarray:
+    def diff_val(val: float) -> np.ndarray:
         """Compute the derivative of the involute profile at a given parameter.
 
         Parameters
@@ -199,7 +199,7 @@ def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs:
         return diff_val(t)
 
 
-def involute_height_func(k: float | np.ndarray, r: float, **kwargs) -> Any:
+def involute_height_func(k: float | np.ndarray, r: float, **kwargs) -> float:
     """
     Returns the radial height of the involute compared to the base circle.
 
@@ -241,7 +241,7 @@ def involute_height_func(k: float | np.ndarray, r: float, **kwargs) -> Any:
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t: np.ndarray, r: float, **kwargs) -> Any:
+def involute_point_gen(t: np.ndarray, r: float, **kwargs) -> np.ndarray:
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
@@ -361,7 +361,7 @@ class Gear(VMobject):
 
     def __init__(
         self,
-        num_of_teeth: Any,
+        num_of_teeth: int,
         module: float = 0.2,
         alpha: int = 20,
         h_a: int = 1,
@@ -419,7 +419,7 @@ class Gear(VMobject):
             Line(start=ORIGIN, end=RIGHT, stroke_opacity=0, fill_opacity=0)
         )
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Return the geometric center of the gear.
 
         Returns
@@ -428,7 +428,7 @@ class Gear(VMobject):
             The computed result."""
         return self.submobjects[0].points[0, :].copy()
 
-    def get_angle_vector(self) -> Any:
+    def get_angle_vector(self) -> np.ndarray:
         """Return the internal reference vector used to track rotation.
 
         Returns
@@ -437,7 +437,7 @@ class Gear(VMobject):
             The computed result."""
         return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
-    def get_angle(self) -> Any:
+    def get_angle(self) -> float:
         """Return the current rotation angle of the gear in radians.
 
         Returns
@@ -492,7 +492,7 @@ class Gear(VMobject):
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES + da
 
         # find t-range for the involute that lies inside the rf-ra range
-        def invo_cross_diff(t: Optional[np.ndarray]) -> Any:
+        def invo_cross_diff(t: Optional[np.ndarray]) -> float:
             """Compute the y-coordinate where two involute flanks intersect.
 
             Used to find the maximum involute height before the tooth tip.
@@ -558,7 +558,7 @@ class Gear(VMobject):
         rad_ucut = ofs_vector[0]
         tan_ucut = ofs_vector[1]
 
-        def undercut_func(t: Optional[np.ndarray]) -> Any:
+        def undercut_func(t: Optional[np.ndarray]) -> np.ndarray:
             """Compute a point on the undercut (radial) curve at parameter ``t``.
 
             Parameters
@@ -578,7 +578,7 @@ class Gear(VMobject):
         if self.z < 2 / (np.sin(self.alpha * DEGREES) ** 2) or self.rf < self.rb:
             undercut = True
 
-            def diff_val_func(t: Optional[np.ndarray]) -> Any:
+            def diff_val_func(t: Optional[np.ndarray]) -> np.ndarray:
                 """Compute the 2-D distance between undercut and involute curves.
 
                 Parameters
@@ -972,7 +972,7 @@ class Gear(VMobject):
         axis: np.ndarray = OUT,
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
-    ) -> Any:
+    ) -> "Gear":
         """Rotate the gear around its centre.
 
         Parameters
@@ -1042,7 +1042,7 @@ class Rack(VMobject):
                self.wait()
     """
 
-    def __init__(self, num_of_teeth: Any, module: float = 0.2, alpha: int = 20, h_a: int = 1, h_f: float = 1.17, **kwargs):
+    def __init__(self, num_of_teeth: int, module: float = 0.2, alpha: int = 20, h_a: int = 1, h_f: float = 1.17, **kwargs):
         """Initialize Rack."""
         self.z = num_of_teeth
         self.m = module
@@ -1095,7 +1095,7 @@ class Rack(VMobject):
         self.add_line_to(self.points[0, :] + LEFT * self.h / 2)
         self.add_line_to(self.points[0, :])
 
-    def get_center(self) -> Any:
+    def get_center(self) -> np.ndarray:
         """Return the geometric center of the rack.
 
         Returns
@@ -1104,7 +1104,7 @@ class Rack(VMobject):
             The computed result."""
         return self.submobjects[0].points[0, :].copy()
 
-    def get_angle_vector(self) -> Any:
+    def get_angle_vector(self) -> np.ndarray:
         """Return the internal reference vector used to track orientation.
 
         Returns
@@ -1113,7 +1113,7 @@ class Rack(VMobject):
             The computed result."""
         return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
-    def get_angle(self) -> Any:
+    def get_angle(self) -> float:
         """Return the current orientation angle of the rack in radians.
 
         Returns
@@ -1129,7 +1129,7 @@ class Rack(VMobject):
         axis: np.ndarray = OUT,
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
-    ) -> Any:
+    ) -> "Rack":
         """Rotate the rack around its centre.
 
         Parameters

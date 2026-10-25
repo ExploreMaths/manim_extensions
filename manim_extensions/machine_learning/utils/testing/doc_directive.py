@@ -9,8 +9,8 @@ A directive for including Manim videos in a Sphinx document.
 """
 from __future__ import annotations
 
-from typing import Any
 from manim import QUALITIES, config, tempconfig
+from sphinx.application import Sphinx
 import csv
 import itertools as it
 import re
@@ -49,7 +49,7 @@ def visit(self, node: list, name: str = ""):
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
-def depart(self, node: Any):
+def depart(self, node: SkipManimNode):
     """Depart from a SkipManimNode by closing the admonition rendering.
 
     Parameters
@@ -321,7 +321,7 @@ def _delete_rendering_times(*args):
         rendering_times_file_path.unlink()
 
 
-def setup(app: Any) -> dict:
+def setup(app: Sphinx) -> dict:
     """Register the manim directive and its nodes with the Sphinx application.
 
     Parameters
