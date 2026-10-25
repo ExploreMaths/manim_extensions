@@ -97,28 +97,34 @@ ManimML pieces together automatically:
 Feed-forward networks
 ^^^^^^^^^^^^^^^^^^^^^
 
-For a simple feed-forward network, pass each layer's node count:
+For a simple feed-forward network, pass each layer's node count, then
+animate the forward pass with
+:meth:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.make_forward_pass_animation`:
 
-.. code-block:: python
+.. manim:: FeedForwardScene
+   :ref_classes: FeedForwardLayer NeuralNetwork
+
+   from manim import *
 
    from manim_extensions.machine_learning.neural_network import (
        FeedForwardLayer, NeuralNetwork,
    )
 
-   nn = NeuralNetwork([
-       FeedForwardLayer(num_nodes=3),
-       FeedForwardLayer(num_nodes=5),
-       FeedForwardLayer(num_nodes=3),
-   ])
-   self.add(nn)
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
 
-Animate the forward pass with
-:meth:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.make_forward_pass_animation`:
-
-.. code-block:: python
-
-   forward_pass_animation = nn.make_forward_pass_animation()
-   self.play(forward_pass_animation)
+   class FeedForwardScene(Scene):
+       def construct(self):
+           nn = NeuralNetwork([
+               FeedForwardLayer(num_nodes=3),
+               FeedForwardLayer(num_nodes=5),
+               FeedForwardLayer(num_nodes=3),
+           ])
+           nn.move_to(ORIGIN)
+           self.add(nn)
+           self.play(nn.make_forward_pass_animation())
 
 Convolutional networks
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -128,20 +134,36 @@ as ``Convolutional2DLayer(num_feature_maps, feature_map_size, filter_size)``.
 The feature-map sizes and filter dimensions of adjacent layers must match up;
 the default stride is 1:
 
-.. code-block:: python
+.. manim:: ConvolutionalScene
+   :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
-   nn = NeuralNetwork([
-           Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
-           Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
-           Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
-           FeedForwardLayer(3),
-           FeedForwardLayer(3),
-       ],
-       layer_spacing=0.25,
+   from manim import *
+
+   from manim_extensions.machine_learning.neural_network import (
+       Convolutional2DLayer,
+       FeedForwardLayer,
+       NeuralNetwork,
    )
-   nn.move_to(ORIGIN)
-   self.add(nn)
-   self.play(nn.make_forward_pass_animation())
+
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
+
+   class ConvolutionalScene(ThreeDScene):
+       def construct(self):
+           nn = NeuralNetwork([
+                   Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
+                   Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                   Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
+                   FeedForwardLayer(3),
+                   FeedForwardLayer(3),
+               ],
+               layer_spacing=0.25,
+           )
+           nn.move_to(ORIGIN)
+           self.add(nn)
+           self.play(nn.make_forward_pass_animation())
 
 Feeding an image
 ^^^^^^^^^^^^^^^^
@@ -150,30 +172,43 @@ Place an :class:`~manim_extensions.machine_learning.neural_network.layers.image.
 before the first convolutional layer to animate an image being fed into the
 network:
 
+.. note::
+
+   This example loads an image from an external ``digit.jpeg`` file, so it
+   is shown as a runnable script rather than rendered inline.
+
 .. code-block:: python
 
    import numpy as np
    from PIL import Image
 
+   from manim import *
+
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer, FeedForwardLayer, ImageLayer, NeuralNetwork,
    )
 
-   numpy_image = np.asarray(Image.open("digit.jpeg"))
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
 
-   nn = NeuralNetwork([
-           ImageLayer(numpy_image, height=1.5),
-           Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
-           Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
-           Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
-           FeedForwardLayer(3),
-           FeedForwardLayer(3),
-       ],
-       layer_spacing=0.25,
-   )
-   nn.move_to(ORIGIN)
-   self.add(nn)
-   self.play(nn.make_forward_pass_animation())
+   class ImageScene(ThreeDScene):
+       def construct(self):
+           numpy_image = np.asarray(Image.open("digit.jpeg"))
+           nn = NeuralNetwork([
+                   ImageLayer(numpy_image, height=1.5),
+                   Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
+                   Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                   Convolutional2DLayer(5, 3, 3, filter_spacing=0.18),
+                   FeedForwardLayer(3),
+                   FeedForwardLayer(3),
+               ],
+               layer_spacing=0.25,
+           )
+           nn.move_to(ORIGIN)
+           self.add(nn)
+           self.play(nn.make_forward_pass_animation())
 
 Max pooling
 ^^^^^^^^^^^
@@ -182,40 +217,70 @@ Max pooling
 visualizes the 2-D max-pooling operation that shrinks convolutional feature
 maps:
 
-.. code-block:: python
+.. manim:: MaxPoolingScene
+   :ref_classes: Convolutional2DLayer MaxPooling2DLayer NeuralNetwork
 
-   nn = NeuralNetwork([
-           Convolutional2DLayer(1, 8),
-           Convolutional2DLayer(3, 6, 3),
-           MaxPooling2DLayer(kernel_size=2),
-           Convolutional2DLayer(5, 2, 2),
-       ],
-       layer_spacing=0.25,
+   from manim import *
+
+   from manim_extensions.machine_learning.neural_network import (
+       Convolutional2DLayer,
+       MaxPooling2DLayer,
+       NeuralNetwork,
    )
-   nn.move_to(ORIGIN)
-   self.wait(1)
-   self.play(nn.make_forward_pass_animation())
+
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
+
+   class MaxPoolingScene(ThreeDScene):
+       def construct(self):
+           nn = NeuralNetwork([
+                   Convolutional2DLayer(1, 8),
+                   Convolutional2DLayer(3, 6, 3),
+                   MaxPooling2DLayer(kernel_size=2),
+                   Convolutional2DLayer(5, 2, 2),
+               ],
+               layer_spacing=0.25,
+           )
+           nn.move_to(ORIGIN)
+           self.wait(1)
+           self.play(nn.make_forward_pass_animation())
 
 Activation functions
 ^^^^^^^^^^^^^^^^^^^^
 
-Pass ``activation_function`` to a layer to render its non-linearity:
+Pass ``activation_function`` to a layer (for example ``"ReLU"`` or
+``"Sigmoid"``) to render its non-linearity:
 
-.. code-block:: python
+.. manim:: ActivationScene
+   :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
-   layer = FeedForwardLayer(num_nodes=3, activation_function="ReLU")
+   from manim import *
 
-.. code-block:: python
-
-   nn = NeuralNetwork([
-           Convolutional2DLayer(1, 7, filter_spacing=0.32),
-           Convolutional2DLayer(3, 5, 3, filter_spacing=0.32, activation_function="ReLU"),
-           FeedForwardLayer(3, activation_function="Sigmoid"),
-       ],
-       layer_spacing=0.25,
+   from manim_extensions.machine_learning.neural_network import (
+       Convolutional2DLayer,
+       FeedForwardLayer,
+       NeuralNetwork,
    )
-   self.add(nn)
-   self.play(nn.make_forward_pass_animation())
+
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
+
+   class ActivationScene(ThreeDScene):
+       def construct(self):
+           nn = NeuralNetwork([
+                   Convolutional2DLayer(1, 7, filter_spacing=0.32),
+                   Convolutional2DLayer(3, 5, 3, filter_spacing=0.32, activation_function="ReLU"),
+                   FeedForwardLayer(3, activation_function="Sigmoid"),
+               ],
+               layer_spacing=0.25,
+           )
+           nn.move_to(ORIGIN)
+           self.add(nn)
+           self.play(nn.make_forward_pass_animation())
 
 Dropout
 ^^^^^^^
@@ -224,29 +289,43 @@ Dropout
 drops feed-forward-layer nodes, optionally runs the forward pass, and then
 reverts the network to its pre-dropout appearance:
 
-.. code-block:: python
+.. manim:: DropoutScene
+   :ref_classes: FeedForwardLayer NeuralNetwork
 
+   from manim import *
+
+   from manim_extensions.machine_learning.neural_network import (
+       FeedForwardLayer,
+       NeuralNetwork,
+   )
    from manim_extensions.machine_learning.neural_network.animations.dropout import (
        make_neural_network_dropout_animation,
    )
 
-   nn = NeuralNetwork([
-           FeedForwardLayer(3),
-           FeedForwardLayer(5),
-           FeedForwardLayer(3),
-           FeedForwardLayer(5),
-           FeedForwardLayer(4),
-       ],
-       layer_spacing=0.4,
-   )
-   nn.move_to(ORIGIN)
-   self.add(nn)
-   self.play(
-       make_neural_network_dropout_animation(
-           nn, dropout_rate=0.25, do_forward_pass=True
-       )
-   )
-   self.wait(1)
+   config.pixel_height = 700
+   config.pixel_width = 1900
+   config.frame_height = 7.0
+   config.frame_width = 7.0
+
+   class DropoutScene(Scene):
+       def construct(self):
+           nn = NeuralNetwork([
+                   FeedForwardLayer(3),
+                   FeedForwardLayer(5),
+                   FeedForwardLayer(3),
+                   FeedForwardLayer(5),
+                   FeedForwardLayer(4),
+               ],
+               layer_spacing=0.4,
+           )
+           nn.move_to(ORIGIN)
+           self.add(nn)
+           self.play(
+               make_neural_network_dropout_animation(
+                   nn, dropout_rate=0.25, do_forward_pass=True
+               )
+           )
+           self.wait(1)
 
 Style and configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
