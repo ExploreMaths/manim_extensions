@@ -36,17 +36,17 @@ class TestSvgAnimations:
 
 class TestArabic:
     def test_template_preamble_uses_fontspec(self):
-        from manim_extensions.arabic import create_arabic_template
+        from manim_extensions.arabic import ArabicTemplate
 
-        template = create_arabic_template("Amiri")
+        template = ArabicTemplate("Amiri")
         preamble = template.body
         assert "fontspec" in preamble
         assert "Amiri" in preamble
 
     def test_default_template(self):
-        from manim_extensions.arabic import create_arabic_template
+        from manim_extensions.arabic import ArabicTemplate
 
-        template = create_arabic_template()
+        template = ArabicTemplate()
         assert template.body is not None
 
 
