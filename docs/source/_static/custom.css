@@ -156,7 +156,7 @@ code.literal {
 
 .inheritance-legend .manim-swatch {
     background-color: #EBF5FB;
-    border-color: #1A5276;
+    border-color: #103A57;
 }
 
 .inheritance-legend .extensions-swatch {
@@ -222,32 +222,33 @@ a.reference.ref-ext code.xref {
     padding: 0;
 }
 a.reference.ref-manim code.xref {
-    color: #1A5276;
+    color: #103A57;
     background: none;
     border: none;
     border-radius: 0;
     padding: 0;
 }
-/* Hover: deepen the text colour slightly (light theme). */
+/* Hover keeps the base colour (mirroring Furo's plain links): the text
+   colour does not change, only the underline shifts on hover. */
 a.reference.ref-ext code.xref:hover {
-    color: #166B3C;
+    color: #1E8449;
 }
 a.reference.ref-manim code.xref:hover {
-    color: #124B76;
+    color: #103A57;
 }
-/* Dark theme: brighten the text for the dark canvas; hover brightens it
-   a notch further. */
+/* Dark theme: brighten the text for the dark canvas; hover keeps the same
+   colour (no further brightening). */
 body[data-theme="dark"] a.reference.ref-ext code.xref {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] a.reference.ref-manim code.xref {
     color: #85C1E9;
 }
 body[data-theme="dark"] a.reference.ref-ext code.xref:hover {
-    color: #7AE0A0;
+    color: #45A06E;
 }
 body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
-    color: #AED6F1;
+    color: #85C1E9;
 }
 /* Auto theme (and the no-JS / pre-JS state where furo leaves <body>
    without a data-theme attribute): furo paints the page dark whenever
@@ -255,16 +256,16 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    that exact condition instead of requiring a data-theme attribute. */
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.reference.ref-ext code.xref {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) a.reference.ref-manim code.xref {
         color: #85C1E9;
     }
     body:not([data-theme="light"]) a.reference.ref-ext code.xref:hover {
-        color: #7AE0A0;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) a.reference.ref-manim code.xref:hover {
-        color: #AED6F1;
+        color: #85C1E9;
     }
 }
 /* Color-name literals linked by the default_value_links extension put the
@@ -281,23 +282,23 @@ code.docutils.literal.color-link-ext {
     padding: 0;
 }
 code.docutils.literal.color-link-manim a.reference {
-    color: #1A5276;
+    color: #103A57;
 }
 code.docutils.literal.color-link-manim a.reference:hover {
-    color: #124B76;
+    color: #103A57;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference {
     color: #85C1E9;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference:hover {
-    color: #AED6F1;
+    color: #85C1E9;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference {
         color: #85C1E9;
     }
     body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference:hover {
-        color: #AED6F1;
+        color: #85C1E9;
     }
 }
 /* Project class/function names linked by default_value_links' prose
@@ -306,20 +307,20 @@ code.docutils.literal.color-link-ext a.reference {
     color: #1E8449;
 }
 code.docutils.literal.color-link-ext a.reference:hover {
-    color: #166B3C;
+    color: #1E8449;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference:hover {
-    color: #7AE0A0;
+    color: #45A06E;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference:hover {
-        color: #7AE0A0;
+        color: #45A06E;
     }
 }
 /* Plain references whose fragment resolves to a manim_extensions / manim
@@ -338,10 +339,10 @@ a.reference[href*="#manim_extensions."]:not(.default_value) code {
     padding: 0;
 }
 a.reference[href*="#manim."]:not(.default_value) {
-    color: #1A5276;
+    color: #103A57;
 }
 a.reference[href*="#manim."]:not(.default_value) code {
-    color: #1A5276;
+    color: #103A57;
     background: none;
     border: none;
     border-radius: 0;
@@ -364,10 +365,10 @@ dl.py.attribute a.reference code:hover {
 }
 
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) code {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) {
     color: #85C1E9;
@@ -377,10 +378,10 @@ body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) code {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) {
         color: #85C1E9;
@@ -473,11 +474,11 @@ dt.sig-object.py .property > a.reference.ref-ext {
 }
 dt.sig-object.py .property > .sig-type-ref-manim,
 dt.sig-object.py .property > a.reference.ref-manim {
-    color: #1A5276;
+    color: #103A57;
 }
 body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-ext,
 body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-ext {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-manim,
 body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-manim {
@@ -486,7 +487,7 @@ body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-manim {
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-ext,
     body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-ext {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-manim,
     body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-manim {
@@ -658,40 +659,40 @@ dl.py.property > dt.sig a.headerlink {
    manim constants and colors, green extensions text for manim_extensions
    objects.  Only the text colour changes; no background. */
 a.default_value.reference.internal.ref-manim {
-    color: #1A5276;
+    color: #103A57;
 }
 a.default_value.reference.internal.ref-ext {
     color: #1E8449;
 }
 a.default_value.reference.internal.ref-manim:hover {
-    color: #124B76;
+    color: #103A57;
 }
 a.default_value.reference.internal.ref-ext:hover {
-    color: #166B3C;
+    color: #1E8449;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-manim {
     color: #85C1E9;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-ext {
-    color: #58D68D;
+    color: #45A06E;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-manim:hover {
-    color: #AED6F1;
+    color: #85C1E9;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-ext:hover {
-    color: #7AE0A0;
+    color: #45A06E;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim {
         color: #85C1E9;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext {
-        color: #58D68D;
+        color: #45A06E;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim:hover {
-        color: #AED6F1;
+        color: #85C1E9;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext:hover {
-        color: #7AE0A0;
+        color: #45A06E;
     }
 }
