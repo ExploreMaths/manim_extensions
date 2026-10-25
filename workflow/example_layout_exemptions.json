@@ -23,8 +23,15 @@
   "RowDocExample",
   "ShortenedLineDocExample",
   "SimpleLineExample",
+  "SpaceExample",
+  "SpaceSceneExample",
   "TikzTemplateExample",
   "TrailDocExample",
   "UnHighLightWithLinesDocExample",
-  "VConstraintExample"
+  "VConstraintExample",
+  "VDampedRotarySpringExample",
+  "VPivotJointExample",
+  "VSimpleMotorExample",
+  "VSlideJointExample",
+  "VSpaceExample"
 ]

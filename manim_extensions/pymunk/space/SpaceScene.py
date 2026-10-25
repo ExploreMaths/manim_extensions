@@ -62,7 +62,6 @@ class SpaceScene(ZoomedScene):
                    balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
                )
                self.wait(5)
-               self.camera.frame.set(width=160, height=220)
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
