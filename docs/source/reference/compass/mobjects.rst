@@ -7,4 +7,4 @@ Mobjects
 
 .. autoall:: manim_extensions.compass
    :types: class
-   :skip: CompassScene DrawArc DrawPath MoveNiddleTipTo MovePencilAlongPath MovePencilTipTo PutCompass PutCompassAway PutPencilAway PutRuler PutRulerAway RotateCompass SplitCompass
+   :skip: SingleRulerScene CompassScene DrawArc DrawPath MoveNiddleTipTo MovePencilAlongPath MovePencilTipTo PutCompass PutCompassAway PutPencilAway PutRuler PutRulerAway RotateCompass SplitCompass

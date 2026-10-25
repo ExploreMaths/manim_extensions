@@ -16,6 +16,7 @@ __all__ = [
     "Pencil",
     "Ruler",
     "CompassScene",
+    "SingleRulerScene",
     "MoveNiddleTipTo",
     "RotateCompass",
     "SplitCompass",

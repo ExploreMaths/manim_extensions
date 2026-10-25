@@ -7,4 +7,4 @@ Pencil animations
 
 .. autoall:: manim_extensions.compass
    :types: class
-   :skip: Compass CompassScene DrawArc MoveNiddleTipTo Pencil PutCompass PutCompassAway PutRuler PutRulerAway RotateCompass Ruler SplitCompass
+   :skip: SingleRulerScene Compass CompassScene DrawArc MoveNiddleTipTo Pencil PutCompass PutCompassAway PutRuler PutRulerAway RotateCompass Ruler SplitCompass
