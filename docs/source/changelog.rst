@@ -6,6 +6,73 @@ Changelog
 v1.0.6 :bdg-primary-line:`In development`
 -----------------------------------------
 
+**Added**
+
+* Added :class:`~manim_extensions.utils.nerdfont.icons.NerdFontIcon` (a class replacing the earlier ``nerdfont_icon``
+  function) for rendering Nerd Font glyphs as ``ImageMobject`` instances.
+* Added :class:`~manim_extensions.arabic.text.ArabicTemplate` and :class:`~manim_extensions.arabic.text.ArabicText` classes, replacing the
+  ``create_arabic_*`` helper functions, for shaping and rendering Arabic
+  text.
+* Added :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` to ``compass`` for single-ruler constructions
+  (one ruler, one pencil, with a ``draw_line_with_pencil`` method).
+* Added a ``module-index`` directive that renders the Reference Manual
+  Module Index with per-package titles and marks vendored packages that
+  are behind their upstream commit with a warning badge.
+* Added per-page inheritance diagrams to every reference class page, with
+  a single consolidated graph and dark-theme support.
+* Added a ``validate-api-coverage`` check (and refreshed the API snapshot)
+  so every public name is documented.
+* Added a ``setup-manim-env@v1`` shared action to the CI workflows.
+
+**Changed**
+
+* Filled each vendored package's Reference Manual page with upstream
+  README / Read the Docs content and led with API sections instead of a
+  Quick Start.
+* Re-synced 17 vendored packages to their latest upstream commits
+  (``compass`` merged :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`); each page records its
+  upstream repository, sync commit, and local patches in ``VENDORED.md``.
+* Ordered the Module Index alphabetically, used each package's real page
+  title, and kept a hidden sidebar toctree so the navigation tree is
+  preserved.
+* Pinned ``sphinx-autodoc-typehints`` to 3.10.3 and patched it so Manim
+  typing aliases (``Point3D``, ``Vector3D``, ...) are kept unexpanded
+  instead of being unwrapped into ``tuple[float, ...]``.
+* Self-hosted MathJax 4 in SVG output to fix intermittent formula
+  rendering and remove font dependencies.
+* Reworked link colouring: Python builtin type links render in body
+  colour without an underline; signature default-value links and Manim
+  constant references use the cross-reference palette; dark-mode colours
+  were tuned for readability.
+* Rendered ``Attributes`` sections as Parameters-style bulleted lists,
+  moved before ``Examples``.
+* Completed every ManimML usage snippet into a standalone ``Scene`` and
+  rendered it with the ``manim`` directive (image-input example stays a
+  runnable script because the upstream repository ships no ``digit.jpeg``).
+
+**Documentation and hygiene**
+
+* Removed default-value descriptions from docstrings and added a
+  ``CONTRIBUTING`` rule covering docstring conventions.
+* Enforced numpydoc section spacing: no blank line after a section
+  underline, and summaries separated from section headers.
+* Replaced monotone ``note`` admonitions with a varied set
+  (``tip`` / ``important`` / ``warning`` / ``todo`` / ``seealso``).
+* Moved every package's ``Usage`` example block to a ``.. manim::``
+  directive so it renders inline.
+* Removed ``-> None`` return annotations (Sphinx would otherwise inject a
+  redundant ``RETURN TYPE: None`` block).
+* Dropped unused bundled code fonts in favour of the system monospace
+  stack, and let code font size be tuned per type.
+
+**CI**
+
+* Consumed the shared ``ExploreMaths/setup-manim-env@v1`` action across
+  workflows.
+* Extended the Validate workflow with type-annotation, return-annotation,
+  doc-section, cross-reference, and API-coverage jobs, and reached zero
+  Sphinx warnings.
+
 
 v1.0.5 :bdg-success-line:`Latest`
 ---------------------------------
