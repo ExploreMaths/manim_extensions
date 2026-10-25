@@ -83,7 +83,7 @@ class SeqActor(VGroup):
 
     @classmethod
     def get_deepest_actor(cls) -> Self | None:
-        """Return the actor with the greatest time depth.
+        """
 
         Returns
         -------

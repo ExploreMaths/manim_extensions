@@ -100,7 +100,7 @@ def is_counter_clockwise(
     vector_start: Vector3D,
     vector_end: Vector3D,
 ) -> bool:
-    """Return whether vector_end is counter-clockwise from vector_start.
+    """
 
     Parameters
     ----------

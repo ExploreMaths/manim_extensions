@@ -274,7 +274,7 @@ class ThreeDLine(ThreeDCylinder):
         return np.array(mob_or_point)
 
     def get_start(self) -> np.ndarray:
-        """Returns the starting point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
+        """
 
         Returns
         -------
@@ -283,7 +283,7 @@ class ThreeDLine(ThreeDCylinder):
         return self.start
 
     def get_end(self) -> np.ndarray:
-        """Returns the ending point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
+        """
 
         Returns
         -------

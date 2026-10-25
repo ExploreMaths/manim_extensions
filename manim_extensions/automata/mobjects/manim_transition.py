@@ -200,7 +200,7 @@ class ManimTransition(Transition, VGroup):
     def calculate_direction_of_arrow_label(
         self, normal_vector_choice: int = 1
     ) -> list[float]:
-        """Return the normal direction used to offset the arrow label.
+        """
 
         Parameters
         ----------

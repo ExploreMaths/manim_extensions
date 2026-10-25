@@ -112,7 +112,7 @@ class Ruler(VGroup):
         return Line(e, s).get_unit_vector()
 
     def get_start_and_end(self) -> tuple[Point3D, Point3D]:
-        """Return the start and end points of the ruler.
+        """
 
         Returns
         -------
@@ -123,7 +123,7 @@ class Ruler(VGroup):
         return S, E
 
     def get_middle_point(self) -> Point3D:
-        """Return the midpoint of the ruler.
+        """
 
         Returns
         -------

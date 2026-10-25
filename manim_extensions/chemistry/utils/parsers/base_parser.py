@@ -139,8 +139,6 @@ class BaseParser(ABC):
     @property
     def atoms(self) -> AtomsDict | None:
         """
-        Returns atoms data.
-
         Returns
         -------
         :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict` or None
@@ -152,8 +150,6 @@ class BaseParser(ABC):
     @property
     def bonds(self) -> BondsDict | None:
         """
-        Returns bonds data.
-
         Returns
         -------
         :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict` or None

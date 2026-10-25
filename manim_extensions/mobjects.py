@@ -239,8 +239,7 @@ class LabelDot(VGroup):
         self.dot_pos = dot_pos
 
     def get_center(self) -> Point3D:
-        """Return the center of the underlying dot.
-
+        """
         Returns
         -------
             The center of the underlying dot.
@@ -248,8 +247,7 @@ class LabelDot(VGroup):
         return self.dot.get_center()
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
-        """Return a point on the boundary of the underlying dot in the given direction.
-
+        """
         Parameters
         ----------
         direction

@@ -162,7 +162,7 @@ class ListGroup(Mobject):
         self.submobjects = self.items
 
     def index_of(self, item: Mobject) -> int:
-        """Returns index of item if it exists.
+        """
 
         Parameters
         ----------

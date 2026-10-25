@@ -143,7 +143,7 @@ class Compass(VGroup):
         return self
 
     def get_niddle_tip(self) -> Point3D:
-        """Return the coordinates of the needle tip.
+        """
 
         Returns
         -------
@@ -152,7 +152,7 @@ class Compass(VGroup):
         return np.asarray(self.niddle_tip.get_vertices()[1])
 
     def get_pen_tip(self) -> Point3D:
-        """Return the coordinates of the pen tip.
+        """
 
         Returns
         -------
@@ -161,7 +161,7 @@ class Compass(VGroup):
         return np.asarray(self.pen_tip.get_vertices()[1])
 
     def get_niddle2pen_vec(self) -> Point3D:
-        """Return the vector from the needle tip to the pen tip.
+        """
 
         Returns
         -------

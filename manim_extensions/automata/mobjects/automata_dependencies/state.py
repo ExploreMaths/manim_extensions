@@ -129,7 +129,7 @@ class State:
         return None
 
     def get_transitions(self) -> list["Transition"]:
-        """Return all transitions outgoing from this state.
+        """
 
         Returns
         -------

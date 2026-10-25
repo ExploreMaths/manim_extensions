@@ -241,7 +241,7 @@ class GriddedRectangle(VGroup):
         return grid_lines
 
     def get_center(self) -> NDArray[np.float64]:
-        """Return the center of the rectangle.
+        """
 
         Returns
         -------
@@ -250,7 +250,7 @@ class GriddedRectangle(VGroup):
         return self.rectangle.get_center()
 
     def get_normal_vector(self) -> NDArray[np.float64]:
-        """Return the normal vector of the rectangle.
+        """
 
         Returns
         -------

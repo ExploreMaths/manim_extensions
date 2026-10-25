@@ -55,7 +55,7 @@ class Pencil(SVGMobject):
         self._nib = self.submobjects[3]
 
     def get_nib(self) -> Point3D:
-        """Return the position of the nib.
+        """
 
         Returns
         -------

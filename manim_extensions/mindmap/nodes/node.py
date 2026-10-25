@@ -148,7 +148,7 @@ class NodeStyle:
             self.text_num = 1
 
     def get_node_style(self, level: int) -> Dict:
-        """Return the style dictionary for the requested node level.
+        """
 
         Parameters
         ----------
@@ -544,7 +544,7 @@ class Node:
         return node_mobj
 
     def get_children(self) -> List["Node"]:
-        """Return all child nodes.
+        """
 
         Returns
         -------
@@ -553,7 +553,7 @@ class Node:
         return self.children
 
     def get_descendants(self) -> List["Node"]:
-        """Return all descendant nodes.
+        """
 
         Returns
         -------
@@ -628,7 +628,7 @@ class Node:
         return descendants_mobjects_of_node(self)
 
     def get_root(self) -> Self:
-        """Return the root node.
+        """
 
         Returns
         -------

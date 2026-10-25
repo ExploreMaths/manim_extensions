@@ -714,7 +714,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         raise NotImplementedError
 
     def get_common_root(self, nodes: List[Node]) -> Node:
-        """Return the common root of nodes.
+        """
 
         Parameters
         ----------
