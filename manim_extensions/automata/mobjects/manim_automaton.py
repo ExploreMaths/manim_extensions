@@ -53,7 +53,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     The automaton combines a formal automaton model with a Manim visual graph,
     allowing states and transitions to be highlighted as an input string is read.
 
-    .. note::
+    .. important::
 
        This is an abstract base class.  Use one of the concrete subclasses
        :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,

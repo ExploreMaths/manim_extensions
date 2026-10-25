@@ -37,7 +37,7 @@ pure data model: pass an array-like list of *vertices* and a list of *faces*
 (referencing vertex indices), and it validates the structure and lets you inspect
 or combine meshes before rendering.
 
-.. note::
+.. important::
 
    The manim-side renderers (:class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` and the 2D / triangle / OpenGL
    variants) require the optional ``colour`` and ``moderngl`` dependencies.  When
@@ -97,7 +97,7 @@ override when constructing a mesh. Upstream example scenes (``ConeScene``,
 ``PyramidScene``, ``SnapToGridScene``) live in the upstream ``tests/``
 directory.
 
-.. note::
+.. warning::
 
    The package is not fully optimized and is intended for smaller meshes;
    the OpenGL renderer integration is still rough.

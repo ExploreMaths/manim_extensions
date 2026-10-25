@@ -25,7 +25,7 @@ class FastManimMesh(OpenGLMobject):
     Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,
     no mesh manipulations.
 
-    .. note::
+    .. warning::
 
        Requires manipulating the manim lib:
        copy the directory ``mesh`` (under ``manim_extensions/meshes/shaders/``)

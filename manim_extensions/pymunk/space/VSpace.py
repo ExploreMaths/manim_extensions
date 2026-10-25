@@ -1059,7 +1059,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         point
             A :math:`(x, y, z)` coordinate representing the test location in the scene.
 
-            .. note::
+            .. important::
 
                Only the (x, y) components are used for the 2D physics engine.
 

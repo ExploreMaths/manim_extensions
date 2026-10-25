@@ -36,7 +36,7 @@ Features
   monetary/fiscal policy) and annotation helpers (equilibrium dots, axis
   arrows, share braces, golden rule).
 
-.. note::
+.. important::
 
    ``manim_ec`` requires Python 3.11+ and a working Manim Community Edition
    installation; it is bundled here inside ``manim_extensions``.

@@ -19,7 +19,7 @@ icon can be placed in the centre of the code.
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.qr_codes`` subpackage.
 
-.. note::
+.. important::
 
    The optional ``icon`` argument requires the ``manim-nerdfont-icons``
    package, which is not declared as a dependency (its PyPI metadata pins

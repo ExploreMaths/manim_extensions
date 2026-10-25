@@ -74,7 +74,7 @@ on every frame.
            self.add_constraints(*constraints)
            self.wait(3)
 
-.. note::
+.. important::
 
    Once an object is under physics control, any Manim animation on it steps the
    simulation until the object is removed from the physics space (or the

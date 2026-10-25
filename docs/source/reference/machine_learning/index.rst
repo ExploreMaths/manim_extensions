@@ -19,7 +19,7 @@ diagrams.
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.machine_learning`` subpackage.
 
-.. note::
+.. important::
 
    The diffusion and decision-tree surface modules require optional
    dependencies (matplotlib, scikit-learn, seaborn, tqdm). Install them

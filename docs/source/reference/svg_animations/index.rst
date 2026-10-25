@@ -21,7 +21,7 @@ animations directly from Python.
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.svg_animations`` subpackage.
 
-.. note::
+.. important::
 
    This module requires the ``manim-mobject-svg`` plugin (it provides
    :attr:`~manim.mobject.types.vectorized_mobject.VMobject.to_svg()`). On Python 3.13+ install it with

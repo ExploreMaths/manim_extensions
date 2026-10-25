@@ -9,7 +9,7 @@ This page documents the Manim-side mesh renderers that turn a
 :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` data model into
 on-screen Manim mobjects.
 
-.. note::
+.. important::
 
    The manim-side renderers depend on the optional ``colour`` / ``moderngl``
    packages and are therefore not importable in every environment.

@@ -394,7 +394,7 @@ class SpaceScene(ZoomedScene):
         constraints, and pivots are correctly aligned when they are not behaving
         as expected in the Manim render.
 
-        .. note::
+        .. warning::
            This method will block the execution of the program until the
            pop-up window is manually closed.
 
