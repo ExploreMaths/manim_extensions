@@ -217,7 +217,7 @@ def make_post_dropout_animation(
 
     Returns
     -------
-    AnimationGroup
+    :class:`~manim.AnimationGroup`
         A AnimationGroup instance representing the result.
 """
     # Go through the network and get the FeedForwardLayer instances
@@ -323,7 +323,7 @@ def make_neural_network_dropout_animation(
 
     Returns
     -------
-    Succession
+    :class:`~manim.Succession`
         A Succession instance representing the result.
 """
     # Go through the network and get the FeedForwardLayer instances

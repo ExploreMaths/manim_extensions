@@ -138,7 +138,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        OpenGLGroup
+        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         elements_data_dict = {}
         for atom in self.atoms_dict.values():
@@ -163,7 +163,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        OpenGLGroup
+        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         bonds = OpenGLGroup()
         for index, bonds_list in self.bonds_dict.items():

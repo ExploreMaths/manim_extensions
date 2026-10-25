@@ -111,7 +111,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         return VGroup(
             *[
@@ -125,7 +125,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         protons = [
             Dot(color=self.proton_color)
@@ -149,7 +149,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         ELECTRONS_PER_LEVEL = {
             # Level: Electrons that fit in each level
@@ -189,7 +189,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         level_group = VGroup()

@@ -160,7 +160,7 @@ class ActivationFunction(ABC, VGroup):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         # Highlight the graph

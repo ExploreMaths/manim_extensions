@@ -81,7 +81,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         animations = []

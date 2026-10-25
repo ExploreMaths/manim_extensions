@@ -90,7 +90,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Text
+        :class:`~manim.Text`
             A Text instance representing the result."""
         if False:
             # TODO install Latex
@@ -116,7 +116,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         return AnimationGroup()

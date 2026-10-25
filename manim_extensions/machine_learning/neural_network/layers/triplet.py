@@ -139,7 +139,7 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Group
+        :class:`~manim.Group`
             A Group instance representing the result."""
         # Handle anchor
         anchor_group = LabeledColorImage(
@@ -192,7 +192,7 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         return AnimationGroup()

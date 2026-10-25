@@ -96,7 +96,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         cell_width = self.input_layer.cell_width

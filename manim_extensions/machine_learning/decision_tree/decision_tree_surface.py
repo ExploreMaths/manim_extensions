@@ -331,7 +331,7 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         animation_group = AnimationGroup(
             # Perform the animations
@@ -487,7 +487,7 @@ class DecisionTreeSurface(VGroup):
 
             Returns
             -------
-            Polygon
+            :class:`~manim.Polygon`
                 A Polygon instance representing the result."""
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
@@ -529,7 +529,7 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
@@ -545,7 +545,7 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []

@@ -176,7 +176,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         frame_rectangle = self.create_frame_base()
         symbol_text = (
@@ -301,7 +301,7 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         positions = self.elements_position_dict()
         base_element = MElementObject()

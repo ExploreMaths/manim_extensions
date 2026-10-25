@@ -89,7 +89,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         Returns
         -------
-        ShowPassingFlash
+        :class:`~manim.ShowPassingFlash`
             A ShowPassingFlash instance representing the result.
 """
         # Make flashing pass animation on arrow

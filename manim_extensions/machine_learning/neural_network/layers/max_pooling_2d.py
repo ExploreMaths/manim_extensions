@@ -180,7 +180,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         return AnimationGroup()

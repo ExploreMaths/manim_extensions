@@ -229,7 +229,7 @@ class Element(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         particles = VGroup()
         if self.electrons:
@@ -404,7 +404,7 @@ class NPNTransistor(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
@@ -477,7 +477,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if self.schema_type != "horizontal":
             pass
@@ -531,7 +531,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if self.schema_type != "corner":
             pass
@@ -695,7 +695,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if not self.show_holes:
             return VGroup()
@@ -715,7 +715,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
@@ -735,7 +735,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
@@ -747,7 +747,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if not self.show_battery:
             return VGroup()
@@ -844,7 +844,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
 
     Returns
     -------
-    VGroup
+    :class:`~manim.VGroup`
         A VGroup instance representing the result.
 """
     if isinstance(mobs, VGroup):
@@ -871,7 +871,7 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
     Returns
     -------
-    VGroup
+    :class:`~manim.VGroup`
         A VGroup instance representing the result.
 """
     group = VGroup()
@@ -960,7 +960,7 @@ def arrange_copies_in_rectangle(
 
     Returns
     -------
-    VGroup
+    :class:`~manim.VGroup`
         A VGroup instance representing the result.
 """
     arrange_in_1D_boundary(mobs, vertical_boundary)
@@ -1073,7 +1073,7 @@ def concat_mobjects(mobject: Mobject, concats: Any, buff: float = 0) -> VGroup:
 
     Returns
     -------
-    VGroup
+    :class:`~manim.VGroup`
         A VGroup instance representing the result.
 """
     group = VGroup(mobject.copy())

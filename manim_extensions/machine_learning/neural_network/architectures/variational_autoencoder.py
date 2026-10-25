@@ -119,7 +119,7 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         # Make a wrapper NN with images

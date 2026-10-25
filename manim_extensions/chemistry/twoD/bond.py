@@ -319,7 +319,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line
+        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords)
 
@@ -328,7 +328,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line
+        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
@@ -342,7 +342,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line
+        :class:`~manim.Line`
             A Line instance representing the result.
 """
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
@@ -357,7 +357,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line
+        :class:`~manim.Line`
             A Line instance representing the result.
 """
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
@@ -367,7 +367,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line
+        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.from_atom.coords)
 
@@ -445,7 +445,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -465,7 +465,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -496,7 +496,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         unit_vector = (
@@ -538,7 +538,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         unit_vector = (
@@ -699,7 +699,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -718,7 +718,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -742,7 +742,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         unit_vector = (
@@ -770,7 +770,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         unit_vector = (
@@ -878,7 +878,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram
+        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
@@ -898,7 +898,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram
+        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
@@ -918,7 +918,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram
+        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
@@ -938,7 +938,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram
+        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
@@ -957,7 +957,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram
+        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
@@ -1046,7 +1046,7 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)

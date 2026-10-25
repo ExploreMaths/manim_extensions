@@ -458,7 +458,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-        OpenGLGroup
+        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         midpoint = (self.to_atom.coords + self.from_atom.coords) / 2
@@ -479,7 +479,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-        OpenGLGroup
+        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
@@ -505,7 +505,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-        OpenGLGroup
+        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()

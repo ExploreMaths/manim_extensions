@@ -113,7 +113,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         remove_layer_animation = self.make_remove_layer_animation()
         remove_connective_animation = self.make_remove_connective_layers_animation()
@@ -129,7 +129,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        FadeOut
+        :class:`~manim.FadeOut`
             A FadeOut instance representing the result."""
         # Remove the layer
         self.neural_network.all_layers.remove(self.layer)
@@ -142,7 +142,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # Fade out the removed connective layers
         fade_out_before_connective = AnimationGroup()
@@ -165,7 +165,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # Animate the movements
         move_before_layers = AnimationGroup()
@@ -207,7 +207,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        UpdateFromFunc
+        :class:`~manim.UpdateFromFunc`
             A UpdateFromFunc instance representing the result."""
         self.anim_count = 0
 
@@ -352,7 +352,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         (
             before_connective_width,
@@ -395,7 +395,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        Create
+        :class:`~manim.Create`
             A Create instance representing the result."""
         return Create(self.layer)
 
@@ -413,7 +413,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         # Make the layers

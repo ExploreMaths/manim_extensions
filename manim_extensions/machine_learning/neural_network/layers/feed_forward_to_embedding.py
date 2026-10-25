@@ -99,7 +99,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         # Find point to converge on by sampling from gaussian distribution

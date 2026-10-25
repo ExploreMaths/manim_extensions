@@ -27,11 +27,14 @@ build:
       # .github/workflows/docs-cache.yml). Examples missing from the cache
       # still render normally as a fallback.
       - git clone --depth 1 --branch rtd-cache https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-cache || true
-      # Copy the vendored-status cache (refreshed into the rtd-cache branch
-      # by the workflows) into the docs tree. The vendored-status directive
-      # renders without upstream data when this file is missing. See
-      # .github/workflows/docs-cache.yml.
-      - 'ls -la /tmp/rtd-cache/_vendored_status_cache.json && cp /tmp/rtd-cache/_vendored_status_cache.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"'
+      # Copy the vendored-status caches (refreshed into the rtd-cache branch
+      # by the workflows) into the docs tree: the latest
+      # _vendored_status_cache.json plus any frozen per-release snapshots
+      # (_vendored_status_cache.<release>.json). The vendored-status directive
+      # picks the snapshot matching the built version and falls back to the
+      # latest cache when none exists. It renders without upstream data when
+      # no cache file is present. See .github/workflows/docs-cache.yml.
+      - 'ls /tmp/rtd-cache/_vendored_status_cache*.json && cp /tmp/rtd-cache/_vendored_status_cache*.json docs/source/ || echo "WARNING: vendored status cache missing; pages render without upstream data"'
       # Same for the nbcell execution cache: the Docs cache workflow runs
       # every nbcell block and stores the real stdout here; nbcell_directive
       # reads it from _extensions and falls back to the authored :output:

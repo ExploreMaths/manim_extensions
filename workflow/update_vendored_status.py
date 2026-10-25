@@ -140,6 +140,13 @@ def main() -> int:
         "--summary", type=Path, default=None,
         help="write a one-line commit-message summary to this path",
     )
+    parser.add_argument(
+        "--freeze", type=str, default=None,
+        help="also copy the refreshed cache to "
+             "_vendored_status_cache.<release>.json (used when tagging a "
+             "release, so stable docs show the vendoring state as of that "
+             "release instead of following main's latest refresh)",
+    )
     args = parser.parse_args()
 
     old_cache_path = args.old_cache or CACHE
@@ -176,6 +183,15 @@ def main() -> int:
     CACHE.write_text(
         json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
+    if args.freeze:
+        frozen = CACHE.with_name(f"_vendored_status_cache.{args.freeze}.json")
+        frozen.write_text(
+            json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        print(
+            f"Frozen copy written: {frozen.relative_to(ROOT)} "
+            f"(release {args.freeze})"
+        )
 
     parts = [f"{len(changed)} changed", f"{unchanged} no change"]
     message = f"Update vendored status cache {today}: " + ", ".join(parts)

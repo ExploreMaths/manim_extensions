@@ -105,6 +105,7 @@ introduction, or browse the :doc:`examples/index` gallery.
    reference/index
    changelog
    contributing
+   vendored
    code_of_conduct
 
 .. toctree::

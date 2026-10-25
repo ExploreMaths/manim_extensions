@@ -351,7 +351,7 @@ class SolowDiagram(EconDiagram):
         Parameters
         ----------
         k
-            Capital level. *.
+            Capital level.
         c_color
             Color for consumption brace/label. 
         i_color

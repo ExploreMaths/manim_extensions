@@ -221,7 +221,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         bonds = VGroup()
         bond_index = 0

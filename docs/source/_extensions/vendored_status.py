@@ -138,7 +138,21 @@ class VendoredStatusDirective(SphinxDirective):
         items: list[list[tuple]] = []
 
         # Upstream side ----------------------------------------------------
-        cache_file = (confdir / app.config.vendored_status_cache).resolve()
+        # Pick the cache that matches the built documentation version. A
+        # release is frozen at publish time into
+        # ``_vendored_status_cache.<release>.json`` so that a stable build
+        # (e.g. 1.0.5) shows the vendoring state as it was when that release
+        # was tagged, not whatever upstream data ``main`` happens to have
+        # refreshed since. Development builds (e.g. ``1.0.6.dev0``) have no
+        # frozen snapshot and fall back to the latest
+        # ``_vendored_status_cache.json``.
+        base_cache = (confdir / app.config.vendored_status_cache).resolve()
+        cache_file = base_cache
+        release = getattr(app.config, "release", None)
+        if release:
+            frozen = base_cache.with_name(f"_vendored_status_cache.{release}.json")
+            if frozen.exists():
+                cache_file = frozen
         cached_entry = None
         cache_date = None
         if cache_file.exists():

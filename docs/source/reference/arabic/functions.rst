@@ -1,8 +1,9 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Functions
-=========
+Classes
+=======
 
-.. autoall:: manim_extensions.arabic.text
-   :types: function
+.. autoall:: manim_extensions.arabic
+   :recursive:
+   :types: class

@@ -125,7 +125,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result."""
         animations = []
         image_mobject = self.input_layer.image_mobject

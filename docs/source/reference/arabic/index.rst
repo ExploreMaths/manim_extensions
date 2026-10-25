@@ -23,10 +23,10 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- :func:`~manim_extensions.arabic.text.create_arabic_template` – create a
-  Tex template configured for Arabic typesetting.
-- :func:`~manim_extensions.arabic.text.create_arabic_text` – create a
-  Manim ``Text`` mobject with proper Arabic shaping.
+- :class:`~manim_extensions.arabic.text.ArabicTemplate` – a Tex template
+  configured for Arabic typesetting.
+- :class:`~manim_extensions.arabic.text.ArabicText` – a Manim ``Tex`` mobject
+  with proper Arabic shaping.
 
 Requirements
 ------------
@@ -44,22 +44,16 @@ Usage
 -----
 
 .. manim:: ArabicGreeting
-   :ref_functions: create_arabic_text
+   :ref_classes: ArabicText
 
    from manim import Scene, Write
-   from manim_extensions.arabic import create_arabic_text
+   from manim_extensions.arabic import ArabicText
 
    class ArabicGreeting(Scene):
        def construct(self):
-           label = create_arabic_text("مرحبا", color="arabicblue", font_size=48)
+           label = ArabicText("مرحبا", color="arabicblue", font_size=48)
            self.play(Write(label.scale(4)))
            self.wait()
-
-:func:`~manim_extensions.arabic.text.create_arabic_text` takes
-``text``, ``color="arabicblue"``, ``font_size=34`` and ``font_name=None``
-and returns a Manim ``Tex`` mobject. For lower-level control,
-:func:`~manim_extensions.arabic.text.create_arabic_template` with
-``font_name="Al Bayan"`` returns a configured ``TexTemplate``.
 
 Built-in colors
 ---------------

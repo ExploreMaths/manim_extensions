@@ -456,7 +456,7 @@ class MCMCAxes(Group):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         mean = distribution.mu

@@ -146,7 +146,7 @@ class Filters(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         rectangles = []
         rectangle_width = (
@@ -197,7 +197,7 @@ class Filters(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         rectangles = []
 
@@ -257,7 +257,7 @@ class Filters(VGroup):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
@@ -267,7 +267,7 @@ class Filters(VGroup):
 
             Returns
             -------
-            VGroup
+            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
@@ -292,7 +292,7 @@ class Filters(VGroup):
 
             Returns
             -------
-            VGroup
+            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
@@ -317,7 +317,7 @@ class Filters(VGroup):
 
             Returns
             -------
-            VGroup
+            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
@@ -394,7 +394,7 @@ class Filters(VGroup):
 
         Returns
         -------
-        ShowPassingFlash
+        :class:`~manim.ShowPassingFlash`
             A ShowPassingFlash instance representing the result.
 """
         passing_flash = ShowPassingFlash(
@@ -509,7 +509,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         animations = []
@@ -570,7 +570,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         animations = []

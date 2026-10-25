@@ -211,7 +211,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         assert len(widths) > 0

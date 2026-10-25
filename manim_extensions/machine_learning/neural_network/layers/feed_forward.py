@@ -203,7 +203,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result.
 """
         # Make sure proper dropout information was passed

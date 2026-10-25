@@ -344,7 +344,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         # Draw rectangles that are filled in with opacity
         feature_maps = []
@@ -388,7 +388,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Succession
+        :class:`~manim.Succession`
             A Succession instance representing the result."""
         return Succession(
             ApplyMethod(self.feature_maps.set_color, self.active_color),
@@ -410,7 +410,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer

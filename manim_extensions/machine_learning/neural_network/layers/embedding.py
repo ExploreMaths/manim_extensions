@@ -149,7 +149,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Create
+        :class:`~manim.Create`
             A Create instance representing the result.
 """
         self.gaussian_distributions.add(gaussian_distribution)
@@ -216,7 +216,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        VGroup
+        :class:`~manim.VGroup`
             A VGroup instance representing the result.
 """
         # Sample points from a Gaussian
@@ -246,7 +246,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         animations = []

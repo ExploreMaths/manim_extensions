@@ -86,7 +86,7 @@ class ImageToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        AnimationGroup
+        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
 """
         animations = []
