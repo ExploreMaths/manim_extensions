@@ -43,6 +43,10 @@ def frames_comparison(
 
     Note that this decorator can be use with or without parentheses.
 
+    .. warning::
+       By default, last_frame is True, which means that only the last frame is tested.
+       If the scene has a moving animation, then the test must set last_frame to False.
+
     Parameters
     ----------
     func
@@ -55,10 +59,6 @@ def frames_comparison(
         The base class for the scene (ThreeDScene, etc.), by default Scene.
     **custom_config
         Additional keyword arguments merged into the Manim config for the test.
-
-    .. warning::
-       By default, last_frame is True, which means that only the last frame is tested.
-       If the scene has a moving animation, then the test must set last_frame to False.
 
     Returns
     -------

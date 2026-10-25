@@ -20,6 +20,10 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
     """An abstract class denoting a current carrying wire to produce a
     :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`.
 
+    .. seealso::
+
+       See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
+
     Parameters
     ----------
     stroke
@@ -31,11 +35,6 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
         :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`.
     kwargs
         Additional parameters passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
-
-
-    .. seealso::
-
-       See :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField` for examples.
 
     Examples
     --------

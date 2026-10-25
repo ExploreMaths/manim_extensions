@@ -100,7 +100,7 @@ class ManimAutomataCLI:
     def non_deterministic_finite_automata_path_builder_callback(self) -> None:
         """Handle the NDA path-builder menu callback.
 
-        .. warning::
+        .. todo::
 
            This method is not yet implemented and raises
            :class:`~builtins.NotImplementedError`.

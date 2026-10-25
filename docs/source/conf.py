@@ -42,6 +42,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
+    "sphinx.ext.todo",
     "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
     "sphinx_copybutton",
@@ -73,6 +74,9 @@ html_favicon = "_static/favicon.svg"
 mathjax_path = "mathjax/tex-mml-svg.js"
 html_title = f"Manim Extensions v{release}"
 html_short_title = "manim_extensions"
+
+# 将 sphinx.ext.todo 产生的 TODO 注释渲染进文档，而不是丢弃
+todo_include_todos = True
 
 html_theme_options = {
     "source_repository": "https://github.com/ExploreMaths/manim_extensions/",

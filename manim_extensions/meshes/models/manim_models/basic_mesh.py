@@ -483,7 +483,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     def flip(self, axis: np.ndarray = m.UP, **kwargs):
         """Flip the mesh about *axis*.
 
-        .. warning::
+        .. todo::
 
            Not yet implemented for the underlying data mesh.
 

@@ -141,17 +141,17 @@ class SpaceScene(Scene):
     :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body` or :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body` participates in the
     physics simulation.
 
+    .. tip::
+
+       The gravity vector can be customised by overriding the class
+       attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
+
     Parameters
     ----------
     renderer
         Renderer name forwarded to the parent :class:`~manim.Scene`.
     **kwargs
         Forwarded to the parent :class:`~manim.Scene`.
-
-    .. tip::
-
-       The gravity vector can be customised by overriding the class
-       attribute :attr:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY` before instantiation.
 
     Examples
     --------
