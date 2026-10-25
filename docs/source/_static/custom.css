@@ -349,17 +349,19 @@ a.reference[href*="#manim."]:not(.default_value) code {
     padding: 0;
 }
 
-/* Python cross-references inside autodoc attribute and property blocks
-   (dl.py.attribute, dl.py.property): keep them unstyled — plain inherited
-   text colour, no underline, in both colour schemes and on hover. */
-dl.py.attribute a.reference,
-dl.py.property a.reference,
-dl.py.attribute a.reference code,
-dl.py.property a.reference code,
-dl.py.attribute a.reference:hover,
-dl.py.property a.reference:hover,
-dl.py.attribute a.reference code:hover,
-dl.py.property a.reference code:hover {
+/* Python-standard-library cross-references inside autodoc attribute and
+   property blocks (dl.py.attribute, dl.py.property): keep them unstyled —
+   plain inherited text colour, no underline, in both colour schemes and on
+   hover.  Scoped to docs.python.org so third-party type links (numpy.ndarray,
+   manim's Dot, …) keep their normal link styling. */
+dl.py.attribute a.reference[href^="https://docs.python.org"],
+dl.py.property a.reference[href^="https://docs.python.org"],
+dl.py.attribute a.reference[href^="https://docs.python.org"] code,
+dl.py.property a.reference[href^="https://docs.python.org"] code,
+dl.py.attribute a.reference[href^="https://docs.python.org"]:hover,
+dl.py.property a.reference[href^="https://docs.python.org"]:hover,
+dl.py.attribute a.reference[href^="https://docs.python.org"] code:hover,
+dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
     color: inherit;
     text-decoration: none;
     background: none;
