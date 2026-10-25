@@ -117,10 +117,10 @@ The module index below is also exposed as a navigable tree in the sidebar
    :maxdepth: 3
    :titlesonly:
 
-   basic/index
    algorithm/index
    arabic/index
    automata/index
+   basic/index
    chemistry/index
    circuit/index
    compass/index
@@ -144,10 +144,10 @@ The module index below is also exposed as a navigable tree in the sidebar
 
 .. module-index::
 
-   Basic = basic
    Algorithm = algorithm
    Arabic = arabic
    Automata = automata
+   Basic = basic
    Chemistry = chemistry
    Circuit = circuit
    Compass = compass
