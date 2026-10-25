@@ -238,16 +238,16 @@ a.reference.ref-manim code.xref:hover {
 /* Dark theme: brighten the text for the dark canvas; hover brightens it
    a notch further. */
 body[data-theme="dark"] a.reference.ref-ext code.xref {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] a.reference.ref-manim code.xref {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 body[data-theme="dark"] a.reference.ref-ext code.xref:hover {
-    color: #F0FDF4;
+    color: #7AE0A0;
 }
 body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
-    color: #F2F9FF;
+    color: #AED6F1;
 }
 /* Auto theme (and the no-JS / pre-JS state where furo leaves <body>
    without a data-theme attribute): furo paints the page dark whenever
@@ -255,16 +255,16 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    that exact condition instead of requiring a data-theme attribute. */
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.reference.ref-ext code.xref {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) a.reference.ref-manim code.xref {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
     body:not([data-theme="light"]) a.reference.ref-ext code.xref:hover {
-        color: #F0FDF4;
+        color: #7AE0A0;
     }
     body:not([data-theme="light"]) a.reference.ref-manim code.xref:hover {
-        color: #F2F9FF;
+        color: #AED6F1;
     }
 }
 /* Color-name literals linked by the default_value_links extension put the
@@ -287,17 +287,17 @@ code.docutils.literal.color-link-manim a.reference:hover {
     color: #124B76;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference:hover {
-    color: #F2F9FF;
+    color: #AED6F1;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
     body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference:hover {
-        color: #F2F9FF;
+        color: #AED6F1;
     }
 }
 /* Project class/function names linked by default_value_links' prose
@@ -309,17 +309,17 @@ code.docutils.literal.color-link-ext a.reference:hover {
     color: #166B3C;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference:hover {
-    color: #F0FDF4;
+    color: #7AE0A0;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference:hover {
-        color: #F0FDF4;
+        color: #7AE0A0;
     }
 }
 /* Plain references whose fragment resolves to a manim_extensions / manim
@@ -348,29 +348,29 @@ a.reference[href*="#manim."]:not(.default_value) code {
     padding: 0;
 }
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) code {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) code {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
     body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) code {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
 }
 /* The on-this-page sidebar (toc-tree) lists the same class/member names,
@@ -461,20 +461,20 @@ dt.sig-object.py .property > a.reference.ref-manim {
 }
 body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-ext,
 body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-ext {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-manim,
 body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-manim {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-ext,
     body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-ext {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-manim,
     body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-manim {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
 }
 
@@ -654,28 +654,28 @@ a.default_value.reference.internal.ref-ext:hover {
     color: #166B3C;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-manim {
-    color: #EBF5FB;
+    color: #85C1E9;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-ext {
-    color: #D5F5E3;
+    color: #58D68D;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-manim:hover {
-    color: #F2F9FF;
+    color: #AED6F1;
 }
 body[data-theme="dark"] a.default_value.reference.internal.ref-ext:hover {
-    color: #F0FDF4;
+    color: #7AE0A0;
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim {
-        color: #EBF5FB;
+        color: #85C1E9;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext {
-        color: #D5F5E3;
+        color: #58D68D;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim:hover {
-        color: #F2F9FF;
+        color: #AED6F1;
     }
     body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext:hover {
-        color: #F0FDF4;
+        color: #7AE0A0;
     }
 }

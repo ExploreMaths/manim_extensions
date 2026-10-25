@@ -65,6 +65,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     .. manim:: ManimMeshExample
 
        import numpy as np
+       from manim import *
        from manim_extensions.meshes.templates import create_pyramid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 

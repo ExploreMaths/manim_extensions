@@ -129,6 +129,10 @@ def probe_block(task):
                 return orig_play(*anims, **kwargs)
 
             scene.add, scene.play = tracking_add, tracking_play
+            # construct() is called directly (not via render()), so run the
+            # scene's setup() manually to mirror a real render -- scenes such
+            # as CompassScene set up their mobjects there.
+            scene.setup()
             scene.construct()
             pool = list(scene.mobjects)
             for mob in collected:
