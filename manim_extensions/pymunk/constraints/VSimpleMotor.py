@@ -68,6 +68,7 @@ class VSimpleMotor(VConstraint):
                self.add_shapes_filter(pivot, wheel, group=2)
                self.add_constraints(motor)
                self.wait(4)
+               self.camera.frame.set(width=160, height=160)
 
     """
 

@@ -95,6 +95,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    self.play(Create(Line(start_pt, end_pt, color=RED)))
                    self.add(Dot(hit_point, color=YELLOW, radius=0.1))
                self.wait(3)
+               self.camera.frame.set(width=120, height=120)
 
     """
 

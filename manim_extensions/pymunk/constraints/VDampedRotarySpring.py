@@ -77,6 +77,7 @@ class VDampedRotarySpring(VConstraint):
                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
                self.add_constraints(spring)
                self.wait(5)
+               self.camera.frame.set(width=240, height=240)
 
     """
 

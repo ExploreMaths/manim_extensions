@@ -85,6 +85,7 @@ class VPivotJoint(VConstraint):
                self.add_shapes_filter(pivot, square, square2, group=2)
                self.add_constraints(*constraints)
                self.wait(5)
+               self.camera.frame.set(width=14, height=14)
 
     """
 

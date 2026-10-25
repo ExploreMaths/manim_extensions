@@ -80,6 +80,7 @@ class VSlideJoint(VConstraint):
                self.add_shapes_filter(pivot, arm, follower, group=2)
                self.add_constraints(*constraints)
                self.wait(6)
+               self.camera.frame.set(width=14, height=14)
 
     """
 

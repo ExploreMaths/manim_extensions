@@ -121,6 +121,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                self.wait(2)
                self.space.space.gravity = (0, 5)
                self.wait(3)
+               self.camera.frame.set(width=80, height=80)
     """
 
     def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
