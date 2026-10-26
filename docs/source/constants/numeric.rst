@@ -4,7 +4,7 @@
 Numeric
 =======
 
-Numeric constants defined in :mod:`manim.constants` but not listed in
+Numeric constants defined in :mod:`~manim.constants` but not listed in
 the official Manim documentation.
 
 .. autodata:: manim.constants.DEGREES

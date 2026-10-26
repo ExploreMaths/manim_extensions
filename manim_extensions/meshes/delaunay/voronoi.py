@@ -72,7 +72,7 @@ class VoronoiDelaunay:
     def create_voronoi(self) -> tuple:
         """Build the Voronoi diagram for the mesh vertices and return it as Manim groups.
 
-        The diagram is constructed from the :class:`scipy.spatial.Voronoi`
+        The diagram is constructed from the :class:`~scipy.spatial.Voronoi`
         computation stored in :attr:`~manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.voronoi`.  Both finite and infinite
         ridge segments are converted to :class:`~manim.mobject.geometry.line.Line`
         objects, and Voronoi vertices become :class:`~manim.mobject.geometry.arc.Dot`
@@ -86,7 +86,7 @@ class VoronoiDelaunay:
 
         Notes
         -----
-        Based on the logic in :func:`scipy.spatial.voronoi_plot_2d`.
+        Based on the logic in :func:`~scipy.spatial.voronoi_plot_2d`.
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         vert_group = m.VGroup()

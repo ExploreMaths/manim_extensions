@@ -4,7 +4,7 @@
 Fonts
 =====
 
-Font weights and styles defined in :mod:`manim.constants` but not
+Font weights and styles defined in :mod:`~manim.constants` but not
 listed in the official Manim documentation.
 
 .. autodata:: manim.constants.BOLD

@@ -111,11 +111,11 @@ class MArrayElement(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
     __mob_label_props : :class:`dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element label.
-    __index_pos : :class:`numpy.ndarray`
+    __index_pos : :class:`~numpy.ndarray`
         The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __index_gap : :class:`float`
         The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
-    __label_pos : :class:`numpy.ndarray`
+    __label_pos : :class:`~numpy.ndarray`
         The position of :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
     __label_gap : :class:`float`
         The distance between :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
@@ -690,7 +690,7 @@ class MArray(VGroup):
         {"arr": RIGHT, "index": UP},
         {"arr": LEFT, "index": UP},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""
 
     def __sum_elem_len(self, index_start: int, index_end: int) -> int:
         """Sums the side_length of all elements' square mobject present in the array between the specified range.
@@ -969,9 +969,9 @@ class MArray(VGroup):
             Parameters
             ----------
             play_anim
-                Specifies whether to play the update :class:`manim.Animation`.
+                Specifies whether to play the update :class:`~manim.Animation`.
             play_anim_args
-                Arguments for :meth:`manim.Scene.play`.
+                Arguments for :meth:`~manim.Scene.play`.
 
             Returns
             -------
@@ -1664,7 +1664,7 @@ class MArrayPointer(VGroup):
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
         {"np": LEFT, "dir": MArrayDirection.LEFT},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""
 
     def __calc_arrow_pos(self) -> np.ndarray:
         """Calculates direction vector for the arrow mobject.
@@ -2099,7 +2099,7 @@ class MArraySlidingWindow(VGroup):
         Represents the window of the sliding window.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the sliding window.
-    __updater_pos : :data:`typing.Callable`\[[], None]
+    __updater_pos : :data:`~typing.Callable`\[[], None]
         The updater function that keeps the sliding window intact with the array.
     
     Examples
@@ -2136,7 +2136,7 @@ class MArraySlidingWindow(VGroup):
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
         {"np": LEFT, "dir": MArrayDirection.LEFT},
     ]
-    """Maps :class:`~.m_enum.MArrayDirection` to :class:`numpy.ndarray`."""
+    """Maps :class:`~.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""
 
     def __calc_window_dim(self) -> Tuple[float, float]:
         """Calculates dimensions of window mobject.

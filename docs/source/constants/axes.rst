@@ -4,7 +4,7 @@
 Axes
 ====
 
-Axis constants defined in :mod:`manim.constants` but not listed in the
+Axis constants defined in :mod:`~manim.constants` but not listed in the
 official Manim documentation.
 
 .. autodata:: manim.constants.X_AXIS

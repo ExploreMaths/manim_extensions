@@ -3,27 +3,28 @@
 # SPDX-License-Identifier: MIT
 
 
-"""Check that cross-references to external libraries have an intersphinx mapping.
+"""Check cross-reference style and intersphinx coverage across the docs.
 
-sphinx-autodoc-typehints renders types from the code signature, but explicit
-cross-references such as ``:class:`scipy.spatial.Voronoi``` only become links
-when the referenced library is configured in ``intersphinx_mapping`` in
-``docs/source/conf.py``.  A reference to an external package that is not in
-that mapping renders as plain text (no link) — exactly the defect that was
-recently fixed for ``pymunk``, ``scipy``, ``scikit-learn``, ``segno`` and
-``typing_extensions``.
+Two rules are enforced on every explicit Python cross-reference (roles
+``:class:``, ``:func:``, ``:meth:``, ``:attr:``, ``:mod:``, ``:data:``,
+``:exc:``, ``:obj:``) found in docstrings and ``.rst`` files:
 
-This validator scans every docstring and every ``.rst`` file for explicit
-cross-reference roles (``:class:``, ``:func:``, ``:meth:``, ``:attr:``,
-``:mod:``, ``:data:``, ``:exc:``, ``:obj:``) and reports any whose top-level
-package is neither part of this project nor covered by an intersphinx mapping
-nor a Python standard-library module.  The intent is to catch a newly added
-reference to a third-party API before it silently loses its link.
+1. **Tilde style.** A target with a module prefix (``x.y.Z``) must be written
+   with a leading ``~`` (``:class:`~x.y.Z```) so Sphinx shows only the last
+   component while the link stays fully qualified.  A bare single-identifier
+   target (e.g. the builtin ``NotImplementedError``) must *not* carry a
+   ``~`` — it has no prefix to abbreviate and the python intersphinx
+   inventory registers builtins by their bare name, so ``~NotImplementedError``
+   neither resolves nor links.
+
+2. **Intersphinx coverage.** A reference whose top-level package is not part
+   of this project must be covered by ``intersphinx_mapping`` in
+   ``docs/source/conf.py``; otherwise it renders as plain text with no link
+   (the defect that prompted adding ``pymunk``, ``scipy``, ``scikit-learn``,
+   ``segno`` and ``typing_extensions``).
 
 The check does not need the intersphinx inventories themselves — it only
-mirrors the ``intersphinx_mapping`` keys from ``conf.py``.  Adding a mapping
-for a new library in ``conf.py`` is what makes its references resolvable, so
-that is the fix this validator nudges toward.
+mirrors the ``intersphinx_mapping`` keys from ``conf.py``.
 """
 
 from __future__ import annotations
@@ -58,15 +59,13 @@ PY_STDLIB = {
 # the ``intersphinx_mapping`` key in conf.py.
 INTERSPHINX_PKG_ALIAS = {"scikit-learn": {"sklearn"}}
 
+# A Python object path: ``A.B.C`` (optionally preceded by ``~``).  Anything
+# else (math text, prose) is not a cross-reference and is ignored.
+_XREF_PATH = re.compile(r"~?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*$")
+
 
 def intersphinx_packages() -> set[str]:
-    """Read the package names behind each intersphinx_mapping entry in conf.py.
-
-    For most entries the package name equals the mapping key (``numpy``,
-    ``scipy``, ...).  A few keys differ from the import name (e.g.
-    ``scikit-learn`` -> ``sklearn``); those aliases come from
-    INTERSPHINX_PKG_ALIAS.
-    """
+    """Read the package names behind each intersphinx_mapping entry in conf.py."""
     src = open(CONF, encoding="utf-8").read()
     m = re.search(r"intersphinx_mapping\s*=\s*\{(.*?)\}", src, re.S)
     if not m:
@@ -93,51 +92,74 @@ def docstrings(py_files):
 
 
 def find_xrefs(text: str):
-    """Yield (target, role) for every explicit Python cross-reference."""
+    """Yield the raw target text and role for every explicit Python xref."""
     for m in re.finditer(r":(class|func|meth|attr|mod|data|exc|obj):`([^`]+)`", text):
-        yield m.group(2).strip().lstrip("~"), m.group(1)
+        yield m.group(2).strip(), m.group(1)
 
 
 def main() -> int:
-    allowed = intersphinx_packages() | PY_STDLIB
-    problems: "OrderedDict[str, list]" = OrderedDict()
+    allowed = intersphinx_packages() | PY_STDLIB | {"manim_extensions"}
+    no_tilde: "OrderedDict[str, list]" = OrderedDict()    # module path w/o ~
+    bad_tilde: "OrderedDict[str, list]" = OrderedDict()   # bare identifier w/ ~
+    missing_int: "OrderedDict[str, list]" = OrderedDict() # unmapped external lib
 
     py_files = glob.glob(f"{ROOT}/**/*.py", recursive=True)
     rst_files = glob.glob("docs/source/**/*.rst", recursive=True)
 
-    def consider(path, target, role):
-        if target.startswith("."):          # ``~.X`` current-module shorthand
+    def consider(path, raw, role):
+        has_tilde = raw.startswith("~")
+        tgt = raw.lstrip("~")
+        if tgt.startswith("."):          # ``~.X`` current-module shorthand
             return
-        if "." not in target:               # bare identifier: project or builtin
+        if not _XREF_PATH.match(raw):    # math/prose, not a Python path
             return
-        top = target.split(".", 1)[0]
-        if top == "manim_extensions" or top.startswith("manim_extensions."):
+
+        if "." in tgt:                   # module-prefixed target
+            if not has_tilde:
+                no_tilde.setdefault(tgt, []).append(f"{path}: `:{role}:`{tgt}``")
+        else:                            # bare single identifier
+            if has_tilde:
+                bad_tilde.setdefault(tgt, []).append(f"{path}: `:{role}:`~{tgt}``")
+
+        top = tgt.split(".", 1)[0] if "." in tgt else None
+        if top is None or top in allowed:
             return
-        if top in allowed:
-            return
-        problems.setdefault(top, []).append(f"{path}: `:{role}:`{target}``")
+        missing_int.setdefault(top, []).append(f"{path}: `:{role}:`{raw}``")
 
     for path, doc in docstrings(py_files):
-        for target, role in find_xrefs(doc):
-            consider(path, target, role)
+        for raw, role in find_xrefs(doc):
+            consider(path, raw, role)
     for path in rst_files:
         try:
             text = open(path, encoding="utf-8").read()
         except OSError:
             continue
-        for target, role in find_xrefs(text):
-            consider(path, target, role)
+        for raw, role in find_xrefs(text):
+            consider(path, raw, role)
+
+    problems = bool(no_tilde or bad_tilde or missing_int)
+
+    def dump(title, table):
+        if not table:
+            return
+        print(f"  [{title}] ({len(table)} unique targets)")
+        for tgt, items in table.items():
+            print(f"    {tgt}")
+            for it in items[:6]:
+                print("       ", it)
+            if len(items) > 6:
+                print(f"       ... and {len(items)-6} more")
 
     if not problems:
-        print("PASS  intersphinx")
+        print("PASS  xref-style and intersphinx")
         return 0
 
-    print("FAIL  external-library cross-references missing intersphinx mappings")
-    for top, items in problems.items():
-        print(f"  [{top}] ({len(items)} refs)")
-        for it in items:
-            print("     ", it)
-    print("\nAdd the library to `intersphinx_mapping` in %s (see CONTRIBUTING.md)." % CONF)
+    print("FAIL  xref-style / intersphinx issues")
+    dump("module path without leading ~ (add ~)", no_tilde)
+    dump("bare identifier with ~ (drop ~)", bad_tilde)
+    dump("external package missing intersphinx mapping", missing_int)
+    print("\nTilde rule: `:class:`~x.y.Z`` for module-prefixed targets; bare")
+    print("names (e.g. builtin NotImplementedError) get no ~. See CONTRIBUTING.md.")
     return 1
 
 

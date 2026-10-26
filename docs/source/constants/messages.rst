@@ -4,7 +4,7 @@
 Messages
 ========
 
-Runtime messages and internal values defined in :mod:`manim.constants`
+Runtime messages and internal values defined in :mod:`~manim.constants`
 but not listed in the official Manim documentation.
 
 .. autodata:: manim.constants.CHOOSE_NUMBER_MESSAGE

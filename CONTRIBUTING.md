@@ -312,7 +312,7 @@ Exceptions for intentional cases can be added to `workflow/example_layout_exempt
 
 Docstrings and `.rst` files use Sphinx cross-reference roles to link to other APIs. The following conventions are *advisory*, not hard requirements — please try to follow them so the docs stay consistent; anything that slips through will be cleaned up by the maintainers (we handle formatting on merge).
 
-- **Prefer fully-qualified targets.** Roles like `:class:`, `:meth:`, `:func:`, `:attr:`, `:mod:` ideally point to fully-qualified names, usually with a leading `~` to display only the last component:
+- **Module-prefixed targets use a leading `~`.** Every cross-reference to a fully-qualified object — whether in this project (`manim`, `manim_extensions`) or a third-party API (`scipy`, `numpy`, `pymunk`, `sklearn`, ...) — is written with a leading `~` so Sphinx shows only the last component while the link stays fully qualified:
 
   ```rst
   :meth:`~manim.mobject.mobject.Mobject.scale`
@@ -320,6 +320,8 @@ Docstrings and `.rst` files use Sphinx cross-reference roles to link to other AP
   ```
 
 Short targets like `:attr:`__mob_index`` or `:meth:`Mobject.scale`` are best avoided (the `validate_refs.py` checker flags them).
+
+- **Python builtins are written bare.** A single-identifier target with no module prefix (e.g. the builtin exception `NotImplementedError`) gets no `~`: it has no prefix to abbreviate, and the python intersphinx inventory registers builtins by their bare name, so `:class:`~NotImplementedError`` resolves to nothing. Write `:class:`NotImplementedError`` instead. The `validate_intersphinx.py` checker enforces both tilde rules in CI (`validate-intersphinx`).
 
 - **API names should be cross-references, not inline code.** Back-ticked names that look like APIs (e.g. `` `Mobject.scale` ``) are better written as proper roles. Built-in types (`int`, `str`, `list`, ...) and common exceptions are exempt.
 

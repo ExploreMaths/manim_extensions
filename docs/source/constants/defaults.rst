@@ -4,7 +4,7 @@
 Defaults
 ========
 
-Default-value constants defined in :mod:`manim.constants` but not
+Default-value constants defined in :mod:`~manim.constants` but not
 listed in the official Manim documentation.
 
 .. autodata:: manim.constants.DEFAULT_ARROW_TIP_LENGTH

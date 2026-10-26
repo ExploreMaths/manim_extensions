@@ -69,9 +69,9 @@ def qr_code(payload: str,
         QR code data. 
     error_correction
         The error correction level for the QR code, as accepted by
-        :func:`segno.make`. 
+        :func:`~segno.make`. 
     segno_kwargs
-        Additional keyword arguments for the :func:`segno.make` function.
+        Additional keyword arguments for the :func:`~segno.make` function.
         
     **kwargs
         Placeholder for additional keyword arguments, which are not used

@@ -207,7 +207,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     ):
         """Initializes and configures the Pymunk physical body for a Mobject.
 
-        This internal method creates a :class:`pymunk.Body` instance, sets its motion
+        This internal method creates a :class:`~pymunk.Body` instance, sets its motion
         type (Dynamic, Static, or Kinematic), and applies initial kinematic
         properties such as center of mass, linear velocity, and angular velocity.
 
@@ -216,7 +216,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The Mobject to which the physical body will be attached.
         body_type
-            The Pymunk body type integer (e.g., :attr:`pymunk.Body.DYNAMIC`).
+            The Pymunk body type integer (e.g., :attr:`~pymunk.Body.DYNAMIC`).
         center_of_gravity
             The center of mass position relative to the Mobject's center :math:`(x, y)`.
         velocity
@@ -833,7 +833,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """Generates Pymunk collision shapes for a hollow Mobject (outline only).
 
         Instead of a solid polygon, this method constructs a collision boundary using
-        multiple :class:`pymunk.Segment` shapes that follow the Mobject's contour. This is
+        multiple :class:`~pymunk.Segment` shapes that follow the Mobject's contour. This is
         ideal for creating containers, cages, or hollow structures where other
         physical objects can move inside.
 
@@ -1068,7 +1068,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                * - ``point``
                  - The closest point on the shape's surface to the query point.
                * - ``shape``
-                 - The specific :class:`pymunk.Shape` object that was queried.
+                 - The specific :class:`~pymunk.Shape` object that was queried.
         """
 
         query_info_list = []
@@ -1124,7 +1124,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                * - ``point``
                  - The exact 3D coordinate of the intersection point.
                * - ``shape``
-                 - The specific :class:`pymunk.Shape` that was hit.
+                 - The specific :class:`~pymunk.Shape` that was hit.
         """
         query_info_list = []
         for shape in mob.shapes:
@@ -1152,9 +1152,9 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         shape_a
-            The first :class:`pymunk.Shape` to check for collision.
+            The first :class:`~pymunk.Shape` to check for collision.
         shape_b
-            The second :class:`pymunk.Shape` to check for collision.
+            The second :class:`~pymunk.Shape` to check for collision.
 
         Returns
         -------

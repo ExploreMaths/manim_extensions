@@ -401,7 +401,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         option
-            Pymunk debug draw options (e.g., :class:`pymunk.SpaceDebugDrawOptions`).
+            Pymunk debug draw options (e.g., :class:`~pymunk.SpaceDebugDrawOptions`).
             Determines what physical elements (shapes, constraints, collision points) are visible.
         xlim
             The display range for the X-axis in the plot.

@@ -4,7 +4,7 @@
 Directions
 ==========
 
-Direction vectors defined in :mod:`manim.constants`.  They are listed
+Direction vectors defined in :mod:`~manim.constants`.  They are listed
 in the official Manim documentation, but they are not in the Manim
 intersphinx inventory, so they get linked here.
 

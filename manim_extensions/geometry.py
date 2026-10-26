@@ -407,7 +407,7 @@ def TangentPoint(
 
     Returns
     -------
-        The tangent point :math:`(x, y, 0)` as a :class:`numpy.ndarray`, or
+        The tangent point :math:`(x, y, 0)` as a :class:`~numpy.ndarray`, or
         ``None`` if no valid tangent point exists.
 
     Examples

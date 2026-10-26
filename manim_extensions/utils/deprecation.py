@@ -3,7 +3,7 @@
 
 """Patched :func:`~manim_extensions.utils.deprecation.deprecated` decorator.
 
-Drop-in replacement for :func:`typing_extensions.deprecated` that accepts a
+Drop-in replacement for :func:`~typing_extensions.deprecated` that accepts a
 message written in **RST**. The RST markup is preserved on the decorated
 object's ``__deprecated__`` attribute (used by the Sphinx
 ``deprecated_warning`` extension to render a styled admonition), while the
@@ -52,9 +52,9 @@ def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
         roles, double-backtick code, ...) which is kept for the docs but
         stripped from the runtime warning.
     *args
-        Forwarded to :func:`typing_extensions.deprecated`.
+        Forwarded to :func:`~typing_extensions.deprecated`.
     **kwargs
-        Forwarded to :func:`typing_extensions.deprecated`
+        Forwarded to :func:`~typing_extensions.deprecated`
         (``category``, ``stacklevel``).
 
     Returns

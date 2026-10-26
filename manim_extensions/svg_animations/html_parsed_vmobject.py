@@ -108,7 +108,7 @@ combsDict[comb]();
 def _ensure_to_svg_plugin():
     """Import the manim-mobject-svg plugin, which registers VMobject.to_svg().
 
-    The import is done lazily so that :mod:`manim_extensions.svg_animations`
+    The import is done lazily so that :mod:`~manim_extensions.svg_animations`
     remains importable without the plugin installed.
     """
     try:

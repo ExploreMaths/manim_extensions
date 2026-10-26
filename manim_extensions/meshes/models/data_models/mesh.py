@@ -511,7 +511,7 @@ class Mesh:
         Raises
         ------
         InvalidMeshException
-            If *new_vertices* is not a :class:`numpy.ndarray`.
+            If *new_vertices* is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the shape of *new_vertices* does not match the mesh dimension.
         """
@@ -998,7 +998,7 @@ class Mesh:
         Raises
         ------
         InvalidTypeException
-            If *translation* is not a :class:`numpy.ndarray`.
+            If *translation* is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the length of *translation* does not match the mesh dimension.
         """
@@ -1028,7 +1028,7 @@ class Mesh:
         MeshIndexException
             If *v_id* is out of range.
         InvalidTypeException
-            If *translation* is not a :class:`numpy.ndarray`.
+            If *translation* is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the length of *translation* does not match the mesh dimension.
         """

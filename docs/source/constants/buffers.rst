@@ -4,7 +4,7 @@
 Buffers
 =======
 
-Spacing values defined in :mod:`manim.constants` but not listed in the
+Spacing values defined in :mod:`~manim.constants` but not listed in the
 official Manim documentation.
 
 .. autodata:: manim.constants.SMALL_BUFF

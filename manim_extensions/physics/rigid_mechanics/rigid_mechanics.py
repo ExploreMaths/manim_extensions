@@ -87,7 +87,7 @@ class _PhysicsAttributes(Protocol):
 class Space(Mobject, metaclass=ConvertToOpenGL):
     """Physics space that manages a pymunk simulation.
 
-    The :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object wraps a :class:`pymunk.Space` and is automatically
+    The :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object wraps a :class:`~pymunk.Space` and is automatically
     added to every :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene`.  It owns the gravity configuration and
     the simulation step that is called each frame.
 
