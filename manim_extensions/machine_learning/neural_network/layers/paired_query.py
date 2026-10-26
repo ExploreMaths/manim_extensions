@@ -6,6 +6,8 @@
 # SPDX-License-Identifier: MIT
 """Paired query layer visualization for neural networks."""
 
+from typing import Self
+
 from manim import (
     AnimationGroup,
     BLUE,
@@ -122,7 +124,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs) -> "PairedQueryLayer":
+    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs) -> Self:
         """Creates a query using the paths.
 
         Parameters

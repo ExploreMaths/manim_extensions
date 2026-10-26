@@ -26,7 +26,7 @@ from manim import (
     VMobject,
     rotate_vector,
 )
-from typing import Optional, Sequence
+from typing import Optional, Self, Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
@@ -818,8 +818,7 @@ class Gear(VMobject):
             rack_center = gear2.get_center()
             rack_angle = gear2.get_angle()
 
-            # Rack pitch line direction (along the rack's length) and its normal
-            pitch_dir = np.array([np.cos(rack_angle), np.sin(rack_angle), 0])
+            # Rack pitch-line normal (direction along which the gear is placed)
             pitch_normal = np.array([-np.sin(rack_angle), np.cos(rack_angle), 0])
 
             diff_vect = self.get_center() - rack_center
@@ -992,7 +991,7 @@ class Gear(VMobject):
         axis: np.ndarray = OUT,
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
-    ) -> "Gear":
+    ) -> Self:
         """Rotate the gear around its centre.
 
         Parameters
@@ -1148,7 +1147,7 @@ class Rack(VMobject):
         axis: np.ndarray = OUT,
         about_point: Optional[Sequence[float]] = None,
         **kwargs,
-    ) -> "Rack":
+    ) -> Self:
         """Rotate the rack around its centre.
 
         Parameters

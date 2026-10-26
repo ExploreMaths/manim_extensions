@@ -6,6 +6,8 @@
 # SPDX-License-Identifier: MIT
 """Image layer visualization for neural networks."""
 
+from typing import Self
+
 from manim import (
     AnimationGroup,
     Create,
@@ -124,7 +126,7 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(cls, image_path: str, grayscale: bool = True, **kwargs) -> "ImageLayer":
+    def from_path(cls, image_path: str, grayscale: bool = True, **kwargs) -> Self:
         """Creates a query using the paths.
 
         Parameters

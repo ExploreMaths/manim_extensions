@@ -6,6 +6,8 @@
 # SPDX-License-Identifier: MIT
 """Triplet layer visualization for neural networks."""
 
+from typing import Self
+
 from manim import (
     AnimationGroup,
     Create,
@@ -95,7 +97,7 @@ class TripletLayer(NeuralNetworkLayer):
         grayscale: bool = True,
         font_size: float = 22,
         buff: float = 0.2,
-    ) -> "TripletLayer":
+    ) -> Self:
         """Creates a triplet using the anchor paths.
 
         Parameters

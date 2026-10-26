@@ -81,7 +81,7 @@ pytest tests/ -v
 ### Type annotations
 
 - **Every function and method parameter must have a type annotation**, except `self`, `cls`, `*args`, and `**kwargs`.
-- Return annotations are strongly encouraged where practical. A CI check (`scripts/check_return_annotations.py`) runs as a signal for functions that return a value without an annotation — add one when it points you there, and the maintainer will help refine imperfect annotations. Return the enclosing class from a method with `Self`.
+- Return annotations are strongly encouraged where practical. A CI check (`scripts/check_return_annotations.py`) runs as a signal for functions that return a value without an annotation — add one when it points you there, and the maintainer will help refine imperfect annotations. **A class method that returns an instance of its own class must annotate it with `Self`** (`from typing import Self`), not with a quoted forward reference such as `-> "ClassName"`. `Self` is available since Python 3.11 and is the canonical spelling; a string annotation would either require `from __future__ import annotations` to drop or break at runtime.
 - **Functions with no return value must not write a `-> None` return annotation and must not add a `Returns` docstring section.** `sphinx-autodoc-typehints` renders a redundant `RETURN TYPE: None` whenever a signature ends in `-> None`; omitting the annotation suppresses it.
 - A non-`None` return annotation requires a `Returns` (or `Yields`) docstring section (see [Docstrings](#docstrings)).
 - `mypy --strict` is configured in `pyproject.toml` for local type checking,
