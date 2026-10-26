@@ -1052,7 +1052,11 @@ class Rack(VMobject):
                rack.shift(UP * rack.pitch * 0.5)
 
                self.add(gear, rack)
-               self.play(Rotate(gear, gear.pitch_angle, rate_func=linear), run_time=2)
+               self.play(
+                   Rotate(gear, gear.pitch_angle, rate_func=linear),
+                   rack.animate.shift(UP * gear.rp * gear.pitch_angle),
+                   run_time=2,
+               )
                self.wait()
     """
 
