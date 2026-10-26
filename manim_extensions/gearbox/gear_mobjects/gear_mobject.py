@@ -827,7 +827,12 @@ class Gear(VMobject):
             if distance != 0:
                 diff_vect = diff_vect / distance
             else:
-                diff_vect = pitch_normal
+                # The rack's teeth protrude toward -pitch_normal (the rack is
+                # built with its tooth tips on the +x / -pitch_normal side), so
+                # a gear placed at the default position must sit on that side
+                # of the rack, not opposite it, or the teeth face away and the
+                # pair cannot mesh.
+                diff_vect = -pitch_normal
 
             # Pitch distance for external gear-rack meshing
             pitch_dist = self.rp + offset * self.m + self.X
