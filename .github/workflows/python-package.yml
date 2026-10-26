@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 50
     strategy:
       fail-fast: false
       matrix:
@@ -19,6 +20,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # The system stack (TeX/ffmpeg/xvfb) is large; cache the apt archives
+      # and pip downloads so a job landing on a slow runner or slow network
+      # does not re-download everything from scratch on every push.
+      - name: Prepare apt cache dir
+        run: sudo mkdir -p /var/cache/apt/archives && sudo chmod 777 /var/cache/apt/archives
+      - name: Cache apt archives
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: apt-${{ hashFiles('.github/workflows/python-package.yml') }}
+          restore-keys: |
+            apt-
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            pip-${{ matrix.python-version }}-
+            pip-
+
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: ${{ matrix.python-version }}
@@ -42,8 +65,28 @@ jobs:
   # so compatibility is tested rather than merely claimed.
   manim-latest:
     runs-on: ubuntu-latest
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
+
+      - name: Prepare apt cache dir
+        run: sudo mkdir -p /var/cache/apt/archives && sudo chmod 777 /var/cache/apt/archives
+      - name: Cache apt archives
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: apt-${{ hashFiles('.github/workflows/python-package.yml') }}
+          restore-keys: |
+            apt-
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-3.13-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            pip-3.13-
+            pip-
+
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: "3.13"
