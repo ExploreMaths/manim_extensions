@@ -103,7 +103,7 @@ class ManimAutomataCLI:
         .. todo::
 
            This method is not yet implemented and raises
-           :class:`~builtins.NotImplementedError`.
+           :class:`~NotImplementedError`.
 
         Raises
         ------

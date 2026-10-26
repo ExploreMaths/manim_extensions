@@ -42,6 +42,13 @@ jobs:
       - name: Run reference validator
         run: python workflow/validate_refs.py
 
+  validate-intersphinx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that external-library cross-references have intersphinx mappings
+        run: python workflow/validate_intersphinx.py
+
   validate-imports:
     runs-on: ubuntu-latest
     steps:

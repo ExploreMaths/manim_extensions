@@ -325,6 +325,10 @@ Short targets like `:attr:`__mob_index`` or `:meth:`Mobject.scale`` are best avo
 
 - **Broken references should be avoided.** A `~package.module.Class.attr` target whose module cannot be imported or whose class does not exist fails the check — prefer double-checking the target resolves.
 
+- **External-library references need an intersphinx mapping.** A `:class:`scipy.spatial.Voronoi``-style reference to a third-party package only becomes a link when that package is registered in `intersphinx_mapping` in `docs/source/conf.py`. A reference to an unmapped external package renders as plain text with no link — a silent defect. When you reference an API from an external library that is not yet mapped, add it to `intersphinx_mapping` (base URL of the library's docs; `None` lets Sphinx auto-detect `objects.inv`). The `validate_intersphinx.py` checker (enforced in CI as `validate-intersphinx`) reports any explicit reference whose top-level package is neither part of this project, a mapped intersphinx library, nor a Python standard-library module.
+
+  Currently mapped external libraries: `python`, `numpy`, `manim`, `pillow`, `pymunk`, `scikit-learn`, `scipy`, `segno`, `typing_extensions`. Note the `scikit-learn` mapping key corresponds to the `sklearn` import name.
+
 - **Ambiguous names shouldn't appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as `manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` and `manim_extensions.pymunk.custom_mobjects.gear.Gear`), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Where convenient, disambiguate by writing an explicit role with the full module path:
 
   ```rst
