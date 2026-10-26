@@ -112,7 +112,6 @@ class GaussianDistribution(VGroup):
 
         Returns
         -------
-        tuple[float, float, float]
             Rotation angle, width, and height of the covariance ellipse
             in frame coordinates.
         """

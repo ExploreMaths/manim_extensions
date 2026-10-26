@@ -112,7 +112,6 @@ def split_integer(n: int) -> tuple[int, int]:
 
     Returns
     -------
-    tuple of (int, int)
         The two parts ``(k + 1, k)`` if *n* is odd, or ``(k, k)`` if *n* is even.
     """
 
@@ -262,7 +261,6 @@ class StandardLayout(Layout):
 
         Returns
         -------
-        Any
             The computed result."""
         self._split()
         self.left = TidyTreeLayout(

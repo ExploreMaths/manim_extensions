@@ -62,7 +62,6 @@ class MolParser(BaseParser):
 
         Returns
         -------
-        :class:`list` of :class:`str`
             Lines of the MOL file.
         """
         with open(filename) as file:

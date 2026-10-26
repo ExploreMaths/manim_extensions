@@ -92,7 +92,6 @@ class SDFParser(MolParser):
 
         Returns
         -------
-        :class:`list` of :class:`typing.Tuple`
             List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
         return [MolParser.data_parser(data) for data in molecules_data]

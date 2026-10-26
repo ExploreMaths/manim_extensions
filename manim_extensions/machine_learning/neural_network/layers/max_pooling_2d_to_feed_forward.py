@@ -61,7 +61,6 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)

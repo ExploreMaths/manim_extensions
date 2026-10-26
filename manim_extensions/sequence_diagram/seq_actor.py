@@ -33,10 +33,10 @@ class SeqActor(VGroup):
 
     Parameters
     ----------
-        name : str
+        name
             Actor name displayed in the diagram.
-        font_size : float, optional
-            Size of the label text. 
+        font_size
+            Size of the label text.
 
     Examples
     --------
@@ -87,7 +87,6 @@ class SeqActor(VGroup):
 
         Returns
         -------
-        SeqActor or None
             The actor with the greatest time depth, or ``None`` if no
             actors have been created.
         """

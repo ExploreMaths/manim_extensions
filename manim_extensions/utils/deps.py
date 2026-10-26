@@ -29,7 +29,6 @@ def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:
 
     Returns
     -------
-    module or tuple of module
         The imported module when a single name is given, otherwise a tuple
         with the imported modules in the order of *names*.
 

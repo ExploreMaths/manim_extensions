@@ -106,7 +106,6 @@ class PubchemAPIManager:
 
         Returns
         -------
-        Any
             The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
@@ -121,7 +120,6 @@ class PubchemAPIManager:
 
         Returns
         -------
-        Any
             The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
@@ -136,7 +134,6 @@ class PubchemAPIManager:
 
         Returns
         -------
-        Any
             The computed result."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
@@ -151,7 +148,6 @@ class PubchemAPIManager:
 
         Returns
         -------
-        Any
             The computed result."""
         requests = require("chemistry", "requests")
         request_url = (

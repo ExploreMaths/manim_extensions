@@ -77,9 +77,8 @@ class EmbeddingToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
@@ -97,9 +96,8 @@ class EmbeddingToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         # Find point to converge on by sampling from gaussian distribution
         location = self.embedding_layer.sample_point_location_from_distribution()
         # Move to location

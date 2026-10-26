@@ -154,7 +154,6 @@ def scale(self, factor: float, about_point: np.ndarray | None = None) -> "Mobjec
 
     Returns
     -------
-    Mobject
         The scaled mobject.
 
     Raises
@@ -212,7 +211,7 @@ When multiple sections are present they must follow numpydoc's canonical order:
 
 ### Types come from the signature, not the docstring
 
-`sphinx-autodoc-typehints` (with `autodoc_typehints = "description"`) injects every parameter, attribute and return type from the code signature into the rendered reference page. Docstrings must **not** hand-write the parenthesised numpydoc type — a `name (type) - description` entry would render the type twice (once handwritten, once injected). Write plain `name` entries:
+`sphinx-autodoc-typehints` (with `autodoc_typehints = "description"`) injects every parameter, attribute and return type from the code signature into the rendered reference page. Docstrings must **not** hand-write a type anywhere — neither in `Parameters` nor in `Returns`/`Yields`. A handwritten type would render twice (once handwritten, once injected) and, worse, drift out of sync with the signature (e.g. a stale `Any` left behind after an annotation was tightened). Write plain `name` entries in `Parameters` and a bare description under `Returns`:
 
 ```python
 Parameters
@@ -221,7 +220,19 @@ factor
     The scaling factor.
 ```
 
+```python
+Returns
+-------
+    The scaled mobject.
+```
+
+For `Returns`, put the description **indented one level deeper** than the `Returns` header (the same `+4`-style indent used for parameter descriptions). The indented description is required so napoleon parses it as the return description rather than absorbing it into the header.
+
 This is enforced by `validate_doc_sections.py` (`MANUAL_TYPE_ANNOTATION`).
+
+### Docstring closing triple-quote indentation
+
+The closing `"""` of a docstring must be **indented to the same level as the opening triple-quote** (i.e. the indentation of the docstring body). A closing quote left flush at column 0 — typically the last line of a docstring that ends in a code block — is a defect. This is enforced by `validate_doc_sections.py`.
 
 ### Entry description style
 

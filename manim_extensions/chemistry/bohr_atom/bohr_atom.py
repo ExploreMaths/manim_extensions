@@ -88,7 +88,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        int
             The computed result."""
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
@@ -111,7 +110,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         return VGroup(
             *[
@@ -125,7 +123,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         protons = [
             Dot(color=self.proton_color)
@@ -149,7 +146,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         ELECTRONS_PER_LEVEL = {
             # Level: Electrons that fit in each level
@@ -189,9 +185,8 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)
@@ -206,7 +201,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
             The computed result."""
         return self[0]
 
@@ -215,7 +209,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
             The computed result."""
         return self[1]
 
@@ -224,6 +217,5 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-        VGroup
             The computed result."""
         return self[2]

@@ -65,9 +65,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> Succession:
@@ -85,14 +84,13 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
         ------
         Exception
             Raised when the number of image channels is not 1 or 3.
-"""
+        """
         # Transform the image from the input layer to the
         num_image_channels = self.input_layer.num_channels
         if num_image_channels == 1 or num_image_channels == 3:  # TODO fix this later
@@ -124,7 +122,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result."""
         animations = []
         image_mobject = self.input_layer.image_mobject
@@ -165,7 +162,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
             Returns
             -------
-            Any
                 The computed result."""
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height

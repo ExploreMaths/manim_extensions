@@ -125,9 +125,8 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return frame.get_width() / (1.25 * name_text.get_width())
 
     def max_height_ratio(self, name_text: Mobject) -> Text:
@@ -140,9 +139,8 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         text_height = name_text.get_height()
         if text_height > 0.3:
             ratio = 0.3 / text_height
@@ -155,7 +153,6 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         frame_rectangle = (
             Rectangle(
@@ -176,7 +173,6 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         frame_rectangle = self.create_frame_base()
         symbol_text = (
@@ -229,9 +225,8 @@ class MElementObject(VGroup):
 
         Returns
         -------
-        MElementObject
             A MElementObject instance representing the result.
-"""
+        """
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
         pd = require("chemistry", "pandas")
@@ -301,7 +296,6 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         positions = self.elements_position_dict()
         base_element = MElementObject()
@@ -324,7 +318,6 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-        dict
             A dictionary of the results."""
         # TODO: Think of a better way of doing this. However, it works and looks good
         positions = {

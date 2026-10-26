@@ -261,7 +261,6 @@ def mol_parser_string(mol_string: list) -> tuple[dict]:
 
     Returns
     -------
-    tuple of dict
         ``(atoms, bonds)`` where each atom has coords and element, and each
         bond references its connected atoms and bond type/stereo/etc.
     """
@@ -367,9 +366,8 @@ def mol_parser(file: str) -> tuple[dict, dict]:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     with open(file) as file:
         mol_file = file.readlines()
     return mol_parser_string(mol_file)
@@ -387,7 +385,6 @@ def sdf_parser_string(sdf_string: str) -> list[tuple]:
 
     Returns
     -------
-    list of tuple
         List of ``(atoms, bonds)`` dicts, one per molecule.
     """
     molecules = sdf_string.split("$$$$")
@@ -410,9 +407,8 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     with open(file) as file:
         sdf_file = file.read()
     return sdf_parser_string(sdf_file)
@@ -464,7 +460,6 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
 
     Returns
     -------
-    tuple of dict
         ``(atoms, bonds)`` where ``atoms`` maps index to element/position and
         ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.
     """

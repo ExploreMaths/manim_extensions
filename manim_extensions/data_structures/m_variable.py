@@ -105,7 +105,7 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
+            The :attr:`~manim_extensions.data_structures.m_variable.MVariable.__value`.
         """
 
         return self.__value
@@ -115,8 +115,7 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-        :data:`~typing.Union`\[:class:`str`, :class:`int`]
-            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
+            The :attr:`~manim_extensions.data_structures.m_variable.MVariable.__index`.
         """
 
         return self.__index
@@ -126,7 +125,7 @@ class MVariable(MArrayElement):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
+            The :attr:`~manim_extensions.data_structures.m_variable.MVariable.__label`.
         """
 
         return self.__label

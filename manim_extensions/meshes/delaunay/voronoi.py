@@ -151,7 +151,6 @@ class VoronoiDelaunay:
 
         Returns
         -------
-        :class:`~manim.mobject.geometry.arc.Circle` or None
             A :class:`~manim.mobject.geometry.arc.Circle` representing the
             circumscribed circle, or ``None`` if the vertex index does not
             belong to any triangle ridge.

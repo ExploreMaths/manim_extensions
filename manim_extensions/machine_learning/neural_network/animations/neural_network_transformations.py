@@ -87,14 +87,13 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        tuple
             A tuple of the results.
 
         Raises
         ------
         Exception
             Raised when ``self.layer`` is not found in the neural network.
-"""
+        """
         # Get layer index
         layer_index = self.neural_network.all_layers.index_of(self.layer)
         if layer_index == -1:
@@ -118,7 +117,6 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         remove_layer_animation = self.make_remove_layer_animation()
         remove_connective_animation = self.make_remove_connective_layers_animation()
@@ -134,7 +132,6 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.FadeOut`
             A FadeOut instance representing the result."""
         # Remove the layer
         self.neural_network.all_layers.remove(self.layer)
@@ -147,7 +144,6 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # Fade out the removed connective layers
         fade_out_before_connective = AnimationGroup()
@@ -170,7 +166,6 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # Animate the movements
         move_before_layers = AnimationGroup()
@@ -212,7 +207,6 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.UpdateFromFunc`
             A UpdateFromFunc instance representing the result."""
         self.anim_count = 0
 
@@ -315,7 +309,6 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        tuple
             A tuple of the results."""
         # Make the layers
         before_connective = None
@@ -339,7 +332,6 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        tuple
             A tuple of the results."""
         # Check if connective layer before exists
         if len(self.layers_before) > 0:
@@ -357,7 +349,6 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         (
             before_connective_width,
@@ -400,7 +391,6 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.Create`
             A Create instance representing the result."""
         return Create(self.layer)
 
@@ -418,9 +408,8 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         # Make the layers
         before_connective = None
         after_connective = None

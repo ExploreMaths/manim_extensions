@@ -75,9 +75,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
@@ -95,9 +94,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         cell_width = self.input_layer.cell_width
         feature_map_size = self.input_layer.feature_map_size
         kernel_size = self.output_layer.kernel_size

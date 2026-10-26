@@ -26,9 +26,8 @@ def get_connective_layer(input_layer: Mobject, output_layer: Mobject) -> Connect
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     connective_layer_class = None
     for candidate_class in connective_layers_list:
         input_class = candidate_class.input_class

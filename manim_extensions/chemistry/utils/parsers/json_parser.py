@@ -373,7 +373,6 @@ class JSONParser(BaseParser):
 
         Returns
         -------
-        :class:`list` of :class:`str`
             Element symbols of the atoms.
         """
         return [

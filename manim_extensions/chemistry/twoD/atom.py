@@ -137,9 +137,8 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        str
             The resulting string.
-"""
+        """
         if representation_type:
             return representation_type
 
@@ -164,7 +163,6 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        MarkupText | None
             The computed result."""
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
@@ -174,7 +172,6 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        bool
             Whether the operation succeeded."""
         minimum_bonds = {"O": 2, "S": 2, "N": 3, "P": 3}
         minimum_bond = minimum_bonds.get(self.element)
@@ -188,7 +185,6 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        MAtomObject
             A MAtomObject instance representing the result."""
         copy = MAtomObject(
             coords=self.coords,
@@ -216,9 +212,8 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        Self
             The computed result.
-"""
+        """
         self.element = new_element
         renamed_atom = self.make_copy()
 
@@ -239,7 +234,6 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        Self
             The computed result."""
         self.explicit_hydrogens = True
 

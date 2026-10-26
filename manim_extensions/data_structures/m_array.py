@@ -330,7 +330,7 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square`.
         """
 
         return self.__mob_square
@@ -340,7 +340,7 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_value`.
         """
 
         return self.__mob_value
@@ -350,7 +350,7 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_index`.
         """
 
         return self.__mob_index
@@ -360,7 +360,7 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_label`.
         """
 
         return self.__mob_label
@@ -773,7 +773,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`~typing.Union`\[:class:`int`, :class:`str`]
             Displayable index.
         """
 
@@ -860,7 +859,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :data:`typing.List`\[:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -1177,7 +1175,7 @@ class MArray(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArray.__arr`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArray.__arr`.
         """
 
         return self.__arr
@@ -1187,7 +1185,7 @@ class MArray(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         """
 
         return self.__mob_arr
@@ -1197,7 +1195,7 @@ class MArray(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label`.
         """
 
         return self.__mob_arr_label
@@ -1207,7 +1205,7 @@ class MArray(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArray.__arr_dir`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArray.__arr_dir`.
         """
 
         return self.__arr_dir
@@ -1484,7 +1482,6 @@ class MArray(VGroup):
 
         Returns
         -------
-        :class:`typing.List`\[:class:`~manim.animation.animation.Animation`]
             List of append animations.
         """
 
@@ -1901,7 +1898,7 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow`.
         """
 
         return self.__mob_arrow
@@ -1911,7 +1908,7 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         """
 
         return self.__mob_label
@@ -1921,7 +1918,7 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__index`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__index`.
         """
 
         return self.__index
@@ -2395,7 +2392,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         """
 
         return self.__mob_window
@@ -2405,7 +2402,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-            :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
+            The :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
         """
 
         return self.__mob_label

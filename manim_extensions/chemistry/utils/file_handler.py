@@ -58,9 +58,8 @@ class FileHandler:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> Tuple[Dict, Dict]:
@@ -68,7 +67,6 @@ class FileHandler:
 
         Returns
         -------
-        :class:`typing.Tuple` of :class:`typing.Dict`
             ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
         """
         return self.parser.molecule_data
@@ -85,7 +83,6 @@ class FileHandler:
 
         Returns
         -------
-        tuple or list
             Parsed ``(atoms, bonds)`` tuple (or list of tuples for multi-molecule formats).
 
         Raises

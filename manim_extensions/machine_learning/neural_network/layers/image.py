@@ -138,9 +138,8 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         # Load images from path
         image = Image.open(image_path)
         numpy_image = np.asarray(image)
@@ -174,9 +173,8 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         return AnimationGroup()
 
     def get_right(self) -> np.ndarray:
@@ -184,7 +182,6 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.image_mobject.get_right()
 
@@ -207,7 +204,6 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.image_mobject.width
 
@@ -217,6 +213,5 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.image_mobject.height

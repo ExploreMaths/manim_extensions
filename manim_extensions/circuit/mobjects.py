@@ -236,7 +236,6 @@ class Inductor(VMobject):
 
         Returns
         -------
-        list of numpy.ndarray
             ``[start, end]`` of the main body.
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
@@ -371,7 +370,6 @@ class Resistor(VMobject):
 
         Returns
         -------
-        list of numpy.ndarray
             ``[start, end]`` of the main body.
         """
         return [self.main_body.get_start(), self.main_body.get_end()]

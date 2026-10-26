@@ -53,9 +53,8 @@ class ReLUFunction(ActivationFunction):
 
         Returns
         -------
-        int or None
             The computed integer value. ``None`` if there is no result.
-"""
+        """
         if x_val < 0:
             return 0
         else:

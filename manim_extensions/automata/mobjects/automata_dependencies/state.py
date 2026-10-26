@@ -133,7 +133,6 @@ class State:
 
         Returns
         -------
-        list of Transition
             All transitions outgoing from this state.
         """
         return self.transitions
@@ -150,7 +149,6 @@ class State:
 
         Returns
         -------
-        Transition or None
             The matching transition, or ``None`` if not found.
         """
         for transition in self.transitions:

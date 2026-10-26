@@ -101,9 +101,8 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         sphHarm = _sph_harm(m, l, phi, theta)
 
         return sphHarm.real
@@ -122,9 +121,8 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
         z = np.cos(u) * abs(psi)
@@ -143,9 +141,8 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
@@ -168,9 +165,8 @@ class OrbitalPositive(OrbitalBase):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
             psi = 0
@@ -195,9 +191,8 @@ class OrbitalNegative(OrbitalBase):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
             psi = 0
@@ -262,7 +257,6 @@ class Orbital(OpenGLSurface):
 
         Returns
         -------
-        np.ndarray
             The computed array.
-"""
+        """
         return np.array([0, 0, 0])

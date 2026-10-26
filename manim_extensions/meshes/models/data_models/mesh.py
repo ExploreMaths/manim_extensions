@@ -420,7 +420,6 @@ class Mesh:
 
         Returns
         -------
-        list of int
             Vertex indices belonging to the part.
         """
         vert_ids = set()
@@ -455,7 +454,6 @@ class Mesh:
 
         Returns
         -------
-        list of int
             Matching vertex indices.  Returns an empty list if the
             coordinate dimension does not match.
         """
@@ -479,7 +477,6 @@ class Mesh:
 
         Returns
         -------
-        list of int
             Matching face indices.
         """
         return find_in_vararray(array=self._faces, item=face, start=start)
@@ -496,7 +493,6 @@ class Mesh:
 
         Returns
         -------
-        list of int
             Matching part indices.
         """
         # Fixme: are two parts equal even if the faces are randomly sorted, not clockwise?
@@ -832,7 +828,6 @@ class Mesh:
 
         Returns
         -------
-        list of Mesh
             A list of meshes with updated indices and references; the
             current mesh is not changed.
         """
@@ -849,7 +844,6 @@ class Mesh:
 
             Returns
             -------
-            set of int
                 Indices of entries that contain at least one reference to *ids*.
             """
             return {
@@ -868,7 +862,6 @@ class Mesh:
 
             Returns
             -------
-            set of int
                 The aggregated set of all referenced identifiers.
             """
             if len(ids) > 0:

@@ -23,11 +23,11 @@ class MovePencilAlongPath(MoveAlongPath):
 
     Parameters
     ----------
-        mobject : Pencil
+        mobject
             The pencil.
-        path : VMobject
+        path
             The target path.
-        suspend_mobject_updating : Union[bool, None]
+        suspend_mobject_updating
             Whether to suspend mobject updating.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.MoveAlongPath`.
@@ -67,9 +67,9 @@ class MovePencilTipTo(ApplyMethod):
 
     Parameters
     ----------
-        pencil : Pencil
+        pencil
             The pencil.
-        point : Point
+        point
             The target point.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
@@ -103,9 +103,9 @@ class DrawPath(AnimationGroup):
 
     Parameters
     ----------
-        pencil : Pencil
+        pencil
             The pencil.
-        path : VMobject
+        path
             The path.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
@@ -138,9 +138,9 @@ class PutPencilAway(MovePencilTipTo):
 
     Parameters
     ----------
-        pencil : Pencil
+        pencil
             The pencil.
-        point : Point
+        point
             The placement position.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.

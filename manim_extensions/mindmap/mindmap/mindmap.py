@@ -32,17 +32,17 @@ class MindMap(AbstractMap):
 
     Parameters
     ----------
-        map : dict
+        map
             Mind-map data.
-        buff : float
+        buff
             Padding between node content and node border.
         direction
             Node layout direction.
-        level_spacing : float
+        level_spacing
             Spacing between layers.
-        node_spacing : float
+        node_spacing
             Spacing between nodes.
-        node_style : :class:`~manim_extensions.mindmap.NodeStyle`
+        node_style
             Node style.
 
     Examples

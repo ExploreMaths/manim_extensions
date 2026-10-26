@@ -75,7 +75,6 @@ class ASNTParser(BaseParser):
 
         Returns
         -------
-        :class:`list` of :class:`list` of :class:`str`
             Lines of the ASNT file.
         """
         with open(filename, "r") as asnt_file:
@@ -157,7 +156,6 @@ class ASNTParser(BaseParser):
 
         Returns
         -------
-        :class:`typing.Tuple` or :class:`list` of :class:`typing.Tuple`
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
         lines_list = data

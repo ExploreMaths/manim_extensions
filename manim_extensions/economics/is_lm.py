@@ -158,9 +158,8 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         self._a = a if a is not None else self._a
         self._b = b if b is not None else self._b
         new_func = self._make_is_func(self._a, self._b)
@@ -191,9 +190,8 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         self._ms = ms if ms is not None else self._ms
         self._k = k if k is not None else self._k
         self._h = h if h is not None else self._h
@@ -218,9 +216,8 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     def monetary_contraction(self, ms: float, show_arrows: bool = False) -> list:
@@ -236,9 +233,8 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
     # ---- Fiscal policy ----
@@ -256,9 +252,8 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
     def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False) -> list:
@@ -274,7 +269,6 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         return [self.shift_is(a=a, show_arrows=show_arrows)]

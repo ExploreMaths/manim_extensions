@@ -134,9 +134,8 @@ class VSpring(Line):
 
         Returns
         -------
-        Self
             The object itself, for method chaining.
-"""
+        """
         self.start = np.array(start)
         self.end = np.array(end)
         self.generate_points()

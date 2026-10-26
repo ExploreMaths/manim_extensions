@@ -379,7 +379,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        ManimAutomataInput or None
             The input mobject if it was already constructed, otherwise ``None``.
         """
         if type(input) is str:
@@ -580,7 +579,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list of tuple of str or None
             The recorded path as a list of ``(from_state, to_state)`` tuples,
             or ``None`` if the file content is invalid.
         """
@@ -601,7 +599,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list of list of :class:`~manim.animation.animation.Animation`
             One entry per step; each entry is a list of animations that can
             be played with ``self.play(*entry)``.
         """
@@ -810,7 +807,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-        list of list
             The animation sequences for this step.
         """
         # creates a list of animations for the step

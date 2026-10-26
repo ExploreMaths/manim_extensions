@@ -8,7 +8,6 @@
 
 In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
-
 """
 import numpy as np
 from manim import AnimationGroup, BLUE, Create, Group, ManimColor, override_animation
@@ -117,9 +116,8 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         # Make a wrapper NN with images
         wrapper_neural_network = NeuralNetwork(
             [ImageLayer(input_image), self.neural_network, ImageLayer(output_image)]

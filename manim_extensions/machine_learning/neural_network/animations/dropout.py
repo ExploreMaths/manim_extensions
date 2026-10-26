@@ -91,9 +91,8 @@ def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_dr
 
     Returns
     -------
-    tuple
         A tuple of the results.
-"""
+    """
     prev_layer = layer.input_layer
     next_layer = layer.output_layer
     # Get the nodes to dropout in previous layer
@@ -138,9 +137,8 @@ def make_pre_dropout_animation(
 
     Returns
     -------
-    tuple
         A tuple of the results.
-"""
+    """
     animations = []
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -223,9 +221,8 @@ def make_post_dropout_animation(
 
     Returns
     -------
-    :class:`~manim.AnimationGroup`
         A AnimationGroup instance representing the result.
-"""
+    """
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
         lambda layer: isinstance(layer, FeedForwardLayer)
@@ -278,9 +275,8 @@ def make_forward_pass_with_dropout_animation(
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     layer_args = {}
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
@@ -329,9 +325,8 @@ def make_neural_network_dropout_animation(
 
     Returns
     -------
-    :class:`~manim.Succession`
         A Succession instance representing the result.
-"""
+    """
     # Go through the network and get the FeedForwardLayer instances
     if seed is not None:
         random.seed(seed)

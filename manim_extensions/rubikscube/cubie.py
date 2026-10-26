@@ -73,7 +73,6 @@ class Cubie(VGroup):
 
         Returns
         -------
-        tuple of float
             The rounded :math:`(x, y, z)` coordinates.
         """
         return tuple(

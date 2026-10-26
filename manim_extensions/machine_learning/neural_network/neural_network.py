@@ -168,14 +168,13 @@ class NeuralNetwork(Group):
 
         Returns
         -------
-        dict or None
             A dictionary of the results. ``None`` if there is no result.
 
         Raises
         ------
         Exception
             Raised when ``input_layers`` is neither a list nor a dict.
-"""
+        """
         if isinstance(input_layers, dict):
             # If input layers is dictionary then return it
             return input_layers
@@ -431,7 +430,6 @@ class NeuralNetwork(Group):
 
         Returns
         -------
-        :class:`~manim.animation.animation.Animation` or :class:`~typing.Dict` of :class:`~manim.mobject.mobject.Mobject` to :class:`~manim.animation.animation.Animation`
             The forward-pass animation, or a mapping from each layer to
             its animation when ``per_layer_animations`` is ``True``.
         """

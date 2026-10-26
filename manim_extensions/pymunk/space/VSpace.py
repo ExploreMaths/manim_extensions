@@ -363,7 +363,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`pymunk.CollisionHandler` or None
             The registered collision handler object (pymunk < 7); None with
             pymunk >= 7, where callbacks are registered directly.
         """
@@ -434,7 +433,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        :class:`pymunk.CollisionHandler` or None
             The registered collision handler object (pymunk < 7); None with
             pymunk >= 7, where callbacks are registered directly.
         """
@@ -587,7 +585,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        Tuple[float, float, float]
             The corresponding world-space point (x, y, 0).
         """
         world_pos = mob.body.local_to_world(point[:2])
@@ -609,7 +606,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        Tuple[float, float, float]
             The corresponding local-space point (x, y, 0).
         """
         local_pos = mob.body.world_to_local(point[:2])
@@ -685,7 +681,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        Tuple[float, float, float]
             The velocity vector (vx, vy, 0) at the given point.
         """
         velocity = mob.body.velocity_at_local_point(point[:2])
@@ -708,7 +703,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        Tuple[float, float, float]
             The velocity vector (vx, vy, 0) at the given point.
         """
         velocity = mob.body.velocity_at_world_point(point[:2])
@@ -984,7 +978,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        List[List[Tuple[float, float]]]
             A list where each element is a list of vertices defining a
             specific convex sub-polygon.
         """
@@ -1195,4 +1188,3 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 )
             )
         return [normal, *contact_info]
-

@@ -63,9 +63,8 @@ class ChemicalFormula(MarkupText):
 
         Returns
         -------
-        dict
             A dictionary of the results.
-"""
+        """
         FORMULA_PATTERN = r"([A-Z][a-z]*)(\d*)"
         elements = re.findall(FORMULA_PATTERN, formula)
         parsed_formula = {}
@@ -97,9 +96,8 @@ class ChemicalFormula(MarkupText):
 
         Returns
         -------
-        str
             The resulting string.
-"""
+        """
         parsed_list = enumerate(list(parsed_formula))
         markup = ""
 
@@ -129,9 +127,8 @@ class ChemicalFormula(MarkupText):
 
         Returns
         -------
-        str
             The resulting string.
-"""
+        """
         colored_atom = f"<span fgcolor='{color}'>{atom}"
 
         if subindex > 1:
@@ -236,7 +233,6 @@ class NamedFormula(VGroup):
 
         Returns
         -------
-        :class:`~manim.MarkupText`
             A MarkupText instance representing the result."""
 
         metal_text = None
@@ -296,9 +292,8 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        str
             The computed result.
-"""
+        """
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
         result = re.sub(pattern, replacement, formula_part)
@@ -314,9 +309,8 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        str
             The computed result.
-"""
+        """
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
         result_string = re.sub(pattern, substitution, formula_part)
@@ -333,9 +327,8 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-        str
             The computed result.
-"""
+        """
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)
 
@@ -403,7 +396,6 @@ class NamedComplexFormula(VGroup):
 
         Returns
         -------
-        str
             The resulting string."""
         markup = ""
         for name, color in self.name_dict.items():

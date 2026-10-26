@@ -307,7 +307,6 @@ class Circuit(VMobject):
 
         Returns
         -------
-        list of Point3DLike or None
             The wire path points when a new junction node is created (the
             first wire); ``None`` when the wire is attached to an existing node.
         """
@@ -432,7 +431,6 @@ class Node(VMobject):
 
         Returns
         -------
-        bool or Point3DLike
             ``True`` if ``coord`` coincides with a wire endpoint, ``coord``
             itself if it lies in the interior of a wire path, otherwise ``False``.
         """

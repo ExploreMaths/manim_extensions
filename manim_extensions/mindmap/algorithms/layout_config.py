@@ -198,7 +198,6 @@ class LayoutConfig:
 
         Returns
         -------
-        dict
             A dictionary of the results."""
         return {
             "node_spacing": self.node_spacing,
@@ -229,7 +228,6 @@ class LayoutConfig:
 
         Returns
         -------
-        dict
             A dictionary of the results."""
         return {
             "direction": self.layout_direction,
@@ -270,7 +268,6 @@ class LayoutConfig:
 
         Returns
         -------
-        dict
             A dictionary of the results."""
         return {
             "node_spacing": self.node_spacing,

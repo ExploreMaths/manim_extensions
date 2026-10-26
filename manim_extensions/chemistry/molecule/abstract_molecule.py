@@ -315,7 +315,6 @@ class AbstractMolecule:
 
         Returns
         -------
-        Tuple[Dict, Dict]
             A tuple containing atoms and bonds dictionaries.
         """
         ...
@@ -342,7 +341,6 @@ class AbstractMolecule:
 
         Returns
         -------
-        Self
             The object itself, for method chaining.
 
 
@@ -431,7 +429,7 @@ class AbstractMolecule:
                     self.add(molecule)
                     molecule.add_molecule_name(name="Acetone")
                     self.add(molecule.submobjects[-1])
-"""
+        """
 
         if isinstance(name, str):
             name = Text(name)

@@ -188,7 +188,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.animation.Animation` or :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             The curve-shift animation, together with the share update
             if shares are visible.
         """
@@ -222,7 +221,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.animation.Animation` or :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             The curve-shift animation, together with the share update
             if shares are visible.
         """
@@ -249,7 +247,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.composition.AnimationGroup`
             The animation shifting the LRAS line.
         """
         old_line = self.curves["lras"]
@@ -290,7 +287,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.composition.AnimationGroup`
             The animation shifting the SRAS curve back toward long-run
             equilibrium.
         """
@@ -334,7 +330,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
@@ -369,7 +364,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
@@ -402,7 +396,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
@@ -433,7 +426,6 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]

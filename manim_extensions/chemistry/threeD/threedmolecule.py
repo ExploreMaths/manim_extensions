@@ -138,7 +138,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         elements_data_dict = {}
         for atom in self.atoms_dict.values():
@@ -163,7 +162,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.mobject.opengl.opengl_mobject.OpenGLGroup`
             A OpenGLGroup instance representing the result."""
         bonds = OpenGLGroup()
         for index, bonds_list in self.bonds_dict.items():
@@ -198,7 +196,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        Tuple[Dict, Dict]
             See above.
         """
 
@@ -255,9 +252,8 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        ThreeDMolecule
             A ThreeDMolecule instance representing the result.
-"""
+        """
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
@@ -273,8 +269,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-        ThreeDMolecule
             A ThreeDMolecule instance representing the result.
-"""
+        """
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

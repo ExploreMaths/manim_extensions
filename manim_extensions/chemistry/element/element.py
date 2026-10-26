@@ -56,7 +56,6 @@ class Element:
 
         Returns
         -------
-        Element
             A Element instance representing the result.
 
         Raises
@@ -65,7 +64,7 @@ class Element:
             Raised when ``element`` is neither a valid symbol nor an atomic
             number below 118, or when no matching element is found in the
             CSV file.
-"""
+        """
         use_valid_reference_string = f"What are you doing? Pass a valid atomic reference. {element} is NOT a valid reference"
         pd = require("chemistry", "pandas")
         data = pd.read_csv(filename, index_col=False)

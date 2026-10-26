@@ -49,7 +49,6 @@ class SingletonLogger:
 
         Returns
         -------
-        Any
             The computed result."""
         return self.logger
 

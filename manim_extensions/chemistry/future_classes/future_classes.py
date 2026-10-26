@@ -185,7 +185,6 @@ class Element(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         label = Text(self.element_label)
         base_radius = 0.4 + max(label.width, label.height) / 2
@@ -205,7 +204,6 @@ class Element(VGroup):
 
         Returns
         -------
-        VGroup or None
             A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.add_electrons and self.n_electrons > 0:
             return VGroup(*[Electron() for i in range(self.n_electrons)])
@@ -217,7 +215,6 @@ class Element(VGroup):
 
         Returns
         -------
-        VGroup or None
             A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.add_holes and self.n_holes > 0:
             return VGroup(*[Hole() for i in range(self.n_holes)])
@@ -229,7 +226,6 @@ class Element(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         particles = VGroup()
         if self.electrons:
@@ -245,7 +241,6 @@ class Element(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         if len(self.particles) == 0:
             return self.particles
@@ -261,7 +256,6 @@ class Element(VGroup):
 
         Returns
         -------
-        VGroup or None
             A VGroup instance representing the result, or ``None`` if there is no result."""
         if self.subelectron_holes:
             return VGroup(
@@ -273,7 +267,6 @@ class Element(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.subelectron_holes_group
 
@@ -404,9 +397,8 @@ class NPNTransistor(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
             particles, n_copies, vertical_boundary, horizontal_boundary
@@ -463,7 +455,6 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         options_dict = {
             "horizontal": [self.mob.get_left(), self.mob.get_right()],
@@ -477,7 +468,6 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if self.schema_type != "horizontal":
             pass
@@ -531,7 +521,6 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if self.schema_type != "corner":
             pass
@@ -582,7 +571,6 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         schema_options = {
             "horizontal": self.horizontal_schema(),
@@ -597,7 +585,6 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-        Self
             The object itself, for method chaining."""
         terminals = VGroup(self.plus_terminal, self.minus_terminal)
 
@@ -662,7 +649,6 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
@@ -677,9 +663,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         region = (
             Rectangle(fill_opacity=1)
             .set_color(BLUE)
@@ -695,7 +680,6 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if not self.show_holes:
             return VGroup()
@@ -715,7 +699,6 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
@@ -735,7 +718,6 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
@@ -747,7 +729,6 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         if not self.show_battery:
             return VGroup()
@@ -801,7 +782,6 @@ class BatterySide(VMobject):
 
         Returns
         -------
-        Any
             The computed result."""
         terminal_points = self.terminal.get_center()
         anchor_points = self.anchor.get_top() + [0, -0.2, 0]
@@ -844,9 +824,8 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
 
     Returns
     -------
-    :class:`~manim.VGroup`
         A VGroup instance representing the result.
-"""
+    """
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
@@ -871,9 +850,8 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
     Returns
     -------
-    :class:`~manim.VGroup`
         A VGroup instance representing the result.
-"""
+    """
     group = VGroup()
     for i in range(amount):
         group.add(
@@ -900,9 +878,8 @@ def get_element_by_data(element: dict) -> Element:
 
     Returns
     -------
-    Element
         A Element instance representing the result.
-"""
+    """
     return Element(
         element=element["symbol"],
         color=element["color"],
@@ -929,9 +906,8 @@ def randomly_distributed_in_2D(mobs: VGroup, left: int = 1, right: int = 1, down
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
     vertical = np.random.uniform(up, -down, n_mobs)
@@ -960,9 +936,8 @@ def arrange_copies_in_rectangle(
 
     Returns
     -------
-    :class:`~manim.VGroup`
         A VGroup instance representing the result.
-"""
+    """
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
     for i in range(n_copies):
@@ -983,9 +958,8 @@ def make_subpaths(group: VMobject) -> VMobject:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     for mob in group:
         group.add_subpath(mob.get_points())
 
@@ -1005,9 +979,8 @@ def zero(function: Callable) -> Callable[..., float]:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     @wraps(function)
     def wrapper(t: Optional[np.ndarray], *args, **kwargs):
         if 0 <= t <= 1:
@@ -1032,9 +1005,8 @@ def inverse_smooth(t: float, inflection: float = 10.0) -> float:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     new_t = 1 - t
     return smooth(new_t, inflection)
 
@@ -1053,9 +1025,8 @@ def inverse_linear(t: float, inflection: float = 10.0) -> float:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     return 1 - t
 
 
@@ -1073,9 +1044,8 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
 
     Returns
     -------
-    :class:`~manim.VGroup`
         A VGroup instance representing the result.
-"""
+    """
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):

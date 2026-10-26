@@ -58,11 +58,11 @@ class SingleRulerScene(MovingCameraScene):
 
         Parameters
         ----------
-        start : Point3D
+        start
             The start point of the line.
-        end : Point3D
+        end
             The end point of the line.
-        added_anims : list | None
+        added_anims
             Extra animations to play alongside the drawing, if any.
         **kwargs
             Additional keyword arguments: ``run_time`` (total run time for
@@ -71,7 +71,6 @@ class SingleRulerScene(MovingCameraScene):
 
         Returns
         -------
-        Line
             The line that was drawn.
         """
         run_time = kwargs.pop("run_time", 1.0)
@@ -99,9 +98,9 @@ class SingleRulerScene(MovingCameraScene):
 
         Parameters
         ----------
-        added_anims : list | None
+        added_anims
             Extra animations to play alongside the restoration, if any.
-        run_time : float
+        run_time
             Run time for the play.
         **kwargs
             Additional keyword arguments passed to the play.

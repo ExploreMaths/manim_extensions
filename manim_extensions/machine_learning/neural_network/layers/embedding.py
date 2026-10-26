@@ -148,9 +148,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.Create`
             A Create instance representing the result.
-"""
+        """
         self.gaussian_distributions.add(gaussian_distribution)
 
         return Create(gaussian_distribution)
@@ -165,9 +164,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        FadeOut or None
             A FadeOut instance representing the result, or ``None`` if there is no result.
-"""
+        """
         for gaussian in self.gaussian_distributions:
             if gaussian == gaussian_distribution:
                 self.gaussian_distributions.remove(gaussian_distribution)
@@ -178,7 +176,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         mean = self.latent_distribution.mean
         cov = self.latent_distribution.cov
@@ -193,7 +190,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
@@ -215,9 +211,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         # Sample points from a Gaussian
         np.random.seed(5)
         points = np.random.multivariate_normal(mean, covariance, num_points)
@@ -245,9 +240,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         animations = []
         if "triplet_args" in layer_args:
             triplet_args = layer_args["triplet_args"]

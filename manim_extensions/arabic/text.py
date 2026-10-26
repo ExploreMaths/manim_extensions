@@ -36,7 +36,6 @@ def _resolve_arabic_font(font_name: Optional[str]) -> str:
 
     Returns
     -------
-    str
         The chosen font name.
     """
     if font_name is not None:

@@ -111,7 +111,6 @@ class DoubleLine(ArcBetweenPoints):
 
         Returns
         -------
-        np.ndarray
             The computed result."""
         return self._get_unit_vector()
 
@@ -419,9 +418,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        type[Line] | type[ArcBetweenPoints]
             The computed result.
-"""
+        """
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
 
@@ -435,14 +433,13 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        type[Line] | type[ArcBetweenPoints]
             The computed result.
 
         Raises
         ------
         Exception
             Raised when ``bond_type`` is not one of 1, 2, or 3.
-"""
+        """
         bond = self.SUPPORTED_BOND_TYPES.get(int(bond_type))
 
         if not bond:
@@ -462,9 +459,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        dict[int, np.ndarray]
             The computed result.
-"""
+        """
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
 
     def make_vertex_config(self, vertices_dict: dict) -> dict:
@@ -477,9 +473,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        dict
             A dictionary of the results.
-"""
+        """
         v_dict = {}
         for vertex_index, mc_atom in vertices_dict.items():
             v_dict[vertex_index] = {
@@ -499,9 +494,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        dict
             A dictionary of the results.
-"""
+        """
         edge_config = {}
         for edge_key, edge in edges.items():
             edge_config[edge_key] = {
@@ -530,9 +524,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        dict[int, Text]
             The computed result.
-"""
+        """
         if numeric_label:
             return {
                 index: Text(str(index), color=label_color).scale(0.5)
@@ -639,9 +632,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
 
     def get_connected_atoms_v_group(
@@ -702,9 +694,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
         return VGroup(*[self.edges[bond_atoms] for bond_atoms in bonds])
 
@@ -722,9 +713,8 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         return VGroup(
             self.get_atoms_vgroup_from_index(atoms_indices=connected_atoms),
             self.get_bonds_vgroup_from_index(
@@ -977,7 +967,6 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-        Tuple[Dict, Dict]
             See above.
         """
 

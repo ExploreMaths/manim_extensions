@@ -147,7 +147,6 @@ class Ray(Line):
 
         Returns
         -------
-        iterable of Lens
             Lenses ordered by increasing distance from the ray start.
         """
         dists = []
@@ -174,7 +173,6 @@ class Ray(Line):
 
         Returns
         -------
-        iterable of iterable of float
             Intersections ordered by increasing distance from the ray end.
         """
         result = []

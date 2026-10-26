@@ -51,9 +51,8 @@ class OpenGLSphere(OpenGLSurface):
 
         Returns
         -------
-        np.ndarray
             The computed array.
-"""
+        """
         return np.array(
             [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
         )

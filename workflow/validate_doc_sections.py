@@ -39,10 +39,15 @@ This script checks that public functions, methods, and classes in
    no section header at all. Entry descriptions must be indented deeper
    than the entry line (flat descriptions break napoleon's parsing).
 6c. Numpydoc entries must not hand-write a parenthesised type
-   (``name (type) - description``): sphinx-autodoc-typehints injects
-   every parameter/attribute/return type from the code signature
-   (``autodoc_typehints = "description"``), so a manual type renders
-   twice.
+   (``name (type) - description``), and Returns/Yields sections must not
+   hand-write a type line (``Any``, ``Tuple[float, float]``,
+   ``:class:`~manim.VGroup```, ``int or None``, ``list of int``):
+   sphinx-autodoc-typehints injects every parameter/attribute/return type
+   from the code signature (``autodoc_typehints = "description"``), so a
+   manual type renders twice.
+6d. The docstring closing triple-quote must be indented to the same column
+   as the opening triple-quote; a closing quote flush at column 0 is
+   rejected.
 7. Mobject subclasses (including indirect subclasses within the same file)
    must include a ``.. manim::`` example block in the class docstring.
    Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
@@ -140,6 +145,85 @@ SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
 NUMPYDOC_TYPE_ENTRY_RE = re.compile(
     r"^(\*{0,2}[\w.]+)\s*\(\s*[^)]*\)\s*([–—-].*)?$"
 )
+
+# Hand-written type LINES under a Returns/Yields section (entry at the item
+# indent, followed by an indented description).  With
+# ``autodoc_typehints = "description"`` the return type is injected from the
+# signature, so a bare ``Any``, ``Tuple[float, float]``,
+# ``:class:`~manim.VGroup```, ``int or None`` or ``list of int`` entry would
+# render twice and drift out of sync with the signature.
+RETURN_TYPE_ROLE_RE = re.compile(
+    r"^:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`$"
+)
+RETURN_TYPE_ROLE_UNION_RE = re.compile(
+    r"^:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`"
+    r"(\s+or\s+:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`|"
+    r"\s*\|\s*:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`)*\s*$"
+)
+RETURN_TYPE_GENERIC_RE = re.compile(
+    r"^[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]\s*$"
+)
+RETURN_TYPE_GENERIC_UNION_RE = re.compile(
+    r"^[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]"
+    r"(?:\s*\|\s*[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]|"
+    r"\s+or\s+[\w.]+)*\s*$"
+)
+RETURN_TYPE_BARE_UNION_RE = re.compile(
+    r"^[\w.]+\s*(?:\|\s*[\w.]+|\s+or\s+[\w.]+)+\s*$"
+)
+RETURN_TYPE_PROSE_RE = re.compile(
+    r"^[a-z][\w.]*(?:\s+of\s+[\w.`]+)+$"
+)  # 'list of int', 'tuple of float'
+RETURN_TYPE_COLON_RE = re.compile(r"^:\s*\S")  # ': np.ndarray'
+RETURN_ROLE_PREFIXES = (
+    ":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:",
+    ":ref:",
+)
+# Bare tokens that are unambiguous type names (not return-value names such
+# as ``x`` / ``y`` in a named multi-return entry).
+RETURN_TYPE_TOKENS = {
+    "Any", "Self", "list", "tuple", "dict", "str", "int", "float", "bool",
+    "None", "bytes", "object", "set", "frozenset", "complex", "bytearray",
+    "Optional", "Union", "Callable", "Iterable", "Iterator", "Generator",
+    "Sequence", "Mapping", "Type", "List", "Dict", "Tuple", "Set", "Path",
+    "Mobject", "VMobject", "VGroup", "Group", "SVGMobject", "CMobject",
+    "Mobject1D", "Mobject2D", "Mobject3D", "OpenGLMobject", "OpenGLVMobject",
+    "OpenGLVGroup", "OpenGLGroup", "OpenGLSurface", "Scene", "Animation",
+    "AnimationGroup", "Succession", "Transform", "FadeOut", "Create",
+    "ShowPassingFlash", "Line", "Circle", "Dot", "Arc", "Arrow", "Brace",
+    "Polygram", "Polygon", "Rectangle", "Square", "Triangle", "Text", "Tex",
+    "MathTex", "Code", "Table", "Matrix", "ImageMobject", "Axes",
+    "NumberPlane", "PolarPlane", "Plot", "BarChart", "State", "Transition",
+    "Element", "MAtomObject", "MMoleculeObject", "NamedMolecule",
+    "ThreeDMolecule", "np.ndarray", "np.array", "numpy.ndarray",
+    "pymunk.CollisionHandler", "ManimColor", "ParsableManimColor",
+}
+_BARE_TYPE_RE = re.compile(r"^[\w.]+\s*$")
+
+
+def is_return_type_line(stripped: str) -> bool:
+    """True when an entry line under Returns/Yields is a hand-written type."""
+    if RETURN_TYPE_ROLE_RE.match(stripped):
+        return True
+    if RETURN_TYPE_ROLE_UNION_RE.match(stripped):
+        return True
+    if RETURN_TYPE_GENERIC_RE.match(stripped):
+        return True
+    if RETURN_TYPE_GENERIC_UNION_RE.match(stripped):
+        return True
+    if RETURN_TYPE_BARE_UNION_RE.match(stripped):
+        return True
+    if RETURN_TYPE_PROSE_RE.match(stripped) and not re.search(
+        r"\b(the|a|an)\b", stripped
+    ):
+        return True
+    if RETURN_TYPE_COLON_RE.match(stripped) and not stripped.startswith(
+        RETURN_ROLE_PREFIXES
+    ):
+        return True
+    if _BARE_TYPE_RE.match(stripped):
+        return stripped in RETURN_TYPE_TOKENS
+    return False
 
 # Sections whose entry descriptions must be style-checked.
 STYLE_SECTIONS = {
@@ -583,6 +667,53 @@ def check_no_manual_types(doc, qualname, lineno, violations):
                     })
 
 
+def check_return_type_lines(doc, qualname, lineno, violations):
+    """Returns/Yields entries must not hand-write a type line.
+
+    With ``autodoc_typehints = "description"`` every return type is
+    injected from the code signature at render time, so an entry line that
+    is itself a type (``Any``, ``Tuple[float, float]``,
+    ``:class:`~manim.VGroup```, ``int or None``, ``list of int``) would
+    display the type twice.  Only entry-level lines are checked;
+    continuation description lines legitimately mention types in prose.
+    Named multi-return entries (``x`` / ``y`` bare names, not type tokens)
+    are left alone.
+    """
+    lines = doc.splitlines()
+    for name, hpos in section_positions(doc):
+        if name not in ("Returns", "Yields"):
+            continue
+        j = hpos + 2
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        if j >= len(lines):
+            continue
+        item_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
+        for k in range(j, len(lines)):
+            stripped = lines[k].strip()
+            if not stripped:
+                continue
+            indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
+            if (k + 1 < len(lines)
+                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                    and indent <= item_indent):
+                break
+            if indent < item_indent:
+                break
+            if indent > item_indent:
+                continue
+            if is_return_type_line(stripped):
+                violations.append({
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "MANUAL_TYPE_ANNOTATION",
+                    "message": f"entry '{stripped[:50]}' hand-writes a "
+                               f"return type; types are injected from the "
+                               f"signature (autodoc_typehints = "
+                               f"\"description\"), so it would render twice",
+                })
+
+
 def check_section_spacing(doc, qualname, lineno, violations):
     """Section headers must be blank-line separated and tightly underlined.
 
@@ -802,6 +933,42 @@ def check_file(filepath: Path) -> list:
                                f"by a '----------' underline)",
                 })
 
+    def check_closing_quote(node, qualname):
+        """The docstring closing triple-quote must match the opening indent.
+
+        A closing ``\"\"\"`` left flush at column 0 (typically the last line
+        of a docstring that ends in a code block) renders as a stray quote
+        in the source view; it must be indented to the opening quote's
+        column.  Inline closings (``text.\"\"\"``) are accepted.
+        """
+        body = node.body
+        if not body:
+            return
+        first = body[0]
+        if not (isinstance(first, ast.Expr)
+                and isinstance(first.value, ast.Constant)
+                and isinstance(first.value.value, str)):
+            return
+        end_ln, end_col = first.end_lineno, first.end_col_offset
+        if end_ln is None or end_col is None or end_col < 3:
+            return
+        line = source.splitlines()[end_ln - 1]
+        if line[end_col - 3:end_col] != '"""':
+            return
+        before = line[:end_col - 3]
+        if before.strip():
+            return  # inline closing quote is the accepted style
+        if len(before) != first.col_offset:
+            violations.append({
+                "line": node.lineno,
+                "qualname": qualname,
+                "type": "CLOSING_QUOTE_FLUSH",
+                "message": f"docstring closing triple-quote sits at column "
+                           f"{len(before)} while the opening quote is at "
+                           f"column {first.col_offset}; indent the closing "
+                           f"quote to the opening quote's column",
+            })
+
     module_doc = ast.get_docstring(tree)
     if module_doc:
         check_inline_sections(module_doc, "<module>", 1)
@@ -847,6 +1014,8 @@ def check_file(filepath: Path) -> list:
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
         check_no_manual_types(doc, qualname, node.lineno, violations)
+        check_return_type_lines(doc, qualname, node.lineno, violations)
+        check_closing_quote(node, qualname)
         secs = section_names(doc)
         params = function_params(node)
         # __init__ parameters are documented in the class docstring instead;
@@ -997,6 +1166,8 @@ def check_file(filepath: Path) -> list:
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
         check_no_manual_types(doc, qualname, node.lineno, violations)
+        check_return_type_lines(doc, qualname, node.lineno, violations)
+        check_closing_quote(node, qualname)
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:

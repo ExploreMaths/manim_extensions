@@ -141,7 +141,6 @@ class BaseParser(ABC):
         """
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict` or None
             Parsed atoms data.
         """
 
@@ -152,7 +151,6 @@ class BaseParser(ABC):
         """
         Returns
         -------
-        :data:`~manim_extensions.chemistry.utils.parsers.base_parser.BondsDict` or None
             Parsed bonds data.
         """
 

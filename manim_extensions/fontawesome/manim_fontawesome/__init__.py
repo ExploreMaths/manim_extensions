@@ -4222,7 +4222,6 @@ def list_icons(style="solid"):
 
     Returns
     -------
-    list of str
         Icon names in definition order; use ``getattr(solid, name)``
         (or the matching namespace) to obtain the icon mobject.
     """

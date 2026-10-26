@@ -160,9 +160,8 @@ class ActivationFunction(ABC, VGroup):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         # Highlight the graph
         # TODO: Evaluate the function at the x_val and show a highlighted dot
         animation_group = Succession(

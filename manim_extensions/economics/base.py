@@ -54,7 +54,6 @@ def find_intersection(
 
     Returns
     -------
-    float or None
         The x where the two functions cross (linearly interpolated between
         the bracketing samples), or ``None`` if they do not cross within
         ``x_range``.
@@ -302,7 +301,6 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        VGroup or None
             The equilibrium marker (dot, dashed lines and labels), or
             ``None`` if the curves do not intersect.
         """
@@ -475,7 +473,6 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        :class:`~manim.animation.fading.FadeOut` or ``None``
             A FadeOut animation removing the arrows, or ``None`` if there
             are no arrows to clear.
         """

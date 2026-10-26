@@ -124,14 +124,13 @@ class GMAnimationBuilder:
 
         Returns
         -------
-        tuple[int, int]
             The computed result.
 
         Raises
         ------
         Exception
             Raised when no bond exists between ``atom_a`` and ``atom_b``.
-"""
+        """
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
                 return bond
@@ -152,9 +151,8 @@ class GMAnimationBuilder:
 
         Returns
         -------
-        list[Animation]
             The computed result.
-"""
+        """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
         axis = self.molecule.edges[bond].sheen_direction
         self.atoms_copy.rotate(axis=axis, angle=angle)
@@ -180,9 +178,8 @@ class GMAnimationBuilder:
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         animations = []
 
         if label_color:

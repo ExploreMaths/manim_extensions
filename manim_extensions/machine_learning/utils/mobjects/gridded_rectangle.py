@@ -162,7 +162,6 @@ class GriddedRectangle(VGroup):
 
         Returns
         -------
-        dict[str, Dot]
             Dictionary mapping corner names to invisible corner dots.
         """
         corners_dict = {
@@ -187,7 +186,6 @@ class GriddedRectangle(VGroup):
 
         Returns
         -------
-        dict[str, Dot]
             Dictionary mapping corner names to invisible corner dots.
         """
         # Sort points through clockwise rotation of a vector in the xy plane

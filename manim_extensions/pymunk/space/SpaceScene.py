@@ -450,7 +450,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        :class:`pymunk.Body` | None
             The bound physical body.
 
         Raises
@@ -762,7 +761,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        Tuple[float, float, float]
             The velocity vector (vx, vy, 0) at the given point.
         """
         return self.vspace.velocity_at_local_point(mob, point)
@@ -783,7 +781,6 @@ class SpaceScene(ZoomedScene):
 
         Returns
         -------
-        Tuple[float, float, float]
             The velocity vector (vx, vy, 0) at the given point.
         """
         return self.vspace.velocity_at_world_point(mob, point)

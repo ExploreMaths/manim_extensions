@@ -115,9 +115,8 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         # Load images from path
         if grayscale:
             anchor = GrayscaleImageMobject.from_path(anchor_path)
@@ -138,7 +137,6 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.Group`
             A Group instance representing the result."""
         # Handle anchor
         anchor_group = LabeledColorImage(
@@ -191,7 +189,6 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         return AnimationGroup()

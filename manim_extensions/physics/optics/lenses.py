@@ -176,7 +176,6 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-        tuple of Iterable[float]
             The center points of the two circles used to construct the lens.
         """
         i = 0

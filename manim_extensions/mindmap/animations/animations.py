@@ -593,15 +593,15 @@ class AbstractLayoutAnimation(AnimationGroup):
 
     Parameters
     ----------
-        scene : Scene
+        scene
             The current scene.
-        root : Node
+        root
             The root node.
-        layout_type : LayoutType, optional
-            Layout type. 
-        layout_config : LayoutConfig, optional
+        layout_type
+            Layout type.
+        layout_config
             Layout parameters. ().
-        node_style : NodeStyle, optional
+        node_style
             Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -813,7 +813,6 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
         Returns
         -------
-        tuple of Animation
             The layout animations.
         """
         remove_nodes = self._check_node_state()
@@ -905,7 +904,6 @@ class RemoveNode(LayoutAnimation):
 
         Returns
         -------
-        tuple of Animation
             Either a fade-out animation for the whole tree or the standard
             layout animation.
 
@@ -944,15 +942,15 @@ class InsertNode(LayoutAnimation):
 
     Parameters
     ----------
-        father_children : dict
+        father_children
             Dictionary mapping parent nodes to lists of child nodes.
-        scene : Scene
+        scene
             The current scene.
-        layout_type : LayoutType, optional
-            Layout type. 
-        layout_config : LayoutConfig, optional
+        layout_type
+            Layout type.
+        layout_config
             Layout parameters. ().
-        node_style : NodeStyle, optional
+        node_style
             Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -1025,7 +1023,6 @@ class InsertNode(LayoutAnimation):
 
         Returns
         -------
-        list of Animation
             The layout animations after adding children.
         """
         for father, children in self.father_children.items():
@@ -1041,15 +1038,15 @@ class ScaleNode(LayoutAnimation):
 
     Parameters
     ----------
-        node_scale : dict
+        node_scale
             Dictionary mapping Node instances to scale factors (float).
-        scene : Scene
+        scene
             The current scene.
-        layout_type : LayoutType, optional
-            Layout type. 
-        layout_config : LayoutConfig, optional
+        layout_type
+            Layout type.
+        layout_config
             Layout parameters. ().
-        node_style : NodeStyle, optional
+        node_style
             Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
@@ -1102,15 +1099,15 @@ class AlterNode(LayoutAnimation):
 
     Parameters
     ----------
-        node_vmobject : dict
+        node_vmobject
             Dictionary mapping Node instances to the replacement VMobjects.
-        scene : Scene
+        scene
             The current scene.
-        layout_type : LayoutType, optional
-            Layout type. 
-        layout_config : LayoutConfig, optional
+        layout_type
+            Layout type.
+        layout_config
             Layout parameters. ().
-        node_style : NodeStyle, optional
+        node_style
             Layout and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.

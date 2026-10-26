@@ -85,14 +85,13 @@ class MCAtom:
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
         ------
         Exception
             In case the atoms are not MCAtoms or a list.
-"""
+        """
         if not atoms:
             pass
 
@@ -124,7 +123,6 @@ class MCAtom:
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
@@ -132,7 +130,7 @@ class MCAtom:
         Exception
             Raised when ``bonds`` is neither an MCBond nor a list of
             MCBonds.
-"""
+        """
         from .mc_bond import MCBond
 
         if not bonds:
@@ -166,14 +164,13 @@ class MCAtom:
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
         ------
         Exception
             Raised when ``molecule`` is not an MCMolecule.
-"""
+        """
         from .mc_molecule import MCMolecule
 
         if not molecule:
@@ -198,14 +195,13 @@ class MCAtom:
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
         ------
         Exception
             Raised when ``molecule_index`` is not an int.
-"""
+        """
         if isinstance(molecule_index, None):
             pass
 

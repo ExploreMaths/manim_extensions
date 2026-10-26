@@ -7,7 +7,6 @@
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.
-
 """
 
 import numpy as np
@@ -205,9 +204,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args
         dropout_node_indices = layer_args["dropout_node_indices"]
@@ -241,9 +239,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
             # Drop out certain nodes
@@ -286,7 +283,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_rectangle.get_height()
 
@@ -295,7 +291,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_rectangle.get_center()
 
@@ -304,7 +299,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_rectangle.get_left()
 
@@ -313,7 +307,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_rectangle.get_right()
 

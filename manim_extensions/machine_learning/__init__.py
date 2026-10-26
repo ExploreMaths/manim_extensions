@@ -8,7 +8,6 @@
 
 This module provides various machine learning related visualizations
 including neural networks, decision trees, and diffusion models.
-
 """
 
 from argparse import Namespace
@@ -28,7 +27,7 @@ class ManimMLConfig:
 
         Parameters
         ----------
-        default_color_scheme : ColorScheme, optional
+        default_color_scheme
             Color scheme used before any override. 
         """
         self._color_scheme = default_color_scheme
@@ -52,7 +51,7 @@ class ManimMLConfig:
 
         Parameters
         ----------
-        value : ColorScheme or str
+        value
             A :class:`~manim_extensions.machine_learning.ManimMLConfig.ColorScheme` instance, or the name of a builtin
             scheme (``"dark_mode"`` / ``"light_mode"``).
 

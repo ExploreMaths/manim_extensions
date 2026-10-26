@@ -55,7 +55,6 @@ class SigmoidFunction(ActivationFunction):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return 1 / (1 + np.exp(-1 * x_val))

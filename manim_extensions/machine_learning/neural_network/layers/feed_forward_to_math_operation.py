@@ -60,9 +60,8 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer
         self.connection = NetworkConnection(
@@ -88,9 +87,8 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
         Returns
         -------
-        :class:`~manim.ShowPassingFlash`
             A ShowPassingFlash instance representing the result.
-"""
+        """
         # Make flashing pass animation on arrow
         passing_flash = ShowPassingFlash(
             self.connection.copy().set_color(self.active_color)

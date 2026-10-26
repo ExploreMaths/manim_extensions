@@ -62,9 +62,8 @@ def frames_comparison(
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
 
     def decorator_maker(tested_scene_construct: Callable):
         if (
@@ -189,7 +188,6 @@ def _make_test_comparing_frames(
 
     Returns
     -------
-    Callable[[], None]
         The pytest test.
     """
 

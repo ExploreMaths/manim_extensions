@@ -37,7 +37,6 @@ def get_triangle_circum_circle_params(
 
     Returns
     -------
-    tuple[np.ndarray, float]
         Centre point and radius of the circumscribed circle.
     """
     div = 2 * np.linalg.norm(np.cross(pt1 - pt2, pt2 - pt3)) ** 2
@@ -101,7 +100,6 @@ def get_point_indices_violating_delaunay(
 
     Returns
     -------
-    list of int
         Indices of vertices whose distance to the circumscribed centre
         is strictly less than the circumscribed radius.
     """

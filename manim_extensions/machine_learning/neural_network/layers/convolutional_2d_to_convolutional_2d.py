@@ -46,9 +46,8 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) ->
 
     Returns
     -------
-    tuple
         A tuple of the results.
-"""
+    """
     # Make base shift vectors
     right_shift = np.array([input_layer.cell_width, 0, 0])
     down_shift = np.array([0, -input_layer.cell_width, 0])
@@ -146,7 +145,6 @@ class Filters(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         rectangles = []
         rectangle_width = (
@@ -197,7 +195,6 @@ class Filters(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         rectangles = []
 
@@ -257,7 +254,6 @@ class Filters(VGroup):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
@@ -267,7 +263,6 @@ class Filters(VGroup):
 
             Returns
             -------
-            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
@@ -292,7 +287,6 @@ class Filters(VGroup):
 
             Returns
             -------
-            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
@@ -317,7 +311,6 @@ class Filters(VGroup):
 
             Returns
             -------
-            :class:`~manim.VGroup`
                 A VGroup instance representing the result."""
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
@@ -367,7 +360,6 @@ class Filters(VGroup):
 
             Returns
             -------
-            Any
                 The computed result."""
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
@@ -394,9 +386,8 @@ class Filters(VGroup):
 
         Returns
         -------
-        :class:`~manim.ShowPassingFlash`
             A ShowPassingFlash instance representing the result.
-"""
+        """
         passing_flash = ShowPassingFlash(
             self.connective_lines.shift(shift_amount).set_stroke_width(
                 self.stroke_width * 1.5
@@ -493,9 +484,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def animate_filters_all_at_once(self, filters: Mobject) -> Succession:
@@ -509,9 +499,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         animations = []
         # Make filters
         filters = Filters(
@@ -570,9 +559,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result.
-"""
+        """
         animations = []
         output_feature_maps = self.output_layer.feature_maps
         for feature_map_index in range(len(output_feature_maps)):
@@ -702,9 +690,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         print(f"All filters at once: {all_filters_at_once}")
         # Make filter shifting animations
         if all_filters_at_once:

@@ -204,7 +204,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_circle.get_center()
 
@@ -213,7 +212,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_circle.get_left()
 
@@ -222,7 +220,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.surrounding_circle.get_right()
     

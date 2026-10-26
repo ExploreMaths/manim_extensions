@@ -216,7 +216,6 @@ def remove_keys_from_dict(d: Dict[str, object], keys: List[str]) -> Dict[str, ob
 
     Returns
     -------
-    Dict[str, Any]
         The (potentially empty) mutated dictionary.
     """
     if d is None:

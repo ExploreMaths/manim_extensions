@@ -141,7 +141,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        tuple[list[int], list[int], :class:`~manim.mobject.geometry.line.DashedLine`]
             Left vertex indices, right vertex indices, and the separator
             line mobject.
         """
@@ -225,7 +224,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        int or None
             Index of the right candidate vertex, or ``None`` if no valid
             candidate exists.
         """
@@ -297,7 +295,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        int or None
             Index of the left candidate vertex, or ``None`` if no valid
             candidate exists.
         """
@@ -375,7 +372,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        list of int
             Combined list of vertex indices from both sets.
         """
 
@@ -457,7 +453,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        tuple[int, int]
             The ``(l, r)`` vertex indices forming the initial base edge.
         """
 
@@ -473,7 +468,6 @@ class DivideAndConquer:
 
             Returns
             -------
-            int or None
                 The next index, or ``None`` if ``cur_idx`` is not found.
             """
             for i, idx in enumerate(indices):
@@ -584,7 +578,6 @@ class DivideAndConquer:
 
         Returns
         -------
-        list of int
             Combined vertex indices after triangulation and merging.
         """
 

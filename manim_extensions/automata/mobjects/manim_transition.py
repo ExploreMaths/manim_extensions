@@ -166,7 +166,6 @@ class ManimTransition(Transition, VGroup):
 
         Returns
         -------
-        tuple of numpy.ndarray
             The two vertex points ``(p1, p2)``.
         """
         circle = self.transition_from.circle
@@ -209,7 +208,6 @@ class ManimTransition(Transition, VGroup):
 
         Returns
         -------
-        list of float
             The normal direction used to offset the arrow label.
         """
 

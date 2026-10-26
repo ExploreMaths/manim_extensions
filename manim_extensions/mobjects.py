@@ -671,7 +671,6 @@ class PerpendicularSign(VGroup):
 
         Returns
         -------
-        numpy.ndarray or None
             The 3-D coordinates of the intersection, or ``None`` if the lines
             are parallel.
         """

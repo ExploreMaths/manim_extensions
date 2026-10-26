@@ -7,7 +7,6 @@
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.
-
 """
 
 import numpy as np
@@ -161,7 +160,6 @@ class FeatureMap(VGroup):
 
         Returns
         -------
-        Any
             The computed result."""
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.exterior_rectangle.get_corners_dict()
@@ -347,7 +345,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         # Draw rectangles that are filled in with opacity
         feature_maps = []
@@ -391,7 +388,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.Succession`
             A Succession instance representing the result."""
         return Succession(
             ApplyMethod(self.feature_maps.set_color, self.active_color),
@@ -413,9 +409,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer
         if not self.activation_function is None:
             animation_group = AnimationGroup(
@@ -449,7 +444,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.feature_maps.get_center()
 
@@ -458,7 +452,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.feature_maps.length_over_dim(0)
 
@@ -467,7 +460,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result."""
         return self.feature_maps.length_over_dim(1)
 

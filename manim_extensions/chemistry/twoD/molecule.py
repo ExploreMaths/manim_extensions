@@ -199,7 +199,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        tuple
             A tuple of the results."""
         atoms = VDict()
         atoms_by_index = {}
@@ -223,7 +222,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         bonds = VGroup()
         bond_index = 0
@@ -350,7 +348,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        Self
             The object itself, for method chaining."""
         numbering = VGroup()
         for atom in self.atoms:
@@ -379,7 +376,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        Self
             The object itself, for method chaining."""
         numbering = VGroup()
         for bond in self.bonds:
@@ -409,9 +405,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        Self
             The object itself, for method chaining.
-"""
+        """
         if isinstance(rotate_bonds, int):
             rotate_bonds = [rotate_bonds]
 
@@ -478,9 +473,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        MMoleculeObject
             A MMoleculeObject instance representing the result.
-"""
+        """
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
@@ -497,9 +491,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        MMoleculeObject
             A MMoleculeObject instance representing the result.
-"""
+        """
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
@@ -516,9 +509,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         molecules = sdf_parser(filename)
         moleculeObjects = []
         for molecule in molecules:
@@ -539,9 +531,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         molecules = sdf_parser_string(sdf_string)
         moleculeObjects = []
         for molecule in molecules:
@@ -771,7 +762,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-        Tuple[Dict, Dict]
             A tuple containing atoms and bonds dictionaries.
         """
         atoms = {}
@@ -942,9 +932,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        NamedMolecule
             A NamedMolecule instance representing the result.
-"""
+        """
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
         return NamedMolecule(
@@ -984,9 +973,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        NamedMolecule
             A NamedMolecule instance representing the result.
-"""
+        """
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
         return NamedMolecule(
@@ -1026,9 +1014,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         molecules = MMoleculeObject.from_sdf_file(filename, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -1072,9 +1059,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         molecules = MMoleculeObject.from_sdf_string(sdf_str, *args, **kwargs)
         named_molecules = []
         for index, molecule in enumerate(molecules):
@@ -1102,9 +1088,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        Self
             The object itself, for method chaining.
-"""
+        """
         self.molecule = self.molecule.rotate_bond(bonds)
 
         return self
@@ -1114,7 +1099,6 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        Self
             The object itself, for method chaining."""
         self.molecule = self.molecule.add_bond_numbering()
         self.molecule[-1].move_to(self.molecule[1].get_center())
@@ -1126,7 +1110,6 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-        Self
             The object itself, for method chaining."""
         # Atom numbering is not working correctly.
         self.molecule = self.molecule.add_atom_numbering()

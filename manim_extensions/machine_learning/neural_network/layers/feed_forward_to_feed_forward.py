@@ -103,7 +103,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        list
             A list of the results."""
         # Go through each node in the two layers and make a connecting line
         edges = []
@@ -150,9 +149,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         path_animations = []
         dots = []
         for edge_index, edge in enumerate(self.edges):
@@ -212,9 +210,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
         widths = np.array(widths)

@@ -249,7 +249,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
@@ -267,7 +266,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
@@ -285,7 +283,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
@@ -303,7 +300,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~typing.List` of :class:`~manim.animation.animation.Animation`
             A list of animations to play in sequence.
         """
         return [self.shift_breakeven(delta=delta, show_arrows=show_arrows)]
@@ -361,7 +357,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.fading.FadeIn` or :class:`~manim.animation.transform.ReplacementTransform` or ``None``
             The animation revealing the consumption/investment shares, or
             ``None`` if there is no steady-state capital.
         """
@@ -387,7 +382,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.fading.FadeOut` or ``None``
             A FadeOut animation removing the shares, or ``None`` if the
             shares are not visible.
         """
@@ -416,7 +410,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.updaters.update.UpdateFromAlphaFunc`
             The animation sliding the consumption/investment shares along
             the capital axis.
         """
@@ -465,7 +458,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.fading.FadeIn`
             A FadeIn animation of the golden-rule line and labels.
         """
         k_gold = self._golden_rule_k()
@@ -492,7 +484,6 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        :class:`~manim.animation.fading.FadeOut` or ``None``
             A FadeOut animation removing the marker, or ``None`` if the
             marker is not present.
         """

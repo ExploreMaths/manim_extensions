@@ -551,7 +551,6 @@ class TimeLineLayout(Layout):
 
         Returns
         -------
-        Dict[str, float]
             A dictionary with keys ``"left"``, ``"right"``, ``"top"``, and
             ``"bottom"`` representing the bounding box of the subtree.
         """
@@ -566,9 +565,8 @@ class TimeLineLayout(Layout):
 
             Returns
             -------
-            dict
                 A dictionary of the results.
-"""
+            """
             _left = float("inf")
             _right = float("-inf")
             _top = float("inf")

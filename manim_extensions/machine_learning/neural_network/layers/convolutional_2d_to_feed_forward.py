@@ -60,9 +60,8 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> AnimationGroup:
@@ -80,9 +79,8 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         animations = []
         # Get input layer final feature map
         final_feature_map = self.input_layer.feature_maps[-1]

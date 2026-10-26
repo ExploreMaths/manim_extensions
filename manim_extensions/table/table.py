@@ -502,7 +502,6 @@ class Table(VGroup):
 
         Returns
         -------
-        Tuple[Row, List[TableAnimation]]
             Tuple of ``(new_row, animations)``. The animations include
             both resize transforms for existing cells (if column widths
             change) and FadeIn for the new row cells, and can all be
@@ -645,7 +644,6 @@ class Table(VGroup):
 
         Returns
         -------
-        Tuple[Row, List[TableAnimation]]
             Tuple of ``(deleted_row, animations)``. The animations
             include the FadeOut of the deleted row, shift animations for
             the remaining rows and resize animations if column widths
@@ -787,7 +785,6 @@ class Table(VGroup):
 
         Returns
         -------
-        Tuple[VGroup, List[TableAnimation], List[TableAnimation]]
             Tuple of ``(new_column_group, shift_animations,
             appear_animations)``. ``shift_animations`` is empty when
             appending at the end of the table, so check it before
@@ -902,7 +899,6 @@ class Table(VGroup):
 
         Returns
         -------
-        Tuple[VGroup, List[TableAnimation]]
             Tuple of ``(deleted_column_group, shift_animations)``.
             ``shift_animations`` is empty when deleting the last
             column, so check it before wrapping it in an
@@ -952,4 +948,3 @@ class Table(VGroup):
         deleted_group = VGroup(*deleted_cells)
         
         return deleted_group, shift_animations
-

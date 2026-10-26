@@ -205,9 +205,8 @@ def make_dist_image_mobject_from_samples(samples: np.ndarray, ylim: Optional[lis
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")
     sns = require("ml", "seaborn")
@@ -457,9 +456,8 @@ class MCMCAxes(Group):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         mean = distribution.mu
         var = np.eye(2) * distribution.var
         distribution_drawing = GaussianDistribution(

@@ -513,14 +513,13 @@ class DecisionTreeDiagram(Group):
 
         Returns
         -------
-        Any
             The computed result.
 
         Raises
         ------
         Exception
             Raised when ``traversal_order`` is not recognized.
-"""
+        """
         # Comptue the node expand order
         if traversal_order == "level":
             node_expand_order = helpers.compute_level_order_traversal(self.tree)

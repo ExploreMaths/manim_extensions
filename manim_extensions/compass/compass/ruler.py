@@ -83,7 +83,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        tuple of numpy.ndarray
             Unit vector along the ruler's length and unit vector along the
             ruler's width.
         """
@@ -116,7 +115,6 @@ class Ruler(VGroup):
 
         Returns
         -------
-        tuple of numpy.ndarray
             The start point and end point of the ruler's length axis.
         """
         E, S, *_ = self.ruler.get_vertices()

@@ -128,9 +128,8 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
     def multiple_molecules_from_file(self, *args, **kwargs) -> VGroup:
@@ -145,9 +144,8 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
     def molecule_from_string(self, *args, **kwargs) -> GraphMolecule:
@@ -162,9 +160,8 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
     def multiple_molecules_from_string(self, *args, **kwargs) -> VGroup:
@@ -179,9 +176,8 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
     def molecule_from_pubchem(self, *args, **kwargs) -> GraphMolecule:
@@ -196,9 +192,8 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
     def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs) -> tuple[dict, dict]:
@@ -213,7 +208,6 @@ class Molecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.molecule_class.mc_molecule_to_atoms_and_bonds(*args, **kwargs)

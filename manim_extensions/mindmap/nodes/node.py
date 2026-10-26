@@ -572,7 +572,6 @@ class Node:
 
             Returns
             -------
-            list of Node
                 All descendant nodes (children, grandchildren, ...).
             """
             if node.children:

@@ -177,7 +177,6 @@ class FiniteStateAutomaton:
 
         Returns
         -------
-        State or None
             The matching state, or ``None`` if not found.
         """
         for state in self.states:
@@ -195,7 +194,6 @@ class FiniteStateAutomaton:
 
         Returns
         -------
-        State or None
             The matching state, or ``None`` if not found.
         """
         for state in self.states:
@@ -271,7 +269,6 @@ class FiniteStateAutomaton:
 
         Returns
         -------
-        Transition or None
             The matching transition, or ``None`` if not found.
         """
         for transition in self.transitions:

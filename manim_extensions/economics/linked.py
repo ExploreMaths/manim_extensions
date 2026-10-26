@@ -111,9 +111,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -136,9 +135,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -163,9 +161,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -188,9 +185,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
         return [AnimationGroup(
@@ -212,9 +208,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.ad_as.adverse_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )
@@ -231,9 +226,8 @@ class LinkedISLM_ADAS(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return self.ad_as.positive_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )

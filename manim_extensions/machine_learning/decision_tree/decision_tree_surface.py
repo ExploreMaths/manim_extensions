@@ -67,9 +67,8 @@ class AABB:
 
         Returns
         -------
-        tuple
             A tuple of the results.
-"""
+        """
         left = AABB(self.limits.shape[0])
         right = AABB(self.limits.shape[0])
         left.limits = self.limits.copy()
@@ -93,9 +92,8 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     ctree = require("ml", "sklearn.tree")._tree
 
     if n_features is None:
@@ -136,9 +134,8 @@ def compute_decision_areas(
 
     Returns
     -------
-    list
         A list of the results.
-"""
+    """
     ctree = require("ml", "sklearn.tree")._tree
 
     tree = tree_classifier.tree_
@@ -204,9 +201,8 @@ def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimCo
 
     Returns
     -------
-    list
         A list of the results.
-"""
+    """
     # get all polygons of each color
     polygon_dict = {
         str(BLUE).lower(): [],
@@ -336,7 +332,6 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         animation_group = AnimationGroup(
             # Perform the animations
@@ -475,7 +470,6 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-        list
             A list of the results."""
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
@@ -492,7 +486,6 @@ class DecisionTreeSurface(VGroup):
 
             Returns
             -------
-            :class:`~manim.Polygon`
                 A Polygon instance representing the result."""
             # get the points for the rectangle in the plot coordinate frame
             bottom_left = [rect[0], rect[3]]
@@ -534,7 +527,6 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
@@ -550,7 +542,6 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []

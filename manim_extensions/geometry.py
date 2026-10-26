@@ -73,7 +73,6 @@ def VMobjectInt(
 
     Returns
     -------
-    list of numpy.ndarray
         All intersection points as 3-D arrays.  An empty list is returned
         when the mobjects do not meet.  If the two outlines overlap along
         a curve segment, the endpoints of the overlapping region are
@@ -126,7 +125,6 @@ def VMobjectInt(
 
         Returns
         -------
-        list of numpy.ndarray
             Arrays of shape :math:`(4, 3)` holding the control points of each
             cubic Bézier segment.
         """
@@ -164,7 +162,6 @@ def VMobjectInt(
 
         Returns
         -------
-        tuple of numpy.ndarray
             The two sub-curves, each of shape :math:`(4, 3)`.
         """
         p0, p1, p2, p3 = c
@@ -250,7 +247,6 @@ def VMobjectInt(
 
         Returns
         -------
-        list of numpy.ndarray
             One point for a crossing/touch, the two endpoints of the common
             interval for coincident overlapping segments, or an empty list.
         """

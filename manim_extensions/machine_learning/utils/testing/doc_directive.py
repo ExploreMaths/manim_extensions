@@ -115,14 +115,13 @@ class ManimDirective(Directive):
 
         Returns
         -------
-        list
             A list of the results.
 
         Raises
         ------
         ValueError
             Raised when an invalid combination of render flags is given.
-"""
+        """
         # Rendering is skipped if the tag skip-manim is present,
         # or if we are making the pot-files
         should_skip = (
@@ -331,9 +330,8 @@ def setup(app: Sphinx) -> dict:
 
     Returns
     -------
-    dict
         A dictionary of the results.
-"""
+    """
     app.add_node(SkipManimNode, html=(visit, depart))
 
     setup.app = app

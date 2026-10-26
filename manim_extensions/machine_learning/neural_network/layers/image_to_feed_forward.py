@@ -67,9 +67,8 @@ class ImageToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
@@ -85,9 +84,8 @@ class ImageToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         animations = []
         dots = []
         image_mobject = self.image_layer.image_mobject

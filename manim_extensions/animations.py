@@ -702,7 +702,6 @@ class LaggedCreation(Animation):
 
         Returns
         -------
-        tuple of float
             The ``(start, end)`` fractions in ``[0, 1]`` that define the
             revealed portion of the submobject.
         """

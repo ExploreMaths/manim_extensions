@@ -59,9 +59,8 @@ def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
 
     Returns
     -------
-    Any
         The computed result.
-"""
+    """
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 
     def wrapper(obj: T) -> T:

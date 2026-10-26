@@ -117,9 +117,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
@@ -139,9 +138,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         # Load images from path
         if grayscale:
             positive = GrayscaleImageMobject.from_path(positive_path)
@@ -160,7 +158,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.Group`
             A Group instance representing the result."""
         # Handle positive
         positive_group = LabeledColorImage(
@@ -202,7 +199,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        :class:`~manim.AnimationGroup`
             A AnimationGroup instance representing the result.
-"""
+        """
         return AnimationGroup()

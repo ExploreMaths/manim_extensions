@@ -191,7 +191,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Returns
         -------
-        list of str
             The stack contents after the push.
         """
         self.stack.append(push_item)
@@ -202,7 +201,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Returns
         -------
-        str or None
             The popped symbol, or ``None`` if the stack is empty.
         """
         if not self.stack:
@@ -227,7 +225,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
         Returns
         -------
-        list of list of :class:`~manim.animation.animation.Animation`
             One entry per step; each entry is a list of animations that can
             be played with ``self.play(*entry)``.
         """

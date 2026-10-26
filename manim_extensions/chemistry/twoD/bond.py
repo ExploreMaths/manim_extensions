@@ -125,7 +125,6 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        :class:`str` or :class:`bool`
             One of ``'shorter'``, ``'shorter_from'``, ``'shorter_to'`` or
             ``False`` when the line touches both atom centers.
         """
@@ -150,7 +149,6 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        tuple
             A tuple of the results."""
         return self.from_atom, self.to_atom
 
@@ -164,9 +162,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        bool or None
             Whether the operation succeeded. ``None`` if there is no result.
-"""
+        """
         if self.from_atom == atom or self.to_atom == atom:
             return True
         else:
@@ -182,9 +179,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         if self.atom_is_in_bond(atom):
             return self.index
 
@@ -202,9 +198,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         index = self.get_bond_index_by_atom(atom)
 
         if index is not None:
@@ -224,9 +219,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
             perp_vector = np.cross(direction, np.array([0, 1, 0]))
@@ -278,14 +272,13 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-        np.ndarray
             The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-"""
+        """
         try:
             return self[0].get_vector()
 
@@ -319,7 +312,6 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords)
 
@@ -328,7 +320,6 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
@@ -342,9 +333,8 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Line`
             A Line instance representing the result.
-"""
+        """
         return Line(self.to_atom.coords + direction * 0.8, self.to_atom.coords)
 
     def shorter_to_subtype(self, direction: str) -> Line:
@@ -357,9 +347,8 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Line`
             A Line instance representing the result.
-"""
+        """
         return Line(self.from_atom.coords, self.from_atom.coords - direction * 0.8)
 
     def longer_subtype(self) -> Line:
@@ -367,7 +356,6 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Line`
             A Line instance representing the result."""
         return Line(self.from_atom.coords, self.from_atom.coords)
 
@@ -376,7 +364,6 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-        Line | VMobject
             The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -445,7 +432,6 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -465,7 +451,6 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -496,9 +481,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -538,9 +522,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -570,14 +553,13 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        np.ndarray
             The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-"""
+        """
         try:
             return self[0][0].get_vector()
 
@@ -600,7 +582,6 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        tuple
             A tuple of the results."""
         from_surroundings, to_surroundings = (False, False)
         if self.from_atom.bond_to:
@@ -623,7 +604,6 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup | VMobject
             The computed result."""
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
@@ -699,7 +679,6 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -718,7 +697,6 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result."""
         unit_vector = (
             self.get_perpendicular_unit_vector(
@@ -742,9 +720,8 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -770,9 +747,8 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -815,7 +791,6 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup | VMobject
             The computed result."""
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -837,14 +812,13 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-        np.ndarray
             The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line vector lookup fails.
-"""
+        """
         try:
             return self[0][0].get_vector()
 
@@ -878,7 +852,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
@@ -898,7 +871,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
@@ -918,7 +890,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
@@ -938,7 +909,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
@@ -957,7 +927,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.Polygram`
             A Polygram instance representing the result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
@@ -977,7 +946,6 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        Polygram | VMobject
             The computed result."""
         if not self.subtype:
             return self.no_subtype()
@@ -996,14 +964,13 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-        np.ndarray
             The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying atom centers cannot be read.
-"""
+        """
         try:
             atom_a, atom_b = self.atoms_in_bond()
 
@@ -1046,9 +1013,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        :class:`~manim.VGroup`
             A VGroup instance representing the result.
-"""
+        """
         pivot_line = base_line.copy().rotate(angle=PI / 2).scale(0.2)
         cram_bond = VGroup()
         direction_modulus = (
@@ -1069,7 +1035,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
@@ -1081,7 +1046,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
@@ -1094,7 +1058,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
@@ -1107,7 +1070,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
@@ -1120,7 +1082,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
@@ -1133,7 +1094,6 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        VGroup | VMobject
             The computed result."""
         if not self.subtype:
             return self.no_subtype()
@@ -1154,14 +1114,13 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-        np.ndarray
             The computed result.
 
         Raises
         ------
         Exception
             Re-raised when the underlying line center lookup fails.
-"""
+        """
         try:
             starting_line = self[0][0]
             ending_line = self[0][len(self[0]) - 1]

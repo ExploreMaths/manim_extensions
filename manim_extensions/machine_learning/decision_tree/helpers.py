@@ -158,7 +158,6 @@ def compute_node_to_parent_mapping(tree: SklearnTree) -> dict[int, int]:
 
     Returns
     -------
-    dict[int, int]
         Mapping from each node index to its parent node index. The root (0)
         maps to ``-1``.
     """

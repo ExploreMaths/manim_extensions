@@ -43,9 +43,9 @@ class DrawArc(AnimationGroup):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        arc : Arc
+        arc
             The arc to draw.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
@@ -78,9 +78,9 @@ class SplitCompass(AnimationGroup):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        span : float
+        span
             The distance between the two compass tips.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
@@ -134,9 +134,9 @@ class RotateCompass(Rotate):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        angle : float
+        angle
             The rotation angle.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.Rotate`.
@@ -172,9 +172,9 @@ class MoveNiddleTipTo(ApplyMethod):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        point : Point
+        point
             The target point.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
@@ -210,11 +210,11 @@ class PutCompass(ApplyMethod):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        niddle_pos : Point
+        niddle_pos
             Position for niddle_tip.
-        pen_pos : Point
+        pen_pos
             Position for pen_tip.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
@@ -270,11 +270,11 @@ class PutCompassAway(PutCompass):
 
     Parameters
     ----------
-        compass : Compass
+        compass
             The compass.
-        point : Point
+        point
             Position to place the compass.
-        span_buff : float
+        span_buff
             Distance between the two tips when placed aside.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.

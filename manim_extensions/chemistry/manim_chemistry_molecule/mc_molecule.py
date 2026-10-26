@@ -169,9 +169,8 @@ class MCMolecule:
 
         Returns
         -------
-        MCMolecule
             A MCMolecule instance representing the result.
-"""
+        """
 
         mc_molecule = MCMolecule()
         mc_molecule.add_atoms_from_atoms_dict(
@@ -213,9 +212,8 @@ class MCMolecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 
         if isinstance(parsed_data, list):
@@ -255,9 +253,8 @@ class MCMolecule:
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
 
         list_of_data_dicts = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
         mc_molecules = []
@@ -320,9 +317,8 @@ class MCMolecule:
 
         Returns
         -------
-        Any
             The computed result.
-"""
+        """
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
 
         if isinstance(parsed_data, list):
@@ -365,9 +361,8 @@ class MCMolecule:
 
         Returns
         -------
-        list
             A list of the results.
-"""
+        """
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
         mc_molecules = []
         for atoms_dict, bonds_dict in parsed_data:
@@ -388,7 +383,6 @@ class MCMolecule:
 
         Returns
         -------
-        Any
             The computed result."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
@@ -410,7 +404,6 @@ class MCMolecule:
 
         Returns
         -------
-        Any
             The computed result."""
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():

@@ -16,10 +16,10 @@ class SeqObject(VGroup):
 
     Parameters
     ----------
-        name : str
+        name
             Object name displayed inside the box.
-        font_size : float, optional
-            Font size of the label. 
+        font_size
+            Font size of the label.
 
     Examples
     --------

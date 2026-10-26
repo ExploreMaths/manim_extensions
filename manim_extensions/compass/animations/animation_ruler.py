@@ -23,11 +23,11 @@ class PutRuler(ApplyMethod):
 
     Parameters
     ----------
-        ruler : Ruler
+        ruler
             The ruler.
-        start : Point
+        start
             The start point.
-        end : Point
+        end
             The end point.
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
@@ -64,11 +64,11 @@ class PutRulerAway(PutRuler):
 
     Parameters
     ----------
-        ruler : Ruler
+        ruler
             The ruler.
-        point : Point
+        point
             The placement position.
-        is_flat : bool
+        is_flat
             Whether to place it horizontally (or vertically).
         **kwargs
             Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
