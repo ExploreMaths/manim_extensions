@@ -38,7 +38,7 @@ jobs:
         with:
           install-editable: "true"
       - name: Install optional dependencies referenced in docs
-        run: pip install ".[ml]"
+        run: pip install ".[all]"
       - name: Run reference validator
         run: python workflow/validate_refs.py
 
