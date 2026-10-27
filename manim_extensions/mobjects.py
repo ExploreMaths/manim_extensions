@@ -1627,8 +1627,10 @@ class ObjectBorder(VGroup):
            def construct(self):
                t = Text("Hi").scale(5)
                self.add(t, ObjectBorder(t))
+               # move the text out and back so the first and last frames
+               # match and the animation loops seamlessly
                self.play(t.animate.shift(RIGHT * 2).scale(1.5))
-               self.wait(0.5)
+               self.play(t.animate.shift(LEFT * 2).scale(1 / 1.5))
     """
 
     def __init__(
