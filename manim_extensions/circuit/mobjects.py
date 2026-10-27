@@ -357,7 +357,7 @@ class Resistor(VMobject):
         # check if lebel is present.
         if not label is None:
             self.label: Tex | None = (
-                Tex(str(label) + r" :math:`\Omega `")
+                Tex(str(label) + r" $\Omega$")
                 .scale(0.5)
                 .next_to(self.main_body, self._direction, buff=0.1)
             )
