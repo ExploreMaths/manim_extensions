@@ -211,7 +211,6 @@ class Pendulum(MultiPendulum):
                for pendulum in pendulums:
                    self.make_rigid_body(*pendulum.bobs)
                    pendulum.start_swinging()
-               self.wait(5)
     """
 
     def __init__(
