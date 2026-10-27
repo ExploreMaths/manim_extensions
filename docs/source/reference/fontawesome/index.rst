@@ -126,5 +126,6 @@ A wall of solid icons, staggered in and spun like on the
    :hidden:
    :maxdepth: 1
 
+   classes
    functions
    constants
