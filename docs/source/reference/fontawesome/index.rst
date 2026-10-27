@@ -35,6 +35,7 @@ icons — attribute access returns a ready-made
 
    class FontAwesomeHeartExample(Scene):
        def construct(self):
+           self.camera.background_color = BLACK
            icon = solid.heart          # an SVGMobject, ready to add to a scene
            icon.set_color(RED)
            self.add(icon)
@@ -56,6 +57,7 @@ example, the regular-style angry face:
 
    class AngryEmoji(Scene):
        def construct(self):
+           self.camera.background_color = BLACK
            self.add(regular.face_angry)
 
 The variable :data:`~manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION` reports the bundled Font Awesome
@@ -74,8 +76,8 @@ A wall of solid icons, staggered in and spun like on the
 
    class FontAwesomeWallExample(Scene):
        def construct(self):
-           config.background_color = WHITE  # so new icons default to black
-           self.camera.background_color = WHITE  # render the frame white
+           config.background_color = BLACK  # so icons default to white
+           self.camera.background_color = BLACK  # render the frame black
            # near-square glyphs only — wide glyphs rotated sideways by the
            # tilt below would tower over their neighbours
            pools = {}

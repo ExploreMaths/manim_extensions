@@ -4124,10 +4124,7 @@ class _Solid(Enum):
 
 
 def _get_svg_object(fp: str):
-    color = BLACK
-    if str(config.background_color) == 'black':
-        color = WHITE
-    return SVGMobject(fp, color=color)
+    return SVGMobject(fp).set_color(WHITE)
 
 
 class Brand:
@@ -4146,6 +4143,7 @@ class Brand:
 
        class BrandDocExample(Scene):
            def construct(self):
+               self.camera.background_color = BLACK
                self.add(brand.python)
     """
     def __init__(self):
@@ -4172,6 +4170,7 @@ class Regular:
 
        class RegularDocExample(Scene):
            def construct(self):
+               self.camera.background_color = BLACK
                self.add(regular.heart)
     """
     def __init__(self):
@@ -4198,6 +4197,7 @@ class Solid:
 
        class SolidDocExample(Scene):
            def construct(self):
+               self.camera.background_color = BLACK
                rocket = solid.rocket
                rocket.set_color(ORANGE)
                self.add(rocket)
