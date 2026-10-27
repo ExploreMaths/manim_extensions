@@ -33,6 +33,9 @@ dependencies = [
     "manim>=0.21.0",
     "numpy>=2.0",
     "typing_extensions>=4.9.0",
+    # Pillow 12+ rejects Image.fromarray(float_array, mode="RGBA"), which
+    # manim's camera still uses; keep <12 so image examples keep rendering.
+    "pillow>=11,<12",
     # manim-mobject-svg (used by svg_animations.HTMLParsedVMobject) works
     # with any manim>=0.16, but its 0.5.x release declares python<3.13 on
     # PyPI even though the package is pure Python; on Python 3.13+ install
