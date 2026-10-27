@@ -70,12 +70,11 @@ The ``colors`` parameter accepts a list of six colours in the order
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(8)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=8))
+           self.play(FadeOut(cube))
 
 Setting the state of a RubiksCube
 ---------------------------------
@@ -147,12 +146,11 @@ provided for each :class:`~manim_extensions.rubikscube.cubie.Cubie` face.
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(8)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=8))
+           self.play(FadeOut(cube))
 
 Properties of a RubiksCube
 --------------------------
@@ -182,12 +180,11 @@ Dimension
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(3)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=3))
+           self.play(FadeOut(cube))
 
 An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on a non-3-dimensional cube:
 
@@ -204,12 +201,11 @@ An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on 
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(3)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=3))
+           self.play(FadeOut(cube))
 
 10-Dimensional RubiksCube
 """"""""""""""""""""""""""
@@ -262,12 +258,11 @@ changes the "gap" between Cubies.
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(3)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=3))
+           self.play(FadeOut(cube))
 
 .. manim:: YOffsetExample
 
@@ -281,12 +276,11 @@ changes the "gap" between Cubies.
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(3)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=3))
+           self.play(FadeOut(cube))
 
 Accessing Faces and Cubies
 --------------------------

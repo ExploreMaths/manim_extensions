@@ -46,14 +46,16 @@ Usage
 .. manim:: ArabicGreeting
    :ref_classes: ArabicText
 
-   from manim import Scene, Write
+   from manim import Scene, Write, FadeOut
    from manim_extensions.arabic import ArabicText
 
    class ArabicGreeting(Scene):
        def construct(self):
            label = ArabicText("مرحبا", color="arabicblue", font_size=48)
            self.play(Write(label.scale(4)))
-           self.wait()
+           # fade the greeting back out so the first and last frames match
+           # and the animation loops seamlessly
+           self.play(FadeOut(label))
 
 Built-in colors
 ---------------

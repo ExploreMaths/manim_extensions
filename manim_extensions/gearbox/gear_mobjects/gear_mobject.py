@@ -368,7 +368,8 @@ class Gear(VMobject):
                    Rotate(gear2, -gear2.pitch_angle, rate_func=linear),
                    run_time=4,
                )
-               self.wait()
+               # both gears rotate by exactly one tooth pitch, so the
+               # first and last frames match and the animation loops seamlessly
     """
 
     def __init__(
@@ -810,7 +811,8 @@ class Gear(VMobject):
                        Rotate(gear2, gear2.pitch_angle, rate_func=linear),
                        run_time=4,
                    )
-                   self.wait()
+                   # both gears rotate by exactly one tooth pitch, so the
+                   # first and last frames match and the animation loops seamlessly
         """
 
         # -- Rack branch -----------------------------------------------------------

@@ -66,6 +66,8 @@ class MVariable(MArrayElement):
                var.update_label("total")
                self.wait(0.5)
                var.scale_to_fit_width(6).move_to(ORIGIN)
+               # fade the variable back out so the animation loops seamlessly
+               self.play(FadeOut(var))
 
     """
 

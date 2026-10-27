@@ -2127,6 +2127,8 @@ class MArraySlidingWindow(VGroup):
                window.shift_to_elem(0)
                window.attach_to_elem(2)
                self.wait(0.5)
+               # un-create the window so the animation loops seamlessly
+               self.play(Uncreate(window))
 
     """
 
