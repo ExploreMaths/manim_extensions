@@ -46,12 +46,11 @@ comfortably see the cube in the camera's frame.
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
 
-           self.play(
-               FadeIn(cube)
-           )
-
-           self.begin_ambient_camera_rotation(rate=0.5)
-           self.wait(8)
+           self.play(FadeIn(cube))
+           # spin the cube through a full turn, then fade it back out so the
+           # first and last frames match and the animation loops seamlessly
+           self.play(Rotate(cube, 2 * PI, axis=UP, run_time=8))
+           self.play(FadeOut(cube))
 
 Changing the colors of a RubiksCube
 -----------------------------------
