@@ -1046,18 +1046,18 @@ class Rack(VMobject):
            def construct(self):
                gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
                rack = Rack(
-                   12, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
+                   20, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
                )
                gear.shift(RIGHT * gear.rp)
                rack.shift(UP * rack.pitch * 0.5)
 
                self.add(gear, rack)
                self.play(
-                   Rotate(gear, gear.pitch_angle, rate_func=linear),
-                   rack.animate.shift(UP * gear.rp * gear.pitch_angle),
+                   Rotate(gear, gear.pitch_angle),
+                   rack.animate.shift(DOWN * gear.rp * gear.pitch_angle),
                    run_time=2,
+                   rate_func=linear,
                )
-               self.wait()
     """
 
     def __init__(self, num_of_teeth: int, module: float = 0.2, alpha: int = 20, h_a: int = 1, h_f: float = 1.17, **kwargs):
