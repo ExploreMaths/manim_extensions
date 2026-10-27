@@ -41,8 +41,30 @@ jobs:
       group: docs-cache
       cancel-in-progress: true
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+
+      # The system stack (TeX/ffmpeg/xvfb) is large; cache the apt archives
+      # and pip downloads so a job landing on a slow runner or slow network
+      # does not re-download everything from scratch on every push.
+      - name: Prepare apt cache dir
+        run: sudo mkdir -p /var/cache/apt/archives && sudo chmod 777 /var/cache/apt/archives
+      - name: Cache apt archives
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: apt-${{ hashFiles('.github/workflows/docs-cache.yml') }}
+          restore-keys: |
+            apt-
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-3.12-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            pip-3.12-
+            pip-
 
       - name: Seed docs cache from the rtd-cache branch
         run: |
