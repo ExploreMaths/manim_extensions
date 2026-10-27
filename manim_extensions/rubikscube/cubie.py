@@ -98,6 +98,14 @@ class Cubie(VGroup):
             face.shift(2 * OUT / 2.0)
             face.apply_matrix(z_to_vector(vect))
 
+            # Group the six faces under this cubie for 3D depth sorting: with
+            # ThreeDCamera's grouped z-key, the sorting key becomes the cubie
+            # centre (primary) plus each face's own depth (secondary). This
+            # keeps all faces of one cubie moving together during rotation,
+            # avoiding the depth-order flicker that comes from sorting the
+            # 162 individual faces independently.
+            face.z_index_group = self
+
             self.faces[tuple(vect)] = face
             self.add(face)
             i += 1
