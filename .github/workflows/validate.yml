@@ -110,6 +110,11 @@ jobs:
           install-full-deps: "true"
       - name: Install package with all extras
         run: pip install ".[all]"
+      - name: Install dvisvgm >= 2.4 (for dvi -> svg probe)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq dvisvgm
+          dvisvgm --version
       - name: Check doc example layout
         run: python workflow/check_example_layout.py
 
