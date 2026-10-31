@@ -211,17 +211,19 @@ dd p.rubric::after {
    colored attribute-type spans and inline-code blocks (sig-type-ref-*,
    ref-ext/ref-manim) use literal colors, so they keep their palette in
    both themes. */
-/* Inline code cross-reference links use the inheritance-graph palette
+/* Inline code cross-reference links use a per-target palette
    (tags added by the inline_link_colors extension: a.reference.ref-ext for
-   manim_extensions targets, .ref-manim for manim targets).  Colors match
-   the node fonts produced by inheritance_colors.py; only the text colour
-   is changed — the background keeps Furo's default inline-code fill, the
-   same as plain inline code. */
+   manim_extensions targets, .ref-manim for manim targets).  Only the text
+   colour is changed — the background keeps Furo's default inline-code
+   fill, the same as plain inline code.  The light-theme manim blue is a
+   saturated #1565C0 (the inheritance-graph node colour #103A57 reads too
+   dull on the light canvas); the inheritance diagram itself keeps the
+   palette produced by inheritance_colors.py untouched. */
 a.reference.ref-ext code.xref {
     color: #1E8449;
 }
 a.reference.ref-manim code.xref {
-    color: #103A57;
+    color: #1565C0;
 }
 /* Hover keeps the base colour (mirroring Furo's plain links): the text
    colour does not change, only the underline shifts on hover. */
@@ -229,7 +231,7 @@ a.reference.ref-ext code.xref:hover {
     color: #1E8449;
 }
 a.reference.ref-manim code.xref:hover {
-    color: #103A57;
+    color: #1565C0;
 }
 /* Dark theme: brighten the text for the dark canvas; hover keeps the same
    colour (no further brightening). */
@@ -270,10 +272,10 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    text colour, matching the ref-manim inline-code xrefs; the code keeps
    Furo's default inline-code background like any other inline code. */
 code.docutils.literal.color-link-manim a.reference {
-    color: #103A57;
+    color: #1565C0;
 }
 code.docutils.literal.color-link-manim a.reference:hover {
-    color: #103A57;
+    color: #1565C0;
 }
 body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference {
     color: #85C1E9;
@@ -323,10 +325,10 @@ a.reference[href*="#manim_extensions."]:not(.default_value) code {
     color: #1E8449;
 }
 a.reference[href*="#manim."]:not(.default_value) {
-    color: #103A57;
+    color: #1565C0;
 }
 a.reference[href*="#manim."]:not(.default_value) code {
-    color: #103A57;
+    color: #1565C0;
 }
 
 /* Python-standard-library cross-references inside autodoc attribute and
@@ -460,7 +462,7 @@ dt.sig-object.py .property > a.reference.ref-ext {
 }
 dt.sig-object.py .property > .sig-type-ref-manim,
 dt.sig-object.py .property > a.reference.ref-manim {
-    color: #103A57;
+    color: #1565C0;
 }
 body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-ext,
 body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-ext {
@@ -656,13 +658,13 @@ dl.py.property > dt.sig a.headerlink {
    manim constants and colors, green extensions text for manim_extensions
    objects.  Only the text colour changes; no background. */
 a.default_value.reference.internal.ref-manim {
-    color: #103A57;
+    color: #1565C0;
 }
 a.default_value.reference.internal.ref-ext {
     color: #1E8449;
 }
 a.default_value.reference.internal.ref-manim:hover {
-    color: #103A57;
+    color: #1565C0;
 }
 a.default_value.reference.internal.ref-ext:hover {
     color: #1E8449;
