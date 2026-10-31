@@ -1048,7 +1048,7 @@ class Rack(VMobject):
            def construct(self):
                gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
                rack = Rack(
-                   20, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
+                   8, module=gear.m, stroke_opacity=0, fill_color=RED, fill_opacity=1
                )
                gear.shift(RIGHT * gear.rp)
                rack.shift(UP * rack.pitch * 0.5)
