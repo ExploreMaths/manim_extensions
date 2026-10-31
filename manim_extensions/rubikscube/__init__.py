@@ -35,6 +35,12 @@ def _install_grouped_depth_sorting() -> None:
         rot_matrix = self.get_rotation_matrix()
 
         def z_key(mob):
+            """Depth key in the rotated camera frame for painter sorting.
+
+            Primary key is the z-index reference point projected into the
+            rotated view; the center projection breaks ties so coplanar
+            mobjects keep a stable order.
+            """
             if not (hasattr(mob, "shade_in_3d") and mob.shade_in_3d):
                 return (np.inf, np.inf)
             primary = float(
