@@ -158,13 +158,13 @@ code.literal {
 }
 
 .inheritance-legend .manim-swatch {
-    background-color: #EBF5FB;
-    border-color: #103A57;
+    background-color: #FDE9CC;
+    border-color: #FF9100;
 }
 
 .inheritance-legend .extensions-swatch {
-    background-color: #D5F5E3;
-    border-color: #1E8449;
+    background-color: #CCF2ED;
+    border-color: #00BFA5;
 }
 
 .inheritance-legend .python-swatch {
@@ -215,123 +215,48 @@ dd p.rubric::after {
    (tags added by the inline_link_colors extension: a.reference.ref-ext for
    manim_extensions targets, .ref-manim for manim targets).  Only the text
    colour is changed — the background keeps Furo's default inline-code
-   fill, the same as plain inline code.  Manim targets use Furo's generic
-   admonition purple #651FFF (the --color-admonition-title value, which
-   Furo keeps the same in both themes) so the inline-code refs stay
-   distinct from Furo's plain-link blue; the inheritance diagram keeps the
-   palette produced by inheritance_colors.py untouched. */
-a.reference.ref-ext code.xref {
-    color: #1E8449;
-}
-a.reference.ref-manim code.xref {
-    color: #651FFF;
-}
-/* Hover keeps the base colour (mirroring Furo's plain links): the text
-   colour does not change, only the underline shifts on hover. */
+   fill, the same as plain inline code.  Manim targets use Furo's Caution
+   admonition colour (--color-admonition-title--caution) and
+   manim_extensions targets Furo's Important admonition colour
+   (--color-admonition-title--important).  Both are referenced as theme
+   variables, so light and dark follow the active theme automatically.
+   The inheritance diagram uses the same two colours (inheritance_colors.py
+   light fills + responsiveSvg.js dark adaptation). */
+a.reference.ref-ext code.xref,
 a.reference.ref-ext code.xref:hover {
-    color: #1E8449;
+    color: var(--color-admonition-title--important);
 }
+a.reference.ref-manim code.xref,
 a.reference.ref-manim code.xref:hover {
-    color: #651FFF;
-}
-/* Dark theme: brighten the text for the dark canvas; hover keeps the same
-   colour (no further brightening). */
-body[data-theme="dark"] a.reference.ref-ext code.xref {
-    color: #45A06E;
-}
-body[data-theme="dark"] a.reference.ref-manim code.xref {
-    color: #651FFF;
-}
-body[data-theme="dark"] a.reference.ref-ext code.xref:hover {
-    color: #45A06E;
-}
-body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
-    color: #651FFF;
-}
-/* Auto theme (and the no-JS / pre-JS state where furo leaves <body>
-   without a data-theme attribute): furo paints the page dark whenever
-   the OS prefers dark unless the user explicitly picked light, so mirror
-   that exact condition instead of requiring a data-theme attribute. */
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) a.reference.ref-ext code.xref {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) a.reference.ref-manim code.xref {
-        color: #651FFF;
-    }
-    body:not([data-theme="light"]) a.reference.ref-ext code.xref:hover {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) a.reference.ref-manim code.xref:hover {
-        color: #651FFF;
-    }
+    color: var(--color-admonition-title--caution);
 }
 /* Color-name literals linked by the default_value_links extension put the
    reference *inside* the code element (``code > a``), the reverse of
    inline_link_colors' ``a > code.xref`` shape.  The code carries a
-   ``color-link-manim`` marker class: give the embedded link the palette
-   text colour, matching the ref-manim inline-code xrefs; the code keeps
-   Furo's default inline-code background like any other inline code. */
-code.docutils.literal.color-link-manim a.reference {
-    color: #651FFF;
-}
+   ``color-link-manim`` / ``color-link-ext`` marker class: give the embedded
+   link the palette text colour, matching the ref-manim / ref-ext
+   inline-code xrefs; the code keeps Furo's default inline-code background
+   like any other inline code. */
+code.docutils.literal.color-link-manim a.reference,
 code.docutils.literal.color-link-manim a.reference:hover {
-    color: #651FFF;
+    color: var(--color-admonition-title--caution);
 }
-body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference {
-    color: #651FFF;
-}
-body[data-theme="dark"] code.docutils.literal.color-link-manim a.reference:hover {
-    color: #651FFF;
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference {
-        color: #651FFF;
-    }
-    body:not([data-theme="light"]) code.docutils.literal.color-link-manim a.reference:hover {
-        color: #651FFF;
-    }
-}
-/* Project class/function names linked by default_value_links' prose
-   handler (``code > a`` shape again): the extension text colour. */
-code.docutils.literal.color-link-ext a.reference {
-    color: #1E8449;
-}
+code.docutils.literal.color-link-ext a.reference,
 code.docutils.literal.color-link-ext a.reference:hover {
-    color: #1E8449;
-}
-body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference {
-    color: #45A06E;
-}
-body[data-theme="dark"] code.docutils.literal.color-link-ext a.reference:hover {
-    color: #45A06E;
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) code.docutils.literal.color-link-ext a.reference:hover {
-        color: #45A06E;
-    }
+    color: var(--color-admonition-title--important);
 }
 /* Plain references whose fragment resolves to a manim_extensions / manim
    object (module index pages and toctree entries list classes as ordinary
    links — the doctree extension cannot see those, they are expanded by the
-   HTML theme): colour them with the same inheritance-graph palette, text
-   only. */
-a.reference[href*="#manim_extensions."]:not(.default_value) {
-    color: #1E8449;
-}
+   HTML theme): colour them with the same palette, text only. */
+a.reference[href*="#manim_extensions."]:not(.default_value),
 a.reference[href*="#manim_extensions."]:not(.default_value) code {
-    color: #1E8449;
+    color: var(--color-admonition-title--important);
 }
-a.reference[href*="#manim."]:not(.default_value) {
-    color: #651FFF;
-}
+a.reference[href*="#manim."]:not(.default_value),
 a.reference[href*="#manim."]:not(.default_value) code {
-    color: #651FFF;
+    color: var(--color-admonition-title--caution);
 }
-
 /* Python-standard-library cross-references inside autodoc attribute and
    property blocks (dl.py.attribute, dl.py.property): keep them unstyled —
    plain inherited text colour, no underline, in both colour schemes and on
@@ -353,32 +278,6 @@ dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
     padding: 0;
 }
 
-body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) {
-    color: #45A06E;
-}
-body[data-theme="dark"] a.reference[href*="#manim_extensions."]:not(.default_value) code {
-    color: #45A06E;
-}
-body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) {
-    color: #651FFF;
-}
-body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
-    color: #651FFF;
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) a.reference[href*="#manim_extensions."]:not(.default_value) code {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) {
-        color: #651FFF;
-    }
-    body:not([data-theme="light"]) a.reference[href*="#manim."]:not(.default_value) code {
-        color: #651FFF;
-    }
-}
 /* The on-this-page sidebar (toc-tree) lists the same class/member names,
    but its entries keep Furo's native TOC colours — no palette text
    colouring there.  Written after the palette rules above so the same
@@ -421,14 +320,15 @@ body[data-theme="dark"] a.reference[href*="#manim."]:not(.default_value) code {
 }
 /* Dark theme: legend swatches follow the same deep fills as the
    dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
-   consistent with the nodes it describes. */
+   consistent with the nodes it describes.  Manim uses the Caution
+   orange family, manim_extensions the Important teal family. */
 body[data-theme="dark"] .inheritance-legend .manim-swatch {
-    background-color: #0F3B5F;
-    border-color: #EBF5FB;
+    background-color: #6B3E00;
+    border-color: #FDE9CC;
 }
 body[data-theme="dark"] .inheritance-legend .extensions-swatch {
-    background-color: #145A32;
-    border-color: #D5F5E3;
+    background-color: #00544A;
+    border-color: #CCF2ED;
 }
 body[data-theme="dark"] .inheritance-legend .python-swatch {
     background-color: #26282B;
@@ -436,12 +336,12 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
 }
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) .inheritance-legend .manim-swatch {
-        background-color: #0F3B5F;
-        border-color: #EBF5FB;
+        background-color: #6B3E00;
+        border-color: #FDE9CC;
     }
     body:not([data-theme="light"]) .inheritance-legend .extensions-swatch {
-        background-color: #145A32;
-        border-color: #D5F5E3;
+        background-color: #00544A;
+        border-color: #CCF2ED;
     }
     body:not([data-theme="light"]) .inheritance-legend .python-swatch {
         background-color: #26282B;
@@ -459,29 +359,11 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
    rule, which this block does not override). */
 dt.sig-object.py .property > .sig-type-ref-ext,
 dt.sig-object.py .property > a.reference.ref-ext {
-    color: #1E8449;
+    color: var(--color-admonition-title--important);
 }
 dt.sig-object.py .property > .sig-type-ref-manim,
 dt.sig-object.py .property > a.reference.ref-manim {
-    color: #651FFF;
-}
-body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-ext,
-body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-ext {
-    color: #45A06E;
-}
-body[data-theme="dark"] dt.sig-object.py .property > .sig-type-ref-manim,
-body[data-theme="dark"] dt.sig-object.py .property > a.reference.ref-manim {
-    color: #651FFF;
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-ext,
-    body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-ext {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) dt.sig-object.py .property > .sig-type-ref-manim,
-    body:not([data-theme="light"]) dt.sig-object.py .property > a.reference.ref-manim {
-        color: #651FFF;
-    }
+    color: var(--color-admonition-title--caution);
 }
 
 /* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
@@ -655,46 +537,16 @@ dl.py.property > dt.sig a.headerlink {
 
 /* Signature default-value links (default_value_links extension): the link
    is plain text, not wrapped in a code element, but it gets the same
-   palette text colour as the inline-code xrefs — blue manim text for
-   manim constants and colors, green extensions text for manim_extensions
+   palette text colour as the inline-code xrefs — orange manim text for
+   manim constants and colors, teal extensions text for manim_extensions
    objects.  Only the text colour changes; no background. */
-a.default_value.reference.internal.ref-manim {
-    color: #651FFF;
-}
-a.default_value.reference.internal.ref-ext {
-    color: #1E8449;
-}
+a.default_value.reference.internal.ref-manim,
 a.default_value.reference.internal.ref-manim:hover {
-    color: #651FFF;
+    color: var(--color-admonition-title--caution);
 }
+a.default_value.reference.internal.ref-ext,
 a.default_value.reference.internal.ref-ext:hover {
-    color: #1E8449;
-}
-body[data-theme="dark"] a.default_value.reference.internal.ref-manim {
-    color: #651FFF;
-}
-body[data-theme="dark"] a.default_value.reference.internal.ref-ext {
-    color: #45A06E;
-}
-body[data-theme="dark"] a.default_value.reference.internal.ref-manim:hover {
-    color: #651FFF;
-}
-body[data-theme="dark"] a.default_value.reference.internal.ref-ext:hover {
-    color: #45A06E;
-}
-@media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim {
-        color: #651FFF;
-    }
-    body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext {
-        color: #45A06E;
-    }
-    body:not([data-theme="light"]) a.default_value.reference.internal.ref-manim:hover {
-        color: #651FFF;
-    }
-    body:not([data-theme="light"]) a.default_value.reference.internal.ref-ext:hover {
-        color: #45A06E;
-    }
+    color: var(--color-admonition-title--important);
 }
 
 /* Vendored out-of-sync package entry: wrap the link and warning icon in a

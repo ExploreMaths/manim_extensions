@@ -116,26 +116,28 @@ window.addEventListener("load", function () {
                 edge: "#d0d0d0",
                 background: "#131416"
             };
-            // Node dark-mode adaptation, mirroring the inline-code link
-            // palette (custom.css): keep the light foreground text on a
-            // deeper fill.  Extensions #D5F5E3/#1E8449 -> #145A32/#D5F5E3,
-            // manim #EBF5FB/#1A5276 -> #0F3B5F/#EBF5FB, Python
+            // Node dark-mode adaptation, mirroring the link palette
+            // (custom.css + inheritance_colors.py): keep the light
+            // foreground text on a deeper fill.  Manim uses the Caution
+            // orange family (#FDE9CC/#FF9100 -> deep orange #6B3E00/
+            // #FDE9CC), manim_extensions the Important teal family
+            // (#CCF2ED/#00BFA5 -> deep teal #00544A/#CCF2ED), Python
             // white/black -> #26282B/#D0D0D0.
             additions = `
-            g.node polygon[fill="#d5f5e3"] {
-                fill: #145a32;
+            g.node polygon[fill="#ccf2ed"] {
+                fill: #00544a;
             }
-            g.node polygon[fill="#ebf5fb"] {
-                fill: #0f3b5f;
+            g.node polygon[fill="#fde9cc"] {
+                fill: #6b3e00;
             }
             g.node polygon[fill="white"] {
                 fill: #26282b;
             }
-            g.node text[fill="#1e8449"] {
-                fill: #d5f5e3;
+            g.node text[fill="#00bfa5"] {
+                fill: #ccf2ed;
             }
-            g.node text[fill="#1a5276"] {
-                fill: #ebf5fb;
+            g.node text[fill="#ff9100"] {
+                fill: #fde9cc;
             }
             g.node text:not([fill]) {
                 fill: #d0d0d0;
