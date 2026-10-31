@@ -94,7 +94,6 @@ html_theme_options = {
         "color-background-primary": "#ffffff",
         "color-background-border": "#ffffff",
         "color-sidebar-background": "#f8f9fb",
-        "color-inline-code-background": "#f6f6f6",
         "color-foreground-secondary": "#000",
     },
     "dark_css_variables": {
@@ -102,7 +101,6 @@ html_theme_options = {
         "color-background-primary": "#131416",
         "color-background-border": "#303335",
         "color-sidebar-background": "#1a1c1e",
-        "color-inline-code-background": "#262626",
         "color-foreground-secondary": "#ffffffd9",
     },
 }

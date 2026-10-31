@@ -98,7 +98,10 @@ h4, h5, h6{
 }
 
 code.literal {
-    font-size: 95%;
+    /* Inline code keeps Furo/Sphinx defaults: the theme's inline-code font
+       size and its default background (previously shrunk to 95%). */
+    font-size: var(--font-size--small--2);
+    background-color: var(--color-inline-code-background);
 }
 
 /* yikes-ish attempt at bugfix for navbar on some browsers */
@@ -212,21 +215,13 @@ dd p.rubric::after {
    (tags added by the inline_link_colors extension: a.reference.ref-ext for
    manim_extensions targets, .ref-manim for manim targets).  Colors match
    the node fonts produced by inheritance_colors.py; only the text colour
-   is changed — no background fill (the code keeps Furo's default
-   inline-code look). */
+   is changed — the background keeps Furo's default inline-code fill, the
+   same as plain inline code. */
 a.reference.ref-ext code.xref {
     color: #1E8449;
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
 }
 a.reference.ref-manim code.xref {
     color: #103A57;
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
 }
 /* Hover keeps the base colour (mirroring Furo's plain links): the text
    colour does not change, only the underline shifts on hover. */
@@ -272,15 +267,8 @@ body[data-theme="dark"] a.reference.ref-manim code.xref:hover {
    reference *inside* the code element (``code > a``), the reverse of
    inline_link_colors' ``a > code.xref`` shape.  The code carries a
    ``color-link-manim`` marker class: give the embedded link the palette
-   text colour, matching the ref-manim inline-code xrefs.  The literal
-   itself keeps no inline-code background — colour-only. */
-code.docutils.literal.color-link-manim,
-code.docutils.literal.color-link-ext {
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-}
+   text colour, matching the ref-manim inline-code xrefs; the code keeps
+   Furo's default inline-code background like any other inline code. */
 code.docutils.literal.color-link-manim a.reference {
     color: #103A57;
 }
@@ -333,20 +321,12 @@ a.reference[href*="#manim_extensions."]:not(.default_value) {
 }
 a.reference[href*="#manim_extensions."]:not(.default_value) code {
     color: #1E8449;
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
 }
 a.reference[href*="#manim."]:not(.default_value) {
     color: #103A57;
 }
 a.reference[href*="#manim."]:not(.default_value) code {
     color: #103A57;
-    background: none;
-    border: none;
-    border-radius: 0;
-    padding: 0;
 }
 
 /* Python-standard-library cross-references inside autodoc attribute and
@@ -583,6 +563,17 @@ html body .sphinx_autodoc_typehints-type code,
 html body .sphinx_autodoc_typehints-type a code.xref {
     background: transparent;
     border: none;
+    padding: 0;
+}
+
+/* Class/function/method signatures (dt.sig blocks): inline code inside a
+   signature keeps no background so parameter names, types and default
+   values read as plain text on the signature's fill. */
+html body dt.sig code,
+html body dt.sig code.literal {
+    background: none;
+    border: none;
+    border-radius: 0;
     padding: 0;
 }
 
