@@ -13,4 +13,3 @@ dependency loading) and ``manim_extensions.utils.deprecation`` (RST-aware
    :maxdepth: 1
 
    functions
-   constants
