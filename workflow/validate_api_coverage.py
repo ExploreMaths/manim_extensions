@@ -255,9 +255,13 @@ def main():
     missing = []
     for module in iter_modules():
         for name, obj in public_names(module):
-            # Type variables are not documented data; they never appear
-            # on Constants pages (autodoc_all.classify excludes them).
-            if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
+            # Type variables and type aliases are not documented data; they
+            # never appear on Constants pages (autodoc_all.classify excludes
+            # them).
+            if isinstance(
+                obj,
+                (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple, types.GenericAlias),
+            ):
                 continue
             total += 1
             key = defining_dotted(module, name, obj)

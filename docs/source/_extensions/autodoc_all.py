@@ -197,9 +197,12 @@ def classify(obj):
         return "class"
     if inspect.isroutine(obj):
         return "function"
-    # Type variables (TypeVar / ParamSpec / TypeVarTuple) are not data
-    # constants; keep them out of Constants pages.
-    if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
+    # Type variables (TypeVar / ParamSpec / TypeVarTuple) and type aliases
+    # (GenericAlias) are not data constants; keep them out of Constants pages.
+    if isinstance(
+        obj,
+        (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple, types.GenericAlias),
+    ):
         return None
     return "data"
 
