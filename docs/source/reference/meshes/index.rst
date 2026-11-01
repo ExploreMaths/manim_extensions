@@ -52,7 +52,8 @@ node-face data model (meshes can also be imported from the ``trimesh``
 library). The Cairo renderer will not work for these scenes — run them with
 the OpenGL renderer (``--renderer=opengl``):
 
-.. code-block:: python
+.. manim:: ConeScene
+   :ref_classes: Mesh ManimMesh
 
    from manim import *
 
@@ -68,6 +69,7 @@ the OpenGL renderer (``--renderer=opengl``):
            self.add(renderable)
 
 You can shift (translate) and scale the whole mesh or single vertices, and
+
 most manim coloring functions are available on individual mesh objects.
 Note that ``Rotate`` does not update the wrapped mesh, because it only updates
 a copy of the rotation.

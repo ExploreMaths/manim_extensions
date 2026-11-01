@@ -59,7 +59,8 @@ rotates the compass about its needle tip;
 opens (or closes) the two legs symmetrically until the span equals the given
 distance:
 
-.. code-block:: python
+.. manim:: CompassDemo
+   :ref_classes: Compass MoveNiddleTipTo RotateCompass SplitCompass
 
    from manim import *
    from manim_extensions.compass import (
@@ -74,6 +75,7 @@ distance:
            self.play(SplitCompass(compass, 2))
 
 :class:`~manim_extensions.compass.animations.animation_compass.PutCompass`
+
 places the needle tip and pen tip at two given positions;
 :class:`~manim_extensions.compass.animations.animation_compass.PutCompassAway`
 contracts the legs to ``span_buff`` and parks the compass at a point:
@@ -109,7 +111,8 @@ animation with Create).
 parks the pencil at a point; it is equivalent to MovePencilTipTo and kept
 for readability in construction scenes:
 
-.. code-block:: python
+.. manim:: PencilDemo
+   :ref_classes: Pencil MovePencilTipTo MovePencilAlongPath DrawPath PutPencilAway
 
    from manim import *
    from manim_extensions.compass import (
@@ -119,6 +122,8 @@ for readability in construction scenes:
    class PencilDemo(Scene):
        def construct(self):
            pencil = Pencil().to_edge(LEFT)
+           # a path for the pencil to trace
+           path = Line(4 * LEFT, 4 * RIGHT)
            self.play(MovePencilTipTo(pencil, ORIGIN))
            self.play(MovePencilAlongPath(pencil, path))
            self.play(DrawPath(pencil, path))
@@ -133,7 +138,8 @@ aligns one edge of the ruler between a start and an end point;
 parks the ruler at a point (``is_flat=True`` lays it out horizontally,
 otherwise vertically):
 
-.. code-block:: python
+.. manim:: RulerDemo
+   :ref_classes: Ruler PutRuler PutRulerAway
 
    from manim import *
    from manim_extensions.compass import Ruler, PutRuler, PutRulerAway
@@ -146,6 +152,7 @@ otherwise vertically):
            self.play(PutRulerAway(ruler, point=LEFT, is_flat=False))
 
 To draw a straightedge line, place the ruler, move the pencil to the line's
+
 start, and draw the path, then put the tools away:
 
 .. code-block:: python
