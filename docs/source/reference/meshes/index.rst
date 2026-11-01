@@ -64,7 +64,7 @@ the OpenGL renderer (``--renderer=opengl``):
    class ConeScene(Scene):
        def construct(self):
            # build the node-face data model, then wrap it in a renderer
-           mesh = Mesh(vertices=[[0, 0, 0], [1, 0, 0], [0, 1, 0]],
+           mesh = Mesh(vertices=[[0, 0, 0], [4, 0, 0], [0, 4, 0]],
                        faces=[[0, 1, 2]])
            renderable = ManimMesh(mesh)
            self.add(renderable)

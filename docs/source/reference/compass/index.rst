@@ -144,8 +144,8 @@ otherwise vertically):
 
    class RulerDemo(Scene):
        def construct(self):
-           ruler = Ruler().to_edge(LEFT)
-           self.play(PutRuler(ruler, start=LEFT, end=UR))
+           ruler = Ruler().scale(0.7).to_edge(LEFT)
+           self.play(PutRuler(ruler, start=LEFT, end=UR * 0.8))
            self.play(PutRulerAway(ruler, point=LEFT, is_flat=False))
 
 To draw a straightedge line, place the ruler, move the pencil to the line's

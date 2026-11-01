@@ -60,7 +60,7 @@ through):
        def construct(self):
 
            lens = Lens(-5, 1)
-           ray = Ray(LEFT * 5 + UP, RIGHT, 8, [lens])
+           ray = Ray(LEFT * 1.5, RIGHT, 2, [lens])
            self.add(lens, ray)
 
 Waves
@@ -87,7 +87,7 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
        def construct(self):
 
            self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
-           self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 2))
+           self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 1.2))
 
 Rigid mechanics
 ^^^^^^^^^^^^^^^
@@ -111,7 +111,7 @@ A :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum`
 
        def construct(self):
 
-           pendulum = Pendulum(length=3.5, initial_theta=0.3)
+           pendulum = Pendulum(length=3.5, initial_theta=0.3).scale(2)
            self.add(pendulum)
 
 Electromagnetism
@@ -146,7 +146,7 @@ draw a current-carrying
        def construct(self):
 
            charge = Charge(magnitude=1, point=ORIGIN)
-           self.add(charge, ElectricField(charge))
+           self.add(charge, ElectricField(charge).scale(0.5))
 
 .. toctree::
    :hidden:
