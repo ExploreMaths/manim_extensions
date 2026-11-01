@@ -118,17 +118,17 @@ window.addEventListener("load", function () {
             };
             // Node dark-mode adaptation, mirroring the link palette
             // (custom.css + inheritance_colors.py): keep the light
-            // foreground text on a deeper fill.  Manim uses the Caution
-            // orange family (#FDE9CC/#FF9100 -> deep orange #6B3E00/
-            // #FDE9CC), manim_extensions the Important teal family
+            // foreground text on a deeper fill.  Manim uses the Note
+            // blue family (#CCD3FF/#00B0FF -> deep blue #005F99/
+            // #CCD3FF), manim_extensions the Important teal family
             // (#CCF2ED/#00BFA5 -> deep teal #00544A/#CCF2ED), Python
             // white/black -> #26282B/#D0D0D0.
             additions = `
             g.node polygon[fill="#ccf2ed"] {
                 fill: #00544a;
             }
-            g.node polygon[fill="#fde9cc"] {
-                fill: #6b3e00;
+            g.node polygon[fill="#ccd3ff"] {
+                fill: #005f99;
             }
             g.node polygon[fill="white"] {
                 fill: #26282b;
@@ -136,8 +136,8 @@ window.addEventListener("load", function () {
             g.node text[fill="#00bfa5"] {
                 fill: #ccf2ed;
             }
-            g.node text[fill="#ff9100"] {
-                fill: #fde9cc;
+            g.node text[fill="#00b0ff"] {
+                fill: #ccd3ff;
             }
             g.node text:not([fill]) {
                 fill: #d0d0d0;

@@ -2,8 +2,8 @@
 
 Manim Extensions classes get a distinct fill color from base Manim classes
 so users can tell them apart at a glance.  The two colours match the link
-palette in custom.css: manim uses Furo's Caution admonition colour
-(#FF9100, tint #FDE9CC) and manim_extensions Furo's Important admonition
+palette in custom.css: manim uses Furo's Note admonition colour
+(#00B0FF, tint #CCD3FF) and manim_extensions Furo's Important admonition
 colour (#00BFA5, tint #CCF2ED).  Dark-theme adaptation happens in
 responsiveSvg.js.
 """
@@ -12,8 +12,8 @@ from sphinx.ext.inheritance_diagram import InheritanceGraph
 
 _EXTENSIONS_FILL = "#CCF2ED"
 _EXTENSIONS_FONT = "#00BFA5"
-_MANIM_FILL = "#FDE9CC"
-_MANIM_FONT = "#FF9100"
+_MANIM_FILL = "#CCD3FF"
+_MANIM_FONT = "#00B0FF"
 
 
 def _generate_dot_with_colors(self, *args, **kwargs):
