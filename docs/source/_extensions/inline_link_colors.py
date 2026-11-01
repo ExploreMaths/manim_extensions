@@ -5,9 +5,13 @@ Furo's native link color.  Coloring is limited to the inheritance graph
 (see :mod:`inheritance_colors` + ``responsiveSvg.js``).  This extension
 only keeps the two structure fixes that autodoc needs:
 
-- :func:`_drop_auto_attribute_members` removes inherited attribute members
-  from classes whose docstring has no ``Attributes`` section (they produce
-  a bare Attributes block with anchors that nothing links to);
+- :func:`_drop_auto_attribute_members` removes inherited attribute
+  members unless the class redefines them (they produce a bare
+  Attributes block with anchors that nothing links to);
+- :func:`_prune_toc_entries` drops the corresponding "On this page"
+  entries, because Sphinx's toc collector runs at ``doctree-read`` —
+  before this extension's ``doctree-resolved`` pruning — so the sidebar
+  would otherwise keep dangling anchors;
 - :func:`_add_attribute_headings` inserts an ``Attributes`` rubric heading
   before a class's rendered attribute members and moves the block in front
   of a preceding Examples section.
@@ -20,22 +24,21 @@ from sphinx.addnodes import desc, desc_content, desc_signature
 
 
 def _drop_auto_attribute_members(doctree):
-    """Remove inherited attribute members from classes whose docstring has
-    no Attributes section.
+    """Remove inherited attribute members unless the class redefines them.
 
     autodoc ``members`` collects inherited public attributes (e.g.
-    ``FileTree.code`` from ``Code``) even when the class docstring never
-    documents them, producing a bare ``Attributes`` block out of nowhere.
-    Attributes the class defines itself (e.g. ``NodeConfig.BOX_TYPE``) are
-    kept — they are real API surface the sidebar links to, and removing
-    them leaves dangling anchors.  Classes that do document an Attributes
-    section keep all their members — numpydoc renders those entries from
-    the docstring.
+    ``NerdFontIcon.t2c`` from ``Text``) even when the class never
+    redefines them, producing bare ``Attributes`` blocks with anchors
+    nothing links to.  An attribute is kept only when the class defines
+    it itself — its name is in the class's own ``__dict__`` (or
+    ``__slots__``).  Inherited names are dropped for every class,
+    regardless of whether the docstring has an ``Attributes`` section:
+    a redefined attribute is real API surface, a merely inherited one is
+    not.
     """
     import importlib
-    import inspect
 
-    attr_section_re = re.compile(r"^\s*Attributes\s*$", re.M)
+    dropped: set[str] = set()
     for d in list(doctree.findall(desc)):
         if "class" not in d.get("classes", ()):
             continue
@@ -53,11 +56,12 @@ def _drop_auto_attribute_members(doctree):
         try:
             modname, _, clsname = dotted.rpartition(".")
             cls = getattr(importlib.import_module(modname), clsname)
-            doc = inspect.getdoc(cls) or ""
         except Exception:
             continue
-        if attr_section_re.search(doc):
-            continue
+        own = set(getattr(cls, "__dict__", {}))
+        slots = getattr(cls, "__slots__", None)
+        if slots:
+            own.update(s for s in slots if isinstance(s, str))
         content = next(
             (c for c in d.children if isinstance(c, desc_content)), None
         )
@@ -66,10 +70,10 @@ def _drop_auto_attribute_members(doctree):
         for c in list(content.children):
             if not (isinstance(c, desc) and "attribute" in c.get("classes", ())):
                 continue
-            # Only inherited members are dropped: autodoc's id for an
-            # attribute member is ``<class dotted>.<name>``; if the name is
-            # not in the class's own ``__dict__`` it comes from a base
-            # class.  Guard against odd id shapes (no dot / module-level).
+            # autodoc's id for an attribute member is
+            # ``<class dotted>.<name>``; if the name is not defined by the
+            # class itself it comes from a base class and is dropped.
+            # Guard against odd id shapes (no dot / module-level).
             attr_id = c.get("ids") or (
                 next(
                     (s.get("ids") for s in c.findall(desc_signature) if s.get("ids")),
@@ -79,14 +83,53 @@ def _drop_auto_attribute_members(doctree):
             if not attr_id:
                 continue
             name = attr_id[0].rpartition(".")[2]
-            if name and name in getattr(cls, "__dict__", {}):
+            if name and name in own:
                 continue
             content.remove(c)
+            dropped.add(attr_id[0])
+    return dropped
+
+
+_dropped_by_doc: dict[str, set[str]] = {}
 
 
 def _process_doctree(app, doctree, docname):
-    _drop_auto_attribute_members(doctree)
+    dropped = _drop_auto_attribute_members(doctree)
+    if dropped:
+        _dropped_by_doc[docname] = dropped
     _add_attribute_headings(doctree)
+
+
+def _prune_toc_entries(app, pagename, templatename, context, doctree):
+    """Remove dropped attribute anchors from the rendered page toc.
+
+    Sphinx's toc collector runs at ``doctree-read`` — before autodoc's
+    members are pruned here (``doctree-resolved``) — so the "On this
+    page" sidebar keeps entries for attributes whose body anchors were
+    removed.  Strip those ``<li>`` entries (and any emptied parent
+    ``<ul>``) from ``context['toc']`` at ``html-page-context``, just
+    before the template renders the page.
+    """
+    dropped = _dropped_by_doc.get(pagename)
+    if not dropped:
+        return
+    toc = context.get("toc")
+    if not toc:
+        return
+    new_toc = toc
+    for name in dropped:
+        pattern = re.compile(
+            r'<li><a[^>]*href="#' + re.escape(name) + r'"[^>]*>.*?</a></li>',
+            re.S,
+        )
+        new_toc = pattern.sub("", new_toc)
+    while True:
+        pruned = re.sub(r"<ul>\s*</ul>", "", new_toc)
+        if pruned == new_toc:
+            break
+        new_toc = pruned
+    if new_toc != toc:
+        context["toc"] = new_toc
 
 
 def _find_examples_start(content, first_attr):
@@ -175,6 +218,7 @@ def _add_attribute_headings(doctree):
 
 def setup(app):
     app.connect("doctree-resolved", _process_doctree)
+    app.connect("html-page-context", _prune_toc_entries)
     return {
         "version": "2.0",
         "parallel_read_safe": True,
