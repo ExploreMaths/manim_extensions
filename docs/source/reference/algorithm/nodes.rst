@@ -24,3 +24,12 @@ NodeSolt
 
 .. autoclass:: manim_extensions.algorithm.node.NodeSolt
    :show-inheritance:
+
+Node data types
+---------------
+
+.. autoall:: manim_extensions.algorithm
+   :types: data
+
+.. autoall:: manim_extensions.algorithm.node
+   :types: data
