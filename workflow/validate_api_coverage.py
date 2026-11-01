@@ -35,6 +35,7 @@ import pkgutil
 import re
 import sys
 import types
+import typing
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -254,6 +255,10 @@ def main():
     missing = []
     for module in iter_modules():
         for name, obj in public_names(module):
+            # Type variables are not documented data; they never appear
+            # on Constants pages (autodoc_all.classify excludes them).
+            if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
+                continue
             total += 1
             key = defining_dotted(module, name, obj)
             if key not in covered and key not in IGNORED_PUBLIC_NAMES:
