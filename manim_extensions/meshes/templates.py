@@ -10,7 +10,7 @@ define a few basic mesh-structures to be used as examples or test.
 # python imports
 # patched: lazy-import trimesh (meshes extra)
 import pathlib
-from typing import List, Tuple, Union
+from typing import List, Union
 
 # third-party imports
 import numpy as np

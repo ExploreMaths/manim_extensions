@@ -16,7 +16,7 @@ Layout characteristics:
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Callable, Tuple, Self
+from typing import List, Optional, Callable, Self
 from .layout import Layout
 
 

@@ -10,7 +10,7 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import Any, List, Optional, Tuple, Union, overload, Self
+from typing import Any, List, Optional, Union, overload, Self
 
 # An animation produced by the mutation methods: either a real Animation
 # (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.

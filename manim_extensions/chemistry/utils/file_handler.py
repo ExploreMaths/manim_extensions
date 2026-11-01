@@ -7,7 +7,7 @@ This module provides file parsing utilities for chemistry file formats.
 """
 
 import os
-from typing import Dict, Tuple, Union
+from typing import Dict, Union
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 

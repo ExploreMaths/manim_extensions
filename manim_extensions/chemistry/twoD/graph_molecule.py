@@ -19,7 +19,7 @@ from manim import (
     VGroup,
     color_gradient,
 )
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 import numpy as np
 import networkx as nx
 

@@ -1080,8 +1080,7 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        float
-            The video duration in seconds divided by the playback rate.
+        The video duration in seconds divided by the playback rate.
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 

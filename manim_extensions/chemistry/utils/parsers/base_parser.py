@@ -115,6 +115,10 @@ class BaseParser(ABC):
         """
         Molecule data: the parsed atoms data and bonds data.
 
+        Returns
+        -------
+        The parsed atoms data and bonds data.
+
         Raises
         ------
         Exception
@@ -134,13 +138,23 @@ class BaseParser(ABC):
 
     @property
     def atoms(self) -> AtomsDict | None:
-        """Parsed atoms data."""
+        """Parsed atoms data.
+
+        Returns
+        -------
+        The parsed atoms data.
+        """
 
         return self.atoms_data
 
     @property
     def bonds(self) -> BondsDict | None:
-        """Parsed bonds data."""
+        """Parsed bonds data.
+
+        Returns
+        -------
+        The parsed bonds data.
+        """
 
         return self.bonds_data
 

@@ -11,7 +11,7 @@ Mesh structure.
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Optional, Set, Tuple, Union, Self
+from typing import List, Optional, Set, Union, Self
 import numpy as np
 
 # local imports

@@ -25,7 +25,7 @@ from manim import (
     VGroup,
     np,
 )
-from typing import Dict, Optional, Tuple, Self
+from typing import Dict, Optional, Self
 from ..utils import (
     mol_parser,
     mol_parser_string,

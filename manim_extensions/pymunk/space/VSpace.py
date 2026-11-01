@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-from typing import Callable, Dict, Optional, TYPE_CHECKING, Tuple, Union
+from typing import Callable, Dict, Optional, TYPE_CHECKING, Union
 import numpy as np
 
 from ...utils.deps import require

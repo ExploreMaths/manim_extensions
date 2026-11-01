@@ -8,7 +8,7 @@ some basic helpers for our models.
 """
 
 # python imports
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Union
 
 # third-party imports
 import numpy as np

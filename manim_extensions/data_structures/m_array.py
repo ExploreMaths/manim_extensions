@@ -48,7 +48,6 @@ from typing import (
     Optional,
     Protocol,
     Self,
-    Tuple,
     Union,
     cast,
 )

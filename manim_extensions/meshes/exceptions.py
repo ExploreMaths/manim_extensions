@@ -8,7 +8,7 @@ custom exceptions.
 """
 
 # python imports
-from typing import Tuple, Union
+from typing import Union
 
 
 class InvalidMeshException(Exception):

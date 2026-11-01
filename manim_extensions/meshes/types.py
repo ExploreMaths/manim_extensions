@@ -8,7 +8,7 @@ custom type hints for all the models.
 """
 
 # python imports
-from typing import List, Union, Tuple, Dict, Any
+from typing import List, Union, Dict, Any
 
 # third-party imports
 import numpy as np

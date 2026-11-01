@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Callable, Tuple, Self
+from typing import List, Optional, Dict, Callable, Self
 from .layout import Layout
 from .layout_config import LayoutDirection
 

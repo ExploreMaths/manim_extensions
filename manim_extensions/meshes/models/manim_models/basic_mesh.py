@@ -12,7 +12,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 import copy
-from typing import List, Optional, Tuple
+from typing import List, Optional
 
 # third-party imports
 import manim as m

@@ -29,7 +29,7 @@ the specific functions of the space.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Protocol, Tuple, cast
+from typing import TYPE_CHECKING, Protocol, cast
 
 import numpy as np
 

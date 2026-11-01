@@ -19,7 +19,7 @@ from manim import (
     VectorizedPoint,
     config,
 )
-from typing import Iterable, Tuple
+from typing import Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 
