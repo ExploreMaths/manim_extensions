@@ -5,6 +5,8 @@
 Mind maps
 =========
 
-.. autoall:: manim_extensions.mindmap
+The :class:`~manim_extensions.mindmap.mindmap.mindmap.MindMap` class and its
+variants.
+
+.. autoall:: manim_extensions.mindmap.mindmap
    :types: class
-   :skip: AlterNode InsertNode LayoutAnimation LayoutConfig LayoutType Node NodeStyle RemoveNode ScaleNode

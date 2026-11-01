@@ -5,6 +5,7 @@
 Animations
 ==========
 
-.. autoall:: manim_extensions.mindmap
+Animations that modify mind-map nodes and subtrees.
+
+.. autoall:: manim_extensions.mindmap.animations.animations
    :types: class
-   :skip: CatalogMap LayoutConfig LayoutType MindMap Node NodeStyle StandardMap TimeLine

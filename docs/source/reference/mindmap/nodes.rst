@@ -5,6 +5,7 @@
 Nodes
 =====
 
-.. autoall:: manim_extensions.mindmap
+Tree nodes and the walkers that traverse them.
+
+.. autoall:: manim_extensions.mindmap.nodes.node
    :types: class, function
-   :skip: AlterNode CatalogMap InsertNode LayoutAnimation LayoutConfig LayoutType MindMap RemoveNode ScaleNode StandardMap TimeLine

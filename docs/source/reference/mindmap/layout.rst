@@ -5,6 +5,19 @@
 Layout
 ======
 
-.. autoall:: manim_extensions.mindmap
+Algorithms that arrange the nodes of a mind map.
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_catalog
    :types: class
-   :skip: AlterNode CatalogMap InsertNode LayoutAnimation MindMap Node NodeStyle RemoveNode ScaleNode StandardMap TimeLine
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_standard
+   :types: class
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_tidy_tree
+   :types: class
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_time_line
+   :types: class
+
+.. autoall:: manim_extensions.mindmap.algorithms.layout_config
+   :types: class

@@ -205,7 +205,6 @@ algorithm itself with the ``layout_type`` argument of any animation (see
    maps
    animations
    layout
-   classes
    functions
    constants
 
