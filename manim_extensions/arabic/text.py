@@ -32,7 +32,7 @@ def _resolve_arabic_font(font_name: Optional[str]) -> str:
     ----------
     font_name
         Font name to use, or ``None`` to resolve the first installed font
-        from :data:`_FONT_CANDIDATES` via fontconfig.
+        from `_FONT_CANDIDATES` via fontconfig.
 
     Returns
     -------
@@ -53,7 +53,7 @@ def _resolve_arabic_font(font_name: Optional[str]) -> str:
 
 
 class ArabicTemplate(TexTemplate):
-    """A :class:`~manim.TexTemplate` configured for Arabic text rendering using XeLaTeX.
+    """A :class:`~manim.utils.tex.TexTemplate` configured for Arabic text rendering using XeLaTeX.
 
     Parameters
     ----------
@@ -99,7 +99,7 @@ class ArabicTemplate(TexTemplate):
 
 
 class ArabicText(Tex):
-    """A :class:`~manim.Tex` object rendered with Arabic text.
+    """A :class:`~manim.mobject.text.tex_mobject.Tex` object rendered with Arabic text.
 
     Parameters
     ----------

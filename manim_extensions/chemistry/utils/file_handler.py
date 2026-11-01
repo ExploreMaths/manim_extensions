@@ -62,7 +62,7 @@ class FileHandler:
         """
         return os.path.splitext(file_path)[1][1:]
 
-    def parsed_atoms_bonds_data(self) -> Tuple[Dict, Dict]:
+    def parsed_atoms_bonds_data(self) -> tuple[Dict, Dict]:
         """
 
         Returns

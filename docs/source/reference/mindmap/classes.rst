@@ -11,3 +11,12 @@ Classes
    :recursive:
    :types: class
    :skip: AlterNode CatalogMap InsertNode LayoutAnimation LayoutConfig LayoutType MindMap Node NodeStyle RemoveNode ScaleNode StandardMap TimeLine
+
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree
+   :no-members:
+
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode
+   :no-members:
+
+.. autoclass:: manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation
+   :no-members:

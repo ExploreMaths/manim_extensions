@@ -253,7 +253,7 @@ class CatalogLayout(Layout):
         if post_cb:
             post_cb(node, layer, index)
 
-    def _get_node_boundaries_horizontal(self, node: CatalogNode) -> Tuple[float, float]:
+    def _get_node_boundaries_horizontal(self, node: CatalogNode) -> tuple[float, float]:
         """Return the horizontal boundaries of a node and all descendants.
 
         Parameters

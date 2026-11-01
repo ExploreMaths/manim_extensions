@@ -13,7 +13,7 @@ from .graph_molecule import GraphMolecule
 
 from typing import Optional
 class GMAnimationBuilder:
-    r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.GraphMolecule`.
+    r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`.
 
     Parameters
     ----------

@@ -30,7 +30,7 @@ class MovePencilAlongPath(MoveAlongPath):
         suspend_mobject_updating
             Whether to suspend mobject updating.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.MoveAlongPath`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.movement.MoveAlongPath`.
 
     Examples
     --------
@@ -72,7 +72,7 @@ class MovePencilTipTo(ApplyMethod):
         point
             The target point.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------
@@ -108,7 +108,7 @@ class DrawPath(AnimationGroup):
         path
             The path.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
     Examples
     --------
@@ -143,7 +143,7 @@ class PutPencilAway(MovePencilTipTo):
         point
             The placement position.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------

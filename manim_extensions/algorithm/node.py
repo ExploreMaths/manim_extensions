@@ -323,7 +323,7 @@ class Node(VMobject):
         Parameters
         ----------
         direction
-            One of :class:`~manim.constants.LEFT`, :class:`~manim.constants.RIGHT`, :class:`~manim.constants.UP`, or :class:`~manim.constants.DOWN`.
+            One of LEFT, RIGHT, UP, or DOWN.
         index
             Slot number in the range ``0`` to :attr:`~manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS`.
 

@@ -99,7 +99,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     """
 
     def __init__(
-        self, gravity: Tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
+        self, gravity: tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
     ):
         """Initialize the VSpace with a Pymunk physics space, gravity
         vector, and sub-step count for simulation stability.
@@ -201,8 +201,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         body_type: int,
         # body-related
-        center_of_gravity: Tuple[float, float],
-        velocity: Tuple[float, float],
+        center_of_gravity: tuple[float, float],
+        velocity: tuple[float, float],
         angular_velocity: float,
     ):
         """Initializes and configures the Pymunk physical body for a Mobject.
@@ -253,10 +253,10 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         friction: float,
         density: float,
         sensor: bool,
-        surface_velocity: Tuple[float, float],
+        surface_velocity: tuple[float, float],
         # body-related
-        center_of_gravity: Tuple[float, float],
-        velocity: Tuple[float, float],
+        center_of_gravity: tuple[float, float],
+        velocity: tuple[float, float],
         angular_velocity: float,
     ):
         """Sets up both the physical body and its collision shapes for a Mobject.
@@ -469,8 +469,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     @staticmethod
     def apply_force_at_local_point(
         mob: Mobject,
-        force: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        force: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Applies a force to a Mobject's physical body at a point defined in local coordinates.
 
@@ -495,8 +495,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     @staticmethod
     def apply_force_at_world_point(
         mob: Mobject,
-        force: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        force: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Applies a force to a Mobject's physical body at a point defined in world coordinates.
 
@@ -521,8 +521,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     @staticmethod
     def apply_impulse_at_local_point(
         mob: Mobject,
-        impulse: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        impulse: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Applies an instantaneous impulse to a Mobject's physical body at a local point.
 
@@ -547,7 +547,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def apply_impulse_at_world_point(
         mob: Mobject,
         impulse: tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Applies an instantaneous impulse to a Mobject's physical body at a world coordinate.
 
@@ -571,8 +571,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def local_to_world(
-        mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    ) -> Tuple[float, float, float]:
+        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    ) -> tuple[float, float, float]:
         """Convert a point from the Mobject's local body coordinates to
         world coordinates.
 
@@ -592,8 +592,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def world_to_local(
-        mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    ) -> Tuple[float, float, float]:
+        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    ) -> tuple[float, float, float]:
         """Convert a point from world coordinates to the Mobject's local
         body coordinates.
 
@@ -666,8 +666,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def velocity_at_local_point(
-        mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    ) -> Tuple[float, float, float]:
+        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    ) -> tuple[float, float, float]:
         """Return the velocity of a point on the Mobject's body expressed
         in local body coordinates.
 
@@ -688,8 +688,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def velocity_at_world_point(
-        mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    ) -> Tuple[float, float, float]:
+        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    ) -> tuple[float, float, float]:
         """Return the velocity of a point on the Mobject's body expressed
         in world coordinates.
 
@@ -718,7 +718,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
-        surface_velocity: Tuple[float, float] = (0.0, 0.0),
+        surface_velocity: tuple[float, float] = (0.0, 0.0),
     ):
         """Configures and attaches collision shapes to a Mobject's physical body.
 
@@ -1034,7 +1034,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def get_point_query_info(
-        mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
+        mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> list:
         """Performs a spatial query to find the relationship between a point and a Mobject's shapes.
 
@@ -1087,8 +1087,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     @staticmethod
     def get_line_query(
         mob: Mobject,
-        start: Tuple[float, float, float],
-        end: Tuple[float, float, float],
+        start: tuple[float, float, float],
+        end: tuple[float, float, float],
         stroke_width: float,
     ) -> list:
         """Performs a segment query to detect intersections between a line and a Mobject's shapes.

@@ -297,7 +297,7 @@ class AbstractMolecule:
     @abstractmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> Tuple[Dict, Dict]:
+    ) -> tuple[Dict, Dict]:
         """
         Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 

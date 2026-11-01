@@ -171,7 +171,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
         self.add(VectorizedPoint(a.get_center()), VectorizedPoint(b.get_center()))
 
     @property
-    def C(self) -> Tuple[Iterable[float]]:
+    def C(self) -> tuple[Iterable[float]]:
         """Return the centers of curvature of the two spherical surfaces.
 
         Returns

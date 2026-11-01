@@ -400,7 +400,7 @@ Accessing a Cubie Face
 Just as the :meth:`~manim_extensions.rubikscube.cube.RubiksCube.get_face` method works, once you have accessed
 a :class:`~manim_extensions.rubikscube.cubie.Cubie` object, you can call :meth:`~manim_extensions.rubikscube.cubie.Cubie.get_face`. For example,
 calling ``cube.cubies[0, 0, 0].get_face("F")`` will return the front face of
-that cubie as a :class:`~manim.mobject.geometry.polygram.Square` mobject. If the :meth:`~manim.mobject.geometry.polygram.Square` method
+that cubie as a :class:`~manim.mobject.geometry.polygram.Square` mobject. If the :class:`~manim.mobject.geometry.polygram.Square` method
 returns a different square than you expected, it is likely a result of the
 :class:`~manim_extensions.rubikscube.cube.RubiksCube`'s or the camera's orientation changing your perspective
 of direction in the scene.

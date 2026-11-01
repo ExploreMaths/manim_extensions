@@ -495,7 +495,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         ----------
         filters
             The filters to animate; currently unused as a new
-            :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.Filters` group is created internally.
+            :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Filters` group is created internally.
 
         Returns
         -------

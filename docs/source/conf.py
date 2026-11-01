@@ -316,6 +316,8 @@ intersphinx_mapping = {
     "manim": ("https://docs.manim.community/en/stable/", None),
     "pillow": ("https://pillow.readthedocs.io/en/stable/", None),
     "pymunk": ("https://www.pymunk.org/en/latest/", None),
+    "requests": ("https://requests.readthedocs.io/en/latest/", None),
+    "networkx": ("https://networkx.org/documentation/stable/", None),
     "scikit-learn": ("https://scikit-learn.org/stable/", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference/", None),
     "segno": ("https://segno.readthedocs.io/en/latest/", None),

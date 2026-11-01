@@ -68,9 +68,9 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
 
     ::
         >>> process_name_list("Tex TexTemplate", "class")
-        [':class:`~.Tex`', ':class:`~.TexTemplate`']
+        [':class:`~manim.mobject.text.tex_mobject.Tex`', ':class:`~manim.utils.tex.TexTemplate`']
         >>> process_name_list("Scene.play Mobject.rotate", "func")
-        [':func:`~.Scene.play`', ':func:`~.Mobject.rotate`']
+        [':func:`~manim.scene.scene.Scene.play`', ':func:`~manim.mobject.mobject.Mobject.rotate`']
 
     Parameters
     ----------

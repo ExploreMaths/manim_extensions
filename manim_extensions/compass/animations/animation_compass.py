@@ -48,7 +48,7 @@ class DrawArc(AnimationGroup):
         arc
             The arc to draw.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
     Examples
     --------
@@ -83,7 +83,7 @@ class SplitCompass(AnimationGroup):
         span
             The distance between the two compass tips.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.AnimationGroup`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
     Examples
     --------
@@ -139,7 +139,7 @@ class RotateCompass(Rotate):
         angle
             The rotation angle.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.Rotate`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.rotation.Rotate`.
 
     Examples
     --------
@@ -177,7 +177,7 @@ class MoveNiddleTipTo(ApplyMethod):
         point
             The target point.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------
@@ -217,7 +217,7 @@ class PutCompass(ApplyMethod):
         pen_pos
             Position for pen_tip.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Raises
     ------
@@ -277,7 +277,7 @@ class PutCompassAway(PutCompass):
         span_buff
             Distance between the two tips when placed aside.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------

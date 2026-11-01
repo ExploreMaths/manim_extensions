@@ -87,7 +87,7 @@ class NerdFontIcon(Text):
     icon
         The icon to be displayed: an integer Unicode code point, or a
         string giving either an icon name from the Nerd Font icon set
-        (resolved via :mod:`~manim_extensions.utils.nerdfont.icons_dict`)
+        (resolved via `icons_dict`)
         or literal text to render.
     **kwargs
         Additional keyword arguments to be passed to the

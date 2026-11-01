@@ -124,8 +124,8 @@ class InvalidMeshDimensionsException(Exception):
 
     def __init__(
         self,
-        actual: Union[int, Tuple[Union[int, str], Union[int, str]]],
-        expected: Union[int, Tuple[Union[int, str], Union[int, str]]],
+        actual: Union[int, tuple[Union[int, str], Union[int, str]]],
+        expected: Union[int, tuple[Union[int, str], Union[int, str]]],
         name: str = "",
     ):
         """Initialize the InvalidMeshDimensionsException instance."""

@@ -72,7 +72,7 @@ class MAtomObject(VGroup):
 
     def __init__(
         self,
-        coords: np.array = np.array([0, 0, 0]),
+        coords: np.ndarray = np.array([0, 0, 0]),
         element: str = "H",
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,

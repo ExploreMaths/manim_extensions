@@ -18,7 +18,7 @@ from .utils.colorschemes.colorschemes import light_mode, dark_mode, ColorScheme
 class ManimMLConfig:
     """Global configuration for the machine learning visualizations.
 
-    Holds the active :class:`~manim_extensions.machine_learning.ManimMLConfig.ColorScheme` and the default 3D camera
+    Holds the active :class:`~manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme` and the default 3D camera
     orientation used by neural-network scenes.
     """
 
@@ -52,7 +52,7 @@ class ManimMLConfig:
         Parameters
         ----------
         value
-            A :class:`~manim_extensions.machine_learning.ManimMLConfig.ColorScheme` instance, or the name of a builtin
+            A :class:`~manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme` instance, or the name of a builtin
             scheme (``"dark_mode"`` / ``"light_mode"``).
 
         Raises

@@ -9,7 +9,7 @@ from enum import Enum
 
 
 class MArrayElementComp(Enum):
-    """Refers to individual component :class:`~manim.mobject.mobject.Mobject`s of :class:`~.m_array.MArrayElement`."""
+    """Refers to individual component :class:`~manim.mobject.mobject.Mobject`s of :class:`~manim_extensions.data_structures.m_array.MArrayElement`."""
 
     BODY = 0
     """:class:`~manim.mobject.geometry.polygram.Square` that represents the body."""
@@ -25,7 +25,7 @@ class MArrayElementComp(Enum):
 
 
 class MArrayDirection(Enum):
-    """Serves as the direction for :class:`~.m_array.MArray`."""
+    """Serves as the direction for :class:`~manim_extensions.data_structures.m_array.MArray`."""
 
     UP = 0
     """Upward direction."""

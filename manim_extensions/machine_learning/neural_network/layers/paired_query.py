@@ -136,7 +136,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         grayscale
             Whether to load the images as grayscale mobjects.
         **kwargs
-            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.PairedQueryLayer`.
+            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer`.
 
         Returns
         -------

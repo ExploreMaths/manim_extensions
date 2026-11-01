@@ -354,7 +354,7 @@ class DivideAndConquer:
         """Merge two Delaunay-triangulated vertex sets into a combined triangulation.
 
         The method removes the split separator line, locates the base edge
-        between the two sets via :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._find_base_lr`, and iteratively
+        between the two sets via `_find_base_lr()`, and iteratively
         adds new triangles by selecting the best left/right candidates
         until the merge is complete.
 

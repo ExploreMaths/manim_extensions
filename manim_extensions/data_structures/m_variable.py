@@ -39,11 +39,11 @@ class MVariable(MArrayElement):
     
     Attributes
     ----------
-    __value : :class:`~typing.Any`
+    __value : `typing.Any`
         The value of the variable.
-    __index : :data:`~typing.Union`\[:class:`str`, :class:`int`]
+    __index : `typing.Union`\[:class:`~str`, :class:`~int`]
         The value of the index.
-    __label : :class:`str`
+    __label : :class:`~str`
         The value of the label.
     
     Examples

@@ -21,7 +21,7 @@ class OpenGLSphere(OpenGLSurface):
     center
         Center point of the sphere. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere.OpenGLSurface`.
+        Additional keyword arguments passed to OpenGLSurface.
     """
 
     def __init__(

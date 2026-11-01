@@ -41,7 +41,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     mesh
         The mesh data model containing vertices, faces, and parts.
     args
-        Positional arguments forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.Group`.
+        Positional arguments forwarded to the parent :class:`~manim.mobject.mobject.Group`.
     **kwargs
         Additional keyword arguments controlling display options.
 
@@ -381,7 +381,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
             for edge in self.mesh.get_vertex_edges(vertex_idx):
                 self._update_edge(edge)
 
-    def _update_edge(self, edge: Tuple[int, int]):
+    def _update_edge(self, edge: tuple[int, int]):
         """Update the Manim object of *edge* to reflect the latest vertex positions.
 
         Parameters
@@ -435,7 +435,7 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
         dim
             The axis index to stretch (0 = x, 1 = y, 2 = z).
         **kwargs
-            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.stretch`.
+            Forwarded to the parent Mobject.stretch.
 
         Raises
         ------
@@ -633,8 +633,8 @@ class ManimMesh(m.Group, metaclass=ConvertToOpenGL):
     def move_to_grid(
         self,
         scene: m.Scene,
-        grid_sizes: Tuple[float, ...],
-        threshold: Tuple[float, ...],
+        grid_sizes: tuple[float, ...],
+        threshold: tuple[float, ...],
         nof_steps: int = 1,
         **kwargs,
     ):

@@ -73,7 +73,7 @@ class VoronoiDelaunay:
         """Build the Voronoi diagram for the mesh vertices and return it as Manim groups.
 
         The diagram is constructed from the :class:`~scipy.spatial.Voronoi`
-        computation stored in :attr:`~manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.voronoi`.  Both finite and infinite
+        computation stored in `voronoi`.  Both finite and infinite
         ridge segments are converted to :class:`~manim.mobject.geometry.line.Line`
         objects, and Voronoi vertices become :class:`~manim.mobject.geometry.arc.Dot`
         objects.

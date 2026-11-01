@@ -29,7 +29,7 @@ class MCAtom:
        :header-rows: 0
 
        * - ``element``
-         - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom.MCElement`.
+         - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement`.
        * - ``coordinates``
          - Its 3D coordinates.
        * - ``bonded_atoms``
@@ -60,7 +60,7 @@ class MCAtom:
     def __init__(
         self,
         element: MCElement,
-        coords: np.array = np.array([0, 0, 0]),
+        coords: np.ndarray = np.array([0, 0, 0]),
         atoms: Optional[list] = None,
         bonds: Optional[list] = None,
         molecule: Optional[None] = None,

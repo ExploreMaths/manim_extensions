@@ -136,7 +136,7 @@ class ImageLayer(NeuralNetworkLayer):
         grayscale
             Unused flag reserved for future use.
         **kwargs
-            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.ImageLayer`.
+            Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer`.
 
         Returns
         -------

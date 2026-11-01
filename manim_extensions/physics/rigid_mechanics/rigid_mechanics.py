@@ -123,7 +123,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                self.wait(3)
     """
 
-    def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
+    def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
         """Initialize Space."""
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
@@ -149,9 +149,9 @@ class SpaceScene(Scene):
     Parameters
     ----------
     renderer
-        Renderer name forwarded to the parent :class:`~manim.Scene`.
+        Renderer name forwarded to the parent :class:`~manim.scene.scene.Scene`.
     **kwargs
-        Forwarded to the parent :class:`~manim.Scene`.
+        Forwarded to the parent :class:`~manim.scene.scene.Scene`.
 
     Examples
     --------
@@ -191,7 +191,7 @@ class SpaceScene(Scene):
                self.wait(5)
     """
 
-    GRAVITY: Tuple[float, float] = 0, -9.81
+    GRAVITY: tuple[float, float] = 0, -9.81
 
     def __init__(self, renderer: str | None = None, **kwargs):
         """A basis scene for all of rigid mechanics. The gravity vector

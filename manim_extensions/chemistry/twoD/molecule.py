@@ -540,7 +540,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.array:
+    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
         """Returns the position of a single atom given its index.
 
         Parameters
@@ -607,7 +607,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: int) -> np.array:
+    def find_bond_center_by_index(self, bond_index: int) -> np.ndarray:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
@@ -647,7 +647,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
-    ) -> np.array:
+    ) -> np.ndarray:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.
@@ -744,7 +744,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> Tuple[Dict, Dict]:
+    ) -> tuple[Dict, Dict]:
         """
         Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
@@ -812,7 +812,7 @@ class NamedMolecule(VGroup):
     Parameters
     ----------
     name
-        The name of the molecule. Can be a string or a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.SVGMobject`.
+        The name of the molecule. Can be a string or a :class:`~manim.mobject.svg.svg_mobject.SVGMobject`.
     molecule_data
         An :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MMoleculeObject` or the molecule data to construct one.
     direction
@@ -821,13 +821,13 @@ class NamedMolecule(VGroup):
     buff
         Distance between the molecule and its name. 
     tex
-        Whether to render the name with :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MathTex`. 
+        Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
     font
         Font of the name text. 
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
+        Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.VGroup`.
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
@@ -1117,7 +1117,7 @@ class NamedMolecule(VGroup):
 
         return self
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.array:
+    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
         """Returns the position of a single atom given its index.
 
         Parameters
@@ -1184,7 +1184,7 @@ class NamedMolecule(VGroup):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: int) -> np.array:
+    def find_bond_center_by_index(self, bond_index: int) -> np.ndarray:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
@@ -1225,7 +1225,7 @@ class NamedMolecule(VGroup):
 
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
-    ) -> np.array:
+    ) -> np.ndarray:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.

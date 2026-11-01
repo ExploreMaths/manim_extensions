@@ -54,7 +54,7 @@ class ThreeDCylinder(OpenGLSurface):
     resolution
         Resolution of the surface. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.OpenGLSurface`.
+        Additional keyword arguments passed to OpenGLSurface.
     """
 
     def __init__(
@@ -198,7 +198,7 @@ class ThreeDLine(ThreeDCylinder):
     color
         Color of the line. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.ThreeDCylinder`.
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
     """
 
     def __init__(
@@ -280,7 +280,7 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-            Starting point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
+            Starting point of the :class:`~manim.mobject.three_d.three_dimensions.Line3D`.
         """
         return self.start
 
@@ -289,7 +289,7 @@ class ThreeDLine(ThreeDCylinder):
 
         Returns
         -------
-            Ending point of the :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine.Line3D`.
+            Ending point of the :class:`~manim.mobject.three_d.three_dimensions.Line3D`.
         """
         return self.end
 
@@ -420,7 +420,7 @@ class ThreeDBond(OpenGLGroup):
     mobjects
         Additional mobjects to add to the group.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond.OpenGLGroup`.
+        Additional keyword arguments passed to OpenGLGroup.
     """
 
     def __str__(self):

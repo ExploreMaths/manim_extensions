@@ -495,7 +495,7 @@ class MCMCAxes(Group):
             Ground-truth samples used to render the KDE density background.
         sampling_kwargs
             Additional keyword arguments forwarded to
-            :func:`~manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.metropolis_hastings_sampler`.
+            metropolis_hastings_sampler.
 
         Returns
         -------

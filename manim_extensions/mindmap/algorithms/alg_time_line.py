@@ -223,7 +223,7 @@ class TimeLineLayout(Layout):
     def __init__(
         self,
         root: object,
-        sides: Tuple[LayoutDirection] = (
+        sides: tuple[LayoutDirection] = (
             LayoutDirection.TopToBottom,
             LayoutDirection.BottomToTop,
         ),

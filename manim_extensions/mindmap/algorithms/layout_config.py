@@ -113,8 +113,8 @@ class LayoutConfig:
     Raises
     ------
     ValueError
-        Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`, :class:`~manim.constants.LEFT`,
-        :class:`~manim.constants.RIGHT`, or when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
+        Raised when ``direction`` is not one of UP, DOWN, LEFT,
+        RIGHT, or when a side is not one of UP, DOWN.
     
     Examples
     --------
@@ -251,8 +251,8 @@ class LayoutConfig:
         Raises
         ------
         ValueError
-            Raised when ``direction`` is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`,
-            :class:`~manim.constants.LEFT`, :class:`~manim.constants.RIGHT`.
+            Raised when ``direction`` is not one of UP, DOWN,
+            LEFT, RIGHT.
         """
         direction = mindmap.get("direction", RIGHT)
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
@@ -295,7 +295,7 @@ class LayoutConfig:
         Raises
         ------
         ValueError
-            Raised when a side is not one of :class:`~manim.constants.UP`, :class:`~manim.constants.DOWN`.
+            Raised when a side is not one of UP, DOWN.
         """
         self.node_spacing = timeline.get("node_spacing", 0.5)
         self.level_spacing = timeline.get("level_spacing", 0.5)

@@ -397,7 +397,7 @@ class DoubleBond(BaseMBondObject):
     double_bond_scale
         Scale applied to the secondary line of the bond. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.DoubleBond.BaseMBondObject`.
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject`.
 
     Examples
     --------
@@ -645,7 +645,7 @@ class TripleBond(BaseMBondObject):
     triple_bond_scale
         Scale applied to the secondary lines of the bond. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.TripleBond.BaseMBondObject`.
+        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject`.
 
     Examples
     --------

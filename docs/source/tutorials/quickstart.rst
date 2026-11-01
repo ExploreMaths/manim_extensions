@@ -94,7 +94,7 @@ Animations
 ----------
 
 :class:`~manim_extensions.animations.TypeWriter` reveals
-:class:`~manim.Text` character by character:
+:class:`~manim.mobject.text.text_mobject.Text` character by character:
 
 .. manim:: QuickstartAnimations
 

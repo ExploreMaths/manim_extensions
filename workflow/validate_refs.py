@@ -285,6 +285,10 @@ def validate_reference(target: str) -> tuple[bool, str]:
         return True, "skipped (relative)"
 
     parts = fqn.split(".")
+    if parts[0] in SKIP_NAMES:
+        return True, f"skipped (builtin / known name {parts[0]})"
+
+    parts = fqn.split(".")
     last_error: str | None = None
 
     for i in range(len(parts), 0, -1):

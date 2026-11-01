@@ -487,7 +487,7 @@ class ExtendedLine(Line):
     Takes an existing :class:`~manim.mobject.geometry.line.Line` and extends it by
     *extend_distance* along its original direction on both sides.
     The style (color, stroke width, etc.) of the original line is automatically
-    copied via :meth:`~manim.mobject.types.vectorized_mobject.VMobject.match_style`.
+    copied via match_style.
 
     Parameters
     ----------
@@ -534,7 +534,7 @@ class ShortenedLine(Line):
     Takes an existing :class:`~manim.mobject.geometry.line.Line` and shortens it by
     *shorten_distance* along its original direction on both sides.
     The style (color, stroke width, etc.) of the original line is automatically
-    copied via :meth:`~manim.mobject.types.vectorized_mobject.VMobject.match_style`.
+    copied via match_style.
 
     Parameters
     ----------
@@ -1080,6 +1080,7 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
+        float
             The video duration in seconds divided by the playback rate.
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
@@ -1126,7 +1127,7 @@ class VideoMobject(ImageMobject):
         Parameters
         ----------
         memo
-            Memo dictionary used by :func:`~manim_extensions.fontawesome.manim_fontawesome._Solid.copy.deepcopy` to track already
+            Memo dictionary used by :func:`~copy.deepcopy` to track already
             copied objects.
 
         Returns
@@ -1352,7 +1353,7 @@ class Trail(VGroup):
     r"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.
 
     Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
-    the mobject's centre and older segments fade out according to :attr:`~manim_extensions.mobjects.Trail.rate_func`.
+    the mobject's centre and older segments fade out according to `rate_func`.
 
     .. note::
 

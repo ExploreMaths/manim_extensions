@@ -203,7 +203,7 @@ def create_coplanar_points() -> Mesh:
     return Mesh(vertices=vertices, faces=[])
 
 
-def create_grid(areas: List[Tuple[float, float, int]]) -> Mesh:
+def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
     """Create a regular grid mesh in 1-D or 2-D.
 
     Parameters

@@ -96,12 +96,12 @@ class Mesh:
     @dangling_face_decorator()
     def __init__(
         self,
-        vertices: Union[np.ndarray, List[List[float]], List[Tuple[float, ...]]],
+        vertices: Union[np.ndarray, List[List[float]], List[tuple[float, ...]]],
         faces: Optional[
-            Union[np.ndarray, List[np.ndarray], List[List[int]], List[Tuple[int, ...]]]
+            Union[np.ndarray, List[np.ndarray], List[List[int]], List[tuple[int, ...]]]
         ],
         parts: Optional[
-            Union[np.ndarray, List[np.ndarray], List[List[int]], List[Tuple[int, ...]]]
+            Union[np.ndarray, List[np.ndarray], List[List[int]], List[tuple[int, ...]]]
         ] = None,
         dangling: bool = False,
     ):
@@ -1122,8 +1122,8 @@ class Mesh:
 
     def snap_to_grid(
         self,
-        grid_sizes: Tuple[float, ...],
-        threshold: Tuple[float, ...],
+        grid_sizes: tuple[float, ...],
+        threshold: tuple[float, ...],
         steps: int = 1,
         update_verts: bool = False,
         precision: int = 10,
@@ -1140,15 +1140,15 @@ class Mesh:
         ----------
         grid_sizes
             Grid resolution in every axis direction (length must equal
-            :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
+            `dim`).
         threshold
             Maximum allowed movement per axis to snap into the next grid
-            position (length must equal :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh.dim`).
+            position (length must equal `dim`).
         steps
             Number of intermediate steps to the grid position (useful for
             animations).  Must be positive.
         update_verts
-            If ``True``, :attr:`~manim_extensions.meshes.models.data_models.mesh.Mesh._vertices` is updated in-place and
+            If ``True``, `_vertices` is updated in-place and
             duplicates are removed.
         precision
             Decimal places used for rounding the result.

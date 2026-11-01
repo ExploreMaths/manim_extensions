@@ -125,9 +125,9 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     Parameters
     ----------
     args
-        Positional arguments forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
+        Positional arguments forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
     **kwargs
-        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.NeuralNetworkLayer`.
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
 
     Examples
     --------
@@ -276,7 +276,7 @@ class BlankConnective(ConnectiveLayer):
     output_layer
         The layer the connection ends at.
     **kwargs
-        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.ConnectiveLayer`.
+        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
 
     Examples
     --------

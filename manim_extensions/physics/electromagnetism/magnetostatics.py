@@ -116,7 +116,7 @@ class MagneticField(ArrowVectorField):
     @staticmethod
     def _field_func(
         p: np.ndarray,
-        dls: Iterable[Tuple[np.ndarray, np.ndarray]],
+        dls: Iterable[tuple[np.ndarray, np.ndarray]],
         currents: Iterable[float],
     ):
         """Compute the magnetic field vector at a point using the Biot-Savart law.

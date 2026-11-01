@@ -100,7 +100,7 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
     )
 
 
-def is_twice_nested_iterable(obj: object, min_lens: Tuple[int, int] = (1, 3)) -> bool:
+def is_twice_nested_iterable(obj: object, min_lens: tuple[int, int] = (1, 3)) -> bool:
     """Check whether *obj* is a 2-D array-like structure.
 
     Examples of valid structures include 2-D NumPy arrays,

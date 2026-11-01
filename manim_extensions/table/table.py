@@ -491,7 +491,7 @@ class Table(VGroup):
     def add_row(
         self, 
         values: List[str]
-    ) -> Tuple[Row, List[TableAnimation]]:
+    ) -> tuple[Row, List[TableAnimation]]:
         """
         Add a new row to the bottom of the table.
 
@@ -633,7 +633,7 @@ class Table(VGroup):
     def delete_row(
         self, 
         index: int
-    ) -> Tuple[Row, List[TableAnimation]]:
+    ) -> tuple[Row, List[TableAnimation]]:
         """
         Delete a row from the table.
         
@@ -769,7 +769,7 @@ class Table(VGroup):
         header: str,
         values: List[str],
         index: Optional[int] = None
-    ) -> Tuple[VGroup, List[TableAnimation], List[TableAnimation]]:
+    ) -> tuple[VGroup, List[TableAnimation], List[TableAnimation]]:
         """
         Add a new column to the table.
         
@@ -888,7 +888,7 @@ class Table(VGroup):
     def delete_column(
         self,
         index: int
-    ) -> Tuple[VGroup, List[TableAnimation]]:
+    ) -> tuple[VGroup, List[TableAnimation]]:
         """
         Delete a column from the table.
         

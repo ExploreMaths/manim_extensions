@@ -35,9 +35,9 @@ class SimpleLine(Line):
     Parameters
     ----------
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
+        Additional positional arguments passed to :class:`~manim.mobject.geometry.line.Line`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.SimpleLine.Line`.
+        Additional keyword arguments passed to :class:`~manim.mobject.geometry.line.Line`.
 
     Examples
     --------
@@ -59,7 +59,7 @@ class SimpleLine(Line):
         super().__init__(*args, **kwargs)
         self.sheen_direction = self._get_unit_vector()
 
-    def _get_unit_vector(self) -> np.array:
+    def _get_unit_vector(self) -> np.ndarray:
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
@@ -79,7 +79,7 @@ class DoubleLine(ArcBetweenPoints):
     radius
         Radius of the arcs. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.ArcBetweenPoints`.
+        Additional keyword arguments passed to :class:`~manim.mobject.geometry.arc.ArcBetweenPoints`.
     """
 
     def __init__(
@@ -101,7 +101,7 @@ class DoubleLine(ArcBetweenPoints):
         other_arc.sheen_direction = self.sheen_direction
         self.add(other_arc)
 
-    def _get_unit_vector(self) -> np.array:
+    def _get_unit_vector(self) -> np.ndarray:
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
@@ -125,7 +125,7 @@ class DoubleLine(ArcBetweenPoints):
             New ending point of the double bond.
         **kwargs
             Additional keyword arguments passed to
-            :meth:`~manim.mobject.geometry.arc.ArcBetweenPoints.put_start_and_end_on`.
+            :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.
         """
         self.put_start_and_end_on(start=start, end=end)
 
@@ -163,9 +163,9 @@ class GraphMolecule(Graph, AbstractMolecule):
     Parameters
     ----------
     vertices_dict
-        Dictionary mapping vertex indices to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCAtom` objects.
+        Dictionary mapping vertex indices to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` objects.
     edges_dict
-        Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.MCBond` objects.
+        Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects.
     label
         Whether to add a label with the element symbol to each atom.
         
@@ -174,9 +174,9 @@ class GraphMolecule(Graph, AbstractMolecule):
     label_color
         Color of the atom labels. 
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
+        Additional positional arguments passed to :class:`~manim.mobject.graph.Graph`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.Graph`.
+        Additional keyword arguments passed to :class:`~manim.mobject.graph.Graph`.
 
     Examples
     ---------
@@ -743,7 +743,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             connected_atoms=connected_atoms, excluded_atom=from_atom
         )
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.array:
+    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
         """
         Returns the position of a single atom given its index.
 
@@ -811,7 +811,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: tuple) -> np.array:
+    def find_bond_center_by_index(self, bond_index: tuple) -> np.ndarray:
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
         The bund tuple corresponds to the indices of the atoms in the bond.
 
@@ -852,7 +852,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
     def find_position_along_bond_axis(
         self, bond_tuple: int, position_buff: float
-    ) -> np.array:
+    ) -> np.ndarray:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.
@@ -949,7 +949,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> Tuple[Dict, Dict]:
+    ) -> tuple[Dict, Dict]:
         """
         Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 

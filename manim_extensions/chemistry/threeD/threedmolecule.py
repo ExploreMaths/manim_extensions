@@ -39,7 +39,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     mobjects
         Additional mobjects to add to the group.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.OpenGLGroup`.
+        Additional keyword arguments passed to OpenGLGroup.
 
     Examples
     ---------

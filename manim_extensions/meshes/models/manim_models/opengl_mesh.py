@@ -42,7 +42,7 @@ class FastManimMesh(OpenGLMobject):
     shader_folder
         Path to the shader folder. (uses ``"mesh"``).
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.opengl.opengl_mobject.OpenGLMobject`.
+        Additional keyword arguments forwarded to OpenGLMobject.
     """
 
     shader_dtype = [

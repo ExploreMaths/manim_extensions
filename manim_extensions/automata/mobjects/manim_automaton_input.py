@@ -112,7 +112,7 @@ class Token(MathTex):
     font_size
         Font size for the token text.  
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.MathTex`.
+        Additional keyword arguments forwarded to :class:`~manim.mobject.text.tex_mobject.MathTex`.
 
     Examples
     --------

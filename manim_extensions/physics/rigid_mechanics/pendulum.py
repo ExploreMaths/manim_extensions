@@ -32,7 +32,7 @@ class MultiPendulum(VGroup):
     """A multi-segment pendulum driven by pymunk physics.
 
     The pendulum is constructed from one or more bobs connected by rigid
-    rods to a fixed pivot point.  When :meth:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum.start_swinging` is called the
+    rods to a fixed pivot point.  When `start_swinging()` is called the
     bobs are turned into pymunk rigid bodies and the scene's simulation
     updater drives the motion.
 

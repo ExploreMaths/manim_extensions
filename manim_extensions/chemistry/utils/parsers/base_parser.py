@@ -113,11 +113,7 @@ class BaseParser(ABC):
     @property
     def molecule_data(self) -> ParsedData:
         """
-        Returns molecule data: atoms_data and bonds_data.
-
-        Returns
-        -------
-            Parsed molecule data.
+        Molecule data: the parsed atoms data and bonds data.
 
         Raises
         ------
@@ -138,21 +134,13 @@ class BaseParser(ABC):
 
     @property
     def atoms(self) -> AtomsDict | None:
-        """
-        Returns
-        -------
-            Parsed atoms data.
-        """
+        """Parsed atoms data."""
 
         return self.atoms_data
 
     @property
     def bonds(self) -> BondsDict | None:
-        """
-        Returns
-        -------
-            Parsed bonds data.
-        """
+        """Parsed bonds data."""
 
         return self.bonds_data
 

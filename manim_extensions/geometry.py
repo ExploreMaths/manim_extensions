@@ -114,7 +114,7 @@ def VMobjectInt(
         Each VMobject stores its outline as groups of four control points
         ``[anchor, handle, handle, anchor]`` per cubic Bézier curve; this
         helper reads them through Manim's own
-        :meth:`~manim.mobject.types.vectorized_mobject.VMobject.get_cubic_bezier_tuples`
+        `get_cubic_bezier_tuples`
         API, so every mobject type (lines, circles, text, parametric
         curves, groups, ...) is treated identically.
 

@@ -64,7 +64,7 @@ class SpaceScene(ZoomedScene):
                self.wait(5)
     """
 
-    def __init__(self, gravity: Tuple[float, float] = (0, -9.81), **kwargs):
+    def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
         """Initialize the SpaceScene with a VSpace physics simulation
         using the specified gravity vector.
         """
@@ -115,10 +115,10 @@ class SpaceScene(ZoomedScene):
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
-        surface_velocity: Tuple[float, float] = (0.0, 0.0),
+        surface_velocity: tuple[float, float] = (0.0, 0.0),
         # body-related
-        center_of_gravity: Tuple[float, float] = (0.0, 0.0),
-        velocity: Tuple[float, float] = (0.0, 0.0),
+        center_of_gravity: tuple[float, float] = (0.0, 0.0),
+        velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
     ):
         """Adds Mobjects to the physical space as static bodies.
@@ -189,10 +189,10 @@ class SpaceScene(ZoomedScene):
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
-        surface_velocity: Tuple[float, float] = (0.0, 0.0),
+        surface_velocity: tuple[float, float] = (0.0, 0.0),
         # body-related
-        center_of_gravity: Tuple[float, float] = (0.0, 0.0),
-        velocity: Tuple[float, float] = (0.0, 0.0),
+        center_of_gravity: tuple[float, float] = (0.0, 0.0),
+        velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
     ):
         """Adds Mobjects to the physical space as static bodies.
@@ -263,10 +263,10 @@ class SpaceScene(ZoomedScene):
         friction: float = 0.8,
         density: float = 1.0,
         sensor: bool = False,
-        surface_velocity: Tuple[float, float] = (0.0, 0.0),
+        surface_velocity: tuple[float, float] = (0.0, 0.0),
         # body-related
-        center_of_gravity: Tuple[float, float] = (0.0, 0.0),
-        velocity: Tuple[float, float] = (0.0, 0.0),
+        center_of_gravity: tuple[float, float] = (0.0, 0.0),
+        velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
     ):
         """Adds Mobjects to the physical space as static bodies.
@@ -578,8 +578,8 @@ class SpaceScene(ZoomedScene):
     def apply_force_at_local_point(
         self,
         *mobs: Mobject,
-        force: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        force: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Apply a continuous force to each given Mobject at a local point
         relative to the body's center.
@@ -600,8 +600,8 @@ class SpaceScene(ZoomedScene):
     def apply_force_at_world_point(
         self,
         *mobs: Mobject,
-        force: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        force: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Apply a continuous force to each given Mobject at a point in
         world (scene) coordinates.
@@ -623,8 +623,8 @@ class SpaceScene(ZoomedScene):
     def apply_impulse_at_local_point(
         self,
         *mobs: Mobject,
-        impulse: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        impulse: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Apply an instantaneous impulse to each given Mobject at a local
         point relative to the body's center.
@@ -645,8 +645,8 @@ class SpaceScene(ZoomedScene):
     def apply_impulse_at_world_point(
         self,
         *mobs: Mobject,
-        impulse: Tuple[float, float, float],
-        point: Tuple[float, float, float] = (0, 0, 0),
+        impulse: tuple[float, float, float],
+        point: tuple[float, float, float] = (0, 0, 0),
     ):
         """Apply an instantaneous impulse to each given Mobject at a point
         in world (scene) coordinates.
@@ -666,7 +666,7 @@ class SpaceScene(ZoomedScene):
 
     # pos utils
     def local_to_world(
-        self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
+        self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ):
         """Convert a point from the Mobject's local body coordinates to
         world (scene) coordinates.
@@ -681,7 +681,7 @@ class SpaceScene(ZoomedScene):
         self.vspace.local_to_world(mob, point)
 
     def world_to_local(
-        self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
+        self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ):
         """Convert a point from world (scene) coordinates to the Mobject's
         local body coordinates.
@@ -746,8 +746,8 @@ class SpaceScene(ZoomedScene):
 
     # get velocity info
     def get_velocity_at_local_point(
-        self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    )-> Tuple[float, float, float]:
+        self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    )-> tuple[float, float, float]:
         """Return the velocity of a point on the Mobject's body expressed
         in local body coordinates.
 
@@ -766,8 +766,8 @@ class SpaceScene(ZoomedScene):
         return self.vspace.velocity_at_local_point(mob, point)
 
     def velocity_at_world_point(
-        self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
-    )-> Tuple[float, float, float]:
+        self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
+    )-> tuple[float, float, float]:
         """Return the velocity of a point on the Mobject's body expressed
         in world (scene) coordinates.
 
@@ -787,7 +787,7 @@ class SpaceScene(ZoomedScene):
 
     # get point info
     def get_point_query_info(
-        self, mob: Mobject, point: Tuple[float, float, float] = (0, 0, 0)
+        self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> list:
         """Query which shapes of the Mobject contain or are closest to a
         given point in world coordinates.
@@ -811,8 +811,8 @@ class SpaceScene(ZoomedScene):
     def get_line_query(
         self,
         mob: Mobject,
-        start: Tuple[float, float, float],
-        end: Tuple[float, float, float],
+        start: tuple[float, float, float],
+        end: tuple[float, float, float],
         stroke_width: float,
     ) -> list:
         """Perform a segment (line) query against the Mobject's shapes,

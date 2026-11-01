@@ -50,7 +50,7 @@ class OrbitalBase(OpenGLSurface):
         Scale factor applied to the orbital surface. 
     **kwargs
         Additional keyword arguments forwarded to
-        :class:`~manim.mobject.three_d.three_dimensional_space_opengl.OpenGLSurface`.
+        OpenGLSurface.
     """
 
     def add_background_rectangle_to_family_members_with_points(self):
@@ -207,7 +207,7 @@ class Orbital(OpenGLSurface):
 
     .. important::
 
-       :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface` requires
+       OpenGLSurface requires
        the OpenGL renderer; render scenes containing orbitals with
        ``manim render --renderer=opengl``.
 
@@ -223,7 +223,7 @@ class Orbital(OpenGLSurface):
     size
         Scale of the orbital surface. 
     **kwargs
-        Additional keyword arguments passed to :class:`~manim.mobject.opengl.opengl_surface.OpenGLSurface`.
+        Additional keyword arguments passed to OpenGLSurface.
     """
 
     def __init__(self, n: Optional[int]=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):

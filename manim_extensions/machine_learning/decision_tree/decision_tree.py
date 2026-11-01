@@ -489,7 +489,7 @@ class DecisionTreeDiagram(Group):
         node_expand_order
             Node indices in the order they should be expanded, as returned
             by the traversal helpers in
-            :mod:`~manim_extensions.machine_learning.decision_tree.helpers`.
+            `helpers` module.
         """
         # Show the root node as a leaf node
         # Iterate through the nodes in the traversal order

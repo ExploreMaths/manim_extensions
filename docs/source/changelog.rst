@@ -286,7 +286,7 @@ v1.0.4
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
 * Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
-  (:attr:`~manim.constants.LEFT`, :attr:`~manim.constants.DOWN`, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
+  (LEFT, DOWN, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
   inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
   in TikZ docstrings, and CJK font detection on Linux.
@@ -302,7 +302,7 @@ v1.0.4
 * Removed gray text / titles from :class:`~manim_extensions.compass.scene.compass_scene.CompassExample`
   and ensured all geometry elements are centered.
 * Fixed ``check_redundant_imports.py`` false positives: no longer flags
-  explicitly-imported names (e.g. :class:`~manim.mobject.opengl.opengl_compatibility.ConvertToOpenGL`) when ``from manim import *``
+  explicitly-imported names (e.g. ConvertToOpenGL) when ``from manim import *``
   is absent and those names are not covered by star exports.
 * Fixed ``validate_refs.py`` false positives: separated project class map
   (``manim_extensions``) from installed ``manim`` so that manim-internal names

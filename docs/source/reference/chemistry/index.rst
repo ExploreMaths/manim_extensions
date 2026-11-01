@@ -55,7 +55,7 @@ libraries on their own.
 ^^^^^^^^^^^^^
 
 Build a 2-D molecule from a ``.mol`` file with
-:meth:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file`:
+AbstractMolecule.molecule_from_file():
 
 .. code-block:: python
 

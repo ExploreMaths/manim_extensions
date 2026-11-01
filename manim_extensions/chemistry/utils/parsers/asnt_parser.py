@@ -134,7 +134,7 @@ class ASNTParser(BaseParser):
         return line
 
     @staticmethod
-    def data_parser(data: list[str]) -> Tuple[Dict, Dict] | List[Tuple[Dict, Dict]]:
+    def data_parser(data: list[str]) -> tuple[Dict, Dict] | List[tuple[Dict, Dict]]:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:

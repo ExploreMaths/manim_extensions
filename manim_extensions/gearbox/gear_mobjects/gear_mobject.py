@@ -311,7 +311,7 @@ class Gear(VMobject):
     """A Manim mobject representing an involute gear.
 
     The gear is constructed from involute curves and can mesh with other
-    :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack` objects) using :meth:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear.mesh_to`.
+    :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack` objects) using Gear.mesh_to.
 
     Two gears mesh correctly when they share the same *module* and *alpha*
     (pressure angle). The pitch-circle radius of a gear is

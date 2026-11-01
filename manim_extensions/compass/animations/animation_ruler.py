@@ -30,7 +30,7 @@ class PutRuler(ApplyMethod):
         end
             The end point.
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------
@@ -71,7 +71,7 @@ class PutRulerAway(PutRuler):
         is_flat
             Whether to place it horizontally (or vertically).
         **kwargs
-            Additional keyword arguments forwarded to :class:`~.ApplyMethod`.
+            Additional keyword arguments forwarded to :class:`~manim.animation.transform.ApplyMethod`.
 
     Examples
     --------

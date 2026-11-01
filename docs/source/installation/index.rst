@@ -94,7 +94,7 @@ LaTeX requirements
 
 If you want to use :class:`~manim_extensions.mobjects.ChineseMathTex`, make
 sure ``xelatex`` and the ``xeCJK`` LaTeX package are available on your system.
-For English-only formulas, Manim's default :class:`~manim.MathTex` works
+For English-only formulas, Manim's default :class:`~manim.mobject.text.tex_mobject.MathTex` works
 without additional LaTeX packages.
 
 Building the documentation

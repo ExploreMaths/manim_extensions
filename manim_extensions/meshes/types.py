@@ -18,21 +18,21 @@ import numpy as np
 VarArray = List[np.ndarray]
 
 # vertex can be an array or an iterable of ints or floats
-Vertex = Union[np.ndarray, List[Union[int, float]], Tuple[Union[int, float], ...]]
+Vertex = Union[np.ndarray, List[Union[int, float]], tuple[Union[int, float], ...]]
 # vertices has to be a two-dimensional np.ndarray
 Vertices = np.ndarray
 
 # all faces reference vertices by id and therefore have to be integers
-Face = Union[np.ndarray, List[int], Tuple[int, ...]]
+Face = Union[np.ndarray, List[int], tuple[int, ...]]
 Faces = VarArray
 
 # all parts reference faces by id and therefore have to be integers
-Part = Union[np.ndarray, List[int], Tuple[int, ...]]
+Part = Union[np.ndarray, List[int], tuple[int, ...]]
 Parts = VarArray
 
 # an edge is a line from one vertex_id to another
-Edge = Tuple[int, int]
+Edge = tuple[int, int]
 Edges = List[Edge]
 
 Parameters = Dict[str, Any]
-DefaultParameters = Dict[str, Tuple[type, Any]]
+DefaultParameters = Dict[str, tuple[type, Any]]

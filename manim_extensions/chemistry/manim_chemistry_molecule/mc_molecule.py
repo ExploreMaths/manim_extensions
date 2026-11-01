@@ -35,9 +35,9 @@ class MCMolecule:
     Parameters
     ----------
     atoms
-        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCAtom` objects of the molecule. 
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` objects of the molecule. 
     bonds
-        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.MCBond` objects of the molecule. 
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects of the molecule. 
     name
         Name of the molecule. 
     elements

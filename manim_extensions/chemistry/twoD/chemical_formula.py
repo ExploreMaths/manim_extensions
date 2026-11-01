@@ -24,9 +24,9 @@ class ChemicalFormula(MarkupText):
     oxygen_color
         Color of the oxygen element. 
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
+        Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.MarkupText`.
+        Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     """
 
     def __init__(
@@ -167,9 +167,9 @@ class NamedFormula(VGroup):
         Direction in which the name is placed relative to the formula.
         
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
+        Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.VGroup`.
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
@@ -267,9 +267,9 @@ class ComplexFormula(MarkupText):
     formula_dict
         Dictionary mapping formula strings to their colors.
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.MarkupText`.
+        Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula.MarkupText`.
+        Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     """
 
     def __init__(self, formula_dict: dict, *args, **kwargs):
@@ -351,9 +351,9 @@ class NamedComplexFormula(VGroup):
     buff
         Distance between the formula and its name. 
     args
-        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
+        Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs
-        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula.VGroup`.
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
