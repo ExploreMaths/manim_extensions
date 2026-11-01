@@ -20,6 +20,9 @@ constraint and mobject classes (springs, pin joints, gears, etc.).
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.pymunk`` subpackage.
 
+.. inheritance-diagram:: manim_extensions.pymunk.custom_mobjects.apple.Apple manim_extensions.pymunk.custom_mobjects.gear.Gear manim_extensions.pymunk.space.SpaceScene.SpaceScene manim_extensions.pymunk.constraints.constraint.VConstraint manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring manim_extensions.pymunk.constraints.VGearJoint.VGearJoint manim_extensions.pymunk.constraints.VGrooveJoint.VGrooveJoint manim_extensions.pymunk.constraints.VPinJoint.VPinJoint manim_extensions.pymunk.constraints.VPivotJoint.VPivotJoint manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint manim_extensions.pymunk.space.VSpace.VSpace manim_extensions.pymunk.custom_mobjects.v_spring.VSpring
+   :parts: 1
+
 Features
 --------
 
@@ -31,7 +34,7 @@ Features
 - Visual constraints: :class:`~manim_extensions.pymunk.constraints.VPinJoint.VPinJoint`, :class:`~manim_extensions.pymunk.constraints.VPivotJoint.VPivotJoint`, :class:`~manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring`,
   :class:`~manim_extensions.pymunk.constraints.VGearJoint.VGearJoint`, :class:`~manim_extensions.pymunk.constraints.VGrooveJoint.VGrooveJoint`, :class:`~manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint`, :class:`~manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint`,
   :class:`~manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor`, :class:`~manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint`, :class:`~manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring`.
-- Custom mobjects: :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`, :class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple`, :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.
+- Custom mobjects: :class:`~manim_extensions.pymunk.custom_mobjects.v_spring.VSpring`, :class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple`, :class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear`.
 
 Usage
 -----
@@ -102,6 +105,7 @@ the body-adding calls, with sensible defaults provided.
    :hidden:
    :maxdepth: 1
 
-   classes
-   functions
-   constants
+   custom_mobjects
+   space
+   constraints
+   utils
