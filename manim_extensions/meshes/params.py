@@ -13,7 +13,7 @@ from manim import ManimColor
 # python imports
 
 # third-party imports
-import manim as m
+from manim import BLUE, BLUE_D, BLUE_E, GREEN, GREY, LIGHT_GREY
 
 # local imports
 from .exceptions import BadParameterException
@@ -31,11 +31,11 @@ BM3DM: DefaultParameters = {
     "clear_vertices": (bool, True),
     "clear_edges": (bool, True),
     "clear_faces": (bool, True),
-    "edges_color": (ManimColor, ManimColor(m.BLUE)),
+    "edges_color": (ManimColor, ManimColor(BLUE)),
     "edges_width": (float, 0.1),
-    "faces_color": (ManimColor, ManimColor(m.BLUE_D)),
+    "faces_color": (ManimColor, ManimColor(BLUE_D)),
     "faces_opacity": (float, 0.4),
-    "verts_color": (ManimColor, ManimColor(m.GREEN)),
+    "verts_color": (ManimColor, ManimColor(GREEN)),
     "verts_size": (float, 0.04),
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
@@ -48,11 +48,11 @@ BM2DM: DefaultParameters = {
     "clear_vertices": (bool, True),
     "clear_edges": (bool, True),
     "clear_faces": (bool, True),
-    "edges_color": (ManimColor, ManimColor(m.LIGHT_GREY)),
+    "edges_color": (ManimColor, ManimColor(LIGHT_GREY)),
     "edges_width": (float, 1.5),
-    "faces_color": (ManimColor, ManimColor(m.BLUE_E)),
+    "faces_color": (ManimColor, ManimColor(BLUE_E)),
     "faces_opacity": (float, 1.0),
-    "verts_color": (ManimColor, ManimColor(m.GREEN)),
+    "verts_color": (ManimColor, ManimColor(GREEN)),
     "verts_size": (float, 0.02),
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
@@ -64,7 +64,7 @@ BM2DM: DefaultParameters = {
 def _build_oglm() -> DefaultParameters:
     moderngl = require("meshes", "moderngl")
     return {
-        "color": (ManimColor, ManimColor(m.GREY)),
+        "color": (ManimColor, ManimColor(GREY)),
         "depth_test": (bool, True),
         "gloss": (float, 0.3),
         "opacity": (float, 1.0),

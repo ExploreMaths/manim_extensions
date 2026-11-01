@@ -81,7 +81,7 @@ class MagneticField(ArrowVectorField):
     .. manim:: MagneticFieldExample
        :save_last_frame:
 
-       from manim import Circle, Create, FadeIn, PI, ThreeDScene, UP
+       from manim import *
        from manim_extensions.physics import MagneticField, Wire
 
        class MagneticFieldExample(ThreeDScene):

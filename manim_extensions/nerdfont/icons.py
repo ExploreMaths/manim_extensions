@@ -25,7 +25,7 @@
 """Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
 
 from manim import Text
-import manim as m
+from manim import register_font
 
 import importlib.resources as pkg_resources
 import os
@@ -111,7 +111,7 @@ class NerdFontIcon(Text):
         """Construct a Nerd Font icon mobject."""
         font_path = _font_path()
         _install_font_linux()
-        with m.register_font(font_path):
+        with register_font(font_path):
             kwargs["font"] = "Symbols Nerd Font Mono"
             if isinstance(icon, str):
                 if icon in SYMBOLS_UNICODE:

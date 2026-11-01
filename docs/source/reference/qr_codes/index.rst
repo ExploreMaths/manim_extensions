@@ -32,12 +32,12 @@ Usage
    :save_last_frame:
    :ref_functions: qr_code
 
-   import manim as m
+   from manim import *
 
    from manim_extensions.qr_codes.qr import qr_code
 
 
-   class MyQrCodeScene(m.Scene):
+   class MyQrCodeScene(Scene):
 
        def construct(self):
 
@@ -48,12 +48,12 @@ Usage
                icon_size=6,
            )
 
-           qr_code_group = m.VGroup(
+           qr_code_group = VGroup(
                qr_code_without_icon,
-               qr_code_with_icon).arrange(m.RIGHT, buff=0.75)
+               qr_code_with_icon).arrange(RIGHT, buff=0.75)
 
-           label = m.Text("https://fishshell.com")
-           label.to_edge(m.UP, buff=0.75)
+           label = Text("https://fishshell.com")
+           label.to_edge(UP, buff=0.75)
 
            self.add(qr_code_group, label)
 

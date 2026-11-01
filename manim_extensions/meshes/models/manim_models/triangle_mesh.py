@@ -8,7 +8,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 # third-party imports
-import manim as m
+from manim import Scene
 import numpy as np
 
 # local imports
@@ -77,7 +77,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         )
 
     def edge_flip(
-        self, scene: m.Scene, face_idx_1: int, face_idx_2: int, **kwargs
+        self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs
     ):
         """Flip the shared edge between two adjacent triangle faces.
 

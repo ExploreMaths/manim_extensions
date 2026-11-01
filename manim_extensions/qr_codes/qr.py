@@ -10,7 +10,7 @@ This module provides QR code generation functionality with customization options
 from typing import Any
 from types import ModuleType
 
-import manim as m
+from manim import Circle, DOWN, ManimColor, ORIGIN, RIGHT, Rectangle, VGroup, WHITE
 
 from ..utils.deps import require
 
@@ -18,17 +18,17 @@ from ..utils.deps import require
 def qr_code(payload: str,
             corner_size: int = 7,
             icon: str | int | None = None,
-            icon_color: str | m.ManimColor | None = None,
+            icon_color: str | ManimColor | None = None,
             icon_size: float = 10,  # in qr pixel
             icon_margin_size: float = 0.1,  # in qr pixel
-            white_color: str | m.ManimColor | None = None,
-            corner_color: str | m.ManimColor | None = None,
+            white_color: str | ManimColor | None = None,
+            corner_color: str | ManimColor | None = None,
             data_shape: str = 'rectangles',
             rectangles_kwargs: dict[str, object] | None = None,
             circle_kwargs: dict[str, object] | None = None,
             error_correction: str = 'H',
             segno_kwargs: dict[str, object] | None = None,
-            **kwargs: Any, ) -> m.VGroup:
+            **kwargs: Any, ) -> VGroup:
     """
     Create a QR code as a VGroup of Manim objects.
     This function uses the segno library to generate a QR code and then converts it into Manim objects.
@@ -93,7 +93,7 @@ def qr_code(payload: str,
     .. manim:: QrCodeDocExample
        :save_last_frame:
 
-       import manim as m
+       from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
        class QrCodeDocExample(m.Scene):
@@ -104,14 +104,14 @@ def qr_code(payload: str,
                    icon="terminal",
                    icon_size=6,
                )
-               group = m.VGroup(plain, with_icon).arrange(m.RIGHT, buff=0.75)
+               group = VGroup(plain, with_icon).arrange(RIGHT, buff=0.75)
                label = m.Text("https://fishshell.com")
                label.to_edge(m.UP, buff=0.75)
                self.add(group, label)
 
     .. manim:: QrCodeShapesExample
 
-       import manim as m
+       from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
        class QrCodeShapesExample(m.Scene):
@@ -127,9 +127,9 @@ def qr_code(payload: str,
                self.wait(1)
     """
     if icon_color is None:
-        icon_color = m.WHITE
+        icon_color = WHITE
     if white_color is None:
-        white_color = m.WHITE
+        white_color = WHITE
     if corner_color is None:
         corner_color = white_color
     if data_shape not in ['circles', 'rectangles']:
@@ -158,13 +158,13 @@ def qr_code(payload: str,
             corner_positions.add((size - 1 - i, j))
 
     # Create a VGroup to hold all the elements
-    qr_data_group = m.VGroup()
-    qr_corner_group = m.VGroup()
+    qr_data_group = VGroup()
+    qr_corner_group = VGroup()
 
     # Draw a rectangle or circle for each module of the QR code, except for the corner elements
     for y, row in enumerate(matrix):
         for x, is_white_qr_pixel in enumerate(row):
-            current_elem: m.Rectangle | m.Circle | None = None
+            current_elem: Rectangle | Circle | None = None
 
             if data_shape == 'rectangles' and is_white_qr_pixel:
                 default_rect_kwargs = {
@@ -176,10 +176,10 @@ def qr_code(payload: str,
                 }
                 rect_kwargs = {**default_rect_kwargs, **rectangles_kwargs}
 
-                rect = m.Rectangle(
+                rect = Rectangle(
                     **rect_kwargs
                 )
-                rect.move_to(m.DOWN * y + m.RIGHT * x)
+                rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect
 
             elif data_shape == 'circles' and is_white_qr_pixel:
@@ -190,10 +190,10 @@ def qr_code(payload: str,
                     'stroke_width': 0.5,
                 }
                 circle_kwargs = {**default_circle_kwargs, **circle_kwargs}
-                circle = m.Circle(
+                circle = Circle(
                     **circle_kwargs
                 )
-                circle.move_to(m.DOWN * y + m.RIGHT * x)
+                circle.move_to(DOWN * y + RIGHT * x)
                 current_elem = circle
 
             # override current_elem if it is a corner element
@@ -206,10 +206,10 @@ def qr_code(payload: str,
                     'stroke_width': 0.5,
                 }
                 corner_kwargs = {**default_corner_kwargs, **rectangles_kwargs}
-                rect = m.Rectangle(
+                rect = Rectangle(
                     **corner_kwargs
                 )
-                rect.move_to(m.DOWN * y + m.RIGHT * x)
+                rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect
 
                 qr_corner_group.add(current_elem)
@@ -218,8 +218,8 @@ def qr_code(payload: str,
             if current_elem is not None:
                 qr_data_group.add(current_elem)
 
-    qr_code_group = m.VGroup(qr_corner_group, qr_data_group)
-    qr_code_group.move_to(m.ORIGIN)
+    qr_code_group = VGroup(qr_corner_group, qr_data_group)
+    qr_code_group.move_to(ORIGIN)
 
     if icon is not None:
         # add icon to the center
@@ -236,7 +236,7 @@ def qr_code(payload: str,
         else:
             center_icon.scale_to_fit_height(icon_size - 2 * icon_margin_size)
 
-        center_icon_bounding_box = m.Rectangle(width=icon_size, height=icon_size, fill_opacity=0, stroke_width=0)
+        center_icon_bounding_box = Rectangle(width=icon_size, height=icon_size, fill_opacity=0, stroke_width=0)
         # filter out all the qr pixels that are inside the icon bounding box
         for qr_pixel in qr_data_group:
             pixel_x, pixel_y, _ = qr_pixel.get_center()

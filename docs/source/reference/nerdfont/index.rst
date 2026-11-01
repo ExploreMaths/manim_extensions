@@ -40,18 +40,18 @@ with the ``manim`` command.
    :ref_classes: NerdFontIcon
    :save_last_frame:
 
-   import manim as m
+   from manim import *
 
    from manim_extensions.nerdfont import NerdFontIcon
 
 
-   class NerdfontIconExample(m.Scene):
+   class NerdfontIconExample(Scene):
 
        def construct(self):
            # Set the background color
            self.camera.background_color = "#ece6e2"
 
-           icon = NerdFontIcon("language-python", color=m.BLUE)
+           icon = NerdFontIcon("language-python", color=BLUE)
 
            self.add(icon.scale(6))
 
@@ -74,5 +74,4 @@ Unicode codepoint to find the icon you want.
    :maxdepth: 1
 
    classes
-   functions
    constants

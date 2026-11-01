@@ -109,9 +109,6 @@ from base Manim in blue.
 Module Index
 ------------
 
-The module index below is also exposed as a navigable tree in the sidebar
-(hidden from the main content).
-
 .. toctree::
    :hidden:
    :maxdepth: 3
@@ -131,6 +128,7 @@ The module index below is also exposed as a navigable tree in the sidebar
    machine_learning/index
    meshes/index
    mindmap/index
+   nerdfont/index
    physics/index
    pymunk/index
    qr_codes/index
@@ -140,7 +138,6 @@ The module index below is also exposed as a navigable tree in the sidebar
    table/index
    tikz/index
    utils/index
-   nerdfont/index
    weighted_line/index
 
 .. module-index::
@@ -152,14 +149,14 @@ The module index below is also exposed as a navigable tree in the sidebar
    Chemistry = chemistry
    Circuit = circuit
    Compass = compass
-   Data structures = data_structures
+   Data Structures = data_structures
    Economics = economics
    Font Awesome = fontawesome
    GearBox = gearbox
    Machine Learning = machine_learning
    Meshes = meshes
-   Nerd Font = nerdfont
    MindMap = mindmap
+   Nerd Font Icons = nerdfont
    Physics = physics
    Pymunk = pymunk
    QR Codes = qr_codes

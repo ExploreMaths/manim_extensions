@@ -12,7 +12,7 @@ from typing import Any, List
 import numpy as np
 
 # third-party imports
-import manim as m
+from manim import Circle
 
 # local imports
 
@@ -56,7 +56,7 @@ def get_triangle_circum_circle_params(
 
 def get_circum_circle(
     triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
-) -> m.Circle:
+) -> Circle:
     """Create a Manim circle visualising the circumscribed circle of a face.
 
     Parameters
@@ -78,7 +78,7 @@ def get_circum_circle(
     center, radius = get_triangle_circum_circle_params(*vertices)
     if "stroke_width" not in kwargs:
         kwargs["stroke_width"] = 2
-    circ = m.Circle(radius, **kwargs)
+    circ = Circle(radius, **kwargs)
     circ.shift(center)
     return circ
 

@@ -12,7 +12,7 @@ import numpy as np
 
 # third-party imports
 from scipy.spatial import Voronoi  # pylint: disable = no-name-in-module
-import manim as m
+from manim import Circle, Dot, Line, ManimColor, ORANGE, Scene, VGroup, WHITE
 
 # local imports
 from ..models.manim_models.triangle_mesh import (
@@ -62,9 +62,9 @@ class VoronoiDelaunay:
                self.wait()
     """
 
-    def __init__(self, scene: m.Scene, triangle_mesh: TriangleManim2DMesh):
+    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
         """Initialise the Voronoi-Delaunay visualisation helper."""
-        self.scene: m.Scene = scene
+        self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         self.voronoi = Voronoi(verts[:, :2])
@@ -89,8 +89,8 @@ class VoronoiDelaunay:
         Based on the logic in :func:`~scipy.spatial.voronoi_plot_2d`.
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
-        vert_group = m.VGroup()
-        line_group = m.VGroup()
+        vert_group = VGroup()
+        line_group = VGroup()
 
         center = verts.mean(axis=0)
         ptp_bound = np.ptp(verts, axis=0)
@@ -102,11 +102,11 @@ class VoronoiDelaunay:
         ):
             segment = np.asarray(segment)
             if np.all(segment >= 0):  # finite segment
-                line = m.Line(
+                line = Line(
                     voronoi_vertices[segment[0]],
                     voronoi_vertices[segment[1]],
                     stroke_width=self.triangle_mesh.edges_width,
-                    color=m.WHITE,
+                    color=WHITE,
                 )
                 line_group.add(line)
             else:  # infinite segment
@@ -120,22 +120,22 @@ class VoronoiDelaunay:
                 direction = np.sign(np.dot(midpoint - center, n)) * n
                 far_point = voronoi_vertices[i] + direction * ptp_bound.max()
 
-                line = m.Line(
+                line = Line(
                     voronoi_vertices[i],
                     far_point,
                     stroke_width=self.triangle_mesh.edges_width,
-                    color=m.WHITE,
+                    color=WHITE,
                 )
                 line_group.add(line)
 
         # add voronoi vertices
         for vert in voronoi_vertices:
-            dot = m.Dot(vert, radius=self.triangle_mesh.verts_size, color=m.WHITE)
+            dot = Dot(vert, radius=self.triangle_mesh.verts_size, color=WHITE)
             vert_group.add(dot)
 
         return vert_group, line_group
 
-    def get_circum_circle(self, voronoi_vertex_index: int, color: m.ManimColor = m.ORANGE) -> m.Circle:
+    def get_circum_circle(self, voronoi_vertex_index: int, color: ManimColor = ORANGE) -> Circle:
         """Return the circumscribed circle of the triangle dual to a Voronoi vertex.
 
         The circle is centred at the Voronoi vertex and passes through the
@@ -163,7 +163,7 @@ class VoronoiDelaunay:
             if voronoi_vertex_index in segment:
                 vert_a = voronoi_vertices[voronoi_vertex_index]
                 vert_b = verts[point_indices[0]]
-                circle = m.Circle(
+                circle = Circle(
                     radius=np.linalg.norm(vert_b - vert_a), stroke_width=2, color=color
                 )
                 circle.shift(vert_a)
