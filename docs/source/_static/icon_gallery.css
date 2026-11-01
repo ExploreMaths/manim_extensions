@@ -9,6 +9,18 @@
     font-display: swap;
 }
 
+/* Theme switches and hover color changes are instant — no fades.
+   Only geometric motion (card lift / glyph scale) keeps a transition. */
+.ig-toolbar,
+.ig-search,
+.ig-card,
+.ig-glyph {
+    transition-property: transform, box-shadow;
+    transition-duration: 0.12s;
+}
+/* These color transitions are removed above via transition-property,
+   so the shorthand declarations below only ever animate transform. */
+
 /* ---------- toolbar ---------- */
 
 .ig-toolbar {
@@ -32,7 +44,6 @@
     border: 1px solid var(--color-card-border, #d0d0d0);
     border-radius: 0.5rem;
     outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .ig-search:focus {
@@ -72,8 +83,6 @@
     border-radius: 0.75rem;
     cursor: pointer;
     user-select: none;
-    transition: transform 0.12s ease, border-color 0.12s ease,
-                background-color 0.12s ease, box-shadow 0.12s ease;
 }
 
 .ig-card:hover {
@@ -92,7 +101,6 @@
     font-size: 2.6rem;
     line-height: 1;
     color: var(--color-foreground-primary, #1f1f1f);
-    transition: transform 0.12s ease;
 }
 
 .ig-card:hover .ig-glyph {
