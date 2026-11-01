@@ -116,28 +116,24 @@ window.addEventListener("load", function () {
                 edge: "#d0d0d0",
                 background: "#131416"
             };
-            // Node dark-mode adaptation, mirroring the link palette
-            // (custom.css + inheritance_colors.py): keep the light
-            // foreground text on a deeper fill.  Manim uses the Note
-            // blue family (#CCD3FF/#00B0FF -> deep blue #005F99/
-            // #CCD3FF), manim_extensions the Important teal family
-            // (#CCF2ED/#00BFA5 -> deep teal #00544A/#CCF2ED), Python
-            // white/black -> #26282B/#D0D0D0.
+            // Node dark-mode adaptation: use Furo's own admonition
+            // background variables (rgba tints), which Furo keeps
+            // theme-independent.  On the dark SVG background (#131416)
+            // the rgba tint blends to Furo's native dark admonition look,
+            // exactly as on the page; the node text keeps Furo's native
+            // --color-admonition-title--seealso / --color-admonition-title--
+            // --important colours (also theme-independent).  Python
+            // nodes (light fill white) get a neutral dark fill, and
+            // unfilled text turns light grey for the dark canvas.
             additions = `
             g.node polygon[fill="#ccf2ed"] {
-                fill: #00544a;
+                fill: rgba(0, 191, 165, 0.2);
             }
-            g.node polygon[fill="#ccd3ff"] {
-                fill: #005f99;
+            g.node polygon[fill="#dae8ff"] {
+                fill: rgba(68, 138, 255, 0.2);
             }
             g.node polygon[fill="white"] {
                 fill: #26282b;
-            }
-            g.node text[fill="#00bfa5"] {
-                fill: #ccf2ed;
-            }
-            g.node text[fill="#00b0ff"] {
-                fill: #ccd3ff;
             }
             g.node text:not([fill]) {
                 fill: #d0d0d0;

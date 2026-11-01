@@ -158,13 +158,13 @@ code.literal {
 }
 
 .inheritance-legend .manim-swatch {
-    background-color: #CCD3FF;
-    border-color: #00B0FF;
+    background-color: var(--color-admonition-title-background--seealso);
+    border-color: var(--color-admonition-title--seealso);
 }
 
 .inheritance-legend .extensions-swatch {
-    background-color: #CCF2ED;
-    border-color: #00BFA5;
+    background-color: var(--color-admonition-title-background--important);
+    border-color: var(--color-admonition-title--important);
 }
 
 .inheritance-legend .python-swatch {
@@ -216,7 +216,7 @@ dd p.rubric::after {
    manim_extensions targets, .ref-manim for manim targets).  Only the text
    colour is changed — the background keeps Furo's default inline-code
    fill, the same as plain inline code.  Manim targets use Furo's Caution
-   admonition colour (--color-admonition-title--note) and
+   admonition colour (--color-admonition-title--seealso) and
    manim_extensions targets Furo's Important admonition colour
    (--color-admonition-title--important).  Both are referenced as theme
    variables, so light and dark follow the active theme automatically.
@@ -228,7 +228,7 @@ a.reference.ref-ext code.xref:hover {
 }
 a.reference.ref-manim code.xref,
 a.reference.ref-manim code.xref:hover {
-    color: var(--color-admonition-title--note);
+    color: var(--color-admonition-title--seealso);
 }
 /* Color-name literals linked by the default_value_links extension put the
    reference *inside* the code element (``code > a``), the reverse of
@@ -239,7 +239,7 @@ a.reference.ref-manim code.xref:hover {
    like any other inline code. */
 code.docutils.literal.color-link-manim a.reference,
 code.docutils.literal.color-link-manim a.reference:hover {
-    color: var(--color-admonition-title--note);
+    color: var(--color-admonition-title--seealso);
 }
 code.docutils.literal.color-link-ext a.reference,
 code.docutils.literal.color-link-ext a.reference:hover {
@@ -255,7 +255,7 @@ a.reference[href*="#manim_extensions."]:not(.default_value) code {
 }
 a.reference[href*="#manim."]:not(.default_value),
 a.reference[href*="#manim."]:not(.default_value) code {
-    color: var(--color-admonition-title--note);
+    color: var(--color-admonition-title--seealso);
 }
 /* Python-standard-library cross-references inside autodoc attribute and
    property blocks (dl.py.attribute, dl.py.property): keep them unstyled —
@@ -318,31 +318,17 @@ dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
 .toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."]:hover {
     color: var(--color-toc-item-text--active);
 }
-/* Dark theme: legend swatches follow the same deep fills as the
-   dark-adapted diagram nodes (responsiveSvg.js) so the legend stays
-   consistent with the nodes it describes.  Manim uses the Note
-   blue family, manim_extensions the Important teal family. */
-body[data-theme="dark"] .inheritance-legend .manim-swatch {
-    background-color: #005F99;
-    border-color: #CCD3FF;
-}
-body[data-theme="dark"] .inheritance-legend .extensions-swatch {
-    background-color: #00544A;
-    border-color: #CCF2ED;
-}
+/* Dark theme: manim / manim_extensions legend swatches use Furo's own
+   admonition variables (--color-admonition-title-background--seealso /
+   --color-admonition-title-background--important), which Furo keeps
+   theme-independent — the rgba tint blends with the dark page background
+   exactly like Furo's admonitions do.  Only the Python swatch needs an
+   explicit dark fill (its light fill is plain white). */
 body[data-theme="dark"] .inheritance-legend .python-swatch {
     background-color: #26282B;
     border-color: #D0D0D0;
 }
 @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) .inheritance-legend .manim-swatch {
-        background-color: #005F99;
-        border-color: #CCD3FF;
-    }
-    body:not([data-theme="light"]) .inheritance-legend .extensions-swatch {
-        background-color: #00544A;
-        border-color: #CCF2ED;
-    }
     body:not([data-theme="light"]) .inheritance-legend .python-swatch {
         background-color: #26282B;
         border-color: #D0D0D0;
@@ -363,7 +349,7 @@ dt.sig-object.py .property > a.reference.ref-ext {
 }
 dt.sig-object.py .property > .sig-type-ref-manim,
 dt.sig-object.py .property > a.reference.ref-manim {
-    color: var(--color-admonition-title--note);
+    color: var(--color-admonition-title--seealso);
 }
 
 /* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
@@ -542,7 +528,7 @@ dl.py.property > dt.sig a.headerlink {
    objects.  Only the text colour changes; no background. */
 a.default_value.reference.internal.ref-manim,
 a.default_value.reference.internal.ref-manim:hover {
-    color: var(--color-admonition-title--note);
+    color: var(--color-admonition-title--seealso);
 }
 a.default_value.reference.internal.ref-ext,
 a.default_value.reference.internal.ref-ext:hover {
