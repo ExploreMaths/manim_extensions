@@ -96,7 +96,7 @@ def qr_code(payload: str,
        from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
-       class QrCodeDocExample(m.Scene):
+       class QrCodeDocExample(Scene):
            def construct(self):
                plain = qr_code("https://fishshell.com")
                with_icon = qr_code(
@@ -105,8 +105,8 @@ def qr_code(payload: str,
                    icon_size=6,
                )
                group = VGroup(plain, with_icon).arrange(RIGHT, buff=0.75)
-               label = m.Text("https://fishshell.com")
-               label.to_edge(m.UP, buff=0.75)
+               label = Text("https://fishshell.com")
+               label.to_edge(UP, buff=0.75)
                self.add(group, label)
 
     .. manim:: QrCodeShapesExample
@@ -114,16 +114,16 @@ def qr_code(payload: str,
        from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
-       class QrCodeShapesExample(m.Scene):
+       class QrCodeShapesExample(Scene):
            def construct(self):
                rust = qr_code("https://www.rust-lang.org/", icon="language-rust",
                               data_shape="circles")
-               self.play(m.FadeIn(rust))
+               self.play(FadeIn(rust))
                self.wait(1)
                python = qr_code("https://www.python.org/", icon="language-python",
-                                data_shape="circles", corner_color=m.BLUE,
-                                icon_color=m.YELLOW, icon_size=4)
-               self.play(m.ReplacementTransform(rust, python))
+                                data_shape="circles", corner_color=BLUE,
+                                icon_color=YELLOW, icon_size=4)
+               self.play(ReplacementTransform(rust, python))
                self.wait(1)
     """
     if icon_color is None:
