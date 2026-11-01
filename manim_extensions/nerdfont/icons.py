@@ -78,9 +78,8 @@ class NerdFontIcon(Text):
     """
     A Nerd Font icon mobject rendered with the Symbols Nerd Font Mono font.
 
-    Please have a look at the documentation for an exhaustive list of available icons.
-
-    https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
+    Please have a look at the :doc:`icon_gallery` for an exhaustive list of
+    available icons.
 
     Parameters
     ----------
