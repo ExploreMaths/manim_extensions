@@ -102,7 +102,7 @@ from base Manim in blue.
    manim_extensions.table.row.Row
    manim_extensions.table.cell.Cell
    manim_extensions.weighted_line.weighted_line.WeightedLine
-   manim_extensions.utils.nerdfont.icons.NerdFontIcon
+   manim_extensions.nerdfont.icons.NerdFontIcon
    :parts: 1
    :top-classes: manim.mobject.mobject.Mobject, manim.animation.animation.Animation, manim.mobject.types.vectorized_mobject.VMobject, manim.mobject.types.vectorized_mobject.SVGMobject, manim.mobject.geometry.line.Line, manim.animation.composition.AnimationGroup
 
@@ -140,6 +140,7 @@ The module index below is also exposed as a navigable tree in the sidebar
    table/index
    tikz/index
    utils/index
+   nerdfont/index
    weighted_line/index
 
 .. module-index::
@@ -157,6 +158,7 @@ The module index below is also exposed as a navigable tree in the sidebar
    GearBox = gearbox
    Machine Learning = machine_learning
    Meshes = meshes
+   Nerd Font = nerdfont
    MindMap = mindmap
    Physics = physics
    Pymunk = pymunk

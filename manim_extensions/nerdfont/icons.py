@@ -41,7 +41,7 @@ _font_installed = False
 
 
 def _font_path() -> str:
-    return str(pkg_resources.files("manim_extensions.utils.nerdfont") / _FONT_FILENAME)
+    return str(pkg_resources.files("manim_extensions.nerdfont") / _FONT_FILENAME)
 
 
 def _install_font_linux():
@@ -99,7 +99,7 @@ class NerdFontIcon(Text):
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.utils.nerdfont import NerdFontIcon
+       from manim_extensions.nerdfont import NerdFontIcon
 
        class NerdFontIconExample(Scene):
            def construct(self):

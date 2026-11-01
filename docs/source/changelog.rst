@@ -8,7 +8,7 @@ v1.0.6 :bdg-primary-line:`In development`
 
 **Added**
 
-* Added :class:`~manim_extensions.utils.nerdfont.icons.NerdFontIcon` (a class replacing the earlier ``nerdfont_icon``
+* Added :class:`~manim_extensions.nerdfont.icons.NerdFontIcon` (a class replacing the earlier ``nerdfont_icon``
   function) for rendering Nerd Font glyphs as ``ImageMobject`` instances.
 * Added :class:`~manim_extensions.arabic.text.ArabicTemplate` and :class:`~manim_extensions.arabic.text.ArabicText` classes, replacing the
   ``create_arabic_*`` helper functions, for shaping and rendering Arabic
@@ -89,7 +89,7 @@ v1.0.5 :bdg-success-line:`Latest`
   ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
   ``svg_animations``, ``table``, and ``weighted_line`` — plus
   ``manim-nerdfont-icons`` 1.0.2, vendored as
-  ``manim_extensions.utils.nerdfont`` because its PyPI metadata pins
+  ``manim_extensions.nerdfont`` because its PyPI metadata pins
   ``manim>=0.19,<0.20`` (code and font licensed separately, font shipped
   as package data).
 * Added API reference documentation for every bundled package, with a

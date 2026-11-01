@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-# patched: use vendored manim_extensions.utils.nerdfont instead of the manim-nerdfont-icons package; lazy-import segno (qr extra)
+# patched: use vendored manim_extensions.nerdfont instead of the manim-nerdfont-icons package; lazy-import segno (qr extra)
 """QR code generation for Manim.
 
 This module provides QR code generation functionality with customization options.
@@ -223,7 +223,7 @@ def qr_code(payload: str,
 
     if icon is not None:
         # add icon to the center
-        from ..utils.nerdfont import NerdFontIcon
+        from ..nerdfont import NerdFontIcon
 
         center_icon = NerdFontIcon(icon)
         center_icon.set_color(icon_color)

@@ -21,10 +21,9 @@ The code is bundled inside ``manim_extensions`` as the
 
 .. important::
 
-   The optional ``icon`` argument requires the ``manim-nerdfont-icons``
-   package, which is not declared as a dependency (its PyPI metadata pins
-   ``manim<0.20``). Install it separately with
-   ``pip install --no-deps manim-nerdfont-icons``.
+   The optional ``icon`` argument uses the bundled
+   :class:`~manim_extensions.nerdfont.icons.NerdFontIcon`, so no separate
+   install is required.
 
 Usage
 -----
