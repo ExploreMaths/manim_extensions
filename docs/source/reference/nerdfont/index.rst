@@ -58,13 +58,13 @@ with the ``manim`` command.
 Icon sets and lookup
 --------------------
 
-The library ships about 10 000 icons. The upstream
+The library ships about 10 000 icons. See :doc:`icon_gallery` for a
+searchable, filterable gallery of every icon (name, Unicode codepoint and
+glyph preview); the upstream
 `icon gallery <https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html>`_
-lists them all in a table of icon name, Unicode codepoint, integer value
-and glyph preview; the upstream
-`home page <https://manim-nerdfont-icons.readthedocs.io/en/latest/>`_ also
-collects an example gallery of short code snippets with their output. To
-look icons up by glyph shape, use the `Nerd Font Cheat Sheet
+and `home page <https://manim-nerdfont-icons.readthedocs.io/en/latest/>`_
+collect the same data as tables and short code snippets. To look icons up
+by glyph shape, use the `Nerd Font Cheat Sheet
 <https://www.nerdfonts.com/cheat-sheet>`_; note that the cheat-sheet names
 do not always match the names in this library — in that case use the
 Unicode codepoint to find the icon you want.
@@ -75,3 +75,4 @@ Unicode codepoint to find the icon you want.
 
    classes
    constants
+   icon_gallery

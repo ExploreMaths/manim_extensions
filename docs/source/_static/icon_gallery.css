@@ -1,0 +1,127 @@
+/* Icon Gallery — Nerd Font symbols grid.
+   Designed to match the Furo theme (light/dark via CSS variables). */
+
+@font-face {
+    font-family: "Nerd Font Symbols";
+    src: url("fonts/SymbolsNerdFontMono-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------- toolbar ---------- */
+
+.ig-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.25rem 0 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-card-border, #d0d0d0);
+    border-radius: 0.75rem;
+    background: var(--color-background-secondary, #f6f6f6);
+}
+
+.ig-search {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.95rem;
+    color: var(--color-foreground-primary, #1f1f1f);
+    background: var(--color-background-primary, #ffffff);
+    border: 1px solid var(--color-card-border, #d0d0d0);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ig-search:focus {
+    border-color: var(--color-link, #3b82f6);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-link, #3b82f6) 18%, transparent);
+}
+
+.ig-search::placeholder {
+    color: var(--color-foreground-secondary, #6b6b6b);
+}
+
+.ig-count {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-foreground-secondary, #6b6b6b);
+    white-space: nowrap;
+}
+
+/* ---------- grid ---------- */
+
+.ig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 0.75rem;
+}
+
+.ig-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1rem 0.75rem 0.85rem;
+    text-align: center;
+    background: var(--color-background-secondary, #f6f6f6);
+    border: 1px solid var(--color-card-border, #e2e2e2);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.12s ease, border-color 0.12s ease,
+                background-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ig-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-link, #3b82f6);
+    background: var(--color-background-primary, #ffffff);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.08);
+}
+
+.ig-card.copied {
+    border-color: var(--color-api-name, #4caf50);
+}
+
+.ig-glyph {
+    font-family: "Nerd Font Symbols", "SymbolsNerdFontMono", monospace;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--color-foreground-primary, #1f1f1f);
+    transition: transform 0.12s ease;
+}
+
+.ig-card:hover .ig-glyph {
+    transform: scale(1.12);
+}
+
+.ig-name {
+    max-width: 100%;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ig-cp {
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-foreground-secondary, #6b6b6b);
+}
+
+.ig-card[hidden] {
+    display: none;
+}
+
+.ig-empty {
+    grid-column: 1 / -1;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--color-foreground-secondary, #6b6b6b);
+}

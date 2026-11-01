@@ -307,7 +307,7 @@ _dot_candidates = [
 ]
 graphviz_dot = next((p for p in _dot_candidates if p and os.path.isfile(p)), "dot")
 
-html_js_files = ["responsiveSvg.js", "attributes-single.js"]
+html_js_files = ["responsiveSvg.js", "attributes-single.js", "icon_gallery.js"]
 
 # intersphinx
 intersphinx_mapping = {
@@ -330,7 +330,7 @@ rst_epilog = """
 .. |github| replace:: `GitHub <https://github.com/ExploreMaths/manim_extensions>`__
 """
 
-html_css_files = ["custom.css"]
+html_css_files = ["custom.css", "icon_gallery.css"]
 
 latex_engine = "lualatex"
 
