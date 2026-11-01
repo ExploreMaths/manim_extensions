@@ -8,7 +8,8 @@ Classes
 .. inheritance-diagram:: manim_extensions.rubikscube.cube.RubiksCube manim_extensions.rubikscube.cubie.Cubie
    :parts: 1
 
-.. autoall:: manim_extensions.rubikscube
-   :recursive:
+.. autoall:: manim_extensions.rubikscube.cube
    :types: class
-   :skip: CubeMove
+
+.. autoall:: manim_extensions.rubikscube.cubie
+   :types: class

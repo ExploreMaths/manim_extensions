@@ -15,9 +15,6 @@ decision-area plotting, and MCMC sampling for posterior visualization.
    :recursive:
    :types: function
 
-.. autoall:: manim_extensions.machine_learning.helpers
-   :types: class, function
-
 MCMC sampling
 -------------
 
