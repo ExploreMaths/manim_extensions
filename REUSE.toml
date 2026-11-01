@@ -133,7 +133,10 @@ source = "https://github.com/Alexander-Nasuta/manim-nerdfont-icons"
 
 # Symbols Nerd Font Mono font file (font, MIT) - separate from the code above
 [[annotations]]
-path = "manim_extensions/nerdfont/SymbolsNerdFontMono-Regular.ttf"
+path = [
+    "manim_extensions/nerdfont/SymbolsNerdFontMono-Regular.ttf",
+    "docs/source/_static/fonts/SymbolsNerdFontMono-Regular.ttf",
+]
 SPDX-FileCopyrightText = ["2014 Ryan L McIntyre (Nerd Fonts)"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/ryanoasis/nerd-fonts"

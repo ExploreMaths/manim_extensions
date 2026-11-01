@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 """Generate the Nerd Font Icon Gallery body from SYMBOLS_UNICODE.
 
 Writes docs/source/reference/nerdfont/_icon_gallery_body.html, a fragment
@@ -7,6 +10,7 @@ Each icon becomes a grid card: the glyph (Nerd Font Symbols), its name and
 its U+ codepoint. Cards carry data-name / data-codepoint attributes for the
 search filter in _static/icon_gallery.js.
 """
+
 from __future__ import annotations
 
 import html
@@ -33,10 +37,18 @@ def card(name: str, codepoint: int) -> str:
     )
 
 
+LICENSE = "MIT"
+# Split the tag name so reuse does not read the f-string template below as
+# an SPDX expression; the generated HTML still carries the full tags.
+SPDX_KEY = "SPDX-License-" + "Identifier"
+
+
 def main() -> None:
     items = sorted(SYMBOLS_UNICODE.items(), key=lambda kv: kv[1])
     body = "\n".join(card(name, cp) for name, cp in items)
     fragment = (
+        "<!-- SPDX-FileCopyrightText: 2026 ExploreMaths -->\n"
+        f"<!-- {SPDX_KEY}: {LICENSE} -->\n"
         '<div class="ig-toolbar">'
         '<input id="ig-search" class="ig-search" type="search" '
         'placeholder="Search icons\u2026" autocomplete="off" spellcheck="false">'

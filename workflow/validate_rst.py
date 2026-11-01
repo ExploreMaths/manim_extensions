@@ -149,6 +149,10 @@ SKIP_PHRASES = (
     "Definition list ends",
     "Unexpected indentation",
     "Block quote ends",
+    # Sphinx ``raw`` directive supports :file:; plain docutils
+    # cannot resolve the path, so it reports a SEVERE. Sphinx build
+    # already verifies the file exists.
+    'Problems with "raw" directive path',
 )
 
 QUOTE_PREFIX_RE = re.compile(r"^[ \t]*[rRbBuU]*(\"\"\"|\"|'''|')")

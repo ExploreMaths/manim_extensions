@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 ExploreMaths
+// SPDX-License-Identifier: MIT
+
 /* Icon Gallery — search filter + copy-to-clipboard.
    Only activates when the gallery grid is present on the page. */
 (function () {
