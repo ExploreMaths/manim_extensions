@@ -51,15 +51,17 @@ through):
    :ref_classes: Lens Ray
 
    from manim import *
-   class LensScene(Scene):
-          def construct(self):
-      from manim import *
-      from manim_extensions.physics.optics.lenses import Lens
-      from manim_extensions.physics.optics.rays import Ray
 
-      lens = Lens(f=2, d=1)
-      ray = Ray(start=[-5, 1, 0], direction=[1, 0, 0], propagate=[lens])
-      self.add(lens, ray)
+   from manim_extensions.physics.optics.lenses import Lens
+   from manim_extensions.physics.optics.rays import Ray
+
+   class LensScene(Scene):
+
+       def construct(self):
+
+           lens = Lens(-5, 1)
+           ray = Ray(LEFT * 5 + UP, RIGHT, 8, [lens])
+           self.add(lens, ray)
 
 Waves
 ^^^^^
@@ -77,12 +79,15 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
    :ref_classes: LinearWave StandingWave
 
    from manim import *
-   class WaveScene(Scene):
-          def construct(self):
-      from manim_extensions.physics.wave import LinearWave, StandingWave
 
-      self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
-      self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 2))
+   from manim_extensions.physics.wave import LinearWave, StandingWave
+
+   class WaveScene(Scene):
+
+       def construct(self):
+
+           self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
+           self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 2))
 
 Rigid mechanics
 ^^^^^^^^^^^^^^^
@@ -97,15 +102,17 @@ A :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum`
    :ref_classes: Pendulum
 
    from manim import *
-   class PendulumScene(Scene):
-          def construct(self):
-      from manim import *
-      from manim_extensions.physics.rigid_mechanics.pendulum import (
-          Pendulum,
-      )
 
-      pendulum = Pendulum(length=3.5, initial_theta=0.3)
-      self.add(pendulum)
+   from manim_extensions.physics.rigid_mechanics.pendulum import (
+       Pendulum,
+   )
+
+   class PendulumScene(Scene):
+
+       def construct(self):
+
+           pendulum = Pendulum(length=3.5, initial_theta=0.3)
+           self.add(pendulum)
 
 Electromagnetism
 ^^^^^^^^^^^^^^^^
@@ -124,20 +131,22 @@ draw a current-carrying
    :ref_classes: Charge ElectricField Wire MagneticField
 
    from manim import *
-   class ElectrostaticsScene(Scene):
-          def construct(self):
-      from manim import *
-      from manim_extensions.physics.electromagnetism.electrostatics import (
-          Charge,
-          ElectricField,
-      )
-      from manim_extensions.physics.electromagnetism.magnetostatics import (
-          Wire,
-          MagneticField,
-      )
 
-      charge = Charge(magnitude=1, point=ORIGIN)
-      self.add(charge, ElectricField(charge))
+   from manim_extensions.physics.electromagnetism.electrostatics import (
+       Charge,
+       ElectricField,
+   )
+   from manim_extensions.physics.electromagnetism.magnetostatics import (
+       Wire,
+       MagneticField,
+   )
+
+   class ElectrostaticsScene(Scene):
+
+       def construct(self):
+
+           charge = Charge(magnitude=1, point=ORIGIN)
+           self.add(charge, ElectricField(charge))
 
 .. toctree::
    :hidden:
