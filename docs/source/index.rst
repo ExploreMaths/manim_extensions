@@ -61,6 +61,7 @@ with full API documentation and attribution to the original authors:
 * :doc:`reference/machine_learning/index` – neural networks and decision tree diagrams.
 * :doc:`reference/meshes/index` – 2D/3D mesh data structures and visualization.
 * :doc:`reference/mindmap/index` – mind maps, timelines, and catalog trees.
+* :doc:`reference/nerdfont/index` – Nerd Font icon mobjects with a searchable gallery.
 * :doc:`reference/physics/index` – waves, mechanics, optics, and electromagnetism.
 * :doc:`reference/pymunk/index` – 2-D rigid-body physics simulation with Pymunk.
 * :doc:`reference/qr_codes/index` – QR code generation with optional Nerd Font icons.
