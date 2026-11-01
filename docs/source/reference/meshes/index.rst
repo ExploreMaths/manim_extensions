@@ -53,6 +53,7 @@ library). The Cairo renderer will not work for these scenes — run them with
 the OpenGL renderer (``--renderer=opengl``):
 
 .. manim:: ConeScene
+   :save_last_frame:
    :ref_classes: Mesh ManimMesh
 
    from manim import *

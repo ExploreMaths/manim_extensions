@@ -66,7 +66,6 @@ distance:
    from manim_extensions.compass import (
        Compass, MoveNiddleTipTo, RotateCompass, SplitCompass)
 
-
    class CompassDemo(Scene):
        def construct(self):
            compass = Compass().to_edge(LEFT)
@@ -118,7 +117,6 @@ for readability in construction scenes:
    from manim_extensions.compass import (
        Pencil, MovePencilTipTo, MovePencilAlongPath, DrawPath, PutPencilAway)
 
-
    class PencilDemo(Scene):
        def construct(self):
            pencil = Pencil().to_edge(LEFT)
@@ -143,7 +141,6 @@ otherwise vertically):
 
    from manim import *
    from manim_extensions.compass import Ruler, PutRuler, PutRulerAway
-
 
    class RulerDemo(Scene):
        def construct(self):

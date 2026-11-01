@@ -47,6 +47,7 @@ Optics
 through):
 
 .. manim:: LensScene
+   :save_last_frame:
    :ref_classes: Lens Ray
 
    from manim import *
@@ -72,6 +73,7 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
 ``n``, a ``length``, a ``period`` and an ``amplitude``:
 
 .. manim:: WaveScene
+   :save_last_frame:
    :ref_classes: LinearWave StandingWave
 
    from manim import *
@@ -91,6 +93,7 @@ A :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum`
 (one pivot followed by the bob positions) animates a hanging mechanism:
 
 .. manim:: PendulumScene
+   :save_last_frame:
    :ref_classes: Pendulum
 
    from manim import *
@@ -117,6 +120,7 @@ draw a current-carrying
 :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`:
 
 .. manim:: ElectrostaticsScene
+   :save_last_frame:
    :ref_classes: Charge ElectricField Wire MagneticField
 
    from manim import *
@@ -134,7 +138,6 @@ draw a current-carrying
 
       charge = Charge(magnitude=1, point=ORIGIN)
       self.add(charge, ElectricField(charge))
-
 
 .. toctree::
    :hidden:
