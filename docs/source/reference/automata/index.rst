@@ -111,6 +111,5 @@ linked from the README.
    mobjects
    animations
    dependencies
-   classes
+   cli
    constants
-   functions
