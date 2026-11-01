@@ -73,4 +73,4 @@ well.
    :hidden:
    :maxdepth: 1
 
-   functions
+   text
