@@ -46,15 +46,19 @@ Optics
 ``direction`` vector (plus an optional ``propagate`` list of lenses it passes
 through):
 
-.. code-block:: python
+.. manim:: LensScene
+   :ref_classes: Lens Ray
 
    from manim import *
-   from manim_extensions.physics.optics.lenses import Lens
-   from manim_extensions.physics.optics.rays import Ray
+   class LensScene(Scene):
+          def construct(self):
+      from manim import *
+      from manim_extensions.physics.optics.lenses import Lens
+      from manim_extensions.physics.optics.rays import Ray
 
-   lens = Lens(f=2, d=1)
-   ray = Ray(start=[-5, 1, 0], direction=[1, 0, 0], propagate=[lens])
-   self.add(lens, ray)
+      lens = Lens(f=2, d=1)
+      ray = Ray(start=[-5, 1, 0], direction=[1, 0, 0], propagate=[lens])
+      self.add(lens, ray)
 
 Waves
 ^^^^^
@@ -67,12 +71,16 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
 :class:`~manim_extensions.physics.wave.StandingWave` accepts a mode number
 ``n``, a ``length``, a ``period`` and an ``amplitude``:
 
-.. code-block:: python
+.. manim:: WaveScene
+   :ref_classes: LinearWave StandingWave
 
-   from manim_extensions.physics.wave import LinearWave, StandingWave
+   from manim import *
+   class WaveScene(Scene):
+          def construct(self):
+      from manim_extensions.physics.wave import LinearWave, StandingWave
 
-   self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
-   self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 2))
+      self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
+      self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 2))
 
 Rigid mechanics
 ^^^^^^^^^^^^^^^
@@ -82,15 +90,19 @@ A :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum`
 :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum`
 (one pivot followed by the bob positions) animates a hanging mechanism:
 
-.. code-block:: python
+.. manim:: PendulumScene
+   :ref_classes: Pendulum
 
    from manim import *
-   from manim_extensions.physics.rigid_mechanics.pendulum import (
-       Pendulum,
-   )
+   class PendulumScene(Scene):
+          def construct(self):
+      from manim import *
+      from manim_extensions.physics.rigid_mechanics.pendulum import (
+          Pendulum,
+      )
 
-   pendulum = Pendulum(length=3.5, initial_theta=0.3)
-   self.add(pendulum)
+      pendulum = Pendulum(length=3.5, initial_theta=0.3)
+      self.add(pendulum)
 
 Electromagnetism
 ^^^^^^^^^^^^^^^^
@@ -104,20 +116,25 @@ draw a current-carrying
 (``stroke``, ``current``) and its
 :class:`~manim_extensions.physics.electromagnetism.magnetostatics.MagneticField`:
 
-.. code-block:: python
+.. manim:: ElectrostaticsScene
+   :ref_classes: Charge ElectricField Wire MagneticField
 
    from manim import *
-   from manim_extensions.physics.electromagnetism.electrostatics import (
-       Charge,
-       ElectricField,
-   )
-   from manim_extensions.physics.electromagnetism.magnetostatics import (
-       Wire,
-       MagneticField,
-   )
+   class ElectrostaticsScene(Scene):
+          def construct(self):
+      from manim import *
+      from manim_extensions.physics.electromagnetism.electrostatics import (
+          Charge,
+          ElectricField,
+      )
+      from manim_extensions.physics.electromagnetism.magnetostatics import (
+          Wire,
+          MagneticField,
+      )
 
-   charge = Charge(magnitude=1, point=ORIGIN)
-   self.add(charge, ElectricField(charge))
+      charge = Charge(magnitude=1, point=ORIGIN)
+      self.add(charge, ElectricField(charge))
+
 
 .. toctree::
    :hidden:
