@@ -1,5 +1,5 @@
-/* SPDX-FileCopyrightText: 2026 ExploreMaths
-/* SPDX-License-Identifier: MIT
+/* SPDX-FileCopyrightText: 2026 ExploreMaths */
+/* SPDX-License-Identifier: MIT */
 
 /* Icon Gallery — Nerd Font symbols grid.
    Designed to match the Furo theme (light/dark via CSS variables). */
@@ -70,20 +70,20 @@
 
 .ig-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    gap: 0.45rem;
 }
 
 .ig-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
-    padding: 1rem 0.75rem 0.85rem;
+    gap: 0.2rem;
+    padding: 0.5rem 0.3rem 0.45rem;
     text-align: center;
     background: var(--color-background-secondary, #f6f6f6);
     border: 1px solid var(--color-card-border, #e2e2e2);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     user-select: none;
 }
@@ -92,7 +92,7 @@
     transform: translateY(-2px);
     border-color: var(--color-link, #3b82f6);
     background: var(--color-background-primary, #ffffff);
-    box-shadow: 0 4px 14px rgb(0 0 0 / 0.08);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);
 }
 
 .ig-card.copied {
@@ -101,27 +101,27 @@
 
 .ig-glyph {
     font-family: "Nerd Font Symbols", "SymbolsNerdFontMono", monospace;
-    font-size: 2.6rem;
+    font-size: 1.55rem;
     line-height: 1;
     color: var(--color-foreground-primary, #1f1f1f);
 }
 
 .ig-card:hover .ig-glyph {
-    transform: scale(1.12);
+    transform: scale(1.1);
 }
 
 .ig-name {
     max-width: 100%;
-    font-size: 0.78rem;
+    font-size: 0.64rem;
     font-weight: 500;
-    line-height: 1.25;
+    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .ig-cp {
-    font-size: 0.7rem;
+    font-size: 0.58rem;
     font-variant-numeric: tabular-nums;
     color: var(--color-foreground-secondary, #6b6b6b);
 }

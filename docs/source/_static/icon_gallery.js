@@ -15,6 +15,7 @@
     var empty = document.createElement("div");
     empty.className = "ig-empty";
     empty.textContent = "No icons match your search.";
+    empty.hidden = true; /* only show once a search actually filters */
     grid.appendChild(empty);
 
     function refresh() {
