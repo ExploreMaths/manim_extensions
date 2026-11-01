@@ -203,60 +203,14 @@ dd p.rubric {
 dd p.rubric::after {
     content: ":";
 }
-/* Plain links use Furo's native colors end to end: no custom link,
-   hover or visited color is written here or in conf.py's css_variables
-   anymore (brand content is Furo's default too).  This comment exists so
-   nobody re-adds a body[data-theme="dark"] override that ties with
-   Furo's generated inline <style> and loses by source order.  The
-   colored attribute-type spans and inline-code blocks (sig-type-ref-*,
-   ref-ext/ref-manim) use literal colors, so they keep their palette in
-   both themes. */
-/* Inline code cross-reference links use a per-target palette
-   (tags added by the inline_link_colors extension: a.reference.ref-ext for
-   manim_extensions targets, .ref-manim for manim targets).  Only the text
-   colour is changed — the background keeps Furo's default inline-code
-   fill, the same as plain inline code.  Manim targets use Furo's Caution
-   admonition colour (--color-admonition-title--seealso) and
-   manim_extensions targets Furo's Important admonition colour
-   (--color-admonition-title--important).  Both are referenced as theme
-   variables, so light and dark follow the active theme automatically.
-   The inheritance diagram uses the same two colours (inheritance_colors.py
-   light fills + responsiveSvg.js dark adaptation). */
-a.reference.ref-ext code.xref,
-a.reference.ref-ext code.xref:hover {
-    color: var(--color-admonition-title--important);
-}
-a.reference.ref-manim code.xref,
-a.reference.ref-manim code.xref:hover {
-    color: var(--color-admonition-title--seealso);
-}
-/* Color-name literals linked by the default_value_links extension put the
-   reference *inside* the code element (``code > a``), the reverse of
-   inline_link_colors' ``a > code.xref`` shape.  The code carries a
-   ``color-link-manim`` / ``color-link-ext`` marker class: give the embedded
-   link the palette text colour, matching the ref-manim / ref-ext
-   inline-code xrefs; the code keeps Furo's default inline-code background
-   like any other inline code. */
-code.docutils.literal.color-link-manim a.reference,
-code.docutils.literal.color-link-manim a.reference:hover {
-    color: var(--color-admonition-title--seealso);
-}
-code.docutils.literal.color-link-ext a.reference,
-code.docutils.literal.color-link-ext a.reference:hover {
-    color: var(--color-admonition-title--important);
-}
-/* Plain references whose fragment resolves to a manim_extensions / manim
-   object (module index pages and toctree entries list classes as ordinary
-   links — the doctree extension cannot see those, they are expanded by the
-   HTML theme): colour them with the same palette, text only. */
-a.reference[href*="#manim_extensions."]:not(.default_value),
-a.reference[href*="#manim_extensions."]:not(.default_value) code {
-    color: var(--color-admonition-title--important);
-}
-a.reference[href*="#manim."]:not(.default_value),
-a.reference[href*="#manim."]:not(.default_value) code {
-    color: var(--color-admonition-title--seealso);
-}
+/* Inline-code links, plain references and signature types all use Furo's
+   native link colors end to end — no custom link, hover or visited color
+   is written here or in conf.py's css_variables.  Coloring is limited to
+   the inheritance diagram (inheritance_colors.py light fills +
+   responsiveSvg.js dark adaptation + the legend swatches below).  This
+   comment exists so nobody re-adds a body[data-theme="dark"] override
+   that ties with Furo's generated inline <style> and loses by source
+   order. */
 /* Python-standard-library cross-references inside autodoc attribute and
    property blocks (dl.py.attribute, dl.py.property): keep them unstyled —
    plain inherited text colour, no underline, in both colour schemes and on
@@ -278,46 +232,6 @@ dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
     padding: 0;
 }
 
-/* The on-this-page sidebar (toc-tree) lists the same class/member names,
-   but its entries keep Furo's native TOC colours — no palette text
-   colouring there.  Written after the palette rules above so the same
-   specificity wins by source order; the current entry (li.scroll-current)
-   keeps its native active colour.  The links wrap the member name in a
-   code element, so both the link and its code child are reset. */
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."],
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."],
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."] code,
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."] code,
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."],
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."],
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."] code,
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."] code {
-    color: var(--color-toc-item-text);
-}
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim."]:hover,
-.toc-tree li:not(.scroll-current) > a.reference[href*="#manim_extensions."]:hover,
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim."]:hover,
-.toc-drawer li:not(.scroll-current) > a.reference[href*="#manim_extensions."]:hover {
-    color: var(--color-toc-item-text--hover);
-}
-/* The currently-selected entry (li.scroll-current) is bolded by Furo and
-   keeps its native active colour (Sphinx blue).  The palette rules above
-   would otherwise colour it green because they don't exclude the current
-   entry; written after them so the same specificity wins by source order. */
-.toc-tree li.scroll-current > a.reference[href*="#manim."],
-.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."],
-.toc-tree li.scroll-current > a.reference[href*="#manim."] code,
-.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."] code,
-.toc-drawer li.scroll-current > a.reference[href*="#manim."],
-.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."],
-.toc-drawer li.scroll-current > a.reference[href*="#manim."] code,
-.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."] code,
-.toc-tree li.scroll-current > a.reference[href*="#manim."]:hover,
-.toc-tree li.scroll-current > a.reference[href*="#manim_extensions."]:hover,
-.toc-drawer li.scroll-current > a.reference[href*="#manim."]:hover,
-.toc-drawer li.scroll-current > a.reference[href*="#manim_extensions."]:hover {
-    color: var(--color-toc-item-text--active);
-}
 /* Dark theme: manim / manim_extensions legend swatches use Furo's own
    admonition variables (--color-admonition-title-background--seealso /
    --color-admonition-title-background--important), which Furo keeps
@@ -333,23 +247,6 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
         background-color: #26282B;
         border-color: #D0D0D0;
     }
-}
-/* Class-attribute signature types (e.g. ``tex_template : TexTemplate``)
-   colored like inline-code links.  inline_link_colors.py splits plain-text
-   types and wraps each embedded manim / manim_extensions name in a
-   sig-type-ref-manim / sig-type-ref-ext span, so builtins (dict, str,
-   list, ...) and syntax brackets stay uncolored; a type that autodoc
-   resolves to an intersphinx link (a.reference) keeps the signature's
-   sig-ext-attr / sig-manim-attr tag and is colored whole.  The link form
-   keeps Furo's default underline (text-decoration comes from Furo's a
-   rule, which this block does not override). */
-dt.sig-object.py .property > .sig-type-ref-ext,
-dt.sig-object.py .property > a.reference.ref-ext {
-    color: var(--color-admonition-title--important);
-}
-dt.sig-object.py .property > .sig-type-ref-manim,
-dt.sig-object.py .property > a.reference.ref-manim {
-    color: var(--color-admonition-title--seealso);
 }
 
 /* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
@@ -519,20 +416,6 @@ dl.py.attribute.attributes-single {
 dl.py.attribute > dt.sig a.headerlink,
 dl.py.property > dt.sig a.headerlink {
     display: none;
-}
-
-/* Signature default-value links (default_value_links extension): the link
-   is plain text, not wrapped in a code element, but it gets the same
-   palette text colour as the inline-code xrefs — orange manim text for
-   manim constants and colors, teal extensions text for manim_extensions
-   objects.  Only the text colour changes; no background. */
-a.default_value.reference.internal.ref-manim,
-a.default_value.reference.internal.ref-manim:hover {
-    color: var(--color-admonition-title--seealso);
-}
-a.default_value.reference.internal.ref-ext,
-a.default_value.reference.internal.ref-ext:hover {
-    color: var(--color-admonition-title--important);
 }
 
 /* Vendored out-of-sync package entry: wrap the link and warning icon in a

@@ -113,9 +113,7 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
     """Return ``(rst_path, anchor, kind)`` for a known constant name.
 
     ``kind`` is ``"manim"`` for manim colors/constants pages and
-    ``"ext"`` for objects living in ``manim_extensions``; the HTML
-    writer's palette (custom.css) uses it to color signature-default
-    links the same way as inline-code cross-references.
+    ``"ext"`` for objects living in ``manim_extensions``.
 
     Resolution order:
     1. manim.utils.color.manim_colors names (auto-collected, all of them);
@@ -175,7 +173,6 @@ def _link_tokens(node, text: str, app, docdir: str) -> None:
             rel = posixpath.relpath(f"{page}.html", start=docdir)
             ref = nodes.reference("", "", internal=True,
                                   refuri=f"{rel}#{anchor}")
-            ref["classes"] = [f"ref-{kind}"]
             ref += nodes.Text(name)
             parts.append(ref)
         pos = m.end()
@@ -202,7 +199,6 @@ def _process_literals(app, doctree, docname) -> None:
             rel = posixpath.relpath(f"{page}.html", start=docdir)
             ref = nodes.reference("", "", internal=True,
                                   refuri=f"{rel}#{anchor}")
-            ref["classes"] = [f"ref-{kind}"]
             ref += nodes.Text(text)
             node.replace_self(ref)
             continue
@@ -217,9 +213,8 @@ def _process_color_codes(app, doctree, docname) -> None:
 
     Docstrings often write colors as `` `WHITE` `` / `` `[BLUE, GREEN]` ``;
     without a cross-reference they render as plain text.  Replace the color
-    tokens with links to ``constants/colors`` so they carry the link color,
-    like the signature-default links do.  The constants category pages are
-    skipped: there the names are the documented objects themselves.
+    tokens with links to ``constants/colors``.  The constants category pages
+    are skipped: there the names are the documented objects themselves.
     """
     if docname.startswith("constants/"):
         return
@@ -244,10 +239,6 @@ def _process_color_codes(app, doctree, docname) -> None:
                     "", "", internal=True,
                     refuri=f"{rel}#manim.utils.color.manim_colors.{name}",
                 )
-                # Tag as a manim link so inline_link_colors' palette (which
-                # runs earlier on doctree-resolved and cannot see these
-                # nodes) still colors the text and fill of this inline code.
-                ref["classes"] = ["ref-manim"]
                 ref += nodes.Text(name)
                 parts.append(ref)
                 linked = True
@@ -257,12 +248,7 @@ def _process_color_codes(app, doctree, docname) -> None:
         if pos < len(text):
             parts.append(nodes.Text(text[pos:]))
         if linked:
-            # The link sits *inside* the code element here (unlike
-            # inline_link_colors, where the code is inside the link), so
-            # custom.css fills the code via this marker class.
-            classes = list(node.get("classes", ()))
-            if "color-link-manim" not in classes:
-                node["classes"] = classes + ["color-link-manim"]
+            pass
         del node[:]
         for part in parts:
             node.append(part)
@@ -300,10 +286,8 @@ def _process_prose_literals(app, doctree, docname) -> None:
     `` ``ManimTuringMachine`` ``; without a cross-reference they render as
     plain inline code.  When the literal text exactly names one py-domain
     object this build knows (unique suffix match) and that object lives in
-    ``manim_extensions``, turn it into an internal link tagged ref-ext and
-    mark the code element so custom.css fills it with the extension palette,
-    mirroring what _process_color_codes does for manim color names.
-    Signatures, default values and already-linked literals are skipped.
+    ``manim_extensions``, turn it into an internal link.  Signatures,
+    default values and already-linked literals are skipped.
     """
     try:
         objects = app.env.domains["py"].data["objects"]
@@ -367,13 +351,9 @@ def _process_prose_literals(app, doctree, docname) -> None:
         rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
         ref = nodes.reference("", "", internal=True,
                               refuri=f"{rel}#{entry.node_id}")
-        ref["classes"] = ["ref-ext"]
         ref += nodes.Text(text)
         del node[:]
         node.append(ref)
-        classes = list(node.get("classes", ()))
-        if "color-link-ext" not in classes:
-            node["classes"] = classes + ["color-link-ext"]
 
 
 def setup(app):
