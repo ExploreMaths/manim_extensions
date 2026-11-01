@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Animation
-=========
+Animations
+==========
 
 .. module:: manim_extensions.animations
 
