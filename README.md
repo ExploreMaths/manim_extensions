@@ -149,7 +149,7 @@ coherent, tested whole. The motivations:
   ranges that conflict with reality. For example
   `manim-nerdfont-icons` 1.0.x pins `manim>=0.19,<0.20` on PyPI even
   though it works with current manim — it is bundled as
-  `manim_extensions.utils.nerdfont` instead of being a dependency.
+  `manim_extensions.nerdfont` instead of being a dependency.
   `manim-mobject-svg` similarly declares `python<3.13`; it stays a
   lazily-imported plugin for that reason.
 - **Integration.** Vendoring lets us normalise import style, docstring
