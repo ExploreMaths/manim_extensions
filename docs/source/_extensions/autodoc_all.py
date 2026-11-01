@@ -55,6 +55,7 @@ import inspect
 import json
 import pkgutil
 import types
+import typing
 from pathlib import Path
 
 try:
@@ -196,6 +197,10 @@ def classify(obj):
         return "class"
     if inspect.isroutine(obj):
         return "function"
+    # Type variables (TypeVar / ParamSpec / TypeVarTuple) are not data
+    # constants; keep them out of Constants pages.
+    if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
+        return None
     return "data"
 
 
