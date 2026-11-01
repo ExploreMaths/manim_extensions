@@ -270,7 +270,7 @@ def _ensure_nerdfont_installed() -> None:
 
     Stdlib-only and best-effort (no manim import, so ``--check`` stays
     lightweight); mirrors ``_install_font_linux`` in
-    ``manim_extensions/utils/nerdfont/icons.py``.
+    ``manim_extensions/nerdfont/icons.py``.
     """
     if platform.system() != "Linux":
         return
@@ -368,7 +368,7 @@ def main() -> int:
     # >= 2.15 (ubuntu-24.04 runners) fonts registered after Pango's
     # fontmap snapshot are invisible to it, and each worker renders many
     # examples, so Pango is long initialized by the time a QR example
-    # with an icon runs (see manim_extensions/utils/nerdfont/icons.py).
+    # with an icon runs (see manim_extensions/nerdfont/icons.py).
     _ensure_nerdfont_installed()
 
     work_root = out / "_work"

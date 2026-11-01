@@ -140,8 +140,8 @@ exclude = ["tests*"]
 
 [tool.setuptools.package-data]
 "manim_extensions.meshes" = ["data/models/*.ply", "data/models/*.stl", "shaders/mesh/*.glsl"]
-# Vendored Nerd Font (see manim_extensions/utils/nerdfont/)
-"manim_extensions.utils.nerdfont" = ["*.ttf"]
+# Vendored Nerd Font (see manim_extensions/nerdfont/)
+"manim_extensions.nerdfont" = ["*.ttf"]
 # Font Awesome SVG assets and license (see REUSE.toml)
 "manim_extensions.fontawesome" = [
     "manim_fontawesome/font-awesome/LICENSE.txt",
