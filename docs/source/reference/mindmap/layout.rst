@@ -27,12 +27,3 @@ Algorithms that arrange the nodes of a mind map.
 
 .. autoall:: manim_extensions.mindmap.algorithms.layout_factory
    :types: class
-
-Base classes
-------------
-
-.. autoall:: manim_extensions.mindmap.algorithms.layout
-   :types: class
-
-.. autoall:: manim_extensions.mindmap.algorithms.layout_factory
-   :types: class
