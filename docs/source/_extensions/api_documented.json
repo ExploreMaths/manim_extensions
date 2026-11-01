@@ -309,6 +309,7 @@
  "manim_extensions.data_structures.m_variable.MVariable",
  "manim_extensions.economics.ad_as.ADASDiagram",
  "manim_extensions.economics.base.EconDiagram",
+ "manim_extensions.economics.base.find_intersection",
  "manim_extensions.economics.is_lm.ISLMDiagram",
  "manim_extensions.economics.linked.LinkedISLM_ADAS",
  "manim_extensions.economics.solow.SolowDiagram",

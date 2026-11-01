@@ -18,6 +18,10 @@ including supply-demand, AD-AS, IS-LM, and Solow growth models.
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.economics`` subpackage.
 
+
+.. inheritance-diagram:: manim_extensions.economics.base.EconDiagram manim_extensions.economics.supply_demand.SupplyDemandDiagram manim_extensions.economics.ad_as.ADASDiagram manim_extensions.economics.is_lm.ISLMDiagram manim_extensions.economics.linked.LinkedISLM_ADAS manim_extensions.economics.solow.SolowDiagram
+   :parts: 1
+
 Features
 --------
 
@@ -284,8 +288,8 @@ Solow shares, IS-LM monetary expansion, and a linked-diagram scene).
    :hidden:
    :maxdepth: 1
 
-   classes
-   functions
+   diagrams
+   base
    constants
 
 See the `upstream README <https://github.com/ddzhang04/manim_ec>`_ for the
