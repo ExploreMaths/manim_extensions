@@ -158,7 +158,7 @@ code.literal {
 }
 
 .inheritance-legend .manim-swatch {
-    background-color: #BBDEFB;
+    background-color: #CCD3FF;
     border-color: #00B0FF;
 }
 
@@ -324,7 +324,7 @@ dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
    blue family, manim_extensions the Important teal family. */
 body[data-theme="dark"] .inheritance-legend .manim-swatch {
     background-color: #005F99;
-    border-color: #BBDEFB;
+    border-color: #CCD3FF;
 }
 body[data-theme="dark"] .inheritance-legend .extensions-swatch {
     background-color: #00544A;
@@ -337,7 +337,7 @@ body[data-theme="dark"] .inheritance-legend .python-swatch {
 @media (prefers-color-scheme: dark) {
     body:not([data-theme="light"]) .inheritance-legend .manim-swatch {
         background-color: #005F99;
-        border-color: #BBDEFB;
+        border-color: #CCD3FF;
     }
     body:not([data-theme="light"]) .inheritance-legend .extensions-swatch {
         background-color: #00544A;
