@@ -304,7 +304,6 @@
  "manim_extensions.data_structures.m_array.MArrayElement",
  "manim_extensions.data_structures.m_array.MArrayPointer",
  "manim_extensions.data_structures.m_array.MArraySlidingWindow",
- "manim_extensions.data_structures.m_array.MobProps",
  "manim_extensions.data_structures.m_enum.MArrayDirection",
  "manim_extensions.data_structures.m_enum.MArrayElementComp",
  "manim_extensions.data_structures.m_variable.MVariable",

@@ -281,8 +281,8 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
    :hidden:
    :maxdepth: 1
 
-   classes
-   constants
+   arrays
+   variables
    enums
 
 See the `upstream documentation <https://manim-data-structures.readthedocs.io/en/latest/>`_,
