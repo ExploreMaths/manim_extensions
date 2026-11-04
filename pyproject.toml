@@ -30,12 +30,13 @@ classifiers = [
 # itself (Pillow, scipy, networkx, click, rich, moderngl) or is split
 # into the per-module extras below and lazy-imported on use.
 dependencies = [
-    "manim>=0.21.0",
+    "manim>=0.22.1",
     "numpy>=2.0",
     "typing_extensions>=4.9.0",
-    # Pillow 12+ rejects Image.fromarray(float_array, mode="RGBA"), which
-    # manim's camera still uses; keep <12 so image examples keep rendering.
-    "pillow>=11,<12",
+    # manim 0.22.x no longer feeds float arrays to Pillow's
+    # Image.fromarray, so Pillow 12+ (which rejects float RGBA arrays)
+    # is safe again; keep the floor at 12.2 for the pip-audit advisory.
+    "pillow>=12.2,<14",
     # manim-mobject-svg (used by svg_animations.HTMLParsedVMobject) works
     # with any manim>=0.16, but its 0.5.x release declares python<3.13 on
     # PyPI even though the package is pure Python; on Python 3.13+ install
