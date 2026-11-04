@@ -36,6 +36,7 @@ import numpy as np
 from collections import deque
 
 from ...utils.deps import require
+from manim.typing import Point2D_Array, VectorND, MatrixMN
 
 if TYPE_CHECKING:
     from sklearn.tree import DecisionTreeClassifier
@@ -165,7 +166,7 @@ def compute_decision_areas(
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
 
-def plot_areas(rectangles: np.ndarray):
+def plot_areas(rectangles: MatrixMN):
     """Plot decision area rectangles on the current matplotlib axes.
 
     Parameters
@@ -344,7 +345,7 @@ class IrisDatasetPlot(VGroup):
         )
         return animation_group
 
-    def _make_point_group(self, points: np.ndarray, targets: np.ndarray, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
+    def _make_point_group(self, points: Point2D_Array, targets: VectorND, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
         point_group = VGroup()
         for point_index, point in enumerate(points):
             # draw the dot
@@ -377,7 +378,7 @@ class IrisDatasetPlot(VGroup):
 
         return legend_group
 
-    def _make_axes_group(self, points: np.ndarray, labels: list[str], font: str = "Source Han Sans", font_scale: float = 0.75):
+    def _make_axes_group(self, points: Point2D_Array, labels: list[str], font: str = "Source Han Sans", font_scale: float = 0.75):
         axes_group = VGroup()
         # make the axes
         x_range = [
@@ -456,7 +457,7 @@ class DecisionTreeSurface(VGroup):
                self.add(axes, *surface.surface_rectangles)
     """
 
-    def __init__(self, tree_clf: "DecisionTreeClassifier", data: np.ndarray, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
+    def __init__(self, tree_clf: "DecisionTreeClassifier", data: MatrixMN, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
         """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
@@ -481,7 +482,7 @@ class DecisionTreeSurface(VGroup):
             self.tree_clf, maxrange, x=0, y=1, n_features=2
         )
         # turn the rectangle objects into manim rectangles
-        def convert_rectangle_to_polygon(rect: np.ndarray) -> Polygon:
+        def convert_rectangle_to_polygon(rect: VectorND) -> Polygon:
             """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.
 
             Returns

@@ -25,12 +25,12 @@ from manim import (
     override_animation,
     rotation_matrix,
 )
-from typing import Optional
 
 from .convolutional_2d import Convolutional2DLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 from ... import config
+from manim.typing import Vector3D
 
 
 
@@ -118,7 +118,7 @@ class Filters(VGroup):
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
-        output_feature_map_to_connect: Optional[int] = None,  # None means all at once
+        output_feature_map_to_connect: int | None = None,  # None means all at once
     ):
         """Initialize the filter visualization connecting input and output feature maps."""
         super().__init__()
@@ -375,7 +375,7 @@ class Filters(VGroup):
             lag_ratio=0.0,
         )
 
-    def make_pulse_animation(self, shift_amount: np.ndarray) -> ShowPassingFlash:
+    def make_pulse_animation(self, shift_amount: Vector3D) -> ShowPassingFlash:
         """Make animation of the filter pulsing.
 
         Parameters

@@ -14,6 +14,7 @@ __all__ = ["LayoutConfig", "LayoutDirection", "LayoutType"]
 from enum import Enum
 from typing import List, Dict
 import numpy as np
+from manim.typing import Vector3D
 
 
 class LayoutDirection(Enum):
@@ -149,10 +150,10 @@ class LayoutConfig:
 
     def __init__(
         self,
-        direction: np.ndarray = RIGHT,
+        direction: Vector3D = RIGHT,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
-        sides: np.ndarray | List[np.ndarray] = (UP, DOWN),
+        sides: Vector3D | List[Vector3D] = (UP, DOWN),
     ):
         """Initialize LayoutConfig."""
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
@@ -169,7 +170,7 @@ class LayoutConfig:
         self.level_spacing = level_spacing
         self.direction = direction
 
-    def get_layout_direction(self, direction: np.ndarray) -> LayoutDirection:
+    def get_layout_direction(self, direction: Vector3D) -> LayoutDirection:
         """Convert a direction vector to a LayoutDirection enum.
 
         Parameters

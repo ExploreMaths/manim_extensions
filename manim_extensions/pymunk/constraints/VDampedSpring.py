@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from ..custom_mobjects import VSpring
 from manim import BLUE, Dot, Line, Mobject, ORIGIN, VMobject, YELLOW
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -105,7 +105,7 @@ class VDampedSpring(VConstraint):
         damping: float = 10.0,
         mob_a_appearance: Mobject = Dot(color=BLUE),
         mob_b_appearance: Mobject = Dot(color=BLUE),
-        connect_line_class: Optional[Line] = VSpring,
+        connect_line_class: Line | None = VSpring,
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
@@ -127,8 +127,8 @@ class VDampedSpring(VConstraint):
         self.appearance_b = mob_b_appearance
         self.connect_line_class = connect_line_class
         self.connect_line_config = connect_line_config
-        self.conn_line: Optional[VMobject] = None
-        self.constraint: Optional[DampedSpring] = None
+        self.conn_line: VMobject | None = None
+        self.constraint: DampedSpring | None = None
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters.

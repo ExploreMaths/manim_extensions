@@ -12,7 +12,6 @@ from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
 
-import numpy as np
 class LinkedISLM_ADAS(VGroup):
     """Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.
 
@@ -146,7 +145,7 @@ class LinkedISLM_ADAS(VGroup):
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: np.ndarray, m: float | None = None, v: float | None = None) -> list:
+    def fiscal_expansion(self, a: float, m: float | None = None, v: float | None = None) -> list:
         """Fiscal expansion: IS shifts right, AD shifts right.
 
         Parameters
@@ -170,7 +169,7 @@ class LinkedISLM_ADAS(VGroup):
             self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
         )]
 
-    def fiscal_contraction(self, a: np.ndarray, m: float | None = None, v: float | None = None) -> list:
+    def fiscal_contraction(self, a: float, m: float | None = None, v: float | None = None) -> list:
         """Fiscal contraction: IS shifts left, AD shifts left.
 
         Parameters

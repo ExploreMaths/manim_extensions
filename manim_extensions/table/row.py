@@ -8,7 +8,7 @@ This module provides the Row class for table visualizations.
 
 from manim import RIGHT, VGroup
 from .cell import Cell
-from typing import Any, Iterator, List, Union, overload
+from typing import Any, Iterator, List, overload
 
 
 class Row(VGroup):
@@ -54,7 +54,7 @@ class Row(VGroup):
     def __init__(
         self,
         values: List[str],
-        cell_widths: Union[float, List[float]] = 1.5,
+        cell_widths: float | List[float] = 1.5,
         cell_height: float = 0.5,
         font_size: int = 20,
         is_header: bool = False,
@@ -103,7 +103,7 @@ class Row(VGroup):
     def __getitem__(self, index: int) -> Cell: ...
     @overload
     def __getitem__(self, index: slice) -> List[Cell]: ...
-    def __getitem__(self, index: Union[int, slice]) -> Union[Cell, List[Cell]]:
+    def __getitem__(self, index: int | slice) -> Cell | List[Cell]:
         """Get a cell by index."""
         return self.cells[index]
     

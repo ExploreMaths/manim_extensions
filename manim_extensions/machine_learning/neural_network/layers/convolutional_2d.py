@@ -9,7 +9,6 @@
 This module provides the convolutional 2D layer class for neural network visualizations.
 """
 
-import numpy as np
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -27,12 +26,12 @@ from manim import (
     VGroup,
     override_animation,
 )
-from typing import Optional
 
 from ... import config
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
+from manim.typing import Point3D
 
 
 class FeatureMap(VGroup):
@@ -77,7 +76,7 @@ class FeatureMap(VGroup):
     def __init__(
         self,
         color: ManimColor = ORANGE,
-        feature_map_size: Optional[tuple[int, int]] = None,
+        feature_map_size: tuple[int, int] | None = None,
         fill_color: ManimColor = ORANGE,
         fill_opacity: float = 0.2,
         cell_width: float = 0.2,
@@ -244,8 +243,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def __init__(
         self,
         num_feature_maps: int,
-        feature_map_size: Optional[int | tuple[int, int]] = None,
-        filter_size: Optional[int | tuple[int, int]] = None,
+        feature_map_size: int | tuple[int, int] | None = None,
+        filter_size: int | tuple[int, int] | None = None,
         cell_width: float = 0.2,
         filter_spacing: float = 0.1,
         color: ManimColor = BLUE,
@@ -255,7 +254,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         fill_opacity: float = 0.3,
         stride: int = 1,
         stroke_width: float = 2.0,
-        activation_function: Optional[ActivationFunction | str] = None,
+        activation_function: ActivationFunction | str | None = None,
         padding: int = 0,
         padding_dashed: bool = True,
         **kwargs,
@@ -436,7 +435,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> Point3D:
         """Overrides function for getting center.
 
         The reason for this is so that the center calculation

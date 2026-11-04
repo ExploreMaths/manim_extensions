@@ -10,7 +10,7 @@ This module provides the VSlideJoint class for creating slide joint constraints.
 from __future__ import annotations
 
 from manim import Dot, GREEN_A, Line, Mobject, ORIGIN, RED
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -93,7 +93,7 @@ class VSlideJoint(VConstraint):
         max_dist: float = 1.0,
         anchor_a_appearance: Mobject = Dot(color=GREEN_A, radius=0.08),
         anchor_b_appearance: Mobject = Dot(color=GREEN_A, radius=0.08),
-        indicator_line_class: Optional[Line] = Line,
+        indicator_line_class: Line | None = Line,
         indicator_line_config: dict = {
             "color": RED,
             "stroke_width": 2,
@@ -117,7 +117,7 @@ class VSlideJoint(VConstraint):
         self.indicator_line_class = indicator_line_class
         self.indicator_line_config = indicator_line_config
         self.indicator_line = None
-        self.constraint: Optional[SlideJoint] = None
+        self.constraint: SlideJoint | None = None
 
     def __check_data(self):
         """Verify the validity of constraint parameters."""

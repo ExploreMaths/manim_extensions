@@ -9,7 +9,7 @@ This module provides the ThreeDMolecule class for rendering molecules in 3D.
 
 
 from manim import ORIGIN, RendererType, config
-from typing import Optional, Self
+from typing import Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from ..element import Element
 from ..utils import mol_parser, mol_parser_string
@@ -109,7 +109,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         self,
         atoms_dict: dict,
         bonds_dict: dict,
-        source_csv: Optional[str] = None,
+        source_csv: str | None = None,
         add_bonds: bool = True,
         add_atoms: bool = True,
         *mobjects,

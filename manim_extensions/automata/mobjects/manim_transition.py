@@ -23,7 +23,6 @@ from manim import (
     UP,
     VGroup,
     normalize,
-    np,
 )
 from typing import TYPE_CHECKING, Any
 from .automata_dependencies.automata import Transition
@@ -34,6 +33,7 @@ if TYPE_CHECKING:
     from .manim_automaton import ManimAutomaton
 
 import math
+from manim.typing import Point3D
 
 
 class ManimTransition(Transition, VGroup):
@@ -159,7 +159,7 @@ class ManimTransition(Transition, VGroup):
 
         return animation_function(self.arrow, color=color)
 
-    def calculate_circle_vertices(self) -> tuple[np.ndarray, np.ndarray]:
+    def calculate_circle_vertices(self) -> tuple[Point3D, Point3D]:
         """Calculate two vertices on the source state's circle for arrow endpoints.
 
         The vertices are placed at angles ``PI/4`` and ``3*PI/4`` on the circle.
@@ -175,7 +175,7 @@ class ManimTransition(Transition, VGroup):
 
         return p1, p2
 
-    def create_reflexive_arrow(self, point1: np.ndarray, point2: np.ndarray):
+    def create_reflexive_arrow(self, point1: Point3D, point2: Point3D):
         """Create a curved reflexive arrow from the source state back to itself.
 
         Parameters

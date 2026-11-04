@@ -27,7 +27,7 @@ from manim import (
     VGroup,
     override_animation,
 )
-from typing import Callable, Optional
+from typing import Callable
 
 from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
 import numpy as np
@@ -38,6 +38,7 @@ from tqdm import tqdm
 from ...utils.deps import require
 
 from ..utils.mobjects.probability import GaussianDistribution
+from manim.typing import Point2D, Point2D_Array, VectorND, MatrixMN
 
 ######################## MCMC Algorithms #########################
 
@@ -95,7 +96,7 @@ class MultidimensionalGaussianPosterior:
         Variance of the distribution; drawn from the prior if None.
     """
 
-    def __init__(self, ndim: int = 2, seed: int = 12345, scale: int = 3, mu: np.ndarray | None = None, var: np.ndarray | None = None):
+    def __init__(self, ndim: int = 2, seed: int = 12345, scale: int = 3, mu: VectorND | None = None, var: VectorND | None = None):
         """Initialize the MultidimensionalGaussianPosterior instance."""
         np.random.seed(seed)
         self.scale = scale
@@ -121,9 +122,9 @@ class MultidimensionalGaussianPosterior:
             return -1e6
 
 def metropolis_hastings_sampler(
-    log_prob_fn: Callable[[np.ndarray], float] = MultidimensionalGaussianPosterior(),
-    prop_fn: Callable[[np.ndarray], tuple[np.ndarray, float]] = gaussian_proposal,
-    initial_location: np.ndarray = np.array([0, 0]),
+    log_prob_fn: Callable[[VectorND], float] = MultidimensionalGaussianPosterior(),
+    prop_fn: Callable[[VectorND], tuple[VectorND, float]] = gaussian_proposal,
+    initial_location: Point2D = np.array([0, 0]),
     iterations: int = 25,
     warm_up: int = 0,
     ndim: int = 2,
@@ -191,7 +192,7 @@ def metropolis_hastings_sampler(
 
 #################### MCMC Visualization Tools ######################
 
-def make_dist_image_mobject_from_samples(samples: np.ndarray, ylim: Optional[list], xlim: Optional[list]) -> ImageMobject:
+def make_dist_image_mobject_from_samples(samples: Point2D_Array, ylim: list | None, xlim: list | None) -> ImageMobject:
     """Render a KDE density plot from 2D samples and return it as an ImageMobject.
 
     Parameters
@@ -363,7 +364,7 @@ class MCMCAxes(Group):
         """Overrides Create animation."""
         return AnimationGroup(Create(self.axes))
 
-    def visualize_gaussian_proposal_about_point(self, mean: np.ndarray, cov: np.ndarray | None = None) -> AnimationGroup:
+    def visualize_gaussian_proposal_about_point(self, mean: Point2D, cov: MatrixMN | None = None) -> AnimationGroup:
         """Creates a Gaussian distribution about a certain point.
 
         Parameters
@@ -467,10 +468,10 @@ class MCMCAxes(Group):
 
     def visualize_metropolis_hastings_chain_sampling(
         self,
-        log_prob_fn: Callable[[np.ndarray], float] = MultidimensionalGaussianPosterior(),
-        prop_fn: Callable[[np.ndarray], tuple[np.ndarray, float]] = gaussian_proposal,
+        log_prob_fn: Callable[[VectorND], float] = MultidimensionalGaussianPosterior(),
+        prop_fn: Callable[[VectorND], tuple[VectorND, float]] = gaussian_proposal,
         show_dots: bool = False,
-        true_samples: np.ndarray | None = None,
+        true_samples: Point2D_Array | None = None,
         sampling_kwargs: dict = {},
     ) -> Succession:
         """

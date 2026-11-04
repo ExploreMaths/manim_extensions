@@ -11,7 +11,7 @@ Mesh structure.
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Optional, Set, Union, Self
+from typing import List, Set, Self
 import numpy as np
 
 # local imports
@@ -45,6 +45,7 @@ from ...types import (
     Parts,
     Edges,
 )
+from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND, MatrixMN
 
 
 class Mesh:
@@ -96,13 +97,9 @@ class Mesh:
     @dangling_face_decorator()
     def __init__(
         self,
-        vertices: Union[np.ndarray, List[List[float]], List[tuple[float, ...]]],
-        faces: Optional[
-            Union[np.ndarray, List[np.ndarray], List[List[int]], List[tuple[int, ...]]]
-        ],
-        parts: Optional[
-            Union[np.ndarray, List[np.ndarray], List[List[int]], List[tuple[int, ...]]]
-        ] = None,
+        vertices: Point3D_Array | List[List[float]] | List[tuple[float, ...]],
+        faces: MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None,
+        parts: MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None = None,
         dangling: bool = False,
     ):
         """Initialize mesh with the correct internal structure for all variables."""
@@ -442,7 +439,7 @@ class Mesh:
                 f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
             )
 
-    def find_vertex(self, vertex: np.ndarray, start: int = 0) -> List[int]:
+    def find_vertex(self, vertex: Point3D, start: int = 0) -> List[int]:
         """Return all vertex indices whose coordinates match *vertex*.
 
         Parameters
@@ -465,7 +462,7 @@ class Mesh:
             if np.array_equal(vertex, v)
         ]
 
-    def find_face(self, face: np.ndarray, start: int = 0) -> List[int]:
+    def find_face(self, face: VectorND, start: int = 0) -> List[int]:
         """Return all face indices that match the given face.
 
         Parameters
@@ -481,7 +478,7 @@ class Mesh:
         """
         return find_in_vararray(array=self._faces, item=face, start=start)
 
-    def find_part(self, part: np.ndarray, start: int = 0) -> List[int]:
+    def find_part(self, part: VectorND, start: int = 0) -> List[int]:
         """Return all part indices that match the given part.
 
         Parameters
@@ -523,7 +520,7 @@ class Mesh:
             )
         self._vertices = np.vstack([self._vertices, new_vertices])
 
-    def remove_vertices(self, indices: Union[np.ndarray, List[int]]):
+    def remove_vertices(self, indices: VectorND | List[int]):
         """Remove vertices at the given indices and update references.
 
         Parameters
@@ -628,7 +625,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def remove_faces(self, indices: Union[np.ndarray, List[int]]):
+    def remove_faces(self, indices: VectorND | List[int]):
         """Remove faces at the given indices and update parts.
 
         Parameters
@@ -722,7 +719,7 @@ class Mesh:
             raise InvalidTypeException(f"unknown type for new_part {type(new_parts)}")
 
     @dangling_face_decorator()
-    def remove_parts(self, indices: Union[np.ndarray, List[int]]):
+    def remove_parts(self, indices: VectorND | List[int]):
         """Remove parts at the given indices.
 
         Parameters
@@ -948,7 +945,7 @@ class Mesh:
         unique = np.unique(np.concatenate(self._parts).ravel())
         return any(f_idx not in unique for f_idx in range(len(self._faces)))
 
-    def scale_mesh(self, scaling: float, about_point: Optional[np.ndarray] = None):
+    def scale_mesh(self, scaling: float, about_point: Point3D | None = None):
         """Scale all vertices by a uniform factor.
 
         Parameters
@@ -966,7 +963,7 @@ class Mesh:
             self._vertices *= float(scaling)
 
     def stretch_mesh(
-        self, factor: float, dim: int, about_point: Optional[np.ndarray] = None
+        self, factor: float, dim: int, about_point: Point3D | None = None
     ):
         """Stretch all vertices along a single dimension.
 
@@ -986,7 +983,7 @@ class Mesh:
         else:
             self._vertices[:, dim] *= float(factor)
 
-    def translate_mesh(self, translation: np.ndarray):
+    def translate_mesh(self, translation: Vector3D):
         """Translate (shift) all vertices by the given vector.
 
         Parameters
@@ -1012,7 +1009,7 @@ class Mesh:
             )
         self._vertices += np.array(translation)
 
-    def translate_vertex(self, v_id: int, translation: np.ndarray):
+    def translate_vertex(self, v_id: int, translation: Vector3D):
         """Translate a single vertex by the given vector.
 
         Parameters
@@ -1049,8 +1046,8 @@ class Mesh:
     def apply_rotation(
         self,
         angle: float,
-        axis: np.ndarray = np.array([0, 0, 1]),
-        about_point: Optional[np.ndarray] = None,
+        axis: Vector3D = np.array([0, 0, 1]),
+        about_point: Point3D | None = None,
     ):
         """Rotate all vertices around a given axis.
 
@@ -1075,8 +1072,8 @@ class Mesh:
 
         def rotation_matrix(
             angle: float,
-            axis: np.ndarray,
-        ) -> np.ndarray:
+            axis: Vector3D,
+        ) -> MatrixMN:
             """Compute a 3D rotation matrix for *angle* radians around *axis*.
 
             Parameters
@@ -1127,7 +1124,7 @@ class Mesh:
         steps: int = 1,
         update_verts: bool = False,
         precision: int = 10,
-    ) -> np.ndarray:
+    ) -> Point3D_Array:
         """Snap vertices to grid positions when they are sufficiently close.
 
         For example, a value of ``0.999`` or ``1.001`` would be shifted

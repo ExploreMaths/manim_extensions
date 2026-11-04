@@ -10,7 +10,7 @@ This module provides the VDampedRotarySpring class for creating damped rotary sp
 from __future__ import annotations
 
 from manim import Arc, Line, Mobject, PI, RED, VMobject, YELLOW, np
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -87,9 +87,9 @@ class VDampedRotarySpring(VConstraint):
         rest_angle: float = 0.0,
         stiffness: float = 10.0,
         damping: float = 1.0,
-        arc_indicator_class: Optional[Arc] = Arc,
+        arc_indicator_class: Arc | None = Arc,
         arc_indicator_config: dict = {"radius": 0.1, "color": RED, "stroke_width": 4},
-        connect_line_class: Optional[Line] = None,
+        connect_line_class: Line | None = None,
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
@@ -110,10 +110,10 @@ class VDampedRotarySpring(VConstraint):
         self.connect_line_config = connect_line_config
 
         # Visual component placeholder
-        self.arc_a: Optional[VMobject] = None
-        self.arc_b: Optional[VMobject] = None
-        self.conn_line: Optional[VMobject] = None
-        self.constraint: Optional[DampedRotarySpring] = None
+        self.arc_a: VMobject | None = None
+        self.arc_b: VMobject | None = None
+        self.conn_line: VMobject | None = None
+        self.constraint: DampedRotarySpring | None = None
         self.__check_data()
 
     def __check_data(self):

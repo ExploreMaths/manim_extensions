@@ -37,6 +37,7 @@ from . import helpers
 
 import numpy as np
 from PIL import Image
+from manim.typing import Point2D_Array, VectorND
 
 class LeafNode(Group):
     """Leaf node in tree.
@@ -544,7 +545,7 @@ class DecisionTreeContainer():
         Class label of each point in ``points``.
     """
 
-    def __init__(self, sklearn_tree: helpers.SklearnTree, points: np.ndarray, classes: np.ndarray):
+    def __init__(self, sklearn_tree: helpers.SklearnTree, points: Point2D_Array, classes: VectorND):
         """Store the fitted tree, data points, and class labels for coordinated visualization."""
         self.sklearn_tree = sklearn_tree
         self.points = points

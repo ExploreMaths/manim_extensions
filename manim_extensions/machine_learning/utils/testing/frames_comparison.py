@@ -15,7 +15,7 @@ from manim.utils.testing._test_class_makers import DummySceneFileWriter, _make_s
 import functools
 import inspect
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Callable
 
 from _pytest.fixtures import FixtureRequest
 
@@ -28,7 +28,7 @@ PATH_CONTROL_DATA = _tests_root_dir_path / Path("control_data", "graphical_units
 
 
 def frames_comparison(
-    func: Optional[Callable] = None,
+    func: Callable | None = None,
     *,
     last_frame: bool = True,
     renderer_class: type[CairoRenderer] = CairoRenderer,

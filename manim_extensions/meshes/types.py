@@ -8,26 +8,26 @@ custom type hints for all the models.
 """
 
 # python imports
-from typing import List, Union, Dict, Any
+from typing import List, Dict, Any
 
 # third-party imports
-import numpy as np
+from manim.typing import Point3D, Point3D_Array, VectorND
 
 # VarArrays are Lists of possibly different sized np.ndarrays
 # due to the possible different sizes, a nested numpy array can not be used
-VarArray = List[np.ndarray]
+VarArray = List[Point3D_Array]
 
 # vertex can be an array or an iterable of ints or floats
-Vertex = Union[np.ndarray, List[Union[int, float]], tuple[Union[int, float], ...]]
+Vertex = Point3D | List[int | float] | tuple[int | float, ...]
 # vertices has to be a two-dimensional np.ndarray
-Vertices = np.ndarray
+Vertices = Point3D_Array
 
 # all faces reference vertices by id and therefore have to be integers
-Face = Union[np.ndarray, List[int], tuple[int, ...]]
+Face = VectorND | List[int] | tuple[int, ...]
 Faces = VarArray
 
 # all parts reference faces by id and therefore have to be integers
-Part = Union[np.ndarray, List[int], tuple[int, ...]]
+Part = VectorND | List[int] | tuple[int, ...]
 Parts = VarArray
 
 # an edge is a line from one vertex_id to another

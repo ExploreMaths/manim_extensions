@@ -8,7 +8,6 @@ custom exceptions.
 """
 
 # python imports
-from typing import Union
 
 
 class InvalidMeshException(Exception):
@@ -124,8 +123,8 @@ class InvalidMeshDimensionsException(Exception):
 
     def __init__(
         self,
-        actual: Union[int, tuple[Union[int, str], Union[int, str]]],
-        expected: Union[int, tuple[Union[int, str], Union[int, str]]],
+        actual: int | tuple[int | str, int | str],
+        expected: int | tuple[int | str, int | str],
         name: str = "",
     ):
         """Initialize the InvalidMeshDimensionsException instance."""

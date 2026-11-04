@@ -6,6 +6,7 @@
 from typing import Self
 import numpy as np
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
+from manim.typing import Point3D
 
 class VSpring(Line):
     """A spring-shaped Mobject rendered as a helix between two points.
@@ -56,8 +57,8 @@ class VSpring(Line):
 
     def __init__(
         self,
-        start: np.ndarray = LEFT,
-        end: np.ndarray = RIGHT,
+        start: Point3D = LEFT,
+        end: Point3D = RIGHT,
         turns: int = 18,
         amplitude: float = 0.1,
         end_length: float = 0.2,
@@ -122,7 +123,7 @@ class VSpring(Line):
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
 
-    def put_start_and_end_on(self, start: np.ndarray, end: np.ndarray) -> Self:
+    def put_start_and_end_on(self, start: Point3D, end: Point3D) -> Self:
         """Regenerate points when positions change (e.g. called by an Updater).
 
         Parameters

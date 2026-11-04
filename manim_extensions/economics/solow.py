@@ -27,7 +27,6 @@ from manim import (
     VGroup,
     YELLOW,
 )
-from typing import Optional
 
 import numpy as np
 
@@ -146,7 +145,7 @@ class SolowDiagram(EconDiagram):
         return lambda k: s * (k ** alpha)
 
     @staticmethod
-    def _make_breakeven_func(delta: float, n: Optional[np.ndarray], g: float):
+    def _make_breakeven_func(delta: float, n: float | None, g: float):
         """:math:`(\\delta + n + g) \\cdot k`"""
         rate = delta + n + g
         return lambda k: rate * k
@@ -270,7 +269,7 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def population_growth(self, n: Optional[np.ndarray], show_arrows: bool = False) -> list[AnimationGroup]:
+    def population_growth(self, n: float | None, show_arrows: bool = False) -> list[AnimationGroup]:
         """Higher population growth → break-even steeper → lower steady-state k.
 
         Parameters

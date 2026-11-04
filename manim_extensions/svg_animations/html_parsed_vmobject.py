@@ -25,10 +25,9 @@ import os
 from types import ModuleType
 from typing import cast
 
-import numpy as np
-from numpy.typing import NDArray
 
 from ..utils.deps import require
+from manim.typing import VectorND
 
 
 HTML_STRUCTURE = """<!DOCTYPE html>
@@ -322,7 +321,7 @@ class HTMLParsedVMobject:
     def start_interactive(
         self,
         value_trackers: list[ValueTracker],
-        linspaces: list[NDArray[np.float64]],
+        linspaces: list[VectorND],
         animate_this: bool = True
     ):
         """Precompute the interactive JavaScript state for value combinations.

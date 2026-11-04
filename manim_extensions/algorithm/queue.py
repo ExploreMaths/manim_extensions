@@ -20,7 +20,7 @@ from manim import (
     VMobject,
     linear,
 )
-from typing import List, Optional
+from typing import List
 from manim.typing import Point3D
 from .node import Node, NodeBoxType
 
@@ -66,7 +66,7 @@ class Queue(VMobject):
     def __init__(
         self,
         capacity: int,
-        init_data: Optional[List[Node]] = None,
+        init_data: List[Node] | None = None,
         total_width: int = 12,
         font_size: int = 48,
         box_type: NodeBoxType = Square,
@@ -185,7 +185,7 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: "Queue", target_pos: Optional[Point3D] = None, **kwargs):
+        def __init__(self, queue: "Queue", target_pos: Point3D | None = None, **kwargs):
             """Create an animation that removes the front item and shifts remaining items left."""
             if not queue.data:
                 return

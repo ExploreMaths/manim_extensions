@@ -35,7 +35,7 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Callable, Optional, Union
+from typing import Callable
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -190,8 +190,8 @@ class NeuralNetwork(Group):
 
     def add_connection(
         self,
-        start_mobject_or_name: Union[Mobject, str],
-        end_mobject_or_name: Union[Mobject, str],
+        start_mobject_or_name: Mobject | str,
+        end_mobject_or_name: Mobject | str,
         connection_style: str = "default",
         connection_position: str = "bottom",
         arc_direction: str = "down"
@@ -402,7 +402,7 @@ class NeuralNetwork(Group):
 
     def make_forward_pass_animation(
         self, 
-        run_time: Optional[float] = None, 
+        run_time: float | None = None,
         passing_flash: bool = True, 
         layer_args: dict = {}, 
         per_layer_animations: bool = False,

@@ -11,7 +11,6 @@ from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
 
 
-import numpy as np
 class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
 
@@ -112,7 +111,7 @@ class ISLMDiagram(EconDiagram):
                                   numbered=numbered_eq)
 
     @staticmethod
-    def _make_is_func(a: np.ndarray, b: np.ndarray):
+    def _make_is_func(a: float, b: float):
         """r = a/b - Y/b"""
         return lambda y: a / b - y / b
 
@@ -121,7 +120,7 @@ class ISLMDiagram(EconDiagram):
         """r = (k*Y - Ms) / h"""
         return lambda y: (k * y - ms) / h
 
-    def _clamp_is(self, a: np.ndarray, b: np.ndarray):
+    def _clamp_is(self, a: float, b: float):
         """X range so IS (r = a/b - Y/b) stays within visible y range."""
         # r = a/b - Y/b => Y = a - b*r
         x_at_ymax = a - b * self._y_max
@@ -239,7 +238,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: np.ndarray, show_arrows: bool = False) -> list:
+    def fiscal_expansion(self, a: float, show_arrows: bool = False) -> list:
         """Increase in government spending → IS shifts right → higher r, higher Y.
 
         Parameters
@@ -256,7 +255,7 @@ class ISLMDiagram(EconDiagram):
         """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
-    def fiscal_contraction(self, a: np.ndarray, show_arrows: bool = False) -> list:
+    def fiscal_contraction(self, a: float, show_arrows: bool = False) -> list:
         """Decrease in government spending → IS shifts left → lower r, lower Y.
 
         Parameters

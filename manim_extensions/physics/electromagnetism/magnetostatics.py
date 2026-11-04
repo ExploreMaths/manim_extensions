@@ -12,6 +12,7 @@ import itertools as it
 from typing import Iterable
 
 import numpy as np
+from manim.typing import Point3D, Vector3D
 
 __all__ = ["Wire", "MagneticField"]
 
@@ -115,8 +116,8 @@ class MagneticField(ArrowVectorField):
 
     @staticmethod
     def _field_func(
-        p: np.ndarray,
-        dls: Iterable[tuple[np.ndarray, np.ndarray]],
+        p: Point3D,
+        dls: Iterable[tuple[Point3D, Vector3D]],
         currents: Iterable[float],
     ):
         """Compute the magnetic field vector at a point using the Biot-Savart law.

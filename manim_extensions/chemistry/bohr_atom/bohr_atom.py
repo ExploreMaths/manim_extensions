@@ -7,7 +7,6 @@ import numpy as np
 import random
 
 
-from typing import Optional
 class BohrAtom(VGroup):
     """Creates a Bohr like diagram.
 
@@ -54,7 +53,7 @@ class BohrAtom(VGroup):
         e: int = 14,  # Electrons
         p: int = 14,  # Protons
         n: int = 10,  # Neutrons
-        level: Optional[int]=None,  # Levels
+        level: int | None=None,  # Levels
         orbit_color: ManimColor = WHITE,
         electron_color: ManimColor = BLUE,
         proton_color: ManimColor = RED,

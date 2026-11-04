@@ -19,11 +19,12 @@ from manim import Circle
 from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
+from manim.typing import Point2D
 
 
 def get_triangle_circum_circle_params(
-    pt1: np.ndarray, pt2: np.ndarray, pt3: np.ndarray
-) -> tuple[np.ndarray, float]:
+    pt1: Point2D, pt2: Point2D, pt3: Point2D
+) -> tuple[Point2D, float]:
     """Calculate the circumscribed circle of a triangle defined by three points.
 
     Parameters

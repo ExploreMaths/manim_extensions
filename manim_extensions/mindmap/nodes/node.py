@@ -32,6 +32,7 @@ from typing import Generator, List, Dict, Self
 import numpy as np
 
 from ..algorithms import LayoutType, LayoutDirection
+from manim.typing import Vector3D
 
 
 class NodeSate(Enum):
@@ -362,7 +363,7 @@ class Node:
         self.width = self.alter_vmobject.width + 2 * self.buff
         self.height = self.alter_vmobject.height + 2 * self.buff
 
-    def _get_mindmap_connector(self, direction: np.ndarray, **kwargs: object) -> Line:
+    def _get_mindmap_connector(self, direction: Vector3D, **kwargs: object) -> Line:
         """Return the connector line for a mind-map node.
 
         Parameters
@@ -441,7 +442,7 @@ class Node:
     def get_connector(
         self,
         layout_type: LayoutType,
-        direction: np.ndarray,
+        direction: Vector3D,
         **kwargs: object,
     ) -> Line:
         """Return the connector from this node to its parent based on layout type.
@@ -473,7 +474,7 @@ class Node:
                 return self._get_catalog_connector(**kwargs)
 
     def set_connector(
-        self, layout_type: LayoutType, direction: np.ndarray = RIGHT, **kwargs: object
+        self, layout_type: LayoutType, direction: Vector3D = RIGHT, **kwargs: object
     ):
         """Set the connector line.
 
@@ -498,7 +499,7 @@ class Node:
         change_dir: bool,
         change_layout: bool,
         layout_type: LayoutType,
-        direction: np.ndarray = RIGHT,
+        direction: Vector3D = RIGHT,
         **kwargs: object,
     ):
         """Change the connector line.

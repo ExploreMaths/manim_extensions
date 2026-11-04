@@ -7,14 +7,14 @@ This module provides the AbstractMolecule class as a template for all molecule i
 """
 
 from manim import DOWN, Tex, Text, VGroup
-from typing import Dict, Optional, Union, Self
+from typing import Dict, Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 
-import numpy as np
 
 from ..utils import PubchemAPIManager
 from ..manim_chemistry_molecule import MCMolecule
+from manim.typing import Vector3D
 
 
 class AbstractMolecule:
@@ -44,7 +44,7 @@ class AbstractMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
         *args,
         **kwargs,
     ) -> Self:
@@ -89,10 +89,10 @@ class AbstractMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
         *args,
         **kwargs,
-    ) -> Union[OpenGLGroup, VGroup]:
+    ) -> OpenGLGroup | VGroup:
         """
         Reads a file and returns a collection of molecules from that file as a OpenGLGroup or VGroup.
 
@@ -143,7 +143,7 @@ class AbstractMolecule:
         format: str = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
         *args,
         **kwargs,
     ) -> Self:
@@ -193,7 +193,7 @@ class AbstractMolecule:
         format: str = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
         *args,
         **kwargs,
     ) -> OpenGLGroup:
@@ -247,12 +247,12 @@ class AbstractMolecule:
     @classmethod
     def molecule_from_pubchem(
         cls,
-        cid: Optional[str] = None,
-        name: Optional[str] = None,
-        smiles: Optional[str] = None,
-        inchi: Optional[str] = None,
+        cid: str | None = None,
+        name: str | None = None,
+        smiles: str | None = None,
+        inchi: str | None = None,
         three_d: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
         *args,
         **kwargs,
     ) -> Self:
@@ -321,8 +321,8 @@ class AbstractMolecule:
 
     def add_molecule_name(
         self,
-        name: Union[Text, Tex, str],
-        direction: np.ndarray = DOWN,
+        name: Text | Tex | str,
+        direction: Vector3D = DOWN,
         buff: float = 0.5,
         scale: float = 0.75,
         ) -> Self:

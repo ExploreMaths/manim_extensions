@@ -10,7 +10,7 @@ This module provides the VPivotJoint class for creating pivot joint constraints 
 from __future__ import annotations
 
 from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -89,13 +89,13 @@ class VPivotJoint(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        pivot_world: Optional[list[float, float, float]] = None,
+        pivot_world: list[float, float, float] | None = None,
         anchor_a_local: list[float, float, float] = ORIGIN,
         anchor_b_local: list[float, float, float] = ORIGIN,
         anchor_a_appearance: Mobject = Dot(color=RED),
         anchor_b_appearance: Mobject = Dot(color=RED),
         pivot_appearance: Mobject = Dot(color=RED),
-        connect_line_class: Optional[Line] = Line,
+        connect_line_class: Line | None = Line,
         connect_line_config: dict = {
             "color": YELLOW,
             "stroke_width": 2,
@@ -122,7 +122,7 @@ class VPivotJoint(VConstraint):
         self.pivot_connect_line_a = None
         self.pivot_connect_line_b = None
 
-        self.constraint: Optional[PivotJoint] = None
+        self.constraint: PivotJoint | None = None
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters.

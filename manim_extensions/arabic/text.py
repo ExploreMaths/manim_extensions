@@ -10,7 +10,6 @@
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 
 import subprocess
-from typing import Optional
 
 from manim import Tex, TexTemplate
 
@@ -25,7 +24,7 @@ _FONT_CANDIDATES = (
 )
 
 
-def _resolve_arabic_font(font_name: Optional[str]) -> str:
+def _resolve_arabic_font(font_name: str | None) -> str:
     """Pick an installed Arabic font.
 
     Parameters
@@ -79,7 +78,7 @@ class ArabicTemplate(TexTemplate):
                self.add(label)
     """
 
-    def __init__(self, font_name: Optional[str] = None):
+    def __init__(self, font_name: str | None = None):
         """Initialize the template for Arabic typesetting."""
         super().__init__()
         font_name = _resolve_arabic_font(font_name)
@@ -134,7 +133,7 @@ class ArabicText(Tex):
         text: str,
         color: str = "arabicblue",
         font_size: int = 34,
-        font_name: Optional[str] = None,
+        font_name: str | None = None,
     ):
         """Initialize the Arabic text object."""
         template = ArabicTemplate(font_name=font_name)

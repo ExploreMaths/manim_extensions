@@ -7,16 +7,16 @@
 """Helper functions for decision tree visualization."""
 
 from typing import Protocol
+from manim.typing import VectorND
 
-from numpy.typing import NDArray
 
 
 class SklearnTree(Protocol):
     """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""
 
     node_count: int
-    children_left: NDArray
-    children_right: NDArray
+    children_left: VectorND
+    children_right: VectorND
 
 
 def compute_node_depths(tree: SklearnTree) -> list[int]:

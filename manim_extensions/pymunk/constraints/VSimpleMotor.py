@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from math import inf
 from manim import Arrow, Line, Mobject, PI, RED
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -77,7 +77,7 @@ class VSimpleMotor(VConstraint):
         b_mob: Mobject,
         rate: float = PI,
         max_torque: float = inf,
-        indicator_line_class: Optional[Line] = Arrow,
+        indicator_line_class: Line | None = Arrow,
         indicator_line_config: dict = {
             "color": RED,
             "stroke_width": 2,
@@ -97,7 +97,7 @@ class VSimpleMotor(VConstraint):
         self.indicator_line_class = indicator_line_class
         self.indicator_line_config = indicator_line_config
         self.indicator_line = None
-        self.constraint: Optional[SimpleMotor] = None
+        self.constraint: SimpleMotor | None = None
 
     def __check_data(self):
         """Verify the validity of constraint parameters."""

@@ -39,9 +39,10 @@ from manim import (
     np,
     smooth,
 )
-from typing import Callable, Optional, Self
+from typing import Callable, Self
 
 from ...utils.deprecation import deprecated
+from manim.typing import Point3D, Vector3D, VectorND
 
 
 class Hole(VMobject):
@@ -450,7 +451,7 @@ class BatterySchema(VGroup):
 
         self.add(self.schema)
 
-    def get_start_finish_positions(self) -> list[np.ndarray]:
+    def get_start_finish_positions(self) -> list[Point3D]:
         """Return start and end positions of the schema based on layout type.
 
         Returns
@@ -652,7 +653,7 @@ class MOSFETTransistor(VGroup):
             The computed result."""
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
-    def make_n_region(self, side: np.ndarray = LEFT) -> Rectangle:
+    def make_n_region(self, side: Vector3D = LEFT) -> Rectangle:
         """Create a blue n-region rectangle on the given side of the main board.
 
         Parameters
@@ -982,7 +983,7 @@ def zero(function: Callable) -> Callable[..., float]:
         The computed result.
     """
     @wraps(function)
-    def wrapper(t: Optional[np.ndarray], *args, **kwargs):
+    def wrapper(t: VectorND | None, *args, **kwargs):
         if 0 <= t <= 1:
             return function(t, *args, **kwargs)
         else:

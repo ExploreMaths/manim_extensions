@@ -11,7 +11,6 @@ from manim import Animation, BLACK, ManimColor, PI, VGroup
 from .graph_molecule import GraphMolecule
 
 
-from typing import Optional
 class GMAnimationBuilder:
     r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`.
 
@@ -162,7 +161,7 @@ class GMAnimationBuilder:
             for atom, atom_copy in zip(self.atoms, self.atoms_copy)
         ]
 
-    def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: Optional[ManimColor]=None, label_color: Optional[ManimColor]=None) -> list:
+    def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: ManimColor | None=None, label_color: ManimColor | None=None) -> list:
         """Return color-change animations for atoms, bonds and optionally atom labels.
 
         Parameters

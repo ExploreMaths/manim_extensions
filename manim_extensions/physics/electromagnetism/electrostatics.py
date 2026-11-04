@@ -30,6 +30,7 @@ from manim import (
     normalize,
 )
 from typing import Iterable
+from manim.typing import Point3D, Vector3D
 
 __all__ = [
     "Charge",
@@ -73,7 +74,7 @@ class Charge(VGroup):
     def __init__(
         self,
         magnitude: float = 1,
-        point: np.ndarray = ORIGIN,
+        point: Point3D = ORIGIN,
         add_glow: bool = True,
         **kwargs,
     ):
@@ -165,10 +166,10 @@ class ElectricField(ArrowVectorField):
 
     def _field_func(
         self,
-        p: np.ndarray,
-        positions: Iterable[np.ndarray],
+        p: Point3D,
+        positions: Iterable[Point3D],
         magnitudes: Iterable[float],
-    ) -> np.ndarray:
+    ) -> Vector3D:
         """Compute the electric field vector at a point using Coulomb's law.
 
         Parameters

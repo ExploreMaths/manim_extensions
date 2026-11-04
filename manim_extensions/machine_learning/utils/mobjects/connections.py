@@ -25,7 +25,7 @@ from manim import (
     WHITE,
     override_animation,
 )
-from numpy.typing import NDArray
+from manim.typing import Vector3D
 
 
 class NetworkConnection(VGroup):
@@ -71,7 +71,7 @@ class NetworkConnection(VGroup):
                self.add(content)
     """
 
-    direction_vector_map: dict[str, NDArray[np.float64]] = {
+    direction_vector_map: dict[str, Vector3D] = {
         "up": UP,
         "down": DOWN,
         "left": LEFT,

@@ -8,11 +8,12 @@ This module provides the MCAtom class for representing atoms in molecules.
 
 from __future__ import annotations
 
-from typing import Dict, Optional, Self, TYPE_CHECKING
+from typing import Dict, Self, TYPE_CHECKING
 
 import numpy as np
 
 from .mc_element import MC_ELEMENT_DICT, MCElement
+from manim.typing import Point3D
 
 if TYPE_CHECKING:
     from .mc_bond import MCBond
@@ -60,11 +61,11 @@ class MCAtom:
     def __init__(
         self,
         element: MCElement,
-        coords: np.ndarray = np.array([0, 0, 0]),
-        atoms: Optional[list] = None,
-        bonds: Optional[list] = None,
-        molecule: Optional[None] = None,
-        molecule_index: Optional[int] = None,
+        coords: Point3D = np.array([0, 0, 0]),
+        atoms: list | None = None,
+        bonds: list | None = None,
+        molecule: None | None = None,
+        molecule_index: int | None = None,
     ):
         """Initialize MCAtom with element, 3D coordinates, bonded atoms, bonds and molecule reference."""
         self.element = element

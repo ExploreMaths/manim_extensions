@@ -9,7 +9,6 @@
 This module provides the feed forward layer class for neural network visualizations.
 """
 
-import numpy as np
 
 from manim import (
     AnimationGroup,
@@ -25,12 +24,12 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 from ... import config
+from manim.typing import Point3D
 
 class FeedForwardLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network.
@@ -109,7 +108,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         node_stroke_width: float = 2.0,
         rectangle_stroke_width: float = 2.0,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
-        activation_function: Optional[ActivationFunction | str] = None,
+        activation_function: ActivationFunction | str | None = None,
         **kwargs
     ):
         """Initialize the feed-forward layer storing node count, colors, and styling parameters."""
@@ -286,7 +285,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_height()
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> Point3D:
         """Return the center point of the surrounding rectangle.
 
         Returns
@@ -294,7 +293,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_center()
 
-    def get_left(self) -> np.ndarray:
+    def get_left(self) -> Point3D:
         """Return the leftmost point of the surrounding rectangle.
 
         Returns
@@ -302,7 +301,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_rectangle.get_left()
 
-    def get_right(self) -> np.ndarray:
+    def get_right(self) -> Point3D:
         """Return the rightmost point of the surrounding rectangle.
 
         Returns

@@ -23,11 +23,12 @@ from manim import (
     override_animation,
     sigmoid,
 )
-from typing import Optional, Sequence
+from typing import Sequence
 
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from ... import config
+from manim.typing import VectorND
 
 class FeedForwardToFeedForward(ConnectiveLayer):
     """Layer for connecting FeedForward layer to FeedForwardLayer.
@@ -66,7 +67,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         animation_dot_color: ManimColor = config.color_scheme.active_color,
         edge_color: ManimColor = config.color_scheme.secondary_color,
         edge_width: float = 1.5,
-        camera: Optional[Camera] = None,
+        camera: Camera | None = None,
         **kwargs
     ):
         """Initialize the feed-forward connective layer with edges and animation settings."""
@@ -185,7 +186,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         return path_animations
 
-    def modify_edge_colors(self, colors: Optional[list[ManimColor]] = None, magnitudes: Optional[np.ndarray] = None, color_scheme: str = "inferno"):
+    def modify_edge_colors(self, colors: list[ManimColor] | None = None, magnitudes: VectorND | None = None, color_scheme: str = "inferno"):
         """Changes the colors of edges.
 
         Parameters

@@ -14,7 +14,7 @@ This module provides the VGrooveJoint class for creating groove joint constraint
 from __future__ import annotations
 
 from manim import Dot, GREEN, Line, Mobject, ORIGIN, RED, RIGHT, YELLOW
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -97,7 +97,7 @@ class VGrooveJoint(VConstraint):
         groove_a_appearance: Mobject = Dot(color=RED),
         groove_b_appearance: Mobject = Dot(color=RED),
         anchor_b_appearance: Mobject = Dot(color=GREEN),
-        groove_line_class: Optional[Line] = Line,
+        groove_line_class: Line | None = Line,
         groove_line_config: dict = {
             "color": YELLOW,
             "stroke_width": 2,
@@ -121,7 +121,7 @@ class VGrooveJoint(VConstraint):
         self.groove_line_config = groove_line_config
         self.groove_line = None
 
-        self.constraint: Optional[GrooveJoint] = None
+        self.constraint: GrooveJoint | None = None
 
     def install(self, space: Space):
         """Verify the validity of constraint parameters.

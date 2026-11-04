@@ -26,10 +26,11 @@ from manim import (
     VMobject,
     rotate_vector,
 )
-from typing import Optional, Self, Sequence
+from typing import Self, Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
+from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
 
 __all__ = [
     "involute_func",
@@ -41,7 +42,7 @@ __all__ = [
 ]
 
 
-def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> np.ndarray:
+def involute_func(t: float | VectorND, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Point3D | Point3D_Array:
     """
     Returns the x-y-z values of the involute function.
 
@@ -81,7 +82,7 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
                self.add(base_circle, curve, Dot(points[-1], color=RED))
     """
 
-    def involute_val(val: float) -> np.ndarray:
+    def involute_val(val: float) -> Point3D:
         """Compute a single point on the involute tooth profile.
 
         Parameters
@@ -117,7 +118,7 @@ def involute_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float
         return involute_val(t)
 
 
-def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> np.ndarray:
+def involute_deriv_func(t: float | VectorND, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Point3D | Point3D_Array:
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -171,7 +172,7 @@ def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs:
                self.add(base_circle, curve, vectors)
     """
 
-    def diff_val(val: float) -> np.ndarray:
+    def diff_val(val: float) -> Point3D:
         """Compute the derivative of the involute profile at a given parameter.
 
         Parameters
@@ -207,7 +208,7 @@ def involute_deriv_func(t: float | np.ndarray, r: float, a: float = 0, rad_offs:
         return diff_val(t)
 
 
-def involute_height_func(k: float | np.ndarray, r: float, **kwargs) -> float:
+def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
     """
     Returns the radial height of the involute compared to the base circle.
 
@@ -251,7 +252,7 @@ def involute_height_func(k: float | np.ndarray, r: float, **kwargs) -> float:
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t: np.ndarray, r: float, **kwargs) -> np.ndarray:
+def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with Mobject.points.
@@ -432,7 +433,7 @@ class Gear(VMobject):
             Line(start=ORIGIN, end=RIGHT, stroke_opacity=0, fill_opacity=0)
         )
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> Point3D:
         """Return the geometric center of the gear.
 
         Returns
@@ -441,7 +442,7 @@ class Gear(VMobject):
         """
         return self.submobjects[0].points[0, :].copy()
 
-    def get_angle_vector(self) -> np.ndarray:
+    def get_angle_vector(self) -> Vector3D:
         """Return the internal reference vector used to track rotation.
 
         Returns
@@ -460,7 +461,7 @@ class Gear(VMobject):
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
 
-    def set_stroke(self, color: Optional[ManimColor] = None, **kwargs):
+    def set_stroke(self, color: ManimColor | None = None, **kwargs):
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
         If family is specified, it will still do it.
 
@@ -505,7 +506,7 @@ class Gear(VMobject):
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES + da
 
         # find t-range for the involute that lies inside the rf-ra range
-        def invo_cross_diff(t: Optional[np.ndarray]) -> float:
+        def invo_cross_diff(t: VectorND | None) -> float:
             """Compute the y-coordinate where two involute flanks intersect.
 
             Used to find the maximum involute height before the tooth tip.
@@ -571,7 +572,7 @@ class Gear(VMobject):
         rad_ucut = ofs_vector[0]
         tan_ucut = ofs_vector[1]
 
-        def undercut_func(t: Optional[np.ndarray]) -> np.ndarray:
+        def undercut_func(t: VectorND | None) -> VectorND:
             """Compute a point on the undercut (radial) curve at parameter ``t``.
 
             Parameters
@@ -591,7 +592,7 @@ class Gear(VMobject):
         if self.z < 2 / (np.sin(self.alpha * DEGREES) ** 2) or self.rf < self.rb:
             undercut = True
 
-            def diff_val_func(t: Optional[np.ndarray]) -> np.ndarray:
+            def diff_val_func(t: VectorND | None) -> VectorND:
                 """Compute the 2-D distance between undercut and involute curves.
 
                 Parameters
@@ -985,8 +986,8 @@ class Gear(VMobject):
     def rotate(
         self,
         angle: float,
-        axis: np.ndarray = OUT,
-        about_point: Optional[Sequence[float]] = None,
+        axis: Vector3D = OUT,
+        about_point: Sequence[float] | None = None,
         **kwargs,
     ) -> Self:
         """Rotate the gear around its centre.
@@ -1115,7 +1116,7 @@ class Rack(VMobject):
         self.add_line_to(self.points[0, :] + LEFT * self.h / 2)
         self.add_line_to(self.points[0, :])
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> Point3D:
         """Return the geometric center of the rack.
 
         Returns
@@ -1124,7 +1125,7 @@ class Rack(VMobject):
         """
         return self.submobjects[0].points[0, :].copy()
 
-    def get_angle_vector(self) -> np.ndarray:
+    def get_angle_vector(self) -> Vector3D:
         """Return the internal reference vector used to track orientation.
 
         Returns
@@ -1146,8 +1147,8 @@ class Rack(VMobject):
     def rotate(
         self,
         angle: float,
-        axis: np.ndarray = OUT,
-        about_point: Optional[Sequence[float]] = None,
+        axis: Vector3D = OUT,
+        about_point: Sequence[float] | None = None,
         **kwargs,
     ) -> Self:
         """Rotate the rack around its centre.

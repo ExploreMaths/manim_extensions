@@ -8,7 +8,7 @@ This module provides the MCBond class for representing chemical bonds in molecul
 
 from __future__ import annotations
 
-from typing import Dict, Optional, Self, TYPE_CHECKING
+from typing import Dict, Self, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .mc_atom import MCAtom
@@ -51,12 +51,12 @@ class MCBond:
     def __init__(
         self,
         bond_type: int,
-        from_atom: Optional[MCAtom]=None,
-        to_atom: Optional[MCAtom]=None,
-        stereo: Optional[int] = None,
-        molecule_index: Optional[int] = None,
-        topology: Optional[int] = None,
-        reacting_center_status: Optional[int] = None,
+        from_atom: MCAtom | None=None,
+        to_atom: MCAtom | None=None,
+        stereo: int | None = None,
+        molecule_index: int | None = None,
+        topology: int | None = None,
+        reacting_center_status: int | None = None,
     ):
         """Initialize MCBond with bond type, connected atoms, stereo info and metadata."""
         self.bond_type = bond_type
@@ -87,7 +87,7 @@ class MCBond:
         """
         self.to_atom = to_atom
 
-    def assign_stereo(self, stereo: Optional[int]):
+    def assign_stereo(self, stereo: int | None):
         """Set the stereochemistry type of the bond.
 
         Parameters

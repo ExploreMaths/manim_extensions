@@ -10,7 +10,7 @@ This module provides the VRotaryLimitJoint class for creating rotary limit joint
 from __future__ import annotations
 
 from manim import Arc, Mobject, PI, VMobject, YELLOW
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 import numpy as np
 
@@ -81,7 +81,7 @@ class VRotaryLimitJoint(VConstraint):
         b_mob: Mobject,
         min_angle: float = -PI / 4,
         max_angle: float = PI / 4,
-        arc_indicator_class: Optional[Arc] = Arc,
+        arc_indicator_class: Arc | None = Arc,
         arc_indicator_config: dict = {
             "radius": 0.5,
             "color": YELLOW,
@@ -102,9 +102,9 @@ class VRotaryLimitJoint(VConstraint):
         self.arc_indicator_class = arc_indicator_class
         self.arc_indicator_config = arc_indicator_config
 
-        self.arc_indicator_a: Optional[VMobject] = None
-        self.arc_indicator_b: Optional[VMobject] = None
-        self.constraint: Optional[RotaryLimitJoint] = None
+        self.arc_indicator_a: VMobject | None = None
+        self.arc_indicator_b: VMobject | None = None
+        self.constraint: RotaryLimitJoint | None = None
 
     def __check_data(self):
         """Verify the validity of constraint parameters."""

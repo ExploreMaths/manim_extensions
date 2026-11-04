@@ -12,7 +12,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 import copy
-from typing import List, Optional
+from typing import List
 
 # third-party imports
 from manim import Dot, FadeIn, FadeOut, Group, ManimColor, Mobject, ORIGIN, OUT, RED, Scene, Sphere, ThreeDVMobject, UP, VGroup, ValueTracker
@@ -28,6 +28,7 @@ from ...helpers import remove_keys_from_dict
 from ..data_models.mesh import Mesh
 from ...params import get_param_or_default, BM2DM, BM3DM
 from ...types import Vertices
+from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
 
 
 # pylint: disable=too-many-instance-attributes
@@ -208,7 +209,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         return self.faces
 
-    def add_face(self, face: np.ndarray, color: Optional[ManimColor] = None) -> tuple[VGroup, VGroup]:
+    def add_face(self, face: VectorND, color: ManimColor | None = None) -> tuple[VGroup, VGroup]:
         """Add a face to the mesh and create the corresponding Manim objects.
 
         If *color* is ``None``, the default ``self.faces_color`` is used.
@@ -348,7 +349,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         if self.display_vertices:
             scene.play(FadeOut(self.vertices), FadeIn(self.setup_vertices()))
 
-    def _update_vertex(self, vertex_idx: int, pos: np.ndarray):
+    def _update_vertex(self, vertex_idx: int, pos: Point3D):
         """Change the position of a vertex and update all dependent mobjects.
 
         If vertices are displayed the corresponding vertex object is moved.
@@ -394,7 +395,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         vert_2 = self.mesh.get_3d_vertices()[edge[1]]
         e.set_points_as_corners([vert_1, vert_2])
 
-    def shift(self, *vectors: np.ndarray):
+    def shift(self, *vectors: Vector3D):
         """Shift the mesh and its underlying data by the sum of *vectors*.
 
         Multiple vectors of the same dimensionality are summed to produce
@@ -451,8 +452,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def rotate(
         self,
         angle: float,
-        axis: np.ndarray = OUT,
-        about_point: Optional[np.ndarray]=None,
+        axis: Vector3D = OUT,
+        about_point: Point3D | None=None,
         **kwargs,
     ):
         """Rotate the mesh (data and Manim objects) about *about_point*.
@@ -480,7 +481,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             self.mesh.apply_rotation(angle, axis, about_point)
         super().rotate(angle, axis, about_point=about_point, **kwargs)
 
-    def flip(self, axis: np.ndarray = UP, **kwargs):
+    def flip(self, axis: Vector3D = UP, **kwargs):
         """Flip the mesh about *axis*.
 
         .. todo::
@@ -503,7 +504,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         raise NotImplementedError
 
     def shift_vertex(
-        self, scene: Scene, vertex_idx: int, shift: np.ndarray, **kwargs
+        self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs
     ):
         """Animate a single vertex and update all adjacent faces/edges.
 
@@ -539,7 +540,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def shift_vertices(self, scene: Scene, shift: np.ndarray, **kwargs):
+    def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs):
         """Animate all vertices simultaneously with per-vertex offsets.
 
         Parameters
@@ -577,7 +578,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         scene.remove(tracker)
 
     def move_vertices_to(
-        self, scene: Scene, new_positions: np.ndarray, **kwargs
+        self, scene: Scene, new_positions: Point3D_Array, **kwargs
     ):
         """Animate all vertices to *new_positions* and update the underlying mesh.
 
@@ -599,11 +600,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             raise InvalidShapeException(
                 "new_positions", len(new_positions), len(self.mesh.vertices)
             )
-        shift: np.ndarray = new_positions - self.mesh.vertices
+        shift: Point3D_Array = new_positions - self.mesh.vertices
         self.shift_vertices(scene, shift=shift, **kwargs)
 
     def move_vertex_to(
-        self, scene: Scene, vertex_idx: int, pos: np.ndarray, **kwargs
+        self, scene: Scene, vertex_idx: int, pos: Point3D, **kwargs
     ):
         """Animate a single vertex to a new absolute position.
 

@@ -9,7 +9,7 @@ This module provides the SpaceScene class for creating physics simulations with 
 from __future__ import annotations
 
 from manim import Mobject, ZoomedScene
-from typing import Callable, Dict, Optional, TYPE_CHECKING
+from typing import Callable, Dict, TYPE_CHECKING
 
 from . import VSpace
 from ..constraints.constraint import VConstraint
@@ -388,7 +388,7 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.sleep()
 
-    def draw_debug_img(self, option: Optional[int] = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)):
+    def draw_debug_img(self, option: int | None = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)):
         """Pops up a Matplotlib window to render a debug view of the physical space.
         This is an essential diagnostic tool used to verify if collision shapes,
         constraints, and pivots are correctly aligned when they are not behaving
@@ -511,7 +511,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[object, object]] = None,
+        data: Dict[object, object] | None = None,
     ):
         """Register a wildcard collision handler that matches any collision
         involving the given collision type.
@@ -543,7 +543,7 @@ class SpaceScene(ZoomedScene):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[object, object]] = None,
+        data: Dict[object, object] | None = None,
     ):
         """Register a collision handler between two specific collision types.
 

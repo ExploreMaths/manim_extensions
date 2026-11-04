@@ -11,8 +11,6 @@ This module provides action classes for sequence diagrams.
 from collections.abc import Iterator
 from typing import Sequence, cast
 
-import numpy as np
-from numpy.typing import NDArray
 
 from manim import (
     Animation,
@@ -36,6 +34,7 @@ from manim import (
 )
 from .seq_actor import SeqActor
 from .seq_object import SeqObject
+from manim.typing import Point3D
 
 
 class SeqAction(AnimationGroup):
@@ -202,7 +201,7 @@ class SeqAction(AnimationGroup):
             )
         iobj_moved_path = TracedPath(gift.get_center)
         mid_point = cast(
-            "NDArray[np.float64]",
+            "Point3D",
             utils.space_ops.midpoint(
                 cast("Sequence[float]", act_start.get_center()),
                 cast("Sequence[float]", act_end.get_center()),

@@ -7,7 +7,7 @@ This module provides file parsing utilities for chemistry file formats.
 """
 
 import os
-from typing import Dict, Union
+from typing import Dict
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
@@ -33,7 +33,7 @@ class FileHandler:
         Path to the chemistry file to parse.
     """
 
-    def __init__(self, file_path: Union[str, bytes, os.PathLike]):
+    def __init__(self, file_path: str | bytes | os.PathLike):
         """Initialize the FileHandler instance."""
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")

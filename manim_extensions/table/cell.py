@@ -13,7 +13,7 @@ Cell - A single table cell with optional border.
 # Manim Community Edition (manim CE) wildcard import for mobjects and constants
 from manim import BOLD, Line, Rectangle, Text, VGroup
 from manim.utils.color import ParsableManimColor
-from typing import Any, Optional, Self
+from typing import Any, Self
 import numpy as np
 
 
@@ -75,11 +75,11 @@ class Cell(VGroup):
         self.show_border = show_border
         
         # Store color properties for copying
-        self._font_color: Optional[ParsableManimColor] = None
-        self._background_color: Optional[ParsableManimColor] = None
+        self._font_color: ParsableManimColor | None = None
+        self._background_color: ParsableManimColor | None = None
         self._background_opacity: float = 0.0
-        self._border_color: Optional[ParsableManimColor] = None
-        self.background: Optional[Rectangle] = None
+        self._border_color: ParsableManimColor | None = None
+        self.background: Rectangle | None = None
         
         # Create invisible bounding box to enforce dimensions
         self.invisible_box = Rectangle(
@@ -100,7 +100,7 @@ class Cell(VGroup):
         
         # Create border if requested
         if show_border:
-            self.border: Optional[VGroup] = self.create_border(stroke_width)
+            self.border: VGroup | None = self.create_border(stroke_width)
             self.add(self.border)
         else:
             self.border = None

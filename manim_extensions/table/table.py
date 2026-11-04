@@ -10,11 +10,11 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import Any, List, Optional, Union, overload, Self
+from typing import Any, List, overload, Self
 
 # An animation produced by the mutation methods: either a real Animation
 # (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
-TableAnimation = Union[Animation, _AnimationBuilder]
+TableAnimation = Animation | _AnimationBuilder
 
 
 class Table(VGroup):
@@ -168,9 +168,9 @@ class Table(VGroup):
     
     def __init__(
         self,
-        data: Optional[List[List[str]]] = None,
-        header: Optional[List[str]] = None,
-        rows: Optional[List[List[str]]] = None,
+        data: List[List[str]] | None = None,
+        header: List[str] | None = None,
+        rows: List[List[str]] | None = None,
         cell_width: float = 1.5,
         cell_height: float = 0.5,
         font_size: int = 20,
@@ -369,7 +369,7 @@ class Table(VGroup):
     def __getitem__(self, index: int) -> Row: ...
     @overload
     def __getitem__(self, index: slice) -> List[Row]: ...
-    def __getitem__(self, index: Union[int, slice]) -> Union[Row, List[Row]]:
+    def __getitem__(self, index: int | slice) -> Row | List[Row]:
         """Get a data row by index (0-indexed, not including header)."""
         return self.rows[index]
     
@@ -768,7 +768,7 @@ class Table(VGroup):
         self,
         header: str,
         values: List[str],
-        index: Optional[int] = None
+        index: int | None = None
     ) -> tuple[VGroup, List[TableAnimation], List[TableAnimation]]:
         """
         Add a new column to the table.

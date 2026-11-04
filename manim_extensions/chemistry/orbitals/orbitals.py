@@ -10,16 +10,16 @@ from manim import BLUE, ORIGIN, PI, RED, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 import scipy.special as spe
+from manim.typing import Point3D, VectorND, MatrixMN
 
-from typing import Optional
 if hasattr(spe, "sph_harm_y"):
     # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
-    def _sph_harm(m: int, l: int, azimuthal: np.ndarray, polar: np.ndarray):
+    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND):
         return spe.sph_harm_y(l, m, polar, azimuthal)
 
 else:
     # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
-    def _sph_harm(m: int, l: int, azimuthal: np.ndarray, polar: np.ndarray):
+    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND):
         return spe.sph_harm(m, l, azimuthal, polar)
 
 
@@ -59,7 +59,7 @@ class OrbitalBase(OpenGLSurface):
 
     def __init__(
         self,
-        center: np.ndarray = ORIGIN,
+        center: Point3D = ORIGIN,
         resolution: tuple = (100, 50),
         u_range: tuple = (0, PI),
         v_range: tuple = (0, TAU),
@@ -85,7 +85,7 @@ class OrbitalBase(OpenGLSurface):
 
         self.shift(center)
 
-    def psi_ang(self, phi: np.ndarray, theta: np.ndarray, l: int = 0, m: int = 0) -> np.ndarray:
+    def psi_ang(self, phi: VectorND, theta: VectorND, l: int = 0, m: int = 0) -> VectorND:
         """Compute the real part of the spherical harmonic :math:`Y_l^m` at angles :math:`\\phi, \\theta`.
 
         Parameters
@@ -107,7 +107,7 @@ class OrbitalBase(OpenGLSurface):
 
         return sphHarm.real
 
-    def calculate_coordinates(self, psi: np.ndarray, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def calculate_coordinates(self, psi: VectorND, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Convert spherical psi value and angles u,v to scaled 3D Cartesian coordinates.
 
         Parameters
@@ -129,7 +129,7 @@ class OrbitalBase(OpenGLSurface):
 
         return self.size * np.array([x, y, z])
 
-    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Base uv function: compute orbital surface coordinates from spherical angles u, v.
 
         Parameters
@@ -153,7 +153,7 @@ class OrbitalPositive(OrbitalBase):
     Calculates the positive values of the orbital.
     """
 
-    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Compute positive-lobe orbital coordinates, clamping negative psi values to zero.
 
         Parameters
@@ -179,7 +179,7 @@ class OrbitalNegative(OrbitalBase):
     Calculates the negative values of the orbital.
     """
 
-    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Compute negative-lobe orbital coordinates, clamping positive psi values to zero.
 
         Parameters
@@ -226,7 +226,7 @@ class Orbital(OpenGLSurface):
         Additional keyword arguments passed to OpenGLSurface.
     """
 
-    def __init__(self, n: Optional[int]=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):
+    def __init__(self, n: int | None=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):
         """Initialize a full atomic orbital with red positive and blue negative lobes."""
         super().__init__(self.uv_func, **kwargs)
         if not n:
@@ -245,7 +245,7 @@ class Orbital(OpenGLSurface):
         self.add(pos, neg)
         self.needs_new_bounding_box = True
 
-    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Placeholder uv function returning origin; actual geometry is in child positive/negative orbitals.
 
         Parameters

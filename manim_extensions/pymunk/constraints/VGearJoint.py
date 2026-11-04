@@ -10,7 +10,7 @@ This module provides the VGearJoint class for creating gear joint constraints.
 from __future__ import annotations
 
 from manim import Arrow, BLUE, Line, Mobject, UP, np
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -88,7 +88,7 @@ class VGearJoint(VConstraint):
         b_mob: Mobject,
         phase: float = 0.0,
         ratio: float = 1.0,
-        indicator_line_class: Optional[Line] = Arrow,
+        indicator_line_class: Line | None = Arrow,
         indicator_line_config: dict = {
             "color": BLUE,
             "stroke_width": 2,
@@ -105,7 +105,7 @@ class VGearJoint(VConstraint):
         self.ratio = ratio
         self.indicator_a = None
         self.indicator_b = None
-        self.constraint: Optional[GearJoint] = None
+        self.constraint: GearJoint | None = None
         self.indicator_line_class = indicator_line_class
         self.indicator_line_config = indicator_line_config
         self.indicator_length = indicator_length

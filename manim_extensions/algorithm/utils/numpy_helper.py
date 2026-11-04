@@ -5,7 +5,7 @@
 """NumPy helper utilities for algorithm visualization."""
 
 import numpy as np
-from numpy.typing import NDArray
+from manim.typing import VectorND
 
 
 class NumpyHelper:
@@ -16,7 +16,7 @@ class NumpyHelper:
     """
 
     @staticmethod
-    def normalize_vector(v: NDArray[np.float64]) -> NDArray[np.float64]:
+    def normalize_vector(v: VectorND) -> VectorND:
         """Normalise a vector to unit length.
 
         Parameters
@@ -36,8 +36,8 @@ class NumpyHelper:
 
     @staticmethod
     def is_equal_vector(
-        v1: NDArray[np.float64],
-        v2: NDArray[np.float64],
+        v1: VectorND,
+        v2: VectorND,
         rtol: float = 1e-5,
         atol: float = 1e-8,
     ) -> bool:
@@ -62,8 +62,8 @@ class NumpyHelper:
 
     @staticmethod
     def is_same_direction(
-        v1: NDArray[np.float64],
-        v2: NDArray[np.float64],
+        v1: VectorND,
+        v2: VectorND,
         rtol: float = 1e-5,
         atol: float = 1e-8,
     ) -> bool:

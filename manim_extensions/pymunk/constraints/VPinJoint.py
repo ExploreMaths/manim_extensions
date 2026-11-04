@@ -10,7 +10,7 @@ This module provides the VPinJoint class for creating pin joint constraints in p
 from __future__ import annotations
 
 from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, np
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -95,10 +95,10 @@ class VPinJoint(VConstraint):
         b_mob: Mobject,
         anchor_a_local: list[float, float, float] = ORIGIN,
         anchor_b_local: list[float, float, float] = ORIGIN,
-        distance: Optional[float] = None,
+        distance: float | None = None,
         anchor_a_appearance: Mobject = Dot(color=RED),
         anchor_b_appearance: Mobject = Dot(color=RED),
-        connect_line_class: Optional[Line] = None,
+        connect_line_class: Line | None = None,
         connect_line_config: dict = {
             "color": YELLOW,
             "stroke_width": 2,
@@ -121,7 +121,7 @@ class VPinJoint(VConstraint):
         self.connect_line_config = connect_line_config
         self.connect_line = None
 
-        self.constraint: Optional[PinJoint] = None
+        self.constraint: PinJoint | None = None
         self.init_distance = distance
         self.__check_data()
 

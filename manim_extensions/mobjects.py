@@ -50,10 +50,10 @@ from manim import (
     Wait,
     rgb_to_color,
 )
-from manim.typing import Point3D, Vector3DLike
+from manim.typing import Point3D, Vector3DLike, Point3DLike, Vector3D, PixelArray
 import numpy as np
 import platform
-from typing import Any, Callable, Optional, Union, Self
+from typing import Any, Callable, Self
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -112,7 +112,7 @@ class ChineseMathTex(MathTex):
         self,
         *texts: str,
         font: str = DEFAULT_CJK_FONT,
-        tex_to_color_map: Optional[dict[str, ParsableManimColor]] = None,
+        tex_to_color_map: dict[str, ParsableManimColor] | None = None,
         **kwargs,
     ):
         """Initialize the ChineseMathTex instance."""
@@ -225,8 +225,8 @@ class LabelDot(VGroup):
     def __init__(
         self,
         dot_label: str,
-        dot_pos: np.ndarray,
-        label_pos: np.ndarray = DOWN,
+        dot_pos: Point3D,
+        label_pos: Vector3D = DOWN,
         buff: float = 0.1,
         **kwargs,
     ):
@@ -295,7 +295,7 @@ class MathTexLine(VGroup):
     def __init__(
         self,
         formula: MathTex,
-        direction: np.ndarray = UP,
+        direction: Vector3D = UP,
         buff: float = 0.5,
         **kwargs,
     ):
@@ -345,7 +345,7 @@ class MathTexBrace(VGroup):
         self,
         target: Mobject,
         formula: MathTex,
-        direction: np.ndarray = UP,
+        direction: Vector3D = UP,
         buff: float = 0.5,
         **kwargs,
     ):
@@ -393,7 +393,7 @@ class MathTexDoublearrow(VGroup):
     def __init__(
         self,
         formula: MathTex,
-        direction: np.ndarray = UP,
+        direction: Vector3D = UP,
         buff: float = 0.5,
         **kwargs,
     ):
@@ -449,7 +449,7 @@ class PerpendicularLine(Line):
 
     def __init__(
         self,
-        point: Union[np.ndarray, tuple, list, Mobject],
+        point: Point3DLike | Mobject,
         line: Line,
         **kwargs: Any,
     ):
@@ -462,7 +462,7 @@ class PerpendicularLine(Line):
         self.foot = self._compute_foot()
         super().__init__(self.point, self.foot, **kwargs)
 
-    def _compute_foot(self) -> np.ndarray:
+    def _compute_foot(self) -> Point3D:
         """Compute the foot of the perpendicular from *point* onto *target_line*.
 
         Returns
@@ -626,7 +626,7 @@ class PerpendicularSign(VGroup):
         line1: Line,
         line2: Line,
         length: float = 0.25,
-        corner_direction: Optional[Union[np.ndarray, tuple, list, None]] = None,
+        corner_direction: Vector3DLike | None = None,
         **kwargs: Any,
     ):
         """Initialize the PerpendicularSign instance."""
@@ -659,7 +659,7 @@ class PerpendicularSign(VGroup):
 
     def _compute_intersection(
         self, line1: Line, line2: Line
-    ) -> Union[np.ndarray, None]:
+    ) -> Point3D | None:
         """Compute the intersection point of two lines.
 
         Parameters
@@ -691,8 +691,8 @@ class PerpendicularSign(VGroup):
         return a1 + t * d1
 
     def _get_both_directions(
-        self, line: Line, point: np.ndarray
-    ) -> tuple[np.ndarray, np.ndarray]:
+        self, line: Line, point: Point3D
+    ) -> tuple[Vector3D, Vector3D]:
         """Return the two unit direction vectors from *point* toward the line's endpoints.
 
         Parameters
@@ -723,10 +723,10 @@ class PerpendicularSign(VGroup):
 
     def _select_directions(
         self,
-        dirs1: tuple[np.ndarray, np.ndarray],
-        dirs2: tuple[np.ndarray, np.ndarray],
-        corner_direction: Union[np.ndarray, tuple, list, None],
-    ) -> tuple[np.ndarray, np.ndarray]:
+        dirs1: tuple[Vector3D, Vector3D],
+        dirs2: tuple[Vector3D, Vector3D],
+        corner_direction: Vector3DLike | None,
+    ) -> tuple[Vector3D, Vector3D]:
         """Select the best pair of directions based on *corner_direction*.
 
         Parameters
@@ -961,8 +961,8 @@ class CropImageMobject(ImageMobject):
 
     def __init__(
         self,
-        filename_or_array: Union[str, np.ndarray, Image.Image],
-        corner_radius: Union[int, float] = 0.1,
+        filename_or_array: str | PixelArray | Image.Image,
+        corner_radius: int | float = 0.1,
         **kwargs: Any,
     ):
         """Initialize the CropImageMobject instance."""
@@ -1150,7 +1150,7 @@ class VideoMobject(ImageMobject):
         result._updater_ref = lambda mob, dt: result._video_updater(mob, dt)
         return result
 
-    def play(self, scene: Optional[Scene] = None) -> Self:
+    def play(self, scene: Scene | None = None) -> Self:
         """Start video playback and optionally block the scene for its duration.
 
         Parameters
@@ -1306,7 +1306,7 @@ class ColorText(Text):
     def __init__(
         self,
         color: ManimColor,
-        name: Optional[str] = None,
+        name: str | None = None,
         background_color: ManimColor = WHITE,
         font: str = "Consolas",
         font_size: float = 28,
@@ -1400,7 +1400,7 @@ class Trail(VGroup):
         max_width: float = 5,
         nums: int = 500,
         trail_color: ManimColor = BLUE_B,
-        rate_func: Optional[Callable[[float], float]] = None,
+        rate_func: Callable[[float], float] | None = None,
         **kwargs,
     ):
         """Initialize the Trail instance."""
@@ -1734,7 +1734,7 @@ class ThreeDVector(VGroup):
     def __init__(
         self,
         vector: Vector3DLike = RIGHT,
-        position: np.ndarray = ORIGIN,
+        position: Point3D = ORIGIN,
         radius: float = 0.12,
         color: ManimColor = BLUE,
         tip_fraction: float = 0.25,

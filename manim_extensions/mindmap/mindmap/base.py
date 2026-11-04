@@ -20,7 +20,7 @@ from manim import (
 )
 
 __all__ = ["NodeMobject", "generate_tree", "AbstractMap"]
-from typing import Dict, Generator, List, Optional
+from typing import Dict, Generator, List
 
 import numpy as np
 
@@ -74,7 +74,7 @@ class NodeMobject:
 
 
 def generate_tree(
-    Map: Optional[Dict] = None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
+    Map: Dict | None = None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
 ) -> Node:
     """Recursively traverse *Map* and return the root node of the generated tree.
 
@@ -96,7 +96,7 @@ def generate_tree(
         The root node of the generated tree.
     """
 
-    def _generate_tree(ID: tuple = (0,), current_map: Optional[Dict] = None) -> Node:
+    def _generate_tree(ID: tuple = (0,), current_map: Dict | None = None) -> Node:
         """Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.
 
         Parameters

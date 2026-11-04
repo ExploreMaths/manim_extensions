@@ -5,7 +5,7 @@
 """Array data structure for algorithm visualization."""
 
 from manim import ManimColor, VMobject
-from typing import List, Union
+from typing import List
 
 from .node import Node, NodeBoxType, NodeConfig, NodeValue
 
@@ -96,7 +96,7 @@ class Array(VMobject):
         """
         return [item.value for item in self.array]
 
-    def __getitem__(self, key: Union[int, slice]) -> Node:
+    def __getitem__(self, key: int | slice) -> Node:
         """Return the node at *key* or a slice of nodes.
 
         Parameters

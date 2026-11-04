@@ -10,7 +10,7 @@ This module provides the VRatchetJoint class for creating ratchet joint constrai
 from __future__ import annotations
 
 from manim import Arrow, BLUE, Line, Mobject, PI, UP, VMobject, YELLOW, np
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from . import VConstraint
 
 from ...utils.deps import require
@@ -89,13 +89,13 @@ class VRatchetJoint(VConstraint):
         b_mob: Mobject,
         phase: float = 0.0,
         ratchet: float = PI / 2,
-        indicator_line_class: Optional[Line] = Arrow,
+        indicator_line_class: Line | None = Arrow,
         indicator_line_config: dict = {
             "color": BLUE,
             "stroke_width": 2,
         },
         indicator_line_length: float = 0.4,
-        connect_line_class: Optional[Line] = None,
+        connect_line_class: Line | None = None,
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
@@ -115,8 +115,8 @@ class VRatchetJoint(VConstraint):
         self.indicator_a = None
         self.indicator_b = None
 
-        self.connect_line: Optional[VMobject] = None
-        self.constraint: Optional[RatchetJoint] = None
+        self.connect_line: VMobject | None = None
+        self.constraint: RatchetJoint | None = None
         self.__check_data()
 
     def __check_data(self):

@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 from manim import Animation, Indicate, Scene, Text
-from typing import Any, Union
+from typing import Any
 
 from .m_array import MArrayElement, MobProps
 
@@ -75,7 +75,7 @@ class MVariable(MArrayElement):
         self,
         scene: Scene,
         value: object = "",
-        index: Union[str, int] = "",
+        index: str | int = "",
         label: str = "",
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
@@ -86,7 +86,7 @@ class MVariable(MArrayElement):
         """Initialize the MVariable instance."""
 
         self.__value: object = value
-        self.__index: Union[str, int] = index
+        self.__index: str | int = index
         self.__label: str = label
 
         mob_value_args["text"] = value
@@ -112,7 +112,7 @@ class MVariable(MArrayElement):
 
         return self.__value
 
-    def fetch_index(self) -> Union[str, int]:
+    def fetch_index(self) -> str | int:
         r"""Fetches the index of the variable.
 
         Returns
@@ -171,7 +171,7 @@ class MVariable(MArrayElement):
 
     def update_index(
         self,
-        index: Union[str, int],
+        index: str | int,
         mob_index_args: dict = {},
         update_anim: Animation = Indicate,
         update_anim_args: dict = {},

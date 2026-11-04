@@ -10,7 +10,7 @@ from typing import Any
 
 import numpy as np
 from manim import Axes, Ellipse, ManimColor, ORANGE, VGroup
-from numpy.typing import NDArray
+from manim.typing import Point2D, VectorND, MatrixMN
 
 
 class GaussianDistribution(VGroup):
@@ -63,8 +63,8 @@ class GaussianDistribution(VGroup):
     def __init__(
         self,
         axes: Axes,
-        mean: NDArray[np.float64] | None = None,
-        cov: NDArray[np.float64] | None = None,
+        mean: Point2D | None = None,
+        cov: MatrixMN | None = None,
         dist_theme: str = "gaussian",
         color: ManimColor = ORANGE,
         **kwargs: Any,
@@ -101,7 +101,7 @@ class GaussianDistribution(VGroup):
     """
 
     def compute_covariance_rotation_and_scale(
-        self, covariance: NDArray[np.float64]
+        self, covariance: MatrixMN
     ) -> tuple[float, float, float]:
         """Compute the rotation angle and axes of the covariance ellipse.
 
@@ -116,8 +116,8 @@ class GaussianDistribution(VGroup):
             in frame coordinates.
         """
         def eigsorted(
-            cov: NDArray[np.float64],
-        ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
+            cov: MatrixMN,
+        ) -> tuple[VectorND, MatrixMN]:
             """
             Eigenvalues and eigenvectors of the covariance matrix.
             """
@@ -125,7 +125,7 @@ class GaussianDistribution(VGroup):
             order = vals.argsort()[::-1]
             return vals[order], vecs[:, order]
 
-        def cov_ellipse(cov: NDArray[np.float64], nstd: float) -> tuple[float, float, float]:
+        def cov_ellipse(cov: MatrixMN, nstd: float) -> tuple[float, float, float]:
             """
             Source: http://stackoverflow.com/a/12321306/1391441
             """
@@ -148,8 +148,8 @@ class GaussianDistribution(VGroup):
 
     def construct_gaussian_distribution(
         self,
-        mean: NDArray[np.float64],
-        covariance: NDArray[np.float64],
+        mean: Point2D,
+        covariance: MatrixMN,
         color: ManimColor = ORANGE,
         num_ellipses: int = 4,
     ) -> VGroup:
@@ -196,8 +196,8 @@ class GaussianDistribution(VGroup):
 
     def construct_simple_gaussian_ellipse(
         self,
-        mean: NDArray[np.float64],
-        covariance: NDArray[np.float64],
+        mean: Point2D,
+        covariance: MatrixMN,
         color: ManimColor = ORANGE,
     ) -> VGroup:
         """Returns a 2d Gaussian distribution object with given mean and covariance.

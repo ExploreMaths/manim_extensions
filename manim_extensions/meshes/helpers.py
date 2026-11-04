@@ -8,15 +8,16 @@ some basic helpers for our models.
 """
 
 # python imports
-from typing import Dict, List, Union
+from typing import Dict, List
 
 # third-party imports
 import numpy as np
 
 from .types import Edges, VarArray
+from manim.typing import VectorND
 
 
-def is_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True) -> bool:
+def is_in_vararray(array: VarArray, item: VectorND, rolling: bool = True) -> bool:
     """Check whether *item* exists in *array*.
 
     With *rolling* enabled, cyclic permutations are considered equal
@@ -43,7 +44,7 @@ def is_in_vararray(array: VarArray, item: np.ndarray, rolling: bool = True) -> b
 
 
 def find_in_vararray(
-    array: VarArray, item: np.ndarray, rolling: bool = True, start: int = 0
+    array: VarArray, item: VectorND, rolling: bool = True, start: int = 0
 ) -> List[int]:
     """Find all indices where *item* appears in *array*.
 
@@ -161,7 +162,7 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
 
 
 def fix_references(
-    original: VarArray, indices: Union[np.ndarray, List[int]]
+    original: VarArray, indices: VectorND | List[int]
 ) -> List[int]:
     """Remove references to *indices* from *original* and adjust remaining indices.
 

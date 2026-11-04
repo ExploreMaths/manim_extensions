@@ -25,13 +25,13 @@ from manim import (
     normalize,
     perpendicular_bisector,
 )
-from typing import Optional
 
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup, OpenGLMobject
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
 
 from .threedatom import ThreeDAtom
+from manim.typing import Point3D, Vector3D
 
 
 class ThreeDCylinder(OpenGLSurface):
@@ -61,7 +61,7 @@ class ThreeDCylinder(OpenGLSurface):
         self,
         radius: float = 1,
         height: float = 2,
-        direction: np.ndarray = Z_AXIS,
+        direction: Vector3D = Z_AXIS,
         v_range: list = [0, TAU],
         show_ends: bool = True,
         resolution: tuple = (24, 24),
@@ -83,7 +83,7 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_theta = 0
         self.set_direction(direction)
 
-    def uv_func(self, u: float, v: float) -> np.ndarray:
+    def uv_func(self, u: float, v: float) -> Point3D:
         """Compute cylinder surface point from axial u and angular v parameters.
 
         Parameters
@@ -161,7 +161,7 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_theta = theta
         self._current_phi = phi
 
-    def set_direction(self, direction: np.ndarray):
+    def set_direction(self, direction: Vector3D):
         """Align the cylinder to point along the given direction vector.
 
         Parameters
@@ -172,7 +172,7 @@ class ThreeDCylinder(OpenGLSurface):
         self.direction = direction
         self._rotate_to_direction()
 
-    def get_direction(self) -> np.ndarray:
+    def get_direction(self) -> Vector3D:
         """Return the current direction vector of the cylinder.
 
         Returns
@@ -203,10 +203,10 @@ class ThreeDLine(ThreeDCylinder):
 
     def __init__(
         self,
-        start: np.ndarray = LEFT,
-        end: np.ndarray = RIGHT,
+        start: Point3D = LEFT,
+        end: Point3D = RIGHT,
         thickness: float = 0.05,
-        color: Optional[ManimColor] = None,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         """Initialize a 3D cylinder line between start and end points with given thickness."""
@@ -216,7 +216,7 @@ class ThreeDLine(ThreeDCylinder):
             self.set_color(color)
 
     def set_start_and_end_attrs(
-        self, start: np.ndarray, end: np.ndarray, **kwargs
+        self, start: Point3D, end: Point3D, **kwargs
     ):
         """Sets the start and end points of the line.
 
@@ -252,8 +252,8 @@ class ThreeDLine(ThreeDCylinder):
         self.shift((self.start + self.end) / 2)
 
     def pointify(
-        self, mob_or_point: Mobject | float, direction: Optional[np.ndarray] = None
-    ) -> np.ndarray:
+        self, mob_or_point: Mobject | float, direction: Vector3D | None = None
+    ) -> Point3D:
         """Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.
 
         Parameters
@@ -275,7 +275,7 @@ class ThreeDLine(ThreeDCylinder):
                 return mob.get_boundary_point(direction)
         return np.array(mob_or_point)
 
-    def get_start(self) -> np.ndarray:
+    def get_start(self) -> Point3D:
         """
 
         Returns
@@ -284,7 +284,7 @@ class ThreeDLine(ThreeDCylinder):
         """
         return self.start
 
-    def get_end(self) -> np.ndarray:
+    def get_end(self) -> Point3D:
         """
 
         Returns
@@ -295,7 +295,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def parallel_to(
-        cls, line: Line3D, point: np.ndarray = ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs
     ) -> Line3D:
         """Returns a line parallel to another line going through
         a given point.
@@ -343,7 +343,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def perpendicular_to(
-        cls, line: Line3D, point: np.ndarray = ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs
     ) -> Line3D:
         """Returns a line perpendicular to another line going through
         a given point.
@@ -526,7 +526,7 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def get_perpendicular_unit_vector(self, point_a: np.ndarray, point_b: np.ndarray) -> np.ndarray:
+    def get_perpendicular_unit_vector(self, point_a: Point3D, point_b: Point3D) -> Vector3D:
         """Return a unit vector perpendicular to the bond direction in the xy plane.
 
         Parameters

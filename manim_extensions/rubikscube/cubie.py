@@ -11,6 +11,7 @@ from manim import Square, VGroup, z_to_vector
 from .cube_utils import get_faces_of_cubie
 
 import numpy as np
+from manim.typing import Point3D
 
 
 class Cubie(VGroup):
@@ -59,7 +60,7 @@ class Cubie(VGroup):
         self.faces = {}
         super().__init__()
 
-    def get_position(self) -> np.ndarray:
+    def get_position(self) -> Point3D:
         """Return the cubie's current position in 3-D space.
 
         Returns

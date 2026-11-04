@@ -23,8 +23,8 @@ from manim import (
     UP,
     override_animation,
 )
-from numpy.typing import NDArray
 from PIL import Image
+from manim.typing import PixelArray
 
 class GrayscaleImageMobject(Group):
     """Mobject for creating images in Manim from numpy arrays.
@@ -51,7 +51,7 @@ class GrayscaleImageMobject(Group):
                self.add(GrayscaleImageMobject(gradient))
     """
 
-    def __init__(self, numpy_image: NDArray[np.uint8], height: float = 2.3):
+    def __init__(self, numpy_image: PixelArray, height: float = 2.3):
         """Initialize the grayscale image mobject."""
         super().__init__()
         self.numpy_image = numpy_image

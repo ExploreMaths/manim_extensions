@@ -24,6 +24,7 @@ from PIL import Image
 
 from ...utils.mobjects.image import GrayscaleImageMobject
 from .parent_layers import NeuralNetworkLayer
+from manim.typing import PixelArray, Point3D
 
 
 class ImageLayer(NeuralNetworkLayer):
@@ -86,7 +87,7 @@ class ImageLayer(NeuralNetworkLayer):
 
     def __init__(
         self, 
-        numpy_image: np.ndarray,
+        numpy_image: PixelArray,
         height: float = 1.5, 
         show_image_on_create: bool = True, 
         **kwargs
@@ -179,7 +180,7 @@ class ImageLayer(NeuralNetworkLayer):
         """
         return AnimationGroup()
 
-    def get_right(self) -> np.ndarray:
+    def get_right(self) -> Point3D:
         """Override get right.
 
         Returns

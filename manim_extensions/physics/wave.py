@@ -11,6 +11,7 @@ import numpy as np
 from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface
 from typing import Any, Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+from manim.typing import Point3D
 
 __all__ = [
     "LinearWave",
@@ -68,7 +69,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
     def __init__(
         self,
-        *sources: np.ndarray,
+        *sources: Point3D,
         wavelength: float = 1,
         period: float = 1,
         amplitude: float = 0.1,
@@ -91,7 +92,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             **kwargs,
         )
 
-    def _wave_z(self, u: float, v: float, sources: Iterable[np.ndarray]) -> float:
+    def _wave_z(self, u: float, v: float, sources: Iterable[Point3D]) -> float:
         """Compute the wave height at position ``(u, v)`` summed over all sources.
 
         Parameters
@@ -200,7 +201,7 @@ class LinearWave(RadialWave):
             **kwargs,
         )
 
-    def _wave_z(self, u: float, v: float, sources: Iterable[np.ndarray]) -> float:
+    def _wave_z(self, u: float, v: float, sources: Iterable[Point3D]) -> float:
         """Compute the height of the linear wave at position ``(u, v)``.
 
         Parameters

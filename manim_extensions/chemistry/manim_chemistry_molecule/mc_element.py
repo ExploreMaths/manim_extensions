@@ -7,7 +7,6 @@ This module provides the MCElement dataclass for representing chemical elements.
 """
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -69,14 +68,14 @@ class MCElement:
                self.wait()
     """
 
-    symbol: Optional[str] = None
-    name: Optional[str] = None
-    atomic_number: Optional[int] = None
-    mass: Optional[float] = None
-    color: Optional[str] = None
-    cpk_color: Optional[str] = None
-    jmol_color: Optional[str] = None
-    pubchem_color: Optional[str] = None
+    symbol: str | None = None
+    name: str | None = None
+    atomic_number: int | None = None
+    mass: float | None = None
+    color: str | None = None
+    cpk_color: str | None = None
+    jmol_color: str | None = None
+    pubchem_color: str | None = None
 
 
 # Generic Elements

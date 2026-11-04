@@ -23,9 +23,8 @@ from manim import (
     SVGMobject,
     VDict,
     VGroup,
-    np,
 )
-from typing import Dict, Optional, Self
+from typing import Dict, Self
 from ..utils import (
     mol_parser,
     mol_parser_string,
@@ -43,6 +42,7 @@ from .bond import (
     SimpleBond,
     TripleBond,
 )
+from manim.typing import Point3D
 
 logger = logging.getLogger(__name__)
 
@@ -166,7 +166,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self,
         atoms_dict: dict,
         bonds_dict: dict,
-        representation_type: Optional[str] = None,
+        representation_type: str | None = None,
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         planar: bool = True,
@@ -540,7 +540,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
+    def find_atom_position_by_index(self, atom_index: int) -> Point3D:
         """Returns the position of a single atom given its index.
 
         Parameters
@@ -607,7 +607,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: int) -> np.ndarray:
+    def find_bond_center_by_index(self, bond_index: int) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
@@ -647,7 +647,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
-    ) -> np.ndarray:
+    ) -> Point3D:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.
@@ -1117,7 +1117,7 @@ class NamedMolecule(VGroup):
 
         return self
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
+    def find_atom_position_by_index(self, atom_index: int) -> Point3D:
         """Returns the position of a single atom given its index.
 
         Parameters
@@ -1184,7 +1184,7 @@ class NamedMolecule(VGroup):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: int) -> np.ndarray:
+    def find_bond_center_by_index(self, bond_index: int) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond index.
 
         Parameters
@@ -1225,7 +1225,7 @@ class NamedMolecule(VGroup):
 
     def find_position_along_bond_axis(
         self, bond_index: int, position_buff: float
-    ) -> np.ndarray:
+    ) -> Point3D:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.

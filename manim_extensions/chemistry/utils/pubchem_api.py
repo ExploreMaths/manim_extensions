@@ -7,7 +7,7 @@ This module provides the PubchemAPIManager class for fetching molecular data fro
 
 """
 
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 import json
 import time
 
@@ -40,10 +40,10 @@ class PubchemAPIManager:
 
     def __init__(
         self,
-        cid: Optional[int] = None,
-        name: Optional[str] = None,
-        smiles: Optional[str] = None,
-        inchi: Optional[str] = None,
+        cid: int | None = None,
+        name: str | None = None,
+        smiles: str | None = None,
+        inchi: str | None = None,
         three_d: bool = False,
         format: str = "json",
     ):

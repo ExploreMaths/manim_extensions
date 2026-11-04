@@ -9,10 +9,10 @@ This module provides OpenGL-based 3D geometry classes for chemistry visualizatio
 from manim import ORIGIN, PI, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
 import numpy as np
+from manim.typing import Point3D, VectorND, MatrixMN
 
 
 
-from typing import Optional
 class OpenGLSphere(OpenGLSurface):
     """A sphere rendered as an OpenGL surface.
 
@@ -26,7 +26,7 @@ class OpenGLSphere(OpenGLSurface):
 
     def __init__(
         self,
-        center: np.ndarray = ORIGIN,
+        center: Point3D = ORIGIN,
         **kwargs,
     ):
         """Initialize an OpenGL sphere surface at the given center point."""
@@ -39,7 +39,7 @@ class OpenGLSphere(OpenGLSurface):
 
         self.shift(center)
 
-    def uv_func(self, u: Optional[np.ndarray], v: np.ndarray) -> np.ndarray:
+    def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
         """Compute sphere surface coordinates from azimuthal u and polar v angles.
 
         Parameters

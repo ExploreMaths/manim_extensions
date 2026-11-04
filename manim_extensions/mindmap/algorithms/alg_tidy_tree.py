@@ -12,7 +12,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Self
+from typing import List, Self
 from .layout_config import LayoutDirection
 from .layout import Layout
 
@@ -50,7 +50,7 @@ class WrappedTree:
     """
 
     # Reference to the original node
-    node: Optional[object] = None
+    node: object | None = None
     # Basic attributes
     x: float = 0.0
     y: float = 0.0
@@ -72,8 +72,8 @@ class WrappedTree:
     )
 
     # === Subtree contour tracking for overlap detection ===
-    extreme_left: Optional["WrappedTree"] = None  # leftmost extreme node
-    extreme_right: Optional["WrappedTree"] = None  # rightmost extreme node
+    extreme_left: "WrappedTree | None" = None  # leftmost extreme node
+    extreme_right: "WrappedTree | None" = None  # rightmost extreme node
     mod_sum_extreme_left: float = (
         0.0  # sum of mod values along the path from leftmost extreme to root
     )
@@ -83,8 +83,8 @@ class WrappedTree:
 
     # Threads for contour traversal: when two subtrees have different heights,
     # the shorter subtree links to a neighbouring subtree's contour when exhausted
-    thread_left: Optional["WrappedTree"] = None
-    thread_right: Optional["WrappedTree"] = None
+    thread_left: "WrappedTree | None" = None
+    thread_right: "WrappedTree | None" = None
 
     @classmethod
     def from_node(cls, node: object, is_horizontal: bool, level: int = 0) -> Self:
@@ -165,7 +165,7 @@ class IYLNode:
 
     low: float  # low end of the subtree's right contour in the orthogonal direction
     index: int  # index of the subtree among its siblings
-    nxt: Optional["IYLNode"] = (
+    nxt: "IYLNode | None" = (
         None  # next node in the list (with a strictly larger low value)
     )
 
@@ -417,7 +417,7 @@ class TidyTreeLayout(Layout):
             t.extreme_right = t.children[-1].extreme_right
             t.mod_sum_extreme_right = t.children[-1].mod_sum_extreme_right
 
-    def update_iyl(self, low: float, index: int, ih: Optional[IYLNode]) -> IYLNode:
+    def update_iyl(self, low: float, index: int, ih: IYLNode | None) -> IYLNode:
         """Prune the IYL list and prepend a new node.
 
         Removes any existing :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode` whose ``low`` is less than or
@@ -440,7 +440,7 @@ class TidyTreeLayout(Layout):
             ih = ih.nxt
         return IYLNode(low, index, ih)
 
-    def separate(self, t: WrappedTree, i: int, ih: Optional[IYLNode]):
+    def separate(self, t: WrappedTree, i: int, ih: IYLNode | None):
         """
         Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.
 
@@ -538,7 +538,7 @@ class TidyTreeLayout(Layout):
             t.children[i].shift -= dist / nr
             t.children[i].change -= dist - dist / nr
 
-    def next_left_contour(self, t: WrappedTree) -> Optional[WrappedTree]:
+    def next_left_contour(self, t: WrappedTree) -> WrappedTree | None:
         """Return the next node on the left contour of a subtree.
 
         Parameters
@@ -552,7 +552,7 @@ class TidyTreeLayout(Layout):
         """
         return t.thread_left if t.child_number == 0 else t.children[0]
 
-    def next_right_contour(self, t: WrappedTree) -> Optional[WrappedTree]:
+    def next_right_contour(self, t: WrappedTree) -> WrappedTree | None:
         """Return the next node on the right contour of a subtree.
 
         Parameters

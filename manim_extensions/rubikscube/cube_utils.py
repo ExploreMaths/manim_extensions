@@ -10,15 +10,14 @@ This module provides utility functions for Rubik's Cube operations.
 
 from typing import TYPE_CHECKING
 
-import numpy as np
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
-from numpy.typing import NDArray
+from manim.typing import Vector3D
 
 if TYPE_CHECKING:
     from .cube import RubiksCube  # noqa: F401
 
 
-def get_axis_from_face(face: str) -> NDArray[np.float64]:
+def get_axis_from_face(face: str) -> Vector3D:
     """Return the rotation axis corresponding to a Rubik's cube face.
 
     Parameters

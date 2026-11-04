@@ -11,7 +11,8 @@ import numpy as np
 from .atom import MAtomObject
 
 
-from typing import Literal, Optional
+from typing import Literal
+from manim.typing import Point3D, Vector3D
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
@@ -68,7 +69,7 @@ class BaseMBondObject(VGroup):
         from_atom: MAtomObject,
         to_atom: MAtomObject,
         type: int = 0,
-        subtype: Optional[Literal["complete", "skeleton", "over_bond"]] = None,
+        subtype: Literal["complete", "skeleton", "over_bond"] | None = None,
         color: str = WHITE,
         index: int = 0,
         **kwargs,
@@ -86,7 +87,7 @@ class BaseMBondObject(VGroup):
 
     def define_subtype(
         self,
-        subtype: Optional[Literal["complete", "skeleton", "over_bond"]],
+        subtype: Literal["complete", "skeleton", "over_bond"] | None,
     ) -> str | bool:
         """
         Defines the subtype based on atoms' representations.
@@ -207,7 +208,7 @@ class BaseMBondObject(VGroup):
 
         return list
 
-    def get_perpendicular_unit_vector(self, point_a: np.ndarray, point_b: np.ndarray) -> np.ndarray:
+    def get_perpendicular_unit_vector(self, point_a: Point3D, point_b: Point3D) -> Vector3D:
         """Return a unit vector perpendicular to the bond direction, in the xy plane.
 
         Parameters
@@ -266,7 +267,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """
         All bonds should contain at least a Line. This line can return the corresponding vector.
 
@@ -547,7 +548,7 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 
@@ -806,7 +807,7 @@ class TripleBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 
@@ -959,7 +960,7 @@ class PlainCramBond(BaseMBondObject):
             }
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """Return the direction vector from the from-atom to the to-atom.
 
         Returns
@@ -1108,7 +1109,7 @@ class DashedCramBond(BaseMBondObject):
 
             return subtypes.get(self.subtype) or VMobject()
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """
         This contains a VGroup with two lines, we just get the vector from one of them.
 

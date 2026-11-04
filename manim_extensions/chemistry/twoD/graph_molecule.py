@@ -19,12 +19,13 @@ from manim import (
     VGroup,
     color_gradient,
 )
-from typing import Dict, Optional
+from typing import Dict
 import numpy as np
 import networkx as nx
 
 from ..manim_chemistry_molecule import MCMolecule
 from ..molecule import AbstractMolecule
+from manim.typing import Point3D, Vector3D, VectorND
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +60,7 @@ class SimpleLine(Line):
         super().__init__(*args, **kwargs)
         self.sheen_direction = self._get_unit_vector()
 
-    def _get_unit_vector(self) -> np.ndarray:
+    def _get_unit_vector(self) -> Vector3D:
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
@@ -101,12 +102,12 @@ class DoubleLine(ArcBetweenPoints):
         other_arc.sheen_direction = self.sheen_direction
         self.add(other_arc)
 
-    def _get_unit_vector(self) -> np.ndarray:
+    def _get_unit_vector(self) -> Vector3D:
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
 
-    def get_vector(self) -> np.ndarray:
+    def get_vector(self) -> Vector3D:
         """Return the unit direction vector of the double bond.
 
         Returns
@@ -114,7 +115,7 @@ class DoubleLine(ArcBetweenPoints):
             The computed result."""
         return self._get_unit_vector()
 
-    def set_points_by_ends(self, start: np.ndarray, end: np.ndarray, *args, **kwargs):
+    def set_points_by_ends(self, start: Point3D, end: Point3D, *args, **kwargs):
         """Reposition both arcs of the double bond to span from start to end.
 
         Parameters
@@ -395,7 +396,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.atoms = self.vertices
         self.bonds = self.edges
 
-    def _populate_edge_dict(self, edges: list[tuple[int, int]], _: Optional[np.ndarray]):
+    def _populate_edge_dict(self, edges: list[tuple[int, int]], _: VectorND | None):
         self.edges = {}
 
         for u, v in edges:
@@ -449,7 +450,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return bond
 
-    def make_layout(self, vertices_dict: dict) -> dict[int, np.ndarray]:
+    def make_layout(self, vertices_dict: dict) -> dict[int, Point3D]:
         """Build a layout dict mapping each atom index to its 3D coordinates.
 
         Parameters
@@ -743,7 +744,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             connected_atoms=connected_atoms, excluded_atom=from_atom
         )
 
-    def find_atom_position_by_index(self, atom_index: int) -> np.ndarray:
+    def find_atom_position_by_index(self, atom_index: int) -> Point3D:
         """
         Returns the position of a single atom given its index.
 
@@ -811,7 +812,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: tuple) -> np.ndarray:
+    def find_bond_center_by_index(self, bond_index: tuple) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
         The bund tuple corresponds to the indices of the atoms in the bond.
 
@@ -852,7 +853,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
     def find_position_along_bond_axis(
         self, bond_tuple: int, position_buff: float
-    ) -> np.ndarray:
+    ) -> Point3D:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
         All values in between return positions at some point of the middle of the bond, being 0 the center.

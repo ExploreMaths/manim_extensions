@@ -8,7 +8,8 @@ This module provides the MAtomObject class for representing atoms in 2D chemical
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Literal, Optional, Self
+from typing import Dict, Literal, Self
+from manim.typing import Point3D
 
 
 class MAtomObject(VGroup):
@@ -72,12 +73,12 @@ class MAtomObject(VGroup):
 
     def __init__(
         self,
-        coords: np.ndarray = np.array([0, 0, 0]),
+        coords: Point3D = np.array([0, 0, 0]),
         element: str = "H",
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         bond_to: Dict[int, str] = {},
-        representation_type: Optional[Literal["complete", "skeleton", "over_bond"]] = None,
+        representation_type: Literal["complete", "skeleton", "over_bond"] | None = None,
         color: str = WHITE,
         charge: int = 0,
         index: int = 0,
@@ -112,7 +113,7 @@ class MAtomObject(VGroup):
 
     def set_representation(
         self,
-        representation_type: Optional[Literal["complete", "skeleton", "over_bond"]],
+        representation_type: Literal["complete", "skeleton", "over_bond"] | None,
     ) -> str:
         """
         Determine the atom label representation from the requested type.

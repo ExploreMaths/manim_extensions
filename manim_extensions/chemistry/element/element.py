@@ -4,7 +4,7 @@
 """Chemical element data structure."""
 
 from dataclasses import dataclass
-from typing import Optional, Self
+from typing import Self
 
 from ...utils.deps import require
 
@@ -35,7 +35,7 @@ class Element:
         name: str = "H",
         atomic_number: int = 1,
         mass: float = 1.008,
-        color: Optional[str] = "#FFFFFF",
+        color: str | None = "#FFFFFF",
     ):
         """Initialize the Element instance."""
         self.symbol = symbol

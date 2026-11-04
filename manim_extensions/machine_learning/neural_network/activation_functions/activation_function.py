@@ -18,7 +18,6 @@ from manim import (
     VGroup,
     Wait,
 )
-from typing import Optional
 
 from abc import ABC, abstractmethod
 import random
@@ -71,7 +70,7 @@ class ActivationFunction(ABC, VGroup):
 
     def __init__(
         self,
-        function_name: Optional[str] = None,
+        function_name: str | None = None,
         x_range: list = [-1, 1],
         y_range: list = [-1, 1],
         x_length: float = 0.5,
@@ -150,7 +149,7 @@ class ActivationFunction(ABC, VGroup):
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])
 
-    def make_evaluate_animation(self, x_val: Optional[float] = None) -> Succession:
+    def make_evaluate_animation(self, x_val: float | None = None) -> Succession:
         """Evaluates the function at a random point in the x_range.
 
         Parameters

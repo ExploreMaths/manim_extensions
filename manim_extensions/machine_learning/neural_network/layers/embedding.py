@@ -26,6 +26,7 @@ from manim import (
 
 from ...utils.mobjects.probability import GaussianDistribution
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
+from manim.typing import Point2D, Point3D, MatrixMN
 
 
 class EmbeddingLayer(VGroupNeuralNetworkLayer):
@@ -83,8 +84,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     def __init__(
         self,
         point_radius: float = 0.02,
-        mean: np.ndarray = np.array([0, 0]),
-        covariance: np.ndarray = np.array([[1.0, 0], [0, 1.0]]),
+        mean: Point2D = np.array([0, 0]),
+        covariance: MatrixMN = np.array([[1.0, 0], [0, 1.0]]),
         dist_theme: str = "gaussian",
         paired_query_mode: bool = False,
         **kwargs
@@ -171,7 +172,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                 self.gaussian_distributions.remove(gaussian_distribution)
                 return FadeOut(gaussian)
 
-    def sample_point_location_from_distribution(self) -> np.ndarray:
+    def sample_point_location_from_distribution(self) -> Point3D:
         """Samples from the current latent distribution.
 
         Returns
@@ -185,7 +186,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         return location
 
-    def get_distribution_location(self) -> np.ndarray:
+    def get_distribution_location(self) -> Point3D:
         """Returns mean of latent distribution in axes frame.
 
         Returns
@@ -194,7 +195,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
     def construct_gaussian_point_cloud(
-        self, mean: np.ndarray, covariance: np.ndarray, point_color: ManimColor = WHITE, num_points: int = 400
+        self, mean: Point2D, covariance: MatrixMN, point_color: ManimColor = WHITE, num_points: int = 400
     ) -> VGroup:
         """Plots points sampled from a Gaussian with the given mean and covariance.
 

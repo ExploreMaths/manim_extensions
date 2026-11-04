@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Callable, Self
+from typing import List, Dict, Callable, Self
 from .layout import Layout
 from .layout_config import LayoutDirection
 
@@ -67,11 +67,11 @@ class TimelineNode:
                self.add(boxes)
     """
 
-    node: Optional[object] = None
+    node: object | None = None
     width: float = 0.0
     height: float = 0.0
     children: List["TimelineNode"] = field(default_factory=list)
-    side_dir: Optional[LayoutDirection] = None
+    side_dir: LayoutDirection | None = None
 
     # Layout result coordinates
     x: float = 0.0
@@ -79,7 +79,7 @@ class TimelineNode:
 
     # Internal runtime attributes (do not set manually)
     _is_root: bool = False
-    _parent: Optional["TimelineNode"] = None
+    _parent: "TimelineNode | None" = None
     _layer_index: int = 0  # layer depth (root is 0)
     _index: int = 0  # index among siblings
 
@@ -113,9 +113,9 @@ class TimelineNode:
 
 def walk(
     node: TimelineNode,
-    parent: Optional[TimelineNode],
-    before_callback: Optional[Callable],
-    after_callback: Optional[Callable],
+    parent: TimelineNode | None,
+    before_callback: Callable | None,
+    after_callback: Callable | None,
     is_root: bool = False,
     layer_index: int = 0,
     index: int = 0,
@@ -258,7 +258,7 @@ class TimeLineLayout(Layout):
 
         def before_callback(
             node: TimelineNode,
-            parent: Optional[TimelineNode],
+            parent: TimelineNode | None,
             is_root: bool,
             layer_index: int,
             index: int,
@@ -309,7 +309,7 @@ class TimeLineLayout(Layout):
 
         def before_callback(
             node: TimelineNode,
-            parent: Optional[TimelineNode],
+            parent: TimelineNode | None,
             is_root: bool,
             layer_index: int,
             index: int,
@@ -358,7 +358,7 @@ class TimeLineLayout(Layout):
 
         def before_callback(
             node: TimelineNode,
-            parent: Optional[TimelineNode],
+            parent: TimelineNode | None,
             is_root: bool,
             layer_index: int,
             index: int,
@@ -392,7 +392,7 @@ class TimeLineLayout(Layout):
 
         def after_callback(
             node: TimelineNode,
-            parent: Optional[TimelineNode],
+            parent: TimelineNode | None,
             is_root: bool,
             layer_index: int,
             index: int,

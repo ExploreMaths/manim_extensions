@@ -20,7 +20,7 @@ from manim import (
     VGroup,
 )
 import numpy as np
-from numpy.typing import NDArray
+from manim.typing import Point3D, Vector3D
 
 
 class GriddedRectangle(VGroup):
@@ -238,7 +238,7 @@ class GriddedRectangle(VGroup):
 
         return grid_lines
 
-    def get_center(self) -> NDArray[np.float64]:
+    def get_center(self) -> Point3D:
         """
 
         Returns
@@ -247,7 +247,7 @@ class GriddedRectangle(VGroup):
         """
         return self.rectangle.get_center()
 
-    def get_normal_vector(self) -> NDArray[np.float64]:
+    def get_normal_vector(self) -> Vector3D:
         """
 
         Returns

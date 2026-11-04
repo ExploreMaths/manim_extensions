@@ -14,7 +14,6 @@ from .manim_state import ManimState, State
 from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
 from .manim_automaton_input import ManimAutomataInput
 
-from typing import Union
 
 pushdown_automaton_json = {
     "structure": {
@@ -211,7 +210,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     # overriden
     def play_string(
         self,
-        input: Union[str, "ManimAutomataInput"],
+        input: "str | ManimAutomataInput",
         automaton_path_name: str | None = None,
     ) -> list:
         """Animate the pushdown automaton processing an input string.

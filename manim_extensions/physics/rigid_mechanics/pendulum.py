@@ -20,6 +20,7 @@ import numpy as np
 from .rigid_mechanics import SpaceScene
 
 from ...utils.deps import require
+from manim.typing import Point3D
 
 __all__ = [
     "Pendulum",
@@ -77,8 +78,8 @@ class MultiPendulum(VGroup):
 
     def __init__(
         self,
-        *bobs: Iterable[np.ndarray],
-        pivot_point: np.ndarray = UP * 2,
+        *bobs: Iterable[Point3D],
+        pivot_point: Point3D = UP * 2,
         rod_style: dict = {},
         bob_style: dict = {
             "radius": 0.1,
@@ -217,7 +218,7 @@ class Pendulum(MultiPendulum):
         self,
         length: float = 3.5,
         initial_theta: float = 0.3,
-        pivot_point: np.ndarray = UP * 2,
+        pivot_point: Point3D = UP * 2,
         rod_style: dict = {},
         bob_style: dict = {
             "radius": 0.25,

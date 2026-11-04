@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-from typing import Callable, Dict, Optional, TYPE_CHECKING, Union
+from typing import Callable, Dict, TYPE_CHECKING
 import numpy as np
 
 from ...utils.deps import require
@@ -158,7 +158,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     # =============================== space  ==================================
     def remove_body_shapes_constraints(
-        self, *items: Union[pymunk.Body, pymunk.Shape, pymunk.constraints.Constraint]
+        self, *items: pymunk.Body | pymunk.Shape | pymunk.constraints.Constraint
     ):
         """Removes physical bodies, shapes, or constraints from the physical space.
 
@@ -335,7 +335,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[object, object]] = None,
+        data: Dict[object, object] | None = None,
     ):
         """Registers a wildcard collision handler for a specific collision type.
 
@@ -401,7 +401,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Optional[Dict[object, object]] = None,
+        data: Dict[object, object] | None = None,
     ):
         """Registers a collision handler between two specific collision types.
 

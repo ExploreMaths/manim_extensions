@@ -6,7 +6,7 @@ This module provides the MCMolecule class for representing molecules.
 
 """
 
-from typing import Dict, List, Optional, Self
+from typing import Dict, List, Self
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -46,10 +46,10 @@ class MCMolecule:
 
     def __init__(
         self,
-        atoms: Optional[List[MCAtom]] = None,
-        bonds: Optional[List[MCBond]] = None,
-        name: Optional[str] = None,
-        elements: Optional[MCElement] = None,
+        atoms: List[MCAtom] | None = None,
+        bonds: List[MCBond] | None = None,
+        name: str | None = None,
+        elements: MCElement | None = None,
     ):
         """Initialize MCMolecule with atoms, bonds, name and element data."""
         self.atoms = atoms or []
@@ -145,7 +145,7 @@ class MCMolecule:
         bonds_data_dict: dict,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
     ) -> Self:
         """
         Given data with the format provided by a parser, constructs a MCMolecule,
@@ -192,7 +192,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
     ) -> Self:
         """
         Returns an MCMolecule given a file path.
@@ -233,7 +233,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
     ) -> list:
         """
         Similar to ``construct_from_file`` but returning a list of MCMolecules.
@@ -277,7 +277,7 @@ class MCMolecule:
         format: str = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
     ) -> Self:
         """
         Reads a string and returns a molecule.
@@ -339,7 +339,7 @@ class MCMolecule:
         format: str = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: Optional[dict] = None,
+        elements_data_dict: dict | None = None,
     ) -> list:
         """
         Similar to ``construct_from_string`` but returning a list of MCMolecules.

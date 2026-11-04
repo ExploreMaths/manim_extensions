@@ -45,14 +45,13 @@ from typing import (
     Callable,
     ClassVar,
     List,
-    Optional,
     Protocol,
     Self,
-    Union,
     cast,
 )
 
 from .m_enum import MArrayDirection, MArrayElementComp
+from manim.typing import Point3D, Vector3D
 
 MobProps = dict[str, Any]
 """Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
@@ -159,9 +158,9 @@ class MArrayElement(VGroup):
     def __init_props(
         self,
         scene: Scene,
-        index_pos: np.ndarray,
+        index_pos: Point3D,
         index_gap: float,
-        label_pos: np.ndarray,
+        label_pos: Point3D,
         label_gap: float,
     ):
         """Initializes the attributes for the class.
@@ -190,9 +189,9 @@ class MArrayElement(VGroup):
         self.__mob_index_props: MobProps = {"text": "", "color": BLUE_D, "font_size": 32}
         self.__mob_label_props: MobProps = {"text": "", "color": BLUE_A, "font_size": 38}
         self.__scene: Scene = scene
-        self.__index_pos: np.ndarray = index_pos
+        self.__index_pos: Point3D = index_pos
         self.__index_gap: float = index_gap
-        self.__label_pos: np.ndarray = label_pos
+        self.__label_pos: Point3D = label_pos
         self.__label_gap: float = label_gap
 
     def __update_props(
@@ -236,8 +235,8 @@ class MArrayElement(VGroup):
         init_value: bool = False,
         init_index: bool = False,
         init_label: bool = False,
-        next_to_mob: Optional["MArrayElement"] = None,
-        next_to_dir: np.ndarray = RIGHT,
+        next_to_mob: "MArrayElement | None" = None,
+        next_to_dir: Vector3D = RIGHT,
     ):
         """Initializes the mobjects for the class.
 
@@ -304,12 +303,12 @@ class MArrayElement(VGroup):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-        index_pos: np.ndarray = UP,
+        index_pos: Point3D = UP,
         index_gap: float = 0.25,
-        label_pos: np.ndarray = LEFT,
+        label_pos: Point3D = LEFT,
         label_gap: float = 0.5,
-        next_to_mob: Optional["MArrayElement"] = None,
-        next_to_dir: np.ndarray = RIGHT,
+        next_to_mob: "MArrayElement | None" = None,
+        next_to_dir: Vector3D = RIGHT,
         **kwargs: Any,
     ):
         """Initialize the MArrayElement instance."""
@@ -364,7 +363,7 @@ class MArrayElement(VGroup):
 
         return self.__mob_label
 
-    def fetch_mob(self, mob_target: Optional[MArrayElementComp]) -> Mobject:
+    def fetch_mob(self, mob_target: MArrayElementComp | None) -> Mobject:
         """Fetches the mobject based on the specified enum.
 
         Parameters
@@ -683,7 +682,7 @@ class MArray(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, np.ndarray]]] = [
+    __dir_map: ClassVar[list[dict[str, Vector3D]]] = [
         {"arr": UP, "index": RIGHT},
         {"arr": DOWN, "index": RIGHT},
         {"arr": RIGHT, "index": UP},
@@ -719,7 +718,7 @@ class MArray(VGroup):
             total_len += self.__mob_arr[i].fetch_mob_square().side_length
         return total_len
 
-    def __calc_label_pos_and_mob(self) -> tuple[Square, np.ndarray]:
+    def __calc_label_pos_and_mob(self) -> tuple[Square, Point3D]:
         """Calculates the position of the array label relative to one of the element's square mobjects.
 
         Returns
@@ -762,7 +761,7 @@ class MArray(VGroup):
                 * ((len_after - len_before) / 2),
             )
 
-    def __calc_index(self, index: int) -> Union[int, str]:
+    def __calc_index(self, index: int) -> int | str:
         r"""Calculates the displayable index of the specified element based on attributes set at initialization.
 
         Parameters
@@ -785,7 +784,7 @@ class MArray(VGroup):
             )
         )
 
-    def __calc_index_pos(self) -> np.ndarray:
+    def __calc_index_pos(self) -> Point3D:
         """Calculates the index position of all elements based on attributes set at initialization.
 
         Returns
@@ -830,7 +829,7 @@ class MArray(VGroup):
         shift_label: bool = True,
         append_anim: type[Animation] = Write,
         append_anim_args: MobProps = {},
-        append_anim_target: Optional[MArrayElementComp] = None,
+        append_anim_target: MArrayElementComp | None = None,
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
@@ -900,7 +899,7 @@ class MArray(VGroup):
         update_anim: type[Animation] = Indicate,
         removal_anim_args: MobProps = {},
         update_anim_args: MobProps = {},
-        removal_anim_target: Optional[MArrayElementComp] = None,
+        removal_anim_target: MArrayElementComp | None = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
     ) -> tuple[Succession, _UpdateIndices]:
         r"""Removes the element from the array at the specified index.
@@ -1449,7 +1448,7 @@ class MArray(VGroup):
         value: object,
         append_anim: type[Animation] = Write,
         append_anim_args: MobProps = {},
-        append_anim_target: Optional[MArrayElementComp] = None,
+        append_anim_target: MArrayElementComp | None = None,
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
@@ -1508,7 +1507,7 @@ class MArray(VGroup):
         update_anim: type[Animation] = Indicate,
         removal_anim_args: MobProps = {},
         update_anim_args: MobProps = {},
-        removal_anim_target: Optional[MArrayElementComp] = None,
+        removal_anim_target: MArrayElementComp | None = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
         play_anim: bool = True,
         play_anim_args: MobProps = {},
@@ -1657,7 +1656,7 @@ class MArrayPointer(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, np.ndarray | MArrayDirection]]] = [
+    __dir_map: ClassVar[list[dict[str, Vector3D | MArrayDirection]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -1665,7 +1664,7 @@ class MArrayPointer(VGroup):
     ]
     """Maps :class:`~manim_extensions.data_structures.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""
 
-    def __calc_arrow_pos(self) -> np.ndarray:
+    def __calc_arrow_pos(self) -> Point3D:
         """Calculates direction vector for the arrow mobject.
 
         Returns
@@ -1674,7 +1673,7 @@ class MArrayPointer(VGroup):
         """
 
         arr_dir_np = self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
-        arrow_pos_np: np.ndarray = np.copy(
+        arrow_pos_np: Point3D = np.copy(
             self.__dir_map[self.__pointer_pos.value]["np"]
         )
 
@@ -1707,7 +1706,7 @@ class MArrayPointer(VGroup):
 
         self.remove_updater(self.__updater_pos)
 
-    def __calc_shift_np(self, new_index: int) -> np.ndarray:
+    def __calc_shift_np(self, new_index: int) -> Vector3D:
         """Calculates how much the pointer should shift by to point to the new index.
 
         Parameters
@@ -1727,7 +1726,7 @@ class MArrayPointer(VGroup):
             index_start, index_end = index_end, index_start
             to_lesser_index = True
 
-        shift_np: np.ndarray = (
+        shift_np: Vector3D = (
             (
                 self.__arr._MArray__sum_elem_len(index_start, index_end)
                 - (
@@ -2131,7 +2130,7 @@ class MArraySlidingWindow(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, np.ndarray | MArrayDirection]]] = [
+    __dir_map: ClassVar[list[dict[str, Vector3D | MArrayDirection]]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -2158,7 +2157,7 @@ class MArraySlidingWindow(VGroup):
 
         return (height, width)
 
-    def __calc_window_pos_np(self) -> tuple[np.ndarray, np.ndarray]:
+    def __calc_window_pos_np(self) -> tuple[Point3D, Point3D]:
         """Calculates position vector and align vector for the window mobject.
 
         Returns
@@ -2191,7 +2190,7 @@ class MArraySlidingWindow(VGroup):
 
         return (point_np, align_np)
 
-    def __calc_label_pos_np(self) -> np.ndarray:
+    def __calc_label_pos_np(self) -> Point3D:
         """Calculates position vector for the label mobject.
 
         Returns

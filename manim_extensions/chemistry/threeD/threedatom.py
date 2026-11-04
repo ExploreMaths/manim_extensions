@@ -10,6 +10,7 @@ import numpy as np
 
 from .utils import OpenGLSphere
 from ..element import Element
+from manim.typing import Point3D
 
 
 class ThreeDAtom(OpenGLSphere):
@@ -27,7 +28,7 @@ class ThreeDAtom(OpenGLSphere):
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere`.
     """
 
-    def __init__(self, element: Element, coords: np.ndarray = np.array([0, 0, 0]), **kwargs):
+    def __init__(self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs):
         """Initialize a 3D atom sphere using element data at the given coordinates."""
         self.center = coords
         self.coords = coords

@@ -32,15 +32,16 @@ __all__ = [
     "ScaleNode",
     "AlterNode",
 ]
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import numpy as np
 
 from ..algorithms import LayoutFactory, LayoutType, LayoutConfig
 from ..nodes import Node, bfs_walker, NodeSate, NodeStyle
+from manim.typing import Point3D, Vector3D
 
 
-def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
+def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
     r"""FadeOut the given nodes and their subtrees.
 
     Parameters
@@ -85,8 +86,8 @@ def fadeout_of_subtrees(nodes: Optional[List[Node]] = None) -> FadeOut:
 
 def animate_of_create(
     node: Node,
-    pos: np.ndarray,
-    direction: np.ndarray,
+    pos: Point3D,
+    direction: Vector3D,
     line_styles: Dict,
     node_styles: Dict,
     layout_type: LayoutType,
@@ -165,8 +166,8 @@ def animate_of_create(
 
 def animate_of_display(
     node: Node,
-    pos: np.ndarray,
-    direction: np.ndarray,
+    pos: Point3D,
+    direction: Vector3D,
     line_styles: Dict,
     node_styles: Dict,
     layout_type: LayoutType,
@@ -241,8 +242,8 @@ def animate_of_display(
 
 def animate_of_scale(
     node: Node,
-    pos: np.ndarray,
-    direction: np.ndarray,
+    pos: Point3D,
+    direction: Vector3D,
     line_styles: Dict,
     node_styles: Dict,
     layout_type: LayoutType,
@@ -316,8 +317,8 @@ def animate_of_scale(
 
 def animate_of_alter(
     node: Node,
-    pos: np.ndarray,
-    direction: np.ndarray,
+    pos: Point3D,
+    direction: Vector3D,
     line_styles: Dict,
     node_styles: Dict,
     layout_type: LayoutType,
@@ -391,8 +392,8 @@ def animate_of_alter(
 
 def animate_of_node(
     node: Node,
-    pos: np.ndarray,
-    direction: np.ndarray,
+    pos: Point3D,
+    direction: Vector3D,
     line_styles: Dict,
     node_styles: Dict,
     layout_type: LayoutType,
@@ -504,7 +505,7 @@ def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
 
 def animate_of_layout(
     root: Node,
-    remove_nodes: Optional[List[Node]] = None,
+    remove_nodes: List[Node] | None = None,
     layout_type: LayoutType = LayoutType.MindMap,
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
@@ -1074,7 +1075,7 @@ class ScaleNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_scale: Optional[Dict[Node, float]] = None,
+        node_scale: Dict[Node, float] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
@@ -1131,7 +1132,7 @@ class AlterNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_vmobject: Optional[Dict[Node, VMobject]] = None,
+        node_vmobject: Dict[Node, VMobject] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),

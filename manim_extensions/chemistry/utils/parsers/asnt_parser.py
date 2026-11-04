@@ -6,7 +6,7 @@ This module provides the ASNTParser class for parsing ASNT format chemical files
 
 """
 
-from typing import Dict, List, Union
+from typing import Dict, List
 import os
 
 import numpy as np
@@ -65,7 +65,7 @@ class ASNTParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: Union[str, bytes, os.PathLike]) -> List[List[str]]:
+    def read_file(filename: str | bytes | os.PathLike) -> List[List[str]]:
         """Read an ASNT file and return its lines as a list of strings.
 
         Parameters

@@ -6,7 +6,6 @@
 # SPDX-License-Identifier: MIT
 """Math operation layer visualization for neural networks."""
 
-import numpy as np
 
 from manim import (
     AnimationGroup,
@@ -20,11 +19,11 @@ from manim import (
     Text,
     Wait,
 )
-from typing import Optional
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
+from manim.typing import Point3D
 
 class MathOperationLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network.
@@ -94,7 +93,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         node_color: ManimColor = BLUE,
         node_stroke_width: float = 2.0,
         active_color: ManimColor = ORANGE,
-        activation_function: Optional[ActivationFunction | str] = None,
+        activation_function: ActivationFunction | str | None = None,
         font_size: float = 20,
         **kwargs
     ):
@@ -199,7 +198,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         else:
             return succession
 
-    def get_center(self) -> np.ndarray:
+    def get_center(self) -> Point3D:
         """Return the center point of the surrounding circle.
 
         Returns
@@ -207,7 +206,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_circle.get_center()
 
-    def get_left(self) -> np.ndarray:
+    def get_left(self) -> Point3D:
         """Return the leftmost point of the surrounding circle.
 
         Returns
@@ -215,7 +214,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The computed result."""
         return self.surrounding_circle.get_left()
 
-    def get_right(self) -> np.ndarray:
+    def get_right(self) -> Point3D:
         """Return the rightmost point of the surrounding circle.
 
         Returns

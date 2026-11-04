@@ -16,9 +16,9 @@ import numpy as np
 from ...helpers import remove_keys_from_dict
 from ..data_models.mesh import Mesh
 from ...params import get_param_or_default
+from manim.typing import VectorND
 
 
-from typing import Optional
 class FastManimMesh(OpenGLMobject):
     """More efficient mesh implementation.
     Uses custom shaders and stores vertices and faces in a single VAO.
@@ -54,7 +54,7 @@ class FastManimMesh(OpenGLMobject):
     def __init__(
         self,
         mesh: Mesh,
-        shader_folder: Optional[str]=None,
+        shader_folder: str | None=None,
         **kwargs,
     ):
         """Initialization. mesh must only consist of triangles."""
@@ -77,7 +77,7 @@ class FastManimMesh(OpenGLMobject):
         """Set the mesh vertices as the mobject's points."""
         self.set_points(self.mesh.vertices)
 
-    def get_triangle_indices(self) -> np.ndarray:
+    def get_triangle_indices(self) -> VectorND:
         """Return the flat array of triangle indices.
 
         Returns
@@ -115,7 +115,7 @@ class FastManimMesh(OpenGLMobject):
         self.read_data_to_shader(shader_data, "color", "rgbas")
         return shader_data
 
-    def get_shader_vert_indices(self) -> np.ndarray:
+    def get_shader_vert_indices(self) -> VectorND:
         """Return the triangle indices used for shader rendering.
 
         Returns

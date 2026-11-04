@@ -11,10 +11,11 @@ import numpy as np
 from PIL import Image, ImageFilter, ImageOps
 
 from ...utils.deps import require
+from manim.typing import PixelArray, Point3D
 
 
 def get_normalized_convex_polygons(
-    pixel_array: np.ndarray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
+    pixel_array: PixelArray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
 ) -> list[list[list[float]]]:
     """Extract normalized convex polygons from a pixel array.
 
@@ -97,7 +98,7 @@ def get_normalized_convex_polygons(
     # Closing operation: bridge broken highlight regions
     mask = mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
 
-    def sample_func(point: np.ndarray) -> int:
+    def sample_func(point: Point3D) -> int:
         """Return the mask value at the given coordinate.
 
         Parameters

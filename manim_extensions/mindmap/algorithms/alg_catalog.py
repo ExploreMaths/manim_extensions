@@ -16,7 +16,7 @@ Layout characteristics:
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
-from typing import List, Optional, Callable, Self
+from typing import List, Callable, Self
 from .layout import Layout
 
 
@@ -76,7 +76,7 @@ class CatalogNode:
                self.add(boxes)
     """
 
-    data: Optional[object] = None
+    data: object | None = None
     width: float = 0.0
     height: float = 0.0
     children: List["CatalogNode"] = field(default_factory=list)
@@ -85,7 +85,7 @@ class CatalogNode:
     left: float = 0.0
     top: float = 0.0
     layer_index: int = 0
-    parent: Optional["CatalogNode"] = None
+    parent: "CatalogNode | None" = None
     children_area_width: float = 0.0
 
     @classmethod
@@ -224,8 +224,8 @@ class CatalogLayout(Layout):
     def _walk(
         self,
         node: CatalogNode,
-        pre_cb: Optional[Callable] = None,
-        post_cb: Optional[Callable] = None,
+        pre_cb: Callable | None = None,
+        post_cb: Callable | None = None,
         layer: int = 0,
         index: int = 0,
     ):

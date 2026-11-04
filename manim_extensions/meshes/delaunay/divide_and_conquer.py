@@ -25,9 +25,10 @@ from .delaunay_criterion import (
 from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
+from manim.typing import Point2D, Point2D_Array, Vector2D
 
 
-def get_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
+def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
     """Returns clockwise angle between 2D vectors a and b.
 
     Parameters
@@ -49,7 +50,7 @@ def get_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
     return angle
 
 
-def get_counter_clockwise_angle(a: np.ndarray, b: np.ndarray) -> float:
+def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
     """Returns counter-clockwise angle between 2D vectors a and b.
 
     Parameters
@@ -475,7 +476,7 @@ class DivideAndConquer:
                     return indices[(i + 1) % len(indices)]
             return None
 
-        def on_right(tangent: np.ndarray, point: np.ndarray) -> bool:
+        def on_right(tangent: Point2D_Array, point: Point2D) -> bool:
             """Check whether a point lies to the right of a tangent line.
 
             Parameters

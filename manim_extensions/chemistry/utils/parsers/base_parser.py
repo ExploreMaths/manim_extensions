@@ -8,11 +8,11 @@ This module provides the BaseParser abstract class for parsing chemical files.
 
 from abc import ABC, abstractmethod
 import os
-from typing import Any, Union
+from typing import Any
 
 
 #: Path-like value accepted by the parsers: a string, raw bytes or a PathLike.
-FilePath = Union[str, bytes, os.PathLike[str], os.PathLike[bytes]]
+FilePath = str | bytes | os.PathLike[str] | os.PathLike[bytes]
 #: Parsed atoms data: ``{atom_index: {property: value}}``.
 AtomsDict = dict[int, dict[str, Any]]
 #: Parsed bonds data: ``{bond_index: {property: value}}``.
@@ -20,7 +20,7 @@ BondsDict = dict[int, dict[str, Any]]
 #: Parsed data of a single molecule.
 MoleculeData = tuple[AtomsDict, BondsDict]
 #: Parsed data of one or more molecules.
-ParsedData = Union[MoleculeData, list[MoleculeData]]
+ParsedData = MoleculeData | list[MoleculeData]
 
 
 class BaseParser(ABC):
