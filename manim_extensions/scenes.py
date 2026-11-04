@@ -61,15 +61,19 @@ class ConstantStrokeWidthScene(Scene):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ConstantStrokeWidthExample
+       :save_last_frame:
 
-        class ZoomScene(ConstantStrokeWidthScene):
-            def construct(self):
-                line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
-                line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(DOWN)
-                self.add(line1, line2)
-                self.play(self.camera.animate.scale(0.5))
-                self.wait()
+       from manim import *
+       from manim_extensions.scenes import ConstantStrokeWidthScene
+
+       class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
+           def construct(self):
+               line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
+               line2 = Line(LEFT, RIGHT, stroke_width=4).shift(DOWN)
+               line2.fixed_stroke_width = True
+               self.add(line1, line2)
+               self.wait()
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
