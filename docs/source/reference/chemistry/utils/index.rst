@@ -30,9 +30,6 @@ Modules
    :maxdepth: 1
 
    file_handler
-   file_handler.FileHandler
-   file_handler.IncorrectFormat
    parsers/index
    pubchem_api
-   pubchem_api.PubchemAPIManager
    utils

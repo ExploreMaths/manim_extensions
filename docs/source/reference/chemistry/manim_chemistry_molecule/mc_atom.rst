@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MCAtom
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mc_atom.MCAtom

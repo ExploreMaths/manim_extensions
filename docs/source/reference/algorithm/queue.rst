@@ -16,3 +16,9 @@ Classes
    :nosignatures:
 
    ~Queue
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   queue.Queue

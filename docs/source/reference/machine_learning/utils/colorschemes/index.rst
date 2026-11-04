@@ -19,4 +19,3 @@ Modules
    :maxdepth: 1
 
    colorschemes
-   colorschemes.ColorScheme

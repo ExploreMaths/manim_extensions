@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~FeedForwardNeuralNetwork
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   feed_forward.FeedForwardNeuralNetwork

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VariationalAutoencoder
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   variational_autoencoder.VariationalAutoencoder

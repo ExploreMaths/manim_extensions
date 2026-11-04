@@ -20,3 +20,15 @@ Classes
    ~Opamp
    ~Resistor
    ~VoltageSource
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mobjects.Capacitor
+   mobjects.CurrentSource
+   mobjects.Ground
+   mobjects.Inductor
+   mobjects.Opamp
+   mobjects.Resistor
+   mobjects.VoltageSource

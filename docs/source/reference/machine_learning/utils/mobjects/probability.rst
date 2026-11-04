@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~GaussianDistribution
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   probability.GaussianDistribution

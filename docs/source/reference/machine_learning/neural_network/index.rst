@@ -35,4 +35,3 @@ Modules
    architectures/index
    layers/index
    neural_network
-   neural_network.NeuralNetwork

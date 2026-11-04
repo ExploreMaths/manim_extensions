@@ -20,6 +20,4 @@ Modules
    :maxdepth: 1
 
    feed_forward
-   feed_forward.FeedForwardNeuralNetwork
    variational_autoencoder
-   variational_autoencoder.VariationalAutoencoder

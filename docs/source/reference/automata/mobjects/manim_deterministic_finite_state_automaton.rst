@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~ManimdeterministicFiniteAutomaton
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton

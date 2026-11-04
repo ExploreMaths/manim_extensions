@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MolParser
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mol_parser.MolParser

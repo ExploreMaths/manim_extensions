@@ -23,6 +23,4 @@ Modules
 
    delaunay_criterion
    divide_and_conquer
-   divide_and_conquer.DivideAndConquer
    voronoi
-   voronoi.VoronoiDelaunay

@@ -17,11 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~FilePath
-   ~ParsedData
-
 .. autoall:: manim_extensions.chemistry.utils.parsers.base_parser
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   base_parser.BaseParser

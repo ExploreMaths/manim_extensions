@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~ManimTuringMachine
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_turing_machine.ManimTuringMachine

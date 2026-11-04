@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ListGroup
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   list_group.ListGroup

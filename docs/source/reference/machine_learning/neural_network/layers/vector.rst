@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VectorLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   vector.VectorLayer

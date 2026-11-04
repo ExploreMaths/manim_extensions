@@ -17,3 +17,12 @@ Classes
    ~MindMap
    ~StandardMap
    ~TimeLine
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mindmap.CatalogMap
+   mindmap.MindMap
+   mindmap.StandardMap
+   mindmap.TimeLine

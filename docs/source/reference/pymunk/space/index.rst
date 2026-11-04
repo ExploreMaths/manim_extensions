@@ -20,6 +20,4 @@ Modules
    :maxdepth: 1
 
    SpaceScene
-   SpaceScene.SpaceScene
    VSpace
-   VSpace.VSpace

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Cell
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cell.Cell

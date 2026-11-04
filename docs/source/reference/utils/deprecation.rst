@@ -9,10 +9,5 @@ deprecation
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~deprecated
-
 .. autoall:: manim_extensions.utils.deprecation
    :types: function

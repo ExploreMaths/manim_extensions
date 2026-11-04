@@ -18,10 +18,12 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~get_rotated_shift_vectors
-
 .. autoall:: manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D
+   convolutional_2d_to_convolutional_2d.Filters

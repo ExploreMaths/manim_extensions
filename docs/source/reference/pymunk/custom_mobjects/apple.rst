@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Apple
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   apple.Apple

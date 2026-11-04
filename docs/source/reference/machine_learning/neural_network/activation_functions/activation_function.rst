@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ActivationFunction
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   activation_function.ActivationFunction

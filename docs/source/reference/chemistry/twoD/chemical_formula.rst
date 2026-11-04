@@ -16,3 +16,12 @@ Classes
    ~ComplexFormula
    ~NamedComplexFormula
    ~NamedFormula
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   chemical_formula.ChemicalFormula
+   chemical_formula.ComplexFormula
+   chemical_formula.NamedComplexFormula
+   chemical_formula.NamedFormula

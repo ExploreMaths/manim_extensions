@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~NerdFontIcon
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   icons.NerdFontIcon

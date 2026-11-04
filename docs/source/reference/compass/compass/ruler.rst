@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Ruler
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   ruler.Ruler

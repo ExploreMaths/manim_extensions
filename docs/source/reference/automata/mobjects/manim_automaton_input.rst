@@ -15,3 +15,10 @@ Classes
 
    ~ManimAutomataInput
    ~Token
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_automaton_input.ManimAutomataInput
+   manim_automaton_input.Token

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~NeuralNetwork
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   neural_network.NeuralNetwork

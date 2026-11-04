@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~ManimState
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_state.ManimState

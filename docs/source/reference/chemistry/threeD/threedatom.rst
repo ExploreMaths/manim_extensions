@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ThreeDAtom
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   threedatom.ThreeDAtom

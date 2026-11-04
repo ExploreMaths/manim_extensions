@@ -138,4 +138,3 @@ Modules
    :maxdepth: 1
 
    weighted_line
-   weighted_line.WeightedLine

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VSpace
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VSpace.VSpace

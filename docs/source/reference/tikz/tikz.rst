@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Tikz
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tikz.Tikz

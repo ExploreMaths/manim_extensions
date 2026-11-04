@@ -14,3 +14,10 @@ Classes
 
    ~GrayscaleImageMobject
    ~LabeledColorImage
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   image.GrayscaleImageMobject
+   image.LabeledColorImage

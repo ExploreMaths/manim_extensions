@@ -17,3 +17,13 @@ Classes
    ~NeuralNetworkLayer
    ~ThreeDLayer
    ~VGroupNeuralNetworkLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   parent_layers.BlankConnective
+   parent_layers.ConnectiveLayer
+   parent_layers.NeuralNetworkLayer
+   parent_layers.ThreeDLayer
+   parent_layers.VGroupNeuralNetworkLayer

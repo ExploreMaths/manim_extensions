@@ -21,3 +21,16 @@ Classes
    ~InvalidShapeException
    ~InvalidTypeException
    ~MeshIndexException
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   exceptions.BadParameterException
+   exceptions.FaultyVarArrayException
+   exceptions.InvalidMeshDimensionsException
+   exceptions.InvalidMeshException
+   exceptions.InvalidRequestException
+   exceptions.InvalidShapeException
+   exceptions.InvalidTypeException
+   exceptions.MeshIndexException

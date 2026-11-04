@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~SpaceScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   SpaceScene.SpaceScene

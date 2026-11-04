@@ -16,3 +16,9 @@ Classes
    :nosignatures:
 
    ~ManimML3DScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   scene.ManimML3DScene

@@ -18,3 +18,14 @@ Classes
    ~PlainCramBond
    ~SimpleBond
    ~TripleBond
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   bond.BaseMBondObject
+   bond.DashedCramBond
+   bond.DoubleBond
+   bond.PlainCramBond
+   bond.SimpleBond
+   bond.TripleBond

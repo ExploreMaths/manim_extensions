@@ -100,8 +100,5 @@ Modules
 
    constants
    seq_action
-   seq_action.SeqAction
    seq_actor
-   seq_actor.SeqActor
    seq_object
-   seq_object.SeqObject

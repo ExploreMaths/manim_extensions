@@ -16,3 +16,11 @@ Classes
    ~LayoutConfig
    ~LayoutDirection
    ~LayoutType
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   layout_config.LayoutConfig
+   layout_config.LayoutDirection
+   layout_config.LayoutType

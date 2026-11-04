@@ -22,5 +22,4 @@ Modules
 
    img_tools
    logger_tool
-   logger_tool.SingletonLogger
    tools_func

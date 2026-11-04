@@ -16,3 +16,11 @@ Classes
    ~LinearWave
    ~RadialWave
    ~StandingWave
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   wave.LinearWave
+   wave.RadialWave
+   wave.StandingWave

@@ -19,10 +19,12 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~automaton_json
-
 .. autoall:: manim_extensions.automata.mobjects.automata_dependencies.automata
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   automata.FiniteStateAutomaton
+   automata.PushDownAutomaton

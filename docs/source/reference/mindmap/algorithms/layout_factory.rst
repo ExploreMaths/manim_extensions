@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~LayoutFactory
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   layout_factory.LayoutFactory

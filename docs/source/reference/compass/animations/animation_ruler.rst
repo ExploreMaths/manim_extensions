@@ -15,3 +15,10 @@ Classes
 
    ~PutRuler
    ~PutRulerAway
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animation_ruler.PutRuler
+   animation_ruler.PutRulerAway

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ADASDiagram
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   ad_as.ADASDiagram

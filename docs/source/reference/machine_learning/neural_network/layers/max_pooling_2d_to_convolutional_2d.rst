@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MaxPooling2DToConvolutional2D
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D

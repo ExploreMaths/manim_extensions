@@ -39,8 +39,4 @@ Modules
    :maxdepth: 1
 
    pendulum
-   pendulum.MultiPendulum
-   pendulum.Pendulum
    rigid_mechanics
-   rigid_mechanics.Space
-   rigid_mechanics.SpaceScene

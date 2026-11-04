@@ -28,6 +28,4 @@ Modules
    :maxdepth: 1
 
    abstract_molecule
-   abstract_molecule.AbstractMolecule
    molecule
-   molecule.Molecule

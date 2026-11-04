@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~PubchemAPIManager
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   pubchem_api.PubchemAPIManager

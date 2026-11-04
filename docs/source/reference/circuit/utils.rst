@@ -20,11 +20,13 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~distance
-   ~validate_forms_approx_line
-
 .. autoall:: manim_extensions.circuit.utils
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   utils.Circuit
+   utils.Node
+   utils.Source

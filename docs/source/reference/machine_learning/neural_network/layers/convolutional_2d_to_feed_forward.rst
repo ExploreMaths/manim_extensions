@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Convolutional2DToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   convolutional_2d_to_feed_forward.Convolutional2DToFeedForward

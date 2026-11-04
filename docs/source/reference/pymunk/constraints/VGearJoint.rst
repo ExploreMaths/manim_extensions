@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VGearJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VGearJoint.VGearJoint

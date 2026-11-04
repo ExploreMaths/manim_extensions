@@ -41,8 +41,5 @@ Constants
    :maxdepth: 1
 
    activation_function
-   activation_function.ActivationFunction
    relu
-   relu.ReLUFunction
    sigmoid
-   sigmoid.SigmoidFunction

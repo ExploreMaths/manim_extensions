@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~TripletLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   triplet.TripletLayer

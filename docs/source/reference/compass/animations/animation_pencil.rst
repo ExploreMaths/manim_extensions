@@ -17,3 +17,12 @@ Classes
    ~MovePencilAlongPath
    ~MovePencilTipTo
    ~PutPencilAway
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animation_pencil.DrawPath
+   animation_pencil.MovePencilAlongPath
+   animation_pencil.MovePencilTipTo
+   animation_pencil.PutPencilAway

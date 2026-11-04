@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ReLUFunction
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   relu.ReLUFunction

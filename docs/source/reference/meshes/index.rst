@@ -138,14 +138,6 @@ Modules
    decorators
    delaunay/index
    exceptions
-   exceptions.BadParameterException
-   exceptions.FaultyVarArrayException
-   exceptions.InvalidMeshDimensionsException
-   exceptions.InvalidMeshException
-   exceptions.InvalidRequestException
-   exceptions.InvalidShapeException
-   exceptions.InvalidTypeException
-   exceptions.MeshIndexException
    helpers
    models/index
    params

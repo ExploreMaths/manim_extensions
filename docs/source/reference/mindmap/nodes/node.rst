@@ -20,11 +20,13 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~bfs_walker
-   ~dfs_walker
-
 .. autoall:: manim_extensions.mindmap.nodes.node
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   node.Node
+   node.NodeSate
+   node.NodeStyle

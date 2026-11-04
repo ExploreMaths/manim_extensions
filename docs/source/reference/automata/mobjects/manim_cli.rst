@@ -20,10 +20,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~cli_logo
-
 .. autoall:: manim_extensions.automata.mobjects.manim_cli
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_cli.ManimAutomataCLI

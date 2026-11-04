@@ -18,3 +18,13 @@ Classes
    ~LayoutAnimation
    ~RemoveNode
    ~ScaleNode
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animations.AlterNode
+   animations.InsertNode
+   animations.LayoutAnimation
+   animations.RemoveNode
+   animations.ScaleNode

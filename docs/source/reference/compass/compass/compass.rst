@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Compass
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   compass.Compass

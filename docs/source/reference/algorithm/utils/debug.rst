@@ -10,10 +10,5 @@ debug
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~index_paragraph_labels
-
 .. autoall:: manim_extensions.algorithm.utils.debug
    :types: function

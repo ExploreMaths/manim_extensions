@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VDampedRotarySpring
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VDampedRotarySpring.VDampedRotarySpring

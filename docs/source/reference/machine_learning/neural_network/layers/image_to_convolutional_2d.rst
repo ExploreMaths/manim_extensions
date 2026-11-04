@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ImageToConvolutional2DLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   image_to_convolutional_2d.ImageToConvolutional2DLayer

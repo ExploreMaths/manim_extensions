@@ -19,11 +19,5 @@ a :class:`~manim.scene.scene.Scene`.
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~manim_extensions.geometry.TangentPoint
-   ~manim_extensions.geometry.VMobjectInt
-
 .. autoall:: manim_extensions.geometry
    :types: function

@@ -115,6 +115,4 @@ Modules
    :maxdepth: 1
 
    template
-   template.TikzTemplate
    tikz
-   tikz.Tikz

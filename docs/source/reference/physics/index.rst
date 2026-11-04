@@ -171,6 +171,3 @@ Modules
    optics/index
    rigid_mechanics/index
    wave
-   wave.LinearWave
-   wave.RadialWave
-   wave.StandingWave

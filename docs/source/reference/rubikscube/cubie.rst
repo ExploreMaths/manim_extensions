@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Cubie
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cubie.Cubie

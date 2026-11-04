@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VConstraint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   constraint.VConstraint

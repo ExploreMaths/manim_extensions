@@ -22,12 +22,6 @@ Modules
    :maxdepth: 1
 
    threedatom
-   threedatom.ThreeDAtom
    threedbond
-   threedbond.ThreeDBond
-   threedbond.ThreeDCylinder
-   threedbond.ThreeDLine
    threedmolecule
-   threedmolecule.ThreeDMolecule
    utils
-   utils.OpenGLSphere

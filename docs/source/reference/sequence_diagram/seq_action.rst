@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~SeqAction
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   seq_action.SeqAction

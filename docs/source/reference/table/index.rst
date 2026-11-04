@@ -105,8 +105,5 @@ Modules
    :maxdepth: 1
 
    cell
-   cell.Cell
    row
-   row.Row
    table
-   table.Table

@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~CatalogLayout
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   alg_catalog.CatalogLayout

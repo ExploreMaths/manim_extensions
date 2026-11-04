@@ -20,3 +20,9 @@ Classes
    :nosignatures:
 
    ~manim_extensions.scenes.ConstantStrokeWidthScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   scenes.ConstantStrokeWidthScene

@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Transition
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   transition.Transition

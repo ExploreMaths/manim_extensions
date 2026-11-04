@@ -16,3 +16,9 @@ Classes
    :nosignatures:
 
    ~MVariable
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   m_variable.MVariable

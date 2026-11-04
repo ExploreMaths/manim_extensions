@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VSimpleMotor
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VSimpleMotor.VSimpleMotor

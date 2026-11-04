@@ -10,10 +10,5 @@ xml_parser
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~parse_xml_file
-
 .. autoall:: manim_extensions.automata.mobjects.automata_dependencies.xml_parser
    :types: function

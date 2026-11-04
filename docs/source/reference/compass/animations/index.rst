@@ -22,17 +22,5 @@ Modules
    :maxdepth: 1
 
    animation_compass
-   animation_compass.DrawArc
-   animation_compass.MoveNiddleTipTo
-   animation_compass.PutCompass
-   animation_compass.PutCompassAway
-   animation_compass.RotateCompass
-   animation_compass.SplitCompass
    animation_pencil
-   animation_pencil.DrawPath
-   animation_pencil.MovePencilAlongPath
-   animation_pencil.MovePencilTipTo
-   animation_pencil.PutPencilAway
    animation_ruler
-   animation_ruler.PutRuler
-   animation_ruler.PutRulerAway

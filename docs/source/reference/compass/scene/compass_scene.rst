@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~CompassScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   compass_scene.CompassScene

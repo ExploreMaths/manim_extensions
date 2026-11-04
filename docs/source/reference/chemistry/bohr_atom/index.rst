@@ -27,4 +27,3 @@ Modules
    :maxdepth: 1
 
    bohr_atom
-   bohr_atom.BohrAtom

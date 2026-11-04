@@ -304,12 +304,5 @@ Modules
    :maxdepth: 1
 
    m_array
-   m_array.MArray
-   m_array.MArrayElement
-   m_array.MArrayPointer
-   m_array.MArraySlidingWindow
    m_enum
-   m_enum.MArrayDirection
-   m_enum.MArrayElementComp
    m_variable
-   m_variable.MVariable

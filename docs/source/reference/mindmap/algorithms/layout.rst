@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Layout
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   layout.Layout

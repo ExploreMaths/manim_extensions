@@ -20,6 +20,3 @@ Modules
    :maxdepth: 1
 
    node
-   node.Node
-   node.NodeSate
-   node.NodeStyle

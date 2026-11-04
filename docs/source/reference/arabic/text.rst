@@ -17,3 +17,10 @@ Classes
 
    ~ArabicTemplate
    ~ArabicText
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   text.ArabicTemplate
+   text.ArabicText

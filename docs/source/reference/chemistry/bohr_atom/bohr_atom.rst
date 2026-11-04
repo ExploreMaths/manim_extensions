@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~BohrAtom
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   bohr_atom.BohrAtom

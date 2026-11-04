@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MAtomObject
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   atom.MAtomObject

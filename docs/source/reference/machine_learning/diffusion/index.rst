@@ -19,5 +19,3 @@ Modules
    :maxdepth: 1
 
    mcmc
-   mcmc.MCMCAxes
-   mcmc.MultidimensionalGaussianPosterior

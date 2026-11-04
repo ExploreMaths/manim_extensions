@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~GMAnimationBuilder
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animations.GMAnimationBuilder

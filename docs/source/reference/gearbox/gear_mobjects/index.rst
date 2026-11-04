@@ -20,5 +20,3 @@ Modules
    :maxdepth: 1
 
    gear_mobject
-   gear_mobject.Gear
-   gear_mobject.Rack

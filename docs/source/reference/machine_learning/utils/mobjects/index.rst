@@ -24,14 +24,8 @@ Modules
    :maxdepth: 1
 
    connections
-   connections.NetworkConnection
    gridded_rectangle
-   gridded_rectangle.GriddedRectangle
    image
-   image.GrayscaleImageMobject
-   image.LabeledColorImage
    list_group
-   list_group.ListGroup
    plotting
    probability
-   probability.GaussianDistribution

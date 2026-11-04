@@ -9,10 +9,5 @@ deps
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~require
-
 .. autoall:: manim_extensions.utils.deps
    :types: function

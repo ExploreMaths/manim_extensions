@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~OpenGLSphere
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   utils.OpenGLSphere

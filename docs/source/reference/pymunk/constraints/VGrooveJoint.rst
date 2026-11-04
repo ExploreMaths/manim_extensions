@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VGrooveJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VGrooveJoint.VGrooveJoint

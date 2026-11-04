@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~XMLParser
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   xml_parser.XMLParser

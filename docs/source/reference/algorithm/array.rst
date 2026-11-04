@@ -16,3 +16,9 @@ Classes
    :nosignatures:
 
    ~Array
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   array.Array

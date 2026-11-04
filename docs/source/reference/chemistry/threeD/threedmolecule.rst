@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ThreeDMolecule
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   threedmolecule.ThreeDMolecule

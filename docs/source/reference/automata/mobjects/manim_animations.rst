@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~ManimAnimations
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_animations.ManimAnimations

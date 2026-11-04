@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~StandardLayout
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   alg_standard.StandardLayout

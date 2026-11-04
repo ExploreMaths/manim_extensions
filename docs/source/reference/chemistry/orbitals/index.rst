@@ -30,7 +30,3 @@ Modules
    :maxdepth: 1
 
    orbitals
-   orbitals.Orbital
-   orbitals.OrbitalBase
-   orbitals.OrbitalNegative
-   orbitals.OrbitalPositive

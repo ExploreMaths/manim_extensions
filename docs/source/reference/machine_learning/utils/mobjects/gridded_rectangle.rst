@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~GriddedRectangle
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   gridded_rectangle.GriddedRectangle

@@ -19,10 +19,12 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~generate_tree
-
 .. autoall:: manim_extensions.mindmap.mindmap.base
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   base.AbstractMap
+   base.NodeMobject

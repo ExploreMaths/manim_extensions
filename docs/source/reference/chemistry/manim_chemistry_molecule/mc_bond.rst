@@ -17,11 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~BOND_TYPES
-   ~STEREO_TYPES
-
 .. autoall:: manim_extensions.chemistry.manim_chemistry_molecule.mc_bond
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mc_bond.MCBond

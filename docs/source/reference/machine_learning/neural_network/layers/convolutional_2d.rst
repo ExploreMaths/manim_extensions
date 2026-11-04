@@ -14,3 +14,10 @@ Classes
 
    ~Convolutional2DLayer
    ~FeatureMap
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   convolutional_2d.Convolutional2DLayer
+   convolutional_2d.FeatureMap

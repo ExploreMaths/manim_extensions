@@ -22,4 +22,3 @@ Modules
 
    debug
    numpy_helper
-   numpy_helper.NumpyHelper

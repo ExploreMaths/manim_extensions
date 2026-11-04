@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~RubiksCube
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cube.RubiksCube

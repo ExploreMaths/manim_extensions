@@ -23,3 +23,12 @@ Classes
    ~MArrayElement
    ~MArrayPointer
    ~MArraySlidingWindow
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   m_array.MArray
+   m_array.MArrayElement
+   m_array.MArrayPointer
+   m_array.MArraySlidingWindow

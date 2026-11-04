@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~SeqObject
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   seq_object.SeqObject

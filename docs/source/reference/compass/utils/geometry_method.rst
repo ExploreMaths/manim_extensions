@@ -10,10 +10,5 @@ geometry_method
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~get_arc
-
 .. autoall:: manim_extensions.compass.utils.geometry_method
    :types: function

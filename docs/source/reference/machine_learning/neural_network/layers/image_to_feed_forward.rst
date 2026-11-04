@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ImageToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   image_to_feed_forward.ImageToFeedForward

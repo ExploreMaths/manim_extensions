@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ImageLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   image.ImageLayer

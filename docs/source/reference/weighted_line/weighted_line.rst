@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~WeightedLine
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   weighted_line.WeightedLine

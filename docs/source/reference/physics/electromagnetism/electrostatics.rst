@@ -15,3 +15,10 @@ Classes
 
    ~Charge
    ~ElectricField
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   electrostatics.Charge
+   electrostatics.ElectricField

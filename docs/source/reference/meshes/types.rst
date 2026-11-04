@@ -10,18 +10,5 @@ types
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~DefaultParameters
-   ~Edges
-   ~Face
-   ~Faces
-   ~Parameters
-   ~Part
-   ~Parts
-   ~VarArray
-   ~Vertex
-
 .. autoall:: manim_extensions.meshes.types
    :types: data

@@ -19,11 +19,12 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~get_angle
-   ~get_shape
-
 .. autoall:: manim_extensions.physics.rigid_mechanics.rigid_mechanics
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   rigid_mechanics.Space
+   rigid_mechanics.SpaceScene

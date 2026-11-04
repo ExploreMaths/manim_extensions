@@ -24,26 +24,8 @@ Modules
    :maxdepth: 1
 
    animations
-   animations.GMAnimationBuilder
    atom
-   atom.MAtomObject
    bond
-   bond.BaseMBondObject
-   bond.DashedCramBond
-   bond.DoubleBond
-   bond.PlainCramBond
-   bond.SimpleBond
-   bond.TripleBond
    chemical_formula
-   chemical_formula.ChemicalFormula
-   chemical_formula.ComplexFormula
-   chemical_formula.NamedComplexFormula
-   chemical_formula.NamedFormula
    graph_molecule
-   graph_molecule.DoubleLine
-   graph_molecule.GraphMolecule
-   graph_molecule.SimpleLine
-   graph_molecule.TripleLine
    molecule
-   molecule.MMoleculeObject
-   molecule.NamedMolecule

@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~NumpyHelper
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   numpy_helper.NumpyHelper

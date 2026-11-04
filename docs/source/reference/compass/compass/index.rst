@@ -30,8 +30,5 @@ Modules
    :maxdepth: 1
 
    compass
-   compass.Compass
    pencil
-   pencil.Pencil
    ruler
-   ruler.Ruler

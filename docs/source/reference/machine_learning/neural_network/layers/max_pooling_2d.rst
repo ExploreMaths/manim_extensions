@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MaxPooling2DLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   max_pooling_2d.MaxPooling2DLayer

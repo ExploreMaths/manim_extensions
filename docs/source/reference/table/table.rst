@@ -17,10 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~TableAnimation
-
 .. autoall:: manim_extensions.table.table
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   table.Table

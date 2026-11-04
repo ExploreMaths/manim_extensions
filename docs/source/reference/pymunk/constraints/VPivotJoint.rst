@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VPivotJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VPivotJoint.VPivotJoint

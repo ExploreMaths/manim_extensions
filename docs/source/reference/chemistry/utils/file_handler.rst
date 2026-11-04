@@ -18,10 +18,12 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~SUPPORTED_FORMATS
-
 .. autoall:: manim_extensions.chemistry.utils.file_handler
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   file_handler.FileHandler
+   file_handler.IncorrectFormat

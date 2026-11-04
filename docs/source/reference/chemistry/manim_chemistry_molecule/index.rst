@@ -22,10 +22,6 @@ Modules
    :maxdepth: 1
 
    mc_atom
-   mc_atom.MCAtom
    mc_bond
-   mc_bond.MCBond
    mc_element
-   mc_element.MCElement
    mc_molecule
-   mc_molecule.MCMolecule

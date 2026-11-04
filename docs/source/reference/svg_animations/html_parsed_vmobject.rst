@@ -17,14 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~BASIC_HTML_STRUCTURE
-   ~HTML_STRUCTURE
-   ~JAVASCRIPT_INTERACTIVE_STRUCTURE
-   ~JAVASCRIPT_STRUCTURE
-   ~JAVASCRIPT_UPDATE_STRUCTURE
-
 .. autoall:: manim_extensions.svg_animations.html_parsed_vmobject
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   html_parsed_vmobject.HTMLParsedVMobject

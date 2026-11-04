@@ -15,3 +15,11 @@ Classes
    ~ThreeDBond
    ~ThreeDCylinder
    ~ThreeDLine
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   threedbond.ThreeDBond
+   threedbond.ThreeDCylinder
+   threedbond.ThreeDLine

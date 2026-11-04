@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~AbstractMolecule
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   abstract_molecule.AbstractMolecule

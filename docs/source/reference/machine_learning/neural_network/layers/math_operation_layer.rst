@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MathOperationLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   math_operation_layer.MathOperationLayer

@@ -20,4 +20,3 @@ Modules
    :maxdepth: 1
 
    mesh
-   mesh.Mesh

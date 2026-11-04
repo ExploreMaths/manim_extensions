@@ -9,10 +9,5 @@ Constants
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~HALF_DOWN
-
 .. autoall:: manim_extensions.sequence_diagram.constants
    :types: data

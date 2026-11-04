@@ -375,5 +375,4 @@ Classes
    ManimMLConfig
    neural_network/index
    scene
-   scene.ManimML3DScene
    utils/index

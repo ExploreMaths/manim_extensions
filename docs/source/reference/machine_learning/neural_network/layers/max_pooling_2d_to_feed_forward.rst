@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~MaxPooling2DToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   max_pooling_2d_to_feed_forward.MaxPooling2DToFeedForward

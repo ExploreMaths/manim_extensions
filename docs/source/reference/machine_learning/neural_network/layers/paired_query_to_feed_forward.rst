@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~PairedQueryToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   paired_query_to_feed_forward.PairedQueryToFeedForward

@@ -20,7 +20,4 @@ Modules
    :maxdepth: 1
 
    dropout
-   dropout.XMark
    neural_network_transformations
-   neural_network_transformations.InsertLayer
-   neural_network_transformations.RemoveLayer

@@ -15,3 +15,10 @@ Classes
 
    ~Manim2DMesh
    ~ManimMesh
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   basic_mesh.Manim2DMesh
+   basic_mesh.ManimMesh

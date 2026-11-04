@@ -19,3 +19,14 @@ Classes
    ~PutCompassAway
    ~RotateCompass
    ~SplitCompass
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animation_compass.DrawArc
+   animation_compass.MoveNiddleTipTo
+   animation_compass.PutCompass
+   animation_compass.PutCompassAway
+   animation_compass.RotateCompass
+   animation_compass.SplitCompass

@@ -14,7 +14,6 @@ inside a :class:`~manim.scene.scene.Scene`.
    :parts: 1
 
 
-
 Classes
 -------
 
@@ -35,13 +34,20 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~manim_extensions.animations.easeInBounce
-   ~manim_extensions.animations.easeInOutBounce
-   ~manim_extensions.animations.easeOutBounce
-   ~manim_extensions.animations.easeOutElastic
-
 .. autoall:: manim_extensions.animations
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   animations.FadeInRandom
+   animations.FadeOutRandom
+   animations.GrowRandom
+   animations.HighLightWithLines
+   animations.LaggedCreation
+   animations.PassingRectangle
+   animations.ReversedWrite
+   animations.TypeWriter
+   animations.UnHighLightWithLines
+   animations.WriteRandom

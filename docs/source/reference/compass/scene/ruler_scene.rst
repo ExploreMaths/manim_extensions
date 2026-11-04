@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~SingleRulerScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   ruler_scene.SingleRulerScene

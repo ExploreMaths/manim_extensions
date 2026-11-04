@@ -95,5 +95,4 @@ Constants
 
    icon_gallery
    icons
-   icons.NerdFontIcon
    icons_dict

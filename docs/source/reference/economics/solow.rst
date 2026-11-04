@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~SolowDiagram
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   solow.SolowDiagram

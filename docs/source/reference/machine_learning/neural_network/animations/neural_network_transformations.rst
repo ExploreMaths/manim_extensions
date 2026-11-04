@@ -14,3 +14,10 @@ Classes
 
    ~InsertLayer
    ~RemoveLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   neural_network_transformations.InsertLayer
+   neural_network_transformations.RemoveLayer

@@ -23,10 +23,6 @@ Modules
    :maxdepth: 1
 
    automata
-   automata.FiniteStateAutomaton
-   automata.PushDownAutomaton
    state
-   state.State
    transition
-   transition.Transition
    xml_parser

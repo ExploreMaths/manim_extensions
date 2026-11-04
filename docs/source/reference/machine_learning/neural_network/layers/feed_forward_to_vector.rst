@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~FeedForwardToVector
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   feed_forward_to_vector.FeedForwardToVector

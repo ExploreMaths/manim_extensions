@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Row
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   row.Row

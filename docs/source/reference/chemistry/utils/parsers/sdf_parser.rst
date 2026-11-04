@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~SDFParser
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   sdf_parser.SDFParser

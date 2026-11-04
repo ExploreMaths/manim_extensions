@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~TimeLineLayout
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   alg_time_line.TimeLineLayout

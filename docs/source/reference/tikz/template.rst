@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~TikzTemplate
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   template.TikzTemplate

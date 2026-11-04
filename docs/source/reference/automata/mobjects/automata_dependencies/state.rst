@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~State
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   state.State

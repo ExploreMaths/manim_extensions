@@ -22,9 +22,5 @@ Modules
    :maxdepth: 1
 
    basic_mesh
-   basic_mesh.Manim2DMesh
-   basic_mesh.ManimMesh
    opengl_mesh
-   opengl_mesh.FastManimMesh
    triangle_mesh
-   triangle_mesh.TriangleManim2DMesh

@@ -530,9 +530,6 @@ Modules
    :maxdepth: 1
 
    cube
-   cube.RubiksCube
    cube_animations
-   cube_animations.CubeMove
    cube_utils
    cubie
-   cubie.Cubie

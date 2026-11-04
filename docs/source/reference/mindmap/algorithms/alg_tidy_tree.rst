@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~TidyTreeLayout
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   alg_tidy_tree.TidyTreeLayout

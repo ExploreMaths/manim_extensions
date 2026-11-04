@@ -14,3 +14,10 @@ Classes
 
    ~MMoleculeObject
    ~NamedMolecule
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   molecule.MMoleculeObject
+   molecule.NamedMolecule

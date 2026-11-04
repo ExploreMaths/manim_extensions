@@ -17,10 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~BOND_TYPE_MAPPING
-
 .. autoall:: manim_extensions.chemistry.utils.parsers.asnt_parser
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   asnt_parser.ASNTParser

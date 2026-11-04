@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Gear
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   gear.Gear

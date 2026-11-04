@@ -15,3 +15,10 @@ Classes
 
    ~MagneticField
    ~Wire
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   magnetostatics.MagneticField
+   magnetostatics.Wire

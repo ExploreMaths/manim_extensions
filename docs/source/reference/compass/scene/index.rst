@@ -21,6 +21,4 @@ Modules
    :maxdepth: 1
 
    compass_scene
-   compass_scene.CompassScene
    ruler_scene
-   ruler_scene.SingleRulerScene

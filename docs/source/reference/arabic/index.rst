@@ -84,5 +84,3 @@ Modules
    :maxdepth: 1
 
    text
-   text.ArabicTemplate
-   text.ArabicText

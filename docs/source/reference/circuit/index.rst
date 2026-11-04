@@ -89,14 +89,4 @@ Modules
    :maxdepth: 1
 
    mobjects
-   mobjects.Capacitor
-   mobjects.CurrentSource
-   mobjects.Ground
-   mobjects.Inductor
-   mobjects.Opamp
-   mobjects.Resistor
-   mobjects.VoltageSource
    utils
-   utils.Circuit
-   utils.Node
-   utils.Source

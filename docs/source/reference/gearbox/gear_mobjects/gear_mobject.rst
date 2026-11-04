@@ -19,13 +19,12 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~involute_deriv_func
-   ~involute_func
-   ~involute_height_func
-   ~involute_point_gen
-
 .. autoall:: manim_extensions.gearbox.gear_mobjects.gear_mobject
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   gear_mobject.Gear
+   gear_mobject.Rack

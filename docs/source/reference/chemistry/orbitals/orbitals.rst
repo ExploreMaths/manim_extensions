@@ -16,3 +16,12 @@ Classes
    ~OrbitalBase
    ~OrbitalNegative
    ~OrbitalPositive
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   orbitals.Orbital
+   orbitals.OrbitalBase
+   orbitals.OrbitalNegative
+   orbitals.OrbitalPositive

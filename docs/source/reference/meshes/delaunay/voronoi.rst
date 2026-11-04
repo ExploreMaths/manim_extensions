@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~VoronoiDelaunay
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   voronoi.VoronoiDelaunay

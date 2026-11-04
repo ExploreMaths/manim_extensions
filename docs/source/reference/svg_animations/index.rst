@@ -193,4 +193,3 @@ Modules
    :maxdepth: 1
 
    html_parsed_vmobject
-   html_parsed_vmobject.HTMLParsedVMobject

@@ -125,7 +125,6 @@ A wall of solid icons, staggered in and spun like on the
            self.wait()
 
 
-
 Modules
 -------
 

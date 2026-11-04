@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~EmbeddingToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   embedding_to_feed_forward.EmbeddingToFeedForward

@@ -26,18 +26,9 @@ Modules
    :maxdepth: 1
 
    alg_catalog
-   alg_catalog.CatalogLayout
    alg_standard
-   alg_standard.StandardLayout
    alg_tidy_tree
-   alg_tidy_tree.TidyTreeLayout
    alg_time_line
-   alg_time_line.TimeLineLayout
    layout
-   layout.Layout
    layout_config
-   layout_config.LayoutConfig
-   layout_config.LayoutDirection
-   layout_config.LayoutType
    layout_factory
-   layout_factory.LayoutFactory

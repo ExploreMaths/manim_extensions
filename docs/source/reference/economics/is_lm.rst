@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~ISLMDiagram
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   is_lm.ISLMDiagram

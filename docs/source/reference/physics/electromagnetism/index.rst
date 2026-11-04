@@ -21,8 +21,4 @@ Modules
    :maxdepth: 1
 
    electrostatics
-   electrostatics.Charge
-   electrostatics.ElectricField
    magnetostatics
-   magnetostatics.MagneticField
-   magnetostatics.Wire

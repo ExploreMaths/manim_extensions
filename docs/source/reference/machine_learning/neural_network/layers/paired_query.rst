@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~PairedQueryLayer
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   paired_query.PairedQueryLayer

@@ -29,24 +29,13 @@ Modules
    :maxdepth: 1
 
    constraint
-   constraint.VConstraint
    VDampedRotarySpring
-   VDampedRotarySpring.VDampedRotarySpring
    VDampedSpring
-   VDampedSpring.VDampedSpring
    VGearJoint
-   VGearJoint.VGearJoint
    VGrooveJoint
-   VGrooveJoint.VGrooveJoint
    VPinJoint
-   VPinJoint.VPinJoint
    VPivotJoint
-   VPivotJoint.VPivotJoint
    VRatchetJoint
-   VRatchetJoint.VRatchetJoint
    VRotaryLimitJoint
-   VRotaryLimitJoint.VRotaryLimitJoint
    VSimpleMotor
-   VSimpleMotor.VSimpleMotor
    VSlideJoint
-   VSlideJoint.VSlideJoint

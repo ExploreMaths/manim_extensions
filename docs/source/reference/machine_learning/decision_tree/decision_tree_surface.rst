@@ -19,13 +19,13 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~compute_decision_areas
-   ~merge_overlapping_polygons
-   ~plot_areas
-   ~tree_bounds
-
 .. autoall:: manim_extensions.machine_learning.decision_tree.decision_tree_surface
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   decision_tree_surface.AABB
+   decision_tree_surface.DecisionTreeSurface
+   decision_tree_surface.IrisDatasetPlot

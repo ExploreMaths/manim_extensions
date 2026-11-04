@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~CubeMove
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cube_animations.CubeMove

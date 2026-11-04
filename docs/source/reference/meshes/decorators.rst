@@ -10,11 +10,5 @@ decorators
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~dangling_face_decorator
-   ~dangling_vert_decorator
-
 .. autoall:: manim_extensions.meshes.decorators
    :types: function

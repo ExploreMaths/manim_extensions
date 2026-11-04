@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~Molecule
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   molecule.Molecule

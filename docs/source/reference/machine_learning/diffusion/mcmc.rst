@@ -18,12 +18,12 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~gaussian_proposal
-   ~make_dist_image_mobject_from_samples
-   ~metropolis_hastings_sampler
-
 .. autoall:: manim_extensions.machine_learning.diffusion.mcmc
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mcmc.MCMCAxes
+   mcmc.MultidimensionalGaussianPosterior

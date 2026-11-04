@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~TriangleManim2DMesh
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   triangle_mesh.TriangleManim2DMesh

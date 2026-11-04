@@ -15,3 +15,10 @@ Classes
 
    ~MArrayDirection
    ~MArrayElementComp
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   m_enum.MArrayDirection
+   m_enum.MArrayElementComp

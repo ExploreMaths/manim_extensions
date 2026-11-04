@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VPinJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VPinJoint.VPinJoint

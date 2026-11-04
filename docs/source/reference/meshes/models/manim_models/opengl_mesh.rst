@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~FastManimMesh
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   opengl_mesh.FastManimMesh

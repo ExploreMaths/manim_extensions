@@ -15,3 +15,10 @@ Classes
 
    ~MultiPendulum
    ~Pendulum
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   pendulum.MultiPendulum
+   pendulum.Pendulum

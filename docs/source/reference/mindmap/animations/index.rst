@@ -32,8 +32,3 @@ Modules
    :maxdepth: 1
 
    animations
-   animations.AlterNode
-   animations.InsertNode
-   animations.LayoutAnimation
-   animations.RemoveNode
-   animations.ScaleNode

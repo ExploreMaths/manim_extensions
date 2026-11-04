@@ -21,3 +21,9 @@ Classes
    :nosignatures:
 
    ~Mesh
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mesh.Mesh

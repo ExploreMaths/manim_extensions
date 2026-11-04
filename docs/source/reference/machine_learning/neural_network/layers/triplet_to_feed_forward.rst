@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~TripletToFeedForward
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   triplet_to_feed_forward.TripletToFeedForward

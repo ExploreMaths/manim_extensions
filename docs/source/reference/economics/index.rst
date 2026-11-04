@@ -306,15 +306,9 @@ Modules
    :maxdepth: 1
 
    ad_as
-   ad_as.ADASDiagram
    base
-   base.EconDiagram
    diagrams
    is_lm
-   is_lm.ISLMDiagram
    linked
-   linked.LinkedISLM_ADAS
    solow
-   solow.SolowDiagram
    supply_demand
-   supply_demand.SupplyDemandDiagram

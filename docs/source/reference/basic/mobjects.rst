@@ -16,7 +16,6 @@ and geometric construction helpers.
    :parts: 1
 
 
-
 Classes
 -------
 
@@ -45,11 +44,28 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~manim_extensions.mobjects.DEFAULT_CJK_FONT
-   ~manim_extensions.mobjects.DEFAULT_MONO_FONT
-
 .. autoall:: manim_extensions.mobjects
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   mobjects.ChineseMathTex
+   mobjects.ColorText
+   mobjects.CropImageMobject
+   mobjects.ExtendedLine
+   mobjects.FileTree
+   mobjects.LabelDot
+   mobjects.MathTexBrace
+   mobjects.MathTexDoublearrow
+   mobjects.MathTexLine
+   mobjects.ObjectBorder
+   mobjects.PerpendicularLine
+   mobjects.PerpendicularSign
+   mobjects.ShadowAround
+   mobjects.ShortenedLine
+   mobjects.ThreeDVector
+   mobjects.Trail
+   mobjects.TreeDiagram
+   mobjects.VideoMobject

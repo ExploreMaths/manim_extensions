@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VRatchetJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VRatchetJoint.VRatchetJoint

@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~NetworkConnection
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   connections.NetworkConnection

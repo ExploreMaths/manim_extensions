@@ -24,14 +24,8 @@ Modules
    :maxdepth: 1
 
    asnt_parser
-   asnt_parser.ASNTParser
    base_parser
-   base_parser.BaseParser
    json_parser
-   json_parser.JSONParser
    mol_parser
-   mol_parser.MolParser
    sdf_parser
-   sdf_parser.SDFParser
    xml_parser
-   xml_parser.XMLParser

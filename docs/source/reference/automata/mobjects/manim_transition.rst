@@ -15,3 +15,10 @@ Classes
 
    ~ManimPushDownAutomatonTransition
    ~ManimTransition
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_transition.ManimPushDownAutomatonTransition
+   manim_transition.ManimTransition

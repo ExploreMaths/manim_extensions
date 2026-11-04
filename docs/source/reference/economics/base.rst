@@ -20,10 +20,11 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~find_intersection
-
 .. autoall:: manim_extensions.economics.base
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   base.EconDiagram

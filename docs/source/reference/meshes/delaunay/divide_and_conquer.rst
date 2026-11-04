@@ -18,11 +18,11 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~get_clockwise_angle
-   ~get_counter_clockwise_angle
-
 .. autoall:: manim_extensions.meshes.delaunay.divide_and_conquer
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   divide_and_conquer.DivideAndConquer

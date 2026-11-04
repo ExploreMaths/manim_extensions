@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VRotaryLimitJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VRotaryLimitJoint.VRotaryLimitJoint

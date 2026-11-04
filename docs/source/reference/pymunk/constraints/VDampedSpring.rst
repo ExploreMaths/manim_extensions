@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VDampedSpring
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VDampedSpring.VDampedSpring

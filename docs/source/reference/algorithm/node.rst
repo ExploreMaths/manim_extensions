@@ -22,11 +22,13 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~NodeBoxType
-   ~NodeValue
-
 .. autoall:: manim_extensions.algorithm.node
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   node.Node
+   node.NodeConfig
+   node.NodeSolt

@@ -14,3 +14,10 @@ Classes
 
    ~MElementObject
    ~PeriodicTable
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   table_objects.MElementObject
+   table_objects.PeriodicTable

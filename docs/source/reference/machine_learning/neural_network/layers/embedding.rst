@@ -14,3 +14,10 @@ Classes
 
    ~EmbeddingLayer
    ~NeuralNetworkEmbeddingTestScene
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   embedding.EmbeddingLayer
+   embedding.NeuralNetworkEmbeddingTestScene

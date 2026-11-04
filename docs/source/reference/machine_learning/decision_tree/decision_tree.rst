@@ -16,3 +16,12 @@ Classes
    ~DecisionTreeDiagram
    ~LeafNode
    ~SplitNode
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   decision_tree.DecisionTreeContainer
+   decision_tree.DecisionTreeDiagram
+   decision_tree.LeafNode
+   decision_tree.SplitNode

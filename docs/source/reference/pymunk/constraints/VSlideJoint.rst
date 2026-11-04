@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VSlideJoint
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   VSlideJoint.VSlideJoint

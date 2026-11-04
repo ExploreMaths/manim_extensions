@@ -17,11 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~dark_mode
-   ~light_mode
-
 .. autoall:: manim_extensions.machine_learning.utils.colorschemes.colorschemes
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   colorschemes.ColorScheme

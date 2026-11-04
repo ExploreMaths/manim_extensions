@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Ray
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   rays.Ray

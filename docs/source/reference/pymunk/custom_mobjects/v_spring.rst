@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~VSpring
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   v_spring.VSpring

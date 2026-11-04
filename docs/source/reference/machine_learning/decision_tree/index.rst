@@ -32,13 +32,5 @@ Modules
    :maxdepth: 1
 
    decision_tree
-   decision_tree.DecisionTreeContainer
-   decision_tree.DecisionTreeDiagram
-   decision_tree.LeafNode
-   decision_tree.SplitNode
    decision_tree_surface
-   decision_tree_surface.AABB
-   decision_tree_surface.DecisionTreeSurface
-   decision_tree_surface.IrisDatasetPlot
    helpers
-   helpers.SklearnTree

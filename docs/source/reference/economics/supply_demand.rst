@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~SupplyDemandDiagram
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   supply_demand.SupplyDemandDiagram

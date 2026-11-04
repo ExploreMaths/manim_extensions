@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~SigmoidFunction
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   sigmoid.SigmoidFunction

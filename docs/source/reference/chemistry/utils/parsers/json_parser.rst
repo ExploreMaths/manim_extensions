@@ -17,10 +17,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~ELEMENTS_BY_ATOMIC_NUMBER
-
 .. autoall:: manim_extensions.chemistry.utils.parsers.json_parser
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   json_parser.JSONParser

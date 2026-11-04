@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~Pencil
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   pencil.Pencil

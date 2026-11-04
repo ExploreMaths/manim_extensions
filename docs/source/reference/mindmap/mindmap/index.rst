@@ -32,10 +32,4 @@ Modules
    :maxdepth: 1
 
    base
-   base.AbstractMap
-   base.NodeMobject
    mindmap
-   mindmap.CatalogMap
-   mindmap.MindMap
-   mindmap.StandardMap
-   mindmap.TimeLine

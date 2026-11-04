@@ -21,8 +21,5 @@ Modules
    :maxdepth: 1
 
    apple
-   apple.Apple
    gear
-   gear.Gear
    v_spring
-   v_spring.VSpring

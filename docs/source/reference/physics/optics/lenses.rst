@@ -18,12 +18,11 @@ Classes
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~antisnell
-   ~intersection
-   ~snell
-
 .. autoall:: manim_extensions.physics.optics.lenses
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   lenses.Lens

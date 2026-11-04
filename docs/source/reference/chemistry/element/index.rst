@@ -271,5 +271,3 @@ Modules
    :maxdepth: 1
 
    element
-   element.Element
-   element.GenericElement

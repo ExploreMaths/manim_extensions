@@ -14,3 +14,9 @@ Classes
    :nosignatures:
 
    ~ManimAutomaton
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_automaton.ManimAutomaton

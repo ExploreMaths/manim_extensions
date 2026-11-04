@@ -18,10 +18,11 @@ Classes
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~nfa_automaton_json
-
 .. autoall:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton
    :types: data
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton

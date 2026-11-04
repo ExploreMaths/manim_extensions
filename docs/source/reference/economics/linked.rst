@@ -13,3 +13,9 @@ Classes
    :nosignatures:
 
    ~LinkedISLM_ADAS
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   linked.LinkedISLM_ADAS

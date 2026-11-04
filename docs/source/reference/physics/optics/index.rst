@@ -21,6 +21,4 @@ Modules
    :maxdepth: 1
 
    lenses
-   lenses.Lens
    rays
-   rays.Ray
