@@ -13,8 +13,15 @@ This script checks that public functions, methods, and classes in
    have a ``Yields`` section.
 2b. Numpydoc sections must appear in the canonical order: Parameters,
    Other Parameters, Attributes/Methods, Returns/Yields/Receives,
-   Raises, Warns, See Also/Notes/References, Examples (numpydoc's
-   official order, https://numpydoc.readthedocs.io/en/latest/format.html).
+   Raises, Warns, References, Examples (numpydoc's official order,
+   https://numpydoc.readthedocs.io/en/latest/format.html).
+2c. Advisory headers (Note, Notes, See Also, Warnings, Tips, Important,
+   Caution, Danger) must be written as reST admonition blocks instead of
+   numpydoc sections: ``.. note::``, ``.. seealso::``, ``.. warning::``,
+   ``.. tip::``, ``.. important::``, ``.. caution::``, ``.. danger::``.
+2d. ``Examples`` must be the last section of a docstring. No section
+   header and no top-level admonition block may follow it; advisory
+   blocks belong before ``Examples``.
 3. Functions/methods that raise exceptions must have a ``Raises`` section
    that mentions every directly raised exception. For ``__init__``,
    document the exceptions in the class docstring instead.
@@ -243,8 +250,6 @@ SECTION_ORDER = {
     "Receives": 3,
     "Raises": 4,
     "Warns": 5,
-    "See Also": 6,
-    "Notes": 6,
     "References": 6,
     "Examples": 7,
 }
@@ -260,6 +265,26 @@ ALLOWED_DOC_END = tuple(".?!。:`\"')]}>*_–—")
 INLINE_SECTION_RE = re.compile(
     r"^(Parameters|Returns|Raises|Yields|Examples|Attributes|Methods|Notes|"
     r"See Also|Warnings|References|Other Parameters|Receives)\s*:(?!:)"
+)
+
+# Advisory numpydoc headers that must instead be reST admonition blocks.
+ADVISORY_SECTIONS = {
+    "Note": "note",
+    "Notes": "note",
+    "See Also": "seealso",
+    "See also": "seealso",
+    "Warning": "warning",
+    "Warnings": "warning",
+    "Tip": "tip",
+    "Tips": "tip",
+    "Important": "important",
+    "Caution": "caution",
+    "Danger": "danger",
+}
+# A reST admonition directive line, e.g. ``.. note::`` / ``.. seealso::``.
+ADMONITION_RE = re.compile(
+    r"^\.\.\s+(note|seealso|warning|tip|important|caution|danger|"
+    r"attention|hint|error)::"
 )
 
 
@@ -365,6 +390,26 @@ def section_positions(doc: str) -> list:
         ):
             sections.append((stripped, idx))
     return sections
+
+
+def advisory_section_positions(doc: str) -> list:
+    """Return ``(name, header_line_index, indent)`` for advisory headers.
+
+    An advisory header is a bare line naming one of ``ADVISORY_SECTIONS``
+    followed by a ``----------`` underline.
+    """
+    positions = []
+    lines = doc.splitlines()
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if (
+            stripped in ADVISORY_SECTIONS
+            and idx + 1 < len(lines)
+            and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+        ):
+            indent = len(line) - len(line.lstrip(" \t"))
+            positions.append((stripped, idx, indent))
+    return positions
 
 
 def raises_section_body(doc: str) -> str:
@@ -924,6 +969,17 @@ def check_file(filepath: Path) -> list:
         for offset, line in enumerate(doc.splitlines()):
             stripped = line.strip()
             if INLINE_SECTION_RE.match(stripped):
+                name = stripped.split(":", 1)[0].strip()
+                if name in ADVISORY_SECTIONS:
+                    violations.append({
+                        "line": lineno + offset,
+                        "qualname": qualname,
+                        "type": "ADVISORY_SECTION_HEADER",
+                        "message": f"advisory header '{stripped[:40]}' must be "
+                                   f"written as a "
+                                   f"'.. {ADVISORY_SECTIONS[name]}::' block",
+                    })
+                    continue
                 violations.append({
                     "line": lineno + offset,
                     "qualname": qualname,
@@ -969,6 +1025,60 @@ def check_file(filepath: Path) -> list:
                            f"quote to the opening quote's column",
             })
 
+    def check_advisory_sections(doc, qualname, lineno):
+        """Advisory headers must be written as reST admonition blocks."""
+        for name, idx, _ in advisory_section_positions(doc):
+            directive = ADVISORY_SECTIONS[name]
+            violations.append({
+                "line": lineno + idx + 1,
+                "qualname": qualname,
+                "type": "ADVISORY_SECTION_HEADER",
+                "message": f"advisory section '{name}' must be written as a "
+                           f"'.. {directive}::' block instead of a numpydoc "
+                           f"header",
+            })
+
+    def check_examples_is_last(doc, qualname, lineno):
+        """``Examples`` must be the last section of the docstring."""
+        lines = doc.splitlines()
+        examples = None
+        examples_indent = 0
+        for idx, line in enumerate(lines):
+            stripped = line.strip()
+            if (
+                stripped == "Examples"
+                and idx + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+            ):
+                examples = idx
+                examples_indent = len(line) - len(line.lstrip(" \t"))
+                break
+        if examples is None:
+            return
+        for idx in range(examples + 2, len(lines)):
+            stripped = lines[idx].strip()
+            if not stripped:
+                continue
+            indent = len(lines[idx]) - len(lines[idx].lstrip(" \t"))
+            is_admonition = (
+                indent <= examples_indent and ADMONITION_RE.match(stripped)
+            )
+            is_section = (
+                idx + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+            )
+            if not (is_admonition or is_section):
+                continue
+            violations.append({
+                "line": lineno + idx + 1,
+                "qualname": qualname,
+                "type": "EXAMPLES_NOT_LAST",
+                "message": f"'{stripped.split('::')[0]}' follows 'Examples'; "
+                           f"'Examples' must be the last section (place "
+                           f"'.. note::'/'.. seealso::' blocks before it)",
+            })
+            return
+
     module_doc = ast.get_docstring(tree)
     if module_doc:
         check_inline_sections(module_doc, "<module>", 1)
@@ -981,6 +1091,8 @@ def check_file(filepath: Path) -> list:
             module_doc, "<module>", 1, violations
         )
         check_section_spacing(module_doc, "<module>", 1, violations)
+        check_advisory_sections(module_doc, "<module>", 1)
+        check_examples_is_last(module_doc, "<module>", 1)
 
     def visit_body(body, prefix, in_class):
         for node in body:
@@ -1076,6 +1188,8 @@ def check_file(filepath: Path) -> list:
                     })
                     break
         check_section_order(doc, qualname, node.lineno)
+        check_advisory_sections(doc, qualname, node.lineno)
+        check_examples_is_last(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
             violations.append({
@@ -1159,6 +1273,8 @@ def check_file(filepath: Path) -> list:
         qualname = f"{prefix}{node.name}"
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         check_section_order(doc, qualname, node.lineno)
+        check_advisory_sections(doc, qualname, node.lineno)
+        check_examples_is_last(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)

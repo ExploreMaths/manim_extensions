@@ -172,13 +172,12 @@ one to the HTML yourself. The slider only takes effect after
    <input type="range" min="0.1" max="1.0" step="0.01" value="0.1"
           class="slider" oninput="update(0, this.value)">
 
-Notes
-^^^^^
+.. note::
 
-This plugin is not meant to build a full website — it only produces the SVG
-animations as HTML. To embed the animations in a website, include the
-generated HTML and JS files in your own pages. If the size of the animation
-does not look right, fix it with CSS.
+   This plugin is not meant to build a full website — it only produces the SVG
+   animations as HTML. To embed the animations in a website, include the
+   generated HTML and JS files in your own pages. If the size of the animation
+   does not look right, fix it with CSS.
 
 .. toctree::
    :hidden:

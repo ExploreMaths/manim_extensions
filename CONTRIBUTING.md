@@ -207,7 +207,21 @@ class Circle(VGroup):
 
 When multiple sections are present they must follow numpydoc's canonical order:
 
-`Parameters` → `Other Parameters` → `Attributes` / `Methods` → `Returns` / `Yields` / `Receives` → `Raises` → `Warns` → `See Also` / `Notes` / `References` → `Examples`
+`Parameters` → `Other Parameters` → `Attributes` / `Methods` → `Returns` / `Yields` / `Receives` → `Raises` → `Warns` → `References` → `Examples`
+
+### Advisory blocks use admonitions, not sections
+
+`Note` / `Notes`, `See Also`, `Warning` / `Warnings`, `Tip` / `Tips`, `Important`, `Caution`, and `Danger` must **not** be written as numpydoc section headers. Write them as reST admonition blocks — `.. note::`, `.. seealso::`, `.. warning::`, `.. tip::`, `.. important::`, `.. caution::`, `.. danger::` — and place them **before** `Examples`:
+
+```python
+.. note::
+
+    The compensation is exact for flat content lying in the plane of the camera.
+```
+
+### `Examples` must be the last section
+
+`Examples` is always the final section of a docstring. No numpydoc section header and no top-level admonition block may follow it; advisory blocks belong before `Examples`. `validate_doc_sections.py` rejects both mistakes (`ADVISORY_SECTION_HEADER`, `EXAMPLES_NOT_LAST`).
 
 ### Types come from the signature, not the docstring
 
@@ -403,7 +417,7 @@ Run these locally before opening a PR. Each corresponds to a CI job in `.github/
 |-------|---------|
 | Docstrings (module + function, numpydoc `Parameters`) | `python workflow/validate_docstrings.py` |
 | `__init__` params in class docstring | `python workflow/validate_param_docs.py` |
-| numpydoc sections, order, example blocks | `python workflow/validate_doc_sections.py` |
+| numpydoc sections, order, admonitions, `Examples` last, example blocks | `python workflow/validate_doc_sections.py` |
 | RST formatting (blank lines, indentation) | `python workflow/validate_rst.py` |
 | `.. manim::` `:save_last_frame:` rules | `python workflow/validate_manim_directives.py` |
 | Example layout (in frame, not too small) | `python workflow/check_example_layout.py` |
@@ -437,6 +451,7 @@ Vendored subpackages that intentionally deviate from a rule can be exempted via 
 - **Do not break existing tests.** Run `pytest tests/` locally.
 - **Run the validation checklist** above and fix any failures.
 - **Add a `.. manim::` example** to any new mobject subclass.
+- **Put `Examples` last** in a docstring; use `.. note::` / `.. seealso::` blocks (before `Examples`) instead of `Notes` / `See Also` headers.
 - **Ensure `reuse lint` passes** for any new files.
 - Write clear, conventional commit messages.
 
