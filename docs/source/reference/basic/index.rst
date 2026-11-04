@@ -14,3 +14,4 @@ from the package namespace.
    mobjects
    geometry
    animations
+   scenes

@@ -19,6 +19,7 @@ except PackageNotFoundError:
 from .mobjects import *
 from .geometry import *
 from .animations import *
+from .scenes import *
 from . import meshes
 from . import physics
 from . import rubikscube
@@ -36,6 +37,7 @@ from . import svg_animations
 __all__ = [
     "ChineseMathTex",
     "ColorText",
+    "ConstantStrokeWidthScene",
     "CropImageMobject",
     "DEFAULT_CJK_FONT",
     "DEFAULT_MONO_FONT",
