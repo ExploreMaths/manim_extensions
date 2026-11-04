@@ -284,9 +284,8 @@ def main() -> int:
     if unexempted:
         total_issues = sum(len(v) for v in unexempted.values())
         print(f"FAIL  param-docs  {total_issues} issue(s)\n")
-        for fp, issues in unexempted.items():
+        for rel, issues in unexempted.items():
             for issue in issues:
-                rel = fp.resolve().relative_to(ROOT)
                 stype = issue['type'].lower().replace('init_has_params_docs', 'params-in-init').replace('missing_param_doc', 'missing-param-doc')
                 print(f"  {rel}:{issue['line']}  {stype}: {issue['message']}")
         print(f"\nTotal: {total_issues} issue(s)")

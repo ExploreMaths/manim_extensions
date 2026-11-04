@@ -3,7 +3,8 @@
 
 """Scene classes for Manim.
 
-The module currently provides :class:`ConstantStrokeWidthScene`, a
+The module currently provides
+:class:`~manim_extensions.scenes.ConstantStrokeWidthScene`, a
 :class:`~manim.scene.scene.Scene` subclass that keeps the apparent thickness of
 strokes constant while the camera zooms.  Using this scene adds a
 ``fixed_stroke_width`` parameter to stroke-bearing mobjects so that they can opt
@@ -41,15 +42,22 @@ class ConstantStrokeWidthScene(Scene):
         affected by the perspective projection, because the focal distance scales
         together with the frame height.
 
-        Mobjects fixed in the frame with ``Mobject.fix_in_frame()`` are not
-        adjusted, since their apparent size does not depend on the camera.  To opt
-        out per mobject, set its ``fixed_stroke_width`` parameter to ``True``
-        (``mobject.fixed_stroke_width = True`` or
+        Mobjects fixed in the frame with ``fix_in_frame`` are not adjusted,
+        since their apparent size does not depend on the
+        camera.  To opt out per mobject, set its ``fixed_stroke_width``
+        parameter to ``True`` (``mobject.fixed_stroke_width = True`` or
         ``mobject.set(fixed_stroke_width=True)``); such mobjects keep their
         ``stroke_width`` and therefore change appearance together with the zoom.
         The parameter is installed on the stroke-bearing mobject classes as soon as
-        a :class:`ConstantStrokeWidthScene` is used, so it does not need to be set
-        before adding the mobject to the scene.
+        a :class:`~manim_extensions.scenes.ConstantStrokeWidthScene` is used, so it
+        does not need to be set before adding the mobject to the scene.
+
+    Parameters
+    ----------
+    *args
+        Positional arguments forwarded to :class:`~manim.scene.scene.Scene`.
+    **kwargs
+        Keyword arguments forwarded to :class:`~manim.scene.scene.Scene`.
 
     Examples
     --------
@@ -65,6 +73,7 @@ class ConstantStrokeWidthScene(Scene):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize the scene and install stroke-width compensation."""
         super().__init__(*args, **kwargs)
         self._install_stroke_width_parameter()
         self._stroke_scale = self._camera_stroke_scale()
@@ -115,6 +124,17 @@ class ConstantStrokeWidthScene(Scene):
             self._scale_stroke_width(member, ratio)
 
     def add(self, *mobjects: Any) -> Self:
+        """Add mobjects and scale their strokes to the current zoom level.
+
+        Parameters
+        ----------
+        *mobjects
+            The mobjects to add to the scene.
+
+        Returns
+        -------
+            The scene itself, to allow chaining.
+        """
         super().add(*mobjects)
         if self._stroke_scale != 1.0:
             for mobject in mobjects:
