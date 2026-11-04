@@ -5,6 +5,8 @@
 Rubik's Cube
 ============
 
+.. module:: manim_extensions.rubikscube
+
 .. vendored-status:: WampyCakes/manim-rubikscube
 
 **Original author:** `KingWampy <https://github.com/WampyCakes>`_
@@ -160,7 +162,6 @@ Properties of a RubiksCube
    It is not necessary to pass any parameters to the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
    Doing so is entirely for additional functionality and stylistic tweaks.
 
-
 To this point, we have seen that one property of a :class:`~manim_extensions.rubikscube.cube.RubiksCube` is a
 list of colors for the cube faces. There are currently two other parameters
 that can be passed.
@@ -208,7 +209,7 @@ An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on 
            self.play(FadeOut(cube))
 
 10-Dimensional RubiksCube
-""""""""""""""""""""""""""
+"""""""""""""""""""""""""
 
 .. warning::
 
@@ -513,11 +514,25 @@ construction parameters through to the underlying square faces.
 See the `original project <https://github.com/WampyCakes/manim-rubikscube>`_
 for the full spec, examples, and documentation.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~cube
+   ~cube_animations
+   ~cube_utils
+   ~cubie
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   animations
-   constants
-   functions
+   cube
+   cube.RubiksCube
+   cube_animations
+   cube_animations.CubeMove
+   cube_utils
+   cubie
+   cubie.Cubie

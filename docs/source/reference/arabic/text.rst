@@ -4,17 +4,16 @@
 Arabic Text
 ===========
 
+.. module:: manim_extensions.arabic.text
+
 Arabic-capable text mobjects and the Tex template behind them. These live in
 the ``manim_extensions.arabic.text`` submodule.
 
-ArabicText
-----------
+Classes
+-------
 
-.. autoclass:: manim_extensions.arabic.text.ArabicText
-   :show-inheritance:
+.. autosummary::
+   :nosignatures:
 
-ArabicTemplate
---------------
-
-.. autoclass:: manim_extensions.arabic.text.ArabicTemplate
-   :show-inheritance:
+   ~ArabicTemplate
+   ~ArabicText

@@ -5,6 +5,8 @@
 Meshes
 ======
 
+.. module:: manim_extensions.meshes
+
 .. vendored-status:: bmmtstb/manim-meshes
 
 **Original author:** `Brizar <https://github.com/bmmtstb>`_ and `99Vicky <https://github.com/99Vicky>`_
@@ -114,14 +116,38 @@ This package is most appropriate for:
 See the `original project page <https://github.com/bmmtstb/manim-meshes>`_
 for details on the mesh model and more advanced examples.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~decorators
+   ~delaunay
+   ~exceptions
+   ~helpers
+   ~models
+   ~params
+   ~templates
+   ~types
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   data_model
-   mobjects
-   helpers
-   classes
-   functions
-   constants
+   decorators
+   delaunay/index
    exceptions
+   exceptions.BadParameterException
+   exceptions.FaultyVarArrayException
+   exceptions.InvalidMeshDimensionsException
+   exceptions.InvalidMeshException
+   exceptions.InvalidRequestException
+   exceptions.InvalidShapeException
+   exceptions.InvalidTypeException
+   exceptions.MeshIndexException
+   helpers
+   models/index
+   params
+   templates
+   types

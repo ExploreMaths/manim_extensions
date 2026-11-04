@@ -1,0 +1,20 @@
+.. SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
+.. SPDX-FileCopyrightText: 2026 ExploreMaths
+.. SPDX-License-Identifier: MIT
+
+decorators
+==========
+
+.. module:: manim_extensions.meshes.decorators
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~dangling_face_decorator
+   ~dangling_vert_decorator
+
+.. autoall:: manim_extensions.meshes.decorators
+   :types: function

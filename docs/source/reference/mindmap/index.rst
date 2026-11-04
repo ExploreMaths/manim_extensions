@@ -5,6 +5,8 @@
 MindMap
 =======
 
+.. module:: manim_extensions.mindmap
+
 .. vendored-status:: jj-math/manim-mindmap
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
@@ -197,16 +199,25 @@ algorithm itself with the ``layout_type`` argument of any animation (see
        )
    )
 
+See the `original README <https://github.com/jj-math/manim-mindmap>`_
+for full animated demos and the complete API.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~algorithms
+   ~animations
+   ~mindmap
+   ~nodes
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   nodes
-   maps
-   animations
-   layout
-   functions
-   constants
-
-See the `original README <https://github.com/jj-math/manim-mindmap>`_
-for full animated demos and the complete API.
+   algorithms/index
+   animations/index
+   mindmap/index
+   nodes/index

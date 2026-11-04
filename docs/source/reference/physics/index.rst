@@ -5,6 +5,8 @@
 Physics
 =======
 
+.. module:: manim_extensions.physics
+
 .. vendored-status:: Matheart/manim-physics
 
 **Original author:** `Matheart <https://github.com/Matheart>`_
@@ -149,11 +151,26 @@ draw a current-carrying
            charge = Charge(magnitude=1, point=ORIGIN)
            self.add(charge, ElectricField(charge).scale(0.5))
 
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~electromagnetism
+   ~optics
+   ~rigid_mechanics
+   ~wave
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   electromagnetism
-   optics
-   mechanics
-   waves
+   electromagnetism/index
+   optics/index
+   rigid_mechanics/index
+   wave
+   wave.LinearWave
+   wave.RadialWave
+   wave.StandingWave

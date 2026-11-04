@@ -12,5 +12,11 @@ This module provides scene classes that extend Manim's built-in
 .. inheritance-diagram:: manim_extensions.scenes
    :parts: 1
 
-.. autoall:: manim_extensions.scenes
-   :types: class
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~manim_extensions.scenes.ConstantStrokeWidthScene

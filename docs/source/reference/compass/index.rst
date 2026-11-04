@@ -5,6 +5,8 @@
 Compass
 =======
 
+.. module:: manim_extensions.compass
+
 .. vendored-status:: jj-math/manim-compass
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
@@ -32,7 +34,7 @@ Features
   compass, ruler, and pencil.
 
 Using :class:`~manim_extensions.compass.scene.compass_scene.CompassScene`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For more involved constructions, inherit from :class:`~manim_extensions.compass.scene.compass_scene.CompassScene` instead of
 :class:`~manim.scene.scene.Scene`. It exposes ready-to-use ``compass``, ``ruler`` and ``pencil``
@@ -169,17 +171,39 @@ for single-ruler constructions (one ruler, one pencil, with a
 :meth:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene.draw_line_with_pencil`
 method); see ``demo/ruler_scene_demo.py``.
 
+See the `original README <https://github.com/jj-math/manim-compass>`_
+for full animated examples and further details.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~animations
+   ~compass
+   ~scene
+   ~utils
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~utils.geometry_method.get_distance
+   ~utils.geometry_method.get_vecs_angle
+   ~utils.geometry_method.is_counter_clockwise
+
+.. autofunction:: manim_extensions.compass.utils.geometry_method.get_distance
+.. autofunction:: manim_extensions.compass.utils.geometry_method.get_vecs_angle
+.. autofunction:: manim_extensions.compass.utils.geometry_method.is_counter_clockwise
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   mobjects
-   scene
-   compass_animations
-   pencil_animations
-   ruler_animations
-   utilities
-   constants
-
-See the `original README <https://github.com/jj-math/manim-compass>`_
-for full animated examples and further details.
+   animations/index
+   compass/index
+   scene/index
+   utils/index

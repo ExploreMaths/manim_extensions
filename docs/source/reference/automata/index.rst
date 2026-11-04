@@ -5,6 +5,8 @@
 Automata
 ========
 
+.. module:: manim_extensions.automata
+
 .. vendored-status:: SeanNelsonIO/manim-automata
 
 **Original author:** `Sean Nelson <https://github.com/SeanNelsonIO>`_
@@ -82,12 +84,10 @@ to override the animation methods, then pass an instance through the
 
    from manim_extensions.automata import ManimAutomaton, ManimAnimations
 
-
    class CustomManimAnimations(ManimAnimations):
 
        def __init__(self) -> None:
            super().__init__()
-
 
    class Automaton(MovingCameraScene):
        def construct(self):
@@ -104,12 +104,28 @@ for a `finite-state machine <https://youtu.be/beKkjIGdeQc>`_ and a
 `nondeterministic finite-state machine <https://youtu.be/woaldsYmsHM>`_ are
 linked from the README.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~mobjects
+
+Constants
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~nfa_automaton_json
+   ~pushdown_automaton_json
+
+.. autodata:: manim_extensions.automata.nfa_automaton_json
+.. autodata:: manim_extensions.automata.pushdown_automaton_json
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   mobjects
-   animations
-   dependencies
-   cli
-   constants
+   mobjects/index

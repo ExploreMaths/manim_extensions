@@ -4,6 +4,8 @@
 SVG Animations
 ==============
 
+.. module:: manim_extensions.svg_animations
+
 .. vendored-status:: MathItYT/manim-svg-animations
 
 **Original author:** `MathLike <https://github.com/MathItYT>`_
@@ -129,9 +131,7 @@ the mobjects that should change when each parameter moves.
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
 
-
    VMobject.set_default(color=BLACK)
-
 
    class SceneExample(Scene):
        def construct(self):
@@ -179,9 +179,18 @@ one to the HTML yourself. The slider only takes effect after
    generated HTML and JS files in your own pages. If the size of the animation
    does not look right, fix it with CSS.
 
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~html_parsed_vmobject
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   constants
+   html_parsed_vmobject
+   html_parsed_vmobject.HTMLParsedVMobject

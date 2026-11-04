@@ -7,17 +7,14 @@ Diagrams
 Ready-to-use economics diagram mobjects: supply-demand, AD-AS, IS-LM, the
 linked IS-LM/AD-AS composite, and Solow growth diagrams.
 
-.. autoall:: manim_extensions.economics.supply_demand
-   :types: class
+Modules
+-------
 
-.. autoall:: manim_extensions.economics.ad_as
-   :types: class
+.. autosummary::
+   :nosignatures:
 
-.. autoall:: manim_extensions.economics.is_lm
-   :types: class
-
-.. autoall:: manim_extensions.economics.linked
-   :types: class
-
-.. autoall:: manim_extensions.economics.solow
-   :types: class
+   manim_extensions.economics.ad_as
+   manim_extensions.economics.is_lm
+   manim_extensions.economics.linked
+   manim_extensions.economics.solow
+   manim_extensions.economics.supply_demand

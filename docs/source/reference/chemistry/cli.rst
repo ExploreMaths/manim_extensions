@@ -4,6 +4,8 @@
 Command-line interface
 ======================
 
+.. module:: manim_extensions.chemistry.cli
+
 The chemistry subpackage ships a small `Click
 <https://click.palletsprojects.com/>`_-based command-line client for
 downloading molecule data from `PubChem <https://pubchem.ncbi.nlm.nih.gov/>`_

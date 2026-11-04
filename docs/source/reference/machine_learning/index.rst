@@ -4,6 +4,8 @@
 Machine Learning
 ================
 
+.. module:: manim_extensions.machine_learning
+
 .. vendored-status:: helblazer811/ManimML
 
 **Original author:** `Alec Helbling <https://github.com/helblazer811>`_
@@ -340,16 +342,38 @@ node radius, node spacing, and colours are set on the layer constructors.
 Upstream design notes describe each layer as owning its visual content; more
 elaborate animations can be built by composing smaller networks as layers.
 
+See the `upstream README <https://github.com/helblazer811/ManimML>`_ and the
+`upstream paper <https://arxiv.org/abs/2306.17108>`_ for more architecture
+examples.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~decision_tree
+   ~diffusion
+   ~neural_network
+   ~scene
+   ~utils
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~ManimMLConfig
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   neural_network
-   decision_tree
+   decision_tree/index
+   diffusion/index
+   ManimMLConfig
+   neural_network/index
    scene
-   utils
-   constants
-
-See the `upstream README <https://github.com/helblazer811/ManimML>`_ and the
-`upstream paper <https://arxiv.org/abs/2306.17108>`_ for more architecture
-examples.
+   scene.ManimML3DScene
+   utils/index

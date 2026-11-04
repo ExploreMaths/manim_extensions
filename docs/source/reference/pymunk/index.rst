@@ -4,6 +4,8 @@
 Pymunk
 ======
 
+.. module:: manim_extensions.pymunk
+
 .. vendored-status:: HHP999/manim_pymunk
 
 **Original author:** `CoreKSets <https://github.com/HHP999>`_
@@ -101,11 +103,22 @@ decomposed, and image shapes are extracted from pixel contours. Elasticity,
 friction, density, sensor flags and collision callbacks are all configurable on
 the body-adding calls, with sensible defaults provided.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~constraints
+   ~custom_mobjects
+   ~space
+   ~utils
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   custom_mobjects
-   space
-   constraints
-   utils
+   constraints/index
+   custom_mobjects/index
+   space/index
+   utils/index

@@ -4,6 +4,8 @@
 Weighted Line
 =============
 
+.. module:: manim_extensions.weighted_line
+
 .. vendored-status:: mutable-learning/manim-weighted-line
 
 **Original author:** `Mutable Learning <https://github.com/mutable-learning>`_
@@ -47,7 +49,6 @@ between two points and pass it a ``weight`` to label:
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
 
-
    class SimpleExample(Scene):
        def construct(self):
            weighted_line = WeightedLine(
@@ -68,7 +69,6 @@ the ``edge_type``. Per-edge options (including ``weight`` and
 
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
-
 
    class WeightedGraph(Scene):
        def construct(self):
@@ -95,7 +95,6 @@ If you build your graph with NetworkX, use
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
    import networkx as nx
-
 
    class NetworkXGraph(Scene):
        def construct(self):
@@ -126,8 +125,17 @@ The upstream ``examples/`` folder contains more scenes using the plugin with
 different undirected and directed graphs, showing how to configure the weight
 label and its background.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~weighted_line
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
+   weighted_line
+   weighted_line.WeightedLine

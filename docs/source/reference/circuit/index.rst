@@ -5,6 +5,8 @@
 Circuit
 =======
 
+.. module:: manim_extensions.circuit
+
 .. vendored-status:: Mr-FuzzyPenguin/manim-circuit
 
 **Original author:** `Mr-FuzzyPenguin <https://github.com/Mr-FuzzyPenguin>`_
@@ -73,10 +75,28 @@ component is an independent mobject, so individual elements can be selected,
 repositioned, and animated. Planned additions include transistors and logic
 gates, and the upstream repository ships example scenes under ``examples/``.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~mobjects
+   ~utils
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    mobjects
-   helpers
-   functions
+   mobjects.Capacitor
+   mobjects.CurrentSource
+   mobjects.Ground
+   mobjects.Inductor
+   mobjects.Opamp
+   mobjects.Resistor
+   mobjects.VoltageSource
+   utils
+   utils.Circuit
+   utils.Node
+   utils.Source

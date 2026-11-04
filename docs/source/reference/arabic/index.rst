@@ -4,6 +4,8 @@
 Arabic
 ======
 
+.. module:: manim_extensions.arabic
+
 .. vendored-status:: razekmh/manim-arabic
 
 **Original author:** `Mahmoud Abdelrazek <https://github.com/razekmh>`_
@@ -69,8 +71,18 @@ The template predefines three LaTeX color names:
 Any other color name supported by ``xcolor`` can be passed to ``color`` as
 well.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~text
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    text
+   text.ArabicTemplate
+   text.ArabicText

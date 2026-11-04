@@ -5,6 +5,8 @@
 Algorithm
 =========
 
+.. module:: manim_extensions.algorithm
+
 .. vendored-status:: sinianluoye/manim-algorithm
 
 **Original author:** `sinianluoye <https://github.com/sinianluoye>`_
@@ -38,11 +40,39 @@ accept external code contributions until it reaches a certain scale, though
 suggestions and requests are welcome in the upstream repository. The package
 targets Manim Community Edition (CE).
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~array
+   ~node
+   ~queue
+   ~utils
+
+Constants
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~NodeBoxType
+   ~NodeValue
+
+.. autodata:: manim_extensions.algorithm.NodeBoxType
+.. autodata:: manim_extensions.algorithm.NodeValue
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   arrays
-   nodes
-   queues
-   utils
+   array
+   array.Array
+   node
+   node.Node
+   node.NodeConfig
+   node.NodeSolt
+   queue
+   queue.Queue
+   utils/index

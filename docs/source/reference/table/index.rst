@@ -4,6 +4,8 @@
 Table
 =====
 
+.. module:: manim_extensions.table
+
 .. vendored-status:: philippe2803/manim-table
 
 **Original author:** `Philippe Oger <https://github.com/philippe2803>`_
@@ -55,7 +57,7 @@ Create a table from a list of rows; the first row is treated as the header.
            self.play(Write(table))
 
 Add or remove rows and columns with animations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``add_row`` and ``delete_row`` return the affected
 :class:`~manim_extensions.table.row.Row` together with the list of animations
@@ -87,9 +89,24 @@ Change colors and styles per header, column, or individual cell:
    # row 1 is the first data row
    table.get_cell(1, 1).set_font_color(RED)
 
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~cell
+   ~row
+   ~table
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   constants
+   cell
+   cell.Cell
+   row
+   row.Row
+   table
+   table.Table

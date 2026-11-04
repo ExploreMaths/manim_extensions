@@ -5,6 +5,8 @@
 TikZ
 ====
 
+.. module:: manim_extensions.tikz
+
 .. vendored-status:: ralphieraccoon/manim-tikz
 
 **Original author:** `Ralphie Raccoon <https://github.com/ralphieraccoon>`_
@@ -44,7 +46,6 @@ TikZ code to render inside a scene:
 
    from manim import *
    from manim_extensions.tikz import Tikz
-
 
    class TikzScene(Scene):
        def construct(self):
@@ -100,8 +101,20 @@ Because ``svgelements`` cannot yet parse these features, they are not
 currently supported. Attempting to use them will likely result in an
 incorrect or empty shape.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~template
+   ~tikz
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
+   template
+   template.TikzTemplate
+   tikz
+   tikz.Tikz

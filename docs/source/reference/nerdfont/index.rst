@@ -4,6 +4,8 @@
 Nerd Font Icons
 ===============
 
+.. module:: manim_extensions.nerdfont
+
 .. vendored-status:: Alexander-Nasuta/manim-nerdfont-icons
 
 ``manim_extensions.nerdfont`` is a vendored copy of
@@ -44,7 +46,6 @@ with the ``manim`` command.
 
    from manim_extensions.nerdfont import NerdFontIcon
 
-
    class NerdfontIconExample(Scene):
 
        def construct(self):
@@ -69,10 +70,30 @@ by glyph shape, use the `Nerd Font Cheat Sheet
 do not always match the names in this library — in that case use the
 Unicode codepoint to find the icon you want.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~icons
+   ~icons_dict
+
+Constants
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~SYMBOLS_UNICODE
+
+.. autodata:: manim_extensions.nerdfont.SYMBOLS_UNICODE
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   constants
    icon_gallery
+   icons
+   icons.NerdFontIcon
+   icons_dict

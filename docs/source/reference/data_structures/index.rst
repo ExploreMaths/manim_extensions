@@ -5,6 +5,8 @@
 Data Structures
 ===============
 
+.. module:: manim_extensions.data_structures
+
 .. vendored-status:: drageelr/manim-data-structures
 
 **Original author:** `Hammad Nasir <https://github.com/drageelr>`_
@@ -281,16 +283,33 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
            self.add(arr)
            self.max_k_sum(arr, 4)
 
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   arrays
-   variables
-   enums
-
 See the `upstream documentation <https://manim-data-structures.readthedocs.io/en/latest/>`_,
 the `animating-arrays guide <https://manim-data-structures.readthedocs.io/en/latest/guides/arrays.html>`_,
 the `example gallery <https://manim-data-structures.readthedocs.io/en/latest/example.html>`_,
 and the `changelog <https://github.com/drageelr/manim-data-structures/blob/main/CHANGELOG.md>`_
 for more animated examples.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~m_array
+   ~m_enum
+   ~m_variable
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   m_array
+   m_array.MArray
+   m_array.MArrayElement
+   m_array.MArrayPointer
+   m_array.MArraySlidingWindow
+   m_enum
+   m_enum.MArrayDirection
+   m_enum.MArrayElementComp
+   m_variable
+   m_variable.MVariable

@@ -4,6 +4,8 @@
 Economics
 =========
 
+.. module:: manim_extensions.economics
+
 .. vendored-status:: ddzhang04/manim_ec
 
 **Original author:** `ddzhang04 <https://github.com/ddzhang04>`_
@@ -17,7 +19,6 @@ including supply-demand, AD-AS, IS-LM, and Solow growth models.
 
 The code is bundled inside ``manim_extensions`` as the
 ``manim_extensions.economics`` subpackage.
-
 
 .. inheritance-diagram:: manim_extensions.economics.base.EconDiagram manim_extensions.economics.supply_demand.SupplyDemandDiagram manim_extensions.economics.ad_as.ADASDiagram manim_extensions.economics.is_lm.ISLMDiagram manim_extensions.economics.linked.LinkedISLM_ADAS manim_extensions.economics.solow.SolowDiagram
    :parts: 1
@@ -284,13 +285,36 @@ These options work across all diagram classes:
 Ready-to-run scenes live in the upstream ``examples/`` directory (AD-AS,
 Solow shares, IS-LM monetary expansion, and a linked-diagram scene).
 
+See the `upstream README <https://github.com/ddzhang04/manim_ec>`_ for the
+diagram walk-through and example scenes.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~ad_as
+   ~base
+   ~is_lm
+   ~linked
+   ~solow
+   ~supply_demand
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   diagrams
+   ad_as
+   ad_as.ADASDiagram
    base
-   constants
-
-See the `upstream README <https://github.com/ddzhang04/manim_ec>`_ for the
-diagram walk-through and example scenes.
+   base.EconDiagram
+   diagrams
+   is_lm
+   is_lm.ISLMDiagram
+   linked
+   linked.LinkedISLM_ADAS
+   solow
+   solow.SolowDiagram
+   supply_demand
+   supply_demand.SupplyDemandDiagram

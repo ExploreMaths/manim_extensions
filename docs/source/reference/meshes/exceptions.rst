@@ -5,5 +5,19 @@
 Exceptions
 ==========
 
-.. autoall:: manim_extensions.meshes.exceptions
-   :types: class
+.. module:: manim_extensions.meshes.exceptions
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~BadParameterException
+   ~FaultyVarArrayException
+   ~InvalidMeshDimensionsException
+   ~InvalidMeshException
+   ~InvalidRequestException
+   ~InvalidShapeException
+   ~InvalidTypeException
+   ~MeshIndexException

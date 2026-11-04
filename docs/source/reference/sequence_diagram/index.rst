@@ -5,6 +5,8 @@
 Sequence diagram
 ================
 
+.. module:: manim_extensions.sequence_diagram
+
 .. vendored-status:: foxnewsnetwork/manim-sequence-diagram
 
 **Original author:** `Thomas Chen <https://github.com/foxnewsnetwork>`_
@@ -80,9 +82,26 @@ generators that yield the animations to play:
            ):
                self.play(anim)
 
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~constants
+   ~seq_action
+   ~seq_actor
+   ~seq_object
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
    constants
+   seq_action
+   seq_action.SeqAction
+   seq_actor
+   seq_actor.SeqActor
+   seq_object
+   seq_object.SeqObject

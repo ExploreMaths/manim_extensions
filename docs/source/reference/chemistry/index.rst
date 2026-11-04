@@ -4,6 +4,8 @@
 Chemistry
 =========
 
+.. module:: manim_extensions.chemistry
+
 .. vendored-status:: UnMolDeQuimica/manim-Chemistry
 
 **Original author:** `UMDQ <https://github.com/UnMolDeQuimica>`_
@@ -65,7 +67,6 @@ AbstractMolecule.molecule_from_file():
    from manim import *
    from manim_extensions.chemistry import MMoleculeObject
 
-
    class TwoDMoleculeScene(Scene):
        def construct(self):
            morphine = MMoleculeObject.molecule_from_file("morphine.mol")
@@ -100,7 +101,6 @@ labels:
 
    from manim import *
    from manim_extensions.chemistry import GraphMolecule
-
 
    class GraphMoleculeExample(Scene):
        def construct(self):
@@ -209,15 +209,52 @@ The chemistry subpackage ships a small command-line client for
 downloading molecule files from PubChem. See :doc:`cli` for the full
 guide with examples of every option.
 
+Chemical element data — atomic number, mass, colour and other properties —
+plus module-level constants.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~bohr_atom
+   ~cli
+   ~element
+   ~future_classes
+   ~manim_chemistry_molecule
+   ~molecule
+   ~orbitals
+   ~periodic_table
+   ~threeD
+   ~twoD
+   ~utils
+
+Constants
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~MC_ELEMENT_DICT
+
+.. autodata:: manim_extensions.chemistry.MC_ELEMENT_DICT
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   elements
-   molecules
    atoms
-   orbitals
-   parsers
-   utils
-   constants
+   bohr_atom/index
    cli
+   element/index
+   elements
+   future_classes/index
+   manim_chemistry_molecule/index
+   molecule/index
+   molecules
+   orbitals/index
+   periodic_table/index
+   threeD/index
+   twoD/index
+   utils/index

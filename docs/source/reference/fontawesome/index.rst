@@ -4,6 +4,8 @@
 Font Awesome
 ============
 
+.. module:: manim_extensions.fontawesome
+
 .. vendored-status:: naveen521kk/manim-fontawesome
 
 **Original author:** `Naveen M K <https://github.com/naveen521kk>`_
@@ -122,10 +124,28 @@ A wall of solid icons, staggered in and spun like on the
            ))
            self.wait()
 
+
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~manim_fontawesome
+
+Constants
+---------
+
+.. autosummary::
+   :nosignatures:
+
+   ~FONT_AWESOME_VERSION
+
+.. autodata:: manim_extensions.fontawesome.FONT_AWESOME_VERSION
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   functions
-   constants
+   manim_fontawesome/index

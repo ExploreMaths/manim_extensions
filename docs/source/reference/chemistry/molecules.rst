@@ -7,51 +7,29 @@ Molecules
 2-D, graph-based, 3-D, and unified molecule mobjects, plus bonds and
 chemical formulas.
 
-2-D molecules
--------------
-
-.. autoall:: manim_extensions.chemistry.twoD.molecule
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.twoD.chemical_formula
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.twoD.bond
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.twoD.animations
-   :types: class
-
-Graph molecules
----------------
-
-.. autoall:: manim_extensions.chemistry.twoD.graph_molecule
-   :types: class
-
-3-D molecules
--------------
-
-.. autoall:: manim_extensions.chemistry.threeD.threedmolecule
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.threeD.utils
-   :types: class
-
-Unified facade
---------------
-
-.. autoall:: manim_extensions.chemistry.molecule.molecule
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.molecule.abstract_molecule
-   :types: class
-
 Legacy ``MC*`` API
 ------------------
 
 The original ``manim_chemistry_molecule`` classes, kept for backwards
 compatibility.
 
-.. autoall:: manim_extensions.chemistry.manim_chemistry_molecule
-   :recursive:
-   :types: class
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   manim_extensions.chemistry.manim_chemistry_molecule
+   manim_extensions.chemistry.manim_chemistry_molecule.mc_atom
+   manim_extensions.chemistry.manim_chemistry_molecule.mc_bond
+   manim_extensions.chemistry.manim_chemistry_molecule.mc_element
+   manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule
+   manim_extensions.chemistry.molecule.abstract_molecule
+   manim_extensions.chemistry.molecule.molecule
+   manim_extensions.chemistry.threeD.threedmolecule
+   manim_extensions.chemistry.threeD.utils
+   manim_extensions.chemistry.twoD.animations
+   manim_extensions.chemistry.twoD.bond
+   manim_extensions.chemistry.twoD.chemical_formula
+   manim_extensions.chemistry.twoD.graph_molecule
+   manim_extensions.chemistry.twoD.molecule

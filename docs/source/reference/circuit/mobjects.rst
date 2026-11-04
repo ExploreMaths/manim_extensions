@@ -5,5 +5,18 @@
 Mobjects
 ========
 
-.. autoall:: manim_extensions.circuit.mobjects
-   :types: class
+.. module:: manim_extensions.circuit.mobjects
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~Capacitor
+   ~CurrentSource
+   ~Ground
+   ~Inductor
+   ~Opamp
+   ~Resistor
+   ~VoltageSource

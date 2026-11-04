@@ -6,23 +6,13 @@ Atoms and bonds
 
 Atom mobjects, bond renderings, and the Bohr atomic model.
 
-2-D atoms
----------
+Modules
+-------
 
-.. autoall:: manim_extensions.chemistry.twoD.atom
-   :types: class
+.. autosummary::
+   :nosignatures:
 
-3-D atoms and bonds
--------------------
-
-.. autoall:: manim_extensions.chemistry.threeD.threedatom
-   :types: class
-
-.. autoall:: manim_extensions.chemistry.threeD.threedbond
-   :types: class
-
-Bohr atomic model
------------------
-
-.. autoall:: manim_extensions.chemistry.bohr_atom.bohr_atom
-   :types: class
+   manim_extensions.chemistry.bohr_atom.bohr_atom
+   manim_extensions.chemistry.threeD.threedatom
+   manim_extensions.chemistry.threeD.threedbond
+   manim_extensions.chemistry.twoD.atom

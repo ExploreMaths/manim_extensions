@@ -4,6 +4,8 @@
 QR Codes
 ========
 
+.. module:: manim_extensions.qr_codes
+
 .. vendored-status:: Alexander-Nasuta/manim-qr-codes
 
 **Original author:** `Alexander Nasuta <https://github.com/Alexander-Nasuta>`_
@@ -36,7 +38,6 @@ Usage
 
    from manim_extensions.qr_codes.qr import qr_code
 
-
    class MyQrCodeScene(Scene):
 
        def construct(self):
@@ -60,8 +61,18 @@ Usage
 See the `example gallery <https://manim-qr-codes.readthedocs.io/en/latest/example-gallery.html>`_
 of the upstream documentation for more animated examples.
 
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~logger
+   ~qr
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   functions
+   logger
+   qr

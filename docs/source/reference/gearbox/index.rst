@@ -5,6 +5,8 @@
 GearBox
 =======
 
+.. module:: manim_extensions.gearbox
+
 .. vendored-status:: GarryBGoode/manim-GearBox
 
 **Original author:** `GarryBGoode <https://github.com/GarryBGoode>`_
@@ -91,12 +93,19 @@ to control the axial distance and which tooth flank engages:
            group.move_to(ORIGIN)
            self.add(group)
 
+See the `original README <https://github.com/GarryBGoode/manim-GearBox>`_
+for animated examples and further details.
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~gear_mobjects
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   classes
-   functions
-
-See the `original README <https://github.com/GarryBGoode/manim-GearBox>`_
-for animated examples and further details.
+   gear_mobjects/index
