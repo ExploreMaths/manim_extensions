@@ -12,6 +12,7 @@ out of that compensation.
 
 """
 
+import functools
 from typing import Any, Self
 
 from manim import VMobject, config
@@ -70,10 +71,8 @@ class ConstantStrokeWidthScene(Scene):
        class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
            def construct(self):
                line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
-               line2 = Line(LEFT, RIGHT, stroke_width=4).shift(DOWN)
-               line2.fixed_stroke_width = True
+               line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(DOWN)
                self.add(line1, line2)
-               self.wait()
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -85,9 +84,25 @@ class ConstantStrokeWidthScene(Scene):
 
     @staticmethod
     def _install_stroke_width_parameter() -> None:
+        def _wrap(original_init: Any) -> Any:
+            @functools.wraps(original_init)
+            def patched_init(self: Any, *args: Any, **kwargs: Any) -> None:
+                """Accept ``fixed_stroke_width`` as a constructor keyword."""
+                sentinel = object()
+                fixed = kwargs.pop("fixed_stroke_width", sentinel)
+                original_init(self, *args, **kwargs)
+                if fixed is not sentinel:
+                    self.fixed_stroke_width = fixed
+
+            return patched_init
+
         for mobject_class in (VMobject, OpenGLVMobject):
             if "fixed_stroke_width" not in vars(mobject_class):
                 setattr(mobject_class, "fixed_stroke_width", False)
+            if mobject_class.__dict__.get("_stroke_width_init_patched", False):
+                continue
+            setattr(mobject_class, "__init__", _wrap(mobject_class.__init__))
+            setattr(mobject_class, "_stroke_width_init_patched", True)
 
     def _camera_stroke_scale(self) -> float:
         """Return the factor by which strokes must be scaled at the current zoom."""
