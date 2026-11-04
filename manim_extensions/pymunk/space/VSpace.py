@@ -778,11 +778,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The VMobject for which collision shapes are generated.
 
-        Note
-        ----
-        Physical engines generally only support convex polygons. Non-convex
-        objects are decomposed into multiple convex sub-shapes attached to
-        the same body.
+        .. note::
+
+            Physical engines generally only support convex polygons. Non-convex
+            objects are decomposed into multiple convex sub-shapes attached to
+            the same body.
         """
         pymunk = require("physics", "pymunk")
         from pymunk import autogeometry
@@ -885,10 +885,10 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The ImageMobject to process for shape generation.
 
-        Notes
-        -----
-        For better performance and physical stability, complex image outlines are
-        often simplified into low-vertex count convex polygons.
+        .. note::
+
+            For better performance and physical stability, complex image outlines are
+            often simplified into low-vertex count convex polygons.
         """
         pymunk = require("physics", "pymunk")
 

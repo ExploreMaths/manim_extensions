@@ -183,7 +183,7 @@ class ElectricField(ArrowVectorField):
 
         Returns
         -------
-            The net electric field vector at point *p*.
+            The net electric field vector at point ``p``.
         """
         field_vect = np.zeros(3)
         for p0, mag in zip(positions, magnitudes):

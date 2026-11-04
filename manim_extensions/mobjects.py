@@ -407,8 +407,8 @@ class MathTexDoublearrow(VGroup):
 class PerpendicularLine(Line):
     """A perpendicular line segment from a point to a given line.
 
-    Computes the foot of the perpendicular from *point* onto *line* and
-    creates a :class:`~manim.mobject.geometry.line.Line` from *point* to that foot.
+    Computes the foot of the perpendicular from ``point`` onto ``line`` and
+    creates a :class:`~manim.mobject.geometry.line.Line` from ``point`` to that foot.
 
     Parameters
     ----------
@@ -427,7 +427,7 @@ class PerpendicularLine(Line):
     target_line : :class:`~manim.mobject.geometry.line.Line`
         The line onto which the perpendicular is dropped.
     foot : numpy.ndarray
-        The foot of the perpendicular on *target_line*.
+        The foot of the perpendicular on ``target_line``.
 
     Examples
     --------
@@ -463,7 +463,7 @@ class PerpendicularLine(Line):
         super().__init__(self.point, self.foot, **kwargs)
 
     def _compute_foot(self) -> Point3D:
-        """Compute the foot of the perpendicular from *point* onto *target_line*.
+        """Compute the foot of the perpendicular from ``point`` onto ``target_line``.
 
         Returns
         -------
@@ -485,7 +485,7 @@ class ExtendedLine(Line):
     """A line segment extended at both ends.
 
     Takes an existing :class:`~manim.mobject.geometry.line.Line` and extends it by
-    *extend_distance* along its original direction on both sides.
+    ``extend_distance`` along its original direction on both sides.
     The style (color, stroke width, etc.) of the original line is automatically
     copied via match_style.
 
@@ -532,7 +532,7 @@ class ShortenedLine(Line):
     """A line segment shortened at both ends.
 
     Takes an existing :class:`~manim.mobject.geometry.line.Line` and shortens it by
-    *shorten_distance* along its original direction on both sides.
+    ``shorten_distance`` along its original direction on both sides.
     The style (color, stroke width, etc.) of the original line is automatically
     copied via match_style.
 
@@ -693,7 +693,7 @@ class PerpendicularSign(VGroup):
     def _get_both_directions(
         self, line: Line, point: Point3D
     ) -> tuple[Vector3D, Vector3D]:
-        """Return the two unit direction vectors from *point* toward the line's endpoints.
+        """Return the two unit direction vectors from ``point`` toward the line's endpoints.
 
         Parameters
         ----------
@@ -727,7 +727,7 @@ class PerpendicularSign(VGroup):
         dirs2: tuple[Vector3D, Vector3D],
         corner_direction: Vector3DLike | None,
     ) -> tuple[Vector3D, Vector3D]:
-        """Select the best pair of directions based on *corner_direction*.
+        """Select the best pair of directions based on ``corner_direction``.
 
         Parameters
         ----------
@@ -894,7 +894,7 @@ class FileTree(Code):
         prefix
             Indentation prefix already accumulated for the current depth.
         is_root
-            Whether *data* is the root node (no connector prefix).
+            Whether ``data`` is the root node (no connector prefix).
 
         Returns
         -------
@@ -1263,7 +1263,7 @@ class ColorText(Text):
 
     When a colour is passed it is displayed as an ``np.array([r,~g,~b])`` snippet in which
     the red, green and blue values are colour-coded and the ``~`` separators use
-    *background_color*.
+    ``background_color``.
 
     .. note::
 
@@ -1277,7 +1277,7 @@ class ColorText(Text):
         The colour to display.  Either a Manim colour (name / hex string) or an RGB
         sequence with values either normalized to ``[0, 1]`` or in ``[0, 255]``.
     name
-        If given, display this exact text coloured with *color* instead of the
+        If given, display this exact text coloured with ``color`` instead of the
         ``np.array`` snippet.
     background_color
         Colour used for the ``~`` separator glyphs.  
@@ -1351,7 +1351,7 @@ class ColorText(Text):
 class Trail(VGroup):
     r"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.
 
-    Wraps *mob*; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
+    Wraps ``mob``; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
     the mobject's centre and older segments fade out according to `rate_func`.
 
     .. note::
@@ -1456,7 +1456,7 @@ class Trail(VGroup):
         return path
 
     def update_path(self, trail: VGroup):
-        """Updater: replace *trail* by the freshly created path.
+        """Updater: replace ``trail`` by the freshly created path.
 
         Parameters
         ----------
@@ -1490,7 +1490,7 @@ class Trail(VGroup):
 class ShadowAround(VGroup):
     r"""A soft, blurred shadow surrounding the outline of a mobject.
 
-    The shadow is built from *layer_num* concentric scaled copies whose stroke width and
+    The shadow is built from ``layer_num`` concentric scaled copies whose stroke width and
     opacity fade outwards (or inwards when ``shadow_out=False``).
 
     .. note::
@@ -1590,8 +1590,8 @@ class ShadowAround(VGroup):
 class ObjectBorder(VGroup):
     r"""A border (and optional corner markers) that surrounds a mobject.
 
-    If *track* is ``True`` the border continuously follows *obj* through an updater, so it
-    stays aligned while *obj* moves or resizes.
+    If ``track`` is ``True`` the border continuously follows ``obj`` through an updater, so it
+    stays aligned while ``obj`` moves or resizes.
 
     .. note::
 
@@ -1604,11 +1604,11 @@ class ObjectBorder(VGroup):
     obj
         The mobject to surround.
     buff
-        Gap between *obj* and the border.  
+        Gap between ``obj`` and the border.
     add_corner
         Whether to draw a marker dot at each corner.  
     track
-        Whether the border follows *obj* with an updater.  
+        Whether the border follows ``obj`` with an updater.
     border_color
         Stroke colour of the border.  
     corner_radius
@@ -1658,7 +1658,7 @@ class ObjectBorder(VGroup):
             self.add_updater(lambda m: self._rebuild())
 
     def _rebuild(self):
-        """Recreate the border and corner markers around the current position of *obj*."""
+        """Recreate the border and corner markers around the current position of ``obj``."""
         border = Rectangle(
             width=self.obj.width + 2 * self.buff,
             height=self.obj.height + 2 * self.buff,
@@ -1685,8 +1685,8 @@ class ObjectBorder(VGroup):
 class ThreeDVector(VGroup):
     r"""A 3D vector drawn as a cylindrical body with a conical tip.
 
-    The direction and length are given by *vector* and the base of the vector sits at
-    *position* (i.e. the tip is at ``position + vector``).
+    The direction and length are given by ``vector`` and the base of the vector sits at
+    ``position`` (i.e. the tip is at ``position + vector``).
 
     .. note::
 
@@ -1784,7 +1784,7 @@ class ThreeDVector(VGroup):
 class TreeDiagram(VGroup):
     r"""A recursive tree diagram built from a nested dictionary.
 
-    Each level of *tree* maps a label to a nested structure, or is a ``set``/list of leaf
+    Each level of ``tree`` maps a label to a nested structure, or is a ``set``/list of leaf
     labels.  Leaf groups are wrapped with a :class:`~manim.mobject.svg.brace.Brace`.
 
     .. note::

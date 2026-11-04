@@ -77,7 +77,7 @@ class CubeMove(Animation):
         return starting_mobject
 
     def interpolate_mobject(self, alpha: float):
-        """Interpolate the cube rotation at progress *alpha*.
+        """Interpolate the cube rotation at progress ``alpha``.
 
         Parameters
         ----------

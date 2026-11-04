@@ -91,7 +91,7 @@ class WrappedTree:
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
-        *is_horizontal* is ``True``, width/height and x/y are swapped so that
+        ``is_horizontal`` is ``True``, width/height and x/y are swapped so that
         the layout algorithm always works in the vertical orientation.
 
         Parameters
@@ -171,7 +171,7 @@ class IYLNode:
 
 
 def move_right(node: object, move: float, is_horizontal: bool):
-    """Move a node and all its descendants by *move* in the non-layered direction.
+    """Move a node and all its descendants by ``move`` in the non-layered direction.
 
     Parameters
     ----------
@@ -228,7 +228,7 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool):
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
-    (depending on *is_horizontal*) and recurses into children.
+    (depending on ``is_horizontal``) and recurses into children.
 
     Parameters
     ----------
@@ -421,7 +421,7 @@ class TidyTreeLayout(Layout):
         """Prune the IYL list and prepend a new node.
 
         Removes any existing :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode` whose ``low`` is less than or
-        equal to *low*, then returns a new head node for the current subtree.
+        equal to ``low``, then returns a new head node for the current subtree.
 
         Parameters
         ----------
@@ -500,7 +500,7 @@ class TidyTreeLayout(Layout):
             self.set_right_thread(t, i, sr, mssr)
 
     def move_subtree(self, t: WrappedTree, i: int, si: int, dist: float):
-        """Shift a subtree by adding *dist* to its modifier.
+        """Shift a subtree by adding ``dist`` to its modifier.
 
         Parameters
         ----------

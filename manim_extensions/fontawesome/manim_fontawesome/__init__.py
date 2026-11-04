@@ -4213,7 +4213,7 @@ class Solid:
 # patched: added list_icons() — upstream offers no public way to enumerate
 #          icon names, which gallery-style scenes need.
 def list_icons(style="solid"):
-    """Return the names of every bundled icon for *style*.
+    """Return the names of every bundled icon for ``style``.
 
     Parameters
     ----------

@@ -35,7 +35,7 @@ SKIP_DIR_PARTS = {"fontawesome", "__pycache__", "tests", "docs", "build"}
 
 
 def should_skip(path: Path) -> bool:
-    """Return *True* if *path* should be skipped during scanning."""
+    """Return *True* if ``path`` should be skipped during scanning."""
     if path.name in SKIP_FILENAMES:
         return True
     if "test" in path.name.lower():
@@ -47,7 +47,7 @@ def should_skip(path: Path) -> bool:
 
 
 def get_unannotated_params(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list[str]:
-    """Return names of parameters on *node* that lack a type annotation.
+    """Return names of parameters on ``node`` that lack a type annotation.
 
     ``self``, ``cls``, ``*args`` and ``**kwargs`` are never reported.
     """

@@ -36,14 +36,14 @@ _RST_MARKUP_RE = re.compile(r":[\w:]+:`([^`]+)`|``([^`]+)``|`([^`]+)`")
 
 
 def _strip_rst(text: str) -> str:
-    """Return *text* with RST inline markup removed."""
+    """Return ``text`` with RST inline markup removed."""
     return _RST_MARKUP_RE.sub(
         lambda m: m.group(1) or m.group(2) or m.group(3), text
     )
 
 
 def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
-    """Mark *obj* as deprecated.
+    """Mark ``obj`` as deprecated.
 
     Parameters
     ----------

@@ -301,7 +301,7 @@ class CatalogLayout(Layout):
         return total
 
     def _update_brothers_left(self, node: CatalogNode, add_width: float):
-        """Shift elder sibling nodes to the right by *add_width*.
+        """Shift elder sibling nodes to the right by ``add_width``.
 
         Also propagates the adjustment upward to the parent's siblings.
 
@@ -325,7 +325,7 @@ class CatalogLayout(Layout):
         self._update_brothers_left(node.parent, add_width)
 
     def _update_brothers_top(self, node: CatalogNode, add_height: float):
-        """Shift elder sibling nodes downward by *add_height*.
+        """Shift elder sibling nodes downward by ``add_height``.
 
         Parameters
         ----------

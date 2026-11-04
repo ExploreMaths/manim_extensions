@@ -160,7 +160,7 @@ QUOTE_SUFFIX_RE = re.compile(r"(\"\"\"|\"|'''|')[ \t]*$")
 
 
 def _block_kind(stripped: str) -> str | None:
-    """Return the RST block kind *stripped* starts, or ``None``."""
+    """Return the RST block kind ``stripped`` starts, or ``None``."""
     if BULLET_RE.match(stripped):
         return "bullet list"
     if ENUM_RE.match(stripped):
@@ -502,7 +502,7 @@ def _docutils_settings():
 
 
 def check_docutils(text: str) -> list[tuple[int, str]]:
-    """Parse *text* with docutils and return real (non-Sphinx) issues.
+    """Parse ``text`` with docutils and return real (non-Sphinx) issues.
 
     Parameters
     ----------
@@ -548,7 +548,7 @@ def iter_rst_files() -> list[Path]:
 
 
 def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
-    """Extract docstrings from *source* with original line numbers.
+    """Extract docstrings from ``source`` with original line numbers.
 
     Parameters
     ----------

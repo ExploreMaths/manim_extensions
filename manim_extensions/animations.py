@@ -45,7 +45,7 @@ class TypeWriter(Animation):
 
     Reveals the content of a :class:`~manim.mobject.text.text_mobject.Text` object character by
     character, simulating a typewriter.  The total run time is automatically
-    calculated from the character count and *interval* unless an explicit
+    calculated from the character count and ``interval`` unless an explicit
     ``run_time`` is passed in ``kwargs``.
 
     Parameters
@@ -63,7 +63,7 @@ class TypeWriter(Animation):
     interval : float
         The stored interval between characters.
     char_count : int
-        Number of characters in *mobject*.
+        Number of characters in ``mobject``.
 
     Examples
     --------
@@ -94,10 +94,10 @@ class TypeWriter(Animation):
         super().__init__(mobject, **kwargs)
 
     def interpolate_mobject(self, alpha: float):
-        """Set the visible characters based on the animation progress *alpha*.
+        """Set the visible characters based on the animation progress ``alpha``.
 
         This method is called internally by Manim during the animation.  It
-        reveals characters one by one as *alpha* goes from ``0`` to ``1``.
+        reveals characters one by one as ``alpha`` goes from ``0`` to ``1``.
 
         Parameters
         ----------
@@ -340,7 +340,7 @@ def easeOutElastic(t: float) -> float:
 
 
 class WriteRandom(LaggedStart):
-    r"""Write the submobjects of *mobject* one by one in random order.
+    r"""Write the submobjects of ``mobject`` one by one in random order.
 
     .. note::
 
@@ -384,7 +384,7 @@ class WriteRandom(LaggedStart):
 
 
 class ReversedWrite(LaggedStart):
-    """Write the submobjects of *mobject* in reverse order.
+    """Write the submobjects of ``mobject`` in reverse order.
 
     .. note::
 
@@ -428,7 +428,7 @@ class ReversedWrite(LaggedStart):
 
 
 class FadeInRandom(LaggedStart):
-    r"""Fade in the submobjects of *mobject* one by one in random order.
+    r"""Fade in the submobjects of ``mobject`` one by one in random order.
 
     .. note::
 
@@ -471,7 +471,7 @@ class FadeInRandom(LaggedStart):
 
 
 class FadeOutRandom(LaggedStart):
-    """Fade out the submobjects of *mobject* one by one in random order.
+    """Fade out the submobjects of ``mobject`` one by one in random order.
 
     .. note::
 
@@ -514,7 +514,7 @@ class FadeOutRandom(LaggedStart):
 
 
 class GrowRandom(LaggedStart):
-    r"""Grow the submobjects of *mobject* from their centres in random order.
+    r"""Grow the submobjects of ``mobject`` from their centres in random order.
 
     .. note::
 
@@ -562,7 +562,7 @@ class GrowRandom(LaggedStart):
 
 
 class PassingRectangle(Animation):
-    """A filled rectangle that sweeps across *mobject* from left to right.
+    """A filled rectangle that sweeps across ``mobject`` from left to right.
 
     .. note::
 
@@ -577,7 +577,7 @@ class PassingRectangle(Animation):
     color
         Fill colour of the sweep.  
     buff
-        Extra width/height around *mobject*.  
+        Extra width/height around ``mobject``.
     fill_opacity
         Fill opacity of the sweep.  
     **kwargs
@@ -622,7 +622,7 @@ class PassingRectangle(Animation):
         super().__init__(rect, rate_func=linear, **kwargs)
 
     def interpolate_mobject(self, alpha: float):
-        """Slide and resize the sweep rectangle based on *alpha*.
+        """Slide and resize the sweep rectangle based on ``alpha``.
 
         Parameters
         ----------
@@ -693,7 +693,7 @@ class LaggedCreation(Animation):
         super().__init__(mobject, rate_func=linear, **kwargs)
 
     def get_bounds(self, alpha: float) -> tuple[float, float]:
-        """Compute the start and end fractions for the reveal at progress *alpha*.
+        """Compute the start and end fractions for the reveal at progress ``alpha``.
 
         Parameters
         ----------
@@ -713,7 +713,7 @@ class LaggedCreation(Animation):
     def interpolate_submobject(
         self, submobject: Mobject, starting_submobject: Mobject, alpha: float
     ) -> Animation:
-        """Reveal *submobject* between the computed partial bounds.
+        """Reveal ``submobject`` between the computed partial bounds.
 
         Parameters
         ----------
@@ -739,7 +739,7 @@ class LaggedCreation(Animation):
 
 
 class HighLightWithLines(AnimationGroup):
-    """Draw two horizontal lines and expand a rectangle around *mobject*.
+    """Draw two horizontal lines and expand a rectangle around ``mobject``.
 
     .. note::
 
@@ -754,7 +754,7 @@ class HighLightWithLines(AnimationGroup):
     color
         Colour of the lines and rectangle.  
     buff
-        Distance of the lines / rectangle from *mobject*.  
+        Distance of the lines / rectangle from ``mobject``.
     rec_opacity
         Fill opacity of the rectangle.  
     **kwargs
@@ -835,7 +835,7 @@ class UnHighLightWithLines(AnimationGroup):
     color
         Colour used for the lines and rectangle.  
     buff
-        Distance of the lines / rectangle from *mobject*.  
+        Distance of the lines / rectangle from ``mobject``.
     rec_opacity
         Fill opacity of the rectangle.  
     **kwargs

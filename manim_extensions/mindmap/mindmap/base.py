@@ -76,7 +76,7 @@ class NodeMobject:
 def generate_tree(
     Map: Dict | None = None, node_style: NodeStyle = NodeStyle(), buff: float = 0.2
 ) -> Node:
-    """Recursively traverse *Map* and return the root node of the generated tree.
+    """Recursively traverse ``Map`` and return the root node of the generated tree.
 
     ``text``: narration text that can be used for text-to-speech synthesis.
 

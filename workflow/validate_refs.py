@@ -381,7 +381,7 @@ def _find_short_xrefs(filepath: Path) -> list[dict]:
 def _find_inline_code(
     filepath: Path, classes_map: dict, attr_map: dict
 ) -> list[dict]:
-    """Return every back-ticked API-looking token inside *filepath*."""
+    """Return every back-ticked API-looking token inside ``filepath``."""
     results: list[dict] = []
     with open(filepath, "r", encoding="utf-8", errors="replace") as f:
         for lineno, line in enumerate(f, 1):

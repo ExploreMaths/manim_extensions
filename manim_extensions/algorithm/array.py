@@ -67,7 +67,7 @@ class Array(VMobject):
         text_scale: float = 1.0,
         **kwargs,
     ):
-        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from *data*."""
+        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from ``data``."""
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)
@@ -97,7 +97,7 @@ class Array(VMobject):
         return [item.value for item in self.array]
 
     def __getitem__(self, key: int | slice) -> Node:
-        """Return the node at *key* or a slice of nodes.
+        """Return the node at ``key`` or a slice of nodes.
 
         Parameters
         ----------

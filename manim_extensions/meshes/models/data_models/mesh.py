@@ -65,7 +65,7 @@ class Mesh:
         Entries may have different lengths.
     parts
         List of parts (3D objects), each part being a list of face
-        indices. Cannot be set when *faces* is ``None``.
+        indices. Cannot be set when ``faces`` is ``None``.
     dangling
         If ``True``, check and warn about dangling vertices and faces
         after initialisation. 
@@ -139,7 +139,7 @@ class Mesh:
         self.test_for_dangling = dangling
 
     def __add__(self, other: "Mesh") -> Self:
-        """Concatenate *other* mesh into this mesh (``mesh + other``).
+        """Concatenate ``other`` mesh into this mesh (``mesh + other``).
 
         Parameters
         ----------
@@ -153,7 +153,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             self.add_to_mesh(other)
@@ -161,7 +161,7 @@ class Mesh:
         raise NotImplementedError
 
     def __iadd__(self, other: "Mesh") -> Self:
-        """Concatenate *other* mesh in-place (``mesh += other``).
+        """Concatenate ``other`` mesh in-place (``mesh += other``).
 
         Parameters
         ----------
@@ -175,7 +175,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             self.add_to_mesh(other)
@@ -201,7 +201,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
 
         def replace_part_ids_with_vertex_ids(
@@ -296,7 +296,7 @@ class Mesh:
         Raises
         ------
         NotImplementedError
-            If *other* is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             return not self.__eq__(other)
@@ -399,7 +399,7 @@ class Mesh:
 
         Returns
         -------
-            List of edges incident to *vertex_idx*.
+            List of edges incident to ``vertex_idx``.
         """
         vertex_edges = []
         for edge in self._edges:
@@ -440,7 +440,7 @@ class Mesh:
             )
 
     def find_vertex(self, vertex: Point3D, start: int = 0) -> List[int]:
-        """Return all vertex indices whose coordinates match *vertex*.
+        """Return all vertex indices whose coordinates match ``vertex``.
 
         Parameters
         ----------
@@ -508,9 +508,9 @@ class Mesh:
         Raises
         ------
         InvalidMeshException
-            If *new_vertices* is not a :class:`~numpy.ndarray`.
+            If ``new_vertices`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
-            If the shape of *new_vertices* does not match the mesh dimension.
+            If the shape of ``new_vertices`` does not match the mesh dimension.
         """
         if not isinstance(new_vertices, np.ndarray):
             raise InvalidMeshException(f"new_vertices has invalid type {new_vertices}")
@@ -558,9 +558,9 @@ class Mesh:
         Raises
         ------
         MeshIndexException
-            If *idx* is out of range.
+            If ``idx`` is out of range.
         InvalidTypeException
-            If *new_vert* has an unexpected shape.
+            If ``new_vert`` has an unexpected shape.
         InvalidMeshException
             If the coordinate dimension does not match the mesh.
         """
@@ -597,12 +597,12 @@ class Mesh:
         Raises
         ------
         InvalidMeshException
-            If *new_faces* is not a twice-nested iterable or contains
+            If ``new_faces`` is not a twice-nested iterable or contains
             out-of-range vertex indices.
         InvalidTypeException
-            If *new_faces* has an unsupported type.
+            If ``new_faces`` has an unsupported type.
         MeshIndexException
-            If a vertex index in *new_faces* is out of range or not
+            If a vertex index in ``new_faces`` is out of range or not
             defined.
         """
         # type-check whole array
@@ -664,9 +664,9 @@ class Mesh:
         Raises
         ------
         MeshIndexException
-            If *idx* or any vertex index in *new_face* is out of range.
+            If ``idx`` or any vertex index in ``new_face`` is out of range.
         InvalidTypeException
-            If *new_face* has an unexpected shape.
+            If ``new_face`` has an unexpected shape.
         """
         if len(self._faces) <= idx or idx < 0:
             raise MeshIndexException(f"Face index {idx} out of range.")
@@ -693,12 +693,12 @@ class Mesh:
         Raises
         ------
         InvalidMeshException
-            If *new_parts* is not a twice-nested iterable or contains
+            If ``new_parts`` is not a twice-nested iterable or contains
             out-of-range face indices.
         InvalidTypeException
-            If *new_parts* has an unsupported type.
+            If ``new_parts`` has an unsupported type.
         MeshIndexException
-            If a face index in *new_parts* is out of range.
+            If a face index in ``new_parts`` is out of range.
         """
         # validate array type
         if not is_twice_nested_iterable(new_parts, min_lens=(1, 1)):
@@ -754,9 +754,9 @@ class Mesh:
         Raises
         ------
         MeshIndexException
-            If *idx* or any face index in *new_part* is out of range.
+            If ``idx`` or any face index in ``new_part`` is out of range.
         InvalidTypeException
-            If *new_part* has an unexpected shape.
+            If ``new_part`` has an unexpected shape.
         """
         if len(self._parts) <= idx or idx < 0:
             raise MeshIndexException(f"Part index {idx} out of range.")
@@ -774,7 +774,7 @@ class Mesh:
     def add_to_mesh(self, other: "Mesh"):
         """Merge another mesh into this one by shifting its indices.
 
-        The vertices, faces and parts of *other* are appended with
+        The vertices, faces and parts of ``other`` are appended with
         shifted indices so that references remain consistent.  Use
         negative indices to reference the original mesh from the
         appended one (e.g. ``-1`` refers to the last old vertex).
@@ -830,7 +830,7 @@ class Mesh:
         """
 
         def get_references_from_ids(ids: Set[int], nested: VarArray) -> Set[int]:
-            """Return the indices of entries in *nested* that reference any of *ids*.
+            """Return the indices of entries in ``nested`` that reference any of ``ids``.
 
             Parameters
             ----------
@@ -841,19 +841,19 @@ class Mesh:
 
             Returns
             -------
-                Indices of entries that contain at least one reference to *ids*.
+                Indices of entries that contain at least one reference to ``ids``.
             """
             return {
                 i for i, nest in enumerate(nested) if any(_id in nest for _id in ids)
             }
 
         def get_ids_from_references(ids: Set[int], referenced: VarArray) -> Set[int]:
-            """Return the union of all references made by *ids* inside *referenced*.
+            """Return the union of all references made by ``ids`` inside ``referenced``.
 
             Parameters
             ----------
             ids
-                Indices into *referenced*.
+                Indices into ``referenced``.
             referenced
                 Array of reference lists.
 
@@ -995,9 +995,9 @@ class Mesh:
         Raises
         ------
         InvalidTypeException
-            If *translation* is not a :class:`~numpy.ndarray`.
+            If ``translation`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
-            If the length of *translation* does not match the mesh dimension.
+            If the length of ``translation`` does not match the mesh dimension.
         """
         if not isinstance(translation, np.ndarray):
             raise InvalidTypeException(
@@ -1023,11 +1023,11 @@ class Mesh:
         Raises
         ------
         MeshIndexException
-            If *v_id* is out of range.
+            If ``v_id`` is out of range.
         InvalidTypeException
-            If *translation* is not a :class:`~numpy.ndarray`.
+            If ``translation`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
-            If the length of *translation* does not match the mesh dimension.
+            If the length of ``translation`` does not match the mesh dimension.
         """
         if 0 > v_id or v_id >= len(self._vertices):
             raise MeshIndexException(
@@ -1053,7 +1053,7 @@ class Mesh:
 
         Only 2D and 3D rotations are supported.  For 2D meshes the
         rotation is performed around the implicit z-axis; for 3D meshes
-        the rotation is performed around *axis*.
+        the rotation is performed around ``axis``.
 
         Parameters
         ----------
@@ -1074,7 +1074,7 @@ class Mesh:
             angle: float,
             axis: Vector3D,
         ) -> MatrixMN:
-            """Compute a 3D rotation matrix for *angle* radians around *axis*.
+            """Compute a 3D rotation matrix for ``angle`` radians around ``axis``.
 
             Parameters
             ----------
@@ -1157,12 +1157,12 @@ class Mesh:
         Raises
         ------
         InvalidMeshDimensionsException
-            If the lengths of *grid_sizes* or *threshold* do not match
+            If the lengths of ``grid_sizes`` or ``threshold`` do not match
             the mesh dimension.
         InvalidRequestException
-            If *grid_sizes* contains non-positive values, any threshold
+            If ``grid_sizes`` contains non-positive values, any threshold
             is :math:`\\geq` half the corresponding grid size, all thresholds are zero,
-            or *steps* is not positive.
+            or ``steps`` is not positive.
         """
         if len(grid_sizes) != self.dim:
             raise InvalidMeshDimensionsException(

@@ -26,7 +26,7 @@ class NumpyHelper:
 
         Returns
         -------
-            Unit-length vector.  If the norm of *v* is zero, the original
+            Unit-length vector.  If the norm of ``v`` is zero, the original
             vector is returned unchanged.
         """
         norm = np.linalg.norm(v)

@@ -86,8 +86,8 @@ def get_param_or_default(
 ) -> ManimColor | bool | float | int:
     """Return the user-supplied parameter or its default value.
 
-    If *params* contains *value*, the value is cast to the expected type
-    defined in *default* (when possible).  Otherwise the default value is
+    If ``params`` contains ``value``, the value is cast to the expected type
+    defined in ``default`` (when possible).  Otherwise the default value is
     returned.
 
     Parameters
@@ -106,7 +106,7 @@ def get_param_or_default(
     Raises
     ------
     BadParameterException
-        If *value* is not found in either *params* or *default*, or if the
+        If ``value`` is not found in either ``params`` or ``default``, or if the
         supplied value cannot be cast to the expected type.
     """
     # get value from user given parameters

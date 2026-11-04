@@ -211,7 +211,7 @@ class Node(VMobject):
         Raises
         ------
         ValueError
-            If *box_type* is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
+            If ``box_type`` is not :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
         """
         if hasattr(self, "box"):
             self.remove(self.box)
@@ -334,7 +334,7 @@ class Node(VMobject):
         Raises
         ------
         ValueError
-            If *direction* is not one of the four principal directions
+            If ``direction`` is not one of the four principal directions
             or if the box type is not supported.
         """
 

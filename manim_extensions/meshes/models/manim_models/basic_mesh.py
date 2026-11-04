@@ -212,7 +212,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def add_face(self, face: VectorND, color: ManimColor | None = None) -> tuple[VGroup, VGroup]:
         """Add a face to the mesh and create the corresponding Manim objects.
 
-        If *color* is ``None``, the default ``self.faces_color`` is used.
+        If ``color`` is ``None``, the default ``self.faces_color`` is used.
 
         Parameters
         ----------
@@ -293,7 +293,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         return removed_face, removed_edges
 
     def get_vertex(self, vertex_idx: int) -> Mobject:
-        """Return the Manim mobject for the vertex at *vertex_idx*.
+        """Return the Manim mobject for the vertex at ``vertex_idx``.
 
         Parameters
         ----------
@@ -307,7 +307,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         return self.vertices.submobjects[vertex_idx]
 
     def get_face(self, face_idx: int) -> Mobject:
-        """Return the Manim mobject for the face at *face_idx*.
+        """Return the Manim mobject for the face at ``face_idx``.
 
         Parameters
         ----------
@@ -321,7 +321,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         return self.faces.submobjects[face_idx]
 
     def get_edge(self, edge_idx: int) -> Mobject:
-        """Return the Manim mobject for the edge at *edge_idx*.
+        """Return the Manim mobject for the edge at ``edge_idx``.
 
         Parameters
         ----------
@@ -383,7 +383,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                 self._update_edge(edge)
 
     def _update_edge(self, edge: tuple[int, int]):
-        """Update the Manim object of *edge* to reflect the latest vertex positions.
+        """Update the Manim object of ``edge`` to reflect the latest vertex positions.
 
         Parameters
         ----------
@@ -396,7 +396,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         e.set_points_as_corners([vert_1, vert_2])
 
     def shift(self, *vectors: Vector3D):
-        """Shift the mesh and its underlying data by the sum of *vectors*.
+        """Shift the mesh and its underlying data by the sum of ``vectors``.
 
         Multiple vectors of the same dimensionality are summed to produce
         the final translation.
@@ -432,7 +432,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         factor
-            Stretch factor (e.g. ``2.0`` doubles the size along *dim*).
+            Stretch factor (e.g. ``2.0`` doubles the size along ``dim``).
         dim
             The axis index to stretch (0 = x, 1 = y, 2 = z).
         **kwargs
@@ -441,7 +441,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Raises
         ------
         LookupError
-            If *dim* is greater than or equal to ``self.mesh.dim``.
+            If ``dim`` is greater than or equal to ``self.mesh.dim``.
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
@@ -456,10 +456,10 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         about_point: Point3D | None=None,
         **kwargs,
     ):
-        """Rotate the mesh (data and Manim objects) about *about_point*.
+        """Rotate the mesh (data and Manim objects) about ``about_point``.
 
         For 2-D meshes the rotation is always about the z-axis; for 3-D
-        meshes an arbitrary *axis* can be specified.
+        meshes an arbitrary ``axis`` can be specified.
 
         Parameters
         ----------
@@ -482,7 +482,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         super().rotate(angle, axis, about_point=about_point, **kwargs)
 
     def flip(self, axis: Vector3D = UP, **kwargs):
-        """Flip the mesh about *axis*.
+        """Flip the mesh about ``axis``.
 
         .. todo::
 
@@ -580,7 +580,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def move_vertices_to(
         self, scene: Scene, new_positions: Point3D_Array, **kwargs
     ):
-        """Animate all vertices to *new_positions* and update the underlying mesh.
+        """Animate all vertices to ``new_positions`` and update the underlying mesh.
 
         Parameters
         ----------
@@ -594,7 +594,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Raises
         ------
         InvalidShapeException
-            If *new_positions* does not have the same length as the vertex list.
+            If ``new_positions`` does not have the same length as the vertex list.
         """
         if len(new_positions) != len(self.mesh.vertices):
             raise InvalidShapeException(
@@ -622,7 +622,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Raises
         ------
         InvalidMeshDimensionsException
-            If *pos* has the wrong dimensionality.
+            If ``pos`` has the wrong dimensionality.
         """
         # expect pos and curr_pos / mesh.dim to have the same dimensions
         if self.mesh.dim != len(pos):

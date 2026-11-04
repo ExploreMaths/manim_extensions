@@ -29,7 +29,7 @@ class ADASDiagram(EconDiagram):
           P = Pᵉ + slope · (Y − Ȳ)
 
       where *Pᵉ* is the expected price level (``sras_price``), *Ȳ* is
-      potential output (``lras_y``), and *slope* captures the cost
+      potential output (``lras_y``), and ``slope`` captures the cost
       structure ``(1−s)a/s``.  Shifts in SRAS correspond to changes in
       *Pᵉ*: when firms revise expectations the curve shifts up/down
       while keeping the same slope.

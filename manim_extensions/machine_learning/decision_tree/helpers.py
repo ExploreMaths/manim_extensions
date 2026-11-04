@@ -140,9 +140,9 @@ def compute_best_first_traversal(tree: SklearnTree):
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
-    Notes
-    -----
-    Not implemented yet; currently a no-op.
+    .. note::
+
+        Not implemented yet; currently a no-op.
     """
     pass
 

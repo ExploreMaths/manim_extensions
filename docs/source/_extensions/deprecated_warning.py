@@ -42,7 +42,7 @@ class ExtDeprecatedDirective(SphinxDirective):
 
 
 def _prepend_deprecation_warning(app, what, name, obj, options, lines):
-    """Insert a deprecation notice at the top of *lines* when applicable."""
+    """Insert a deprecation notice at the top of ``lines`` when applicable."""
     try:
         msg = getattr(obj, "__deprecated__", None)
     except Exception:

@@ -589,7 +589,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return None
 
     def play_string(self, input: "str | ManimAutomataInput") -> list:
-        """Run *input* through the automaton and return the animations.
+        """Run ``input`` through the automaton and return the animations.
 
         Parameters
         ----------

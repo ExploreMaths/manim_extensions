@@ -18,9 +18,9 @@ from manim.typing import VectorND
 
 
 def is_in_vararray(array: VarArray, item: VectorND, rolling: bool = True) -> bool:
-    """Check whether *item* exists in *array*.
+    """Check whether ``item`` exists in ``array``.
 
-    With *rolling* enabled, cyclic permutations are considered equal
+    With ``rolling`` enabled, cyclic permutations are considered equal
     (e.g. ``[1, 2, 3]`` matches ``[2, 3, 1]`` but not ``[1, 3, 2]``).
 
     Parameters
@@ -30,11 +30,11 @@ def is_in_vararray(array: VarArray, item: VectorND, rolling: bool = True) -> boo
     item
         The array to look for.
     rolling
-        When ``True``, compare up to cyclic rotations of *item*.
+        When ``True``, compare up to cyclic rotations of ``item``.
 
     Returns
     -------
-        ``True`` if *item* (or a rotation of it) is found in *array*.
+        ``True`` if ``item`` (or a rotation of it) is found in ``array``.
     """
     if rolling:
         alternatives = [np.roll(item, i) for i in range(len(item))]
@@ -46,7 +46,7 @@ def is_in_vararray(array: VarArray, item: VectorND, rolling: bool = True) -> boo
 def find_in_vararray(
     array: VarArray, item: VectorND, rolling: bool = True, start: int = 0
 ) -> List[int]:
-    """Find all indices where *item* appears in *array*.
+    """Find all indices where ``item`` appears in ``array``.
 
     Parameters
     ----------
@@ -55,7 +55,7 @@ def find_in_vararray(
     item
         The array to look for.
     rolling
-        When ``True``, compare up to cyclic rotations of *item*.
+        When ``True``, compare up to cyclic rotations of ``item``.
     start
         Index at which to begin the search (useful to skip self-references).
 
@@ -102,7 +102,7 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
 
 
 def is_twice_nested_iterable(obj: object, min_lens: tuple[int, int] = (1, 3)) -> bool:
-    """Check whether *obj* is a 2-D array-like structure.
+    """Check whether ``obj`` is a 2-D array-like structure.
 
     Examples of valid structures include 2-D NumPy arrays,
     ``List[List[int|float]]``, and similar.
@@ -116,7 +116,7 @@ def is_twice_nested_iterable(obj: object, min_lens: tuple[int, int] = (1, 3)) ->
 
     Returns
     -------
-        ``True`` if *obj* is a twice-nested iterable meeting the size
+        ``True`` if ``obj`` is a twice-nested iterable meeting the size
         requirements.
     """
     # easy case np.ndarray with correct specs
@@ -164,9 +164,9 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
 def fix_references(
     original: VarArray, indices: VectorND | List[int]
 ) -> List[int]:
-    """Remove references to *indices* from *original* and adjust remaining indices.
+    """Remove references to ``indices`` from ``original`` and adjust remaining indices.
 
-    Both *original* and *indices* are mutated in place for performance.
+    Both ``original`` and ``indices`` are mutated in place for performance.
 
     Parameters
     ----------
@@ -177,7 +177,7 @@ def fix_references(
 
     Returns
     -------
-        Indices in *original* where entries were removed.
+        Indices in ``original`` where entries were removed.
     """
     # reverse sort indices in place to delete back to front and change given indices accordingly
     indices[:] = sorted(set(indices), reverse=True)
@@ -206,7 +206,7 @@ def fix_references(
 
 
 def remove_keys_from_dict(d: Dict[str, object], keys: List[str]) -> Dict[str, object]:
-    """Remove *keys* from dictionary *d* without raising ``KeyError``.
+    """Remove ``keys`` from dictionary ``d`` without raising ``KeyError``.
 
     Parameters
     ----------

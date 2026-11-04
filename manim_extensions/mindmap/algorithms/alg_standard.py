@@ -91,7 +91,7 @@ def copy_node(node: object) -> TreeNode:
 
     Returns
     -------
-        The root of the copied tree, or ``None`` if *node* is ``None``.
+        The root of the copied tree, or ``None`` if ``node`` is ``None``.
     """
 
     if node is None:
@@ -112,7 +112,7 @@ def split_integer(n: int) -> tuple[int, int]:
 
     Returns
     -------
-        The two parts ``(k + 1, k)`` if *n* is odd, or ``(k, k)`` if *n* is even.
+        The two parts ``(k + 1, k)`` if ``n`` is odd, or ``(k, k)`` if ``n`` is even.
     """
 
     if n & 1:

@@ -118,7 +118,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         return z
 
     def _update_wave(self, mob: Mobject, dt: float):
-        """Advance the wave simulation by *dt* seconds and refresh the surface.
+        """Advance the wave simulation by ``dt`` seconds and refresh the surface.
 
         Parameters
         ----------

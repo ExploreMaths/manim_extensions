@@ -134,7 +134,7 @@ class MagneticField(ArrowVectorField):
 
         Returns
         -------
-            The magnetic field vector at point *p*.
+            The magnetic field vector at point ``p``.
         """
         B_field = np.zeros(3)
         for dl in dls:

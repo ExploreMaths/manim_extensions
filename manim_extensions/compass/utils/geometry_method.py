@@ -121,12 +121,12 @@ def get_vecs_angle(
     vec_s: Vector3D,
     vec_e: Vector3D,
 ) -> float:
-    r"""Compute the signed angle from *vec_s* to *vec_e*.
+    r"""Compute the signed angle from ``vec_s`` to ``vec_e``.
 
     The sign is determined by the cross product
     :math:`\text{sign} = x_1 y_2 - x_2 y_1`:
 
-    * ``> 0``: *vec_e* is counter-clockwise from *vec_s*.
+    * ``> 0``: ``vec_e`` is counter-clockwise from ``vec_s``.
     * ``< 0``: clockwise.
     * ``= 0``: collinear.
 

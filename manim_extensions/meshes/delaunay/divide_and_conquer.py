@@ -86,7 +86,7 @@ class DivideAndConquer:
         The scene in which the triangulation will be animated.
     triangle_mesh
         A triangle mesh containing only vertices (no faces) that has
-        already been added to *scene*.
+        already been added to ``scene``.
 
         Algorithm based on http://www.geom.uiuc.edu/~samuelp/del_project.html.
 
@@ -125,7 +125,7 @@ class DivideAndConquer:
     def split_points(self, vert_indices: list, dash_length: float = 0.2, line_width: float = 1, speed: float = 1.0) -> tuple[list[int], list[int], DashedLine]:
         """Split the vertex set into two halves along the x-coordinate median.
 
-        The vertices referenced by *vert_indices* are sorted by their
+        The vertices referenced by ``vert_indices`` are sorted by their
         x-coordinate and divided into a left and right subset.  A dashed
         separator line is drawn at the split position.
 
@@ -192,7 +192,7 @@ class DivideAndConquer:
         Raises
         ------
         ValueError
-            If *vert_indices* contains more than three entries.
+            If ``vert_indices`` contains more than three entries.
         """
 
         if len(vert_indices) > 3:
@@ -209,7 +209,7 @@ class DivideAndConquer:
         """Find the best right-side candidate vertex for the merge step.
 
         The method evaluates all right-side vertices connected to the
-        base edge *base_lr* and returns the first one whose circumscribed
+        base edge ``base_lr`` and returns the first one whose circumscribed
         circle does not contain the next candidate in the angularly sorted
         order (Incircle criterion).  If a conflicting RR edge is found it is
         removed from the mesh.

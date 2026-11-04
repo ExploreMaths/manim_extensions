@@ -76,7 +76,7 @@ class LayoutFactory:
         Raises
         ------
         ValueError
-            If *layout_type* is not recognised.
+            If ``layout_type`` is not recognised.
         """
         match layout_type:
             case LayoutType.MindMap:

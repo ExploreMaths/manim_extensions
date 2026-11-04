@@ -30,7 +30,7 @@ class VoronoiDelaunay:
         The scene in which the Voronoi/Delaunay diagrams will be drawn.
     triangle_mesh
         A triangle mesh whose vertices are used to build the Voronoi
-        diagram. The mesh must already have been added to *scene*.
+        diagram. The mesh must already have been added to ``scene``.
 
     Examples
     --------
@@ -84,9 +84,9 @@ class VoronoiDelaunay:
             containers holding the Voronoi vertices (dots) and the connecting
             ridge lines, respectively.
 
-        Notes
-        -----
-        Based on the logic in :func:`~scipy.spatial.voronoi_plot_2d`.
+        .. note::
+
+            Based on the logic in :func:`~scipy.spatial.voronoi_plot_2d`.
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         vert_group = VGroup()

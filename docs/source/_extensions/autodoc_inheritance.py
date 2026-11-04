@@ -19,7 +19,7 @@ _OPT_RE = re.compile(r"^\s+:\w")
 
 
 def _has_nontrivial_bases(dotted_path: str) -> bool:
-    """Return *True* if *dotted_path* refers to a class whose MRO includes
+    """Return *True* if ``dotted_path`` refers to a class whose MRO includes
     something other than ``object``."""
     try:
         module_path, _, name = dotted_path.rpartition(".")
@@ -35,7 +35,7 @@ def _has_nontrivial_bases(dotted_path: str) -> bool:
 
 
 def _inject_show_inheritance(text: str) -> str:
-    """Process *text* and add/remove ``:show-inheritance:`` per class."""
+    """Process ``text`` and add/remove ``:show-inheritance:`` per class."""
     lines = text.split("\n")
     result: list[str] = []
     i = 0

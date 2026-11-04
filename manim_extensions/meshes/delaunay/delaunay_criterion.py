@@ -90,7 +90,7 @@ def get_point_indices_violating_delaunay(
     """Return the indices of all vertices that violate the Delaunay criterion.
 
     A vertex violates the criterion when it lies inside the circumscribed
-    circle of the triangle identified by *face_id*.
+    circle of the triangle identified by ``face_id``.
 
     Parameters
     ----------

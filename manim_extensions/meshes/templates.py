@@ -279,7 +279,7 @@ def create_model(filepath: str | pathlib.Path = "", name: str = "") -> Mesh:
     Raises
     ------
     FileNotFoundError
-        If neither *filepath* nor *name* is provided, or if *name* is
+        If neither ``filepath`` nor ``name`` is provided, or if ``name`` is
         not a recognised built-in model.
     """
     if len(name) == 0 and len(filepath) == 0:

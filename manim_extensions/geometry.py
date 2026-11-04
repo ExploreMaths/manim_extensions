@@ -40,7 +40,7 @@ def VMobjectInt(
       (and hence the bounding box) of its control points, so this never
       discards a real intersection;
     * once both sub-curves deviate from their chords by less than
-      *flatness*, they are treated as line segments and a closest-point
+      ``flatness``, they are treated as line segments and a closest-point
       test (with a distance tolerance accounting for the approximation
       error) decides whether the true curves meet;
     * coincident, overlapping curve pieces report the endpoints of their
@@ -150,7 +150,7 @@ def VMobjectInt(
     def _split_cubic(
         c: CubicBezierPoints, t: float = 0.5
     ) -> tuple[CubicBezierPoints, CubicBezierPoints]:
-        """Split a cubic Bézier curve at parameter *t* (de Casteljau).
+        """Split a cubic Bézier curve at parameter ``t`` (de Casteljau).
 
         Parameters
         ----------
@@ -389,8 +389,8 @@ def TangentPoint(
 ) -> Point3D | None:
     """Compute the tangent point of a circle through two points and a line.
 
-    Given two points *p1* and *p2* that lie on a circle, and a line segment
-    defined by *line_start* and *line_end*, this function finds the point
+    Given two points ``p1`` and ``p2`` that lie on a circle, and a line segment
+    defined by ``line_start`` and ``line_end``, this function finds the point
     on the line segment where the circle is tangent to the line.
 
     Parameters

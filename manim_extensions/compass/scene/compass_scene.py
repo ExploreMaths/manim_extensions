@@ -403,7 +403,7 @@ class CompassScene(MovingCameraScene):
         """Put the ruler aside at the specified position.
 
         The ruler is first rotated to a horizontal or vertical orientation
-        (whichever aligns with *aside_pos*), then translated to that position.
+        (whichever aligns with ``aside_pos``), then translated to that position.
 
         Parameters
         ----------
