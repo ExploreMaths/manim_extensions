@@ -60,7 +60,7 @@ through):
        def construct(self):
 
            lens = Lens(-5, 1)
-           ray = Ray(LEFT * 1.5, RIGHT, 2, [lens])
+           ray = Ray(LEFT * 0.5, RIGHT, 1, [lens])
            self.add(lens, ray)
 
 Waves
@@ -86,7 +86,8 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
 
        def construct(self):
 
-           self.add(LinearWave(wavelength=1, period=1, amplitude=0.2))
+           self.add(LinearWave(wavelength=1, period=1, amplitude=0.2,
+                               x_range=(-3.5, 3.5), y_range=(-2, 2)))
            self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 1.2))
 
 Rigid mechanics
