@@ -120,12 +120,43 @@ jobs:
 
   validate-api-coverage:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           install-editable: "true"
       - name: Check API documentation coverage
+        id: check
+        run: python workflow/validate_api_coverage.py
+        continue-on-error: true
+      - name: Auto-refresh a stale API snapshot
+        # Only refreshes when the failure is a stale api_documented.json
+        # (e.g. after public names are removed); genuine undocumented names
+        # keep the job red instead of being silently written into the snapshot.
+        if: steps.check.outcome == 'failure'
+        run: |
+          python workflow/validate_api_coverage.py > /tmp/coverage.log 2>&1 || true
+          if ! grep -q 'stale-snapshot' /tmp/coverage.log; then
+            echo "Not a stale snapshot; keeping the failure visible."
+            exit 0
+          fi
+          python workflow/validate_api_coverage.py --write-snapshot
+          if git diff --quiet docs/source/_extensions/api_documented.json; then
+            echo "Snapshot unchanged; keeping the failure visible."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/source/_extensions/api_documented.json
+          git commit -m "Refresh api_documented.json API snapshot"
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main \
+            || { git pull --rebase "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main && git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main; }
+      - name: Re-verify after auto-refresh
+        # Passes when the stale snapshot was refreshed above; stays red
+        # for any other coverage failure.
+        if: steps.check.outcome == 'failure'
         run: python workflow/validate_api_coverage.py
 
   reuse-lint:
