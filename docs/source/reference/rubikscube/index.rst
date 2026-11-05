@@ -20,7 +20,10 @@ It is designed for puzzle demonstrations, cube-state tutorials, and move-by-move
 explanations inside scene code.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.rubikscube`` subpackage.
+``manim_extensions.rubikscube`` subpackage. Installing the package
+registers a ``manim-rubikscube`` command (equivalent to
+``python -m manim_extensions.rubikscube``) that prints the bundled
+version.
 
 Features
 --------
