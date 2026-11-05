@@ -148,7 +148,12 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The computed result."""
+            The computed result.
+
+        Raises
+        ------
+        Exception
+            If the compound cannot be found or the PubChem API fails."""
         requests = require("chemistry", "requests")
         identifier = self.inchi
         if identifier.startswith("InChI="):
