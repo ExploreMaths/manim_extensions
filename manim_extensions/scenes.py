@@ -72,8 +72,8 @@ class ConstantStrokeWidthScene(MovingCameraScene):
 
        class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
            def construct(self):
-               line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
-               line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(DOWN)
+               line1 = Line(LEFT, RIGHT, stroke_width=4).shift(0.3 * UP)
+               line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(0.3 * DOWN)
                self.add(line1, line2)
                self.play(self.camera.frame.animate.scale(1 / 3), run_time=2)
                self.wait(0.5)
