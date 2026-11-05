@@ -166,6 +166,10 @@ def autoall_expansion_keys(target, options):
     modules = iter_package_modules(obj) if "recursive" in options else iter([obj])
     for mod in modules:
         for name, member in public_names(mod):
+            # Private members are shown in the docs (``private-members``),
+            # but coverage is still only required for the public API.
+            if name.startswith("_"):
+                continue
             if classify(member) not in want or name in skip:
                 continue
             keys.add(defining_dotted(mod, name, member))
@@ -255,6 +259,10 @@ def main():
     missing = []
     for module in iter_modules():
         for name, obj in public_names(module):
+            # Private members are displayed but are not part of the covered
+            # public API (see docs/source/conf.py ``private-members``).
+            if name.startswith("_"):
+                continue
             # Type variables and type aliases are not documented data; they
             # never appear on Constants pages (autodoc_all.classify excludes
             # them).

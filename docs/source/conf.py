@@ -112,6 +112,9 @@ autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
     "undoc-members": True,
+    # Document private (single-underscore) members as well, so that helpers
+    # and module internals are visible instead of being silently dropped.
+    "private-members": True,
 }
 # Instance constants (e.g. Zr = MCElement(...)) must not display the class
 # docstring: show a docstring only when the object itself defines one.
@@ -390,6 +393,30 @@ def _drop_inherited_instance_docstring(app, what, name, obj, options, lines):
         lines.clear()
 
 
+# -- autodoc: keep private members but drop internals and dunders ------------
+#
+# ``private-members`` is all-or-nothing in Sphinx: it also un-hides special
+# members (``__len__`` ...) and autodoc/ABC bookkeeping attributes such as
+# ``_original__init__`` and ``_abc_impl``.  Those are implementation details
+# rather than the private API a reader is after, so skip them explicitly.
+_INTERNAL_ATTRIBUTES = {"_abc_impl", "_original__init__"}
+
+
+def _skip_internal_autodoc_member(app, what, name, obj, skip, options):
+    """Skip special members and autodoc bookkeeping in private-members mode."""
+    short = name.rsplit(".", 1)[-1]
+    try:
+        with open("/tmp/skip.log", "a", encoding="utf-8") as _f:
+            _f.write(f"{what}\t{name}\t{skip}\n")
+    except Exception:
+        pass
+    if short in _INTERNAL_ATTRIBUTES:
+        return True
+    if short.startswith("__") and short.endswith("__"):
+        return True
+    return None
+
+
 def setup(app):
     # Patch sphinx-autodoc-typehints so Manim typing aliases are not
     # expanded into their unions (``Point3DLike`` -> ``Point3D |
@@ -444,3 +471,4 @@ def setup(app):
         _drop_inherited_instance_docstring,
         priority=0,
     )
+    app.connect("autodoc-skip-member", _skip_internal_autodoc_member)

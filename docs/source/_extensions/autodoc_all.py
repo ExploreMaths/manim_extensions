@@ -140,14 +140,20 @@ def _defined_top_level_names(module):
     return names
 
 
+def _is_dunder(name):
+    """Return whether *name* is a dunder (special, not merely private)."""
+    return name.startswith("__") and name.endswith("__")
+
+
 def public_names(module):
-    """Return ``(name, object)`` pairs for the module's public API.
+    """Return ``(name, object)`` pairs for the module's documented API.
 
     Order: ``__all__`` wins when defined (author order); otherwise names
     appear in **source definition order** (from :func:`_defined_top_level_names`),
     followed by any qualifying names discovered via ``dir()`` that are not in
     the source (dynamically created or re-exported with a matching
-    ``__module__``). Submodules are never included.
+    ``__module__``). Submodules are never included. Private names (a single
+    leading underscore) are kept; dunder names are still skipped.
     """
     if hasattr(module, "__all__"):
         candidates = list(module.__all__)
@@ -156,7 +162,7 @@ def public_names(module):
         defined_set = set(defined)
         candidates = list(defined)
         for n in dir(module):
-            if n.startswith("_") or n in defined_set:
+            if _is_dunder(n) or n in defined_set:
                 continue
             obj = getattr(module, n, None)
             if obj is None or isinstance(obj, types.ModuleType):
@@ -167,7 +173,7 @@ def public_names(module):
     out = []
     seen: set[str] = set()
     for name in candidates:
-        if name in seen or name.startswith("_"):
+        if name in seen or _is_dunder(name):
             continue
         try:
             obj = getattr(module, name)
