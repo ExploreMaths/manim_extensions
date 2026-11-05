@@ -301,12 +301,9 @@ class DecisionTreeDiagram(Group):
         nodes_map[0] = root_node
         tree_group.add(root_node)
         # Save some information
-        node_height = root_node.height
         node_width = root_node.width
         scale_factor = 1.0
         edge_map = {}
-        # tree height
-        tree_height = scale_factor * node_height * max_depth
         tree_width = scale_factor * 2**max_depth * node_width
         # traverse tree
         def recurse(node_index: int, depth: int, direction: str, parent_object: Mobject, parent_node: int):
@@ -458,7 +455,7 @@ class DecisionTreeDiagram(Group):
 
         return animations, split_node_animations
 
-    def create_level_order_expansion_decision_tree(self, tree: Mobject):
+    def create_level_order_expansion_decision_tree(self, tree: Mobject) -> Succession:
         """Expands the decision tree in level order.
 
         Parameters

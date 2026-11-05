@@ -32,6 +32,7 @@ from manim import (
     override_animation,
 )
 from typing import TYPE_CHECKING
+import types
 
 import numpy as np
 from collections import deque
@@ -561,7 +562,9 @@ class DecisionTreeSurface(VGroup):
 
         return leaf_rectangles
 
-    def _subtree_leaves(self, node_index: int, ctree) -> list[int]:
+    def _subtree_leaves(
+        self, node_index: int, ctree: types.ModuleType
+    ) -> list[int]:
         """Collect the leaf node indices below a tree node.
 
         Parameters

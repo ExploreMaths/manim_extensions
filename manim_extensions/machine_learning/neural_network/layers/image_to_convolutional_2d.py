@@ -65,8 +65,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                )
                nn = NeuralNetwork(
                    [
-                       ImageLayer(rgb_image, height=1.2),
-                       Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                       ImageLayer(rgb_image, height=2.4),
+                       Convolutional2DLayer(3, 5, 3, filter_spacing=0.55),
                    ],
                    layer_spacing=0.25,
                )
