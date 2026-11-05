@@ -16,7 +16,6 @@ import functools
 from typing import Any, Self
 
 from manim import VMobject, config
-from manim.constants import RendererType
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
 from manim.scene.scene import Scene
 
@@ -27,14 +26,12 @@ __all__ = ["ConstantStrokeWidthScene"]
 class ConstantStrokeWidthScene(Scene):
     """A scene whose strokes keep a constant on-screen width while zooming.
 
-    The Cairo renderer already draws strokes with a fixed pixel width, so
-    nothing needs to be compensated there.  The OpenGL renderer, however,
-    specifies stroke widths in scene units: zooming the camera in makes every
-    line look proportionally thicker and zooming out makes it look thinner.
-    This scene compensates for that by scaling the ``stroke_width`` of every
-    mobject inversely to the camera's frame height, once per frame.  The
-    on-screen (visual) width therefore stays the same, while the underlying
-    ``stroke_width`` value changes together with the zoom level.
+    Zooming the camera in multiplies the on-screen thickness of every stroke
+    by the zoom factor, whichever renderer is used.  This scene compensates for
+    that by scaling the ``stroke_width`` of every mobject inversely to the
+    camera's frame height, once per frame.  The on-screen (visual) width
+    therefore stays the same, while the underlying ``stroke_width`` value
+    changes together with the zoom level.
 
     .. note::
 
@@ -62,6 +59,10 @@ class ConstantStrokeWidthScene(Scene):
 
     Examples
     --------
+    The camera zooms in by a factor of three.  The upper line keeps its
+    on-screen width, the lower one opts out with ``fixed_stroke_width=True``
+    and is drawn three times as thick:
+
     .. manim:: ConstantStrokeWidthExample
        :save_last_frame:
 
@@ -70,6 +71,8 @@ class ConstantStrokeWidthScene(Scene):
 
        class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
            def construct(self):
+               self.camera.frame_height *= 0.3
+               self.camera.frame_width *= 0.3
                line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
                line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(DOWN)
                self.add(line1, line2)
@@ -106,12 +109,13 @@ class ConstantStrokeWidthScene(Scene):
 
     def _camera_stroke_scale(self) -> float:
         """Return the factor by which strokes must be scaled at the current zoom."""
-        if config.renderer != RendererType.OPENGL:
-            return 1.0
-        get_height = getattr(self.camera, "get_height", None)
-        if get_height is None:
-            return 1.0
-        height = float(get_height())
+        height = getattr(self.camera, "frame_height", None)
+        if height is None:
+            get_height = getattr(self.camera, "get_height", None)
+            if get_height is None:
+                return 1.0
+            height = get_height()
+        height = float(height)
         if height <= 0.0:
             return 1.0
         return height / float(config.frame_height)
@@ -155,6 +159,7 @@ class ConstantStrokeWidthScene(Scene):
             The scene itself, to allow chaining.
         """
         super().add(*mobjects)
+        self._stroke_scale = self._camera_stroke_scale()
         if self._stroke_scale != 1.0:
             for mobject in mobjects:
                 self._scale_family_stroke_widths(mobject, self._stroke_scale)
