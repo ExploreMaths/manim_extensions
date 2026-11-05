@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement apply_flip
 
 
 """
@@ -1116,6 +1117,52 @@ class Mesh:
 
         if about_point is not None:
             self._vertices += about_point
+
+    def apply_flip(
+        self,
+        axis: Vector3D = np.array([0, 1, 0]),
+        about_point: Point3D | None = None,
+    ):
+        """Flip all vertices across the plane orthogonal to ``axis``.
+
+        This mirrors :meth:`~manim.mobject.mobject.Mobject.flip`, which is
+        implemented as a rotation by :math:`\\pi` radians around ``axis``.
+        For 2-D meshes only the component of ``axis`` lying in the mesh
+        plane is used, so flipping about an out-of-plane axis degenerates
+        to a point reflection.
+
+        Parameters
+        ----------
+        axis
+            Axis orthogonal to the mirror plane.
+        about_point
+            If given, the flip is performed around this point.
+
+        Raises
+        ------
+        NotImplementedError
+            If the mesh dimension is greater than 3.
+        """
+        if self.dim > 3:
+            raise NotImplementedError(
+                "No implementation for n-Dimensional vector flipping"
+            )
+
+        about = (
+            np.zeros(self.dim)
+            if about_point is None
+            else np.asarray(about_point, dtype=float)[: self.dim]
+        )
+        mesh_axis = np.asarray(axis, dtype=float)[: self.dim]
+        norm = np.linalg.norm(mesh_axis)
+        relative = self._vertices - about
+        if norm == 0:
+            # no in-plane axis: the pi rotation degenerates to a point reflection
+            self._vertices = about - relative
+        else:
+            mesh_axis = mesh_axis / norm
+            projections = relative @ mesh_axis
+            self._vertices = about + 2 * np.outer(projections, mesh_axis) - relative
 
     def snap_to_grid(
         self,

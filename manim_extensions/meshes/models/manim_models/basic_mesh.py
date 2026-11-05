@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement flip for the underlying data mesh
 
 """Manim models for mesh objects.
 
@@ -15,7 +16,7 @@ import copy
 from typing import List
 
 # third-party imports
-from manim import Dot, FadeIn, FadeOut, Group, ManimColor, Mobject, ORIGIN, OUT, RED, Scene, Sphere, ThreeDVMobject, UP, VGroup, ValueTracker
+from manim import Dot, FadeIn, FadeOut, Group, ManimColor, Mobject, ORIGIN, OUT, RED, Scene, Sphere, TAU, ThreeDVMobject, UP, VGroup, ValueTracker
 import numpy as np
 
 # local imports
@@ -481,27 +482,34 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             self.mesh.apply_rotation(angle, axis, about_point)
         super().rotate(angle, axis, about_point=about_point, **kwargs)
 
-    def flip(self, axis: Vector3D = UP, **kwargs):
-        """Flip the mesh about ``axis``.
+    def flip(
+        self,
+        axis: Vector3D = UP,
+        about_point: Point3D | None = None,
+        **kwargs,
+    ):
+        """Flip the mesh (data and Manim objects) about the plane orthogonal to ``axis``.
 
-        .. todo::
-
-           Not yet implemented for the underlying data mesh.
+        The underlying data mesh is updated first; the resulting Manim
+        mobject is then flipped with the same arguments.
 
         Parameters
         ----------
         axis
-            Axis about which to flip.
+            Axis orthogonal to the mirror plane.
+        about_point
+            Pivot point for the flip. Defaults to the critical point at the
+            origin.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
-
-        Raises
-        ------
-        NotImplementedError
-            Always — flipping the data mesh is not yet supported.
         """
-        # Fixme implement flip on axis for mesh.py
-        raise NotImplementedError
+        if about_point is None:
+            about_point = self.get_critical_point(ORIGIN)
+        self.mesh.apply_flip(axis, about_point[: self.mesh.dim])
+        # Mobject.flip delegates to self.rotate, which this class overrides to
+        # rotate the mesh data as well; use the parent rotation to avoid
+        # applying the flip to the data twice.
+        super().rotate(TAU / 2, axis, about_point=about_point, **kwargs)
 
     def shift_vertex(
         self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs

@@ -9,6 +9,7 @@ define a few basic mesh-structures to be used as examples or test.
 
 # python imports
 # patched: lazy-import trimesh (meshes extra)
+# patched: implement create_grid for 3D meshes
 import pathlib
 from typing import List
 
@@ -204,7 +205,7 @@ def create_coplanar_points() -> Mesh:
 
 
 def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
-    """Create a regular grid mesh in 1-D or 2-D.
+    """Create a regular grid mesh in 1-D, 2-D or 3-D.
 
     Parameters
     ----------
@@ -214,12 +215,30 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
     Returns
     -------
         A grid mesh with vertices placed at the generated grid points and
-        quad faces connecting them (2-D) or no faces (1-D).
+        quad faces connecting them (2-D and 3-D) or no faces (1-D).  The
+        faces of a 3-D grid form the closed surface of the box spanned by
+        the grid, with outward-facing vertex order.
 
     Raises
     ------
     NotImplementedError
-        If more than 2 dimensions are requested.
+        If more than 3 dimensions are requested.
+
+    Examples
+    --------
+    .. manim:: GridTemplateExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.meshes.templates import create_grid
+       from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+
+       class GridTemplateExample(ThreeDScene):
+           def construct(self):
+               self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
+               grid = ManimMesh(create_grid([(0, 2, 3), (0, 2, 3), (0, 2, 3)]))
+               grid.scale_to_fit_height(4).move_to(ORIGIN)
+               self.add(grid)
     """
     dim = len(areas)
     vertices = np.array(
@@ -233,7 +252,7 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
         faces = None
         parts = None
     elif dim == 2:
-        u, v = areas[0][2], areas[1][2]
+        u, v = int(areas[0][2]), int(areas[1][2])
         faces = [
             np.array(
                 [
@@ -247,8 +266,31 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
             for i in range(u - 1)
         ]
         parts = None
+    elif dim == 3:
+        u, v, w = (int(area[2]) for area in areas)
+        uv = u * v
+        faces = []
+        for k in range(w - 1):
+            for j in range(v - 1):
+                for i in range(u - 1):
+                    v000 = i + j * u + k * uv
+                    v100, v010, v001 = v000 + 1, v000 + u, v000 + uv
+                    v110 = v000 + u + 1
+                    v101, v011 = v000 + uv + 1, v000 + uv + u
+                    v111 = v000 + uv + u + 1
+                    faces.extend(
+                        [
+                            np.array([v000, v010, v110, v100]),  # z = k
+                            np.array([v001, v101, v111, v011]),  # z = k + 1
+                            np.array([v000, v100, v101, v001]),  # y = j
+                            np.array([v010, v011, v111, v110]),  # y = j + 1
+                            np.array([v000, v001, v011, v010]),  # x = i
+                            np.array([v100, v110, v111, v101]),  # x = i + 1
+                        ]
+                    )
+        parts = None
     else:
-        raise NotImplementedError("Only 1D, 2D meshes implemented.")
+        raise NotImplementedError("Only 1D, 2D, 3D meshes implemented.")
     return Mesh(
         vertices=vertices,
         faces=faces,

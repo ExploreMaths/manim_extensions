@@ -6,6 +6,8 @@ import numpy as np
 import pytest
 
 from manim_extensions.meshes.models.data_models.mesh import Mesh
+from manim_extensions.meshes.templates import create_grid, create_pyramid
+from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 from manim_extensions.meshes.exceptions import (
     InvalidMeshException,
     MeshIndexException,
@@ -22,7 +24,6 @@ from manim_extensions.meshes.helpers import (
     fix_references,
     remove_keys_from_dict,
 )
-from manim_extensions.meshes.types import Edge, VarArray
 
 
 class TestMeshInit:
@@ -811,3 +812,87 @@ class TestMeshRemoveDuplicates:
         mesh.remove_duplicates()
         assert len(mesh.vertices) == 3
         assert len(mesh.faces) == 1
+
+
+class TestMeshApplyFlip:
+    def test_flip_3d_across_x_axis(self):
+        verts = np.array([[0.0, 0.0, 0.0], [1.0, 2.0, 3.0]])
+        mesh = Mesh(verts, None)
+        mesh.apply_flip(np.array([1.0, 0.0, 0.0]))
+        assert mesh.vertices[1] == pytest.approx([1.0, -2.0, -3.0])
+
+    def test_flip_3d_about_point(self):
+        verts = np.array([[1.0, 2.0, 3.0]])
+        mesh = Mesh(verts, None)
+        mesh.apply_flip(np.array([1.0, 0.0, 0.0]), about_point=np.array([0.0, 0.0, 1.0]))
+        assert mesh.vertices[0] == pytest.approx([1.0, -2.0, -1.0])
+
+    def test_flip_2d_across_in_plane_axis(self):
+        # Mobject.flip(UP) rotates by pi around the y-axis, negating x
+        verts = np.array([[1.0, 2.0], [-3.0, 4.0]])
+        mesh = Mesh(verts, None)
+        mesh.apply_flip(np.array([0.0, 1.0, 0.0]))
+        assert mesh.vertices[0] == pytest.approx([-1.0, 2.0])
+        assert mesh.vertices[1] == pytest.approx([3.0, 4.0])
+
+    def test_flip_2d_across_out_of_plane_axis(self):
+        # no component in the mesh plane: the pi rotation is a point reflection
+        verts = np.array([[1.0, 2.0]])
+        mesh = Mesh(verts, None)
+        mesh.apply_flip(np.array([0.0, 0.0, 1.0], dtype=float))
+        assert mesh.vertices[0] == pytest.approx([-1.0, -2.0])
+
+    def test_flip_1d_about_point(self):
+        verts = np.array([[1.0], [3.0]])
+        mesh = Mesh(verts, None)
+        mesh.apply_flip(np.array([0.0, 0.0, 1.0]), about_point=np.array([2.0]))
+        assert mesh.vertices[0] == pytest.approx([3.0])
+        assert mesh.vertices[1] == pytest.approx([1.0])
+
+    def test_flip_4d_not_implemented(self):
+        verts = np.array([[1.0, 2.0, 3.0, 4.0]])
+        mesh = Mesh(verts, None)
+        with pytest.raises(NotImplementedError):
+            mesh.apply_flip(np.array([1.0, 0.0, 0.0, 0.0]))
+
+
+class TestBasicMeshFlip:
+    def test_flip_keeps_data_and_mobject_in_sync(self):
+        pyramid = ManimMesh(create_pyramid(triangles_only=True))
+        before = pyramid.mesh.vertices.copy()
+        pyramid.flip(np.array([1.0, 0.0, 0.0]), about_point=np.zeros(3))
+        assert np.allclose(pyramid.mesh.vertices, before * np.array([1.0, -1.0, -1.0]))
+
+
+class TestCreateGrid:
+    def test_1d_grid_has_no_faces(self):
+        mesh = create_grid([(0.0, 1.0, 4)])
+        assert mesh.dim == 1
+        assert len(mesh.vertices) == 4
+        assert len(mesh.faces) == 0
+
+    def test_2d_grid_face_count(self):
+        mesh = create_grid([(0.0, 1.0, 3), (0.0, 1.0, 2)])
+        assert mesh.dim == 2
+        assert len(mesh.vertices) == 6
+        assert len(mesh.faces) == 2
+        assert all(len(face) == 4 for face in mesh.faces)
+
+    def test_3d_grid_vertex_and_face_count(self):
+        mesh = create_grid([(0.0, 2.0, 3), (0.0, 2.0, 3), (0.0, 2.0, 3)])
+        assert mesh.dim == 3
+        assert len(mesh.vertices) == 27
+        assert len(mesh.faces) == 8 * 6
+        assert all(len(face) == 4 for face in mesh.faces)
+
+    def test_3d_grid_face_winding_is_outward(self):
+        mesh = create_grid([(0.0, 2.0, 3), (0.0, 2.0, 3), (0.0, 2.0, 3)])
+        # the first face is the z = 0 side of the first cell, facing -z
+        face = mesh.faces[0]
+        points = mesh.vertices[face]
+        normal = np.cross(points[1] - points[0], points[2] - points[0])
+        assert normal[2] < 0
+
+    def test_4d_grid_not_implemented(self):
+        with pytest.raises(NotImplementedError):
+            create_grid([(0.0, 1.0, 2)] * 4)
