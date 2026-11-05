@@ -244,15 +244,12 @@ Constants
    :hidden:
    :maxdepth: 1
 
-   atoms
    bohr_atom/index
    cli
    element/index
-   elements
    future_classes/index
    manim_chemistry_molecule/index
    molecule/index
-   molecules
    orbitals/index
    periodic_table/index
    threeD/index
