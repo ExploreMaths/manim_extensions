@@ -10,9 +10,9 @@ The chemistry subpackage ships a small `Click
 <https://click.palletsprojects.com/>`_-based command-line client for
 downloading molecule data from `PubChem <https://pubchem.ncbi.nlm.nih.gov/>`_
 without writing any Python. Installing the package also registers a
-``manim-chemistry`` command that takes exactly the same arguments; the
-examples below use the module form, which works without the entry point.
-Run it as a module:
+``manim-chemistry`` command that takes exactly the same arguments. The
+examples below spell the client out as a module instead, since that form
+works even without the entry point:
 
 .. nbcell::
    :language: console
