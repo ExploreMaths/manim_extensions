@@ -5,7 +5,7 @@
 
 The module currently provides
 :class:`~manim_extensions.scenes.ConstantStrokeWidthScene`, a
-:class:`~manim.scene.scene.Scene` subclass that keeps the apparent thickness of
+:class:`~manim.scene.moving_camera_scene.MovingCameraScene` subclass that keeps the apparent thickness of
 strokes constant while the camera zooms.  Using this scene adds a
 ``fixed_stroke_width`` parameter to stroke-bearing mobjects so that they can opt
 out of that compensation.
@@ -17,13 +17,13 @@ from typing import Any, Self
 
 from manim import VMobject, config
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
-from manim.scene.scene import Scene
+from manim.scene.moving_camera_scene import MovingCameraScene
 
 
 __all__ = ["ConstantStrokeWidthScene"]
 
 
-class ConstantStrokeWidthScene(Scene):
+class ConstantStrokeWidthScene(MovingCameraScene):
     """A scene whose strokes keep a constant on-screen width while zooming.
 
     Zooming the camera in multiplies the on-screen thickness of every stroke
@@ -53,29 +53,31 @@ class ConstantStrokeWidthScene(Scene):
     Parameters
     ----------
     *args
-        Positional arguments forwarded to :class:`~manim.scene.scene.Scene`.
+        Positional arguments forwarded to
+        :class:`~manim.scene.moving_camera_scene.MovingCameraScene`.
     **kwargs
-        Keyword arguments forwarded to :class:`~manim.scene.scene.Scene`.
+        Keyword arguments forwarded to
+        :class:`~manim.scene.moving_camera_scene.MovingCameraScene`.
 
     Examples
     --------
-    The camera zooms in by a factor of three.  The upper line keeps its
-    on-screen width, the lower one opts out with ``fixed_stroke_width=True``
-    and is drawn three times as thick:
+    The camera zooms in by a factor of three and back out again.  The upper
+    line keeps its on-screen width, the lower one opts out with
+    ``fixed_stroke_width=True`` and is drawn three times as thick:
 
     .. manim:: ConstantStrokeWidthExample
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.scenes import ConstantStrokeWidthScene
 
        class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
            def construct(self):
-               self.camera.frame_height *= 0.3
-               self.camera.frame_width *= 0.3
                line1 = Line(LEFT, RIGHT, stroke_width=4).shift(UP)
                line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(DOWN)
                self.add(line1, line2)
+               self.play(self.camera.frame.animate.scale(1 / 3), run_time=2)
+               self.wait(0.5)
+               self.play(self.camera.frame.animate.scale(3), run_time=2)
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
