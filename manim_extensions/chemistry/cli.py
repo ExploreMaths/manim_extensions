@@ -136,6 +136,7 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[s
         f"Retrieved molecule data for {identifier}. Saving file(s) to {output_folder} folder."
     )
 
+    os.makedirs(output_folder, exist_ok=True)
     for molecule_identifier, molecule_data in molecules.items():
         output_file = os.path.join(output_folder, f"{molecule_identifier}.{format}")
         with open(output_file, "w") as file:
