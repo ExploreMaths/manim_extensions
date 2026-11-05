@@ -144,20 +144,36 @@ class PubchemAPIManager:
         return self.handle_request(request=request, identifier=self.smiles)
 
     def from_inchi(self) -> str:
-        """Fetch molecule data from PubChem using an InChI key.
+        """Fetch molecule data from PubChem using an InChI or InChIKey.
 
         Returns
         -------
             The computed result."""
         requests = require("chemistry", "requests")
-        request_url = (
-            f"{PubchemAPIManager.BASE_URL}/inchikey/{self.inchi}/{self.format}"
-        )
+        identifier = self.inchi
+        if identifier.startswith("InChI="):
+            # PubChem only accepts the raw InChI in the form body; a
+            # urlencoded value is rejected with PUGREST.BadRequest.
+            lookup = requests.post(
+                f"{PubchemAPIManager.BASE_URL}inchi/cids/JSON",
+                data=f"inchi={identifier}",
+            )
+            lookup.raise_for_status()
+            cids = lookup.json().get("IdentifierList", {}).get("CID", [])
+            if not cids:
+                raise Exception(f"Compound {identifier} not found")
+            request_url = (
+                f"{PubchemAPIManager.BASE_URL}cid/{cids[0]}/{self.format}"
+            )
+        else:
+            request_url = (
+                f"{PubchemAPIManager.BASE_URL}inchikey/{identifier}/{self.format}"
+            )
         if self.three_d:
             request_url += "?record_type=3d"
 
         request = requests.get(request_url)
-        return self.handle_request(request=request, identifier=self.inchi)
+        return self.handle_request(request=request, identifier=identifier)
 
     def get_molecule(self) -> str:
         """Dispatch to the correct ``from_*`` method based on the set identifier.

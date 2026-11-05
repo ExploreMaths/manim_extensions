@@ -87,7 +87,7 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[s
            File .\morphine.sdf is ready!!
            Finished
 
-       manim_chemistry pubchem-molecule --format sdf -n acetone -n morphine
+       manim-chemistry pubchem-molecule --format sdf -n acetone -n morphine
     """
 
     identifier = cid or name or smiles or inchi
@@ -138,7 +138,13 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[s
 
     os.makedirs(output_folder, exist_ok=True)
     for molecule_identifier, molecule_data in molecules.items():
-        output_file = os.path.join(output_folder, f"{molecule_identifier}.{format}")
+        # InChI strings contain ``/`` and other separators that cannot be
+        # used in a file name, so keep only file-system safe characters.
+        safe_identifier = "".join(
+            char if char.isalnum() or char in "._-" else "_"
+            for char in molecule_identifier
+        )
+        output_file = os.path.join(output_folder, f"{safe_identifier}.{format}")
         with open(output_file, "w") as file:
             file.write(molecule_data)
 
