@@ -4,6 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: drop a stale TODO (FadeIn is the intended create animation)
 """Triplet layer visualization for neural networks."""
 
 from typing import Self
@@ -175,7 +176,6 @@ class TripletLayer(NeuralNetworkLayer):
 
     @override_animation(Create)
     def _create_override(self):
-        # TODO make Create animation that is custom
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:

@@ -4,12 +4,12 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement compute_best_first_traversal
 """Helper functions for decision tree visualization."""
 
+import heapq
 from typing import Protocol
 from manim.typing import VectorND
-
-
 
 class SklearnTree(Protocol):
     """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""
@@ -17,6 +17,7 @@ class SklearnTree(Protocol):
     node_count: int
     children_left: VectorND
     children_right: VectorND
+    impurity: VectorND
 
 
 def compute_node_depths(tree: SklearnTree) -> list[int]:
@@ -131,8 +132,12 @@ def compute_bfs_traversal(tree: SklearnTree) -> list[int]:
     return traversal_order
 
 
-def compute_best_first_traversal(tree: SklearnTree):
+def compute_best_first_traversal(tree: SklearnTree) -> list[int]:
     """Traverses the tree according to the best split first order.
+
+    Nodes with the highest impurity are expanded first, so the most
+    informative splits are shown before the less informative ones. Nodes
+    with equal impurity are visited in ascending node index order.
 
     Parameters
     ----------
@@ -140,11 +145,28 @@ def compute_best_first_traversal(tree: SklearnTree):
         The sklearn decision tree structure (``tree_`` attribute of a fitted
         :class:`~sklearn.tree.DecisionTreeClassifier`).
 
-    .. note::
-
-        Not implemented yet; currently a no-op.
+    Returns
+    -------
+        Node indices in best-first order, starting from the root.
     """
-    pass
+    traversal_order = []
+    root_index = 0
+    queue = [(-float(tree.impurity[root_index]), root_index)]
+    while len(queue) > 0:
+        _, node_index = heapq.heappop(queue)
+        traversal_order.append(node_index)
+        left_child_index = tree.children_left[node_index]
+        right_child_index = tree.children_right[node_index]
+        is_leaf_node = left_child_index == right_child_index
+        if not is_leaf_node:
+            heapq.heappush(
+                queue, (-float(tree.impurity[left_child_index]), left_child_index)
+            )
+            heapq.heappush(
+                queue, (-float(tree.impurity[right_child_index]), right_child_index)
+            )
+
+    return traversal_order
 
 
 def compute_node_to_parent_mapping(tree: SklearnTree) -> dict[int, int]:

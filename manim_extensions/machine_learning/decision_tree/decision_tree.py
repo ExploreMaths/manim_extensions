@@ -4,12 +4,10 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement text leaf nodes and the tree expansion animations
 """
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
-
-TODO return a map from nodes to split animation for BFS tree expansion
-TODO reimplement the decision 2D decision tree surface drawing.
 """
 from manim import (
     Animation,
@@ -48,11 +46,14 @@ class LeafNode(Group):
         Index of the predicted class, used to look up the class image and color.
     display_type
         How to display the leaf content; ``"image"`` shows the class image,
-        ``"text"`` is not yet implemented.
+        ``"text"`` shows the class name.
     class_image_paths
         List of image file paths, one per class.
     class_colors
         List of colors, one per class, used for the border rectangle.
+    class_names
+        List of class names, one per class, used by the ``"text"`` display
+        type. The class index is displayed when omitted.
 
     Examples
     --------
@@ -74,21 +75,51 @@ class LeafNode(Group):
                )
                leaf.scale(10)
                self.add(leaf)
+
+    .. manim:: LeafNodeTextExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.decision_tree.decision_tree import LeafNode
+
+       class LeafNodeTextExample(Scene):
+           def construct(self):
+               leaf = LeafNode(
+                   class_index=1,
+                   display_type="text",
+                   class_colors=[BLUE, GREEN, RED],
+                   class_names=["setosa", "versicolor", "virginica"],
+               )
+               leaf.scale(1.5)
+               self.add(leaf)
     """
 
     def __init__(
-        self, class_index: int, display_type: str = "image", class_image_paths: list = [], class_colors: list = []
+        self, class_index: int, display_type: str = "image", class_image_paths: list = [], class_colors: list = [], class_names: list[str] | None = None
     ):
         """Initialize the leaf node with a class image or text and colored border."""
         super().__init__()
         self.display_type = display_type
         self.class_image_paths = class_image_paths
         self.class_colors = class_colors
+        self.class_names = class_names
         assert self.display_type in ["image", "text"]
         if self.display_type == "image":
             self._construct_image_node(class_index)
         else:
-            raise NotImplementedError()
+            self._construct_text_node(class_index)
+
+    def _construct_text_node(self, class_index: int):
+        """Make a text node."""
+        if self.class_names is None:
+            label = str(class_index)
+        else:
+            label = self.class_names[class_index]
+        color = self.class_colors[class_index] if self.class_colors else WHITE
+        node = Text(label, color=WHITE)
+        rectangle = SurroundingRectangle(node, buff=0.3, color=color, stroke_width=6)
+        self.add(rectangle)
+        self.add(node)
 
     def _construct_image_node(self, class_index: int):
         """Make an image node."""
@@ -331,6 +362,102 @@ class DecisionTreeDiagram(Group):
         tree_group.scale(0.35)
         return tree_group, nodes_map, edge_map
 
+    def _make_placeholder_leaf(self, class_index: int) -> LeafNode:
+        """Make a leaf node showing the dominant class of a tree node.
+
+        Parameters
+        ----------
+        class_index
+            Index of the dominant class of the tree node.
+
+        Returns
+        -------
+            A leaf node displaying the dominant class.
+        """
+        if self.class_image_paths is None:
+            return LeafNode(
+                class_index=class_index,
+                display_type="text",
+                class_colors=self.class_colors,
+                class_names=self.class_names,
+            )
+        return LeafNode(
+            class_index=class_index,
+            class_colors=self.class_colors,
+            class_image_paths=self.class_image_paths,
+        )
+
+    def _make_expansion_animations(self, node_expand_order: list[int]) -> tuple[list, dict]:
+        """Build the animations that expand the tree in the given node order.
+
+        Every split node starts as a placeholder leaf node showing its
+        dominant class; when the node is expanded the placeholder is replaced
+        by the split node and the two children are created.
+
+        Parameters
+        ----------
+        node_expand_order
+            Node indices in the order they should be expanded.
+
+        Returns
+        -------
+            ``(animations, split_node_animations)`` — the list of animations
+            and a mapping from each split node index to its split animation.
+        """
+        animations = []
+        split_node_animations = {}
+        placeholder_class_nodes = {}
+        # Show the root node as its dominant class first.
+        root_class_index = int(np.argmax(self.tree.value[0]))
+        root_placeholder_node = self._make_placeholder_leaf(root_class_index)
+        root_placeholder_node.move_to(self.nodes_map[0])
+        placeholder_class_nodes[0] = root_placeholder_node
+        animations.append(AnimationGroup(FadeIn(root_placeholder_node), lag_ratio=0.0))
+        for node_index in node_expand_order:
+            left_child_index = self.tree.children_left[node_index]
+            right_child_index = self.tree.children_right[node_index]
+            is_leaf_node = left_child_index == right_child_index
+            if is_leaf_node:
+                # Leaf nodes are revealed when their parent split expands.
+                continue
+            # Replace the placeholder class node with the split node.
+            split_animations = []
+            placeholder_node = placeholder_class_nodes.pop(node_index, None)
+            if placeholder_node is not None:
+                split_animations.append(FadeOut(placeholder_node))
+            split_animations.append(FadeIn(self.nodes_map[node_index]))
+            # Create the children and connect them to the split node.
+            children_animations = []
+            for child_index in (left_child_index, right_child_index):
+                edge = self.edge_map[f"{node_index},{child_index}"]
+                child_left_index = self.tree.children_left[child_index]
+                child_right_index = self.tree.children_right[child_index]
+                if child_left_index == child_right_index:
+                    child_animation = AnimationGroup(
+                        FadeIn(self.nodes_map[child_index]),
+                        Create(edge),
+                        lag_ratio=0.0,
+                    )
+                else:
+                    child_class_index = int(np.argmax(self.tree.value[child_index]))
+                    placeholder_child = self._make_placeholder_leaf(child_class_index)
+                    placeholder_child.move_to(self.nodes_map[child_index])
+                    placeholder_class_nodes[child_index] = placeholder_child
+                    child_animation = AnimationGroup(
+                        FadeIn(placeholder_child),
+                        Create(edge),
+                        lag_ratio=0.0,
+                    )
+                children_animations.append(child_animation)
+            split_animations.append(
+                AnimationGroup(*children_animations, lag_ratio=0.0)
+            )
+            split_animation = AnimationGroup(*split_animations, lag_ratio=0.0)
+            animations.append(split_animation)
+            split_node_animations[node_index] = split_animation
+
+        return animations, split_node_animations
+
     def create_level_order_expansion_decision_tree(self, tree: Mobject):
         """Expands the decision tree in level order.
 
@@ -340,12 +467,14 @@ class DecisionTreeDiagram(Group):
             The sklearn tree structure (``tree_`` attribute of a fitted
             :class:`~sklearn.tree.DecisionTreeClassifier`).
 
-        Raises
-        ------
-        NotImplementedError
-            Always raised; level-order expansion is not yet implemented.
+        Returns
+        -------
+            The expansion animation.
         """
-        raise NotImplementedError()
+        node_expand_order = helpers.compute_level_order_traversal(self.tree)
+        animations, _ = self._make_expansion_animations(node_expand_order)
+
+        return Succession(*animations, lag_ratio=1.0)
 
     def create_bfs_expansion_decision_tree(self, tree: Mobject) -> tuple:
         """Expands the tree using BFS.
@@ -361,124 +490,14 @@ class DecisionTreeDiagram(Group):
             ``(Succession, dict)`` — the expansion animation and a mapping
             from each split node index to its split animation.
         """
-        animations = []
-        split_node_animations = {} # Dictionary mapping split node to animation
-        # Compute parent mapping
-        parent_mapping = helpers.compute_node_to_parent_mapping(self.tree)
-        # Create the root node as most common class
-        placeholder_class_nodes = {}
-        root_node_class_index = np.argmax(
-            self.tree.value[0]
+        node_expand_order = helpers.compute_bfs_traversal(self.tree)
+        animations, split_node_animations = self._make_expansion_animations(
+            node_expand_order
         )
-        root_placeholder_node = LeafNode(
-            class_index=root_node_class_index,
-            class_colors=self.class_colors,
-            class_image_paths=self.class_image_paths,
-        )
-        root_placeholder_node.move_to(self.nodes_map[0])
-        placeholder_class_nodes[0] = root_placeholder_node
-        root_create_animation = AnimationGroup(
-            FadeIn(root_placeholder_node),
-            lag_ratio=0.0
-        )
-        animations.append(root_create_animation)
-        # Iterate through the nodes
-        queue = [0]
-        while len(queue) > 0:
-            node_index = queue.pop(0)
-            # Check if a node is a split node or not
-            left_child_index = self.tree.children_left[node_index]
-            right_child_index = self.tree.children_right[node_index]
-            is_leaf_node = left_child_index == right_child_index
-            if not is_leaf_node:
-                # Remove the currently placeholder class node
-                fade_out_animation = FadeOut(
-                    placeholder_class_nodes[node_index]
-                )
-                animations.append(fade_out_animation)
-                # Fade in the split node
-                fade_in_animation = FadeIn(
-                    self.nodes_map[node_index]
-                )
-                animations.append(fade_in_animation)
-                # Split the node by creating the children and connecting them
-                # to the parent
-                # Handle left child
-                assert left_child_index in self.nodes_map.keys()
-                left_node = self.nodes_map[left_child_index]
-                left_parent_edge = self.edge_map[f"{node_index},{left_child_index}"]
-                # Get the children of the left node
-                left_node_left_index = self.tree.children_left[left_child_index]
-                left_node_right_index = self.tree.children_right[left_child_index]
-                left_is_leaf = left_node_left_index == left_node_right_index
-                if left_is_leaf:
-                    # If a child is a leaf then just create it
-                    left_animation = FadeIn(left_node)
-                else:
-                    # If the child is a split node find the dominant class and make a temp
-                    left_node_class_index = np.argmax(
-                        self.tree.value[left_child_index]
-                    )
-                    new_leaf_node = LeafNode(
-                        class_index=left_node_class_index,
-                        class_colors=self.class_colors,
-                        class_image_paths=self.class_image_paths,
-                    )
-                    new_leaf_node.move_to(self.nodes_map[left_child_index])
-                    placeholder_class_nodes[left_child_index] = new_leaf_node
-                    left_animation = AnimationGroup(
-                        FadeIn(new_leaf_node),
-                        Create(left_parent_edge),
-                        lag_ratio=0.0
-                    )
-                # Handle right child
-                assert right_child_index in self.nodes_map.keys()
-                right_node = self.nodes_map[right_child_index]
-                right_parent_edge = self.edge_map[f"{node_index},{right_child_index}"]
-                # Get the children of the left node
-                right_node_left_index = self.tree.children_left[right_child_index]
-                right_node_right_index = self.tree.children_right[right_child_index]
-                right_is_leaf = right_node_left_index == right_node_right_index
-                if right_is_leaf:
-                    # If a child is a leaf then just create it
-                    right_animation = FadeIn(right_node)
-                else:
-                    # If the child is a split node find the dominant class and make a temp
-                    right_node_class_index = np.argmax(
-                        self.tree.value[right_child_index]
-                    )
-                    new_leaf_node = LeafNode(
-                        class_index=right_node_class_index,
-                        class_colors=self.class_colors,
-                        class_image_paths=self.class_image_paths,
-                    )
-                    placeholder_class_nodes[right_child_index] = new_leaf_node
-                    right_animation = AnimationGroup(
-                        FadeIn(new_leaf_node),
-                        Create(right_parent_edge),
-                        lag_ratio=0.0
-                    )
-                # Combine the animations
-                split_animation = AnimationGroup(
-                    left_animation,
-                    right_animation,
-                    lag_ratio=0.0,
-                )
-                animations.append(split_animation)
-                # Add the split animation to the split node dict
-                split_node_animations[node_index] = split_animation
-            # Add the children to the queue
-            if left_child_index != -1:
-                queue.append(left_child_index)
-            if right_child_index != -1:
-                queue.append(right_child_index)
 
-        return Succession(
-            *animations, 
-            lag_ratio=1.0
-        ), split_node_animations
+        return Succession(*animations, lag_ratio=1.0), split_node_animations
 
-    def make_expand_tree_animation(self, node_expand_order: list[int]):
+    def make_expand_tree_animation(self, node_expand_order: list[int]) -> AnimationGroup:
         """Make an animation for expanding the decision tree.
 
         Shows each split node as a leaf node initially, and then when it
@@ -491,16 +510,14 @@ class DecisionTreeDiagram(Group):
             Node indices in the order they should be expanded, as returned
             by the traversal helpers in
             `helpers` module.
+
+        Returns
+        -------
+            The tree expansion animation.
         """
-        # Show the root node as a leaf node
-        # Iterate through the nodes in the traversal order
-        for node_index in node_expand_order[1:]:
-            # Figure out if it is a leaf or not
-            # If it is not a leaf then remove the placeholder leaf node
-            #       then show the split node
-            # If it is a leaf then just show the leaf node
-            pass
-        pass
+        animations, _ = self._make_expansion_animations(node_expand_order)
+
+        return AnimationGroup(*animations, lag_ratio=1.0)
 
     @override_animation(Create)
     def create_decision_tree(self, traversal_order: str = "bfs") -> Animation | None:
@@ -556,6 +573,12 @@ class DecisionTreeContainer():
 
         This animations unfolds the tree diagram as well as showing the splitting
         of a shaded region in the Decision Tree embedding.
+
+        .. note::
+
+            Not implemented: the documented behavior needs the
+            ``DecisionTreeEmbedding`` visualization, which is not part of the
+            vendored subset of the upstream package.
         """
         # Draw points in the embedding
         # Start the tree splitting animation

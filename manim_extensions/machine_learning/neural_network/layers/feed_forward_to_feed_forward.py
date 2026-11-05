@@ -4,6 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement modify_edge_colors
 """Feed-forward to feed-forward layer connection visualization."""
 
 import numpy as np
@@ -28,6 +29,7 @@ from typing import Sequence
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from ... import config
+from ....utils.deps import require
 from manim.typing import VectorND
 
 class FeedForwardToFeedForward(ConnectiveLayer):
@@ -189,17 +191,44 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     def modify_edge_colors(self, colors: list[ManimColor] | None = None, magnitudes: VectorND | None = None, color_scheme: str = "inferno"):
         """Changes the colors of edges.
 
+        Either explicit per-edge colors or magnitudes mapped through a
+        matplotlib colormap must be provided.
+
         Parameters
         ----------
         colors
-            Colors to apply to the edges.
+            Colors to apply to the edges, one per edge.
         magnitudes
-            Magnitudes used to determine the edge colors.
+            Magnitudes used to determine the edge colors. Values are mapped
+            to colors through ``color_scheme``.
         color_scheme
             Name of the color scheme used when mapping magnitudes to colors.
+
+        Raises
+        ------
+        ValueError
+            If neither ``colors`` nor ``magnitudes`` is provided.
         """
-        # TODO implement
-        pass
+        if colors is not None:
+            assert len(colors) == len(self.edges)
+            for edge, color in zip(self.edges, colors):
+                edge.set_color(color)
+        elif magnitudes is not None:
+            magnitudes = np.asarray(magnitudes, dtype=float).flatten()
+            assert len(magnitudes) == len(self.edges)
+            matplotlib = require("ml", "matplotlib")
+            colormap = matplotlib.colormaps[color_scheme]
+            normalize = matplotlib.colors.Normalize(
+                vmin=float(magnitudes.min()), vmax=float(magnitudes.max())
+            )
+            for edge, magnitude in zip(self.edges, magnitudes):
+                edge.set_color(
+                    ManimColor(
+                        matplotlib.colors.to_hex(colormap(normalize(magnitude)))
+                    )
+                )
+        else:
+            raise ValueError("Provide either colors or magnitudes.")
 
     def modify_edge_stroke_widths(self, widths: Sequence[float]) -> AnimationGroup:
         """Changes the widths of the edges.

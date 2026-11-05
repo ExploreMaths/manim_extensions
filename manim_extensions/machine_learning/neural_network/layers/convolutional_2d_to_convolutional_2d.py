@@ -4,6 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: drop a stale TODO and unreachable duplicate return
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 import numpy as np
@@ -351,8 +352,6 @@ class Filters(VGroup):
         instead of just when the filters were supposed to appear.
         I think this is a bug with Succession in the core
         Manim Community Library.
-
-        TODO Fix this
         """
 
         def add_content(object: Mobject) -> Mobject:
@@ -368,12 +367,6 @@ class Filters(VGroup):
             return object
 
         return ApplyFunction(add_content, self)
-        return AnimationGroup(
-            Create(self.input_rectangles),
-            Create(self.connective_lines),
-            Create(self.output_rectangles),
-            lag_ratio=0.0,
-        )
 
     def make_pulse_animation(self, shift_amount: Vector3D) -> ShowPassingFlash:
         """Make animation of the filter pulsing.

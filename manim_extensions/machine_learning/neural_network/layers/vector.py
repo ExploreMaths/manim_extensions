@@ -4,9 +4,10 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: drop the unreachable LaTeX branch of make_vector
 """Vector layer visualization for neural networks."""
 
-from manim import AnimationGroup, Create, Matrix, Text, Write, np, override_animation
+from manim import AnimationGroup, Create, Text, Write, override_animation
 import random
 
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
@@ -91,12 +92,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         Returns
         -------
             A Text instance representing the result."""
-        if False:
-            # TODO install Latex
-            values = np.array([self.value_func() for i in range(self.num_values)])
-            values = values[None, :].T
-            vector = Matrix(values)
-
         vector_label = Text(f"[{self.value_func():.2f}]")
         vector_label.scale(0.3)
 

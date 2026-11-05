@@ -4,6 +4,7 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: forward play to ThreeDScene instead of silently doing nothing
 """Scene classes for Manim ML visualizations.
 
 This module provides custom scene classes for machine learning visualizations.
@@ -49,4 +50,4 @@ class ManimML3DScene(ThreeDScene):
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play`.
         """
-        pass
+        super().play(*args, **kwargs)

@@ -3,7 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
+#
 # SPDX-License-Identifier: MIT
+# patched: implement replace_layer
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
@@ -24,6 +26,7 @@ from manim import (
     AnimationGroup,
     Create,
     DEFAULT_FONT_SIZE,
+    FadeOut,
     Group,
     ManimColor,
     Mobject,
@@ -32,6 +35,7 @@ from manim import (
     Succession,
     Text,
     UP,
+    UpdateFromFunc,
     Wait,
     override_animation,
 )
@@ -129,8 +133,6 @@ class NeuralNetwork(Group):
         self.layout = layout
         self.layout_direction = layout_direction
         self.debug_mode = debug_mode
-        # TODO take layer_node_count [0, (1, 2), 0]
-        # and make it have explicit distinct subspaces
         # Construct all of the layers
         self._construct_input_layers()
         # Place the layers
@@ -260,7 +262,6 @@ class NeuralNetwork(Group):
         layout_direction: str = "top_to_bottom"
     ):
         """Creates the neural network."""
-        # TODO implement more sophisticated custom layouts
         # Default: Linear layout
         for layer_index in range(1, len(self.input_layers)):
             previous_layer = self.input_layers[layer_index - 1]
@@ -383,8 +384,12 @@ class NeuralNetwork(Group):
         neural_network = self
         return RemoveLayer(layer, neural_network, layer_spacing=self.layer_spacing)
 
-    def replace_layer(self, old_layer: Mobject, new_layer: Mobject):
+    def replace_layer(self, old_layer: Mobject, new_layer: Mobject) -> Succession:
         """Replaces given layer object.
+
+        The old layer is faded out, the new layer is constructed in the
+        context of the old layer's neighbours, the surrounding connective
+        layers are rebuilt, and the new layer is revealed.
 
         Parameters
         ----------
@@ -393,12 +398,62 @@ class NeuralNetwork(Group):
         new_layer
             The layer that takes the place of ``old_layer``.
 
+        Returns
+        -------
+            Animation that swaps the two layers.
+
         Raises
         ------
-        NotImplementedError
-            Always raised; layer replacement is not yet supported.
+        Exception
+            Raised when ``old_layer`` is not part of the network.
         """
-        raise NotImplementedError()
+        input_index = self.input_layers.index_of(old_layer)
+        if input_index == -1:
+            raise Exception("Layer object not found")
+        previous_layer = (
+            self.input_layers[input_index - 1] if input_index > 0 else None
+        )
+        next_layer = (
+            self.input_layers[input_index + 1]
+            if input_index + 1 < len(self.input_layers)
+            else None
+        )
+        # Build the new layer in the context of its neighbours
+        new_layer.construct_layer(previous_layer, next_layer)
+        new_layer.move_to(old_layer)
+        prior_center = self.all_layers.get_center()
+
+        def swap_layer(network: "NeuralNetwork"):
+            """Replace the layer and rebuild the surrounding connections."""
+            network.input_layers.replace(input_index, new_layer)
+            for name, layer in network.input_layers_dict.items():
+                if layer is old_layer:
+                    network.input_layers_dict[name] = new_layer
+            # Remove the stale activation function from the scene
+            if hasattr(old_layer, "activation_function"):
+                if old_layer.activation_function is not None:
+                    network.remove(old_layer.activation_function)
+            # Rebuild the layers and connections around the new layer
+            network.remove(network.all_layers)
+            (
+                network.connective_layers,
+                network.all_layers,
+            ) = network._construct_connective_layers()
+            network._place_layers(
+                layout=network.layout, layout_direction=network.layout_direction
+            )
+            network._place_connective_layers()
+            network.connective_layers.set_z_index(2)
+            network.input_layers.set_z_index(3)
+            network.all_layers.move_to(prior_center)
+            network.add(network.all_layers)
+
+        return Succession(
+            FadeOut(old_layer),
+            UpdateFromFunc(self, swap_layer),
+            Create(new_layer),
+            lag_ratio=1.0,
+        )
 
     def make_forward_pass_animation(
         self, 

@@ -4,12 +4,16 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: highlight the evaluated point in make_evaluate_animation
 """Base class for activation function visualization."""
 
 from manim import (
     AnimationGroup,
     ApplyMethod,
     Axes,
+    Dot,
+    FadeIn,
+    FadeOut,
     ManimColor,
     Succession,
     SurroundingRectangle,
@@ -140,6 +144,9 @@ class ActivationFunction(ABC, VGroup):
     def apply_function(self, x_val: float | None):
         """Evaluates function at given x_val.
 
+        Abstract method: concrete subclasses implement the actual
+        activation function.
+
         Parameters
         ----------
         x_val
@@ -152,6 +159,9 @@ class ActivationFunction(ABC, VGroup):
     def make_evaluate_animation(self, x_val: float | None = None) -> Succession:
         """Evaluates the function at a random point in the x_range.
 
+        The graph and its surrounding rectangle are highlighted and a dot
+        marks the evaluated point for the duration of the animation.
+
         Parameters
         ----------
         x_val
@@ -161,14 +171,21 @@ class ActivationFunction(ABC, VGroup):
         -------
             A Succession instance representing the result.
         """
+        if x_val is None:
+            x_val = random.uniform(self.x_range[0], self.x_range[1])
+        y_val = self.apply_function(x_val)
+        evaluation_dot = Dot(
+            self.axes.coords_to_point(x_val, y_val),
+            color=self.active_color,
+        )
         # Highlight the graph
-        # TODO: Evaluate the function at the x_val and show a highlighted dot
         animation_group = Succession(
             AnimationGroup(
                 ApplyMethod(self.graph.set_color, self.active_color),
                 ApplyMethod(
                     self.surrounding_rectangle.set_stroke_color, self.active_color
                 ),
+                FadeIn(evaluation_dot),
                 lag_ratio=0.0,
             ),
             Wait(1),
@@ -177,6 +194,7 @@ class ActivationFunction(ABC, VGroup):
                 ApplyMethod(
                     self.surrounding_rectangle.set_stroke_color, self.rectangle_color
                 ),
+                FadeOut(evaluation_dot),
                 lag_ratio=0.0,
             ),
             lag_ratio=1.0,

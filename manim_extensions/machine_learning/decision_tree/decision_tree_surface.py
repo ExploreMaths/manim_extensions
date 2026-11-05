@@ -5,6 +5,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import scikit-learn (ml extra)
+# patched: implement make_split_to_animation_map
 """Decision tree visualization for Manim."""
 
 from manim import (
@@ -482,38 +483,10 @@ class DecisionTreeSurface(VGroup):
             self.tree_clf, maxrange, x=0, y=1, n_features=2
         )
         # turn the rectangle objects into manim rectangles
-        def convert_rectangle_to_polygon(rect: VectorND) -> Polygon:
-            """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.
-
-            Returns
-            -------
-                A Polygon instance representing the result."""
-            # get the points for the rectangle in the plot coordinate frame
-            bottom_left = [rect[0], rect[3]]
-            bottom_right = [rect[1], rect[3]]
-            top_right = [rect[1], rect[2]]
-            top_left = [rect[0], rect[2]]
-            # convert those points into the entire manim coordinates
-            bottom_left_coord = self.axes.coords_to_point(*bottom_left)
-            bottom_right_coord = self.axes.coords_to_point(*bottom_right)
-            top_right_coord = self.axes.coords_to_point(*top_right)
-            top_left_coord = self.axes.coords_to_point(*top_left)
-            points = [
-                bottom_left_coord,
-                bottom_right_coord,
-                top_right_coord,
-                top_left_coord,
-            ]
-            # construct a polygon object from those manim coordinates
-            rectangle = Polygon(
-                *points, color=color, fill_opacity=0.3, stroke_opacity=0.0
-            )
-            return rectangle
-
         manim_rectangles = []
         for rect in rectangles:
             color = self.class_colors[int(rect[4])]
-            rectangle = convert_rectangle_to_polygon(rect)
+            rectangle = self._rectangle_to_polygon(rect, color)
             manim_rectangles.append(rectangle)
 
         manim_rectangles = merge_overlapping_polygons(
@@ -521,6 +494,125 @@ class DecisionTreeSurface(VGroup):
         )
 
         return manim_rectangles
+
+    def _rectangle_to_polygon(self, rect: VectorND, color: ManimColor) -> Polygon:
+        """Convert a data-coordinate rectangle to a Manim polygon in axes coordinates.
+
+        Parameters
+        ----------
+        rect
+            Decision rectangle ``[left, right, bottom, top, class_index]``
+            in data coordinates.
+        color
+            Color of the polygon.
+
+        Returns
+        -------
+            A Polygon instance representing the decision rectangle.
+        """
+        # get the points for the rectangle in the plot coordinate frame
+        bottom_left = [rect[0], rect[3]]
+        bottom_right = [rect[1], rect[3]]
+        top_right = [rect[1], rect[2]]
+        top_left = [rect[0], rect[2]]
+        # convert those points into the entire manim coordinates
+        bottom_left_coord = self.axes.coords_to_point(*bottom_left)
+        bottom_right_coord = self.axes.coords_to_point(*bottom_right)
+        top_right_coord = self.axes.coords_to_point(*top_right)
+        top_left_coord = self.axes.coords_to_point(*top_left)
+        points = [
+            bottom_left_coord,
+            bottom_right_coord,
+            top_right_coord,
+            top_left_coord,
+        ]
+        # construct a polygon object from those manim coordinates
+        rectangle = Polygon(
+            *points, color=color, fill_opacity=0.3, stroke_opacity=0.0
+        )
+
+        return rectangle
+
+    def _make_decision_rectangles(self) -> dict[int, VectorND]:
+        """Compute the decision rectangle of every leaf node of the tree.
+
+        Returns
+        -------
+            Mapping from leaf node index to its decision rectangle
+            ``[left, right, bottom, top, class_index]``.
+        """
+        ctree = require("ml", "sklearn.tree")._tree
+        # compute data bounds
+        left = np.amin(self.data[:, 0]) - 0.2
+        right = np.amax(self.data[:, 0]) - 0.2
+        top = np.amax(self.data[:, 1])
+        bottom = np.amin(self.data[:, 1]) - 0.2
+        maxrange = [left, right, bottom, top]
+        rectangles = compute_decision_areas(
+            self.tree_clf, maxrange, x=0, y=1, n_features=2
+        )
+        tree = self.tree_clf.tree_
+        leaf_indices = [
+            node_index
+            for node_index in range(tree.node_count)
+            if tree.children_left[node_index] == ctree.TREE_LEAF
+        ]
+        leaf_rectangles = dict(zip(leaf_indices, rectangles))
+
+        return leaf_rectangles
+
+    def _subtree_leaves(self, node_index: int, ctree) -> list[int]:
+        """Collect the leaf node indices below a tree node.
+
+        Parameters
+        ----------
+        node_index
+            Index of the tree node whose subtree leaves are collected.
+        ctree
+            The ``sklearn.tree._tree`` module, used to detect leaf nodes.
+
+        Returns
+        -------
+            Indices of the leaf nodes in the subtree, in depth-first order.
+        """
+        tree = self.tree_clf.tree_
+        left_child_index = tree.children_left[node_index]
+        right_child_index = tree.children_right[node_index]
+        if left_child_index == ctree.TREE_LEAF:
+            return [node_index]
+        leaves = self._subtree_leaves(left_child_index, ctree)
+        leaves.extend(self._subtree_leaves(right_child_index, ctree))
+
+        return leaves
+
+    def make_split_to_animation_map(self) -> dict[int, AnimationGroup]:
+        """Returns a dictionary mapping a given split node to an animation to be played.
+
+        Each animation creates the classification areas of the leaves below
+        the corresponding split node, so the decision surface can be revealed
+        split by split alongside a tree expansion animation.
+
+        Returns
+        -------
+            Mapping from split node index to its classification area animation.
+        """
+        ctree = require("ml", "sklearn.tree")._tree
+        tree = self.tree_clf.tree_
+        leaf_rectangles = self._make_decision_rectangles()
+        split_to_animation = {}
+        for node_index in range(tree.node_count):
+            if tree.children_left[node_index] == ctree.TREE_LEAF:
+                continue
+            polygons = []
+            for leaf_index in self._subtree_leaves(node_index, ctree):
+                rect = leaf_rectangles[leaf_index]
+                color = self.class_colors[int(rect[4])]
+                polygons.append(self._rectangle_to_polygon(rect, color))
+            split_to_animation[node_index] = AnimationGroup(
+                *(Create(polygon) for polygon in polygons), lag_ratio=1.0
+            )
+
+        return split_to_animation
 
     @override_animation(Create)
     def create_override(self) -> AnimationGroup:
@@ -551,15 +643,3 @@ class DecisionTreeSurface(VGroup):
         animation_group = AnimationGroup(*animations)
 
         return animation_group
-
-    def make_split_to_animation_map(self):
-        """
-        Returns a dictionary mapping a given split
-        node to an animation to be played.
-        """
-        # Create an initial decision tree surface
-        # Go through each split node
-        # 1. Make a line split animation
-        # 2. Create the relevant classification areas
-        #    and transform the old ones to them
-        pass

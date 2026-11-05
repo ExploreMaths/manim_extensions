@@ -4,9 +4,10 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: return a real Create animation instead of a no-op
 """Max pooling 2D layer visualization for neural networks."""
 
-from manim import AnimationGroup, BLUE, Create, ManimColor, ORANGE, VGroup, override_animation
+from manim import AnimationGroup, BLUE, Create, FadeIn, ManimColor, ORANGE, VGroup, override_animation
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
@@ -186,5 +187,10 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     @override_animation(Create)
     def _create_override(self, **kwargs):
-        """Create animation for the MaxPooling operation."""
-        pass
+        """Create animation for the MaxPooling operation.
+
+        Returns
+        -------
+            A fade-in animation of the output feature maps.
+        """
+        return FadeIn(self.feature_maps)

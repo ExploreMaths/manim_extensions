@@ -4,12 +4,16 @@
 
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: route three-channel images to the RGB animation and implement it
 """Image to convolutional 2D layer connection visualization."""
 
 from manim import (
+    AnimationGroup,
     ApplyFunction,
     ApplyMethod,
     Create,
+    FadeIn,
+    Group,
     Mobject,
     Succession,
     Wait,
@@ -20,6 +24,7 @@ from .image import ImageLayer
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 
 from ... import config
+from ...utils.mobjects.image import GrayscaleImageMobject
 
 
 class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
@@ -33,6 +38,41 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         The output convolutional layer.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. manim:: RGBImageToConvolutionExample
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           Convolutional2DLayer,
+           ImageLayer,
+           NeuralNetwork,
+       )
+
+       class RGBImageToConvolutionExample(ThreeDScene):
+           def construct(self):
+               # Synthesize a small RGB image with one channel per colour
+               yy, xx = np.mgrid[0:16, 0:16]
+               rgb_image = np.stack(
+                   [
+                       (yy * 12).astype(np.uint8),
+                       (xx * 12).astype(np.uint8),
+                       ((yy + xx) * 8).astype(np.uint8),
+                   ],
+                   axis=-1,
+               )
+               nn = NeuralNetwork(
+                   [
+                       ImageLayer(rgb_image, height=1.2),
+                       Convolutional2DLayer(3, 5, 3, filter_spacing=0.32),
+                   ],
+                   layer_spacing=0.25,
+               )
+               nn.move_to(ORIGIN)
+               self.add(nn)
+               self.play(nn.make_forward_pass_animation(), run_time=4)
     """
 
     input_class = ImageLayer
@@ -93,7 +133,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         """
         # Transform the image from the input layer to the
         num_image_channels = self.input_layer.num_channels
-        if num_image_channels == 1 or num_image_channels == 3:  # TODO fix this later
+        if num_image_channels == 1:
             return self.grayscale_image_forward_pass_animation()
         elif num_image_channels == 3:
             return self.rbg_image_forward_pass_animation()
@@ -102,31 +142,65 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                 f"Unrecognized number of image channels: {num_image_channels}"
             )
 
-    def rbg_image_forward_pass_animation(self):
+    def rbg_image_forward_pass_animation(self) -> Succession:
         """Handles forward pass animation for 3 channel image.
 
-        Raises
-        ------
-        NotImplementedError
-            Always raised; RGB image forward pass animations are not yet
-            supported.
-        """
-        image_mobject = self.input_layer.image_mobject
-        # TODO get each color channel and turn it into an image
-        # TODO create image mobjects for each channel and transform
-        # it to the feature maps of the output_layer
-        raise NotImplementedError()
-
-    def grayscale_image_forward_pass_animation(self) -> Succession:
-        """Handles forward pass animation for 1 channel image.
+        Each colour channel is turned into a grayscale image at the position
+        of the input image and is then mapped onto one feature map of the
+        convolutional layer.
 
         Returns
         -------
-            A Succession instance representing the result."""
+            A Succession instance representing the result.
+
+        Raises
+        ------
+        ValueError
+            If the convolutional layer has fewer feature maps than the image
+            has channels.
+        """
+        numpy_image = self.input_layer.numpy_image
+        target_feature_maps = self.output_layer.feature_maps
+        if len(target_feature_maps) < self.input_layer.num_channels:
+            raise ValueError(
+                "The convolutional layer needs at least as many feature maps "
+                "as the image has channels."
+            )
+        channel_images = []
         animations = []
-        image_mobject = self.input_layer.image_mobject
-        target_feature_map = self.output_layer.feature_maps[0]
-        # Map image mobject to feature map
+        for channel_index in range(self.input_layer.num_channels):
+            channel_image = GrayscaleImageMobject(
+                numpy_image[:, :, channel_index],
+                height=self.input_layer.image_height,
+            )
+            channel_image.move_to(self.input_layer.image_mobject)
+            channel_images.append(channel_image)
+            animations.append(
+                self._image_to_feature_map_animation(
+                    channel_image, target_feature_maps[channel_index]
+                )
+            )
+        return Succession(
+            FadeIn(Group(*channel_images)),
+            AnimationGroup(*animations),
+        )
+
+    def _image_to_feature_map_animation(
+        self, image_mobject: Mobject, target_feature_map: Mobject
+    ) -> Succession:
+        """Rotate, scale and move an image mobject onto a feature map.
+
+        Parameters
+        ----------
+        image_mobject
+            Image mobject that is transformed.
+        target_feature_map
+            Feature map the image is mapped onto.
+
+        Returns
+        -------
+            A Succession instance representing the result.
+        """
         # Make rotation of image
         rotation = ApplyMethod(
             image_mobject.rotate,
@@ -137,22 +211,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             {"about_point": image_mobject.get_center()},
             run_time=0.5,
         )
-        """
-        x_rotation = ApplyMethod(
-            image_mobject.rotate,
-            ThreeDLayer.three_d_x_rotation,
-            [1, 0, 0], 
-            image_mobject.get_center(),
-            run_time=0.5
-        )
-        y_rotation = ApplyMethod(
-            image_mobject.rotate,
-            ThreeDLayer.three_d_y_rotation,
-            [0, 1, 0], 
-            image_mobject.get_center(),
-            run_time=0.5
-        )
-        """
         # Set opacity
         set_opacity = ApplyMethod(image_mobject.set_opacity, 0.2, run_time=0.5)
         # Scale the max of width or height to the
@@ -170,17 +228,25 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             return image_mobject
 
         scale_image = ApplyFunction(scale_image_func, image_mobject)
-        # scale_image = ApplyMethod(image_mobject.scale, scale_factor, run_time=0.5)
         # Move the image
         move_image = ApplyMethod(image_mobject.move_to, target_feature_map)
         # Compose the animations
-        animation = Succession(
+        return Succession(
             rotation,
             scale_image,
             set_opacity,
             move_image,
         )
-        return animation
+
+    def grayscale_image_forward_pass_animation(self) -> Succession:
+        """Handles forward pass animation for 1 channel image.
+
+        Returns
+        -------
+            A Succession instance representing the result."""
+        return self._image_to_feature_map_animation(
+            self.input_layer.image_mobject, self.output_layer.feature_maps[0]
+        )
 
     def scale(self, scale_factor: float, **kwargs):
         """Scale the layer by forwarding to the parent class.
