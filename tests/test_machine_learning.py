@@ -439,6 +439,13 @@ class TestTripletForwardPass:
         with pytest.raises(ValueError):
             vae.make_triplet_forward_pass((image, image))
 
+    def test_image_forward_pass_is_playable(self):
+        vae = VariationalAutoencoder()
+        image = np.zeros((8, 8), dtype=np.uint8)
+        animation = vae.make_image_forward_pass(image, image)
+        assert isinstance(animation, AnimationGroup)
+        _assert_playable(animation)
+
 
 class TestThreeChannelImageForwardPass:
     def test_rgb_image_network_is_playable(self):

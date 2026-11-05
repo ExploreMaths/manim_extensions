@@ -5,7 +5,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 #
 # SPDX-License-Identifier: MIT
-# patched: implement make_triplet_forward_pass
+# patched: implement make_triplet_forward_pass and make_image_forward_pass
 """Variational Autoencoder Manim Visualizations.
 
 In this module I define Manim visualizations for Variational Autoencoders
@@ -173,10 +173,21 @@ class VariationalAutoencoder(Group):
         -------
             A AnimationGroup instance representing the result.
         """
-        # Make a wrapper NN with images
-        wrapper_neural_network = NeuralNetwork(
-            [ImageLayer(input_image), self.neural_network, ImageLayer(output_image)]
+        # Make a wrapper NN with images. The encoder/decoder layers are
+        # rebuilt instead of nesting ``self.neural_network``: a network is not
+        # a layer, so it has no ``construct_layer`` method to call.
+        wrapper_layers = [ImageLayer(input_image)]
+        wrapper_layers.extend(
+            FeedForwardLayer(node_count)
+            for node_count in self.encoder_nodes_per_layer
         )
+        wrapper_layers.append(EmbeddingLayer())
+        wrapper_layers.extend(
+            FeedForwardLayer(node_count)
+            for node_count in self.decoder_nodes_per_layer
+        )
+        wrapper_layers.append(ImageLayer(output_image))
+        wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
         animation_group = AnimationGroup(
             Create(wrapper_neural_network),
