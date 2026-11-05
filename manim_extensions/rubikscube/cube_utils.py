@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2021 KingWampy
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: implement the local state helpers get_cubie_colors_from_state and get_all_states
 
 """Utility functions for Rubik's Cube.
 
@@ -10,8 +11,10 @@ This module provides utility functions for Rubik's Cube operations.
 
 from typing import TYPE_CHECKING
 
+import numpy as np
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
 from manim.typing import Vector3D
+from manim.utils.color import ManimColor
 
 if TYPE_CHECKING:
     from .cube import RubiksCube  # noqa: F401
@@ -57,11 +60,13 @@ def get_direction_from_face(face: str) -> int:
     return -1
 
 
-def get_cubie_colors_from_state(state: str) -> list:
-    """Extract individual cubie colours from a cube state string.
+def get_cubie_colors_from_state(state: str) -> list[list[str]]:
+    """Split a facelet state string into one colour list per cube face.
 
-    The state string follows the standard cube notation where each
-    character represents the colour of one face.
+    The state string uses the standard facelet notation accepted by
+    :func:`~manim_extensions.rubikscube.cube.RubiksCube.set_state`: the
+    faces appear in the order Up, Right, Front, Down, Left, Back, each
+    contributing ``dim ** 2`` colour characters.
 
     Parameters
     ----------
@@ -70,13 +75,29 @@ def get_cubie_colors_from_state(state: str) -> list:
 
     Returns
     -------
-        A list of colour characters grouped by cubie.
+        Six lists of colour characters in Up, Right, Front, Down, Left,
+        Back order.
+
+    Raises
+    ------
+    ValueError
+        Raised when the length of *state* is not a multiple of six or is
+        empty.
     """
-    pass
+    if len(state) == 0 or len(state) % 6 != 0:
+        raise ValueError(
+            "A facelet state must contain the same number of colours per face."
+        )
+    face_size = len(state) // 6
+    return [list(state[index * face_size : (index + 1) * face_size]) for index in range(6)]
 
 
 def get_all_states(cube: "RubiksCube") -> str:
-    """Return the current state of every cubie in the cube.
+    """Return the current facelet state of the cube.
+
+    The faces are read in the same order and orientation used by
+    :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state`, so the
+    returned string round-trips through that method.
 
     Parameters
     ----------
@@ -85,9 +106,38 @@ def get_all_states(cube: "RubiksCube") -> str:
 
     Returns
     -------
-        Concatenated face-state string for all cubies.
+        Concatenated facelet string of all six faces.
+
+    Raises
+    ------
+    ValueError
+        Raised when a sticker colour does not match any of the cube colours.
     """
-    pass
+    face_tiles = {
+        "U": np.rot90(cube.get_face("U", False), 2).flatten(),
+        "R": np.rot90(np.flip(cube.get_face("R", False), (0, 1)), -1).flatten(),
+        "F": np.rot90(np.flip(cube.get_face("F", False), 0)).flatten(),
+        "D": np.rot90(np.flip(cube.get_face("D", False), 0), 2).flatten(),
+        "L": np.rot90(np.flip(cube.get_face("L", False), 0)).flatten(),
+        "B": np.rot90(np.flip(cube.get_face("B", False), (0, 1)), -1).flatten(),
+    }
+    color_to_letter = {
+        ManimColor(color).to_hex(): letter
+        for letter, color in zip("URFDLB", cube.colors)
+    }
+
+    state = ""
+    for letter, tiles in face_tiles.items():
+        for cubie in tiles:
+            color = ManimColor(cubie.get_face(letter).get_fill_color()).to_hex()
+            try:
+                state += color_to_letter[color]
+            except KeyError as exc:
+                raise ValueError(
+                    f"Sticker colour {color} does not match any cube colour."
+                ) from exc
+
+    return state
 
 
 def get_type_of_cubie(dim: int, position: tuple[int, int, int]) -> str:
