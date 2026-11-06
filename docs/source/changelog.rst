@@ -23,6 +23,23 @@ v1.0.6 :bdg-primary-line:`In development`
 * Added a ``validate-api-coverage`` check (and refreshed the API snapshot)
   so every public name is documented.
 * Added a ``setup-manim-env@v1`` shared action to the CI workflows.
+* Added :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding`, a
+  :class:`~manim.mobject.types.vectorized_mobject.VGroup` that pairs a fitted
+  scikit-learn tree with its training points: dataset axes, one dot per
+  sample, and the decision-region rectangles from
+  :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`,
+  with ``Create`` / ``Uncreate`` overrides and a split-to-animation map.
+* Implemented
+  :meth:`~manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeContainer.make_unfold_tree_animation`,
+  which previously halted with ``NotImplementedError``: it unfolds the tree
+  in ``bfs``, ``level`` or ``best`` order beside the embedding, accepts a
+  fitted classifier or a bare ``tree_`` object, and ships with regression
+  tests and a rendered doc example.
+* Extended the mesh data model and :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`
+  to four dimensions: central projection (``scale = d / (d - w)``), rotations
+  in the ``(2, 4)`` plane, flips with 4D semantics, and
+  :func:`~manim_extensions.meshes.templates.create_grid` building a tesseract
+  (16 vertices, 24 square faces, 32 edges).
 
 **Changed**
 
@@ -49,6 +66,15 @@ v1.0.6 :bdg-primary-line:`In development`
 * Completed every ManimML usage snippet into a standalone ``Scene`` and
   rendered it with the ``manim`` directive (image-input example stays a
   runnable script because the upstream repository ships no ``digit.jpeg``).
+* Turned bare class names in docstrings into ``:class:`` cross-references
+  across the repository, using each class's real module for the target
+  (172 first mentions plus 54 repeated ones).
+* Fixed the decision-region rectangle offsets in
+  :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`
+  and dropped a stray ``print`` from its polygon builder.
+* Stopped :class:`~manim_extensions.machine_learning.decision_tree.decision_tree.SplitNode`
+  from appending a bogus ``cm`` unit to its threshold text, and scaled its
+  doc example so the figure fills the frame.
 
 **Documentation and hygiene**
 
@@ -72,6 +98,9 @@ v1.0.6 :bdg-primary-line:`In development`
 * Extended the Validate workflow with type-annotation, return-annotation,
   doc-section, cross-reference, and API-coverage jobs, and reached zero
   Sphinx warnings.
+* Added a ``validate-example-layout`` job that renders every doc example and
+  fails when the figure overflows the frame or covers less than a quarter of
+  it in both dimensions.
 
 
 v1.0.5 :bdg-success-line:`Latest`
