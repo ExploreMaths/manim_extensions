@@ -20,13 +20,18 @@ from manim import (
     VGroup,
     override_animation,
 )
-from manim.typing import MatrixMN, VectorND
-
+from typing import TYPE_CHECKING
 from types import SimpleNamespace
 
 import numpy as np
+from manim.typing import MatrixMN, VectorND
 
 from .decision_tree_surface import DecisionTreeSurface
+
+if TYPE_CHECKING:
+    from sklearn.tree import DecisionTreeClassifier
+
+    from .helpers import SklearnTree
 
 
 class DecisionTreeEmbedding(VGroup):
@@ -82,7 +87,7 @@ class DecisionTreeEmbedding(VGroup):
 
     def __init__(
         self,
-        sklearn_tree,
+        sklearn_tree: "DecisionTreeClassifier | SklearnTree",
         points: MatrixMN,
         classes: VectorND,
         axes: Axes | None = None,
