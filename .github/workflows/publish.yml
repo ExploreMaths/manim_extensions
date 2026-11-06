@@ -1,0 +1,163 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+name: Publish
+
+# Manual, one-shot release: build the sdist and wheel, upload them to PyPI,
+# then tag the commit and open the GitHub release whose notes are rendered
+# from the changelog entry for that version.  Publishing to PyPI and tagging
+# are deliberately kept in a single run so a failed upload can never leave a
+# tag (and therefore a release) behind.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish, without the leading v (must match pyproject.toml)"
+        required: true
+        type: string
+      dry_run:
+        description: "Build the distributions and render the notes, but skip the PyPI upload, the tag and the release"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and check the release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Tags are needed for the "Full Changelog" compare link.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check that the tag does not exist yet
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if git rev-parse --verify "refs/tags/v${VERSION}" >/dev/null 2>&1; then
+            echo "tag v${VERSION} already exists" >&2
+            exit 1
+          fi
+
+      - name: Check the version and the changelog entry
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          python workflow/check_release_version.py "$VERSION"
+          python workflow/changelog_to_md.py --version "$VERSION" --check
+
+      - name: Build the sdist and the wheel
+        run: |
+          python -m pip install --upgrade build twine
+          python -m build
+          twine check dist/*
+
+      - name: Render the release notes
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if PREVIOUS=$(git describe --tags --abbrev=0 HEAD 2>/dev/null); then
+            python workflow/changelog_to_md.py \
+              --version "$VERSION" \
+              --previous "${PREVIOUS#v}" \
+              --out release-notes.md
+          else
+            python workflow/changelog_to_md.py \
+              --version "$VERSION" \
+              --out release-notes.md
+          fi
+          cat release-notes.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: release-notes.md
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: build
+    if: ${{ !inputs.dry_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/project/manim-extensions/
+    permissions:
+      contents: read
+      # Trusted publishing: the action mints a short-lived token over OIDC
+      # when no API token is supplied.
+      id-token: write
+    env:
+      # Optional fallback for repositories that have not configured a
+      # trusted publisher on PyPI yet.
+      PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish with the API token
+        if: ${{ env.PYPI_TOKEN != '' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          password: ${{ env.PYPI_TOKEN }}
+
+      - name: Publish with trusted publishing
+        if: ${{ env.PYPI_TOKEN == '' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+
+  release:
+    name: Tag and create the GitHub release
+    needs: [build, publish-pypi]
+    if: ${{ !inputs.dry_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-notes
+          path: .
+
+      - name: Create the tag and the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          TAG="v${VERSION}"
+          if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "tag ${TAG} already exists" >&2
+            exit 1
+          fi
+          git tag "${TAG}"
+          git push origin "${TAG}"
+          gh release create "${TAG}" \
+            --title "Manim Extensions ${VERSION}" \
+            --notes-file release-notes.md
