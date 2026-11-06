@@ -633,7 +633,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
 
@@ -695,7 +695,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
         return VGroup(*[self.edges[bond_atoms] for bond_atoms in bonds])

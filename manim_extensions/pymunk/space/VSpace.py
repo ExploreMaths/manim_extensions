@@ -142,7 +142,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """Synchronizes a :class:`~manim.mobject.mobject.Mobject`'s position and rotation with its associated physical body.
 
         Reads the latest kinematic state (position and angle) from the Pymunk ``Body``
-        and updates the Mobject's transform. This ensures that the visual
+        and updates the :class:`~manim.mobject.mobject.Mobject`'s transform. This ensures that the visual
         representation in Manim stays perfectly aligned with the physics simulation.
 
         Parameters
@@ -179,13 +179,13 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
         If the body is static, only the shapes are added to the space. For dynamic
         or kinematic bodies, both the body and its shapes are added. Additionally,
-        this method attaches the simulation updater to the Mobject to ensure its
+        this method attaches the simulation updater to the :class:`~manim.mobject.mobject.Mobject` to ensure its
         visual transform is synchronized with the physical simulation in every frame.
 
         Parameters
         ----------
         mob
-            The Mobject containing `.body` and `.shapes` attributes to be integrated
+            The :class:`~manim.mobject.mobject.Mobject` containing `.body` and `.shapes` attributes to be integrated
             into the physical world.
         """
         if mob.body is self.space.static_body:
@@ -214,7 +214,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject to which the physical body will be attached.
+            The :class:`~manim.mobject.mobject.Mobject` to which the physical body will be attached.
         body_type
             The Pymunk body type integer (e.g., :attr:`~pymunk.Body.DYNAMIC`).
         center_of_gravity
@@ -269,7 +269,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject to be initialized with physical properties.
+            The :class:`~manim.mobject.mobject.Mobject` to be initialized with physical properties.
         body_type
             The Pymunk body type (Dynamic, Static, or Kinematic).
         is_solid
@@ -320,7 +320,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose associated physical shapes will be updated.
+            The :class:`~manim.mobject.mobject.Mobject` whose associated physical shapes will be updated.
         collision_type
             An integer ID representing the collision category.
             (e.g., 1 for players, 2 for enemies).
@@ -481,7 +481,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body will receive the force.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body will receive the force.
         force
             The force vector :math:`(f_x, f_y, f_z)` to apply. Note that Pymunk
             operates in 2D, so the z-component is typically ignored.
@@ -508,7 +508,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body will receive the force.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body will receive the force.
         force
             The force vector :math:`(f_x, f_y, f_z)` to apply. Note that Pymunk
             typically ignores the z-component.
@@ -533,7 +533,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body will receive the impulse.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body will receive the impulse.
         impulse
             The impulse vector :math:`(i_x, i_y, i_z)` to apply. The z-component
             is typically ignored in 2D physics.
@@ -559,7 +559,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body will receive the impulse.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body will receive the impulse.
         impulse
             The impulse vector :math:`(i_x, i_y, i_z)` to apply. The z-component
             is typically ignored in 2D physics.
@@ -624,7 +624,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body's position update logic will be customized.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body's position update logic will be customized.
         callback
             A function with the signature:
 
@@ -651,7 +651,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose physical body's velocity logic will be customized.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical body's velocity logic will be customized.
         callback
             A function with the signature:
             
@@ -674,7 +674,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose body is queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
             
@@ -696,7 +696,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose body is queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
             
@@ -729,7 +729,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject to assign physical shapes to. Must already have a `.body`.
+            The :class:`~manim.mobject.mobject.Mobject` to assign physical shapes to. Must already have a `.body`.
         is_solid
             If True, the shape is treated as a solid object. If False, it may be
             treated as a hollow boundary (depending on the geometry type).
@@ -1017,7 +1017,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose shapes will receive the collision filter.
+            The :class:`~manim.mobject.mobject.Mobject` whose shapes will receive the collision filter.
         group
             Shapes in the same non-zero group do not collide. Useful for
             ignoring collisions between parts of the same complex object.
@@ -1039,14 +1039,14 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """Performs a spatial query to find the relationship between a point and a :class:`~manim.mobject.mobject.Mobject`'s shapes.
 
         This method calculates how a specific point in space relates to the physical
-        boundaries of a Mobject. It is essential for determining if a point is inside
+        boundaries of a :class:`~manim.mobject.mobject.Mobject`. It is essential for determining if a point is inside
         an object, how far it is from the surface, and the direction to the
         closest surface point.
 
         Parameters
         ----------
         mob
-            The Mobject whose associated physical shapes will be queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose associated physical shapes will be queried.
         point
             A :math:`(x, y, z)` coordinate representing the test location in the scene.
 
@@ -1100,7 +1100,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose associated physical shapes will be checked for intersection.
+            The :class:`~manim.mobject.mobject.Mobject` whose associated physical shapes will be checked for intersection.
         start
             The :math:`(x, y, z)` starting point of the query segment.
         end

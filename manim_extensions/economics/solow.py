@@ -457,7 +457,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-            A FadeIn animation of the golden-rule line and labels.
+            A :class:`~manim.animation.fading.FadeIn` animation of the golden-rule line and labels.
         """
         k_gold = self._golden_rule_k()
         s_gold = (self._delta + self._n + self._g) * k_gold / (k_gold ** self._alpha)

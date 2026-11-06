@@ -36,15 +36,15 @@ class VPinJoint(VConstraint):
         relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_b_local
         The local anchor point on ``b_mob`` where the pin is attached,
-        relative to the Mobject's center.
+        relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     distance
         The fixed distance to maintain between the two anchors. If ``None``,
         it is automatically calculated as the initial distance between anchors.
     anchor_a_appearance
-        The Mobject used to visually represent the anchor point on ``a_mob``
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``a_mob``
         (e.g., a red ``Dot``).
     anchor_b_appearance
-        The Mobject used to visually represent the anchor point on ``b_mob``
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``b_mob``
         (e.g., a red ``Dot``).
     connect_line_class
         The class used to draw the connecting rod (e.g., ``Line``).

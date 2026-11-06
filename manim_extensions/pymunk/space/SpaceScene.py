@@ -455,7 +455,7 @@ class SpaceScene(ZoomedScene):
         Raises
         ------
         RuntimeError
-            If the Mobject has not been added to the physical space yet.
+            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "body"):
             return mob.body
@@ -472,7 +472,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose physical shapes are to be retrieved.
+            The :class:`~manim.mobject.mobject.Mobject` whose physical shapes are to be retrieved.
 
         Returns
         -------
@@ -481,7 +481,7 @@ class SpaceScene(ZoomedScene):
         Raises
         ------
         RuntimeError
-            If the Mobject has not been added to the physical space yet.
+            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "shapes"):
             return mob.shapes
@@ -754,7 +754,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose body is queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
             
@@ -774,7 +774,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose body is queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
             
@@ -795,13 +795,13 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose shapes will be queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose shapes will be queried.
         point
             The world point (x, y, z) to test against. 
 
         Returns
         -------
-            A list of point query results for each shape of the Mobject.
+            A list of point query results for each shape of the :class:`~manim.mobject.mobject.Mobject`.
         """
         return self.vspace.get_point_query_info(
             mob,

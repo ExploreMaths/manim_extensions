@@ -42,13 +42,13 @@ class VPivotJoint(VConstraint):
         relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_b_local
         The local anchor point on ``b_mob`` corresponding to the pivot,
-        relative to the Mobject's center.
+        relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_a_appearance
-        The Mobject used to visually represent the anchor point on ``a_mob``.
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``a_mob``.
     anchor_b_appearance
-        The Mobject used to visually represent the anchor point on ``b_mob``.
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``b_mob``.
     pivot_appearance
-        The Mobject used to visually represent the pivot point.
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the pivot point.
     connect_line_class
         The Manim class used to draw the line connecting the anchors to the
         pivot (e.g., ``Line``). Pass ``None`` to disable the connecting lines.

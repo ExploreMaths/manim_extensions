@@ -109,7 +109,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         return VGroup(
             *[
                 Circle(radius=1 + i, color=self.orbit_color)
@@ -122,7 +122,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         protons = [
             Dot(color=self.proton_color)
             .scale(2)
@@ -145,7 +145,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         ELECTRONS_PER_LEVEL = {
             # Level: Electrons that fit in each level
             1: 2,

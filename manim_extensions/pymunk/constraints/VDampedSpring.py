@@ -40,7 +40,7 @@ class VDampedSpring(VConstraint):
         relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_b_local
         The local anchor point on ``b_mob`` where the spring is attached,
-        relative to the Mobject's center.
+        relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     rest_length
         The equilibrium length of the spring. When the distance between anchors
         equals this value, the spring exerts no force.
@@ -51,10 +51,10 @@ class VDampedSpring(VConstraint):
         The damping coefficient :math:`c`. Used to simulate viscous friction,
         causing the kinetic energy of the system to dissipate over time.
     mob_a_appearance
-        The Mobject used to visually represent the anchor point on ``a_mob``
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``a_mob``
         (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     mob_b_appearance
-        The Mobject used to visually represent the anchor point on ``b_mob``
+        The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``b_mob``
         (e.g., a :class:`~manim.mobject.geometry.arc.Dot`).
     connect_line_class
         The class used to visualize the spring body.

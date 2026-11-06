@@ -205,7 +205,7 @@ class Element(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
         if self.add_electrons and self.n_electrons > 0:
             return VGroup(*[Electron() for i in range(self.n_electrons)])
 
@@ -216,7 +216,7 @@ class Element(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
         if self.add_holes and self.n_holes > 0:
             return VGroup(*[Hole() for i in range(self.n_holes)])
 
@@ -398,7 +398,7 @@ class NPNTransistor(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         particles = VGroup(*[particle_type().scale(0.5) for i in range(5)])
         particles = arrange_copies_in_rectangle(
@@ -681,7 +681,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         if not self.show_holes:
             return VGroup()
         holes = VGroup(*[Hole().scale(0.5) for i in range(4)])
@@ -825,7 +825,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
 
     Returns
     -------
-        A VGroup instance representing the result.
+        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
@@ -1045,7 +1045,7 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
 
     Returns
     -------
-        A VGroup instance representing the result.
+        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
     group = VGroup(mobject.copy())
     sides = {0: RIGHT, 1: LEFT}

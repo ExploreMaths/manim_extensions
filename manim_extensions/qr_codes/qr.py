@@ -79,7 +79,7 @@ def qr_code(payload: str,
 
     Returns
     -------
-        A VGroup containing the QR code as Manim objects, scaled to fit a
+        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` containing the QR code as Manim objects, scaled to fit a
         width of 2 units.
 
     Raises
