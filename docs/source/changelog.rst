@@ -8,25 +8,27 @@ v1.0.6 :bdg-primary-line:`In development`
 
 **Added**
 
-* Added :class:`~manim_extensions.nerdfont.icons.NerdFontIcon` (a class replacing the earlier ``nerdfont_icon``
-  function) for rendering Nerd Font glyphs as ``ImageMobject`` instances.
-* Added :class:`~manim_extensions.arabic.text.ArabicTemplate` and :class:`~manim_extensions.arabic.text.ArabicText` classes, replacing the
+* Added :class:`~manim_extensions.nerdfont.icons.NerdFontIcon` (a class
+  replacing the earlier ``nerdfont_icon`` function) for rendering Nerd
+  Font glyphs as ``ImageMobject`` instances.
+* Added a searchable Icon Gallery page listing every Nerd Font symbol, with
+  a live filter that hides the empty state until the first search.
+* Added :class:`~manim_extensions.arabic.text.ArabicTemplate` and
+  :class:`~manim_extensions.arabic.text.ArabicText` classes, replacing the
   ``create_arabic_*`` helper functions, for shaping and rendering Arabic
   text.
-* Added :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` to ``compass`` for single-ruler constructions
-  (one ruler, one pencil, with a ``draw_line_with_pencil`` method).
-* Added a ``module-index`` directive that renders the Reference Manual
-  Module Index with per-package titles and marks vendored packages that
-  are behind their upstream commit with a warning badge.
-* Added per-page inheritance diagrams to every reference class page, with
-  a single consolidated graph and dark-theme support.
-* Added a ``validate-api-coverage`` check (and refreshed the API snapshot)
-  so every public name is documented.
-* Added a ``setup-manim-env@v1`` shared action to the CI workflows.
-* Added :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding`, a
-  :class:`~manim.mobject.types.vectorized_mobject.VGroup` that pairs a fitted
-  scikit-learn tree with its training points: dataset axes, one dot per
-  sample, and the decision-region rectangles from
+* Added :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`
+  to :mod:`~manim_extensions.compass` for single-ruler constructions (one ruler, one pencil, with
+  a ``draw_line_with_pencil`` method).
+* Added :class:`~manim_extensions.scenes.ConstantStrokeWidthScene`, which
+  keeps stroke width constant under camera zoom, and accepted
+  ``fixed_stroke_width`` as a mobject constructor keyword so the behaviour
+  also applies to nested mobjects.
+* Added
+  :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding`,
+  a :class:`~manim.mobject.types.vectorized_mobject.VGroup` that pairs a
+  fitted scikit-learn tree with its training points: dataset axes, one dot
+  per sample, and the decision-region rectangles from
   :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`,
   with ``Create`` / ``Uncreate`` overrides and a split-to-animation map.
 * Implemented
@@ -35,37 +37,67 @@ v1.0.6 :bdg-primary-line:`In development`
   in ``bfs``, ``level`` or ``best`` order beside the embedding, accepts a
   fitted classifier or a bare ``tree_`` object, and ships with regression
   tests and a rendered doc example.
-* Extended the mesh data model and :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`
+* Implemented the remaining ManimML placeholders, since upstream is
+  archived: :meth:`~manim_extensions.machine_learning.scene.ManimML3DScene.play` forwards to
+  :class:`~manim.scene.three_d_scene.ThreeDScene`,
+  :class:`~manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer`
+  gains a real ``Create`` override, three-channel images animate onto
+  convolutional feature maps, :meth:`~manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_colors`
+  works, the evaluated point is highlighted in activation animations, leaf
+  nodes and tree expansion accept text, :meth:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.replace_layer` and
+  the VAE triplet pass are implemented, and stale TODOs and unreachable
+  branches are gone. Every existing public signature keeps its previous
+  default behaviour.
+* Extended the mesh data model and
+  :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`
   to four dimensions: central projection (``scale = d / (d - w)``), rotations
   in the ``(2, 4)`` plane, flips with 4D semantics, and
   :func:`~manim_extensions.meshes.templates.create_grid` building a tesseract
   (16 vertices, 24 square faces, 32 edges).
+* Completed the 3D grid templates and mesh flipping for the vendored mesh
+  package, so ``create_grid`` covers the cube and tetrahedral layouts and
+  ``apply_flip`` works on the 3D meshes it produces.
+* Implemented the Rubik's Cube facelet state helpers
+  (``get_cubie_colors_from_state`` and ``get_all_states``), which previously
+  returned ``None``: states now round-trip through
+  :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` and malformed input raises ``ValueError``.
+* Added the ``manim-chemistry`` and ``manim-rubikscube`` console commands.
+* Added a ``module-index`` directive that renders the Reference Manual
+  Module Index with per-package titles and marks vendored packages that
+  are behind their upstream commit with a warning badge.
+* Added per-page inheritance diagrams to every reference class page, with
+  a single consolidated graph and dark-theme support.
+* Added a ``validate-api-coverage`` check (and refreshed the API snapshot)
+  so every public name is documented.
+* Added a Constants overview page documenting directions, colours, and
+  values that the official Manim documentation does not list.
+* Added a ``Vendor status`` column to ``VENDORED.md`` and sorted its table
+  alphabetically by local module.
+* Added a ``setup-manim-env@v1`` shared action to the CI workflows.
 
 **Changed**
 
-* Filled each vendored package's Reference Manual page with upstream
-  README / Read the Docs content and led with API sections instead of a
-  Quick Start.
 * Re-synced 17 vendored packages to their latest upstream commits
-  (``compass`` merged :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`); each page records its
-  upstream repository, sync commit, and local patches in ``VENDORED.md``.
-* Ordered the Module Index alphabetically, used each package's real page
-  title, and kept a hidden sidebar toctree so the navigation tree is
-  preserved.
-* Pinned ``sphinx-autodoc-typehints`` to 3.10.3 and patched it so Manim
-  typing aliases (``Point3D``, ``Vector3D``, ...) are kept unexpanded
-  instead of being unwrapped into ``tuple[float, ...]``.
-* Self-hosted MathJax 4 in SVG output to fix intermittent formula
-  rendering and remove font dependencies.
-* Reworked link colouring: Python builtin type links render in body
-  colour without an underline; signature default-value links and Manim
-  constant references use the cross-reference palette; dark-mode colours
-  were tuned for readability.
-* Rendered ``Attributes`` sections as Parameters-style bulleted lists,
-  moved before ``Examples``.
-* Completed every ManimML usage snippet into a standalone ``Scene`` and
-  rendered it with the ``manim`` directive (image-input example stays a
-  runnable script because the upstream repository ships no ``digit.jpeg``).
+  (:mod:`~manim_extensions.compass` merged
+  :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`);
+  each page records its upstream repository, sync commit, and local patches
+  in ``VENDORED.md``, and the old sync script is gone in favour of manual,
+  reviewed merges.
+* Simplified type annotations across the package with Manim's typing
+  aliases (``Point3D``, ``Vector3D``, ...) and ``typing.Self`` for
+  self-returning methods, replacing local aliases and open generics.
+* Raised the supported versions to ``Pillow >= 12.2`` and
+  ``manim >= 0.22.1``.
+* Reworked the chemistry CLI documentation around the ``manim-chemistry``
+  console command instead of ``python -m`` module invocations.
+* Made :meth:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.from_inchi` resolve the InChI to an InChIKey
+  first, and sanitised path characters in the InChI so the SDF lookup no
+  longer writes into a non-existent folder.
+* Fixed the VAE image forward pass so the decoder receives the latent
+  tensor and the architecture figure renders in the network.
+* Fixed the 3D depth-order flicker in :class:`~manim_extensions.rubikscube.cube.RubiksCube` rotation by ordering
+  the cubie layers correctly.
+* Placed the gear on the rack's toothed side in ``mesh_to``.
 * Turned bare class names in docstrings into ``:class:`` cross-references
   across the repository, using each class's real module for the target
   (172 first mentions plus 54 repeated ones).
@@ -75,32 +107,118 @@ v1.0.6 :bdg-primary-line:`In development`
 * Stopped :class:`~manim_extensions.machine_learning.decision_tree.decision_tree.SplitNode`
   from appending a bogus ``cm`` unit to its threshold text, and scaled its
   doc example so the figure fills the frame.
+* Refined ``Any`` annotations across the package to concrete types.
+* Moved the vendored ``nerdfont`` package from utils to the top level
+  and updated the remaining path references.
+
+**Fixed**
+
+* Fixed the dangling :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` cross-reference in the ``create_grid``
+  docstring.
+* Fixed the type-annotation and doc-example checks that the new ManimML
+  surface exposed.
+* Fixed the ``m.`` references left behind in the ``qr_codes`` doc examples.
+* Fixed bare direction constants in prose: they now either resolve to
+  ``manim.constants`` or stay literal, instead of mis-linking :obj:`~manim.constants.DOWN`.
+* Fixed generic numpydoc words being auto-linked as types (``Parameters``
+  no longer resolves to ``meshes.types.Parameters``).
+* Fixed ``Point3D`` / ``Vector3D`` aliases so they resolve to Manim's typing
+  inventory instead of local copies.
+* Fixed the relative import of ``__version__`` and its use in the Rubik's
+  Cube entry point.
+* Fixed the resistor label to use proper LaTeX math.
+* Fixed the machine-learning example rendering: :class:`~manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject`
+  is built with ``RGB`` instead of ``RBG``, matplotlib figures are converted
+  to RGB, and the VAE renders as a ``Group`` that actually shows the
+  network.
+* Fixed incomplete cross-references across the reference manual.
+* Fixed the Validate workflow failures around doc sections, unused imports,
+  and REUSE lint.
 
 **Documentation and hygiene**
 
+* Reorganised the reference manual package by package: ``chemistry``,
+  automata, algorithm, data structures, economics,
+  pymunk, mindmap, machine learning, table, and the rest
+  now use category pages instead of one flat page per module.
+* Folded each vendored package's upstream README and Read the Docs content
+  into its Reference Manual page and led with API sections instead of a
+  Quick Start.
+* Completed every ManimML usage snippet into a standalone ``Scene`` and
+  rendered it with the ``manim`` directive (image-input example stays a
+  runnable script because the upstream repository ships no ``digit.jpeg``).
+* Converted every package's ``Usage`` code block into a ``.. manim::``
+  directive so examples render inline, with the remaining renderable blocks
+  converted as well.
+* Rescaled doc examples to the camera frame (``RackExample``,
+  ``BasicCircuitComponents``, ``LensScene``, ``WaveScene``, the physics
+  scenes), and exempted seven physics examples whose mobjects physically
+  fly out of frame.
+* Made 41 single-animation examples seamless loops wherever the motion is
+  rotation-symmetric or a round trip.
+* Rendered ``Attributes`` sections as Parameters-style bulleted lists,
+  moved before ``Examples``.
 * Removed default-value descriptions from docstrings and added a
   ``CONTRIBUTING`` rule covering docstring conventions.
 * Enforced numpydoc section spacing: no blank line after a section
   underline, and summaries separated from section headers.
 * Replaced monotone ``note`` admonitions with a varied set
-  (``tip`` / ``important`` / ``warning`` / ``todo`` / ``seealso``).
-* Moved every package's ``Usage`` example block to a ``.. manim::``
-  directive so it renders inline.
+  (``tip`` / ``important`` / ``warning`` / ``todo`` / ``seealso``), with
+  unimplemented methods marked ``todo``.
 * Removed ``-> None`` return annotations (Sphinx would otherwise inject a
-  redundant ``RETURN TYPE: None`` block).
+  redundant ``RETURN TYPE: None`` block) and added the corresponding
+  ``CONTRIBUTING`` rule.
+* Added ``Returns`` sections across the packages, including the economics
+  pages, and strengthened the return-section validation.
+* Normalised numpydoc docstrings across the package: parameter names are
+  wrapped in double backticks, manual type annotations are gone, and
+  summaries that only restated the ``Returns`` section were dropped.
+* Pruned inherited attributes from class pages so that only redefined ones
+  are listed.
+* Required a leading ``~`` on module-prefixed cross-references and a bare
+  target for builtins, and documented the rule in ``CONTRIBUTING``.
+* Self-hosted MathJax 4 in SVG output to fix intermittent formula
+  rendering and remove font dependencies.
+* Reworked link colouring: Python builtin type links render in body
+  colour without an underline; signature default-value links and Manim
+  constant references use the cross-reference palette; dark-mode colours
+  were tuned for readability.
+* Pinned ``sphinx-autodoc-typehints`` to 3.10.3 and patched it so Manim
+  typing aliases (``Point3D``, ``Vector3D``, ...) are kept unexpanded
+  instead of being unwrapped into ``tuple[float, ...]``.
 * Dropped unused bundled code fonts in favour of the system monospace
   stack, and let code font size be tuned per type.
+* Documented private members in the API reference and nested class pages
+  under their modules, with a per-source-file page granularity.
+* Ordered the Module Index alphabetically, used each package's real page
+  title, and kept a hidden sidebar toctree so the navigation tree is
+  preserved.
+* Rewrote ``CODE_OF_CONDUCT`` as the project's own code and removed
+  duplicate chemistry overview pages plus stray rendered images.
 
 **CI**
 
 * Consumed the shared ``ExploreMaths/setup-manim-env@v1`` action across
   workflows.
 * Extended the Validate workflow with type-annotation, return-annotation,
-  doc-section, cross-reference, and API-coverage jobs, and reached zero
-  Sphinx warnings.
+  doc-section, cross-reference, API-coverage, docstring, parameter,
+  import, relative-import, RST, ``manim``-directive, unused-import,
+  REUSE, and dependency-audit jobs, and reached zero Sphinx warnings.
 * Added a ``validate-example-layout`` job that renders every doc example and
   fails when the figure overflows the frame or covers less than a quarter of
   it in both dimensions.
+* Made the layout probe mirror real rendering: it runs the example's setup
+  before ``construct``, patches the manim 0.22 ``ImageMobject`` render
+  regression, installs a modern ``dvisvgm``, and bounds the render job time.
+* Installed every optional extra in the cross-reference job so external
+  inventory targets resolve.
+* Added intersphinx mappings for the external libraries and a CI guard that
+  keeps them in sync.
+* Cached apt archives and pip downloads in the package test jobs.
+* Backed out the CI auto-refresh of the API snapshot in favour of manual,
+  reviewed snapshot updates.
+* Made API coverage ignore type aliases and type variables, and blocked
+  ambiguous class names in the cross-reference job.
 
 
 v1.0.5 :bdg-success-line:`Latest`
@@ -116,14 +234,14 @@ v1.0.5 :bdg-success-line:`Latest`
 * Bundled 10 additional third-party Manim plugins as subpackages:
   ``arabic``, ``chemistry``, ``economics``, ``fontawesome``,
   ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
-  ``svg_animations``, ``table``, and ``weighted_line`` — plus
+  ``svg_animations``, table, and weighted_line — plus
   ``manim-nerdfont-icons`` 1.0.2, vendored as
   ``manim_extensions.nerdfont`` because its PyPI metadata pins
   ``manim>=0.19,<0.20`` (code and font licensed separately, font shipped
   as package data).
 * Added API reference documentation for every bundled package, with a
   single consolidated inheritance graph in the Reference Manual.
-* Added a same-named optional extra for every module (``automata``,
+* Added a same-named optional extra for every module (automata,
   ``chemistry``, ``physics``, ``rubikscube``, ``meshes``, ``video``,
   ``qr``, ``svg``, ``ml``, ...) and an ``all`` extra; the base install
   is now just ``manim`` + ``numpy``, and every heavier dependency is
@@ -165,7 +283,7 @@ v1.0.5 :bdg-success-line:`Latest`
   ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
   so instances no longer risk mutating each other's colour map.
 * Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0`` and
-  migrated the ``table`` module from ``manimlib`` (ManimGL) to Manim
+  migrated the table module from ``manimlib`` (ManimGL) to Manim
   Community Edition.
 * Replaced the type-specific geometry intersection helpers with a single
   generic ``VMobjectInt``.
@@ -198,7 +316,7 @@ v1.0.5 :bdg-success-line:`Latest`
 * Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
   class and the root ``__init__.py`` importing a nonexistent ``ml``
   module — both broke ``import manim_extensions``.
-* Fixed manim's ``utils`` namespace shadowing the package's own utils
+* Fixed manim's utils namespace shadowing the package's own utils
   submodules.
 * Fixed machine-learning empty-animation groups being unplayable on
   manim >= 0.21, and the pymunk 7 collision-API /
@@ -273,8 +391,8 @@ v1.0.4
 * Updated Python version requirement to ``>=3.11`` across ``pyproject.toml``,
   GitHub Actions workflow, and documentation.
 * Added comprehensive parameter documentation (``Parameters`` sections) to
-  all public classes across ``algorithm``, ``circuit``, ``compass``, ``meshes``,
-  ``mindmap``, ``physics``, and ``rubikscube`` modules, documenting every
+  all public classes across ``algorithm``, ``circuit``, compass, ``meshes``,
+  mindmap, ``physics``, and ``rubikscube`` modules, documenting every
   ``__init__`` parameter in class-level docstrings.
 * Added ``validate.yml`` GitHub Actions workflow with three separate jobs
   (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
@@ -314,7 +432,7 @@ v1.0.4
   by adding PDA-specific default templates and defensive ``.get()`` lookups.
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
-* Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
+* Fixed Sphinx cross-references in ``circuit`` and mindmap modules
   (LEFT, DOWN, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
   inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
@@ -410,4 +528,4 @@ v1.0.0
 
 **Added**
 
-* Initial release with ``mobjects``, ``geometry`` and ``animations`` modules.
+* Initial release with mobjects, ``geometry`` and animations modules.
