@@ -119,7 +119,7 @@ v1.0.6 :bdg-primary-line:`In development`
   surface exposed.
 * Fixed the ``m.`` references left behind in the ``qr_codes`` doc examples.
 * Fixed bare direction constants in prose: they now either resolve to
-  ``manim.constants`` or stay literal, instead of mis-linking :obj:`~manim.constants.DOWN`.
+  ``manim.constants`` or stay literal, instead of mis-linking the DOWN constant.
 * Fixed generic numpydoc words being auto-linked as types (``Parameters``
   no longer resolves to ``meshes.types.Parameters``).
 * Fixed ``Point3D`` / ``Vector3D`` aliases so they resolve to Manim's typing
