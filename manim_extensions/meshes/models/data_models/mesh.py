@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-# patched: implement apply_flip
+# patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
 
 """
@@ -140,26 +140,25 @@ class Mesh:
         self.test_for_dangling = dangling
 
     def __add__(self, other: "Mesh") -> Self:
-        """Concatenate ``other`` mesh into this mesh (``mesh + other``).
+        """Concatenate ``other`` mesh with this mesh (``mesh + other``).
+
+        A new mesh is returned and ``self`` stays unchanged; use
+        ``mesh += other`` to merge in place.
 
         Parameters
         ----------
         other
-            Another mesh to merge into this one.
+            Another mesh to merge with this one.
 
         Returns
         -------
-            The modified mesh instance.
-
-        Raises
-        ------
-        NotImplementedError
-            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            A new mesh containing the vertices, faces and parts of both.
         """
         if isinstance(other, Mesh):
-            self.add_to_mesh(other)
-            return self
-        raise NotImplementedError
+            merged = deepcopy(self)
+            merged.add_to_mesh(other)
+            return merged
+        return NotImplemented
 
     def __iadd__(self, other: "Mesh") -> Self:
         """Concatenate ``other`` mesh in-place (``mesh += other``).
@@ -172,16 +171,11 @@ class Mesh:
         Returns
         -------
             The modified mesh instance.
-
-        Raises
-        ------
-        NotImplementedError
-            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
         """
         if isinstance(other, Mesh):
             self.add_to_mesh(other)
             return self
-        raise NotImplementedError
+        return NotImplemented
 
     def __eq__(self, other: object) -> bool:
         """Check whether two meshes are equal.
@@ -197,12 +191,8 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if the meshes are equal.
-
-        Raises
-        ------
-        NotImplementedError
-            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            ``True`` if the meshes are equal, or ``NotImplemented`` when
+            ``other`` is not a mesh.
         """
 
         def replace_part_ids_with_vertex_ids(
@@ -278,9 +268,7 @@ class Mesh:
             ):
                 return True
             return False
-        raise NotImplementedError(
-            f"Not equal is not defined for mesh and {type(other)}"
-        )
+        return NotImplemented
 
     def __ne__(self, other: object) -> bool:
         """Check whether two meshes are not equal.
@@ -292,18 +280,12 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if the meshes are not equal.
-
-        Raises
-        ------
-        NotImplementedError
-            If ``other`` is not a :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh`.
+            ``True`` if the meshes are not equal, or ``NotImplemented`` when
+            ``other`` is not a mesh.
         """
         if isinstance(other, Mesh):
             return not self.__eq__(other)
-        raise NotImplementedError(
-            f"Not equal is not defined for mesh and {type(other)}"
-        )
+        return NotImplemented
 
     @property
     def dim(self) -> int:
@@ -355,22 +337,62 @@ class Mesh:
         """
         return self._edges
 
-    def get_3d_vertices(self) -> Vertices:
-        """Get 3D vertices, for 1D, 2D, 3D meshes, to be able to draw them using the manim functions.
+    def _project_4d(self, perspective: float | None = None) -> Point3D_Array:
+        """Project 4-D vertices to 3-D with a central projection.
+
+        The ``w`` coordinate acts as the distance to the projection centre,
+        so vertices with a larger ``w`` are drawn larger, which is what
+        makes a rotating tesseract readable.
+
+        Parameters
+        ----------
+        perspective
+            Distance of the projection centre along ``w``.  Defaults to the
+            vertex dimensionality.
 
         Returns
         -------
-            The vertex coordinates padded to three dimensions.
+            The projected three-dimensional vertex coordinates.
 
         Raises
         ------
         InvalidRequestException
-            If the mesh dimension is greater than 3.
+            If a vertex reaches or passes the projection centre.
+        """
+        distance = float(self.dim if perspective is None else perspective)
+        denominators = distance - self._vertices[:, 3]
+        if np.any(denominators <= 0):
+            raise InvalidRequestException(
+                f"Perspective distance {distance} must be greater than every w coordinate."
+            )
+        scale = distance / denominators
+        return np.asarray(self._vertices[:, :3] * scale[:, None])
+
+    def get_3d_vertices(self, perspective: float | None = None) -> Vertices:
+        """Get 3D vertices, for 1D, 2D, 3D and 4D meshes, to be able to draw them using the manim functions.
+
+        Parameters
+        ----------
+        perspective
+            Distance of the projection centre for a 4-D mesh.  Ignored for
+            lower dimensions; defaults to the mesh dimensionality.
+
+        Returns
+        -------
+            The vertex coordinates padded (or projected) to three dimensions.
+
+        Raises
+        ------
+        InvalidRequestException
+            If the mesh dimension is greater than 4, or if a 4-D vertex lies
+            at or beyond the projection centre.
         """
         if self.dim < 3:
             return np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
         if self.dim == 3:
             return self._vertices
+        if self.dim == 4:
+            return self._project_4d(perspective)
         raise InvalidRequestException(
             f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
         )
@@ -425,17 +447,29 @@ class Mesh:
             vert_ids.update(set(int(vert_id) for vert_id in self._faces[face_id]))
         return list(vert_ids)
 
-    def convert_vertices_to_3d(self):
+    def convert_vertices_to_3d(self, perspective: float | None = None):
         """transforms currents mesh vertices permanently to be 3D, works if dim is < 3.
+
+        A 4-D mesh is projected onto three dimensions first, so the mesh
+        dimensionality becomes 3 afterwards.
+
+        Parameters
+        ----------
+        perspective
+            Distance of the projection centre for a 4-D mesh.  Ignored for
+            lower dimensions; defaults to the mesh dimensionality.
 
         Raises
         ------
         InvalidRequestException
-            If the current dimensionality is greater than 3.
+            If the current dimensionality is greater than 4, or if a 4-D
+            vertex lies at or beyond the projection centre.
         """
         if self.dim < 3:
             self._vertices = np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
-        elif self.dim > 3:
+        elif self.dim == 4:
+            self._vertices = self._project_4d(perspective)
+        elif self.dim > 4:
             raise InvalidRequestException(
                 f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
             )
@@ -1052,23 +1086,27 @@ class Mesh:
     ):
         """Rotate all vertices around a given axis.
 
-        Only 2D and 3D rotations are supported.  For 2D meshes the
-        rotation is performed around the implicit z-axis; for 3D meshes
-        the rotation is performed around ``axis``.
+        For 2-D meshes the rotation is performed around the implicit z-axis,
+        for 3-D meshes around ``axis``.  A 4-D rotation happens inside a
+        plane rather than around a single axis, so pass two linearly
+        independent 4-D vectors as ``axis`` (for example
+        ``np.array([[0, 0, 0, 1], [0, 0, 1, 0]])`` rotates in the zw-plane).
 
         Parameters
         ----------
         angle
             Rotation angle in radians.
         axis
-            Rotation axis (only used for 3D).  
+            Rotation axis (used for 3-D), or two vectors spanning the
+            rotation plane (used for 4-D).
         about_point
             If given, the rotation is performed around this point.
 
         Raises
         ------
-        NotImplementedError
-            If the mesh dimension is not 2 or 3.
+        InvalidRequestException
+            If the mesh dimension is above 4, or if the 4-D rotation plane is
+            not given by two linearly independent vectors.
         """
 
         def rotation_matrix(
@@ -1110,13 +1148,72 @@ class Mesh:
             self._vertices = np.dot(
                 self._vertices, rot_matrix.T
             )  # transposed because we got row vectors not col vecs
+        elif self.dim == 4:
+            self._apply_rotation_4d(angle, axis)
         else:
-            raise NotImplementedError(
-                "No implementation for n-Dimensional vector rotation"
+            raise InvalidRequestException(
+                f"No rotation implementation for {self.dim}-dimensional vectors"
             )
 
         if about_point is not None:
             self._vertices += about_point
+
+    @staticmethod
+    def _rotation_plane_4d(axis: object) -> tuple[np.ndarray, np.ndarray]:
+        """Return an orthonormal basis of the 4-D rotation plane.
+
+        Parameters
+        ----------
+        axis
+            Two linearly independent 4-D vectors spanning the plane.
+
+        Returns
+        -------
+            Two orthonormal 4-D basis vectors.
+
+        Raises
+        ------
+        InvalidRequestException
+            If the plane is not given by two non-zero, linearly independent
+            4-D vectors.
+        """
+        plane = np.asarray(axis, dtype=float)
+        if plane.shape != (2, 4):
+            raise InvalidRequestException(
+                "A 4-D rotation needs a plane given by two linearly independent 4-D vectors."
+            )
+        first, second = plane
+        norm_first = np.linalg.norm(first)
+        if norm_first == 0:
+            raise InvalidRequestException("The first rotation axis must not be zero.")
+        first = first / norm_first
+        second = second - (second @ first) * first
+        norm_second = np.linalg.norm(second)
+        if norm_second == 0:
+            raise InvalidRequestException(
+                "The two rotation axes must be linearly independent."
+            )
+        return np.asarray(first), np.asarray(second / norm_second)
+
+    def _apply_rotation_4d(self, angle: float, axis: object) -> None:
+        """Rotate the 4-D vertices inside the plane spanned by ``axis``.
+
+        Parameters
+        ----------
+        angle
+            Rotation angle in radians.
+        axis
+            Two linearly independent 4-D vectors spanning the plane.
+        """
+        first, second = self._rotation_plane_4d(axis)
+        along_first = self._vertices @ first
+        along_second = self._vertices @ second
+        cos, sin = np.cos(angle), np.sin(angle)
+        self._vertices = (
+            self._vertices
+            + np.outer((cos - 1) * along_first - sin * along_second, first)
+            + np.outer(sin * along_first + (cos - 1) * along_second, second)
+        )
 
     def apply_flip(
         self,
@@ -1129,7 +1226,9 @@ class Mesh:
         implemented as a rotation by :math:`\\pi` radians around ``axis``.
         For 2-D meshes only the component of ``axis`` lying in the mesh
         plane is used, so flipping about an out-of-plane axis degenerates
-        to a point reflection.
+        to a point reflection.  In 4-D the mesh is rotated by
+        :math:`\\pi` around a 4-D ``axis``, so the axis component is kept
+        and the other three are negated.
 
         Parameters
         ----------
@@ -1140,12 +1239,19 @@ class Mesh:
 
         Raises
         ------
-        NotImplementedError
-            If the mesh dimension is greater than 3.
+        InvalidRequestException
+            If the mesh dimension is greater than 4.
+        InvalidMeshDimensionsException
+            If a 4-D mesh is flipped without a 4-D ``axis``.
         """
-        if self.dim > 3:
-            raise NotImplementedError(
-                "No implementation for n-Dimensional vector flipping"
+        if self.dim > 4:
+            raise InvalidRequestException(
+                f"No flip implementation for {self.dim}-dimensional vectors"
+            )
+        axis_array = np.asarray(axis, dtype=float)
+        if self.dim == 4 and axis_array.shape[0] != 4:
+            raise InvalidMeshDimensionsException(
+                name="Flip axis", expected=self.dim, actual=axis_array.shape[0]
             )
 
         about = (

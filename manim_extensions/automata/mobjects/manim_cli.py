@@ -97,21 +97,6 @@ class ManimAutomataCLI:
 
         return int(input("Choice: "))
 
-    def non_deterministic_finite_automata_path_builder_callback(self):
-        """Handle the NDA path-builder menu callback.
-
-        .. todo::
-
-           This method is not yet implemented and raises
-           :class:`~NotImplementedError`.
-
-        Raises
-        ------
-        NotImplementedError
-            Always raised; the NDA path builder is not yet implemented.
-        """
-        raise NotImplementedError("Not yet implemented")
-
 
 if __name__ == "__main__":
     cli = ManimAutomataCLI()

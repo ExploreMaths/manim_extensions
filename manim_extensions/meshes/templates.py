@@ -9,7 +9,7 @@ define a few basic mesh-structures to be used as examples or test.
 
 # python imports
 # patched: lazy-import trimesh (meshes extra)
-# patched: implement create_grid for 3D meshes
+# patched: implement create_grid for 3D and 4-D meshes
 import pathlib
 from typing import List
 
@@ -17,6 +17,7 @@ from typing import List
 import numpy as np
 
 # local imports
+from .exceptions import InvalidRequestException
 from .models.data_models.mesh import Mesh
 
 from ..utils.deps import require
@@ -205,7 +206,7 @@ def create_coplanar_points() -> Mesh:
 
 
 def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
-    """Create a regular grid mesh in 1-D, 2-D or 3-D.
+    """Create a regular grid mesh in 1-D, 2-D, 3-D or 4-D.
 
     Parameters
     ----------
@@ -215,14 +216,16 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
     Returns
     -------
         A grid mesh with vertices placed at the generated grid points and
-        quad faces connecting them (2-D and 3-D) or no faces (1-D).  The
+        quad faces connecting them (2-D and up) or no faces (1-D).  The
         faces of a 3-D grid form the closed surface of the box spanned by
-        the grid, with outward-facing vertex order.
+        the grid, with outward-facing vertex order.  A 4-D grid is a
+        tesseract lattice whose faces are the squares of every cubic cell;
+        draw it with ``ManimMesh``, which projects it onto three dimensions.
 
     Raises
     ------
-    NotImplementedError
-        If more than 3 dimensions are requested.
+    InvalidRequestException
+        If more than 4 dimensions are requested.
 
     Examples
     --------
@@ -237,6 +240,28 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
                grid = ManimMesh(create_grid([(0, 2, 3), (0, 2, 3), (0, 2, 3)]))
+               grid.scale_to_fit_height(4).move_to(ORIGIN)
+               self.add(grid)
+
+    A 4-D grid is projected onto three dimensions, so the tesseract can be
+    drawn directly:
+
+    .. manim:: GridTemplateExample4D
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.meshes.templates import create_grid
+       from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+
+       class GridTemplateExample4D(ThreeDScene):
+           def construct(self):
+               self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
+               grid = ManimMesh(
+                   create_grid([(0, 1, 2)] * 4),
+                   display_faces=False,
+                   edges_color=WHITE,
+                   edges_width=2,
+               )
                grid.scale_to_fit_height(4).move_to(ORIGIN)
                self.add(grid)
     """
@@ -289,8 +314,33 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
                         ]
                     )
         parts = None
+    elif dim == 4:
+        u, v, w, t = (int(area[2]) for area in areas)
+        strides = (1, u, u * v, u * v * w)
+        counts = (u, v, w, t)
+        faces = []
+        for first, second in ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)):
+            remaining = [axis for axis in range(4) if axis not in (first, second)]
+            for indices in np.ndindex(*(counts[axis] for axis in remaining)):
+                base = sum(
+                    index * strides[axis] for index, axis in zip(indices, remaining)
+                )
+                step_first, step_second = strides[first], strides[second]
+                faces.append(
+                    np.array(
+                        [
+                            base,
+                            base + step_first,
+                            base + step_first + step_second,
+                            base + step_second,
+                        ]
+                    )
+                )
+        parts = None
     else:
-        raise NotImplementedError("Only 1D, 2D, 3D meshes implemented.")
+        raise InvalidRequestException(
+            "Only 1D, 2D, 3D and 4D meshes implemented."
+        )
     return Mesh(
         vertices=vertices,
         faces=faces,

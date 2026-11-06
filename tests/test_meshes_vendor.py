@@ -144,11 +144,19 @@ class TestMeshGet3DVertices:
         result = mesh.get_3d_vertices()
         assert np.array_equal(result, verts)
 
-    def test_4d_raises(self):
+    def test_4d_projects_to_3d(self):
         verts = np.array([[0, 0, 0, 0], [1, 0, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(InvalidRequestException):
-            mesh.get_3d_vertices()
+        result = mesh.get_3d_vertices()
+        assert result.shape == (2, 3)
+        assert result[1][0] == pytest.approx(1.0)
+
+    def test_4d_projection_uses_w_coordinate(self):
+        verts = np.array([[1, 0, 0, 1], [1, 0, 0, -1]])
+        mesh = Mesh(verts, None)
+        result = mesh.get_3d_vertices()
+        assert result[0][0] > 1
+        assert result[1][0] < 1
 
     def test_convert_vertices_to_3d(self):
         verts = np.array([[0, 0], [1, 0], [0.5, 1]])
@@ -162,11 +170,11 @@ class TestMeshGet3DVertices:
         mesh.convert_vertices_to_3d()
         assert mesh.dim == 3
 
-    def test_convert_4d_raises(self):
+    def test_convert_4d_projects(self):
         verts = np.array([[0, 0, 0, 0], [1, 0, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(InvalidRequestException):
-            mesh.convert_vertices_to_3d()
+        mesh.convert_vertices_to_3d()
+        assert mesh.dim == 3
 
 
 class TestMeshVertexOps:
@@ -445,7 +453,7 @@ class TestMeshMerge:
     def test_add_non_mesh(self):
         verts = np.array([[0, 0, 0], [1, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
+        with pytest.raises(TypeError):
             mesh + "not_a_mesh"
 
     def test_iadd_mesh(self):
@@ -459,7 +467,7 @@ class TestMeshMerge:
     def test_iadd_non_mesh(self):
         verts = np.array([[0, 0, 0], [1, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
+        with pytest.raises(TypeError):
             mesh += "not_a_mesh"
 
 
@@ -481,14 +489,12 @@ class TestMeshEquality:
     def test_equal_mesh_non_mesh(self):
         verts = np.array([[0, 0, 0], [1, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
-            mesh == "not_a_mesh"
+        assert (mesh == "not_a_mesh") is False
 
     def test_ne_mesh_non_mesh(self):
         verts = np.array([[0, 0, 0], [1, 0, 0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
-            mesh != "not_a_mesh"
+        assert (mesh != "not_a_mesh") is True
 
 
 class TestMeshDuplicates:
@@ -683,11 +689,24 @@ class TestMeshTransform:
         mesh.apply_rotation(np.pi / 2, about_point=np.array([1.0, 0.0]))
         assert mesh.vertices[1][0] == pytest.approx(1.0, abs=1e-10)
 
-    def test_apply_rotation_1d_not_implemented(self):
+    def test_apply_rotation_1d_raises(self):
         verts = np.array([[0.0], [1.0], [2.0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
+        with pytest.raises(InvalidRequestException):
             mesh.apply_rotation(0.5)
+
+    def test_apply_rotation_4d_plane(self):
+        verts = np.array([[1.0, 0.0, 0.0, 0.0]])
+        mesh = Mesh(verts, None)
+        plane = np.array([[1.0, 0.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0]])
+        mesh.apply_rotation(np.pi / 2, plane)
+        assert mesh.vertices[0] == pytest.approx([0.0, 0.0, 1.0, 0.0])
+
+    def test_apply_rotation_4d_requires_plane(self):
+        verts = np.array([[1.0, 0.0, 0.0, 0.0]])
+        mesh = Mesh(verts, None)
+        with pytest.raises(InvalidRequestException):
+            mesh.apply_rotation(np.pi / 2, np.array([0.0, 0.0, 1.0]))
 
 
 class TestMeshSnapToGrid:
@@ -849,11 +868,11 @@ class TestMeshApplyFlip:
         assert mesh.vertices[0] == pytest.approx([3.0])
         assert mesh.vertices[1] == pytest.approx([1.0])
 
-    def test_flip_4d_not_implemented(self):
+    def test_flip_4d(self):
         verts = np.array([[1.0, 2.0, 3.0, 4.0]])
         mesh = Mesh(verts, None)
-        with pytest.raises(NotImplementedError):
-            mesh.apply_flip(np.array([1.0, 0.0, 0.0, 0.0]))
+        mesh.apply_flip(np.array([1.0, 0.0, 0.0, 0.0]))
+        assert mesh.vertices[0] == pytest.approx([1.0, -2.0, -3.0, -4.0])
 
 
 class TestBasicMeshFlip:
@@ -893,6 +912,9 @@ class TestCreateGrid:
         normal = np.cross(points[1] - points[0], points[2] - points[0])
         assert normal[2] < 0
 
-    def test_4d_grid_not_implemented(self):
-        with pytest.raises(NotImplementedError):
-            create_grid([(0.0, 1.0, 2)] * 4)
+    def test_4d_grid(self):
+        mesh = create_grid([(0.0, 1.0, 2)] * 4)
+        assert mesh.dim == 4
+        assert len(mesh.vertices) == 16
+        assert len(mesh.faces) == 24
+        assert len(mesh.edges) == 32

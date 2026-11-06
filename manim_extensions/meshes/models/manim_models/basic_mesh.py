@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-# patched: implement flip for the underlying data mesh
+# patched: implement flip and 4-D transforms for the underlying data mesh
 
 """Manim models for mesh objects.
 
@@ -396,6 +396,40 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         vert_2 = self.mesh.get_3d_vertices()[edge[1]]
         e.set_points_as_corners([vert_1, vert_2])
 
+    def _as_mesh_dim(self, point: object) -> np.ndarray:
+        """Expand a point to the mesh dimensionality, padding extra axes with zero.
+
+        Parameters
+        ----------
+        point
+            Coordinates in two, three or four dimensions.
+
+        Returns
+        -------
+            Coordinates whose length equals ``mesh.dim``.
+        """
+        array = np.asarray(point, dtype=float)
+        if array.shape[0] < self.mesh.dim:
+            array = np.pad(array, (0, self.mesh.dim - array.shape[0]))
+        return array[: self.mesh.dim]
+
+    def _mesh_center(self) -> np.ndarray:
+        """Return the bounding-box centre expanded to the mesh dimensionality.
+
+        Returns
+        -------
+            Centre coordinates whose length equals ``mesh.dim``.
+        """
+        return self._as_mesh_dim(self.get_critical_point(ORIGIN))
+
+    def _rebuild_objects(self) -> None:
+        """Rebuild the vertex, edge and face mobjects from the mesh data."""
+        self.remove(self.faces, self.edges, self.vertices)
+        self.faces = VGroup()
+        self.edges = VGroup()
+        self.vertices = Group()
+        self.setup()
+
     def shift(self, *vectors: Vector3D):
         """Shift the mesh and its underlying data by the sum of ``vectors``.
 
@@ -409,7 +443,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         """
         total_shift = np.sum(vectors, axis=0)
         # update vertices of self.mesh
-        self.mesh.translate_mesh(total_shift[: self.mesh.dim])
+        self.mesh.translate_mesh(self._as_mesh_dim(total_shift))
         # shift manim vertices, edges and faces
         super().shift(total_shift)
 
@@ -423,7 +457,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
         """
-        about_point = self.get_critical_point(ORIGIN)[: self.mesh.dim]
+        about_point = self._mesh_center()
         self.mesh.scale_mesh(scale_factor, about_point)
         super().scale(scale_factor, **kwargs)
 
@@ -446,7 +480,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
-        about_point = self.get_critical_point(ORIGIN)[: self.mesh.dim]
+        about_point = self._mesh_center()
         self.mesh.stretch_mesh(factor, dim, about_point)
         super().stretch(factor, dim, **kwargs)
 
@@ -473,6 +507,22 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
         """
+        if self.mesh.dim == 4:
+            if np.asarray(axis, dtype=float).shape == (2, 4):
+                center = (
+                    self._mesh_center()
+                    if about_point is None
+                    else self._as_mesh_dim(about_point)
+                )
+                self.mesh.apply_rotation(angle, axis, center)
+                self._rebuild_objects()
+                return
+            # a 3-D axis cannot express a 4-D rotation: rotate the projection only
+            if about_point is None:
+                about_point = self.get_critical_point(ORIGIN)
+            super().rotate(angle, axis, about_point=about_point, **kwargs)
+            return
+
         if about_point is None:
             about_point = self.get_critical_point(ORIGIN)
 
@@ -503,6 +553,16 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
         """
+        if self.mesh.dim == 4 and np.asarray(axis, dtype=float).shape[0] == 4:
+            center = (
+                self._mesh_center()
+                if about_point is None
+                else self._as_mesh_dim(about_point)
+            )
+            self.mesh.apply_flip(axis, center)
+            self._rebuild_objects()
+            return
+
         if about_point is None:
             about_point = self.get_critical_point(ORIGIN)
         self.mesh.apply_flip(axis, about_point[: self.mesh.dim])
