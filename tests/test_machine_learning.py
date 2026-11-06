@@ -492,3 +492,85 @@ class TestDecisionTreeUnfoldAnimation:
         container = self._make_container()
         with pytest.raises(Exception):
             container.make_unfold_tree_animation("depth-first")
+
+
+class TestDecisionTreeEmbedding:
+    """The dataset embedding pairs each point with the decision areas of the tree."""
+
+    def _make_embedding(self, class_colors=None):
+        pytest.importorskip("sklearn")
+        from sklearn.tree import DecisionTreeClassifier
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree_embedding import (
+            DecisionTreeEmbedding,
+        )
+
+        rng = np.random.default_rng(0)
+        points = np.vstack(
+            [rng.normal([0, 0], 0.6, (10, 2)), rng.normal([1, 1], 0.6, (10, 2))]
+        )
+        classes = np.array([0] * 10 + [1] * 10)
+        clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)
+
+        return DecisionTreeEmbedding(clf.tree_, points, classes, class_colors=class_colors)
+
+    def test_points_and_areas_are_built(self):
+        embedding = self._make_embedding()
+        assert len(embedding.points_group) == 20
+        assert len(embedding.surface.surface_rectangles) >= 2
+        assert embedding.make_split_to_animation_map()
+
+    def test_classifier_objects_and_bare_trees_both_work(self):
+        pytest.importorskip("sklearn")
+        from sklearn.tree import DecisionTreeClassifier
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree_embedding import (
+            DecisionTreeEmbedding,
+        )
+
+        rng = np.random.default_rng(1)
+        points = np.vstack(
+            [rng.normal([0, 0], 0.5, (8, 2)), rng.normal([1, 0], 0.5, (8, 2))]
+        )
+        classes = np.array([0] * 8 + [1] * 8)
+        clf = DecisionTreeClassifier(max_depth=1).fit(points, classes)
+        for tree in (clf, clf.tree_):
+            assert len(DecisionTreeEmbedding(tree, points, classes).points_group) == 16
+
+    def test_embedding_animation_is_playable(self):
+        from manim import Create
+
+        embedding = self._make_embedding()
+        _assert_playable(Create(embedding))
+
+    def test_too_many_classes_are_rejected(self):
+        from manim import BLUE
+
+        embedding_classes = np.array([0] * 10 + [1] * 10)
+        pytest.importorskip("sklearn")
+        from sklearn.tree import DecisionTreeClassifier
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree_embedding import (
+            DecisionTreeEmbedding,
+        )
+
+        rng = np.random.default_rng(2)
+        points = rng.normal([0, 0], 0.5, (20, 2))
+        clf = DecisionTreeClassifier(max_depth=1).fit(points, embedding_classes)
+        with pytest.raises(ValueError):
+            DecisionTreeEmbedding(clf.tree_, points, embedding_classes, class_colors=[BLUE])
+
+    def test_empty_points_are_rejected(self):
+        pytest.importorskip("sklearn")
+        from sklearn.tree import DecisionTreeClassifier
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree_embedding import (
+            DecisionTreeEmbedding,
+        )
+
+        rng = np.random.default_rng(3)
+        points = rng.normal([0, 0], 0.5, (6, 2))
+        classes = np.array([0, 0, 0, 1, 1, 1])
+        clf = DecisionTreeClassifier(max_depth=1).fit(points, classes)
+        with pytest.raises(ValueError):
+            DecisionTreeEmbedding(clf.tree_, np.empty((0, 2)), classes)

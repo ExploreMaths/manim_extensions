@@ -24,6 +24,7 @@ Modules
    :nosignatures:
 
    ~decision_tree
+   ~decision_tree_embedding
    ~decision_tree_surface
    ~helpers
 
@@ -32,5 +33,6 @@ Modules
    :maxdepth: 1
 
    decision_tree
+   decision_tree_embedding
    decision_tree_surface
    helpers

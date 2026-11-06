@@ -707,6 +707,7 @@
  "manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeDiagram",
  "manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode",
  "manim_extensions.machine_learning.decision_tree.decision_tree.SplitNode",
+ "manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding",
  "manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB",
  "manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface",
  "manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot",

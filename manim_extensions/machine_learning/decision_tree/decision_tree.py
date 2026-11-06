@@ -12,10 +12,8 @@ It parses a decision tree classifier from sklearn.
 from manim import (
     Animation,
     AnimationGroup,
-    Axes,
     BLUE,
     Create,
-    Dot,
     DOWN,
     FadeIn,
     FadeOut,
@@ -37,7 +35,7 @@ from manim import (
 )
 
 from . import helpers
-from .decision_tree_surface import DecisionTreeSurface
+from .decision_tree_embedding import DecisionTreeEmbedding
 
 from types import SimpleNamespace
 
@@ -632,17 +630,11 @@ class DecisionTreeContainer():
         )
         diagram.to_edge(UP, buff=0.4)
 
-        x_span = float(points[:, 0].max() - points[:, 0].min()) if points.size else 1.0
-        y_span = float(points[:, 1].max() - points[:, 1].min()) if points.size else 1.0
-        axes = Axes(
-            x_range=[points[:, 0].min() - 0.2, points[:, 0].max() + 0.2, max(x_span, 1.0) / 5],
-            y_range=[points[:, 1].min() - 0.2, points[:, 1].max() + 0.2, max(y_span, 1.0) / 5],
-            x_length=5.0,
-            y_length=3.0,
-            tips=False,
+        embedding = DecisionTreeEmbedding(
+            tree, points, class_labels, class_colors=class_colors
         )
-        axes.next_to(diagram, DOWN, buff=0.6)
-        Group(diagram, axes).move_to(ORIGIN)
+        embedding.next_to(diagram, DOWN, buff=0.6)
+        Group(diagram, embedding).move_to(ORIGIN)
 
         if traversal_order == "level":
             node_expand_order = helpers.compute_level_order_traversal(tree.tree_)
@@ -657,19 +649,12 @@ class DecisionTreeContainer():
             node_expand_order
         )
         split_animations = {int(key): value for key, value in split_animations.items()}
-        surface_animations = DecisionTreeSurface(
-            tree, points, axes, class_colors=class_colors
-        ).make_split_to_animation_map()
+        surface_animations = embedding.make_split_to_animation_map()
 
-        steps = [Create(axes, run_time=1.0)]
-        if points.size:
-            dots = VGroup(
-                *[
-                    Dot(axes.c2p(x, y), radius=0.04, color=class_colors[int(label)])
-                    for (x, y), label in zip(points, class_labels)
-                ]
-            )
-            steps.append(FadeIn(dots, run_time=1.0))
+        steps = [
+            Create(embedding.axes, run_time=1.0),
+            FadeIn(embedding.points_group, run_time=1.0),
+        ]
         steps.append(tree_animations[0])
         for node_index in (int(index) for index in node_expand_order):
             if node_index not in split_animations:
