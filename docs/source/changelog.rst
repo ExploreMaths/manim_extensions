@@ -18,7 +18,7 @@ v1.0.6 :bdg-primary-line:`In development`
   ``create_arabic_*`` helper functions, for shaping and rendering Arabic
   text.
 * Added :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`
-  to :mod:`~manim_extensions.compass` for single-ruler constructions (one ruler, one pencil, with
+  to ``compass`` for single-ruler constructions (one ruler, one pencil, with
   a ``draw_line_with_pencil`` method).
 * Added :class:`~manim_extensions.scenes.ConstantStrokeWidthScene`, which
   keeps stroke width constant under camera zoom, and accepted
@@ -78,7 +78,7 @@ v1.0.6 :bdg-primary-line:`In development`
 **Changed**
 
 * Re-synced 17 vendored packages to their latest upstream commits
-  (:mod:`~manim_extensions.compass` merged
+  (``compass`` merged
   :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`);
   each page records its upstream repository, sync commit, and local patches
   in ``VENDORED.md``, and the old sync script is gone in favour of manual,
@@ -138,8 +138,8 @@ v1.0.6 :bdg-primary-line:`In development`
 **Documentation and hygiene**
 
 * Reorganised the reference manual package by package: ``chemistry``,
-  automata, algorithm, data structures, economics,
-  pymunk, mindmap, machine learning, table, and the rest
+  ``automata``, ``algorithm``, ``data_structures``, ``economics``,
+  ``pymunk``, ``mindmap``, ``machine_learning``, ``table``, and the rest
   now use category pages instead of one flat page per module.
 * Folded each vendored package's upstream README and Read the Docs content
   into its Reference Manual page and led with API sections instead of a
@@ -234,14 +234,14 @@ v1.0.5 :bdg-success-line:`Latest`
 * Bundled 10 additional third-party Manim plugins as subpackages:
   ``arabic``, ``chemistry``, ``economics``, ``fontawesome``,
   ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
-  ``svg_animations``, table, and weighted_line — plus
+  ``svg_animations``, ``table``, and ``weighted_line`` — plus
   ``manim-nerdfont-icons`` 1.0.2, vendored as
   ``manim_extensions.nerdfont`` because its PyPI metadata pins
   ``manim>=0.19,<0.20`` (code and font licensed separately, font shipped
   as package data).
 * Added API reference documentation for every bundled package, with a
   single consolidated inheritance graph in the Reference Manual.
-* Added a same-named optional extra for every module (automata,
+* Added a same-named optional extra for every module (``automata``,
   ``chemistry``, ``physics``, ``rubikscube``, ``meshes``, ``video``,
   ``qr``, ``svg``, ``ml``, ...) and an ``all`` extra; the base install
   is now just ``manim`` + ``numpy``, and every heavier dependency is
@@ -283,7 +283,7 @@ v1.0.5 :bdg-success-line:`Latest`
   ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
   so instances no longer risk mutating each other's colour map.
 * Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0`` and
-  migrated the table module from ``manimlib`` (ManimGL) to Manim
+  migrated the ``table`` module from ``manimlib`` (ManimGL) to Manim
   Community Edition.
 * Replaced the type-specific geometry intersection helpers with a single
   generic ``VMobjectInt``.
@@ -316,7 +316,7 @@ v1.0.5 :bdg-success-line:`Latest`
 * Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
   class and the root ``__init__.py`` importing a nonexistent ``ml``
   module — both broke ``import manim_extensions``.
-* Fixed manim's utils namespace shadowing the package's own utils
+* Fixed manim's ``utils`` namespace shadowing the package's own utils
   submodules.
 * Fixed machine-learning empty-animation groups being unplayable on
   manim >= 0.21, and the pymunk 7 collision-API /
@@ -391,8 +391,8 @@ v1.0.4
 * Updated Python version requirement to ``>=3.11`` across ``pyproject.toml``,
   GitHub Actions workflow, and documentation.
 * Added comprehensive parameter documentation (``Parameters`` sections) to
-  all public classes across ``algorithm``, ``circuit``, compass, ``meshes``,
-  mindmap, ``physics``, and ``rubikscube`` modules, documenting every
+  all public classes across ``algorithm``, ``circuit``, ``compass``, ``meshes``,
+  ``mindmap``, ``physics``, and ``rubikscube`` modules, documenting every
   ``__init__`` parameter in class-level docstrings.
 * Added ``validate.yml`` GitHub Actions workflow with three separate jobs
   (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
@@ -432,7 +432,7 @@ v1.0.4
   by adding PDA-specific default templates and defensive ``.get()`` lookups.
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
-* Fixed Sphinx cross-references in ``circuit`` and mindmap modules
+* Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
   (LEFT, DOWN, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
   inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
@@ -528,4 +528,4 @@ v1.0.0
 
 **Added**
 
-* Initial release with mobjects, ``geometry`` and animations modules.
+* Initial release with ``mobjects``, ``geometry`` and ``animations`` modules.
