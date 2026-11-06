@@ -220,7 +220,9 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
         faces of a 3-D grid form the closed surface of the box spanned by
         the grid, with outward-facing vertex order.  A 4-D grid is a
         tesseract lattice whose faces are the squares of every cubic cell;
-        draw it with ``ManimMesh``, which projects it onto three dimensions.
+        draw it with
+        :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`,
+        which projects it onto three dimensions.
 
     Raises
     ------
