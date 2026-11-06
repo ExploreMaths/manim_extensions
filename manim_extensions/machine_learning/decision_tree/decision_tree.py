@@ -165,7 +165,7 @@ class SplitNode(VGroup):
 
        class SplitNodeExample(Scene):
            def construct(self):
-               self.add(SplitNode(feature=0, threshold=0.5))
+               self.add(SplitNode(feature=0, threshold=0.5).scale(2))
     """
 
     def __init__(self, feature: int | str, threshold: float):
