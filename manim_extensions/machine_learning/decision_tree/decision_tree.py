@@ -12,8 +12,11 @@ It parses a decision tree classifier from sklearn.
 from manim import (
     Animation,
     AnimationGroup,
+    Axes,
     BLUE,
     Create,
+    Dot,
+    DOWN,
     FadeIn,
     FadeOut,
     GREEN,
@@ -21,17 +24,22 @@ from manim import (
     ImageMobject,
     Line,
     Mobject,
+    ORIGIN,
     RED,
     Rectangle,
     Succession,
     SurroundingRectangle,
     Text,
+    UP,
     VGroup,
     WHITE,
     override_animation,
 )
 
 from . import helpers
+from .decision_tree_surface import DecisionTreeSurface
+
+from types import SimpleNamespace
 
 import numpy as np
 from PIL import Image
@@ -165,7 +173,7 @@ class SplitNode(VGroup):
     def __init__(self, feature: int | str, threshold: float):
         """Initialize the split node showing the feature name and threshold value."""
         super().__init__()
-        node_text = f"{feature}\n<=  {threshold:.2f} cm"
+        node_text = f"{feature}\n<=  {threshold:.2f}"
         # Draw decision text
         decision_text = Text(node_text, color=WHITE)
         # Draw the surrounding box
@@ -275,6 +283,8 @@ class DecisionTreeDiagram(Group):
                 class_index=tree_class_index,
                 class_colors=self.class_colors,
                 class_image_paths=self.class_image_paths,
+                class_names=self.class_names,
+                display_type="image" if self.class_image_paths else "text",
             )
         return node
 
@@ -321,10 +331,9 @@ class DecisionTreeDiagram(Group):
             shift_right_amount = (
                 0.9 * direction_factor * scale_factor * tree_width / (2**depth) / 2
             )
-            if is_leaf:
-                shift_down_amount = -1.0 * scale_factor * node_height
-            else:
-                shift_down_amount = -1.8 * scale_factor * node_height
+            shift_down_amount = -(
+                (parent_object.height + node_height) / 2 + 0.3
+            ) * scale_factor
             node_object.match_x(parent_object).match_y(parent_object).shift(
                 [shift_right_amount, shift_down_amount, 0]
             )
@@ -371,7 +380,7 @@ class DecisionTreeDiagram(Group):
         -------
             A leaf node displaying the dominant class.
         """
-        if self.class_image_paths is None:
+        if not self.class_image_paths:
             return LeafNode(
                 class_index=class_index,
                 display_type="text",
@@ -408,6 +417,7 @@ class DecisionTreeDiagram(Group):
         root_class_index = int(np.argmax(self.tree.value[0]))
         root_placeholder_node = self._make_placeholder_leaf(root_class_index)
         root_placeholder_node.move_to(self.nodes_map[0])
+        root_placeholder_node.scale_to_fit_height(self.nodes_map[0].height)
         placeholder_class_nodes[0] = root_placeholder_node
         animations.append(AnimationGroup(FadeIn(root_placeholder_node), lag_ratio=0.0))
         for node_index in node_expand_order:
@@ -439,6 +449,9 @@ class DecisionTreeDiagram(Group):
                     child_class_index = int(np.argmax(self.tree.value[child_index]))
                     placeholder_child = self._make_placeholder_leaf(child_class_index)
                     placeholder_child.move_to(self.nodes_map[child_index])
+                    placeholder_child.scale_to_fit_height(
+                        self.nodes_map[child_index].height
+                    )
                     placeholder_class_nodes[child_index] = placeholder_child
                     child_animation = AnimationGroup(
                         FadeIn(placeholder_child),
@@ -547,7 +560,7 @@ class DecisionTreeDiagram(Group):
         return expand_tree_animation
 
 class DecisionTreeContainer():
-    """Connects the DecisionTreeDiagram to the DecisionTreeEmbedding.
+    """Couples the tree diagram with the decision surface built from the same fitted tree.
 
     Parameters
     ----------
@@ -565,18 +578,105 @@ class DecisionTreeContainer():
         self.points = points
         self.classes = classes
 
-    def make_unfold_tree_animation(self):
-        """Unfolds the tree through an in order traversal.
+    def make_unfold_tree_animation(self, traversal_order: str = "bfs") -> Succession:
+        """Unfold the tree through the given traversal while the decision surface splits.
 
-        This animations unfolds the tree diagram as well as showing the splitting
-        of a shaded region in the Decision Tree embedding.
+        The diagram expands one split at a time, and the region that split
+        carves out of the feature space is drawn underneath it, so every split
+        can be read together with the decision area it produces.
 
-        .. note::
+        Parameters
+        ----------
+        traversal_order
+            Order in which the split nodes expand: ``"bfs"`` (breadth first),
+            ``"level"`` (level order) or ``"best"`` (most informative split
+            first).
 
-            Not implemented: the documented behavior needs the
-            ``DecisionTreeEmbedding`` visualization, which is not part of the
-            vendored subset of the upstream package.
+        Returns
+        -------
+            The animation unfolding the tree together with its decision
+            surface.
+
+        Raises
+        ------
+        Exception
+            Raised when ``traversal_order`` is not recognized.
+        ValueError
+            Raised when more than three classes are present.
+
+        Examples
+        --------
+        .. code-block:: python
+
+           container = DecisionTreeContainer(clf.tree_, points, classes)
+           self.play(container.make_unfold_tree_animation())
         """
-        # Draw points in the embedding
-        # Start the tree splitting animation
-        pass
+        tree = (
+            self.sklearn_tree
+            if hasattr(self.sklearn_tree, "tree_")
+            else SimpleNamespace(tree_=self.sklearn_tree)
+        )
+        points = np.asarray(self.points, dtype=float)
+        class_labels = np.asarray(self.classes).reshape(-1)
+        class_count = int(class_labels.max()) + 1 if class_labels.size else 1
+        class_colors = [BLUE, GREEN, RED][:class_count]
+        if len(class_colors) < class_count:
+            raise ValueError(f"At most 3 classes are supported, got {class_count}.")
+        class_names = [f"class {index}" for index in range(class_count)]
+
+        diagram = DecisionTreeDiagram(
+            tree.tree_,
+            feature_names=[f"x{index}" for index in range(tree.tree_.n_features)],
+            class_names=class_names,
+            class_colors=class_colors,
+        )
+        diagram.to_edge(UP, buff=0.4)
+
+        x_span = float(points[:, 0].max() - points[:, 0].min()) if points.size else 1.0
+        y_span = float(points[:, 1].max() - points[:, 1].min()) if points.size else 1.0
+        axes = Axes(
+            x_range=[points[:, 0].min() - 0.2, points[:, 0].max() + 0.2, max(x_span, 1.0) / 5],
+            y_range=[points[:, 1].min() - 0.2, points[:, 1].max() + 0.2, max(y_span, 1.0) / 5],
+            x_length=5.0,
+            y_length=3.0,
+            tips=False,
+        )
+        axes.next_to(diagram, DOWN, buff=0.6)
+        Group(diagram, axes).move_to(ORIGIN)
+
+        if traversal_order == "level":
+            node_expand_order = helpers.compute_level_order_traversal(tree.tree_)
+        elif traversal_order == "bfs":
+            node_expand_order = helpers.compute_bfs_traversal(tree.tree_)
+        elif traversal_order == "best":
+            node_expand_order = helpers.compute_best_first_traversal(tree.tree_)
+        else:
+            raise Exception(f"Uncrecognized traversal: {traversal_order}")
+
+        tree_animations, split_animations = diagram._make_expansion_animations(
+            node_expand_order
+        )
+        split_animations = {int(key): value for key, value in split_animations.items()}
+        surface_animations = DecisionTreeSurface(
+            tree, points, axes, class_colors=class_colors
+        ).make_split_to_animation_map()
+
+        steps = [Create(axes, run_time=1.0)]
+        if points.size:
+            dots = VGroup(
+                *[
+                    Dot(axes.c2p(x, y), radius=0.04, color=class_colors[int(label)])
+                    for (x, y), label in zip(points, class_labels)
+                ]
+            )
+            steps.append(FadeIn(dots, run_time=1.0))
+        steps.append(tree_animations[0])
+        for node_index in (int(index) for index in node_expand_order):
+            if node_index not in split_animations:
+                continue
+            animations = [split_animations[node_index]]
+            if node_index in surface_animations:
+                animations.append(surface_animations[node_index])
+            steps.append(AnimationGroup(*animations, lag_ratio=1.0))
+
+        return Succession(*steps, lag_ratio=1.0)

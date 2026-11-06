@@ -198,7 +198,7 @@ def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimCo
     ----------
     all_polygons
         The polygon mobjects to merge, typically the decision-area
-        rectangles of a :class::class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
+        rectangles of a :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
     colors
         The colors to merge polygons for, in order. 
 
@@ -213,7 +213,6 @@ def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimCo
         str(ORANGE).lower(): [],
     }
     for polygon in all_polygons:
-        print(polygon_dict)
         polygon_dict[str(polygon.color).lower()].append(polygon)
 
     return_polygons = []
@@ -476,8 +475,8 @@ class DecisionTreeSurface(VGroup):
             A list of the results."""
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
-        right = np.amax(self.data[:, 0]) - 0.2
-        top = np.amax(self.data[:, 1])
+        right = np.amax(self.data[:, 0]) + 0.2
+        top = np.amax(self.data[:, 1]) + 0.2
         bottom = np.amin(self.data[:, 1]) - 0.2
         maxrange = [left, right, bottom, top]
         rectangles = compute_decision_areas(
@@ -545,8 +544,8 @@ class DecisionTreeSurface(VGroup):
         ctree = require("ml", "sklearn.tree")._tree
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
-        right = np.amax(self.data[:, 0]) - 0.2
-        top = np.amax(self.data[:, 1])
+        right = np.amax(self.data[:, 0]) + 0.2
+        top = np.amax(self.data[:, 1]) + 0.2
         bottom = np.amin(self.data[:, 1]) - 0.2
         maxrange = [left, right, bottom, top]
         rectangles = compute_decision_areas(

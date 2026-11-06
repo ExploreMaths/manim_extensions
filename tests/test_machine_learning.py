@@ -458,3 +458,37 @@ class TestThreeChannelImageForwardPass:
             layer_spacing=0.25,
         )
         _assert_playable(nn.make_forward_pass_animation())
+
+
+class TestDecisionTreeUnfoldAnimation:
+    """The unfolded tree and its decision surface must build for every traversal."""
+
+    def _make_container(self):
+        pytest.importorskip("sklearn")
+        from sklearn.tree import DecisionTreeClassifier
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree import (
+            DecisionTreeContainer,
+        )
+
+        rng = np.random.default_rng(0)
+        points = np.vstack(
+            [rng.normal([0, 0], 0.6, (12, 2)), rng.normal([1, 1], 0.6, (12, 2))]
+        )
+        classes = np.array([0] * 12 + [1] * 12)
+        clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)
+        return DecisionTreeContainer(clf.tree_, points, classes)
+
+    @pytest.mark.parametrize("traversal_order", ["bfs", "level", "best"])
+    def test_animation_builds_for_every_traversal(self, traversal_order):
+        container = self._make_container()
+        animation = container.make_unfold_tree_animation(traversal_order)
+        assert isinstance(animation, Succession)
+        # root reveal, axes creation and at least one split expansion
+        assert len(animation.animations) >= 3
+        _assert_playable(animation)
+
+    def test_unknown_traversal_is_rejected(self):
+        container = self._make_container()
+        with pytest.raises(Exception):
+            container.make_unfold_tree_animation("depth-first")
