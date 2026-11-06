@@ -32,7 +32,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     The VSpace class encapsulates the Pymunk :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object, managing rigid bodies,
     shapes, and constraints within the simulation. It utilizes Manim's updater
-    mechanism to synchronize the physical simulation results with Mobject
+    mechanism to synchronize the physical simulation results with :class:`~manim.mobject.mobject.Mobject`
     visual states in real-time.
 
     Parameters
@@ -139,7 +139,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             vspace.space.step(sub_dt)
 
     def __simulate_updater(self, mob: Mobject):
-        """Synchronizes a Mobject's position and rotation with its associated physical body.
+        """Synchronizes a :class:`~manim.mobject.mobject.Mobject`'s position and rotation with its associated physical body.
 
         Reads the latest kinematic state (position and angle) from the Pymunk ``Body``
         and updates the Mobject's transform. This ensures that the visual
@@ -175,7 +175,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self.space.remove(*items)
 
     def _add_body2space(self, mob: Mobject):
-        """Registers the physical body and shapes of a Mobject into the simulation space.
+        """Registers the physical body and shapes of a :class:`~manim.mobject.mobject.Mobject` into the simulation space.
 
         If the body is static, only the shapes are added to the space. For dynamic
         or kinematic bodies, both the body and its shapes are added. Additionally,
@@ -205,7 +205,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         velocity: tuple[float, float],
         angular_velocity: float,
     ):
-        """Initializes and configures the Pymunk physical body for a Mobject.
+        """Initializes and configures the Pymunk physical body for a :class:`~manim.mobject.mobject.Mobject`.
 
         This internal method creates a :class:`~pymunk.Body` instance, sets its motion
         type (Dynamic, Static, or Kinematic), and applies initial kinematic
@@ -259,7 +259,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         velocity: tuple[float, float],
         angular_velocity: float,
     ):
-        """Sets up both the physical body and its collision shapes for a Mobject.
+        """Sets up both the physical body and its collision shapes for a :class:`~manim.mobject.mobject.Mobject`.
 
         This method acts as a high-level initializer that configures the motion
         properties (velocity, gravity center) and the physical material properties
@@ -311,7 +311,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     @staticmethod
     def _set_collision_type(mob: Mobject, collision_type: int):
-        """Sets the collision type ID for all physical shapes associated with a Mobject.
+        """Sets the collision type ID for all physical shapes associated with a :class:`~manim.mobject.mobject.Mobject`.
 
         Collision types are user-defined integers used to categorize shapes. By
         assigning types, you can define specific callback functions in a collision
@@ -472,7 +472,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ):
-        """Applies a force to a Mobject's physical body at a point defined in local coordinates.
+        """Applies a force to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a point defined in local coordinates.
 
         The force is applied relative to the body's current orientation. If the point
         is not the center of gravity, it will also generate a torque, causing the
@@ -498,7 +498,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ):
-        """Applies a force to a Mobject's physical body at a point defined in world coordinates.
+        """Applies a force to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a point defined in world coordinates.
 
         The force vector is applied at an absolute position in the scene. If the
         point does not coincide with the body's center of gravity, it will generate
@@ -524,7 +524,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ):
-        """Applies an instantaneous impulse to a Mobject's physical body at a local point.
+        """Applies an instantaneous impulse to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a local point.
 
         Impulses cause an immediate change in velocity (linear and angular) without
         requiring time to elapse, simulating effects like a sudden hit or explosion.
@@ -549,7 +549,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
     ):
-        """Applies an instantaneous impulse to a Mobject's physical body at a world coordinate.
+        """Applies an instantaneous impulse to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a world coordinate.
 
         The impulse vector is applied at an absolute position in the scene. This causes
         an immediate change in the body's linear and angular velocity. If the
@@ -579,7 +579,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose body's coordinate system is used.
+            The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
             The local point (x, y, z) to convert. 
 
@@ -600,7 +600,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The Mobject whose body's coordinate system is used.
+            The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
             The world point (x, y, z) to convert. 
 
@@ -615,7 +615,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def set_position_func(
         mob: Mobject, callback: Callable[[pymunk.Body, float], None] = None
     ):
-        """Assigns a custom position update callback to a Mobject's physical body.
+        """Assigns a custom position update callback to a :class:`~manim.mobject.mobject.Mobject`'s physical body.
 
         Pymunk updates a body's position based on its velocity. This
         method allows you to override that behavior with custom logic. The callback
@@ -642,7 +642,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob: Mobject,
         callback: Callable[[Body, tuple[float, float], float, float], None] = None,
     ):
-        """Assigns a custom velocity update callback to a Mobject's physical body.
+        """Assigns a custom velocity update callback to a :class:`~manim.mobject.mobject.Mobject`'s physical body.
 
         This method overrides how Pymunk calculates velocity in each step. It is commonly
         used to implement specialized physical effects such as custom air resistance (drag),
@@ -668,7 +668,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_local_point(
         mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
-        """Return the velocity of a point on the Mobject's body expressed
+        """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in local body coordinates.
 
         Parameters
@@ -690,7 +690,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def velocity_at_world_point(
         mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> tuple[float, float, float]:
-        """Return the velocity of a point on the Mobject's body expressed
+        """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in world coordinates.
 
         Parameters
@@ -720,7 +720,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         sensor: bool = False,
         surface_velocity: tuple[float, float] = (0.0, 0.0),
     ):
-        """Configures and attaches collision shapes to a Mobject's physical body.
+        """Configures and attaches collision shapes to a :class:`~manim.mobject.mobject.Mobject`'s physical body.
 
         This internal method defines the 'material' and 'boundary' properties of the
         object. It determines how the object bounces, slides, and whether it
@@ -776,7 +776,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The VMobject for which collision shapes are generated.
+            The :class:`~manim.mobject.types.vectorized_mobject.VMobject` for which collision shapes are generated.
 
         .. note::
 
@@ -833,14 +833,14 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         """Generates Pymunk collision shapes for a hollow Mobject (outline only).
 
         Instead of a solid polygon, this method constructs a collision boundary using
-        multiple :class:`~pymunk.Segment` shapes that follow the Mobject's contour. This is
+        multiple :class:`~pymunk.Segment` shapes that follow the :class:`~manim.mobject.mobject.Mobject`'s contour. This is
         ideal for creating containers, cages, or hollow structures where other
         physical objects can move inside.
 
         Parameters
         ----------
         mob
-            The VMobject whose stroke/outline will be used to create segments.
+            The :class:`~manim.mobject.types.vectorized_mobject.VMobject` whose stroke/outline will be used to create segments.
         n_divisions
             The subdivision level for Bezier curves. Higher values result in
             smoother boundaries but may impact simulation performance.
@@ -883,7 +883,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The ImageMobject to process for shape generation.
+            The :class:`~manim.mobject.types.image_mobject.ImageMobject` to process for shape generation.
 
         .. note::
 
@@ -924,7 +924,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         mob
-            The VMobject to be sampled.
+            The :class:`~manim.mobject.types.vectorized_mobject.VMobject` to be sampled.
         n_divisions
             The subdivision level for each Bezier curve segment. A higher value
             results in a denser point set and smoother physical boundaries.
@@ -971,7 +971,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The VMobject (e.g., a Star or complex polygon) to be decomposed.
         n_divisions
-            The Bezier subdivision level used to sample the Mobject's contour points.
+            The Bezier subdivision level used to sample the :class:`~manim.mobject.mobject.Mobject`'s contour points.
         tolerance
             The decomposition tolerance. Higher values simplify the resulting
             convex shapes by merging smaller features.
@@ -1008,7 +1008,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         categories: int = 4294967295,
         mask: int = 4294967295,
     ):
-        """Configures collision filtering for all shapes associated with a Mobject.
+        """Configures collision filtering for all shapes associated with a :class:`~manim.mobject.mobject.Mobject`.
 
         This method defines which objects can collide with each other using Pymunk's
         filtering rules. It uses group IDs to ignore collisions between related
@@ -1036,7 +1036,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def get_point_query_info(
         mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> list:
-        """Performs a spatial query to find the relationship between a point and a Mobject's shapes.
+        """Performs a spatial query to find the relationship between a point and a :class:`~manim.mobject.mobject.Mobject`'s shapes.
 
         This method calculates how a specific point in space relates to the physical
         boundaries of a Mobject. It is essential for determining if a point is inside
@@ -1091,7 +1091,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         end: tuple[float, float, float],
         stroke_width: float,
     ) -> list:
-        """Performs a segment query to detect intersections between a line and a Mobject's shapes.
+        """Performs a segment query to detect intersections between a line and a :class:`~manim.mobject.mobject.Mobject`'s shapes.
 
         This method simulates a 'laser beam' or thick line segment traveling from
         'start' to 'end'. It identifies if and where this segment pierces the

@@ -15,7 +15,7 @@ from .cube_animations import *
 
 
 def _install_grouped_depth_sorting() -> None:
-    """Enable grouped 3D depth sorting for Manim's ``ThreeDCamera``.
+    """Enable grouped 3D depth sorting for Manim's :class:`~manim.camera.three_d_camera.ThreeDCamera`.
 
     Manim sorts 3D mobjects by a single per-mobject depth key (each mobject's own
     centre), which scatters the six faces of a cubie and causes the depth-order

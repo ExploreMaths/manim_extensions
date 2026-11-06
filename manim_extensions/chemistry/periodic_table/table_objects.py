@@ -173,7 +173,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         frame_rectangle = self.create_frame_base()
         symbol_text = (
             Text(self.element_symbol, color=self.text_color)
@@ -296,7 +296,7 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         positions = self.elements_position_dict()
         base_element = MElementObject()
         mult_array = np.array([base_element.get_width(), -base_element.get_height(), 0])

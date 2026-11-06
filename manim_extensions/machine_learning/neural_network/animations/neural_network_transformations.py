@@ -29,7 +29,7 @@ class RemoveLayer(AnimationGroup):
        move animations are performed. However, all of these animations are performed
        after the animations have been created. This means that the animation depends upon
        the state of the neural network layers after previous animations have been run.
-       To fix this issue I needed to use an UpdateFromFunc.
+       To fix this issue I needed to use an :class:`~manim.animation.updaters.update.UpdateFromFunc`.
 
 
     Parameters
@@ -117,7 +117,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         remove_layer_animation = self.make_remove_layer_animation()
         remove_connective_animation = self.make_remove_connective_layers_animation()
         # Remove animations
@@ -132,7 +132,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A FadeOut instance representing the result."""
+            A :class:`~manim.animation.fading.FadeOut` instance representing the result."""
         # Remove the layer
         self.neural_network.all_layers.remove(self.layer)
         # Fade out the removed layer
@@ -144,7 +144,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         # Fade out the removed connective layers
         fade_out_before_connective = AnimationGroup()
         if not self.before_connective is None:
@@ -166,7 +166,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         # Animate the movements
         move_before_layers = AnimationGroup()
         shift_right_amount = None
@@ -207,7 +207,7 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A UpdateFromFunc instance representing the result."""
+            A :class:`~manim.animation.updaters.update.UpdateFromFunc` instance representing the result."""
         self.anim_count = 0
 
         def create_new_connective(neural_network: NeuralNetwork):
@@ -349,7 +349,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         (
             before_connective_width,
             after_connective_width,
@@ -391,7 +391,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A Create instance representing the result."""
+            A :class:`~manim.animation.creation.Create` instance representing the result."""
         return Create(self.layer)
 
     def make_create_connective_layers_animation(
@@ -408,7 +408,7 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         # Make the layers
         before_connective = None

@@ -79,7 +79,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         animations = []
         # Get input layer final feature map

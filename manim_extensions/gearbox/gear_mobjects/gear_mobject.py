@@ -255,7 +255,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
 def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
-    Output is compatible with Mobject.points.
+    Output is compatible with :class:`~manim.mobject.mobject.Mobject`.points.
     Input t is a list where the involute shall be evaluated, it can be unevenly spaced.
     Anchors are added automatically.
 

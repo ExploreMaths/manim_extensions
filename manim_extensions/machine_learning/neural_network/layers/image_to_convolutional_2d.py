@@ -151,7 +151,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
 
         Raises
         ------
@@ -199,7 +199,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         # Make rotation of image
         rotation = ApplyMethod(
@@ -243,7 +243,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result."""
+            A :class:`~manim.animation.composition.Succession` instance representing the result."""
         return self._image_to_feature_map_animation(
             self.input_layer.image_mobject, self.output_layer.feature_maps[0]
         )

@@ -457,7 +457,7 @@ class MCMCAxes(Group):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         mean = distribution.mu
         var = np.eye(2) * distribution.var

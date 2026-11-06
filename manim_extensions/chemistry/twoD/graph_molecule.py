@@ -624,7 +624,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         )
 
     def get_atoms_vgroup_from_index(self, atoms_indices: list[int]) -> VGroup:
-        """Return a VGroup of vertex mobjects for the given atom indices.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of vertex mobjects for the given atom indices.
 
         Parameters
         ----------
@@ -684,7 +684,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         return edges
 
     def get_bonds_vgroup_from_index(self, connected_atoms: list, excluded_atom: int) -> VGroup:
-        """Return a VGroup of bond mobjects connected to the given atoms, excluding one.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of bond mobjects connected to the given atoms, excluding one.
 
         Parameters
         ----------
@@ -714,7 +714,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         return VGroup(
             self.get_atoms_vgroup_from_index(atoms_indices=connected_atoms),
@@ -724,7 +724,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         )
 
     def get_connected_atoms_and_bonds(self, from_atom: int, to_atom: int) -> VGroup:
-        """Return a VGroup of all atoms and bonds on the to_atom side of a given bond.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of all atoms and bonds on the to_atom side of a given bond.
 
         Parameters
         ----------
@@ -751,7 +751,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         Parameters
         ----------
         atom_index
-            Index of the atom inside the VDict.
+            Index of the atom inside the :class:`~manim.mobject.types.vectorized_mobject.VDict`.
 
         Returns
         -------

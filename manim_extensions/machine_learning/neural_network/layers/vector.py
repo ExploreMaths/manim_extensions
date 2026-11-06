@@ -91,7 +91,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A Text instance representing the result."""
+            A :class:`~manim.mobject.text.text_mobject.Text` instance representing the result."""
         vector_label = Text(f"[{self.value_func():.2f}]")
         vector_label.scale(0.3)
 
@@ -110,7 +110,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         return AnimationGroup()
 

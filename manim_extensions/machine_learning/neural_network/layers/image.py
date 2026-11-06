@@ -176,7 +176,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         return AnimationGroup()
 

@@ -149,7 +149,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A Create instance representing the result.
+            A :class:`~manim.animation.creation.Create` instance representing the result.
         """
         self.gaussian_distributions.add(gaussian_distribution)
 
@@ -165,7 +165,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A FadeOut instance representing the result, or ``None`` if there is no result.
+            A :class:`~manim.animation.fading.FadeOut` instance representing the result, or ``None`` if there is no result.
         """
         for gaussian in self.gaussian_distributions:
             if gaussian == gaussian_distribution:
@@ -212,7 +212,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         # Sample points from a Gaussian
         np.random.seed(5)
@@ -241,7 +241,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         animations = []
         if "triplet_args" in layer_args:

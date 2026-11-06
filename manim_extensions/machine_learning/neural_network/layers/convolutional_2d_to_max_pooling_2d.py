@@ -94,7 +94,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         cell_width = self.input_layer.cell_width
         feature_map_size = self.input_layer.feature_map_size

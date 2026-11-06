@@ -111,7 +111,7 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
 
         Raises
         ------
@@ -171,7 +171,7 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         # Make a wrapper NN with images. The encoder/decoder layers are
         # rebuilt instead of nesting ``self.neural_network``: a network is not

@@ -534,7 +534,7 @@ class Node:
 
         Returns
         -------
-            A group of the surrounding rectangle, the VMobject, and the
+            A group of the surrounding rectangle, the :class:`~manim.mobject.types.vectorized_mobject.VMobject`, and the
             connector line if one exists.
         """
         node_mobj = Group(self.surr_rect, self.vmobject)

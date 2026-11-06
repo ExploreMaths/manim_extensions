@@ -335,7 +335,7 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         animation_group = AnimationGroup(
             # Perform the animations
             Create(self.point_group, run_time=2),
@@ -509,7 +509,7 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A Polygon instance representing the decision rectangle.
+            A :class:`~manim.mobject.geometry.polygram.Polygon` instance representing the decision rectangle.
         """
         # get the points for the rectangle in the plot coordinate frame
         bottom_left = [rect[0], rect[3]]
@@ -623,7 +623,7 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:
@@ -638,7 +638,7 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A AnimationGroup instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:

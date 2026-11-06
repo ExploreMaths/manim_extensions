@@ -160,7 +160,7 @@ class Cell(VGroup):
         Returns
         -------
             The new text mobject (useful for animations like
-            ``Transform``).
+            :class:`~manim.animation.transform.Transform`).
 
         Examples
         --------
@@ -199,7 +199,7 @@ class Cell(VGroup):
         Create a copy of this cell with a new width.
         The copy is positioned at the same center as this cell.
         Preserves font color, background color, border color, and current scale.
-        Useful for animating width changes with Transform.
+        Useful for animating width changes with :class:`~manim.animation.transform.Transform`.
         
         Parameters
         ----------

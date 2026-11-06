@@ -30,7 +30,7 @@ def qr_code(payload: str,
             segno_kwargs: dict[str, object] | None = None,
             **kwargs: Any, ) -> VGroup:
     """
-    Create a QR code as a VGroup of Manim objects.
+    Create a QR code as a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of Manim objects.
     This function uses the segno library to generate a QR code and then converts it into Manim objects.
 
     Parameters

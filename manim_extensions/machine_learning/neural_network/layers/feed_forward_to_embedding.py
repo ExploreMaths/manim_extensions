@@ -97,7 +97,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         # Find point to converge on by sampling from gaussian distribution
         location = self.embedding_layer.sample_point_location_from_distribution()

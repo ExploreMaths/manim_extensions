@@ -201,7 +201,7 @@ class Element(VGroup):
         return base_dot.scale(scale_ratio)
 
     def get_electrons(self) -> VGroup | None:
-        """Return a VGroup of electron mobjects, or None if electrons are disabled.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of electron mobjects, or None if electrons are disabled.
 
         Returns
         -------
@@ -212,7 +212,7 @@ class Element(VGroup):
         return None
 
     def get_holes(self) -> VGroup | None:
-        """Return a VGroup of hole mobjects, or None if holes are disabled.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of hole mobjects, or None if holes are disabled.
 
         Returns
         -------
@@ -227,7 +227,7 @@ class Element(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         particles = VGroup()
         if self.electrons:
             particles.add(*self.electrons.submobjects)
@@ -257,14 +257,14 @@ class Element(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
         if self.subelectron_holes:
             return VGroup(
                 *[Hole().move_to(electron.get_center()) for electron in self.electrons]
             )
 
     def get_subelectron_holes(self) -> VGroup | None:
-        """Return the VGroup of subelectron holes.
+        """Return the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of subelectron holes.
 
         Returns
         -------
@@ -381,7 +381,7 @@ class NPNTransistor(VGroup):
         vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
         horizontal_boundary: list = [LEFT, RIGHT],
     ) -> VGroup:
-        """Create a VGroup of scaled particle mobjects arranged in a rectangular grid.
+        """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of scaled particle mobjects arranged in a rectangular grid.
 
         Parameters
         ----------
@@ -469,7 +469,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         if self.schema_type != "horizontal":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -522,7 +522,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         if self.schema_type != "corner":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -568,7 +568,7 @@ class BatterySchema(VGroup):
         return schema
 
     def select_schema(self) -> VGroup:
-        """Return the schema VGroup corresponding to the configured layout type.
+        """Return the schema :class:`~manim.mobject.types.vectorized_mobject.VGroup` corresponding to the configured layout type.
 
         Returns
         -------
@@ -677,7 +677,7 @@ class MOSFETTransistor(VGroup):
         return region
 
     def add_holes(self) -> VGroup:
-        """Create a VGroup of holes distributed across the board, or empty if disabled.
+        """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of holes distributed across the board, or empty if disabled.
 
         Returns
         -------
@@ -700,7 +700,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
             .next_to(self.main_board, UP, buff=1.25)
@@ -719,7 +719,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
 
@@ -730,7 +730,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         if not self.show_battery:
             return VGroup()
 
@@ -819,7 +819,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
     Parameters
     ----------
     mobs
-        Mobject or VGroup of mobjects to duplicate.
+        Mobject or :class:`~manim.mobject.types.vectorized_mobject.VGroup` of mobjects to duplicate.
     boundary
         Boundary points of the line. 
 
@@ -851,7 +851,7 @@ def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height:
 
     Returns
     -------
-        A VGroup instance representing the result.
+        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
     group = VGroup()
     for i in range(amount):
@@ -937,7 +937,7 @@ def arrange_copies_in_rectangle(
 
     Returns
     -------
-        A VGroup instance representing the result.
+        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
     arrange_in_1D_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
@@ -1032,7 +1032,7 @@ def inverse_linear(t: float, inflection: float = 10.0) -> float:
 
 
 def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
-    """Create a VGroup by concatenating copies of mobject alternating left and right.
+    """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` by concatenating copies of mobject alternating left and right.
 
     Parameters
     ----------

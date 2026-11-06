@@ -203,7 +203,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         # Make sure proper dropout information was passed
         assert "dropout_node_indices" in layer_args

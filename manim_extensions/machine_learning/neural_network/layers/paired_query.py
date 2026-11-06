@@ -162,7 +162,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            A Group instance representing the result."""
+            A :class:`~manim.mobject.mobject.Group` instance representing the result."""
         # Handle positive
         positive_group = LabeledColorImage(
             self.positive,
@@ -202,6 +202,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         return AnimationGroup()

@@ -33,7 +33,7 @@ class VPinJoint(VConstraint):
         The second Mobject to be connected.
     anchor_a_local
         The local anchor point on ``a_mob`` where the pin is attached,
-        relative to the Mobject's center.
+        relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_b_local
         The local anchor point on ``b_mob`` where the pin is attached,
         relative to the Mobject's center.

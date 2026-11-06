@@ -89,7 +89,7 @@ class EconDiagram(VGroup):
     y_length
         Length of the y-axis in scene units.
     **kwargs
-        Additional keyword arguments passed to ``VGroup``.
+        Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
     Examples
     --------
@@ -387,7 +387,7 @@ class EconDiagram(VGroup):
                             run_time: float = 1, show_arrows: bool = False,
                             arrow_color: ManimColor | str = WHITE
                             ) -> AnimationGroup:
-        """Return a Transform animation that shifts a curve to a new function.
+        """Return a :class:`~manim.animation.transform.Transform` animation that shifts a curve to a new function.
 
         Parameters
         ----------
@@ -473,7 +473,7 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-            A FadeOut animation removing the arrows, or ``None`` if there
+            A :class:`~manim.animation.fading.FadeOut` animation removing the arrows, or ``None`` if there
             are no arrows to clear.
         """
         if hasattr(self, '_axis_arrows') and self._axis_arrows is not None:

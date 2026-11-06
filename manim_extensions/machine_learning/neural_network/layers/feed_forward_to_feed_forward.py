@@ -240,7 +240,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order

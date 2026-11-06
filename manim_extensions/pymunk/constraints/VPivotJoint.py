@@ -39,7 +39,7 @@ class VPivotJoint(VConstraint):
         ``anchor_a_local`` and ``anchor_b_local`` are calculated automatically based on this.
     anchor_a_local
         The local anchor point on ``a_mob`` corresponding to the pivot,
-        relative to the Mobject's center.
+        relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
     anchor_b_local
         The local anchor point on ``b_mob`` corresponding to the pivot,
         relative to the Mobject's center.

@@ -381,7 +381,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-            A FadeOut animation removing the shares, or ``None`` if the
+            A :class:`~manim.animation.fading.FadeOut` animation removing the shares, or ``None`` if the
             shares are not visible.
         """
         if hasattr(self, '_shares_group') and self._shares_group is not None:
@@ -449,7 +449,7 @@ class SolowDiagram(EconDiagram):
         color
             Color of the golden-rule line and labels. 
         run_time
-            Duration of the FadeIn animation. 
+            Duration of the :class:`~manim.animation.fading.FadeIn` animation.
 
             Draws a vertical dashed line at ``k_gold`` with a label. The golden rule
             is where :math:`MPK = \\delta + n + g`, giving the savings rate that
@@ -483,7 +483,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-            A FadeOut animation removing the marker, or ``None`` if the
+            A :class:`~manim.animation.fading.FadeOut` animation removing the marker, or ``None`` if the
             marker is not present.
         """
         if hasattr(self, '_golden_group') and self._golden_group is not None:

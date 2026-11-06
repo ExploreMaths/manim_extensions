@@ -84,7 +84,7 @@ class FeedForwardToImage(ConnectiveLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         animations = []
         image_mobject = self.image_layer.image_mobject

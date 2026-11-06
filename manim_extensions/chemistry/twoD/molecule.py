@@ -222,7 +222,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         bonds = VGroup()
         bond_index = 0
         for index, bond_list in self.bonds_dict.items():
@@ -546,7 +546,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Parameters
         ----------
         atom_index
-            Index of the atom inside the VDict.
+            Index of the atom inside the :class:`~manim.mobject.types.vectorized_mobject.VDict`.
 
         Returns
         -------
@@ -1123,7 +1123,7 @@ class NamedMolecule(VGroup):
         Parameters
         ----------
         atom_index
-            Index of the atom inside the VDict.
+            Index of the atom inside the :class:`~manim.mobject.types.vectorized_mobject.VDict`.
 
         Returns
         -------

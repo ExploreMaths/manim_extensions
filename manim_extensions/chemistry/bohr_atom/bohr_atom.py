@@ -105,7 +105,7 @@ class BohrAtom(VGroup):
         ]
 
     def orbitals_group(self) -> VGroup:
-        """Return a VGroup of concentric circle orbitals for each occupied level.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of concentric circle orbitals for each occupied level.
 
         Returns
         -------
@@ -118,7 +118,7 @@ class BohrAtom(VGroup):
         )
 
     def nuclei_groups(self) -> VGroup:
-        """Return a VGroup of randomly positioned proton and neutron dots forming the nucleus.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of randomly positioned proton and neutron dots forming the nucleus.
 
         Returns
         -------
@@ -141,7 +141,7 @@ class BohrAtom(VGroup):
         return VGroup(*nuclei)
 
     def electrons_group(self) -> VGroup:
-        """Return a VGroup of electrons distributed across orbital levels according to Bohr model rules.
+        """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of electrons distributed across orbital levels according to Bohr model rules.
 
         Returns
         -------
@@ -184,7 +184,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result.
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         level_group = VGroup()
         for angle in np.arange(0, TAU, TAU / n_electrons):

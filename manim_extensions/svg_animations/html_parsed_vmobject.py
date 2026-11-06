@@ -122,7 +122,7 @@ def _ensure_to_svg_plugin():
 
 
 class HTMLParsedVMobject:
-    """Wrap a VMobject and stream its rendered SVG into an HTML page.
+    """Wrap a :class:`~manim.mobject.types.vectorized_mobject.VMobject` and stream its rendered SVG into an HTML page.
 
     While the scene runs, the vmobject is continuously exported to an SVG
     file and the corresponding JavaScript/SVG updates are injected into a

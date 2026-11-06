@@ -169,7 +169,7 @@ class ActivationFunction(ABC, VGroup):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         if x_val is None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])

@@ -36,7 +36,8 @@ from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
 class ManimMesh(Group, metaclass=ConvertToOpenGL):
     """another Mesh implementation, a bit faster + looks better.
 
-    inspired by manim class 'Surface'
+    inspired by manim class
+    :class:`~manim.mobject.three_d.three_dimensions.Surface`
 
     Parameters
     ----------

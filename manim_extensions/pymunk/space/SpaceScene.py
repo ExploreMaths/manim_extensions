@@ -150,7 +150,7 @@ class SpaceScene(ZoomedScene):
             The surface velocity of the shape. Useful for creating conveyor
             belt effects.
         center_of_gravity
-            The center of gravity relative to the Mobject's center.
+            The center of gravity relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
         velocity
             The initial linear velocity of the body. Though static, this can
             affect how objects bounce off it.
@@ -224,7 +224,7 @@ class SpaceScene(ZoomedScene):
             The surface velocity of the shape. Useful for creating conveyor
             belt effects.
         center_of_gravity
-            The center of gravity relative to the Mobject's center.
+            The center of gravity relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
         velocity
             The initial linear velocity of the body. Though static, this can
             affect how objects bounce off it.
@@ -298,7 +298,7 @@ class SpaceScene(ZoomedScene):
             The surface velocity of the shape. Useful for creating conveyor
             belt effects.
         center_of_gravity
-            The center of gravity relative to the Mobject's center.
+            The center of gravity relative to the :class:`~manim.mobject.mobject.Mobject`'s center.
         velocity
             The initial linear velocity of the body. Though static, this can
             affect how objects bounce off it.
@@ -440,7 +440,7 @@ class SpaceScene(ZoomedScene):
     def get_body(mob: Mobject) -> pymunk.Body | None:
         """Extracts the bound Pymunk Body object from a Manim Mobject.
 
-        This method retrieves the physical body associated with the Mobject,
+        This method retrieves the physical body associated with the :class:`~manim.mobject.mobject.Mobject`,
         allowing for direct manipulation of physical properties like mass or velocity.
 
         Parameters
@@ -464,7 +464,7 @@ class SpaceScene(ZoomedScene):
 
     @staticmethod
     def get_shapes(mob: Mobject) -> list[pymunk.Shape] | None:
-        """Retrieves the list of Pymunk Shape objects associated with a Mobject.
+        """Retrieves the list of Pymunk Shape objects associated with a :class:`~manim.mobject.mobject.Mobject`.
 
         Shapes define the collision boundaries of a body. One Mobject may consist
         of multiple physical shapes.
@@ -674,7 +674,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose body's coordinate system is used.
+            The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
             The local point (x, y, z) to convert. 
         """
@@ -689,7 +689,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose body's coordinate system is used.
+            The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
             The world point (x, y, z) to convert. 
         """
@@ -748,7 +748,7 @@ class SpaceScene(ZoomedScene):
     def get_velocity_at_local_point(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     )-> tuple[float, float, float]:
-        """Return the velocity of a point on the Mobject's body expressed
+        """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in local body coordinates.
 
         Parameters
@@ -768,7 +768,7 @@ class SpaceScene(ZoomedScene):
     def velocity_at_world_point(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     )-> tuple[float, float, float]:
-        """Return the velocity of a point on the Mobject's body expressed
+        """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in world (scene) coordinates.
 
         Parameters
@@ -789,7 +789,7 @@ class SpaceScene(ZoomedScene):
     def get_point_query_info(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
     ) -> list:
-        """Query which shapes of the Mobject contain or are closest to a
+        """Query which shapes of the :class:`~manim.mobject.mobject.Mobject` contain or are closest to a
         given point in world coordinates.
 
         Parameters
@@ -821,7 +821,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mob
-            The Mobject whose shapes will be queried.
+            The :class:`~manim.mobject.mobject.Mobject` whose shapes will be queried.
         start
             Start point :math:`(x, y, z)` of the query segment.
         end

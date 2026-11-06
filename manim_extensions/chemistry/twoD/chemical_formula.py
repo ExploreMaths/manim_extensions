@@ -233,7 +233,7 @@ class NamedFormula(VGroup):
 
         Returns
         -------
-            A MarkupText instance representing the result."""
+            A :class:`~manim.mobject.text.text_mobject.MarkupText` instance representing the result."""
 
         metal_text = None
         non_metal_text = None

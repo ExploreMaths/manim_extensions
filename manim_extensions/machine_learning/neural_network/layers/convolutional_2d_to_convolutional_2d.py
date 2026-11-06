@@ -146,7 +146,7 @@ class Filters(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         rectangles = []
         rectangle_width = (
             self.output_layer.filter_size[0] * self.output_layer.cell_width
@@ -196,7 +196,7 @@ class Filters(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
         rectangles = []
 
         rectangle_width = self.output_layer.cell_width
@@ -255,7 +255,7 @@ class Filters(VGroup):
 
         Returns
         -------
-            A VGroup instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
 
@@ -264,7 +264,7 @@ class Filters(VGroup):
 
             Returns
             -------
-                A VGroup instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -288,7 +288,7 @@ class Filters(VGroup):
 
             Returns
             -------
-                A VGroup instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -312,7 +312,7 @@ class Filters(VGroup):
 
             Returns
             -------
-                A VGroup instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
             output_rectangle = self.output_rectangles[0]
@@ -350,7 +350,7 @@ class Filters(VGroup):
         Without this override the filters were shown at the beginning
         of the neural network forward pass animation
         instead of just when the filters were supposed to appear.
-        I think this is a bug with Succession in the core
+        I think this is a bug with :class:`~manim.animation.composition.Succession` in the core
         Manim Community Library.
         """
 
@@ -379,7 +379,7 @@ class Filters(VGroup):
 
         Returns
         -------
-            A ShowPassingFlash instance representing the result.
+            A :class:`~manim.animation.indication.ShowPassingFlash` instance representing the result.
         """
         passing_flash = ShowPassingFlash(
             self.connective_lines.shift(shift_amount).set_stroke_width(
@@ -492,7 +492,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         animations = []
         # Make filters
@@ -552,7 +552,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-            A Succession instance representing the result.
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
         animations = []
         output_feature_maps = self.output_layer.feature_maps

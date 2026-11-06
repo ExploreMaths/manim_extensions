@@ -311,7 +311,7 @@ class Table(VGroup):
     
     def get_column(self, index: int) -> VGroup:
         """
-        Get all cells in a column as a VGroup.
+        Get all cells in a column as a :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
         Includes the header cell.
 
         Parameters
@@ -504,8 +504,8 @@ class Table(VGroup):
         -------
             Tuple of ``(new_row, animations)``. The animations include
             both resize transforms for existing cells (if column widths
-            change) and FadeIn for the new row cells, and can all be
-            played together in an AnimationGroup.
+            change) and :class:`~manim.animation.fading.FadeIn` for the new row cells, and can all be
+            played together in an :class:`~manim.animation.composition.AnimationGroup`.
 
         Examples
         --------
@@ -645,9 +645,9 @@ class Table(VGroup):
         Returns
         -------
             Tuple of ``(deleted_row, animations)``. The animations
-            include the FadeOut of the deleted row, shift animations for
+            include the :class:`~manim.animation.fading.FadeOut` of the deleted row, shift animations for
             the remaining rows and resize animations if column widths
-            change, and can all be played together in an AnimationGroup.
+            change, and can all be played together in an :class:`~manim.animation.composition.AnimationGroup`.
 
         Raises
         ------
@@ -788,7 +788,7 @@ class Table(VGroup):
             Tuple of ``(new_column_group, shift_animations,
             appear_animations)``. ``shift_animations`` is empty when
             appending at the end of the table, so check it before
-            wrapping it in an ``AnimationGroup``.
+            wrapping it in an :class:`~manim.animation.composition.AnimationGroup`.
 
         Raises
         ------
@@ -902,7 +902,7 @@ class Table(VGroup):
             Tuple of ``(deleted_column_group, shift_animations)``.
             ``shift_animations`` is empty when deleting the last
             column, so check it before wrapping it in an
-            ``AnimationGroup``.
+            :class:`~manim.animation.composition.AnimationGroup`.
 
         Raises
         ------

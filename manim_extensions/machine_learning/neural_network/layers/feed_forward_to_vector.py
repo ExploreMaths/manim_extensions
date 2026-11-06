@@ -84,7 +84,7 @@ class FeedForwardToVector(ConnectiveLayer):
 
         Returns
         -------
-            A AnimationGroup instance representing the result.
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         animations = []
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer

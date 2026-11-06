@@ -137,7 +137,7 @@ class WeightedLine(Line):
         """
         Clears any current weight and then displays the weight is not none.
 
-        Use weight_config dict to send options to the Text object.
+        Use weight_config dict to send options to the :class:`~manim.mobject.text.text_mobject.Text` object.
 
         Use bg_config dict to send options to the background Rectangle object.
 
