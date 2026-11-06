@@ -195,7 +195,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self.move_to(ORIGIN)
 
     def get_atoms(self) -> tuple:
-        """Build MAtomObject instances from the atoms dict and return them as VDict + index dict.
+        """Build MAtomObject instances from the atoms dict and return them as :class:`~manim.mobject.types.vectorized_mobject.VDict` + index dict.
 
         Returns
         -------

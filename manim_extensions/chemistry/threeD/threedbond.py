@@ -36,7 +36,7 @@ from manim.typing import Point3D, Vector3D
 
 class ThreeDCylinder(OpenGLSurface):
     """
-    Absolutely yoinked from Cylinder class and
+    Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and
     adapted to OpenGL rendering.
 
     Parameters

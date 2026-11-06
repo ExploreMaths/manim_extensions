@@ -94,7 +94,7 @@ class AbstractMolecule:
         **kwargs,
     ) -> OpenGLGroup | VGroup:
         """
-        Reads a file and returns a collection of molecules from that file as a OpenGLGroup or VGroup.
+        Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
         Parameters
         ----------

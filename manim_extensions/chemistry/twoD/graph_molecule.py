@@ -159,7 +159,7 @@ class TripleLine(DoubleLine):
 
 
 class GraphMolecule(Graph, AbstractMolecule):
-    r"""Represents a molecule like a Graph from Manim.
+    r"""Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim.
 
     Parameters
     ----------

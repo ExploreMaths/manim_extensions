@@ -193,7 +193,7 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 def make_dist_image_mobject_from_samples(samples: Point2D_Array, ylim: list | None, xlim: list | None) -> ImageMobject:
-    """Render a KDE density plot from 2D samples and return it as an ImageMobject.
+    """Render a KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
     Parameters
     ----------
