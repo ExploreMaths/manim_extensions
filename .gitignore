@@ -16,6 +16,9 @@ rendering_times.csv
 docs/_c.log
 docs/_v.log
 .docspot
+.coverage
+/coverage.json
+/coverage.xml
 workflow/_refs_report.json
 workflow/_validate_result.txt
 workflow/_inline_refs_data.json

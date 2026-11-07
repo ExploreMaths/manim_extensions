@@ -272,5 +272,8 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         -------
             A ThreeDMolecule instance representing the result.
         """
+        # patched: accept the whole MOL block here, not only its lines.
+        if isinstance(mol_string, str):
+            mol_string = mol_string.splitlines()
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

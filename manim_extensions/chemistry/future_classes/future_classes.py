@@ -260,6 +260,9 @@ class Element(VGroup):
         -------
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
         if self.subelectron_holes:
+            # patched: electrons can be disabled, which used to raise here.
+            if self.electrons is None:
+                return VGroup()
             return VGroup(
                 *[Hole().move_to(electron.get_center()) for electron in self.electrons]
             )
@@ -590,7 +593,8 @@ class BatterySchema(VGroup):
             The object itself, for method chaining."""
         terminals = VGroup(self.plus_terminal, self.minus_terminal)
 
-        terminals.rotate(PI, UP, terminals.get_center())
+        # patched: the positional about_point argument is gone in current manim.
+        terminals.rotate(PI, axis=UP, about_point=terminals.get_center())
 
         return self
 

@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 50
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -59,7 +61,24 @@ jobs:
 
       - name: Test with pytest
         run: |
-          xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-fail-under=35
+          xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-report=json:coverage.json --cov-fail-under=67
+
+      # The badge JSON is committed so shields.io can read it straight from
+      # raw.githubusercontent.com; only one matrix leg writes it, and only on
+      # main, so the other legs and PRs never race for the same file.
+      - name: Refresh the coverage badge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.python-version == '3.12'
+        run: |
+          python workflow/coverage_badge.py coverage.json
+          if git diff --quiet -- .github/badges/coverage.json; then
+            echo "coverage badge unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/badges/coverage.json
+          git commit -m "Refresh the coverage badge"
+          git push
 
   # Verify the declared lower bounds against the newest manim release,
   # so compatibility is tested rather than merely claimed.

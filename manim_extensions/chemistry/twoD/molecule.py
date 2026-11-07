@@ -299,6 +299,17 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                         bond_index += 1
                         bonds.add(new_bond)
                         continue
+                    # patched: a hydrogen bond with no stereo information and no
+                    # explicit hydrogens used to be dropped silently.
+                    else:
+                        new_bond = SimpleBond(
+                            from_atom=from_atom,
+                            to_atom=to_atom,
+                            index=bond_index,
+                            type=bond_type,
+                        )
+                        bond_index += 1
+                        bonds.add(new_bond)
 
                 else:
                     if bond_type == 2 or bond_type == 5 or bond_type == 7:
@@ -494,6 +505,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         -------
             A MMoleculeObject instance representing the result.
         """
+        # patched: the parser wants the lines of a MOL block, but the public
+        # entry point is documented as taking the whole string.
+        if isinstance(mol_string, str):
+            mol_string = mol_string.splitlines()
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
