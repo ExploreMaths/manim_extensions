@@ -102,7 +102,6 @@ introduction, or browse the :doc:`examples/index` gallery.
    examples/index
    installation/index
    tutorials/index
-   constants
    reference/index
    changelog
    contributing
@@ -111,9 +110,10 @@ introduction, or browse the :doc:`examples/index` gallery.
 
 .. toctree::
    :maxdepth: 1
-   :caption: External Links
+   :caption: Manim Resources
    :hidden:
 
+   constants
    GitHub Repository <https://github.com/ExploreMaths/manim_extensions>
    PyPI Package <https://pypi.org/project/manim_extensions/>
    Manim Community <https://www.manim.community/>
