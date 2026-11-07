@@ -1310,7 +1310,7 @@ def load_exemptions() -> dict:
 def iter_py_files():
     """Yield all Python files under manim_extensions, skipping caches."""
     for path in sorted(SRC.rglob("*.py")):
-        if path.name == "__init__.py" or "__pycache__" in path.parts:
+        if "__pycache__" in path.parts:
             continue
         yield path
 

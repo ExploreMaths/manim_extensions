@@ -40,7 +40,12 @@ class ManimMLConfig:
 
     @property
     def color_scheme(self) -> ColorScheme:
-        """The currently active color scheme."""
+        """The currently active color scheme.
+
+        Returns
+        -------
+            The color scheme applied to the visualizations.
+        """
         return self._color_scheme
 
     @color_scheme.setter

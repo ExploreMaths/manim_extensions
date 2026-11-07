@@ -6,9 +6,10 @@
 
 Mirrors the acceptance rule requested by the maintainer: "有 return 的话要
 写返回注解".  Exemptions (kept in sync with check_type_annotations.py):
-``__init__.py`` modules, the vendored ``fontawesome`` package, test files,
-``self``/``cls``/``*args``/``**kwargs`` (parameters only; returns still
-checked), and functions without a docstring.
+the vendored ``fontawesome`` package, test files, and functions without a
+docstring.  Functions defined in ``__init__.py`` are checked as well,
+since package initialisers may define public helpers (re-exported names
+are plain imports, not function definitions).
 
 A function is considered to "return a value" if its body contains at least
 one ``return`` statement whose value is not the literal ``None`` (explicit
@@ -27,8 +28,6 @@ PACKAGE = Path(__file__).resolve().parent.parent / "manim_extensions"
 
 
 def _ignored_module(rel: str) -> bool:
-    if rel.endswith("__init__.py"):
-        return True
     if "fontawesome" in rel:
         return True
     if "/test" in rel or rel.startswith("test") or "_test.py" in rel or "tests" in rel:

@@ -276,7 +276,8 @@ class SpaceScene(Scene):
         """
         for mob in mobs:
             if isinstance(mob, VGroup or Group):
-                return self.make_static_body(*mob)
+                self.make_static_body(*mob)
+                return
             mob.body = self.space.space.static_body
             get_shape(mob)
             mob.shape.elasticity = elasticity

@@ -4,8 +4,11 @@
 """Check that all function parameters in the codebase have type annotations.
 
 This script is designed to be run in CI. It scans all Python files in the
-``manim_extensions`` package (excluding ``__init__.py`` and vendored assets)
-and reports any function or method parameter that lacks a type annotation.
+``manim_extensions`` package (excluding vendored assets) and reports any
+function or method parameter that lacks a type annotation.  Functions
+defined in ``__init__.py`` are checked too: a package initialiser may
+expose public helpers of its own (re-exported imports are not function
+definitions, so they are never flagged).
 
 Usage::
 
@@ -17,7 +20,6 @@ one parameter is missing an annotation.
 Excluded by default (conventionally left unannotated):
   - ``self`` and ``cls`` (first parameter of methods / classmethods)
   - ``*args`` and ``**kwargs`` (variadic parameters)
-  - Files matching ``__init__.py`` (re-export modules)
   - Files under ``fontawesome/`` (vendored icon assets)
   - Test files (``test_*.py``, ``*_test.py``)
 """
@@ -30,14 +32,11 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-SKIP_FILENAMES = {"__init__.py"}
 SKIP_DIR_PARTS = {"fontawesome", "__pycache__", "tests", "docs", "build"}
 
 
 def should_skip(path: Path) -> bool:
     """Return *True* if ``path`` should be skipped during scanning."""
-    if path.name in SKIP_FILENAMES:
-        return True
     if "test" in path.name.lower():
         return True
     for part in path.parts:
