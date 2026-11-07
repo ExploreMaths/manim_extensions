@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Sphinx configuration for manim_extensions documentation."""
 
 from manim import Mobject, VMobject
@@ -51,9 +50,11 @@ extensions = [
     "manim_directive",
     "nbcell_directive",
     "autodoc_all",
+    "dataclass_label",
     "inheritance_colors",
     "inline_link_colors",
     "default_value_links",
+    "preserve_attribute_defaults",
     "autodoc_inheritance",
     "deprecated_warning",
     "vendored_status",
