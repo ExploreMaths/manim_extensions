@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-MObject SVG
+Mobject SVG
 ===========
 
 .. module:: manim_extensions.mobject_svg

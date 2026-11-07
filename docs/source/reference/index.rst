@@ -157,7 +157,7 @@ Module Index
    Machine Learning = machine_learning
    Meshes = meshes
    MindMap = mindmap
-   MObject SVG = mobject_svg
+   Mobject SVG = mobject_svg
    Nerd Font Icons = nerdfont
    Physics = physics
    Pymunk = pymunk
