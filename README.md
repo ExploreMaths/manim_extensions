@@ -6,9 +6,9 @@
 **An extension toolkit for [Manim](https://www.manim.community/)** — reusable mobjects, geometric computations, and animations to help you build mathematical videos faster.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/magnetic_field.png" width="30%" alt="Magnetic field of a current loop" />
-  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/multi_pendulum.png" width="30%" alt="Chaotic double pendulum" />
-  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/rubiks_cube.png" width="30%" alt="Rubik's cube" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/magnetic_field.gif" width="30%" alt="Magnetic field of a current loop" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/multi_pendulum.gif" width="30%" alt="Chaotic double pendulum" />
+  <img src="https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/docs/source/_static/cover/rubiks_cube.gif" width="30%" alt="Rubik's cube" />
 </p>
 
 <p align="center">
@@ -17,6 +17,7 @@
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" alt="CI" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" alt="Validate" /></a>
   <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white" alt="Documentation" /></a>
+  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/coverage.json" alt="Coverage" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License" /></a>
 </p>
 
