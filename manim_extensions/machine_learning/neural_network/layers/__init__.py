@@ -1,9 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Neural network layers for Manim ML.
 
 This module provides various neural network layer classes for visualizations.
@@ -31,10 +30,38 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .triplet import TripletLayer
 from .triplet_to_feed_forward import TripletToFeedForward
 from .paired_query import PairedQueryLayer
-from .paired_query_to_feed_forward import PairedQueryToFeedForward
 from .max_pooling_2d import MaxPooling2DLayer
 from .feed_forward_to_math_operation import FeedForwardToMathOperation
 
+__all__ = [
+    "ConnectiveLayer",
+    "Convolutional2DLayer",
+    "Convolutional2DToConvolutional2D",
+    "Convolutional2DToFeedForward",
+    "Convolutional2DToMaxPooling2D",
+    "EmbeddingLayer",
+    "EmbeddingToFeedForward",
+    "FeedForwardLayer",
+    "FeedForwardToEmbedding",
+    "FeedForwardToFeedForward",
+    "FeedForwardToImage",
+    "FeedForwardToMathOperation",
+    "FeedForwardToVector",
+    "ImageLayer",
+    "ImageToConvolutional2DLayer",
+    "ImageToFeedForward",
+    "MaxPooling2DLayer",
+    "MaxPooling2DToConvolutional2D",
+    "MaxPooling2DToFeedForward",
+    "NeuralNetworkLayer",
+    "PairedQueryLayer",
+    "PairedQueryToFeedForward",
+    "TripletLayer",
+    "TripletToFeedForward",
+    "connective_layers_list",
+]
+
+#: Registry of connective layer classes used to infer the connection between adjacent layers.
 connective_layers_list = (
     EmbeddingToFeedForward,
     FeedForwardToEmbedding,
@@ -43,7 +70,6 @@ connective_layers_list = (
     ImageToFeedForward,
     PairedQueryToFeedForward,
     TripletToFeedForward,
-    PairedQueryToFeedForward,
     FeedForwardToVector,
     Convolutional2DToConvolutional2D,
     ImageToConvolutional2DLayer,

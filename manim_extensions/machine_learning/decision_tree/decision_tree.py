@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: implement text leaf nodes and the tree expansion animations
+
 """
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.

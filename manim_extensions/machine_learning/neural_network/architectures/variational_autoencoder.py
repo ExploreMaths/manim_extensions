@@ -1,11 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
-#
 # SPDX-License-Identifier: MIT
 # patched: implement make_triplet_forward_pass and make_image_forward_pass
+
 """Variational Autoencoder Manim Visualizations.
 
 In this module I define Manim visualizations for Variational Autoencoders

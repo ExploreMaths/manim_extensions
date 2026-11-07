@@ -1,9 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Embedding layer visualization for neural networks."""
 
 from manim import (

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 r"""
 A directive for including Manim videos in a Sphinx document
 ===========================================================

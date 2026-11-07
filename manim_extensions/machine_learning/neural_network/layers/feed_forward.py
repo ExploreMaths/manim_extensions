@@ -1,9 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.

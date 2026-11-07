@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """AD-AS diagram for Manim.
 
 This module provides the Aggregate Demand-Aggregate Supply diagram.

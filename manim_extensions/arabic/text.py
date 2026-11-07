@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
 # patched: default font resolution — the upstream default "Al Bayan" only
+
 #          exists on macOS, so ArabicTemplate()/ArabicText() failed on every
 #          other platform. When no font is given explicitly, the first
 #          installed font from _FONT_CANDIDATES (queried via fontconfig's

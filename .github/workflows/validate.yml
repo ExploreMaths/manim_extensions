@@ -137,6 +137,13 @@ jobs:
       - name: Run reuse lint
         run: reuse lint
 
+  validate-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check SPDX header blocks
+        run: python workflow/validate_headers.py
+
   validate-type-annotations:
     runs-on: ubuntu-latest
     steps:

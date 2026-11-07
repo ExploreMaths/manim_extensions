@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: implement modify_edge_colors
+
 """Feed-forward to feed-forward layer connection visualization."""
 
 import numpy as np

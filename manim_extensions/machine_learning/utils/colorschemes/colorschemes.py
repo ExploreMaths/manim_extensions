@@ -1,9 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Color schemes for neural network visualization."""
 
 from manim import BLACK, BLUE, ORANGE, WHITE, ManimColor
@@ -33,6 +32,7 @@ class ColorScheme:
     text_color: ManimColor
     background_color: ManimColor
 
+#: Colour scheme with light elements on a black background.
 dark_mode = ColorScheme(
     primary_color=BLUE,
     secondary_color=WHITE,
@@ -41,6 +41,7 @@ dark_mode = ColorScheme(
     background_color=BLACK
 )
 
+#: Colour scheme with dark elements on a white background.
 light_mode = ColorScheme(
     primary_color=BLUE,
     secondary_color=BLACK,

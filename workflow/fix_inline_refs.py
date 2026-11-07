@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
 
 """LEGACY: Fix inline code that could be converted to Sphinx cross-references.
 

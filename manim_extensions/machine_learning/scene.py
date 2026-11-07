@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: forward play to ThreeDScene instead of silently doing nothing
+
 """Scene classes for Manim ML visualizations.
 
 This module provides custom scene classes for machine learning visualizations.

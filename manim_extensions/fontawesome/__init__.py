@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Font Awesome icons for Manim.
 
 This module provides access to Font Awesome icons (brand, regular, and solid styles).

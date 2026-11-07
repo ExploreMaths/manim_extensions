@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import requests (chemistry extra)
+
 """PubChem API manager for Manim chemistry.
 
 This module provides the PubchemAPIManager class for fetching molecular data from PubChem.

@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import shapely (physics extra)
 
-
 """Lenses for refracting Rays."""
 
 from __future__ import annotations

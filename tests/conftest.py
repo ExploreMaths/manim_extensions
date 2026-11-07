@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 from manim import Scene
 import numpy as np
 import pytest

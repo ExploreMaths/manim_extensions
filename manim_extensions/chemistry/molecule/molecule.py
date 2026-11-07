@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Molecule proxy class for Manim chemistry.
 
 This module provides the Molecule class as a unified interface for different molecule types.

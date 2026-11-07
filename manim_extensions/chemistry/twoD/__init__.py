@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """2D chemistry visualizations for Manim.
 
 This module provides 2D chemistry molecule visualizations.

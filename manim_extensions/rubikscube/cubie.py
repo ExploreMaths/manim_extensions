@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Individual cubie used by the Rubik's Cube mobject."""
 
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP

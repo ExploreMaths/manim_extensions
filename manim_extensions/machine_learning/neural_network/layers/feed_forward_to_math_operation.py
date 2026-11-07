@@ -1,9 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Feed-forward to math operation layer connection visualization."""
 
 from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash

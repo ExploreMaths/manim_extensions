@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Graph-based molecule representation for Manim chemistry.
 
 This module provides graph-based molecule visualization classes.

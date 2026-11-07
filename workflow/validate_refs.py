@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
 
 """Detect Sphinx cross-reference issues without modifying files.
 

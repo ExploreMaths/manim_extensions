@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Electrostatic field helpers.
 
 The classes in this module generate charge objects and electric-field vector

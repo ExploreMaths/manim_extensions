@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Pymunk constraint classes.
 
 This module provides constraint classes for Pymunk physics simulations.

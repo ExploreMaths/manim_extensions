@@ -1,14 +1,14 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Activation functions for neural network visualization."""
 
 from .relu import ReLUFunction
 from .sigmoid import SigmoidFunction
 
+#: Mapping from activation function name to its class.
 name_to_activation_function_map = {"ReLU": ReLUFunction, "Sigmoid": SigmoidFunction}
 
 

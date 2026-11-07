@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """CLI module for chemistry.
 
 This module provides command-line interface for downloading molecules from PubChem.

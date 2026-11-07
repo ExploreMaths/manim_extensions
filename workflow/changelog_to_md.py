@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Render a changelog.rst version section as a GitHub release body.
 
 The release notes published for the previous versions are plain Markdown:

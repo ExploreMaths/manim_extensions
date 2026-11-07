@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Slide joint constraint for Pymunk.
 
 This module provides the VSlideJoint class for creating slide joint constraints.

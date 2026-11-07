@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: drop the unreachable LaTeX branch of make_vector
+
 """Vector layer visualization for neural networks."""
 
 from manim import AnimationGroup, Create, Text, Write, override_animation

@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Utility functions for chemistry file parsing.
 
 This module provides utility functions for parsing chemical molecule data.
@@ -498,6 +500,7 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
     return atoms, bonds  # Should return atoms and bonds
 
 
+#: Mapping from element symbol to the corresponding :class:~manim_extensions.chemistry.element.element.Element.
 ELEMENT_DICT = {
     "H": H,
     "He": He,
@@ -619,6 +622,7 @@ ELEMENT_DICT = {
     "Og": Og,
 }
 
+#: Spanish localisation of :data:ELEMENT_DICT.
 ELEMENT_DICT_ESP = {
     "H_ESP": H_ESP,
     "He_ESP": He_ESP,

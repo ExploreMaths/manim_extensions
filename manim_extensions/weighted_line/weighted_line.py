@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Weighted line class for Manim.
 
 This module provides the WeightedLine class for displaying weighted edges in network graphs.

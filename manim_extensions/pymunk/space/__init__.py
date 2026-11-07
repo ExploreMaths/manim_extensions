@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Pymunk space and scene classes.
 
 This module provides Pymunk space and scene classes for physics simulations.

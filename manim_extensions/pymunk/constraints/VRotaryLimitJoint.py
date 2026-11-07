@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Rotary limit joint constraint for Pymunk.
 
 This module provides the VRotaryLimitJoint class for creating rotary limit joint constraints.

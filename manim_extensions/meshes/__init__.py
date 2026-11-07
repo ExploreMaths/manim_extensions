@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Mesh-related visualisation utilities.
 
 This package contains mesh generation and related helper structures used in

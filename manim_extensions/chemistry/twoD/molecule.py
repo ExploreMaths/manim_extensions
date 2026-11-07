@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """2D molecule representation for Manim chemistry.
 
 This module provides the MMoleculeObject class for rendering molecules in 2D.

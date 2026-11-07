@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Gear Mobject for Pymunk physics simulations."""
 
 from manim import Circle, DEGREES, Exclusion, Polygon, Union, VMobject

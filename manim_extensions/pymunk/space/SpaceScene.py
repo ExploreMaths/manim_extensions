@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Space scene for Pymunk physics.
 
 This module provides the SpaceScene class for creating physics simulations with Pymunk.

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Atomic orbital visualization for Manim chemistry.
 
 This module provides classes for rendering atomic orbitals in 3D.

@@ -1,9 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.

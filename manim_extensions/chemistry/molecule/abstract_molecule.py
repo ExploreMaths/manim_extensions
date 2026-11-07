@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Abstract molecule base class for Manim chemistry.
 
 This module provides the AbstractMolecule class as a template for all molecule implementations.

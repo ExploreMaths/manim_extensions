@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """3D bond representation for Manim chemistry.
 
 This module provides 3D bond classes for rendering chemical bonds in three dimensions.

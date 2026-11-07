@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pandas (chemistry extra)
+
 """Periodic table visualization objects for Manim chemistry.
 
 This module provides the MElementObject class for rendering periodic table elements.

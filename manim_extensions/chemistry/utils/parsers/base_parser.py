@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Base parser class for chemical file formats.
 
 This module provides the BaseParser abstract class for parsing chemical files.

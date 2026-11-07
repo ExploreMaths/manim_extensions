@@ -1,10 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
+# SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-# SPDX-FileCopyrightText: 2026 ExploreMaths
-#
-# SPDX-License-Identifier: MIT
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from manim import (

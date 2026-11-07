@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
-
 """
 Mesh structure.
 """

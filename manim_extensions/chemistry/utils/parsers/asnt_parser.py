@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """ASNT format parser for chemical files.
 
 This module provides the ASNTParser class for parsing ASNT format chemical files.
@@ -13,6 +15,7 @@ import numpy as np
 
 from .base_parser import BaseParser
 
+#: Mapping from bond type name to bond order.
 BOND_TYPE_MAPPING = {
     "simple": 1,
     "double": 2,

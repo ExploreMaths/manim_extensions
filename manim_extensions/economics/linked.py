@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Linked IS-LM and AD-AS diagrams for Manim.
 
 This module provides linked IS-LM and AD-AS diagrams for policy analysis.

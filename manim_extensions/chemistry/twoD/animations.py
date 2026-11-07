@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Animation utilities for 2D chemistry molecules.
 
 This module provides the GMAnimationBuilder class for building molecule animations.

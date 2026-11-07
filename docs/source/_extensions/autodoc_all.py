@@ -281,7 +281,10 @@ class AutoAllDirective(Directive):
                 elif kind == "function":
                     lines += [f".. autofunction:: {key}", ""]
                 else:
-                    lines += [f".. autodata:: {key}", ""]
+                    # Constants are not expanded by default: show the name
+                    # (which the py domain turns into a reference) and the
+                    # docstring instead of the raw value.
+                    lines += [f".. autodata:: {key}", "   :no-value:", ""]
 
         # legal for every name to be filtered out (skip / missing-only);
         # the directive then simply emits nothing

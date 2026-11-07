@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
 
 """Check cross-reference style and intersphinx coverage across the docs.
 

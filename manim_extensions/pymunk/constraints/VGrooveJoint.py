@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 manim-pymunk
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Groove joint constraint for Pymunk.
 
 This module provides the VGrooveJoint class for creating groove joint constraints.

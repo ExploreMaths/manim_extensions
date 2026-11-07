@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Image-to-shape utilities for Pymunk physics.
 
 This module provides functions for converting images into Pymunk collision

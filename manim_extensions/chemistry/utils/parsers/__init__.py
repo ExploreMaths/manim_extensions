@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Parser classes for chemical file formats.
 
 This module provides parser classes for reading various chemical file formats.

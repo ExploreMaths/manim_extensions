@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """2D bond representation for Manim chemistry.
 
 This module provides bond classes for representing chemical bonds in 2D.

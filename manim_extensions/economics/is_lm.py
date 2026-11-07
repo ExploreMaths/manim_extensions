@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """IS-LM diagram for Manim.
 
 This module provides the IS-LM model diagram.

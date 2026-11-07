@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Custom Pymunk mobjects.
 
 This module provides custom Manim mobjects for Pymunk physics simulations.

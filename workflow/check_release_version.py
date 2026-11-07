@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Check that the requested release version matches ``pyproject.toml``.
 
 Run before building, so a release can never be cut from a tree whose

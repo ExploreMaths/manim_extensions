@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 """Check and fix intra-package absolute imports.
 
 Every import that targets a module inside the ``manim_extensions`` package

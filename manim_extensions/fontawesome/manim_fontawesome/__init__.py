@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2021 Naveen M K
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: BSD-3-Clause
+# patched: document module-level constants
+
 # Automatically generated using scripts/update.py. Don't edit.
 
 # Copyright Naveen M K
@@ -30,10 +32,15 @@ from enum import Enum
 
 __all__ = ["brand", "regular", "solid", "FONT_AWESOME_VERSION", "list_icons"]
 
+#: Root directory of the bundled Font Awesome SVG assets.
 svg_dir = Path(__file__).parent / 'font-awesome'/ 'svgs'
+#: Directory containing the brand-style SVGs.
 brand_dir = svg_dir / 'brands'
+#: Directory containing the regular-style SVGs.
 regular_dir = svg_dir / 'regular'
+#: Directory containing the solid-style SVGs.
 solid_dir = svg_dir / 'solid'
+#: Font Awesome release bundled with the package.
 FONT_AWESOME_VERSION = '6.5.1'
 
 
@@ -4229,6 +4236,9 @@ def list_icons(style="solid"):
     return list(enums[style].__members__)
 
 
+#: Enum of brand-style icon names mapped to their SVG paths.
 brand = Brand()
+#: Enum of regular-style icon names mapped to their SVG paths.
 regular = Regular()
+#: Enum of solid-style icon names mapped to their SVG paths.
 solid = Solid()

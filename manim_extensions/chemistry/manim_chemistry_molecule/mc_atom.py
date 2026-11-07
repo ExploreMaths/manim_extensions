@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Manim chemistry atom representation.
 
 This module provides the MCAtom class for representing atoms in molecules.

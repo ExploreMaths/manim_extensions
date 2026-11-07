@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Damped spring constraint for Pymunk.
 
 This module provides the VDampedSpring class for creating damped spring constraints.

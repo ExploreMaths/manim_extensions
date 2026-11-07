@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2024 sinianluoye
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
 
 """Node data structure for algorithm visualization."""
 
@@ -30,7 +31,9 @@ from typing import List, TypeAlias, Self
 from manim.typing import ManimFloat, Point3D, Vector3DLike
 from .utils.numpy_helper import NumpyHelper
 
+#: Value stored in an algorithm node box.
 NodeValue: TypeAlias = str | int | float | None
+#: Mobject class used to draw an algorithm node box.
 NodeBoxType: TypeAlias = type[Square] | type[Circle]
 class NodeConfig:
     """Default visual settings shared by algorithm nodes.

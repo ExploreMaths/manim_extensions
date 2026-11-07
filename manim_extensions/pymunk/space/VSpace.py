@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Virtual space for Pymunk physics.
 
 This module provides the VSpace class for managing Pymunk physical simulations.

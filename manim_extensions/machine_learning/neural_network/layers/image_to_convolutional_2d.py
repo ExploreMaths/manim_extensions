@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: route three-channel images to the RGB animation and implement it
+
 """Image to convolutional 2D layer connection visualization."""
 
 from manim import (

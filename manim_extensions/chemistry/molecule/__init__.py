@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Molecule module for chemistry.
 
 This module provides molecule classes for visualizing chemical structures.

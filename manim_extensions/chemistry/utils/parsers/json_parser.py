@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """JSON format parser for chemical files.
 
 This module provides the JSONParser class for parsing JSON format chemical files.
@@ -12,6 +14,7 @@ import numpy as np
 
 from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath, MoleculeData, ParsedData
 
+#: Mapping from atomic number to the element symbol.
 ELEMENTS_BY_ATOMIC_NUMBER = {
     1: "H",
     2: "He",

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Base classes for economic diagrams.
 
 This module provides the base classes for economic diagram visualizations.

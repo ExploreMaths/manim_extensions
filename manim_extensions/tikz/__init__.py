@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 r"""TikZ integration helpers for Manim.
 
 This package exposes the core TikZ mobject wrapper and templating support for

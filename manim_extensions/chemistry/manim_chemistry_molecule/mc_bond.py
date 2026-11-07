@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Manim chemistry bond representation.
 
 This module provides the MCBond class for representing chemical bonds in molecules.
@@ -14,12 +16,14 @@ if TYPE_CHECKING:
     from .mc_atom import MCAtom
     from .mc_molecule import MCMolecule
 
+#: Mapping from bond order (`1`, `2`, `3`) to the bond type name.
 BOND_TYPES = {
     1: "simple",
     2: "double",
     3: "triple",
 }
 
+#: Mapping from stereo bond code to the stereo type name.
 STEREO_TYPES = {
     1: "plain_cram",
     2: "dash_cram",

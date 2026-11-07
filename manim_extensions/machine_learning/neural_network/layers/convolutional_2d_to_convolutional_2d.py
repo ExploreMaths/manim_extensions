@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO and unreachable duplicate return
+
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 import numpy as np

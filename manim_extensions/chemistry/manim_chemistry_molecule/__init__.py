@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Manim chemistry molecule classes.
 
 This module provides core molecule classes for the chemistry extension.

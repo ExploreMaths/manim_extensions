@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
+# SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import cv2 (video extra)
-
+# patched: document module-level constants
 
 """Reusable Manim mobjects and convenience wrappers.
 
@@ -59,7 +59,9 @@ from PIL import Image, ImageChops, ImageDraw
 
 from .utils.deps import require
 
+#: Default CJK-capable font for the current platform.
 DEFAULT_CJK_FONT = "SimSun" if platform.system() == "Windows" else "Noto Serif CJK SC"
+#: Default monospaced font for the current platform.
 DEFAULT_MONO_FONT = (
     "Cascadia Code" if platform.system() == "Windows" else "JetBrains Mono"
 )

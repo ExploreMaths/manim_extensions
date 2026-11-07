@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """2D atom representation for Manim chemistry.
 
 This module provides the MAtomObject class for representing atoms in 2D chemical structures.

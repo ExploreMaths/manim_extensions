@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Future classes for Manim chemistry.
 
 This module contains experimental classes that may be implemented in the future.

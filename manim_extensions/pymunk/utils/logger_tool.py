@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+# patched: document module-level constants
 
 """Logger utility for Pymunk physics simulations."""
 
@@ -53,4 +54,5 @@ class SingletonLogger:
         return self.logger
 
 # For convenience, instantiate a global singleton
+#: Logger shared by the manim-pymunk modules.
 manim_pymunk_logger = SingletonLogger().get_logger()

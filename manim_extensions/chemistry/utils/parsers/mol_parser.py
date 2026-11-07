@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """MOL format parser for chemical files.
 
 This module provides the MolParser class for parsing MOL format chemical files.

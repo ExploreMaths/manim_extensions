@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Sean Nelson
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
 
 """Non-deterministic finite state automaton visualization.
 
@@ -11,6 +12,7 @@ This module provides the ManimNonDeterministicFiniteAutomaton class for visualiz
 
 from .manim_automaton import ManimAutomaton
 
+#: Example non-deterministic finite automaton definition.
 nfa_automaton_json = {
     "structure": {
         "type": "nfa",

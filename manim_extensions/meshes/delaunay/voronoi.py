@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 functions to display voronoi diagram and create delaunay meshes as its dual.
 """

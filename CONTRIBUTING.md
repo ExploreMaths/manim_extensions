@@ -388,11 +388,47 @@ Add an SPDX header at the very top:
 # SPDX-License-Identifier: MIT
 ```
 
+### Canonical header format
+
+All header blocks follow this single canonical layout, enforced by
+`workflow/validate_headers.py`:
+
+```python
+# SPDX-FileCopyrightText: <upstream authors>
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+# patched: <reason for the local change>
+
+"""Module docstring."""
+```
+
+Rules:
+
+- The block is contiguous: no empty lines and no bare `#` lines between
+  copyright and license.
+- Exactly **one** `SPDX-License-Identifier` line, placed after every
+  `SPDX-FileCopyrightText` line. Duplicate blocks from vendoring are merged.
+- Each copyright holder appears once, and a year is written once
+  (`2026 ExploreMaths`, not `2026 2026 ExploreMaths`).
+- Project copyright (`2026 ExploreMaths`) comes last.
+- Every `# patched: <reason>` line comes **after** the license line, never
+  inside the SPDX block.
+- Exactly one blank line separates the header from the module docstring or
+  first import.
+
+Run the checker (or let it rewrite all headers in place):
+
+```bash
+python workflow/validate_headers.py
+python workflow/validate_headers.py --fix
+```
+
 ### Vendored / third-party code
 
 When vendoring an external package, record its copyright, license, and upstream source in `REUSE.toml` under a `[[annotations]]` block for the relevant path. See the existing entries (e.g. `algorithm`, `chemistry`, `physics`) for the format.
 
-CI runs `reuse lint` — a missing or incorrect license declaration will fail the build.
+CI runs `reuse lint` and `validate_headers.py` — a missing or incorrectly
+formatted license declaration will fail the build.
 
 ---
 
@@ -426,7 +462,8 @@ Run these locally before opening a PR. Each corresponds to a CI job in `.github/
 | Relative in-package imports | `python workflow/check_relative_imports.py` |
 | API coverage | `python workflow/validate_api_coverage.py` |
 | Unused imports (F401) | `flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples"` |
-| License headers | `reuse lint` |
+| License headers | `python workflow/validate_headers.py` |
+| License declarations (REUSE) | `reuse lint` |
 | Type annotations on all params | *(CI; `scripts/check_type_annotations.py`)* |
 | Return annotations on documented public functions with return values | *(CI; `scripts/check_return_annotations.py`)* |
 | Dependencies audit | `pip-audit --desc on` |
@@ -437,6 +474,7 @@ Several checkers have a `--fix` mode for auto-repairable issues:
 python workflow/validate_docstrings.py --fix        # Args: -> Parameters
 python workflow/check_redundant_imports.py --fix   # star -> explicit imports
 python workflow/check_relative_imports.py --fix     # absolute -> relative imports
+python workflow/validate_headers.py --fix           # merge/normalize SPDX headers
 python workflow/fix_refs.py                         # cross-reference fixes
 ```
 

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """3D molecule representation for Manim chemistry.
 
 This module provides the ThreeDMolecule class for rendering molecules in 3D.

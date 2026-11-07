@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Supply and demand diagram for Manim.
 
 This module provides the supply and demand diagram.

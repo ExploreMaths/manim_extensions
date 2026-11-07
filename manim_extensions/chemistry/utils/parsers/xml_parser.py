@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import xmltodict (chemistry extra)
+
 """XML format parser for chemical files.
 
 This module provides the XMLParser class for parsing XML format chemical files.

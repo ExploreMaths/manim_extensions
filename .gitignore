@@ -26,6 +26,10 @@ tests/__test_media_dir__
 *.mol
 HTMLParsedVMobjectDocExample.html
 HTMLParsedVMobjectDocExample.js
+SVGAnimationUsageExample.html
+SVGAnimationUsageExample.js
+leaf_class_*.png
+
 # Generated locally / fetched from the vendored-status-cache branch
 docs/source/_vendored_status_cache.json
 _preview/

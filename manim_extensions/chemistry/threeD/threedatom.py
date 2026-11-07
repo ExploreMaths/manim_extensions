@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """3D atom representation for Manim chemistry.
 
 This module provides the ThreeDAtom class for rendering atoms in 3D.

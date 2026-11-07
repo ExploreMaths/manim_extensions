@@ -1,5 +1,4 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
-#
 # SPDX-License-Identifier: MIT
 
 """Vendored copy of manim-nerdfont-icons (code and font licensed MIT).

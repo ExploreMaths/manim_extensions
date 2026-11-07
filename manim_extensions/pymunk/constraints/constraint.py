@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 manim-pymunk
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Base constraint class for Pymunk.
 
 This module provides the VConstraint base class for Pymunk constraint visualizations.

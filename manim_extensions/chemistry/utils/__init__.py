@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Utility functions and parsers for chemistry.
 
 This module provides utility functions for parsing chemical file formats and interacting with PubChem API.

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 """Custom Sphinx extension to color inheritance diagram nodes by module origin.
 
 Manim Extensions classes get a distinct fill color from base Manim classes

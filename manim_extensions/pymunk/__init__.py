@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Pymunk physics integration for Manim.
 
 This module provides physics simulation capabilities using Pymunk,

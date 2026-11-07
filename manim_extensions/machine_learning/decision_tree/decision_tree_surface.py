@@ -1,11 +1,9 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import scikit-learn (ml extra)
 # patched: implement make_split_to_animation_map
+
 """Decision tree visualization for Manim."""
 
 from manim import (

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Sean Nelson
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
 
 """CLI utilities for automata.
 
@@ -9,6 +10,7 @@ This module provides the ManimAutomataCLI class for interactive command-line int
 """
 
 
+#: ASCII-art banner printed by the interactive CLI.
 cli_logo = r"""
   __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ 
  |  \/  |   /\   | \ | |_   _|  \/  |     /\  | |  | |__   __/ __ \|  \/  |   /\|__   __|/\      / ____| |    |_   _|

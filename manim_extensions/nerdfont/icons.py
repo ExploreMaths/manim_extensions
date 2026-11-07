@@ -1,5 +1,4 @@
 # SPDX-FileCopyrightText: 2025 Alexander Nasuta
-#
 # SPDX-License-Identifier: MIT
 
 # Vendored from manim-nerdfont-icons 1.0.2.

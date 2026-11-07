@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Solow growth model diagram for Manim.
 
 This module provides the Solow growth model diagram.

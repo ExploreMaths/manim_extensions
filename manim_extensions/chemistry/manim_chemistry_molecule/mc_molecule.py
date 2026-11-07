@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Manim chemistry molecule representation.
 
 This module provides the MCMolecule class for representing molecules.

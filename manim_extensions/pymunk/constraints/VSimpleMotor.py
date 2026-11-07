@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Simple motor constraint for Pymunk.
 
 This module provides the VSimpleMotor class for creating simple motor constraints.

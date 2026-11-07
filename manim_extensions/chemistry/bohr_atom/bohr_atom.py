@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Bohr atom model visualization for Manim."""
 
 from manim import BLUE, Circle, Dot, ManimColor, RED, RIGHT, TAU, VGroup, WHITE

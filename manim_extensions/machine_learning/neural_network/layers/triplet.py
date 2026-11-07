@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO (FadeIn is the intended create animation)
+
 """Triplet layer visualization for neural networks."""
 
 from typing import Self

@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
-
 from manim import Animation, Square, Text, tempconfig
 from manim_extensions.animations import TypeWriter
 

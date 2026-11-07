@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Economic diagrams for Manim.
 
 This module provides economic diagram visualizations including

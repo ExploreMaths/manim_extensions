@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """SDF format parser for chemical files.
 
 This module provides the SDFParser class for parsing SDF format chemical files.

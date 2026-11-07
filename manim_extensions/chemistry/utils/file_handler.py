@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """File handling for chemistry module.
 
 This module provides file parsing utilities for chemistry file formats.
@@ -11,6 +13,7 @@ from typing import Dict
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
+#: Mapping from file extension to the parser class that handles it.
 SUPPORTED_FORMATS = {
     "mol": MolParser,
     "sdf": SDFParser,

@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """Manim chemistry element representation.
 
 This module provides the MCElement dataclass for representing chemical elements.
@@ -79,6 +81,7 @@ class MCElement:
 
 
 # Generic Elements
+#: Hydrogen (`H`), atomic number 1.
 H = MCElement(
     symbol="H",
     name="Hydrogen",
@@ -86,6 +89,7 @@ H = MCElement(
     mass=1.007,
     color="#ffffff",
 )
+#: Helium (`He`), atomic number 2.
 He = MCElement(
     symbol="He",
     name="Helium",
@@ -93,6 +97,7 @@ He = MCElement(
     mass=4.002,
     color="#d9ffff",
 )
+#: Lithium (`Li`), atomic number 3.
 Li = MCElement(
     symbol="Li",
     name="Lithium",
@@ -100,6 +105,7 @@ Li = MCElement(
     mass=6.941,
     color="#cc80ff",
 )
+#: Beryllium (`Be`), atomic number 4.
 Be = MCElement(
     symbol="Be",
     name="Beryllium",
@@ -107,6 +113,7 @@ Be = MCElement(
     mass=9.012,
     color="#c2ff00",
 )
+#: Boron (`B`), atomic number 5.
 B = MCElement(
     symbol="B",
     name="Boron",
@@ -114,6 +121,7 @@ B = MCElement(
     mass=10.811,
     color="#ffb5b5",
 )
+#: Carbon (`C`), atomic number 6.
 C = MCElement(
     symbol="C",
     name="Carbon",
@@ -121,6 +129,7 @@ C = MCElement(
     mass=12.011,
     color="#909090",
 )
+#: Nitrogen (`N`), atomic number 7.
 N = MCElement(
     symbol="N",
     name="Nitrogen",
@@ -128,6 +137,7 @@ N = MCElement(
     mass=14.007,
     color="#3050f8",
 )
+#: Oxygen (`O`), atomic number 8.
 O = MCElement(
     symbol="O",
     name="Oxygen",
@@ -135,6 +145,7 @@ O = MCElement(
     mass=15.999,
     color="#ff0d0d",
 )
+#: Fluorine (`F`), atomic number 9.
 F = MCElement(
     symbol="F",
     name="Fluorine",
@@ -142,6 +153,7 @@ F = MCElement(
     mass=18.998,
     color="#90e050",
 )
+#: Neon (`Ne`), atomic number 10.
 Ne = MCElement(
     symbol="Ne",
     name="Neon",
@@ -149,6 +161,7 @@ Ne = MCElement(
     mass=20.18,
     color="#b3e3f5",
 )
+#: Sodium (`Na`), atomic number 11.
 Na = MCElement(
     symbol="Na",
     name="Sodium",
@@ -156,6 +169,7 @@ Na = MCElement(
     mass=22.99,
     color="#ab5cf2",
 )
+#: Magnesium (`Mg`), atomic number 12.
 Mg = MCElement(
     symbol="Mg",
     name="Magnesium",
@@ -163,6 +177,7 @@ Mg = MCElement(
     mass=24.305,
     color="#8aff00",
 )
+#: Aluminum (`Al`), atomic number 13.
 Al = MCElement(
     symbol="Al",
     name="Aluminum",
@@ -170,6 +185,7 @@ Al = MCElement(
     mass=26.982,
     color="#bfa6a6",
 )
+#: Silicon (`Si`), atomic number 14.
 Si = MCElement(
     symbol="Si",
     name="Silicon",
@@ -177,6 +193,7 @@ Si = MCElement(
     mass=28.086,
     color="#f0c8a0",
 )
+#: Phosphorus (`P`), atomic number 15.
 P = MCElement(
     symbol="P",
     name="Phosphorus",
@@ -184,6 +201,7 @@ P = MCElement(
     mass=30.974,
     color="#ff8000",
 )
+#: Sulfur (`S`), atomic number 16.
 S = MCElement(
     symbol="S",
     name="Sulfur",
@@ -191,6 +209,7 @@ S = MCElement(
     mass=32.065,
     color="#ffff30",
 )
+#: Chlorine (`Cl`), atomic number 17.
 Cl = MCElement(
     symbol="Cl",
     name="Chlorine",
@@ -198,6 +217,7 @@ Cl = MCElement(
     mass=35.453,
     color="#1ff01f",
 )
+#: Argon (`Ar`), atomic number 18.
 Ar = MCElement(
     symbol="Ar",
     name="Argon",
@@ -205,6 +225,7 @@ Ar = MCElement(
     mass=39.948,
     color="#80d1e3",
 )
+#: Potassium (`K`), atomic number 19.
 K = MCElement(
     symbol="K",
     name="Potassium",
@@ -212,6 +233,7 @@ K = MCElement(
     mass=39.098,
     color="#8f40d4",
 )
+#: Caclium (`Ca`), atomic number 20.
 Ca = MCElement(
     symbol="Ca",
     name="Caclium",
@@ -219,6 +241,7 @@ Ca = MCElement(
     mass=40.078,
     color="#3dff00",
 )
+#: Scandium (`Sc`), atomic number 21.
 Sc = MCElement(
     symbol="Sc",
     name="Scandium",
@@ -226,6 +249,7 @@ Sc = MCElement(
     mass=44.956,
     color="#e6e6e6",
 )
+#: Titanium (`Ti`), atomic number 22.
 Ti = MCElement(
     symbol="Ti",
     name="Titanium",
@@ -233,6 +257,7 @@ Ti = MCElement(
     mass=47.867,
     color="#bfc2c7",
 )
+#: Vanadium (`V`), atomic number 23.
 V = MCElement(
     symbol="V",
     name="Vanadium",
@@ -240,6 +265,7 @@ V = MCElement(
     mass=50.942,
     color="#a6a6ab",
 )
+#: Chromium (`Cr`), atomic number 24.
 Cr = MCElement(
     symbol="Cr",
     name="Chromium",
@@ -247,6 +273,7 @@ Cr = MCElement(
     mass=51.996,
     color="#8a99c7",
 )
+#: Manganese (`Mn`), atomic number 25.
 Mn = MCElement(
     symbol="Mn",
     name="Manganese",
@@ -254,6 +281,7 @@ Mn = MCElement(
     mass=54.938,
     color="#9c7ac7",
 )
+#: Iron (`Fe`), atomic number 26.
 Fe = MCElement(
     symbol="Fe",
     name="Iron",
@@ -261,6 +289,7 @@ Fe = MCElement(
     mass=55.845,
     color="#e06633",
 )
+#: Cobalt (`Co`), atomic number 27.
 Co = MCElement(
     symbol="Co",
     name="Cobalt",
@@ -268,6 +297,7 @@ Co = MCElement(
     mass=58.933,
     color="#f090a0",
 )
+#: Nickel (`Ni`), atomic number 28.
 Ni = MCElement(
     symbol="Ni",
     name="Nickel",
@@ -275,6 +305,7 @@ Ni = MCElement(
     mass=58.693,
     color="#50d050",
 )
+#: Copper (`Cu`), atomic number 29.
 Cu = MCElement(
     symbol="Cu",
     name="Copper",
@@ -282,6 +313,7 @@ Cu = MCElement(
     mass=63.546,
     color="#c88033",
 )
+#: Zinc (`Zn`), atomic number 30.
 Zn = MCElement(
     symbol="Zn",
     name="Zinc",
@@ -289,6 +321,7 @@ Zn = MCElement(
     mass=65.38,
     color="#7d80b0",
 )
+#: Gallium (`Ga`), atomic number 31.
 Ga = MCElement(
     symbol="Ga",
     name="Gallium",
@@ -296,6 +329,7 @@ Ga = MCElement(
     mass=69.723,
     color="#c28f8f",
 )
+#: Germanium (`Ge`), atomic number 32.
 Ge = MCElement(
     symbol="Ge",
     name="Germanium",
@@ -303,6 +337,7 @@ Ge = MCElement(
     mass=72.64,
     color="#668f8f",
 )
+#: Arsenic (`As`), atomic number 33.
 As = MCElement(
     symbol="As",
     name="Arsenic",
@@ -310,6 +345,7 @@ As = MCElement(
     mass=74.922,
     color="#bd80e3",
 )
+#: Selenium (`Se`), atomic number 34.
 Se = MCElement(
     symbol="Se",
     name="Selenium",
@@ -317,6 +353,7 @@ Se = MCElement(
     mass=78.96,
     color="#ffa100",
 )
+#: Bromine (`Br`), atomic number 35.
 Br = MCElement(
     symbol="Br",
     name="Bromine",
@@ -324,6 +361,7 @@ Br = MCElement(
     mass=79.904,
     color="#a62929",
 )
+#: Krypton (`Kr`), atomic number 36.
 Kr = MCElement(
     symbol="Kr",
     name="Krypton",
@@ -331,6 +369,7 @@ Kr = MCElement(
     mass=83.798,
     color="#5cb8d1",
 )
+#: Rubidium (`Rb`), atomic number 37.
 Rb = MCElement(
     symbol="Rb",
     name="Rubidium",
@@ -338,6 +377,7 @@ Rb = MCElement(
     mass=85.468,
     color="#702eb0",
 )
+#: Strontium (`Sr`), atomic number 38.
 Sr = MCElement(
     symbol="Sr",
     name="Strontium",
@@ -345,6 +385,7 @@ Sr = MCElement(
     mass=87.62,
     color="#00ff00",
 )
+#: Yttrium (`Y`), atomic number 39.
 Y = MCElement(
     symbol="Y",
     name="Yttrium",
@@ -352,6 +393,7 @@ Y = MCElement(
     mass=88.906,
     color="#94ffff",
 )
+#: Zirconium (`Zr`), atomic number 40.
 Zr = MCElement(
     symbol="Zr",
     name="Zirconium",
@@ -359,6 +401,7 @@ Zr = MCElement(
     mass=91.224,
     color="#94e0e0",
 )
+#: Niobium (`Nb`), atomic number 41.
 Nb = MCElement(
     symbol="Nb",
     name="Niobium",
@@ -366,6 +409,7 @@ Nb = MCElement(
     mass=92.906,
     color="#73c2c9",
 )
+#: Molybdenum (`Mo`), atomic number 42.
 Mo = MCElement(
     symbol="Mo",
     name="Molybdenum",
@@ -373,6 +417,7 @@ Mo = MCElement(
     mass=95.96,
     color="#54b5b5",
 )
+#: Technitium (`Tc`), atomic number 43.
 Tc = MCElement(
     symbol="Tc",
     name="Technitium",
@@ -380,6 +425,7 @@ Tc = MCElement(
     mass=98.0,
     color="#3b9e9e",
 )
+#: Ruthenium (`Ru`), atomic number 44.
 Ru = MCElement(
     symbol="Ru",
     name="Ruthenium",
@@ -387,6 +433,7 @@ Ru = MCElement(
     mass=101.07,
     color="#248f8f",
 )
+#: Rhodium (`Rh`), atomic number 45.
 Rh = MCElement(
     symbol="Rh",
     name="Rhodium",
@@ -394,6 +441,7 @@ Rh = MCElement(
     mass=102.906,
     color="#0a7d8c",
 )
+#: Palladium (`Pd`), atomic number 46.
 Pd = MCElement(
     symbol="Pd",
     name="Palladium",
@@ -401,6 +449,7 @@ Pd = MCElement(
     mass=106.42,
     color="#006985",
 )
+#: Silver (`Ag`), atomic number 47.
 Ag = MCElement(
     symbol="Ag",
     name="Silver",
@@ -408,6 +457,7 @@ Ag = MCElement(
     mass=107.868,
     color="#c0c0c0",
 )
+#: Cadmium (`Cd`), atomic number 48.
 Cd = MCElement(
     symbol="Cd",
     name="Cadmium",
@@ -415,6 +465,7 @@ Cd = MCElement(
     mass=112.411,
     color="#ffd98f",
 )
+#: Indium (`In`), atomic number 49.
 In = MCElement(
     symbol="In",
     name="Indium",
@@ -422,6 +473,7 @@ In = MCElement(
     mass=114.818,
     color="#a67573",
 )
+#: Tin (`Sn`), atomic number 50.
 Sn = MCElement(
     symbol="Sn",
     name="Tin",
@@ -429,6 +481,7 @@ Sn = MCElement(
     mass=118.71,
     color="#668080",
 )
+#: Antimony (`Sb`), atomic number 51.
 Sb = MCElement(
     symbol="Sb",
     name="Antimony",
@@ -436,6 +489,7 @@ Sb = MCElement(
     mass=121.76,
     color="#9e63b5",
 )
+#: Tellerium (`Te`), atomic number 52.
 Te = MCElement(
     symbol="Te",
     name="Tellerium",
@@ -443,6 +497,7 @@ Te = MCElement(
     mass=127.6,
     color="#d47a00",
 )
+#: Iodine (`I`), atomic number 53.
 I = MCElement(
     symbol="I",
     name="Iodine",
@@ -450,6 +505,7 @@ I = MCElement(
     mass=126.904,
     color="#940094",
 )
+#: Xeon (`Xe`), atomic number 54.
 Xe = MCElement(
     symbol="Xe",
     name="Xeon",
@@ -457,6 +513,7 @@ Xe = MCElement(
     mass=131.293,
     color="#429eb0",
 )
+#: Cesium (`Cs`), atomic number 55.
 Cs = MCElement(
     symbol="Cs",
     name="Cesium",
@@ -464,6 +521,7 @@ Cs = MCElement(
     mass=132.905,
     color="#57178f",
 )
+#: Barium (`Ba`), atomic number 56.
 Ba = MCElement(
     symbol="Ba",
     name="Barium",
@@ -471,6 +529,7 @@ Ba = MCElement(
     mass=137.327,
     color="#00c900",
 )
+#: Lanthanum (`La`), atomic number 57.
 La = MCElement(
     symbol="La",
     name="Lanthanum",
@@ -478,6 +537,7 @@ La = MCElement(
     mass=138.905,
     color="#70d4ff",
 )
+#: Cerium (`Ce`), atomic number 58.
 Ce = MCElement(
     symbol="Ce",
     name="Cerium",
@@ -485,6 +545,7 @@ Ce = MCElement(
     mass=140.116,
     color="#ffffc7",
 )
+#: Praseodymium (`Pr`), atomic number 59.
 Pr = MCElement(
     symbol="Pr",
     name="Praseodymium",
@@ -492,6 +553,7 @@ Pr = MCElement(
     mass=140.908,
     color="#d9ffc7",
 )
+#: Neodymium (`Nd`), atomic number 60.
 Nd = MCElement(
     symbol="Nd",
     name="Neodymium",
@@ -499,6 +561,7 @@ Nd = MCElement(
     mass=144.242,
     color="#c7ffc7",
 )
+#: Promethium (`Pm`), atomic number 61.
 Pm = MCElement(
     symbol="Pm",
     name="Promethium",
@@ -506,6 +569,7 @@ Pm = MCElement(
     mass=145.0,
     color="#a3ffc7",
 )
+#: Samarium (`Sm`), atomic number 62.
 Sm = MCElement(
     symbol="Sm",
     name="Samarium",
@@ -513,6 +577,7 @@ Sm = MCElement(
     mass=150.36,
     color="#8fffc7",
 )
+#: Europium (`Eu`), atomic number 63.
 Eu = MCElement(
     symbol="Eu",
     name="Europium",
@@ -520,6 +585,7 @@ Eu = MCElement(
     mass=151.964,
     color="#61ffc7",
 )
+#: Gadolinium (`Gd`), atomic number 64.
 Gd = MCElement(
     symbol="Gd",
     name="Gadolinium",
@@ -527,6 +593,7 @@ Gd = MCElement(
     mass=157.25,
     color="#45ffc7",
 )
+#: Terbium (`Tb`), atomic number 65.
 Tb = MCElement(
     symbol="Tb",
     name="Terbium",
@@ -534,6 +601,7 @@ Tb = MCElement(
     mass=158.925,
     color="#30ffc7",
 )
+#: Dysprosium (`Dy`), atomic number 66.
 Dy = MCElement(
     symbol="Dy",
     name="Dysprosium",
@@ -541,6 +609,7 @@ Dy = MCElement(
     mass=162.5,
     color="#1fffc7",
 )
+#: Holmium (`Ho`), atomic number 67.
 Ho = MCElement(
     symbol="Ho",
     name="Holmium",
@@ -548,6 +617,7 @@ Ho = MCElement(
     mass=164.93,
     color="#00ff9c",
 )
+#: Erbium (`Er`), atomic number 68.
 Er = MCElement(
     symbol="Er",
     name="Erbium",
@@ -555,6 +625,7 @@ Er = MCElement(
     mass=167.259,
     color="#00e675",
 )
+#: Thulium (`Tm`), atomic number 69.
 Tm = MCElement(
     symbol="Tm",
     name="Thulium",
@@ -562,6 +633,7 @@ Tm = MCElement(
     mass=168.934,
     color="#00d452",
 )
+#: Ytterbium (`Yb`), atomic number 70.
 Yb = MCElement(
     symbol="Yb",
     name="Ytterbium",
@@ -569,6 +641,7 @@ Yb = MCElement(
     mass=173.054,
     color="#00bf38",
 )
+#: Lutetium (`Lu`), atomic number 71.
 Lu = MCElement(
     symbol="Lu",
     name="Lutetium",
@@ -576,6 +649,7 @@ Lu = MCElement(
     mass=174.967,
     color="#00ab24",
 )
+#: Hafnium (`Hf`), atomic number 72.
 Hf = MCElement(
     symbol="Hf",
     name="Hafnium",
@@ -583,6 +657,7 @@ Hf = MCElement(
     mass=178.49,
     color="#4dc2ff",
 )
+#: Tantalum (`Ta`), atomic number 73.
 Ta = MCElement(
     symbol="Ta",
     name="Tantalum",
@@ -590,6 +665,7 @@ Ta = MCElement(
     mass=180.948,
     color="#4da6ff",
 )
+#: Tungsten (`W`), atomic number 74.
 W = MCElement(
     symbol="W",
     name="Tungsten",
@@ -597,6 +673,7 @@ W = MCElement(
     mass=183.84,
     color="#2194d6",
 )
+#: Rhenium (`Re`), atomic number 75.
 Re = MCElement(
     symbol="Re",
     name="Rhenium",
@@ -604,6 +681,7 @@ Re = MCElement(
     mass=186.207,
     color="#267dab",
 )
+#: Osmium (`Os`), atomic number 76.
 Os = MCElement(
     symbol="Os",
     name="Osmium",
@@ -611,6 +689,7 @@ Os = MCElement(
     mass=190.23,
     color="#266696",
 )
+#: Iridium (`Ir`), atomic number 77.
 Ir = MCElement(
     symbol="Ir",
     name="Iridium",
@@ -618,6 +697,7 @@ Ir = MCElement(
     mass=192.217,
     color="#175487",
 )
+#: Platinum (`Pt`), atomic number 78.
 Pt = MCElement(
     symbol="Pt",
     name="Platinum",
@@ -625,6 +705,7 @@ Pt = MCElement(
     mass=195.084,
     color="#d0d0e0",
 )
+#: Gold (`Au`), atomic number 79.
 Au = MCElement(
     symbol="Au",
     name="Gold",
@@ -632,6 +713,7 @@ Au = MCElement(
     mass=196.967,
     color="#ffd123",
 )
+#: Mercury (`Hg`), atomic number 80.
 Hg = MCElement(
     symbol="Hg",
     name="Mercury",
@@ -639,6 +721,7 @@ Hg = MCElement(
     mass=200.59,
     color="#b8b8d0",
 )
+#: Thallium (`Tl`), atomic number 81.
 Tl = MCElement(
     symbol="Tl",
     name="Thallium",
@@ -646,6 +729,7 @@ Tl = MCElement(
     mass=204.383,
     color="#a6544d",
 )
+#: Lead (`Pb`), atomic number 82.
 Pb = MCElement(
     symbol="Pb",
     name="Lead",
@@ -653,6 +737,7 @@ Pb = MCElement(
     mass=207.2,
     color="#575961",
 )
+#: Bismuth (`Bi`), atomic number 83.
 Bi = MCElement(
     symbol="Bi",
     name="Bismuth",
@@ -660,6 +745,7 @@ Bi = MCElement(
     mass=208.98,
     color="#9e4fb5",
 )
+#: Polonium (`Po`), atomic number 84.
 Po = MCElement(
     symbol="Po",
     name="Polonium",
@@ -667,6 +753,7 @@ Po = MCElement(
     mass=210.0,
     color="#ab5c00",
 )
+#: Astatine (`At`), atomic number 85.
 At = MCElement(
     symbol="At",
     name="Astatine",
@@ -674,6 +761,7 @@ At = MCElement(
     mass=210.0,
     color="#754f45",
 )
+#: Radon (`Rn`), atomic number 86.
 Rn = MCElement(
     symbol="Rn",
     name="Radon",
@@ -681,6 +769,7 @@ Rn = MCElement(
     mass=222.0,
     color="#428296",
 )
+#: Francium (`Fr`), atomic number 87.
 Fr = MCElement(
     symbol="Fr",
     name="Francium",
@@ -688,6 +777,7 @@ Fr = MCElement(
     mass=223.0,
     color="#420066",
 )
+#: Radium (`Ra`), atomic number 88.
 Ra = MCElement(
     symbol="Ra",
     name="Radium",
@@ -695,6 +785,7 @@ Ra = MCElement(
     mass=226.0,
     color="#007d00",
 )
+#: Actinium (`Ac`), atomic number 89.
 Ac = MCElement(
     symbol="Ac",
     name="Actinium",
@@ -702,6 +793,7 @@ Ac = MCElement(
     mass=227.0,
     color="#70abfa",
 )
+#: Thorium (`Th`), atomic number 90.
 Th = MCElement(
     symbol="Th",
     name="Thorium",
@@ -709,6 +801,7 @@ Th = MCElement(
     mass=232.038,
     color="#00baff",
 )
+#: Protactinium (`Pa`), atomic number 91.
 Pa = MCElement(
     symbol="Pa",
     name="Protactinium",
@@ -716,6 +809,7 @@ Pa = MCElement(
     mass=231.036,
     color="#00a1ff",
 )
+#: Uranium (`U`), atomic number 92.
 U = MCElement(
     symbol="U",
     name="Uranium",
@@ -723,6 +817,7 @@ U = MCElement(
     mass=238.029,
     color="#008fff",
 )
+#: Neptunium (`Np`), atomic number 93.
 Np = MCElement(
     symbol="Np",
     name="Neptunium",
@@ -730,6 +825,7 @@ Np = MCElement(
     mass=237.0,
     color="#0080ff",
 )
+#: Plutonium (`Pu`), atomic number 94.
 Pu = MCElement(
     symbol="Pu",
     name="Plutonium",
@@ -737,6 +833,7 @@ Pu = MCElement(
     mass=244.0,
     color="#006bff",
 )
+#: Americium (`Am`), atomic number 95.
 Am = MCElement(
     symbol="Am",
     name="Americium",
@@ -744,6 +841,7 @@ Am = MCElement(
     mass=243.0,
     color="#545cf2",
 )
+#: Curium (`Cm`), atomic number 96.
 Cm = MCElement(
     symbol="Cm",
     name="Curium",
@@ -751,6 +849,7 @@ Cm = MCElement(
     mass=247.0,
     color="#785ce3",
 )
+#: Berkelium (`Bk`), atomic number 97.
 Bk = MCElement(
     symbol="Bk",
     name="Berkelium",
@@ -758,6 +857,7 @@ Bk = MCElement(
     mass=247.0,
     color="#8a4fe3",
 )
+#: Californium (`Cf`), atomic number 98.
 Cf = MCElement(
     symbol="Cf",
     name="Californium",
@@ -765,6 +865,7 @@ Cf = MCElement(
     mass=251.0,
     color="#a136d4",
 )
+#: Einsteinium (`Es`), atomic number 99.
 Es = MCElement(
     symbol="Es",
     name="Einsteinium",
@@ -772,6 +873,7 @@ Es = MCElement(
     mass=252.0,
     color="#b31fd4",
 )
+#: Fermium (`Fm`), atomic number 100.
 Fm = MCElement(
     symbol="Fm",
     name="Fermium",
@@ -779,6 +881,7 @@ Fm = MCElement(
     mass=257.0,
     color="#b31fba",
 )
+#: Mendelevium (`Md`), atomic number 101.
 Md = MCElement(
     symbol="Md",
     name="Mendelevium",
@@ -786,6 +889,7 @@ Md = MCElement(
     mass=258.0,
     color="#b30da6",
 )
+#: Nobelium (`No`), atomic number 102.
 No = MCElement(
     symbol="No",
     name="Nobelium",
@@ -793,6 +897,7 @@ No = MCElement(
     mass=259.0,
     color="#bd0d87",
 )
+#: Lawrencium (`Lr`), atomic number 103.
 Lr = MCElement(
     symbol="Lr",
     name="Lawrencium",
@@ -800,6 +905,7 @@ Lr = MCElement(
     mass=262.0,
     color="#c70066",
 )
+#: Rutherfordium (`Rf`), atomic number 104.
 Rf = MCElement(
     symbol="Rf",
     name="Rutherfordium",
@@ -807,6 +913,7 @@ Rf = MCElement(
     mass=261.0,
     color="#cc0059",
 )
+#: Dubnium (`Db`), atomic number 105.
 Db = MCElement(
     symbol="Db",
     name="Dubnium",
@@ -814,6 +921,7 @@ Db = MCElement(
     mass=262.0,
     color="#d1004f",
 )
+#: Seaborgium (`Sg`), atomic number 106.
 Sg = MCElement(
     symbol="Sg",
     name="Seaborgium",
@@ -821,6 +929,7 @@ Sg = MCElement(
     mass=266.0,
     color="#d90045",
 )
+#: Bohrium (`Bh`), atomic number 107.
 Bh = MCElement(
     symbol="Bh",
     name="Bohrium",
@@ -828,6 +937,7 @@ Bh = MCElement(
     mass=264.0,
     color="#e00038",
 )
+#: Hassium (`Hs`), atomic number 108.
 Hs = MCElement(
     symbol="Hs",
     name="Hassium",
@@ -835,6 +945,7 @@ Hs = MCElement(
     mass=267.0,
     color="#e6002e",
 )
+#: Meitnerium (`Mt`), atomic number 109.
 Mt = MCElement(
     symbol="Mt",
     name="Meitnerium",
@@ -842,6 +953,7 @@ Mt = MCElement(
     mass=268.0,
     color="#eb0026",
 )
+#: Darmstadtium (`Ds`), atomic number 110.
 Ds = MCElement(
     symbol="Ds",
     name="Darmstadtium",
@@ -849,6 +961,7 @@ Ds = MCElement(
     mass=271.0,
     color="#eb0026",
 )
+#: Roentgenium (`Rg`), atomic number 111.
 Rg = MCElement(
     symbol="Rg",
     name="Roentgenium",
@@ -856,6 +969,7 @@ Rg = MCElement(
     mass=272.0,
     color="#eb0026",
 )
+#: Copernicium (`Cn`), atomic number 112.
 Cn = MCElement(
     symbol="Cn",
     name="Copernicium",
@@ -863,6 +977,7 @@ Cn = MCElement(
     mass=285.0,
     color="#eb0026",
 )
+#: Nihonium (`Nh`), atomic number 113.
 Nh = MCElement(
     symbol="Nh",
     name="Nihonium",
@@ -870,6 +985,7 @@ Nh = MCElement(
     mass=284.0,
     color="#eb0026",
 )
+#: Flerovium (`Fl`), atomic number 114.
 Fl = MCElement(
     symbol="Fl",
     name="Flerovium",
@@ -877,6 +993,7 @@ Fl = MCElement(
     mass=289.0,
     color="#eb0026",
 )
+#: Moscovium (`Mc`), atomic number 115.
 Mc = MCElement(
     symbol="Mc",
     name="Moscovium",
@@ -884,6 +1001,7 @@ Mc = MCElement(
     mass=288.0,
     color="#eb0026",
 )
+#: Livermorium (`Lv`), atomic number 116.
 Lv = MCElement(
     symbol="Lv",
     name="Livermorium",
@@ -891,6 +1009,7 @@ Lv = MCElement(
     mass=292.0,
     color="#eb0026",
 )
+#: Tennessine (`Ts`), atomic number 117.
 Ts = MCElement(
     symbol="Ts",
     name="Tennessine",
@@ -898,6 +1017,7 @@ Ts = MCElement(
     mass=295.0,
     color="#eb0026",
 )
+#: Oganesson (`Og`), atomic number 118.
 Og = MCElement(
     symbol="Og",
     name="Oganesson",
@@ -907,6 +1027,7 @@ Og = MCElement(
 )
 
 
+#: Mapping from element symbol to the corresponding :class:~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement.
 MC_ELEMENT_DICT = {
     "H": H,
     "He": He,

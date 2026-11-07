@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
 
 """Fix Sphinx cross-reference issues detected by ``validate_refs.py``.
 

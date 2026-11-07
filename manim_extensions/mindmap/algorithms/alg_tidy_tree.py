@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 Non-layered Tidy Tree Layout Algorithm (Python Implementation).
 Used to compute node positions for tree structures.

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Pivot joint constraint for Pymunk.
 
 This module provides the VPivotJoint class for creating pivot joint constraints in physics simulations.

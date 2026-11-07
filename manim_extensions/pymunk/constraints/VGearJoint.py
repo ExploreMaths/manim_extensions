@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Gear joint constraint for Pymunk.
 
 This module provides the VGearJoint class for creating gear joint constraints.

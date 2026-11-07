@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 """Custom Sphinx extension: structural fixes for class documentation.
 
 Inline-code cross-reference links no longer get custom colors — they use

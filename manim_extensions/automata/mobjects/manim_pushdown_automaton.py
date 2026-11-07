@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Sean Nelson
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-
+# patched: document module-level constants
 
 """Contains pushdown automaton."""
 
@@ -15,6 +15,7 @@ from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
 from .manim_automaton_input import ManimAutomataInput
 
 
+#: Example pushdown automaton definition.
 pushdown_automaton_json = {
     "structure": {
         "type": "pda",

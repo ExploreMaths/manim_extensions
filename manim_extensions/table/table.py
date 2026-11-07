@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
+
 """
 Table - The main database table component.
 """
@@ -12,8 +14,8 @@ from .row import Row
 from .cell import Cell
 from typing import Any, List, overload, Self
 
-# An animation produced by the mutation methods: either a real Animation
-# (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
+#: Animation produced by the mutation methods: either a real Animation
+#: (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
 TableAnimation = Animation | _AnimationBuilder
 
 

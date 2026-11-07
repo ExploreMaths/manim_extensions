@@ -1,11 +1,12 @@
 # SPDX-FileCopyrightText: 2025 Alexander Nasuta
-#
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
 
 # Vendored from manim-nerdfont-icons 1.0.2 (unmodified).
 # Upstream: https://github.com/Alexander-Nasuta/manim-nerdfont-icons
 """Icon-name to Unicode-codepoint mapping (vendored from manim-nerdfont-icons)."""
 
+#: Mapping from Nerd Font icon name to its Unicode codepoint.
 SYMBOLS_UNICODE = {
     'POWER SYMBOL': 9211,  # ⏻ U+23FB
     'POWER ON-OFF SYMBOL': 9212,  # ⏼ U+23FC

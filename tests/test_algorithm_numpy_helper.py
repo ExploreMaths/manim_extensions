@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 import pytest
 import numpy as np
 from numpy.testing import assert_array_almost_equal

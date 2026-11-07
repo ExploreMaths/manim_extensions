@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """3D chemistry visualizations for Manim."""
 
 from .threedatom import ThreeDAtom  # noqa F841

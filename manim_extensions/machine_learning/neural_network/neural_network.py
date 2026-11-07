@@ -1,11 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
-#
 # SPDX-License-Identifier: MIT
 # patched: implement replace_layer
+
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with

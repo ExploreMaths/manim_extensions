@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 from manim import PI, PURE_YELLOW, RED, WHITE
 import numpy as np
 

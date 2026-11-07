@@ -1,10 +1,8 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: return a real Create animation instead of a no-op
+
 """Max pooling 2D layer visualization for neural networks."""
 
 from manim import AnimationGroup, BLUE, Create, FadeIn, ManimColor, ORANGE, VGroup, override_animation

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Prepare the tree for a release.
 
 Sets the version in ``pyproject.toml`` and moves the changelog badge from

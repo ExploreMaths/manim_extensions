@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Sequence diagram primitives.
 
 This module exports the actors, actions, and objects used for sequence-diagram

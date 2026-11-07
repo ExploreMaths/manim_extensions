@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazily import the manim-mobject-svg plugin and svgpathtools (svg extra)
+# patched: document module-level constants
+
 """HTML parsed SVG vmobjects for Manim.
 
 This module provides functionality to parse SVG files and create
@@ -30,6 +32,7 @@ from ..utils.deps import require
 from manim.typing import VectorND
 
 
+#: HTML page template used to render an interactive SVG scene.
 HTML_STRUCTURE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +49,13 @@ HTML_STRUCTURE = """<!DOCTYPE html>
 </html>"""
 
 
+#: Minimal HTML/SVG template without the surrounding page.
 BASIC_HTML_STRUCTURE = """<div>
     <svg id="%s" width="%s" viewBox="0 0 %d %d" style="background-color:%s;"></svg>
 </div>"""
 
 
+#: JavaScript template that renders an SVG scene.
 JAVASCRIPT_STRUCTURE = """var rendered = false;
 var ready = true;
 var timeouts = [];
@@ -74,12 +79,14 @@ function render%s() {
 }"""
 
 
+#: JavaScript scaffolding used for incremental SVG updates.
 JAVASCRIPT_UPDATE_STRUCTURE = """    timeouts.push(setTimeout(function() {
         %s.replaceChildren();
         %s
     }, %f))"""
 
 
+#: JavaScript template for interactive SVG scenes.
 JAVASCRIPT_INTERACTIVE_STRUCTURE = r"""var combsDict = {%s};
 var comb = [%s];
 function update(i, val) {

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Chemical formula representation for Manim chemistry.
 
 This module provides the ChemicalFormula class for rendering chemical formulas.

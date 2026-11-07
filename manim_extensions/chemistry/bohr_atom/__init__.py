@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Bohr atom model for Manim.
 
 This module provides Bohr atom model visualizations.

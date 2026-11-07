@@ -1,9 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
-#
-# SPDX-License-Identifier: MIT
-
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Convolutional 2D to feed-forward layer connection visualization."""
 
 from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash

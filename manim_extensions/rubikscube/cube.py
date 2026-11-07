@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import kociemba (rubikscube extra)
 
-
 """Rubik's Cube mobject built from Manim primitives.
 
 This module exposes a 3D-styled cube model that is useful for puzzles,

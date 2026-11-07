@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Sean Nelson
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: document module-level constants
 
 """Automata data structures."""
 
@@ -12,6 +13,7 @@ from .transition import Transition
 
 import itertools
 
+#: Example finite automaton definition parsed from its JSON representation.
 automaton_json = {
     "structure": {
         "type": "fa",

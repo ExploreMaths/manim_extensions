@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Rubik's Cube helpers and scene objects.
 
 The module exposes the main cube model and related animation utilities for

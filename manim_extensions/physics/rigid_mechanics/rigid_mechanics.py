@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-
 """A gravity simulation space.
 
 Most objects can be made into a rigid body (moves according to gravity

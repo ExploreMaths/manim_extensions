@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
+
 """Pin joint constraint for Pymunk.
 
 This module provides the VPinJoint class for creating pin joint constraints in physics simulations.

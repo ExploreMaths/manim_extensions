@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Geometric helper functions for Manim scenes.
 
 This module provides intersection routines that operate directly on Manim

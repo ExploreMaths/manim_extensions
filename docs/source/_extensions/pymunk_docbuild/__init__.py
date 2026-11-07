@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Utilities for building the Manim documentation.
 
 For more information about the Manim documentation building, see:

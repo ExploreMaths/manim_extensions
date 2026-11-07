@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Check that all function parameters in the codebase have type annotations.
 
 This script is designed to be run in CI. It scans all Python files in the
