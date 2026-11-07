@@ -158,7 +158,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml docs/source/changelog.rst
+          git add pyproject.toml docs/source/changelog.rst docs/source/conf.py
           if git diff --cached --quiet; then
             echo "the tree already sits on version ${VERSION}"
           else

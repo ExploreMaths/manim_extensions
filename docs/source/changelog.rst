@@ -3,7 +3,7 @@
 
 Changelog
 =========
-v1.0.6 :bdg-primary-line:`In development`
+v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
 
 **Added**
@@ -221,7 +221,7 @@ v1.0.6 :bdg-primary-line:`In development`
   ambiguous class names in the cross-reference job.
 
 
-v1.0.5 :bdg-success-line:`Latest`
+v1.0.5
 ---------------------------------
 
 **Added**
