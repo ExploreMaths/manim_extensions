@@ -32,6 +32,7 @@ from . import pymunk
 from . import arabic
 from . import machine_learning
 from . import svg_animations
+from . import mobject_svg
 
 __all__ = [
     "ChineseMathTex",
@@ -77,6 +78,7 @@ __all__ = [
     "fontawesome",
     "machine_learning",
     "meshes",
+    "mobject_svg",
     "physics",
     "pymunk",
     "qr_codes",

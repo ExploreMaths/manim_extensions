@@ -31,7 +31,7 @@
 - **Reusable mobjects** — labelled dots, braces and arrows tied to formulas, file trees, motion trails, shadows, 3D vectors, tree diagrams, and more
 - **Geometry helpers** — circle / line / arc intersections and tangent points
 - **Common animations** — typewriting, random / reverse writes, highlights, sweep effects, and extra easing functions
-- **Bundled toolkits** — involute gears, mind maps / timelines / catalog diagrams, compass-and-straightedge constructions, algorithm visualisation, automata, circuits, data structures, meshes, neural networks, physics, Rubik's cube, sequence diagrams, and TikZ integration
+- **Bundled toolkits** — involute gears, mind maps / timelines / catalog diagrams, compass-and-straightedge constructions, algorithm visualisation, automata, circuits, data structures, meshes, neural networks, physics, Rubik's cube, sequence diagrams, SVG import/export, and TikZ integration
 
 ## Modules
 
@@ -52,6 +52,7 @@
 | `manim_extensions.machine_learning` | Machine-learning visualisation |
 | `manim_extensions.meshes`     | Mesh and geometry visualisation |
 | `manim_extensions.mindmap`    | Mind maps, timelines, catalog diagrams |
+| `manim_extensions.mobject_svg` | SVG file import as mobjects |
 | `manim_extensions.mobjects`   | Custom mobjects (Basic) |
 | `manim_extensions.physics`    | Physics simulation helpers |
 | `manim_extensions.pymunk`     | Pymunk physics engine integration |
@@ -80,6 +81,7 @@ inside `manim_extensions`:
 - `manim-meshes` → `manim_extensions.meshes`
 - `manim-ml` (ManimML) → `manim_extensions.machine_learning`
 - `manim-mindmap` → `manim_extensions.mindmap`
+- `manim-mobject-svg` → `manim_extensions.mobject_svg`
 - `manim-physics` → `manim_extensions.physics`
 - `manim-pymunk` → `manim_extensions.pymunk`
 - `manim-qr-codes` → `manim_extensions.qr_codes`
@@ -137,8 +139,8 @@ Every vendored module has a same-named extra. The ones below declare no
 additional dependencies (they work with the base install) but exist so
 that installs can uniformly request `manim_extensions[<module>]`:
 `algorithm`, `arabic`, `circuit`, `compass`, `data_structures`,
-`economics`, `fontawesome`, `gearbox`, `mindmap`, `sequence_diagram`,
-`table`, `tikz`, `weighted_line`.
+`economics`, `fontawesome`, `gearbox`, `mindmap`, `mobject_svg`,
+`sequence_diagram`, `table`, `tikz`, `weighted_line`.
 
 ### Why we bundle upstream packages
 

@@ -33,7 +33,7 @@ def build_badge(percent):
     return {
         "schemaVersion": 1,
         "label": "coverage",
-        "message": f"{percent:.0f}%",
+        "message": f"{percent:.1f}%",
         "color": pick_color(percent),
     }
 

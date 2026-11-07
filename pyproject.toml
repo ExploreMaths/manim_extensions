@@ -114,6 +114,7 @@ economics = []
 fontawesome = []
 gearbox = []
 mindmap = []
+mobject_svg = []
 sequence_diagram = []
 table = []
 tikz = []
@@ -121,7 +122,7 @@ weighted_line = []
 
 # Everything at once: pip install manim_extensions[all]
 all = [
-    "manim_extensions[algorithm,arabic,automata,chemistry,circuit,compass,data_structures,economics,fontawesome,gearbox,mindmap,sequence_diagram,table,tikz,weighted_line,physics,rubikscube,meshes,video,qr,svg,ml]",
+    "manim_extensions[algorithm,arabic,automata,chemistry,circuit,compass,data_structures,economics,fontawesome,gearbox,mindmap,mobject_svg,sequence_diagram,table,tikz,weighted_line,physics,rubikscube,meshes,video,qr,svg,ml]",
 ]
 
 [project.urls]
