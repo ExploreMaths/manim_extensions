@@ -3,20 +3,21 @@
 
 name: Publish
 
-# Manual, one-shot release: build the sdist and wheel, upload them to PyPI,
-# then tag the commit and open the GitHub release whose notes are rendered
-# from the changelog entry for that version.  Publishing to PyPI and tagging
-# are deliberately kept in a single run so a failed upload can never leave a
-# tag (and therefore a release) behind.
+# Manual, one-shot release.  The workflow bumps pyproject.toml and the
+# changelog badge itself, builds the sdist and wheel, uploads them to PyPI
+# and only then commits the version bump, tags it and opens the GitHub
+# release whose notes are rendered from the changelog entry.  Because the
+# commit and the tag happen after a successful upload, a failed or rejected
+# upload leaves the repository untouched.
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Version to publish, without the leading v (must match pyproject.toml)"
+        description: "Version to publish, without the leading v (the changelog needs a matching section)"
         required: true
         type: string
       dry_run:
-        description: "Build the distributions and render the notes, but skip the PyPI upload, the tag and the release"
+        description: "Prepare the version bump, build the distributions and print the notes, but skip the upload, the commit, the tag and the release"
         required: false
         default: false
         type: boolean
@@ -29,21 +30,22 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build and check the release
+  prepare:
+    name: Prepare and build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          # Tags are needed for the "Full Changelog" compare link.
+          # Tags are needed for the "Full Changelog" compare link and for
+          # the "does this tag already exist" check.
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Check that the tag does not exist yet
+      - name: Check that the release can be cut
         env:
           VERSION: ${{ inputs.version }}
         run: |
@@ -51,13 +53,15 @@ jobs:
             echo "tag v${VERSION} already exists" >&2
             exit 1
           fi
+          python workflow/changelog_to_md.py --version "$VERSION" --check
 
-      - name: Check the version and the changelog entry
+      - name: Bump the version and the changelog badge
         env:
           VERSION: ${{ inputs.version }}
         run: |
+          python workflow/prepare_release.py --version "$VERSION"
           python workflow/check_release_version.py "$VERSION"
-          python workflow/changelog_to_md.py --version "$VERSION" --check
+          git --no-pager diff
 
       - name: Build the sdist and the wheel
         run: |
@@ -91,17 +95,17 @@ jobs:
           name: release-notes
           path: release-notes.md
 
-  publish-pypi:
-    name: Publish to PyPI
-    needs: build
+  publish:
+    name: Publish, tag and release
+    needs: prepare
     if: ${{ !inputs.dry_run }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     environment:
       name: pypi
       url: https://pypi.org/project/manim-extensions/
     permissions:
-      contents: read
+      contents: write
       # Trusted publishing: the action mints a short-lived token over OIDC
       # when no API token is supplied.
       id-token: write
@@ -110,10 +114,30 @@ jobs:
       # trusted publisher on PyPI yet.
       PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Reproduce the exact version bump that went into the build, so the
+      # release commit matches the uploaded distributions.
+      - name: Bump the version and the changelog badge
+        env:
+          VERSION: ${{ inputs.version }}
+        run: python workflow/prepare_release.py --version "$VERSION"
+
       - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-notes
+          path: .
 
       - name: Publish with the API token
         if: ${{ env.PYPI_TOKEN != '' }}
@@ -128,36 +152,21 @@ jobs:
         with:
           packages-dir: dist/
 
-  release:
-    name: Tag and create the GitHub release
-    needs: [build, publish-pypi]
-    if: ${{ !inputs.dry_run }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: release-notes
-          path: .
-
-      - name: Create the tag and the release
+      - name: Commit the version bump, tag it and open the release
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ inputs.version }}
         run: |
-          TAG="v${VERSION}"
-          if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
-            echo "tag ${TAG} already exists" >&2
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
+            echo "releases are cut from main, not ${GITHUB_REF}" >&2
             exit 1
           fi
-          git tag "${TAG}"
-          git push origin "${TAG}"
-          gh release create "${TAG}" \
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml docs/source/changelog.rst
+          git commit -m "Release ${VERSION}"
+          git push origin HEAD:main
+          gh release create "v${VERSION}" \
+            --target "$(git rev-parse HEAD)" \
             --title "Manim Extensions ${VERSION}" \
             --notes-file release-notes.md
