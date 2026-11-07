@@ -19,22 +19,14 @@ Modules
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~get_activation_function_by_name
-
-.. autofunction:: manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name
+.. autoall:: manim_extensions.machine_learning.neural_network.activation_functions
+   :types: function
 
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~name_to_activation_function_map
-
-.. autodata:: manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map
+.. autoall:: manim_extensions.machine_learning.neural_network.activation_functions
+   :types: data
 
 .. toctree::
    :hidden:

@@ -21,24 +21,6 @@ Classes
    ~future_classes.MOSFETTransistor
    ~future_classes.NPNTransistor
 
-Functions
----------
-
-.. autosummary::
-   :nosignatures:
-
-   ~future_classes.add_over_rectangular_surface
-   ~future_classes.arrange_copies_in_rectangle
-   ~future_classes.arrange_in_1D_boundary
-   ~future_classes.concat_mobjects
-   ~future_classes.duplicate_and_rearrange
-   ~future_classes.get_element_by_data
-   ~future_classes.inverse_linear
-   ~future_classes.inverse_smooth
-   ~future_classes.make_subpaths
-   ~future_classes.randomly_distributed_in_2D
-   ~future_classes.zero
-
 Modules
 -------
 

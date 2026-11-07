@@ -115,14 +115,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~nfa_automaton_json
-   ~pushdown_automaton_json
-
-.. autodata:: manim_extensions.automata.nfa_automaton_json
-.. autodata:: manim_extensions.automata.pushdown_automaton_json
+.. autoall:: manim_extensions.automata
+   :types: data
 
 .. toctree::
    :hidden:

@@ -188,13 +188,6 @@ Modules
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~utils.geometry_method.get_distance
-   ~utils.geometry_method.get_vecs_angle
-   ~utils.geometry_method.is_counter_clockwise
-
 .. autofunction:: manim_extensions.compass.utils.geometry_method.get_distance
 .. autofunction:: manim_extensions.compass.utils.geometry_method.get_vecs_angle
 .. autofunction:: manim_extensions.compass.utils.geometry_method.is_counter_clockwise

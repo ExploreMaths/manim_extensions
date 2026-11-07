@@ -42,12 +42,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~connective_layers_list
-
-.. autodata:: manim_extensions.machine_learning.neural_network.layers.connective_layers_list
+.. autoall:: manim_extensions.machine_learning.neural_network.layers
+   :types: data
 
 .. toctree::
    :hidden:

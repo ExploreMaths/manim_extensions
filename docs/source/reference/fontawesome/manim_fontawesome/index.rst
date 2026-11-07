@@ -9,28 +9,14 @@ manim_fontawesome
 Functions
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~list_icons
-
-.. autofunction:: manim_extensions.fontawesome.manim_fontawesome.list_icons
+.. autoall:: manim_extensions.fontawesome.manim_fontawesome
+   :types: function
 
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~brand
-   ~FONT_AWESOME_VERSION
-   ~regular
-   ~solid
-
-.. autodata:: manim_extensions.fontawesome.manim_fontawesome.brand
-.. autodata:: manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION
-.. autodata:: manim_extensions.fontawesome.manim_fontawesome.regular
-.. autodata:: manim_extensions.fontawesome.manim_fontawesome.solid
+.. autoall:: manim_extensions.fontawesome.manim_fontawesome
+   :types: data
 
 .. toctree::
    :hidden:

@@ -82,12 +82,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~SYMBOLS_UNICODE
-
-.. autodata:: manim_extensions.nerdfont.SYMBOLS_UNICODE
+.. autoall:: manim_extensions.nerdfont
+   :types: data
 
 .. toctree::
    :hidden:

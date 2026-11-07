@@ -16,15 +16,6 @@ Classes
    ~rigid_mechanics.Space
    ~rigid_mechanics.SpaceScene
 
-Functions
----------
-
-.. autosummary::
-   :nosignatures:
-
-   ~rigid_mechanics.get_angle
-   ~rigid_mechanics.get_shape
-
 Modules
 -------
 

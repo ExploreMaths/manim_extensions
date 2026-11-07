@@ -54,14 +54,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~NodeBoxType
-   ~NodeValue
-
-.. autodata:: manim_extensions.algorithm.NodeBoxType
-.. autodata:: manim_extensions.algorithm.NodeValue
+.. autoall:: manim_extensions.algorithm
+   :types: data
 
 .. toctree::
    :hidden:

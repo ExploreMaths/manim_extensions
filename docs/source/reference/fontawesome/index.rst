@@ -124,7 +124,6 @@ A wall of solid icons, staggered in and spun like on the
            ))
            self.wait()
 
-
 Modules
 -------
 
@@ -136,12 +135,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~FONT_AWESOME_VERSION
-
 .. autodata:: manim_extensions.fontawesome.FONT_AWESOME_VERSION
+   :no-value:
 
 .. toctree::
    :hidden:

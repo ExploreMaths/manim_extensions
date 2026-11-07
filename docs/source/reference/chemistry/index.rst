@@ -233,12 +233,8 @@ Modules
 Constants
 ---------
 
-.. autosummary::
-   :nosignatures:
-
-   ~MC_ELEMENT_DICT
-
 .. autodata:: manim_extensions.chemistry.MC_ELEMENT_DICT
+   :no-value:
 
 .. toctree::
    :hidden:
