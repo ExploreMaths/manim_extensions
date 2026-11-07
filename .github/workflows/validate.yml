@@ -148,7 +148,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check that all function parameters have type annotations
+      - name: Check type annotations (params annotated, none quoted)
         run: python scripts/check_type_annotations.py
 
   validate-return-annotations:

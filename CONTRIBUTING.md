@@ -466,6 +466,7 @@ Run these locally before opening a PR. Each corresponds to a CI job in `.github/
 | License headers | `python workflow/validate_headers.py` |
 | License declarations (REUSE) | `reuse lint` |
 | Type annotations on all params | *(CI; `scripts/check_type_annotations.py`)* |
+| No quoted type annotations (`node: "Node"`) | *(CI; `scripts/check_type_annotations.py`)* |
 | Return annotations on documented public functions with return values | *(CI; `scripts/check_return_annotations.py`)* |
 | Dependencies audit | `pip-audit --desc on` |
 
