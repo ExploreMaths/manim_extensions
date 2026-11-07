@@ -1,11 +1,15 @@
 # SPDX-FileCopyrightText: 2023 Naveen M K
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: add the module docstring and SPDX header
+# patched: document the module-level constant and the cairo context helpers
+# patched: type the cairo context helpers and replace tempfile.mktemp
 
 """Render manim mobjects into SVG files through a Cairo surface.
 
 Vendored from ``manim-mobject-svg`` 0.5.0. The public entry points are
-:func:`~manim_extensions.mobject_svg.svg.create_svg_from_vmobject` and :func:`~manim_extensions.mobject_svg.svg.create_svg_from_vgroup`; the
+:func:`~manim_extensions.mobject_svg.svg.create_svg_from_vmobject` and
+:func:`~manim_extensions.mobject_svg.svg.create_svg_from_vgroup`; the
 module-level helpers mirror the upstream implementation so relative
 subpaths, gradients and stroke/fill ordering keep working.
 """
@@ -23,6 +27,7 @@ import numpy as np
 from manim import VGroup, VMobject
 from manim.utils.family import extract_mobject_family_members
 
+#: Multiplier applied to manim stroke widths when drawing into the Cairo surface.
 CAIRO_LINE_WIDTH_MULTIPLE: float = 0.01
 
 __all__ = ["create_svg_from_vmobject", "create_svg_from_vgroup"]
@@ -80,14 +85,37 @@ def _get_cairo_context(
 
 
 def _transform_points_pre_display(points: np.ndarray) -> np.ndarray:
+    """Return display-ready points, replacing non-finite values with zeros.
+
+    Parameters
+    ----------
+    points
+        The points to validate, as an ``(n, 3)`` array.
+
+    Returns
+    -------
+        The original points, or a single zero point when any coordinate is
+        NaN or infinite and therefore cannot be drawn.
+    """
     if not np.all(np.isfinite(points)):
-        # TODO, print some kind of warning about
-        # mobject having invalid points?
         points = np.zeros((1, 3))
     return points
 
 
-def _get_stroke_rgbas(vmobject: VMobject, background: bool = False):
+def _get_stroke_rgbas(vmobject: VMobject, background: bool = False) -> np.ndarray:
+    """Return the stroke rgbas used by ``vmobject``.
+
+    Parameters
+    ----------
+    vmobject
+        The mobject whose stroke is read.
+    background
+        Read the background stroke instead of the foreground stroke.
+
+    Returns
+    -------
+        One rgba per stroke point, as returned by manim.
+    """
     return vmobject.get_stroke_rgbas(background)
 
 
@@ -96,6 +124,17 @@ def _set_cairo_context_color(
     rgbas: np.ndarray,
     vmobject: VMobject,
 ):
+    """Set the cairo source to a solid colour or a stroke gradient.
+
+    Parameters
+    ----------
+    ctx
+        The cairo context to update.
+    rgbas
+        One rgba per stroke or fill point.
+    vmobject
+        The mobject that provides the gradient start and end points.
+    """
     if len(rgbas) == 1:
         # Use reversed rgb because cairo surface is
         # encodes it in reverse order
@@ -112,6 +151,17 @@ def _set_cairo_context_color(
 
 
 def _apply_stroke(ctx: cairo.Context, vmobject: VMobject, background: bool = False):
+    """Stroke the current cairo path with the mobject's stroke colour.
+
+    Parameters
+    ----------
+    ctx
+        The cairo context to draw into.
+    vmobject
+        The mobject whose stroke width and rgbas are applied.
+    background
+        Stroke with the background stroke instead of the foreground one.
+    """
     from manim import config
 
     width = vmobject.get_stroke_width(background)
@@ -151,10 +201,31 @@ def _apply_fill(ctx: cairo.Context, vmobject: VMobject):
     ctx.fill_preserve()
 
 
+def _temporary_svg_path() -> Path:
+    """Return a unique temporary path for an SVG file.
+
+    Returns
+    -------
+        A path in the system temporary directory. The file already exists
+        and is overwritten when the caller writes the SVG.
+    """
+    with tempfile.NamedTemporaryFile(suffix=".svg", delete=False) as handle:
+        return Path(handle.name)
+
+
 def _create_svg_from_vmobject_internal(
     vmobject: VMobject, ctx: cairo.Context
-) -> None:
-    # check if points are valid
+):
+    """Draw one mobject into the current cairo context.
+
+    Parameters
+    ----------
+    vmobject
+        The mobject to draw.
+    ctx
+        The cairo context that receives the drawing.
+    """
+    # Drop non-finite points before building the path.
     points = vmobject.points
     points = _transform_points_pre_display(points)
     if len(points) == 0:
@@ -201,7 +272,7 @@ def create_svg_from_vmobject(
         The path of the written SVG file.
     """
     if file_name is None:
-        file_name = tempfile.mktemp(suffix=".svg")
+        file_name = _temporary_svg_path()
     file_name = Path(file_name).absolute()
     width, height = None, None
     if crop:
@@ -237,7 +308,7 @@ def create_svg_from_vgroup(
         The path of the written SVG file.
     """
     if file_name is None:
-        file_name = tempfile.mktemp(suffix=".svg")
+        file_name = _temporary_svg_path()
     file_name = Path(file_name).absolute()
     width, height = None, None
     if crop:
