@@ -245,7 +245,7 @@ class Circuit(VMobject):
         invert: bool = False,
     ) -> list[Point3DLike]:
         # Check if a turn is necessary. Only satisfiable if:
-        # 1. diagonal flag is not set/overriden to True
+        # 1. diagonal flag is not set/overridden to True
         # 2. end1.x != end2.x and end1.y != end2.y
         """Create a wire path between two endpoints, adding a bend when needed.
 
@@ -318,7 +318,7 @@ class Circuit(VMobject):
             node = Node()
             node.add_wire(wire)
 
-            # Adding the newly editted node
+            # Adding the newly edited node
             self.node_list.add(node)
 
             return wire

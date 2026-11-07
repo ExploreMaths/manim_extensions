@@ -498,7 +498,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         elif self.nda_builder:  # Stores the path of of a single branch within the nda
             self.recorded_path = []
 
-        # keeps track of what happend throughout each iteration
+        # keeps track of what happened throughout each iteration
         global_history = {}
 
         initial_state = self.get_initial_state()
@@ -617,7 +617,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.manim_animations.animate_display_input(self.manim_automata_input)
         ]
 
-        # run the input through the machine, returning a history of what happend
+        # run the input through the machine, returning a history of what happened
         history = self.run_input_through_automaton(input_to_run)
 
         list_of_animations = list_of_animations + self.generate_history_animations(

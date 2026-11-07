@@ -696,7 +696,7 @@ class SpaceScene(ZoomedScene):
         """
         self.vspace.world_to_local(mob, point)
 
-    # custom positon | velocity
+    # custom position | velocity
     def set_position_func(
         self, *mobs: Mobject, callback: Callable[[pymunk.Body, float], None] = None
     ):

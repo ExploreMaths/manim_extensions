@@ -544,7 +544,7 @@ class DecisionTreeDiagram(Group):
         Exception
             Raised when ``traversal_order`` is not recognized.
         """
-        # Comptue the node expand order
+        # Compute the node expand order
         if traversal_order == "level":
             node_expand_order = helpers.compute_level_order_traversal(self.tree)
         elif traversal_order == "bfs":

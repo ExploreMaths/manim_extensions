@@ -12,7 +12,7 @@ import re
 from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, ManimColor, MarkupText, VGroup, WHITE
 class ChemicalFormula(MarkupText):
     """
-    Mostly usefull for simple compounds like binary salts or oxoanions.
+    Mostly useful for simple compounds like binary salts or oxoanions.
 
     Parameters
     ----------

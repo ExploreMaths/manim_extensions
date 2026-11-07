@@ -208,7 +208,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         return self.stack.pop()
 
     # pushdown automata can accept if the stack is empty or if it falls on a final state
-    # overriden
+    # overridden
     def play_string(
         self,
         input: str | ManimAutomataInput,
@@ -245,7 +245,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             self.manim_animations.animate_display_input(self.manim_automata_input)
         ]
 
-        # run the input through the machine, returning a history of what happend
+        # run the input through the machine, returning a history of what happened
         history = self.run_input_through_automaton(
             input_to_run, automaton_path_name
         )
@@ -261,7 +261,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             for entry in list_of_animations
         ]
 
-    # overriden
+    # overridden
     def automaton_step(
         self, token: str, state_pointer: State
     ) -> tuple[bool, list[State], list[ManimTransition]]:

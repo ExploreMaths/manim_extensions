@@ -815,7 +815,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
     def find_bond_center_by_index(self, bond_index: tuple) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
-        The bund tuple corresponds to the indices of the atoms in the bond.
+        The bond tuple corresponds to the indices of the atoms in the bond.
 
         Parameters
         ----------

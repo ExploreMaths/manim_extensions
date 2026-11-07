@@ -592,7 +592,7 @@ class NeuralNetwork(Group):
         return animation_group
 
     def set_z_index(self, z_index_value: float, family: bool = False):
-        """Overriden set_z_index.
+        """Overridden set_z_index.
 
         Parameters
         ----------
@@ -608,7 +608,7 @@ class NeuralNetwork(Group):
                 layer.set_z_index(z_index_value)
 
     def scale(self, scale_factor: float, **kwargs):
-        """Overriden scale.
+        """Overridden scale.
 
         Scales every layer and re-places the layers and connective layers
         with scaled spacing, keeping the network centered.

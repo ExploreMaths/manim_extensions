@@ -498,7 +498,7 @@ class Gear(VMobject):
 
         # from tec-science article
         # https://www.tec-science.com/mechanical-power-transmission/involute-gear/profile-shift/
-        # thicknes of the tooth on the pitch circle
+        # thickness of the tooth on the pitch circle
         s0 = self.pitch / 2 + 2 * self.X * np.tan(self.alpha * DEGREES)
         # increment due to profile shift
         ds = s0 - self.pitch / 2
