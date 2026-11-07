@@ -106,13 +106,6 @@ jobs:
       url: https://pypi.org/project/manim-extensions/
     permissions:
       contents: write
-      # Trusted publishing: the action mints a short-lived token over OIDC
-      # when no API token is supplied.
-      id-token: write
-    env:
-      # Optional fallback for repositories that have not configured a
-      # trusted publisher on PyPI yet.
-      PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -139,18 +132,20 @@ jobs:
           name: release-notes
           path: .
 
-      - name: Publish with the API token
-        if: ${{ env.PYPI_TOKEN != '' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist/
-          password: ${{ env.PYPI_TOKEN }}
+      - name: Check the PyPI token
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "$PYPI_TOKEN" ]; then
+            echo "the PYPI_API_TOKEN secret is missing; add it under Settings -> Secrets and variables -> Actions" >&2
+            exit 1
+          fi
 
-      - name: Publish with trusted publishing
-        if: ${{ env.PYPI_TOKEN == '' }}
+      - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Commit the version bump, tag it and open the release
         env:
