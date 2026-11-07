@@ -25,9 +25,10 @@ The code is bundled inside ``manim_extensions`` as the
 
 .. important::
 
-   This module requires the ``manim-mobject-svg`` plugin (it provides
-   `to_svg()`). On Python 3.13+ install it with
-   ``pip install --ignore-requires-python manim-mobject-svg``.
+   Frames are rendered to SVG by the vendored
+   :mod:`~manim_extensions.mobject_svg` package, which ships inside
+   ``manim_extensions`` and needs no extra install. See
+   :doc:`../mobject_svg/index` for its API.
 
 Features
 --------
@@ -187,11 +188,9 @@ Modules
    :nosignatures:
 
    ~html_parsed_vmobject
-   ~manim_extensions.mobject_svg
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    html_parsed_vmobject
-   mobject_svg

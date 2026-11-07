@@ -128,6 +128,7 @@ Module Index
    machine_learning/index
    meshes/index
    mindmap/index
+   mobject_svg/index
    nerdfont/index
    physics/index
    pymunk/index
@@ -156,6 +157,7 @@ Module Index
    Machine Learning = machine_learning
    Meshes = meshes
    MindMap = mindmap
+   MObject SVG = mobject_svg
    Nerd Font Icons = nerdfont
    Physics = physics
    Pymunk = pymunk
