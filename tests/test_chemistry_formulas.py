@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Tests for the chemistry formula mobjects."""
 
 import pytest

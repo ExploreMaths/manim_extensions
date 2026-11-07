@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Turn a coverage.py JSON report into a shields.io endpoint badge.
 
 The badge JSON lives in the repository so the README can point shields.io at

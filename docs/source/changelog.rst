@@ -128,8 +128,10 @@ v1.0.6 :bdg-success-line:`Latest`
   and :meth:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_string`,
   which documented taking the whole MOL block but only accepted its
   pre-split lines.
-* Fixed the ``chemistry`` component mobjects: ``Element`` no longer crashes
-  when subelectron holes are requested without electrons, and
+* Fixed the ``chemistry`` component mobjects:
+  :class:`~manim_extensions.chemistry.future_classes.future_classes.Element`
+  no longer crashes when subelectron holes are requested without
+  electrons, and
   :meth:`~manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals`
   now uses the keyword form of ``rotate`` that current Manim accepts.
 * Fixed the dangling :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` cross-reference in the ``create_grid``

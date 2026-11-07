@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 """Behaviour tests for the vendored chemistry toolkit.
 
 These exercise the molecule builders that ship with the package: parsing
