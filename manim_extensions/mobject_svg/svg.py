@@ -198,7 +198,6 @@ def create_svg_from_vmobject(
 
     Returns
     -------
-    Path
         The path of the written SVG file.
     """
     if file_name is None:
@@ -235,7 +234,6 @@ def create_svg_from_vgroup(
 
     Returns
     -------
-    Path
         The path of the written SVG file.
     """
     if file_name is None:
