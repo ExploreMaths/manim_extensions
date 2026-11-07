@@ -4,6 +4,8 @@
 
 """Feed-forward to vector layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -48,8 +50,8 @@ class FeedForwardToVector(ConnectiveLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

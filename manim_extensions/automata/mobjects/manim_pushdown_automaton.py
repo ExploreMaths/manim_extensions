@@ -211,7 +211,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     # overriden
     def play_string(
         self,
-        input: "str | ManimAutomataInput",
+        input: str | ManimAutomataInput,
         automaton_path_name: str | None = None,
     ) -> list:
         """Animate the pushdown automaton processing an input string.

@@ -4,6 +4,8 @@
 
 """Contains classes to construct an array."""
 
+from __future__ import annotations
+
 from copy import deepcopy
 
 import numpy as np
@@ -234,7 +236,7 @@ class MArrayElement(VGroup):
         init_value: bool = False,
         init_index: bool = False,
         init_label: bool = False,
-        next_to_mob: "MArrayElement | None" = None,
+        next_to_mob: MArrayElement | None = None,
         next_to_dir: Vector3D = RIGHT,
     ):
         """Initializes the mobjects for the class.
@@ -288,7 +290,7 @@ class MArrayElement(VGroup):
         exclude_list = ["_MArrayElement__scene"]
 
         cls = self.__class__
-        result: "MArrayElement" = cls.__new__(cls)
+        result: MArrayElement = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -306,7 +308,7 @@ class MArrayElement(VGroup):
         index_gap: float = 0.25,
         label_pos: Point3D = LEFT,
         label_gap: float = 0.5,
-        next_to_mob: "MArrayElement | None" = None,
+        next_to_mob: MArrayElement | None = None,
         next_to_dir: Vector3D = RIGHT,
         **kwargs: Any,
     ):
@@ -1110,7 +1112,7 @@ class MArray(VGroup):
         exclude_list = ["_MArray__scene"]
 
         cls = self.__class__
-        result: "MArray" = cls.__new__(cls)
+        result: MArray = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -1855,7 +1857,7 @@ class MArrayPointer(VGroup):
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
 
         cls = self.__class__
-        result: "MArrayPointer" = cls.__new__(cls)
+        result: MArrayPointer = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:
@@ -2354,7 +2356,7 @@ class MArraySlidingWindow(VGroup):
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]
 
         cls = self.__class__
-        result: "MArraySlidingWindow" = cls.__new__(cls)
+        result: MArraySlidingWindow = cls.__new__(cls)
         memo[id(self)] = result
         for k, v in self.__dict__.items():
             if k not in exclude_list:

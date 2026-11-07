@@ -15,6 +15,9 @@ manim, specifically a fully connected neural network diagram.
     # Create the object with default style settings
     NeuralNetwork(layer_node_count)
 """
+
+from __future__ import annotations
+
 import textwrap
 from ..utils.mobjects.connections import NetworkConnection
 import numpy as np
@@ -420,7 +423,7 @@ class NeuralNetwork(Group):
         new_layer.move_to(old_layer)
         prior_center = self.all_layers.get_center()
 
-        def swap_layer(network: "NeuralNetwork"):
+        def swap_layer(network: NeuralNetwork):
             """Replace the layer and rebuild the surrounding connections."""
             network.input_layers.replace(input_index, new_layer)
             for name, layer in network.input_layers_dict.items():

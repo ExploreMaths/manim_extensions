@@ -5,6 +5,8 @@
 
 """Triplet layer visualization for neural networks."""
 
+from __future__ import annotations
+
 from typing import Self
 
 from manim import (
@@ -67,8 +69,8 @@ class TripletLayer(NeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Build the triplet assets and add them to the layer.

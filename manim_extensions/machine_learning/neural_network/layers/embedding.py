@@ -4,6 +4,8 @@
 
 """Embedding layer visualization for neural networks."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     Axes,
@@ -100,8 +102,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Build the axes, point cloud, and latent distribution for the embedding.

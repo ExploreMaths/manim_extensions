@@ -7,6 +7,7 @@
 This module provides the convolutional 2D layer class for neural network visualizations.
 """
 
+from __future__ import annotations
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -292,8 +293,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs,
     ):
         """Build the feature maps and apply the 3D rotation to the layer.

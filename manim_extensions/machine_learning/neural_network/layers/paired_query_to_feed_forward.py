@@ -4,6 +4,8 @@
 
 """Paired query to feed-forward layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
 from .feed_forward import FeedForwardLayer
 from .paired_query import PairedQueryLayer
@@ -48,8 +50,8 @@ class PairedQueryToFeedForward(ConnectiveLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

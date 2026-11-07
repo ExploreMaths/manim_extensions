@@ -4,6 +4,8 @@
 
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     Axes,
@@ -84,7 +86,7 @@ class DecisionTreeEmbedding(VGroup):
 
     def __init__(
         self,
-        sklearn_tree: "DecisionTreeClassifier | SklearnTree",
+        sklearn_tree: DecisionTreeClassifier | SklearnTree,
         points: MatrixMN,
         classes: VectorND,
         axes: Axes | None = None,

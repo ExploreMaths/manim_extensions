@@ -8,6 +8,8 @@ This module provides gear and rack visualizations.
 
 """
 
+from __future__ import annotations
+
 import numpy as np
 from manim import (
     Arc,
@@ -766,7 +768,7 @@ class Gear(VMobject):
             Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
 
-    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1):
+    def mesh_to(self, gear2: Gear, offset: float = 0, bias: int = 1):
         """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters

@@ -4,6 +4,9 @@
 
 """Standard mind map layout algorithm."""
 
+from __future__ import annotations
+
+
 __all__ = [
     "StandardLayout",
 ]
@@ -65,10 +68,10 @@ class TreeNode:
         self.y: float = 0
         self.level: int = 0
         self.is_flip: bool = False
-        self.children: List["TreeNode"] = []
-        self.parent: "TreeNode" = None
+        self.children: List[TreeNode] = []
+        self.parent: TreeNode = None
 
-    def add_child(self, child: "TreeNode"):
+    def add_child(self, child: TreeNode):
         """Add a child node and establish the parent-child relationship.
 
         Parameters

@@ -8,6 +8,8 @@ This module provides abstract base classes for neural network layer visualizatio
 
 """
 
+from __future__ import annotations
+
 from typing import Any
 
 from manim import (
@@ -72,8 +74,8 @@ class NeuralNetworkLayer(ABC, Group):
     @abstractmethod
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ):
         """Constructs the layer at network construction time.
@@ -335,4 +337,3 @@ class BlankConnective(ConnectiveLayer):
     @override_animation(Create)
     def _create_override(self) -> Animation:
         return super()._create_override()
-

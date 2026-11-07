@@ -8,6 +8,8 @@ This module provides node classes for mindmap visualizations.
 
 """
 
+from __future__ import annotations
+
 from manim import (
     BLUE,
     DOWN,
@@ -200,7 +202,7 @@ class NodeStyle:
         return self.text_style[-1]
 
 
-def dfs_walker(root: "Node") -> Generator:
+def dfs_walker(root: Node) -> Generator:
     """Yield the tree in depth-first pre-order using a stack.
 
     Parameters
@@ -222,7 +224,7 @@ def dfs_walker(root: "Node") -> Generator:
             stack.append(child)
 
 
-def bfs_walker(root: "Node") -> Generator:
+def bfs_walker(root: Node) -> Generator:
     """Yield the tree in breadth-first level order using a queue.
 
     Parameters
@@ -319,7 +321,7 @@ class Node:
         self.width *= scale_factor
         self.height *= scale_factor
 
-    def add_child(self, child: "Node"):
+    def add_child(self, child: Node):
         """Attach a child node to the current node.
 
         Parameters
@@ -333,7 +335,7 @@ class Node:
         self.children.append(child)
         child.parent = self
 
-    def remove_child(self, child: "Node"):
+    def remove_child(self, child: Node):
         """Mark a child node for removal from the current node.
 
         Parameters
@@ -544,7 +546,7 @@ class Node:
             del self.connector
         return node_mobj
 
-    def get_children(self) -> List["Node"]:
+    def get_children(self) -> List[Node]:
         """
 
         Returns
@@ -553,7 +555,7 @@ class Node:
         """
         return self.children
 
-    def get_descendants(self) -> List["Node"]:
+    def get_descendants(self) -> List[Node]:
         """
 
         Returns

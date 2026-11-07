@@ -5,6 +5,8 @@
 
 """Feed-forward to feed-forward layer connection visualization."""
 
+from __future__ import annotations
+
 import numpy as np
 
 from manim import (
@@ -80,8 +82,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Build the fully-connected edges between input and output layers.

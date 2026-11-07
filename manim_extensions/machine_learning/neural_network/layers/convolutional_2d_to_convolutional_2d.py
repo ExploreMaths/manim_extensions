@@ -5,6 +5,8 @@
 
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
+from __future__ import annotations
+
 import numpy as np
 
 from manim import (
@@ -458,8 +460,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.

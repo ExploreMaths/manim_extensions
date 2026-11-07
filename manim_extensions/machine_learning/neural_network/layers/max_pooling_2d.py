@@ -5,6 +5,8 @@
 
 """Max pooling 2D layer visualization for neural networks."""
 
+from __future__ import annotations
+
 from manim import AnimationGroup, BLUE, Create, FadeIn, ManimColor, ORANGE, VGroup, override_animation
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
@@ -104,8 +106,8 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Build the output feature maps and apply 3D rotation to the layer.

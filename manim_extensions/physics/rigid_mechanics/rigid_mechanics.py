@@ -299,7 +299,7 @@ class SpaceScene(Scene):
                 mob.body.sleep()
 
 
-def _step(space: "Space", dt: float):
+def _step(space: Space, dt: float):
     """Advance the pymont simulation by one time step.
 
     Parameters

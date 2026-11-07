@@ -4,6 +4,8 @@
 
 """Queue data structure for algorithm visualization."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     DOWN,
@@ -134,7 +136,7 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: "Queue", item: Node, **kwargs):
+        def __init__(self, queue: Queue, item: Node, **kwargs):
             """Create an animation that slides an item into the queue from the right."""
             path = [
                 item.get_center(),
@@ -185,7 +187,7 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: "Queue", target_pos: Point3D | None = None, **kwargs):
+        def __init__(self, queue: Queue, target_pos: Point3D | None = None, **kwargs):
             """Create an animation that removes the front item and shifts remaining items left."""
             if not queue.data:
                 return

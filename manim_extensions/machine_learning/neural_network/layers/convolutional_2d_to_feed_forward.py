@@ -4,6 +4,8 @@
 
 """Convolutional 2D to feed-forward layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer
 from .feed_forward import FeedForwardLayer
@@ -41,8 +43,8 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

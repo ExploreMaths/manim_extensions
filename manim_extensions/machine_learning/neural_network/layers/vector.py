@@ -5,6 +5,8 @@
 
 """Vector layer visualization for neural networks."""
 
+from __future__ import annotations
+
 from manim import AnimationGroup, Create, Text, Write, override_animation
 import random
 
@@ -64,8 +66,8 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs,
     ):
         """Build the vector label and add it to the layer.

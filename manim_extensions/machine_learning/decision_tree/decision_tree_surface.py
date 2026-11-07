@@ -6,6 +6,8 @@
 
 """Decision tree visualization for Manim."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     Axes,
@@ -111,7 +113,7 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
     return aabbs
 
 def compute_decision_areas(
-    tree_classifier: "DecisionTreeClassifier",
+    tree_classifier: DecisionTreeClassifier,
     maxrange: list[float],
     x: int = 0,
     y: int = 1,
@@ -300,7 +302,7 @@ class IrisDatasetPlot(VGroup):
                self.add(plot.all_group)
     """
 
-    def __init__(self, iris: "Bunch"):
+    def __init__(self, iris: Bunch):
         """Initialize the Iris dataset plot with points, axes, and a legend."""
         points = iris.data[:, 0:2]
         labels = iris.feature_names
@@ -456,7 +458,7 @@ class DecisionTreeSurface(VGroup):
                self.add(axes, *surface.surface_rectangles)
     """
 
-    def __init__(self, tree_clf: "DecisionTreeClassifier", data: MatrixMN, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
+    def __init__(self, tree_clf: DecisionTreeClassifier, data: MatrixMN, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
         """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf

@@ -4,6 +4,8 @@
 
 """Feed-forward to math operation layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -41,8 +43,8 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Build a straight arrow connection between the feed-forward and math operation layers.

@@ -4,6 +4,8 @@
 
 """Max pooling 2D to feed-forward layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import ManimColor, ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .feed_forward import FeedForwardLayer
@@ -42,8 +44,8 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

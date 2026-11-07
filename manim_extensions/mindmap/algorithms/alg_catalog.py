@@ -13,6 +13,9 @@ Layout characteristics:
 - Sibling offsets are automatically adjusted to avoid overlaps.
 """
 
+from __future__ import annotations
+
+
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
 from typing import List, Callable, Self
@@ -78,13 +81,13 @@ class CatalogNode:
     data: object | None = None
     width: float = 0.0
     height: float = 0.0
-    children: List["CatalogNode"] = field(default_factory=list)
+    children: List[CatalogNode] = field(default_factory=list)
 
     # Layout results
     left: float = 0.0
     top: float = 0.0
     layer_index: int = 0
-    parent: "CatalogNode | None" = None
+    parent: CatalogNode | None = None
     children_area_width: float = 0.0
 
     @classmethod

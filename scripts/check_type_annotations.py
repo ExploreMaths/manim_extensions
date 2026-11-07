@@ -5,10 +5,14 @@
 
 This script is designed to be run in CI. It scans all Python files in the
 ``manim_extensions`` package (excluding vendored assets) and reports any
-function or method parameter that lacks a type annotation.  Functions
-defined in ``__init__.py`` are checked too: a package initialiser may
-expose public helpers of its own (re-exported imports are not function
-definitions, so they are never flagged).
+function or method parameter that lacks a type annotation, plus any type
+annotation written as a string literal (``node: "Node"``). Quoted annotations
+are rejected: importing the name (or adding ``from __future__ import
+annotations`` for a genuine forward reference) keeps the type discoverable.
+``Literal["a", "b"]`` payloads are string *values*, not annotations, and are
+accepted.  Functions defined in ``__init__.py`` are checked too: a package
+initialiser may expose public helpers of its own (re-exported imports are
+not function definitions, so they are never flagged).
 
 Usage::
 
@@ -71,6 +75,48 @@ def get_unannotated_params(node: ast.FunctionDef | ast.AsyncFunctionDef) -> list
     return unannotated
 
 
+def _quoted_parts(annotation: ast.expr) -> list[str]:
+    """Return the string literals used inside ``annotation``.
+
+    ``Literal["a", "b"]`` payloads are legitimate string values, so their
+    subscript is not descended into.
+    """
+    if isinstance(annotation, ast.Constant):
+        return [annotation.value] if isinstance(annotation.value, str) else []
+    if isinstance(annotation, ast.Subscript):
+        if isinstance(annotation.value, ast.Name) and annotation.value.id == "Literal":
+            return []
+        return _quoted_parts(annotation.slice)
+    found: list[str] = []
+    for child in ast.iter_child_nodes(annotation):
+        if isinstance(child, ast.expr):
+            found.extend(_quoted_parts(child))
+    return found
+
+
+def get_quoted_annotations(node) -> list[tuple[int, str, str]]:
+    """Return ``(line, label, text)`` for every quoted annotation on ``node``.
+
+    Quoted annotations such as ``def f(node: "Node")`` hide the real type
+    from tooling and force readers to guess where the name lives; the
+    project requires a real import instead.
+    """
+    findings: list[tuple[int, str, str]] = []
+    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+        if node.returns is not None:
+            for text in _quoted_parts(node.returns):
+                findings.append((node.lineno, "return", text))
+        for arg in (node.args.posonlyargs + node.args.args + node.args.kwonlyargs):
+            if arg.annotation is not None:
+                for text in _quoted_parts(arg.annotation):
+                    findings.append((arg.lineno, arg.arg, text))
+    elif isinstance(node, ast.AnnAssign) and node.annotation is not None:
+        target = node.target.id if isinstance(node.target, ast.Name) else "<attribute>"
+        for text in _quoted_parts(node.annotation):
+            findings.append((node.lineno, target, text))
+    return findings
+
+
 def scan_file(path: Path) -> list[dict]:
     """Scan a single Python file. Return a list of violation dicts."""
     results: list[dict] = []
@@ -90,12 +136,23 @@ def scan_file(path: Path) -> list[dict]:
             if missing:
                 results.append(
                     {
+                        "kind": "missing",
                         "file": str(path.relative_to(REPO_ROOT)),
                         "line": node.lineno,
                         "function": node.name,
                         "params": missing,
                     }
                 )
+        for line, label, text in get_quoted_annotations(node):
+            results.append(
+                {
+                    "kind": "quoted",
+                    "file": str(path.relative_to(REPO_ROOT)),
+                    "line": line,
+                    "label": label,
+                    "text": text,
+                }
+            )
     return results
 
 
@@ -111,14 +168,18 @@ def main() -> int:
         all_violations.extend(scan_file(py_file))
 
     if not all_violations:
-        print(f"OK: all function parameters are annotated ({files_scanned} files scanned)")
+        print(f"OK: annotations are unquoted and all parameters annotated "
+              f"({files_scanned} files scanned)")
         return 0
 
-    print(f"FAIL: {len(all_violations)} function(s) with unannotated parameters "
-          f"across {files_scanned} files:\n")
+    print(f"FAIL: {len(all_violations)} violation(s) across {files_scanned} files:\n")
     for v in all_violations:
-        params = ", ".join(v["params"])
-        print(f"  {v['file']}:{v['line']}  {v['function']}({params})")
+        if v["kind"] == "missing":
+            params = ", ".join(v["params"])
+            print(f"  {v['file']}:{v['line']}  unannotated {v['function']}({params})")
+        else:
+            print(f"  {v['file']}:{v['line']}  quoted annotation "
+                  f"{v['label']}: \"{v['text']}\" (import the name instead)")
 
     print(f"\nTotal: {len(all_violations)} violation(s)")
     return 1

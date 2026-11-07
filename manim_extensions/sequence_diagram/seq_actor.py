@@ -8,6 +8,8 @@ This module provides actor class for sequence diagrams.
 
 """
 
+from __future__ import annotations
+
 from manim import (
     Create,
     DOWN,
@@ -56,7 +58,7 @@ class SeqActor(VGroup):
                self.wait()
     """
 
-    all_actors: list["SeqActor"] = []
+    all_actors: list[SeqActor] = []
 
     def __init__(
         self,
@@ -90,7 +92,7 @@ class SeqActor(VGroup):
             The actor with the greatest time depth, or ``None`` if no
             actors have been created.
         """
-        latest_contenter: "SeqActor | None" = None
+        latest_contenter: SeqActor | None = None
         for actor in cls.all_actors:
             if latest_contenter is None or (
                 actor.get_time_depth() > latest_contenter.get_time_depth()

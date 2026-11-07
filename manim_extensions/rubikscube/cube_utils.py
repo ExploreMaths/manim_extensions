@@ -9,6 +9,8 @@ This module provides utility functions for Rubik's Cube operations.
 
 """
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import numpy as np
@@ -92,7 +94,7 @@ def get_cubie_colors_from_state(state: str) -> list[list[str]]:
     return [list(state[index * face_size : (index + 1) * face_size]) for index in range(6)]
 
 
-def get_all_states(cube: "RubiksCube") -> str:
+def get_all_states(cube: RubiksCube) -> str:
     """Return the current facelet state of the cube.
 
     The faces are read in the same order and orientation used by

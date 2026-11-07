@@ -4,6 +4,8 @@
 
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
+from __future__ import annotations
+
 import random
 from manim import (
     AnimationGroup,
@@ -56,8 +58,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.

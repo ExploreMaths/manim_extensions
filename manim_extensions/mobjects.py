@@ -12,6 +12,8 @@ objects.
 
 """
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     BLACK,
@@ -1086,7 +1088,7 @@ class VideoMobject(ImageMobject):
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
-    def _video_updater(self, mob: "VideoMobject", dt: float):
+    def _video_updater(self, mob: VideoMobject, dt: float):
         """Internal updater that advances the video frame on each render step.
 
         Parameters

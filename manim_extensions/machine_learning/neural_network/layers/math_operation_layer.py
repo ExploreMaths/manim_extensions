@@ -4,6 +4,7 @@
 
 """Math operation layer visualization for neural networks."""
 
+from __future__ import annotations
 
 from manim import (
     AnimationGroup,
@@ -109,8 +110,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Creates the neural network layer.

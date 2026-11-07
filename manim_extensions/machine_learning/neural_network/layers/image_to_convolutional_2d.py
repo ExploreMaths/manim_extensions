@@ -5,6 +5,8 @@
 
 """Image to convolutional 2D layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     ApplyFunction,
@@ -86,8 +88,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.

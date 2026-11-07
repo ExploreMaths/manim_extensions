@@ -4,6 +4,8 @@
 
 """Feed-forward to embedding layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import (
     AnimationGroup,
     Create,
@@ -59,8 +61,8 @@ class FeedForwardToEmbedding(ConnectiveLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

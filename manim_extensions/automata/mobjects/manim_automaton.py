@@ -364,7 +364,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return False
 
     def determine_input(
-        self, input: str | "ManimAutomataInput"
+        self, input: str | ManimAutomataInput
     ) -> ManimAutomataInput | None:
         """Checks to if input is a string or already an manim mobject,
         if it is type string then create manim_input instance using
@@ -392,7 +392,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         token: str | MathTex,
         state_pointers: list[State],
         iteration_history: list[dict[str, object]],
-        predetermined_transition: "ManimTransition | None" = None,
+        predetermined_transition: ManimTransition | None = None,
     ) -> tuple[list[State], bool]:
         """Process one input token across all active state pointers and record the step history.
 
@@ -465,7 +465,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return next_states, sequence_result
 
     def run_input_through_automaton(
-        self, input: "str | ManimAutomataInput", automaton_path_name: str | None = None
+        self, input: str | ManimAutomataInput, automaton_path_name: str | None = None
     ) -> list:
         """Run the input through the automaton and return the run history.
 
@@ -587,7 +587,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 return path_list
         return None
 
-    def play_string(self, input: "str | ManimAutomataInput") -> list:
+    def play_string(self, input: str | ManimAutomataInput) -> list:
         """Run ``input`` through the automaton and return the animations.
 
         Parameters
@@ -783,7 +783,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def step(
         self,
         manim_transitions: list[ManimTransition],
-        token: "Tex",
+        token: Tex,
         state_pointer: State,
         next_neighbour_states: list[State],
         step_result: bool,

@@ -4,6 +4,9 @@
 
 """Timeline layout algorithm - Python implementation."""
 
+from __future__ import annotations
+
+
 __all__ = [
     "TimeLineLayout",
 ]
@@ -69,7 +72,7 @@ class TimelineNode:
     node: object | None = None
     width: float = 0.0
     height: float = 0.0
-    children: List["TimelineNode"] = field(default_factory=list)
+    children: List[TimelineNode] = field(default_factory=list)
     side_dir: LayoutDirection | None = None
 
     # Layout result coordinates
@@ -78,7 +81,7 @@ class TimelineNode:
 
     # Internal runtime attributes (do not set manually)
     _is_root: bool = False
-    _parent: "TimelineNode | None" = None
+    _parent: TimelineNode | None = None
     _layer_index: int = 0  # layer depth (root is 0)
     _index: int = 0  # index among siblings
 

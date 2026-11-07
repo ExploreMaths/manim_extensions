@@ -8,6 +8,8 @@ This module provides the PubchemAPIManager class for fetching molecular data fro
 
 """
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 import json
 import time
@@ -60,7 +62,7 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: 'requests.models.Response', identifier: int | str) -> str:
+    def handle_request(self, request: requests.models.Response, identifier: int | str) -> str:
         """Validate a PubChem API response and return the decoded payload.
 
         Adds a small sleep after the request to avoid rate-limiting the PubChem API.

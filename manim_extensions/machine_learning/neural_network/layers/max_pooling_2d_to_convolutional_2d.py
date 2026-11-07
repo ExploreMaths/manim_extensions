@@ -4,6 +4,8 @@
 
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
+from __future__ import annotations
+
 from manim import ManimColor, ORANGE
 
 from .convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
@@ -58,8 +60,8 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Constructs the MaxPooling to Convolution3D layer.

@@ -5,6 +5,8 @@
 
 """Paired query layer visualization for neural networks."""
 
+from __future__ import annotations
+
 from typing import Self
 
 from manim import (
@@ -101,8 +103,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ) -> None:
         """Forward to the parent construct_layer method.

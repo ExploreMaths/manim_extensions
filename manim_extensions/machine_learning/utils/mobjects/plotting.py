@@ -5,6 +5,8 @@
 
 """Plotting utilities for neural network visualization."""
 
+from __future__ import annotations
+
 import io
 from types import ModuleType
 from typing import TYPE_CHECKING, cast
@@ -20,7 +22,7 @@ if TYPE_CHECKING:
 
 
 def convert_matplotlib_figure_to_image_mobject(
-    fig: "Figure", dpi: int = 200
+    fig: Figure, dpi: int = 200
 ) -> ImageMobject:
     """Takes a matplotlib figure and makes an image mobject from it.
 

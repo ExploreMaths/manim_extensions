@@ -9,6 +9,8 @@ visualising cube states in Manim scenes.
 
 """
 
+from __future__ import annotations
+
 from .cube import *
 from .cube_animations import *
 
@@ -33,7 +35,7 @@ def _install_grouped_depth_sorting() -> None:
         mobjects = _orig(self, *args, **kwargs)
         rot_matrix = self.get_rotation_matrix()
 
-        def z_key(mob: "Mobject") -> tuple[float, float]:
+        def z_key(mob: Mobject) -> tuple[float, float]:
             """Depth key in the rotated camera frame for painter sorting.
 
             Primary key is the z-index reference point projected into the

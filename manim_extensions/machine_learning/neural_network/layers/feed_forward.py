@@ -7,6 +7,7 @@
 This module provides the feed forward layer class for neural network visualizations.
 """
 
+from __future__ import annotations
 
 from manim import (
     AnimationGroup,
@@ -128,8 +129,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     def construct_layer(
         self,
-        input_layer: "NeuralNetworkLayer",
-        output_layer: "NeuralNetworkLayer",
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
         **kwargs
     ):
         """Creates the neural network layer.

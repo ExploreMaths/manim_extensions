@@ -5,6 +5,7 @@
 
 """Node data structure for algorithm visualization."""
 
+from __future__ import annotations
 
 from manim import (
     AnimationGroup,
@@ -406,7 +407,7 @@ class Node(VMobject):
 
         def __init__(
             self,
-            *nodes: List["Node"],
+            *nodes: List[Node],
             color: ManimColor = NodeConfig.SELECT_COLOR,
             opacity: float = NodeConfig.SELECT_OPACITY,
             **kwargs,
@@ -451,7 +452,7 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, *nodes: List["Node"], **kwargs):
+        def __init__(self, *nodes: List[Node], **kwargs):
             """Clear the highlight from one or more nodes.
 
             Restores each node's original fill colour with zero opacity,
@@ -492,7 +493,7 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, node: "Node", value: NodeValue, **kwargs):
+        def __init__(self, node: Node, value: NodeValue, **kwargs):
             """Initialize UpdateValue."""
             super().__init__(*[node.animate.set_value(value)], **kwargs)
 
@@ -534,8 +535,8 @@ class Node(VMobject):
 
         def __init__(
             self,
-            node: "Node",
-            target: "Node",
+            node: Node,
+            target: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
@@ -595,8 +596,8 @@ class Node(VMobject):
 
         def __init__(
             self,
-            node: "Node",
-            target: "Node",
+            node: Node,
+            target: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
@@ -651,8 +652,8 @@ class Node(VMobject):
 
         def __init__(
             self,
-            node1: "Node",
-            node2: "Node",
+            node1: Node,
+            node2: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
             **kwargs,
