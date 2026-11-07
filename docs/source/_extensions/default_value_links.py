@@ -1,5 +1,4 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
-#
 # SPDX-License-Identifier: MIT
 
 """Link manim / manim_extensions constant names in signature defaults.

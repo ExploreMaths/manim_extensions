@@ -37,9 +37,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# REUSE-IgnoreStart
 COPYRIGHT_RE = re.compile(r"^#\s*SPDX-FileCopyrightText:\s*(.*)$")
 LICENSE_RE = re.compile(r"^#\s*SPDX-License-Identifier:\s*(.*)$")
 PATCHED_RE = re.compile(r"^#\s*patched:\s*(.*)$")
+# REUSE-IgnoreEnd
 REPEATED_YEAR_RE = re.compile(r"^(\d{4})(?:[,\s]+\1)+(\s.*)?$")
 
 PROJECT_HOLDER = "ExploreMaths"
@@ -143,9 +145,11 @@ def _canonical_copyrights(copyrights: list[str]) -> list[str]:
 def _build_header(header: Header) -> list[str]:
     copyrights = _canonical_copyrights(header.copyrights) or [PROJECT_COPYRIGHT]
     license_id = header.licenses[0] if header.licenses else DEFAULT_LICENSE
+    # REUSE-IgnoreStart
     lines = [f"# SPDX-FileCopyrightText: {entry}" for entry in copyrights]
     lines.append(f"# SPDX-License-Identifier: {license_id}")
     lines.extend(f"# patched: {reason}" for reason in dict.fromkeys(header.patched))
+    # REUSE-IgnoreEnd
     lines.extend(header.extras)
     return lines
 
