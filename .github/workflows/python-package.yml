@@ -61,7 +61,7 @@ jobs:
         run: |
           xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-fail-under=35
 
-  # Verify the declared `manim>=0.21.0` against the newest manim release,
+  # Verify the declared lower bounds against the newest manim release,
   # so compatibility is tested rather than merely claimed.
   manim-latest:
     runs-on: ubuntu-latest

@@ -77,6 +77,11 @@ v1.0.6 :bdg-success-line:`Latest`
 
 **Changed**
 
+* ``manim-mobject-svg`` is now vendored as
+  :mod:`~manim_extensions.mobject_svg` instead of being a runtime
+  dependency, so
+  :class:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject`
+  works on Python 3.13 and later without ``--ignore-requires-python``.
 * Re-synced 17 vendored packages to their latest upstream commits
   (``compass`` merged
   :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`);

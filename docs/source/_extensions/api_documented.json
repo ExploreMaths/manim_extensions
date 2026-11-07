@@ -863,6 +863,8 @@
  "manim_extensions.mindmap.nodes.node.NodeStyle",
  "manim_extensions.mindmap.nodes.node.bfs_walker",
  "manim_extensions.mindmap.nodes.node.dfs_walker",
+ "manim_extensions.mobject_svg.svg.create_svg_from_vgroup",
+ "manim_extensions.mobject_svg.svg.create_svg_from_vmobject",
  "manim_extensions.mobjects.ChineseMathTex",
  "manim_extensions.mobjects.ColorText",
  "manim_extensions.mobjects.CropImageMobject",

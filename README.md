@@ -150,8 +150,8 @@ coherent, tested whole. The motivations:
   `manim-nerdfont-icons` 1.0.x pins `manim>=0.19,<0.20` on PyPI even
   though it works with current manim — it is bundled as
   `manim_extensions.nerdfont` instead of being a dependency.
-  `manim-mobject-svg` similarly declares `python<3.13`; it stays a
-  lazily-imported plugin for that reason.
+  `manim-mobject-svg` similarly declares `python<3.13`; it is vendored as
+  `manim_extensions.mobject_svg` for the same reason.
 - **Integration.** Vendoring lets us normalise import style, docstring
   conventions and CI checks across all modules, fix cross-module bugs in
   one place, and keep every public name importable from a single package.

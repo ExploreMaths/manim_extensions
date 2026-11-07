@@ -187,9 +187,11 @@ Modules
    :nosignatures:
 
    ~html_parsed_vmobject
+   ~manim_extensions.mobject_svg
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    html_parsed_vmobject
+   mobject_svg

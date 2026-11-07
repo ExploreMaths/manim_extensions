@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-# patched: lazily import the manim-mobject-svg plugin and svgpathtools (svg extra)
+# patched: lazily import the vendored manim_extensions.mobject_svg and svgpathtools (svg extra)
 # patched: document module-level constants
 
 """HTML parsed SVG vmobjects for Manim.
@@ -111,21 +111,13 @@ combsDict[comb]();
 """
 
 
-def _ensure_to_svg_plugin():
-    """Import the manim-mobject-svg plugin, which registers VMobject.to_svg().
+def _ensure_to_svg_plugin() -> None:
+    """Import the vendored manim-mobject-svg code, which registers VMobject.to_svg().
 
     The import is done lazily so that :mod:`~manim_extensions.svg_animations`
-    remains importable without the plugin installed.
+    stays cheap to import when :class:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject` is unused.
     """
-    try:
-        import manim_mobject_svg  # noqa: F401 (side effect: registers to_svg)
-    except ImportError as exc:
-        raise ImportError(
-            "HTMLParsedVMobject requires the manim-mobject-svg plugin "
-            "(it provides VMobject.to_svg()). Install it with "
-            "``pip install manim-mobject-svg``; on Python 3.13+ use "
-            "``pip install --ignore-requires-python manim-mobject-svg``."
-        ) from exc
+    from .. import mobject_svg  # noqa: F401  (side effect: registers to_svg)
 
 
 class HTMLParsedVMobject:

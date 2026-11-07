@@ -14,7 +14,6 @@ authors = [
 ]
 keywords = ["manim", "animation", "math", "latex", "geometry"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Education",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
@@ -37,13 +36,6 @@ dependencies = [
     # Image.fromarray, so Pillow 12+ (which rejects float RGBA arrays)
     # is safe again; keep the floor at 12.2 for the pip-audit advisory.
     "pillow>=12.2,<14",
-    # manim-mobject-svg (used by svg_animations.HTMLParsedVMobject) works
-    # with any manim>=0.16, but its 0.5.x release declares python<3.13 on
-    # PyPI even though the package is pure Python; on Python 3.13+ install
-    # it with `pip install --ignore-requires-python manim-mobject-svg`.
-    # The plugin is imported lazily, so it is only needed when using
-    # HTMLParsedVMobject.
-    "manim-mobject-svg>=0.5; python_version < '3.13'",
 ]
 
 [project.scripts]
@@ -182,7 +174,6 @@ module = [
     "networkx.*",
     "scipy.*",
     "tqdm.*",
-    "manim_mobject_svg.*",
 ]
 ignore_missing_imports = true
 
