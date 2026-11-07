@@ -141,31 +141,29 @@ Module Index
    utils/index
    weighted_line/index
 
-.. module-index::
-
-   Algorithm = algorithm
-   Arabic = arabic
-   Automata = automata
-   Basic = basic
-   Chemistry = chemistry
-   Circuit = circuit
-   Compass = compass
-   Data Structures = data_structures
-   Economics = economics
-   Font Awesome = fontawesome
-   GearBox = gearbox
-   Machine Learning = machine_learning
-   Meshes = meshes
-   MindMap = mindmap
-   Mobject SVG = mobject_svg
-   Nerd Font Icons = nerdfont
-   Physics = physics
-   Pymunk = pymunk
-   QR Codes = qr_codes
-   Rubik's Cube = rubikscube
-   Sequence diagram = sequence_diagram
-   SVG Animations = svg_animations
-   Table = table
-   TikZ = tikz
-   Utilities = utils
-   Weighted Line = weighted_line
+* :vendorstatus:`algorithm`
+* :vendorstatus:`arabic`
+* :vendorstatus:`automata`
+* :vendorstatus:`basic`
+* :vendorstatus:`chemistry`
+* :vendorstatus:`circuit`
+* :vendorstatus:`compass`
+* :vendorstatus:`data_structures`
+* :vendorstatus:`economics`
+* :vendorstatus:`fontawesome`
+* :vendorstatus:`gearbox`
+* :vendorstatus:`machine_learning`
+* :vendorstatus:`meshes`
+* :vendorstatus:`mindmap`
+* :vendorstatus:`mobject_svg`
+* :vendorstatus:`nerdfont`
+* :vendorstatus:`physics`
+* :vendorstatus:`pymunk`
+* :vendorstatus:`qr_codes`
+* :vendorstatus:`rubikscube`
+* :vendorstatus:`sequence_diagram`
+* :vendorstatus:`svg_animations`
+* :vendorstatus:`table`
+* :vendorstatus:`tikz`
+* :vendorstatus:`utils`
+* :vendorstatus:`weighted_line`

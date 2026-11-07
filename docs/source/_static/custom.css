@@ -420,7 +420,7 @@ dl.py.property > dt.sig a.headerlink {
 
 /* Vendored out-of-sync package entry: wrap the link and warning icon in a
    warning-title-background inline code-like badge (Furo warning colours). */
-.module-index .lagging-badge {
+.lagging-badge {
     background-color: var(--color-admonition-title-background--warning);
     border-radius: 0.25rem;
     padding: 0.05em 0.4em;
