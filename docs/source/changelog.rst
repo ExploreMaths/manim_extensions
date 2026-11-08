@@ -3,7 +3,7 @@
 
 Changelog
 =========
-v1.0.6 :bdg-primary-line:`In development`
+v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
 
 **Added**
@@ -262,7 +262,7 @@ v1.0.6 :bdg-primary-line:`In development`
   the Validate workflow keeps the tree clean.
 
 
-v1.0.5 :bdg-success-line:`Latest`
+v1.0.5
 ---------------------------------
 
 **Added**
