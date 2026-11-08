@@ -104,7 +104,7 @@ class GrayscaleImageMobject(Group):
         """
         return FadeIn(self)
 
-    def scale(  # type: ignore[override] # intentionally returns None instead of the group
+    def scale(  # intentionally returns None instead of the group
         self, scale_factor: float, **kwargs: Any
     ):
         """Scales the image mobject.

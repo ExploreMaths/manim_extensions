@@ -260,7 +260,7 @@ class GriddedRectangle(VGroup):
 
         return normal_vector
 
-    def set_color(  # type: ignore[override] # intentionally returns None instead of the group
+    def set_color(  # intentionally returns None instead of the group
         self, color: ManimColor
     ):
         """Sets the color of the gridded rectangle.

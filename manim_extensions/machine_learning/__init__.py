@@ -79,4 +79,4 @@ class ManimMLConfig:
         manim.config.background_color = self.color_scheme.background_color
 
 # These are accessible from the manim_ml namespace
-config = ManimMLConfig()  # type: ignore[assignment] # intentionally shadows manim's star-imported config
+config = ManimMLConfig()  # intentionally shadows manim's star-imported config

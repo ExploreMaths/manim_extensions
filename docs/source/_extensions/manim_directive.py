@@ -132,14 +132,14 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 def visit(self: SkipManimNode, node: nodes.Element, name: str = "") -> None:
     # Note: Parent classes don't have a visit_admonition() method.
-    self.visit_admonition(node, name)  # type: ignore[attr-defined]
+    self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 
 def depart(self: SkipManimNode, node: nodes.Element) -> None:
     # Note: Parent classes don't have a depart_admonition() method.
-    self.depart_admonition(node)  # type: ignore[attr-defined]
+    self.depart_admonition(node)
 
 
 def process_name_list(option_input: str, reference_type: str) -> list[str]:
@@ -244,9 +244,9 @@ class ManimDirective(Directive):
         document = state_machine.document
 
         source_file_name = Path(document.attributes["source"])
-        source_rel_name = source_file_name.relative_to(setup.confdir)  # type: ignore[attr-defined]
+        source_rel_name = source_file_name.relative_to(setup.confdir)
         source_rel_dir = source_rel_name.parents[0]
-        dest_dir = Path(setup.app.builder.outdir, source_rel_dir).absolute()  # type: ignore[attr-defined]
+        dest_dir = Path(setup.app.builder.outdir, source_rel_dir).absolute()
         if not dest_dir.exists():
             dest_dir.mkdir(parents=True, exist_ok=True)
 
@@ -276,7 +276,7 @@ class ManimDirective(Directive):
         ]
         source_block = "\n".join(source_block_in)
 
-        config.media_dir = (Path(setup.confdir) / "media").absolute()  # type: ignore[attr-defined]
+        config.media_dir = (Path(setup.confdir) / "media").absolute()
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         # patched: hash-based output name (deterministic across builds, see
@@ -409,7 +409,7 @@ class ManimDirective(Directive):
             clsname=clsname,
             clsname_lowercase=clsname.lower(),
             hide_source=hide_source,
-            filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),  # type: ignore[attr-defined]
+            filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),
             no_autoplay=no_autoplay,
             no_title=no_title,
             output_file=output_file,
@@ -481,9 +481,9 @@ def setup(app: Sphinx) -> SetupMetadata:
         latex=(lambda a, b: None, lambda a, b: None),
     )
 
-    setup.app = app  # type: ignore[attr-defined]
-    setup.config = app.config  # type: ignore[attr-defined]
-    setup.confdir = app.confdir  # type: ignore[attr-defined]
+    setup.app = app
+    setup.config = app.config
+    setup.confdir = app.confdir
 
     app.add_directive("manim", ManimDirective)
 

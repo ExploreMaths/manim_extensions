@@ -39,13 +39,13 @@ class ListGroup(Mobject):
         # (Mobject.add bypasses ListGroup's list-semantics `add` override).
         Mobject.add(self, *layers)
 
-    def __getitem__(  # type: ignore[override] # list indexing may return a single item or a slice
+    def __getitem__(  # list indexing may return a single item or a slice
         self, indices: int | slice
     ) -> Mobject | list[Mobject]:
         """Traditional list indexing."""
         return self.items[indices]
 
-    def insert(  # type: ignore[override] # intentionally returns None instead of the group
+    def insert(  # intentionally returns None instead of the group
         self, index: int, item: Mobject
     ):
         """Inserts item at index.
@@ -104,7 +104,7 @@ class ListGroup(Mobject):
 
         return items
 
-    def remove(self, item: Mobject) -> Mobject:  # type: ignore[override] # intentionally shadows Mobject.remove with list semantics
+    def remove(self, item: Mobject) -> Mobject:  # intentionally shadows Mobject.remove with list semantics
         """Removes first instance of item.
 
         Parameters
@@ -135,7 +135,7 @@ class ListGroup(Mobject):
         """
         return self.items[index]
 
-    def add(self, item: Mobject):  # type: ignore[override] # intentionally shadows Mobject.add with list semantics
+    def add(self, item: Mobject):  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
         Parameters
@@ -146,7 +146,7 @@ class ListGroup(Mobject):
         self.items.append(item)
         self.submobjects = self.items
 
-    def replace(self, index: int, item: Mobject):  # type: ignore[override] # intentionally shadows Mobject.replace with list semantics
+    def replace(self, index: int, item: Mobject):  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
         Parameters
@@ -180,7 +180,7 @@ class ListGroup(Mobject):
         """Length of items."""
         return len(self.items)
 
-    def set_z_index(  # type: ignore[override] # intentionally returns None instead of the group
+    def set_z_index(  # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
     ):
         """Sets z index of all values in ListGroup.
