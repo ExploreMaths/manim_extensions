@@ -131,7 +131,7 @@ class MultiPendulum(VGroup):
         else:
             b = mob2.body
         joint = pymunk.PinJoint(a, b)
-        spacescene.space.space.add(joint)
+        spacescene.vspace.space.add(joint)
 
     def _redraw_rods(self, mob: Line, pins: list, i: int):
         """Update a rod line to connect the positions of two consecutive pins.
