@@ -477,7 +477,6 @@ class Gear(VMobject):
         if "family" in kwargs:
             super().set_stroke(color, **kwargs)
         else:
-            kwargs.pop("family")
             super().set_stroke(color, family=False, **kwargs)
 
     def generate_points(self):
