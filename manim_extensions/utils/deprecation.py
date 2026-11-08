@@ -9,16 +9,6 @@ object's ``__deprecated__`` attribute (used by the Sphinx
 ``deprecated_warning`` extension to render a styled admonition), while the
 runtime ``DeprecationWarning`` strips the inline markup so it stays
 readable on the console.
-
-Examples
---------
-.. nbcell::
-
-   from manim_extensions.utils.deprecation import deprecated
-
-   @deprecated("``old`` is deprecated; use ``new`` instead.")
-   def old():
-       pass
 """
 
 from __future__ import annotations
@@ -60,6 +50,18 @@ def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
     Returns
     -------
         The computed result.
+
+    Examples
+    --------
+    .. nbcell::
+
+       from manim_extensions.utils.deprecation import deprecated
+
+       @deprecated("``old`` is deprecated; use ``new`` instead.")
+       def old():
+           print("still works")
+
+       old()
     """
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 

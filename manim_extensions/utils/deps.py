@@ -37,6 +37,17 @@ def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:
     ImportError
         If one of the packages is not installed.  The error message names
         the missing package and the ``pip install`` extra that provides it.
+
+    Examples
+    --------
+    .. nbcell::
+
+       from manim_extensions.utils.deps import require
+
+       try:
+           require("physics", "not_installed_package")
+       except ImportError as error:
+           print(error)
     """
     modules = []
     for name in names:
