@@ -254,6 +254,12 @@ v1.0.6 :bdg-primary-line:`In development`
   validation, gear and rack meshing, automaton stepping, 2-D molecule
   stereo bonds, sliding-window bounds, file trees, trails and mind-map
   layouts are all covered now.
+* Added Python 3.15 to the package test matrix, so the package is now built
+  and tested on 3.11 through 3.15.
+* Adopted Black for the whole repository (line length 88, ``py311`` target):
+  the vendored modules are reformatted as well, a pre-commit hook formats
+  staged files inside the commit being made, and a ``black --check`` job in
+  the Validate workflow keeps the tree clean.
 
 
 v1.0.5 :bdg-success-line:`Latest`
