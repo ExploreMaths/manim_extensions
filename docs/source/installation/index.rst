@@ -17,7 +17,7 @@ This installs Manim Community Edition (>=0.22.1), numpy,
 ``typing_extensions`` and Pillow. Everything else ships with manim itself
 or is split into the per-module extras below and lazy-imported on use.
 The ``manim-mobject-svg`` plugin is not installed: its SVG importer is
-vendored as :mod:`manim_extensions.mobject_svg`.
+vendored as :mod:`~manim_extensions.mobject_svg`.
 
 Optional extras
 ---------------
