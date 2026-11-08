@@ -7,8 +7,14 @@ import pytest
 from manim import Text
 
 from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout, CatalogNode
-from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout, TimelineNode
-from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout, WrappedTree
+from manim_extensions.mindmap.algorithms.alg_time_line import (
+    TimeLineLayout,
+    TimelineNode,
+)
+from manim_extensions.mindmap.algorithms.alg_tidy_tree import (
+    TidyTreeLayout,
+    WrappedTree,
+)
 from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 from manim_extensions.mindmap.nodes import Node
 

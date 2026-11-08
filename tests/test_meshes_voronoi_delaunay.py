@@ -9,7 +9,9 @@ from manim import Scene, tempconfig
 
 from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 
 @pytest.fixture()

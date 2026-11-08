@@ -32,6 +32,7 @@ from ... import config
 from ....utils.deps import require
 from manim.typing import VectorND
 
+
 class FeedForwardToFeedForward(ConnectiveLayer):
     """Layer for connecting FeedForward layer to FeedForwardLayer.
 
@@ -70,7 +71,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         edge_color: ManimColor = config.color_scheme.secondary_color,
         edge_width: float = 1.5,
         camera: Camera | None = None,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the feed-forward connective layer with edges and animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
@@ -84,7 +85,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Build the fully-connected edges between input and output layers.
 
@@ -134,7 +135,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return animation_group
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, run_time: float = 1, feed_forward_dropout: float = 0.0, **kwargs
+        self,
+        layer_args: dict = {},
+        run_time: float = 1,
+        feed_forward_dropout: float = 0.0,
+        **kwargs,
     ) -> list:
         """Animation for passing information from one FeedForwardLayer to the next.
 
@@ -188,7 +193,12 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         return path_animations
 
-    def modify_edge_colors(self, colors: list[ManimColor] | None = None, magnitudes: VectorND | None = None, color_scheme: str = "inferno"):
+    def modify_edge_colors(
+        self,
+        colors: list[ManimColor] | None = None,
+        magnitudes: VectorND | None = None,
+        color_scheme: str = "inferno",
+    ):
         """Changes the colors of edges.
 
         Either explicit per-edge colors or magnitudes mapped through a
@@ -223,9 +233,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             )
             for edge, magnitude in zip(self.edges, magnitudes):
                 edge.set_color(
-                    ManimColor(
-                        matplotlib.colors.to_hex(colormap(normalize(magnitude)))
-                    )
+                    ManimColor(matplotlib.colors.to_hex(colormap(normalize(magnitude))))
                 )
         else:
             raise ValueError("Provide either colors or magnitudes.")

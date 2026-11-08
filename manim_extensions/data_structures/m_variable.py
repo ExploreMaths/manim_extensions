@@ -35,7 +35,7 @@ class MVariable(MArrayElement):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the variable label.
     **kwargs
         Forwarded to constructor of the parent.
-    
+
     Attributes
     ----------
     __value : `typing.Any`
@@ -44,7 +44,7 @@ class MVariable(MArrayElement):
         The value of the index.
     __label : :class:`~str`
         The value of the label.
-    
+
     Examples
     --------
     .. manim:: MVariableDocExample

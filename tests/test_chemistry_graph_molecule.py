@@ -39,4 +39,7 @@ def test_molecule_name_can_be_added():
 
 
 def test_bond_type_support_table():
-    assert "1" in GraphMolecule.SUPPORTED_BOND_TYPES or 1 in GraphMolecule.SUPPORTED_BOND_TYPES
+    assert (
+        "1" in GraphMolecule.SUPPORTED_BOND_TYPES
+        or 1 in GraphMolecule.SUPPORTED_BOND_TYPES
+    )

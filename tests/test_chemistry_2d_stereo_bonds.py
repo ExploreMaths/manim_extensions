@@ -6,7 +6,11 @@
 import pytest
 from manim import tempconfig
 
-from manim_extensions.chemistry.twoD.bond import DashedCramBond, PlainCramBond, SimpleBond
+from manim_extensions.chemistry.twoD.bond import (
+    DashedCramBond,
+    PlainCramBond,
+    SimpleBond,
+)
 from manim_extensions.chemistry.twoD.molecule import MMoleculeObject
 
 WEDGE_MOL = """wedge

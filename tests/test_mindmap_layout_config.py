@@ -6,7 +6,10 @@
 import pytest
 from manim import DOWN, LEFT, RIGHT, UP
 
-from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig, LayoutDirection
+from manim_extensions.mindmap.algorithms.layout_config import (
+    LayoutConfig,
+    LayoutDirection,
+)
 
 
 def test_defaults_produce_left_to_right_layout():

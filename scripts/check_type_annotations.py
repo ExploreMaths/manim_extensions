@@ -106,7 +106,7 @@ def get_quoted_annotations(node) -> list[tuple[int, str, str]]:
         if node.returns is not None:
             for text in _quoted_parts(node.returns):
                 findings.append((node.lineno, "return", text))
-        for arg in (node.args.posonlyargs + node.args.args + node.args.kwonlyargs):
+        for arg in node.args.posonlyargs + node.args.args + node.args.kwonlyargs:
             if arg.annotation is not None:
                 for text in _quoted_parts(arg.annotation):
                     findings.append((arg.lineno, arg.arg, text))
@@ -168,8 +168,10 @@ def main() -> int:
         all_violations.extend(scan_file(py_file))
 
     if not all_violations:
-        print(f"OK: annotations are unquoted and all parameters annotated "
-              f"({files_scanned} files scanned)")
+        print(
+            f"OK: annotations are unquoted and all parameters annotated "
+            f"({files_scanned} files scanned)"
+        )
         return 0
 
     print(f"FAIL: {len(all_violations)} violation(s) across {files_scanned} files:\n")
@@ -178,8 +180,10 @@ def main() -> int:
             params = ", ".join(v["params"])
             print(f"  {v['file']}:{v['line']}  unannotated {v['function']}({params})")
         else:
-            print(f"  {v['file']}:{v['line']}  quoted annotation "
-                  f"{v['label']}: \"{v['text']}\" (import the name instead)")
+            print(
+                f"  {v['file']}:{v['line']}  quoted annotation "
+                f"{v['label']}: \"{v['text']}\" (import the name instead)"
+            )
 
     print(f"\nTotal: {len(all_violations)} violation(s)")
     return 1

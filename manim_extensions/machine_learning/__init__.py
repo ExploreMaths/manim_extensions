@@ -13,6 +13,7 @@ from manim import *
 import manim
 from .utils.colorschemes.colorschemes import light_mode, dark_mode, ColorScheme
 
+
 class ManimMLConfig:
     """Global configuration for the machine learning visualizations.
 
@@ -26,16 +27,16 @@ class ManimMLConfig:
         Parameters
         ----------
         default_color_scheme
-            Color scheme used before any override. 
+            Color scheme used before any override.
         """
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(
-            three_d_x_rotation = 90 * DEGREES,
-            three_d_y_rotation = 0 * DEGREES,
-            rotation_angle = 75 * DEGREES,
-            rotation_axis = [0.02, 1.0, 0.0]
+            three_d_x_rotation=90 * DEGREES,
+            three_d_y_rotation=0 * DEGREES,
+            rotation_angle=75 * DEGREES,
+            rotation_axis=[0.02, 1.0, 0.0],
             # rotation_axis = [0.0, 0.9, 0.0]
-            #rotation_axis = [0.0, 0.9, 0.0]
+            # rotation_axis = [0.0, 0.9, 0.0]
         )
 
     @property
@@ -77,6 +78,7 @@ class ManimMLConfig:
             self._color_scheme = value
 
         manim.config.background_color = self.color_scheme.background_color
+
 
 # These are accessible from the manim_ml namespace
 config = ManimMLConfig()  # intentionally shadows manim's star-imported config

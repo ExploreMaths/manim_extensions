@@ -69,7 +69,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     animation_style
         Style configuration for state and transition animations.
     manim_animations
-        Custom animation strategy.  
+        Custom animation strategy.
     cli
         If ``True``, launch the interactive CLI for building NDA paths.
     animate_subscripts
@@ -188,7 +188,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             State definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
             and optional ``"initial"``/``"final"`` flags.
         scaling
-            Coordinate scaling factor. 
+            Coordinate scaling factor.
         """
         initial = False
         final = False
@@ -405,7 +405,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         iteration_history
             The per-step history to append this iteration's result to.
         predetermined_transition
-            Unused; kept for interface compatibility. 
+            Unused; kept for interface compatibility.
 
         Returns
         -------
@@ -477,7 +477,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             Path to a recorded path file that provides a single path used to
             navigate through the NDA; the purpose of this is to allow the user
             to animate a single path through the NDA instead of animating all
-            of the branches that are created by the NDA. 
+            of the branches that are created by the NDA.
 
         Returns
         -------

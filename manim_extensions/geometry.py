@@ -138,7 +138,7 @@ def VMobjectInt(
                 n_per_curve = 4
                 trimmed = pts[: len(pts) - len(pts) % n_per_curve]
                 tuples = [
-                    trimmed[i:i + n_per_curve]
+                    trimmed[i : i + n_per_curve]
                     for i in range(0, len(trimmed), n_per_curve)
                 ]
             for tup in tuples:
@@ -201,9 +201,7 @@ def VMobjectInt(
                 worst = dist_sq
         return worst
 
-    def _bbox_overlap(
-        c1: CubicBezierPoints, c2: CubicBezierPoints, eps: float
-    ) -> bool:
+    def _bbox_overlap(c1: CubicBezierPoints, c2: CubicBezierPoints, eps: float) -> bool:
         """Check whether the control-point bounding boxes of two curves meet.
 
         Parameters
@@ -314,9 +312,7 @@ def VMobjectInt(
 
     found: list[Point3D] = []
 
-    def _intersect_curves(
-        c1: CubicBezierPoints, c2: CubicBezierPoints, depth: int
-    ):
+    def _intersect_curves(c1: CubicBezierPoints, c2: CubicBezierPoints, depth: int):
         """Recursively intersect two cubic Bézier curves."""
         if not _bbox_overlap(c1, c2, tolerance):
             return

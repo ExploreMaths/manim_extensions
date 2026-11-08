@@ -9,7 +9,6 @@ This module provides the ManimNonDeterministicFiniteAutomaton class for visualiz
 
 """
 
-
 from .manim_automaton import ManimAutomaton
 
 #: Example non-deterministic finite automaton definition.

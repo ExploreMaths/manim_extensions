@@ -104,7 +104,9 @@ class ListGroup(Mobject):
 
         return items
 
-    def remove(self, item: Mobject) -> Mobject:  # intentionally shadows Mobject.remove with list semantics
+    def remove(
+        self, item: Mobject
+    ) -> Mobject:  # intentionally shadows Mobject.remove with list semantics
         """Removes first instance of item.
 
         Parameters
@@ -135,7 +137,9 @@ class ListGroup(Mobject):
         """
         return self.items[index]
 
-    def add(self, item: Mobject):  # intentionally shadows Mobject.add with list semantics
+    def add(
+        self, item: Mobject
+    ):  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
         Parameters
@@ -146,7 +150,9 @@ class ListGroup(Mobject):
         self.items.append(item)
         self.submobjects = self.items
 
-    def replace(self, index: int, item: Mobject):  # intentionally shadows Mobject.replace with list semantics
+    def replace(
+        self, index: int, item: Mobject
+    ):  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
         Parameters
@@ -207,5 +213,3 @@ class ListGroup(Mobject):
 
     def __repr__(self) -> str:
         return f"ListGroup({self.items})"
-
-

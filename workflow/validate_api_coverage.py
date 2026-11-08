@@ -63,7 +63,7 @@ IGNORED_PUBLIC_NAMES = {
     "manim_extensions.machine_learning.config",
     # Internal logging plumbing of the qr_codes package; not user-facing.
     "manim_extensions.qr_codes.logger.FORMAT",
-    "manim_extensions.qr_codes.logger.log",    # Module-level loggers (chemistry parsers/molecule builders);
+    "manim_extensions.qr_codes.logger.log",  # Module-level loggers (chemistry parsers/molecule builders);
     # skipped via ":skip: logger" in reference/chemistry/constants.rst.
     "manim_extensions.chemistry.twoD.graph_molecule.logger",
     "manim_extensions.chemistry.twoD.molecule.logger",
@@ -136,7 +136,7 @@ def parse_directives():
         for match in DIRECTIVE_RE.finditer(text):
             directive, target = match.group(1), match.group(2)
             options = {}
-            rest = text[match.end():]
+            rest = text[match.end() :]
             for line in rest.splitlines()[1:]:
                 om = OPTION_RE.match(line)
                 if not om:
@@ -232,12 +232,16 @@ def main():
         SNAPSHOT_PATH.write_text(
             json.dumps(sorted(explicit), indent=1) + "\n", encoding="utf-8"
         )
-        print(f"Wrote {len(explicit)} documented names to {SNAPSHOT_PATH.relative_to(ROOT)}")
+        print(
+            f"Wrote {len(explicit)} documented names to {SNAPSHOT_PATH.relative_to(ROOT)}"
+        )
         return 0
     else:
         if not SNAPSHOT_PATH.exists():
             print("FAIL  api-coverage  1 issue(s)\n")
-            print("  -:-  stale-snapshot: api_documented.json missing; run with --write-snapshot")
+            print(
+                "  -:-  stale-snapshot: api_documented.json missing; run with --write-snapshot"
+            )
             return 1
         else:
             on_disk = set(json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8")))
@@ -268,7 +272,12 @@ def main():
             # them).
             if isinstance(
                 obj,
-                (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple, types.GenericAlias),
+                (
+                    typing.TypeVar,
+                    typing.ParamSpec,
+                    typing.TypeVarTuple,
+                    types.GenericAlias,
+                ),
             ):
                 continue
             total += 1

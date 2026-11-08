@@ -60,11 +60,11 @@ class AbstractMolecule:
             Path to the file.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
-            Dictionary of custom element data. 
+            Dictionary of custom element data.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
@@ -103,11 +103,11 @@ class AbstractMolecule:
             Path to the molecule.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
-            Dictionary of custom element data. 
+            Dictionary of custom element data.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
@@ -158,14 +158,14 @@ class AbstractMolecule:
         string
             String with the molecule data.
         format
-            Format of the data. 
+            Format of the data.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
-            Dictionary of custom element data. 
+            Dictionary of custom element data.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
@@ -206,14 +206,14 @@ class AbstractMolecule:
         string
             String with the molecule data.
         format
-            Format of the data. 
+            Format of the data.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
-            Dictionary of custom element data. 
+            Dictionary of custom element data.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
@@ -263,18 +263,18 @@ class AbstractMolecule:
         Parameters
         ----------
         cid
-            Molecule cid. 
+            Molecule cid.
         name
-            Molecule name. 
+            Molecule name.
         smiles
-            Molecule SMILES. 
+            Molecule SMILES.
         inchi
-            Molecule InChi. 
+            Molecule InChi.
         three_d
             Whether to use three-dimensional data of the molecule.
-            
+
         elements_data_dict
-            Dictionary of custom element data. 
+            Dictionary of custom element data.
         **kwargs
             Additional keyword arguments passed to the molecule constructor.
 
@@ -326,7 +326,7 @@ class AbstractMolecule:
         direction: Vector3D = DOWN,
         buff: float = 0.5,
         scale: float = 0.75,
-        ) -> Self:
+    ) -> Self:
         r"""Adds the name of the molecule.
 
         Parameters
@@ -334,11 +334,11 @@ class AbstractMolecule:
         name
             Name of the molecule. Can either be a string, a Manim Tex or a Manim Text.
         direction
-            Position where to set the molecule name. 
+            Position where to set the molecule name.
         buff
-            Distance between the name and the molecule. 
+            Distance between the name and the molecule.
         scale
-            Scale of the text. 
+            Scale of the text.
 
         Returns
         -------

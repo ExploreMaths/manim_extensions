@@ -40,7 +40,9 @@ def test_remove_all_hydrogens_drops_hydrogen_atoms():
 
     molecule.remove_all_hydrogens()
 
-    assert all(atom.element.atomic_number != 1 for atom in molecule.atoms_by_index.values())
+    assert all(
+        atom.element.atomic_number != 1 for atom in molecule.atoms_by_index.values()
+    )
 
 
 def test_remove_hydrogens_with_empty_list_is_noop():

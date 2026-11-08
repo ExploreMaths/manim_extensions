@@ -33,9 +33,7 @@ def bump_changelog(text: str, version: str) -> str:
     lines = text.splitlines(True)
     versions = [i for i, line in enumerate(lines) if VERSION_RE.match(line)]
     targets = [
-        i
-        for i in versions
-        if VERSION_RE.match(lines[i]).group("version") == version
+        i for i in versions if VERSION_RE.match(lines[i]).group("version") == version
     ]
     if not targets:
         raise SystemExit(f"changelog.rst has no section for version {version}")
@@ -54,9 +52,7 @@ def bump_changelog(text: str, version: str) -> str:
 
 def bump_conf(text: str, version: str) -> str:
     for key in ("release", "version"):
-        text = re.sub(
-            rf'(?m)^{key} = "[^"]*"$', f'{key} = "{version}"', text, count=1
-        )
+        text = re.sub(rf'(?m)^{key} = "[^"]*"$', f'{key} = "{version}"', text, count=1)
     if f'release = "{version}"' not in text or f'version = "{version}"' not in text:
         raise SystemExit("conf.py is missing the release/version lines")
     return text
@@ -64,9 +60,14 @@ def bump_conf(text: str, version: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", required=True, help="version to prepare, no leading v")
     parser.add_argument(
-        "--pyproject", type=Path, default=Path("pyproject.toml"), help="pyproject.toml path"
+        "--version", required=True, help="version to prepare, no leading v"
+    )
+    parser.add_argument(
+        "--pyproject",
+        type=Path,
+        default=Path("pyproject.toml"),
+        help="pyproject.toml path",
     )
     parser.add_argument(
         "--changelog",
@@ -95,7 +96,9 @@ def main() -> int:
     conf = bump_conf(args.conf.read_text(encoding="utf-8"), version)
 
     if args.check:
-        print(f"would set the version in pyproject.toml, changelog.rst and conf.py to {version}")
+        print(
+            f"would set the version in pyproject.toml, changelog.rst and conf.py to {version}"
+        )
         return 0
 
     args.pyproject.write_text(pyproject, encoding="utf-8")

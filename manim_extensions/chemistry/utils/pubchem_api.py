@@ -26,17 +26,17 @@ class PubchemAPIManager:
     Parameters
     ----------
     cid
-        PubChem compound id of the molecule. 
+        PubChem compound id of the molecule.
     name
-        Name of the molecule. 
+        Name of the molecule.
     smiles
-        SMILES identifier of the molecule. 
+        SMILES identifier of the molecule.
     inchi
-        InChI identifier of the molecule. 
+        InChI identifier of the molecule.
     three_d
-        Whether to retrieve the 3D structure of the molecule. 
+        Whether to retrieve the 3D structure of the molecule.
     format
-        Format of the response data. 
+        Format of the response data.
     """
 
     BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"
@@ -62,7 +62,9 @@ class PubchemAPIManager:
         self.three_d = three_d
         self.format = format
 
-    def handle_request(self, request: requests.models.Response, identifier: int | str) -> str:
+    def handle_request(
+        self, request: requests.models.Response, identifier: int | str
+    ) -> str:
         """Validate a PubChem API response and return the decoded payload.
 
         Adds a small sleep after the request to avoid rate-limiting the PubChem API.
@@ -170,9 +172,7 @@ class PubchemAPIManager:
             cids = lookup.json().get("IdentifierList", {}).get("CID", [])
             if not cids:
                 raise Exception(f"Compound {identifier} not found")
-            request_url = (
-                f"{PubchemAPIManager.BASE_URL}cid/{cids[0]}/{self.format}"
-            )
+            request_url = f"{PubchemAPIManager.BASE_URL}cid/{cids[0]}/{self.format}"
         else:
             request_url = (
                 f"{PubchemAPIManager.BASE_URL}inchikey/{identifier}/{self.format}"

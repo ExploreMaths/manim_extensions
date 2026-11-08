@@ -28,15 +28,15 @@ class Ruler(VGroup):
     Parameters
     ----------
     length
-        Length of the ruler. 
+        Length of the ruler.
     width
-        Width (height) of the ruler. 
+        Width (height) of the ruler.
     ruler_color
-        Fill color of the ruler. 
+        Fill color of the ruler.
     stroke_width
-        Stroke width of the ruler border. 
+        Stroke width of the ruler border.
     fill_opacity
-        Fill opacity of the ruler. 
+        Fill opacity of the ruler.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -151,11 +151,11 @@ class Ruler(VGroup):
             Start point of the ruler placement.
         end
             End point of the ruler placement.
-        
+
         Returns
         -------
             The repositioned self.
-        
+
         Examples
         ----------
         .. manim:: SetRulerDocExample

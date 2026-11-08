@@ -7,11 +7,21 @@
 
 from __future__ import annotations
 
-from manim import AnimationGroup, BLUE, Create, FadeIn, ManimColor, ORANGE, VGroup, override_animation
+from manim import (
+    AnimationGroup,
+    BLUE,
+    Create,
+    FadeIn,
+    ManimColor,
+    ORANGE,
+    VGroup,
+    override_animation,
+)
 from ...utils.mobjects.gridded_rectangle import GriddedRectangle
 
 from .parent_layers import NeuralNetworkLayer, ThreeDLayer, VGroupNeuralNetworkLayer
 from ... import config
+
 
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     """Max pooling layer for Convolutional2DLayer.
@@ -90,7 +100,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         color: ManimColor = BLUE,
         show_grid_lines: bool = False,
         stroke_width: float = 2.0,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the MaxPooling2DLayer instance."""
         super().__init__(**kwargs)
@@ -108,7 +118,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Build the output feature maps and apply 3D rotation to the layer.
 
@@ -129,7 +139,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.rotate(
             config.three_d_config.rotation_angle,
             about_point=self.get_center(),
-            axis=config.three_d_config.rotation_axis
+            axis=config.three_d_config.rotation_axis,
         )
         self.feature_map_size = (
             input_layer.feature_map_size[0] / self.kernel_size,
@@ -137,8 +147,9 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-
-    def _make_output_feature_maps(self, num_input_feature_maps: int, input_feature_map_size: int):
+    def _make_output_feature_maps(
+        self, num_input_feature_maps: int, input_feature_map_size: int
+    ):
         """Makes a set of output feature maps."""
         # Compute the size of the feature maps
         output_feature_map_size = (
@@ -169,13 +180,15 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return VGroup(*feature_maps)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Makes forward pass of Max Pooling Layer.
 
         Parameters
         ----------
         layer_args
-            Arguments for the layer. 
+            Arguments for the layer.
         **kwargs
             Forwarded to the parent layer classes.
 

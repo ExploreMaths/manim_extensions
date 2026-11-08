@@ -7,7 +7,6 @@ Indexing convention (per the docstring examples): row 0 is the header,
 row 1 is the first data row; ``data[0]`` is always the header row.
 """
 
-
 import pytest
 
 from manim_extensions.table import Cell, Row, Table

@@ -39,14 +39,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 EXEMPTIONS_FILE = Path(__file__).resolve().parent / "param_docs_exemptions.json"
 
-SKIP_FILES = {'__init__.py'}
+SKIP_FILES = {"__init__.py"}
 
-SKIP_CLASSES = {'ABC'}
+SKIP_CLASSES = {"ABC"}
 
 KNOWN_NO_PARAMS = {
-    'ManimAnimations',
-    'ManimTuringMachine',
-    'PushDownAutomatonRule',
+    "ManimAnimations",
+    "ManimTuringMachine",
+    "PushDownAutomatonRule",
 }
 
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
@@ -57,8 +57,11 @@ SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
 def find_init(node: ast.ClassDef) -> ast.FunctionDef | None:
     """Return the class's own ``__init__`` method, or None."""
     return next(
-        (item for item in node.body
-         if isinstance(item, ast.FunctionDef) and item.name == "__init__"),
+        (
+            item
+            for item in node.body
+            if isinstance(item, ast.FunctionDef) and item.name == "__init__"
+        ),
         None,
     )
 
@@ -116,10 +119,7 @@ def documented_params(docstring: str) -> set:
         if indent > item_indent:
             continue  # continuation line of the previous entry
         # An underlined header line (e.g. the next section) ends Parameters.
-        if (
-            idx + 1 < len(lines)
-            and SECTION_UNDERLINE_RE.match(lines[idx + 1])
-        ):
+        if idx + 1 < len(lines) and SECTION_UNDERLINE_RE.match(lines[idx + 1]):
             in_params = False
             continue
         m = PARAM_ENTRY_RE.match(stripped)
@@ -134,9 +134,7 @@ def init_docstring_has_params(docstring: str) -> bool:
     """Check if the __init__ docstring contains parameter documentation."""
     if not docstring:
         return False
-    has_params_section = bool(
-        re.search(r"^Parameters\s*$", docstring, re.MULTILINE)
-    )
+    has_params_section = bool(re.search(r"^Parameters\s*$", docstring, re.MULTILINE))
     # "name : type" content lines, where the type looks like a type
     # (uppercase/class reference/builtin) — this avoids matching prose
     # such as "TODO: add docstring for __init__.".
@@ -183,28 +181,32 @@ def check_file(file_path: Path) -> list:
 
         init_doc = ast.get_docstring(init) or ""
         if init_doc and init_docstring_has_params(init_doc):
-            issues.append({
-                'type': 'INIT_HAS_PARAM_DOCS',
-                'line': node.lineno,
-                'class_name': qualname,
-                'message': (
-                    '__init__ docstring contains parameter documentation. '
-                    'Move it to the class docstring.'
-                ),
-            })
+            issues.append(
+                {
+                    "type": "INIT_HAS_PARAM_DOCS",
+                    "line": node.lineno,
+                    "class_name": qualname,
+                    "message": (
+                        "__init__ docstring contains parameter documentation. "
+                        "Move it to the class docstring."
+                    ),
+                }
+            )
 
         params = required_params(init)
         documented = documented_params(ast.get_docstring(node) or "")
 
         for param in params:
             if param not in documented:
-                issues.append({
-                    'type': 'MISSING_PARAM_DOC',
-                    'line': node.lineno,
-                    'class_name': qualname,
-                    'message': f"Parameter '{param}' not documented "
-                               f"in class docstring.",
-                })
+                issues.append(
+                    {
+                        "type": "MISSING_PARAM_DOC",
+                        "line": node.lineno,
+                        "class_name": qualname,
+                        "message": f"Parameter '{param}' not documented "
+                        f"in class docstring.",
+                    }
+                )
 
     visit(tree, "")
     return issues
@@ -223,10 +225,10 @@ def collect_files(targets: list) -> list:
     py_files = []
     for target in targets:
         path = Path(target)
-        if path.is_file() and path.suffix == '.py':
+        if path.is_file() and path.suffix == ".py":
             py_files.append(path)
         elif path.is_dir():
-            py_files.extend(path.rglob('*.py'))
+            py_files.extend(path.rglob("*.py"))
     return sorted(set(py_files))
 
 
@@ -234,23 +236,23 @@ def main() -> int:
     """Main validation function."""
     parser = argparse.ArgumentParser(
         description="Validate that __init__ parameters are documented in the "
-                    "class docstring; optionally (re)write the exemptions file."
+        "class docstring; optionally (re)write the exemptions file."
     )
     parser.add_argument(
-        "targets", nargs="*",
+        "targets",
+        nargs="*",
         help="Files or directories to scan (default: manim_extensions/)",
     )
     parser.add_argument(
-        "--write-exemptions", action="store_true",
+        "--write-exemptions",
+        action="store_true",
         help="Write ALL current violations to the exemptions file. "
-             "This blesses the current state — review the diff carefully.",
+        "This blesses the current state — review the diff carefully.",
     )
     args = parser.parse_args()
 
-    targets = args.targets or [str(ROOT / 'manim_extensions')]
-    py_files = [
-        fp for fp in collect_files(targets) if fp.name not in SKIP_FILES
-    ]
+    targets = args.targets or [str(ROOT / "manim_extensions")]
+    py_files = [fp for fp in collect_files(targets) if fp.name not in SKIP_FILES]
 
     all_issues = {}
     for fp in py_files:
@@ -262,14 +264,16 @@ def main() -> int:
         data = {}
         for fp, issues in all_issues.items():
             rel = fp.resolve().relative_to(ROOT).as_posix()
-            data[rel] = sorted({i['class_name'] for i in issues})
+            data[rel] = sorted({i["class_name"] for i in issues})
         EXEMPTIONS_FILE.write_text(
             json.dumps(data, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
         total = sum(len(v) for v in data.values())
-        print(f"Wrote {total} exempted classes for {len(data)} files to "
-              f"{EXEMPTIONS_FILE.name}. Review the diff before committing!")
+        print(
+            f"Wrote {total} exempted classes for {len(data)} files to "
+            f"{EXEMPTIONS_FILE.name}. Review the diff before committing!"
+        )
         return 0
 
     exemptions = load_exemptions()
@@ -277,7 +281,7 @@ def main() -> int:
     for fp, issues in all_issues.items():
         rel = fp.resolve().relative_to(ROOT).as_posix()
         exempt = exemptions.get(rel, set())
-        leftover = [i for i in issues if i['class_name'] not in exempt]
+        leftover = [i for i in issues if i["class_name"] not in exempt]
         if leftover:
             unexempted[rel] = leftover
 
@@ -286,7 +290,12 @@ def main() -> int:
         print(f"FAIL  param-docs  {total_issues} issue(s)\n")
         for rel, issues in unexempted.items():
             for issue in issues:
-                stype = issue['type'].lower().replace('init_has_params_docs', 'params-in-init').replace('missing_param_doc', 'missing-param-doc')
+                stype = (
+                    issue["type"]
+                    .lower()
+                    .replace("init_has_params_docs", "params-in-init")
+                    .replace("missing_param_doc", "missing-param-doc")
+                )
                 print(f"  {rel}:{issue['line']}  {stype}: {issue['message']}")
         print(f"\nTotal: {total_issues} issue(s)")
         return 1
@@ -295,5 +304,5 @@ def main() -> int:
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())

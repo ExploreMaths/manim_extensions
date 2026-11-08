@@ -9,6 +9,7 @@ import heapq
 from typing import Protocol
 from manim.typing import VectorND
 
+
 class SklearnTree(Protocol):
     """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""
 

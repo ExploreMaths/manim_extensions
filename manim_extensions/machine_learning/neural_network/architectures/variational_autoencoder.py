@@ -8,12 +8,23 @@
 In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 """
-from manim import AnimationGroup, BLUE, Create, Group, ImageMobject, ManimColor, override_animation
+
+from manim import (
+    AnimationGroup,
+    BLUE,
+    Create,
+    Group,
+    ImageMobject,
+    ManimColor,
+    override_animation,
+)
 import numpy as np
 from ..layers import FeedForwardLayer, EmbeddingLayer, ImageLayer, TripletLayer
 from ..neural_network import NeuralNetwork
 from ...utils.mobjects.image import GrayscaleImageMobject
 from manim.typing import PixelArray
+
+
 class VariationalAutoencoder(Group):
     """Variational Autoencoder Manim Visualization.
 
@@ -93,7 +104,9 @@ class VariationalAutoencoder(Group):
     def _create_vae(self):
         return Create(self.neural_network)
 
-    def make_triplet_forward_pass(self, triplet: tuple[PixelArray, PixelArray, PixelArray], run_time: float = 1.5) -> AnimationGroup:
+    def make_triplet_forward_pass(
+        self, triplet: tuple[PixelArray, PixelArray, PixelArray], run_time: float = 1.5
+    ) -> AnimationGroup:
         """Animate a triplet forward pass through the network.
 
         The three images of the triplet (anchor, positive, negative) are
@@ -136,13 +149,11 @@ class VariationalAutoencoder(Group):
         # existing network.
         wrapper_layers = [triplet_layer]
         wrapper_layers.extend(
-            FeedForwardLayer(node_count)
-            for node_count in self.encoder_nodes_per_layer
+            FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )
         wrapper_layers.append(EmbeddingLayer())
         wrapper_layers.extend(
-            FeedForwardLayer(node_count)
-            for node_count in self.decoder_nodes_per_layer
+            FeedForwardLayer(node_count) for node_count in self.decoder_nodes_per_layer
         )
         wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
@@ -154,7 +165,9 @@ class VariationalAutoencoder(Group):
 
         return animation_group
 
-    def make_image_forward_pass(self, input_image: PixelArray, output_image: PixelArray, run_time: float = 1.5) -> AnimationGroup:
+    def make_image_forward_pass(
+        self, input_image: PixelArray, output_image: PixelArray, run_time: float = 1.5
+    ) -> AnimationGroup:
         """Override forward pass animation specific to a VAE.
 
         Parameters
@@ -175,13 +188,11 @@ class VariationalAutoencoder(Group):
         # a layer, so it has no ``construct_layer`` method to call.
         wrapper_layers = [ImageLayer(input_image)]
         wrapper_layers.extend(
-            FeedForwardLayer(node_count)
-            for node_count in self.encoder_nodes_per_layer
+            FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )
         wrapper_layers.append(EmbeddingLayer())
         wrapper_layers.extend(
-            FeedForwardLayer(node_count)
-            for node_count in self.decoder_nodes_per_layer
+            FeedForwardLayer(node_count) for node_count in self.decoder_nodes_per_layer
         )
         wrapper_layers.append(ImageLayer(output_image))
         wrapper_neural_network = NeuralNetwork(wrapper_layers)

@@ -44,7 +44,13 @@ __all__ = [
 ]
 
 
-def involute_func(t: float | VectorND, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Point3D | Point3D_Array:
+def involute_func(
+    t: float | VectorND,
+    r: float,
+    a: float = 0,
+    rad_offs: float = 0,
+    tan_offs: float = 0,
+) -> Point3D | Point3D_Array:
     """
     Returns the x-y-z values of the involute function.
 
@@ -120,7 +126,13 @@ def involute_func(t: float | VectorND, r: float, a: float = 0, rad_offs: float =
         return involute_val(t)
 
 
-def involute_deriv_func(t: float | VectorND, r: float, a: float = 0, rad_offs: float = 0, tan_offs: float = 0) -> Point3D | Point3D_Array:
+def involute_deriv_func(
+    t: float | VectorND,
+    r: float,
+    a: float = 0,
+    rad_offs: float = 0,
+    tan_offs: float = 0,
+) -> Point3D | Point3D_Array:
     """Return the derivative of the involute function at angle t.
 
     Parameters
@@ -326,27 +338,27 @@ class Gear(VMobject):
         Number of gear teeth.
     module
         Standard size scaling parameter. ``diameter = module * num_of_teeth``.
-        
+
     alpha
         Pressure angle in degrees. Affects tooth curvature. Suggested values
-        are between ``10`` and ``30``. 
+        are between ``10`` and ``30``.
     h_a
         Addendum coefficient (tooth height above the pitch circle).
-        
+
     h_f
         Dedendum coefficient (tooth height below the pitch circle).
-        
+
     inner_teeth
         If ``True``, generate a ring gear with teeth pointing inward.
-        
+
     profile_shift
         Profile-shift coefficient. Changes the tooth shape and diameter
-        slightly and reduces undercut. 
+        slightly and reduces undercut.
     cutout_teeth_num
-        Number of teeth to omit. 
+        Number of teeth to omit.
     nppc
         Number of points per involute curve. One tooth is built from four to
-        six curve pieces depending on undercut. 
+        six curve pieces depending on undercut.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -1027,15 +1039,15 @@ class Rack(VMobject):
     num_of_teeth
         Number of teeth on the rack.
     module
-        Standard size scaling parameter.  
+        Standard size scaling parameter.
     alpha
-        Pressure angle in degrees.  
+        Pressure angle in degrees.
     h_a
         Addendum coefficient (tooth height above the pitch line).
-        
+
     h_f
         Dedendum coefficient (tooth height below the pitch line).
-        
+
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -1064,7 +1076,15 @@ class Rack(VMobject):
                )
     """
 
-    def __init__(self, num_of_teeth: int, module: float = 0.2, alpha: int = 20, h_a: int = 1, h_f: float = 1.17, **kwargs):
+    def __init__(
+        self,
+        num_of_teeth: int,
+        module: float = 0.2,
+        alpha: int = 20,
+        h_a: int = 1,
+        h_f: float = 1.17,
+        **kwargs,
+    ):
         """Initialize Rack."""
         self.z = num_of_teeth
         self.m = module

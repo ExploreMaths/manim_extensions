@@ -16,12 +16,12 @@ logging.basicConfig(
     level=logging.INFO,
     format=FORMAT,
     datefmt="[%X]",
-    handlers=[RichHandler(show_path=False)]
+    handlers=[RichHandler(show_path=False)],
 )
 
 log = logging.getLogger("rich")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     log.info("This is an info message")
     log.warning("This is a warning message")
     log.error("This is an error message")

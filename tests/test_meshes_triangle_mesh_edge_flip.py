@@ -7,7 +7,9 @@ import pytest
 from manim import Scene, tempconfig
 
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 PTS = [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [1.0, 1.0, 0.0], [0.0, 1.0, 0.0]]
 FACES = [[0, 1, 2], [0, 2, 3]]

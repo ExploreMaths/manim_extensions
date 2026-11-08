@@ -7,6 +7,7 @@
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
 """
+
 from typing import Literal
 
 from manim import (
@@ -42,6 +43,7 @@ from types import SimpleNamespace
 import numpy as np
 from PIL import Image
 from manim.typing import Point2D_Array, VectorND
+
 
 class LeafNode(Group):
     """Leaf node in tree.
@@ -101,7 +103,12 @@ class LeafNode(Group):
     """
 
     def __init__(
-        self, class_index: int, display_type: str = "image", class_image_paths: list = [], class_colors: list = [], class_names: list[str] | None = None
+        self,
+        class_index: int,
+        display_type: str = "image",
+        class_image_paths: list = [],
+        class_colors: list = [],
+        class_names: list[str] | None = None,
     ):
         """Initialize the leaf node with a class image or text and colored border."""
         super().__init__()
@@ -145,6 +152,7 @@ class LeafNode(Group):
         self.add(rectangle)
         self.add(node)
 
+
 class SplitNode(VGroup):
     """Node for splitting decision in tree.
 
@@ -179,6 +187,7 @@ class SplitNode(VGroup):
         self.add(bounding_box)
         self.add(decision_text)
 
+
 class DecisionTreeDiagram(Group):
     """Decision Tree Diagram Class for Manim.
 
@@ -194,7 +203,7 @@ class DecisionTreeDiagram(Group):
         Image file paths, one per class, used for the leaf nodes.
     class_colors
         Colors, one per class, used for the leaf node borders.
-        
+
 
     Examples
     --------
@@ -313,8 +322,15 @@ class DecisionTreeDiagram(Group):
         scale_factor = 1.0
         edge_map = {}
         tree_width = scale_factor * 2**max_depth * node_width
+
         # traverse tree
-        def recurse(node_index: int, depth: int, direction: str, parent_object: Mobject, parent_node: int):
+        def recurse(
+            node_index: int,
+            depth: int,
+            direction: str,
+            parent_object: Mobject,
+            parent_node: int,
+        ):
             """Recursively build tree nodes and connections at the given depth."""
             # make the node object
             is_leaf = (
@@ -329,9 +345,9 @@ class DecisionTreeDiagram(Group):
             shift_right_amount = (
                 0.9 * direction_factor * scale_factor * tree_width / (2**depth) / 2
             )
-            shift_down_amount = -(
-                (parent_object.height + node_height) / 2 + 0.3
-            ) * scale_factor
+            shift_down_amount = (
+                -((parent_object.height + node_height) / 2 + 0.3) * scale_factor
+            )
             node_object.match_x(parent_object).match_y(parent_object).shift(
                 [shift_right_amount, shift_down_amount, 0]
             )
@@ -391,7 +407,9 @@ class DecisionTreeDiagram(Group):
             class_image_paths=self.class_image_paths,
         )
 
-    def _make_expansion_animations(self, node_expand_order: list[int]) -> tuple[list, dict]:
+    def _make_expansion_animations(
+        self, node_expand_order: list[int]
+    ) -> tuple[list, dict]:
         """Build the animations that expand the tree in the given node order.
 
         Every split node starts as a placeholder leaf node showing its
@@ -457,9 +475,7 @@ class DecisionTreeDiagram(Group):
                         lag_ratio=0.0,
                     )
                 children_animations.append(child_animation)
-            split_animations.append(
-                AnimationGroup(*children_animations, lag_ratio=0.0)
-            )
+            split_animations.append(AnimationGroup(*children_animations, lag_ratio=0.0))
             split_animation = AnimationGroup(*split_animations, lag_ratio=0.0)
             animations.append(split_animation)
             split_node_animations[node_index] = split_animation
@@ -505,7 +521,9 @@ class DecisionTreeDiagram(Group):
 
         return Succession(*animations, lag_ratio=1.0), split_node_animations
 
-    def make_expand_tree_animation(self, node_expand_order: list[int]) -> AnimationGroup:
+    def make_expand_tree_animation(
+        self, node_expand_order: list[int]
+    ) -> AnimationGroup:
         """Make an animation for expanding the decision tree.
 
         Shows each split node as a leaf node initially, and then when it
@@ -528,14 +546,16 @@ class DecisionTreeDiagram(Group):
         return AnimationGroup(*animations, lag_ratio=1.0)
 
     @override_animation(Create)
-    def create_decision_tree(self, traversal_order: Literal["bfs", "level", "best"] = "bfs") -> Animation | None:
+    def create_decision_tree(
+        self, traversal_order: Literal["bfs", "level", "best"] = "bfs"
+    ) -> Animation | None:
         """Makes a create animation for the decision tree.
 
         Parameters
         ----------
         traversal_order
             Order in which the nodes are expanded: ``"bfs"`` (breadth-first)
-            or ``"level"`` (level order). 
+            or ``"level"`` (level order).
 
         Returns
         -------
@@ -557,7 +577,8 @@ class DecisionTreeDiagram(Group):
         expand_tree_animation = self.make_expand_tree_animation(node_expand_order)
         return expand_tree_animation
 
-class DecisionTreeContainer():
+
+class DecisionTreeContainer:
     """Couples the tree diagram with the decision surface built from the same fitted tree.
 
     Parameters
@@ -570,13 +591,20 @@ class DecisionTreeContainer():
         Class label of each point in ``points``.
     """
 
-    def __init__(self, sklearn_tree: helpers.SklearnTree, points: Point2D_Array, classes: VectorND):
+    def __init__(
+        self,
+        sklearn_tree: helpers.SklearnTree,
+        points: Point2D_Array,
+        classes: VectorND,
+    ):
         """Store the fitted tree, data points, and class labels for coordinated visualization."""
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes
 
-    def make_unfold_tree_animation(self, traversal_order: Literal["bfs", "level", "best"] = "bfs") -> Succession:
+    def make_unfold_tree_animation(
+        self, traversal_order: Literal["bfs", "level", "best"] = "bfs"
+    ) -> Succession:
         """Unfold the tree through the given traversal while the decision surface splits.
 
         The diagram expands one split at a time, and the region that split

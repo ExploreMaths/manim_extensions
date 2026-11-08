@@ -24,6 +24,7 @@ from manim import (
 from PIL import Image
 from manim.typing import PixelArray
 
+
 class GrayscaleImageMobject(Group):
     """Mobject for creating images in Manim from numpy arrays.
 
@@ -64,9 +65,7 @@ class GrayscaleImageMobject(Group):
             image_mode="RGB",
         )
         self.add(self.image_mobject)
-        self.image_mobject.set_resampling_algorithm(
-            RESAMPLING_ALGORITHMS["nearest"]
-        )
+        self.image_mobject.set_resampling_algorithm(RESAMPLING_ALGORITHMS["nearest"])
         self.image_mobject.scale_to_fit_height(height)
 
     @classmethod
@@ -196,4 +195,3 @@ class LabeledColorImage(Group):
         self.add(text)
         self.add(rectangle)
         self.add(self.image)
-

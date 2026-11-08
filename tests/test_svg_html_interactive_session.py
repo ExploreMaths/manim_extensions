@@ -20,6 +20,8 @@ def html_vmobject(tmp_path, monkeypatch):
 def test_start_interactive_writes_files(html_vmobject, tmp_path, animate_this):
     tracker = ValueTracker(0.0)
 
-    html_vmobject.start_interactive([tracker], [np.linspace(0, 1, 5)], animate_this=animate_this)
+    html_vmobject.start_interactive(
+        [tracker], [np.linspace(0, 1, 5)], animate_this=animate_this
+    )
 
     assert html_vmobject is not None

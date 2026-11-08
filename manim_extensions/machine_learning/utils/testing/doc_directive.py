@@ -5,6 +5,7 @@
 r"""
 A directive for including Manim videos in a Sphinx document.
 """
+
 from __future__ import annotations
 
 from manim import QUALITIES, config, tempconfig
@@ -22,8 +23,8 @@ from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
 
-
 classnamedict = {}
+
 
 class SkipManimNode(nodes.Admonition, nodes.Element):
     """Auxiliary node class that is used when the ``skip-manim`` tag is present
@@ -31,7 +32,9 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
     Skips rendering the manim directive and outputs a placeholder instead.
     """
+
     pass
+
 
 def visit(self, node: list, name: str = ""):
     """Visit a SkipManimNode, adding a placeholder title if missing, then render as admonition.
@@ -47,6 +50,7 @@ def visit(self, node: list, name: str = ""):
     if not isinstance(node[0], nodes.title):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
+
 def depart(self, node: SkipManimNode):
     """Depart from a SkipManimNode by closing the admonition rendering.
 
@@ -56,6 +60,7 @@ def depart(self, node: SkipManimNode):
         The SkipManimNode to depart from.
     """
     self.depart_admonition(node)
+
 
 def process_name_list(option_input: str, reference_type: str) -> list[str]:
     r"""Reformats a string of space separated class names
@@ -83,12 +88,14 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
     """
     return [f":{reference_type}:`~.{name}`" for name in option_input.split()]
 
+
 class ManimDirective(Directive):
     r"""The manim directive, rendering videos while building
     the documentation.
 
     See the module docstring for documentation.
     """
+
     has_content = True
     required_arguments = 1
     optional_arguments = 0
@@ -142,7 +149,6 @@ class ManimDirective(Directive):
                 node,
             )
             return [node]
-
 
         clsname = self.arguments[0]
         if clsname not in classnamedict:

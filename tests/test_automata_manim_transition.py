@@ -29,7 +29,9 @@ def test_transition_construction(states, style):
 
 def test_convert_straight_to_curved_arrow(states):
     first, second = states
-    transition = ManimTransition(first, second, ["a"], Scene(), animation_style="Straight")
+    transition = ManimTransition(
+        first, second, ["a"], Scene(), animation_style="Straight"
+    )
 
     transition.convert_straight_arrow_to_curved_arrow()
 

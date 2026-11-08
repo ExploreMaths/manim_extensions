@@ -343,7 +343,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         # Draw rectangles that are filled in with opacity
         feature_maps = []
         for filter_index in range(self.num_feature_maps):
@@ -386,13 +387,16 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.Succession` instance representing the result."""
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
+        """
         return Succession(
             ApplyMethod(self.feature_maps.set_color, self.active_color),
             ApplyMethod(self.feature_maps.set_color, self.color),
         )
 
-    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, run_time: float = 5, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Convolution forward pass animation.
 
         Parameters
@@ -471,7 +475,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         """
         layer_center = self.feature_maps.get_center()
         if isinstance(mobject_or_point, Mobject):
-            target_center = mobject_or_point.get_center() 
+            target_center = mobject_or_point.get_center()
         else:
             target_center = mobject_or_point
 

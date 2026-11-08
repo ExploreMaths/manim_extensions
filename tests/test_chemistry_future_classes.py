@@ -47,7 +47,9 @@ def test_element_particle_switches(add_electrons, add_holes, subelectron_holes):
     assert element.element_label == "Si"
     assert element.atom is not None
     assert isinstance(element.get_particles(), VGroup)
-    assert element.get_electrons() is None or isinstance(element.get_electrons(), VGroup)
+    assert element.get_electrons() is None or isinstance(
+        element.get_electrons(), VGroup
+    )
     assert element.get_holes() is None or isinstance(element.get_holes(), VGroup)
 
 
@@ -102,7 +104,9 @@ def test_npn_transistor_particle_factory():
 @pytest.mark.parametrize("schema_type", ["horizontal", "corner"])
 @pytest.mark.parametrize("inverted", [True, False])
 def test_battery_schema_layouts(schema_type, inverted):
-    schema = BatterySchema(mob=Square(), schema_type=schema_type, inverted_terminals=inverted)
+    schema = BatterySchema(
+        mob=Square(), schema_type=schema_type, inverted_terminals=inverted
+    )
 
     assert schema.schema_type == schema_type
     assert schema.schema is not None

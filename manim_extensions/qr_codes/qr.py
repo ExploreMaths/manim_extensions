@@ -16,20 +16,22 @@ from manim import Circle, DOWN, ManimColor, ORIGIN, RIGHT, Rectangle, VGroup, WH
 from ..utils.deps import require
 
 
-def qr_code(payload: str,
-            corner_size: int = 7,
-            icon: str | int | None = None,
-            icon_color: str | ManimColor | None = None,
-            icon_size: float = 10,  # in qr pixel
-            icon_margin_size: float = 0.1,  # in qr pixel
-            white_color: str | ManimColor | None = None,
-            corner_color: str | ManimColor | None = None,
-            data_shape: Literal['rectangles', 'circles'] = 'rectangles',
-            rectangles_kwargs: dict[str, object] | None = None,
-            circle_kwargs: dict[str, object] | None = None,
-            error_correction: Literal['L', 'M', 'Q', 'H'] = 'H',
-            segno_kwargs: dict[str, object] | None = None,
-            **kwargs: Any, ) -> VGroup:
+def qr_code(
+    payload: str,
+    corner_size: int = 7,
+    icon: str | int | None = None,
+    icon_color: str | ManimColor | None = None,
+    icon_size: float = 10,  # in qr pixel
+    icon_margin_size: float = 0.1,  # in qr pixel
+    white_color: str | ManimColor | None = None,
+    corner_color: str | ManimColor | None = None,
+    data_shape: Literal["rectangles", "circles"] = "rectangles",
+    rectangles_kwargs: dict[str, object] | None = None,
+    circle_kwargs: dict[str, object] | None = None,
+    error_correction: Literal["L", "M", "Q", "H"] = "H",
+    segno_kwargs: dict[str, object] | None = None,
+    **kwargs: Any,
+) -> VGroup:
     """
     Create a QR code as a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of Manim objects.
     This function uses the segno library to generate a QR code and then converts it into Manim objects.
@@ -40,40 +42,40 @@ def qr_code(payload: str,
         The data to encode in the QR code.
     corner_size
         The size of the corner elements in QR pixels. Might need to be
-        adjusted for larger or very small QR codes. 
+        adjusted for larger or very small QR codes.
     icon
         A Nerd Font icon to place in the center of the QR code, either an
         icon name or a Unicode code point. See
         https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
-        for available icons. 
+        for available icons.
     icon_color
-        The color of the icon. 
+        The color of the icon.
     icon_size
         The size of the icon in QR pixels. Pixels in the middle of the QR
-        code are removed to make space for the icon. 
+        code are removed to make space for the icon.
     icon_margin_size
         A margin around the icon in QR pixels; the space left around the
-        icon. 
+        icon.
     white_color
         The color of the rectangles or data points, which are typically
-        white in a QR code. 
+        white in a QR code.
     corner_color
-        The color for the corner elements of the QR code. 
+        The color for the corner elements of the QR code.
     data_shape
         Shape of the data modules; either ``'rectangles'`` or ``'circles'``.
-        
+
     rectangles_kwargs
         Additional keyword arguments for the rectangles, which represent
-        the QR code data. 
+        the QR code data.
     circle_kwargs
         Additional keyword arguments for the circles, which represent the
-        QR code data. 
+        QR code data.
     error_correction
         The error correction level for the QR code, as accepted by
-        :func:`~segno.make`. 
+        :func:`~segno.make`.
     segno_kwargs
         Additional keyword arguments for the :func:`~segno.make` function.
-        
+
     **kwargs
         Placeholder for additional keyword arguments, which are not used
         in this function.
@@ -133,8 +135,10 @@ def qr_code(payload: str,
         white_color = WHITE
     if corner_color is None:
         corner_color = white_color
-    if data_shape not in ['circles', 'rectangles']:
-        raise ValueError(f"Invalid data_shape: {data_shape}. valid values are 'circles' and 'rectangles'")
+    if data_shape not in ["circles", "rectangles"]:
+        raise ValueError(
+            f"Invalid data_shape: {data_shape}. valid values are 'circles' and 'rectangles'"
+        )
     segno: ModuleType = require("qr", "segno")  # segno ships no type stubs
     if rectangles_kwargs is None:
         rectangles_kwargs = {}
@@ -167,49 +171,43 @@ def qr_code(payload: str,
         for x, is_white_qr_pixel in enumerate(row):
             current_elem: Rectangle | Circle | None = None
 
-            if data_shape == 'rectangles' and is_white_qr_pixel:
+            if data_shape == "rectangles" and is_white_qr_pixel:
                 default_rect_kwargs = {
-                    'width': 1,
-                    'height': 1,
-                    'fill_opacity': 1,
-                    'color': white_color,
-                    'stroke_width': 0.5,
+                    "width": 1,
+                    "height": 1,
+                    "fill_opacity": 1,
+                    "color": white_color,
+                    "stroke_width": 0.5,
                 }
                 rect_kwargs = {**default_rect_kwargs, **rectangles_kwargs}
 
-                rect = Rectangle(
-                    **rect_kwargs
-                )
+                rect = Rectangle(**rect_kwargs)
                 rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect
 
-            elif data_shape == 'circles' and is_white_qr_pixel:
+            elif data_shape == "circles" and is_white_qr_pixel:
                 default_circle_kwargs = {
-                    'radius': 0.5,
-                    'fill_opacity': 1,
-                    'color': white_color,
-                    'stroke_width': 0.5,
+                    "radius": 0.5,
+                    "fill_opacity": 1,
+                    "color": white_color,
+                    "stroke_width": 0.5,
                 }
                 circle_kwargs = {**default_circle_kwargs, **circle_kwargs}
-                circle = Circle(
-                    **circle_kwargs
-                )
+                circle = Circle(**circle_kwargs)
                 circle.move_to(DOWN * y + RIGHT * x)
                 current_elem = circle
 
             # override current_elem if it is a corner element
             if is_white_qr_pixel and (x, y) in corner_positions:
                 default_corner_kwargs = {
-                    'width': 1,
-                    'height': 1,
-                    'fill_opacity': 1,
-                    'color': corner_color,
-                    'stroke_width': 0.5,
+                    "width": 1,
+                    "height": 1,
+                    "fill_opacity": 1,
+                    "color": corner_color,
+                    "stroke_width": 0.5,
                 }
                 corner_kwargs = {**default_corner_kwargs, **rectangles_kwargs}
-                rect = Rectangle(
-                    **corner_kwargs
-                )
+                rect = Rectangle(**corner_kwargs)
                 rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect
 
@@ -237,7 +235,9 @@ def qr_code(payload: str,
         else:
             center_icon.scale_to_fit_height(icon_size - 2 * icon_margin_size)
 
-        center_icon_bounding_box = Rectangle(width=icon_size, height=icon_size, fill_opacity=0, stroke_width=0)
+        center_icon_bounding_box = Rectangle(
+            width=icon_size, height=icon_size, fill_opacity=0, stroke_width=0
+        )
         # filter out all the qr pixels that are inside the icon bounding box
         for qr_pixel in qr_data_group:
             pixel_x, pixel_y, _ = qr_pixel.get_center()

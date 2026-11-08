@@ -26,15 +26,37 @@ SRC = ROOT / "manim_extensions"
 DOCS = ROOT / "docs"
 
 SKIP_NAMES = {
-    "int", "float", "str", "bool", "list", "dict", "tuple", "set",
-    "numpy.ndarray", "ndarray", "NotImplementedError", "ValueError",
-    "TypeError", "KeyError", "IndexError", "AttributeError",
-    "RuntimeError", "Exception", "object",
+    "int",
+    "float",
+    "str",
+    "bool",
+    "list",
+    "dict",
+    "tuple",
+    "set",
+    "numpy.ndarray",
+    "ndarray",
+    "NotImplementedError",
+    "ValueError",
+    "TypeError",
+    "KeyError",
+    "IndexError",
+    "AttributeError",
+    "RuntimeError",
+    "Exception",
+    "object",
 }
 
 SKIP_PREFIXES = (
-    "~typing.", "~numpy.", "~matplotlib.", "~collections.",
-    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.",
+    "~typing.",
+    "~numpy.",
+    "~matplotlib.",
+    "~collections.",
+    "~builtins.",
+    "~os.",
+    "~re.",
+    "~sys.",
+    "~pathlib.",
 )
 
 EXTERNAL_FALLBACKS = {
@@ -101,7 +123,7 @@ def scan_package(package_name, classes_map, functions_map):
         mod_path = f"{package_name}." + ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -131,7 +153,7 @@ def build_name_map():
         mod_path = ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -168,7 +190,7 @@ def build_class_attr_map():
         mod_path = ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -235,7 +257,7 @@ def _extract_manim_attrs(attr_map):
         mod_path = f"manim." + ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -252,7 +274,7 @@ def build_file_context(filepath: Path) -> dict:
     mod_path = ".".join(rel.with_suffix("").parts)
     mod_path = mod_path.replace(".__init__", "")
     if mod_path.endswith(".__init__"):
-        mod_path = mod_path[:-len(".__init__")]
+        mod_path = mod_path[: -len(".__init__")]
 
     context = {}
 
@@ -491,7 +513,7 @@ def fix_file(
             return f"{role}`{resolved}`"
 
         new_line = re.sub(
-            r'(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`',
+            r"(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`",
             fix_short_xref,
             new_line,
         )
@@ -518,7 +540,7 @@ def fix_file(
             return f"{role}`{fqn}`"
 
         new_line = re.sub(
-            r'`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)+)`{1,2}',
+            r"`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)+)`{1,2}",
             fix_inline_code,
             new_line,
         )

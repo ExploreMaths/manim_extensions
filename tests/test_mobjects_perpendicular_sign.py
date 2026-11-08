@@ -6,7 +6,11 @@
 import pytest
 from manim import AnimationGroup, DOWN, LEFT, RIGHT, UP, Line
 
-from manim_extensions.mobjects import PerpendicularLine, PerpendicularSign, ShortenedLine
+from manim_extensions.mobjects import (
+    PerpendicularLine,
+    PerpendicularSign,
+    ShortenedLine,
+)
 
 
 @pytest.fixture()

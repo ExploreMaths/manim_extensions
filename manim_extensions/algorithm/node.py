@@ -36,6 +36,8 @@ from .utils.numpy_helper import NumpyHelper
 NodeValue: TypeAlias = str | int | float | None
 #: Mobject class used to draw an algorithm node box.
 NodeBoxType: TypeAlias = type[Square] | type[Circle]
+
+
 class NodeConfig:
     """Default visual settings shared by algorithm nodes.
 
@@ -138,13 +140,13 @@ class Node(VMobject):
         Value displayed inside the node. If the value is empty, a zero-radius dot
         is displayed as a placeholder.
     width
-        Width of the node box. 
+        Width of the node box.
     text_scale
-        Scale factor applied to the displayed text. 
+        Scale factor applied to the displayed text.
     box_type
         Shape used for the node box. Must be :class:`~manim.mobject.geometry.polygram.Square` or :class:`~manim.mobject.geometry.arc.Circle`.
     box_color
-        Fill color of the node box. 
+        Fill color of the node box.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -513,7 +515,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the moving node during the animation.
         select_opacity
-            Opacity of the selection highlight. 
+            Opacity of the selection highlight.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
@@ -573,7 +575,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the copied node during the animation.
         select_opacity
-            Opacity of the selection highlight. 
+            Opacity of the selection highlight.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 
@@ -629,7 +631,7 @@ class Node(VMobject):
         select_color
             If provided, highlights the temporary copies during the swap.
         select_opacity
-            Opacity of the selection highlight. 
+            Opacity of the selection highlight.
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.Succession`.
 

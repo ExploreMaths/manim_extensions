@@ -84,11 +84,11 @@ class ImageLayer(NeuralNetworkLayer):
     """
 
     def __init__(
-        self, 
+        self,
         numpy_image: PixelArray,
-        height: float = 1.5, 
-        show_image_on_create: bool = True, 
-        **kwargs
+        height: float = 1.5,
+        show_image_on_create: bool = True,
+        **kwargs,
     ):
         """Initialize the image layer from a numpy array with configurable display height."""
         super().__init__(**kwargs)
@@ -112,8 +112,7 @@ class ImageLayer(NeuralNetworkLayer):
             # Assumed Grayscale
             self.num_channels = 1
             self.image_mobject = GrayscaleImageMobject(
-                self.numpy_image, 
-                height=self.image_height
+                self.numpy_image, height=self.image_height
             )
         elif len(np.shape(self.numpy_image)) == 3:
             # Assumed RGB
@@ -161,7 +160,9 @@ class ImageLayer(NeuralNetworkLayer):
             # groups, so return a zero-duration Wait instead.
             return Wait(run_time=0)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Return an empty animation group; the image layer has no forward pass effect.
 
         Parameters

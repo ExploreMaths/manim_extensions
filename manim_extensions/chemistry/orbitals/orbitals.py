@@ -24,8 +24,6 @@ else:
         return spe.sph_harm(m, l, azimuthal, polar)
 
 
-
-
 class OrbitalBase(OpenGLSurface):
     """
     Base class for implementing atomic orbitals.
@@ -34,21 +32,21 @@ class OrbitalBase(OpenGLSurface):
     Parameters
     ----------
     center
-        Position of the orbital center. 
+        Position of the orbital center.
     resolution
-        Resolution ``(u, v)`` of the surface. 
+        Resolution ``(u, v)`` of the surface.
     u_range
-        Range of the ``u`` parameter. 
+        Range of the ``u`` parameter.
     v_range
-        Range of the ``v`` parameter. 
+        Range of the ``v`` parameter.
     n_value
-        Principal quantum number. 
+        Principal quantum number.
     l_value
-        Azimuthal quantum number. 
+        Azimuthal quantum number.
     m_value
-        Magnetic quantum number. 
+        Magnetic quantum number.
     size
-        Scale factor applied to the orbital surface. 
+        Scale factor applied to the orbital surface.
     **kwargs
         Additional keyword arguments forwarded to
         OpenGLSurface.
@@ -86,7 +84,9 @@ class OrbitalBase(OpenGLSurface):
 
         self.shift(center)
 
-    def psi_ang(self, phi: VectorND, theta: VectorND, l: int = 0, m: int = 0) -> VectorND:
+    def psi_ang(
+        self, phi: VectorND, theta: VectorND, l: int = 0, m: int = 0
+    ) -> VectorND:
         """Compute the real part of the spherical harmonic :math:`Y_l^m` at angles :math:`\\phi, \\theta`.
 
         Parameters
@@ -96,9 +96,9 @@ class OrbitalBase(OpenGLSurface):
         theta
             Polar angle.
         l
-            Azimuthal (angular momentum) quantum number. 
+            Azimuthal (angular momentum) quantum number.
         m
-            Magnetic quantum number. 
+            Magnetic quantum number.
 
         Returns
         -------
@@ -108,7 +108,9 @@ class OrbitalBase(OpenGLSurface):
 
         return sphHarm.real
 
-    def calculate_coordinates(self, psi: VectorND, u: VectorND | None, v: VectorND) -> MatrixMN:
+    def calculate_coordinates(
+        self, psi: VectorND, u: VectorND | None, v: VectorND
+    ) -> MatrixMN:
         """Convert spherical psi value and angles u,v to scaled 3D Cartesian coordinates.
 
         Parameters
@@ -116,7 +118,7 @@ class OrbitalBase(OpenGLSurface):
         psi
             Value of the wave function at the given angles.
         u
-            Polar angle. 
+            Polar angle.
         v
             Azimuthal angle.
 
@@ -136,7 +138,7 @@ class OrbitalBase(OpenGLSurface):
         Parameters
         ----------
         u
-            Polar angle. 
+            Polar angle.
         v
             Azimuthal angle.
 
@@ -160,7 +162,7 @@ class OrbitalPositive(OrbitalBase):
         Parameters
         ----------
         u
-            Polar angle. 
+            Polar angle.
         v
             Azimuthal angle.
 
@@ -186,7 +188,7 @@ class OrbitalNegative(OrbitalBase):
         Parameters
         ----------
         u
-            Polar angle. 
+            Polar angle.
         v
             Azimuthal angle.
 
@@ -216,18 +218,20 @@ class Orbital(OpenGLSurface):
     ----------
     n
         Principal quantum number. If ``None``, it is set to ``l + 1``.
-        
+
     l
-        Azimuthal (angular momentum) quantum number. 
+        Azimuthal (angular momentum) quantum number.
     m
-        Magnetic quantum number. 
+        Magnetic quantum number.
     size
-        Scale of the orbital surface. 
+        Scale of the orbital surface.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
     """
 
-    def __init__(self, n: int | None=None, l: int = 0, m: int = 0, size: int = 3, **kwargs):
+    def __init__(
+        self, n: int | None = None, l: int = 0, m: int = 0, size: int = 3, **kwargs
+    ):
         """Initialize a full atomic orbital with red positive and blue negative lobes."""
         super().__init__(self.uv_func, **kwargs)
         if not n:
@@ -252,7 +256,7 @@ class Orbital(OpenGLSurface):
         Parameters
         ----------
         u
-            Polar angle. 
+            Polar angle.
         v
             Azimuthal angle.
 

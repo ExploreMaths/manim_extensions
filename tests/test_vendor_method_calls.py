@@ -20,13 +20,34 @@ CASES = [
     ("manim_extensions.algorithm.node:Node", "get_fill_opacity"),
     ("manim_extensions.algorithm.node:Node", "get_value"),
     ("manim_extensions.algorithm.node:Node", "set_fill"),
-    ("manim_extensions.automata.mobjects.automata_dependencies.automata:FiniteStateAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.automata_dependencies.automata:PushDownAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.manim_automaton:ManimAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton:ManimNondeterministicFiniteAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.manim_pushdown_automaton:ManimPushDownAutomaton", "get_initial_state"),
-    ("manim_extensions.automata.mobjects.manim_pushdown_automaton:ManimPushDownAutomaton", "pop"),
+    (
+        "manim_extensions.automata.mobjects.automata_dependencies.automata:FiniteStateAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.automata_dependencies.automata:PushDownAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.manim_automaton:ManimAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton:ManimNondeterministicFiniteAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.manim_pushdown_automaton:ManimPushDownAutomaton",
+        "get_initial_state",
+    ),
+    (
+        "manim_extensions.automata.mobjects.manim_pushdown_automaton:ManimPushDownAutomaton",
+        "pop",
+    ),
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "calculate_levels"),
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "electrons_group"),
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "get_electrons"),
@@ -34,40 +55,121 @@ CASES = [
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "get_orbitals"),
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "nuclei_groups"),
     ("manim_extensions.chemistry.bohr_atom.bohr_atom:BohrAtom", "orbitals_group"),
-    ("manim_extensions.chemistry.future_classes.future_classes:BatterySchema", "corner_schema"),
-    ("manim_extensions.chemistry.future_classes.future_classes:BatterySchema", "get_start_finish_positions"),
-    ("manim_extensions.chemistry.future_classes.future_classes:BatterySchema", "horizontal_schema"),
-    ("manim_extensions.chemistry.future_classes.future_classes:BatterySchema", "invert_terminals"),
-    ("manim_extensions.chemistry.future_classes.future_classes:BatterySchema", "select_schema"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "arrange_particles"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "central_atom"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "get_electrons"),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:BatterySchema",
+        "corner_schema",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:BatterySchema",
+        "get_start_finish_positions",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:BatterySchema",
+        "horizontal_schema",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:BatterySchema",
+        "invert_terminals",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:BatterySchema",
+        "select_schema",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "arrange_particles",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "central_atom",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "get_electrons",
+    ),
     ("manim_extensions.chemistry.future_classes.future_classes:Element", "get_holes"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "get_particles"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "get_subelectron_holes"),
-    ("manim_extensions.chemistry.future_classes.future_classes:Element", "make_subelectron_holes"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "add_battery"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "add_battery_sides"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "add_battery_terminals"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "add_holes"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "make_main_board"),
-    ("manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor", "make_n_region"),
-    ("manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule", "add_connections_between_atoms"),
-    ("manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule", "reindex_molecule_atoms"),
-    ("manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule", "remove_all_hydrogens"),
-    ("manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule", "remove_carbon_hydrogens"),
-    ("manim_extensions.chemistry.orbitals.orbitals:OrbitalBase", "add_background_rectangle_to_family_members_with_points"),
-    ("manim_extensions.chemistry.orbitals.orbitals:OrbitalNegative", "add_background_rectangle_to_family_members_with_points"),
-    ("manim_extensions.chemistry.orbitals.orbitals:OrbitalPositive", "add_background_rectangle_to_family_members_with_points"),
-    ("manim_extensions.chemistry.periodic_table.table_objects:MElementObject", "create_frame_base"),
-    ("manim_extensions.chemistry.periodic_table.table_objects:MElementObject", "create_frame_with_text"),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "get_particles",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "get_subelectron_holes",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:Element",
+        "make_subelectron_holes",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "add_battery",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "add_battery_sides",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "add_battery_terminals",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "add_holes",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "make_main_board",
+    ),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:MOSFETTransistor",
+        "make_n_region",
+    ),
+    (
+        "manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule",
+        "add_connections_between_atoms",
+    ),
+    (
+        "manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule",
+        "reindex_molecule_atoms",
+    ),
+    (
+        "manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule",
+        "remove_all_hydrogens",
+    ),
+    (
+        "manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule:MCMolecule",
+        "remove_carbon_hydrogens",
+    ),
+    (
+        "manim_extensions.chemistry.orbitals.orbitals:OrbitalBase",
+        "add_background_rectangle_to_family_members_with_points",
+    ),
+    (
+        "manim_extensions.chemistry.orbitals.orbitals:OrbitalNegative",
+        "add_background_rectangle_to_family_members_with_points",
+    ),
+    (
+        "manim_extensions.chemistry.orbitals.orbitals:OrbitalPositive",
+        "add_background_rectangle_to_family_members_with_points",
+    ),
+    (
+        "manim_extensions.chemistry.periodic_table.table_objects:MElementObject",
+        "create_frame_base",
+    ),
+    (
+        "manim_extensions.chemistry.periodic_table.table_objects:MElementObject",
+        "create_frame_with_text",
+    ),
     ("manim_extensions.chemistry.threeD.threedbond:ThreeDCylinder", "get_direction"),
     ("manim_extensions.chemistry.threeD.threedbond:ThreeDLine", "get_direction"),
     ("manim_extensions.chemistry.threeD.threedbond:ThreeDLine", "get_end"),
     ("manim_extensions.chemistry.threeD.threedbond:ThreeDLine", "get_start"),
     ("manim_extensions.chemistry.twoD.atom:MAtomObject", "add_atom"),
     ("manim_extensions.chemistry.twoD.atom:MAtomObject", "bonds_fulfilled"),
-    ("manim_extensions.chemistry.twoD.atom:MAtomObject", "copy_with_explicit_hydrogens"),
+    (
+        "manim_extensions.chemistry.twoD.atom:MAtomObject",
+        "copy_with_explicit_hydrogens",
+    ),
     ("manim_extensions.chemistry.twoD.atom:MAtomObject", "make_copy"),
     ("manim_extensions.circuit.mobjects:Capacitor", "center"),
     ("manim_extensions.circuit.mobjects:CurrentSource", "center"),
@@ -78,7 +180,10 @@ CASES = [
     ("manim_extensions.circuit.mobjects:Resistor", "get_anchors"),
     ("manim_extensions.circuit.mobjects:VoltageSource", "center"),
     ("manim_extensions.circuit.utils:Circuit", "add_components"),
-    ("manim_extensions.compass.compass.compass:Compass", "get_compass_rotate_angle_direction"),
+    (
+        "manim_extensions.compass.compass.compass:Compass",
+        "get_compass_rotate_angle_direction",
+    ),
     ("manim_extensions.compass.compass.compass:Compass", "get_niddle2pen_vec"),
     ("manim_extensions.compass.compass.compass:Compass", "get_niddle_tip"),
     ("manim_extensions.compass.compass.compass:Compass", "get_pen_tip"),
@@ -114,20 +219,59 @@ CASES = [
     ("manim_extensions.economics.solow:SolowDiagram", "shift_breakeven"),
     ("manim_extensions.economics.solow:SolowDiagram", "shift_savings"),
     ("manim_extensions.economics.supply_demand:SupplyDemandDiagram", "clear_arrows"),
-    ("manim_extensions.machine_learning.neural_network.activation_functions.relu:ReLUFunction", "construct_activation_function"),
-    ("manim_extensions.machine_learning.neural_network.activation_functions.relu:ReLUFunction", "make_evaluate_animation"),
-    ("manim_extensions.machine_learning.neural_network.activation_functions.sigmoid:SigmoidFunction", "construct_activation_function"),
-    ("manim_extensions.machine_learning.neural_network.activation_functions.sigmoid:SigmoidFunction", "make_evaluate_animation"),
-    ("manim_extensions.machine_learning.neural_network.layers.max_pooling_2d:MaxPooling2DLayer", "make_forward_pass_animation"),
-    ("manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle", "get_center"),
-    ("manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle", "get_corners_dict"),
-    ("manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle", "get_normal_vector"),
-    ("manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle", "make_corners_dict"),
-    ("manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle", "make_grid_lines"),
-    ("manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene", "make_rigid_body"),
-    ("manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene", "make_static_body"),
+    (
+        "manim_extensions.machine_learning.neural_network.activation_functions.relu:ReLUFunction",
+        "construct_activation_function",
+    ),
+    (
+        "manim_extensions.machine_learning.neural_network.activation_functions.relu:ReLUFunction",
+        "make_evaluate_animation",
+    ),
+    (
+        "manim_extensions.machine_learning.neural_network.activation_functions.sigmoid:SigmoidFunction",
+        "construct_activation_function",
+    ),
+    (
+        "manim_extensions.machine_learning.neural_network.activation_functions.sigmoid:SigmoidFunction",
+        "make_evaluate_animation",
+    ),
+    (
+        "manim_extensions.machine_learning.neural_network.layers.max_pooling_2d:MaxPooling2DLayer",
+        "make_forward_pass_animation",
+    ),
+    (
+        "manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle",
+        "get_center",
+    ),
+    (
+        "manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle",
+        "get_corners_dict",
+    ),
+    (
+        "manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle",
+        "get_normal_vector",
+    ),
+    (
+        "manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle",
+        "make_corners_dict",
+    ),
+    (
+        "manim_extensions.machine_learning.utils.mobjects.gridded_rectangle:GriddedRectangle",
+        "make_grid_lines",
+    ),
+    (
+        "manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene",
+        "make_rigid_body",
+    ),
+    (
+        "manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene",
+        "make_static_body",
+    ),
     ("manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene", "setup"),
-    ("manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene", "stop_rigidity"),
+    (
+        "manim_extensions.physics.rigid_mechanics.rigid_mechanics:SpaceScene",
+        "stop_rigidity",
+    ),
     ("manim_extensions.physics.wave:LinearWave", "start_wave"),
     ("manim_extensions.physics.wave:LinearWave", "stop_wave"),
     ("manim_extensions.physics.wave:RadialWave", "start_wave"),
@@ -155,7 +299,9 @@ CASES = [
 ]
 
 
-@pytest.mark.parametrize("target,meth", CASES, ids=["%s.%s" % (case[0], case[1]) for case in CASES])
+@pytest.mark.parametrize(
+    "target,meth", CASES, ids=["%s.%s" % (case[0], case[1]) for case in CASES]
+)
 def test_zero_argument_method(target, meth):
     module_name, _, class_name = target.rpartition(":")
     module = importlib.import_module(module_name)

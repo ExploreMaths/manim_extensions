@@ -10,7 +10,9 @@ This module provides neural network layer visualizations and architectures.
 
 from .neural_network import NeuralNetwork
 from .layers.feed_forward import FeedForwardLayer
-from .layers.convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
+from .layers.convolutional_2d_to_convolutional_2d import (
+    Convolutional2DToConvolutional2D,
+)
 from .layers.convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
 from .layers.convolutional_2d_to_max_pooling_2d import Convolutional2DToMaxPooling2D
 from .layers.convolutional_2d import Convolutional2DLayer

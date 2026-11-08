@@ -18,7 +18,10 @@ from pathlib import Path
 
 from manim_extensions.nerdfont.icons_dict import SYMBOLS_UNICODE
 
-OUT = Path(__file__).resolve().parent.parent / "docs/source/reference/nerdfont/_icon_gallery_body.html"
+OUT = (
+    Path(__file__).resolve().parent.parent
+    / "docs/source/reference/nerdfont/_icon_gallery_body.html"
+)
 
 
 def card(name: str, codepoint: int) -> str:

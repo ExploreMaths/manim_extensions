@@ -93,51 +93,143 @@ SECTION_NAMES = (
 
 # Dunder methods that are conventionally left undocumented.
 SKIP_DUNDER = {
-    '__repr__', '__str__', '__len__', '__getitem__', '__setitem__',
-    '__delitem__', '__enter__', '__exit__', '__call__', '__eq__',
-    '__ne__', '__lt__', '__le__', '__gt__', '__ge__', '__add__',
-    '__sub__', '__mul__', '__truediv__', '__contains__', '__iter__',
-    '__next__', '__hash__', '__getattr__', '__setattr__', '__delattr__',
-    '__new__', '__bool__', '__abs__', '__pos__', '__neg__', '__invert__',
-    '__int__', '__float__', '__complex__', '__round__', '__trunc__',
-    '__floor__', '__ceil__', '__index__', '__format__', '__sizeof__',
-    '__class_getitem__', '__init_subclass__', '__set_name__',
-    '__copy__', '__deepcopy__', '__reduce__', '__reduce_ex__',
-    '__getstate__', '__setstate__', '__getattribute__',
-    '__dir__', '__subclasshook__', '__instancecheck__',
-    '__missing__', '__del__', '__post_init__',
-    '__abstractmethods__', '__parameters__',
-    '__orig_bases__', '__type_params__',
-    '__slots__', '__mro_entries__',
-    '__annotations__', '__dict__', '__module__',
+    "__repr__",
+    "__str__",
+    "__len__",
+    "__getitem__",
+    "__setitem__",
+    "__delitem__",
+    "__enter__",
+    "__exit__",
+    "__call__",
+    "__eq__",
+    "__ne__",
+    "__lt__",
+    "__le__",
+    "__gt__",
+    "__ge__",
+    "__add__",
+    "__sub__",
+    "__mul__",
+    "__truediv__",
+    "__contains__",
+    "__iter__",
+    "__next__",
+    "__hash__",
+    "__getattr__",
+    "__setattr__",
+    "__delattr__",
+    "__new__",
+    "__bool__",
+    "__abs__",
+    "__pos__",
+    "__neg__",
+    "__invert__",
+    "__int__",
+    "__float__",
+    "__complex__",
+    "__round__",
+    "__trunc__",
+    "__floor__",
+    "__ceil__",
+    "__index__",
+    "__format__",
+    "__sizeof__",
+    "__class_getitem__",
+    "__init_subclass__",
+    "__set_name__",
+    "__copy__",
+    "__deepcopy__",
+    "__reduce__",
+    "__reduce_ex__",
+    "__getstate__",
+    "__setstate__",
+    "__getattribute__",
+    "__dir__",
+    "__subclasshook__",
+    "__instancecheck__",
+    "__missing__",
+    "__del__",
+    "__post_init__",
+    "__abstractmethods__",
+    "__parameters__",
+    "__orig_bases__",
+    "__type_params__",
+    "__slots__",
+    "__mro_entries__",
+    "__annotations__",
+    "__dict__",
+    "__module__",
 }
 
 # Decorator/protocol inner functions where docstrings are optional.
 SKIP_NAMES = {
-    'wrapper', 'decorator_maker', 'real_test',
+    "wrapper",
+    "decorator_maker",
+    "real_test",
 }
 
 # Base class names that indicate an mobject (renderable) subclass.
 MOBJECT_BASE_NAMES = {
-    "Mobject", "VMobject", "VGroup", "SVGMobject", "CMobject", "Group",
-    "Mobject1D", "Mobject2D", "Mobject3D",
+    "Mobject",
+    "VMobject",
+    "VGroup",
+    "SVGMobject",
+    "CMobject",
+    "Group",
+    "Mobject1D",
+    "Mobject2D",
+    "Mobject3D",
 }
 
 # Additional direct manim mobject subclasses commonly used as bases.
 MOBJECT_BASE_NAMES |= {
-    "Line", "DashedLine", "Dot", "Circle", "Arc", "Annulus", "Arrow",
-    "DoubleArrow", "CurvedArrow", "Vector", "Brace", "Polygram", "Polygon",
-    "Rectangle", "Square", "Triangle", "RoundedRectangle", "Text", "Tex",
-    "MathTex", "SingleStringMathTex", "Code", "Table", "Matrix", "ImageMobject",
-    "Axes", "NumberPlane", "PolarPlane", "Plot", "BarChart",
+    "Line",
+    "DashedLine",
+    "Dot",
+    "Circle",
+    "Arc",
+    "Annulus",
+    "Arrow",
+    "DoubleArrow",
+    "CurvedArrow",
+    "Vector",
+    "Brace",
+    "Polygram",
+    "Polygon",
+    "Rectangle",
+    "Square",
+    "Triangle",
+    "RoundedRectangle",
+    "Text",
+    "Tex",
+    "MathTex",
+    "SingleStringMathTex",
+    "Code",
+    "Table",
+    "Matrix",
+    "ImageMobject",
+    "Axes",
+    "NumberPlane",
+    "PolarPlane",
+    "Plot",
+    "BarChart",
 }
 
 # Classes that never need a renderable example.
 # OpenGL-only mobjects cannot be rendered by the cairo-based docs build;
 # they are documented with ``.. code-block::`` examples instead.
 NON_RENDERABLE_BASES = {
-    "Enum", "IntEnum", "StrEnum", "Flag", "IntFlag", "ABC",
-    "OpenGLMobject", "OpenGLVMobject", "OpenGLVGroup", "OpenGLGroup",
+    "Enum",
+    "IntEnum",
+    "StrEnum",
+    "Flag",
+    "IntFlag",
+    "ABC",
+    "OpenGLMobject",
+    "OpenGLVMobject",
+    "OpenGLVGroup",
+    "OpenGLGroup",
     "OpenGLSurface",
 }
 
@@ -149,9 +241,7 @@ SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
 # type from the signature and the manual one would render twice.  Both
 # inline (``name (type) - desc``) and stacked (``name (type)`` on its own
 # entry line) forms are caught.
-NUMPYDOC_TYPE_ENTRY_RE = re.compile(
-    r"^(\*{0,2}[\w.]+)\s*\(\s*[^)]*\)\s*([–—-].*)?$"
-)
+NUMPYDOC_TYPE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*\(\s*[^)]*\)\s*([–—-].*)?$")
 
 # Hand-written type LINES under a Returns/Yields section (entry at the item
 # indent, followed by an indented description).  With
@@ -159,51 +249,124 @@ NUMPYDOC_TYPE_ENTRY_RE = re.compile(
 # signature, so a bare ``Any``, ``Tuple[float, float]``,
 # ``:class:`~manim.VGroup```, ``int or None`` or ``list of int`` entry would
 # render twice and drift out of sync with the signature.
-RETURN_TYPE_ROLE_RE = re.compile(
-    r"^:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`$"
-)
+RETURN_TYPE_ROLE_RE = re.compile(r"^:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`$")
 RETURN_TYPE_ROLE_UNION_RE = re.compile(
     r"^:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`"
     r"(\s+or\s+:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`|"
     r"\s*\|\s*:(class|data|obj|func|meth|mod|attr|ref):`[^`]*`)*\s*$"
 )
-RETURN_TYPE_GENERIC_RE = re.compile(
-    r"^[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]\s*$"
-)
+RETURN_TYPE_GENERIC_RE = re.compile(r"^[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]\s*$")
 RETURN_TYPE_GENERIC_UNION_RE = re.compile(
     r"^[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]"
     r"(?:\s*\|\s*[\w.]+\s*\[[^\[\]\n]*(?:\[[^\[\]\n]*\])*\]|"
     r"\s+or\s+[\w.]+)*\s*$"
 )
-RETURN_TYPE_BARE_UNION_RE = re.compile(
-    r"^[\w.]+\s*(?:\|\s*[\w.]+|\s+or\s+[\w.]+)+\s*$"
-)
+RETURN_TYPE_BARE_UNION_RE = re.compile(r"^[\w.]+\s*(?:\|\s*[\w.]+|\s+or\s+[\w.]+)+\s*$")
 RETURN_TYPE_PROSE_RE = re.compile(
     r"^[a-z][\w.]*(?:\s+of\s+[\w.`]+)+$"
 )  # 'list of int', 'tuple of float'
 RETURN_TYPE_COLON_RE = re.compile(r"^:\s*\S")  # ': np.ndarray'
 RETURN_ROLE_PREFIXES = (
-    ":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:",
+    ":class:",
+    ":data:",
+    ":obj:",
+    ":func:",
+    ":meth:",
+    ":mod:",
+    ":attr:",
     ":ref:",
 )
 # Bare tokens that are unambiguous type names (not return-value names such
 # as ``x`` / ``y`` in a named multi-return entry).
 RETURN_TYPE_TOKENS = {
-    "Any", "Self", "list", "tuple", "dict", "str", "int", "float", "bool",
-    "None", "bytes", "object", "set", "frozenset", "complex", "bytearray",
-    "Optional", "Union", "Callable", "Iterable", "Iterator", "Generator",
-    "Sequence", "Mapping", "Type", "List", "Dict", "Tuple", "Set", "Path",
-    "Mobject", "VMobject", "VGroup", "Group", "SVGMobject", "CMobject",
-    "Mobject1D", "Mobject2D", "Mobject3D", "OpenGLMobject", "OpenGLVMobject",
-    "OpenGLVGroup", "OpenGLGroup", "OpenGLSurface", "Scene", "Animation",
-    "AnimationGroup", "Succession", "Transform", "FadeOut", "Create",
-    "ShowPassingFlash", "Line", "Circle", "Dot", "Arc", "Arrow", "Brace",
-    "Polygram", "Polygon", "Rectangle", "Square", "Triangle", "Text", "Tex",
-    "MathTex", "Code", "Table", "Matrix", "ImageMobject", "Axes",
-    "NumberPlane", "PolarPlane", "Plot", "BarChart", "State", "Transition",
-    "Element", "MAtomObject", "MMoleculeObject", "NamedMolecule",
-    "ThreeDMolecule", "np.ndarray", "np.array", "numpy.ndarray",
-    "pymunk.CollisionHandler", "ManimColor", "ParsableManimColor",
+    "Any",
+    "Self",
+    "list",
+    "tuple",
+    "dict",
+    "str",
+    "int",
+    "float",
+    "bool",
+    "None",
+    "bytes",
+    "object",
+    "set",
+    "frozenset",
+    "complex",
+    "bytearray",
+    "Optional",
+    "Union",
+    "Callable",
+    "Iterable",
+    "Iterator",
+    "Generator",
+    "Sequence",
+    "Mapping",
+    "Type",
+    "List",
+    "Dict",
+    "Tuple",
+    "Set",
+    "Path",
+    "Mobject",
+    "VMobject",
+    "VGroup",
+    "Group",
+    "SVGMobject",
+    "CMobject",
+    "Mobject1D",
+    "Mobject2D",
+    "Mobject3D",
+    "OpenGLMobject",
+    "OpenGLVMobject",
+    "OpenGLVGroup",
+    "OpenGLGroup",
+    "OpenGLSurface",
+    "Scene",
+    "Animation",
+    "AnimationGroup",
+    "Succession",
+    "Transform",
+    "FadeOut",
+    "Create",
+    "ShowPassingFlash",
+    "Line",
+    "Circle",
+    "Dot",
+    "Arc",
+    "Arrow",
+    "Brace",
+    "Polygram",
+    "Polygon",
+    "Rectangle",
+    "Square",
+    "Triangle",
+    "Text",
+    "Tex",
+    "MathTex",
+    "Code",
+    "Table",
+    "Matrix",
+    "ImageMobject",
+    "Axes",
+    "NumberPlane",
+    "PolarPlane",
+    "Plot",
+    "BarChart",
+    "State",
+    "Transition",
+    "Element",
+    "MAtomObject",
+    "MMoleculeObject",
+    "NamedMolecule",
+    "ThreeDMolecule",
+    "np.ndarray",
+    "np.array",
+    "numpy.ndarray",
+    "pymunk.CollisionHandler",
+    "ManimColor",
+    "ParsableManimColor",
 }
 _BARE_TYPE_RE = re.compile(r"^[\w.]+\s*$")
 
@@ -232,10 +395,16 @@ def is_return_type_line(stripped: str) -> bool:
         return stripped in RETURN_TYPE_TOKENS
     return False
 
+
 # Sections whose entry descriptions must be style-checked.
 STYLE_SECTIONS = {
-    "Parameters", "Other Parameters", "Returns", "Yields",
-    "Receives", "Raises", "Attributes",
+    "Parameters",
+    "Other Parameters",
+    "Returns",
+    "Yields",
+    "Receives",
+    "Raises",
+    "Attributes",
 }
 # Canonical section order (lower rank = earlier), following numpydoc's
 # official order: https://numpydoc.readthedocs.io/en/latest/format.html
@@ -354,10 +523,7 @@ def documented_params(doc: str) -> set:
         if indent > item_indent:
             continue  # continuation line of the previous entry
         # An underlined header line (e.g. the next section) ends Parameters.
-        if (
-            idx + 1 < len(lines)
-            and SECTION_UNDERLINE_RE.match(lines[idx + 1])
-        ):
+        if idx + 1 < len(lines) and SECTION_UNDERLINE_RE.match(lines[idx + 1]):
             in_params = False
             continue
         m = PARAM_ENTRY_RE.match(stripped)
@@ -419,7 +585,7 @@ def raises_section_body(doc: str) -> str:
     for pos, (name, idx) in enumerate(sections):
         if name == "Raises":
             end = sections[pos + 1][1] if pos + 1 < len(sections) else len(lines)
-            return "\n".join(lines[idx + 2:end])
+            return "\n".join(lines[idx + 2 : end])
     return ""
 
 
@@ -487,7 +653,8 @@ def section_entry_descriptions(doc: str) -> list:
     lines = doc.splitlines()
     n = len(lines)
     headers = [
-        i for i in range(n - 1)
+        i
+        for i in range(n - 1)
         if lines[i].strip() in STYLE_SECTIONS
         and SECTION_UNDERLINE_RE.match(lines[i + 1])
     ]
@@ -526,9 +693,7 @@ def section_entry_descriptions(doc: str) -> list:
         for _entry, dlines in entries:
             dlines = [d for d in dlines if lines[d].strip()]
             if dlines:
-                result.append(
-                    (lines[dlines[0]].strip(), lines[dlines[-1]].strip())
-                )
+                result.append((lines[dlines[0]].strip(), lines[dlines[-1]].strip()))
     return result
 
 
@@ -553,22 +718,26 @@ def check_description_style(doc, qualname, lineno, violations):
         if not first.startswith(DESC_SKIP_STARTS):
             idx = first_bare_alpha(first)
             if idx is not None and first[idx].islower():
-                violations.append({
-                    "line": lineno,
-                    "qualname": qualname,
-                    "type": "DESCRIPTION_NOT_CAPITALIZED",
-                    "message": f"description '{first[:50]}' should start "
-                               f"with a capital letter",
-                })
+                violations.append(
+                    {
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "DESCRIPTION_NOT_CAPITALIZED",
+                        "message": f"description '{first[:50]}' should start "
+                        f"with a capital letter",
+                    }
+                )
         if last and not last.endswith((".", "?", "!", "。")):
             if not last.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
-                violations.append({
-                    "line": lineno,
-                    "qualname": qualname,
-                    "type": "DESCRIPTION_MISSING_PERIOD",
-                    "message": f"description '{last[:50]}' should end "
-                               f"with a period",
-                })
+                violations.append(
+                    {
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "DESCRIPTION_MISSING_PERIOD",
+                        "message": f"description '{last[:50]}' should end "
+                        f"with a period",
+                    }
+                )
 
 
 def check_summary_period(doc, qualname, lineno, violations):
@@ -602,12 +771,14 @@ def check_summary_period(doc, qualname, lineno, violations):
         "=" in summary or "·" in summary or "^" in summary
     ):
         return  # formula line
-    violations.append({
-        "line": lineno,
-        "qualname": qualname,
-        "type": "SUMMARY_MISSING_PERIOD",
-        "message": f"summary '{summary[:50]}' should end with a period",
-    })
+    violations.append(
+        {
+            "line": lineno,
+            "qualname": qualname,
+            "type": "SUMMARY_MISSING_PERIOD",
+            "message": f"summary '{summary[:50]}' should end with a period",
+        }
+    )
 
 
 def check_terminal_punctuation(doc, qualname, lineno, violations):
@@ -641,8 +812,9 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
             continue
         if SECTION_UNDERLINE_RE.match(stripped):
             continue
-        if (idx + 1 < len(candidates)
-                and SECTION_UNDERLINE_RE.match(candidates[idx + 1].strip() or "")):
+        if idx + 1 < len(candidates) and SECTION_UNDERLINE_RE.match(
+            candidates[idx + 1].strip() or ""
+        ):
             continue  # this line is a section header
         last = stripped
     if not last or last.endswith(ALLOWED_DOC_END):
@@ -657,13 +829,15 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
         "=" in last or "·" in last or "^" in last
     ):
         return  # formula line
-    violations.append({
-        "line": lineno,
-        "qualname": qualname,
-        "type": "DOCSTRING_MISSING_PERIOD",
-        "message": f"docstring ends without terminal punctuation: "
-                  f"'{last[:50]}'",
-    })
+    violations.append(
+        {
+            "line": lineno,
+            "qualname": qualname,
+            "type": "DOCSTRING_MISSING_PERIOD",
+            "message": f"docstring ends without terminal punctuation: "
+            f"'{last[:50]}'",
+        }
+    )
 
 
 def check_no_manual_types(doc, qualname, lineno, violations):
@@ -677,8 +851,15 @@ def check_no_manual_types(doc, qualname, lineno, violations):
     """
     lines = doc.splitlines()
     for name, hpos in section_positions(doc):
-        if name not in ("Parameters", "Other Parameters", "Attributes",
-                        "Returns", "Yields", "Receives", "Raises"):
+        if name not in (
+            "Parameters",
+            "Other Parameters",
+            "Attributes",
+            "Returns",
+            "Yields",
+            "Receives",
+            "Raises",
+        ):
             continue
         j = hpos + 2
         while j < len(lines) and not lines[j].strip():
@@ -691,25 +872,29 @@ def check_no_manual_types(doc, qualname, lineno, violations):
             if not stripped:
                 continue
             indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
-            if (k + 1 < len(lines)
-                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
-                    and indent <= item_indent):
+            if (
+                k + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                and indent <= item_indent
+            ):
                 break
             if indent < item_indent:
                 break
             if indent == item_indent:
                 m = NUMPYDOC_TYPE_ENTRY_RE.match(stripped)
                 if m:
-                    violations.append({
-                        "line": lineno,
-                        "qualname": qualname,
-                        "type": "MANUAL_TYPE_ANNOTATION",
-                        "message": f"entry '{stripped[:50]}' hand-writes a "
-                                   f"parenthesised type; types are injected "
-                                   f"from the signature "
-                                   f"(autodoc_typehints = \"description\"), "
-                                   f"so it would render twice",
-                    })
+                    violations.append(
+                        {
+                            "line": lineno,
+                            "qualname": qualname,
+                            "type": "MANUAL_TYPE_ANNOTATION",
+                            "message": f"entry '{stripped[:50]}' hand-writes a "
+                            f"parenthesised type; types are injected "
+                            f"from the signature "
+                            f'(autodoc_typehints = "description"), '
+                            f"so it would render twice",
+                        }
+                    )
 
 
 def check_return_type_lines(doc, qualname, lineno, violations):
@@ -739,24 +924,28 @@ def check_return_type_lines(doc, qualname, lineno, violations):
             if not stripped:
                 continue
             indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
-            if (k + 1 < len(lines)
-                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
-                    and indent <= item_indent):
+            if (
+                k + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                and indent <= item_indent
+            ):
                 break
             if indent < item_indent:
                 break
             if indent > item_indent:
                 continue
             if is_return_type_line(stripped):
-                violations.append({
-                    "line": lineno,
-                    "qualname": qualname,
-                    "type": "MANUAL_TYPE_ANNOTATION",
-                    "message": f"entry '{stripped[:50]}' hand-writes a "
-                               f"return type; types are injected from the "
-                               f"signature (autodoc_typehints = "
-                               f"\"description\"), so it would render twice",
-                })
+                violations.append(
+                    {
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "MANUAL_TYPE_ANNOTATION",
+                        "message": f"entry '{stripped[:50]}' hand-writes a "
+                        f"return type; types are injected from the "
+                        f"signature (autodoc_typehints = "
+                        f'"description"), so it would render twice',
+                    }
+                )
 
 
 def check_section_spacing(doc, qualname, lineno, violations):
@@ -772,28 +961,32 @@ def check_section_spacing(doc, qualname, lineno, violations):
     lines = doc.splitlines()
     for name, idx in section_positions(doc):
         if idx > 0 and lines[idx - 1].strip():
-            violations.append({
-                "line": lineno,
-                "qualname": qualname,
-                "type": "SECTION_MISSING_BLANK_BEFORE",
-                "message": f"section header '{name}' directly follows "
-                           f"'{lines[idx - 1].strip()[:40]}' without a blank "
-                           f"line; napoleon absorbs it into the summary and "
-                           f"raw ':param:/:type:' text leaks into the docs",
-            })
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "SECTION_MISSING_BLANK_BEFORE",
+                    "message": f"section header '{name}' directly follows "
+                    f"'{lines[idx - 1].strip()[:40]}' without a blank "
+                    f"line; napoleon absorbs it into the summary and "
+                    f"raw ':param:/:type:' text leaks into the docs",
+                }
+            )
         if (
             idx + 2 < len(lines)
             and not lines[idx + 2].strip()
             and not SECTION_UNDERLINE_RE.match(lines[idx + 2])
         ):
-            violations.append({
-                "line": lineno,
-                "qualname": qualname,
-                "type": "SECTION_BLANK_AFTER_UNDERLINE",
-                "message": f"section header '{name}' is followed by a blank "
-                           f"line after the underline; entries must directly "
-                           f"follow the underline",
-            })
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "SECTION_BLANK_AFTER_UNDERLINE",
+                    "message": f"section header '{name}' is followed by a blank "
+                    f"line after the underline; entries must directly "
+                    f"follow the underline",
+                }
+            )
 
 
 def _prose_after_colon(line: str) -> bool:
@@ -808,7 +1001,9 @@ def _prose_after_colon(line: str) -> bool:
     if not m:
         return False
     typ = m.group(2)
-    if typ.startswith((":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:", ":ref:")):
+    if typ.startswith(
+        (":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:", ":ref:")
+    ):
         return False  # a role-based type is a real entry
     return "`" in typ or typ.endswith((".", "。", "．"))
 
@@ -835,23 +1030,28 @@ def flat_description_lines(doc: str) -> list:
         prev_entry = False
         for k in range(j, len(lines)):
             stripped = lines[k].strip()
-            indent = (len(lines[k]) - len(lines[k].lstrip(" \t"))
-                      ) if stripped else None
+            indent = (len(lines[k]) - len(lines[k].lstrip(" \t"))) if stripped else None
             if not stripped:
                 continue
-            if (k + 1 < len(lines)
-                    and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
-                    and (indent or 0) <= item_indent):
+            if (
+                k + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                and (indent or 0) <= item_indent
+            ):
                 break
             if (indent or 0) < item_indent:
                 break
             if indent == item_indent:
                 if stripped.startswith(".. "):
                     break
-                if (stripped in SECTION_NAMES
-                        or BARE_ENTRY_RE.match(stripped)
-                        or (PARAM_ENTRY_RE.match(stripped)
-                            and not _prose_after_colon(stripped))):
+                if (
+                    stripped in SECTION_NAMES
+                    or BARE_ENTRY_RE.match(stripped)
+                    or (
+                        PARAM_ENTRY_RE.match(stripped)
+                        and not _prose_after_colon(stripped)
+                    )
+                ):
                     prev_entry = True
                 elif prev_entry and " " in stripped:
                     flagged.append(k)
@@ -862,13 +1062,15 @@ def check_description_indent(doc, qualname, lineno, violations):
     """Entry descriptions must be indented deeper than the entry line."""
     lines = doc.splitlines()
     for idx in flat_description_lines(doc):
-        violations.append({
-            "line": lineno,
-            "qualname": qualname,
-            "type": "DESCRIPTION_BAD_INDENT",
-            "message": f"description '{lines[idx].strip()[:50]}' is not "
-                       f"indented deeper than its entry",
-        })
+        violations.append(
+            {
+                "line": lineno,
+                "qualname": qualname,
+                "type": "DESCRIPTION_BAD_INDENT",
+                "message": f"description '{lines[idx].strip()[:50]}' is not "
+                f"indented deeper than its entry",
+            }
+        )
 
 
 def annotation_is_none(node: ast.expr | None) -> bool:
@@ -924,20 +1126,22 @@ def check_raw_docstrings(source: str) -> list:
         m = re.match(r"(?i)^([ubf]*)(\"\"\"|''')", s)
         if not m or "r" in m.group(1).lower():
             continue
-        body = s[len(m.group(1)) + 3:]
+        body = s[len(m.group(1)) + 3 :]
         esc = esc_re.findall(body)
         if not esc:
             continue
         code_n = len(code_n_re.findall(body))
         if code_n and code_n == len(esc):
-            violations.append({
-                "line": tok.start[0],
-                "qualname": "<docstring>",
-                "type": "DOCSTRING_NEEDS_RAW_PREFIX",
-                "message": "docstring embeds example code with '\\n' "
-                           "escapes but is not raw; use an r-prefix or "
-                           "Sphinx renders mangled code",
-            })
+            violations.append(
+                {
+                    "line": tok.start[0],
+                    "qualname": "<docstring>",
+                    "type": "DOCSTRING_NEEDS_RAW_PREFIX",
+                    "message": "docstring embeds example code with '\\n' "
+                    "escapes but is not raw; use an r-prefix or "
+                    "Sphinx renders mangled code",
+                }
+            )
     return violations
 
 
@@ -949,12 +1153,14 @@ def check_file(filepath: Path) -> list:
     except (SyntaxError, UnicodeDecodeError) as exc:
         # A file that cannot be parsed is a hard failure, not a skip:
         # silently returning [] would let corruption disable every check.
-        return [{
-            "line": 1,
-            "qualname": "<file>",
-            "type": "SYNTAX_ERROR",
-            "message": f"cannot parse file: {exc}",
-        }]
+        return [
+            {
+                "line": 1,
+                "qualname": "<file>",
+                "type": "SYNTAX_ERROR",
+                "message": f"cannot parse file: {exc}",
+            }
+        ]
 
     violations = check_raw_docstrings(source)
 
@@ -971,23 +1177,27 @@ def check_file(filepath: Path) -> list:
             if INLINE_SECTION_RE.match(stripped):
                 name = stripped.split(":", 1)[0].strip()
                 if name in ADVISORY_SECTIONS:
-                    violations.append({
+                    violations.append(
+                        {
+                            "line": lineno + offset,
+                            "qualname": qualname,
+                            "type": "ADVISORY_SECTION_HEADER",
+                            "message": f"advisory header '{stripped[:40]}' must be "
+                            f"written as a "
+                            f"'.. {ADVISORY_SECTIONS[name]}::' block",
+                        }
+                    )
+                    continue
+                violations.append(
+                    {
                         "line": lineno + offset,
                         "qualname": qualname,
-                        "type": "ADVISORY_SECTION_HEADER",
-                        "message": f"advisory header '{stripped[:40]}' must be "
-                                   f"written as a "
-                                   f"'.. {ADVISORY_SECTIONS[name]}::' block",
-                    })
-                    continue
-                violations.append({
-                    "line": lineno + offset,
-                    "qualname": qualname,
-                    "type": "INLINE_SECTION_HEADER",
-                    "message": f"uses inline '{stripped[:40]}' instead of a "
-                               f"numpydoc section header (bare name followed "
-                               f"by a '----------' underline)",
-                })
+                        "type": "INLINE_SECTION_HEADER",
+                        "message": f"uses inline '{stripped[:40]}' instead of a "
+                        f"numpydoc section header (bare name followed "
+                        f"by a '----------' underline)",
+                    }
+                )
 
     def check_closing_quote(node, qualname):
         """The docstring closing triple-quote must match the opening indent.
@@ -1001,42 +1211,48 @@ def check_file(filepath: Path) -> list:
         if not body:
             return
         first = body[0]
-        if not (isinstance(first, ast.Expr)
-                and isinstance(first.value, ast.Constant)
-                and isinstance(first.value.value, str)):
+        if not (
+            isinstance(first, ast.Expr)
+            and isinstance(first.value, ast.Constant)
+            and isinstance(first.value.value, str)
+        ):
             return
         end_ln, end_col = first.end_lineno, first.end_col_offset
         if end_ln is None or end_col is None or end_col < 3:
             return
         line = source.splitlines()[end_ln - 1]
-        if line[end_col - 3:end_col] != '"""':
+        if line[end_col - 3 : end_col] != '"""':
             return
-        before = line[:end_col - 3]
+        before = line[: end_col - 3]
         if before.strip():
             return  # inline closing quote is the accepted style
         if len(before) != first.col_offset:
-            violations.append({
-                "line": node.lineno,
-                "qualname": qualname,
-                "type": "CLOSING_QUOTE_FLUSH",
-                "message": f"docstring closing triple-quote sits at column "
-                           f"{len(before)} while the opening quote is at "
-                           f"column {first.col_offset}; indent the closing "
-                           f"quote to the opening quote's column",
-            })
+            violations.append(
+                {
+                    "line": node.lineno,
+                    "qualname": qualname,
+                    "type": "CLOSING_QUOTE_FLUSH",
+                    "message": f"docstring closing triple-quote sits at column "
+                    f"{len(before)} while the opening quote is at "
+                    f"column {first.col_offset}; indent the closing "
+                    f"quote to the opening quote's column",
+                }
+            )
 
     def check_advisory_sections(doc, qualname, lineno):
         """Advisory headers must be written as reST admonition blocks."""
         for name, idx, _ in advisory_section_positions(doc):
             directive = ADVISORY_SECTIONS[name]
-            violations.append({
-                "line": lineno + idx + 1,
-                "qualname": qualname,
-                "type": "ADVISORY_SECTION_HEADER",
-                "message": f"advisory section '{name}' must be written as a "
-                           f"'.. {directive}::' block instead of a numpydoc "
-                           f"header",
-            })
+            violations.append(
+                {
+                    "line": lineno + idx + 1,
+                    "qualname": qualname,
+                    "type": "ADVISORY_SECTION_HEADER",
+                    "message": f"advisory section '{name}' must be written as a "
+                    f"'.. {directive}::' block instead of a numpydoc "
+                    f"header",
+                }
+            )
 
     def check_examples_is_last(doc, qualname, lineno):
         """``Examples`` must be the last section of the docstring."""
@@ -1060,36 +1276,31 @@ def check_file(filepath: Path) -> list:
             if not stripped:
                 continue
             indent = len(lines[idx]) - len(lines[idx].lstrip(" \t"))
-            is_admonition = (
-                indent <= examples_indent and ADMONITION_RE.match(stripped)
-            )
-            is_section = (
-                idx + 1 < len(lines)
-                and SECTION_UNDERLINE_RE.match(lines[idx + 1])
+            is_admonition = indent <= examples_indent and ADMONITION_RE.match(stripped)
+            is_section = idx + 1 < len(lines) and SECTION_UNDERLINE_RE.match(
+                lines[idx + 1]
             )
             if not (is_admonition or is_section):
                 continue
-            violations.append({
-                "line": lineno + idx + 1,
-                "qualname": qualname,
-                "type": "EXAMPLES_NOT_LAST",
-                "message": f"'{stripped.split('::')[0]}' follows 'Examples'; "
-                           f"'Examples' must be the last section (place "
-                           f"'.. note::'/'.. seealso::' blocks before it)",
-            })
+            violations.append(
+                {
+                    "line": lineno + idx + 1,
+                    "qualname": qualname,
+                    "type": "EXAMPLES_NOT_LAST",
+                    "message": f"'{stripped.split('::')[0]}' follows 'Examples'; "
+                    f"'Examples' must be the last section (place "
+                    f"'.. note::'/'.. seealso::' blocks before it)",
+                }
+            )
             return
 
     module_doc = ast.get_docstring(tree)
     if module_doc:
         check_inline_sections(module_doc, "<module>", 1)
-        check_description_style(
-            module_doc, "<module>", 1, violations
-        )
+        check_description_style(module_doc, "<module>", 1, violations)
         check_description_indent(module_doc, "<module>", 1, violations)
         check_summary_period(module_doc, "<module>", 1, violations)
-        check_terminal_punctuation(
-            module_doc, "<module>", 1, violations
-        )
+        check_terminal_punctuation(module_doc, "<module>", 1, violations)
         check_section_spacing(module_doc, "<module>", 1, violations)
         check_advisory_sections(module_doc, "<module>", 1)
         check_examples_is_last(module_doc, "<module>", 1)
@@ -1134,82 +1345,90 @@ def check_file(filepath: Path) -> list:
         # that convention is enforced by validate_param_docs.py.
         if name != "__init__" and params:
             if "Parameters" not in secs:
-                violations.append({
-                    "line": node.lineno,
-                    "qualname": qualname,
-                    "type": "MISSING_PARAMETERS_SECTION",
-                    "message": "has parameters but no numpydoc 'Parameters' section",
-                })
+                violations.append(
+                    {
+                        "line": node.lineno,
+                        "qualname": qualname,
+                        "type": "MISSING_PARAMETERS_SECTION",
+                        "message": "has parameters but no numpydoc 'Parameters' section",
+                    }
+                )
             else:
                 documented = documented_params(doc)
                 for param in params:
                     if node.args.vararg and param == node.args.vararg.arg:
                         continue  # bare *args is conventionally undocumented
                     if param not in documented:
-                        violations.append({
-                            "line": node.lineno,
-                            "qualname": qualname,
-                            "type": "MISSING_PARAM_ENTRY",
-                            "message": f"parameter '{param}' not documented "
-                                       f"in 'Parameters' section",
-                        })
+                        violations.append(
+                            {
+                                "line": node.lineno,
+                                "qualname": qualname,
+                                "type": "MISSING_PARAM_ENTRY",
+                                "message": f"parameter '{param}' not documented "
+                                f"in 'Parameters' section",
+                            }
+                        )
         if (
             not annotation_is_none(node.returns)
             and "Returns" not in secs
             and "Yields" not in secs
         ):
-            violations.append({
-                "line": node.lineno,
-                "qualname": qualname,
-                "type": "MISSING_RETURNS_SECTION",
-                "message": "has a non-None return annotation but no "
-                           "'Returns'/'Yields' section",
-            })
+            violations.append(
+                {
+                    "line": node.lineno,
+                    "qualname": qualname,
+                    "type": "MISSING_RETURNS_SECTION",
+                    "message": "has a non-None return annotation but no "
+                    "'Returns'/'Yields' section",
+                }
+            )
         # Functions without a return annotation may still describe their
         # return value somewhere in the docstring. When such a return
         # description appears after the summary line and no numpydoc
         # Returns/Yields section exists, the description must be moved
         # into a proper Returns section (the summary line itself is
         # allowed to open with "Returns a ..." / "Return a ...").
-        if (
-            "Returns" not in secs
-            and "Yields" not in secs
-            and "Receives" not in secs
-        ):
+        if "Returns" not in secs and "Yields" not in secs and "Receives" not in secs:
             doc_lines = doc.strip().split("\n")
             for i, ln in enumerate(doc_lines[1:], start=1):
                 if re.search(r"\bReturns? (a|an|the)\b", ln, re.I):
-                    violations.append({
-                        "line": node.lineno + i,
-                        "qualname": qualname,
-                        "type": "RETURNS_DESCRIPTION_OUTSIDE_SECTION",
-                        "message": "describes its return value in the docstring "
-                                   "body but has no 'Returns'/'Yields' section",
-                    })
+                    violations.append(
+                        {
+                            "line": node.lineno + i,
+                            "qualname": qualname,
+                            "type": "RETURNS_DESCRIPTION_OUTSIDE_SECTION",
+                            "message": "describes its return value in the docstring "
+                            "body but has no 'Returns'/'Yields' section",
+                        }
+                    )
                     break
         check_section_order(doc, qualname, node.lineno)
         check_advisory_sections(doc, qualname, node.lineno)
         check_examples_is_last(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
-            violations.append({
-                "line": node.lineno,
-                "qualname": qualname,
-                "type": "MISSING_YIELDS_SECTION",
-                "message": "is a generator but has no 'Yields' section",
-            })
+            violations.append(
+                {
+                    "line": node.lineno,
+                    "qualname": qualname,
+                    "type": "MISSING_YIELDS_SECTION",
+                    "message": "is a generator but has no 'Yields' section",
+                }
+            )
         # __init__ raises are documented in the class docstring instead,
         # consistent with the parameter documentation convention.
         raised = [] if name == "__init__" else raised_exceptions(node)
         if raised:
             if "Raises" not in secs:
-                violations.append({
-                    "line": node.lineno,
-                    "qualname": qualname,
-                    "type": "MISSING_RAISES_SECTION",
-                    "message": f"raises {', '.join(raised)} but has no "
-                               f"'Raises' section",
-                })
+                violations.append(
+                    {
+                        "line": node.lineno,
+                        "qualname": qualname,
+                        "type": "MISSING_RAISES_SECTION",
+                        "message": f"raises {', '.join(raised)} but has no "
+                        f"'Raises' section",
+                    }
+                )
             else:
                 body = raises_section_body(doc)
                 # Normalize so that `raise key_error` (a caught KeyError)
@@ -1217,13 +1436,15 @@ def check_file(filepath: Path) -> list:
                 norm_body = body.lower().replace("_", "")
                 for exc in raised:
                     if exc.lower().replace("_", "") not in norm_body:
-                        violations.append({
-                            "line": node.lineno,
-                            "qualname": qualname,
-                            "type": "MISSING_RAISE_ENTRY",
-                            "message": f"raised exception '{exc}' not mentioned "
-                                       f"in 'Raises' section",
-                        })
+                        violations.append(
+                            {
+                                "line": node.lineno,
+                                "qualname": qualname,
+                                "type": "MISSING_RAISE_ENTRY",
+                                "message": f"raised exception '{exc}' not mentioned "
+                                f"in 'Raises' section",
+                            }
+                        )
 
     def check_section_order(doc, qualname, lineno):
         """Numpydoc sections must appear in the canonical order."""
@@ -1231,13 +1452,15 @@ def check_file(filepath: Path) -> list:
         ranks = [SECTION_ORDER[n] for n in names]
         for i in range(len(ranks) - 1):
             if ranks[i] > ranks[i + 1]:
-                violations.append({
-                    "line": lineno,
-                    "qualname": qualname,
-                    "type": "SECTION_ORDER_WRONG",
-                    "message": f"sections out of order: '{names[i]}' must not "
-                               f"follow '{names[i + 1]}'",
-                })
+                violations.append(
+                    {
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "SECTION_ORDER_WRONG",
+                        "message": f"sections out of order: '{names[i]}' must not "
+                        f"follow '{names[i + 1]}'",
+                    }
+                )
                 return
 
     def check_manim_examples_in_examples(doc, qualname, lineno):
@@ -1250,22 +1473,23 @@ def check_file(filepath: Path) -> list:
         examples = None
         for i in range(len(lines) - 1):
             stripped = lines[i].strip()
-            if (
-                stripped == "Examples"
-                and SECTION_UNDERLINE_RE.match(lines[i + 1].strip() or "")
+            if stripped == "Examples" and SECTION_UNDERLINE_RE.match(
+                lines[i + 1].strip() or ""
             ):
                 examples = i
                 break
         for i, line in enumerate(lines):
             if line.strip().startswith(".. manim::"):
                 if examples is None or i < examples:
-                    violations.append({
-                        "line": lineno,
-                        "qualname": qualname,
-                        "type": "MANIM_BLOCK_OUTSIDE_EXAMPLES",
-                        "message": "'.. manim::' block without a preceding "
-                                   "'Examples' section header",
-                    })
+                    violations.append(
+                        {
+                            "line": lineno,
+                            "qualname": qualname,
+                            "type": "MANIM_BLOCK_OUTSIDE_EXAMPLES",
+                            "message": "'.. manim::' block without a preceding "
+                            "'Examples' section header",
+                        }
+                    )
                     return
 
     def check_class(node, prefix):
@@ -1287,13 +1511,15 @@ def check_file(filepath: Path) -> list:
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:
-            violations.append({
-                "line": node.lineno,
-                "qualname": qualname,
-                "type": "MISSING_MANIM_EXAMPLE",
-                "message": "mobject subclass without a '.. manim::' example "
-                           "in the class docstring",
-            })
+            violations.append(
+                {
+                    "line": node.lineno,
+                    "qualname": qualname,
+                    "type": "MISSING_MANIM_EXAMPLE",
+                    "message": "mobject subclass without a '.. manim::' example "
+                    "in the class docstring",
+                }
+            )
 
     visit_body(tree.body, "", False)
     return violations
@@ -1319,12 +1545,13 @@ def main() -> int:
     """Main validation function."""
     parser = argparse.ArgumentParser(
         description="Validate numpydoc sections and manim examples; "
-                    "optionally (re)write the exemptions file."
+        "optionally (re)write the exemptions file."
     )
     parser.add_argument(
-        "--write-exemptions", action="store_true",
+        "--write-exemptions",
+        action="store_true",
         help="Write ALL current violations to the exemptions file. "
-             "This blesses the current state — review the diff carefully.",
+        "This blesses the current state — review the diff carefully.",
     )
     args = parser.parse_args()
 
@@ -1346,8 +1573,10 @@ def main() -> int:
             json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
         total = sum(len(v) for v in data.values())
-        print(f"Wrote {total} exempted names for {len(data)} files to "
-              f"{EXEMPTIONS_FILE.name}. Review the diff before committing!")
+        print(
+            f"Wrote {total} exempted names for {len(data)} files to "
+            f"{EXEMPTIONS_FILE.name}. Review the diff before committing!"
+        )
         return 0
 
     unexempted = {}
@@ -1363,7 +1592,9 @@ def main() -> int:
         print(f"FAIL  doc-sections  {total} issue(s)\n")
         for rel, violations in sorted(unexempted.items()):
             for v in violations:
-                print(f"  {rel}:{v['line']}  missing-section: {v['qualname']}: {v['message']}")
+                print(
+                    f"  {rel}:{v['line']}  missing-section: {v['qualname']}: {v['message']}"
+                )
         print(f"\nTotal: {total} issue(s)")
         return 1
 

@@ -252,10 +252,10 @@ class Node:
     Parameters
     ----------
     vmobject
-        The mobject displayed as the node content. 
+        The mobject displayed as the node content.
     buff
         Padding added around the content when sizing the surrounding
-        rectangle. 
+        rectangle.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.polygram.Rectangle`.
 
@@ -563,6 +563,7 @@ class Node:
             All descendant nodes (children, grandchildren, ...).
 
         """
+
         def descendants_of_node(node: Node, descendants: list[Node] = []) -> list[Node]:
             """Recursively collect all descendant nodes of a given node.
 

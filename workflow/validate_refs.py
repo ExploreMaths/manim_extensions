@@ -44,21 +44,35 @@ DOCS = ROOT / "docs"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-REF_PATTERN = re.compile(
-    r'(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`'
-)
+REF_PATTERN = re.compile(r"(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`")
 
 INLINE_CODE_PATTERN = re.compile(
-    r'`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)*)`{1,2}'
+    r"`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)*)`{1,2}"
 )
 
-SKIP_NAMES = frozenset({
-    "int", "float", "str", "bool", "list", "dict", "tuple", "set",
-    "numpy.ndarray", "ndarray",
-    "NotImplementedError", "ValueError", "TypeError", "KeyError",
-    "IndexError", "AttributeError", "RuntimeError", "Exception",
-    "object",
-})
+SKIP_NAMES = frozenset(
+    {
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple",
+        "set",
+        "numpy.ndarray",
+        "ndarray",
+        "NotImplementedError",
+        "ValueError",
+        "TypeError",
+        "KeyError",
+        "IndexError",
+        "AttributeError",
+        "RuntimeError",
+        "Exception",
+        "object",
+    }
+)
 
 SKIP_SUFFIXES = (".md", ".rst", ".py", ".toml", ".yml", ".yaml", ".cfg", ".ini", ".txt")
 
@@ -247,9 +261,7 @@ def build_name_maps():
                 attr_map.setdefault(k, v)
 
     ambiguous_classes = {
-        name: sorted(fqns)
-        for name, fqns in class_fqns.items()
-        if len(fqns) > 1
+        name: sorted(fqns) for name, fqns in class_fqns.items() if len(fqns) > 1
     }
 
     return (
@@ -311,9 +323,7 @@ def validate_reference(target: str) -> tuple[bool, str]:
         # Module imported but does not expose ``first``.  This target
         # may be broken; keep track of the error but try shorter module
         # prefixes (handles the case where the "real" module is deeper).
-        last_error = (
-            f"'{first}' not found in module '{mod_candidate}'"
-        )
+        last_error = f"'{first}' not found in module '{mod_candidate}'"
         # Don't break: fall through to try a shorter module prefix.
 
     return False, f"cannot resolve: {last_error}"
@@ -348,26 +358,30 @@ def _find_short_xrefs(filepath: Path) -> list[dict]:
 
                 # Case A: no module path at all (bare name).
                 if "." not in target:
-                    results.append({
-                        "lineno": lineno,
-                        "role": role,
-                        "target": target,
-                        "match_start": m.start(),
-                        "match_end": m.end(),
-                    })
+                    results.append(
+                        {
+                            "lineno": lineno,
+                            "role": role,
+                            "target": target,
+                            "match_start": m.start(),
+                            "match_end": m.end(),
+                        }
+                    )
                     continue
 
                 # Case B: has dots, but the first segment is likely a class
                 #         name (starts with uppercase) rather than a module.
                 #         Module names start lowercase by convention.
                 if head and head[0].isupper() and head not in SKIP_NAMES:
-                    results.append({
-                        "lineno": lineno,
-                        "role": role,
-                        "target": target,
-                        "match_start": m.start(),
-                        "match_end": m.end(),
-                    })
+                    results.append(
+                        {
+                            "lineno": lineno,
+                            "role": role,
+                            "target": target,
+                            "match_start": m.start(),
+                            "match_end": m.end(),
+                        }
+                    )
     return results
 
 
@@ -376,9 +390,7 @@ def _find_short_xrefs(filepath: Path) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 
-def _find_inline_code(
-    filepath: Path, classes_map: dict, attr_map: dict
-) -> list[dict]:
+def _find_inline_code(filepath: Path, classes_map: dict, attr_map: dict) -> list[dict]:
     """Return every back-ticked API-looking token inside ``filepath``."""
     results: list[dict] = []
     with open(filepath, "r", encoding="utf-8", errors="replace") as f:
@@ -395,12 +407,14 @@ def _find_inline_code(
                 #   - contains dots (qualified-looking name), or
                 #   - is a known class / attribute / method in our maps
                 if "." in full or full in classes_map or full in attr_map:
-                    results.append({
-                        "lineno": lineno,
-                        "code": full,
-                        "match_start": m.start(),
-                        "match_end": m.end(),
-                    })
+                    results.append(
+                        {
+                            "lineno": lineno,
+                            "code": full,
+                            "match_start": m.start(),
+                            "match_end": m.end(),
+                        }
+                    )
     return results
 
 
@@ -409,7 +423,7 @@ def _find_inline_code(
 # ---------------------------------------------------------------------------
 
 
-ROLE_ROLE_PREFIX = re.compile(r':(?:class|meth|func|attr|mod|exc|obj|data):$')
+ROLE_ROLE_PREFIX = re.compile(r":(?:class|meth|func|attr|mod|exc|obj|data):$")
 
 
 def _find_ambiguous_classes(
@@ -432,13 +446,15 @@ def _find_ambiguous_classes(
                 # Skip names written as explicit roles (`:class:`Gear``).
                 if ROLE_ROLE_PREFIX.search(line[: m.start()]):
                     continue
-                results.append({
-                    "lineno": lineno,
-                    "code": full,
-                    "targets": ambiguous_classes[full],
-                    "match_start": m.start(),
-                    "match_end": m.end(),
-                })
+                results.append(
+                    {
+                        "lineno": lineno,
+                        "code": full,
+                        "targets": ambiguous_classes[full],
+                        "match_start": m.start(),
+                        "match_end": m.end(),
+                    }
+                )
     return results
 
 
@@ -484,13 +500,15 @@ def main() -> int:
                 if target.startswith("~"):
                     ok, msg = validate_reference(target)
                     if not ok:
-                        broken_refs.append({
-                            "file": rel,
-                            "lineno": lineno,
-                            "role": m.group(1),
-                            "target": target,
-                            "error": msg,
-                        })
+                        broken_refs.append(
+                            {
+                                "file": rel,
+                                "lineno": lineno,
+                                "role": m.group(1),
+                                "target": target,
+                                "error": msg,
+                            }
+                        )
 
         # --- short xrefs ---
         for item in _find_short_xrefs(filepath):
@@ -519,16 +537,19 @@ def main() -> int:
     if total_issues:
         print(f"FAIL  cross-refs  {total_issues} issue(s)\n")
         for item in broken_refs:
-            print(f"  {item['file']}:{item['lineno']}  cannot-resolve: {item['target']} -- {item['error']}")
+            print(
+                f"  {item['file']}:{item['lineno']}  cannot-resolve: {item['target']} -- {item['error']}"
+            )
         for item in short_xrefs:
-            print(f"  {item['file']}:{item['lineno']}  short-xref: {item['role']}`{item['target']}`")
+            print(
+                f"  {item['file']}:{item['lineno']}  short-xref: {item['role']}`{item['target']}`"
+            )
         for item in inline_code:
             print(f"  {item['file']}:{item['lineno']}  inline-code: `{item['code']}`")
         for item in ambiguous:
             print(
                 f"  {item['file']}:{item['lineno']}  ambiguous-class: "
-                f"`{item['code']}` -> "
-                + ", ".join(item["targets"])
+                f"`{item['code']}` -> " + ", ".join(item["targets"])
             )
         print(f"\nTotal: {total_issues} issue(s)")
         print("Run `python workflow/fix_refs.py` to auto-fix what it can.")

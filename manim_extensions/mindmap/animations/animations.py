@@ -745,7 +745,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
     root
         The root node.
     layout_type
-        Layout type. 
+        Layout type.
     layout_config
         Layout parameters. ().
     node_style
@@ -836,7 +836,7 @@ class RemoveNode(LayoutAnimation):
     nodes
         The node or nodes to remove, along with their subtrees.
     layout_type
-        Layout type. 
+        Layout type.
     layout_config
         Layout parameters. ().
     node_style

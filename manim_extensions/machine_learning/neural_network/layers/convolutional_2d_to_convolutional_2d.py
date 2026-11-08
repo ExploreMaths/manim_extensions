@@ -34,7 +34,6 @@ from ... import config
 from manim.typing import Vector3D
 
 
-
 def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) -> tuple:
     """Rotates the shift vectors.
 
@@ -54,8 +53,8 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) ->
     down_shift = np.array([0, -input_layer.cell_width, 0])
     # Make rotation matrix
     rot_mat = rotation_matrix(
-        config.three_d_config.rotation_angle, 
-        config.three_d_config.rotation_axis)
+        config.three_d_config.rotation_angle, config.three_d_config.rotation_axis
+    )
     # Rotate the vectors
     right_shift = np.dot(right_shift, rot_mat.T)
     down_shift = np.dot(down_shift, rot_mat.T)
@@ -146,7 +145,8 @@ class Filters(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         rectangles = []
         rectangle_width = (
             self.output_layer.filter_size[0] * self.output_layer.cell_width
@@ -180,7 +180,7 @@ class Filters(VGroup):
             rectangle.next_to(
                 feature_map.get_corners_dict()["top_left"],
                 submobject_to_align=rectangle.get_corners_dict()["top_left"],
-                buff=0.0
+                buff=0.0,
                 # aligned_edge=feature_map.get_corners_dict()["top_left"].get_center()
             )
             rectangle.set_z_index(5)
@@ -196,7 +196,8 @@ class Filters(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         rectangles = []
 
         rectangle_width = self.output_layer.cell_width
@@ -234,7 +235,7 @@ class Filters(VGroup):
             rectangle.next_to(
                 feature_map.get_corners_dict()["top_left"],
                 submobject_to_align=rectangle.get_corners_dict()["top_left"],
-                buff=0.0
+                buff=0.0,
                 # aligned_edge=feature_map.get_corners_dict()["top_left"].get_center()
             )
             # Shift based on the amount of output layer padding
@@ -255,7 +256,8 @@ class Filters(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
 
         corner_names = ["top_left", "bottom_left", "top_right", "bottom_right"]
 
@@ -264,7 +266,8 @@ class Filters(VGroup):
 
             Returns
             -------
-                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+            """
             first_input_rectangle = self.input_rectangles[0]
             last_input_rectangle = self.input_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -288,7 +291,8 @@ class Filters(VGroup):
 
             Returns
             -------
-                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+            """
             first_output_rectangle = self.output_rectangles[0]
             last_output_rectangle = self.output_rectangles[-1]
             # Get the corner dots for each rectangle
@@ -312,7 +316,8 @@ class Filters(VGroup):
 
             Returns
             -------
-                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+                A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+            """
             # Choose the correct feature map to link to
             input_rectangle = self.input_rectangles[-1]
             output_rectangle = self.output_rectangles[0]
@@ -541,7 +546,9 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         animations.append(FadeOut(filters))
         return Succession(*animations, lag_ratio=1.0)
 
-    def animate_filters_one_at_a_time(self, highlight_active_feature_map: bool = True) -> Succession:
+    def animate_filters_one_at_a_time(
+        self, highlight_active_feature_map: bool = True
+    ) -> Succession:
         """Animates each of the filters one at a time.
 
         Parameters
@@ -644,10 +651,10 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 input_feature_maps = self.input_layer.feature_maps
                 for input_feature_map in input_feature_maps:
                     change_color_animations.append(
-                    ApplyMethod(
-                        input_feature_map.set_color, original_feature_map_color
+                        ApplyMethod(
+                            input_feature_map.set_color, original_feature_map_color
+                        )
                     )
-                )
                 # Combine the animations
                 animations.append(
                     AnimationGroup(*change_color_animations, lag_ratio=0.0)

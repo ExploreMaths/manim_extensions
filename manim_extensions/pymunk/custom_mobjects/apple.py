@@ -6,6 +6,7 @@
 
 from manim import VMobject, np
 
+
 class Apple(VMobject):
     """An apple-shaped Mobject built from Bezier curves.
 

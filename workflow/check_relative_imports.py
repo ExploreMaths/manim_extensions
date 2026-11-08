@@ -134,57 +134,61 @@ def analyse_file(filepath: Path):
             if target_parts is None:
                 continue
             if not module_exists(target_parts):
-                issues.append({
-                    "kind": "missing-target",
-                    "lineno": node.lineno,
-                    "original": f"from {node.module} import ...",
-                    "detail": f"resolved target {'.'.join(target_parts)} not found",
-                })
+                issues.append(
+                    {
+                        "kind": "missing-target",
+                        "lineno": node.lineno,
+                        "original": f"from {node.module} import ...",
+                        "detail": f"resolved target {'.'.join(target_parts)} not found",
+                    }
+                )
                 continue
             level, remaining = to_relative(pkg_parts, target_parts)
             names = [("*" if a.name == "*" else a.name) for a in node.names]
-            issues.append({
-                "kind": "import-from",
-                "lineno": node.lineno,
-                "end_lineno": getattr(node, "end_lineno", node.lineno),
-                "col_offset": node.col_offset,
-                "module": node.module,
-                "alias": alias,
-                "level": level,
-                "remaining": remaining,
-                "names": names,
-                "original": f"from {node.module} import {', '.join(names)}",
-                "replacement": format_relative_import(
-                    level, remaining, node.names
-                ),
-            })
+            issues.append(
+                {
+                    "kind": "import-from",
+                    "lineno": node.lineno,
+                    "end_lineno": getattr(node, "end_lineno", node.lineno),
+                    "col_offset": node.col_offset,
+                    "module": node.module,
+                    "alias": alias,
+                    "level": level,
+                    "remaining": remaining,
+                    "names": names,
+                    "original": f"from {node.module} import {', '.join(names)}",
+                    "replacement": format_relative_import(level, remaining, node.names),
+                }
+            )
         elif isinstance(node, ast.Import):
             for alias_node in node.names:
                 target_parts, alias = resolve_target(alias_node.name, filepath)
                 if target_parts is None:
                     continue
                 if not module_exists(target_parts):
-                    issues.append({
-                        "kind": "missing-target",
-                        "lineno": node.lineno,
-                        "original": f"import {alias_node.name}",
-                        "detail": f"resolved target {'.'.join(target_parts)} not found",
-                    })
+                    issues.append(
+                        {
+                            "kind": "missing-target",
+                            "lineno": node.lineno,
+                            "original": f"import {alias_node.name}",
+                            "detail": f"resolved target {'.'.join(target_parts)} not found",
+                        }
+                    )
                     continue
                 imported_parts = tuple(alias_node.name.split("."))
                 bound_name = alias_node.asname or imported_parts[0]
-                is_alias_root = (
-                    alias is not None and imported_parts == (alias,)
-                )
+                is_alias_root = alias is not None and imported_parts == (alias,)
                 if alias_node.asname is None and not is_alias_root:
                     # `import a.b.c` binds the top-level name `a`; the
                     # relative equivalent needs manual judgement.
-                    issues.append({
-                        "kind": "plain-import",
-                        "lineno": node.lineno,
-                        "original": f"import {alias_node.name}",
-                        "detail": "plain import without alias needs manual conversion",
-                    })
+                    issues.append(
+                        {
+                            "kind": "plain-import",
+                            "lineno": node.lineno,
+                            "original": f"import {alias_node.name}",
+                            "detail": "plain import without alias needs manual conversion",
+                        }
+                    )
                     continue
                 level, remaining = to_relative(pkg_parts, target_parts)
                 dots = "." * level
@@ -193,9 +197,7 @@ def analyse_file(filepath: Path):
                     # import x.y.z as name -> from <dots>[.y] import z [as name]
                     if remaining and remaining != leaf:
                         mod_part, leaf_part = remaining.rsplit(".", 1)
-                        replacement = (
-                            f"from {dots}{mod_part} import {leaf_part}"
-                        )
+                        replacement = f"from {dots}{mod_part} import {leaf_part}"
                         if alias_node.asname != leaf_part:
                             replacement += f" as {alias_node.asname}"
                     else:
@@ -204,16 +206,20 @@ def analyse_file(filepath: Path):
                             replacement += f" as {alias_node.asname}"
                 else:
                     # import <alias_root> -> from <dots> import <leaf> as <alias>
-                    replacement = f"from {dots}{remaining} import {leaf} as {bound_name}"
-                issues.append({
-                    "kind": "plain-import-fixable",
-                    "lineno": node.lineno,
-                    "end_lineno": getattr(node, "end_lineno", node.lineno),
-                    "col_offset": node.col_offset,
-                    "original": f"import {alias_node.name}"
-                                + (f" as {alias_node.asname}" if alias_node.asname else ""),
-                    "replacement": replacement,
-                })
+                    replacement = (
+                        f"from {dots}{remaining} import {leaf} as {bound_name}"
+                    )
+                issues.append(
+                    {
+                        "kind": "plain-import-fixable",
+                        "lineno": node.lineno,
+                        "end_lineno": getattr(node, "end_lineno", node.lineno),
+                        "col_offset": node.col_offset,
+                        "original": f"import {alias_node.name}"
+                        + (f" as {alias_node.asname}" if alias_node.asname else ""),
+                        "replacement": replacement,
+                    }
+                )
     issues.sort(key=lambda i: i["lineno"])
     return issues
 
@@ -228,11 +234,11 @@ def fix_file(filepath: Path, issues, dry_run=False):
             continue
         start = issue["lineno"] - 1
         end = issue.get("end_lineno", issue["lineno"]) - 1
-        block = "\n".join(lines[start:end + 1])
+        block = "\n".join(lines[start : end + 1])
         indent = block[: len(block) - len(block.lstrip(" "))]
         new_block = indent + issue["replacement"]
         if not dry_run:
-            lines[start:end + 1] = [new_block]
+            lines[start : end + 1] = [new_block]
         messages.append(
             f"  L{issue['lineno']}: {issue['original'].strip()}\n"
             f"      -> {issue['replacement'].strip()}"
@@ -249,11 +255,13 @@ def main():
         description="Check that all in-package imports use relative imports."
     )
     parser.add_argument(
-        "--fix", action="store_true",
+        "--fix",
+        action="store_true",
         help="Auto-fix convertible imports to relative imports",
     )
     parser.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="With --fix, show changes without writing files",
     )
     args = parser.parse_args()
@@ -263,9 +271,7 @@ def main():
         print(f"ERROR: {PACKAGE_NAME}/ package directory not found.")
         return 1
 
-    targets = sorted(
-        p for p in root.rglob("*.py") if "__pycache__" not in p.parts
-    )
+    targets = sorted(p for p in root.rglob("*.py") if "__pycache__" not in p.parts)
 
     files_with_issues = 0
     fixable = 0

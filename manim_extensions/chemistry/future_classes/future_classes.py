@@ -7,7 +7,6 @@ This module contains experimental classes that may be implemented in the future.
 
 """
 
-
 from functools import wraps
 
 from manim import (
@@ -52,9 +51,9 @@ class Hole(VMobject):
     Parameters
     ----------
     radius
-        Radius of the hole circle. 
+        Radius of the hole circle.
     color
-        Color of the hole circle. 
+        Color of the hole circle.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -83,9 +82,9 @@ class Electron(VMobject):
     Parameters
     ----------
     radius
-        Radius of the electron circle. 
+        Radius of the electron circle.
     color
-        Color of the electron circle. 
+        Color of the electron circle.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -114,23 +113,23 @@ class Element(VGroup):
     Parameters
     ----------
     element
-        Symbol of the chemical element. 
+        Symbol of the chemical element.
     radius
-        Radius of the element group. 
+        Radius of the element group.
     color
-        Fill color of the central atom. 
+        Fill color of the central atom.
     label_color
-        Color of the element symbol label. 
+        Color of the element symbol label.
     n_electrons
-        Number of electrons around the atom. 
+        Number of electrons around the atom.
     n_holes
-        Number of holes around the atom. 
+        Number of holes around the atom.
     add_electrons
-        Whether to add electrons to the element. 
+        Whether to add electrons to the element.
     add_holes
-        Whether to add holes to the element. 
+        Whether to add holes to the element.
     subelectron_holes
-        Whether to add holes at the positions of the electrons. 
+        Whether to add holes at the positions of the electrons.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -206,7 +205,8 @@ class Element(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result.
+        """
         if self.add_electrons and self.n_electrons > 0:
             return VGroup(*[Electron() for i in range(self.n_electrons)])
 
@@ -217,7 +217,8 @@ class Element(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result.
+        """
         if self.add_holes and self.n_holes > 0:
             return VGroup(*[Hole() for i in range(self.n_holes)])
 
@@ -228,7 +229,8 @@ class Element(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         particles = VGroup()
         if self.electrons:
             particles.add(*self.electrons.submobjects)
@@ -258,7 +260,8 @@ class Element(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result, or ``None`` if there is no result.
+        """
         if self.subelectron_holes:
             # patched: electrons can be disabled, which used to raise here.
             if self.electrons is None:
@@ -282,11 +285,11 @@ class ElementFrame(VGroup):
     Parameters
     ----------
     element_symbol
-        Symbol of the chemical element. 
+        Symbol of the chemical element.
     element_name
-        Name of the chemical element. 
+        Name of the chemical element.
     frame_colors
-        Colors used for the frame gradient. 
+        Colors used for the frame gradient.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -331,7 +334,7 @@ class NPNTransistor(VGroup):
     Parameters
     ----------
     regions_opacity
-        Opacity of the transistor regions. 
+        Opacity of the transistor regions.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -392,13 +395,13 @@ class NPNTransistor(VGroup):
         particle_type
             Mobject class of the particles to create.
         n_copies
-            Number of copies to arrange horizontally. 
+            Number of copies to arrange horizontally.
         vertical_boundary
             Vertical boundary points of the arrangement.
-            
+
         horizontal_boundary
             Horizontal boundary points of the arrangement.
-            
+
 
         Returns
         -------
@@ -417,12 +420,12 @@ class BatterySchema(VGroup):
     Parameters
     ----------
     mob
-        The mobject the battery schema is attached to. 
+        The mobject the battery schema is attached to.
     schema_type
         Type of the schema, either ``"horizontal"`` or ``"corner"``.
-        
+
     inverted_terminals
-        Whether to invert the positive and negative terminals. 
+        Whether to invert the positive and negative terminals.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -441,7 +444,11 @@ class BatterySchema(VGroup):
 
     # TODO: This is not working as intended, rebuild this.
     def __init__(
-        self, mob: Mobject = Square(), schema_type: str = "horizontal", inverted_terminals: bool = False, **kwargs
+        self,
+        mob: Mobject = Square(),
+        schema_type: str = "horizontal",
+        inverted_terminals: bool = False,
+        **kwargs,
     ):
         """Initialize battery schema attached to a mobject with given layout type."""
         super().__init__(**kwargs)
@@ -473,7 +480,8 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         if self.schema_type != "horizontal":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -526,7 +534,8 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         if self.schema_type != "corner":
             pass
         schema_start, schema_end = self.get_start_finish_positions()
@@ -605,9 +614,9 @@ class MOSFETTransistor(VGroup):
     Parameters
     ----------
     show_holes
-        Whether to show holes in the transistor. 
+        Whether to show holes in the transistor.
     show_battery
-        Whether to show the battery terminals. 
+        Whether to show the battery terminals.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -665,7 +674,7 @@ class MOSFETTransistor(VGroup):
         ----------
         side
             Direction of the n-region relative to the main board.
-            
+
 
         Returns
         -------
@@ -686,7 +695,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         if not self.show_holes:
             return VGroup()
         holes = VGroup(*[Hole().scale(0.5) for i in range(4)])
@@ -705,7 +715,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         negative_terminal = (
             Line(0.25 * UP, 0.25 * DOWN)
             .next_to(self.main_board, UP, buff=1.25)
@@ -724,7 +735,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         negative_elbow = BatterySide(self.negative_terminal, self.left_n_side)
         positive_elbow = BatterySide(self.positive_terminal, self.right_n_side)
 
@@ -735,7 +747,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         if not self.show_battery:
             return VGroup()
 
@@ -809,7 +822,7 @@ def arrange_in_1D_boundary(mobs: VGroup, boundary: list = [LEFT, RIGHT]):
     mobs
         Mobjects to distribute along the line.
     boundary
-        Boundary points of the line. 
+        Boundary points of the line.
     """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)
@@ -826,7 +839,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
     mobs
         Mobject or :class:`~manim.mobject.types.vectorized_mobject.VGroup` of mobjects to duplicate.
     boundary
-        Boundary points of the line. 
+        Boundary points of the line.
 
     Returns
     -------
@@ -840,19 +853,21 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
     return group
 
 
-def add_over_rectangular_surface(mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5) -> VGroup:
+def add_over_rectangular_surface(
+    mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5
+) -> VGroup:
     """Randomly distribute 'amount' copies of a mobject over a rectangular area.
 
     Parameters
     ----------
     mobtype
-        Mobject to copy and distribute. 
+        Mobject to copy and distribute.
     amount
-        Number of copies to distribute. 
+        Number of copies to distribute.
     height
-        Half height of the rectangular area. 
+        Half height of the rectangular area.
     width
-        Half width of the rectangular area. 
+        Half width of the rectangular area.
 
     Returns
     -------
@@ -894,7 +909,9 @@ def get_element_by_data(element: dict) -> Element:
     )
 
 
-def randomly_distributed_in_2D(mobs: VGroup, left: int = 1, right: int = 1, down: int = 1, up: int = 1) -> VGroup:
+def randomly_distributed_in_2D(
+    mobs: VGroup, left: int = 1, right: int = 1, down: int = 1, up: int = 1
+) -> VGroup:
     """Randomly shift mobjects within the specified 2D bounding rectangle.
 
     Parameters
@@ -902,13 +919,13 @@ def randomly_distributed_in_2D(mobs: VGroup, left: int = 1, right: int = 1, down
     mobs
         Mobjects to shift.
     left
-        Left bound of the horizontal shift. 
+        Left bound of the horizontal shift.
     right
-        Right bound of the horizontal shift. 
+        Right bound of the horizontal shift.
     down
-        Lower bound of the vertical shift. 
+        Lower bound of the vertical shift.
     up
-        Upper bound of the vertical shift. 
+        Upper bound of the vertical shift.
 
     Returns
     -------
@@ -925,7 +942,10 @@ def randomly_distributed_in_2D(mobs: VGroup, left: int = 1, right: int = 1, down
 
 
 def arrange_copies_in_rectangle(
-    mobs: Mobject, n_copies: int = 2, vertical_boundary: list = [UP, DOWN], horizontal_boundary: list = [LEFT, RIGHT]
+    mobs: Mobject,
+    n_copies: int = 2,
+    vertical_boundary: list = [UP, DOWN],
+    horizontal_boundary: list = [LEFT, RIGHT],
 ) -> VGroup:
     """Create n_copies of mobs and arrange them in a rectangular grid pattern.
 
@@ -934,11 +954,11 @@ def arrange_copies_in_rectangle(
     mobs
         Mobjects to copy and arrange.
     n_copies
-        Number of copies to arrange. 
+        Number of copies to arrange.
     vertical_boundary
-        Vertical boundary points of the arrangement. 
+        Vertical boundary points of the arrangement.
     horizontal_boundary
-        Horizontal boundary points of the arrangement. 
+        Horizontal boundary points of the arrangement.
 
     Returns
     -------
@@ -987,6 +1007,7 @@ def zero(function: Callable) -> Callable[..., float]:
     -------
         The computed result.
     """
+
     @wraps(function)
     def wrapper(t: VectorND | None, *args, **kwargs):
         if 0 <= t <= 1:
@@ -1007,7 +1028,7 @@ def inverse_smooth(t: float, inflection: float = 10.0) -> float:
         Input value of the easing function.
     inflection
         Inflection parameter passed to :func:`~manim.utils.rate_functions.smooth`.
-        
+
 
     Returns
     -------
@@ -1027,7 +1048,7 @@ def inverse_linear(t: float, inflection: float = 10.0) -> float:
         Input value of the easing function.
     inflection
         Unused, kept for signature compatibility with the other inverse
-        easing functions. 
+        easing functions.
 
     Returns
     -------
@@ -1046,7 +1067,7 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
     concats
         Number of copies to concatenate.
     buff
-        Buffer between the concatenated mobjects. 
+        Buffer between the concatenated mobjects.
 
     Returns
     -------

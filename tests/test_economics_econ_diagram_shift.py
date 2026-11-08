@@ -37,7 +37,9 @@ def test_shift_curve_animation(diagram):
 
 
 def test_clear_arrows_returns_fade_out(diagram):
-    diagram.get_shift_animation("demand", lambda q: 9 - q, run_time=0.2, show_arrows=True)
+    diagram.get_shift_animation(
+        "demand", lambda q: 9 - q, run_time=0.2, show_arrows=True
+    )
 
     animation = diagram.clear_arrows()
 

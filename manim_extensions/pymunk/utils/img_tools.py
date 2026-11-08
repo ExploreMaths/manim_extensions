@@ -16,7 +16,11 @@ from manim.typing import PixelArray, Point3D
 
 
 def get_normalized_convex_polygons(
-    pixel_array: PixelArray, base_px_width: int = 512.0, target_cell_size: int = 4, img_manim_w: float = 8, img_manim_h: float = 14.22
+    pixel_array: PixelArray,
+    base_px_width: int = 512.0,
+    target_cell_size: int = 4,
+    img_manim_w: float = 8,
+    img_manim_h: float = 14.22,
 ) -> list[list[list[float]]]:
     """Extract normalized convex polygons from a pixel array.
 
@@ -148,7 +152,9 @@ def get_normalized_convex_polygons(
     return manim_polygons
 
 
-def map_polygons_to_manim(polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float) -> list:
+def map_polygons_to_manim(
+    polygons: list, img_px_w: int, img_px_h: int, img_manim_w: float, img_manim_h: float
+) -> list:
     """Map pixel-coordinate polygons into Manim coordinates.
 
     Performs the coordinate transform from image pixel space into Manim's

@@ -7,7 +7,6 @@ This module provides 3D bond classes for rendering chemical bonds in three dimen
 
 """
 
-
 from manim import (
     Circle,
     IN,
@@ -43,17 +42,17 @@ class ThreeDCylinder(OpenGLSurface):
     Parameters
     ----------
     radius
-        Radius of the cylinder. 
+        Radius of the cylinder.
     height
-        Height of the cylinder. 
+        Height of the cylinder.
     direction
-        Direction the cylinder is aligned to. 
+        Direction the cylinder is aligned to.
     v_range
-        Range of the v parameter of the surface. 
+        Range of the v parameter of the surface.
     show_ends
-        Whether to show the end caps of the cylinder. 
+        Whether to show the end caps of the cylinder.
     resolution
-        Resolution of the surface. 
+        Resolution of the surface.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
     """
@@ -191,13 +190,13 @@ class ThreeDLine(ThreeDCylinder):
     Parameters
     ----------
     start
-        Starting point of the line. 
+        Starting point of the line.
     end
-        Ending point of the line. 
+        Ending point of the line.
     thickness
-        Thickness (radius) of the line. 
+        Thickness (radius) of the line.
     color
-        Color of the line. 
+        Color of the line.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
     """
@@ -216,9 +215,7 @@ class ThreeDLine(ThreeDCylinder):
         if color is not None:
             self.set_color(color)
 
-    def set_start_and_end_attrs(
-        self, start: Point3D, end: Point3D, **kwargs
-    ):
+    def set_start_and_end_attrs(self, start: Point3D, end: Point3D, **kwargs):
         """Sets the start and end points of the line.
 
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
@@ -430,7 +427,14 @@ class ThreeDBond(OpenGLGroup):
     def __repr__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __init__(self, from_atom: ThreeDAtom, to_atom: ThreeDAtom, bond_type: int, *mobjects, **kwargs):
+    def __init__(
+        self,
+        from_atom: ThreeDAtom,
+        to_atom: ThreeDAtom,
+        bond_type: int,
+        *mobjects,
+        **kwargs,
+    ):
         """Initialize a 3D chemical bond between two atoms with the given bond order (1/2/3)."""
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -527,7 +531,9 @@ class ThreeDBond(OpenGLGroup):
 
         return bond
 
-    def get_perpendicular_unit_vector(self, point_a: Point3D, point_b: Point3D) -> Vector3D:
+    def get_perpendicular_unit_vector(
+        self, point_a: Point3D, point_b: Point3D
+    ) -> Vector3D:
         """Return a unit vector perpendicular to the bond direction in the xy plane.
 
         Parameters

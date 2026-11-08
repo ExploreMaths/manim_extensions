@@ -607,7 +607,9 @@ class TestMeshTransform:
         verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])
         mesh = Mesh(verts, None)
         mesh.scale_mesh(2.0)
-        assert np.array_equal(mesh.vertices, np.array([[0.0, 0.0, 0.0], [2.0, 0.0, 0.0], [0.0, 2.0, 0.0]]))
+        assert np.array_equal(
+            mesh.vertices, np.array([[0.0, 0.0, 0.0], [2.0, 0.0, 0.0], [0.0, 2.0, 0.0]])
+        )
 
     def test_scale_mesh_about_point(self):
         verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])
@@ -712,21 +714,27 @@ class TestMeshSnapToGrid:
     def test_snap_to_grid_basic(self):
         verts = np.array([[0.999, 0.0, 0.0], [1.001, 0.0, 0.0], [0.0, 0.0, 0.0]])
         mesh = Mesh(verts, None)
-        result = mesh.snap_to_grid(grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01))
+        result = mesh.snap_to_grid(
+            grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01)
+        )
         assert result[0][0] == pytest.approx(1.0, abs=1e-6)
         assert result[1][0] == pytest.approx(1.0, abs=1e-6)
 
     def test_snap_to_grid_no_snap(self):
         verts = np.array([[0.5, 0.0, 0.0], [1.6, 0.0, 0.0]])
         mesh = Mesh(verts, None)
-        result = mesh.snap_to_grid(grid_sizes=(1.0, 1.0, 1.0), threshold=(0.05, 0.05, 0.05))
+        result = mesh.snap_to_grid(
+            grid_sizes=(1.0, 1.0, 1.0), threshold=(0.05, 0.05, 0.05)
+        )
         assert result[0][0] == pytest.approx(0.5, abs=1e-6)
         assert result[1][0] == pytest.approx(1.6, abs=1e-6)
 
     def test_snap_to_grid_update_verts(self):
         verts = np.array([[0.999, 0.0, 0.0], [1.001, 0.0, 0.0]])
         mesh = Mesh(verts, None)
-        mesh.snap_to_grid(grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01), update_verts=True)
+        mesh.snap_to_grid(
+            grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01), update_verts=True
+        )
         assert mesh.vertices[0][0] == pytest.approx(1.0, abs=1e-6)
 
     def test_snap_to_grid_invalid_dim(self):
@@ -757,7 +765,9 @@ class TestMeshSnapToGrid:
         verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0]])
         mesh = Mesh(verts, None)
         with pytest.raises(InvalidRequestException):
-            mesh.snap_to_grid(grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01), steps=-1)
+            mesh.snap_to_grid(
+                grid_sizes=(1.0, 1.0, 1.0), threshold=(0.01, 0.01, 0.01), steps=-1
+            )
 
 
 class TestMeshDangling:
@@ -773,7 +783,9 @@ class TestMeshDangling:
         assert mesh.dangling_vert_check() is False
 
     def test_dangling_vert_check_some_dangling(self):
-        verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [5.0, 5.0, 5.0]])
+        verts = np.array(
+            [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [5.0, 5.0, 5.0]]
+        )
         faces = [np.array([0, 1, 2])]
         mesh = Mesh(verts, faces)
         assert mesh.dangling_vert_check() is True
@@ -785,14 +797,18 @@ class TestMeshDangling:
         assert mesh.dangling_face_check() is True
 
     def test_dangling_face_check_all_used(self):
-        verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [0.5, 0.5, 1.0]])
+        verts = np.array(
+            [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [0.5, 0.5, 1.0]]
+        )
         faces = [np.array([0, 1, 2]), np.array([0, 1, 3])]
         parts = [np.array([0]), np.array([1])]
         mesh = Mesh(verts, faces, parts)
         assert mesh.dangling_face_check() is False
 
     def test_dangling_face_check_some_dangling(self):
-        verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [0.5, 0.5, 1.0]])
+        verts = np.array(
+            [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0], [0.5, 0.5, 1.0]]
+        )
         faces = [np.array([0, 1, 2]), np.array([0, 1, 3])]
         parts = [np.array([0])]
         mesh = Mesh(verts, faces, parts)
@@ -808,8 +824,16 @@ class TestMeshSplit:
         assert len(result) == 1
 
     def test_split_mesh_into_objects_two(self):
-        verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.5, 1.0, 0.0],
-                           [2.0, 0.0, 0.0], [3.0, 0.0, 0.0], [2.5, 1.0, 0.0]])
+        verts = np.array(
+            [
+                [0.0, 0.0, 0.0],
+                [1.0, 0.0, 0.0],
+                [0.5, 1.0, 0.0],
+                [2.0, 0.0, 0.0],
+                [3.0, 0.0, 0.0],
+                [2.5, 1.0, 0.0],
+            ]
+        )
         faces = [np.array([0, 1, 2]), np.array([3, 4, 5])]
         mesh = Mesh(verts, faces)
         result = mesh.split_mesh_into_objects()
@@ -824,7 +848,9 @@ class TestMeshSplit:
 
 class TestMeshRemoveDuplicates:
     def test_remove_duplicates(self):
-        verts = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.5, 1.0, 0.0]])
+        verts = np.array(
+            [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.5, 1.0, 0.0]]
+        )
         faces = [np.array([0, 1, 3]), np.array([0, 1, 3])]
         mesh = Mesh(verts, faces)
         mesh.remove_duplicates()
@@ -842,7 +868,9 @@ class TestMeshApplyFlip:
     def test_flip_3d_about_point(self):
         verts = np.array([[1.0, 2.0, 3.0]])
         mesh = Mesh(verts, None)
-        mesh.apply_flip(np.array([1.0, 0.0, 0.0]), about_point=np.array([0.0, 0.0, 1.0]))
+        mesh.apply_flip(
+            np.array([1.0, 0.0, 0.0]), about_point=np.array([0.0, 0.0, 1.0])
+        )
         assert mesh.vertices[0] == pytest.approx([1.0, -2.0, -1.0])
 
     def test_flip_2d_across_in_plane_axis(self):

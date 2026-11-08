@@ -14,6 +14,8 @@ from .atom import MAtomObject
 
 from typing import Literal
 from manim.typing import Point3D, Vector3D
+
+
 class BaseMBondObject(VGroup):
     """Abstract base class for 2D chemical bond mobjects between two atoms.
 
@@ -24,15 +26,15 @@ class BaseMBondObject(VGroup):
     to_atom
         Atom at the end of the bond.
     type
-        Bond type: 1 for single, 2 for double, 3 for triple. 
+        Bond type: 1 for single, 2 for double, 3 for triple.
     subtype
         Representation of the bonded atoms; see
         :meth:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject.define_subtype`
-        for how it maps to the rendered line style. 
+        for how it maps to the rendered line style.
     color
-        Color of the bond. 
+        Color of the bond.
     index
-        Index of the bond in the molecule. 
+        Index of the bond in the molecule.
     **kwargs
         Additional keyword arguments forwarded to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -59,6 +61,7 @@ class BaseMBondObject(VGroup):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
+
     def __str__(self):
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
@@ -188,7 +191,9 @@ class BaseMBondObject(VGroup):
 
         return
 
-    def add_bond_index_by_atom_to_list(self, atom: MAtomObject, list: list[int]) -> list[int]:
+    def add_bond_index_by_atom_to_list(
+        self, atom: MAtomObject, list: list[int]
+    ) -> list[int]:
         """Append this bond's index to the given list if the atom is in the bond.
 
         Parameters
@@ -209,7 +214,9 @@ class BaseMBondObject(VGroup):
 
         return list
 
-    def get_perpendicular_unit_vector(self, point_a: Point3D, point_b: Point3D) -> Vector3D:
+    def get_perpendicular_unit_vector(
+        self, point_a: Point3D, point_b: Point3D
+    ) -> Vector3D:
         """Return a unit vector perpendicular to the bond direction, in the xy plane.
 
         Parameters
@@ -309,12 +316,14 @@ class SimpleBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
+
     def no_subtype(self) -> Line:
         """Return a full-length line connecting both atom centers.
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.line.Line` instance representing the result."""
+            A :class:`~manim.mobject.geometry.line.Line` instance representing the result.
+        """
         return Line(self.from_atom.coords, self.to_atom.coords)
 
     def shorter_subtype(self) -> Line:
@@ -322,7 +331,8 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.line.Line` instance representing the result."""
+            A :class:`~manim.mobject.geometry.line.Line` instance representing the result.
+        """
         return Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
 
     def shorter_from_subtype(self, direction: str) -> Line:
@@ -358,7 +368,8 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.line.Line` instance representing the result."""
+            A :class:`~manim.mobject.geometry.line.Line` instance representing the result.
+        """
         return Line(self.from_atom.coords, self.from_atom.coords)
 
     def create_line(self) -> Line | VMobject:
@@ -393,11 +404,11 @@ class DoubleBond(BaseMBondObject):
     to_atom
         The atom the bond ends at.
     side
-        Side of the double bond line. 
+        Side of the double bond line.
     distance
-        Distance between the two lines of the bond. 
+        Distance between the two lines of the bond.
     double_bond_scale
-        Scale applied to the secondary line of the bond. 
+        Scale applied to the secondary line of the bond.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject`.
 
@@ -421,7 +432,13 @@ class DoubleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom: MAtomObject, to_atom: MAtomObject, side: int = 0, distance: float = 0.15, double_bond_scale: float = 0.7, **kwargs
+        self,
+        from_atom: MAtomObject,
+        to_atom: MAtomObject,
+        side: int = 0,
+        distance: float = 0.15,
+        double_bond_scale: float = 0.7,
+        **kwargs,
     ):
         """Initialize a double bond with side offset, line distance and scale parameters."""
         self.side = side
@@ -434,7 +451,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -453,7 +471,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -469,7 +488,9 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_from_subtype(self, direction: str, from_surroundings: bool, to_surroundings: bool) -> VGroup:
+    def shorter_from_subtype(
+        self, direction: str, from_surroundings: bool, to_surroundings: bool
+    ) -> VGroup:
         """Return a double bond shortened at the from-atom end, with surroundings-aware layout.
 
         Parameters
@@ -510,7 +531,9 @@ class DoubleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line)
 
-    def shorter_to_subtype(self, direction: str, from_surroundings: bool, to_surroundings: bool) -> VGroup:
+    def shorter_to_subtype(
+        self, direction: str, from_surroundings: bool, to_surroundings: bool
+    ) -> VGroup:
         """Return a double bond shortened at the to-atom end, with surroundings-aware layout.
 
         Parameters
@@ -641,11 +664,11 @@ class TripleBond(BaseMBondObject):
     to_atom
         The atom the bond ends at.
     side
-        Side of the triple bond lines. 
+        Side of the triple bond lines.
     distance
-        Distance between the lines of the bond. 
+        Distance between the lines of the bond.
     triple_bond_scale
-        Scale applied to the secondary lines of the bond. 
+        Scale applied to the secondary lines of the bond.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.bond.BaseMBondObject`.
 
@@ -669,7 +692,13 @@ class TripleBond(BaseMBondObject):
     """
 
     def __init__(
-        self, from_atom: MAtomObject, to_atom: MAtomObject, side: int = 0, distance: float = 0.3, triple_bond_scale: float = 0.8, **kwargs
+        self,
+        from_atom: MAtomObject,
+        to_atom: MAtomObject,
+        side: int = 0,
+        distance: float = 0.3,
+        triple_bond_scale: float = 0.8,
+        **kwargs,
     ):
         """Initialize a triple bond with line distance and scale parameters."""
         self.distance = distance
@@ -681,7 +710,8 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -699,7 +729,8 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         unit_vector = (
             self.get_perpendicular_unit_vector(
                 self.from_atom.coords, self.to_atom.coords
@@ -849,12 +880,14 @@ class PlainCramBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
+
     def no_subtype(self) -> Polygram:
         """Return a full triangular filled polygon representing a plain cram bond.
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result."""
+            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
@@ -873,7 +906,8 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result."""
+            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         pivot_line = (
@@ -892,7 +926,8 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result."""
+            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         pivot_line = (
@@ -911,7 +946,8 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result."""
+            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         pivot_line = (
@@ -929,7 +965,8 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result."""
+            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         pivot_line = (
@@ -1003,6 +1040,7 @@ class DashedCramBond(BaseMBondObject):
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
     """
+
     def add_dashed_cram_bond(self, base_line: Mobject, direction: str) -> VGroup:
         """Build a dashed cram bond from progressively shorter perpendicular lines along the direction.
 

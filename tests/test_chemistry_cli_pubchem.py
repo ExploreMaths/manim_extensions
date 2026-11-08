@@ -26,9 +26,7 @@ def stub_api(monkeypatch):
 
 
 def test_cid_branch_writes_a_file(stub_api, tmp_path):
-    PUBMEDCALLBACK(
-        "sdf", ("123",), None, (), (), False, str(tmp_path)
-    )
+    PUBMEDCALLBACK("sdf", ("123",), None, (), (), False, str(tmp_path))
 
     assert (tmp_path / "123.sdf").read_text() == "stub-molecule-data"
 
@@ -46,9 +44,7 @@ def test_smiles_branch(stub_api, tmp_path):
 
 
 def test_inchi_branch_sanitises_the_file_name(stub_api, tmp_path):
-    PUBMEDCALLBACK(
-        "asnt", (), None, (), ("InChI=1S/C3H6O",), False, str(tmp_path)
-    )
+    PUBMEDCALLBACK("asnt", (), None, (), ("InChI=1S/C3H6O",), False, str(tmp_path))
 
     files = list(tmp_path.iterdir())
     assert len(files) == 1

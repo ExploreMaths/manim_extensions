@@ -14,6 +14,8 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 
 
 from typing import Callable
+
+
 class VectorLayer(VGroupNeuralNetworkLayer):
     """Shows a vector.
 
@@ -58,7 +60,12 @@ class VectorLayer(VGroupNeuralNetworkLayer):
                self.play(nn.make_forward_pass_animation())
     """
 
-    def __init__(self, num_values: int, value_func: Callable = lambda: random.uniform(0, 1), **kwargs):
+    def __init__(
+        self,
+        num_values: int,
+        value_func: Callable = lambda: random.uniform(0, 1),
+        **kwargs,
+    ):
         """Initialize the vector layer with the number of values and a value generator function."""
         super().__init__(**kwargs)
         self.num_values = num_values
@@ -91,13 +98,16 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A :class:`~manim.mobject.text.text_mobject.Text` instance representing the result."""
+            A :class:`~manim.mobject.text.text_mobject.Text` instance representing the result.
+        """
         vector_label = Text(f"[{self.value_func():.2f}]")
         vector_label.scale(0.3)
 
         return vector_label
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Return an empty animation group; the vector layer has no forward pass effect.
 
         Parameters

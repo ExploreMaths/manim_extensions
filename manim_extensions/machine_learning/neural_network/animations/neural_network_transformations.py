@@ -5,6 +5,7 @@
 """
 Transformations for manipulating a neural network object.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -14,6 +15,7 @@ from ..layers.util import get_connective_layer
 
 if TYPE_CHECKING:
     from ..neural_network import NeuralNetwork
+
 
 class RemoveLayer(AnimationGroup):
     """
@@ -60,7 +62,9 @@ class RemoveLayer(AnimationGroup):
                RemoveLayer(nn.all_layers[2], nn)
     """
 
-    def __init__(self, layer: Mobject, neural_network: NeuralNetwork, layer_spacing: float = 0.2):
+    def __init__(
+        self, layer: Mobject, neural_network: NeuralNetwork, layer_spacing: float = 0.2
+    ):
         """Initialize the remove-layer animation with the target layer and network."""
         self.layer = layer
         self.neural_network = neural_network
@@ -115,7 +119,8 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         remove_layer_animation = self.make_remove_layer_animation()
         remove_connective_animation = self.make_remove_connective_layers_animation()
         # Remove animations
@@ -130,7 +135,8 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.fading.FadeOut` instance representing the result."""
+            A :class:`~manim.animation.fading.FadeOut` instance representing the result.
+        """
         # Remove the layer
         self.neural_network.all_layers.remove(self.layer)
         # Fade out the removed layer
@@ -142,7 +148,8 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         # Fade out the removed connective layers
         fade_out_before_connective = AnimationGroup()
         if not self.before_connective is None:
@@ -164,7 +171,8 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         # Animate the movements
         move_before_layers = AnimationGroup()
         shift_right_amount = None
@@ -205,7 +213,8 @@ class RemoveLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.updaters.update.UpdateFromFunc` instance representing the result."""
+            A :class:`~manim.animation.updaters.update.UpdateFromFunc` instance representing the result.
+        """
         self.anim_count = 0
 
         def create_new_connective(neural_network: NeuralNetwork):
@@ -224,7 +233,9 @@ class RemoveLayer(AnimationGroup):
                     before_layer_index = (
                         neural_network.all_layers.index_of(self.before_layer) + 1
                     )
-                    neural_network.all_layers.insert(before_layer_index, new_connective_class)
+                    neural_network.all_layers.insert(
+                        before_layer_index, new_connective_class
+                    )
                     print(neural_network)
 
         update_func_anim = UpdateFromFunc(self.neural_network, create_new_connective)
@@ -347,7 +358,8 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         (
             before_connective_width,
             after_connective_width,
@@ -389,7 +401,8 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.creation.Create` instance representing the result."""
+            A :class:`~manim.animation.creation.Create` instance representing the result.
+        """
         return Create(self.layer)
 
     def make_create_connective_layers_animation(

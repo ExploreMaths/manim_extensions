@@ -6,7 +6,6 @@
 
 from __future__ import annotations
 
-
 __all__ = [
     "StandardLayout",
 ]
@@ -23,9 +22,9 @@ class TreeNode:
     Parameters
     ----------
     height
-        Height of the tree node. 
+        Height of the tree node.
     width
-        Width of the tree node. 
+        Width of the tree node.
 
     Examples
     --------
@@ -173,11 +172,11 @@ class StandardLayout(Layout):
     root
         Root node of the tree to lay out.
     direction
-        Primary layout direction. 
+        Primary layout direction.
     node_spacing
-        Spacing between sibling nodes. 
+        Spacing between sibling nodes.
     level_spacing
-        Spacing between tree levels. 
+        Spacing between tree levels.
 
     Examples
     --------

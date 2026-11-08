@@ -295,7 +295,9 @@ class RubiksCube(VMobject):
                         tile, magnitude * np.array(offset[i][1 + j * 2])
                     )
 
-    def get_face(self, face: Literal["F", "B", "U", "D", "L", "R"], flatten: bool = True) -> np.ndarray:
+    def get_face(
+        self, face: Literal["F", "B", "U", "D", "L", "R"], flatten: bool = True
+    ) -> np.ndarray:
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters

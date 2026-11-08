@@ -6,7 +6,17 @@
 
 from __future__ import annotations
 
-from manim import AnimationGroup, Create, Dot, ManimColor, Mobject, RED, Succession, Wait, override_animation
+from manim import (
+    AnimationGroup,
+    Create,
+    Dot,
+    ManimColor,
+    Mobject,
+    RED,
+    Succession,
+    Wait,
+    override_animation,
+)
 from .feed_forward import FeedForwardLayer
 from .paired_query import PairedQueryLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -38,7 +48,7 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         output_layer: Mobject,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.02,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the paired-query-to-feed-forward connective layer with dot animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
@@ -52,7 +62,7 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -71,7 +81,9 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters

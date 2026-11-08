@@ -13,7 +13,6 @@ import subprocess
 
 from manim import Tex, TexTemplate
 
-
 _FONT_CANDIDATES = (
     "Al Bayan",  # macOS
     "Geeza Pro",  # macOS

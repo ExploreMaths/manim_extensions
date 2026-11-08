@@ -86,7 +86,13 @@ class PairedQueryLayer(NeuralNetworkLayer):
     """
 
     def __init__(
-        self, positive: VGroup, negative: VGroup, stroke_width: float = 5, font_size: float = 18, spacing: float = 0.5, **kwargs
+        self,
+        positive: VGroup,
+        negative: VGroup,
+        stroke_width: float = 5,
+        font_size: float = 18,
+        spacing: float = 0.5,
+        **kwargs,
     ):
         """Initialize the paired query layer with positive/negative examples and labeled borders."""
         super().__init__(**kwargs)
@@ -105,7 +111,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -125,7 +131,9 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_paths(cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs) -> Self:
+    def from_paths(
+        cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs
+    ) -> Self:
         """Creates a query using the paths.
 
         Parameters
@@ -188,7 +196,9 @@ class PairedQueryLayer(NeuralNetworkLayer):
     def _create_override(self):
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Forward pass for query.
 
         Parameters

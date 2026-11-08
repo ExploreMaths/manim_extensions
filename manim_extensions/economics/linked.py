@@ -7,7 +7,6 @@ This module provides linked IS-LM and AD-AS diagrams for policy analysis.
 
 """
 
-
 from manim import AnimationGroup, RIGHT, VGroup
 from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
@@ -73,14 +72,16 @@ class LinkedISLM_ADAS(VGroup):
         self._show_arrows = show_arrows
 
         is_lm_kw = dict(
-            x_length=4, y_length=3,
+            x_length=4,
+            y_length=3,
             numbered_eq=numbered_eq,
         )
         if is_lm_kwargs:
             is_lm_kw.update(is_lm_kwargs)
 
         ad_as_kw = dict(
-            x_length=4, y_length=3,
+            x_length=4,
+            y_length=3,
             numbered_eq=numbered_eq,
         )
         if ad_as_kwargs:
@@ -96,7 +97,9 @@ class LinkedISLM_ADAS(VGroup):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: float, m: float | None = None, v: float | None = None) -> list:
+    def monetary_expansion(
+        self, ms: float, m: float | None = None, v: float | None = None
+    ) -> list:
         """Monetary expansion: LM shifts right, AD shifts right.
 
         Parameters
@@ -105,9 +108,9 @@ class LinkedISLM_ADAS(VGroup):
             New money supply for IS-LM (shifts LM).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``ms * 4``. 
+            ``ms * 4``.
         v
-            New velocity for AD-AS. If ``None``, unchanged. 
+            New velocity for AD-AS. If ``None``, unchanged.
 
         Returns
         -------
@@ -115,12 +118,16 @@ class LinkedISLM_ADAS(VGroup):
         """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
-        return [AnimationGroup(
-            self.is_lm.shift_lm(ms=ms, show_arrows=arrows),
-            self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
-        )]
+        return [
+            AnimationGroup(
+                self.is_lm.shift_lm(ms=ms, show_arrows=arrows),
+                self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
+            )
+        ]
 
-    def monetary_contraction(self, ms: float, m: float | None = None, v: float | None = None) -> list:
+    def monetary_contraction(
+        self, ms: float, m: float | None = None, v: float | None = None
+    ) -> list:
         """Monetary contraction: LM shifts left, AD shifts left.
 
         Parameters
@@ -129,9 +136,9 @@ class LinkedISLM_ADAS(VGroup):
             New money supply for IS-LM (shifts LM).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``ms * 4``. 
+            ``ms * 4``.
         v
-            New velocity for AD-AS. If ``None``, unchanged. 
+            New velocity for AD-AS. If ``None``, unchanged.
 
         Returns
         -------
@@ -139,14 +146,18 @@ class LinkedISLM_ADAS(VGroup):
         """
         ad_m = m if m is not None else ms * 4
         arrows = self._show_arrows
-        return [AnimationGroup(
-            self.is_lm.shift_lm(ms=ms, show_arrows=arrows),
-            self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
-        )]
+        return [
+            AnimationGroup(
+                self.is_lm.shift_lm(ms=ms, show_arrows=arrows),
+                self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
+            )
+        ]
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: float, m: float | None = None, v: float | None = None) -> list:
+    def fiscal_expansion(
+        self, a: float, m: float | None = None, v: float | None = None
+    ) -> list:
         """Fiscal expansion: IS shifts right, AD shifts right.
 
         Parameters
@@ -155,9 +166,9 @@ class LinkedISLM_ADAS(VGroup):
             New autonomous spending for IS-LM (shifts IS).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``a * 2``. 
+            ``a * 2``.
         v
-            New velocity for AD-AS. If ``None``, unchanged. 
+            New velocity for AD-AS. If ``None``, unchanged.
 
         Returns
         -------
@@ -165,12 +176,16 @@ class LinkedISLM_ADAS(VGroup):
         """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
-        return [AnimationGroup(
-            self.is_lm.shift_is(a=a, show_arrows=arrows),
-            self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
-        )]
+        return [
+            AnimationGroup(
+                self.is_lm.shift_is(a=a, show_arrows=arrows),
+                self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
+            )
+        ]
 
-    def fiscal_contraction(self, a: float, m: float | None = None, v: float | None = None) -> list:
+    def fiscal_contraction(
+        self, a: float, m: float | None = None, v: float | None = None
+    ) -> list:
         """Fiscal contraction: IS shifts left, AD shifts left.
 
         Parameters
@@ -179,9 +194,9 @@ class LinkedISLM_ADAS(VGroup):
             New autonomous spending for IS-LM (shifts IS).
         m
             New money supply for AD-AS (shifts AD). If ``None``, uses
-            ``a * 2``. 
+            ``a * 2``.
         v
-            New velocity for AD-AS. If ``None``, unchanged. 
+            New velocity for AD-AS. If ``None``, unchanged.
 
         Returns
         -------
@@ -189,14 +204,18 @@ class LinkedISLM_ADAS(VGroup):
         """
         ad_m = m if m is not None else a * 2
         arrows = self._show_arrows
-        return [AnimationGroup(
-            self.is_lm.shift_is(a=a, show_arrows=arrows),
-            self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
-        )]
+        return [
+            AnimationGroup(
+                self.is_lm.shift_is(a=a, show_arrows=arrows),
+                self.ad_as.shift_ad(m=ad_m, v=v, show_arrows=arrows),
+            )
+        ]
 
     # ---- Supply shocks (AD-AS only, IS-LM unaffected) ----
 
-    def adverse_supply_shock(self, sras_price: float, long_run: bool = True) -> list[AnimationGroup]:
+    def adverse_supply_shock(
+        self, sras_price: float, long_run: bool = True
+    ) -> list[AnimationGroup]:
         """Adverse supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters
@@ -214,7 +233,9 @@ class LinkedISLM_ADAS(VGroup):
             sras_price, long_run=long_run, show_arrows=self._show_arrows
         )
 
-    def positive_supply_shock(self, sras_price: float, long_run: bool = True) -> list[AnimationGroup]:
+    def positive_supply_shock(
+        self, sras_price: float, long_run: bool = True
+    ) -> list[AnimationGroup]:
         """Positive supply shock in AD-AS (IS-LM unchanged in short run).
 
         Parameters

@@ -15,7 +15,6 @@ Layout characteristics:
 
 from __future__ import annotations
 
-
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
 from typing import List, Callable, Self
@@ -444,7 +443,7 @@ class CatalogLayout(Layout):
     def _adjust_left_top_value(self):
         """
         Step 3: adjust positions (handle subtree width/height offsets).
-        
+
         - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings
         - Pre-order: for non-root nodes with children, adjust vertical offset
         - Post-order: for the root, shift all children horizontally to centre the whole subtree.

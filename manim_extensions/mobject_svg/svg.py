@@ -213,9 +213,7 @@ def _temporary_svg_path() -> Path:
         return Path(handle.name)
 
 
-def _create_svg_from_vmobject_internal(
-    vmobject: VMobject, ctx: cairo.Context
-):
+def _create_svg_from_vmobject_internal(vmobject: VMobject, ctx: cairo.Context):
     """Draw one mobject into the current cairo context.
 
     Parameters

@@ -7,7 +7,6 @@ This module provides the WeightedLine class for displaying weighted edges in net
 
 """
 
-
 from manim import DEFAULT_FONT_SIZE, ITALIC, Line, SMALL_BUFF, Text, WHITE, config
 from typing import Any
 

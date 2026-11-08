@@ -81,7 +81,9 @@ def iter_registry() -> list[tuple[str, str]]:
 def fetch_upstream(slug: str, ref: str) -> dict:
     """Fetch release/compare/latest-commit info for one repository."""
     info: dict = {
-        "release": None, "compare": None, "latest_commit": None,
+        "release": None,
+        "compare": None,
+        "latest_commit": None,
         "synced_commit": None,
     }
 
@@ -99,12 +101,17 @@ def fetch_upstream(slug: str, ref: str) -> dict:
         if isinstance(synced, dict) and synced.get("sha"):
             info["synced_commit"] = {
                 "sha": synced["sha"],
-                "date": (synced.get("commit", {}).get("committer", {}).get("date", ""))[:10],
+                "date": (synced.get("commit", {}).get("committer", {}).get("date", ""))[
+                    :10
+                ],
             }
 
         compare = github_get(f"/repos/{slug}/compare/{ref}...HEAD")
         if isinstance(compare, dict) and compare.get("status") in (
-            "identical", "ahead", "behind", "diverged",
+            "identical",
+            "ahead",
+            "behind",
+            "diverged",
         ):
             commits = compare.get("commits") or []
             newest = commits[-1] if commits else compare.get("merge_base_commit")
@@ -114,7 +121,10 @@ def fetch_upstream(slug: str, ref: str) -> dict:
                 "ahead_by": compare.get("ahead_by", 0),
                 "newest_sha": (newest or {}).get("sha", ""),
                 "newest_date": (
-                    (newest or {}).get("commit", {}).get("committer", {}).get("date", "")
+                    (newest or {})
+                    .get("commit", {})
+                    .get("committer", {})
+                    .get("date", "")
                 )[:10],
             }
 
@@ -133,19 +143,25 @@ def fetch_upstream(slug: str, ref: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--old-cache", type=Path, default=None,
+        "--old-cache",
+        type=Path,
+        default=None,
         help="previous cache JSON used for change detection and merging",
     )
     parser.add_argument(
-        "--summary", type=Path, default=None,
+        "--summary",
+        type=Path,
+        default=None,
         help="write a one-line commit-message summary to this path",
     )
     parser.add_argument(
-        "--freeze", type=str, default=None,
+        "--freeze",
+        type=str,
+        default=None,
         help="also copy the refreshed cache to "
-             "_vendored_status_cache.<release>.json (used when tagging a "
-             "release, so stable docs show the vendoring state as of that "
-             "release instead of following main's latest refresh)",
+        "_vendored_status_cache.<release>.json (used when tagging a "
+        "release, so stable docs show the vendoring state as of that "
+        "release instead of following main's latest refresh)",
     )
     args = parser.parse_args()
 
@@ -153,9 +169,9 @@ def main() -> int:
     old: dict = {}
     if old_cache_path.exists():
         try:
-            old = json.loads(
-                old_cache_path.read_text(encoding="utf-8")
-            ).get("repos", {})
+            old = json.loads(old_cache_path.read_text(encoding="utf-8")).get(
+                "repos", {}
+            )
         except (ValueError, OSError):
             old = {}
 
@@ -165,8 +181,12 @@ def main() -> int:
     failures: list[str] = []
     for slug, ref in iter_registry():
         info = fetch_upstream(slug, ref)
-        if (info["release"] or info["compare"] or info["latest_commit"]
-                or info.get("synced_commit")):
+        if (
+            info["release"]
+            or info["compare"]
+            or info["latest_commit"]
+            or info.get("synced_commit")
+        ):
             if repos.get(slug) != info:
                 changed.append(slug)
             else:

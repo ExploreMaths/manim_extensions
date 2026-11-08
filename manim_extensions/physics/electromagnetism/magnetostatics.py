@@ -75,7 +75,7 @@ class MagneticField(ArrowVectorField):
         All wires contributing to the total field.
     kwargs
         Additional parameters to be passed to :class:`~manim.mobject.vector_field.ArrowVectorField`.
-    
+
     Examples
     --------
     .. manim:: MagneticFieldExample

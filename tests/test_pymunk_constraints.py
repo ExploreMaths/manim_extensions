@@ -68,7 +68,9 @@ def test_constraint_updater_runs(cls, physics):
 
 def test_damped_rotary_spring_parameters(physics):
     scene, body_a, body_b = physics
-    spring = VDampedRotarySpring(body_a, body_b, rest_angle=1.0, stiffness=5.0, damping=0.5)
+    spring = VDampedRotarySpring(
+        body_a, body_b, rest_angle=1.0, stiffness=5.0, damping=0.5
+    )
     spring.install(scene.vspace.space)
 
     assert spring.rest_angle == 1.0

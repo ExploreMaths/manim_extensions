@@ -175,7 +175,9 @@ class VRotaryLimitJoint(VConstraint):
         display_angle = rel_angle if abs(rel_angle) > 0.005 else 0.005
 
         buff = 0.3
-        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # Absolute angle of the connecting line
+        line_angle = np.arctan2(
+            unit_vec[1], unit_vec[0]
+        )  # Absolute angle of the connecting line
 
         if self.arc_indicator_a:
             new_arc_a = self.arc_indicator_class(

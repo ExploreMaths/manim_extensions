@@ -8,6 +8,7 @@
 from manim import BLACK, BLUE, ORANGE, WHITE, ManimColor
 from dataclasses import dataclass
 
+
 @dataclass
 class ColorScheme:
     """Color palette used by the machine learning visualizations.
@@ -26,11 +27,13 @@ class ColorScheme:
         Scene background color; applied to ``manim.config`` when the
         scheme is activated.
     """
+
     primary_color: ManimColor
     secondary_color: ManimColor
     active_color: ManimColor
     text_color: ManimColor
     background_color: ManimColor
+
 
 #: Colour scheme with light elements on a black background.
 dark_mode = ColorScheme(
@@ -38,7 +41,7 @@ dark_mode = ColorScheme(
     secondary_color=WHITE,
     active_color=ORANGE,
     text_color=WHITE,
-    background_color=BLACK
+    background_color=BLACK,
 )
 
 #: Colour scheme with dark elements on a white background.
@@ -47,5 +50,5 @@ light_mode = ColorScheme(
     secondary_color=BLACK,
     active_color=ORANGE,
     text_color=BLACK,
-    background_color=WHITE
+    background_color=WHITE,
 )

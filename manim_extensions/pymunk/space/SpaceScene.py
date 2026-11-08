@@ -7,6 +7,7 @@
 This module provides the SpaceScene class for creating physics simulations with Pymunk.
 
 """
+
 from __future__ import annotations
 
 from manim import Mobject, ZoomedScene
@@ -32,7 +33,7 @@ class SpaceScene(ZoomedScene):
     ----------
     gravity
         The gravity acceleration vector :math:`(g_x, g_y)` applied to the physical
-        space. 
+        space.
     **kwargs
         Forwarded to the parent :class:`~manim.scene.zoomed_scene.ZoomedScene`.
 
@@ -389,7 +390,9 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.sleep()
 
-    def draw_debug_img(self, option: int | None = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)):
+    def draw_debug_img(
+        self, option: int | None = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)
+    ):
         """Pops up a Matplotlib window to render a debug view of the physical space.
         This is an essential diagnostic tool used to verify if collision shapes,
         constraints, and pivots are correctly aligned when they are not behaving
@@ -615,7 +618,7 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The world-space point where the force is applied.
-            
+
         """
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
@@ -660,7 +663,7 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The world-space point where the impulse is applied.
-            
+
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)
@@ -677,7 +680,7 @@ class SpaceScene(ZoomedScene):
         mob
             The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. 
+            The local point (x, y, z) to convert.
         """
         self.vspace.local_to_world(mob, point)
 
@@ -692,7 +695,7 @@ class SpaceScene(ZoomedScene):
         mob
             The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. 
+            The world point (x, y, z) to convert.
         """
         self.vspace.world_to_local(mob, point)
 
@@ -748,7 +751,7 @@ class SpaceScene(ZoomedScene):
     # get velocity info
     def get_velocity_at_local_point(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
-    )-> tuple[float, float, float]:
+    ) -> tuple[float, float, float]:
         """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in local body coordinates.
 
@@ -758,7 +761,7 @@ class SpaceScene(ZoomedScene):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
-            
+
 
         Returns
         -------
@@ -768,7 +771,7 @@ class SpaceScene(ZoomedScene):
 
     def velocity_at_world_point(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
-    )-> tuple[float, float, float]:
+    ) -> tuple[float, float, float]:
         """Return the velocity of a point on the :class:`~manim.mobject.mobject.Mobject`'s body expressed
         in world (scene) coordinates.
 
@@ -778,7 +781,7 @@ class SpaceScene(ZoomedScene):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-            
+
 
         Returns
         -------
@@ -798,7 +801,7 @@ class SpaceScene(ZoomedScene):
         mob
             The :class:`~manim.mobject.mobject.Mobject` whose shapes will be queried.
         point
-            The world point (x, y, z) to test against. 
+            The world point (x, y, z) to test against.
 
         Returns
         -------

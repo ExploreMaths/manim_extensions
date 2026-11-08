@@ -1,9 +1,14 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from manim_extensions.automata import ManimAutomaton, ManimNondeterministicFiniteAutomaton
+from manim_extensions.automata import (
+    ManimAutomaton,
+    ManimNondeterministicFiniteAutomaton,
+)
 from manim_extensions.automata.mobjects.automata_dependencies.state import State
-from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
+from manim_extensions.automata.mobjects.automata_dependencies.transition import (
+    Transition,
+)
 from manim_extensions.automata.mobjects.manim_state import ManimState
 from manim_extensions.automata.mobjects.manim_transition import ManimTransition
 

@@ -6,7 +6,6 @@
 
 from __future__ import annotations
 
-
 __all__ = [
     "TimeLineLayout",
 ]
@@ -173,11 +172,11 @@ class TimeLineLayout(Layout):
     root
         Root node of the tree to lay out.
     sides
-        Directions for the two sides of the timeline. 
+        Directions for the two sides of the timeline.
     level_spacing
-        Spacing between tree levels. 
+        Spacing between tree levels.
     node_spacing
-        Spacing between sibling nodes. 
+        Spacing between sibling nodes.
 
     Examples
     --------

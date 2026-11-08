@@ -24,8 +24,8 @@ if TYPE_CHECKING:
 class VSlideJoint(VConstraint):
     """Initializes a Slide Joint constraint between two Mobjects.
 
-    A Slide Joint holds two bodies between a minimum and maximum distance. 
-    It acts like a solid link when the distance reaches the limits, but 
+    A Slide Joint holds two bodies between a minimum and maximum distance.
+    It acts like a solid link when the distance reaches the limits, but
     allows free movement within the specified range.
 
     Parameters
@@ -47,7 +47,7 @@ class VSlideJoint(VConstraint):
     anchor_b_appearance
         The visual representation (Mobject) of the second anchor point.
     indicator_line_class
-        The Manim class used to draw the connection line (e.g., Line or DashedLine). 
+        The Manim class used to draw the connection line (e.g., Line or DashedLine).
         Pass None to disable the visual indicator.
     indicator_line_config
         Configuration dictionary for the styling of the indicator line.

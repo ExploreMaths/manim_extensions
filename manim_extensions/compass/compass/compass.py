@@ -42,21 +42,21 @@ class Compass(VGroup):
     Parameters
     ----------
     span
-        Span of the compass legs. 
+        Span of the compass legs.
     head_color
-        Color of the compass head. 
+        Color of the compass head.
     niddle_color
-        Color of the compass needle. 
+        Color of the compass needle.
     pen_color
-        Color of the compass pen. 
+        Color of the compass pen.
     stroke_width
-        Stroke width of the compass lines. 
+        Stroke width of the compass lines.
     leg_length
-        Length of the compass legs. 
+        Length of the compass legs.
     leg_width
-        Width of the compass legs. 
+        Width of the compass legs.
     r
-        Radius of the compass head circle. 
+        Radius of the compass head circle.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 

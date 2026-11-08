@@ -24,7 +24,6 @@ if TYPE_CHECKING:
     from pymunk import Body
 
 
-
 class VSpace(Mobject, metaclass=ConvertToOpenGL):
     """Pymunk physical space management is generally not used by users.
     This object has already been created in SpaceScene.
@@ -39,11 +38,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     Parameters
     ----------
     gravity
-        The gravity acceleration vector :math:`(g_x, g_y)`. 
+        The gravity acceleration vector :math:`(g_x, g_y)`.
     sub_step
         The number of sub-steps per frame for physical simulation. Increasing
         this value improves numerical stability and collision accuracy.
-        
+
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.mobject.Mobject`.
 
@@ -582,7 +581,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
-            The local point (x, y, z) to convert. 
+            The local point (x, y, z) to convert.
 
         Returns
         -------
@@ -603,7 +602,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         mob
             The :class:`~manim.mobject.mobject.Mobject` whose body's coordinate system is used.
         point
-            The world point (x, y, z) to convert. 
+            The world point (x, y, z) to convert.
 
         Returns
         -------
@@ -655,11 +654,11 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The :class:`~manim.mobject.mobject.Mobject` whose physical body's velocity logic will be customized.
         callback
             A function with the signature:
-            
+
             .. code-block::
-            
+
                def callback(body: Body, gravity: tuple[float, float], damping: float, dt: float)
-               
+
             If None, the default Pymunk velocity update logic is restored.
         """
         if callback:
@@ -678,7 +677,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The local point :math:`(x, y, z)` at which to compute velocity.
-            
+
 
         Returns
         -------
@@ -700,7 +699,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
             The :class:`~manim.mobject.mobject.Mobject` whose body is queried.
         point
             The world point :math:`(x, y, z)` at which to compute velocity.
-            
+
 
         Returns
         -------
@@ -1146,8 +1145,8 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def get_shapea_shapeb_info(shape_a: pymunk.Shape, shape_b: pymunk.Shape) -> list:
         """Retrieves detailed contact information between two specific physical shapes.
 
-        This method performs a low-level collision query to find the 'contact manifold' 
-        between two shapes. It calculates the collision normal and the set of points 
+        This method performs a low-level collision query to find the 'contact manifold'
+        between two shapes. It calculates the collision normal and the set of points
         where the two shapes are touching or overlapping.
 
         Parameters

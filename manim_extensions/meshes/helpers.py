@@ -160,9 +160,7 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
     return all(e1 in edges2 for e1 in edges1) and all(e2 in edges1 for e2 in edges2)
 
 
-def fix_references(
-    original: VarArray, indices: VectorND | List[int]
-) -> List[int]:
+def fix_references(original: VarArray, indices: VectorND | List[int]) -> List[int]:
     """Remove references to ``indices`` from ``original`` and adjust remaining indices.
 
     Both ``original`` and ``indices`` are mutated in place for performance.

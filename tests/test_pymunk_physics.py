@@ -83,9 +83,13 @@ def test_force_and_impulse_helpers():
     scene.add_dynamic_body(ball)
 
     scene.apply_force_at_local_point(ball, force=(1, 1, 0), point=(0, 0, 0))
-    scene.apply_force_at_world_point(ball, force=(0, 1, 0), point=tuple(ball.get_center()))
+    scene.apply_force_at_world_point(
+        ball, force=(0, 1, 0), point=tuple(ball.get_center())
+    )
     scene.apply_impulse_at_local_point(ball, impulse=(0, 2, 0), point=(0, 0, 0))
-    scene.apply_impulse_at_world_point(ball, impulse=(2, 0, 0), point=tuple(ball.get_center()))
+    scene.apply_impulse_at_world_point(
+        ball, impulse=(2, 0, 0), point=tuple(ball.get_center())
+    )
 
     assert ball.get_center().shape == (3,)
 

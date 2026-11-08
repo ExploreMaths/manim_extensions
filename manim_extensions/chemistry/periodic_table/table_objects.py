@@ -36,23 +36,23 @@ class MElementObject(VGroup):
     Parameters
     ----------
     atomic_number
-        Atomic number of the element. 
+        Atomic number of the element.
     atomic_mass
-        Atomic mass of the element. 
+        Atomic mass of the element.
     element_name
-        Name of the element. 
+        Name of the element.
     element_symbol
-        Symbol of the element. 
+        Symbol of the element.
     coloring
-        Color of the element frame. 
+        Color of the element frame.
     fill_colors
-        Colors used for the frame gradient fill. 
+        Colors used for the frame gradient fill.
     gradient
-        Number of colors in the frame gradient. 
+        Number of colors in the frame gradient.
     opacity
-        Fill opacity of the element frame. 
+        Fill opacity of the element frame.
     text_color
-        Color of the element texts. 
+        Color of the element texts.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -174,7 +174,8 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         frame_rectangle = self.create_frame_base()
         symbol_text = (
             Text(self.element_symbol, color=self.text_color)
@@ -297,7 +298,8 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         positions = self.elements_position_dict()
         base_element = MElementObject()
         mult_array = np.array([base_element.get_width(), -base_element.get_height(), 0])

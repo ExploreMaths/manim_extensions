@@ -12,7 +12,14 @@ import json
 
 import numpy as np
 
-from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath, MoleculeData, ParsedData
+from .base_parser import (
+    AtomsDict,
+    BaseParser,
+    BondsDict,
+    FilePath,
+    MoleculeData,
+    ParsedData,
+)
 
 #: Mapping from atomic number to the element symbol.
 ELEMENTS_BY_ATOMIC_NUMBER = {
@@ -208,7 +215,9 @@ class JSONParser(BaseParser):
         -------
             List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
-        molecules_data_dicts_list: list[dict[str, object]] = list(json.loads(data).values())[0]
+        molecules_data_dicts_list: list[dict[str, object]] = list(
+            json.loads(data).values()
+        )[0]
         molecules_parsed_data: list[MoleculeData] = []
         for molecule_data in molecules_data_dicts_list:
             molecules_parsed_data.append(

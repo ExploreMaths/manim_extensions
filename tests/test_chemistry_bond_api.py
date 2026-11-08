@@ -33,7 +33,12 @@ def test_atom_membership(cls, atoms):
 
     assert bond.atoms_in_bond() == (atom_a, atom_b)
     assert bond.atom_is_in_bond(atom_a) is True
-    assert bond.atom_is_in_bond(MAtomObject(coords=np.array([2.0, 0.0, 0.0]), element="C", index=3)) is False
+    assert (
+        bond.atom_is_in_bond(
+            MAtomObject(coords=np.array([2.0, 0.0, 0.0]), element="C", index=3)
+        )
+        is False
+    )
 
 
 @pytest.mark.parametrize("cls", BOND_CLASSES)

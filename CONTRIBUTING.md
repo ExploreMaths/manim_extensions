@@ -76,7 +76,7 @@ pytest tests/ -v
 ### Formatting and line length
 
 - Follow **PEP 8**. Code is formatted with **Black** (line length **88**), configured under `[tool.black]` in `pyproject.toml`.
-- **Formatting is adopted incrementally, not as a repo-wide sweep.** The tree is not Black-clean today (a large share of it is vendored from upstream projects), so the CI job `black-changed-files` only checks the Python files a push or pull request actually touches. Editing an already-unformatted file does mean formatting it in the same commit — that is intended, and it is how the debt shrinks.
+- **The whole tree is Black-clean and CI enforces it.** The vendored modules were reformatted together with everything else, so `manim_extensions`, `tests`, `scripts`, `workflow` and `docs` are checked as a whole by the `black` job in `validate.yml`. Do not add `# fmt: off` to keep an upstream file byte-identical — a vendored module reformatted here is accepted, and a later upstream merge is resolved by re-running Black on the merged file rather than by preserving its original spacing.
 - **Enable the pre-commit hook once per clone** so Black runs on staged files and the result lands in the same commit, with no follow-up "style" commit:
 
   ```bash

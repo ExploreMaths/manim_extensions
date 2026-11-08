@@ -124,7 +124,7 @@ class VendorStatusRole(SphinxRole):
     def run(self) -> tuple[list[nodes.Node], list[nodes.system_message]]:
         package = self.text.strip().strip("/")
         if package.startswith("reference/"):
-            package = package[len("reference/"):]
+            package = package[len("reference/") :]
         if package.endswith("/index"):
             package = package[: -len("/index")]
 

@@ -11,10 +11,18 @@ from manim_extensions.machine_learning.neural_network.animations.neural_network_
     InsertLayer,
     RemoveLayer,
 )
-from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-from manim_extensions.machine_learning.neural_network.layers.parent_layers import BlankConnective
-from manim_extensions.machine_learning.neural_network.layers.util import get_connective_layer
-from manim_extensions.machine_learning.neural_network.neural_network import NeuralNetwork
+from manim_extensions.machine_learning.neural_network.layers.feed_forward import (
+    FeedForwardLayer,
+)
+from manim_extensions.machine_learning.neural_network.layers.parent_layers import (
+    BlankConnective,
+)
+from manim_extensions.machine_learning.neural_network.layers.util import (
+    get_connective_layer,
+)
+from manim_extensions.machine_learning.neural_network.neural_network import (
+    NeuralNetwork,
+)
 
 
 def build_network():

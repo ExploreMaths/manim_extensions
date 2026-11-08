@@ -39,24 +39,24 @@ class MCBond:
     bond_type
         Type of the bond: 1 for simple, 2 for double, 3 for triple.
     from_atom
-        Atom the bond starts from. 
+        Atom the bond starts from.
     to_atom
-        Atom the bond ends at. 
+        Atom the bond ends at.
     stereo
-        Stereo type of the bond. 
+        Stereo type of the bond.
     molecule_index
-        Index of the bond in the molecule. 
+        Index of the bond in the molecule.
     topology
-        Topology of the bond. 
+        Topology of the bond.
     reacting_center_status
-        Reacting center status of the bond. 
+        Reacting center status of the bond.
     """
 
     def __init__(
         self,
         bond_type: int,
-        from_atom: MCAtom | None=None,
-        to_atom: MCAtom | None=None,
+        from_atom: MCAtom | None = None,
+        to_atom: MCAtom | None = None,
         stereo: int | None = None,
         molecule_index: int | None = None,
         topology: int | None = None,
@@ -102,7 +102,9 @@ class MCBond:
         self.stereo = stereo
 
     @staticmethod
-    def construct_from_bond_dict(bond_index: int, bond_data_dict: Dict, molecule: MCMolecule) -> Self:
+    def construct_from_bond_dict(
+        bond_index: int, bond_data_dict: Dict, molecule: MCMolecule
+    ) -> Self:
         """
         Given a bond data dict from a parser, returns an MCBond.
 

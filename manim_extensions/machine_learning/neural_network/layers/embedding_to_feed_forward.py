@@ -49,7 +49,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         output_layer: Mobject,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.03,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the embedding-to-feed-forward connective layer with dot animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
@@ -62,7 +62,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -81,7 +81,9 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, run_time: float = 1.5, **kwargs
+    ) -> Succession:
         """Makes dots diverge from the given location and move the decoder.
 
         Parameters

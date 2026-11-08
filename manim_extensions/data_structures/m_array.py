@@ -97,7 +97,7 @@ class MArrayElement(VGroup):
         Specifies the direction of placement for :attr:`~manim_extensions.data_structures.m_array.MArrayElement.__mob_square` w.r.t another :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
     **kwargs
         Forwarded to constructor of the parent.
-    
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -126,7 +126,7 @@ class MArrayElement(VGroup):
         Represents the index of the element.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the element.
-    
+
     Examples
     --------
     .. manim:: MArrayElementDocExample
@@ -187,8 +187,16 @@ class MArrayElement(VGroup):
             "side_length": 1,
         }
         self.__mob_value_props: MobProps = {"text": "", "color": WHITE, "weight": BOLD}
-        self.__mob_index_props: MobProps = {"text": "", "color": BLUE_D, "font_size": 32}
-        self.__mob_label_props: MobProps = {"text": "", "color": BLUE_A, "font_size": 38}
+        self.__mob_index_props: MobProps = {
+            "text": "",
+            "color": BLUE_D,
+            "font_size": 32,
+        }
+        self.__mob_label_props: MobProps = {
+            "text": "",
+            "color": BLUE_A,
+            "font_size": 38,
+        }
         self.__scene: Scene = scene
         self.__index_pos: Point3D = index_pos
         self.__index_gap: float = index_gap
@@ -580,7 +588,7 @@ class MArray(VGroup):
     arr_dir
         Specifies the growth direction of the array.
     switch_index_pos
-        If ``True``, displays the element indices on the opposite side of the array growth direction. 
+        If ``True``, displays the element indices on the opposite side of the array growth direction.
     arr_label_pos
         Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     arr_label_gap
@@ -595,7 +603,7 @@ class MArray(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the element index.
     **kwargs
         Forwarded to constructor of the parent.
-    
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -624,7 +632,7 @@ class MArray(VGroup):
         Represents the array.
     __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the array label.
-    
+
     Examples
     --------
     .. manim:: MArrayDocExample
@@ -1597,7 +1605,7 @@ class MArrayPointer(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the pointer label.
     **kwargs
         Forwarded to constructor of the parent.
-    
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -1626,7 +1634,7 @@ class MArrayPointer(VGroup):
         Represents the label of the element.
     __updater_pos : :data:`~typing.Callable`\[[], None]
         The updater function that keeps the pointer intact with the array.
-    
+
     Examples
     --------
     .. manim:: MArrayPointerDocExample
@@ -1674,9 +1682,7 @@ class MArrayPointer(VGroup):
         """
 
         arr_dir_np = self.__dir_map[self.__arr.fetch_arr_dir().value]["np"]
-        arrow_pos_np: Point3D = np.copy(
-            self.__dir_map[self.__pointer_pos.value]["np"]
-        )
+        arrow_pos_np: Point3D = np.copy(self.__dir_map[self.__pointer_pos.value]["np"])
 
         if np.dot(arr_dir_np, arrow_pos_np):
             arrow_pos_np[0], arrow_pos_np[1] = arrow_pos_np[1], arrow_pos_np[0]
@@ -1775,7 +1781,11 @@ class MArrayPointer(VGroup):
         """
 
         self.__mob_arrow_props: MobProps = {"color": GOLD_D}
-        self.__mob_label_props: MobProps = {"text": label, "color": GOLD_A, "font_size": 38}
+        self.__mob_label_props: MobProps = {
+            "text": label,
+            "color": GOLD_A,
+            "font_size": 38,
+        }
         self.__scene: Scene = scene
         self.__arr: MArray = arr
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:
@@ -2073,7 +2083,7 @@ class MArraySlidingWindow(VGroup):
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the window label.
     **kwargs
         Forwarded to constructor of the parent.
-    
+
     Attributes
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
@@ -2100,7 +2110,7 @@ class MArraySlidingWindow(VGroup):
         Represents the label of the sliding window.
     __updater_pos : :data:`~typing.Callable`\[[], None]
         The updater function that keeps the sliding window intact with the array.
-    
+
     Examples
     --------
     .. manim:: MArraySlidingWindowDocExample
@@ -2288,7 +2298,11 @@ class MArraySlidingWindow(VGroup):
         """
 
         self.__mob_window_props: MobProps = {"color": RED_D, "stroke_width": 10}
-        self.__mob_label_props: MobProps = {"text": label, "color": RED_A, "font_size": 38}
+        self.__mob_label_props: MobProps = {
+            "text": label,
+            "color": RED_A,
+            "font_size": 38,
+        }
         self.__scene: Scene = scene
         self.__arr: MArray = arr
         if index >= len(self.__arr.fetch_mob_arr()) or index < 0:

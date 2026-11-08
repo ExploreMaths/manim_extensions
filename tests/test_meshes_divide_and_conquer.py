@@ -13,7 +13,9 @@ from manim_extensions.meshes.delaunay.divide_and_conquer import (
     get_counter_clockwise_angle,
 )
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 POINTS = np.array(
     [

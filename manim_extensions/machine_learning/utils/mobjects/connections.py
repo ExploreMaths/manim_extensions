@@ -4,7 +4,6 @@
 
 """Network connection visualization utilities."""
 
-
 import numpy as np
 from manim import (
     Animation,
@@ -129,21 +128,19 @@ class NetworkConnection(VGroup):
             # figure out how large to make each line
             # Whichever mobject has a critical point the farthest
             # distance in the direction_vector direction we will use that end
-            left_mobject_critical_point = left_mobject.get_critical_point(direction_vector)
-            right_mobject_critical_point = right_mobject.get_critical_point(direction_vector)
+            left_mobject_critical_point = left_mobject.get_critical_point(
+                direction_vector
+            )
+            right_mobject_critical_point = right_mobject.get_critical_point(
+                direction_vector
+            )
             # Take the dot product of each
             # These dot products correspond to the orthogonal projection
             # onto the direction vectors
-            left_dot_product = np.dot(
-                left_mobject_critical_point, 
-                direction_vector
-            )
-            right_dot_product = np.dot(
-                right_mobject_critical_point, 
-                direction_vector
-            )
+            left_dot_product = np.dot(left_mobject_critical_point, direction_vector)
+            right_dot_product = np.dot(right_mobject_critical_point, direction_vector)
             extra_distance = abs(left_dot_product - right_dot_product)
-            # The difference between the dot products 
+            # The difference between the dot products
             if left_dot_product < right_dot_product:
                 right_is_farthest = False
             else:

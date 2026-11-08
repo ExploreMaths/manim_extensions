@@ -218,9 +218,7 @@ class LinearWave(RadialWave):
         """
         return float(
             self.amplitude
-            * np.sin(
-                (2 * PI / self.wavelength) * u - 2 * PI * self.time / self.period
-            )
+            * np.sin((2 * PI / self.wavelength) * u - 2 * PI * self.time / self.period)
         )
 
 

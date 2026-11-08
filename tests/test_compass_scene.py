@@ -24,7 +24,9 @@ def test_setup_places_instruments(scene):
 
 
 def test_draw_arc(scene):
-    arc = scene.draw_arc(niddle_point=np.array([0.0, 0.0, 0.0]), pen_point=RIGHT, run_time=0.1)
+    arc = scene.draw_arc(
+        niddle_point=np.array([0.0, 0.0, 0.0]), pen_point=RIGHT, run_time=0.1
+    )
 
     assert arc is not None
 

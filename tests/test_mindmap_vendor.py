@@ -42,7 +42,10 @@ def test_node_constructor_and_attributes():
 def test_mindmap_variants():
     data = {
         "node": MathTex(r"\text{Root}"),
-        "child": [{"node": MathTex(r"\text{Left}")}, {"node": MathTex(r"\text{Right}")}],
+        "child": [
+            {"node": MathTex(r"\text{Left}")},
+            {"node": MathTex(r"\text{Right}")},
+        ],
     }
 
     mind_map = MindMap(data, direction=RIGHT)

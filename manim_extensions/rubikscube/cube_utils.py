@@ -91,7 +91,9 @@ def get_cubie_colors_from_state(state: str) -> list[list[str]]:
             "A facelet state must contain the same number of colours per face."
         )
     face_size = len(state) // 6
-    return [list(state[index * face_size : (index + 1) * face_size]) for index in range(6)]
+    return [
+        list(state[index * face_size : (index + 1) * face_size]) for index in range(6)
+    ]
 
 
 def get_all_states(cube: RubiksCube) -> str:

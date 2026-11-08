@@ -9,7 +9,6 @@ Mesh structure.
 
 from __future__ import annotations
 
-
 # python imports
 from copy import deepcopy
 
@@ -71,7 +70,7 @@ class Mesh:
         indices. Cannot be set when ``faces`` is ``None``.
     dangling
         If ``True``, check and warn about dangling vertices and faces
-        after initialisation. 
+        after initialisation.
 
     Examples
     --------
@@ -101,8 +100,12 @@ class Mesh:
     def __init__(
         self,
         vertices: Point3D_Array | List[List[float]] | List[tuple[float, ...]],
-        faces: MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None,
-        parts: MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None = None,
+        faces: (
+            MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None
+        ),
+        parts: (
+            MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None
+        ) = None,
         dangling: bool = False,
     ):
         """Initialize mesh with the correct internal structure for all variables."""
@@ -999,9 +1002,7 @@ class Mesh:
         else:
             self._vertices *= float(scaling)
 
-    def stretch_mesh(
-        self, factor: float, dim: int, about_point: Point3D | None = None
-    ):
+    def stretch_mesh(self, factor: float, dim: int, about_point: Point3D | None = None):
         """Stretch all vertices along a single dimension.
 
         Parameters

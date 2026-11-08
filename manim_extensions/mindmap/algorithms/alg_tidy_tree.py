@@ -11,7 +11,6 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 
 from __future__ import annotations
 
-
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
 from typing import List, Self
@@ -289,11 +288,11 @@ class TidyTreeLayout(Layout):
     root
         Root node of the tree to lay out.
     direction
-        Primary layout direction. 
+        Primary layout direction.
     node_spacing
-        Spacing between sibling nodes. 
+        Spacing between sibling nodes.
     level_spacing
-        Spacing between tree levels. 
+        Spacing between tree levels.
 
     Examples
     --------

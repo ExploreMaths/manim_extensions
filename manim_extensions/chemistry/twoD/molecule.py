@@ -12,7 +12,6 @@ from __future__ import annotations
 import logging
 
 
-
 from manim import (
     DOWN,
     GREEN,
@@ -58,19 +57,19 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     bonds_dict
         Dictionary with the bond data of the molecule.
     representation_type
-        Type of atom representation. 
+        Type of atom representation.
     explicit_carbons
-        Whether to explicitly show carbon atoms. 
+        Whether to explicitly show carbon atoms.
     explicit_hydrogens
-        Whether to explicitly show hydrogen atoms. 
+        Whether to explicitly show hydrogen atoms.
     planar
-        Whether the molecule is rendered in 2D. 
+        Whether the molecule is rendered in 2D.
     add_atoms_numbering
-        Whether to add numbering to the atoms. 
+        Whether to add numbering to the atoms.
     add_bonds_numbering
-        Whether to add numbering to the bonds. 
+        Whether to add numbering to the bonds.
     rotate_bonds
-        Bonds to rotate. 
+        Bonds to rotate.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -223,7 +222,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result."""
+            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+        """
         bonds = VGroup()
         bond_index = 0
         for index, bond_list in self.bonds_dict.items():
@@ -829,13 +829,13 @@ class NamedMolecule(VGroup):
         An :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule.MMoleculeObject` or the molecule data to construct one.
     direction
         Direction in which the name is placed relative to the molecule.
-        
+
     buff
-        Distance between the molecule and its name. 
+        Distance between the molecule and its name.
     tex
-        Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
+        Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`.
     font
-        Font of the name text. 
+        Font of the name text.
     args
         Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs
@@ -919,7 +919,14 @@ class NamedMolecule(VGroup):
         self.bonds = self.molecule.bonds
 
     def from_mol_file(
-        name: str, filename: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str,
+        filename: str,
+        direction: str = DOWN,
+        buff: float = 1,
+        tex: bool = False,
+        font: str = "",
+        *args,
+        **kwargs,
     ) -> Self:
         """Create a NamedMolecule from a .mol file and a name string.
 
@@ -931,13 +938,13 @@ class NamedMolecule(VGroup):
             Path to the .mol file.
         direction
             Direction in which the name is placed relative to the molecule.
-            
+
         buff
-            Distance between the molecule and its name. 
+            Distance between the molecule and its name.
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`.
         font
-            Font of the name text. 
+            Font of the name text.
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -960,7 +967,14 @@ class NamedMolecule(VGroup):
         )
 
     def from_mol_string(
-        name: str, mol_str: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str,
+        mol_str: str,
+        direction: str = DOWN,
+        buff: float = 1,
+        tex: bool = False,
+        font: str = "",
+        *args,
+        **kwargs,
     ) -> Self:
         """Create a NamedMolecule from a mol-format string and a name string.
 
@@ -972,13 +986,13 @@ class NamedMolecule(VGroup):
             String with the molecule data in mol format.
         direction
             Direction in which the name is placed relative to the molecule.
-            
+
         buff
-            Distance between the molecule and its name. 
+            Distance between the molecule and its name.
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`.
         font
-            Font of the name text. 
+            Font of the name text.
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -1001,7 +1015,14 @@ class NamedMolecule(VGroup):
         )
 
     def from_sdf_file(
-        name: str, filename: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str,
+        filename: str,
+        direction: str = DOWN,
+        buff: float = 1,
+        tex: bool = False,
+        font: str = "",
+        *args,
+        **kwargs,
     ) -> list[NamedMolecule]:
         """Create a list of NamedMolecules from an .sdf file with a shared base name.
 
@@ -1013,13 +1034,13 @@ class NamedMolecule(VGroup):
             Path to the .sdf file.
         direction
             Direction in which the name is placed relative to the molecule.
-            
+
         buff
-            Distance between the molecule and its name. 
+            Distance between the molecule and its name.
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`.
         font
-            Font of the name text. 
+            Font of the name text.
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.
@@ -1046,7 +1067,14 @@ class NamedMolecule(VGroup):
         return named_molecules
 
     def from_sdf_string(
-        name: str, sdf_str: str, direction: str = DOWN, buff: float = 1, tex: bool = False, font: str = "", *args, **kwargs
+        name: str,
+        sdf_str: str,
+        direction: str = DOWN,
+        buff: float = 1,
+        tex: bool = False,
+        font: str = "",
+        *args,
+        **kwargs,
     ) -> list[NamedMolecule]:
         """Create a list of NamedMolecules from an sdf-format string with a shared base name.
 
@@ -1058,13 +1086,13 @@ class NamedMolecule(VGroup):
             String with the molecule data in sdf format.
         direction
             Direction in which the name is placed relative to the molecule.
-            
+
         buff
-            Distance between the molecule and its name. 
+            Distance between the molecule and its name.
         tex
-            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`. 
+            Whether to render the name with :class:`~manim.mobject.text.tex_mobject.MathTex`.
         font
-            Font of the name text. 
+            Font of the name text.
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.

@@ -7,8 +7,6 @@ This module provides the ThreeDMolecule class for rendering molecules in 3D.
 
 """
 
-
-
 from manim import ORIGIN, RendererType, config
 from typing import Self
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
@@ -32,11 +30,11 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     bonds_dict
         Dictionary with the bond data of the molecule.
     source_csv
-        Path to a csv file with element data. 
+        Path to a csv file with element data.
     add_bonds
-        Whether to add the bonds to the molecule. 
+        Whether to add the bonds to the molecule.
     add_atoms
-        Whether to add the atoms to the molecule. 
+        Whether to add the atoms to the molecule.
     mobjects
         Additional mobjects to add to the group.
     **kwargs

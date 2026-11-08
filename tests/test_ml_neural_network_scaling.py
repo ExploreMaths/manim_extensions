@@ -6,8 +6,12 @@
 import pytest
 from manim import tempconfig
 
-from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-from manim_extensions.machine_learning.neural_network.neural_network import NeuralNetwork
+from manim_extensions.machine_learning.neural_network.layers.feed_forward import (
+    FeedForwardLayer,
+)
+from manim_extensions.machine_learning.neural_network.neural_network import (
+    NeuralNetwork,
+)
 
 
 @pytest.fixture(autouse=True)
@@ -17,7 +21,9 @@ def _config():
 
 
 def _network():
-    return NeuralNetwork([FeedForwardLayer(4), FeedForwardLayer(3), FeedForwardLayer(2)])
+    return NeuralNetwork(
+        [FeedForwardLayer(4), FeedForwardLayer(3), FeedForwardLayer(2)]
+    )
 
 
 def test_scale_keeps_center_and_title():

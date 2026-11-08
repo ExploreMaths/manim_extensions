@@ -20,10 +20,16 @@ from manim_extensions.machine_learning.utils.mobjects.probability import (
 @pytest.fixture()
 def embedding_layer():
     network = NeuralNetwork(
-        [FeedForwardLayer(3), EmbeddingLayer(dist_theme="ellipse"), FeedForwardLayer(3)],
+        [
+            FeedForwardLayer(3),
+            EmbeddingLayer(dist_theme="ellipse"),
+            FeedForwardLayer(3),
+        ],
         layer_spacing=0.25,
     )
-    return [layer for layer in network.all_layers if isinstance(layer, EmbeddingLayer)][0]
+    return [layer for layer in network.all_layers if isinstance(layer, EmbeddingLayer)][
+        0
+    ]
 
 
 def test_forward_pass_animation(embedding_layer):

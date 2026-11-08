@@ -30,6 +30,7 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 from ... import config
 from manim.typing import Point3D
 
+
 class FeedForwardLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network.
 
@@ -108,7 +109,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         rectangle_stroke_width: float = 2.0,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
         activation_function: ActivationFunction | str | None = None,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the feed-forward layer storing node count, colors, and styling parameters."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
@@ -131,7 +132,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Creates the neural network layer.
 
@@ -189,7 +190,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_dropout_forward_pass_animation(self, layer_args: dict, **kwargs) -> Succession:
+    def make_dropout_forward_pass_animation(
+        self, layer_args: dict, **kwargs
+    ) -> Succession:
         """Makes a forward pass animation with dropout.
 
         Parameters
@@ -224,7 +227,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         return succession
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Succession | AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> Succession | AnimationGroup:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 
         Parameters
@@ -318,7 +323,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         """
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):
-            target_center = mobject_or_point.get_center() 
+            target_center = mobject_or_point.get_center()
         else:
             target_center = mobject_or_point
 

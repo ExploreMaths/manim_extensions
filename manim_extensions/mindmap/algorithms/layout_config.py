@@ -103,20 +103,20 @@ class LayoutConfig:
     Parameters
     ----------
     direction
-        Layout direction. 
+        Layout direction.
     node_spacing
-        Spacing between nodes. 
+        Spacing between nodes.
     level_spacing
-        Spacing between layers. 
+        Spacing between layers.
     sides
         Sides used for alternating timeline layouts; a single value means single-sided.
-    
+
     Raises
     ------
     ValueError
         Raised when ``direction`` is not one of UP, DOWN, LEFT,
         RIGHT, or when a side is not one of UP, DOWN.
-    
+
     Examples
     --------
     .. manim:: LayoutConfigExample

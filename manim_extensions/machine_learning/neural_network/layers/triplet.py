@@ -55,7 +55,7 @@ class TripletLayer(NeuralNetworkLayer):
         stroke_width: float = 5,
         font_size: float = 22,
         buff: float = 0.2,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the triplet layer with anchor, positive, and negative labeled images."""
         super().__init__(**kwargs)
@@ -71,7 +71,7 @@ class TripletLayer(NeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Build the triplet assets and add them to the layer.
 
@@ -178,7 +178,9 @@ class TripletLayer(NeuralNetworkLayer):
     def _create_override(self):
         return FadeIn(self.assets)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> AnimationGroup:
         """Forward pass for triplet.
 
         Parameters

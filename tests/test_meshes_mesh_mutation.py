@@ -109,6 +109,8 @@ def test_apply_flip_mirrors_vertices():
 def test_apply_flip_about_point():
     mesh = _mesh()
 
-    mesh.apply_flip(axis=np.array([1.0, 0.0, 0.0]), about_point=np.array([0.0, 2.0, 0.0]))
+    mesh.apply_flip(
+        axis=np.array([1.0, 0.0, 0.0]), about_point=np.array([0.0, 2.0, 0.0])
+    )
 
     assert list(mesh.vertices[2]) == pytest.approx([0.0, 3.0, 0.0])

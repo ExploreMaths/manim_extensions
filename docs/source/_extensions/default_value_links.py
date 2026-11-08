@@ -133,10 +133,7 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
         objects = app.env.domains["py"].data["objects"]
     except (KeyError, AttributeError):
         objects = {}
-    matches = [
-        full for full in objects
-        if full == name or full.endswith("." + name)
-    ]
+    matches = [full for full in objects if full == name or full.endswith("." + name)]
     if len(matches) == 1:
         entry = objects[matches[0]]
         # Return the site-relative docname (no extension), exactly like the
@@ -148,8 +145,7 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
 # A constant-looking token inside a default expression: an ALL-CAPS name
 # (``WHITE``, ``PI``) or a dotted name (``NodeConfig.BOX_TYPE``).
 _TOKEN_RE = re.compile(
-    r"(?:[A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_.]*)"
-    r"|\b[A-Z][A-Z0-9_]{1,}\b"
+    r"(?:[A-Za-z_][A-Za-z0-9_]*\.[A-Za-z_][A-Za-z0-9_.]*)" r"|\b[A-Z][A-Z0-9_]{1,}\b"
 )
 # Defaults that are composite expressions (tuple/list/dict/call): link the
 # constant tokens inside instead of leaving the whole text plain.
@@ -162,7 +158,7 @@ def _link_tokens(node, text: str, app, docdir: str) -> None:
     pos = 0
     for m in _TOKEN_RE.finditer(text):
         if m.start() > pos:
-            parts.append(nodes.Text(text[pos:m.start()]))
+            parts.append(nodes.Text(text[pos : m.start()]))
         name = m.group(0)
         target = _link_for(name, app, docdir)
         if target is None:
@@ -170,8 +166,7 @@ def _link_tokens(node, text: str, app, docdir: str) -> None:
         else:
             page, anchor, kind = target
             rel = posixpath.relpath(f"{page}.html", start=docdir)
-            ref = nodes.reference("", "", internal=True,
-                                  refuri=f"{rel}#{anchor}")
+            ref = nodes.reference("", "", internal=True, refuri=f"{rel}#{anchor}")
             ref += nodes.Text(name)
             parts.append(ref)
         pos = m.end()
@@ -196,8 +191,7 @@ def _process_literals(app, doctree, docname) -> None:
         if target is not None:
             page, anchor, kind = target
             rel = posixpath.relpath(f"{page}.html", start=docdir)
-            ref = nodes.reference("", "", internal=True,
-                                  refuri=f"{rel}#{anchor}")
+            ref = nodes.reference("", "", internal=True, refuri=f"{rel}#{anchor}")
             ref += nodes.Text(text)
             node.replace_self(ref)
             continue
@@ -229,13 +223,14 @@ def _process_color_codes(app, doctree, docname) -> None:
         pos = 0
         for m in _TOKEN_RE.finditer(text):
             if m.start() > pos:
-                parts.append(nodes.Text(text[pos:m.start()]))
+                parts.append(nodes.Text(text[pos : m.start()]))
             name = m.group(0)
             if name in _color_names():
-                rel = posixpath.relpath("constants/colors.html",
-                                        start=docdir)
+                rel = posixpath.relpath("constants/colors.html", start=docdir)
                 ref = nodes.reference(
-                    "", "", internal=True,
+                    "",
+                    "",
+                    internal=True,
                     refuri=f"{rel}#manim.utils.color.manim_colors.{name}",
                 )
                 ref += nodes.Text(name)
@@ -297,10 +292,29 @@ def _process_prose_literals(app, doctree, docname) -> None:
     # ``Parameters`` in prose means the section, not the class.  Never
     # auto-link these.
     GENERIC_PROSE_NAMES = {
-        "Parameters", "OtherParameters", "Returns", "Yields", "Receives",
-        "Raises", "Warns", "Attributes", "Methods", "Examples", "Notes",
-        "References", "SeeAlso", "Condition", "Command", "Check", "Checks",
-        "Warning", "Fields", "Modules", "Arguments", "Args", "KeywordArgs",
+        "Parameters",
+        "OtherParameters",
+        "Returns",
+        "Yields",
+        "Receives",
+        "Raises",
+        "Warns",
+        "Attributes",
+        "Methods",
+        "Examples",
+        "Notes",
+        "References",
+        "SeeAlso",
+        "Condition",
+        "Command",
+        "Check",
+        "Checks",
+        "Warning",
+        "Fields",
+        "Modules",
+        "Arguments",
+        "Args",
+        "KeywordArgs",
     }
     for node in list(doctree.findall(nodes.literal)):
         if any(isinstance(c, nodes.reference) for c in node.children):
@@ -318,7 +332,8 @@ def _process_prose_literals(app, doctree, docname) -> None:
         if text in GENERIC_PROSE_NAMES:
             continue
         candidates = [
-            (full, entry) for full, entry in objects.items()
+            (full, entry)
+            for full, entry in objects.items()
             if (full == text or full.endswith("." + text))
             and full.startswith("manim_extensions")
         ]
@@ -328,7 +343,8 @@ def _process_prose_literals(app, doctree, docname) -> None:
         # member.  Only top-level classes, functions and module-level
         # data participate.
         matches = [
-            (full, entry) for full, entry in candidates
+            (full, entry)
+            for full, entry in candidates
             if entry.objtype not in ("method", "property", "attribute")
         ]
         if len(matches) > 1:
@@ -348,8 +364,7 @@ def _process_prose_literals(app, doctree, docname) -> None:
         full, entry = matches[0]
         docdir = posixpath.dirname(docname) or "."
         rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
-        ref = nodes.reference("", "", internal=True,
-                              refuri=f"{rel}#{entry.node_id}")
+        ref = nodes.reference("", "", internal=True, refuri=f"{rel}#{entry.node_id}")
         ref += nodes.Text(text)
         del node[:]
         node.append(ref)

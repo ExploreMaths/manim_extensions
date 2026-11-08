@@ -15,6 +15,8 @@ from .utils import PubchemAPIManager
 
 
 from typing import Literal
+
+
 @click.group
 def cli():
     """Command-line interface group for chemistry-related commands."""
@@ -35,7 +37,15 @@ def cli():
     "--three_d", "-td", default=False, help="Use three d data of the molecule."
 )
 @click.option("--output_folder", "-o", default=".", help="Output folder.")
-def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[str, ...], name: str, smiles: tuple[str, ...], inchi: tuple[str, ...], three_d: bool, output_folder: str):
+def pubchem_molecule(
+    format: Literal["asnt", "json", "sdf", "xml"],
+    cid: tuple[str, ...],
+    name: str,
+    smiles: tuple[str, ...],
+    inchi: tuple[str, ...],
+    three_d: bool,
+    output_folder: str,
+):
     r"""
     Download molecule from pubchem.
 
@@ -67,9 +77,9 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[s
     inchi
         InChI identifier of the molecule(s) to download.
     three_d
-        Whether to use three-dimensional data of the molecule. 
+        Whether to use three-dimensional data of the molecule.
     output_folder
-        Folder where the downloaded files are saved. 
+        Folder where the downloaded files are saved.
 
     Raises
     ------

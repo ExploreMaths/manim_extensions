@@ -106,7 +106,7 @@ print("MESSAGES OK")
         text=True,
         timeout=300,
     )
-    assert result.returncode == 0, (
-        f"--- stdout ---\n{result.stdout}\n--- stderr ---\n{result.stderr}"
-    )
+    assert (
+        result.returncode == 0
+    ), f"--- stdout ---\n{result.stdout}\n--- stderr ---\n{result.stderr}"
     assert "MESSAGES OK" in result.stdout

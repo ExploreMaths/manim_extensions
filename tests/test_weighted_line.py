@@ -31,7 +31,8 @@ class TestWeightedLine:
     def test_custom_weight_config(self):
         """WeightedLine should accept custom weight_config."""
         wl = WeightedLine(
-            LEFT * 2, RIGHT * 2,
+            LEFT * 2,
+            RIGHT * 2,
             weight="test",
             weight_config={"color": BLUE, "font_size": 20},
         )
@@ -59,7 +60,8 @@ class TestWeightedLine:
     def test_custom_bg_config(self):
         """WeightedLine should accept custom bg_config."""
         wl = WeightedLine(
-            LEFT, RIGHT,
+            LEFT,
+            RIGHT,
             weight=10,
             bg_config={"color": RED, "opacity": 0.5},
         )

@@ -26,15 +26,37 @@ SRC = ROOT / "manim_extensions"
 DOCS = ROOT / "docs"
 
 SKIP_NAMES = {
-    "int", "float", "str", "bool", "list", "dict", "tuple", "set",
-    "numpy.ndarray", "ndarray", "NotImplementedError", "ValueError",
-    "TypeError", "KeyError", "IndexError", "AttributeError",
-    "RuntimeError", "Exception", "object",
+    "int",
+    "float",
+    "str",
+    "bool",
+    "list",
+    "dict",
+    "tuple",
+    "set",
+    "numpy.ndarray",
+    "ndarray",
+    "NotImplementedError",
+    "ValueError",
+    "TypeError",
+    "KeyError",
+    "IndexError",
+    "AttributeError",
+    "RuntimeError",
+    "Exception",
+    "object",
 }
 
 SKIP_PREFIXES = (
-    "~typing.", "~numpy.", "~matplotlib.", "~collections.",
-    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.",
+    "~typing.",
+    "~numpy.",
+    "~matplotlib.",
+    "~collections.",
+    "~builtins.",
+    "~os.",
+    "~re.",
+    "~sys.",
+    "~pathlib.",
 )
 
 
@@ -89,7 +111,7 @@ def scan_package(package_name, classes_map, functions_map):
         mod_path = f"{package_name}." + ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -119,7 +141,7 @@ def build_name_map():
         mod_path = ".".join(rel.with_suffix("").parts)
         mod_path = mod_path.replace(".__init__", "")
         if mod_path.endswith(".__init__"):
-            mod_path = mod_path[:-len(".__init__")]
+            mod_path = mod_path[: -len(".__init__")]
 
         try:
             with open(py_file, "r", encoding="utf-8", errors="replace") as f:
@@ -143,7 +165,7 @@ def find_short_xrefs(filepath: Path) -> list[dict]:
     with open(filepath, "r", encoding="utf-8", errors="replace") as f:
         for lineno, line in enumerate(f, 1):
             for m in re.finditer(
-                r'(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`', line
+                r"(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`", line
             ):
                 role = m.group(1)
                 target = m.group(2)
@@ -152,13 +174,15 @@ def find_short_xrefs(filepath: Path) -> list[dict]:
                 if target in SKIP_NAMES:
                     continue
                 if "." not in target:
-                    results.append({
-                        "lineno": lineno,
-                        "role": role,
-                        "target": target,
-                        "match_start": m.start(),
-                        "match_end": m.end(),
-                    })
+                    results.append(
+                        {
+                            "lineno": lineno,
+                            "role": role,
+                            "target": target,
+                            "match_start": m.start(),
+                            "match_end": m.end(),
+                        }
+                    )
     return results
 
 
@@ -168,7 +192,7 @@ def find_inline_code(filepath: Path) -> list[dict]:
     with open(filepath, "r", encoding="utf-8", errors="replace") as f:
         for lineno, line in enumerate(f, 1):
             for m in re.finditer(
-                r'`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)+)`{1,2}',
+                r"`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)+)`{1,2}",
                 line,
             ):
                 full = m.group(1)
@@ -177,12 +201,14 @@ def find_inline_code(filepath: Path) -> list[dict]:
                 if full in SKIP_NAMES:
                     continue
                 if full.count(".") >= 1:
-                    results.append({
-                        "lineno": lineno,
-                        "code": full,
-                        "match_start": m.start(),
-                        "match_end": m.end(),
-                    })
+                    results.append(
+                        {
+                            "lineno": lineno,
+                            "code": full,
+                            "match_start": m.start(),
+                            "match_end": m.end(),
+                        }
+                    )
     return results
 
 
@@ -195,7 +221,7 @@ def find_class_context(filepath: Path) -> dict:
     mod_path = ".".join(rel.with_suffix("").parts)
     mod_path = mod_path.replace(".__init__", "")
     if mod_path.endswith(".__init__"):
-        mod_path = mod_path[:-len(".__init__")]
+        mod_path = mod_path[: -len(".__init__")]
 
     context = {}
 
@@ -216,7 +242,9 @@ def find_class_context(filepath: Path) -> dict:
             docstring = ast.get_docstring(node)
             if docstring:
                 start_line = node.lineno
-                end_line = (node.body[0].lineno if node.body else node.end_lineno) or node.lineno
+                end_line = (
+                    node.body[0].lineno if node.body else node.end_lineno
+                ) or node.lineno
                 if node.end_lineno:
                     end_line = node.end_lineno
                 for line in range(start_line, end_line + 1):
@@ -269,16 +297,20 @@ def main():
             all_contexts[rel] = find_class_context(filepath)
 
         for item in find_short_xrefs(filepath):
-            short_xrefs.append({
-                "file": rel,
-                **item,
-            })
+            short_xrefs.append(
+                {
+                    "file": rel,
+                    **item,
+                }
+            )
 
         for item in find_inline_code(filepath):
-            inline_code.append({
-                "file": rel,
-                **item,
-            })
+            inline_code.append(
+                {
+                    "file": rel,
+                    **item,
+                }
+            )
 
     output_lines = []
     output_lines.append(
@@ -286,8 +318,7 @@ def main():
     )
     for item in short_xrefs:
         output_lines.append(
-            f"  {item['file']}:{item['lineno']}  "
-            f"{item['role']}`{item['target']}`"
+            f"  {item['file']}:{item['lineno']}  " f"{item['role']}`{item['target']}`"
         )
 
     output_lines.append(

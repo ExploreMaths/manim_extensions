@@ -47,6 +47,7 @@ from ..utils.mobjects.list_group import ListGroup
 from .animations.neural_network_transformations import InsertLayer, RemoveLayer
 from .. import config
 
+
 class NeuralNetwork(Group):
     """Neural Network Visualization Container Class.
 
@@ -118,7 +119,7 @@ class NeuralNetwork(Group):
         title: str = " ",
         layout: str = "linear",
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "left_to_right",
-        debug_mode: bool = False
+        debug_mode: bool = False,
     ):
         """Initialize the neural network visualization by building and arranging all layers and connections."""
         super(Group, self).__init__()
@@ -142,10 +143,7 @@ class NeuralNetwork(Group):
         # Place the connective layers
         self._place_connective_layers()
         # Make overhead title
-        self.title = Text(
-            self.title_text, 
-            font_size=DEFAULT_FONT_SIZE / 2
-        )
+        self.title = Text(self.title_text, font_size=DEFAULT_FONT_SIZE / 2)
         self.title.next_to(self, UP * self.layer_spacing, buff=0.25)
         self.add(self.title)
         # Place layers at correct z index
@@ -196,7 +194,7 @@ class NeuralNetwork(Group):
         end_mobject_or_name: Mobject | str,
         connection_style: str = "default",
         connection_position: str = "bottom",
-        arc_direction: str = "down"
+        arc_direction: str = "down",
     ):
         """Add connection from start layer to end layer.
 
@@ -225,12 +223,9 @@ class NeuralNetwork(Group):
                 output_mobject = end_mobject_or_name
             else:
                 output_mobject = self.input_layers_dict[end_mobject_or_name]
-            
+
             connection = NetworkConnection(
-                input_mobject,
-                output_mobject,
-                arc_direction=arc_direction,
-                buffer=0.05
+                input_mobject, output_mobject, arc_direction=arc_direction, buffer=0.05
             )
             self.connections.append(connection)
             self.add(connection)
@@ -251,15 +246,13 @@ class NeuralNetwork(Group):
                 prev_layer = self.input_layers[layer_index - 1]
             # Run the construct layer method for each
             current_layer.construct_layer(
-                prev_layer, 
-                next_layer,
-                debug_mode=self.debug_mode
+                prev_layer, next_layer, debug_mode=self.debug_mode
             )
 
     def _place_layers(
-        self, 
-        layout: str = "linear", 
-        layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom"
+        self,
+        layout: str = "linear",
+        layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom",
     ):
         """Creates the neural network."""
         # Default: Linear layout
@@ -292,25 +285,21 @@ class NeuralNetwork(Group):
             if hasattr(current_layer, "activation_function"):
                 if not current_layer.activation_function is None:
                     # Get max height of layer
-                    up_movement = np.array([
-                        0,
-                        layer_max_height / 2
-                        + current_layer.activation_function.get_height() / 2
-                        + 0.5 * self.layer_spacing,
-                        0,
-                    ])
+                    up_movement = np.array(
+                        [
+                            0,
+                            layer_max_height / 2
+                            + current_layer.activation_function.get_height() / 2
+                            + 0.5 * self.layer_spacing,
+                            0,
+                        ]
+                    )
                     current_layer.activation_function.move_to(
                         current_layer,
                     )
-                    current_layer.activation_function.match_y(
-                        self.input_layers[0]
-                    )
-                    current_layer.activation_function.shift(
-                        up_movement
-                    )
-                    self.add(
-                        current_layer.activation_function
-                    )
+                    current_layer.activation_function.match_y(self.input_layers[0])
+                    current_layer.activation_function.shift(up_movement)
+                    self.add(current_layer.activation_function)
 
     def _construct_connective_layers(self):
         """Draws connecting lines between layers."""
@@ -341,13 +330,12 @@ class NeuralNetwork(Group):
         return connective_layers, all_layers
 
     def _place_connective_layers(self):
-        """Places the connective layers.
-        """
+        """Places the connective layers."""
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
             layer_midpoint = (
-                connective_layer.input_layer.get_center() +
-                connective_layer.output_layer.get_center()
+                connective_layer.input_layer.get_center()
+                + connective_layer.output_layer.get_center()
             ) / 2
             connective_layer.move_to(layer_midpoint)
 
@@ -410,9 +398,7 @@ class NeuralNetwork(Group):
         input_index = self.input_layers.index_of(old_layer)
         if input_index == -1:
             raise Exception("Layer object not found")
-        previous_layer = (
-            self.input_layers[input_index - 1] if input_index > 0 else None
-        )
+        previous_layer = self.input_layers[input_index - 1] if input_index > 0 else None
         next_layer = (
             self.input_layers[input_index + 1]
             if input_index + 1 < len(self.input_layers)
@@ -456,12 +442,12 @@ class NeuralNetwork(Group):
         )
 
     def make_forward_pass_animation(
-        self, 
+        self,
         run_time: float | None = None,
-        passing_flash: bool = True, 
-        layer_args: dict = {}, 
+        passing_flash: bool = True,
+        layer_args: dict = {},
         per_layer_animations: bool = False,
-        **kwargs
+        **kwargs,
     ) -> Succession | dict[Mobject, Animation]:
         """Generates an animation for feed forward propagation.
 
@@ -521,6 +507,7 @@ class NeuralNetwork(Group):
             layer_forward_pass = layer.make_forward_pass_animation(
                 layer_args=current_layer_args, run_time=per_layer_runtime, **kwargs
             )
+
             # Animate a forward pass for incoming connections.
             # Layers without an activation function (e.g. Convolutional2DLayer)
             # return an empty AnimationGroup; manim raises when playing empty
@@ -548,10 +535,7 @@ class NeuralNetwork(Group):
                         break
 
             if len(subanimations) > 0:
-                layer_forward_pass = AnimationGroup(
-                    *subanimations,
-                    lag_ratio=0.0
-                )
+                layer_forward_pass = AnimationGroup(*subanimations, lag_ratio=0.0)
                 all_animations.append(layer_forward_pass)
             # Add the animation to per layer animation
             per_layer_animation_map[layer] = layer_forward_pass

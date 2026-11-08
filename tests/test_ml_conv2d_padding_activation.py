@@ -18,9 +18,7 @@ def _config():
 
 
 def test_padding_tuple_and_int_forms():
-    layer = Convolutional2DLayer(
-        num_feature_maps=2, feature_map_size=4, padding=(1, 2)
-    )
+    layer = Convolutional2DLayer(num_feature_maps=2, feature_map_size=4, padding=(1, 2))
     other = Convolutional2DLayer(num_feature_maps=2, feature_map_size=4, padding=1)
 
     assert layer.padding == (1, 2)

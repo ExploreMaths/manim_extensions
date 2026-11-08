@@ -93,8 +93,7 @@ def tags_for_block(block: dict) -> set[str]:
     if any(s in code for s in ("nerdfont", "NerdFont", 'icon="', "icon='")):
         tags.add("fontconfig_nerdfont")
     if any(
-        s in code
-        for s in ("FileTree", "DEFAULT_MONO_FONT", "JetBrains Mono", "Code(")
+        s in code for s in ("FileTree", "DEFAULT_MONO_FONT", "JetBrains Mono", "Code(")
     ):
         tags.add("jetbrains_mono")
     return tags
@@ -297,13 +296,13 @@ def main() -> int:
         choices=["low", "medium", "high", "fourk"],
         default=None,
         help="render quality for blocks without an explicit :quality: option "
-             "(default: manim's example quality)",
+        "(default: manim's example quality)",
     )
     parser.add_argument(
         "--check",
         action="store_true",
         help="only report how many blocks would be rendered; exits 0 when "
-             "everything is cached (does not require manim installed)",
+        "everything is cached (does not require manim installed)",
     )
     parser.add_argument(
         "--only",

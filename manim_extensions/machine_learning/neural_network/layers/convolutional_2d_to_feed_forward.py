@@ -35,7 +35,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         input_layer: Convolutional2DLayer,
         output_layer: FeedForwardLayer,
         passing_flash_color: ManimColor = ORANGE,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the conv2d-to-feed-forward connective layer with flash color setting."""
         super().__init__(input_layer, output_layer, **kwargs)
@@ -45,7 +45,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -64,7 +64,9 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, run_time: float = 1.5, **kwargs
+    ) -> AnimationGroup:
         """Forward pass animation from conv2d to conv2d.
 
         Parameters

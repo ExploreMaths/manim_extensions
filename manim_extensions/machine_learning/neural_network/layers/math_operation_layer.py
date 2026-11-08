@@ -24,6 +24,7 @@ from ..activation_functions.activation_function import ActivationFunction
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 from manim.typing import Point3D
 
+
 class MathOperationLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network.
 
@@ -83,6 +84,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
     """
+
     valid_operations = ["+", "-", "*", "/"]
 
     def __init__(
@@ -94,7 +96,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         active_color: ManimColor = ORANGE,
         activation_function: ActivationFunction | str | None = None,
         font_size: float = 20,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the math operation layer with operator symbol and styling parameters."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
@@ -112,7 +114,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Creates the neural network layer.
 
@@ -126,15 +128,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
         """
         # Draw the operation
-        self.operation_text = Text(
-            self.operation_type,
-            font_size=self.font_size
-        )
+        self.operation_text = Text(self.operation_type, font_size=self.font_size)
         self.add(self.operation_text)
         # Make the surrounding circle
         self.surrounding_circle = Circle(
-            color=self.node_color,
-            stroke_width=self.node_stroke_width
+            color=self.node_color, stroke_width=self.node_stroke_width
         ).surround(self.operation_text)
         self.add(self.surrounding_circle)
         # Make the activation function
@@ -157,13 +155,15 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.activation_function = activation_function
             self.add(self.activation_function)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> Succession | AnimationGroup:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> Succession | AnimationGroup:
         """Makes the forward pass animation.
 
         Parameters
         ----------
         layer_args
-            Layer specific arguments. 
+            Layer specific arguments.
         **kwargs
             Forwarded to the parent layer classes.
 
@@ -175,15 +175,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
-                self.surrounding_circle.set_color, 
-                self.active_color, 
-                run_time=0.25
+                self.surrounding_circle.set_color, self.active_color, run_time=0.25
             ),
             Wait(1.0),
             ApplyMethod(
-                self.surrounding_circle.set_color, 
-                self.node_color, 
-                run_time=0.25
+                self.surrounding_circle.set_color, self.node_color, run_time=0.25
             ),
         )
         # Animate the activation function
@@ -220,7 +216,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         -------
             The computed result."""
         return self.surrounding_circle.get_right()
-    
+
     def move_to(self, mobject_or_point: Mobject):
         """Moves the center of the layer to the given mobject or point.
 
@@ -231,7 +227,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):
-            target_center = mobject_or_point.get_center() 
+            target_center = mobject_or_point.get_center()
         else:
             target_center = mobject_or_point
 

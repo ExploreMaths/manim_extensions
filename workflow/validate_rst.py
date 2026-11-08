@@ -571,7 +571,9 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
     results: list[tuple[int, list[tuple[int, str]]]] = []
 
     for node in ast.walk(tree):
-        if not isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+        if not isinstance(
+            node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
+        ):
             continue
         if not (node.body and isinstance(node.body[0], ast.Expr)):
             continue
@@ -590,7 +592,7 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
         if raw:
             m = QUOTE_PREFIX_RE.match(raw[0])
             if m:
-                raw[0] = raw[0][m.end():]
+                raw[0] = raw[0][m.end() :]
             else:
                 raw[0] = ""
         # Strip the closing quote suffix from the last line.
@@ -661,7 +663,9 @@ def check_py_file(path: Path) -> list[tuple[str, int, str]]:
         joined = "\n".join(texts)
         for offset, msg in check_docutils(joined):
             # docutils line numbers are 1-based offsets into the docstring.
-            src_line = line_map[offset - 1] if 1 <= offset <= len(line_map) else line_map[0]
+            src_line = (
+                line_map[offset - 1] if 1 <= offset <= len(line_map) else line_map[0]
+            )
             issues.append((rel, src_line, f"docutils: {msg}"))
     return issues
 

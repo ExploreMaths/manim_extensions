@@ -38,7 +38,7 @@ def get_arc(
     angle
         Central angle of the arc.
     color
-        Colour of the arc.  
+        Colour of the arc.
     kwargs
         Other keyword arguments for the arc.
 

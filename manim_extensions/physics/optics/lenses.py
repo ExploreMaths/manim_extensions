@@ -108,7 +108,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
     d
         Lens thickness.
     n
-        Refractive index of the lens material.  
+        Refractive index of the lens material.
         (glass).
     **kwargs
         Additional parameters forwarded to :class:`~manim.mobject.types.vectorized_mobject.VMobject`.

@@ -25,7 +25,9 @@ def test_subject_gives_gift_to_target_builds_animations(actors):
     subject, target = actors
 
     animations = list(
-        SeqAction.subject_gives_gift_to_target(subject, SeqObject(name="payload"), target)
+        SeqAction.subject_gives_gift_to_target(
+            subject, SeqObject(name="payload"), target
+        )
     )
 
     assert len(animations) >= 1

@@ -32,7 +32,7 @@ class Ray(Line):
     direction
         Direction vector of the ray.
     init_length
-        Initial length of the ray.  
+        Initial length of the ray.
     propagate
         Lenses to propagate the ray through immediately upon construction.
     **kwargs

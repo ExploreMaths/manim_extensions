@@ -8,7 +8,12 @@ import pytest
 from manim import RIGHT, UP, Line, Square, tempconfig
 from PIL import Image
 
-from manim_extensions.mobjects import CropImageMobject, FileTree, PerpendicularSign, Trail
+from manim_extensions.mobjects import (
+    CropImageMobject,
+    FileTree,
+    PerpendicularSign,
+    Trail,
+)
 
 
 @pytest.fixture(autouse=True)

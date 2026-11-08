@@ -24,7 +24,9 @@ def test_static_body_registers_shapes_only():
     space = VSpace()
     square = Square()
 
-    space.set_body_and_shapes(square, pymunk.Body.STATIC, is_solid=True, **BODY_DEFAULTS)
+    space.set_body_and_shapes(
+        square, pymunk.Body.STATIC, is_solid=True, **BODY_DEFAULTS
+    )
 
     assert getattr(square, "body", None) is not None
 
@@ -32,7 +34,9 @@ def test_static_body_registers_shapes_only():
 def test_shapes_can_be_removed_again():
     space = VSpace()
     circle = Circle()
-    space.set_body_and_shapes(circle, pymunk.Body.KINEMATIC, is_solid=True, **BODY_DEFAULTS)
+    space.set_body_and_shapes(
+        circle, pymunk.Body.KINEMATIC, is_solid=True, **BODY_DEFAULTS
+    )
 
     space.remove_body_shapes_constraints(*circle.shapes)
 

@@ -31,7 +31,6 @@ from typing import cast
 from ..utils.deps import require
 from manim.typing import VectorND
 
-
 #: HTML page template used to render an interactive SVG scene.
 HTML_STRUCTURE = """<!DOCTYPE html>
 <html lang="en">
@@ -138,10 +137,10 @@ class HTMLParsedVMobject:
         updater is registered on it.
     width
         Width of the embedded SVG element, e.g. ``"500px"``.
-        
+
     basic_html
         If ``True``, generate a minimal HTML wrapper without the full page
-        structure and script tag. 
+        structure and script tag.
 
     Examples
     --------
@@ -183,7 +182,13 @@ class HTMLParsedVMobject:
                parsed.finish()
     """
 
-    def __init__(self, vmobject: VMobject, scene: Scene, width: str = "500px", basic_html: bool = False):
+    def __init__(
+        self,
+        vmobject: VMobject,
+        scene: Scene,
+        width: str = "500px",
+        basic_html: bool = False,
+    ):
         """Initialize the exporter and write the initial HTML page."""
         self.vmobject = vmobject
         self.scene = scene
@@ -202,7 +207,7 @@ class HTMLParsedVMobject:
         self.original_frame_height = camera.frame_height
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
-    
+
     def updater(self, dt: float):
         """Export the vmobject to an SVG frame and append the JS update.
 
@@ -225,25 +230,42 @@ class HTMLParsedVMobject:
         _, attributes = svg2paths(svg_filename)
         i = 0
         for attr in attributes:
-            html_el_creation = f"        var el{i} = document.createElementNS('http://www.w3.org/2000/svg', 'path');\n"            
+            html_el_creation = f"        var el{i} = document.createElementNS('http://www.w3.org/2000/svg', 'path');\n"
             for k, v in attr.items():
                 html_el_creation += f"       el{i}.setAttribute('{k}', '{v}');\n"
-            html_el_creation += f"       {self.filename_base.lower()}.appendChild(el{i});\n"
+            html_el_creation += (
+                f"       {self.filename_base.lower()}.appendChild(el{i});\n"
+            )
             html_el_creations += html_el_creation
             i += 1
         camera = cast(Camera, self.scene.camera)
-        background_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
+        background_color = color_to_int_rgba(
+            camera.background_color, camera.background_opacity
+        )
         background_color[-1] = background_color[-1] / 255
         background_color_str = [str(par) for par in background_color]
         html_el_creations += f"     {self.filename_base.lower()}.style.backgroundColor = 'rgb({', '.join(background_color_str)})';\n"
         if isinstance(self.scene, MovingCameraScene):
             moving_camera = cast(MovingCamera, self.scene.camera)
             frame = moving_camera.frame
-            pixel_width = moving_camera.pixel_width * moving_camera.frame_width / self.original_frame_width
-            pixel_height = moving_camera.pixel_height * moving_camera.frame_height / self.original_frame_height
+            pixel_width = (
+                moving_camera.pixel_width
+                * moving_camera.frame_width
+                / self.original_frame_width
+            )
+            pixel_height = (
+                moving_camera.pixel_height
+                * moving_camera.frame_height
+                / self.original_frame_height
+            )
             frame_center = frame.get_corner(UL)
-            pixel_center = frame_center * moving_camera.pixel_width / self.original_frame_width
-            pixel_center += moving_camera.pixel_width / 2 * RIGHT + moving_camera.pixel_height / 2 * DOWN
+            pixel_center = (
+                frame_center * moving_camera.pixel_width / self.original_frame_width
+            )
+            pixel_center += (
+                moving_camera.pixel_width / 2 * RIGHT
+                + moving_camera.pixel_height / 2 * DOWN
+            )
             pixel_center[1] = -pixel_center[1]
             pixel_center = pixel_center[:2]
             arr = [*pixel_center, pixel_width, pixel_height]
@@ -252,12 +274,12 @@ class HTMLParsedVMobject:
         self.js_updates += JAVASCRIPT_UPDATE_STRUCTURE % (
             self.filename_base.lower(),
             html_el_creations,
-            1000 * self.scene.renderer.time
+            1000 * self.scene.renderer.time,
         )
         self.js_updates += "\n"
         self.current_index += 1
         os.remove(svg_filename)
-    
+
     def update_html(self):
         """Rewrite the HTML page with the current frame and time.
 
@@ -265,10 +287,7 @@ class HTMLParsedVMobject:
         renderer time into the HTML/JS output.
         """
         camera = cast(Camera, self.scene.camera)
-        bg_color = color_to_int_rgba(
-            camera.background_color,
-            camera.background_opacity
-        )
+        bg_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
         bg_color[-1] = bg_color[-1] / 255
         bg_color_str = [str(c) for c in bg_color]
         bg_color_css = f"rgb({', '.join(bg_color_str)})"
@@ -281,7 +300,7 @@ class HTMLParsedVMobject:
                 camera.pixel_height,
                 bg_color_css,
                 self.final_html_body,
-                self.js_filename
+                self.js_filename,
             )
         else:
             self.html = BASIC_HTML_STRUCTURE % (
@@ -289,9 +308,9 @@ class HTMLParsedVMobject:
                 self.width,
                 camera.pixel_width,
                 camera.pixel_height,
-                bg_color_css
+                bg_color_css,
             )
-    
+
     def finish(self):
         """Stop the updater and write the final HTML and JS files.
 
@@ -308,7 +327,7 @@ class HTMLParsedVMobject:
             self.filename_base,
             self.filename_base,
             self.js_updates,
-            1000 * self.last_t
+            1000 * self.last_t,
         )
         if hasattr(self, "interactive_js"):
             js_content += f"\n{self.interactive_js}"
@@ -316,12 +335,12 @@ class HTMLParsedVMobject:
             f.write(js_content)
         with open(self.html_filename, "w") as f:
             f.write(self.html)
-    
+
     def start_interactive(
         self,
         value_trackers: list[ValueTracker],
         linspaces: list[VectorND],
-        animate_this: bool = True
+        animate_this: bool = True,
     ):
         """Precompute the interactive JavaScript state for value combinations.
 
@@ -341,7 +360,7 @@ class HTMLParsedVMobject:
         animate_this
             If ``False``, stop the per-frame updater before sweeping and
             record the current scene time as ``self.last_t``.
-            
+
         """
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:
@@ -356,20 +375,22 @@ class HTMLParsedVMobject:
         camera = cast(Camera, self.scene.camera)
         for comb in combs:
             for vt, val in zip(value_trackers, comb):
-                self.scene.wait(1/camera.frame_rate)
+                self.scene.wait(1 / camera.frame_rate)
                 vt.set_value(val)
             self.vmobject.to_svg(filename)
             html_el_creations = f"{self.filename_base.lower()}.replaceChildren();\n"
             _, attributes = svg2paths(filename)
             i = 0
             for attr in attributes:
-                html_el_creation = f"        var el{i} = document.createElementNS('http://www.w3.org/2000/svg', 'path');\n"            
+                html_el_creation = f"        var el{i} = document.createElementNS('http://www.w3.org/2000/svg', 'path');\n"
                 for k, v in attr.items():
                     html_el_creation += f"       el{i}.setAttribute('{k}', '{v}');\n"
-                html_el_creation += f"       {self.filename_base.lower()}.appendChild(el{i});\n"
+                html_el_creation += (
+                    f"       {self.filename_base.lower()}.appendChild(el{i});\n"
+                )
                 html_el_creations += html_el_creation
                 i += 1
-            
+
             combs_dict += "[" + ", ".join([str(v) for v in comb]) + """]: () => {
                 %s
             },

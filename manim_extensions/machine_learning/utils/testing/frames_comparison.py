@@ -9,15 +9,18 @@ from __future__ import annotations
 from manim import CairoRenderer, Scene, ThreeDCamera, ThreeDScene, tempconfig
 from manim._config.utils import ManimConfig
 from manim.utils.testing._frames_testers import _ControlDataWriter, _FramesTester
-from manim.utils.testing._test_class_makers import DummySceneFileWriter, _make_scene_file_writer_class, _make_test_renderer_class, _make_test_scene_class
+from manim.utils.testing._test_class_makers import (
+    DummySceneFileWriter,
+    _make_scene_file_writer_class,
+    _make_test_renderer_class,
+    _make_test_scene_class,
+)
 import functools
 import inspect
 from pathlib import Path
 from typing import Callable
 
 from _pytest.fixtures import FixtureRequest
-
-
 
 SCENE_PARAMETER_NAME = "scene"
 _tests_root_dir_path = Path(__file__).absolute().parents[2]
@@ -210,11 +213,13 @@ def _make_test_comparing_frames(
                 # If you pass a custom renderer to the Scene, the Camera class given as an argument in the Scene
                 # is not passed to the renderer. See __init__ of Scene.
                 # This potentially prevents OpenGL testing.
-                test_renderer=testRenderer(file_writer_class=file_writer_class)
-                if base_scene is not ThreeDScene
-                else testRenderer(
-                    file_writer_class=file_writer_class,
-                    camera_class=ThreeDCamera,
+                test_renderer=(
+                    testRenderer(file_writer_class=file_writer_class)
+                    if base_scene is not ThreeDScene
+                    else testRenderer(
+                        file_writer_class=file_writer_class,
+                        camera_class=ThreeDCamera,
+                    )
                 ),  # testRenderer(file_writer_class=file_writer_class),
             )
             scene_tested = sceneTested(skip_animations=True)

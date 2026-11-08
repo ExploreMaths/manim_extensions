@@ -173,23 +173,29 @@ class VendoredStatusDirective(SphinxDirective):
 
         synced_commit = info.get("synced_commit")
         if synced_commit:
-            items.append([
-                T("Currently vendored upstream commit: "),
-                L(_short(synced_commit["sha"]),
-                  commit_link(slug, synced_commit["sha"])),
-                T(f" ({synced_commit['date']})."),
-            ])
+            items.append(
+                [
+                    T("Currently vendored upstream commit: "),
+                    L(
+                        _short(synced_commit["sha"]),
+                        commit_link(slug, synced_commit["sha"]),
+                    ),
+                    T(f" ({synced_commit['date']})."),
+                ]
+            )
 
         if cached_entry is not None and cache_date:
             items.append([T(f"Upstream data cached on {cache_date}.")])
 
         release = info.get("release")
         if release:
-            items.append([
-                T("Latest upstream release: "),
-                C(release["tag"]),
-                T(f" ({release['date']})."),
-            ])
+            items.append(
+                [
+                    T("Latest upstream release: "),
+                    C(release["tag"]),
+                    T(f" ({release['date']})."),
+                ]
+            )
 
         compare = info.get("compare")
         behind = False
@@ -205,50 +211,73 @@ class VendoredStatusDirective(SphinxDirective):
                     ref_seg = C(synced)
                 else:
                     ref_seg = T("the sync point")
-                items.append([
-                    T(f"{compare['ahead_by']} new upstream commit(s) since "),
-                    ref_seg,
-                    T(", latest "),
-                    L(_short(compare["newest_sha"]),
-                      commit_link(slug, compare["newest_sha"])),
-                    T(f" ({compare['newest_date']})."),
-                ])
+                items.append(
+                    [
+                        T(f"{compare['ahead_by']} new upstream commit(s) since "),
+                        ref_seg,
+                        T(", latest "),
+                        L(
+                            _short(compare["newest_sha"]),
+                            commit_link(slug, compare["newest_sha"]),
+                        ),
+                        T(f" ({compare['newest_date']})."),
+                    ]
+                )
                 behind = compare["ahead_by"] > 0
             elif status == "behind":
-                items.append([
-                    T(f"The recorded sync point has {compare['behind_by']} "
-                      "commit(s) not reachable from upstream HEAD (upstream "
-                      "history may have been rewritten)."),
-                ])
+                items.append(
+                    [
+                        T(
+                            f"The recorded sync point has {compare['behind_by']} "
+                            "commit(s) not reachable from upstream HEAD (upstream "
+                            "history may have been rewritten)."
+                        ),
+                    ]
+                )
             else:  # diverged
-                items.append([
-                    T(f"Histories diverged: {compare['ahead_by']} upstream / "
-                      f"{compare['behind_by']} local-only commit(s); newest "
-                      "upstream commit "),
-                    L(_short(compare["newest_sha"]),
-                      commit_link(slug, compare["newest_sha"])),
-                    T(f" ({compare['newest_date']})."),
-                ])
+                items.append(
+                    [
+                        T(
+                            f"Histories diverged: {compare['ahead_by']} upstream / "
+                            f"{compare['behind_by']} local-only commit(s); newest "
+                            "upstream commit "
+                        ),
+                        L(
+                            _short(compare["newest_sha"]),
+                            commit_link(slug, compare["newest_sha"]),
+                        ),
+                        T(f" ({compare['newest_date']})."),
+                    ]
+                )
                 behind = compare["ahead_by"] > 0
         elif info.get("latest_commit"):
             latest = info["latest_commit"]
             if synced and synced != "not recorded":
-                items.append([
-                    T("Could not compare against "), C(synced),
-                    T(" (the ref may not exist upstream)."),
-                ])
-            items.append([
-                T("Latest upstream commit: "),
-                L(_short(latest["sha"]), commit_link(slug, latest["sha"])),
-                T(f" ({latest['date']}); "
-                  "sync point unknown, cannot count new commits."),
-            ])
+                items.append(
+                    [
+                        T("Could not compare against "),
+                        C(synced),
+                        T(" (the ref may not exist upstream)."),
+                    ]
+                )
+            items.append(
+                [
+                    T("Latest upstream commit: "),
+                    L(_short(latest["sha"]), commit_link(slug, latest["sha"])),
+                    T(
+                        f" ({latest['date']}); "
+                        "sync point unknown, cannot count new commits."
+                    ),
+                ]
+            )
         else:
-            items.append([
-                T("No upstream data in the cache; run "),
-                C("workflow/update_vendored_status.py"),
-                T(" to refresh it."),
-            ])
+            items.append(
+                [
+                    T("No upstream data in the cache; run "),
+                    C("workflow/update_vendored_status.py"),
+                    T(" to refresh it."),
+                ]
+            )
 
         # Render as an admonition: a "note" block normally, escalating to a
         # "warning" block when the vendored copy is behind upstream. The
@@ -297,8 +326,10 @@ def setup(app) -> dict:
         "vendored_registry_path", "../../VENDORED.md", rebuild="env", types=[str]
     )
     app.add_config_value(
-        "vendored_status_cache", "_vendored_status_cache.json",
-        rebuild="env", types=[str],
+        "vendored_status_cache",
+        "_vendored_status_cache.json",
+        rebuild="env",
+        types=[str],
     )
     app.add_directive("vendored-status", VendoredStatusDirective)
     return {

@@ -92,16 +92,12 @@ class TestTikz:
 
     def test_convert_with_tikzset(self, tikz_code):
         tikz = Tikz(code=tikz_code)
-        result = tikz.convert(
-            tikz_code, tikzset=["mystyle/.style={draw=red}"]
-        )
+        result = tikz.convert(tikz_code, tikzset=["mystyle/.style={draw=red}"])
         assert isinstance(result, (str, Path))
 
     def test_convert_with_preamble(self, tikz_code):
         tikz = Tikz(code=tikz_code)
-        result = tikz.convert(
-            tikz_code, preamble=r"\usepackage{tikz-cd}"
-        )
+        result = tikz.convert(tikz_code, preamble=r"\usepackage{tikz-cd}")
         assert isinstance(result, (str, Path))
 
     def test_convert_with_use_pdf(self, tikz_code):

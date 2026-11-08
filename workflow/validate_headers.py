@@ -107,7 +107,7 @@ def _split_header(lines: list[str]) -> Header:
 
 def _parse(lines: list[str]) -> Header:
     header = _split_header(lines)
-    for line in lines[header.start:header.end]:
+    for line in lines[header.start : header.end]:
         stripped = line.strip()
         copyright_match = COPYRIGHT_RE.match(stripped)
         license_match = LICENSE_RE.match(stripped)
@@ -157,9 +157,7 @@ def _build_header(header: Header) -> list[str]:
 def _issues(header: Header, lines: list[str]) -> list[str]:
     issues: list[str] = []
     if not header.exists:
-        has_spdx = any(
-            "SPDX-" in line for line in lines[:20]
-        )
+        has_spdx = any("SPDX-" in line for line in lines[:20])
         return ["header-not-at-top"] if has_spdx else ["missing-header"]
     if not header.copyrights:
         issues.append("missing-copyright")
@@ -171,7 +169,7 @@ def _issues(header: Header, lines: list[str]) -> list[str]:
         else:
             issues.append("duplicate-license")
 
-    raw_block = lines[header.start:header.end]
+    raw_block = lines[header.start : header.end]
     if any(line.strip() == "#" for line in raw_block):
         issues.append("blank-comment-in-header")
 
@@ -193,10 +191,7 @@ def _issues(header: Header, lines: list[str]) -> list[str]:
             issues.append("patched-before-license")
     if header.end < len(lines) and lines[header.end].strip():
         issues.append("missing-blank-after-header")
-    elif (
-        header.end + 1 < len(lines)
-        and not lines[header.end + 1].strip()
-    ):
+    elif header.end + 1 < len(lines) and not lines[header.end + 1].strip():
         issues.append("extra-blank-after-header")
     return issues
 
@@ -222,8 +217,8 @@ def _read_lines(path: Path) -> list[str]:
 
 
 def _apply_fix(path: Path, lines: list[str], header: Header) -> bool:
-    prefix = lines[:header.start]
-    rest = lines[header.end:]
+    prefix = lines[: header.start]
+    rest = lines[header.end :]
     while rest and not rest[0].strip():
         rest.pop(0)
     new_lines = prefix + _build_header(header)

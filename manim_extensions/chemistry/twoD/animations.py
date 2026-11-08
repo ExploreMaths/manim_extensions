@@ -7,7 +7,6 @@ This module provides the GMAnimationBuilder class for building molecule animatio
 
 """
 
-
 from manim import Animation, BLACK, ManimColor, PI, VGroup
 from .graph_molecule import GraphMolecule
 
@@ -20,9 +19,9 @@ class GMAnimationBuilder:
     molecule
         The molecule the animations are built for.
     atoms
-        The atoms to animate. 
+        The atoms to animate.
     bonds
-        The bonds to animate. 
+        The bonds to animate.
 
     Examples
     --------
@@ -137,7 +136,9 @@ class GMAnimationBuilder:
 
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 
-    def rotate_atoms_about_bond(self, atom_a: int, atom_b: int, angle: float = PI / 4) -> list[Animation]:
+    def rotate_atoms_about_bond(
+        self, atom_a: int, atom_b: int, angle: float = PI / 4
+    ) -> list[Animation]:
         """Return animations rotating atoms around the bond axis between atom_a and atom_b.
 
         Parameters
@@ -162,19 +163,24 @@ class GMAnimationBuilder:
             for atom, atom_copy in zip(self.atoms, self.atoms_copy)
         ]
 
-    def change_color(self, atoms_color: ManimColor = BLACK, bonds_color: ManimColor | None=None, label_color: ManimColor | None=None) -> list:
+    def change_color(
+        self,
+        atoms_color: ManimColor = BLACK,
+        bonds_color: ManimColor | None = None,
+        label_color: ManimColor | None = None,
+    ) -> list:
         """Return color-change animations for atoms, bonds and optionally atom labels.
 
         Parameters
         ----------
         atoms_color
-            New color of the atoms. 
+            New color of the atoms.
         bonds_color
             New color of the bonds. If ``None``, bonds keep their color.
-            
+
         label_color
             New color of the atom labels. If ``None``, labels keep their
-            color. 
+            color.
 
         Returns
         -------

@@ -103,9 +103,7 @@ class SplitCompass(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
-        self, compass: Compass, span: float | None = None, **kwargs: Any
-    ):
+    def __init__(self, compass: Compass, span: float | None = None, **kwargs: Any):
         """Initialize SplitCompass."""
         assert span is not None
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
@@ -157,9 +155,7 @@ class RotateCompass(Rotate):
                self.wait()
     """
 
-    def __init__(
-        self, compass: Compass, angle: float | None = None, **kwargs: Any
-    ):
+    def __init__(self, compass: Compass, angle: float | None = None, **kwargs: Any):
         """Initialize RotateCompass."""
         assert angle is not None
         super().__init__(

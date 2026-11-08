@@ -14,13 +14,22 @@ CASES = [
     ("manim_extensions.animations:easeInOutBounce", (1,)),
     ("manim_extensions.animations:easeOutBounce", (1,)),
     ("manim_extensions.animations:easeOutElastic", (1,)),
-    ("manim_extensions.chemistry.future_classes.future_classes:add_over_rectangular_surface", ()),
+    (
+        "manim_extensions.chemistry.future_classes.future_classes:add_over_rectangular_surface",
+        (),
+    ),
     ("manim_extensions.chemistry.future_classes.future_classes:inverse_linear", (1,)),
     ("manim_extensions.chemistry.future_classes.future_classes:inverse_smooth", (1,)),
     ("manim_extensions.chemistry.future_classes.future_classes:zero", (1,)),
     ("manim_extensions.fontawesome.manim_fontawesome:list_icons", ()),
-    ("manim_extensions.machine_learning.diffusion.mcmc:gaussian_proposal", (np.array([0., 0., 0.]),)),
-    ("manim_extensions.machine_learning.diffusion.mcmc:metropolis_hastings_sampler", ()),
+    (
+        "manim_extensions.machine_learning.diffusion.mcmc:gaussian_proposal",
+        (np.array([0.0, 0.0, 0.0]),),
+    ),
+    (
+        "manim_extensions.machine_learning.diffusion.mcmc:metropolis_hastings_sampler",
+        (),
+    ),
     ("manim_extensions.meshes.decorators:dangling_face_decorator", ()),
     ("manim_extensions.meshes.decorators:dangling_vert_decorator", ()),
     ("manim_extensions.meshes.helpers:is_twice_nested_iterable", (1,)),
@@ -37,7 +46,7 @@ CASES = [
     ("manim_extensions.qr_codes.qr:qr_code", (1,)),
     ("manim_extensions.rubikscube.cube_utils:get_axis_from_face", (1,)),
     ("manim_extensions.rubikscube.cube_utils:get_direction_from_face", (1,)),
-    ("manim_extensions.utils.deprecation:deprecated", ('text',)),
+    ("manim_extensions.utils.deprecation:deprecated", ("text",)),
     ("manim_extensions.utils.deps:require", (1,)),
 ]
 

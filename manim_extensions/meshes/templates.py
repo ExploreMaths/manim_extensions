@@ -339,9 +339,7 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
                 )
         parts = None
     else:
-        raise InvalidRequestException(
-            "Only 1D, 2D, 3D and 4D meshes implemented."
-        )
+        raise InvalidRequestException("Only 1D, 2D, 3D and 4D meshes implemented.")
     return Mesh(
         vertices=vertices,
         faces=faces,

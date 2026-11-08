@@ -77,5 +77,5 @@ connective_layers_list = (
     Convolutional2DToMaxPooling2D,
     MaxPooling2DToConvolutional2D,
     MaxPooling2DToFeedForward,
-    FeedForwardToMathOperation
+    FeedForwardToMathOperation,
 )

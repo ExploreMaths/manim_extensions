@@ -56,6 +56,7 @@ BM2DM: DefaultParameters = {
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
 
+
 # opengl_mesh_default_params
 # OGLM is built lazily (see __getattr__ below): it defaults
 # ``render_primitive`` to ``moderngl.TRIANGLES``, so building it at import

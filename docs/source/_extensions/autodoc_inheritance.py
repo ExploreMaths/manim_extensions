@@ -76,6 +76,7 @@ def _inject_show_inheritance(text: str) -> str:
 
 def setup(app):
     """Sphinx extension entry point."""
+
     def on_source_read(app, docname, source):
         source[0] = _inject_show_inheritance(source[0])
 

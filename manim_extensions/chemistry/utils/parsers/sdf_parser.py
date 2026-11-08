@@ -58,7 +58,9 @@ class SDFParser(MolParser):
         return [molecule.split("\n") for molecule in sdf_molecules if molecule.strip()]
 
     @staticmethod
-    def data_parser(molecules_data: List[List[str]]) -> List[tuple[AtomsDict, BondsDict]]:
+    def data_parser(
+        molecules_data: List[List[str]],
+    ) -> List[tuple[AtomsDict, BondsDict]]:
         """Parse the molecules of an SDF file into a list of atoms and bonds dicts.
 
         Parameters

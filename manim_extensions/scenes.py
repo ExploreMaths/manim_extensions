@@ -19,7 +19,6 @@ from manim import VMobject, config
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
 from manim.scene.moving_camera_scene import MovingCameraScene
 
-
 __all__ = ["ConstantStrokeWidthScene"]
 
 

@@ -25,9 +25,9 @@ if TYPE_CHECKING:
 class VGrooveJoint(VConstraint):
     """Initializes a Groove Joint constraint between two Mobjects.
 
-    A Groove Joint constrains a point on the second body to a line segment 
-    (the "groove") on the first body. The groove is defined by two points 
-    relative to the first body's center, and the anchor point is relative 
+    A Groove Joint constrains a point on the second body to a line segment
+    (the "groove") on the first body. The groove is defined by two points
+    relative to the first body's center, and the anchor point is relative
     to the second body's center.
 
     Parameters
@@ -83,7 +83,7 @@ class VGrooveJoint(VConstraint):
                self.add_constraints(groove)
                self.wait(4)
 
-    """ 
+    """
 
     def __init__(
         self,

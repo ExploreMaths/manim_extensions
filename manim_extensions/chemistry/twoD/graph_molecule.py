@@ -73,13 +73,13 @@ class DoubleLine(ArcBetweenPoints):
     Parameters
     ----------
     start
-        Starting point of the arcs. 
+        Starting point of the arcs.
     end
-        Ending point of the arcs. 
+        Ending point of the arcs.
     angle
-        Angle of the arcs. 
+        Angle of the arcs.
     radius
-        Radius of the arcs. 
+        Radius of the arcs.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.geometry.arc.ArcBetweenPoints`.
     """
@@ -138,11 +138,11 @@ class TripleLine(DoubleLine):
     Parameters
     ----------
     start
-        Starting point of the lines. 
+        Starting point of the lines.
     end
-        Ending point of the lines. 
+        Ending point of the lines.
     angle
-        Angle of the arcs. 
+        Angle of the arcs.
     args
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
     **kwargs
@@ -150,7 +150,12 @@ class TripleLine(DoubleLine):
     """
 
     def __init__(
-        self, start: list = [-1, 0, 0], end: list = [1, 0, 0], angle: float = PI / 4, *args, **kwargs
+        self,
+        start: list = [-1, 0, 0],
+        end: list = [1, 0, 0],
+        angle: float = PI / 4,
+        *args,
+        **kwargs,
     ):
         """Initialize a triple bond by adding a central straight line to a double bond."""
         super().__init__(start=start, end=end, *args, **kwargs)
@@ -170,11 +175,11 @@ class GraphMolecule(Graph, AbstractMolecule):
         Dictionary mapping edge tuples to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects.
     label
         Whether to add a label with the element symbol to each atom.
-        
+
     numeric_label
-        Whether to add a numeric label to each atom. 
+        Whether to add a numeric label to each atom.
     label_color
-        Color of the atom labels. 
+        Color of the atom labels.
     args
         Additional positional arguments passed to :class:`~manim.mobject.graph.Graph`.
     **kwargs
@@ -410,7 +415,9 @@ class GraphMolecule(Graph, AbstractMolecule):
             )
             self.edges[(u, v)] = bond
 
-    def select_bond_from_edge(self, edge: tuple[int, int]) -> type[Line] | type[ArcBetweenPoints]:
+    def select_bond_from_edge(
+        self, edge: tuple[int, int]
+    ) -> type[Line] | type[ArcBetweenPoints]:
         """Return the bond class for a given edge tuple based on its bond type.
 
         Parameters
@@ -512,7 +519,9 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return edge_config
 
-    def make_labels(self, vertices_dict: dict, numeric_label: bool, label_color: str) -> dict[int, Text]:
+    def make_labels(
+        self, vertices_dict: dict, numeric_label: bool, label_color: str
+    ) -> dict[int, Text]:
         """Create label text mobjects for each atom, either numeric or element symbols.
 
         Parameters
@@ -670,7 +679,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms
             List of atom indices to get the bonds from.
         excluded_atom
-            Atom index to exclude from the bonds. 
+            Atom index to exclude from the bonds.
 
         Returns
         -------
@@ -684,7 +693,9 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return edges
 
-    def get_bonds_vgroup_from_index(self, connected_atoms: list, excluded_atom: int) -> VGroup:
+    def get_bonds_vgroup_from_index(
+        self, connected_atoms: list, excluded_atom: int
+    ) -> VGroup:
         """Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of bond mobjects connected to the given atoms, excluding one.
 
         Parameters
@@ -711,7 +722,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms
             List of connected atom indices.
         excluded_atom
-            Atom index to exclude from the bonds. 
+            Atom index to exclude from the bonds.
 
         Returns
         -------

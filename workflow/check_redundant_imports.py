@@ -31,7 +31,10 @@ def is_star_import(node):
     return (
         isinstance(node, ast.ImportFrom)
         and node.module is not None
-        and any(node.module == m or node.module.startswith(m + ".") for m in STAR_IMPORT_MODULES)
+        and any(
+            node.module == m or node.module.startswith(m + ".")
+            for m in STAR_IMPORT_MODULES
+        )
         and any(alias.name == "*" for alias in node.names)
     )
 
@@ -122,9 +125,12 @@ def fix_star_imports(source, filepath):
             else:
                 inner = indent + " " * 4
                 new_line = (
-                    indent + f"from {node.module} import (\n"
+                    indent
+                    + f"from {node.module} import (\n"
                     + ",\n".join(inner + n for n in names)
-                    + ",\n" + indent + ")"
+                    + ",\n"
+                    + indent
+                    + ")"
                 )
             replacements[node.lineno] = new_line
         else:
@@ -147,7 +153,10 @@ def fix_star_imports(source, filepath):
     try:
         ast.parse(new_source)
     except SyntaxError as e:
-        print(f"  ERROR: {filepath}: fix would produce invalid Python: {e}", file=sys.stderr)
+        print(
+            f"  ERROR: {filepath}: fix would produce invalid Python: {e}",
+            file=sys.stderr,
+        )
         return source, 0
     return new_source, len(star_nodes)
 
@@ -170,15 +179,18 @@ def main():
         description="Check and fix manim star imports (banned outside __init__.py)."
     )
     parser.add_argument(
-        "--fix", action="store_true",
+        "--fix",
+        action="store_true",
         help="Replace star imports with explicit imports of used names",
     )
     parser.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="Show what would be changed without writing files",
     )
     parser.add_argument(
-        "paths", nargs="*",
+        "paths",
+        nargs="*",
         help="Specific files/dirs to check (default: manim_extensions, tests, workflow, docs)",
     )
     args = parser.parse_args()
@@ -200,8 +212,10 @@ def main():
                 targets.extend(sorted(b.rglob("*.py")))
 
     targets = [
-        t for t in targets
-        if "__pycache__" not in str(t) and ".git" not in str(t)
+        t
+        for t in targets
+        if "__pycache__" not in str(t)
+        and ".git" not in str(t)
         and "__init__.py" not in t.name
     ]
 
@@ -226,7 +240,9 @@ def main():
             if num and new_source != source:
                 if not args.dry_run:
                     target.write_text(new_source, encoding="utf-8")
-                print(f"  {'Would fix' if args.dry_run else 'Fixed'} {num} star import(s)")
+                print(
+                    f"  {'Would fix' if args.dry_run else 'Fixed'} {num} star import(s)"
+                )
                 fixed_count += 1
 
     print(f"\n{'='*70}")

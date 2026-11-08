@@ -19,9 +19,11 @@ from manim_extensions.machine_learning.decision_tree.helpers import (
 @pytest.fixture(scope="module")
 def tree():
     data = load_iris()
-    return DecisionTreeClassifier(max_depth=3, random_state=0).fit(
-        data.data, data.target
-    ).tree_
+    return (
+        DecisionTreeClassifier(max_depth=3, random_state=0)
+        .fit(data.data, data.target)
+        .tree_
+    )
 
 
 def test_compute_node_depths_covers_all_nodes(tree):

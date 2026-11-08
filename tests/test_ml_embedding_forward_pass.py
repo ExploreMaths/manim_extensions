@@ -7,7 +7,9 @@ import numpy as np
 import pytest
 from manim import AnimationGroup, tempconfig
 
-from manim_extensions.machine_learning.neural_network.layers.embedding import EmbeddingLayer
+from manim_extensions.machine_learning.neural_network.layers.embedding import (
+    EmbeddingLayer,
+)
 
 DIST_ARGS = {"mean": np.array([0.0, 0.0]), "cov": np.array([[1.0, 0.0], [0.0, 1.0]])}
 

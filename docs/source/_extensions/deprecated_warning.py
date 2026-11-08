@@ -31,7 +31,9 @@ class ExtDeprecatedDirective(SphinxDirective):
     has_content = True
 
     def run(self) -> list[nodes.Node]:
-        label = nodes.inline("", _("Deprecated") + ": ", classes=["versionmodified", "deprecated"])
+        label = nodes.inline(
+            "", _("Deprecated") + ": ", classes=["versionmodified", "deprecated"]
+        )
         node = addnodes.versionmodified(type="deprecated")
         para = nodes.paragraph("", "", label, translatable=False)
         inodes, _messages = self.state.inline_text("\n".join(self.content), self.lineno)

@@ -12,6 +12,7 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .math_operation_layer import MathOperationLayer
 from ...utils.mobjects.connections import NetworkConnection
 
+
 class FeedForwardToMathOperation(ConnectiveLayer):
     """Connective layer between a feed-forward layer and a math operation layer.
 
@@ -35,7 +36,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         input_layer: Mobject,
         output_layer: Mobject,
         active_color: ManimColor = ORANGE,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the feed-forward-to-math-operation connective layer with active color."""
         self.active_color = active_color
@@ -45,7 +46,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Build a straight arrow connection between the feed-forward and math operation layers.
 
@@ -65,16 +66,15 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer
         self.connection = NetworkConnection(
-            self.input_layer,
-            self.output_layer,
-            arc_direction="straight",
-            buffer=0.05
+            self.input_layer, self.output_layer, arc_direction="straight", buffer=0.05
         )
         self.add(self.connection)
 
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, **kwargs) -> ShowPassingFlash:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, **kwargs
+    ) -> ShowPassingFlash:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 
         Parameters

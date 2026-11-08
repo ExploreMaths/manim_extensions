@@ -217,7 +217,9 @@ class VDampedRotarySpring(VConstraint):
 
         # 5. Update arc indicators
         buff = 0.3
-        line_angle = np.arctan2(unit_vec[1], unit_vec[0])  # Absolute angle of connecting line
+        line_angle = np.arctan2(
+            unit_vec[1], unit_vec[0]
+        )  # Absolute angle of connecting line
 
         if self.arc_a:
             new_arc_a = self.arc_indicator_class(

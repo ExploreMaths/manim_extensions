@@ -77,9 +77,7 @@ class CompassScene(MovingCameraScene):
         self.ruler = Ruler().to_edge(DOWN)
         self.pencil = Pencil().to_corner(UR)
 
-    def compass_move_niddle_tip_to(
-        self, pos: Point3D = ORIGIN, run_time: float = 1
-    ):
+    def compass_move_niddle_tip_to(self, pos: Point3D = ORIGIN, run_time: float = 1):
         """Move the compass needle tip to a target position.
 
         Parameters
@@ -182,7 +180,7 @@ class CompassScene(MovingCameraScene):
         pen_pos
             Target position for the compass pen tip (pen_tip).
         run_time
-            Duration of the placement animation in seconds. 
+            Duration of the placement animation in seconds.
         """
         self.play(
             PutCompass(

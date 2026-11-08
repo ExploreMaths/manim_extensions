@@ -85,33 +85,25 @@ class TestMArrayElement:
     def test_update_mob_value_no_play(self):
         scene = Scene()
         elem = MArrayElement(scene, mob_value_args={"text": "old"})
-        result = elem.update_mob_value(
-            mob_value_args={"text": "new"}, play_anim=False
-        )
+        result = elem.update_mob_value(mob_value_args={"text": "new"}, play_anim=False)
         assert result.text == "new"
 
     def test_update_mob_index_no_play(self):
         scene = Scene()
         elem = MArrayElement(scene, mob_index_args={"text": "0"})
-        result = elem.update_mob_index(
-            mob_index_args={"text": "1"}, play_anim=False
-        )
+        result = elem.update_mob_index(mob_index_args={"text": "1"}, play_anim=False)
         assert result.text == "1"
 
     def test_update_mob_label_no_play(self):
         scene = Scene()
         elem = MArrayElement(scene, mob_label_args={"text": "a"})
-        result = elem.update_mob_label(
-            mob_label_args={"text": "b"}, play_anim=False
-        )
+        result = elem.update_mob_label(mob_label_args={"text": "b"}, play_anim=False)
         assert result.text == "b"
 
     def test_multiple_elements_chaining(self):
         scene = Scene()
         elem1 = MArrayElement(scene, mob_value_args={"text": "1"})
-        elem2 = MArrayElement(
-            scene, mob_value_args={"text": "2"}, next_to_mob=elem1
-        )
+        elem2 = MArrayElement(scene, mob_value_args={"text": "2"}, next_to_mob=elem1)
         assert elem2.fetch_mob_value().text == "2"
 
 
@@ -450,6 +442,7 @@ class TestMVariable:
 
     def test_inherits_from_marray_element(self):
         from manim_extensions.data_structures.m_array import MArrayElement
+
         assert issubclass(MVariable, MArrayElement)
 
     def test_animate_mob_value(self):

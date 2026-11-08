@@ -4,8 +4,8 @@
 
 """ReLU activation function visualization."""
 
-
 from .activation_function import ActivationFunction
+
 
 class ReLUFunction(ActivationFunction):
     """Rectified Linear Unit Activation Function.
@@ -37,7 +37,12 @@ class ReLUFunction(ActivationFunction):
                self.add(relu)
     """
 
-    def __init__(self, function_name: str = "ReLU", x_range: list = [-1, 1], y_range: list = [-1, 1]):
+    def __init__(
+        self,
+        function_name: str = "ReLU",
+        x_range: list = [-1, 1],
+        y_range: list = [-1, 1],
+    ):
         """Initialize the ReLU activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 

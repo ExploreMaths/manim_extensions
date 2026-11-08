@@ -8,7 +8,10 @@ import pytest
 from manim import tempconfig
 
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh, ManimMesh
+from manim_extensions.meshes.models.manim_models.basic_mesh import (
+    Manim2DMesh,
+    ManimMesh,
+)
 
 MESH_2D = Mesh([[0, 0, 0], [1, 0, 0], [0, 1, 0]], [[0, 1, 2]], [[0]])
 MESH_4D = Mesh([[0, 0, 0, 0], [1, 0, 0, 0], [0, 1, 0, 0]], [[0, 1, 2]], [[0]])

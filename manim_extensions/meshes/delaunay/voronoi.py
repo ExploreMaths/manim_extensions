@@ -134,7 +134,9 @@ class VoronoiDelaunay:
 
         return vert_group, line_group
 
-    def get_circum_circle(self, voronoi_vertex_index: int, color: ManimColor = ORANGE) -> Circle:
+    def get_circum_circle(
+        self, voronoi_vertex_index: int, color: ManimColor = ORANGE
+    ) -> Circle:
         """Return the circumscribed circle of the triangle dual to a Voronoi vertex.
 
         The circle is centred at the Voronoi vertex and passes through the
@@ -146,7 +148,7 @@ class VoronoiDelaunay:
             Index of the Voronoi vertex whose dual triangle's circumcircle
             is computed.
         color
-            Stroke colour of the returned circle. 
+            Stroke colour of the returned circle.
 
         Returns
         -------

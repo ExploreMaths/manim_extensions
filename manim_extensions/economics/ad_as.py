@@ -7,7 +7,6 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 
 """
 
-
 from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram
 
@@ -133,8 +132,9 @@ class ADASDiagram(EconDiagram):
             )
 
         if show_equilibrium and not lras_only:
-            self.mark_equilibrium("ad", "sras", label_x="Y*", label_y="P*",
-                                  numbered=numbered_eq)
+            self.mark_equilibrium(
+                "ad", "sras", label_x="Y*", label_y="P*", numbered=numbered_eq
+            )
 
     @staticmethod
     def _make_ad_func(m: float, v: float):
@@ -149,7 +149,9 @@ class ADASDiagram(EconDiagram):
         return max((m * v) / y_max, 0.1)
 
     @staticmethod
-    def _make_sras_func(price: float, slope: float | None = None, y_bar: float | None = None):
+    def _make_sras_func(
+        price: float, slope: float | None = None, y_bar: float | None = None
+    ):
         """SRAS curve.
 
         Flat when slope is None: P = price.
@@ -170,22 +172,28 @@ class ADASDiagram(EconDiagram):
         """
         return (self._m * self._v) / self._lras_y
 
-    def shift_ad(self, m: float | None = None, v: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup | list[AnimationGroup]:
+    def shift_ad(
+        self,
+        m: float | None = None,
+        v: float | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+    ) -> AnimationGroup | list[AnimationGroup]:
         """Animate AD shifting due to changes in M and/or V.
 
         Parameters
         ----------
         m
             New money supply. If ``None``, keeps the current value.
-            
+
         v
             New velocity of money. If ``None``, keeps the current value.
-            
+
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -198,27 +206,35 @@ class ADASDiagram(EconDiagram):
         y_max = self.axes.y_range[1]
         x_min = self._ad_x_min(self._m, self._v, y_max)
         return self.get_shift_animation(
-            "ad", new_func, new_x_range=[x_min, 10], run_time=run_time,
+            "ad",
+            new_func,
+            new_x_range=[x_min, 10],
+            run_time=run_time,
             show_arrows=show_arrows,
         )
 
-    def shift_sras(self, sras_price: float | None = None, sras_slope: float | None = None, run_time: float = 1,
-                   show_arrows: bool = False) -> AnimationGroup | list[AnimationGroup]:
+    def shift_sras(
+        self,
+        sras_price: float | None = None,
+        sras_slope: float | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+    ) -> AnimationGroup | list[AnimationGroup]:
         """Animate SRAS shifting to a new expected price Pᵉ and/or slope.
 
         Parameters
         ----------
         sras_price
             New expected price level Pᵉ. If ``None``, keeps the current
-            value. 
+            value.
         sras_slope
             New SRAS slope; ``None`` keeps the curve flat. If ``None``,
-            keeps the current value. 
+            keeps the current value.
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -230,10 +246,15 @@ class ADASDiagram(EconDiagram):
         if sras_slope is not None:
             self._sras_slope = sras_slope
         new_func = self._make_sras_func(
-            self._sras_price, self._sras_slope, self._lras_y,
+            self._sras_price,
+            self._sras_slope,
+            self._lras_y,
         )
         return self.get_shift_animation(
-            "sras", new_func, run_time=run_time, show_arrows=show_arrows,
+            "sras",
+            new_func,
+            run_time=run_time,
+            show_arrows=show_arrows,
         )
 
     def shift_lras(self, new_y: float, run_time: float = 1) -> AnimationGroup:
@@ -244,7 +265,7 @@ class ADASDiagram(EconDiagram):
         new_y
             New potential output (natural rate of output).
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
 
         Returns
         -------
@@ -270,17 +291,19 @@ class ADASDiagram(EconDiagram):
 
         return AnimationGroup(*anims)
 
-    def long_run_adjust(self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> AnimationGroup:
+    def long_run_adjust(
+        self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False
+    ) -> AnimationGroup:
         """SRAS slowly shifts to restore long-run equilibrium.
 
         Parameters
         ----------
         run_time
-            Duration of the adjustment animation. 
+            Duration of the adjustment animation.
             seconds.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             After a shock moves output away from LRAS, SRAS gradually adjusts
             to P = MV / Y_potential, bringing the economy back to potential output.
@@ -291,8 +314,9 @@ class ADASDiagram(EconDiagram):
             The animation shifting the SRAS curve back toward long-run
             equilibrium.
         """
-        return self.shift_sras(sras_price=self._lr_price, run_time=run_time,
-                               show_arrows=show_arrows)
+        return self.shift_sras(
+            sras_price=self._lr_price, run_time=run_time, show_arrows=show_arrows
+        )
 
     # ---- Demand shocks ----
 
@@ -301,28 +325,35 @@ class ADASDiagram(EconDiagram):
         clear = self.clear_arrows()
         if clear is not None:
             anims.append(clear)
-        anims.append(self.long_run_adjust(run_time=lr_run_time,
-                                          show_arrows=show_arrows))
+        anims.append(
+            self.long_run_adjust(run_time=lr_run_time, show_arrows=show_arrows)
+        )
 
-    def positive_demand_shock(self, m: float | None = None, v: float | None = None, long_run: bool = True,
-                              lr_run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
+    def positive_demand_shock(
+        self,
+        m: float | None = None,
+        v: float | None = None,
+        long_run: bool = True,
+        lr_run_time: float = _LR_RUN_TIME,
+        show_arrows: bool = False,
+    ) -> list[AnimationGroup]:
         """Positive demand shock (e.g. increase in M or V).
 
         Parameters
         ----------
         m
             New money supply. If ``None``, keeps the current value.
-            
+
         v
             New velocity of money. If ``None``, keeps the current value.
-            
+
         long_run
-            If True, append the long-run adjustment of SRAS. 
+            If True, append the long-run adjustment of SRAS.
         lr_run_time
             Duration of the long-run adjustment animation. seconds.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             Short run: AD shifts right → output rises above potential, price unchanged.
 
@@ -338,25 +369,31 @@ class ADASDiagram(EconDiagram):
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims
 
-    def negative_demand_shock(self, m: float | None = None, v: float | None = None, long_run: bool = True,
-                              lr_run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
+    def negative_demand_shock(
+        self,
+        m: float | None = None,
+        v: float | None = None,
+        long_run: bool = True,
+        lr_run_time: float = _LR_RUN_TIME,
+        show_arrows: bool = False,
+    ) -> list[AnimationGroup]:
         """Negative demand shock (e.g. decrease in M or V).
 
         Parameters
         ----------
         m
             New money supply. If ``None``, keeps the current value.
-            
+
         v
             New velocity of money. If ``None``, keeps the current value.
-            
+
         long_run
-            If True, append the long-run adjustment of SRAS. 
+            If True, append the long-run adjustment of SRAS.
         lr_run_time
             Duration of the long-run adjustment animation. seconds.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             Short run: AD shifts left → output falls below potential, price unchanged.
 
@@ -374,8 +411,13 @@ class ADASDiagram(EconDiagram):
 
     # ---- Supply shocks ----
 
-    def adverse_supply_shock(self, sras_price: float, long_run: bool = True,
-                             lr_run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
+    def adverse_supply_shock(
+        self,
+        sras_price: float,
+        long_run: bool = True,
+        lr_run_time: float = _LR_RUN_TIME,
+        show_arrows: bool = False,
+    ) -> list[AnimationGroup]:
         """Adverse supply shock (e.g. oil price spike, cost push).
 
         Parameters
@@ -388,7 +430,7 @@ class ADASDiagram(EconDiagram):
             Duration of the long-run adjustment animation. seconds.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             Short run: SRAS shifts up → price rises, output falls (stagflation).
 
@@ -404,8 +446,13 @@ class ADASDiagram(EconDiagram):
             self._append_long_run(anims, lr_run_time, show_arrows)
         return anims
 
-    def positive_supply_shock(self, sras_price: float, long_run: bool = True,
-                              lr_run_time: float = _LR_RUN_TIME, show_arrows: bool = False) -> list[AnimationGroup]:
+    def positive_supply_shock(
+        self,
+        sras_price: float,
+        long_run: bool = True,
+        lr_run_time: float = _LR_RUN_TIME,
+        show_arrows: bool = False,
+    ) -> list[AnimationGroup]:
         """Positive supply shock.
 
         Parameters
@@ -418,7 +465,7 @@ class ADASDiagram(EconDiagram):
             Duration of the long-run adjustment animation. seconds.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             Short run: SRAS shifts down → price falls, output rises.
 

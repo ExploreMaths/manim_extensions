@@ -16,7 +16,24 @@ import copy
 from typing import List
 
 # third-party imports
-from manim import Dot, FadeIn, FadeOut, Group, ManimColor, Mobject, ORIGIN, OUT, RED, Scene, Sphere, TAU, ThreeDVMobject, UP, VGroup, ValueTracker
+from manim import (
+    Dot,
+    FadeIn,
+    FadeOut,
+    Group,
+    ManimColor,
+    Mobject,
+    ORIGIN,
+    OUT,
+    RED,
+    Scene,
+    Sphere,
+    TAU,
+    ThreeDVMobject,
+    UP,
+    VGroup,
+    ValueTracker,
+)
 import numpy as np
 
 # local imports
@@ -146,9 +163,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             self.vertices = Group()
         # create and add all the points into self.vertices
         for v in self.mesh.get_3d_vertices():
-            self.vertices.add(
-                Sphere(v, radius=self.verts_size, color=self.verts_color)
-            )
+            self.vertices.add(Sphere(v, radius=self.verts_size, color=self.verts_color))
         return self.vertices
 
     def setup_edges(self) -> VGroup:
@@ -211,7 +226,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         return self.faces
 
-    def add_face(self, face: VectorND, color: ManimColor | None = None) -> tuple[VGroup, VGroup]:
+    def add_face(
+        self, face: VectorND, color: ManimColor | None = None
+    ) -> tuple[VGroup, VGroup]:
         """Add a face to the mesh and create the corresponding Manim objects.
 
         If ``color`` is ``None``, the default ``self.faces_color`` is used.
@@ -489,7 +506,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         self,
         angle: float,
         axis: Vector3D = OUT,
-        about_point: Point3D | None=None,
+        about_point: Point3D | None = None,
         **kwargs,
     ):
         """Rotate the mesh (data and Manim objects) about ``about_point``.
@@ -572,9 +589,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         # applying the flip to the data twice.
         super().rotate(TAU / 2, axis, about_point=about_point, **kwargs)
 
-    def shift_vertex(
-        self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs
-    ):
+    def shift_vertex(self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs):
         """Animate a single vertex and update all adjacent faces/edges.
 
         Parameters
@@ -631,8 +646,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                     vertex_idx=bound_v_id,
                     pos=start[bound_v_id] + tracker.get_value() * shift[bound_v_id],
                     **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"]),
+                )
             )
-        )
         scene.add(tracker)
         scene.play(
             tracker.animate(
@@ -646,9 +661,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.remove(tracker)
 
-    def move_vertices_to(
-        self, scene: Scene, new_positions: Point3D_Array, **kwargs
-    ):
+    def move_vertices_to(self, scene: Scene, new_positions: Point3D_Array, **kwargs):
         """Animate all vertices to ``new_positions`` and update the underlying mesh.
 
         Parameters
@@ -672,9 +685,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         shift: Point3D_Array = new_positions - self.mesh.vertices
         self.shift_vertices(scene, shift=shift, **kwargs)
 
-    def move_vertex_to(
-        self, scene: Scene, vertex_idx: int, pos: Point3D, **kwargs
-    ):
+    def move_vertex_to(self, scene: Scene, vertex_idx: int, pos: Point3D, **kwargs):
         """Animate a single vertex to a new absolute position.
 
         Parameters

@@ -14,7 +14,6 @@ from manim_extensions.meshes.delaunay.divide_and_conquer import (
 from manim_extensions.meshes.models.data_models.mesh import Mesh
 from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
-
 VERTICES = np.array(
     [[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1.0]],
     dtype=float,

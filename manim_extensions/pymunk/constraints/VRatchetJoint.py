@@ -52,7 +52,7 @@ class VRatchetJoint(VConstraint):
         Configuration dictionary for the styling of the connection line.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint`.
-        
+
     Examples
     --------
     .. manim:: VRatchetJointExample

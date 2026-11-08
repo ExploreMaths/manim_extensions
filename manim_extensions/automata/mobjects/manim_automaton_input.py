@@ -8,7 +8,6 @@ This module provides the ManimAutomataInput class for representing input strings
 
 """
 
-
 from manim import Animation, MathTex, VGroup
 from typing import Any
 
@@ -25,7 +24,7 @@ class ManimAutomataInput(VGroup):
     animation_style
         Styling configuration used to animate token highlighting.
     font_size
-        Font size used for each token. 
+        Font size used for each token.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
@@ -77,7 +76,9 @@ class ManimAutomataInput(VGroup):
             spacing = spacing + 1
 
     @staticmethod
-    def highlight_token(token: MathTex, animation_style: dict[str, object]) -> Animation:
+    def highlight_token(
+        token: MathTex, animation_style: dict[str, object]
+    ) -> Animation:
         """Highlight a token using the configured animation style.
 
         Parameters
@@ -110,7 +111,7 @@ class Token(MathTex):
     spacing
         Horizontal offset applied when positioning the token.
     font_size
-        Font size for the token text.  
+        Font size for the token text.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.mobject.text.tex_mobject.MathTex`.
 

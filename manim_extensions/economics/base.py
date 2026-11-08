@@ -106,11 +106,16 @@ class EconDiagram(VGroup):
                self.add(diagram)
     """
 
-    def __init__(self, x_label: str = "X", y_label: str = "Y",
-                 x_range: Sequence[float] | None = None,
-                 y_range: Sequence[float] | None = None,
-                 x_length: float = 6, y_length: float = 4,
-                 **kwargs: Any):
+    def __init__(
+        self,
+        x_label: str = "X",
+        y_label: str = "Y",
+        x_range: Sequence[float] | None = None,
+        y_range: Sequence[float] | None = None,
+        x_length: float = 6,
+        y_length: float = 4,
+        **kwargs: Any,
+    ):
         """Initialize the diagram axes and axis labels."""
         super().__init__(**kwargs)
 
@@ -144,9 +149,14 @@ class EconDiagram(VGroup):
 
         self.add(self.axes, self.axis_labels)
 
-    def add_curve(self, name: str, func: Callable[[float], float],
-                  x_range: Sequence[float], color: ManimColor | str,
-                  label_text: str | None = None) -> ParametricFunction:
+    def add_curve(
+        self,
+        name: str,
+        func: Callable[[float], float],
+        x_range: Sequence[float],
+        color: ManimColor | str,
+        label_text: str | None = None,
+    ) -> ParametricFunction:
         """Plot a curve on the axes and store it by name.
 
         Parameters
@@ -161,7 +171,7 @@ class EconDiagram(VGroup):
             Color of the curve.
         label_text
             If given, text label placed next to the curve's end.
-            
+
 
         Returns
         -------
@@ -181,8 +191,13 @@ class EconDiagram(VGroup):
 
         return curve
 
-    def add_vertical_line(self, name: str, x: float, color: ManimColor | str,
-                          label_text: str | None = None) -> Line:
+    def add_vertical_line(
+        self,
+        name: str,
+        x: float,
+        color: ManimColor | str,
+        label_text: str | None = None,
+    ) -> Line:
         """Add a vertical line at a given x position.
 
         Parameters
@@ -194,7 +209,7 @@ class EconDiagram(VGroup):
         color
             Color of the line.
         label_text
-            If given, text label placed above the line. 
+            If given, text label placed above the line.
 
         Returns
         -------
@@ -224,10 +239,14 @@ class EconDiagram(VGroup):
             return self._SUBSCRIPTS[n - 1]
         return str(n)
 
-    def _build_eq_parts(self, curve_a: str, curve_b: str,
-                        label_x: str = "", label_y: str = "",
-                        subscript: int | None = None
-                        ) -> tuple[VGroup | None, VGroup | None]:
+    def _build_eq_parts(
+        self,
+        curve_a: str,
+        curve_b: str,
+        label_x: str = "",
+        label_y: str = "",
+        subscript: int | None = None,
+    ) -> tuple[VGroup | None, VGroup | None]:
         """Build equilibrium geometry and labels separately.
 
         Returns (geometry_group, labels_group) or (None, None).
@@ -269,19 +288,30 @@ class EconDiagram(VGroup):
 
         return geom, labels
 
-    def _build_eq_group(self, curve_a: str, curve_b: str,
-                        label_x: str = "", label_y: str = "",
-                        subscript: int | None = None) -> VGroup | None:
+    def _build_eq_group(
+        self,
+        curve_a: str,
+        curve_b: str,
+        label_x: str = "",
+        label_y: str = "",
+        subscript: int | None = None,
+    ) -> VGroup | None:
         """Build a combined equilibrium VGroup (geometry + labels)."""
-        geom, labels = self._build_eq_parts(curve_a, curve_b, label_x,
-                                            label_y, subscript)
+        geom, labels = self._build_eq_parts(
+            curve_a, curve_b, label_x, label_y, subscript
+        )
         if geom is None or labels is None:
             return None
         return VGroup(geom, labels)
 
-    def mark_equilibrium(self, curve_a: str, curve_b: str, label_x: str = "",
-                         label_y: str = "", numbered: bool = False
-                         ) -> VGroup | None:
+    def mark_equilibrium(
+        self,
+        curve_a: str,
+        curve_b: str,
+        label_x: str = "",
+        label_y: str = "",
+        numbered: bool = False,
+    ) -> VGroup | None:
         """Mark the intersection of two curves with a dot and dashed lines.
 
         Parameters
@@ -292,13 +322,13 @@ class EconDiagram(VGroup):
             Name of the second stored curve.
         label_x
             Text label placed below the x-axis at the intersection.
-            
+
         label_y
             Text label placed left of the y-axis at the intersection.
-            
+
         numbered
             If True, labels use subscripts (P₁/Y₁) that increment on each
-            shift, and old markers stay visible. 
+            shift, and old markers stay visible.
 
         Returns
         -------
@@ -312,8 +342,9 @@ class EconDiagram(VGroup):
         self._eq_count = 1 if numbered else 0
 
         sub = 1 if numbered else None
-        eq_group = self._build_eq_group(curve_a, curve_b, label_x, label_y,
-                                        subscript=sub)
+        eq_group = self._build_eq_group(
+            curve_a, curve_b, label_x, label_y, subscript=sub
+        )
         if eq_group is None:
             return None
 
@@ -334,9 +365,9 @@ class EconDiagram(VGroup):
         return x_eq, func_a(x_eq)
 
     @staticmethod
-    def _make_single_arrow(start: Point3D, end: Point3D,
-                           color: ManimColor | str,
-                           tip_size: float = 0.08) -> VGroup:
+    def _make_single_arrow(
+        start: Point3D, end: Point3D, color: ManimColor | str, tip_size: float = 0.08
+    ) -> VGroup:
         """Create a line with a small triangle at the end only."""
         direction = end - start
         norm = np.linalg.norm(direction)
@@ -357,9 +388,12 @@ class EconDiagram(VGroup):
         )
         return VGroup(shaft, tip)
 
-    def _build_axis_arrows(self, old_xy: tuple[float, float],
-                           new_xy: tuple[float, float],
-                           arrow_color: ManimColor | str = WHITE) -> VGroup:
+    def _build_axis_arrows(
+        self,
+        old_xy: tuple[float, float],
+        new_xy: tuple[float, float],
+        arrow_color: ManimColor | str = WHITE,
+    ) -> VGroup:
         """Build arrows near the axes between old and new equilibrium values.
 
         Returns a VGroup with up to two arrows (x-axis and y-axis).
@@ -382,12 +416,15 @@ class EconDiagram(VGroup):
 
         return group
 
-    def get_shift_animation(self, curve_name: str,
-                            new_func: Callable[[float], float],
-                            new_x_range: Sequence[float] | None = None,
-                            run_time: float = 1, show_arrows: bool = False,
-                            arrow_color: ManimColor | str = WHITE
-                            ) -> AnimationGroup:
+    def get_shift_animation(
+        self,
+        curve_name: str,
+        new_func: Callable[[float], float],
+        new_x_range: Sequence[float] | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+        arrow_color: ManimColor | str = WHITE,
+    ) -> AnimationGroup:
         """Return a :class:`~manim.animation.transform.Transform` animation that shifts a curve to a new function.
 
         Parameters
@@ -398,14 +435,14 @@ class EconDiagram(VGroup):
             New function of x for the curve.
         new_x_range
             New plot range for the curve; if ``None``, the curve's original
-            range is kept. 
+            range is kept.
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
         arrow_color
-            Color for the axis arrows. 
+            Color for the axis arrows.
 
         Returns
         -------
@@ -436,7 +473,9 @@ class EconDiagram(VGroup):
             if self._eq_numbered:
                 self._eq_count += 1
                 new_geom, new_labels = self._build_eq_parts(
-                    *self._eq_curve_names, self._eq_label_x, self._eq_label_y,
+                    *self._eq_curve_names,
+                    self._eq_label_x,
+                    self._eq_label_y,
                     subscript=self._eq_count,
                 )
                 if new_geom is not None and new_labels is not None:
@@ -444,9 +483,9 @@ class EconDiagram(VGroup):
                     old_geom = old_group[0]
                     new_eq_group = VGroup(new_geom, new_labels)
                     self._eq_group = new_eq_group
-                    anims.append(ReplacementTransform(
-                        old_geom, new_geom, run_time=run_time
-                    ))
+                    anims.append(
+                        ReplacementTransform(old_geom, new_geom, run_time=run_time)
+                    )
                     anims.append(FadeIn(new_labels, run_time=run_time))
             else:
                 new_eq_group = self._build_eq_group(
@@ -455,9 +494,11 @@ class EconDiagram(VGroup):
                 if new_eq_group is not None:
                     old_eq_group = self._eq_group
                     self._eq_group = new_eq_group
-                    anims.append(ReplacementTransform(
-                        old_eq_group, new_eq_group, run_time=run_time
-                    ))
+                    anims.append(
+                        ReplacementTransform(
+                            old_eq_group, new_eq_group, run_time=run_time
+                        )
+                    )
 
         if show_arrows and old_eq is not None:
             new_eq = self._get_eq_coords()
@@ -477,7 +518,7 @@ class EconDiagram(VGroup):
             A :class:`~manim.animation.fading.FadeOut` animation removing the arrows, or ``None`` if there
             are no arrows to clear.
         """
-        if hasattr(self, '_axis_arrows') and self._axis_arrows is not None:
+        if hasattr(self, "_axis_arrows") and self._axis_arrows is not None:
             old = self._axis_arrows
             self._axis_arrows = None
             return FadeOut(old, run_time=0.3)

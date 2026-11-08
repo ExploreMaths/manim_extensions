@@ -65,9 +65,7 @@ def _drop_auto_attribute_members(doctree):
         slots = getattr(cls, "__slots__", None)
         if slots:
             own.update(s for s in slots if isinstance(s, str))
-        content = next(
-            (c for c in d.children if isinstance(c, desc_content)), None
-        )
+        content = next((c for c in d.children if isinstance(c, desc_content)), None)
         if content is None:
             continue
         for c in list(content.children):
@@ -175,20 +173,19 @@ def _add_attribute_headings(doctree):
     for d in list(doctree.findall(desc)):
         if "class" not in d.get("classes", ()):
             continue
-        content = next(
-            (c for c in d.children if isinstance(c, desc_content)), None
-        )
+        content = next((c for c in d.children if isinstance(c, desc_content)), None)
         if content is None:
             continue
         attr_descs = [
-            c for c in content.children
+            c
+            for c in content.children
             if isinstance(c, desc) and "attribute" in c.get("classes", ())
         ]
         if not attr_descs:
             continue
         # A numpydoc Attributes section already supplies the heading.
         first_attr = attr_descs[0]
-        preceding = content.children[:content.children.index(first_attr)]
+        preceding = content.children[: content.children.index(first_attr)]
         if any(
             isinstance(c, nodes.rubric) and c.astext().strip() == "Attributes"
             for c in preceding
@@ -205,9 +202,7 @@ def _add_attribute_headings(doctree):
         idx_attr = content.children.index(first_attr)
         block = []
         for c in content.children[idx_attr:]:
-            if c in attr_descs or (
-                getattr(c, "tagname", None) == "index" and block
-            ):
+            if c in attr_descs or (getattr(c, "tagname", None) == "index" and block):
                 block.append(c)
             elif getattr(c, "tagname", None) == "index":
                 continue

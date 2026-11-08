@@ -96,7 +96,7 @@ def extract_cells(text):
             ind = len(ln) - len(ln.lstrip())
             if ind <= dind:
                 break
-            content.append(ln[dind + 3:])
+            content.append(ln[dind + 3 :])
             j += 1
         while content and not content[-1].strip():
             content.pop()
@@ -129,13 +129,15 @@ def collect_cells(only=None):
         cells = []
         for chunk in chunks:
             for code, options in extract_cells(chunk):
-                cells.append({
-                    "hash": normalize_code(code),
-                    "code": code,
-                    "language": options.get("language", "python"),
-                    "console": "prompt-in" in options,
-                    "pytb": options.get("output-language") == "pytb",
-                })
+                cells.append(
+                    {
+                        "hash": normalize_code(code),
+                        "code": code,
+                        "language": options.get("language", "python"),
+                        "console": "prompt-in" in options,
+                        "pytb": options.get("output-language") == "pytb",
+                    }
+                )
         if cells:
             context = None
             if path.suffix == ".py":
@@ -155,9 +157,17 @@ def run_document(module, cells, cwd):
     result_path = job_path + ".out"
     try:
         proc = subprocess.run(
-            [sys.executable, str(Path(__file__).resolve()),
-             "--runner", job_path, result_path],
-            capture_output=True, text=True, timeout=DOC_TIME, cwd=ROOT,
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                "--runner",
+                job_path,
+                result_path,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=DOC_TIME,
+            cwd=ROOT,
         )
         if proc.returncode != 0:
             sys.stderr.write(f"runner failed for {job_path}:\n{proc.stderr[-800:]}\n")
@@ -174,7 +184,9 @@ def run_document(module, cells, cwd):
 def prepare_cwd():
     """Scratch cwd with the molecule files the examples reference."""
     tmp = Path(tempfile.mkdtemp(prefix="nbcell-"))
-    for mol in list(ROOT.glob("*.mol")) + list((ROOT / "docs" / "source").glob("*.mol")):
+    for mol in list(ROOT.glob("*.mol")) + list(
+        (ROOT / "docs" / "source").glob("*.mol")
+    ):
         (tmp / mol.name).write_bytes(mol.read_bytes())
     legacy = tmp / "examples" / "molecule_files" / "mol_files"
     legacy.mkdir(parents=True)
@@ -186,11 +198,15 @@ def prepare_cwd():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", default="media_cache/_nbcell_cache.json")
-    parser.add_argument("--cache", default=None,
-                        help="existing cache to merge (defaults to --out)")
+    parser.add_argument(
+        "--cache", default=None, help="existing cache to merge (defaults to --out)"
+    )
     parser.add_argument("--only", default=None, help="restrict to matching paths")
-    parser.add_argument("--check", action="store_true",
-                        help="exit 1 if any cell hash is missing from the cache")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="exit 1 if any cell hash is missing from the cache",
+    )
     parser.add_argument("--runner", nargs=2, help=argparse.SUPPRESS)
     args = parser.parse_args()
 
@@ -209,8 +225,12 @@ def main():
     docs = collect_cells(only=args.only)
     total = sum(len(c) for c in docs.values())
     if args.check:
-        missing = [c["hash"] for doc in docs.values() for c in doc["cells"]
-                   if c["hash"] not in old.get("cells", {})]
+        missing = [
+            c["hash"]
+            for doc in docs.values()
+            for c in doc["cells"]
+            if c["hash"] not in old.get("cells", {})
+        ]
         if missing:
             print(f"{len(missing)}/{total} nbcell outputs not cached")
             return 1
@@ -225,6 +245,7 @@ def main():
             results = run_document(doc["module"], doc["cells"], cwd)
         finally:
             import shutil
+
             shutil.rmtree(cwd, ignore_errors=True)
         for cell in doc["cells"]:
             res = results.get(cell["hash"])
@@ -242,8 +263,10 @@ def main():
         json.dumps({"version": 1, "cells": cells_cache}, indent=1) + "\n",
         encoding="utf-8",
     )
-    print(f"cache: {len(cells_cache)} cells "
-          f"({executed} freshly executed, {failed} failed this run)")
+    print(
+        f"cache: {len(cells_cache)} cells "
+        f"({executed} freshly executed, {failed} failed this run)"
+    )
     print(f"wrote {out_path}")
     return 0
 
@@ -253,6 +276,7 @@ def runner_mode(job_path, result_path):
     job = json.loads(Path(job_path).read_text(encoding="utf-8"))
     cwd = Path(job["cwd"])
     import os
+
     os.chdir(cwd)
     namespace = {"__name__": "__nbcell__"}
     prelude = "from manim import *\n"
@@ -276,12 +300,16 @@ def runner_mode(job_path, result_path):
                 if cmd and cmd[0] == "python":
                     cmd[0] = sys.executable
                 proc = subprocess.run(
-                    cmd, cwd=cwd, capture_output=True, text=True,
+                    cmd,
+                    cwd=cwd,
+                    capture_output=True,
+                    text=True,
                     timeout=CONSOLE_TIME,
                 )
                 ok = proc.returncode == 0
                 results[cell["hash"]] = {
-                    "ok": ok, "stdout": (proc.stdout + proc.stderr).strip("\n"),
+                    "ok": ok,
+                    "stdout": (proc.stdout + proc.stderr).strip("\n"),
                 }
             except Exception:
                 results[cell["hash"]] = {"ok": False, "stdout": ""}
@@ -295,7 +323,8 @@ def runner_mode(job_path, result_path):
         except Exception:
             if cell["pytb"]:
                 results[cell["hash"]] = {
-                    "ok": True, "stdout": traceback.format_exc().strip("\n"),
+                    "ok": True,
+                    "stdout": traceback.format_exc().strip("\n"),
                 }
             else:
                 results[cell["hash"]] = {"ok": False, "stdout": ""}

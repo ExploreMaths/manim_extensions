@@ -45,13 +45,13 @@ class VoltageSource(Source):
     Parameters
     ----------
     value
-        Voltage value displayed next to the source. 
+        Voltage value displayed next to the source.
     label
-        Whether to display the value label. 
+        Whether to display the value label.
     direction
-        Direction in which the label is placed. 
+        Direction in which the label is placed.
     dependent
-        Whether the source is dependent. 
+        Whether the source is dependent.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
 
@@ -114,13 +114,13 @@ class CurrentSource(Source):
     Parameters
     ----------
     value
-        Current value displayed next to the source. 
+        Current value displayed next to the source.
     label
-        Whether to display the value label. 
+        Whether to display the value label.
     direction
-        Direction in which the label is placed. 
+        Direction in which the label is placed.
     dependent
-        Whether the source is dependent. 
+        Whether the source is dependent.
     **kwargs
         Forwarded to the parent :class:`~manim_extensions.circuit.utils.Source`.
 
@@ -168,9 +168,9 @@ class Inductor(VMobject):
     Parameters
     ----------
     label
-        Text label displayed next to the inductor (e.g. ``"10mH"``). 
+        Text label displayed next to the inductor (e.g. ``"10mH"``).
     direction
-        Direction in which the label is placed. 
+        Direction in which the label is placed.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -301,9 +301,9 @@ class Resistor(VMobject):
     Parameters
     ----------
     label
-        Text label displayed next to the resistor. 
+        Text label displayed next to the resistor.
     direction
-        Direction in which the label is placed. 
+        Direction in which the label is placed.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -435,11 +435,11 @@ class Capacitor(VMobject):
     Parameters
     ----------
     label
-        Text label displayed next to the capacitor. 
+        Text label displayed next to the capacitor.
     direction
-        Direction in which the label is placed. 
+        Direction in which the label is placed.
     polarized
-        Whether the capacitor is polarized (shows an arc symbol). 
+        Whether the capacitor is polarized (shows an arc symbol).
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -567,9 +567,9 @@ class Ground(VMobject):
     Parameters
     ----------
     ground_type
-        Type of ground symbol (``"ground"`` or ``"earth"``). 
+        Type of ground symbol (``"ground"`` or ``"earth"``).
     label
-        Optional label for the ground (e.g. ``"D"`` or ``"A"``). 
+        Optional label for the ground (e.g. ``"D"`` or ``"A"``).
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
@@ -653,9 +653,9 @@ class Opamp(VMobject):
     Parameters
     ----------
     bias_supply
-        Bias supply configuration (e.g. ``"both"``). 
+        Bias supply configuration (e.g. ``"both"``).
     label
-        Whether to display the op-amp label. 
+        Whether to display the op-amp label.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 

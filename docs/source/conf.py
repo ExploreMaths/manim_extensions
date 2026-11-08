@@ -234,7 +234,9 @@ def _typehints_formatter(annotation, *args):
     except Exception:
         _point = None
     if _point is not None:
-        if isinstance(annotation, _types.UnionType) and isinstance(_point, _types.UnionType):
+        if isinstance(annotation, _types.UnionType) and isinstance(
+            _point, _types.UnionType
+        ):
             _ann = set(annotation.__args__)
             _tgt = set(_point.__args__)
             if _tgt <= _ann and _ann - _tgt <= {type(None)}:

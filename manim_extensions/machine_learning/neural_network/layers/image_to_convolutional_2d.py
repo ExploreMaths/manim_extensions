@@ -109,7 +109,9 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, run_time: float = 5, layer_args: dict = {}, **kwargs) -> Succession:
+    def make_forward_pass_animation(
+        self, run_time: float = 5, layer_args: dict = {}, **kwargs
+    ) -> Succession:
         """Maps image to convolutional layer.
 
         Parameters
@@ -213,6 +215,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
         # Set opacity
         set_opacity = ApplyMethod(image_mobject.set_opacity, 0.2, run_time=0.5)
+
         # Scale the max of width or height to the
         # width of the feature_map
         def scale_image_func(image_mobject: Mobject) -> Mobject:
@@ -243,7 +246,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.Succession` instance representing the result."""
+            A :class:`~manim.animation.composition.Succession` instance representing the result.
+        """
         return self._image_to_feature_map_animation(
             self.input_layer.image_mobject, self.output_layer.feature_maps[0]
         )

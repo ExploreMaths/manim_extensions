@@ -91,9 +91,7 @@ class MovePencilTipTo(ApplyMethod):
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 
-    def __init__(
-        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
-    ):
+    def __init__(self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any):
         """Initialize MovePencilTipTo."""
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
@@ -125,9 +123,7 @@ class DrawPath(AnimationGroup):
                self.wait()
     """
 
-    def __init__(
-        self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
-    ):
+    def __init__(self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any):
         """Initialize DrawPath."""
         assert path is not None
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
@@ -161,8 +157,6 @@ class PutPencilAway(MovePencilTipTo):
                self.wait()
     """
 
-    def __init__(
-        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
-    ):
+    def __init__(self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any):
         """Initialize PutPencilAway."""
         super().__init__(pencil, point, **kwargs)

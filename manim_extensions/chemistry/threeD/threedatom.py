@@ -24,12 +24,14 @@ class ThreeDAtom(OpenGLSphere):
     element
         The element whose data (color) is used to draw the atom.
     coords
-        3D coordinates of the atom center. 
+        3D coordinates of the atom center.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere`.
     """
 
-    def __init__(self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs):
+    def __init__(
+        self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs
+    ):
         """Initialize a 3D atom sphere using element data at the given coordinates."""
         self.center = coords
         self.coords = coords

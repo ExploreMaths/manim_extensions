@@ -14,7 +14,6 @@ from .manim_state import ManimState, State
 from .manim_transition import ManimTransition, ManimPushDownAutomatonTransition
 from .manim_automaton_input import ManimAutomataInput
 
-
 #: Example pushdown automaton definition.
 pushdown_automaton_json = {
     "structure": {
@@ -246,9 +245,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         ]
 
         # run the input through the machine, returning a history of what happened
-        history = self.run_input_through_automaton(
-            input_to_run, automaton_path_name
-        )
+        history = self.run_input_through_automaton(input_to_run, automaton_path_name)
 
         list_of_animations = list_of_animations + self.generate_history_animations(
             history
@@ -341,7 +338,7 @@ class PushDownAutomatonRule:
     push
         Symbol pushed onto the stack.
     empty_transition
-        Symbol used when ``read_symbol`` is ``None``.  
+        Symbol used when ``read_symbol`` is ``None``.
 
     Examples
     --------

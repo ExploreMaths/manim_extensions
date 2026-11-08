@@ -11,7 +11,11 @@ from . import connective_layers_list
 
 
 from manim import Mobject
-def get_connective_layer(input_layer: Mobject, output_layer: Mobject) -> ConnectiveLayer:
+
+
+def get_connective_layer(
+    input_layer: Mobject, output_layer: Mobject
+) -> ConnectiveLayer:
     """
     Deduces the relevant connective layer.
 

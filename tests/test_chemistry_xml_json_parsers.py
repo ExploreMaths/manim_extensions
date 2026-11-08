@@ -24,9 +24,7 @@ def xml_molecule(coords_z=True):
         "PC-Compound_atoms": {
             "PC-Atoms": {
                 "PC-Atoms_aid": {"PC-Atoms_aid_E": ["1", "2"]},
-                "PC-Atoms_element": {
-                    "PC-Element": [{"@value": "C"}, {"@value": "O"}]
-                },
+                "PC-Atoms_element": {"PC-Element": [{"@value": "C"}, {"@value": "O"}]},
             }
         },
         "PC-Compound_coords": {
@@ -44,9 +42,7 @@ def xml_molecule(coords_z=True):
 
 JSON_MOLECULE = {
     "atoms": {"aid": [1, 2], "element": [6, 8]},
-    "coords": [
-        {"conformers": [{"x": [0.0, 1.2], "y": [0.0, 0.4], "z": [0.0, 0.3]}]}
-    ],
+    "coords": [{"conformers": [{"x": [0.0, 1.2], "y": [0.0, 0.4], "z": [0.0, 0.3]}]}],
     "bonds": {"aid1": [1], "aid2": [2], "order": [2]},
 }
 

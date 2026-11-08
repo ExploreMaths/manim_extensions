@@ -8,6 +8,7 @@ from manim import VGroup
 
 try:
     import segno
+
     _HAS_SEGNO = True
 except ImportError:
     _HAS_SEGNO = False

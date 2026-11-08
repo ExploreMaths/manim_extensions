@@ -44,9 +44,7 @@ def _install_grouped_depth_sorting() -> None:
             """
             if not (hasattr(mob, "shade_in_3d") and mob.shade_in_3d):
                 return (np.inf, np.inf)
-            primary = float(
-                np.dot(mob.get_z_index_reference_point(), rot_matrix.T)[2]
-            )
+            primary = float(np.dot(mob.get_z_index_reference_point(), rot_matrix.T)[2])
             secondary = float(np.dot(mob.get_center(), rot_matrix.T)[2])
             return (primary, secondary)
 

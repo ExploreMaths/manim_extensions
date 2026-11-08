@@ -11,7 +11,6 @@ from abc import ABC, abstractmethod
 import os
 from typing import Any
 
-
 #: Path-like value accepted by the parsers: a string, raw bytes or a PathLike.
 FilePath = str | bytes | os.PathLike[str] | os.PathLike[bytes]
 #: Parsed atoms data: ``{atom_index: {property: value}}``.
@@ -158,4 +157,3 @@ class BaseParser(ABC):
         """
 
         return self.bonds_data
-

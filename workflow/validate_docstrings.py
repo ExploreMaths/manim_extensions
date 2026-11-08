@@ -52,28 +52,80 @@ SKIP_PATTERNS = [
 # Dunder methods that are conventionally left undocumented.
 # __init__ is NOT here — it should be documented.
 SKIP_DUNDER = {
-    '__repr__', '__str__', '__len__', '__getitem__', '__setitem__',
-    '__delitem__', '__enter__', '__exit__', '__call__', '__eq__',
-    '__ne__', '__lt__', '__le__', '__gt__', '__ge__', '__add__',
-    '__sub__', '__mul__', '__truediv__', '__contains__', '__iter__',
-    '__next__', '__hash__', '__getattr__', '__setattr__', '__delattr__',
-    '__new__', '__bool__', '__abs__', '__pos__', '__neg__', '__invert__',
-    '__int__', '__float__', '__complex__', '__round__', '__trunc__',
-    '__floor__', '__ceil__', '__index__', '__format__', '__sizeof__',
-    '__class_getitem__', '__init_subclass__', '__set_name__',
-    '__copy__', '__deepcopy__', '__reduce__', '__reduce_ex__',
-    '__getstate__', '__setstate__', '__getattribute__',
-    '__dir__', '__subclasshook__', '__instancecheck__',
-    '__missing__', '__del__', '__post_init__',
-    '__abstractmethods__', '__parameters__',
-    '__orig_bases__', '__type_params__',
-    '__slots__', '__mro_entries__',
-    '__annotations__', '__dict__', '__module__',
+    "__repr__",
+    "__str__",
+    "__len__",
+    "__getitem__",
+    "__setitem__",
+    "__delitem__",
+    "__enter__",
+    "__exit__",
+    "__call__",
+    "__eq__",
+    "__ne__",
+    "__lt__",
+    "__le__",
+    "__gt__",
+    "__ge__",
+    "__add__",
+    "__sub__",
+    "__mul__",
+    "__truediv__",
+    "__contains__",
+    "__iter__",
+    "__next__",
+    "__hash__",
+    "__getattr__",
+    "__setattr__",
+    "__delattr__",
+    "__new__",
+    "__bool__",
+    "__abs__",
+    "__pos__",
+    "__neg__",
+    "__invert__",
+    "__int__",
+    "__float__",
+    "__complex__",
+    "__round__",
+    "__trunc__",
+    "__floor__",
+    "__ceil__",
+    "__index__",
+    "__format__",
+    "__sizeof__",
+    "__class_getitem__",
+    "__init_subclass__",
+    "__set_name__",
+    "__copy__",
+    "__deepcopy__",
+    "__reduce__",
+    "__reduce_ex__",
+    "__getstate__",
+    "__setstate__",
+    "__getattribute__",
+    "__dir__",
+    "__subclasshook__",
+    "__instancecheck__",
+    "__missing__",
+    "__del__",
+    "__post_init__",
+    "__abstractmethods__",
+    "__parameters__",
+    "__orig_bases__",
+    "__type_params__",
+    "__slots__",
+    "__mro_entries__",
+    "__annotations__",
+    "__dict__",
+    "__module__",
 }
 
 # Decorator/protocol inner functions where docstrings are optional.
 SKIP_NAMES = {
-    'wrapper', 'decorator_maker', 'real_test',
+    "wrapper",
+    "decorator_maker",
+    "real_test",
 }
 
 SPDX_PATTERNS = [  # REUSE-IgnoreStart
@@ -119,7 +171,12 @@ def has_docstring(lines):
         return False
 
     line = lines[start].strip()
-    if not (line.startswith('"""') or line.startswith("'''") or line.startswith('r"""') or line.startswith("r'''")):
+    if not (
+        line.startswith('"""')
+        or line.startswith("'''")
+        or line.startswith('r"""')
+        or line.startswith("r'''")
+    ):
         return False
 
     quote_char = None
@@ -227,7 +284,7 @@ def has_duplicate_docstring(lines):
                     docstring_start = None
                     found_first_docstring = True
                 continue
-        
+
         if found_first_docstring and not in_docstring:
             break
 
@@ -236,45 +293,45 @@ def has_duplicate_docstring(lines):
 
 def check_function_docstrings(filepath):
     """Check if all functions and classes have docstrings.
-    
+
     Returns a list of (line_number, name, type) tuples for missing docstrings.
     """
     import ast
-    
+
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             source = f.read()
     except Exception:
         return []
-    
+
     try:
         tree = ast.parse(source)
     except SyntaxError as exc:
         # Hard-fail instead of skipping: a parse error must not disable
         # the docstring checks for a whole file.
         return [(filepath, f"<syntax error: {exc}>")]
-    
+
     missing = []
-    
+
     for node in ast.walk(tree):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             name = node.name
-            
+
             # Skip private members (starting with _) except __init__
-            if name.startswith('_') and name != '__init__':
+            if name.startswith("_") and name != "__init__":
                 # Skip dunder methods in SKIP_DUNDER
                 if name in SKIP_DUNDER:
                     continue
                 # Skip other private methods
-                if name != '__init__':
+                if name != "__init__":
                     continue
-            
+
             if name in SKIP_NAMES:
                 continue
-            
+
             if not ast.get_docstring(node):
                 missing.append((node.lineno, name, type(node).__name__))
-    
+
     return missing
 
 
@@ -287,7 +344,9 @@ def get_docstring_ranges(source):
 
     ranges = []
     for node in ast.walk(tree):
-        if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+        if isinstance(
+            node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
+        ):
             body = getattr(node, "body", [])
             if (
                 body
@@ -337,9 +396,7 @@ def convert_args_section(lines, header_idx, indent_a):
 
     new = [" " * indent_a + "Parameters", " " * indent_a + "----------"]
 
-    non_blank_indents = [
-        len(l) - len(l.lstrip(" \t")) for l in content if l.strip()
-    ]
+    non_blank_indents = [len(l) - len(l.lstrip(" \t")) for l in content if l.strip()]
     if not non_blank_indents:
         return new, i
 
@@ -408,10 +465,11 @@ def main():
     """Main validation function."""
     parser = argparse.ArgumentParser(
         description="Validate docstrings; optionally convert 'Args:' sections "
-                    "to numpydoc 'Parameters' style."
+        "to numpydoc 'Parameters' style."
     )
     parser.add_argument(
-        "--fix", action="store_true",
+        "--fix",
+        action="store_true",
         help="Convert 'Args:' docstring sections to 'Parameters' style",
     )
     args = parser.parse_args()
@@ -423,7 +481,8 @@ def main():
     checked = 0
 
     all_py_files = [
-        f for f in SRC.rglob("*.py")
+        f
+        for f in SRC.rglob("*.py")
         if not any(skip in str(f) for skip in SKIP_PATTERNS)
     ]
 
@@ -442,8 +501,10 @@ def main():
             if new_source != source:
                 py_file.write_text(new_source, encoding="utf-8")
                 fixed_count += 1
-                print(f"  Fixed {num} 'Args:' section(s) in "
-                      f"{py_file.relative_to(ROOT)}")
+                print(
+                    f"  Fixed {num} 'Args:' section(s) in "
+                    f"{py_file.relative_to(ROOT)}"
+                )
 
     for py_file in all_py_files:
         if any(skip in py_file.parts for skip in SKIP_DIRS):
@@ -474,12 +535,16 @@ def main():
         for filepath, error_type in sorted(errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
             print(f"  {rel_path}:-  module-docstring: {error_type}")
-        for filepath, line_no, name, node_type in sorted(func_errors, key=lambda x: str(x[0])):
+        for filepath, line_no, name, node_type in sorted(
+            func_errors, key=lambda x: str(x[0])
+        ):
             rel_path = filepath.relative_to(ROOT)
             print(f"  {rel_path}:{line_no}  missing-docstring: {node_type} '{name}'")
         for filepath, line_no in sorted(args_errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
-            print(f"  {rel_path}:{line_no}  args-section: use numpydoc 'Parameters' instead")
+            print(
+                f"  {rel_path}:{line_no}  args-section: use numpydoc 'Parameters' instead"
+            )
         print(f"\nTotal: {total} issue(s)")
         return 1
 

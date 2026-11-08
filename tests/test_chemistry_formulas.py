@@ -30,7 +30,9 @@ def test_chemical_formula_parse_and_markup():
     mob = ChemicalFormula("Fe2O3", metal_color=BLUE, oxygen_color=RED)
 
     assert mob.parsed_formula == {"Fe": 2, "O": 3}
-    assert "Fe" in mob.make_markup(mob.parsed_formula, metal_color=BLUE, oxygen_color=RED)
+    assert "Fe" in mob.make_markup(
+        mob.parsed_formula, metal_color=BLUE, oxygen_color=RED
+    )
 
 
 @pytest.mark.parametrize("formula", ["H2O", "CO2"])

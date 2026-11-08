@@ -142,8 +142,12 @@ class DecisionTreeEmbedding(VGroup):
         -------
             Axes sized to the embedding.
         """
-        x_min, x_max = float(self.data_points[:, 0].min()), float(self.data_points[:, 0].max())
-        y_min, y_max = float(self.data_points[:, 1].min()), float(self.data_points[:, 1].max())
+        x_min, x_max = float(self.data_points[:, 0].min()), float(
+            self.data_points[:, 0].max()
+        )
+        y_min, y_max = float(self.data_points[:, 1].min()), float(
+            self.data_points[:, 1].max()
+        )
         x_span = max(x_max - x_min, 1.0)
         y_span = max(y_max - y_min, 1.0)
 

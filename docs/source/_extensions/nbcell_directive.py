@@ -54,7 +54,6 @@ except ImportError:  # pragma: no cover - direct file execution
     from .nbcell_hash import normalize_code
 
 
-
 _cache = None
 
 
@@ -77,8 +76,9 @@ def load_execution_cache():
     if path.exists():
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
-            _cache = {k: v["stdout"] for k, v in data.get("cells", {}).items()
-                      if v.get("ok")}
+            _cache = {
+                k: v["stdout"] for k, v in data.get("cells", {}).items() if v.get("ok")
+            }
         except Exception:
             _cache = {}
     return _cache
@@ -176,11 +176,11 @@ def _adjust_prompt_width(app, doctree, docname):
     style = nodes.raw(
         "",
         (
-            '<style>'
-            'div.nbinput.container div.prompt,'
-            'div.nboutput.container div.prompt'
-            f'{{width:{max_len + 1}ch}}'
-            '</style>'
+            "<style>"
+            "div.nbinput.container div.prompt,"
+            "div.nboutput.container div.prompt"
+            f"{{width:{max_len + 1}ch}}"
+            "</style>"
         ),
         format="html",
     )

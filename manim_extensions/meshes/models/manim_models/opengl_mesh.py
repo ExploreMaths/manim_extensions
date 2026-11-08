@@ -54,7 +54,7 @@ class FastManimMesh(OpenGLMobject):
     def __init__(
         self,
         mesh: Mesh,
-        shader_folder: str | None=None,
+        shader_folder: str | None = None,
         **kwargs,
     ):
         """Initialization. mesh must only consist of triangles."""

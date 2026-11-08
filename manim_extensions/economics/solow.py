@@ -114,36 +114,45 @@ class SolowDiagram(EconDiagram):
         if show_production:
             prod_func = self._make_prod_func(alpha)
             self.production = self.add_curve(
-                "production", prod_func, x_range=[0.01, 10],
-                color=GREEN, label_text="f(k)",
+                "production",
+                prod_func,
+                x_range=[0.01, 10],
+                color=GREEN,
+                label_text="f(k)",
             )
 
         savings_func = self._make_savings_func(s, alpha)
         breakeven_func = self._make_breakeven_func(delta, n, g)
 
         self.savings = self.add_curve(
-            "savings", savings_func, x_range=[0.01, 10],
-            color=BLUE, label_text="sf(k)",
+            "savings",
+            savings_func,
+            x_range=[0.01, 10],
+            color=BLUE,
+            label_text="sf(k)",
         )
         self.breakeven = self.add_curve(
-            "breakeven", breakeven_func, x_range=[0, 10],
-            color=RED, label_text="(δ+n+g)k",
+            "breakeven",
+            breakeven_func,
+            x_range=[0, 10],
+            color=RED,
+            label_text="(δ+n+g)k",
         )
 
         if show_equilibrium:
-            self.mark_equilibrium("savings", "breakeven",
-                                  label_x="k", label_y="y",
-                                  numbered=numbered_eq)
+            self.mark_equilibrium(
+                "savings", "breakeven", label_x="k", label_y="y", numbered=numbered_eq
+            )
 
     @staticmethod
     def _make_prod_func(alpha: float):
         """:math:`y = k^\\alpha`"""
-        return lambda k: k ** alpha
+        return lambda k: k**alpha
 
     @staticmethod
     def _make_savings_func(s: float, alpha: float):
         """:math:`sf(k) = s \\cdot k^\\alpha`"""
-        return lambda k: s * (k ** alpha)
+        return lambda k: s * (k**alpha)
 
     @staticmethod
     def _make_breakeven_func(delta: float, n: float | None, g: float):
@@ -153,7 +162,7 @@ class SolowDiagram(EconDiagram):
 
     @property
     def _shares_visible(self):
-        return hasattr(self, '_shares_group') and self._shares_group is not None
+        return hasattr(self, "_shares_group") and self._shares_group is not None
 
     def _shift_with_shares(self, curve_anim: AnimationGroup, run_time: float):
         """Bundle a curve shift with a shares update if shares are visible."""
@@ -162,26 +171,29 @@ class SolowDiagram(EconDiagram):
 
         new_group = self._build_shares(
             self._steady_state_k(),
-            self._shares_c_color, self._shares_i_color,
+            self._shares_c_color,
+            self._shares_i_color,
         )
         old = self._shares_group
         self._shares_group = new_group
         shares_anim = ReplacementTransform(old, new_group, run_time=run_time)
         return AnimationGroup(curve_anim, shares_anim)
 
-    def shift_savings(self, s: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
+    def shift_savings(
+        self, s: float | None = None, run_time: float = 1, show_arrows: bool = False
+    ) -> AnimationGroup:
         """Animate savings curve shifting due to change in savings rate.
 
         Parameters
         ----------
         s
             New savings rate. If ``None``, keeps the current value.
-            
+
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             If shares are visible, they update automatically.
 
@@ -193,30 +205,39 @@ class SolowDiagram(EconDiagram):
         self._s = s if s is not None else self._s
         new_func = self._make_savings_func(self._s, self._alpha)
         anim = self.get_shift_animation(
-            "savings", new_func, run_time=run_time, show_arrows=show_arrows,
+            "savings",
+            new_func,
+            run_time=run_time,
+            show_arrows=show_arrows,
         )
         return self._shift_with_shares(anim, run_time)
 
-    def shift_breakeven(self, delta: float | None = None, n: float | None = None, g: float | None = None, run_time: float = 1,
-                        show_arrows: bool = False) -> AnimationGroup:
+    def shift_breakeven(
+        self,
+        delta: float | None = None,
+        n: float | None = None,
+        g: float | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+    ) -> AnimationGroup:
         """Animate break-even line shifting due to changes in :math:`\\delta`, n, or g.
 
         Parameters
         ----------
         delta
             New depreciation rate. If ``None``, keeps the current value.
-            
+
         n
             New population growth rate. If ``None``, keeps the current
-            value. 
+            value.
         g
             New technological growth rate. If ``None``, keeps the current
-            value. 
+            value.
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
             If shares are visible, they update automatically.
 
@@ -230,13 +251,18 @@ class SolowDiagram(EconDiagram):
         self._g = g if g is not None else self._g
         new_func = self._make_breakeven_func(self._delta, self._n, self._g)
         anim = self.get_shift_animation(
-            "breakeven", new_func, run_time=run_time, show_arrows=show_arrows,
+            "breakeven",
+            new_func,
+            run_time=run_time,
+            show_arrows=show_arrows,
         )
         return self._shift_with_shares(anim, run_time)
 
     # ---- Common shocks ----
 
-    def increase_savings(self, s: float, show_arrows: bool = False) -> list[AnimationGroup]:
+    def increase_savings(
+        self, s: float, show_arrows: bool = False
+    ) -> list[AnimationGroup]:
         """Higher savings rate → sf(k) shifts up → higher steady-state k.
 
         Parameters
@@ -245,7 +271,7 @@ class SolowDiagram(EconDiagram):
             New savings rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -253,7 +279,9 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def decrease_savings(self, s: float, show_arrows: bool = False) -> list[AnimationGroup]:
+    def decrease_savings(
+        self, s: float, show_arrows: bool = False
+    ) -> list[AnimationGroup]:
         """Lower savings rate → sf(k) shifts down → lower steady-state k.
 
         Parameters
@@ -262,7 +290,7 @@ class SolowDiagram(EconDiagram):
             New savings rate (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -270,7 +298,9 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_savings(s=s, show_arrows=show_arrows)]
 
-    def population_growth(self, n: float | None, show_arrows: bool = False) -> list[AnimationGroup]:
+    def population_growth(
+        self, n: float | None, show_arrows: bool = False
+    ) -> list[AnimationGroup]:
         """Higher population growth → break-even steeper → lower steady-state k.
 
         Parameters
@@ -279,7 +309,7 @@ class SolowDiagram(EconDiagram):
             New population growth rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -287,7 +317,9 @@ class SolowDiagram(EconDiagram):
         """
         return [self.shift_breakeven(n=n, show_arrows=show_arrows)]
 
-    def increase_depreciation(self, delta: float, show_arrows: bool = False) -> list[AnimationGroup]:
+    def increase_depreciation(
+        self, delta: float, show_arrows: bool = False
+    ) -> list[AnimationGroup]:
         """Higher depreciation → break-even steeper → lower steady-state k.
 
         Parameters
@@ -296,7 +328,7 @@ class SolowDiagram(EconDiagram):
             New depreciation rate (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -309,11 +341,14 @@ class SolowDiagram(EconDiagram):
     def _steady_state_k(self):
         """Compute steady-state capital: :math:`sf(k^*) = (\\delta+n+g)k^*`."""
         from .base import find_intersection
+
         sf = self._make_savings_func(self._s, self._alpha)
         bf = self._make_breakeven_func(self._delta, self._n, self._g)
         return find_intersection(sf, bf, self.axes.x_range)
 
-    def _build_shares(self, k: float, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW):
+    def _build_shares(
+        self, k: float, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW
+    ):
         """Build the share annotation VGroup at capital level k."""
         prod = self._make_prod_func(self._alpha)
         sav = self._make_savings_func(self._s, self._alpha)
@@ -339,7 +374,13 @@ class SolowDiagram(EconDiagram):
 
         return VGroup(stem, i_brace, i_label, c_brace, c_label)
 
-    def show_shares(self, k: float | None = None, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 1) -> FadeIn | ReplacementTransform | None:
+    def show_shares(
+        self,
+        k: float | None = None,
+        c_color: ManimColor = ORANGE,
+        i_color: ManimColor = YELLOW,
+        run_time: float = 1,
+    ) -> FadeIn | ReplacementTransform | None:
         """Show or update consumption/investment share annotations.
 
         Call again after a shift to animate the braces to the new position.
@@ -349,11 +390,11 @@ class SolowDiagram(EconDiagram):
         k
             Capital level.
         c_color
-            Color for consumption brace/label. 
+            Color for consumption brace/label.
         i_color
-            Color for investment brace/label. 
+            Color for investment brace/label.
         run_time
-            Duration of the animation. 
+            Duration of the animation.
 
         Returns
         -------
@@ -369,7 +410,7 @@ class SolowDiagram(EconDiagram):
         self._shares_i_color = i_color
         new_group = self._build_shares(k, c_color, i_color)
 
-        if hasattr(self, '_shares_group') and self._shares_group is not None:
+        if hasattr(self, "_shares_group") and self._shares_group is not None:
             old = self._shares_group
             self._shares_group = new_group
             return ReplacementTransform(old, new_group, run_time=run_time)
@@ -385,14 +426,20 @@ class SolowDiagram(EconDiagram):
             A :class:`~manim.animation.fading.FadeOut` animation removing the shares, or ``None`` if the
             shares are not visible.
         """
-        if hasattr(self, '_shares_group') and self._shares_group is not None:
+        if hasattr(self, "_shares_group") and self._shares_group is not None:
             old = self._shares_group
             self._shares_group = None
             return FadeOut(old)
         return None
 
-    def animate_shares_along(self, k_start: float, k_end: float,
-                             c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW, run_time: float = 3) -> UpdateFromAlphaFunc:
+    def animate_shares_along(
+        self,
+        k_start: float,
+        k_end: float,
+        c_color: ManimColor = ORANGE,
+        i_color: ManimColor = YELLOW,
+        run_time: float = 3,
+    ) -> UpdateFromAlphaFunc:
         """Animate the c/i share braces sliding from ``k_start`` to ``k_end``.
 
         Parameters
@@ -402,11 +449,11 @@ class SolowDiagram(EconDiagram):
         k_end
             Capital level where the animation ends.
         c_color
-            Color for consumption brace/label. 
+            Color for consumption brace/label.
         i_color
-            Color for investment brace/label. 
+            Color for investment brace/label.
         run_time
-            Duration of the animation. 
+            Duration of the animation.
 
         Returns
         -------
@@ -442,13 +489,15 @@ class SolowDiagram(EconDiagram):
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))
 
-    def show_golden_rule(self, color: ManimColor = PURPLE, run_time: float = 1) -> FadeIn:
+    def show_golden_rule(
+        self, color: ManimColor = PURPLE, run_time: float = 1
+    ) -> FadeIn:
         """Mark the golden-rule capital level where consumption is maximized.
 
         Parameters
         ----------
         color
-            Color of the golden-rule line and labels. 
+            Color of the golden-rule line and labels.
         run_time
             Duration of the :class:`~manim.animation.fading.FadeIn` animation.
 
@@ -461,14 +510,15 @@ class SolowDiagram(EconDiagram):
             A :class:`~manim.animation.fading.FadeIn` animation of the golden-rule line and labels.
         """
         k_gold = self._golden_rule_k()
-        s_gold = (self._delta + self._n + self._g) * k_gold / (k_gold ** self._alpha)
+        s_gold = (self._delta + self._n + self._g) * k_gold / (k_gold**self._alpha)
 
         y_min = self.axes.y_range[0]
         y_max = self.axes.y_range[1]
         gold_line = DashedLine(
             self.axes.c2p(k_gold, y_min),
             self.axes.c2p(k_gold, y_max),
-            color=color, dash_length=0.08,
+            color=color,
+            dash_length=0.08,
         )
         gold_label = Text(f"k*gold", font_size=16, color=color)
         gold_label.next_to(gold_line, RIGHT + np.array([0, 0.5, 0]), buff=0.1)
@@ -487,7 +537,7 @@ class SolowDiagram(EconDiagram):
             A :class:`~manim.animation.fading.FadeOut` animation removing the marker, or ``None`` if the
             marker is not present.
         """
-        if hasattr(self, '_golden_group') and self._golden_group is not None:
+        if hasattr(self, "_golden_group") and self._golden_group is not None:
             old = self._golden_group
             self._golden_group = None
             return FadeOut(old)

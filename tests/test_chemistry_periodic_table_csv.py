@@ -6,7 +6,10 @@
 import pytest
 from manim import tempconfig
 
-from manim_extensions.chemistry.periodic_table.table_objects import MElementObject, PeriodicTable
+from manim_extensions.chemistry.periodic_table.table_objects import (
+    MElementObject,
+    PeriodicTable,
+)
 
 HEADER = "AtomicNumber,AtomicMass,Name,Symbol,Color"
 

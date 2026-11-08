@@ -8,12 +8,14 @@ from manim import Scene, Circle, VGroup
 
 try:
     import manim_mobject_svg  # noqa: F401
+
     _HAS_MANIM_MOBJECT_SVG = True
 except ImportError:
     _HAS_MANIM_MOBJECT_SVG = False
 
 try:
     import svgpathtools  # noqa: F401
+
     _HAS_SVGPATHTOOLS = True
 except ImportError:
     _HAS_SVGPATHTOOLS = False
@@ -21,11 +23,14 @@ except ImportError:
 _HAS_SVG_DEPS = _HAS_MANIM_MOBJECT_SVG and _HAS_SVGPATHTOOLS
 
 
-@pytest.mark.skipif(not _HAS_SVG_DEPS, reason="manim-mobject-svg or svgpathtools not installed")
+@pytest.mark.skipif(
+    not _HAS_SVG_DEPS, reason="manim-mobject-svg or svgpathtools not installed"
+)
 class TestHTMLParsedVMobject:
     def test_basic_construction(self):
         """HTMLParsedVMobject should be created with a vmobject and scene."""
         from manim_extensions.svg_animations import HTMLParsedVMobject
+
         scene = Scene()
         vg = VGroup(Circle())
         parsed = HTMLParsedVMobject(vg, scene)
@@ -38,6 +43,7 @@ class TestHTMLParsedVMobject:
     def test_update_html_regenerates_html(self):
         """HTMLParsedVMobject.update_html should regenerate the html string."""
         from manim_extensions.svg_animations import HTMLParsedVMobject
+
         scene = Scene()
         vg = VGroup(Circle(radius=1))
         parsed = HTMLParsedVMobject(vg, scene)
@@ -51,6 +57,7 @@ class TestHTMLParsedVMobject:
     def test_basic_html_mode(self):
         """HTMLParsedVMobject should support basic_html=True."""
         from manim_extensions.svg_animations import HTMLParsedVMobject
+
         scene = Scene()
         vg = VGroup(Circle())
         parsed = HTMLParsedVMobject(vg, scene, basic_html=True)
@@ -63,6 +70,7 @@ class TestHTMLParsedVMobject:
     def test_custom_width(self):
         """HTMLParsedVMobject should accept a custom width parameter."""
         from manim_extensions.svg_animations import HTMLParsedVMobject
+
         scene = Scene()
         vg = VGroup(Circle())
         parsed = HTMLParsedVMobject(vg, scene, width="300px")
@@ -73,6 +81,7 @@ class TestHTMLParsedVMobject:
     def test_continue_updating_flag(self):
         """HTMLParsedVMobject should have continue_updating set to True initially."""
         from manim_extensions.svg_animations import HTMLParsedVMobject
+
         scene = Scene()
         vg = VGroup(Circle())
         parsed = HTMLParsedVMobject(vg, scene)

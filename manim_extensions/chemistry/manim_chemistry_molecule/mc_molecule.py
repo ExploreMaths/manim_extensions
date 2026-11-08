@@ -36,13 +36,13 @@ class MCMolecule:
     Parameters
     ----------
     atoms
-        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` objects of the molecule. 
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` objects of the molecule.
     bonds
-        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects of the molecule. 
+        List of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects of the molecule.
     name
-        Name of the molecule. 
+        Name of the molecule.
     elements
-        Elements data of the molecule. 
+        Elements data of the molecule.
     """
 
     def __init__(
@@ -161,12 +161,12 @@ class MCMolecule:
             Bonds data.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
             Dictionary of custom element data to merge over the
-            default elements data. 
+            default elements data.
 
         Returns
         -------
@@ -204,12 +204,12 @@ class MCMolecule:
             File path.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
             Dictionary of custom element data to merge over the
-            default elements data. 
+            default elements data.
 
         Returns
         -------
@@ -245,12 +245,12 @@ class MCMolecule:
             Path to the molecule file.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
             Dictionary of custom element data to merge over the
-            default elements data. 
+            default elements data.
 
         Returns
         -------
@@ -306,15 +306,15 @@ class MCMolecule:
         string
             String with the molecule data.
         format
-            Format of the data. 
+            Format of the data.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
             Dictionary of custom element data to merge over the
-            default elements data. 
+            default elements data.
 
         Returns
         -------
@@ -350,15 +350,15 @@ class MCMolecule:
         string
             String with the molecule data.
         format
-            Format of the data. 
+            Format of the data.
         ignore_hydrogens
             Whether to remove hydrogens bonded to carbon atoms.
-            
+
         ignore_all_hydrogens
-            Whether to remove every hydrogen atom. 
+            Whether to remove every hydrogen atom.
         elements_data_dict
             Dictionary of custom element data to merge over the
-            default elements data. 
+            default elements data.
 
         Returns
         -------

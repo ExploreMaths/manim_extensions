@@ -26,6 +26,7 @@ import random
 
 from ... import config
 
+
 class ActivationFunction(ABC, VGroup):
     """Abstract parent class for defining activation functions.
 
@@ -109,7 +110,7 @@ class ActivationFunction(ABC, VGroup):
                 "include_numbers": False,
                 "stroke_width": 0.5,
                 "include_ticks": False,
-                "color": self.rectangle_color
+                "color": self.rectangle_color,
             },
         )
         self.add(self.axes)

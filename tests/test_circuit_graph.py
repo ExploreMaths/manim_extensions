@@ -63,4 +63,6 @@ def test_add_components_accepts_mobjects():
 
     circuit.add_components(component)
 
-    assert component.get_center() is not None or np.asarray(component.get_center()).shape == (3,)
+    assert component.get_center() is not None or np.asarray(
+        component.get_center()
+    ).shape == (3,)

@@ -73,6 +73,7 @@ MIN_COVER_FRACTION = 0.25
 MIN_TINY_FRACTION = 0.10
 MIN_TINY_OTHER_FRACTION = 0.60
 
+
 def _worker_init(workdir):
     """Import manim once per worker and silence it."""
     import logging
@@ -93,12 +94,14 @@ def probe_block(task):
         from manim import tempconfig
 
         namespace = {"__file__": "<doc example>", "__name__": "__manim_docgen__"}
-        with tempconfig({
-            "disable_caching": True,
-            "frame_rate": 1,
-            "pixel_height": 480,
-            "pixel_width": 854,
-        }):
+        with tempconfig(
+            {
+                "disable_caching": True,
+                "frame_rate": 1,
+                "pixel_height": 480,
+                "pixel_width": 854,
+            }
+        ):
             exec(code, namespace)
             scene_class = namespace[class_name]
             try:
@@ -164,16 +167,23 @@ def probe_block(task):
 
         width = float(maxs[0] - mins[0])
         height = float(maxs[1] - mins[1])
-        return (class_name, source, {
-            "width": width,
-            "height": height,
-            "frame_width": frame_w,
-            "frame_height": frame_h,
-            "overflow_x": max(0.0, fc[0] - frame_w / 2 - mins[0],
-                              maxs[0] - fc[0] - frame_w / 2),
-            "overflow_y": max(0.0, fc[1] - frame_h / 2 - mins[1],
-                              maxs[1] - fc[1] - frame_h / 2),
-        }, "")
+        return (
+            class_name,
+            source,
+            {
+                "width": width,
+                "height": height,
+                "frame_width": frame_w,
+                "frame_height": frame_h,
+                "overflow_x": max(
+                    0.0, fc[0] - frame_w / 2 - mins[0], maxs[0] - fc[0] - frame_w / 2
+                ),
+                "overflow_y": max(
+                    0.0, fc[1] - frame_h / 2 - mins[1], maxs[1] - fc[1] - frame_h / 2
+                ),
+            },
+            "",
+        )
     except Exception:
         return (class_name, source, None, traceback.format_exc(limit=3))
 
@@ -186,13 +196,11 @@ def classify(class_name: str, m: dict) -> str | None:
         return "OUT_OF_FRAME"
     h_ratio = m["height"] / m["frame_height"]
     w_ratio = m["width"] / m["frame_width"]
-    if (h_ratio < MIN_COVER_FRACTION and w_ratio < MIN_COVER_FRACTION):
+    if h_ratio < MIN_COVER_FRACTION and w_ratio < MIN_COVER_FRACTION:
         return "TOO_SMALL"
-    if (h_ratio < MIN_TINY_FRACTION
-            and w_ratio < MIN_TINY_OTHER_FRACTION):
+    if h_ratio < MIN_TINY_FRACTION and w_ratio < MIN_TINY_OTHER_FRACTION:
         return "TOO_SMALL"
-    if (w_ratio < MIN_TINY_FRACTION
-            and h_ratio < MIN_TINY_OTHER_FRACTION):
+    if w_ratio < MIN_TINY_FRACTION and h_ratio < MIN_TINY_OTHER_FRACTION:
         return "TOO_SMALL"
     return None
 
@@ -202,9 +210,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument(
-        "--write-exemptions", action="store_true",
+        "--write-exemptions",
+        action="store_true",
         help="Write ALL currently flagged scene names to the exemptions "
-             "file. Review the result before committing!",
+        "file. Review the result before committing!",
     )
     args = parser.parse_args()
 
@@ -222,10 +231,13 @@ def main() -> int:
                 skipped.append(block["class_name"])
                 continue
             blocks.append(task)
-    print(f"Probing {len(blocks)} doc examples "
-          f"({len(skipped)} skipped: nested render) ...")
+    print(
+        f"Probing {len(blocks)} doc examples "
+        f"({len(skipped)} skipped: nested render) ..."
+    )
 
     import tempfile
+
     with tempfile.TemporaryDirectory() as tmp:
         pool = multiprocessing.Pool(
             args.workers, initializer=_worker_init, initargs=(tmp,)
@@ -239,9 +251,7 @@ def main() -> int:
                 try:
                     results.append(ar.get(timeout=120))
                 except Exception:
-                    results.append(
-                        (class_name, source, None, "probe timed out (120s)")
-                    )
+                    results.append((class_name, source, None, "probe timed out (120s)"))
         finally:
             pool.terminate()
             pool.join()
@@ -257,8 +267,7 @@ def main() -> int:
 
     if args.write_exemptions:
         EXEMPTIONS_FILE.write_text(
-            json.dumps(sorted({c for _k, c, _s, _m in flagged}),
-                       indent=2) + "\n",
+            json.dumps(sorted({c for _k, c, _s, _m in flagged}), indent=2) + "\n",
             encoding="utf-8",
         )
         print(f"Wrote {len(flagged)} exempted names to {EXEMPTIONS_FILE.name}.")
@@ -278,18 +287,19 @@ def main() -> int:
             f"covers {cover_w:.0%}x{cover_h:.0%} of the frame"
             if kind == "TOO_SMALL"
             else f"overflows the frame by x={m['overflow_x']:.2f}, "
-                 f"y={m['overflow_y']:.2f} units"
+            f"y={m['overflow_y']:.2f} units"
         )
         print(f"  {kind:12} {class_name} ({source}): {detail}")
     for class_name, source, err in remaining_errors:
         first = err.strip().splitlines()[-1] if err.strip() else "?"
-        print(f"  WARN probe error (not counted) {class_name} ({source}): "
-              f"{first}")
+        print(f"  WARN probe error (not counted) {class_name} ({source}): " f"{first}")
 
     total = len(unexempted)
     if total:
-        print(f"\nTotal: {total} layout issue(s) "
-              f"({len(flagged) - len(unexempted)} exempted)")
+        print(
+            f"\nTotal: {total} layout issue(s) "
+            f"({len(flagged) - len(unexempted)} exempted)"
+        )
         return 1
     print("All doc examples are in frame and at a reasonable scale.")
     return 0

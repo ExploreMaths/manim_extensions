@@ -57,7 +57,9 @@ class LayoutFactory:
     """
 
     @staticmethod
-    def create_layout(layout_type: LayoutType, root: object, layout_config: LayoutConfig) -> Layout:
+    def create_layout(
+        layout_type: LayoutType, root: object, layout_config: LayoutConfig
+    ) -> Layout:
         """Create the appropriate layout algorithm instance.
 
         Parameters

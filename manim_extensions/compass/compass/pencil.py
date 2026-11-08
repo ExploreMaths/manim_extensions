@@ -27,9 +27,9 @@ class Pencil(SVGMobject):
     Parameters
     ----------
     height
-        Height of the pencil SVG. 
+        Height of the pencil SVG.
     angle
-        Rotation angle of the pencil (in radians). 
+        Rotation angle of the pencil (in radians).
 
     Examples
     --------

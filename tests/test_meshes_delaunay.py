@@ -11,7 +11,9 @@ from manim_extensions.meshes.delaunay import delaunay_criterion
 from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
 from manim_extensions.meshes.exceptions import InvalidMeshException
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 POINTS = [
     [0.0, 0.0, 0.0],

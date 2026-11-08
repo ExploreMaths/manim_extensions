@@ -27,6 +27,7 @@ from manim import (
 )
 from abc import ABC, abstractmethod
 
+
 class NeuralNetworkLayer(ABC, Group):
     """Abstract Neural Network Layer class.
 
@@ -66,7 +67,9 @@ class NeuralNetworkLayer(ABC, Group):
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         self.title: Text | Group
         if "title" in kwargs:
-            self.title = Text(self.title_text, font_size=DEFAULT_FONT_SIZE // 3).scale(0.6)
+            self.title = Text(self.title_text, font_size=DEFAULT_FONT_SIZE // 3).scale(
+                0.6
+            )
             self.title.next_to(self, UP, 1.2)
         else:
             self.title = Group()
@@ -95,9 +98,7 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(
-        self, *args: object, **kwargs: Any
-    ) -> Animation:
+    def make_forward_pass_animation(self, *args: object, **kwargs: Any) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -119,6 +120,7 @@ class NeuralNetworkLayer(ABC, Group):
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}"
+
 
 class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -174,8 +176,10 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     def _create_override(self) -> Animation:
         return super()._create_override()
 
+
 class ThreeDLayer(ABC):
     """Abstract class for 3D layers."""
+
     pass
     # Angle of ThreeD layers is static context
 

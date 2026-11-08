@@ -13,14 +13,13 @@ import numpy as np
 from manim.typing import Point3D, VectorND, MatrixMN
 
 
-
 class OpenGLSphere(OpenGLSurface):
     """A sphere rendered as an OpenGL surface.
 
     Parameters
     ----------
     center
-        Center point of the sphere. 
+        Center point of the sphere.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
     """
@@ -46,7 +45,7 @@ class OpenGLSphere(OpenGLSurface):
         Parameters
         ----------
         u
-            Azimuthal angle. 
+            Azimuthal angle.
         v
             Polar angle.
 

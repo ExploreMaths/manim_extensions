@@ -7,7 +7,6 @@ This module provides the IS-LM model diagram.
 
 """
 
-
 from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
 
@@ -97,19 +96,24 @@ class ISLMDiagram(EconDiagram):
         lm_func = self._make_lm_func(ms, k, h)
 
         self.is_curve = self.add_curve(
-            "is", is_func,
+            "is",
+            is_func,
             x_range=self._clamp_is(a, b),
-            color=BLUE, label_text="IS",
+            color=BLUE,
+            label_text="IS",
         )
         self.lm_curve = self.add_curve(
-            "lm", lm_func,
+            "lm",
+            lm_func,
             x_range=self._clamp_lm(ms, k, h),
-            color=RED, label_text="LM",
+            color=RED,
+            label_text="LM",
         )
 
         if show_equilibrium:
-            self.mark_equilibrium("is", "lm", label_x="Y", label_y="r",
-                                  numbered=numbered_eq)
+            self.mark_equilibrium(
+                "is", "lm", label_x="Y", label_y="r", numbered=numbered_eq
+            )
 
     @staticmethod
     def _make_is_func(a: float, b: float):
@@ -139,22 +143,28 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymax, self._x_max)
         return [lo, hi]
 
-    def shift_is(self, a: float | None = None, b: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
+    def shift_is(
+        self,
+        a: float | None = None,
+        b: float | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+    ) -> AnimationGroup:
         """Animate IS shifting due to changes in autonomous spending or interest sensitivity.
 
         Parameters
         ----------
         a
             New autonomous spending. If ``None``, keeps the current value.
-            
+
         b
             New interest sensitivity of investment. If ``None``, keeps the
-            current value. 
+            current value.
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -164,29 +174,39 @@ class ISLMDiagram(EconDiagram):
         self._b = b if b is not None else self._b
         new_func = self._make_is_func(self._a, self._b)
         return self.get_shift_animation(
-            "is", new_func, new_x_range=self._clamp_is(self._a, self._b),
-            run_time=run_time, show_arrows=show_arrows,
+            "is",
+            new_func,
+            new_x_range=self._clamp_is(self._a, self._b),
+            run_time=run_time,
+            show_arrows=show_arrows,
         )
 
-    def shift_lm(self, ms: float | None = None, k: float | None = None, h: float | None = None, run_time: float = 1, show_arrows: bool = False) -> AnimationGroup:
+    def shift_lm(
+        self,
+        ms: float | None = None,
+        k: float | None = None,
+        h: float | None = None,
+        run_time: float = 1,
+        show_arrows: bool = False,
+    ) -> AnimationGroup:
         """Animate LM shifting due to changes in money supply or money demand parameters.
 
         Parameters
         ----------
         ms
             New real money supply. If ``None``, keeps the current value.
-            
+
         k
             New income sensitivity of money demand. If ``None``, keeps the
-            current value. 
+            current value.
         h
             New interest sensitivity of money demand. If ``None``, keeps
-            the current value. 
+            the current value.
         run_time
-            Duration of the shift animation. 
+            Duration of the shift animation.
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -197,8 +217,11 @@ class ISLMDiagram(EconDiagram):
         self._h = h if h is not None else self._h
         new_func = self._make_lm_func(self._ms, self._k, self._h)
         return self.get_shift_animation(
-            "lm", new_func, new_x_range=self._clamp_lm(self._ms, self._k, self._h),
-            run_time=run_time, show_arrows=show_arrows,
+            "lm",
+            new_func,
+            new_x_range=self._clamp_lm(self._ms, self._k, self._h),
+            run_time=run_time,
+            show_arrows=show_arrows,
         )
 
     # ---- Monetary policy ----
@@ -212,7 +235,7 @@ class ISLMDiagram(EconDiagram):
             New real money supply (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -229,7 +252,7 @@ class ISLMDiagram(EconDiagram):
             New real money supply (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -248,7 +271,7 @@ class ISLMDiagram(EconDiagram):
             New autonomous spending (higher than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------
@@ -265,7 +288,7 @@ class ISLMDiagram(EconDiagram):
             New autonomous spending (lower than current).
         show_arrows
             If True, draw arrows on the axes showing the direction of
-            equilibrium change. 
+            equilibrium change.
 
         Returns
         -------

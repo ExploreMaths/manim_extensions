@@ -38,25 +38,46 @@ DOCS = ROOT / "docs"
 
 REPORT_FILE = ROOT / "workflow" / "_refs_report.json"
 
-REF_PATTERN = re.compile(
-    r'(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`'
-)
+REF_PATTERN = re.compile(r"(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`")
 
 INLINE_CODE_PATTERN = re.compile(
-    r'`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)*)`{1,2}'
+    r"`{1,2}([A-Z][a-zA-Z_0-9]*(?:\.[a-zA-Z_][a-zA-Z_0-9]*(?:\(\))?)*)`{1,2}"
 )
 
-SKIP_NAMES = frozenset({
-    "int", "float", "str", "bool", "list", "dict", "tuple", "set",
-    "numpy.ndarray", "ndarray",
-    "NotImplementedError", "ValueError", "TypeError", "KeyError",
-    "IndexError", "AttributeError", "RuntimeError", "Exception",
-    "object",
-})
+SKIP_NAMES = frozenset(
+    {
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple",
+        "set",
+        "numpy.ndarray",
+        "ndarray",
+        "NotImplementedError",
+        "ValueError",
+        "TypeError",
+        "KeyError",
+        "IndexError",
+        "AttributeError",
+        "RuntimeError",
+        "Exception",
+        "object",
+    }
+)
 
 SKIP_PREFIXES = (
-    "~typing.", "~numpy.", "~matplotlib.", "~collections.",
-    "~builtins.", "~os.", "~re.", "~sys.", "~pathlib.",
+    "~typing.",
+    "~numpy.",
+    "~matplotlib.",
+    "~collections.",
+    "~builtins.",
+    "~os.",
+    "~re.",
+    "~sys.",
+    "~pathlib.",
 )
 
 
@@ -481,7 +502,9 @@ def fix_file(
 
 def main() -> int:
     if not REPORT_FILE.exists():
-        print(f"ERROR: {REPORT_FILE} not found.  Run `python workflow/validate_refs.py` first.")
+        print(
+            f"ERROR: {REPORT_FILE} not found.  Run `python workflow/validate_refs.py` first."
+        )
         return 1
 
     with open(REPORT_FILE, "r", encoding="utf-8") as f:
@@ -511,7 +534,9 @@ def main() -> int:
     if not files_needing_fixes:
         print("No auto-fixable issues.")
         if broken_refs:
-            print(f"(But {len(broken_refs)} broken reference(s) need manual attention.)")
+            print(
+                f"(But {len(broken_refs)} broken reference(s) need manual attention.)"
+            )
         return 0
 
     print("Building name maps for resolution...")
@@ -528,9 +553,7 @@ def main() -> int:
         if not filepath.exists():
             print(f"  SKIP (not found): {rel}")
             continue
-        changes = fix_file(
-            filepath, rel, classes_map, functions_map, attr_map
-        )
+        changes = fix_file(filepath, rel, classes_map, functions_map, attr_map)
         total += changes
 
     print(f"\nDone: {total} fix{'es' if total > 1 else ''} applied.")

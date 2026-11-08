@@ -19,15 +19,15 @@ class MAtomObject(VGroup):
     Parameters
     ----------
     coords
-        Position of the atom. 
+        Position of the atom.
     element
-        Chemical symbol of the element. 
+        Chemical symbol of the element.
     explicit_carbons
-        If True, carbon atoms display their element symbol. 
+        If True, carbon atoms display their element symbol.
     explicit_hydrogens
-        If True, hydrogen atoms display their element symbol. 
+        If True, hydrogen atoms display their element symbol.
     bond_to
-        Mapping of bonded atom indices to their elements. 
+        Mapping of bonded atom indices to their elements.
     representation_type
         Representation of the atom label.
 
@@ -43,11 +43,11 @@ class MAtomObject(VGroup):
 
         When None it is inferred from the element.
     color
-        Color of the atom label. 
+        Color of the atom label.
     charge
-        Formal charge of the atom. 
+        Formal charge of the atom.
     index
-        Index of the atom in the molecule. 
+        Index of the atom in the molecule.
     planar
         If True, forces the z coordinate of ``coords`` to zero.
     **kwargs
@@ -66,6 +66,7 @@ class MAtomObject(VGroup):
            def construct(self):
                self.add(MAtomObject(element="O").scale(7))
     """
+
     def __str__(self):
         return f"MAtomObject of element {self.element}"
 

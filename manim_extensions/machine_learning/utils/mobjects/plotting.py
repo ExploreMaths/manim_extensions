@@ -44,7 +44,7 @@ def convert_matplotlib_figure_to_image_mobject(
     fig.canvas.draw()
     # Save data into a buffer
     image_buffer = io.BytesIO()
-    plt.savefig(image_buffer, format='png', dpi=dpi)
+    plt.savefig(image_buffer, format="png", dpi=dpi)
     # Reopen in PIL and convert to numpy
     pil_image = Image.open(image_buffer).convert("RGB")
     image = np.asarray(pil_image)

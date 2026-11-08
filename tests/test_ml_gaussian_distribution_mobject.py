@@ -7,7 +7,9 @@ import numpy as np
 import pytest
 from manim import Axes
 
-from manim_extensions.machine_learning.utils.mobjects.probability import GaussianDistribution
+from manim_extensions.machine_learning.utils.mobjects.probability import (
+    GaussianDistribution,
+)
 
 
 @pytest.fixture()

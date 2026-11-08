@@ -29,7 +29,9 @@ def build_mol(atoms, bonds):
     lines = ["molecule", "  manim", ""]
     lines.append("%3d%3d  0  0  0  0  0  0  0  0999 V2000" % (len(atoms), len(bonds)))
     for row in atoms:
-        lines.append("  ".join(str(value) for value in row) + "  0  0  0  0  0  0  0  0  0  0")
+        lines.append(
+            "  ".join(str(value) for value in row) + "  0  0  0  0  0  0  0  0  0  0"
+        )
     for row in bonds:
         lines.append("  ".join(str(value) for value in row) + "  0  0  0  0")
     lines.append("M  END")
@@ -188,9 +190,7 @@ def test_bond_types_construct_subclasses(bond_type):
 
 
 def test_named_molecule_places_a_label():
-    named = NamedMolecule.from_mol_string(
-        "Water", build_mol(WATER_ATOMS, WATER_BONDS)
-    )
+    named = NamedMolecule.from_mol_string("Water", build_mol(WATER_ATOMS, WATER_BONDS))
 
     assert len(named.submobjects) == 2
     assert named.molecule is not None

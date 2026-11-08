@@ -6,6 +6,7 @@
 Code for making a dropout animation for the
 feed forward layers of a neural network.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -76,7 +77,10 @@ class XMark(VGroup):
         self.add(line_two)
 
 
-def get_edges_to_drop_out(layer: FeedForwardToFeedForward, layers_to_nodes_to_drop_out: dict[FeedForwardLayer, list[int]]) -> tuple:
+def get_edges_to_drop_out(
+    layer: FeedForwardToFeedForward,
+    layers_to_nodes_to_drop_out: dict[FeedForwardLayer, list[int]],
+) -> tuple:
     """Returns edges to drop out for a given FeedForwardToFeedForward layer.
 
     Parameters
@@ -295,7 +299,12 @@ def make_forward_pass_with_dropout_animation(
 
 
 def make_neural_network_dropout_animation(
-    neural_network: NeuralNetwork, dropout_rate: float = 0.5, do_forward_pass: bool = True, last_layer_stable: bool = False, first_layer_stable: bool = False, seed: int | None = None
+    neural_network: NeuralNetwork,
+    dropout_rate: float = 0.5,
+    do_forward_pass: bool = True,
+    last_layer_stable: bool = False,
+    first_layer_stable: bool = False,
+    seed: int | None = None,
 ) -> Succession:
     """
     Makes a dropout animation for a given neural network.
@@ -343,9 +352,9 @@ def make_neural_network_dropout_animation(
         # Compute random probability that each node is dropped out
         for node_index in range(num_nodes):
             dropout_prob = random.random()
-            if last_layer_stable and idx==len(feed_forward_layers)-1:
-                    continue
-            if first_layer_stable and idx==0:
+            if last_layer_stable and idx == len(feed_forward_layers) - 1:
+                continue
+            if first_layer_stable and idx == 0:
                 continue
             if dropout_prob < dropout_rate:
                 nodes_to_drop_out.append(node_index)

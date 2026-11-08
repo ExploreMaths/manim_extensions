@@ -79,7 +79,9 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def make_forward_pass_animation(self, layer_args: dict = {}, run_time: float = 1.5, **kwargs) -> Succession:
+    def make_forward_pass_animation(
+        self, layer_args: dict = {}, run_time: float = 1.5, **kwargs
+    ) -> Succession:
         """Forward pass animation from conv2d to max pooling.
 
         Parameters

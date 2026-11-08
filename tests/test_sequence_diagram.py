@@ -25,6 +25,7 @@ class TestSeqObject:
     def test_create_obj_label(self):
         """SeqObject.create_obj_label should return a Text mobject."""
         from manim import Text
+
         obj = SeqObject("Test")
         label = obj.create_obj_label(font_size=20)
         assert isinstance(label, Text)

@@ -7,7 +7,12 @@ import numpy as np
 import pytest
 from manim import DOWN, LEFT, RIGHT, UP
 
-from manim_extensions.circuit.mobjects import CurrentSource, Inductor, Resistor, VoltageSource
+from manim_extensions.circuit.mobjects import (
+    CurrentSource,
+    Inductor,
+    Resistor,
+    VoltageSource,
+)
 
 
 @pytest.mark.parametrize(
@@ -36,4 +41,7 @@ def test_component_rotation_keeps_terminals():
     component = Resistor("R", direction=np.array([1.0, 0.0, 0.0]))
     component.rotate(np.pi / 2)
 
-    assert component.get_terminals("left") is not None or component.get_terminals("left") is None
+    assert (
+        component.get_terminals("left") is not None
+        or component.get_terminals("left") is None
+    )

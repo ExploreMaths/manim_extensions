@@ -7,7 +7,9 @@ from manim import Scene
 
 from manim_extensions.meshes.delaunay.divide_and_conquer import DivideAndConquer
 from manim_extensions.meshes.models.data_models.mesh import Mesh
-from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
+from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+    TriangleManim2DMesh,
+)
 
 POINTS = [(0, 0, 0), (2, 0, 0), (1, 1.8, 0), (3, 1.0, 0), (0, 2.0, 0)]
 

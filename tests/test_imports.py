@@ -47,12 +47,12 @@ def test_utils_attribute_not_shadowed_by_manim():
 
     for pkg_name in ("manim_extensions.algorithm", "manim_extensions.circuit"):
         pkg = importlib.import_module(pkg_name)
-        assert pkg.utils is not manim_utils, (
-            f"{pkg_name}.utils is shadowed by manim.utils"
-        )
-        assert pkg.utils.__name__.startswith("manim_extensions."), (
-            f"{pkg_name}.utils resolves to {pkg.utils.__name__}"
-        )
+        assert (
+            pkg.utils is not manim_utils
+        ), f"{pkg_name}.utils is shadowed by manim.utils"
+        assert pkg.utils.__name__.startswith(
+            "manim_extensions."
+        ), f"{pkg_name}.utils resolves to {pkg.utils.__name__}"
 
 
 def test_dotted_utils_imports_resolve_inside_package():
@@ -78,9 +78,9 @@ def test_submodule_attributes_match_dotted_imports():
         pkg_name, _, attr = dotted.rpartition(".")
         pkg = importlib.import_module(pkg_name)
         submodule = importlib.import_module(dotted)
-        assert getattr(pkg, attr) is submodule, (
-            f"{pkg_name}.{attr} does not resolve to the real submodule"
-        )
+        assert (
+            getattr(pkg, attr) is submodule
+        ), f"{pkg_name}.{attr} does not resolve to the real submodule"
         assert submodule is not manim_utils
 
 

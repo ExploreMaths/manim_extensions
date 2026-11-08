@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from manim import QUALITIES, config, tempconfig
+
 r"""
 A directive for including Manim videos in a Sphinx document
 ===========================================================
@@ -211,7 +212,6 @@ class ManimDirective(Directive):
             )
             return [node]
 
-
         # patched: occurrences are numbered by a hash of the example source
         # (see output_file below) instead of a global build-order counter, so
         # that pre-rendered media can be matched deterministically.
@@ -251,7 +251,9 @@ class ManimDirective(Directive):
             dest_dir.mkdir(parents=True, exist_ok=True)
 
         user_code = list(self.content)
-        if user_code and user_code[0].startswith(">>> "):  # check whether block comes from doctest
+        if user_code and user_code[0].startswith(
+            ">>> "
+        ):  # check whether block comes from doctest
             user_code = [
                 line[4:] for line in user_code if line.startswith((">>> ", "... "))
             ]
@@ -269,9 +271,7 @@ class ManimDirective(Directive):
         source_block_in = [
             ".. code-block:: python",
             "",
-            *(
-                ["    from manim import *\n"] if not has_manim_import else []
-            ),
+            *(["    from manim import *\n"] if not has_manim_import else []),
             *("    " + line for line in self.content),
         ]
         source_block = "\n".join(source_block_in)
@@ -315,11 +315,18 @@ class ManimDirective(Directive):
         # from CI; only examples missing from the cache are rendered here.
         cache_dir = os.environ.get("MANIM_MEDIA_CACHE_DIR", "")
         if save_last_frame:
-            cached = Path(cache_dir, "images", f"{output_file}.png") if cache_dir else None
+            cached = (
+                Path(cache_dir, "images", f"{output_file}.png") if cache_dir else None
+            )
         else:
             cached = (
-                Path(cache_dir, "videos", f"{output_file}.{'gif' if save_as_gif else 'mp4'}")
-                if cache_dir else None
+                Path(
+                    cache_dir,
+                    "videos",
+                    f"{output_file}.{'gif' if save_as_gif else 'mp4'}",
+                )
+                if cache_dir
+                else None
             )
         from_cache = cached is not None and cached.exists()
 
@@ -329,7 +336,9 @@ class ManimDirective(Directive):
         else:
             try:
                 with tempconfig(example_config):
-                    run_time = timeit(lambda: exec("\n".join(code), globals()), number=1)
+                    run_time = timeit(
+                        lambda: exec("\n".join(code), globals()), number=1
+                    )
                     video_dir = config.get_dir("video_dir")
                     images_dir = config.get_dir("images_dir")
             except Exception as e:

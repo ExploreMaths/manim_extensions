@@ -120,8 +120,7 @@ class SeqActor(VGroup):
         timedot = self.latest_timedot
         return int(
             round(
-                (timedot.get_center()[1] - self.actor_timedot_y_displace)
-                / HALF_DOWN[1]
+                (timedot.get_center()[1] - self.actor_timedot_y_displace) / HALF_DOWN[1]
             )
         )
 
@@ -131,7 +130,7 @@ class SeqActor(VGroup):
         Parameters
         ----------
         ticks_to_elapse
-            Number of time ticks to add to the current actor timeline. 
+            Number of time ticks to add to the current actor timeline.
 
         Returns
         -------

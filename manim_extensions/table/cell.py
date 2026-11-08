@@ -27,11 +27,11 @@ class Cell(VGroup):
     value
         The text content of the cell.
     width
-        Width of the cell. 
+        Width of the cell.
     height
-        Height of the cell. 
+        Height of the cell.
     font_size
-        Font size for the text. 
+        Font size for the text.
     is_header
         If True, renders the text in bold with a thicker border.
     show_border
@@ -63,25 +63,25 @@ class Cell(VGroup):
         font_size: int = 20,
         is_header: bool = False,
         show_border: bool = True,
-        **kwargs: Any
+        **kwargs: Any,
     ):
         """Initialize the cell with its text and layout."""
         super().__init__(**kwargs)
-        
+
         self.value = value
         self.cell_width = width
         self.cell_height = height
         self.font_size = font_size
         self.is_header = is_header
         self.show_border = show_border
-        
+
         # Store color properties for copying
         self._font_color: ParsableManimColor | None = None
         self._background_color: ParsableManimColor | None = None
         self._background_opacity: float = 0.0
         self._border_color: ParsableManimColor | None = None
         self.background: Rectangle | None = None
-        
+
         # Create invisible bounding box to enforce dimensions
         self.invisible_box = Rectangle(
             width=width,
@@ -90,7 +90,7 @@ class Cell(VGroup):
             fill_opacity=0,
         )
         self.add(self.invisible_box)
-        
+
         # Create text
         stroke_width = 2 if is_header else 0.5
         if is_header:
@@ -98,14 +98,14 @@ class Cell(VGroup):
         else:
             self.text = Text(value, font_size=font_size)
         self.add(self.text)
-        
+
         # Create border if requested
         if show_border:
             self.border: VGroup | None = self.create_border(stroke_width)
             self.add(self.border)
         else:
             self.border = None
-    
+
     def create_border(self, stroke_width: float) -> VGroup:
         """Create the four border lines of the cell.
 
@@ -122,12 +122,12 @@ class Cell(VGroup):
         # Calculate corners relative to center
         half_w = self.cell_width / 2
         half_h = self.cell_height / 2
-        
+
         top_left = np.array([-half_w, half_h, 0])
         top_right = np.array([half_w, half_h, 0])
         bottom_left = np.array([-half_w, -half_h, 0])
         bottom_right = np.array([half_w, -half_h, 0])
-        
+
         border = VGroup(
             Line(start=top_left, end=top_right, stroke_width=stroke_width),
             Line(start=top_right, end=bottom_right, stroke_width=stroke_width),
@@ -135,7 +135,7 @@ class Cell(VGroup):
             Line(start=bottom_left, end=top_left, stroke_width=stroke_width),
         )
         return border
-    
+
     def get_value(self) -> str:
         """Return the text value of this cell.
 
@@ -144,7 +144,7 @@ class Cell(VGroup):
             The text content of the cell.
         """
         return self.value
-    
+
     def set_value(self, new_value: str) -> Text:
         """
         Change the text value of this cell.
@@ -176,32 +176,32 @@ class Cell(VGroup):
             self.play(Transform(old_text, new_text))
         """
         self.value = new_value
-        
+
         # Store the old position
         old_position = self.text.get_center()
-        
+
         # Remove old text
         self.remove(self.text)
-        
+
         # Create new text with same styling
         if self.is_header:
             self.text = Text(new_value, font_size=self.font_size, weight=BOLD)
         else:
             self.text = Text(new_value, font_size=self.font_size)
-        
+
         # Position at the same location as the old text
         self.text.move_to(old_position)
-        
+
         self.add(self.text)
         return self.text
-    
+
     def get_resized_copy(self, new_width: float) -> Self:
         """
         Create a copy of this cell with a new width.
         The copy is positioned at the same center as this cell.
         Preserves font color, background color, border color, and current scale.
         Useful for animating width changes with :class:`~manim.animation.transform.Transform`.
-        
+
         Parameters
         ----------
         new_width
@@ -214,8 +214,10 @@ class Cell(VGroup):
         """
         # Calculate current scale factor using HEIGHT (stable during width resize)
         # Width-based calculation fails after Transform morphs the cell
-        scale_factor = self.get_height() / self.cell_height if self.cell_height > 0 else 1.0
-        
+        scale_factor = (
+            self.get_height() / self.cell_height if self.cell_height > 0 else 1.0
+        )
+
         new_cell = Cell(
             value=self.value,
             width=new_width,
@@ -224,37 +226,39 @@ class Cell(VGroup):
             is_header=self.is_header,
             show_border=self.show_border,
         )
-        
+
         # Copy styling colors BEFORE scaling so they get scaled too
         if self._font_color is not None:
             new_cell.set_font_color(self._font_color)
         if self._background_color is not None:
-            new_cell.set_background_color(self._background_color, self._background_opacity)
+            new_cell.set_background_color(
+                self._background_color, self._background_opacity
+            )
         if self._border_color is not None:
             new_cell.set_border_color(self._border_color)
-        
+
         # Apply the same scale to match the current cell's scale
         if abs(scale_factor - 1.0) > 0.001:
             new_cell.scale(scale_factor)
-        
+
         new_cell.move_to(self.get_center())
-        
+
         return new_cell
-    
+
     def resize_width(self, new_width: float):
         """
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
-        
+
         Parameters
         ----------
         new_width
             The new width.
         """
         self.cell_width = new_width
-        
+
         # Resize invisible box
-        if hasattr(self, 'invisible_box'):
+        if hasattr(self, "invisible_box"):
             self.remove(self.invisible_box)
             self.invisible_box = Rectangle(
                 width=new_width,
@@ -263,18 +267,18 @@ class Cell(VGroup):
                 fill_opacity=0,
             )
             self.add_to_back(self.invisible_box)
-        
+
         # Recreate border with new dimensions
         if self.border is not None:
             self.remove(self.border)
             stroke_width = 2 if self.is_header else 0.5
             self.border = self.create_border(stroke_width)
             self.add(self.border)
-    
+
     def set_font_color(self, color: ParsableManimColor) -> Self:
         """
         Set the font/text color of this cell.
-        
+
         Parameters
         ----------
         color
@@ -287,11 +291,11 @@ class Cell(VGroup):
         self._font_color = color  # Store for copying
         self.text.set_color(color)
         return self
-    
+
     def set_border_color(self, color: ParsableManimColor) -> Self:
         """
         Set the border line color of this cell.
-        
+
         Parameters
         ----------
         color
@@ -306,18 +310,20 @@ class Cell(VGroup):
             for line in self.border:
                 line.set_color(color)
         return self
-    
-    def set_background_color(self, color: ParsableManimColor, opacity: float = 0.5) -> Self:
+
+    def set_background_color(
+        self, color: ParsableManimColor, opacity: float = 0.5
+    ) -> Self:
         """
         Set a background fill color for this cell.
         Creates a filled rectangle behind the text.
-        
+
         Parameters
         ----------
         color
             A Manim color (e.g., RED, BLUE, "#FF0000").
         opacity
-            Opacity of the background (0 to 1). 
+            Opacity of the background (0 to 1).
 
         Returns
         -------
@@ -326,15 +332,15 @@ class Cell(VGroup):
         # Store for copying
         self._background_color = color
         self._background_opacity = opacity
-        
+
         # Remove existing background if any
         if self.background is not None:
             self.remove(self.background)
-        
+
         # Create background rectangle
         half_w = self.cell_width / 2
         half_h = self.cell_height / 2
-        
+
         self.background = Rectangle(
             width=self.cell_width,
             height=self.cell_height,
@@ -343,7 +349,7 @@ class Cell(VGroup):
             stroke_width=0,
         )
         self.background.move_to(self.get_center())
-        
+
         # Add behind everything else
         self.add_to_back(self.background)
         return self

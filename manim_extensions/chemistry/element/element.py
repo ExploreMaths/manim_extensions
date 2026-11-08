@@ -17,17 +17,18 @@ class Element:
     Parameters
     ----------
     symbol
-        Chemical symbol of the element. 
+        Chemical symbol of the element.
     name
-        Full name of the element. 
+        Full name of the element.
     atomic_number
-        Atomic number of the element. 
+        Atomic number of the element.
     mass
-        Atomic mass of the element. 
+        Atomic mass of the element.
     color
         Display color of the element. Falls back to ``"#ff00ff"`` when
-        falsy. 
+        falsy.
     """
+
     def __repr__(self) -> str:
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 

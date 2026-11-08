@@ -44,6 +44,7 @@ if TYPE_CHECKING:
     from sklearn.tree import DecisionTreeClassifier
     from sklearn.utils import Bunch
 
+
 class AABB:
     """Axis-aligned bounding box.
 
@@ -81,6 +82,7 @@ class AABB:
 
         return left, right
 
+
 def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
     """Compute final decision rule for each node in tree.
 
@@ -112,12 +114,13 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
             queue.extend([l, r])
     return aabbs
 
+
 def compute_decision_areas(
     tree_classifier: DecisionTreeClassifier,
     maxrange: list[float],
     x: int = 0,
     y: int = 1,
-    n_features: int | None = None
+    n_features: int | None = None,
 ) -> list:
     """Extract decision areas.
 
@@ -129,9 +132,9 @@ def compute_decision_areas(
         Values to insert for ``[left, right, top, bottom]`` if the interval
         is open (``+/-inf``).
     x
-        Index of the feature that goes on the x axis. 
+        Index of the feature that goes on the x axis.
     y
-        Index of the feature that goes on the y axis. 
+        Index of the feature that goes on the y axis.
     n_features
         Override autodetection of the number of features.
 
@@ -168,6 +171,7 @@ def compute_decision_areas(
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
 
+
 def plot_areas(rectangles: MatrixMN):
     """Plot decision area rectangles on the current matplotlib axes.
 
@@ -191,7 +195,10 @@ def plot_areas(rectangles: MatrixMN):
         )
         plt.gca().add_artist(rp)
 
-def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimColor] = [BLUE, GREEN, ORANGE]) -> list:
+
+def merge_overlapping_polygons(
+    all_polygons: list[Polygon], colors: list[ManimColor] = [BLUE, GREEN, ORANGE]
+) -> list:
     """Merge adjacent polygons of the same color into larger contiguous polygons.
 
     Parameters
@@ -200,7 +207,7 @@ def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimCo
         The polygon mobjects to merge, typically the decision-area
         rectangles of a :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`.
     colors
-        The colors to merge polygons for, in order. 
+        The colors to merge polygons for, in order.
 
     Returns
     -------
@@ -277,6 +284,7 @@ def merge_overlapping_polygons(all_polygons: list[Polygon], colors: list[ManimCo
             return_polygons.append(polygon)
     return return_polygons
 
+
 class IrisDatasetPlot(VGroup):
     """Plot of the first two features of the Iris dataset.
 
@@ -334,7 +342,8 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         animation_group = AnimationGroup(
             # Perform the animations
             Create(self.point_group, run_time=2),
@@ -346,7 +355,12 @@ class IrisDatasetPlot(VGroup):
         )
         return animation_group
 
-    def _make_point_group(self, points: Point2D_Array, targets: VectorND, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
+    def _make_point_group(
+        self,
+        points: Point2D_Array,
+        targets: VectorND,
+        class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN],
+    ):
         point_group = VGroup()
         for point_index, point in enumerate(points):
             # draw the dot
@@ -357,7 +371,9 @@ class IrisDatasetPlot(VGroup):
             point_group.add(dot)
         return point_group
 
-    def _make_legend(self, class_colors: list[ManimColor], feature_labels: list[str], axes: VGroup):
+    def _make_legend(
+        self, class_colors: list[ManimColor], feature_labels: list[str], axes: VGroup
+    ):
         legend_group = VGroup()
         # Make Text
         setosa = Text("Setosa", color=BLUE)
@@ -379,7 +395,13 @@ class IrisDatasetPlot(VGroup):
 
         return legend_group
 
-    def _make_axes_group(self, points: Point2D_Array, labels: list[str], font: str = "Source Han Sans", font_scale: float = 0.75):
+    def _make_axes_group(
+        self,
+        points: Point2D_Array,
+        labels: list[str],
+        font: str = "Source Han Sans",
+        font_scale: float = 0.75,
+    ):
         axes_group = VGroup()
         # make the axes
         x_range = [
@@ -432,7 +454,7 @@ class DecisionTreeSurface(VGroup):
         Manim axes the surface rectangles are drawn in.
     class_colors
         Colors, one per class, used to fill the decision areas.
-        
+
 
     Examples
     --------
@@ -458,7 +480,13 @@ class DecisionTreeSurface(VGroup):
                self.add(axes, *surface.surface_rectangles)
     """
 
-    def __init__(self, tree_clf: DecisionTreeClassifier, data: MatrixMN, axes: Axes, class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN]):
+    def __init__(
+        self,
+        tree_clf: DecisionTreeClassifier,
+        data: MatrixMN,
+        axes: Axes,
+        class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN],
+    ):
         """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
@@ -527,9 +555,7 @@ class DecisionTreeSurface(VGroup):
             top_left_coord,
         ]
         # construct a polygon object from those manim coordinates
-        rectangle = Polygon(
-            *points, color=color, fill_opacity=0.3, stroke_opacity=0.0
-        )
+        rectangle = Polygon(*points, color=color, fill_opacity=0.3, stroke_opacity=0.0)
 
         return rectangle
 
@@ -561,9 +587,7 @@ class DecisionTreeSurface(VGroup):
 
         return leaf_rectangles
 
-    def _subtree_leaves(
-        self, node_index: int, ctree: types.ModuleType
-    ) -> list[int]:
+    def _subtree_leaves(self, node_index: int, ctree: types.ModuleType) -> list[int]:
         """Collect the leaf node indices below a tree node.
 
         Parameters
@@ -622,7 +646,8 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:
@@ -637,7 +662,8 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result."""
+            A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+        """
         # play a reveal of all of the surface rectangles
         animations = []
         for rectangle in self.surface_rectangles:

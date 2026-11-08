@@ -152,7 +152,9 @@ def main() -> int:
     parser.add_argument(
         "--check", action="store_true", help="only check that the section exists"
     )
-    parser.add_argument("--list", action="store_true", help="list the documented versions")
+    parser.add_argument(
+        "--list", action="store_true", help="list the documented versions"
+    )
     args = parser.parse_args()
 
     lines = args.changelog.read_text(encoding="utf-8").splitlines()

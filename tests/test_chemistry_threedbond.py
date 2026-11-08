@@ -11,8 +11,12 @@ from manim_extensions.chemistry.element.element import Element
 from manim_extensions.chemistry.threeD.threedatom import ThreeDAtom
 from manim_extensions.chemistry.threeD.threedbond import ThreeDBond
 
-CARBON = Element(symbol="C", name="Carbon", atomic_number=6, mass=12.011, color="#FFFFFF")
-OXYGEN = Element(symbol="O", name="Oxygen", atomic_number=8, mass=15.999, color="#FF0000")
+CARBON = Element(
+    symbol="C", name="Carbon", atomic_number=6, mass=12.011, color="#FFFFFF"
+)
+OXYGEN = Element(
+    symbol="O", name="Oxygen", atomic_number=8, mass=15.999, color="#FF0000"
+)
 
 
 @pytest.fixture()

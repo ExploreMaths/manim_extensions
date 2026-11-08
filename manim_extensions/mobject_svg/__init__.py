@@ -26,9 +26,5 @@ VMobject.to_svg = create_svg_from_vmobject
 VGroup.to_svg = create_svg_from_vgroup
 
 # Rich display for manim objects in Jupyter notebooks.
-VMobject._repr_svg_ = (
-    lambda self: create_svg_from_vmobject(self).read_text()
-)
-VGroup._repr_svg_ = (
-    lambda self: create_svg_from_vgroup(self).read_text()
-)
+VMobject._repr_svg_ = lambda self: create_svg_from_vmobject(self).read_text()
+VGroup._repr_svg_ = lambda self: create_svg_from_vgroup(self).read_text()

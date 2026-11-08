@@ -77,14 +77,55 @@ ROLES = {"class", "func", "meth", "attr", "mod", "data", "exc", "obj"}
 # docstrings.  These resolve through the ``python`` intersphinx mapping or
 # need no link at all, so they are never reported as missing intersphinx.
 PY_STDLIB = {
-    "typing", "typing_extensions", "builtins", "os", "sys", "io", "math",
-    "functools", "itertools", "collections", "abc", "dataclasses", "enum",
-    "pathlib", "json", "re", "string", "types", "contextlib", "weakref",
-    "copy", "warnings", "inspect", "importlib", "logging", "datetime",
-    "time", "decimal", "fractions", "statistics", "random", "bisect",
-    "heapq", "array", "mmap", "struct", "ctypes", "html", "urllib",
-    "subprocess", "shutil", "tempfile", "hashlib", "socket", "unittest",
-    "pytest", "doctest", "operator", "numbers",
+    "typing",
+    "typing_extensions",
+    "builtins",
+    "os",
+    "sys",
+    "io",
+    "math",
+    "functools",
+    "itertools",
+    "collections",
+    "abc",
+    "dataclasses",
+    "enum",
+    "pathlib",
+    "json",
+    "re",
+    "string",
+    "types",
+    "contextlib",
+    "weakref",
+    "copy",
+    "warnings",
+    "inspect",
+    "importlib",
+    "logging",
+    "datetime",
+    "time",
+    "decimal",
+    "fractions",
+    "statistics",
+    "random",
+    "bisect",
+    "heapq",
+    "array",
+    "mmap",
+    "struct",
+    "ctypes",
+    "html",
+    "urllib",
+    "subprocess",
+    "shutil",
+    "tempfile",
+    "hashlib",
+    "socket",
+    "unittest",
+    "pytest",
+    "doctest",
+    "operator",
+    "numbers",
 }
 
 # ``scikit-learn``'s import name is ``sklearn``; keep this alias in sync with
@@ -126,8 +167,10 @@ def load_inventory(url: str) -> set[str] | None:
         req = urllib.request.Request(url, headers={"User-Agent": _UA})
         data = urllib.request.urlopen(req, timeout=30).read()
     except Exception as exc:  # network / 403 / timeout: skip this package
-        print(f"  [note] could not fetch {url}: {exc.__class__.__name__}; "
-              f"registration check skipped for this package")
+        print(
+            f"  [note] could not fetch {url}: {exc.__class__.__name__}; "
+            f"registration check skipped for this package"
+        )
         return None
     if not data.startswith(b"# Sphinx inventory version"):
         print(f"  [note] unexpected inventory format at {url}; skipped")
@@ -187,9 +230,9 @@ def find_xrefs(text: str):
 
 def main() -> int:
     allowed = intersphinx_packages() | PY_STDLIB | {"manim_extensions"}
-    no_tilde: "OrderedDict[str, list]" = OrderedDict()    # any target w/o ~
-    not_fq: "OrderedDict[str, list]" = OrderedDict()      # bare name w/o module path
-    missing_int: "OrderedDict[str, list]" = OrderedDict() # unmapped external lib
+    no_tilde: "OrderedDict[str, list]" = OrderedDict()  # any target w/o ~
+    not_fq: "OrderedDict[str, list]" = OrderedDict()  # bare name w/o module path
+    missing_int: "OrderedDict[str, list]" = OrderedDict()  # unmapped external lib
     not_registered: "OrderedDict[str, list]" = OrderedDict()  # absent from inventory
 
     py_files = glob.glob(f"{ROOT}/**/*.py", recursive=True)
@@ -216,13 +259,13 @@ def main() -> int:
     def consider(path, raw, role):
         has_tilde = raw.startswith("~")
         tgt = raw.lstrip("~")
-        if tgt.startswith("."):          # ``~.X`` current-module shorthand is banned
+        if tgt.startswith("."):  # ``~.X`` current-module shorthand is banned
             not_fq.setdefault(tgt, []).append(f"{path}: `:{role}:`{raw}``")
             return
-        if not _XREF_PATH.match(raw):    # math/prose, not a Python path
+        if not _XREF_PATH.match(raw):  # math/prose, not a Python path
             return
 
-        if not has_tilde:                # every explicit Python xref needs ~
+        if not has_tilde:  # every explicit Python xref needs ~
             no_tilde.setdefault(tgt, []).append(f"{path}: `:{role}:`{tgt}``")
 
         # Fully-qualified rule: a bare single-identifier target (no module

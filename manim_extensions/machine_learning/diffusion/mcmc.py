@@ -6,6 +6,7 @@
 """
 Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
+
 from manim import (
     AnimationGroup,
     Axes,
@@ -39,6 +40,7 @@ from ..utils.mobjects.probability import GaussianDistribution
 from manim.typing import Point2D, Point2D_Array, VectorND, MatrixMN
 
 ######################## MCMC Algorithms #########################
+
 
 def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
     """
@@ -94,7 +96,14 @@ class MultidimensionalGaussianPosterior:
         Variance of the distribution; drawn from the prior if None.
     """
 
-    def __init__(self, ndim: int = 2, seed: int = 12345, scale: int = 3, mu: VectorND | None = None, var: VectorND | None = None):
+    def __init__(
+        self,
+        ndim: int = 2,
+        seed: int = 12345,
+        scale: int = 3,
+        mu: VectorND | None = None,
+        var: VectorND | None = None,
+    ):
         """Initialize the MultidimensionalGaussianPosterior instance."""
         np.random.seed(seed)
         self.scale = scale
@@ -119,6 +128,7 @@ class MultidimensionalGaussianPosterior:
         else:
             return -1e6
 
+
 def metropolis_hastings_sampler(
     log_prob_fn: Callable[[VectorND], float] = MultidimensionalGaussianPosterior(),
     prop_fn: Callable[[VectorND], tuple[VectorND, float]] = gaussian_proposal,
@@ -126,7 +136,7 @@ def metropolis_hastings_sampler(
     iterations: int = 25,
     warm_up: int = 0,
     ndim: int = 2,
-    sampling_seed: int = 1
+    sampling_seed: int = 1,
 ) -> tuple:
     """Samples using a Metropolis-Hastings sampler.
 
@@ -188,9 +198,13 @@ def metropolis_hastings_sampler(
 
     return chain, np.array([]), proposals
 
+
 #################### MCMC Visualization Tools ######################
 
-def make_dist_image_mobject_from_samples(samples: Point2D_Array, ylim: list | None, xlim: list | None) -> ImageMobject:
+
+def make_dist_image_mobject_from_samples(
+    samples: Point2D_Array, ylim: list | None, xlim: list | None
+) -> ImageMobject:
     """Render a KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
     Parameters
@@ -211,23 +225,24 @@ def make_dist_image_mobject_from_samples(samples: Point2D_Array, ylim: list | No
     sns = require("ml", "seaborn")
 
     # Make the plot
-    matplotlib.use('Agg')
-    plt.figure(figsize=(10,10), dpi=100)
+    matplotlib.use("Agg")
+    plt.figure(figsize=(10, 10), dpi=100)
     print(np.shape(samples[:, 0]))
     displot = sns.displot(
-        x=samples[:, 0], 
-        y=samples[:, 1], 
-        cmap="Reds", 
+        x=samples[:, 0],
+        y=samples[:, 1],
+        cmap="Reds",
         kind="kde",
-        norm=matplotlib.colors.LogNorm()
+        norm=matplotlib.colors.LogNorm(),
     )
     plt.ylim(ylim[0], ylim[1])
     plt.xlim(xlim[0], xlim[1])
-    plt.axis('off')
+    plt.axis("off")
     fig = displot.fig
     image_mobject = convert_matplotlib_figure_to_image_mobject(fig)
 
     return image_mobject
+
 
 class MCMCAxes(Group):
     """Container object for visualizing MCMC on a 2D axis.
@@ -331,7 +346,7 @@ class MCMCAxes(Group):
         x_range: list = [-3, 3],
         y_range: list = [-3, 3],
         x_length: int = 5,
-        y_length: int = 5
+        y_length: int = 5,
     ):
         """Initialize the MCMC axes with configurable dot/line colors and axis ranges."""
         super().__init__()
@@ -362,7 +377,9 @@ class MCMCAxes(Group):
         """Overrides Create animation."""
         return AnimationGroup(Create(self.axes))
 
-    def visualize_gaussian_proposal_about_point(self, mean: Point2D, cov: MatrixMN | None = None) -> AnimationGroup:
+    def visualize_gaussian_proposal_about_point(
+        self, mean: Point2D, cov: MatrixMN | None = None
+    ) -> AnimationGroup:
         """Creates a Gaussian distribution about a certain point.
 
         Parameters
@@ -384,12 +401,12 @@ class MCMCAxes(Group):
         return create_guassian
 
     def make_transition_animation(
-        self, 
-        start_point: Mobject, 
-        end_point: Mobject, 
-        candidate_point: Mobject, 
+        self,
+        start_point: Mobject,
+        end_point: Mobject,
+        candidate_point: Mobject,
         show_dots: bool = True,
-        run_time: float = 0.1
+        run_time: float = 0.1,
     ) -> AnimationGroup:
         """Makes an transition animation for a single point on a Markov Chain.
 
@@ -425,26 +442,27 @@ class MCMCAxes(Group):
                 end_point,
                 color=self.line_color,
                 stroke_width=self.line_stroke_width,
-                buff=-0.1
+                buff=-0.1,
             )
 
             create_line = Create(line)
 
             if show_dots:
-                return AnimationGroup(
-                    create_end_point, 
-                    create_line, 
-                    lag_ratio=1.0, 
-                    run_time=run_time
-                ), line
+                return (
+                    AnimationGroup(
+                        create_end_point, create_line, lag_ratio=1.0, run_time=run_time
+                    ),
+                    line,
+                )
             else:
-                return AnimationGroup(
-                    create_line, 
-                    lag_ratio=1.0, 
-                    run_time=run_time
-                ), line
+                return (
+                    AnimationGroup(create_line, lag_ratio=1.0, run_time=run_time),
+                    line,
+                )
 
-    def show_ground_truth_gaussian(self, distribution: MultidimensionalGaussianPosterior) -> AnimationGroup:
+    def show_ground_truth_gaussian(
+        self, distribution: MultidimensionalGaussianPosterior
+    ) -> AnimationGroup:
         """Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse.
 
         Parameters
@@ -502,9 +520,7 @@ class MCMCAxes(Group):
         """
         # Compute the chain samples using a Metropolis Hastings Sampler
         mcmc_samples, warm_up_samples, candidate_samples = metropolis_hastings_sampler(
-            log_prob_fn=log_prob_fn, 
-            prop_fn=prop_fn,
-            **sampling_kwargs
+            log_prob_fn=log_prob_fn, prop_fn=prop_fn, **sampling_kwargs
         )
         # print(f"MCMC samples: {mcmc_samples}")
         # print(f"Candidate samples: {candidate_samples}")
@@ -522,7 +538,7 @@ class MCMCAxes(Group):
         # Show the initial point's proposal distribution
         # NOTE: visualize the warm up and the iterations
         lines = []
-        warmup_points = [] 
+        warmup_points = []
         num_iterations = len(mcmc_samples) + len(warm_up_samples)
         for iteration in tqdm(range(1, num_iterations)):
             next_sample = mcmc_samples[iteration]
@@ -530,18 +546,12 @@ class MCMCAxes(Group):
             candidate_sample = candidate_samples[iteration - 1]
             # Make the next point
             next_point = Dot(
-                self.axes.coords_to_point(
-                    next_sample[0], 
-                    next_sample[1]
-                ),
+                self.axes.coords_to_point(next_sample[0], next_sample[1]),
                 color=self.dot_color,
                 radius=self.dot_radius,
             )
             candidate_point = Dot(
-                self.axes.coords_to_point(
-                    candidate_sample[0], 
-                    candidate_sample[1]
-                ),
+                self.axes.coords_to_point(candidate_sample[0], candidate_sample[1]),
                 color=self.dot_color,
                 radius=self.dot_radius,
             )
@@ -563,37 +573,27 @@ class MCMCAxes(Group):
         image_mobject = make_dist_image_mobject_from_samples(
             true_samples,
             xlim=(self.x_range[0], self.x_range[1]),
-            ylim=(self.y_range[0], self.y_range[1])
+            ylim=(self.y_range[0], self.y_range[1]),
         )
-        image_mobject.scale_to_fit_height(
-            self.y_length     
-        )
+        image_mobject.scale_to_fit_height(self.y_length)
         image_mobject.move_to(self.axes)
-        fade_in_distribution = FadeIn(
-            image_mobject,
-            run_time=0.5
-        )
+        fade_in_distribution = FadeIn(image_mobject, run_time=0.5)
         # 2. Start sampling the chain
         chain_sampling_animation = AnimationGroup(
-            *transition_animations, 
-            lag_ratio=1.0,
-            run_time=5.0
+            *transition_animations, lag_ratio=1.0, run_time=5.0
         )
         # 3. Convert the chain to points, excluding the warmup
         lines = VGroup(*lines)
         warm_up_points = VGroup(*warmup_points)
         fade_out_lines_and_warmup = AnimationGroup(
-            Uncreate(lines), 
-            Uncreate(warm_up_points),
-            lag_ratio=0.0
+            Uncreate(lines), Uncreate(warm_up_points), lag_ratio=0.0
         )
         # Make the final animation
         animation_group = Succession(
             fade_in_distribution,
             chain_sampling_animation,
             fade_out_lines_and_warmup,
-            lag_ratio=1.0
+            lag_ratio=1.0,
         )
 
         return animation_group
-

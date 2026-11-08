@@ -39,7 +39,12 @@ class SigmoidFunction(ActivationFunction):
                self.play(sigmoid.make_evaluate_animation())
     """
 
-    def __init__(self, function_name: str = "Sigmoid", x_range: list = [-5, 5], y_range: list = [0, 1]):
+    def __init__(
+        self,
+        function_name: str = "Sigmoid",
+        x_range: list = [-5, 5],
+        y_range: list = [0, 1],
+    ):
         """Initialize the sigmoid activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 

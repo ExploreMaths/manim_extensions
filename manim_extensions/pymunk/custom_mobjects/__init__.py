@@ -7,7 +7,7 @@ This module provides custom Manim mobjects for Pymunk physics simulations.
 
 """
 
-__all__ = ["VSpring", "Apple","Gear"]
+__all__ = ["VSpring", "Apple", "Gear"]
 
 from .v_spring import VSpring
 from .apple import Apple

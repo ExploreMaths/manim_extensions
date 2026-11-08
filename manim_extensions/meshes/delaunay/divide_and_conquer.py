@@ -121,7 +121,13 @@ class DivideAndConquer:
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
-    def split_points(self, vert_indices: list, dash_length: float = 0.2, line_width: float = 1, speed: float = 1.0) -> tuple[list[int], list[int], DashedLine]:
+    def split_points(
+        self,
+        vert_indices: list,
+        dash_length: float = 0.2,
+        line_width: float = 1,
+        speed: float = 1.0,
+    ) -> tuple[list[int], list[int], DashedLine]:
         """Split the vertex set into two halves along the x-coordinate median.
 
         The vertices referenced by ``vert_indices`` are sorted by their

@@ -42,7 +42,7 @@ class MultiPendulum(VGroup):
     bobs
         Positions of the pendulum bobs from the pivot outward.
     pivot_point
-        Position of the fixed pivot.  
+        Position of the fixed pivot.
     rod_style
         Keyword arguments forwarded to the :class:`~manim.mobject.geometry.line.Line`
         constructor used for each rod.
@@ -109,9 +109,7 @@ class MultiPendulum(VGroup):
         super().__init__(**kwargs)
         self.add(self.rods, self.bobs)
 
-    def _make_joints(
-        self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene
-    ):
+    def _make_joints(self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene):
         """Create a pymont pin joint between two bodies (or a body and a fixed point).
 
         Parameters
@@ -181,12 +179,12 @@ class Pendulum(MultiPendulum):
     Parameters
     ----------
     length
-        Length of the pendulum rod.  
+        Length of the pendulum rod.
     initial_theta
         Initial angle of deviation from the vertical, in radians.
-        
+
     pivot_point
-        Position of the fixed pivot.  
+        Position of the fixed pivot.
     rod_style
         Forwarded to the :class:`~manim.mobject.geometry.line.Line` constructor.
     bob_style

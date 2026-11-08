@@ -107,9 +107,7 @@ class TestVMobjectInt:
 
     def test_parametric_curve(self):
         # A parabola y = x**2 crossed by the line y = 0.25 -> x = +/- 0.5
-        parabola = ParametricFunction(
-            lambda t: [t, t**2, 0], t_range=[-2, 2, 0.01]
-        )
+        parabola = ParametricFunction(lambda t: [t, t**2, 0], t_range=[-2, 2, 0.01])
         line = Line(LEFT * 2 + UP * 0.25, RIGHT * 2 + UP * 0.25)
         pts = VMobjectInt(parabola, line)
         assert len(pts) == 2
@@ -161,9 +159,7 @@ class TestVMobjectInt:
 
     def test_axes_plots(self):
         # Graphs produced by Axes.plot are ordinary VMobjects too.
-        axes = Axes(
-            x_range=[-2, 2], y_range=[-2, 2], x_length=5, y_length=5
-        )
+        axes = Axes(x_range=[-2, 2], y_range=[-2, 2], x_length=5, y_length=5)
         g1 = axes.plot(lambda x: x**2, x_range=[-1.5, 1.5])
         g2 = axes.plot(lambda x: 0.5 * x + 0.5, x_range=[-1.5, 1.5])
         pts = VMobjectInt(g1, g2)

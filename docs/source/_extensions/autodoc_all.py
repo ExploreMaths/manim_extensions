@@ -62,6 +62,7 @@ try:
     from docutils import nodes
     from docutils.parsers.rst import Directive, directives
     from docutils.statemachine import StringList
+
     _HAS_DOCUTILS = True
 except ImportError:
     # The coverage checker (workflow/validate_api_coverage.py) imports the
@@ -85,6 +86,7 @@ except ImportError:
     class StringList(list):
         def __init__(self, lines=(), source=None):
             super().__init__(lines)
+
 
 DEFAULT_SNAPSHOT = "_extensions/api_documented.json"
 
@@ -229,7 +231,9 @@ class AutoAllDirective(Directive):
     def _documented_set(self):
         env = self.state.document.settings.env
         conf = env.app.config
-        snap_path = Path(confdir_of(env)) / getattr(conf, "autodoc_all_snapshot", DEFAULT_SNAPSHOT)
+        snap_path = Path(confdir_of(env)) / getattr(
+            conf, "autodoc_all_snapshot", DEFAULT_SNAPSHOT
+        )
         if not snap_path.exists():
             raise self.severe(
                 f"autoall: missing-only requested but snapshot not found: {snap_path}. "
@@ -253,7 +257,11 @@ class AutoAllDirective(Directive):
         missing_only = "missing-only" in self.options
         documented = self._documented_set() if missing_only else set()
 
-        modules = iter_package_modules(module) if "recursive" in self.options else iter([module])
+        modules = (
+            iter_package_modules(module)
+            if "recursive" in self.options
+            else iter([module])
+        )
 
         lines = []
         seen = set()

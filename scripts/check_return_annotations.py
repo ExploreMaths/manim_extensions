@@ -18,6 +18,7 @@ one ``return`` statement whose value is not the literal ``None`` (explicit
 Usage:  python scripts/check_return_annotations.py
 Exit code 0 when every checked function is annotated, 1 otherwise.
 """
+
 from __future__ import annotations
 
 import ast
@@ -95,14 +96,20 @@ def main() -> int:
             if not _has_value_return(node):
                 continue
             scanned += 1
-            problems.append(f"{rel}:{node.lineno}: {name}: has return value(s) but no return annotation")
+            problems.append(
+                f"{rel}:{node.lineno}: {name}: has return value(s) but no return annotation"
+            )
 
     if problems:
-        print(f"FAIL: {len(problems)} function(s) with return value(s) lack a return annotation")
+        print(
+            f"FAIL: {len(problems)} function(s) with return value(s) lack a return annotation"
+        )
         for p in problems:
             print(f"  {p}")
         return 1
-    print(f"OK: all documented public functions with return values are annotated ({scanned} checked)")
+    print(
+        f"OK: all documented public functions with return values are annotated ({scanned} checked)"
+    )
     return 0
 
 

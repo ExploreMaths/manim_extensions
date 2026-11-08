@@ -51,7 +51,11 @@ def test_default_file_name_uses_working_directory(tmp_path, monkeypatch):
 
 
 def test_stroke_and_fill_are_preserved(tmp_path):
-    shape = Square().set_stroke(color="#FF0000", width=4).set_fill(color="#0000FF", opacity=0.5)
+    shape = (
+        Square()
+        .set_stroke(color="#FF0000", width=4)
+        .set_fill(color="#0000FF", opacity=0.5)
+    )
     target = tmp_path / "styled.svg"
 
     path = create_svg_from_vmobject(shape, target)

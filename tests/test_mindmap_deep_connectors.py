@@ -7,7 +7,10 @@ import numpy as np
 import pytest
 from manim import Text
 
-from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection, LayoutType
+from manim_extensions.mindmap.algorithms.layout_config import (
+    LayoutDirection,
+    LayoutType,
+)
 from manim_extensions.mindmap.nodes import Node
 
 LEFT_DIR = np.array([-1.0, 0.0, 0.0])
@@ -23,7 +26,9 @@ def deep_tree():
     return root, child, grand
 
 
-@pytest.mark.parametrize("side", [LayoutDirection.BottomToTop, LayoutDirection.TopToBottom])
+@pytest.mark.parametrize(
+    "side", [LayoutDirection.BottomToTop, LayoutDirection.TopToBottom]
+)
 @pytest.mark.parametrize("layout_type", [LayoutType.TimeLine, LayoutType.Catalog])
 def test_deep_node_connector(deep_tree, side, layout_type):
     _, _, grand = deep_tree

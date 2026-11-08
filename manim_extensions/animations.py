@@ -54,7 +54,7 @@ class TypeWriter(Animation):
         The :class:`~manim.mobject.text.text_mobject.Text` object to animate.
     interval
         Display interval between consecutive characters in seconds.
-        
+
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -353,7 +353,7 @@ class WriteRandom(LaggedStart):
     mobject
         The mobject whose submobjects are written.
     lag_ratio
-        Delay between consecutive submobjects.  
+        Delay between consecutive submobjects.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -397,7 +397,7 @@ class ReversedWrite(LaggedStart):
     mobject
         The mobject whose submobjects are written.
     lag_ratio
-        Delay between consecutive submobjects.  
+        Delay between consecutive submobjects.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -441,7 +441,7 @@ class FadeInRandom(LaggedStart):
     mobject
         The mobject whose submobjects are faded in.
     lag_ratio
-        Delay between consecutive submobjects.  
+        Delay between consecutive submobjects.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -484,7 +484,7 @@ class FadeOutRandom(LaggedStart):
     mobject
         The mobject whose submobjects are faded out.
     lag_ratio
-        Delay between consecutive submobjects.  
+        Delay between consecutive submobjects.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -527,7 +527,7 @@ class GrowRandom(LaggedStart):
     mobject
         The mobject whose submobjects are grown.
     lag_ratio
-        Delay between consecutive submobjects.  
+        Delay between consecutive submobjects.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.LaggedStart`.
 
@@ -575,11 +575,11 @@ class PassingRectangle(Animation):
     mobject
         The mobject the rectangle sweeps across.
     color
-        Fill colour of the sweep.  
+        Fill colour of the sweep.
     buff
         Extra width/height around ``mobject``.
     fill_opacity
-        Fill opacity of the sweep.  
+        Fill opacity of the sweep.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -659,9 +659,9 @@ class LaggedCreation(Animation):
     mobject
         The mobject to reveal.
     lag_ratio
-        Fraction of the mobject revealed per unit time.  
+        Fraction of the mobject revealed per unit time.
     start_ratio
-        Fraction of the mobject visible at the start.  
+        Fraction of the mobject visible at the start.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.animation.Animation`.
 
@@ -752,11 +752,11 @@ class HighLightWithLines(AnimationGroup):
     mobject
         The mobject to highlight.
     color
-        Colour of the lines and rectangle.  
+        Colour of the lines and rectangle.
     buff
         Distance of the lines / rectangle from ``mobject``.
     rec_opacity
-        Fill opacity of the rectangle.  
+        Fill opacity of the rectangle.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -833,11 +833,11 @@ class UnHighLightWithLines(AnimationGroup):
     mobject
         The mobject whose highlight is removed.
     color
-        Colour used for the lines and rectangle.  
+        Colour used for the lines and rectangle.
     buff
         Distance of the lines / rectangle from ``mobject``.
     rec_opacity
-        Fill opacity of the rectangle.  
+        Fill opacity of the rectangle.
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 

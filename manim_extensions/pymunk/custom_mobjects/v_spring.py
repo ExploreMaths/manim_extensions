@@ -9,6 +9,7 @@ import numpy as np
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 from manim.typing import Point3D
 
+
 class VSpring(Line):
     """A spring-shaped Mobject rendered as a helix between two points.
 
@@ -19,20 +20,20 @@ class VSpring(Line):
     Parameters
     ----------
     start
-        The start point of the spring. 
+        The start point of the spring.
     end
-        The end point of the spring. 
+        The end point of the spring.
     turns
-        The number of helical turns in the spring. 
+        The number of helical turns in the spring.
     amplitude
-        The amplitude (radius) of the helical oscillation. 
+        The amplitude (radius) of the helical oscillation.
     end_length
         The length of the straight terminal segments at both ends of the
-        spring. 
+        spring.
     stroke_width
-        The stroke width used to draw the spring. 
+        The stroke width used to draw the spring.
     color
-        The color of the spring. 
+        The color of the spring.
     **kwargs
         Forwarded to the parent :class:`~manim.mobject.geometry.line.Line`.
 
@@ -65,7 +66,7 @@ class VSpring(Line):
         end_length: float = 0.2,
         stroke_width: float = 1,
         color: ManimColor = WHITE,
-        **kwargs
+        **kwargs,
     ):
         """Initialize a spring-shaped Line with helical turns, amplitude,
         end segment lengths, stroke width, and color properties.
@@ -83,7 +84,7 @@ class VSpring(Line):
         end = self._pointify(self.end)
         vec = end - start
         total_dist = np.linalg.norm(vec)
-        
+
         # Avoid division by zero
         if total_dist < 0.001:
             self.set_points_as_corners([start, end])
@@ -103,12 +104,14 @@ class VSpring(Line):
             t = i / num_steps
             angle = 2 * PI * self.turns * t
             x = self.end_length + t * helix_dist
-            
+
             # Taper factor for smooth horizontal join with terminals
             taper = 1.0
-            if t < 0.1: taper = t / 0.1
-            elif t > 0.9: taper = (1 - t) / 0.1
-            
+            if t < 0.1:
+                taper = t / 0.1
+            elif t > 0.9:
+                taper = (1 - t) / 0.1
+
             y = self.amplitude * np.sin(angle) * taper
             points.append([x, y, 0])
 
@@ -118,7 +121,7 @@ class VSpring(Line):
         # 3. Transform horizontal point set to align with start -> end vector
         self.set_points_as_corners(points)
         self.make_smooth()  # Produce smooth helix
-        
+
         # Rotate and translate
         target_angle = angle_of_vector(vec)
         self.rotate(target_angle, about_point=ORIGIN)

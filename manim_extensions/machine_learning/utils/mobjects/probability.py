@@ -113,6 +113,7 @@ class GaussianDistribution(VGroup):
             Rotation angle, width, and height of the covariance ellipse
             in frame coordinates.
         """
+
         def eigsorted(
             cov: MatrixMN,
         ) -> tuple[VectorND, MatrixMN]:

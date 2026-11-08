@@ -9,7 +9,16 @@ This module provides the ChemicalFormula class for rendering chemical formulas.
 
 import re
 
-from manim import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, DOWN, ManimColor, MarkupText, VGroup, WHITE
+from manim import (
+    DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
+    DOWN,
+    ManimColor,
+    MarkupText,
+    VGroup,
+    WHITE,
+)
+
+
 class ChemicalFormula(MarkupText):
     """
     Mostly useful for simple compounds like binary salts or oxoanions.
@@ -19,11 +28,11 @@ class ChemicalFormula(MarkupText):
     formula
         The chemical formula to render, e.g. ``"H2O"``.
     metal_color
-        Color of the metal element. 
+        Color of the metal element.
     non_metal_color
-        Color of the non-metal element. 
+        Color of the non-metal element.
     oxygen_color
-        Color of the oxygen element. 
+        Color of the oxygen element.
     args
         Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     **kwargs
@@ -89,11 +98,11 @@ class ChemicalFormula(MarkupText):
         parsed_formula
             Parsed formula mapping element symbols to their counts.
         metal_color
-            Color of the metal element. 
+            Color of the metal element.
         non_metal_color
-            Color of the non-metal element. 
+            Color of the non-metal element.
         oxygen_color
-            Color of the oxygen element. 
+            Color of the oxygen element.
 
         Returns
         -------
@@ -152,21 +161,21 @@ class NamedFormula(VGroup):
     formula
         The chemical formula to render.
     metal_color
-        Color of the metal element. 
+        Color of the metal element.
     non_metal_color
-        Color of the non-metal element. 
+        Color of the non-metal element.
     oxygen_color
-        Color of the oxygen element. 
+        Color of the oxygen element.
     font
-        Font of the name text. 
+        Font of the name text.
     spanish_structure
         Whether to use the spanish name ordering (non-metal first).
-        
+
     buff
-        Distance between the formula and its name. 
+        Distance between the formula and its name.
     direction
         Direction in which the name is placed relative to the formula.
-        
+
     args
         Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs
@@ -234,7 +243,8 @@ class NamedFormula(VGroup):
 
         Returns
         -------
-            A :class:`~manim.mobject.text.text_mobject.MarkupText` instance representing the result."""
+            A :class:`~manim.mobject.text.text_mobject.MarkupText` instance representing the result.
+        """
 
         metal_text = None
         non_metal_text = None
@@ -348,9 +358,9 @@ class NamedComplexFormula(VGroup):
         Dictionary mapping formula strings to their colors.
     direction
         Direction in which the name is placed relative to the formula.
-        
+
     buff
-        Distance between the formula and its name. 
+        Distance between the formula and its name.
     args
         Additional positional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
     **kwargs

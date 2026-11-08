@@ -30,7 +30,9 @@ def test_gaussian_proposal_respects_sigma():
     small, _ = gaussian_proposal(x, sigma=0.01)
     large, _ = gaussian_proposal(x, sigma=10.0)
 
-    assert np.linalg.norm(small - x) < np.linalg.norm(large - x) or np.allclose(large, x)
+    assert np.linalg.norm(small - x) < np.linalg.norm(large - x) or np.allclose(
+        large, x
+    )
 
 
 @pytest.mark.parametrize("ndim", [2, 3])
@@ -59,7 +61,9 @@ def test_posterior_call_outside_bounds_is_penalised():
 
 @pytest.mark.parametrize("warm_up", [0, 5])
 def test_sampler_shapes(warm_up):
-    chain, warm, proposals = metropolis_hastings_sampler(iterations=20, warm_up=warm_up, sampling_seed=7)
+    chain, warm, proposals = metropolis_hastings_sampler(
+        iterations=20, warm_up=warm_up, sampling_seed=7
+    )
 
     assert chain.shape == (20, 2)
     assert proposals.shape == (20, 2)

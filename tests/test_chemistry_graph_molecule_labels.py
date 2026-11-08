@@ -8,7 +8,6 @@ from manim import tempconfig
 
 from manim_extensions.chemistry.twoD.graph_molecule import GraphMolecule
 
-
 MOL = """acetone
      RDKit          2D
 

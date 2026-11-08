@@ -14,6 +14,7 @@ class SingletonLogger:
     """Thread-safe singleton logger that provides a single shared logging
     instance for the manim-pymunk module with a console handler.
     """
+
     _instance_lock = threading.Lock()
     _instance = None
 
@@ -35,7 +36,9 @@ class SingletonLogger:
         # Avoid adding duplicate handlers
         if not self.logger.handlers:
             # 1. Define format
-            log_format = "manim-pymunk:[%(levelname)s]:%(asctime)s:%(filename)s:%(message)s"
+            log_format = (
+                "manim-pymunk:[%(levelname)s]:%(asctime)s:%(filename)s:%(message)s"
+            )
             date_format = "%Y-%m-%d %H-%M-%S"
             formatter = logging.Formatter(log_format, date_format)
 
@@ -52,6 +55,7 @@ class SingletonLogger:
         -------
             The computed result."""
         return self.logger
+
 
 # For convenience, instantiate a global singleton
 #: Logger shared by the manim-pymunk modules.

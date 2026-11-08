@@ -62,7 +62,12 @@ def test_sliding_window_rejects_zero_size(scene, array):
 
 @pytest.mark.parametrize(
     "arr_dir",
-    [MArrayDirection.LEFT, MArrayDirection.RIGHT, MArrayDirection.UP, MArrayDirection.DOWN],
+    [
+        MArrayDirection.LEFT,
+        MArrayDirection.RIGHT,
+        MArrayDirection.UP,
+        MArrayDirection.DOWN,
+    ],
 )
 def test_window_resize_in_all_directions(scene, arr_dir):
     array = MArray(scene, [1, 2, 3], label="A", arr_dir=arr_dir)

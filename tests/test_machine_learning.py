@@ -84,9 +84,7 @@ class TestForwardPassAnimation:
 
     def test_image_network(self):
         yy, xx = np.mgrid[0:28, 0:28]
-        image = np.where((yy - 14) ** 2 + (xx - 14) ** 2 < 81, 200, 0).astype(
-            np.uint8
-        )
+        image = np.where((yy - 14) ** 2 + (xx - 14) ** 2 < 81, 200, 0).astype(np.uint8)
         nn = NeuralNetwork(
             [
                 ImageLayer(image, height=1.5),
@@ -143,7 +141,11 @@ class TestCreateOverride:
         [
             [FeedForwardLayer(3), FeedForwardLayer(3)],
             [FeedForwardLayer(3), VectorLayer(4)],
-            [FeedForwardLayer(3), EmbeddingLayer(dist_theme="ellipse"), FeedForwardLayer(3)],
+            [
+                FeedForwardLayer(3),
+                EmbeddingLayer(dist_theme="ellipse"),
+                FeedForwardLayer(3),
+            ],
             [
                 Convolutional2DLayer(1, 5, 3),
                 FeedForwardLayer(3),
@@ -170,9 +172,7 @@ class TestLayerValidation:
         with pytest.warns(UserWarning):
             nn = NeuralNetwork([VectorLayer(4), FeedForwardLayer(3)])
 
-        assert any(
-            type(layer).__name__ == "BlankConnective" for layer in nn.all_layers
-        )
+        assert any(type(layer).__name__ == "BlankConnective" for layer in nn.all_layers)
 
     def test_invalid_math_operation_rejected(self):
         with pytest.raises(AssertionError):
@@ -271,7 +271,9 @@ class TestLeafNode:
             LeafNode,
         )
 
-        leaf = LeafNode(class_index=2, display_type="text", class_colors=[BLUE, GREEN, RED])
+        leaf = LeafNode(
+            class_index=2, display_type="text", class_colors=[BLUE, GREEN, RED]
+        )
         texts = [mobject for mobject in leaf.submobjects if isinstance(mobject, Text)]
         assert len(texts) == 1
         assert texts[0].text == "2"
@@ -308,8 +310,8 @@ class TestDecisionTreeDiagramExpansion:
 
     def test_bfs_expansion_returns_animation_and_split_map(self, tmp_path):
         diagram = self._make_diagram(tmp_path)
-        expansion, split_node_animations = (
-            diagram.create_bfs_expansion_decision_tree(diagram.tree)
+        expansion, split_node_animations = diagram.create_bfs_expansion_decision_tree(
+            diagram.tree
         )
         _assert_playable(expansion)
         split_indices = {
@@ -518,7 +520,9 @@ class TestDecisionTreeEmbedding:
         classes = np.array([0] * 10 + [1] * 10)
         clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)
 
-        return DecisionTreeEmbedding(clf.tree_, points, classes, class_colors=class_colors)
+        return DecisionTreeEmbedding(
+            clf.tree_, points, classes, class_colors=class_colors
+        )
 
     def test_points_and_areas_are_built(self):
         embedding = self._make_embedding()
@@ -564,7 +568,9 @@ class TestDecisionTreeEmbedding:
         points = rng.normal([0, 0], 0.5, (20, 2))
         clf = DecisionTreeClassifier(max_depth=1).fit(points, embedding_classes)
         with pytest.raises(ValueError):
-            DecisionTreeEmbedding(clf.tree_, points, embedding_classes, class_colors=[BLUE])
+            DecisionTreeEmbedding(
+                clf.tree_, points, embedding_classes, class_colors=[BLUE]
+            )
 
     def test_empty_points_are_rejected(self):
         pytest.importorskip("sklearn")

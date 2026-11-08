@@ -10,6 +10,8 @@ This module provides the Molecule class as a unified interface for different mol
 from ..twoD import GraphMolecule
 
 from manim import VGroup
+
+
 class Molecule:
     r"""Works as a proxy between different types of molecules with the same methods.
 
@@ -23,7 +25,7 @@ class Molecule:
     ----------
     molecule_class
         The molecule class to proxy to, such as :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`,
-        :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` or :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule`. 
+        :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` or :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule`.
 
     Examples
     ---------

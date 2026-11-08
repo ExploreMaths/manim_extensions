@@ -139,25 +139,18 @@ class XMLParser(BaseParser):
 
         compound_coords: dict[str, object] = molecule_data.get("PC-Compound_coords")
         coords_data_dict = compound_coords.get("PC-Coordinates")
-        conformers_section: dict[str, object] = coords_data_dict.get("PC-Coordinates_conformers")
+        conformers_section: dict[str, object] = coords_data_dict.get(
+            "PC-Coordinates_conformers"
+        )
         atoms_coords_raw = conformers_section.get("PC-Conformer")
 
         conformer_x: dict[str, object] = atoms_coords_raw.get("PC-Conformer_x")
-        coords_x = [
-            float(coord)
-            for coord in conformer_x.get("PC-Conformer_x_E")
-        ]
+        coords_x = [float(coord) for coord in conformer_x.get("PC-Conformer_x_E")]
         conformer_y: dict[str, object] = atoms_coords_raw.get("PC-Conformer_y")
-        coords_y = [
-            float(coord)
-            for coord in conformer_y.get("PC-Conformer_y_E")
-        ]
+        coords_y = [float(coord) for coord in conformer_y.get("PC-Conformer_y_E")]
         conformer_z: dict[str, object] | None = atoms_coords_raw.get("PC-Conformer_z")
         if conformer_z:
-            coords_z = [
-                float(coord)
-                for coord in conformer_z.get("PC-Conformer_z_E")
-            ]
+            coords_z = [float(coord) for coord in conformer_z.get("PC-Conformer_z_E")]
 
         else:
             coords_z = [0 for _ in coords_x]

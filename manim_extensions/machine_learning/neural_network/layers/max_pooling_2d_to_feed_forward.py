@@ -37,7 +37,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         input_layer: MaxPooling2DLayer,
         output_layer: FeedForwardLayer,
         passing_flash_color: ManimColor = ORANGE,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the max-pooling-to-feed-forward connective layer, inheriting from conv2d variant."""
         super().__init__(input_layer, output_layer, **kwargs)
@@ -46,7 +46,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ) -> None:
         """Forward to the parent construct_layer method.
 

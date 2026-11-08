@@ -18,8 +18,9 @@ from docutils import nodes
 from sphinx import addnodes
 
 
-def _record_dataclass(app, what, name, obj, options, signature,
-                      return_annotation) -> None:
+def _record_dataclass(
+    app, what, name, obj, options, signature, return_annotation
+) -> None:
     if what != "class" or not isinstance(obj, type):
         return
     try:

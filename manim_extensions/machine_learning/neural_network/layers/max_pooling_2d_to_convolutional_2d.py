@@ -14,7 +14,6 @@ from .convolutional_2d import Convolutional2DLayer
 from .parent_layers import NeuralNetworkLayer
 
 
-
 class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
     """Connective layer between a max pooling 2D layer and a convolutional 2D layer.
 
@@ -48,7 +47,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
-        **kwargs
+        **kwargs,
     ):
         """Initialize the max-pooling-to-conv2d connective layer, aligning feature map counts."""
         input_layer.num_feature_maps = output_layer.num_feature_maps
@@ -62,7 +61,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs
+        **kwargs,
     ):
         """Constructs the MaxPooling to Convolution3D layer.
 
