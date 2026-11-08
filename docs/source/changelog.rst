@@ -3,7 +3,7 @@
 
 Changelog
 =========
-v1.0.6 :bdg-success-line:`Latest`
+v1.0.6 :bdg-primary-line:`In development`
 -----------------------------------------
 
 **Added**
@@ -256,7 +256,7 @@ v1.0.6 :bdg-success-line:`Latest`
   layouts are all covered now.
 
 
-v1.0.5
+v1.0.5 :bdg-success-line:`Latest`
 ---------------------------------
 
 **Added**
