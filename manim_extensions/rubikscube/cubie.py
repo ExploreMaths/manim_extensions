@@ -12,6 +12,8 @@ from .cube_utils import get_faces_of_cubie
 import numpy as np
 from manim.typing import Point3D
 
+from typing import Literal
+
 
 class Cubie(VGroup):
     """One small cube element composing a larger Rubik's Cube.
@@ -110,7 +112,7 @@ class Cubie(VGroup):
             self.add(face)
             i += 1
 
-    def get_face(self, face: str) -> Square:
+    def get_face(self, face: Literal["F", "B", "U", "D", "L", "R"]) -> Square:
         """Return the face tile corresponding to a cube label.
 
         Parameters

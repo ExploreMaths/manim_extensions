@@ -7,6 +7,8 @@
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
 """
+from typing import Literal
+
 from manim import (
     Animation,
     AnimationGroup,
@@ -526,7 +528,7 @@ class DecisionTreeDiagram(Group):
         return AnimationGroup(*animations, lag_ratio=1.0)
 
     @override_animation(Create)
-    def create_decision_tree(self, traversal_order: str = "bfs") -> Animation | None:
+    def create_decision_tree(self, traversal_order: Literal["bfs", "level", "best"] = "bfs") -> Animation | None:
         """Makes a create animation for the decision tree.
 
         Parameters
@@ -574,7 +576,7 @@ class DecisionTreeContainer():
         self.points = points
         self.classes = classes
 
-    def make_unfold_tree_animation(self, traversal_order: str = "bfs") -> Succession:
+    def make_unfold_tree_animation(self, traversal_order: Literal["bfs", "level", "best"] = "bfs") -> Succession:
         """Unfold the tree through the given traversal while the decision surface splits.
 
         The diagram expands one split at a time, and the region that split

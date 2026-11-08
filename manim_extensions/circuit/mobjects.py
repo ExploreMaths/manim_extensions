@@ -8,7 +8,7 @@ This module provides circuit component visualizations.
 
 """
 
-from typing import Any, Self
+from typing import Any, Literal, Self
 
 import numpy as np
 from manim import (
@@ -240,7 +240,7 @@ class Inductor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val: str) -> Point3D | None:
+    def get_terminals(self, val: Literal["left", "right"]) -> Point3D | None:
         """Return the position of the left or right terminal.
 
         Parameters
@@ -374,7 +374,7 @@ class Resistor(VMobject):
         """
         return [self.main_body.get_start(), self.main_body.get_end()]
 
-    def get_terminals(self, val: str) -> Point3D | None:
+    def get_terminals(self, val: Literal["left", "right"]) -> Point3D | None:
         """Return the position of the left or right terminal.
 
         Parameters
@@ -506,7 +506,7 @@ class Capacitor(VMobject):
             )
             self.add(self.label)
 
-    def get_terminals(self, val: str) -> Point3D | None:
+    def get_terminals(self, val: Literal["left", "right"]) -> Point3D | None:
         """Return the position of the left or right terminal plate.
 
         Parameters
@@ -598,7 +598,7 @@ class Ground(VMobject):
 
     def __init__(
         self,
-        ground_type: str = "ground",
+        ground_type: Literal["ground", "earth"] = "ground",
         label: str | None = None,
         **kwargs: Any,
     ):

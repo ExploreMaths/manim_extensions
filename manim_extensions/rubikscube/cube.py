@@ -17,6 +17,8 @@ from .cubie import Cubie
 from ..utils.deps import require
 from manim.typing import Point3D
 
+from typing import Literal
+
 
 class RubiksCube(VMobject):
     """A Manim-backed Rubik's Cube model.
@@ -293,7 +295,7 @@ class RubiksCube(VMobject):
                         tile, magnitude * np.array(offset[i][1 + j * 2])
                     )
 
-    def get_face(self, face: str, flatten: bool = True) -> np.ndarray:
+    def get_face(self, face: Literal["F", "B", "U", "D", "L", "R"], flatten: bool = True) -> np.ndarray:
         """Return a face of the cube, optionally flattened into a 1D array.
 
         Parameters

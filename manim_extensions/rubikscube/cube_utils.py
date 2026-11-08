@@ -11,7 +11,7 @@ This module provides utility functions for Rubik's Cube operations.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 import numpy as np
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from .cube import RubiksCube  # noqa: F401
 
 
-def get_axis_from_face(face: str) -> Vector3D:
+def get_axis_from_face(face: Literal["F", "B", "U", "D", "L", "R"]) -> Vector3D:
     """Return the rotation axis corresponding to a Rubik's cube face.
 
     Parameters
@@ -44,7 +44,7 @@ def get_axis_from_face(face: str) -> Vector3D:
         return Y_AXIS
 
 
-def get_direction_from_face(face: str) -> int:
+def get_direction_from_face(face: Literal["F", "B", "U", "D", "L", "R"]) -> int:
     """Return the rotation direction for a given face.
 
     Parameters

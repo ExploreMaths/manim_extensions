@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-from typing import Any, Self
+from typing import Any, Literal, Self
 
 import numpy as np
 from manim import (
@@ -112,7 +112,7 @@ class Source(VMobject):
         else:
             self.label = None
 
-    def get_terminals(self, val: str) -> Point3D | None:
+    def get_terminals(self, val: Literal["positive", "negative"]) -> Point3D | None:
         """Return the positive or negative terminal of the source symbol.
 
         Parameters

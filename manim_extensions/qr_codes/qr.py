@@ -8,7 +8,7 @@ This module provides QR code generation functionality with customization options
 
 """
 
-from typing import Any
+from typing import Any, Literal
 from types import ModuleType
 
 from manim import Circle, DOWN, ManimColor, ORIGIN, RIGHT, Rectangle, VGroup, WHITE
@@ -24,10 +24,10 @@ def qr_code(payload: str,
             icon_margin_size: float = 0.1,  # in qr pixel
             white_color: str | ManimColor | None = None,
             corner_color: str | ManimColor | None = None,
-            data_shape: str = 'rectangles',
+            data_shape: Literal['rectangles', 'circles'] = 'rectangles',
             rectangles_kwargs: dict[str, object] | None = None,
             circle_kwargs: dict[str, object] | None = None,
-            error_correction: str = 'H',
+            error_correction: Literal['L', 'M', 'Q', 'H'] = 'H',
             segno_kwargs: dict[str, object] | None = None,
             **kwargs: Any, ) -> VGroup:
     """

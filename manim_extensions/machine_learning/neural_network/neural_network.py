@@ -39,7 +39,7 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Callable
+from typing import Callable, Literal
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -117,7 +117,7 @@ class NeuralNetwork(Group):
         dot_radius: float = 0.03,
         title: str = " ",
         layout: str = "linear",
-        layout_direction: str = "left_to_right",
+        layout_direction: Literal["left_to_right", "top_to_bottom"] = "left_to_right",
         debug_mode: bool = False
     ):
         """Initialize the neural network visualization by building and arranging all layers and connections."""
@@ -259,7 +259,7 @@ class NeuralNetwork(Group):
     def _place_layers(
         self, 
         layout: str = "linear", 
-        layout_direction: str = "top_to_bottom"
+        layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom"
     ):
         """Creates the neural network."""
         # Default: Linear layout

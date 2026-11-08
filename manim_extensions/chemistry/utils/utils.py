@@ -416,7 +416,7 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
     return sdf_parser_string(sdf_file)
 
 
-def get_element(element: str, language: str = "ENG") -> Element:
+def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Element:
     """Return the Element class instance for a given element symbol.
 
     Parameters
