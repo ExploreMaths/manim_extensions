@@ -27,3 +27,10 @@ def test_explicit_style_lists_are_kept():
     assert style.node_style[0]["color"] == "red"
     assert style.line_style[0]["color"] == "blue"
     assert style.text_style[0]["font_size"] == 20
+
+
+@pytest.mark.parametrize("level", [0, 1, 2, 3, 4, 7])
+def test_get_node_style_wraps_by_level(level):
+    style = NodeStyle(node_style=[{"color": "red"}, {"color": "blue"}])
+
+    assert len(style.get_node_style(level)) >= 1
