@@ -44,3 +44,8 @@ docs/_build/
 # Local example build artifacts
 docs/SVGAnimationUsageExample.*
 docs/leaf_class_*.png
+
+# Local run artifacts that must not be committed
+missfont.log
+recorded_path.txt
+social_preview.png
