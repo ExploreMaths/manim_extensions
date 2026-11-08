@@ -61,7 +61,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-report=json:coverage.json --cov-fail-under=67
+          xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-report=json:coverage.json --cov-fail-under=90
 
       # The badge JSON is committed so shields.io can read it straight from
       # raw.githubusercontent.com; only one matrix leg writes it, and only on
