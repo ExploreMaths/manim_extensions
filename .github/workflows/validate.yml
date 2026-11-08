@@ -158,6 +158,30 @@ jobs:
       - name: Check that documented public functions with return values declare a return annotation
         run: python scripts/check_return_annotations.py
 
+  black-changed-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Black
+        run: pip install black
+      - name: Resolve the base revision
+        id: base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "sha=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          before="${{ github.event.before }}"
+          if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] \
+             || ! git cat-file -e "${before}^{commit}" 2>/dev/null; then
+            before=$(git rev-list --max-parents=0 HEAD)
+          fi
+          echo "sha=$before" >> "$GITHUB_OUTPUT"
+      - name: Check that changed Python files are Black-formatted
+        run: python scripts/check_black_changed.py --base "${{ steps.base.outputs.sha }}"
+
   flake8-unused-imports:
     runs-on: ubuntu-latest
     steps:

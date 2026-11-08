@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+#
+# Format staged Python files with Black and re-stage them, so the formatting
+# lands in the same commit instead of trailing behind it.
+#
+# Enable once per clone:  git config core.hooksPath .githooks
+# Bypass a single commit:  git commit --no-verify
+
+set -euo pipefail
+
+PYTHON=${PYTHON:-python3}
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.py')
+if [ -z "$files" ]; then
+  exit 0
+fi
+
+if ! "$PYTHON" -m black --version >/dev/null 2>&1; then
+  echo "pre-commit: black is not installed for $PYTHON; skipping formatting." >&2
+  echo "pre-commit: install it with '$PYTHON -m pip install black' (CI still checks changed files)." >&2
+  exit 0
+fi
+
+# shellcheck disable=SC2086
+"$PYTHON" -m black --quiet $files
+
+# Re-stage only the files we just touched; black may rewrite them in place.
+# shellcheck disable=SC2086
+git add -- $files

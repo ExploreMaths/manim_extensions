@@ -158,6 +158,10 @@ exclude = ["tests*"]
 # REUSE license sidecar files
 "manim_extensions.pymunk" = ["custom_mobjects/*.license", "utils/*.license"]
 
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

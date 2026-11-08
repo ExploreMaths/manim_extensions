@@ -75,7 +75,15 @@ pytest tests/ -v
 
 ### Formatting and line length
 
-- Follow **PEP 8**. Code is formatted with **Black** (line length **88**).
+- Follow **PEP 8**. Code is formatted with **Black** (line length **88**), configured under `[tool.black]` in `pyproject.toml`.
+- **Formatting is adopted incrementally, not as a repo-wide sweep.** The tree is not Black-clean today (a large share of it is vendored from upstream projects), so the CI job `black-changed-files` only checks the Python files a push or pull request actually touches. Editing an already-unformatted file does mean formatting it in the same commit — that is intended, and it is how the debt shrinks.
+- **Enable the pre-commit hook once per clone** so Black runs on staged files and the result lands in the same commit, with no follow-up "style" commit:
+
+  ```bash
+  git config core.hooksPath .githooks
+  ```
+
+  The hook needs Black on your interpreter (`python3 -m pip install black`); without it the hook warns and lets the commit through, and CI still catches the file. `git commit --no-verify` bypasses the hook for one commit.
 - flake8 enforces `E9,F63,F7,F82` (syntax / undefined names) as hard failures and runs a non-fatal complexity check at `--max-line-length=127`.
 
 ### Type annotations
