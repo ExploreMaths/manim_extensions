@@ -110,7 +110,7 @@ introduction, or browse the :doc:`examples/index` gallery.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Manim Resources
+   :caption: Resources
    :hidden:
 
    constants
