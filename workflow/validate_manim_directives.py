@@ -34,7 +34,6 @@ WAIT_PATTERN = re.compile(r'\bself\.wait\s*\(')
 
 SKIP_FILES = {
     'manim_directive.py',
-    'manta_directive.py',
 }
 
 
