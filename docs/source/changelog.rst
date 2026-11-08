@@ -155,6 +155,12 @@ v1.0.6 :bdg-success-line:`Latest`
 * Fixed incomplete cross-references across the reference manual.
 * Fixed the Validate workflow failures around doc sections, unused imports,
   and REUSE lint.
+* Fixed the gear stroke setter, which raised ``KeyError: 'family'`` whenever
+  the ``family`` keyword was absent: it now forwards ``family`` explicitly
+  instead of popping a key that was never inserted.
+* Fixed :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum`
+  joints being added to a non-existent ``space`` attribute, so
+  ``start_swinging`` no longer fails with ``AttributeError``.
 
 **Documentation and hygiene**
 
@@ -240,6 +246,14 @@ v1.0.6 :bdg-success-line:`Latest`
   reviewed snapshot updates.
 * Made API coverage ignore type aliases and type variables, and blocked
   ambiguous class names in the cross-reference job.
+* Loaded the periodic-table fixture from a generated CSV inside the test
+  session, so the package job no longer depends on a git-ignored data file
+  and stops failing with ``FileNotFoundError``.
+* Raised whole-repository coverage to 93.6% (1919 tests) by exercising the
+  vendored packages rather than excluding them: light propagation, mesh
+  validation, gear and rack meshing, automaton stepping, 2-D molecule
+  stereo bonds, sliding-window bounds, file trees, trails and mind-map
+  layouts are all covered now.
 
 
 v1.0.5
