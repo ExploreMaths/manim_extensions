@@ -163,10 +163,16 @@ class TestCreateOverride:
 
 
 class TestLayerValidation:
-    def test_vector_layer_cannot_be_input(self):
-        # There is no Vector->FeedForward connective layer upstream.
-        with pytest.raises(TypeError):
-            NeuralNetwork([VectorLayer(4), FeedForwardLayer(3)])
+    def test_vector_layer_input_falls_back_to_blank_connective(self):
+        # There is no Vector->FeedForward connective layer upstream, so the
+        # pair degrades to the blank connective with a warning instead of
+        # crashing the whole network.
+        with pytest.warns(UserWarning):
+            nn = NeuralNetwork([VectorLayer(4), FeedForwardLayer(3)])
+
+        assert any(
+            type(layer).__name__ == "BlankConnective" for layer in nn.all_layers
+        )
 
     def test_invalid_math_operation_rejected(self):
         with pytest.raises(AssertionError):

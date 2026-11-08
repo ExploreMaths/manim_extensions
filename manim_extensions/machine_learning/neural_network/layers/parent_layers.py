@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# patched: BlankConnective implements the inherited abstract construct_layer (blank fallback)
 
 """Parent layer classes for neural network visualizations.
 
@@ -333,6 +334,25 @@ class BlankConnective(ConnectiveLayer):
             The forward pass animation.
         """
         return AnimationGroup(run_time=run_time)
+
+    def construct_layer(
+        self,
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
+        **kwargs: Any,
+    ):
+        """Construct nothing: a blank connective has no geometry of its own.
+
+        Parameters
+        ----------
+        input_layer
+            Preceding layer.
+        output_layer
+            Following layer.
+        **kwargs
+            Ignored.
+        """
+        return None
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
