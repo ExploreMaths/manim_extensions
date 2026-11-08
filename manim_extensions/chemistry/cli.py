@@ -82,11 +82,6 @@ def pubchem_molecule(format: Literal["asnt", "json", "sdf", "xml"], cid: tuple[s
     .. nbcell::
        :language: console
        :prompt-in: "$"
-       :output: Retrieving molecule data for ('acetone', 'morphine').
-           Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
-           File .\acetone.sdf is ready!!
-           File .\morphine.sdf is ready!!
-           Finished
 
        manim-chemistry pubchem-molecule --format sdf -n acetone -n morphine
     """

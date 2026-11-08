@@ -20,9 +20,6 @@ class InvalidMeshException(Exception):
     --------
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.InvalidMeshException: Dimensional mismatch for vertices. ...
 
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        Mesh([[0, 0, 0], [1, 0]], None)
@@ -39,9 +36,6 @@ class InvalidRequestException(InvalidMeshException):
     --------
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.InvalidRequestException: Can not Broadcast from 4-D Mesh to 3D Mesh.
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -59,9 +53,6 @@ class MeshIndexException(IndexError):
     --------
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2.
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -80,9 +71,6 @@ class InvalidTypeException(TypeError):
     --------
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.InvalidTypeException: Vertex [[1 1 1]] has incorrect shape, expected 1D-like array.
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -110,9 +98,6 @@ class InvalidMeshDimensionsException(Exception):
 
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2).
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
@@ -156,9 +141,6 @@ class InvalidShapeException(Exception):
 
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.InvalidShapeException: Size of new_positions is expected to be 3 but was 2.
 
        import numpy as np
        from manim import Scene
@@ -186,9 +168,6 @@ class BadParameterException(Exception):
     --------
     .. nbcell::
        :output-language: pytb
-       :output: Traceback (most recent call last):
-           ...
-           manim_extensions.meshes.exceptions.BadParameterException: Value edges_width does not have correct type ...
 
        from manim_extensions.meshes.params import get_param_or_default, BM2DM
        get_param_or_default("edges_width", {"edges_width": "not a number"}, BM2DM)
@@ -205,7 +184,6 @@ class FaultyVarArrayException(Exception):
     Examples
     --------
     .. nbcell::
-       :output: The given object is no VarArray.
 
        from manim_extensions.meshes.exceptions import FaultyVarArrayException
        try:

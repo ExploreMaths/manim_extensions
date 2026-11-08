@@ -15,11 +15,6 @@ without writing any Python. Installing the package registers a
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Usage: manim-chemistry [OPTIONS] COMMAND [ARGS]...
-       Options:
-         --help  Show this message and exit.
-       Commands:
-         pubchem-molecule  Download molecule from pubchem.
 
    manim-chemistry --help
 
@@ -37,9 +32,6 @@ Download by name
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
-       File ./acetone.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --name acetone
 
@@ -52,10 +44,6 @@ even be mixed (names, CIDs, SMILES and InChI in one call):
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.
-       File ./acetone.sdf is ready!!
-       File ./morphine.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --name acetone --name morphine
 
@@ -65,27 +53,18 @@ Choosing the identifier type
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('7028',). Saving file(s) to . folder.
-       File ./7028.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --cid 7028
 
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('CC(=O)C',). Saving file(s) to . folder.
-       File ./CC(=O)C.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --smiles "CC(=O)C"
 
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('InChI=1S/C3H6O/c1-3(2)4/h1-2H3',). Saving file(s) to . folder.
-       File ./InChI_1S_C3H6O_c1-3_2_4_h1-2H3.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --inchi "InChI=1S/C3H6O/c1-3(2)4/h1-2H3"
 
@@ -95,9 +74,6 @@ turned into ``_`` in the output file name:
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('CSCPPACGZOOCGX-UHFFFAOYSA-N',). Saving file(s) to . folder.
-       File ./CSCPPACGZOOCGX-UHFFFAOYSA-N.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --inchi CSCPPACGZOOCGX-UHFFFAOYSA-N
 
@@ -112,9 +88,6 @@ or GraphMolecule.molecule_from_file():
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
-       File ./acetone.json is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --name acetone --format json
 
@@ -130,9 +103,6 @@ PubChem for three-dimensional coordinates (e.g. for
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('acetone',). Saving file(s) to . folder.
-       File ./acetone.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --name acetone --three_d True
 
@@ -142,8 +112,5 @@ Choosing a destination folder
 .. nbcell::
    :language: console
    :prompt-in: "$"
-   :output: Retrieved molecule data for ('acetone',). Saving file(s) to molecules folder.
-       File molecules/acetone.sdf is ready!!
-       Finished
 
    manim-chemistry pubchem-molecule --name acetone --output_folder molecules

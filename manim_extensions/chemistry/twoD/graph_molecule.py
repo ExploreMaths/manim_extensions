@@ -768,7 +768,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
-           :output: array([ 0.9397, -0.7497,  0.    ])
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
@@ -800,7 +799,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
-           :output: [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_atoms_position_by_index([1,2,3]))
@@ -836,7 +834,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
-           :output: array([0.51935, 0.59615, 0.     ])
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bond_center_by_index((1, 2)))
@@ -905,7 +902,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
-           :output: [array([ 0.0713, -0.0263,  0.    ]), array([-1.2754,  0.3464,  0.    ]), array([0.9674, 1.2186, 0.    ])]
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
            print(molecule.find_bonds_center_by_index([1,2,3]))
