@@ -18,6 +18,9 @@ Options
 :recursive:  also enumerate every submodule of a package.
 :skip:       space separated names to exclude (decisions recorded in
               the page source).
+:values:     show each constant's value instead of only its name
+              (used by the colour palette, whose constants are
+              uninformative as bare names).
 :missing-only:
               emit entries only for names that are NOT documented
               anywhere else. The set of documented names comes from a
@@ -226,6 +229,7 @@ class AutoAllDirective(Directive):
         "skip": directives.unchanged,
         "recursive": directives.flag,
         "missing-only": directives.flag,
+        "values": directives.flag,
     }
 
     def _documented_set(self):
@@ -288,6 +292,11 @@ class AutoAllDirective(Directive):
                     lines.append("")
                 elif kind == "function":
                     lines += [f".. autofunction:: {key}", ""]
+                elif "values" in self.options:
+                    # Opt-in pages (the colour palette) show the value next
+                    # to the name; every other constants page stays a plain
+                    # name list.
+                    lines += [f".. autodata:: {key}", ""]
                 else:
                     # Constants are not expanded by default: show the name
                     # (which the py domain turns into a reference) and the

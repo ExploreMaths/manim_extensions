@@ -10,3 +10,4 @@ Manim intersphinx inventory, so they get linked here.
 
 .. autoall:: manim.utils.color.manim_colors
    :types: data
+   :values:
