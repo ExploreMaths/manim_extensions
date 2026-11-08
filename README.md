@@ -108,7 +108,7 @@ pip install manim_extensions
 ```
 
 Requires [Manim](https://github.com/ManimCommunity/manim) Community Edition
-(>=0.21). For the Chinese-formula features you also need `xelatex` with the
+(>=0.22.1). For the Chinese-formula features you also need `xelatex` with the
 `xeCJK` package installed.
 
 ### Optional extras
