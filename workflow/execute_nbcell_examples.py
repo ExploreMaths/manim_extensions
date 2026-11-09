@@ -147,6 +147,38 @@ def collect_cells(only=None):
     return docs
 
 
+def sanitize_traceback(text):
+    """Drop harness frames and machine-local paths from a traceback.
+
+    ``:output-language: pytb`` cells are rendered verbatim on the docs site,
+    so the frames coming from the runner itself and from wherever the
+    package happens to be installed (``site-packages``, a CI workspace path)
+    would otherwise leak into the page. Source frames inside the package are
+    rewritten relative to the repository, and runner frames are dropped.
+    """
+    out = []
+    skip = False
+    for line in text.split("\n"):
+        if line.startswith('  File "'):
+            target = line.split('"')[1]
+            if target.endswith("execute_nbcell_examples.py"):
+                skip = True
+                continue
+            skip = False
+            if "site-packages/" in target:
+                target = target.split("site-packages/", 1)[1]
+            start = target.rfind("manim_extensions/")
+            target = target[start:] if start >= 0 else Path(target).name
+            line = line.replace(line.split('"')[1], target)
+        elif skip:
+            # code line, caret line and blank line belonging to the skipped frame
+            if line.startswith("    ") or line.startswith("^") or not line.strip():
+                continue
+            skip = False
+        out.append(line)
+    return "\n".join(out).strip("\n")
+
+
 def run_document(module, cells, cwd):
     """Execute one document's cells in a fresh subprocess. Returns results."""
     job = {"cwd": str(cwd), "module": module, "cells": cells}
@@ -240,7 +272,8 @@ def main():
         print(f"all {total} nbcell outputs cached")
         return 0
 
-    cells_cache = dict(old.get("cells", {}))
+    live_hashes = {c["hash"] for doc in docs.values() for c in doc["cells"]}
+    cells_cache = {h: v for h, v in old.get("cells", {}).items() if h in live_hashes}
     executed = failed = 0
     for rel, doc in sorted(docs.items()):
         cwd = prepare_cwd()
@@ -267,6 +300,7 @@ def main():
                     }
         print(f"{rel}: {len(doc['cells'])} cells")
 
+    cells_cache = {h: v for h, v in cells_cache.items() if h in live_hashes}
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
         json.dumps({"version": 1, "cells": cells_cache}, indent=1) + "\n",
@@ -333,13 +367,13 @@ def runner_mode(job_path, result_path):
             if cell["pytb"]:
                 results[cell["hash"]] = {
                     "ok": True,
-                    "stdout": traceback.format_exc().strip("\n"),
+                    "stdout": sanitize_traceback(traceback.format_exc()),
                 }
             else:
                 results[cell["hash"]] = {
                     "ok": False,
                     "stdout": "",
-                    "error": traceback.format_exc().strip("\n"),
+                    "error": sanitize_traceback(traceback.format_exc()),
                 }
                 dead = True  # namespace may be broken for the rest
     Path(result_path).write_text(json.dumps(results), encoding="utf-8")

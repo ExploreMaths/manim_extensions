@@ -30,7 +30,7 @@ class InvalidRequestException(InvalidMeshException):
     """a request was made that is not defined.
 
     Raised when a mesh operation cannot be fulfilled as requested, e.g.
-    broadcasting a 4-D mesh to 3-D vertices:
+    projecting a five-dimensional mesh to three dimensions:
 
     Examples
     --------
@@ -39,7 +39,7 @@ class InvalidRequestException(InvalidMeshException):
 
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
-       mesh = Mesh(np.zeros((2, 4)), None)
+       mesh = Mesh(np.zeros((2, 5)), None)
        mesh.get_3d_vertices()
     """
 
