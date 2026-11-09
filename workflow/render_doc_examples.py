@@ -125,12 +125,49 @@ def normalize_code(code: str) -> list:
     return lines
 
 
+CODE_DIRECTIVE_RE = re.compile(r"^(\s*)\.\.\s*(code-block|sourcecode|code)::")
+OPTION_LIKE_RE = re.compile(r"^\s*:[\w-]+:")
+
+
+def mask_code_directive_bodies(lines):
+    """Blank out literal code inside ``code-block``/``sourcecode``/``code``.
+
+    Directive text shown *inside* a code sample is documentation, not a
+    directive the build should execute, so the scanners must ignore it.
+    """
+    masked = list(lines)
+    i = 0
+    while i < len(masked):
+        m = CODE_DIRECTIVE_RE.match(masked[i])
+        if not m:
+            i += 1
+            continue
+        base = len(m.group(1))
+        j = i + 1
+        while j < len(masked):
+            line = masked[j]
+            if not line.strip():
+                masked[j] = ""
+                j += 1
+                continue
+            indent = len(line) - len(line.lstrip())
+            if indent <= base:
+                break
+            masked[j] = ""
+            j += 1
+        masked[i] = ""
+        i = j
+    return masked
+
+
 def extract_blocks(path: Path):
     """Extract ``.. manim::`` blocks the way docutils would feed them to the
     directive: content lines at block indentation, ending at the first
     dedented line, with trailing blank lines stripped (the directive trims
     them too, see manim_directive.py)."""
-    lines = path.read_text(encoding="utf-8").splitlines()
+    lines = mask_code_directive_bodies(
+        path.read_text(encoding="utf-8").splitlines()
+    )
     blocks = []
     i = 0
     while i < len(lines):

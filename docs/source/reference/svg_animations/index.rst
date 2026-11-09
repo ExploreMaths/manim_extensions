@@ -127,7 +127,7 @@ want to manipulate, and its second is a list of NumPy ``linspace`` arrays,
 one per tracker, giving the values that tracker can take. Add updaters to
 the mobjects that should change when each parameter moves.
 
-.. code-block:: python
+.. manim:: SceneExample
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject

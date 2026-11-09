@@ -24,6 +24,8 @@ v1.0.7 :bdg-warning-line:`In Development`
   ``docs/source/contributing/`` — development, code style, documentation,
   testing and licensing, all written in reStructuredText. ``CONTRIBUTING.md``
   is now only a pointer to the hosted guide.
+* The SVG animations page renders its usage example with ``.. manim::``
+  instead of showing it as a plain code block.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
