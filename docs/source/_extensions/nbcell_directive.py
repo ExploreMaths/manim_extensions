@@ -64,6 +64,10 @@ def load_execution_cache():
     stdout on the rtd-cache branch; Read the Docs copies it next to this
     file before building. Cells without a cache entry keep their
     hand-written ``:output:``.
+
+    Both spellings are accepted: ``.readthedocs.yaml`` copies the
+    workflow's ``_nbcell_cache.json`` verbatim (keeping its underscore
+    prefix), while a local build may place it as ``nbcell_cache.json``.
     """
     global _cache
     if _cache is not None:
@@ -72,15 +76,19 @@ def load_execution_cache():
     import json
     from pathlib import Path
 
-    path = Path(__file__).with_name("nbcell_cache.json")
-    if path.exists():
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-            _cache = {
-                k: v["stdout"] for k, v in data.get("cells", {}).items() if v.get("ok")
-            }
-        except Exception:
-            _cache = {}
+    for name in ("_nbcell_cache.json", "nbcell_cache.json"):
+        path = Path(__file__).with_name(name)
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                _cache = {
+                    k: v["stdout"]
+                    for k, v in data.get("cells", {}).items()
+                    if v.get("ok")
+                }
+            except Exception:
+                _cache = {}
+            break
     return _cache
 
 

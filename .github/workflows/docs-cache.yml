@@ -22,6 +22,11 @@ on:
     # Refresh the vendored-status cache daily at ~02:29 UTC.
     - cron: "29 2 * * *"
   workflow_dispatch:
+    inputs:
+      rtd_only:
+        description: "Only trigger a Read the Docs build for the branch (no media render)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -149,7 +154,7 @@ jobs:
       # pushes: always — the tagged docs version must be built even when
       # the media cache is unchanged. Without the secret this is a no-op.
       - name: Trigger Read the Docs build
-        if: ${{ steps.push.outputs.pushed == 'true' || github.ref_type == 'tag' }}
+        if: ${{ steps.push.outputs.pushed == 'true' || github.ref_type == 'tag' || inputs.rtd_only }}
         env:
           RTD_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
           RTD_PROJECT: manim-extensions
