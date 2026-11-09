@@ -165,9 +165,7 @@ def extract_blocks(path: Path):
     directive: content lines at block indentation, ending at the first
     dedented line, with trailing blank lines stripped (the directive trims
     them too, see manim_directive.py)."""
-    lines = mask_code_directive_bodies(
-        path.read_text(encoding="utf-8").splitlines()
-    )
+    lines = mask_code_directive_bodies(path.read_text(encoding="utf-8").splitlines())
     blocks = []
     i = 0
     while i < len(lines):
