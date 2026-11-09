@@ -3,6 +3,21 @@
 
 Changelog
 =========
+
+v1.0.7 :bdg-warning-line:`In Development`
+-----------------------------------------
+
+**Fixed**
+
+* Documentation examples render their real output again: the nbcell
+  execution cache is read by the directive, the sample molecule files ship
+  with the repository, and the chemistry examples run against them.
+* ``:output-language: pytb`` examples no longer show CI machine paths or the
+  documentation runner's own stack frame.
+* The :class:`~manim_extensions.meshes.exceptions.InvalidRequestException`
+  example raises again: it projects a five-dimensional mesh, because
+  four-dimensional meshes are now supported.
+
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
 
