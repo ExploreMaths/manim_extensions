@@ -18,6 +18,13 @@ v1.0.7 :bdg-warning-line:`In Development`
   example raises again: it projects a five-dimensional mesh, because
   four-dimensional meshes are now supported.
 
+**Changed**
+
+* Reorganised the contributor guide into topic pages under
+  ``docs/source/contributing/`` (development, code style, documentation,
+  testing and licensing). ``CONTRIBUTING.md`` is now only a pointer to the
+  hosted guide.
+
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
 
