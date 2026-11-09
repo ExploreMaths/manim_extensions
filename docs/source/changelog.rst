@@ -21,9 +21,9 @@ v1.0.7 :bdg-warning-line:`In Development`
 **Changed**
 
 * Reorganised the contributor guide into topic pages under
-  ``docs/source/contributing/`` (development, code style, documentation,
-  testing and licensing). ``CONTRIBUTING.md`` is now only a pointer to the
-  hosted guide.
+  ``docs/source/contributing/`` — development, code style, documentation,
+  testing and licensing, all written in reStructuredText. ``CONTRIBUTING.md``
+  is now only a pointer to the hosted guide.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
