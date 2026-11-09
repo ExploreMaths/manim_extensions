@@ -42,7 +42,7 @@ class ASNTParser(BaseParser):
     --------
     .. nbcell::
 
-       parsed_asnt = ASNTParser(filename="acetone_2d.asnt")
+       parsed_asnt = ASNTParser(filename="examples/molecule_files/acetone_2d.asnt")
        print(parsed_asnt.atoms_data)
 
     .. nbcell::

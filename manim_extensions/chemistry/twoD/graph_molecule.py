@@ -847,7 +847,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         .. nbcell::
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-           print(molecule.find_bond_center_by_index((1, 2)))
+           print(molecule.find_bond_center_by_index((2, 1)))
         """
         try:
             bond = self.bonds[bond_index]
@@ -915,7 +915,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         .. nbcell::
 
            molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-           print(molecule.find_bonds_center_by_index([1,2,3]))
+           print(molecule.find_bonds_center_by_index([(2, 1), (3, 1), (4, 1)]))
         """
         bonds_positions = []
         for bond_index in bonds_tuples_list:

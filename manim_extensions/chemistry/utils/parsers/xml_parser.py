@@ -24,7 +24,7 @@ class XMLParser(BaseParser):
     --------
     .. nbcell::
 
-       parsed_xml = XMLParser(filename="acetone_2d.json")
+       parsed_xml = XMLParser(filename="examples/molecule_files/acetone_2d.xml")
        print(parsed_xml.atoms_data)
 
     .. nbcell::

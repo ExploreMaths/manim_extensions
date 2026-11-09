@@ -27,12 +27,12 @@ class SDFParser(MolParser):
     --------
     .. nbcell::
 
-       parsed_xml = XMLParser(filename="acetone_2d.json")
-       print(parsed_xml.atoms_data)
+       parsed_sdf = SDFParser(filename="examples/molecule_files/acetone_2d.sdf")
+       print(parsed_sdf.molecular_data[0][0])
 
     .. nbcell::
 
-       print(parsed_xml.bonds_data)
+       print(parsed_sdf.molecular_data[0][1])
 
     """
 

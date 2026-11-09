@@ -151,12 +151,12 @@ class JSONParser(BaseParser):
     --------
     .. nbcell::
 
-       parsed_json = JSONParser(filename="acetone_2d.json")
-       print(parsed_json.atoms_data)
+       parsed_json = JSONParser(filename="examples/molecule_files/acetone_2d.json")
+       print(parsed_json.molecular_data[0][0])
 
     .. nbcell::
 
-       print(parsed_json.bonds_data)
+       print(parsed_json.molecular_data[0][1])
     """
 
     @staticmethod

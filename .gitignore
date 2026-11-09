@@ -27,6 +27,7 @@ tests/__test_media_dir__
 /element_data.csv
 *.csv
 *.mol
+!examples/molecule_files/**/*.mol
 HTMLParsedVMobjectDocExample.html
 HTMLParsedVMobjectDocExample.js
 SVGAnimationUsageExample.html

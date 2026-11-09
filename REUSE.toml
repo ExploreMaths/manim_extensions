@@ -401,3 +401,7 @@ SPDX-License-Identifier = "MIT"
 path = "manim_extensions/machine_learning/utils/testing/*.cfg"
 SPDX-FileCopyrightText = ["2022 Alec Helbling", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
+[[annotations]]
+path = "examples/molecule_files/**"
+SPDX-FileCopyrightText = ["2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"

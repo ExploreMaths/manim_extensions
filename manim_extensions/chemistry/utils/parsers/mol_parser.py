@@ -19,7 +19,9 @@ class MolParser(BaseParser):
     --------
     .. nbcell::
 
-       parsed_mol = MolParser(filename="acetone_2d.json")
+       parsed_mol = MolParser(
+           filename="examples/molecule_files/mol_files/acetone_2d.mol"
+       )
        print(parsed_mol.atoms_data)
 
     .. nbcell::

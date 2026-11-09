@@ -30,6 +30,7 @@ import io
 import json
 import re
 import shlex
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -182,16 +183,18 @@ def run_document(module, cells, cwd):
 
 
 def prepare_cwd():
-    """Scratch cwd with the molecule files the examples reference."""
+    """Scratch cwd holding the tracked ``examples/`` tree.
+
+    The doc examples reference sample chemistry files by repo-relative
+    paths (``examples/molecule_files/...``), so the runner executes inside
+    a copy of that tree: the examples stay runnable without writing into
+    the checkout, and every sample file is the one committed in the repo
+    instead of a file that happens to exist on a developer's machine.
+    """
     tmp = Path(tempfile.mkdtemp(prefix="nbcell-"))
-    for mol in list(ROOT.glob("*.mol")) + list(
-        (ROOT / "docs" / "source").glob("*.mol")
-    ):
-        (tmp / mol.name).write_bytes(mol.read_bytes())
-    legacy = tmp / "examples" / "molecule_files" / "mol_files"
-    legacy.mkdir(parents=True)
-    for mol in (ROOT / "docs" / "source").glob("*.mol"):
-        (legacy / mol.name).write_bytes(mol.read_bytes())
+    src = ROOT / "examples"
+    if src.is_dir():
+        shutil.copytree(src, tmp / "examples")
     return tmp
 
 
@@ -255,7 +258,13 @@ def main():
             else:
                 failed += 1
                 if cell["hash"] not in cells_cache:
-                    cells_cache[cell["hash"]] = {"ok": False, "stdout": ""}
+                    # Keep the traceback so a silent "no output" cell on the
+                    # rendered page can be traced back to its cause in CI.
+                    cells_cache[cell["hash"]] = {
+                        "ok": False,
+                        "stdout": "",
+                        "error": (res or {}).get("error", ""),
+                    }
         print(f"{rel}: {len(doc['cells'])} cells")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -327,7 +336,11 @@ def runner_mode(job_path, result_path):
                     "stdout": traceback.format_exc().strip("\n"),
                 }
             else:
-                results[cell["hash"]] = {"ok": False, "stdout": ""}
+                results[cell["hash"]] = {
+                    "ok": False,
+                    "stdout": "",
+                    "error": traceback.format_exc().strip("\n"),
+                }
                 dead = True  # namespace may be broken for the rest
     Path(result_path).write_text(json.dumps(results), encoding="utf-8")
     return 0

@@ -1315,7 +1315,7 @@ class NamedMolecule(VGroup):
         .. nbcell::
 
            molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
-           print(molecule.find_bonds_position_by_index([1,2,3]))
+           print(molecule.find_bonds_center_by_index([1, 2, 3]))
         """
         bonds_positions = []
         for bond_index in bonds_index_list:
