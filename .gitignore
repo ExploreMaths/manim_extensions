@@ -32,6 +32,8 @@ HTMLParsedVMobjectDocExample.html
 HTMLParsedVMobjectDocExample.js
 SVGAnimationUsageExample.html
 SVGAnimationUsageExample.js
+SceneExample.html
+SceneExample.js
 leaf_class_*.png
 
 # Generated locally / fetched from the vendored-status-cache branch

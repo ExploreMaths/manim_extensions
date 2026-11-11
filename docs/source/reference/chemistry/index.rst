@@ -62,14 +62,17 @@ libraries on their own.
 Build a 2-D molecule from a ``.mol`` file with
 AbstractMolecule.molecule_from_file():
 
-.. code-block:: python
+.. manim:: TwoDMoleculeScene
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.chemistry import MMoleculeObject
 
    class TwoDMoleculeScene(Scene):
        def construct(self):
-           morphine = MMoleculeObject.molecule_from_file("morphine.mol")
+           morphine = MMoleculeObject.molecule_from_file(
+               "examples/molecule_files/mol_files/morphine_2d.mol"
+           )
            self.add(morphine)
 
 Double bonds can land on the wrong side after parsing. Pass
@@ -86,8 +89,8 @@ the diagram with a title text:
 
 .. code-block:: python
 
-   named_molecule = NamedMolecule.molecule_from_file(
-       name="Morphine", filename="morphine.mol")
+   named_molecule = NamedMolecule.from_mol_file(
+       name="Morphine", filename="examples/molecule_files/mol_files/morphine_2d.mol")
 
 Graph molecules
 ^^^^^^^^^^^^^^^
@@ -97,7 +100,8 @@ built on Manim's ``Graph`` (and thus on ``networkx``), so substructures can be
 selected and animated. Load one from a file and add element or numeric atom
 labels:
 
-.. code-block:: python
+.. manim:: GraphMoleculeExample
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.chemistry import GraphMolecule
@@ -105,7 +109,10 @@ labels:
    class GraphMoleculeExample(Scene):
        def construct(self):
            graph_molecule = GraphMolecule.molecule_from_file(
-               mol_file="morphine.mol", label=True, numeric_label=True)
+               "examples/molecule_files/mol_files/morphine_2d.mol",
+               label=True,
+               numeric_label=True,
+           )
            self.add(graph_molecule)
 
 Select the atoms and bonds between two atom indices with

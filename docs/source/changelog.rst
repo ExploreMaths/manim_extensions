@@ -26,6 +26,8 @@ v1.0.7 :bdg-warning-line:`In Development`
   is now only a pointer to the hosted guide.
 * The SVG animations page renders its usage example with ``.. manim::``
   instead of showing it as a plain code block.
+* The chemistry reference page renders its 2-D molecule examples from the
+  bundled sample ``.mol`` files, which are now shipped in ``examples/``.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

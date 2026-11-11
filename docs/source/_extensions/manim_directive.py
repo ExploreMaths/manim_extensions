@@ -95,6 +95,7 @@ import shutil
 import sys
 import textwrap
 from pathlib import Path
+import tempfile
 from timeit import timeit
 from typing import TYPE_CHECKING, Any, TypedDict
 
@@ -335,12 +336,29 @@ class ManimDirective(Directive):
             logger.info("manim example %r reused from media cache", output_file)
         else:
             try:
-                with tempconfig(example_config):
-                    run_time = timeit(
-                        lambda: exec("\n".join(code), globals()), number=1
-                    )
-                    video_dir = config.get_dir("video_dir")
-                    images_dir = config.get_dir("images_dir")
+                # patched: run each example from a scratch directory that
+                # exposes the repository ``examples/`` tree, so examples may
+                # read bundled sample files (e.g. the chemistry ``.mol``
+                # files) without polluting the source tree with stray writes.
+                previous_cwd = os.getcwd()
+                work_cwd = Path(tempfile.mkdtemp(prefix="manim-example-"))
+                repo_root = Path(setup.confdir).resolve().parents[1]
+                if (repo_root / "examples").is_dir():
+                    try:
+                        (work_cwd / "examples").symlink_to(repo_root / "examples")
+                    except OSError:
+                        pass
+                os.chdir(work_cwd)
+                try:
+                    with tempconfig(example_config):
+                        run_time = timeit(
+                            lambda: exec("\n".join(code), globals()), number=1
+                        )
+                        video_dir = config.get_dir("video_dir")
+                        images_dir = config.get_dir("images_dir")
+                finally:
+                    os.chdir(previous_cwd)
+                    shutil.rmtree(work_cwd, ignore_errors=True)
             except Exception as e:
                 # A broken example embedded in a docstring should not fail the whole
                 # documentation build: warn about it and fall back to a placeholder

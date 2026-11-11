@@ -26,6 +26,7 @@ import argparse
 import hashlib
 import json
 import multiprocessing
+import os
 import platform
 import re
 import shutil
@@ -280,11 +281,16 @@ def render_block(task):
             *user_code,
             f"{class_name}().render()",
         ]
-        with tempconfig(example_config):
-            exec(
-                "\n".join(exec_code),
-                {"__file__": DIRECTIVE_FILE, "__name__": "__manim_docgen__"},
-            )
+        previous_cwd = os.getcwd()
+        os.chdir(workdir)
+        try:
+            with tempconfig(example_config):
+                exec(
+                    "\n".join(exec_code),
+                    {"__file__": DIRECTIVE_FILE, "__name__": "__manim_docgen__"},
+                )
+        finally:
+            os.chdir(previous_cwd)
 
         if save_last_frame:
             hits = list(Path(workdir).rglob(f"{output_file}.png"))
@@ -413,6 +419,14 @@ def main() -> int:
     for n, block in enumerate(todo):
         workdir = work_root / f"w{n % max(1, args.workers)}-{n}"
         workdir.mkdir(parents=True, exist_ok=True)
+        # Expose the repository ``examples/`` tree inside the workdir so examples
+        # can read bundled sample files like ``examples/.../morphine_2d.mol``.
+        link = workdir / "examples"
+        if not link.exists():
+            try:
+                link.symlink_to(ROOT / "examples")
+            except OSError:
+                pass
         tasks.append(
             (
                 block["class_name"],
