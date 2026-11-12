@@ -84,7 +84,7 @@ The ``colors`` parameter accepts a list of six colours in the order
 Setting the state of a RubiksCube
 ---------------------------------
 
-When you have a RubiksCube in real life and want to replicate it in manim,
+When you have a :class:`~manim_extensions.rubikscube.cube.RubiksCube` in real life and want to replicate it in manim,
 the :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` method enables this functionality. Or, if you
 know the state of any cube without knowing what movements got it to that point,
 this method allows you to also replicate that.
@@ -241,14 +241,14 @@ A :class:`~manim_extensions.rubikscube.cube.RubiksCube` has three different offs
 for isolating faces or :class:`~manim_extensions.rubikscube.cubie.Cubie` objects for further explanation or
 analysis.
 
-The ``x_offset`` determines how close/far Cubies are from Front to Back
+The ``x_offset`` determines how close/far :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s are from Front to Back
 
-The ``y_offset`` determines how close/far Cubies are from Right to Left
+The ``y_offset`` determines how close/far :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s are from Right to Left
 
-The ``z_offset`` determines how close/far Cubies are from Top to Bottom
+The ``z_offset`` determines how close/far :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s are from Top to Bottom
 
 The default value for all three offsets is ``2.1``. Adjusting these offsets
-changes the "gap" between Cubies.
+changes the "gap" between :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s.
 
 .. manim:: ThreeOffsetExample
 
@@ -293,7 +293,7 @@ Accessing a Cubie
 ^^^^^^^^^^^^^^^^^
 
 A :class:`~manim_extensions.rubikscube.cubie.Cubie` is each individual cube in a :class:`~manim_extensions.rubikscube.cube.RubiksCube`. For a
-3x3x3 RubiksCube, there are 27 cubies. The cube's cubies are stored in a
+3x3x3 :class:`~manim_extensions.rubikscube.cube.RubiksCube`, there are 27 cubies. The cube's cubies are stored in a
 numpy array called :attr:`~manim_extensions.rubikscube.cube.RubiksCube.cubies`.
 
 For a 3-dimensional :class:`~manim_extensions.rubikscube.cube.RubiksCube`, the :attr:`~manim_extensions.rubikscube.cube.RubiksCube.cubies` array
@@ -364,10 +364,10 @@ Accessing a Face
 
 The :class:`~manim_extensions.rubikscube.cube.RubiksCube` has a method called :meth:`~manim_extensions.rubikscube.cube.RubiksCube.get_face` that
 will return an array of :class:`~manim_extensions.rubikscube.cubie.Cubie` objects. At its core, this just
-accesses Cubies like we did above.
+accesses :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s like we did above.
 
 Because the front face of the :class:`~manim_extensions.rubikscube.cube.RubiksCube` has an X value of 0
-(regardless of the dimension of the cube), returning all Cubies with an X
+(regardless of the dimension of the cube), returning all :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s with an X
 value of 0 will give you the front face. When
 ``cube.get_face("F")`` is called, it is effectively returning
 ``cube.cubies[0, :, :]``. This is possible for all 6 faces of the

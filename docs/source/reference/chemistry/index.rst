@@ -10,6 +10,8 @@ Chemistry
 
 **Original author:** `UMDQ <https://github.com/UnMolDeQuimica>`_
 
+.. unlinked-class-ok-file Select
+
 **Source repository:** `GitHub <https://github.com/UnMolDeQuimica/manim-Chemistry>`_
 
 **License:** MIT
@@ -64,15 +66,14 @@ AbstractMolecule.molecule_from_file():
 
 .. manim:: TwoDMoleculeScene
    :save_last_frame:
+   :files: morphine_2d.mol
 
    from manim import *
    from manim_extensions.chemistry import MMoleculeObject
 
    class TwoDMoleculeScene(Scene):
        def construct(self):
-           morphine = MMoleculeObject.molecule_from_file(
-               "examples/molecule_files/mol_files/morphine_2d.mol"
-           )
+           morphine = MMoleculeObject.molecule_from_file("morphine_2d.mol")
            self.add(morphine)
 
 Double bonds can land on the wrong side after parsing. Pass
@@ -90,7 +91,7 @@ the diagram with a title text:
 .. code-block:: python
 
    named_molecule = NamedMolecule.from_mol_file(
-       name="Morphine", filename="examples/molecule_files/mol_files/morphine_2d.mol")
+       name="Morphine", filename="morphine_2d.mol")
 
 Graph molecules
 ^^^^^^^^^^^^^^^
@@ -102,6 +103,7 @@ labels:
 
 .. manim:: GraphMoleculeExample
    :save_last_frame:
+   :files: morphine_2d.mol
 
    from manim import *
    from manim_extensions.chemistry import GraphMolecule
@@ -109,10 +111,7 @@ labels:
    class GraphMoleculeExample(Scene):
        def construct(self):
            graph_molecule = GraphMolecule.molecule_from_file(
-               "examples/molecule_files/mol_files/morphine_2d.mol",
-               label=True,
-               numeric_label=True,
-           )
+               "morphine_2d.mol", label=True, numeric_label=True)
            self.add(graph_molecule)
 
 Select the atoms and bonds between two atom indices with

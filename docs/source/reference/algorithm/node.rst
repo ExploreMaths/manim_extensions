@@ -7,7 +7,7 @@ Nodes
 
 .. module:: manim_extensions.algorithm.node
 
-Node-like visual blocks for algorithm state display.
+:class:`~manim_extensions.algorithm.node.Node`-like visual blocks for algorithm state display.
 
 Classes
 -------

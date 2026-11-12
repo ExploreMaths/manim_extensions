@@ -7,7 +7,7 @@ Queues
 
 .. module:: manim_extensions.algorithm.queue
 
-Queue animation helpers and visual containers.
+:class:`~manim_extensions.algorithm.queue.Queue` animation helpers and visual containers.
 
 Classes
 -------

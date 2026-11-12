@@ -31,7 +31,7 @@ Features
 - Basic rack (:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack`)
 - Undercutting for gears with fewer than 17 teeth
 - Profile-shifted gears
-- Meshing calculation with distance variation via Gear.mesh_to()
+- Meshing calculation with distance variation via :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.mesh_to()
 
 Cycloid gears and cycloid racks are planned for future development upstream.
 
@@ -40,7 +40,7 @@ Usage
 
 Add :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`
 objects and position them into meshing with
-Gear.mesh_to(), which moves and rotates the
+:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.mesh_to(), which moves and rotates the
 caller gear so that it meshes with the argument gear. Use ``fill_opacity=1``
 and ``stroke_opacity=0`` when you do not want the stroke, since the stroke
 increases the gear size by a couple of pixels and gives the feeling of
@@ -69,7 +69,7 @@ interference.
                      run_time=4)
 
 For ring gears with inner teeth, pass ``inner_teeth=True`` and use the
-``offset`` and ``bias`` arguments of Gear.mesh_to()
+``offset`` and ``bias`` arguments of :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.mesh_to()
 to control the axial distance and which tooth flank engages:
 
 .. manim:: RingGearMeshExample

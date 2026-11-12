@@ -89,7 +89,7 @@ contracts the legs to ``span_buff`` and parks the compass at a point:
 :class:`~manim_extensions.compass.animations.animation_compass.DrawArc`
 draws an existing :class:`~manim.mobject.geometry.arc.Arc` with the compass:
 with the needle tip at the arc's center and the pen tip at the arc's start, it
-rotates the compass while the arc is drawn (it combines the RotateCompass
+rotates the compass while the arc is drawn (it combines the :class:`~manim_extensions.compass.animations.animation_compass.RotateCompass`
 animation with the arc's Create).
 
 .. code-block:: python
@@ -106,10 +106,10 @@ moves the pencil along a ``VMobject`` path (typically a ``Line`` in
 constructions);
 :class:`~manim_extensions.compass.animations.animation_pencil.DrawPath`
 draws the path: the pen tip starts at the path's beginning and the pencil moves
-along it while the path is created (it combines the MovePencilAlongPath
+along it while the path is created (it combines the :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilAlongPath`
 animation with Create).
 :class:`~manim_extensions.compass.animations.animation_pencil.PutPencilAway`
-parks the pencil at a point; it is equivalent to MovePencilTipTo and kept
+parks the pencil at a point; it is equivalent to :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilTipTo` and kept
 for readability in construction scenes:
 
 .. manim:: PencilDemo

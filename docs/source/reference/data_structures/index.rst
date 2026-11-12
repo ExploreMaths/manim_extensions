@@ -30,7 +30,7 @@ Features
 - :class:`~manim_extensions.data_structures.m_array.MArraySlidingWindow` – windowed array layout for algorithms.
 - directional helpers for array traversal and highlighting.
 - Per-element appearance (square / value / index styling), growth direction, array label placement, hex index display, index offset, and hidden indices.
-- Element lifecycle animations: append, remove, value and index updates with configurable animation types.
+- :class:`~manim_extensions.chemistry.element.element.Element` lifecycle animations: append, remove, value and index updates with configurable animation types.
 - :class:`~manim_extensions.data_structures.m_enum.MArrayDirection` and :class:`~manim_extensions.data_structures.m_enum.MArrayElementComp` enums for directions and animation targets.
 
 Usage

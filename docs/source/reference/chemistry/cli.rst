@@ -82,7 +82,7 @@ Output formats
 
 ``--format`` changes the file type written for every downloaded molecule;
 the files can then be fed straight back into
-MMoleculeObject.molecule_from_file()
+:class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`.molecule_from_file()
 or GraphMolecule.molecule_from_file():
 
 .. nbcell::

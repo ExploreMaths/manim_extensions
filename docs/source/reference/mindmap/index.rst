@@ -7,6 +7,8 @@ MindMap
 
 .. module:: manim_extensions.mindmap
 
+.. unlinked-class-ok-file Layout
+
 .. vendored-status:: jj-math/manim-mindmap
 
 **Original author:** `jj-math <https://github.com/jj-math>`_ (Bilibili creator **Jiujin Math**)
@@ -94,7 +96,7 @@ Node operations
 ^^^^^^^^^^^^^^^
 
 Mutate the tree directly on the :class:`~manim_extensions.mindmap.nodes.node.Node`
-objects and then re-layout. Nodes support
+objects and then re-layout. :class:`~manim_extensions.mindmap.nodes.node.Node`\ s support
 :meth:`~manim_extensions.mindmap.nodes.node.Node.add_child`,
 :meth:`~manim_extensions.mindmap.nodes.node.Node.remove_child`, a ``scale``
 method and
