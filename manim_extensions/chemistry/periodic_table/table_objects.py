@@ -4,7 +4,7 @@
 
 """Periodic table visualization objects for Manim chemistry.
 
-This module provides the MElementObject class for rendering periodic table elements.
+This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.
 
 """
 
@@ -98,7 +98,6 @@ class MElementObject(VGroup):
         text_color: ManimColor = BLACK,
         **kwargs,
     ):
-        """Initialize a periodic table element tile with atomic data, colors and text styling."""
         VGroup.__init__(self, **kwargs)
         self.atomic_number = atomic_number
         self.atomic_mass = atomic_mass
@@ -213,7 +212,7 @@ class MElementObject(VGroup):
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
     def from_csv_file_data(filename: str, atomic_number: int, **kwargs) -> Self:
-        """Load an MElementObject from a CSV file by looking up the given atomic number.
+        """Load an :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` from a CSV file by looking up the given atomic number.
 
         Parameters
         ----------
@@ -227,7 +226,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            A MElementObject instance representing the result.
+            A :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` instance representing the result.
         """
         # TODO: Add option to set manually colors.
         # TODO: Create a table that adds this data in a prettier way.
@@ -286,7 +285,6 @@ class PeriodicTable(VGroup):
 
     # TODO Change to english database
     def __init__(self, data_file: str, *vmobjects, **kwargs):
-        """Initialize the periodic table by loading elements from a CSV data file."""
         VGroup.__init__(self, *vmobjects, **kwargs)
         self.data_file = data_file
         self.table = self.add_elements()

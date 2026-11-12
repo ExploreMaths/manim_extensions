@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-"""Gear Mobject for Pymunk physics simulations."""
+""":class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear` Mobject for Pymunk physics simulations."""
 
 from manim import Circle, DEGREES, Exclusion, Polygon, Union, VMobject
 import numpy as np
@@ -61,9 +61,6 @@ class Gear(VMobject):
         hole_radius: float = 0.1,
         **kwargs,
     ):
-        """Initialize a gear-shaped VMobject with configurable teeth count,
-        radius, tooth height, width factor, corner roundness, and center hole.
-        """
         super().__init__(**kwargs)
 
         # Auto-compute optimal tooth width

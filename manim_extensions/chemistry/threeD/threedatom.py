@@ -3,9 +3,11 @@
 
 """3D atom representation for Manim chemistry.
 
-This module provides the ThreeDAtom class for rendering atoms in 3D.
+This module provides the :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom` class for rendering atoms in 3D.
 
 """
+
+# unlinked-class-ok: Element
 
 import numpy as np
 
@@ -32,7 +34,6 @@ class ThreeDAtom(OpenGLSphere):
     def __init__(
         self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs
     ):
-        """Initialize a 3D atom sphere using element data at the given coordinates."""
         self.center = coords
         self.coords = coords
         self.element = element

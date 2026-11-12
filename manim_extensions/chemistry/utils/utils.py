@@ -417,7 +417,7 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
 
 
 def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Element:
-    """Return the Element class instance for a given element symbol.
+    """Return the :class:`~manim_extensions.chemistry.element.element.Element` class instance for a given element symbol.
 
     Parameters
     ----------
@@ -428,7 +428,7 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
 
     Returns
     -------
-        The Element class instance matching the symbol.
+        The :class:`~manim_extensions.chemistry.element.element.Element` class instance matching the symbol.
     """
     if language == "ENG":
         element_dict = ELEMENT_DICT
@@ -450,7 +450,7 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
     file
         Path to the .mol file.
     language
-        Element name language.
+        :class:`~manim_extensions.chemistry.element.element.Element` name language.
 
         .. list-table::
            :header-rows: 0

@@ -69,7 +69,6 @@ class VariationalAutoencoder(Group):
         ellipse_stroke_width: float = 1.0,
         layer_spacing: float = 0.5,
     ):
-        """Initialize the VAE visualization with encoder, embedding, and decoder layers."""
         super().__init__()
         self.encoder_nodes_per_layer = encoder_nodes_per_layer
         self.decoder_nodes_per_layer = decoder_nodes_per_layer

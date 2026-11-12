@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Pencil class for Manim.
+""":class:`~manim_extensions.compass.compass.pencil.Pencil` class for Manim.
 
 This module provides pencil visualization for geometry.
 
@@ -22,7 +22,7 @@ __all__ = [
 
 
 class Pencil(SVGMobject):
-    """Pencil mobject.
+    """:class:`~manim_extensions.compass.compass.pencil.Pencil` mobject.
 
     Parameters
     ----------
@@ -46,7 +46,6 @@ class Pencil(SVGMobject):
     """
 
     def __init__(self, height: float = 2, angle: float = PI / 4):
-        """Initialize the Pencil instance."""
         super().__init__(
             file_name=Path(__file__).resolve().parent / "assets/pencil.svg",
             height=height,

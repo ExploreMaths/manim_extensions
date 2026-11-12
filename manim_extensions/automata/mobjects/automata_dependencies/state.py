@@ -82,7 +82,6 @@ class State:
         final: bool | None = None,
         id: int | None = None,
     ):
-        """Initialize the State instance."""
         if id is not None:
             self.id = int(id)
         else:

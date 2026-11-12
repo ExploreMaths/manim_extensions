@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-"""Node data structure for algorithm visualization."""
+""":class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
 
@@ -186,7 +186,6 @@ class Node(VMobject):
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         **kwargs,
     ):
-        """Initialize Node."""
 
         super().__init__(**kwargs)
         self.set_box(box_type, width, box_color)
@@ -414,7 +413,6 @@ class Node(VMobject):
             opacity: float = NodeConfig.SELECT_OPACITY,
             **kwargs,
         ):
-            """Initialize Select."""
 
             super().__init__(
                 AnimationGroup(
@@ -455,11 +453,6 @@ class Node(VMobject):
         """
 
         def __init__(self, *nodes: List[Node], **kwargs):
-            """Clear the highlight from one or more nodes.
-
-            Restores each node's original fill colour with zero opacity,
-            effectively undoing a previous :class:`~manim_extensions.algorithm.node.Node.Select` animation.
-            """
             super().__init__(
                 AnimationGroup(
                     *[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]
@@ -496,7 +489,6 @@ class Node(VMobject):
         """
 
         def __init__(self, node: Node, value: NodeValue, **kwargs):
-            """Initialize UpdateValue."""
             super().__init__(*[node.animate.set_value(value)], **kwargs)
 
     class MoveAndOverWrite(Succession):
@@ -543,7 +535,6 @@ class Node(VMobject):
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Initialize MoveAndOverWrite."""
             steps = []
             if select_color is not None:
                 steps.append(
@@ -604,7 +595,6 @@ class Node(VMobject):
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Initialize CopyAndOverWrite."""
             copied_node = node.copy().move_to(node)
             steps = [
                 FadeIn(copied_node),
@@ -660,7 +650,6 @@ class Node(VMobject):
             select_opacity: float = 0.2,
             **kwargs,
         ):
-            """Initialize SwapAndOverWrite."""
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)
             steps = [

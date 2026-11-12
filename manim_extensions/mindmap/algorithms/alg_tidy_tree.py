@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-Non-layered Tidy Tree Layout Algorithm (Python Implementation).
+Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
 
 Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
@@ -337,7 +337,6 @@ class TidyTreeLayout(Layout):
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
     ):
-        """Initialize the TidyTreeLayout instance."""
         self.root = root
         self.direction = direction
         self.is_horizontal = self._is_horizontal(direction)

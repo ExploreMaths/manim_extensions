@@ -80,7 +80,6 @@ class ConstantStrokeWidthScene(MovingCameraScene):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        """Initialize the scene and install stroke-width compensation."""
         super().__init__(*args, **kwargs)
         self._install_stroke_width_parameter()
         self._stroke_scale = self._camera_stroke_scale()

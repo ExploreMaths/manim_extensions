@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Circuit diagram utilities for Manim."""
+""":class:`~manim_extensions.circuit.utils.Circuit` diagram utilities for Manim."""
 
 from __future__ import annotations
 
@@ -84,7 +84,6 @@ class Source(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Source instance."""
         super().__init__(**kwargs)
         self._direction = direction
 
@@ -221,7 +220,6 @@ class Circuit(VMobject):
     """
 
     def __init__(self, **kwargs: Any):
-        """Initialize the Circuit instance."""
         super().__init__(**kwargs)
 
         # Get a VGroup() of components
@@ -390,7 +388,6 @@ class Node(VMobject):
     """
 
     def __init__(self, **kwargs: Any):
-        """Initialize the Node instance."""
         super().__init__(**kwargs)
 
         # NOTE In a future update, I want to try to

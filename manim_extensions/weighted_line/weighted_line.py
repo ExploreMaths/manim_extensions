@@ -3,7 +3,7 @@
 
 """Weighted line class for Manim.
 
-This module provides the WeightedLine class for displaying weighted edges in network graphs.
+This module provides the :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` class for displaying weighted edges in network graphs.
 
 """
 
@@ -108,7 +108,6 @@ class WeightedLine(Line):
         add_bg: bool = True,
         **kwargs: Any,
     ):
-        """Initializes a weighted line with an optional weight label and background."""
         self.weight = weight
         self.alpha = weight_alpha
         self.add_bg = add_bg

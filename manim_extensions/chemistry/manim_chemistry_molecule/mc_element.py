@@ -4,7 +4,7 @@
 
 """Manim chemistry element representation.
 
-This module provides the MCElement dataclass for representing chemical elements.
+This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement` dataclass for representing chemical elements.
 
 """
 
@@ -15,49 +15,24 @@ from dataclasses import dataclass
 class MCElement:
     r"""Used to abstract the properties of elements.
 
-    The properties can be overwritten using custom MCElements and
+    The properties can be overwritten using custom :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement`\ s and
     passing them as a dictionary to the molecule classes.
 
     Examples
     ---------
     .. manim:: OverwrittenCarbonElement
+       :files: acetone_2d.mol
 
        from manim import *
+       from pathlib import Path
        from manim_extensions.chemistry import GraphMolecule, MCElement
-
-       acetone_mol = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
 
        class OverwrittenCarbonElement(Scene):
            def construct(self):
-               default = GraphMolecule.molecule_from_string(acetone_mol, format="mol")
+               default = GraphMolecule.molecule_from_string(Path("acetone_2d.mol").read_text(), format="mol")
                custom_carbon = MCElement(symbol="C", color=PURPLE)
                custom = GraphMolecule.molecule_from_string(
-                   acetone_mol,
+                   Path("acetone_2d.mol").read_text(),
                    format="mol",
                    elements_data_dict={"C": custom_carbon},
                )

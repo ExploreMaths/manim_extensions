@@ -28,7 +28,7 @@ from manim.typing import Point2D, Point2D_Array, Vector2D
 
 
 def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
-    """Returns clockwise angle between 2D vectors a and b.
+    r"""Returns clockwise angle between 2D vectors a and b.
 
     Parameters
     ----------
@@ -39,7 +39,7 @@ def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
 
     Returns
     -------
-        Clockwise angle in radians between 0 and :math:`2\\pi`.
+        Clockwise angle in radians between 0 and :math:`2\pi`.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
@@ -50,7 +50,7 @@ def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
 
 
 def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
-    """Returns counter-clockwise angle between 2D vectors a and b.
+    r"""Returns counter-clockwise angle between 2D vectors a and b.
 
     Parameters
     ----------
@@ -61,7 +61,7 @@ def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
 
     Returns
     -------
-        Counter-clockwise angle in radians between 0 and :math:`2\\pi`.
+        Counter-clockwise angle in radians between 0 and :math:`2\pi`.
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
@@ -117,7 +117,6 @@ class DivideAndConquer:
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
-        """Initialise the divide-and-conquer visualisation helper."""
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 

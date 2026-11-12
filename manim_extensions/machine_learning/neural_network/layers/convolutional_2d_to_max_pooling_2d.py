@@ -52,7 +52,6 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         active_color: ManimColor = ORANGE,
         **kwargs,
     ):
-        """Initialize the conv2d-to-max-pooling connective layer with active highlight color."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.active_color = active_color
 

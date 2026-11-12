@@ -44,7 +44,6 @@ class SeqObject(VGroup):
     """
 
     def __init__(self, name: str, font_size: float = 18):
-        """Initialize SeqObject."""
         self.obj_name = name
         obj_label = self.create_obj_label(font_size)
         obj_ctn = Rectangle(

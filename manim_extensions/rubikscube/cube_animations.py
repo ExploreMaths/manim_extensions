@@ -56,7 +56,6 @@ class CubeMove(Animation):
     """
 
     def __init__(self, mobject: Mobject, face: str, **kwargs):
-        """Initialize the CubeMove instance."""
         self.axis = get_axis_from_face(face[0])
         self.face = face
         self.angle = PI / 2 if ("R" in face or "F" in face or "D" in face) else -PI / 2

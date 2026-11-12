@@ -98,7 +98,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         font_size: float = 20,
         **kwargs,
     ):
-        """Initialize the math operation layer with operator symbol and styling parameters."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         # Ensure operation type is valid
         assert operation_type in MathOperationLayer.valid_operations

@@ -6,6 +6,8 @@
 custom exceptions.
 """
 
+# unlinked-class-ok: Mesh
+
 # python imports
 
 
@@ -111,7 +113,6 @@ class InvalidMeshDimensionsException(Exception):
         expected: int | tuple[int | str, int | str],
         name: str = "",
     ):
-        """Initialize the InvalidMeshDimensionsException instance."""
         if name == "":
             super().__init__(
                 f"Dimensions is expected to be {expected} but was {actual}."
@@ -151,7 +152,6 @@ class InvalidShapeException(Exception):
     """
 
     def __init__(self, name: str, actual: int, expected: int):
-        """Initialize the InvalidShapeException instance."""
         super().__init__(
             f"Size of {name} is expected to be {expected} but was {actual}."
         )

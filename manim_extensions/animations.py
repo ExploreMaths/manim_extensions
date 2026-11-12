@@ -82,7 +82,6 @@ class TypeWriter(Animation):
     """
 
     def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any):
-        """Initialize the TypeWriter instance."""
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
         self.char_count = len(mobject.submobjects)
@@ -372,7 +371,6 @@ class WriteRandom(LaggedStart):
     """
 
     def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
-        """Initialize the WriteRandom instance."""
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects)))
         random.shuffle(indices)
@@ -417,7 +415,6 @@ class ReversedWrite(LaggedStart):
     """
 
     def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
-        """Initialize the ReversedWrite instance."""
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects) - 1, -1, -1))
         super().__init__(
@@ -460,7 +457,6 @@ class FadeInRandom(LaggedStart):
     """
 
     def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
-        """Initialize the FadeInRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -503,7 +499,6 @@ class FadeOutRandom(LaggedStart):
     """
 
     def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
-        """Initialize the FadeOutRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -548,7 +543,6 @@ class GrowRandom(LaggedStart):
     """
 
     def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
-        """Initialize the GrowRandom instance."""
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -606,7 +600,6 @@ class PassingRectangle(Animation):
         fill_opacity: float = 0.6,
         **kwargs: Any,
     ):
-        """Initialize the PassingRectangle instance."""
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
         self.height = mobject.height + 2 * buff
@@ -687,7 +680,6 @@ class LaggedCreation(Animation):
         start_ratio: float = 1 / 6,
         **kwargs: Any,
     ):
-        """Initialize the LaggedCreation instance."""
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
         super().__init__(mobject, rate_func=linear, **kwargs)
@@ -787,7 +779,6 @@ class HighLightWithLines(AnimationGroup):
         rec_opacity: float = 0.5,
         **kwargs: Any,
     ):
-        """Initialize the HighLightWithLines instance."""
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
         line_up.next_to(mobject, UP, buff=buff)
@@ -866,7 +857,6 @@ class UnHighLightWithLines(AnimationGroup):
         rec_opacity: float = 0.5,
         **kwargs: Any,
     ):
-        """Initialize the UnHighLightWithLines instance."""
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:
             # remove exactly the objects created by HighLightWithLines

@@ -4,6 +4,8 @@
 
 """3D and 2D Waves module."""
 
+# unlinked-class-ok: Source
+
 from __future__ import annotations
 
 import numpy as np
@@ -76,7 +78,6 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         y_range: tuple[float, float] = (-5, 5),
         **kwargs: Any,
     ):
-        """Initialize a radial wave surface."""
         self.wavelength = wavelength
         self.period = period
         self.amplitude = amplitude
@@ -189,7 +190,6 @@ class LinearWave(RadialWave):
         y_range: tuple[float, float] = (-5, 5),
         **kwargs: Any,
     ):
-        """Initialize a linear wave surface."""
         super().__init__(
             ORIGIN,
             wavelength=wavelength,
@@ -267,7 +267,6 @@ class StandingWave(ParametricFunction):
         amplitude: float = 1,
         **kwargs: Any,
     ):
-        """Initialize a standing wave."""
         self.n = n
         self.length = length
         self.period = period

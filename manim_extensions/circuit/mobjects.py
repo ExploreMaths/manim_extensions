@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Circuit mobjects for Manim.
+""":class:`~manim_extensions.circuit.utils.Circuit` mobjects for Manim.
 
 This module provides circuit component visualizations.
 
@@ -92,7 +92,6 @@ class VoltageSource(Source):
         **kwargs: Any,
     ):
         # + and -
-        """Initialize the VoltageSource instance."""
         markings = VGroup()
         markings.add(Line(DOWN * 0.3, UP * 0.3).shift(UP * 0.5))
         markings.add(Line(LEFT * 0.3, RIGHT * 0.3).shift(UP * 0.5))
@@ -150,7 +149,6 @@ class CurrentSource(Source):
         **kwargs: Any,
     ):
         # Arrow
-        """Initialize the CurrentSource instance."""
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
         super().__init__(
             markings,
@@ -163,7 +161,7 @@ class CurrentSource(Source):
 
 
 class Inductor(VMobject):
-    """Inductor component used in circuit visualisations.
+    """:class:`~manim_extensions.circuit.mobjects.Inductor` component used in circuit visualisations.
 
     Parameters
     ----------
@@ -205,7 +203,6 @@ class Inductor(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Inductor instance."""
         super().__init__(**kwargs)
         self._direction = direction
 
@@ -296,7 +293,7 @@ class Inductor(VMobject):
 
 
 class Resistor(VMobject):
-    """Resistor component shown as a zig-zag path.
+    """:class:`~manim_extensions.circuit.mobjects.Resistor` component shown as a zig-zag path.
 
     Parameters
     ----------
@@ -331,7 +328,6 @@ class Resistor(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Resistor instance."""
         super().__init__(**kwargs)
         self._direction = direction
 
@@ -430,7 +426,7 @@ class Resistor(VMobject):
 
 
 class Capacitor(VMobject):
-    """Capacitor component for circuit diagrams.
+    """:class:`~manim_extensions.circuit.mobjects.Capacitor` component for circuit diagrams.
 
     Parameters
     ----------
@@ -470,7 +466,6 @@ class Capacitor(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Capacitor instance."""
         super().__init__(**kwargs)
         self._direction = direction
 
@@ -562,7 +557,7 @@ class Capacitor(VMobject):
 
 
 class Ground(VMobject):
-    """Ground symbol used in circuit diagrams.
+    """:class:`~manim_extensions.circuit.mobjects.Ground` symbol used in circuit diagrams.
 
     Parameters
     ----------
@@ -603,7 +598,6 @@ class Ground(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Ground instance."""
         super().__init__(**kwargs)
 
         if ground_type == "ground":
@@ -696,7 +690,6 @@ class Opamp(VMobject):
         **kwargs: Any,
     ):
         # initialize the vmobject
-        """Initialize the Opamp instance."""
         super().__init__(**kwargs)
 
         self._plots = VGroup()

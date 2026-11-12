@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Transition class for automata visualizations.
+""":class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
 
@@ -45,9 +45,9 @@ class ManimTransition(Transition, VGroup):
     Parameters
     ----------
     transition_from
-        State at which the transition starts.
+        :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` at which the transition starts.
     transition_to
-        State at which the transition ends.
+        :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` at which the transition ends.
     read_symbols
         Symbols associated with the transition.
     parent_automaton
@@ -93,7 +93,6 @@ class ManimTransition(Transition, VGroup):
         buffer: int = 1,
         **kwargs: Any,
     ):
-        """Initialize the ManimTransition instance."""
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None
         # manim settings for animations and colors
@@ -345,7 +344,7 @@ class ManimTransition(Transition, VGroup):
         Parameters
         ----------
         token
-            Token whose LaTeX representation is compared against the transition labels.
+            :class:`~manim_extensions.automata.mobjects.manim_automaton_input.Token` whose LaTeX representation is compared against the transition labels.
 
         Returns
         -------
@@ -396,7 +395,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
     Parameters
     ----------
     transition_from
-        Source state of the transition.
+        :class:`~manim_extensions.circuit.utils.Source` state of the transition.
     transition_to
         Target state of the transition.
     rules
@@ -441,7 +440,6 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         buffer: int = 1,
         **kwargs: Any,
     ):
-        """Initialize the ManimPushDownAutomatonTransition instance."""
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None
         # manim settings for animations and colors

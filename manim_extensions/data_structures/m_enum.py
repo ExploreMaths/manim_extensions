@@ -8,7 +8,7 @@ from enum import Enum
 
 
 class MArrayElementComp(Enum):
-    """Refers to individual component :class:`~manim.mobject.mobject.Mobject`s of :class:`~manim_extensions.data_structures.m_array.MArrayElement`."""
+    r"""Refers to individual component :class:`~manim.mobject.mobject.Mobject`\ s of :class:`~manim_extensions.data_structures.m_array.MArrayElement`."""
 
     BODY = 0
     """:class:`~manim.mobject.geometry.polygram.Square` that represents the body."""

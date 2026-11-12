@@ -4,7 +4,7 @@
 
 """Damped spring constraint for Pymunk.
 
-This module provides the VDampedSpring class for creating damped spring constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring` class for creating damped spring constraints.
 
 """
 
@@ -110,10 +110,6 @@ class VDampedSpring(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """Initialize a damped spring constraint with two bodies, anchor
-        points, spring physics (rest length, stiffness, damping), and
-        visual spring/anchor mobjects.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.anchor_a_local = anchor_a_local

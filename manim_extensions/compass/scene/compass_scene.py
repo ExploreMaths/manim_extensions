@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Compass scene for Manim.
+""":class:`~manim_extensions.compass.compass.compass.Compass` scene for Manim.
 
 This module provides scene classes for compass-based geometry animations.
 
@@ -72,7 +72,7 @@ class CompassScene(MovingCameraScene):
     """
 
     def setup(self):
-        """CompassScene.setup example."""
+        """:class:`~manim_extensions.compass.scene.compass_scene.CompassScene`.setup example."""
         self.compass = Compass(span=0.5).to_edge(LEFT)
         self.ruler = Ruler().to_edge(DOWN)
         self.pencil = Pencil().to_corner(UR)

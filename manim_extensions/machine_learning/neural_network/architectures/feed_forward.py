@@ -12,7 +12,7 @@ from manim import ManimColor
 
 
 class FeedForwardNeuralNetwork(NeuralNetwork):
-    """NeuralNetwork with just feed forward layers.
+    """:class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` with just feed forward layers.
 
     Parameters
     ----------
@@ -33,7 +33,6 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
         node_color: ManimColor = config.color_scheme.primary_color,
         **kwargs,
     ):
-        """Build a fully-connected neural network from a list of node counts per layer."""
         # construct layer
         layers = []
         for num_nodes in layer_node_count:

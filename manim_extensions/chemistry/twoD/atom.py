@@ -3,9 +3,11 @@
 
 """2D atom representation for Manim chemistry.
 
-This module provides the MAtomObject class for representing atoms in 2D chemical structures.
+This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` class for representing atoms in 2D chemical structures.
 
 """
+
+# unlinked-class-ok: Element
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
@@ -87,7 +89,6 @@ class MAtomObject(VGroup):
         planar: bool = True,
         **kwargs,
     ):
-        """Initialize a 2D atom with element symbol, coords, bond info and display options."""
         VGroup.__init__(self, **kwargs)
         self.coords = coords
         self.element = element
@@ -188,7 +189,8 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            A MAtomObject instance representing the result."""
+            A :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` instance representing the result.
+        """
         copy = MAtomObject(
             coords=self.coords,
             element=self.element,

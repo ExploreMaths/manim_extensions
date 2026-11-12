@@ -3,9 +3,11 @@
 
 """Chemical formula representation for Manim chemistry.
 
-This module provides the ChemicalFormula class for rendering chemical formulas.
+This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula` class for rendering chemical formulas.
 
 """
+
+# unlinked-class-ok: Element
 
 import re
 
@@ -48,7 +50,6 @@ class ChemicalFormula(MarkupText):
         *args,
         **kwargs,
     ):
-        """Initialize a chemical formula text with per-element colors and subscript numbers."""
         self.formula = formula
         self.metal_color = metal_color
         self.non_metal_color = non_metal_color
@@ -210,7 +211,6 @@ class NamedFormula(VGroup):
         *args,
         **kwargs,
     ):
-        """Initialize a named formula with metal/non-metal names, colors and layout options."""
         super().__init__(*args, **kwargs)
         self.metal_name = metal_name
         self.non_metal_name = non_metal_name
@@ -284,7 +284,6 @@ class ComplexFormula(MarkupText):
     """
 
     def __init__(self, formula_dict: dict, *args, **kwargs):
-        """Initialize a complex formula from a dict of formula parts mapped to colors."""
         markup = ""
         for formula, color in formula_dict.items():
             markup += (
@@ -391,7 +390,6 @@ class NamedComplexFormula(VGroup):
         *args,
         **kwargs,
     ):
-        """Initialize a named complex formula built from name and formula dictionaries."""
         self.name_dict = name_dict
         self.formula_dict = formula_dict
         super().__init__(*args, **kwargs)

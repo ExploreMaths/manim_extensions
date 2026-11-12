@@ -5,7 +5,7 @@
 
 """Base constraint class for Pymunk.
 
-This module provides the VConstraint base class for Pymunk constraint visualizations.
+This module provides the :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint` base class for Pymunk constraint visualizations.
 
 """
 
@@ -48,10 +48,6 @@ class VConstraint(VGroup):
     """
 
     def __init__(self, a_mob: Mobject = None, b_mob: Mobject = None, **kwargs):
-        """Initialize the base VConstraint by calling the parent VGroup
-        constructor, storing the two connected mobjects, and validating
-        constraint parameters.
-        """
         super().__init__(**kwargs)
         self.a_mob = a_mob
         self.b_mob = b_mob

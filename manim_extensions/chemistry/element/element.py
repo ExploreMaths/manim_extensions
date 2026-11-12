@@ -40,7 +40,6 @@ class Element:
         mass: float = 1.008,
         color: str | None = "#FFFFFF",
     ):
-        """Initialize the Element instance."""
         self.symbol = symbol
         self.name = name
         self.atomic_number = atomic_number
@@ -59,7 +58,7 @@ class Element:
 
         Returns
         -------
-            A Element instance representing the result.
+            A :class:`~manim_extensions.chemistry.element.element.Element` instance representing the result.
 
         Raises
         ------

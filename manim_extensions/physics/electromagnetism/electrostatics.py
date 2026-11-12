@@ -9,6 +9,8 @@ fields suitable for teaching and demonstration scenes in Manim.
 
 """
 
+# unlinked-class-ok: Charge
+
 from __future__ import annotations
 
 import numpy as np
@@ -77,7 +79,6 @@ class Charge(VGroup):
         add_glow: bool = True,
         **kwargs,
     ):
-        """Initialize Charge."""
         VGroup.__init__(self, **kwargs)
         self.magnitude = magnitude
         self.point = point
@@ -154,7 +155,6 @@ class ElectricField(ArrowVectorField):
     """
 
     def __init__(self, *charges: Charge, **kwargs):
-        """Initialize ElectricField."""
         self.charges = charges
         positions = []
         magnitudes = []

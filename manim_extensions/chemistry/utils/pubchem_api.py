@@ -4,7 +4,7 @@
 
 """PubChem API manager for Manim chemistry.
 
-This module provides the PubchemAPIManager class for fetching molecular data from PubChem.
+This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.
 
 """
 
@@ -50,7 +50,6 @@ class PubchemAPIManager:
         three_d: bool = False,
         format: str = "json",
     ):
-        """Initialize the PubchemAPIManager instance."""
         if not any([cid, name, smiles, inchi]):
             raise Exception(
                 "You should provide an identifier. Available identifiers are cid, name, smiles and inchi"

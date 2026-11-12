@@ -32,7 +32,6 @@ class ListGroup(Mobject):
     """
 
     def __init__(self, *layers: Mobject):
-        """Initialize the group with the given items."""
         super().__init__()
         self.items: list[Mobject] = [*layers]
         # Add the items as submobjects so the group is visible when rendered
@@ -189,7 +188,7 @@ class ListGroup(Mobject):
     def set_z_index(  # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
     ):
-        """Sets z index of all values in ListGroup.
+        """Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.
 
         Parameters
         ----------

@@ -3,8 +3,10 @@
 # patched: document module-level constants
 
 """
-Table - The main database table component.
+:class:`~manim_extensions.table.table.Table` - The main database table component.
 """
+
+# unlinked-class-ok: Row
 
 from manim import DOWN, Animation, FadeIn, FadeOut, LEFT, RIGHT, Text, Transform, VGroup
 from manim.mobject.mobject import _AnimationBuilder
@@ -181,8 +183,6 @@ class Table(VGroup):
         padding: float = 0.3,
         **kwargs: Any,
     ):
-        """Initialize the table from a header row plus data rows, or a
-        single data matrix whose first row is the header.."""
         super().__init__(**kwargs)
 
         # Parse input (copy the lists: add/delete column mutate them and

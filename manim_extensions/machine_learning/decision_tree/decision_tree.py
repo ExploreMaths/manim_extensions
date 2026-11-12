@@ -8,6 +8,8 @@ Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
 """
 
+# unlinked-class-ok: Node
+
 from typing import Literal
 
 from manim import (
@@ -110,7 +112,6 @@ class LeafNode(Group):
         class_colors: list = [],
         class_names: list[str] | None = None,
     ):
-        """Initialize the leaf node with a class image or text and colored border."""
         super().__init__()
         self.display_type = display_type
         self.class_image_paths = class_image_paths
@@ -177,7 +178,6 @@ class SplitNode(VGroup):
     """
 
     def __init__(self, feature: int | str, threshold: float):
-        """Initialize the split node showing the feature name and threshold value."""
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f}"
         # Draw decision text
@@ -259,7 +259,6 @@ class DecisionTreeDiagram(Group):
         class_images_paths: list[str] | None = None,
         class_colors: list = [RED, GREEN, BLUE],
     ):
-        """Initialize the decision tree diagram by building nodes, edges, and the tree layout."""
         super().__init__()
         self.tree = sklearn_tree
         self.feature_names = feature_names
@@ -597,7 +596,6 @@ class DecisionTreeContainer:
         points: Point2D_Array,
         classes: VectorND,
     ):
-        """Store the fitted tree, data points, and class labels for coordinated visualization."""
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes

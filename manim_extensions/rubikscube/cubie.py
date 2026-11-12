@@ -54,7 +54,6 @@ class Cubie(VGroup):
     """
 
     def __init__(self, x: int, y: int, z: int, dim: int, colors: list):
-        """Initialize the Cubie instance."""
         self.dimensions = dim
         self.colors = colors
         self.position = np.array([x, y, z])

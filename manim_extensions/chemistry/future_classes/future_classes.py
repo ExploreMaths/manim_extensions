@@ -71,7 +71,6 @@ class Hole(VMobject):
     """
 
     def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
-        """Create a dashed circle representing a hole with given radius and color."""
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
 
@@ -102,7 +101,6 @@ class Electron(VMobject):
     """
 
     def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
-        """Create a filled circle representing an electron with given radius and color."""
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
 
@@ -159,7 +157,6 @@ class Element(VGroup):
         subelectron_holes: bool = True,
         **kwargs,
     ):
-        """Initialize element atom with label, electrons, holes, and optional subelectron holes."""
         super().__init__(**kwargs)
         self.element_label = element
         self.label_color = label_color
@@ -313,7 +310,6 @@ class ElementFrame(VGroup):
         frame_colors: list = [BLUE, BLUE_B],
         **kwargs,
     ):
-        """Initialize the element frame with symbol, name, and gradient-colored rectangle."""
         super().__init__(**kwargs)
 
         self.frame = Rectangle(
@@ -352,7 +348,6 @@ class NPNTransistor(VGroup):
     """
 
     def __init__(self, regions_opacity: float = 0.8, **kwargs):
-        """Initialize NPN transistor with two n-regions, a p-region, electrons and holes."""
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
         self.left_n_region = Rectangle(
@@ -450,7 +445,6 @@ class BatterySchema(VGroup):
         inverted_terminals: bool = False,
         **kwargs,
     ):
-        """Initialize battery schema attached to a mobject with given layout type."""
         super().__init__(**kwargs)
 
         self.mob = mob
@@ -634,7 +628,6 @@ class MOSFETTransistor(VGroup):
     """
 
     def __init__(self, show_holes: bool = False, show_battery: bool = False, **kwargs):
-        """Initialize MOSFET transistor diagram with optional holes and battery terminals."""
         super().__init__(**kwargs)
 
         self.main_board = self.make_main_board()
@@ -731,7 +724,7 @@ class MOSFETTransistor(VGroup):
         return VGroup(negative_terminal, positive_terminal)
 
     def add_battery_sides(self) -> VGroup:
-        """Create elbow-shaped BatterySide connectors from terminals to n-regions.
+        """Create elbow-shaped :class:`~manim_extensions.chemistry.future_classes.future_classes.BatterySide` connectors from terminals to n-regions.
 
         Returns
         -------
@@ -790,7 +783,6 @@ class BatterySide(VMobject):
     """
 
     def __init__(self, terminal: Mobject, anchor: VGroup, **kwargs):
-        """Initialize an L-shaped connector line from a battery terminal to an anchor mobject."""
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
@@ -889,7 +881,7 @@ def add_over_rectangular_surface(
 
 
 def get_element_by_data(element: dict) -> Element:
-    """Create an Element mobject from a dictionary of element properties.
+    """Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` mobject from a dictionary of element properties.
 
     Parameters
     ----------
@@ -899,7 +891,7 @@ def get_element_by_data(element: dict) -> Element:
 
     Returns
     -------
-        A Element instance representing the result.
+        A :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` instance representing the result.
     """
     return Element(
         element=element["symbol"],

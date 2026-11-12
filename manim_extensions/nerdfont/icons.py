@@ -106,7 +106,6 @@ class NerdFontIcon(Text):
     """
 
     def __init__(self, icon: int | str, **kwargs: Any):
-        """Construct a Nerd Font icon mobject."""
         font_path = _font_path()
         _install_font_linux()
         with register_font(font_path):

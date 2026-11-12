@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Array data structure for algorithm visualization."""
+""":class:`~manim_extensions.algorithm.array.Array` data structure for algorithm visualization."""
 
 from manim import ManimColor, VMobject
 from typing import List
@@ -67,7 +67,6 @@ class Array(VMobject):
         text_scale: float = 1.0,
         **kwargs,
     ):
-        """Create a horizontal array of :class:`~manim_extensions.algorithm.node.Node` mobjects from ``data``."""
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)

@@ -93,7 +93,6 @@ class DecisionTreeEmbedding(VGroup):
         class_colors: list | None = None,
         point_radius: float = 0.04,
     ):
-        """Build the axes, the data points, and the decision areas of the tree."""
         super().__init__()
         self.tree = (
             sklearn_tree

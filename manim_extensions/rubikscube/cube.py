@@ -174,7 +174,6 @@ class RubiksCube(VMobject):
         y_offset: float = 2.1,
         z_offset: float = 2.1,
     ):  # , **kwargs):
-        """Initialize the RubiksCube instance."""
         if not (dim >= 2):
             raise Exception("Dimension must be >= 2")
 

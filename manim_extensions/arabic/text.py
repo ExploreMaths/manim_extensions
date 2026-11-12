@@ -78,7 +78,6 @@ class ArabicTemplate(TexTemplate):
     """
 
     def __init__(self, font_name: str | None = None):
-        """Initialize the template for Arabic typesetting."""
         super().__init__()
         font_name = _resolve_arabic_font(font_name)
         self.tex_compiler = "xelatex"
@@ -134,7 +133,6 @@ class ArabicText(Tex):
         font_size: int = 34,
         font_name: str | None = None,
     ):
-        """Initialize the Arabic text object."""
         template = ArabicTemplate(font_name=font_name)
         super().__init__(
             rf"\textcolor{{{color}}}{{{text}}}",

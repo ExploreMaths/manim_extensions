@@ -4,6 +4,8 @@
 
 """Probability distribution utilities for neural network visualization."""
 
+# unlinked-class-ok: Source
+
 from typing import Any
 
 import numpy as np
@@ -67,7 +69,6 @@ class GaussianDistribution(VGroup):
         color: ManimColor = ORANGE,
         **kwargs: Any,
     ):
-        """Initialize the distribution plot."""
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
         if mean is None:

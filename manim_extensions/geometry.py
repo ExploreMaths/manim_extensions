@@ -10,6 +10,8 @@ lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
 their cubic Bézier outlines, so no type-specific cases are needed.
 """
 
+# unlinked-class-ok: Array, Arrays
+
 from manim import Mobject, VMobject
 import math
 import numpy as np

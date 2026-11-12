@@ -84,7 +84,6 @@ class FeatureMap(VGroup):
         show_grid_lines: bool = False,
         padding_dashed: bool = False,
     ):
-        """Initialize a feature map as a gridded rectangle with optional dashed padding border."""
         super().__init__()
         self.color = color
         self.feature_map_size = feature_map_size
@@ -258,7 +257,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         padding_dashed: bool = True,
         **kwargs,
     ):
-        """Initialize the 2D convolutional layer with feature map count, size, and styling."""
         super().__init__(**kwargs)
         self.num_feature_maps = num_feature_maps
         self.filter_color = filter_color

@@ -24,7 +24,7 @@ from ... import config
 
 
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
-    """Max pooling layer for Convolutional2DLayer.
+    """Max pooling layer for :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer`.
 
     .. note::
 
@@ -102,7 +102,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         stroke_width: float = 2.0,
         **kwargs,
     ):
-        """Initialize the MaxPooling2DLayer instance."""
         super().__init__(**kwargs)
         self.kernel_size = kernel_size
         self.stride = stride

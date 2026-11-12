@@ -4,7 +4,7 @@
 
 """Virtual space for Pymunk physics.
 
-This module provides the VSpace class for managing Pymunk physical simulations.
+This module provides the :class:`~manim_extensions.pymunk.space.VSpace.VSpace` class for managing Pymunk physical simulations.
 
 """
 
@@ -26,11 +26,11 @@ if TYPE_CHECKING:
 
 class VSpace(Mobject, metaclass=ConvertToOpenGL):
     """Pymunk physical space management is generally not used by users.
-    This object has already been created in SpaceScene.
+    This object has already been created in :class:`~manim_extensions.pymunk.space.SpaceScene.SpaceScene`.
 
     The Manim visualization manager for a Pymunk physical space.
 
-    The VSpace class encapsulates the Pymunk :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object, managing rigid bodies,
+    The :class:`~manim_extensions.pymunk.space.VSpace.VSpace` class encapsulates the Pymunk :class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` object, managing rigid bodies,
     shapes, and constraints within the simulation. It utilizes Manim's updater
     mechanism to synchronize the physical simulation results with :class:`~manim.mobject.mobject.Mobject`
     visual states in real-time.
@@ -101,9 +101,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
     def __init__(
         self, gravity: tuple[float, float] = (0, -9.81), sub_step: int = 8, **kwargs
     ):
-        """Initialize the VSpace with a Pymunk physics space, gravity
-        vector, and sub-step count for simulation stability.
-        """
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
@@ -130,7 +127,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         Parameters
         ----------
         vspace
-            The VSpace object itself, acting as the controller for the simulation.
+            The :class:`~manim_extensions.pymunk.space.VSpace.VSpace` object itself, acting as the controller for the simulation.
         dt
             The time increment for the current frame (in seconds).
         """

@@ -67,7 +67,6 @@ class ThreeDCylinder(OpenGLSurface):
         resolution: tuple = (24, 24),
         **kwargs,
     ):
-        """Initialize an OpenGL cylinder with given radius, height, direction and resolution."""
         self._height = height
         self.radius = radius
         super().__init__(
@@ -184,7 +183,7 @@ class ThreeDCylinder(OpenGLSurface):
 
 class ThreeDLine(ThreeDCylinder):
     """
-    Absolutely yoinked from ThreeDLine class and
+    Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and
     adapted to OpenGL rendering.
 
     Parameters
@@ -209,7 +208,6 @@ class ThreeDLine(ThreeDCylinder):
         color: ManimColor | None = None,
         **kwargs,
     ):
-        """Initialize a 3D cylinder line between start and end points with given thickness."""
         self.thickness = thickness
         self.set_start_and_end_attrs(start, end, **kwargs)
         if color is not None:
@@ -435,7 +433,6 @@ class ThreeDBond(OpenGLGroup):
         *mobjects,
         **kwargs,
     ):
-        """Initialize a 3D chemical bond between two atoms with the given bond order (1/2/3)."""
         self.from_atom = from_atom
         self.to_atom = to_atom
         super().__init__(**kwargs)

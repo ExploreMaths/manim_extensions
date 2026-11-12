@@ -57,7 +57,6 @@ class TripletLayer(NeuralNetworkLayer):
         buff: float = 0.2,
         **kwargs,
     ):
-        """Initialize the triplet layer with anchor, positive, and negative labeled images."""
         super().__init__(**kwargs)
         self.anchor = anchor
         self.positive = positive

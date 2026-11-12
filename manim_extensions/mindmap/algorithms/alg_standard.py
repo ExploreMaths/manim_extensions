@@ -4,6 +4,8 @@
 
 """Standard mind map layout algorithm."""
 
+# unlinked-class-ok: Source
+
 from __future__ import annotations
 
 __all__ = [
@@ -17,7 +19,7 @@ from .layout import Layout
 
 
 class TreeNode:
-    """Internal tree-node wrapper used by StandardLayout.
+    """Internal tree-node wrapper used by :class:`~manim_extensions.mindmap.algorithms.alg_standard.StandardLayout`.
 
     Parameters
     ----------
@@ -60,7 +62,6 @@ class TreeNode:
         height: float = 0,
         width: float = 0,
     ):
-        """Initialize the TreeNode instance."""
         self.width = width
         self.height = height
         self.x: float = 0
@@ -215,7 +216,6 @@ class StandardLayout(Layout):
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
     ):
-        """Initialize the StandardLayout instance."""
         self.root = root
         self.direction = direction
         self.flip_direction = self._flip_direction(direction)

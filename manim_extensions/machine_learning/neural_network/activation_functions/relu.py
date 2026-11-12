@@ -43,7 +43,6 @@ class ReLUFunction(ActivationFunction):
         x_range: list = [-1, 1],
         y_range: list = [-1, 1],
     ):
-        """Initialize the ReLU activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: float) -> int | None:

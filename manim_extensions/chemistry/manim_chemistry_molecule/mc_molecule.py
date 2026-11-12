@@ -3,11 +3,11 @@
 
 """Manim chemistry molecule representation.
 
-This module provides the MCMolecule class for representing molecules.
+This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.
 
 """
 
-from typing import Dict, List, Self
+from typing import Dict, List, Literal, Self
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -16,22 +16,8 @@ from ..utils import FileHandler
 
 
 class MCMolecule:
-    """
+    r"""
     Abstraction of a molecule.
-
-    It is made of:
-
-    .. list-table::
-       :header-rows: 0
-
-       * - ``atoms``
-         - MCAtoms.
-       * - ``bonds``
-         - MCBonds.
-       * - ``name``
-         - Molecule name.
-       * - ``properties``
-         - Extra properties (to be defined).
 
     Parameters
     ----------
@@ -42,7 +28,7 @@ class MCMolecule:
     name
         Name of the molecule.
     elements
-        Elements data of the molecule.
+        :class:`~manim_extensions.chemistry.element.element.Element`\ s data of the molecule.
     """
 
     def __init__(
@@ -52,7 +38,6 @@ class MCMolecule:
         name: str | None = None,
         elements: MCElement | None = None,
     ):
-        """Initialize MCMolecule with atoms, bonds, name and element data."""
         self.atoms = atoms or []
         self.bonds = bonds or []
         self.elements = elements or {}
@@ -66,7 +51,7 @@ class MCMolecule:
         Parameters
         ----------
         atoms_dict
-            Atoms dict from a parser. See BaseParser.
+            Atoms dict from a parser. See :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser`.
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data.
@@ -122,13 +107,13 @@ class MCMolecule:
             )
 
     def add_connections_between_atoms(self):
-        """
-        Uses the MCBonds to add connections between MCAtoms.
+        r"""
+        Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
 
         Raises
         ------
         Exception
-            Raised when the bonds list is not a list of MCBonds.
+            Raised when the bonds list is not a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s.
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -148,10 +133,10 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
     ) -> Self:
-        """
-        Given data with the format provided by a parser, constructs a MCMolecule,
-        the corresponding MCAtoms and MCBonds and stablishes the connections between
-        MCAtoms and bonds.
+        r"""
+        Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
+        the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between
+        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and bonds.
 
         Parameters
         ----------
@@ -170,7 +155,7 @@ class MCMolecule:
 
         Returns
         -------
-            A MCMolecule instance representing the result.
+            A :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` instance representing the result.
         """
 
         mc_molecule = MCMolecule()
@@ -196,7 +181,7 @@ class MCMolecule:
         elements_data_dict: dict | None = None,
     ) -> Self:
         """
-        Returns an MCMolecule given a file path.
+        Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
 
         Parameters
         ----------
@@ -236,8 +221,8 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
     ) -> list:
-        """
-        Similar to ``construct_from_file`` but returning a list of MCMolecules.
+        r"""
+        Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
         ----------
@@ -275,7 +260,7 @@ class MCMolecule:
     @staticmethod
     def construct_from_string(
         string: str,
-        format: str = "json",
+        format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
@@ -298,8 +283,6 @@ class MCMolecule:
              - JSON format.
            * - ``xml``
              - XML format.
-
-        Uses json format
 
         Parameters
         ----------
@@ -337,13 +320,13 @@ class MCMolecule:
     @staticmethod
     def construct_multiples_from_string(
         string: str,
-        format: str = "json",
+        format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
     ) -> list:
-        """
-        Similar to ``construct_from_string`` but returning a list of MCMolecules.
+        r"""
+        Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
         ----------

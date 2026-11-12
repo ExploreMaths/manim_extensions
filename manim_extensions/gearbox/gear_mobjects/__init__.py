@@ -2,6 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Gear mobject classes."""
+""":class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject classes."""
 
 from .gear_mobject import *

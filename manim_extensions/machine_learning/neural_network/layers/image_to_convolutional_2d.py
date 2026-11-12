@@ -81,7 +81,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def __init__(
         self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs
     ):
-        """Initialize the image-to-conv2d connective layer storing references to both layers."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer

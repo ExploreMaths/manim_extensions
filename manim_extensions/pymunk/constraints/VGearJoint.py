@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-"""Gear joint constraint for Pymunk.
+""":class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear` joint constraint for Pymunk.
 
-This module provides the VGearJoint class for creating gear joint constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VGearJoint.VGearJoint` class for creating gear joint constraints.
 
 """
 
@@ -97,9 +97,6 @@ class VGearJoint(VConstraint):
         indicator_length: float = 0.4,
         **kwargs,
     ):
-        """Initialize a gear joint constraint with two bodies, phase/ratio
-        parameters, and optional rotational indicator arrows.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.phase = phase

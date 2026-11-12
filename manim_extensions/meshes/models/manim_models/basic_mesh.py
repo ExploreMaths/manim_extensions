@@ -9,6 +9,8 @@ Contains a 3D and a 2D version. Additionally there is the mesh for only
 triangles in triangle_mesh.py.
 """
 
+# unlinked-class-ok: Array
+
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
@@ -51,7 +53,7 @@ from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
 
 # pylint: disable=too-many-instance-attributes
 class ManimMesh(Group, metaclass=ConvertToOpenGL):
-    """another Mesh implementation, a bit faster + looks better.
+    """another :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` implementation, a bit faster + looks better.
 
     inspired by manim class
     :class:`~manim.mobject.three_d.three_dimensions.Surface`
@@ -120,11 +122,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     # pylint:disable=abstract-method
 
     def __init__(self, mesh: Mesh, *args, **kwargs):
-        """
-        initialize super Group and set all the params
-        vertices, edges and faces are groups, so we can easily access them later on
-        finally setup everything that needs to be rendered.
-        """
         self.mesh: Mesh = mesh
         self.vertices: Group = Group()
         self.edges: VGroup = VGroup()
@@ -749,7 +746,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     """'2D' mesh implementation.
 
     printing Vertices in Manim is currently not supported for 2D vertices. Therefore, while printing the appropriate
-    3D-vertices are used. Everything else should accept plain 2D values. Therefore, this Manim2DMesh class should
+    3D-vertices are used. Everything else should accept plain 2D values. Therefore, this :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` class should
     support 2D vertices or 3D vertices with z-value == 0 on initialization
 
     This mesh is mainly for Educational purposes and has a few functions we needed for drawing basic
@@ -806,7 +803,6 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     # pylint:disable=abstract-method
     def __init__(self, mesh: Mesh, *args, **kwargs):
         # validate if we have a useful 2D mesh
-        """Initialize the Manim2DMesh instance."""
         if mesh.dim == 3:
             if np.sum(np.abs(mesh.vertices[:, 2] != 0)):
                 raise InvalidMeshException(

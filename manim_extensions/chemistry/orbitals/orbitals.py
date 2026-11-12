@@ -68,7 +68,6 @@ class OrbitalBase(OpenGLSurface):
         size: int = 1,
         **kwargs,
     ):
-        """Initialize the orbital base with quantum numbers, size and surface resolution."""
         self.n_value = n_value
         self.l_value = l_value
         self.m_value = m_value
@@ -87,7 +86,7 @@ class OrbitalBase(OpenGLSurface):
     def psi_ang(
         self, phi: VectorND, theta: VectorND, l: int = 0, m: int = 0
     ) -> VectorND:
-        """Compute the real part of the spherical harmonic :math:`Y_l^m` at angles :math:`\\phi, \\theta`.
+        r"""Compute the real part of the spherical harmonic :math:`Y_l^m` at angles :math:`\phi, \theta`.
 
         Parameters
         ----------
@@ -232,7 +231,6 @@ class Orbital(OpenGLSurface):
     def __init__(
         self, n: int | None = None, l: int = 0, m: int = 0, size: int = 3, **kwargs
     ):
-        """Initialize a full atomic orbital with red positive and blue negative lobes."""
         super().__init__(self.uv_func, **kwargs)
         if not n:
             self.n = l + 1

@@ -4,7 +4,7 @@
 
 """Deterministic finite state automaton visualization.
 
-This module provides the ManimdeterministicFiniteAutomaton class for visualizing DFAs.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton` class for visualizing DFAs.
 
 """
 
@@ -73,7 +73,6 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
         cli: bool = False,
         **kwargs: object,
     ):
-        """Initialize the ManimdeterministicFiniteAutomaton instance."""
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:

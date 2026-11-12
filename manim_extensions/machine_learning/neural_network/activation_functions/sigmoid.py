@@ -45,7 +45,6 @@ class SigmoidFunction(ActivationFunction):
         x_range: list = [-5, 5],
         y_range: list = [0, 1],
     ):
-        """Initialize the sigmoid activation function plot with default range settings."""
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: float) -> float:

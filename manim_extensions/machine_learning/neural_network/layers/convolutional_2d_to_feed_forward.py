@@ -37,7 +37,6 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         passing_flash_color: ManimColor = ORANGE,
         **kwargs,
     ):
-        """Initialize the conv2d-to-feed-forward connective layer with flash color setting."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash_color = passing_flash_color
 

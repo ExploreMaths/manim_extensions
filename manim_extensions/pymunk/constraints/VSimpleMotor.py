@@ -4,7 +4,7 @@
 
 """Simple motor constraint for Pymunk.
 
-This module provides the VSimpleMotor class for creating simple motor constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor` class for creating simple motor constraints.
 
 """
 
@@ -85,9 +85,6 @@ class VSimpleMotor(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a simple motor constraint with two bodies, target rate,
-        max torque limit, and optional rotational indicator line.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 

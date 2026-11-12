@@ -120,7 +120,6 @@ class Filters(VGroup):
         show_grid_lines: bool = False,
         output_feature_map_to_connect: int | None = None,  # None means all at once
     ):
-        """Initialize the filter visualization connecting input and output feature maps."""
         super().__init__()
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -441,7 +440,6 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         highlight_color: ManimColor = ORANGE,
         **kwargs,
     ):
-        """Initialize the conv2d-to-conv2d connective layer with filter visualization parameters."""
         super().__init__(
             input_layer,
             output_layer,

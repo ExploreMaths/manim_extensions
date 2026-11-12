@@ -231,7 +231,6 @@ class TimeLineLayout(Layout):
         level_spacing: float = 0.5,
         node_spacing: float = 0.5,
     ):
-        """Initialize the TimeLineLayout instance."""
         self.root = TimelineNode.from_node(root)
         self.level_spacing = level_spacing
         self.node_spacing = node_spacing

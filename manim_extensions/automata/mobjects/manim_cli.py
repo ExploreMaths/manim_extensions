@@ -5,7 +5,7 @@
 
 """CLI utilities for automata.
 
-This module provides the ManimAutomataCLI class for interactive command-line interface.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI` class for interactive command-line interface.
 
 """
 
@@ -46,7 +46,6 @@ class ManimAutomataCLI:
     """
 
     def __init__(self):
-        """Initialize the ManimAutomataCLI instance."""
         print(cli_logo)
 
     def creation_menu(self):

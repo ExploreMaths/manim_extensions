@@ -4,7 +4,7 @@
 
 """Damped rotary spring constraint for Pymunk.
 
-This module provides the VDampedRotarySpring class for creating damped rotary spring constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring` class for creating damped rotary spring constraints.
 
 """
 
@@ -94,10 +94,6 @@ class VDampedRotarySpring(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """Initialize a damped rotary spring constraint with two bodies,
-        spring physics properties (rest angle, stiffness, damping), and
-        optional visual indicators (arc and connecting line).
-        """
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.rest_angle = rest_angle

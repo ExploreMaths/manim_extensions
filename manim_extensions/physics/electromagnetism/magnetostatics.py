@@ -58,7 +58,6 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
         samples: int = 16,
         **kwargs,
     ):
-        """Initialize the Wire instance."""
         self.current = current
         self.samples = samples
 
@@ -99,7 +98,6 @@ class MagneticField(ArrowVectorField):
     """
 
     def __init__(self, *wires: Wire, **kwargs):
-        """Initialize the MagneticField instance."""
         dls = []
         currents = []
         for wire in wires:

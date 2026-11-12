@@ -9,6 +9,8 @@ visual educational scenes.
 
 """
 
+# unlinked-class-ok: Mesh
+
 from . import data
 from . import delaunay
 from . import models

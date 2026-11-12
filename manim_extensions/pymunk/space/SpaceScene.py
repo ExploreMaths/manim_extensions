@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-"""Space scene for Pymunk physics.
+""":class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` scene for Pymunk physics.
 
-This module provides the SpaceScene class for creating physics simulations with Pymunk.
+This module provides the :class:`~manim_extensions.pymunk.space.SpaceScene.SpaceScene` class for creating physics simulations with Pymunk.
 
 """
 
@@ -67,9 +67,6 @@ class SpaceScene(ZoomedScene):
     """
 
     def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
-        """Initialize the SpaceScene with a VSpace physics simulation
-        using the specified gravity vector.
-        """
         super().__init__(**kwargs)
         self.vspace = VSpace(gravity=gravity)
         manim_pymunk_logger.debug("SpaceScene initional~")
@@ -337,7 +334,7 @@ class SpaceScene(ZoomedScene):
         Parameters
         ----------
         mobs
-            The VConstraint objects to be added. Each must implement an ``install``
+            The :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint` objects to be added. Each must implement an ``install``
             method to link with the physical space.
         """
         self.add(*mobs)

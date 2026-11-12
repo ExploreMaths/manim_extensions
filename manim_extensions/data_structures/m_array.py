@@ -320,7 +320,6 @@ class MArrayElement(VGroup):
         next_to_dir: Vector3D = RIGHT,
         **kwargs: Any,
     ):
-        """Initialize the MArrayElement instance."""
 
         super().__init__(**kwargs)
 
@@ -1146,7 +1145,6 @@ class MArray(VGroup):
         mob_index_args: MobProps = {},
         **kwargs: Any,
     ):
-        """Initialize the MArray instance."""
 
         super().__init__(**kwargs)
 
@@ -1888,7 +1886,6 @@ class MArrayPointer(VGroup):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ):
-        """Initialize the MArrayPointer instance."""
 
         super().__init__(**kwargs)
 
@@ -2390,7 +2387,6 @@ class MArraySlidingWindow(VGroup):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ):
-        """Initialize the MArraySlidingWindow instance."""
 
         super().__init__(**kwargs)
 

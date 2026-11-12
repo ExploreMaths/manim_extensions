@@ -6,6 +6,8 @@ r"""
 A directive for including Manim videos in a Sphinx document.
 """
 
+# unlinked-class-ok: Space
+
 from __future__ import annotations
 
 from manim import QUALITIES, config, tempconfig
@@ -37,12 +39,12 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
 
 def visit(self, node: list, name: str = ""):
-    """Visit a SkipManimNode, adding a placeholder title if missing, then render as admonition.
+    """Visit a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode`, adding a placeholder title if missing, then render as admonition.
 
     Parameters
     ----------
     node
-        The SkipManimNode to visit.
+        The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to visit.
     name
         Name of the admonition.
     """
@@ -52,12 +54,12 @@ def visit(self, node: list, name: str = ""):
 
 
 def depart(self, node: SkipManimNode):
-    """Depart from a SkipManimNode by closing the admonition rendering.
+    """Depart from a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` by closing the admonition rendering.
 
     Parameters
     ----------
     node
-        The SkipManimNode to depart from.
+        The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to depart from.
     """
     self.depart_admonition(node)
 

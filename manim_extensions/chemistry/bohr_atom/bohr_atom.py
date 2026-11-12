@@ -61,7 +61,6 @@ class BohrAtom(VGroup):
         neutron_color: ManimColor = WHITE,
         **kwargs,
     ):
-        """Initialize the Bohr atom with electron, proton, neutron counts and color settings."""
         super().__init__(**kwargs)
         self.e = e
         self.p = p

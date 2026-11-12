@@ -4,7 +4,7 @@
 
 """Rotary limit joint constraint for Pymunk.
 
-This module provides the VRotaryLimitJoint class for creating rotary limit joint constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint` class for creating rotary limit joint constraints.
 
 """
 
@@ -90,9 +90,6 @@ class VRotaryLimitJoint(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a rotary limit joint constraint with two bodies,
-        min/max angle bounds, and optional arc indicator visuals.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 

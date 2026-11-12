@@ -88,7 +88,6 @@ class MultiPendulum(VGroup):
         },
         **kwargs,
     ):
-        """Initialize MultiPendulum."""
         self.pivot_point = pivot_point
         self.bobs = VGroup(*[Circle(**bob_style).move_to(i) for i in bobs])
         self.pins = [pivot_point]
@@ -225,7 +224,6 @@ class Pendulum(MultiPendulum):
         },
         **kwargs,
     ):
-        """Initialize Pendulum."""
         self.length = length
         self.pivot_point = pivot_point
 

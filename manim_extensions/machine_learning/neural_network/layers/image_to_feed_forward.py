@@ -50,7 +50,6 @@ class ImageToFeedForward(ConnectiveLayer):
         dot_radius: float = 0.05,
         **kwargs,
     ):
-        """Initialize the image-to-feed-forward connective layer with dot animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.animation_dot_color = animation_dot_color
         self.dot_radius = dot_radius

@@ -4,7 +4,7 @@
 
 """Ratchet joint constraint for Pymunk.
 
-This module provides the VRatchetJoint class for creating ratchet joint constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint` class for creating ratchet joint constraints.
 
 """
 
@@ -100,9 +100,6 @@ class VRatchetJoint(VConstraint):
         connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
         **kwargs,
     ):
-        """Initialize a ratchet joint constraint with two bodies, phase and
-        ratchet angle parameters, and optional indicator/connection visuals.
-        """
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.phase = phase

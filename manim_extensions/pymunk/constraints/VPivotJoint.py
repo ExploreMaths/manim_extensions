@@ -4,7 +4,7 @@
 
 """Pivot joint constraint for Pymunk.
 
-This module provides the VPivotJoint class for creating pivot joint constraints in physics simulations.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VPivotJoint.VPivotJoint` class for creating pivot joint constraints in physics simulations.
 
 """
 
@@ -103,9 +103,6 @@ class VPivotJoint(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a pivot joint constraint with two bodies, pivot point
-        (world or local anchors), and visual pivot/anchor indicators.
-        """
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.pivot_world = pivot_world

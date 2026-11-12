@@ -88,7 +88,6 @@ class FiniteStateAutomaton:
     id_iter = itertools.count()
 
     def __init__(self, json_template: dict | None = None):
-        """Initialize the FiniteStateAutomaton instance."""
         self.id = next(self.id_iter)
         self.states: list[State] = []
         self.transitions: list[Transition] = []
@@ -128,7 +127,7 @@ class FiniteStateAutomaton:
         Parameters
         ----------
         states
-            State definitions from JSON or XML parsing.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
         """
         for state_data in states:
             initial = "initial" in state_data
@@ -143,7 +142,7 @@ class FiniteStateAutomaton:
         Parameters
         ----------
         transitions
-            Transition definitions from JSON or XML parsing.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
         """
         for trans_data in transitions:
             from_id = int(trans_data["from"])
@@ -323,7 +322,6 @@ class PushDownAutomaton(FiniteStateAutomaton):
     """
 
     def __init__(self):
-        """Initialize the PushDownAutomaton instance."""
         super().__init__()
 
     def automaton_step(

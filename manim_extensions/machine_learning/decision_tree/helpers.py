@@ -5,6 +5,8 @@
 
 """Helper functions for decision tree visualization."""
 
+# unlinked-class-ok: Node, Nodes
+
 import heapq
 from typing import Protocol
 from manim.typing import VectorND

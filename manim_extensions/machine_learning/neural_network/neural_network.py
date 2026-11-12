@@ -16,6 +16,8 @@ manim, specifically a fully connected neural network diagram.
     NeuralNetwork(layer_node_count)
 """
 
+# unlinked-class-ok: Layout, Filters
+
 from __future__ import annotations
 
 import textwrap
@@ -121,7 +123,6 @@ class NeuralNetwork(Group):
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "left_to_right",
         debug_mode: bool = False,
     ):
-        """Initialize the neural network visualization by building and arranging all layers and connections."""
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
         self.input_layers = ListGroup(*self.input_layers_dict.values())

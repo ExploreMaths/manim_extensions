@@ -10,6 +10,8 @@ animated Manim objects from them.
 
 """
 
+# unlinked-class-ok: Arrays
+
 from manim import (
     DOWN,
     MovingCameraScene,
@@ -189,7 +191,6 @@ class HTMLParsedVMobject:
         width: str = "500px",
         basic_html: bool = False,
     ):
-        """Initialize the exporter and write the initial HTML page."""
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__

@@ -77,7 +77,6 @@ class ISLMDiagram(EconDiagram):
         numbered_eq: bool = False,
         **kwargs,
     ):
-        """Initializes the IS-LM diagram with IS and LM curves."""
         kwargs.setdefault("y_range", [-2, 8, 1])
         super().__init__(x_label="Y", y_label="r", **kwargs)
 

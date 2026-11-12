@@ -5,6 +5,8 @@
 
 """Contains pushdown automaton."""
 
+# unlinked-class-ok: Source
+
 from __future__ import annotations
 
 from .manim_non_deterministic_finite_state_automaton import (
@@ -106,7 +108,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         animation_style: dict[str, object] | None = None,
         **kwargs: object,
     ):
-        """Initialize the ManimPushDownAutomaton instance."""
         if json_template is None and xml_file is None:
             json_template = pushdown_automaton_json
         super().__init__(
@@ -117,12 +118,12 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
     # override ManimAutomaton method
     def construct_transitions(self, transitions: list[dict[str, object]]):
-        """Build pushdown-automaton transitions from XML or JSON definitions.
+        r"""Build pushdown-automaton transitions from XML or JSON definitions.
 
         Parameters
         ----------
         transitions
-            Transitions processed by this operation.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.
         """
         # counts the number of transitions between two states
         transition_counter = {}
@@ -370,7 +371,6 @@ class PushDownAutomatonRule:
     def __init__(
         self, read_symbol: str, pop: str, push: str, empty_transition: str = r"\epsilon"
     ):
-        """Initialize the PushDownAutomatonRule instance."""
         if read_symbol is None:
             self.read_symbol = empty_transition
         else:

@@ -37,13 +37,13 @@ class MindMap(AbstractMap):
         buff
             Padding between node content and node border.
         direction
-            Node layout direction.
+            :class:`~manim_extensions.mindmap.nodes.node.Node` layout direction.
         level_spacing
             Spacing between layers.
         node_spacing
             Spacing between nodes.
         node_style
-            Node style.
+            :class:`~manim_extensions.mindmap.nodes.node.Node` style.
 
     Examples
     --------
@@ -105,7 +105,6 @@ class MindMap(AbstractMap):
             ],
         ),
     ):
-        """Initialize MindMap."""
         self.node_style = node_style
         self.direction = direction
         super().__init__(
@@ -150,14 +149,14 @@ class TimeLine(AbstractMap):
     buff
         Padding between node content and node border.
     sides
-        Node layout direction; growth direction of subtrees rooted at
+        :class:`~manim_extensions.mindmap.nodes.node.Node` layout direction; growth direction of subtrees rooted at
         second-level nodes.
     level_spacing
         Spacing between layers.
     node_spacing
         Spacing between nodes.
     node_style
-        Node style.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` style.
 
     Examples
     --------
@@ -209,7 +208,6 @@ class TimeLine(AbstractMap):
             ],
         ),
     ):
-        """Initialize the TimeLine instance."""
         self.node_style = node_style
         super().__init__(
             layout_method=TimeLineLayout(
@@ -251,13 +249,13 @@ class StandardMap(AbstractMap):
     buff
         Padding between node content and node border.
     direction
-        Layout direction.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` direction.
     level_spacing
         Spacing between layers.
     node_spacing
         Spacing between nodes.
     node_style
-        Node style.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` style.
 
     Examples
     --------
@@ -312,7 +310,6 @@ class StandardMap(AbstractMap):
             ],
         ),
     ):
-        """Initialize the StandardMap instance."""
         self.node_style = node_style
         super().__init__(
             layout_method=StandardLayout(
@@ -361,7 +358,7 @@ class CatalogMap(AbstractMap):
     node_spacing
         Spacing between nodes.
     node_style
-        Node style.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` style.
 
     Examples
     --------
@@ -418,7 +415,6 @@ class CatalogMap(AbstractMap):
             ],
         ),
     ):
-        """Initialize the CatalogMap instance."""
         self.node_style = node_style
         super().__init__(
             layout_method=CatalogLayout(

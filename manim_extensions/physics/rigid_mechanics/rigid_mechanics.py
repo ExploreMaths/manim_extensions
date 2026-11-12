@@ -123,7 +123,6 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
     """
 
     def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
-        """Initialize Space."""
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
@@ -193,9 +192,6 @@ class SpaceScene(Scene):
     GRAVITY: tuple[float, float] = 0, -9.81
 
     def __init__(self, renderer: str | None = None, **kwargs):
-        """A basis scene for all of rigid mechanics. The gravity vector
-        can be adjusted with ``self.GRAVITY``.
-        """
         self.space = Space(gravity=self.GRAVITY)
         super().__init__(renderer=renderer, **kwargs)
 

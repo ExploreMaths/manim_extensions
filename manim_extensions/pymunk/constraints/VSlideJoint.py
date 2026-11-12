@@ -4,7 +4,7 @@
 
 """Slide joint constraint for Pymunk.
 
-This module provides the VSlideJoint class for creating slide joint constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint` class for creating slide joint constraints.
 
 """
 
@@ -101,9 +101,6 @@ class VSlideJoint(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a slide joint constraint with two bodies, local anchor
-        points, min/max distance limits, and optional indicator line/anchors.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 

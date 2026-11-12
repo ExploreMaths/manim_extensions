@@ -4,8 +4,10 @@
 # patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
 """
-Mesh structure.
+:class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure.
 """
+
+# unlinked-class-ok: Array
 
 from __future__ import annotations
 
@@ -108,7 +110,6 @@ class Mesh:
         ) = None,
         dangling: bool = False,
     ):
-        """Initialize mesh with the correct internal structure for all variables."""
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
             raise InvalidMeshException("Faces have to be twice nested enumerates.")
@@ -1116,7 +1117,7 @@ class Mesh:
             angle: float,
             axis: Vector3D,
         ) -> MatrixMN:
-            """Compute a 3D rotation matrix for ``angle`` radians around ``axis``.
+            r"""Compute a 3D rotation matrix for ``angle`` radians around ``axis``.
 
             Parameters
             ----------
@@ -1127,7 +1128,7 @@ class Mesh:
 
             Returns
             -------
-                A :math:`3 \\times 3` rotation matrix.
+                A :math:`3 \times 3` rotation matrix.
             """
             rot_mat = Rotation.from_rotvec(
                 angle * np.array(axis) / np.linalg.norm(np.array(axis))
@@ -1223,14 +1224,14 @@ class Mesh:
         axis: Vector3D = np.array([0, 1, 0]),
         about_point: Point3D | None = None,
     ):
-        """Flip all vertices across the plane orthogonal to ``axis``.
+        r"""Flip all vertices across the plane orthogonal to ``axis``.
 
         This mirrors :meth:`~manim.mobject.mobject.Mobject.flip`, which is
-        implemented as a rotation by :math:`\\pi` radians around ``axis``.
+        implemented as a rotation by :math:`\pi` radians around ``axis``.
         For 2-D meshes only the component of ``axis`` lying in the mesh
         plane is used, so flipping about an out-of-plane axis degenerates
         to a point reflection.  In 4-D the mesh is rotated by
-        :math:`\\pi` around a 4-D ``axis``, so the axis component is kept
+        :math:`\pi` around a 4-D ``axis``, so the axis component is kept
         and the other three are negated.
 
         Parameters
@@ -1281,7 +1282,7 @@ class Mesh:
         update_verts: bool = False,
         precision: int = 10,
     ) -> Point3D_Array:
-        """Snap vertices to grid positions when they are sufficiently close.
+        r"""Snap vertices to grid positions when they are sufficiently close.
 
         For example, a value of ``0.999`` or ``1.001`` would be shifted
         towards ``1.000`` when the grid size is ``1``, while ``0.699``
@@ -1317,7 +1318,7 @@ class Mesh:
             the mesh dimension.
         InvalidRequestException
             If ``grid_sizes`` contains non-positive values, any threshold
-            is :math:`\\geq` half the corresponding grid size, all thresholds are zero,
+            is :math:`\geq` half the corresponding grid size, all thresholds are zero,
             or ``steps`` is not positive.
         """
         if len(grid_sizes) != self.dim:

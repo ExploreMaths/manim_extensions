@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Compass, ruler, and pencil classes."""
+""":class:`~manim_extensions.compass.compass.compass.Compass`, ruler, and pencil classes."""
 
 from .compass import *
 from .ruler import *

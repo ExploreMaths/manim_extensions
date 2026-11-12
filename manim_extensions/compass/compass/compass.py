@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Compass class for Manim.
+""":class:`~manim_extensions.compass.compass.compass.Compass` class for Manim.
 
 This module provides compass visualization for geometry.
 
@@ -37,7 +37,7 @@ from ..utils.geometry_method import get_distance, is_counter_clockwise
 
 
 class Compass(VGroup):
-    """Compass mobject.
+    """:class:`~manim_extensions.compass.compass.compass.Compass` mobject.
 
     Parameters
     ----------
@@ -89,7 +89,6 @@ class Compass(VGroup):
         r: float = 0.2,
         **kwargs: Any,
     ):
-        """Initialize the Compass instance."""
         super().__init__(stroke_width=stroke_width, **kwargs)
         self.head_color = head_color
         self.niddle_color = niddle_color

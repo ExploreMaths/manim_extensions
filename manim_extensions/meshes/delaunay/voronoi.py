@@ -62,7 +62,6 @@ class VoronoiDelaunay:
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
-        """Initialise the Voronoi-Delaunay visualisation helper."""
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
         verts = self.triangle_mesh.mesh.get_3d_vertices()

@@ -5,7 +5,7 @@
 
 """Groove joint constraint for Pymunk.
 
-This module provides the VGrooveJoint class for creating groove joint constraints.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VGrooveJoint.VGrooveJoint` class for creating groove joint constraints.
 
 """
 
@@ -102,10 +102,6 @@ class VGrooveJoint(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a groove joint constraint with two bodies, groove
-        endpoints (on body a), a sliding anchor (on body b), and optional
-        visual groove line and anchor markers.
-        """
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.groove_a_local = groove_a_local

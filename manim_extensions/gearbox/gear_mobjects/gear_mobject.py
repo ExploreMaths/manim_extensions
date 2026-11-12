@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Gear mobject for Manim.
+""":class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject for Manim.
 
 This module provides gear and rack visualizations.
 
@@ -400,7 +400,6 @@ class Gear(VMobject):
         nppc: int = 5,
         **kwargs,
     ):
-        """Create an involute gear. See the class docstring for parameter details."""
         self.z = num_of_teeth
         self.z_cut = cutout_teeth_num
         self.m = module
@@ -1085,7 +1084,6 @@ class Rack(VMobject):
         h_f: float = 1.17,
         **kwargs,
     ):
-        """Initialize Rack."""
         self.z = num_of_teeth
         self.m = module
 

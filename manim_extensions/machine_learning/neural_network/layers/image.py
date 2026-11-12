@@ -90,7 +90,6 @@ class ImageLayer(NeuralNetworkLayer):
         show_image_on_create: bool = True,
         **kwargs,
     ):
-        """Initialize the image layer from a numpy array with configurable display height."""
         super().__init__(**kwargs)
         self.image_height = height
         self.numpy_image = numpy_image

@@ -7,6 +7,8 @@
 Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
 
+# unlinked-class-ok: Ground
+
 from manim import (
     AnimationGroup,
     Axes,
@@ -73,12 +75,12 @@ def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
 
 
 class MultidimensionalGaussianPosterior:
-    """
+    r"""
     N-Dimensional Gaussian distribution with.
 
-    :math:`mu \\sim \\text{Normal}(0, 10)`
+    :math:`mu \sim \text{Normal}(0, 10)`
 
-    :math:`var \\sim \\text{LogNormal}(0, 1.5)`
+    :math:`var \sim \text{LogNormal}(0, 1.5)`
 
     Prior on mean is :math:`U(-500, 500)`
 
@@ -104,7 +106,6 @@ class MultidimensionalGaussianPosterior:
         mu: VectorND | None = None,
         var: VectorND | None = None,
     ):
-        """Initialize the MultidimensionalGaussianPosterior instance."""
         np.random.seed(seed)
         self.scale = scale
 
@@ -348,7 +349,6 @@ class MCMCAxes(Group):
         x_length: int = 5,
         y_length: int = 5,
     ):
-        """Initialize the MCMC axes with configurable dot/line colors and axis ranges."""
         super().__init__()
         self.dot_color = dot_color
         self.dot_radius = dot_radius

@@ -94,7 +94,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
         spacing: float = 0.5,
         **kwargs,
     ):
-        """Initialize the paired query layer with positive/negative examples and labeled borders."""
         super().__init__(**kwargs)
         self.positive = positive
         self.negative = negative

@@ -4,7 +4,7 @@
 
 """Manim chemistry bond representation.
 
-This module provides the MCBond class for representing chemical bonds in molecules.
+This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.
 
 """
 
@@ -32,7 +32,7 @@ STEREO_TYPES = {
 
 class MCBond:
     """
-    MCBond: Abstraction of a bond in a molecule: Type of bond, from and to atoms.
+    :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`: Abstraction of a bond in a molecule: Type of bond, from and to atoms.
 
     Parameters
     ----------
@@ -62,7 +62,6 @@ class MCBond:
         topology: int | None = None,
         reacting_center_status: int | None = None,
     ):
-        """Initialize MCBond with bond type, connected atoms, stereo info and metadata."""
         self.bond_type = bond_type
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -105,18 +104,18 @@ class MCBond:
     def construct_from_bond_dict(
         bond_index: int, bond_data_dict: Dict, molecule: MCMolecule
     ) -> Self:
-        """
-        Given a bond data dict from a parser, returns an MCBond.
+        r"""
+        Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.
 
         Parameters
         ----------
         bond_index
             Index of the bond in the molecule.
         bond_data_dict
-            See data_parser function from BaseParser.
+            See data_parser function from :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser`.
         molecule
-            MCMolecule: Required to get the atoms by their index and
-            create the MCBond using MCAtoms.
+            :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`: Required to get the atoms by their index and
+            create the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` using :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
 
         Returns
         -------

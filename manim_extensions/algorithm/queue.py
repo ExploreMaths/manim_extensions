@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Queue data structure for algorithm visualization."""
+""":class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
 
@@ -75,7 +75,6 @@ class Queue(VMobject):
         bound_color: ManimColor = RED,
         **kwargs,
     ):
-        """Create a visual queue with configurable capacity and styling."""
         super().__init__(**kwargs)
         self.capacity = capacity
         self.total_width = total_width
@@ -137,7 +136,6 @@ class Queue(VMobject):
         """
 
         def __init__(self, queue: Queue, item: Node, **kwargs):
-            """Create an animation that slides an item into the queue from the right."""
             path = [
                 item.get_center(),
                 queue.get_right() + queue.item_width / 2 * RIGHT,
@@ -188,7 +186,6 @@ class Queue(VMobject):
         """
 
         def __init__(self, queue: Queue, target_pos: Point3D | None = None, **kwargs):
-            """Create an animation that removes the front item and shifts remaining items left."""
             if not queue.data:
                 return
             item = queue.data[0]

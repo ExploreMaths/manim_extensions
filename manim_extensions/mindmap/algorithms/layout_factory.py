@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Layout factory for mindmap algorithms.
+""":class:`~manim_extensions.mindmap.algorithms.layout.Layout` factory for mindmap algorithms.
 
 This module provides factory for creating layout algorithms.
 

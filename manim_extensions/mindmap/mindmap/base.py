@@ -66,7 +66,6 @@ class NodeMobject:
     def __init__(
         self, vmobject: VMobject, surr_rect: Rectangle, connector: Line, text: str
     ):
-        """Initialize the NodeMobject instance."""
         self.vmobject = vmobject
         self.surr_rect = surr_rect
         self.connector = connector
@@ -87,7 +86,7 @@ def generate_tree(
         rendered with the ctex template) and an optional ``"child"`` list of
         nested dictionaries.
     node_style
-        Node style parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` style parameter for this operation.
     buff
         Buff parameter for this operation.
 
@@ -150,7 +149,7 @@ class AbstractMap(Group):
     Parameters
     ----------
     layout_method
-        Layout algorithm used to position nodes.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` algorithm used to position nodes.
 
     Examples
     --------
@@ -182,7 +181,6 @@ class AbstractMap(Group):
     """
 
     def __init__(self, layout_method: Layout = Layout()):
-        """Initialize the AbstractMap instance."""
         super().__init__()
         self.node_data_dict = {}
         self.root = layout_method.layout()

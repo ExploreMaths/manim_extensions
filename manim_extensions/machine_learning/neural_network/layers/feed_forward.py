@@ -111,7 +111,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         activation_function: ActivationFunction | str | None = None,
         **kwargs,
     ):
-        """Initialize the feed-forward layer storing node count, colors, and styling parameters."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.num_nodes = num_nodes
         self.layer_buffer = layer_buffer

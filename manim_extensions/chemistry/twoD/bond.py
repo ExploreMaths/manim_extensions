@@ -78,7 +78,6 @@ class BaseMBondObject(VGroup):
         index: int = 0,
         **kwargs,
     ):
-        """Initialize a base bond between two atoms with type, subtype, color and index."""
         VGroup.__init__(self, **kwargs)
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -440,7 +439,6 @@ class DoubleBond(BaseMBondObject):
         double_bond_scale: float = 0.7,
         **kwargs,
     ):
-        """Initialize a double bond with side offset, line distance and scale parameters."""
         self.side = side
         self.distance = distance
         self.double_bond_scale = double_bond_scale
@@ -700,7 +698,6 @@ class TripleBond(BaseMBondObject):
         triple_bond_scale: float = 0.8,
         **kwargs,
     ):
-        """Initialize a triple bond with line distance and scale parameters."""
         self.distance = distance
         self.triple_bond_scale = triple_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)

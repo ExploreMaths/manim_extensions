@@ -4,7 +4,7 @@
 
 """Input representation for automata visualization.
 
-This module provides the ManimAutomataInput class for representing input strings in automata.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` class for representing input strings in automata.
 
 """
 
@@ -59,7 +59,6 @@ class ManimAutomataInput(VGroup):
         font_size: int = 100,
         **kwargs: Any,
     ):
-        """Initialize the ManimAutomataInput instance."""
         super().__init__(**kwargs)
 
         self.animation_style = animation_style
@@ -136,7 +135,6 @@ class Token(MathTex):
     def __init__(
         self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
     ):
-        """Initialize the Token instance."""
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 
         self.id = next(self.id_iter)

@@ -57,7 +57,6 @@ class FastManimMesh(OpenGLMobject):
         shader_folder: str | None = None,
         **kwargs,
     ):
-        """Initialization. mesh must only consist of triangles."""
         # imported here because OGLM requires the optional moderngl dependency
         from ...params import OGLM
 

@@ -47,7 +47,7 @@ def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
     Parameters
     ----------
     nodes
-        Nodes processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node`\ s processed by this operation.
 
     Returns
     -------
@@ -97,7 +97,7 @@ def animate_of_create(
     Parameters
     ----------
     node
-        Node parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` parameter for this operation.
     pos
         Position value used by this operation.
     direction
@@ -105,9 +105,9 @@ def animate_of_create(
     line_styles
         Line styles processed by this operation.
     node_styles
-        Node styles processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` styles processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
 
     Returns
     -------
@@ -179,7 +179,7 @@ def animate_of_display(
     Parameters
     ----------
     node
-        Node parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` parameter for this operation.
     pos
         Position value used by this operation.
     direction
@@ -187,9 +187,9 @@ def animate_of_display(
     line_styles
         Line styles processed by this operation.
     node_styles
-        Node styles processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` styles processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
     change_dir
         Change dir parameter for this operation.
     change_layout
@@ -255,7 +255,7 @@ def animate_of_scale(
     Parameters
     ----------
     node
-        Node parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` parameter for this operation.
     pos
         Position value used by this operation.
     direction
@@ -263,9 +263,9 @@ def animate_of_scale(
     line_styles
         Line styles processed by this operation.
     node_styles
-        Node styles processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` styles processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
     change_dir
         Change dir parameter for this operation.
     change_layout
@@ -330,7 +330,7 @@ def animate_of_alter(
     Parameters
     ----------
     node
-        Node parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` parameter for this operation.
     pos
         Position value used by this operation.
     direction
@@ -338,9 +338,9 @@ def animate_of_alter(
     line_styles
         Line styles processed by this operation.
     node_styles
-        Node styles processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` styles processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
     change_dir
         Change dir parameter for this operation.
     change_layout
@@ -405,7 +405,7 @@ def animate_of_node(
     Parameters
     ----------
     node
-        Node parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` parameter for this operation.
     pos
         Position value used by this operation.
     direction
@@ -413,9 +413,9 @@ def animate_of_node(
     line_styles
         Line styles processed by this operation.
     node_styles
-        Node styles processed by this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` styles processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
     change_dir
         Change dir parameter for this operation.
     change_layout
@@ -519,11 +519,11 @@ def animate_of_layout(
     remove_nodes
         Remove nodes processed by this operation.
     layout_type
-        Layout type parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
     layout_config
-        Layout config parameter for this operation.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` config parameter for this operation.
     node_style
-        Node style parameter for this operation.
+        :class:`~manim_extensions.mindmap.nodes.node.Node` style parameter for this operation.
 
     Returns
     -------
@@ -599,11 +599,11 @@ class AbstractLayoutAnimation(AnimationGroup):
         root
             The root node.
         layout_type
-            Layout type.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
         layout_config
-            Layout parameters. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
         node_style
-            Layout and node styles. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -641,7 +641,6 @@ class AbstractLayoutAnimation(AnimationGroup):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize AbstractLayoutAnimation."""
         self.scene = scene
         self.root = root
         self.layout_type = layout_type
@@ -715,12 +714,12 @@ class AbstractLayoutAnimation(AnimationGroup):
         raise NotImplementedError
 
     def get_common_root(self, nodes: List[Node]) -> Node:
-        """
+        r"""
 
         Parameters
         ----------
         nodes
-            Nodes processed by this operation.
+            :class:`~manim_extensions.mindmap.nodes.node.Node`\ s processed by this operation.
 
         Returns
         -------
@@ -745,11 +744,11 @@ class LayoutAnimation(AbstractLayoutAnimation):
     root
         The root node.
     layout_type
-        Layout type.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
     layout_config
-        Layout parameters. ().
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
     node_style
-        Layout and node styles. ().
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -799,7 +798,6 @@ class LayoutAnimation(AbstractLayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize the LayoutAnimation instance."""
         super().__init__(
             scene,
             root,
@@ -836,11 +834,11 @@ class RemoveNode(LayoutAnimation):
     nodes
         The node or nodes to remove, along with their subtrees.
     layout_type
-        Layout type.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
     layout_config
-        Layout parameters. ().
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
     node_style
-        Layout and node styles. ().
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
     **kwargs
         Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -872,13 +870,6 @@ class RemoveNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize the RemoveNode instance.
-
-        Raises
-        ------
-        Exception
-            Raised when the nodes to remove do not belong to the same tree.
-        """
         self.is_whole_tree = False
         if isinstance(nodes, Node):
             nodes = (nodes,)
@@ -948,11 +939,11 @@ class InsertNode(LayoutAnimation):
         scene
             The current scene.
         layout_type
-            Layout type.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
         layout_config
-            Layout parameters. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
         node_style
-            Layout and node styles. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -983,7 +974,6 @@ class InsertNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize InsertNode."""
         root = None
         self.father_children = father_children
         super().__init__(
@@ -996,12 +986,12 @@ class InsertNode(LayoutAnimation):
         )
 
     def get_root(self, nodes: List[Node]) -> Node:
-        """Return the common root of the given nodes.
+        r"""Return the common root of the given nodes.
 
         Parameters
         ----------
         nodes
-            Nodes to find the common root for.
+            :class:`~manim_extensions.mindmap.nodes.node.Node`\ s to find the common root for.
 
         Returns
         -------
@@ -1040,15 +1030,15 @@ class ScaleNode(LayoutAnimation):
     Parameters
     ----------
         node_scale
-            Dictionary mapping Node instances to scale factors (float).
+            Dictionary mapping :class:`~manim_extensions.mindmap.nodes.node.Node` instances to scale factors (float).
         scene
             The current scene.
         layout_type
-            Layout type.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
         layout_config
-            Layout parameters. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
         node_style
-            Layout and node styles. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -1081,7 +1071,6 @@ class ScaleNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize ScaleNode."""
         for node, scale in node_scale.items():
             node.scale(scale)
         root = self.get_common_root(list(node_scale.keys()))
@@ -1101,15 +1090,15 @@ class AlterNode(LayoutAnimation):
     Parameters
     ----------
         node_vmobject
-            Dictionary mapping Node instances to the replacement VMobjects.
+            Dictionary mapping :class:`~manim_extensions.mindmap.nodes.node.Node` instances to the replacement VMobjects.
         scene
             The current scene.
         layout_type
-            Layout type.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type.
         layout_config
-            Layout parameters. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` parameters. ().
         node_style
-            Layout and node styles. ().
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` and node styles. ().
         **kwargs
             Additional keyword arguments forwarded to :class:`~manim.animation.composition.AnimationGroup`.
 
@@ -1138,7 +1127,6 @@ class AlterNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs,
     ):
-        """Initialize AlterNode."""
         for node, scale in node_vmobject.items():
             node.alter_content(scale)
         root = self.get_common_root(list(node_vmobject.keys()))

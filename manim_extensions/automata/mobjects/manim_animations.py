@@ -4,7 +4,7 @@
 
 """Animation utilities for automata visualization.
 
-This module provides the ManimAnimations class for animating automata visualizations.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.
 
 """
 
@@ -53,7 +53,6 @@ class ManimAnimations:
     """
 
     def __init__(self):
-        """Initialize the ManimAnimations instance."""
         pass
 
     # state animations
@@ -63,7 +62,7 @@ class ManimAnimations:
         Parameters
         ----------
         state
-            State mobject to recolor as a rejected branch.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` mobject to recolor as a rejected branch.
 
         Returns
         -------
@@ -77,7 +76,7 @@ class ManimAnimations:
         Parameters
         ----------
         state
-            State mobject to recolor back to its normal styling.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` mobject to recolor back to its normal styling.
 
         Returns
         -------
@@ -91,7 +90,7 @@ class ManimAnimations:
         Parameters
         ----------
         state
-            State mobject to highlight during a transition or match.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` mobject to highlight during a transition or match.
 
         Returns
         -------
@@ -106,7 +105,7 @@ class ManimAnimations:
         Parameters
         ----------
         transition
-            Transition mobject to recolor to its default appearance.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` mobject to recolor to its default appearance.
 
         Returns
         -------
@@ -120,7 +119,7 @@ class ManimAnimations:
         Parameters
         ----------
         transition
-            Transition mobject to emphasize during a successful match.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` mobject to emphasize during a successful match.
 
         Returns
         -------

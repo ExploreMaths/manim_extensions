@@ -6,6 +6,8 @@
 
 """Decision tree visualization for Manim."""
 
+# unlinked-class-ok: Array
+
 from __future__ import annotations
 
 from manim import (
@@ -55,11 +57,10 @@ class AABB:
     """
 
     def __init__(self, n_features: int):
-        """Initialize an axis-aligned bounding box with [-inf, inf] limits per feature."""
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
     def split(self, f: int, v: float) -> tuple:
-        """Split the bounding box along feature f at value v, returning left and right AABBs.
+        r"""Split the bounding box along feature f at value v, returning left and right :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB`\ s.
 
         Parameters
         ----------
@@ -311,7 +312,6 @@ class IrisDatasetPlot(VGroup):
     """
 
     def __init__(self, iris: Bunch):
-        """Initialize the Iris dataset plot with points, axes, and a legend."""
         points = iris.data[:, 0:2]
         labels = iris.feature_names
         targets = iris.target
@@ -487,7 +487,6 @@ class DecisionTreeSurface(VGroup):
         axes: Axes,
         class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN],
     ):
-        """Initialize the decision surface by computing and rendering colored decision regions."""
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
         self.data = data

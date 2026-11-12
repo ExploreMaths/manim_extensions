@@ -57,7 +57,6 @@ class XMark(VGroup):
     """
 
     def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
-        """Initialize the X-shaped mark with two crossing lines of given width and color."""
         super().__init__()
         line_one = Line(
             [-0.1, 0.1, 0],
@@ -81,7 +80,7 @@ def get_edges_to_drop_out(
     layer: FeedForwardToFeedForward,
     layers_to_nodes_to_drop_out: dict[FeedForwardLayer, list[int]],
 ) -> tuple:
-    """Returns edges to drop out for a given FeedForwardToFeedForward layer.
+    """Returns edges to drop out for a given :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward` layer.
 
     Parameters
     ----------

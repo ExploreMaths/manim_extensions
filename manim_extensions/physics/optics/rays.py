@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Rays of light. Refracted by Lenses."""
+r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 
 from __future__ import annotations
 
@@ -72,7 +72,6 @@ class Ray(Line):
         propagate: Iterable[Lens] | None = None,
         **kwargs,
     ):
-        """Initialize Ray."""
         self.init_length = init_length
         self.propagated = False
         super().__init__(start, start + direction * init_length, **kwargs)

@@ -38,7 +38,6 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         active_color: ManimColor = ORANGE,
         **kwargs,
     ):
-        """Initialize the feed-forward-to-math-operation connective layer with active color."""
         self.active_color = active_color
         super().__init__(input_layer, output_layer, **kwargs)
 

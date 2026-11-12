@@ -3,7 +3,7 @@
 
 """Manim chemistry atom representation.
 
-This module provides the MCAtom class for representing atoms in molecules.
+This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
 
 """
 
@@ -24,24 +24,6 @@ if TYPE_CHECKING:
 class MCAtom:
     """
     Abstraction of an atom in a molecule.
-
-    It consists of:
-
-    .. list-table::
-       :header-rows: 0
-
-       * - ``element``
-         - Its :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement`.
-       * - ``coordinates``
-         - Its 3D coordinates.
-       * - ``bonded_atoms``
-         - The atoms bonded to it.
-       * - ``bonds``
-         - The bonds associated with it.
-       * - ``molecule``
-         - Its molecule.
-       * - ``index``
-         - Its index in the molecule.
 
     Parameters
     ----------
@@ -68,7 +50,6 @@ class MCAtom:
         molecule: None | None = None,
         molecule_index: int | None = None,
     ):
-        """Initialize MCAtom with element, 3D coordinates, bonded atoms, bonds and molecule reference."""
         self.element = element
         self.coords = coords
         self.atoms = atoms or []
@@ -77,8 +58,8 @@ class MCAtom:
         self.molecule_index = molecule_index
 
     def add_atoms(self, atoms: MCAtom | list[MCAtom]) -> list[MCAtom]:
-        """
-        Assigns bonded atoms to MCAtom.
+        r"""
+        Assigns bonded atoms to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 
         Parameters
         ----------
@@ -92,7 +73,7 @@ class MCAtom:
         Raises
         ------
         Exception
-            In case the atoms are not MCAtoms or a list.
+            In case the atoms are not :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s or a list.
         """
         if not atoms:
             pass
@@ -116,7 +97,7 @@ class MCAtom:
         return self.atoms
 
     def add_bonds(self, bonds: MCBond | list[MCBond]) -> list[MCBond]:
-        """Add one or more MCBond objects to the atom's bond list.
+        """Add one or more :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` objects to the atom's bond list.
 
         Parameters
         ----------
@@ -130,7 +111,7 @@ class MCAtom:
         Raises
         ------
         Exception
-            Raised when ``bonds`` is neither an MCBond nor a list of
+            Raised when ``bonds`` is neither an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` nor a list of
             MCBonds.
         """
         from .mc_bond import MCBond
@@ -157,7 +138,7 @@ class MCAtom:
         return self.bonds
 
     def assign_molecule(self, molecule: MCMolecule) -> MCMolecule:
-        """Set the parent MCMolecule this atom belongs to.
+        """Set the parent :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` this atom belongs to.
 
         Parameters
         ----------
@@ -171,7 +152,7 @@ class MCAtom:
         Raises
         ------
         Exception
-            Raised when ``molecule`` is not an MCMolecule.
+            Raised when ``molecule`` is not an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`.
         """
         from .mc_molecule import MCMolecule
 
@@ -221,16 +202,16 @@ class MCAtom:
         atom_index: int, atom_data_dict: Dict, elements_data_dict: Dict
     ) -> Self:
         """
-        Given an atom data dict from a parser, returns an MCAtom.
+        Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 
         Parameters
         ----------
         atom_dict
-            See data_parser function from BaseParser.
+            See data_parser function from :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser`.
         atom_index
             Index of the atom in the molecule.
         atom_data_dict
-            See data_parser function from BaseParser.
+            See data_parser function from :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser`.
         elements_data_dict
             Dictionary of custom element data to merge over the
             default elements data.

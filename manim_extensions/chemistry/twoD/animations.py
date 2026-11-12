@@ -3,7 +3,7 @@
 
 """Animation utilities for 2D chemistry molecules.
 
-This module provides the GMAnimationBuilder class for building molecule animations.
+This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.
 
 """
 
@@ -26,52 +26,10 @@ class GMAnimationBuilder:
     Examples
     --------
     .. manim:: GMAnimationBuilderDocExample
+       :files: dimethylpropane.mol
 
        from manim import *
        from manim_extensions.chemistry import GMAnimationBuilder, GraphMolecule
-
-       mol_file_data = (
-           "10041\n"
-           "  -OEChem-04292315533D\n"
-           "\n"
-           " 17 16  0     0  0  0  0  0  0999 V2000\n"
-           "    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -1.3467    0.3727    0.6364 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.8961    1.2449   -0.0677 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -0.2359   -0.5385   -1.4183 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.6864   -1.0791    0.8496 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -1.2106    0.7613    1.6520 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -1.8616    1.1428    0.0510 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -2.0095   -0.4977    0.6985 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    1.8669    1.0100   -0.5184 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    1.0828    1.6532    0.9319 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.4318    2.0348   -0.6688 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -0.8737   -1.4294   -1.4026 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "   -0.7257    0.2109   -2.0501 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.7093   -0.8138   -1.8996 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.8684   -0.7234    1.8699 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    1.6524   -1.3666    0.4196 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "    0.0693   -1.9822    0.9165 H   0  0  0  0  0  0  0  0  0  0  0  0\n"
-           "  1  2  1  0  0  0  0\n"
-           "  1  3  1  0  0  0  0\n"
-           "  1  4  1  0  0  0  0\n"
-           "  1  5  1  0  0  0  0\n"
-           "  2  6  1  0  0  0  0\n"
-           "  2  7  1  0  0  0  0\n"
-           "  2  8  1  0  0  0  0\n"
-           "  3  9  1  0  0  0  0\n"
-           "  3 10  1  0  0  0  0\n"
-           "  3 11  1  0  0  0  0\n"
-           "  4 12  1  0  0  0  0\n"
-           "  4 13  1  0  0  0  0\n"
-           "  4 14  1  0  0  0  0\n"
-           "  5 15  1  0  0  0  0\n"
-           "  5 16  1  0  0  0  0\n"
-           "  5 17  1  0  0  0  0\n"
-           "M  END\n"
-       )
-       with open("dimethylpropane.mol", "w") as mol_file:
-           mol_file.write(mol_file_data)
 
        class GMAnimationBuilderDocExample(Scene):
            def construct(self):
@@ -104,7 +62,6 @@ class GMAnimationBuilder:
         atoms: VGroup | None = None,
         bonds: VGroup | None = None,
     ):
-        """Initialize the animation builder with a molecule and optional subsets of atoms and bonds."""
         self.molecule = molecule
         self.atoms = atoms or self.molecule.vertices.values()
         self.atoms_copy = self.atoms.copy()

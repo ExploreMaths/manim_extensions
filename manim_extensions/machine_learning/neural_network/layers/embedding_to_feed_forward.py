@@ -51,7 +51,6 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         dot_radius: float = 0.03,
         **kwargs,
     ):
-        """Initialize the embedding-to-feed-forward connective layer with dot animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.feed_forward_layer = output_layer
         self.embedding_layer = input_layer

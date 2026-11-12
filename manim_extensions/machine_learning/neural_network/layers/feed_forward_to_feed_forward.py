@@ -34,7 +34,7 @@ from manim.typing import VectorND
 
 
 class FeedForwardToFeedForward(ConnectiveLayer):
-    """Layer for connecting FeedForward layer to FeedForwardLayer.
+    """Layer for connecting FeedForward layer to :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`.
 
     Parameters
     ----------
@@ -73,7 +73,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         camera: Camera | None = None,
         **kwargs,
     ):
-        """Initialize the feed-forward connective layer with edges and animation settings."""
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash = passing_flash
         self.edge_color = edge_color
@@ -141,7 +140,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         feed_forward_dropout: float = 0.0,
         **kwargs,
     ) -> list:
-        """Animation for passing information from one FeedForwardLayer to the next.
+        """Animation for passing information from one :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer` to the next.
 
         Parameters
         ----------

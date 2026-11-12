@@ -22,13 +22,6 @@ class ManimMLConfig:
     """
 
     def __init__(self, default_color_scheme: ColorScheme = dark_mode):
-        """Initialize the configuration.
-
-        Parameters
-        ----------
-        default_color_scheme
-            Color scheme used before any override.
-        """
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(
             three_d_x_rotation=90 * DEGREES,

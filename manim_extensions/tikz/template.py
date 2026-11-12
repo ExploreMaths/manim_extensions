@@ -78,7 +78,6 @@ class TikzTemplate(TexTemplate):
         use_pdf: bool = False,
         **kwargs: Any,
     ):
-        """Initialize the TikzTemplate instance."""
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (
             default_preamble

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-"""Apple Mobject for Pymunk physics simulations."""
+""":class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple` Mobject for Pymunk physics simulations."""
 
 from manim import VMobject, np
 
@@ -35,9 +35,6 @@ class Apple(VMobject):
     """
 
     def __init__(self, **kwargs):
-        """Initialize the apple-shaped VMobject by setting pre-defined
-        Bezier curve points that form the apple silhouette.
-        """
         super().__init__(**kwargs)
         # Bezier curve point set
         points = np.array(

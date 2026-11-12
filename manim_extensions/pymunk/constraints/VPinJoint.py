@@ -4,7 +4,7 @@
 
 """Pin joint constraint for Pymunk.
 
-This module provides the VPinJoint class for creating pin joint constraints in physics simulations.
+This module provides the :class:`~manim_extensions.pymunk.constraints.VPinJoint.VPinJoint` class for creating pin joint constraints in physics simulations.
 
 """
 
@@ -106,9 +106,6 @@ class VPinJoint(VConstraint):
         },
         **kwargs,
     ):
-        """Initialize a pin joint constraint with two bodies, local anchor
-        points, optional fixed distance, and visual anchor/line indicators.
-        """
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 

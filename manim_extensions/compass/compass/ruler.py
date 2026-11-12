@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Ruler class for Manim.
+""":class:`~manim_extensions.compass.compass.ruler.Ruler` class for Manim.
 
 This module provides ruler visualization for geometry.
 
@@ -23,7 +23,7 @@ from ..utils.geometry_method import get_vecs_angle
 
 
 class Ruler(VGroup):
-    """Ruler mobject.
+    """:class:`~manim_extensions.compass.compass.ruler.Ruler` mobject.
 
     Parameters
     ----------
@@ -64,7 +64,6 @@ class Ruler(VGroup):
         fill_opacity: float = 0.4,
         **kwargs: Any,
     ):
-        """Initialize the Ruler instance."""
         super().__init__(**kwargs)
         self.ruler_length = length
         self.ruler_width = width

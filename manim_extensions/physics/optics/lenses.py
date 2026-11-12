@@ -3,7 +3,9 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import shapely (physics extra)
 
-"""Lenses for refracting Rays."""
+r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
+
+# unlinked-class-ok: Array
 
 from __future__ import annotations
 
@@ -106,7 +108,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
         Focal length.  Positive values produce a convex lens, negative
         values produce a concave lens.
     d
-        Lens thickness.
+        :class:`~manim_extensions.physics.optics.lenses.Lens` thickness.
     n
         Refractive index of the lens material.
         (glass).
@@ -135,7 +137,6 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
     """
 
     def __init__(self, f: float, d: float, n: float = 1.52, **kwargs):
-        """Initialize Lens."""
         super().__init__(**kwargs)
         self.f = f
         f *= 50 / 7 * f if f > 0 else -50 / 7 * f  # this is odd, but it works

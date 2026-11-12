@@ -66,7 +66,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         value_func: Callable = lambda: random.uniform(0, 1),
         **kwargs,
     ):
-        """Initialize the vector layer with the number of values and a value generator function."""
         super().__init__(**kwargs)
         self.num_values = num_values
         self.value_func = value_func

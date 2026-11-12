@@ -9,7 +9,7 @@ This module provides file parsing utilities for chemistry file formats.
 """
 
 import os
-from typing import Dict
+from typing import Dict, Literal
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
@@ -37,7 +37,6 @@ class FileHandler:
     """
 
     def __init__(self, file_path: str | bytes | os.PathLike):
-        """Initialize the FileHandler instance."""
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")
 
@@ -74,7 +73,9 @@ class FileHandler:
         """
         return self.parser.molecule_data
 
-    def parse_from_string(string: str, format: str) -> tuple | list:
+    def parse_from_string(
+        string: str, format: Literal["mol", "sdf", "asnt", "json", "xml"]
+    ) -> tuple | list:
         """Parse molecule data directly from a string using the given format.
 
         Parameters

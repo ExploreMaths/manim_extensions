@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""State class for automata visualizations.
+""":class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` class for automata visualizations.
 
 This module provides state visualization for automata.
 
@@ -13,7 +13,7 @@ from .automata_dependencies.automata import State
 
 
 class ManimState(State, VGroup):
-    """Class that describes the graphical representation of a State instance,
+    """Class that describes the graphical representation of a :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` instance,
     it is also used to simulate tautomata.
 
     Parameters
@@ -40,11 +40,11 @@ class ManimState(State, VGroup):
     Attributes
     ----------
     state
-        Reference to a State instance.
+        Reference to a :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` instance.
     circle
         Circle Mobject.
     text
-        Text Mobject representation of the name from State instance.
+        Text Mobject representation of the name from :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` instance.
 
     Examples
     --------
@@ -75,7 +75,6 @@ class ManimState(State, VGroup):
         id: int | None = None,
         **kwargs: object,
     ):
-        """Initialize the ManimState instance."""
         State.__init__(self, name=name, initial=initial, final=final, id=id)
 
         # manim settings for animations and colors

@@ -82,7 +82,6 @@ class MVariable(MArrayElement):
         mob_label_args: MobProps = {},
         **kwargs: Any,
     ):
-        """Initialize the MVariable instance."""
 
         self.__value: object = value
         self.__index: str | int = index

@@ -35,13 +35,13 @@ from .base import EconDiagram
 
 
 class SolowDiagram(EconDiagram):
-    """Solow growth model diagram.
+    r"""Solow growth model diagram.
 
-    Production function: :math:`y = k^{\\alpha}`
-    Savings/investment: :math:`sf(k) = s \\cdot k^{\\alpha}`
-    Break-even investment: :math:`(\\delta + n + g) \\cdot k`
+    Production function: :math:`y = k^{\alpha}`
+    Savings/investment: :math:`sf(k) = s \cdot k^{\alpha}`
+    Break-even investment: :math:`(\delta + n + g) \cdot k`
 
-    Steady state where :math:`sf(k^*) = (\\delta + n + g) \\cdot k^*`.
+    Steady state where :math:`sf(k^*) = (\delta + n + g) \cdot k^*`.
 
     Parameters
     ----------
@@ -100,7 +100,6 @@ class SolowDiagram(EconDiagram):
         show_production: bool = True,
         **kwargs,
     ):
-        """Initializes the Solow growth model diagram with production, savings, and breakeven curves."""
         kwargs.setdefault("x_range", [0, 10, 1])
         kwargs.setdefault("y_range", [0, 4, 1])
         super().__init__(x_label="k", y_label="y", **kwargs)
@@ -146,17 +145,17 @@ class SolowDiagram(EconDiagram):
 
     @staticmethod
     def _make_prod_func(alpha: float):
-        """:math:`y = k^\\alpha`"""
+        r""":math:`y = k^\alpha`"""
         return lambda k: k**alpha
 
     @staticmethod
     def _make_savings_func(s: float, alpha: float):
-        """:math:`sf(k) = s \\cdot k^\\alpha`"""
+        r""":math:`sf(k) = s \cdot k^\alpha`"""
         return lambda k: s * (k**alpha)
 
     @staticmethod
     def _make_breakeven_func(delta: float, n: float | None, g: float):
-        """:math:`(\\delta + n + g) \\cdot k`"""
+        r""":math:`(\delta + n + g) \cdot k`"""
         rate = delta + n + g
         return lambda k: rate * k
 
@@ -220,7 +219,7 @@ class SolowDiagram(EconDiagram):
         run_time: float = 1,
         show_arrows: bool = False,
     ) -> AnimationGroup:
-        """Animate break-even line shifting due to changes in :math:`\\delta`, n, or g.
+        r"""Animate break-even line shifting due to changes in :math:`\delta`, n, or g.
 
         Parameters
         ----------
@@ -339,7 +338,7 @@ class SolowDiagram(EconDiagram):
     # ---- Consumption / Investment shares ----
 
     def _steady_state_k(self):
-        """Compute steady-state capital: :math:`sf(k^*) = (\\delta+n+g)k^*`."""
+        r"""Compute steady-state capital: :math:`sf(k^*) = (\delta+n+g)k^*`."""
         from .base import find_intersection
 
         sf = self._make_savings_func(self._s, self._alpha)
@@ -482,9 +481,9 @@ class SolowDiagram(EconDiagram):
     # ---- Golden rule ----
 
     def _golden_rule_k(self):
-        """Compute golden-rule capital: :math:`MPK = \\delta + n + g`.
+        r"""Compute golden-rule capital: :math:`MPK = \delta + n + g`.
 
-        :math:`f'(k) = \\alpha k^{\\alpha-1} = \\delta+n+g \\to k_{\\mathrm{gold}} = (\\alpha/(\\delta+n+g))^{1/(1-\\alpha)}`
+        :math:`f'(k) = \alpha k^{\alpha-1} = \delta+n+g \to k_{\mathrm{gold}} = (\alpha/(\delta+n+g))^{1/(1-\alpha)}`
         """
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))
@@ -492,7 +491,7 @@ class SolowDiagram(EconDiagram):
     def show_golden_rule(
         self, color: ManimColor = PURPLE, run_time: float = 1
     ) -> FadeIn:
-        """Mark the golden-rule capital level where consumption is maximized.
+        r"""Mark the golden-rule capital level where consumption is maximized.
 
         Parameters
         ----------
@@ -502,7 +501,7 @@ class SolowDiagram(EconDiagram):
             Duration of the :class:`~manim.animation.fading.FadeIn` animation.
 
             Draws a vertical dashed line at ``k_gold`` with a label. The golden rule
-            is where :math:`MPK = \\delta + n + g`, giving the savings rate that
+            is where :math:`MPK = \delta + n + g`, giving the savings rate that
             maximizes steady-state consumption.
 
         Returns

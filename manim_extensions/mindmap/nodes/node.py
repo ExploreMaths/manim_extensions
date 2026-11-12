@@ -38,7 +38,7 @@ from manim.typing import Vector3D
 
 
 class NodeSate(Enum):
-    r"""Node state.
+    r""":class:`~manim_extensions.mindmap.nodes.node.Node` state.
 
     Examples
     --------
@@ -128,7 +128,6 @@ class NodeStyle:
             {"color": WHITE, "font_size": 36},
         ],
     ):
-        """Initialize the NodeStyle instance."""
         self.node_num = len(node_style)
         if self.node_num:
             self.node_style = node_style
@@ -293,7 +292,6 @@ class Node:
         buff: float = 0.2,
         **kwargs: object,
     ):
-        """Initialize the Node instance."""
         self.vmobject = vmobject
         self.height = self.vmobject.height + 2 * buff
         self.width = self.vmobject.width + 2 * buff
@@ -452,7 +450,7 @@ class Node:
         Parameters
         ----------
         layout_type
-            Layout type parameter for this operation.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
         direction
             The direction of the operation.
         kwargs
@@ -483,7 +481,7 @@ class Node:
         Parameters
         ----------
         layout_type
-            Layout type parameter for this operation.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
         direction
             The direction of the operation.
         kwargs
@@ -513,7 +511,7 @@ class Node:
         change_layout
             Change layout parameter for this operation.
         layout_type
-            Layout type parameter for this operation.
+            :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
         direction
             The direction of the operation.
         **kwargs

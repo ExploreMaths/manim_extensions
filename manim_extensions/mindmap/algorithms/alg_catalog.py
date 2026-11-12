@@ -164,7 +164,6 @@ class CatalogLayout(Layout):
     def __init__(
         self, root: object, node_spacing: float = 0.5, level_spacing: float = 0.5
     ):
-        """Initialize CatalogLayout."""
         self.root = CatalogNode.from_data(root)
         self.margin_root_child = node_spacing
         self.margin_vertical = level_spacing

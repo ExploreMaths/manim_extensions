@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Cell class for Manim tables.
+""":class:`~manim_extensions.table.cell.Cell` class for Manim tables.
 
-This module provides the Cell class for table visualizations.
+This module provides the :class:`~manim_extensions.table.cell.Cell` class for table visualizations.
 
 """
 
@@ -65,7 +65,6 @@ class Cell(VGroup):
         show_border: bool = True,
         **kwargs: Any,
     ):
-        """Initialize the cell with its text and layout."""
         super().__init__(**kwargs)
 
         self.value = value

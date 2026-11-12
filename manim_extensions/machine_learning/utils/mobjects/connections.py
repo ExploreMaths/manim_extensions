@@ -86,7 +86,6 @@ class NetworkConnection(VGroup):
         color: ManimColor = WHITE,
         active_color: ManimColor = ORANGE,
     ):
-        """Initialize the NetworkConnection instance."""
         super().__init__()
         assert arc_direction in ["straight", "up", "down", "left", "right"]
         self.start_mobject = start_mobject

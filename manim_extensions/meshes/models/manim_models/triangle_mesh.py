@@ -18,7 +18,7 @@ from .basic_mesh import Manim2DMesh
 
 
 class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
-    """2D Mesh implementation that has additional methods especially for triangles.
+    """2D :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` implementation that has additional methods especially for triangles.
 
     Parameters
     ----------
@@ -66,7 +66,6 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     # pylint:disable=abstract-method
     def __init__(self, mesh: Mesh, *args, **kwargs):
-        """Initialize the TriangleManim2DMesh instance."""
         if any(len(face) != 3 for face in mesh.faces):
             raise InvalidMeshException("Mesh must only consist of triangles!")
         # init Manim2DMesh

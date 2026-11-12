@@ -29,7 +29,6 @@ class OpenGLSphere(OpenGLSurface):
         center: Point3D = ORIGIN,
         **kwargs,
     ):
-        """Initialize an OpenGL sphere surface at the given center point."""
         super().__init__(
             self.uv_func,
             u_range=(0, TAU),

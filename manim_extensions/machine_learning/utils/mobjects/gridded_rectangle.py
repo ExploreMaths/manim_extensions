@@ -88,13 +88,6 @@ class GriddedRectangle(VGroup):
         dotted_lines: bool = False,
         **kwargs: Any,
     ):
-        """Initialize the rectangle and store the grid configuration.
-
-        All parameters are stored as attributes for later use by
-        :meth:`~manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.make_grid_lines`
-        and
-        :meth:`~manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.make_corners_dict`;
-        the grid lines themselves are only built on request."""
         super().__init__()
         # Fields
         self.color = color

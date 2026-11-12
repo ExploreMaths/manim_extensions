@@ -30,7 +30,7 @@ from manim.typing import Point2D, Point3D, MatrixMN
 
 
 class EmbeddingLayer(VGroupNeuralNetworkLayer):
-    """NeuralNetwork embedding object that can show probability distributions.
+    """:class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` embedding object that can show probability distributions.
 
     Parameters
     ----------
@@ -90,7 +90,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         paired_query_mode: bool = False,
         **kwargs,
     ):
-        """Initialize the embedding layer with Gaussian distribution parameters and styling."""
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.mean = mean
         self.covariance = covariance
@@ -142,7 +141,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     def add_gaussian_distribution(
         self, gaussian_distribution: GaussianDistribution
     ) -> Create:
-        """Adds given GaussianDistribution to the list.
+        """Adds given :class:`~manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution` to the list.
 
         Parameters
         ----------

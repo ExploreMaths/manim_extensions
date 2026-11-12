@@ -24,6 +24,8 @@ The usage examples live in the docstrings of :class:`~manim_extensions.fontaweso
 and :class:`~manim_extensions.fontawesome.manim_fontawesome.Solid`.
 """
 
+# unlinked-class-ok: Brand, Regular, Solid
+
 from manim import *
 import os
 
@@ -4176,7 +4178,6 @@ class Brand:
     """
 
     def __init__(self):
-        """Initialize the Brand icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:
@@ -4204,7 +4205,6 @@ class Regular:
     """
 
     def __init__(self):
-        """Initialize the Regular icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:
@@ -4234,7 +4234,6 @@ class Solid:
     """
 
     def __init__(self):
-        """Initialize the Solid icon accessor."""
         pass
 
     def __getattr__(self, name) -> SVGMobject:

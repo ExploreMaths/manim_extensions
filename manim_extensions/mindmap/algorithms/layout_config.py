@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Layout configuration for mindmap algorithms.
+""":class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.
 
 This module provides configuration classes for layout algorithms.
 
@@ -18,7 +18,7 @@ from manim.typing import Vector3D
 
 
 class LayoutDirection(Enum):
-    """Layout direction.
+    """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` direction.
 
     Examples
     --------
@@ -53,7 +53,7 @@ class LayoutDirection(Enum):
 
 
 class LayoutType(Enum):
-    r"""Layout algorithm.
+    r""":class:`~manim_extensions.mindmap.algorithms.layout.Layout` algorithm.
 
     Examples
     --------
@@ -103,7 +103,7 @@ class LayoutConfig:
     Parameters
     ----------
     direction
-        Layout direction.
+        :class:`~manim_extensions.mindmap.algorithms.layout.Layout` direction.
     node_spacing
         Spacing between nodes.
     level_spacing
@@ -155,7 +155,6 @@ class LayoutConfig:
         level_spacing: float = 0.5,
         sides: Vector3D | List[Vector3D] = (UP, DOWN),
     ):
-        """Initialize LayoutConfig."""
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
         if not isinstance(sides, (list, tuple)):
@@ -171,7 +170,7 @@ class LayoutConfig:
         self.direction = direction
 
     def get_layout_direction(self, direction: Vector3D) -> LayoutDirection:
-        """Convert a direction vector to a LayoutDirection enum.
+        """Convert a direction vector to a :class:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection` enum.
 
         Parameters
         ----------

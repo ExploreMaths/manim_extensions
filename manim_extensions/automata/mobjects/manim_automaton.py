@@ -131,7 +131,6 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         animate_subscripts: bool = True,
         **kwargs: object,
     ):
-        """Initialize the automaton with JSON/XML templates, animation style, and optional CLI mode."""
         if json_template is None and xml_file is None:
             json_template = automaton_json
 
@@ -168,7 +167,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.center()
 
     def add_manim_state(self, manim_state: ManimState):
-        """Add an existing ManimState mobject to the automaton's VGroup.
+        """Add an existing :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` mobject to the automaton's VGroup.
 
         Parameters
         ----------
@@ -180,12 +179,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         self.add(manim_state)
 
     def construct_state(self, state: dict[str, object], scaling: float = 10):
-        """Create a ManimState from a state dict and append it to self.states.
+        """Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.
 
         Parameters
         ----------
         state
-            State definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
             and optional ``"initial"``/``"final"`` flags.
         scaling
             Coordinate scaling factor.
@@ -217,12 +216,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         )
 
     def construct_states(self, states: list[dict[str, object]]):
-        """Build all ManimState objects from a list of state dicts with auto-scaling.
+        """Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.
 
         Parameters
         ----------
         states
-            State definitions from JSON or XML parsing.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
         """
         for state in states:
             if "initial" in state.keys():
@@ -258,12 +257,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 state_obj.scale(size_factor)
 
     def construct_transitions(self, transitions: list[dict[str, object]]):
-        """Build ManimTransition objects from transition dicts, grouping read symbols by state pair.
+        """Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.
 
         Parameters
         ----------
         transitions
-            Transition definitions from JSON or XML parsing.
+            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
         """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[object]] = {}
@@ -301,7 +300,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_to: ManimState,
         read_symbols: list[str],
     ):
-        """Create a single ManimTransition between two states and register it.
+        """Create a single :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` between two states and register it.
 
         Parameters
         ----------
@@ -324,7 +323,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_from.add_transition_to_state(new_transition)
 
     def construct_automaton_input(self, input_string: str) -> ManimAutomataInput:
-        """Create a ManimAutomataInput mobject from an input string.
+        """Create a :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` mobject from an input string.
 
         Parameters
         ----------

@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Row class for Manim tables.
+""":class:`~manim_extensions.table.row.Row` class for Manim tables.
 
-This module provides the Row class for table visualizations.
+This module provides the :class:`~manim_extensions.table.row.Row` class for table visualizations.
 
 """
 
@@ -32,7 +32,7 @@ class Row(VGroup):
     show_border
         If True, cells have visible borders.
     index
-        Row index in the parent table (useful for animations).
+        :class:`~manim_extensions.table.row.Row` index in the parent table (useful for animations).
     **kwargs
         Additional arguments passed to
         :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -63,7 +63,6 @@ class Row(VGroup):
         index: int = 0,
         **kwargs: Any,
     ):
-        """Initialize the row and create one cell per value."""
         super().__init__(**kwargs)
 
         self.values = values

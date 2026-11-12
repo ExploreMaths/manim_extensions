@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Orbital visualizations for Manim."""
+""":class:`~manim_extensions.chemistry.orbitals.orbitals.Orbital` visualizations for Manim."""
 
 from .orbitals import Orbital  # noqa F841

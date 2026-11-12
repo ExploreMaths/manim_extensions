@@ -34,7 +34,6 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args: object, **kwargs: Any):
-        """Initialize the scene."""
         super().__init__(*args, **kwargs)
 
     def play(self, *args: object, **kwargs: Any):

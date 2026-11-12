@@ -4,7 +4,7 @@
 
 """Turing machine visualization.
 
-This module provides the ManimTuringMachine class for visualizing Turing machines.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine` class for visualizing Turing machines.
 
 """
 
@@ -41,7 +41,6 @@ class ManimTuringMachine(VGroup):
     """
 
     def __init__(self):
-        """Initialize the ManimTuringMachine instance."""
         super().__init__()
         self.tape = VGroup()
         self.head = Triangle()

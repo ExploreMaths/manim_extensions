@@ -116,7 +116,6 @@ class EconDiagram(VGroup):
         y_length: float = 4,
         **kwargs: Any,
     ):
-        """Initialize the diagram axes and axis labels."""
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]
