@@ -7,8 +7,25 @@ Changelog
 v1.0.7 :bdg-warning-line:`In Development`
 -----------------------------------------
 
+**Added**
+
+* ``.. manim::`` and ``.. nbcell::`` examples declare the files they read
+  with ``:files:``: the names resolve inside ``examples/``, are copied into
+  the example's working directory, and render as download cards (below the
+  code for Manim, between the input and output cells for nbcell). The file
+  contents join the media cache hash, so editing a sample re-renders its
+  example.
+* ``workflow/validate_example_files.py`` and its ``validate-example-files``
+  CI job reject an example that reads a file without declaring it, builds a
+  path instead of a bare name, or names a file missing from ``examples/``.
+* ``flake8-syntax`` runs ``E9,F63,F7,F82`` in CI, so syntax errors and
+  undefined names fail the build as the contributor guide promises.
+
 **Fixed**
 
+* ``validate_docstrings.py`` rejects a docstring that contains a backslash
+  without the ``r`` prefix (``non-raw-docstring``), and every existing
+  docstring now follows that rule.
 * Documentation examples render their real output again: the nbcell
   execution cache is read by the directive, the sample molecule files ship
   with the repository, and the chemistry examples run against them.
@@ -28,6 +45,13 @@ v1.0.7 :bdg-warning-line:`In Development`
   instead of showing it as a plain code block.
 * The chemistry reference page renders its 2-D molecule examples from the
   bundled sample ``.mol`` files, which are now shipped in ``examples/``.
+* Every documentation example reads its sample files through ``:files:`` and
+  a bare file name; the video example's ``3Blue1Brown.mp4`` moved to
+  ``examples/videos/`` for the same reason.
+* The contributor guide now matches the jobs in ``validate.yml``: the
+  validation checklist covers every job, the coverage floor reads 90% and the
+  test matrix 3.11-3.15, and naming, ``Literal`` sets and the nbcell rule are
+  marked as review-only rather than implying an automated check.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
