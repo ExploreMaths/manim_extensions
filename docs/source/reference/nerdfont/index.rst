@@ -43,16 +43,13 @@ with the ``manim`` command.
    :save_last_frame:
 
    from manim import *
-
    from manim_extensions.nerdfont import NerdFontIcon
 
    class NerdfontIconExample(Scene):
        def construct(self):
            # Set the background color
            self.camera.background_color = "#ece6e2"
-
            icon = NerdFontIcon("language-python", color=BLUE)
-
            self.add(icon.scale(6))
 
 Icon sets and lookup
