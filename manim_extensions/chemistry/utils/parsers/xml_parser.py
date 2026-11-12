@@ -25,12 +25,14 @@ class XMLParser(BaseParser):
     .. nbcell::
        :files: acetone_2d.xml
 
+       from pprint import pprint
+
        parsed_xml = XMLParser(filename="acetone_2d.xml")
-       print(parsed_xml.atoms_data)
+       pprint(parsed_xml.atoms_data)
 
     .. nbcell::
 
-       print(parsed_xml.bonds_data)
+       pprint(parsed_xml.bonds_data)
     """
 
     @staticmethod

@@ -52,6 +52,9 @@ v1.0.7 :bdg-warning-line:`In Development`
   validation checklist covers every job, the coverage floor reads 90% and the
   test matrix 3.11-3.15, and naming, ``Literal`` sets and the nbcell rule are
   marked as review-only rather than implying an automated check.
+* Documentation examples print structured parser and coordinate results with
+  :func:`~pprint.pprint`, so nested dictionaries and lists wrap onto readable
+  lines instead of one long line.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

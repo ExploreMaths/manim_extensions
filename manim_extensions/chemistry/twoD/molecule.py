@@ -557,8 +557,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_atoms_position_by_index([1,2,3]))
+           pprint(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -661,8 +663,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_bonds_center_by_index([1,2,3]))
+           pprint(molecule.find_bonds_center_by_index([1, 2, 3]))
         """
         bonds_positions = []
         for bond_index in bonds_index_list:
@@ -1134,8 +1138,10 @@ class NamedMolecule(VGroup):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_atoms_position_by_index([1,2,3]))
+           pprint(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -1239,8 +1245,10 @@ class NamedMolecule(VGroup):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_bonds_center_by_index([1, 2, 3]))
+           pprint(molecule.find_bonds_center_by_index([1, 2, 3]))
         """
         bonds_positions = []
         for bond_index in bonds_index_list:

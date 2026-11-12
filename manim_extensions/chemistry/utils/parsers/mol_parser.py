@@ -20,14 +20,16 @@ class MolParser(BaseParser):
     .. nbcell::
        :files: acetone_2d.mol
 
+       from pprint import pprint
+
        parsed_mol = MolParser(
            filename="acetone_2d.mol"
        )
-       print(parsed_mol.atoms_data)
+       pprint(parsed_mol.atoms_data)
 
     .. nbcell::
 
-       print(parsed_mol.bonds_data)
+       pprint(parsed_mol.bonds_data)
     """
 
     @staticmethod

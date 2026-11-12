@@ -701,8 +701,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_atoms_position_by_index([1,2,3]))
+           pprint(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
         for atom_index in atoms_index_list:
@@ -806,8 +808,12 @@ class GraphMolecule(Graph, AbstractMolecule):
         .. nbcell::
            :files: dimethylpropane.mol
 
+           from pprint import pprint
+
            molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
-           print(molecule.find_bonds_center_by_index([(2, 1), (3, 1), (4, 1)]))
+           pprint(
+               molecule.find_bonds_center_by_index([(2, 1), (3, 1), (4, 1)])
+           )
         """
         bonds_positions = []
         for bond_index in bonds_tuples_list:

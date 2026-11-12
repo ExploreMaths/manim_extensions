@@ -154,12 +154,14 @@ class JSONParser(BaseParser):
     .. nbcell::
        :files: acetone_2d.json
 
+       from pprint import pprint
+
        parsed_json = JSONParser(filename="acetone_2d.json")
-       print(parsed_json.molecular_data[0][0])
+       pprint(parsed_json.molecular_data[0][0])
 
     .. nbcell::
 
-       print(parsed_json.molecular_data[0][1])
+       pprint(parsed_json.molecular_data[0][1])
     """
 
     @staticmethod

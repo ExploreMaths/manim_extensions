@@ -30,12 +30,14 @@ class SDFParser(MolParser):
     .. nbcell::
        :files: acetone_2d.sdf
 
+       from pprint import pprint
+
        parsed_sdf = SDFParser(filename="acetone_2d.sdf")
-       print(parsed_sdf.molecular_data[0][0])
+       pprint(parsed_sdf.molecular_data[0][0])
 
     .. nbcell::
 
-       print(parsed_sdf.molecular_data[0][1])
+       pprint(parsed_sdf.molecular_data[0][1])
 
     """
 

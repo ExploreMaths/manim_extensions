@@ -43,12 +43,14 @@ class ASNTParser(BaseParser):
     .. nbcell::
        :files: acetone_2d.asnt
 
+       from pprint import pprint
+
        parsed_asnt = ASNTParser(filename="acetone_2d.asnt")
-       print(parsed_asnt.atoms_data)
+       pprint(parsed_asnt.atoms_data)
 
     .. nbcell::
 
-       print(parsed_asnt.bonds_data)
+       pprint(parsed_asnt.bonds_data)
 
     """
 
