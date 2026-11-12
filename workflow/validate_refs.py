@@ -25,6 +25,15 @@ Scans .py and .rst files for three categories of problems:
                    plain code span.  Disambiguate by writing an explicit
                    role with the full module path (``:class:`~...``).
 
+5. unlinked_classes - plain words in prose that are project class names
+                   (or their plural, ``+s``) and are NOT written as a
+                   cross-reference.  E.g. a docstring sentence saying
+                   ``MCAtoms`` instead of :class:`~...MCAtom`.
+                   Every spelling counts, including names that are also
+                   ordinary English words (``Node``, ``Layout``). Code
+                   blocks, directives, doctests, section titles and
+                   back-ticked (inline code) spans are skipped.
+
 Outputs a structured JSON report (``_refs_report.json``) consumable by
 ``fix_refs.py``, plus a human-readable summary on stdout /
 ``_validate_result.txt``.
@@ -334,6 +343,13 @@ def validate_reference(target: str) -> tuple[bool, str]:
 # ---------------------------------------------------------------------------
 
 
+def _role_target(raw: str) -> str:
+    """Return the target of a role, unwrapping ``Text <target>`` titles."""
+    if raw.endswith(">") and "<" in raw:
+        return raw[raw.rindex("<") + 1 : -1].strip()
+    return raw
+
+
 def _find_short_xrefs(filepath: Path) -> list[dict]:
     """Return every Sphinx role whose target lacks a module path.
 
@@ -348,7 +364,7 @@ def _find_short_xrefs(filepath: Path) -> list[dict]:
         for lineno, line in enumerate(f, 1):
             for m in REF_PATTERN.finditer(line):
                 role = m.group(1)
-                target = m.group(2)
+                target = _role_target(m.group(2))
                 if target.startswith("~") or target.startswith("."):
                     continue
                 if target in SKIP_NAMES:
@@ -459,7 +475,232 @@ def _find_ambiguous_classes(
 
 
 # ---------------------------------------------------------------------------
-# 6. Orchestration
+# 6. Unlinked class-name detection (plain prose words)
+# ---------------------------------------------------------------------------
+
+WORD_PATTERN = re.compile(r"\b[A-Za-z][A-Za-z0-9_]*\b")
+DIRECTIVE_START = re.compile(r"\s*\.\.\s+[\w-]+")
+BACKTICK_SPAN = re.compile(r"`+[^`]*`+")
+BOLD_SPAN = re.compile(r"\*\*[^*]+\*\*")
+UNLINKED_OK = re.compile(r"^[ \t]*\.\.[ \t]+unlinked-class-ok[ \t]+(.*)$")
+UNLINKED_OK_FILE = re.compile(r"^[ \t]*\.\.[ \t]+unlinked-class-ok-file[ \t]+(.*)$")
+UNLINKED_OK_COMMENT = re.compile(r"#[ \t]*unlinked-class-ok:[ \t]*(.*)$")
+PARAM_DECL = re.compile(r"^[ \t]*[A-Za-z_*][\w.{}\[\], ]*[ \t]*:[ \t]")
+UNDERLINE = re.compile(r"^[=\-~^\"'`#*+<>_]{3,}\s*$")
+
+
+def _paragraph_ids(lines: list[str]) -> list[int]:
+    """Return the paragraph number of every line (``-1`` for blank lines)."""
+    ids: list[int] = []
+    current = -1
+    in_paragraph = False
+    for line in lines:
+        if not line.strip():
+            in_paragraph = False
+            ids.append(-1)
+            continue
+        if not in_paragraph:
+            current += 1
+            in_paragraph = True
+        ids.append(current)
+    return ids
+
+
+def _prose_lines(text: str) -> list[tuple[int, str, int]]:
+    """Return ``(line_offset, line, paragraph)`` for prose lines of ``text``.
+
+    Code samples are dropped: directive bodies (``.. code-block::``,
+    ``.. manim::``, ``.. note::`` ...), literal blocks introduced by a
+    trailing ``::``, doctest input and field lists (``:param x:``).
+    Section titles (a word followed by an underline) are skipped too,
+    because a class name used as a heading is not prose.
+    """
+    lines = text.splitlines()
+    titles: set[int] = set()
+    for index, line in enumerate(lines):
+        if not UNDERLINE.match(line):
+            continue
+        before = lines[index - 1] if index >= 1 else ""
+        after = lines[index + 1] if index + 1 < len(lines) else ""
+        if index >= 1 and before.strip() and not UNDERLINE.match(before):
+            # title above the underline
+            titles.add(index - 1)
+            titles.add(index)
+        elif after.strip() and after.strip() and index + 2 < len(lines):
+            if UNDERLINE.match(lines[index + 2]):
+                # overlined title
+                titles.add(index + 1)
+                titles.add(index + 2)
+
+    paragraphs = _paragraph_ids(lines)
+    prose: list[tuple[int, str, int]] = []
+    skip = False
+    base = 0
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        indent = len(line) - len(line.lstrip())
+        if skip:
+            if stripped == "" or indent > base:
+                continue
+            skip = False
+        if UNLINKED_OK.match(line) or UNLINKED_OK_FILE.match(line):
+            continue
+        if DIRECTIVE_START.match(line):
+            base = indent
+            skip = True
+            continue
+        if (
+            stripped.endswith(":")
+            and not stripped.endswith("::")
+            and not stripped.startswith("..")
+        ):
+            base = indent
+            skip = True
+            continue
+        if stripped.endswith("::") and not stripped.startswith(".."):
+            base = indent
+            skip = True
+            continue
+        if index in titles:
+            continue
+        if stripped.startswith((">>>", "...", ":")):
+            continue
+        prose.append((index, line, paragraphs[index]))
+    return prose
+
+
+def _iter_docstrings(filepath: Path):
+    """Yield ``(docstring_text, first_line_number)`` for every docstring.
+
+    The text is taken from the source literal rather than from
+    ``ast.get_docstring``: ``cleandoc`` strips the leading blank lines and
+    dedents, which makes the line numbers unusable for reporting.
+    """
+    try:
+        source = filepath.read_text(encoding="utf-8", errors="replace")
+        tree = ast.parse(source)
+    except (SyntaxError, UnicodeDecodeError):
+        return
+    for node in ast.walk(tree):
+        if not isinstance(
+            node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)
+        ):
+            continue
+        if not ast.get_docstring(node) or not getattr(node, "body", None):
+            continue
+        literal = node.body[0].value
+        raw = ast.get_source_segment(source, literal)
+        if not raw:
+            continue
+        prefix = re.match(r"[rRuUbBfF]{0,3}", raw).end()
+        raw = raw[prefix:]
+        quote = 3 * '"' if raw.startswith(3 * '"') else 3 * "'"
+        body = raw[len(quote) :]
+        if body.endswith(quote):
+            body = body[: -len(quote)]
+        yield body, literal.lineno
+
+
+def _find_unlinked_classes(
+    filepath: Path,
+    project_classes_map: dict[str, str],
+    is_rst: bool,
+) -> list[dict]:
+    """Return class names mentioned as plain words instead of as a
+    cross-reference.
+
+    A word counts when it matches a project class name exactly (case
+    sensitive) or is that name with a trailing ``s`` (plural).  Text
+    inside back-ticks is skipped: it is inline code, already reported by
+    ``inline_code``, not prose.
+    """
+    plural_targets: dict[str, str] = {}
+    for name, fqn in project_classes_map.items():
+        plural_targets[name] = fqn
+        plural_targets[f"{name}s"] = fqn
+
+    if is_rst:
+        sources = [(filepath.read_text(encoding="utf-8", errors="replace"), 1)]
+    else:
+        sources = list(_iter_docstrings(filepath))
+
+    def _words(payload: str) -> set[str]:
+        return {w for w in re.split(r"[ ,]+", payload) if w}
+
+    file_allowed: set[str] = set()
+    scoped: dict[tuple[int, int], set[str]] = {}
+    for index, (text, _first_line) in enumerate(sources):
+        lines = text.splitlines()
+        paragraphs = _paragraph_ids(lines)
+        for line_no, line in enumerate(lines):
+            marker = UNLINKED_OK_FILE.match(line)
+            if marker:
+                file_allowed |= _words(marker.group(1))
+                continue
+            marker = UNLINKED_OK.match(line)
+            if not marker:
+                continue
+            words = _words(marker.group(1))
+            paragraph = paragraphs[line_no]
+            # A marker alone between blank lines applies to the paragraph
+            # that follows it; one embedded in a paragraph applies to that
+            # paragraph only.
+            has_text = any(
+                paragraphs[i] == paragraph
+                and not UNLINKED_OK.match(lines[i])
+                and not UNLINKED_OK_FILE.match(lines[i])
+                for i in range(len(lines))
+            )
+            scope = paragraph if has_text else paragraph + 1
+            scoped.setdefault((index, scope), set()).update(words)
+    if not is_rst:
+        # Explicit whole-file escape hatch.
+        for line in filepath.read_text(encoding="utf-8", errors="replace").splitlines():
+            marker = UNLINKED_OK_COMMENT.search(line)
+            if marker:
+                file_allowed |= _words(marker.group(1))
+
+    results: list[dict] = []
+    for index, (text, first_line) in enumerate(sources):
+        for offset, line, paragraph in _prose_lines(text):
+            if UNLINKED_OK.match(line) or UNLINKED_OK_FILE.match(line):
+                continue
+            cleaned = BACKTICK_SPAN.sub(" ", line)
+            cleaned = BOLD_SPAN.sub(" ", cleaned)
+            bare = cleaned.strip().rstrip(".,;:")
+            for match in WORD_PATTERN.finditer(cleaned):
+                word = match.group()
+                target = plural_targets.get(word)
+                if target is None:
+                    continue
+                if word in file_allowed:
+                    continue
+                if word in scoped.get((index, paragraph), ()):
+                    continue
+                # A line holding nothing but the name is a type
+                # declaration (``Returns`` / ``Raises`` sections), not
+                # prose.
+                if bare == word:
+                    continue
+                # ``name : Type`` parameter/attribute declarations name a
+                # type; they are not prose either.
+                decl = PARAM_DECL.match(cleaned)
+                if decl and decl.end() <= match.start():
+                    continue
+                results.append(
+                    {
+                        "lineno": first_line + offset,
+                        "code": word,
+                        "target": target,
+                        "match_start": match.start(),
+                        "match_end": match.end(),
+                    }
+                )
+    return results
+
+
+# ---------------------------------------------------------------------------
+# 7. Orchestration
 # ---------------------------------------------------------------------------
 
 
@@ -477,6 +718,7 @@ def main() -> int:
     short_xrefs: list[dict] = []
     inline_code: list[dict] = []
     ambiguous: list[dict] = []
+    unlinked: list[dict] = []
 
     py_files = list(SRC.rglob("*.py"))
     rst_files = list(DOCS.rglob("*.rst"))
@@ -522,17 +764,32 @@ def main() -> int:
         for item in _find_ambiguous_classes(filepath, ambiguous_classes):
             ambiguous.append({"file": rel, **item})
 
+        # --- plain-word class mentions (not written as a reference) ---
+        # The changelog records history verbatim; class names there are
+        # not documentation cross-references.
+        if rel == "docs/source/changelog.rst":
+            continue
+        for item in _find_unlinked_classes(
+            filepath, project_classes_map, is_rst=filepath.suffix == ".rst"
+        ):
+            unlinked.append({"file": rel, **item})
+
     # --- write JSON report ---
     report = {
         "broken_refs": broken_refs,
         "short_xrefs": short_xrefs,
         "inline_code": inline_code,
         "ambiguous_classes": ambiguous,
+        "unlinked_classes": unlinked,
         "contexts": contexts,
     }
     # --- human-readable summary ---
     total_issues = (
-        len(broken_refs) + len(short_xrefs) + len(inline_code) + len(ambiguous)
+        len(broken_refs)
+        + len(short_xrefs)
+        + len(inline_code)
+        + len(ambiguous)
+        + len(unlinked)
     )
     if total_issues:
         print(f"FAIL  cross-refs  {total_issues} issue(s)\n")
@@ -550,6 +807,11 @@ def main() -> int:
             print(
                 f"  {item['file']}:{item['lineno']}  ambiguous-class: "
                 f"`{item['code']}` -> " + ", ".join(item["targets"])
+            )
+        for item in unlinked:
+            print(
+                f"  {item['file']}:{item['lineno']}  unlinked-class: "
+                f"{item['code']} -> :class:`~{item['target']}`"
             )
         print(f"\nTotal: {total_issues} issue(s)")
         print("Run `python workflow/fix_refs.py` to auto-fix what it can.")

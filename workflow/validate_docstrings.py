@@ -50,7 +50,8 @@ SKIP_PATTERNS = [
 ]
 
 # Dunder methods that are conventionally left undocumented.
-# __init__ is NOT here — it should be documented.
+# ``__init__`` is special-cased: it must NOT have a docstring, so its
+# description lives in the class docstring instead.
 SKIP_DUNDER = {
     "__repr__",
     "__str__",
@@ -317,6 +318,11 @@ def check_function_docstrings(filepath):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             name = node.name
 
+            # Constructors are documented by the class docstring, not by
+            # their own docstring (see check_init_docstrings).
+            if name == "__init__":
+                continue
+
             # Skip private members (starting with _) except __init__
             if name.startswith("_") and name != "__init__":
                 # Skip dunder methods in SKIP_DUNDER
@@ -333,6 +339,32 @@ def check_function_docstrings(filepath):
                 missing.append((node.lineno, name, type(node).__name__))
 
     return missing
+
+
+def check_init_docstrings(filepath):
+    """Return ``(line_number, name)`` for every ``__init__`` docstring.
+
+    The project writes constructor documentation on the class docstring,
+    so ``__init__`` itself must stay undocumented.
+    """
+    import ast
+
+    try:
+        source = filepath.read_text(encoding="utf-8")
+    except Exception:
+        return []
+
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return []
+
+    hits = []
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            if node.name == "__init__" and ast.get_docstring(node):
+                hits.append((node.lineno, node.name))
+    return hits
 
 
 def get_docstring_ranges(source):
@@ -452,6 +484,48 @@ def fix_args_sections(source):
     return new_source, len(hits)
 
 
+def check_raw_docstrings(filepath):
+    """Docstrings containing a backslash must be raw literals.
+
+    A non-raw docstring either needs every backslash doubled or lets Python
+    interpret the escape (``\\d`` warns in 3.12); both render differently
+    from what the author wrote. Returns ``(line, name)`` hits.
+    """
+    import ast
+
+    try:
+        source = filepath.read_text(encoding="utf-8")
+        tree = ast.parse(source)
+    except (SyntaxError, UnicodeDecodeError):
+        return []
+
+    hits = []
+    targets = [("module", tree)]
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            targets.append((node.name, node))
+
+    for name, node in targets:
+        body = node.body
+        if not body:
+            continue
+        first = body[0]
+        if not (
+            isinstance(first, ast.Expr)
+            and isinstance(first.value, ast.Constant)
+            and isinstance(first.value.value, str)
+        ):
+            continue
+        segment = ast.get_source_segment(source, first.value) or ""
+        prefix = segment[: segment.find(segment.lstrip("rRbBuU")[0])] if segment else ""
+        if "\\" not in segment:
+            continue
+        if "r" in prefix.lower() or "r" in segment[:4].lower():
+            continue
+        hits.append((first.lineno, name))
+    return hits
+
+
 def check_args_format(py_file):
     """Check a file for Google-style ``Args:`` docstring sections."""
     try:
@@ -477,6 +551,8 @@ def main():
     errors = []
     func_errors = []
     args_errors = []
+    init_errors = []
+    raw_errors = []
     fixed_count = 0
     checked = 0
 
@@ -514,6 +590,10 @@ def main():
             missing_funcs = check_function_docstrings(py_file)
             for line_no, name, node_type in missing_funcs:
                 func_errors.append((py_file, line_no, name, node_type))
+            for line_no, name in check_init_docstrings(py_file):
+                init_errors.append((py_file, line_no, name))
+            for line_no, name in check_raw_docstrings(py_file):
+                raw_errors.append((py_file, line_no, name))
             continue
 
         result = check_file(py_file)
@@ -527,10 +607,22 @@ def main():
         for line_no, _indent in check_args_format(py_file):
             args_errors.append((py_file, line_no))
 
+        for line_no, name in check_init_docstrings(py_file):
+            init_errors.append((py_file, line_no, name))
+
+        for line_no, name in check_raw_docstrings(py_file):
+            raw_errors.append((py_file, line_no, name))
+
         checked += 1
 
-    if errors or func_errors or args_errors:
-        total = len(errors) + len(func_errors) + len(args_errors)
+    if errors or func_errors or args_errors or init_errors or raw_errors:
+        total = (
+            len(errors)
+            + len(func_errors)
+            + len(args_errors)
+            + len(init_errors)
+            + len(raw_errors)
+        )
         print(f"FAIL  docstrings  {total} issue(s)\n")
         for filepath, error_type in sorted(errors, key=lambda x: str(x[0])):
             rel_path = filepath.relative_to(ROOT)
@@ -544,6 +636,22 @@ def main():
             rel_path = filepath.relative_to(ROOT)
             print(
                 f"  {rel_path}:{line_no}  args-section: use numpydoc 'Parameters' instead"
+            )
+        for filepath, line_no, name in sorted(
+            init_errors, key=lambda x: (str(x[0]), x[1])
+        ):
+            rel_path = filepath.relative_to(ROOT)
+            print(
+                f"  {rel_path}:{line_no}  init-docstring: '__init__' must not have"
+                " a docstring (document the class instead)"
+            )
+        for filepath, line_no, name in sorted(
+            raw_errors, key=lambda x: (str(x[0]), x[1])
+        ):
+            rel_path = filepath.relative_to(ROOT)
+            print(
+                f"  {rel_path}:{line_no}  non-raw-docstring: docstring of '{name}'"
+                ' contains a backslash; use an r""" literal'
             )
         print(f"\nTotal: {total} issue(s)")
         return 1
