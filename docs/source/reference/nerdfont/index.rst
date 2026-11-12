@@ -47,7 +47,6 @@ with the ``manim`` command.
    from manim_extensions.nerdfont import NerdFontIcon
 
    class NerdfontIconExample(Scene):
-
        def construct(self):
            # Set the background color
            self.camera.background_color = "#ece6e2"
