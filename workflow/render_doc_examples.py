@@ -362,7 +362,9 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    out = Path(args.out)
+    # Absolute so the per-block ``os.chdir(workdir)`` cannot retarget the
+    # relative path another worker is about to enter.
+    out = Path(args.out).resolve()
     videos_out = out / "videos"
     images_out = out / "images"
     videos_out.mkdir(parents=True, exist_ok=True)
