@@ -4,9 +4,11 @@
 
 """JSON format parser for chemical files.
 
-This module provides the JSONParser class for parsing JSON format chemical files.
+This module provides the :class:`~manim_extensions.chemistry.utils.parsers.json_parser.JSONParser` class for parsing JSON format chemical files.
 
 """
+
+# unlinked-class-ok: Element
 
 import json
 
@@ -150,8 +152,9 @@ class JSONParser(BaseParser):
     Examples
     --------
     .. nbcell::
+       :files: acetone_2d.json
 
-       parsed_json = JSONParser(filename="examples/molecule_files/acetone_2d.json")
+       parsed_json = JSONParser(filename="acetone_2d.json")
        print(parsed_json.molecular_data[0][0])
 
     .. nbcell::

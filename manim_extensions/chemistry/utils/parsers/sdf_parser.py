@@ -3,9 +3,11 @@
 
 """SDF format parser for chemical files.
 
-This module provides the SDFParser class for parsing SDF format chemical files.
+This module provides the :class:`~manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser` class for parsing SDF format chemical files.
 
 """
+
+# unlinked-class-ok: Molecules
 
 from typing import List
 
@@ -17,7 +19,7 @@ class SDFParser(MolParser):
     """Parses sdf files.
     The sdf format is very similar to the mol format. It only contains some
     extra lines. By modifying the read file and removing those extra lines we
-    can use the logic already implemented in MolParser.
+    can use the logic already implemented in :class:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser`.
 
     The main difference between an sdf file and a mol file is an sdf file
     supports having multiple molecules, so we are returning a list of molecules
@@ -26,8 +28,9 @@ class SDFParser(MolParser):
     Examples
     --------
     .. nbcell::
+       :files: acetone_2d.sdf
 
-       parsed_sdf = SDFParser(filename="examples/molecule_files/acetone_2d.sdf")
+       parsed_sdf = SDFParser(filename="acetone_2d.sdf")
        print(parsed_sdf.molecular_data[0][0])
 
     .. nbcell::

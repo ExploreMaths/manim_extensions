@@ -4,7 +4,7 @@
 
 """XML format parser for chemical files.
 
-This module provides the XMLParser class for parsing XML format chemical files.
+This module provides the :class:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser` class for parsing XML format chemical files.
 
 """
 
@@ -23,8 +23,9 @@ class XMLParser(BaseParser):
     Examples
     --------
     .. nbcell::
+       :files: acetone_2d.xml
 
-       parsed_xml = XMLParser(filename="examples/molecule_files/acetone_2d.xml")
+       parsed_xml = XMLParser(filename="acetone_2d.xml")
        print(parsed_xml.atoms_data)
 
     .. nbcell::

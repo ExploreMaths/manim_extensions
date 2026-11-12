@@ -3,7 +3,7 @@
 
 """MOL format parser for chemical files.
 
-This module provides the MolParser class for parsing MOL format chemical files.
+This module provides the :class:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser` class for parsing MOL format chemical files.
 
 """
 
@@ -18,9 +18,10 @@ class MolParser(BaseParser):
     Examples
     --------
     .. nbcell::
+       :files: acetone_2d.mol
 
        parsed_mol = MolParser(
-           filename="examples/molecule_files/mol_files/acetone_2d.mol"
+           filename="acetone_2d.mol"
        )
        print(parsed_mol.atoms_data)
 

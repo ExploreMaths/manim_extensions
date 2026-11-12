@@ -23,7 +23,6 @@ Usage:
 """
 
 import argparse
-import hashlib
 import json
 import multiprocessing
 import os
@@ -38,10 +37,19 @@ import traceback
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+DOCS = ROOT / "docs" / "source"
+sys.path.insert(0, str(DOCS / "_extensions"))
+
+from manim_files import (  # noqa: E402
+    copy_assets,
+    example_digest,
+    parse_file_list,
+    resolve_assets,
+)
+
 # Ensure the source package shadows any stale installed copy in workers.
 sys.path.insert(0, str(ROOT))
 
-DOCS = ROOT / "docs" / "source"
 SRC = ROOT / "manim_extensions"
 
 # Same exclusions as the docs build: doc-build tooling and testing helpers
@@ -181,7 +189,7 @@ def extract_blocks(path: Path):
             opt = OPTION_RE.match(lines[j])
             if opt:
                 name = opt.group(1)
-                if name == "quality":
+                if name in ("quality", "files"):
                     options[name] = lines[j].split(":", 2)[-1].strip()
                 else:
                     options[name] = True
@@ -210,9 +218,11 @@ def extract_blocks(path: Path):
             continue
         base = min(len(l) - len(l.lstrip()) for l in content if l.strip())
         code = "\n".join(l[base:] if l.strip() else "" for l in content)
+        requested = parse_file_list(options.get("files", ""))
         blocks.append(
             {
                 "class_name": class_name,
+                "assets": resolve_assets(requested, ROOT),
                 "save_last_frame": "save_last_frame" in options,
                 "save_as_gif": "save_as_gif" in options,
                 "quality": QUALITY_MAP.get(options.get("quality", "")),
@@ -224,10 +234,9 @@ def extract_blocks(path: Path):
     return blocks
 
 
-def output_name(class_name: str, code: str) -> str:
+def output_name(class_name: str, code: str, assets=None) -> str:
     user_code = normalize_code(code)
-    digest = hashlib.md5(chr(10).join(user_code).encode()).hexdigest()[:8]
-    return f"{class_name}-{digest}"
+    return example_digest(class_name, user_code, assets or [])
 
 
 # The docs build executes every example with manim_directive.py's globals,
@@ -238,8 +247,8 @@ DIRECTIVE_FILE = str(DOCS / "_extensions" / "manim_directive.py")
 
 def render_block(task):
     """Render one example in a subprocess. Returns (key, src, ok, error, quality)."""
-    class_name, code, save_last_frame, save_as_gif, quality, workdir = task
-    output_file = output_name(class_name, code)
+    class_name, code, save_last_frame, save_as_gif, quality, workdir, assets = task
+    output_file = output_name(class_name, code, assets)
     q = quality or "example_quality"
     try:
         import logging
@@ -283,6 +292,7 @@ def render_block(task):
         ]
         previous_cwd = os.getcwd()
         os.chdir(workdir)
+        copy_assets(assets, Path(workdir))
         try:
             with tempconfig(example_config):
                 exec(
@@ -366,7 +376,9 @@ def main() -> int:
         if only and only not in str(path).replace("\\", "/"):
             continue
         for block in extract_blocks(path):
-            block["output_file"] = output_name(block["class_name"], block["code"])
+            block["output_file"] = output_name(
+                block["class_name"], block["code"], block["assets"]
+            )
             block["effective_quality"] = (
                 block.get("quality")
                 or (f"{args.quality}_quality" if args.quality else None)
@@ -435,6 +447,7 @@ def main() -> int:
                 block["save_as_gif"],
                 block["effective_quality"],
                 str(workdir),
+                block["assets"],
             )
         )
 

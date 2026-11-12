@@ -40,18 +40,29 @@ Options:
 * ``:prompt-in:`` / ``:prompt-out:`` — cell prompts. When omitted, the
   prompts are ``In [n]:`` / ``Out[n]:`` with ``n`` increasing across the
   cells of each document, like a notebook's execution counters.
+* ``:files:`` — bundled sample files the cell reads, by bare name
+  (``:files: acetone_2d.mol``); the cell then uses ``"acetone_2d.mol"``
+  and the file card is rendered below the cell.
 """
 
 COUNTER_KEY = "nbcell_counter"
 
+from pathlib import Path
+
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
+from docutils.statemachine import StringList
 from sphinx import addnodes
 
 try:
     from nbcell_hash import normalize_code
 except ImportError:  # pragma: no cover - direct file execution
     from .nbcell_hash import normalize_code
+
+try:
+    from manim_files import files_rst, parse_file_list, resolve_assets
+except ImportError:  # pragma: no cover - direct file execution
+    from .manim_files import files_rst, parse_file_list, resolve_assets
 
 
 _cache = None
@@ -104,6 +115,7 @@ class NBCell(Directive):
         "output-language": directives.unchanged,
         "prompt-in": directives.unchanged,
         "prompt-out": directives.unchanged,
+        "files": directives.unchanged,
     }
 
     def run(self):
@@ -142,6 +154,19 @@ class NBCell(Directive):
             code, code, language=language, classes=["input_area"]
         )
         result = [input_outer]
+
+        names = parse_file_list(self.options.get("files", ""))
+        if names:
+            root = Path(__file__).resolve().parents[3]
+            cards = files_rst(resolve_assets(names, root))
+            if cards:
+                card_nodes = nodes.container(classes=["nbcell-files"])
+                self.state.nested_parse(
+                    StringList(cards.split("\n")),
+                    self.content_offset,
+                    card_nodes,
+                )
+                result.append(card_nodes)
 
         if output:
             out_lang = self.options.get("output-language", "none")
@@ -188,6 +213,8 @@ def _adjust_prompt_width(app, doctree, docname):
             "div.nbinput.container div.prompt,"
             "div.nboutput.container div.prompt"
             f"{{width:{max_len + 1}ch}}"
+            "div.nbcell-files.container"
+            f"{{padding-left:{max_len + 1}ch}}"
             "</style>"
         ),
         format="html",

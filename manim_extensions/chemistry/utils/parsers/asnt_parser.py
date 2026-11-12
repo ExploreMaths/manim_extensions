@@ -4,7 +4,7 @@
 
 """ASNT format parser for chemical files.
 
-This module provides the ASNTParser class for parsing ASNT format chemical files.
+This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser` class for parsing ASNT format chemical files.
 
 """
 
@@ -41,8 +41,9 @@ class ASNTParser(BaseParser):
     Examples
     --------
     .. nbcell::
+       :files: acetone_2d.asnt
 
-       parsed_asnt = ASNTParser(filename="examples/molecule_files/acetone_2d.asnt")
+       parsed_asnt = ASNTParser(filename="acetone_2d.asnt")
        print(parsed_asnt.atoms_data)
 
     .. nbcell::

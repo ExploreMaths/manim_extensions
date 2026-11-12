@@ -57,7 +57,6 @@ class SimpleLine(Line):
     """
 
     def __init__(self, *args, **kwargs):
-        """Initialize a single bond line and compute its unit direction vector."""
         super().__init__(*args, **kwargs)
         self.sheen_direction = self._get_unit_vector()
 
@@ -92,7 +91,6 @@ class DoubleLine(ArcBetweenPoints):
         radius: float | None = None,
         **kwargs,
     ):
-        """Initialize a double bond with two arcs between start and end points."""
         self.start = start
         self.end = end
         super().__init__(start=start, end=end, angle=angle, radius=radius, **kwargs)
@@ -157,7 +155,6 @@ class TripleLine(DoubleLine):
         *args,
         **kwargs,
     ):
-        """Initialize a triple bond by adding a central straight line to a double bond."""
         super().__init__(start=start, end=end, *args, **kwargs)
         middle_line = Line(start=start, end=end, *args, **kwargs)
         middle_line.sheen_direction = self.sheen_direction
@@ -188,38 +185,10 @@ class GraphMolecule(Graph, AbstractMolecule):
     Examples
     ---------
     .. manim:: GraphMoleculeFromFile
+       :files: acetone_2d.mol
 
        from manim import *
        from manim_extensions.chemistry import GraphMolecule
-
-       mol_file_data = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
-       with open("acetone_2d.mol", "w") as mol_file:
-           mol_file.write(mol_file_data)
 
        class GraphMoleculeFromFile(Scene):
            def construct(self):
@@ -230,40 +199,11 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Indicate(carbons))
                self.wait()
 
-
     .. manim:: GraphMoleculeFromFileWithHydrogens
+       :files: acetone_2d.mol
 
        from manim import *
        from manim_extensions.chemistry import GraphMolecule
-
-       mol_file_data = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
-       with open("acetone_2d.mol", "w") as mol_file:
-           mol_file.write(mol_file_data)
 
        class GraphMoleculeFromFileWithHydrogens(Scene):
            def construct(self):
@@ -279,42 +219,16 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Indicate(hydrogens))
                self.wait()
 
-
     .. manim:: GraphMoleculeFromString
+       :files: acetone_2d.mol
 
        from manim import *
+       from pathlib import Path
        from manim_extensions.chemistry import GraphMolecule
-
-       acetone_mol = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
 
        class GraphMoleculeFromString(Scene):
            def construct(self):
-               molecule = GraphMolecule.molecule_from_string(acetone_mol, format="mol")
+               molecule = GraphMolecule.molecule_from_string(Path("acetone_2d.mol").read_text(), format="mol")
                self.play(Write(molecule))
                self.play(Indicate(molecule.vertices[2]))
                self.wait()
@@ -322,42 +236,17 @@ class GraphMolecule(Graph, AbstractMolecule):
                content.scale_to_fit_height(4.5).move_to(ORIGIN)
 
     .. manim:: GraphMoleculeFromStringThreeD
+       :files: acetone_2d.mol
 
        from manim import *
+       from pathlib import Path
        from manim_extensions.chemistry import GraphMolecule
-
-       acetone_mol = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
 
        class GraphMoleculeFromStringThreeD(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(PI / 3, -PI / 4)
                molecule = GraphMolecule.molecule_from_string(
-                   acetone_mol, format="mol", ignore_hydrogens=False
+                   Path("acetone_2d.mol").read_text(), format="mol", ignore_hydrogens=False
                )
                molecule.scale(2)
                self.play(Write(molecule))
@@ -381,7 +270,6 @@ class GraphMolecule(Graph, AbstractMolecule):
         *args,
         **kwargs,
     ):
-        """Initialize a graph-based molecule from vertex and edge dicts with optional labels."""
         self.edges_dict = edges_dict
         labels = False
         if label or numeric_label:
@@ -767,7 +655,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            Array with the [x, y, z] coordinates of the atom.
+            :class:`~manim_extensions.algorithm.array.Array` with the [x, y, z] coordinates of the atom.
 
         Raises
         ------
@@ -779,8 +667,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
         """
         try:
@@ -810,8 +699,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
@@ -845,8 +735,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bond_center_by_index((2, 1)))
         """
         try:
@@ -913,8 +804,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = GraphMolecule.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = GraphMolecule.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bonds_center_by_index([(2, 1), (3, 1), (4, 1)]))
         """
         bonds_positions = []
@@ -972,7 +864,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         Parameters
         ----------
         mc_molecule
-            The origin MCMolecule.
+            The origin :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`.
 
         Returns
         -------

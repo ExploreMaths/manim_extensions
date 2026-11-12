@@ -3,7 +3,7 @@
 
 """2D molecule representation for Manim chemistry.
 
-This module provides the MMoleculeObject class for rendering molecules in 2D.
+This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.
 
 """
 
@@ -76,38 +76,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     Examples
     ---------
     .. manim:: MMoleculeFromFile
+       :files: acetone_2d.mol
 
        from manim import *
        from manim_extensions.chemistry import MMoleculeObject
-
-       mol_file_data = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
-       with open("acetone_2d.mol", "w") as mol_file:
-           mol_file.write(mol_file_data)
 
        class MMoleculeFromFile(Scene):
            def construct(self):
@@ -117,44 +89,18 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                self.play(Indicate(mmolecule.bonds[0]))
                self.wait()
 
-
     .. manim:: MMoleculeFromString
+       :files: acetone_2d.mol
        :save_last_frame:
 
        from manim import *
+       from pathlib import Path
        from manim_extensions.chemistry import MMoleculeObject
-
-       acetone_mol = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
 
        class MMoleculeFromString(Scene):
            def construct(self):
                mmolecule = MMoleculeObject.molecule_from_string(
-                   acetone_mol, format="mol"
+                   Path("acetone_2d.mol").read_text(), format="mol"
                )
                self.add(mmolecule)
                mmolecule.add_atom_numbering()
@@ -175,7 +121,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         rotate_bonds: list = [],
         **kwargs,
     ):
-        """Initialize a 2D molecule from atom and bond dicts with display options."""
         VGroup.__init__(self, **kwargs)
         self.atoms_dict = atoms_dict
         self.bonds_dict = bonds_dict
@@ -195,7 +140,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         self.move_to(ORIGIN)
 
     def get_atoms(self) -> tuple:
-        """Build MAtomObject instances from the atoms dict and return them as :class:`~manim.mobject.types.vectorized_mobject.VDict` + index dict.
+        """Build :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` instances from the atoms dict and return them as :class:`~manim.mobject.types.vectorized_mobject.VDict` + index dict.
 
         Returns
         -------
@@ -473,7 +418,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             )
 
     def from_mol_file(filename: str, *args, **kwargs) -> Self:
-        """Create an MMoleculeObject by parsing a .mol file.
+        """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.
 
         Parameters
         ----------
@@ -485,13 +430,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            A MMoleculeObject instance representing the result.
+            A :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` instance representing the result.
         """
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_mol_string(mol_string: str, *args, **kwargs) -> Self:
-        """Create an MMoleculeObject by parsing a mol-format string.
+        """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a mol-format string.
 
         Parameters
         ----------
@@ -503,7 +448,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            A MMoleculeObject instance representing the result.
+            A :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` instance representing the result.
         """
         # patched: the parser wants the lines of a MOL block, but the public
         # entry point is documented as taking the whole string.
@@ -513,7 +458,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
     def from_sdf_file(filename: str, *args, **kwargs) -> list[MMoleculeObject]:
-        """Create a list of MMoleculeObjects by parsing an .sdf file.
+        r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an .sdf file.
 
         Parameters
         ----------
@@ -535,7 +480,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         return moleculeObjects
 
     def from_sdf_string(sdf_string: str, *args, **kwargs) -> list[MMoleculeObject]:
-        """Create a list of MMoleculeObjects by parsing an sdf-format string.
+        r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an sdf-format string.
 
         Parameters
         ----------
@@ -566,7 +511,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            Array with the [x, y, z] coordinates of the atom.
+            :class:`~manim_extensions.algorithm.array.Array` with the [x, y, z] coordinates of the atom.
 
         Raises
         ------
@@ -578,8 +523,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
         """
         try:
@@ -609,8 +555,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
@@ -643,8 +590,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bond_center_by_index(1))
         """
         try:
@@ -711,8 +659,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bonds_center_by_index([1,2,3]))
         """
         bonds_positions = []
@@ -770,7 +719,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         Parameters
         ----------
         mc_molecule
-            The MCMolecule object to transform.
+            The :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` object to transform.
 
         Returns
         -------
@@ -844,39 +793,12 @@ class NamedMolecule(VGroup):
     Examples
     --------
     .. manim:: NamedMoleculeDocExample
+       :files: acetone_2d_named.mol
        :save_last_frame:
 
        from manim import *
+       from pathlib import Path
        from manim_extensions.chemistry import NamedMolecule
-
-       mol_file_data = (
-           "acetone\n"
-           "manim_extensions\n"
-           "\n"
-           "10 9 0 0 0 0 999 V2000\n"
-           "3.7320 0.7500 0.0000 O\n"
-           "2.8660 0.2500 0.0000 C\n"
-           "2.0000 0.7500 0.0000 C\n"
-           "2.8660 -0.7500 0.0000 C\n"
-           "2.3100 1.2869 0.0000 H\n"
-           "1.4631 1.0600 0.0000 H\n"
-           "1.6900 0.2131 0.0000 H\n"
-           "2.2460 -0.7500 0.0000 H\n"
-           "2.8660 -1.3700 0.0000 H\n"
-           "3.4860 -0.7500 0.0000 H\n"
-           "1 2 2\n"
-           "2 3 1\n"
-           "2 4 1\n"
-           "3 5 1\n"
-           "3 6 1\n"
-           "3 7 1\n"
-           "4 8 1\n"
-           "4 9 1\n"
-           "4 10 1\n"
-           "M  END\n"
-       )
-       with open("acetone_2d_named.mol", "w") as mol_file:
-           mol_file.write(mol_file_data)
 
        class NamedMoleculeDocExample(Scene):
            def construct(self):
@@ -897,7 +819,6 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ):
-        """Initialize a named molecule by pairing a molecule mobject with its name label."""
         if isinstance(molecule_data, MMoleculeObject):
             self.molecule = molecule_data
 
@@ -928,7 +849,7 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ) -> Self:
-        """Create a NamedMolecule from a .mol file and a name string.
+        """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a .mol file and a name string.
 
         Parameters
         ----------
@@ -951,7 +872,7 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-            A NamedMolecule instance representing the result.
+            A :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` instance representing the result.
         """
         molecule = MMoleculeObject.from_mol_file(filename, *args, **kwargs)
 
@@ -976,7 +897,7 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ) -> Self:
-        """Create a NamedMolecule from a mol-format string and a name string.
+        """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a mol-format string and a name string.
 
         Parameters
         ----------
@@ -999,7 +920,7 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-            A NamedMolecule instance representing the result.
+            A :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` instance representing the result.
         """
         molecule = MMoleculeObject.from_mol_string(mol_str, *args, **kwargs)
 
@@ -1024,7 +945,7 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ) -> list[NamedMolecule]:
-        """Create a list of NamedMolecules from an .sdf file with a shared base name.
+        r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an .sdf file with a shared base name.
 
         Parameters
         ----------
@@ -1076,7 +997,7 @@ class NamedMolecule(VGroup):
         *args,
         **kwargs,
     ) -> list[NamedMolecule]:
-        """Create a list of NamedMolecules from an sdf-format string with a shared base name.
+        r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an sdf-format string with a shared base name.
 
         Parameters
         ----------
@@ -1167,7 +1088,7 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-            Array with the [x, y, z] coordinates of the atom.
+            :class:`~manim_extensions.algorithm.array.Array` with the [x, y, z] coordinates of the atom.
 
         Raises
         ------
@@ -1179,8 +1100,9 @@ class NamedMolecule(VGroup):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atom_position_by_index(1))
         """
         try:
@@ -1210,8 +1132,9 @@ class NamedMolecule(VGroup):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_atoms_position_by_index([1,2,3]))
         """
         atoms_positions = []
@@ -1244,8 +1167,9 @@ class NamedMolecule(VGroup):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bond_center_by_index(1))
         """
         try:
@@ -1313,8 +1237,9 @@ class NamedMolecule(VGroup):
         Examples
         --------
         .. nbcell::
+           :files: dimethylpropane.mol
 
-           molecule = MMoleculeObject.molecule_from_file("examples/molecule_files/mol_files/dimethylpropane.mol")
+           molecule = MMoleculeObject.molecule_from_file("dimethylpropane.mol")
            print(molecule.find_bonds_center_by_index([1, 2, 3]))
         """
         bonds_positions = []

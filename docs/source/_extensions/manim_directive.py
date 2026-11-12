@@ -87,15 +87,14 @@ directive:
 """
 
 import csv
-import hashlib
 import itertools as it
 import os
 import re
 import shutil
 import sys
+import tempfile
 import textwrap
 from pathlib import Path
-import tempfile
 from timeit import timeit
 from typing import TYPE_CHECKING, Any, TypedDict
 
@@ -103,6 +102,14 @@ import jinja2
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
+from manim_files import (
+    copy_assets,
+    example_digest,
+    files_rst,
+    parse_file_list,
+    repo_root,
+    resolve_assets,
+)
 from sphinx.util import logging as sphinx_logging
 
 logger = sphinx_logging.getLogger(__name__)
@@ -181,6 +188,7 @@ class ManimDirective(Directive):
         ),
         "save_as_gif": bool,
         "save_last_frame": bool,
+        "files": lambda arg: parse_file_list(arg),
         "ref_modules": lambda arg: process_name_list(arg, "mod"),
         "ref_classes": lambda arg: process_name_list(arg, "class"),
         "ref_functions": lambda arg: process_name_list(arg, "func"),
@@ -269,6 +277,25 @@ class ManimDirective(Directive):
             line.strip() == "from manim import *" for line in user_code
         )
 
+        # patched: ``:files:`` lists bundled sample files the example reads.
+        # They are resolved inside the repository's ``examples/`` tree, copied
+        # into the scratch working directory, and shown as cards under the
+        # code block. Their contents take part in the output hash so editing a
+        # sample file invalidates the cached media.
+        requested_files = self.options.get("files", [])
+        root = repo_root(setup.confdir)
+        assets = resolve_assets(requested_files, root)
+        for name, asset in zip(requested_files, assets):
+            if asset is None:
+                logger.warning(
+                    "manim example %r references sample file %r, which was not "
+                    "found under %s. [%s]",
+                    clsname,
+                    name,
+                    "examples/",
+                    self.state.document.settings.env.docname,
+                )
+
         source_block_in = [
             ".. code-block:: python",
             "",
@@ -283,10 +310,7 @@ class ManimDirective(Directive):
         # patched: hash-based output name (deterministic across builds, see
         # header note) so CI can pre-render examples and RTD can reuse them
         # via the MANIM_MEDIA_CACHE_DIR directory.
-        output_file = (
-            f"{clsname}-"
-            f"{hashlib.md5(chr(10).join(user_code).encode()).hexdigest()[:8]}"
-        )
+        output_file = example_digest(clsname, user_code, assets)
         config.assets_dir = Path(setup.confdir) / "_static"
         config.progress_bar = "none"
         config.verbosity = "WARNING"
@@ -342,13 +366,14 @@ class ManimDirective(Directive):
                 # files) without polluting the source tree with stray writes.
                 previous_cwd = os.getcwd()
                 work_cwd = Path(tempfile.mkdtemp(prefix="manim-example-"))
-                repo_root = Path(setup.confdir).resolve().parents[1]
-                if (repo_root / "examples").is_dir():
+                root_dir = repo_root(setup.confdir)
+                if (root_dir / "examples").is_dir():
                     try:
-                        (work_cwd / "examples").symlink_to(repo_root / "examples")
+                        (work_cwd / "examples").symlink_to(root_dir / "examples")
                     except OSError:
                         pass
                 os.chdir(work_cwd)
+                copy_assets(assets, work_cwd)
                 try:
                     with tempconfig(example_config):
                         run_time = timeit(
@@ -432,7 +457,9 @@ class ManimDirective(Directive):
             target = Path(setup.app.builder.outdir, filesrc.relative_to(setup.confdir))
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(filesrc, target)
+        files_block = files_rst(assets)
         rendered_template = jinja2.Template(TEMPLATE).render(
+            files_block=files_block,
             clsname=clsname,
             clsname_lowercase=clsname.lower(),
             hide_source=hide_source,
@@ -557,6 +584,8 @@ TEMPLATE = r"""
 {% endif %}
 {% if not hide_source %}
 {{ source_block }}
+
+{{ files_block }}
 
 {{ ref_block }}
 

@@ -149,3 +149,29 @@ div.nboutput.container {
 div.nboutput.container .copybtn {
     display: none;
 }
+
+/* Sample files attached to a cell (``:files:``). The cards sit between the
+ * input and the output, indented to the code column by the per-document
+ * padding-left that nbcell_directive injects next to the prompt width. */
+div.nbcell-files.container {
+    /* Same single gap value the manim examples use, so the gaps above,
+       between two cards and below stay equal. */
+    --manim-file-gap: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+div.nbcell-files .manim-example-files {
+    /* One gap value for every side: code -> cards, cards -> cards,
+       cards -> output. */
+    padding: 0;
+    margin: var(--manim-file-gap) 0;
+}
+
+@media (max-width: 540px) {
+    /* Prompt column is stacked above the code here, so drop the indent.
+       Doubling the class outranks the injected style of equal specificity. */
+    div.nbcell-files.container.container {
+        padding-left: 0;
+    }
+}

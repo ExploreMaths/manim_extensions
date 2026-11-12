@@ -12,6 +12,8 @@ objects.
 
 """
 
+# unlinked-class-ok: Select
+
 from __future__ import annotations
 
 from manim import (
@@ -119,7 +121,6 @@ class ChineseMathTex(MathTex):
         tex_to_color_map: dict[str, ParsableManimColor] | None = None,
         **kwargs,
     ):
-        """Initialize the ChineseMathTex instance."""
         if tex_to_color_map is None:
             tex_to_color_map = {}
         user_template = kwargs.pop("tex_template", None)
@@ -232,7 +233,6 @@ class LabelDot(VGroup):
         buff: float = 0.1,
         **kwargs,
     ):
-        """Initialize the LabelDot instance."""
         super().__init__(**kwargs)
         dot = Dot().move_to(dot_pos)
         label = MathTex(dot_label).next_to(dot, label_pos, buff=buff)
@@ -301,7 +301,6 @@ class MathTexLine(VGroup):
         buff: float = 0.5,
         **kwargs,
     ):
-        """Initialize the MathTexLine instance."""
         super().__init__()
         line = Line(**kwargs)
         tex = formula.next_to(line, direction, buff=buff)
@@ -351,7 +350,6 @@ class MathTexBrace(VGroup):
         buff: float = 0.5,
         **kwargs,
     ):
-        """Initialize the MathTexBrace instance."""
         super().__init__()
         brace = Brace(target, direction=direction, **kwargs)
         tex = formula.next_to(brace, direction, buff=buff)
@@ -399,7 +397,6 @@ class MathTexDoublearrow(VGroup):
         buff: float = 0.5,
         **kwargs,
     ):
-        """Initialize the MathTexDoublearrow instance."""
         super().__init__()
         doublearrow = DoubleArrow(**kwargs)
         tex = formula.next_to(doublearrow, direction, buff=buff)
@@ -455,7 +452,6 @@ class PerpendicularLine(Line):
         line: Line,
         **kwargs: Any,
     ):
-        """Initialize the PerpendicularLine instance."""
         if isinstance(point, Mobject):
             self.point = point.get_center()
         else:
@@ -515,7 +511,6 @@ class ExtendedLine(Line):
     """
 
     def __init__(self, line: Line, extend_distance: float):
-        """Initialize the ExtendedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
@@ -562,7 +557,6 @@ class ShortenedLine(Line):
     """
 
     def __init__(self, line: Line, shorten_distance: float):
-        """Initialize the ShortenedLine instance."""
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
@@ -631,7 +625,6 @@ class PerpendicularSign(VGroup):
         corner_direction: Vector3DLike | None = None,
         **kwargs: Any,
     ):
-        """Initialize the PerpendicularSign instance."""
         super().__init__(**kwargs)
 
         # Compute the intersection of the two lines
@@ -826,7 +819,6 @@ class FileTree(Code):
         color: ParsableManimColor = WHITE,
         **kwargs,
     ):
-        """Initialize the FileTree instance."""
         if not isinstance(tree_dict, dict):
             raise TypeError(f"tree_dict must be a dict, got {type(tree_dict).__name__}")
         self._tree = self._build_tree(tree_dict)
@@ -965,7 +957,6 @@ class CropImageMobject(ImageMobject):
         corner_radius: int | float = 0.1,
         **kwargs: Any,
     ):
-        """Initialize the CropImageMobject instance."""
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
@@ -1031,15 +1022,14 @@ class VideoMobject(ImageMobject):
     Examples
     --------
     .. manim:: VideoMobjectDocExample
+       :files: 3Blue1Brown.mp4
 
        from manim import *
-       from pathlib import Path
        from manim_extensions import VideoMobject
 
        class VideoMobjectDocExample(Scene):
            def construct(self):
-               path = str(Path(__file__).resolve().parent.parent / "_static" / "3Blue1Brown.mp4")
-               vid = VideoMobject(path)
+               vid = VideoMobject("3Blue1Brown.mp4")
                self.add(vid)
                vid.play(self)
     """
@@ -1047,7 +1037,6 @@ class VideoMobject(ImageMobject):
     def __init__(
         self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
     ):
-        """Initialize the VideoMobject instance."""
         cv2 = require("video", "cv2")
 
         self.filename = filename
@@ -1312,7 +1301,6 @@ class ColorText(Text):
         font_size: float = 28,
         **kwargs,
     ):
-        """Initialize the ColorText instance."""
         if name is not None:
             super().__init__(
                 str(name), color=color, font=font, font_size=font_size, **kwargs
@@ -1403,7 +1391,6 @@ class Trail(VGroup):
         rate_func: Callable[[float], float] | None = None,
         **kwargs,
     ):
-        """Initialize the Trail instance."""
         super().__init__(**kwargs)
         self.max_width = max_width
         self.nums = nums
@@ -1551,7 +1538,6 @@ class ShadowAround(VGroup):
         show_basic_shape: bool = True,
         **kwargs,
     ):
-        """Initialize the ShadowAround instance."""
         super().__init__(**kwargs)
         self.shadow_color = shadow_color
         self.shadow_opacity = shadow_opacity
@@ -1643,7 +1629,6 @@ class ObjectBorder(VGroup):
         corner_radius: float = 0.06,
         **kwargs,
     ):
-        """Initialize the ObjectBorder instance."""
         super().__init__(**kwargs)
         self.obj = obj
         self.buff = buff
@@ -1741,7 +1726,6 @@ class ThreeDVector(VGroup):
         fill_opacity: float = 0.9,
         **kwargs,
     ):
-        """Initialize the ThreeDVector instance."""
         super().__init__(**kwargs)
         self.radius = radius
         self.color = color
@@ -1832,7 +1816,6 @@ class TreeDiagram(VGroup):
         item_scale: float = 0.7,
         **kwargs,
     ):
-        """Initialize the TreeDiagram instance."""
         super().__init__(**kwargs)
         self.branch_color = branch_color
         self.branch_opacity = branch_opacity

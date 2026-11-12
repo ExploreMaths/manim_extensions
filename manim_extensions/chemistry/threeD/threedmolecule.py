@@ -3,7 +3,7 @@
 
 """3D molecule representation for Manim chemistry.
 
-This module provides the ThreeDMolecule class for rendering molecules in 3D.
+This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.
 
 """
 
@@ -19,7 +19,7 @@ from ..molecule import AbstractMolecule
 
 
 class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
-    """Draws a 3D Molecule.
+    """Draws a 3D :class:`~manim_extensions.chemistry.molecule.molecule.Molecule`.
 
     Requires using opengl renderer.
 
@@ -50,7 +50,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
            def construct(self):
                config.renderer = "opengl"
                molecule = GraphMolecule.molecule_from_file(
-                   "../examples/molecule_files/mol_files/acetone_3d.mol"
+                   "examples/molecule_files/mol_files/acetone_3d.mol"
                )
                self.wait()
                self.play(Write(molecule))
@@ -65,7 +65,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
            def construct(self):
                config.renderer = "opengl"
                molecule = ThreeDMolecule.molecule_from_file(
-                   "../examples/molecule_files/mol_files/acetone_3d.mol",
+                   "examples/molecule_files/mol_files/acetone_3d.mol",
                    ignore_hydrogens=False
                )
                self.wait()
@@ -114,7 +114,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         *mobjects,
         **kwargs,
     ):
-        """Initialize a 3D molecule from atom and bond dicts, requires OpenGL renderer."""
         if config.renderer != RendererType.OPENGL:
             raise Exception(
                 "ThreeDMolecule requires using a OpenGL renderer. You can use it adding the `--renderer=opengl` flag or adding `config.renderer = opengl` to your python file."
@@ -133,7 +132,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         self.move_to(ORIGIN)
 
     def get_atoms_from_csv(self) -> OpenGLGroup:
-        """Build ThreeDAtom objects from the atoms dict, optionally loading element data from CSV.
+        """Build :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom` objects from the atoms dict, optionally loading element data from CSV.
 
         Returns
         -------
@@ -157,7 +156,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return atoms
 
     def get_bonds(self) -> OpenGLGroup:
-        """Build ThreeDBond objects connecting atoms based on the bonds dict.
+        """Build :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDBond` objects connecting atoms based on the bonds dict.
 
         Returns
         -------
@@ -191,7 +190,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         Parameters
         ----------
         mc_molecule
-            The origin MCMolecule.
+            The origin :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`.
 
         Returns
         -------
@@ -240,7 +239,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         return atoms, bonds
 
     def from_mol_file(filename: str, source_csv: str | None) -> Self:
-        """Create a ThreeDMolecule by parsing a .mol file.
+        """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a .mol file.
 
         Parameters
         ----------
@@ -251,13 +250,13 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-            A ThreeDMolecule instance representing the result.
+            A :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` instance representing the result.
         """
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
     def from_mol_string(mol_string: str, source_csv: str | None) -> Self:
-        """Create a ThreeDMolecule by parsing a mol-format string.
+        """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a mol-format string.
 
         Parameters
         ----------
@@ -268,7 +267,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-            A ThreeDMolecule instance representing the result.
+            A :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` instance representing the result.
         """
         # patched: accept the whole MOL block here, not only its lines.
         if isinstance(mol_string, str):

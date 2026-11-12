@@ -37,6 +37,9 @@
 .admonition-manim-example .highlight {
     border-radius: 0;
     border: none;
+    /* Long code lines must scroll inside the block instead of widening the
+       admonition, otherwise the file cards below overflow on narrow screens. */
+    min-width: 0;
 }
 
 /* Example cards nest pre inside the admonition container whose em chain
@@ -444,4 +447,106 @@ dl.py.property > dt.sig a.headerlink {
     -webkit-mask-size: contain;
     mask-size: contain;
     vertical-align: middle;
+}
+
+/* Sample files used by a ``.. manim::`` example, shown as attachment rows
+   below the example's source block, two files per line.  All five gaps --
+   above the cards, left, right, between two cards, and below the cards --
+   come from the single --manim-file-gap value so they stay equal. */
+.admonition-manim-example {
+    --manim-file-gap: 0.9rem;
+}
+
+.manim-example-files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--manim-file-gap);
+    /* Padding instead of side margins: as a stretched flex item the side
+       margins collapse and the cards end up flush with the border. */
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 var(--manim-file-gap) var(--manim-file-gap);
+    margin: var(--manim-file-gap) 0 0;
+}
+
+.manim-file-row {
+    flex: 1 1 19rem;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--color-background-border);
+    border-radius: 0.6rem;
+    background: var(--color-background-secondary);
+}
+
+/* Phone-sized viewports: one file per line instead of two. */
+@media (max-width: 48em) {
+    .manim-file-row {
+        flex-basis: 100%;
+    }
+}
+
+.manim-file-badge {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 0.32rem;
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.manim-file-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.manim-file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-foreground-primary);
+    font-weight: 600;
+}
+
+.manim-file-size {
+    color: var(--color-foreground-muted);
+    font-size: 0.72em;
+}
+
+.manim-file-actions {
+    display: flex;
+    gap: 0.28rem;
+    flex: 0 0 auto;
+}
+
+.manim-file-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border: 1px solid var(--color-background-border);
+    border-radius: 50%;
+    color: var(--color-foreground-secondary);
+    text-decoration: none !important;
+}
+
+.manim-file-action:hover {
+    color: var(--color-foreground-primary);
+    border-color: var(--color-foreground-muted);
+}
+
+.manim-file-action svg {
+    width: 0.95rem;
+    height: 0.95rem;
 }

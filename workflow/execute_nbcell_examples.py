@@ -41,6 +41,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "docs" / "source" / "_extensions"))
 
+from manim_files import parse_file_list, resolve_asset  # noqa: E402
 from nbcell_hash import normalize_code  # noqa: E402
 
 NBCELL_RE = re.compile(r"( *)\.\. nbcell::")
@@ -137,6 +138,7 @@ def collect_cells(only=None):
                         "language": options.get("language", "python"),
                         "console": "prompt-in" in options,
                         "pytb": options.get("output-language") == "pytb",
+                        "files": parse_file_list(options.get("files", "")),
                     }
                 )
         if cells:
@@ -277,11 +279,14 @@ def main():
     executed = failed = 0
     for rel, doc in sorted(docs.items()):
         cwd = prepare_cwd()
+        for cell in doc["cells"]:
+            for name in cell.get("files", []):
+                asset = resolve_asset(name, ROOT)
+                if asset is not None:
+                    shutil.copyfile(asset.path, cwd / asset.name)
         try:
             results = run_document(doc["module"], doc["cells"], cwd)
         finally:
-            import shutil
-
             shutil.rmtree(cwd, ignore_errors=True)
         for cell in doc["cells"]:
             res = results.get(cell["hash"])
