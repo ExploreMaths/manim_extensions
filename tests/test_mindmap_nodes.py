@@ -7,7 +7,7 @@ from manim import Text
 
 from manim_extensions.mindmap.nodes.node import (
     Node,
-    NodeSate,
+    NodeState,
     NodeStyle,
     bfs_walker,
     dfs_walker,
@@ -29,7 +29,7 @@ def test_node_geometry_and_defaults():
     node = Node(Text("label"), buff=0.3)
 
     assert node.width > node.vmobject.width
-    assert node.node_state is NodeSate.INSERT
+    assert node.node_state is NodeState.INSERT
     assert node.parent is None
     assert node.children == []
 
@@ -50,7 +50,7 @@ def test_scale_updates_dimensions():
     node.scale(2)
 
     assert node.width == width * 2
-    assert node.node_state is NodeSate.SCALE
+    assert node.node_state is NodeState.SCALE
 
 
 def test_remove_child_marks_state():
@@ -58,7 +58,7 @@ def test_remove_child_marks_state():
 
     root.remove_child(first)
 
-    assert first.node_state is NodeSate.REMOVE
+    assert first.node_state is NodeState.REMOVE
 
 
 def test_dfs_walker_pre_order():

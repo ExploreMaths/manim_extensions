@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-NodeSate
-========
+NodeState
+=========
 
-.. autoclass:: manim_extensions.mindmap.nodes.node.NodeSate
+.. autoclass:: manim_extensions.mindmap.nodes.node.NodeState
    :show-inheritance:

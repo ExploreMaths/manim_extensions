@@ -7,7 +7,7 @@ import pytest
 from manim import Scene, Text
 
 from manim_extensions.mindmap.animations import LayoutAnimation
-from manim_extensions.mindmap.nodes import Node, NodeSate
+from manim_extensions.mindmap.nodes import Node, NodeState
 
 
 def build_tree():
@@ -24,11 +24,11 @@ def build_tree():
 
 def test_insert_state_is_promoted_to_display():
     scene, root, children = build_tree()
-    children[0].node_state = NodeSate.INSERT
+    children[0].node_state = NodeState.INSERT
 
     animation = LayoutAnimation(scene, root)
 
-    assert children[0].node_state == NodeSate.DISPLAY
+    assert children[0].node_state == NodeState.DISPLAY
     assert len(animation.animations) >= 1
 
 
@@ -36,7 +36,7 @@ def test_insert_state_is_promoted_to_display():
 def test_remove_state_unlinks_node_from_parent(victim):
     scene, root, children = build_tree()
     removed = children[victim]
-    removed.node_state = NodeSate.REMOVE
+    removed.node_state = NodeState.REMOVE
 
     animation = LayoutAnimation(scene, root)
 
@@ -46,9 +46,9 @@ def test_remove_state_unlinks_node_from_parent(victim):
 
 def test_display_state_is_kept():
     scene, root, children = build_tree()
-    children[0].node_state = NodeSate.DISPLAY
+    children[0].node_state = NodeState.DISPLAY
 
     animation = LayoutAnimation(scene, root)
 
-    assert children[0].node_state == NodeSate.DISPLAY
+    assert children[0].node_state == NodeState.DISPLAY
     assert len(animation.animations) >= 0

@@ -859,7 +859,7 @@
  "manim_extensions.mindmap.mindmap.mindmap.StandardMap",
  "manim_extensions.mindmap.mindmap.mindmap.TimeLine",
  "manim_extensions.mindmap.nodes.node.Node",
- "manim_extensions.mindmap.nodes.node.NodeSate",
+ "manim_extensions.mindmap.nodes.node.NodeState",
  "manim_extensions.mindmap.nodes.node.NodeStyle",
  "manim_extensions.mindmap.nodes.node.bfs_walker",
  "manim_extensions.mindmap.nodes.node.dfs_walker",

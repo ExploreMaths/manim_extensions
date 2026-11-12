@@ -23,6 +23,8 @@ v1.0.7 :bdg-warning-line:`In Development`
 
 **Fixed**
 
+* Corrected the spelling of the node-state enum to
+  :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash
   without the ``r`` prefix (``non-raw-docstring``), and every existing
   docstring now follows that rule.

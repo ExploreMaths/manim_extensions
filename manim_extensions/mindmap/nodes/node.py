@@ -26,7 +26,7 @@ from manim import (
     WHITE,
 )
 
-__all__ = ["Node", "NodeSate", "NodeStyle", "dfs_walker", "bfs_walker"]
+__all__ = ["Node", "NodeState", "NodeStyle", "dfs_walker", "bfs_walker"]
 from enum import Enum
 from collections import deque
 from typing import Generator, List, Dict, Self
@@ -37,29 +37,29 @@ from ..algorithms import LayoutType, LayoutDirection
 from manim.typing import Vector3D
 
 
-class NodeSate(Enum):
+class NodeState(Enum):
     r""":class:`~manim_extensions.mindmap.nodes.node.Node` state.
 
     Examples
     --------
-    .. manim:: NodeSateExample
+    .. manim:: NodeStateExample
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import Node
-       from manim_extensions.mindmap.nodes.node import NodeSate
+       from manim_extensions.mindmap.nodes.node import NodeState
 
-       class NodeSateExample(Scene):
+       class NodeStateExample(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
                child = Node(MathTex(r"\text{Child}", font_size=36))
                root.add_child(child)
-               child.node_state = NodeSate.DISPLAY
+               child.node_state = NodeState.DISPLAY
                tree = VGroup(root.surr_rect, root.vmobject,
                              child.surr_rect, child.vmobject)
                tree.arrange(RIGHT, buff=1.5)
                caption = Text(
-                   f"child.node_state = NodeSate.{child.node_state.name}",
+                   f"child.node_state = NodeState.{child.node_state.name}",
                    font_size=24,
                ).to_edge(DOWN)
                self.add(tree, caption)
@@ -303,7 +303,7 @@ class Node:
         self.parent = None
         self.neighbor = None  # neighbouring node
         self.children = []
-        self.node_state = NodeSate.INSERT  # node state
+        self.node_state = NodeState.INSERT  # node state
         self.side = None
 
     def scale(self, scale_factor: float):
@@ -314,7 +314,7 @@ class Node:
         scale_factor
             Uniform scaling factor applied to the node dimensions.
         """
-        self.node_state = NodeSate.SCALE
+        self.node_state = NodeState.SCALE
         self.scale_factor = scale_factor
         self.width *= scale_factor
         self.height *= scale_factor
@@ -329,7 +329,7 @@ class Node:
         """
         if self.children:
             child.neighbor = self.children[-1]
-            child.node_state = NodeSate.INSERT
+            child.node_state = NodeState.INSERT
         self.children.append(child)
         child.parent = self
 
@@ -348,7 +348,7 @@ class Node:
         """
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
-        child.node_state = NodeSate.REMOVE
+        child.node_state = NodeState.REMOVE
 
     def alter_content(self, vmobject: VMobject):
         """Replace the displayed content of the node.
@@ -358,7 +358,7 @@ class Node:
         vmobject
             New mobject used to render the node content.
         """
-        self.node_state = NodeSate.ALTER
+        self.node_state = NodeState.ALTER
         self.alter_vmobject = vmobject
         self.width = self.alter_vmobject.width + 2 * self.buff
         self.height = self.alter_vmobject.height + 2 * self.buff

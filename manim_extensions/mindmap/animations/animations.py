@@ -37,7 +37,7 @@ from typing import Dict, List
 import numpy as np
 
 from ..algorithms import LayoutFactory, LayoutType, LayoutConfig
-from ..nodes import Node, bfs_walker, NodeSate, NodeStyle
+from ..nodes import Node, bfs_walker, NodeState, NodeStyle
 from manim.typing import Point3D, Vector3D
 
 
@@ -78,9 +78,9 @@ def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
             node_.x = node_.y = node_.level = 0
             mobjs.extend([*node_.get_node_and_line_without_updater()])
 
-            if node_.node_state == NodeSate.REMOVE:
+            if node_.node_state == NodeState.REMOVE:
                 node_.parent = None
-            node_.node_state = NodeSate.INSERT
+            node_.node_state = NodeState.INSERT
     return FadeOut(*mobjs)
 
 
@@ -160,7 +160,7 @@ def animate_of_create(
     )
     if hasattr(node, "connector"):
         anims.append(Create(node.connector))
-    node.node_state = NodeSate.DISPLAY
+    node.node_state = NodeState.DISPLAY
     return anims
 
 
@@ -206,7 +206,7 @@ def animate_of_display(
 
        from manim import *
        from manim_extensions.mindmap import Node
-       from manim_extensions.mindmap.nodes import NodeSate
+       from manim_extensions.mindmap.nodes import NodeState
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_display
 
@@ -214,7 +214,7 @@ def animate_of_display(
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT), color=WHITE)
                self.add(root.vmobject, root.surr_rect)
-               root.node_state = NodeSate.DISPLAY
+               root.node_state = NodeState.DISPLAY
                anims = animate_of_display(
                    root, ORIGIN, RIGHT,
                    {'color': WHITE, 'stroke_width': 4},
@@ -311,7 +311,7 @@ def animate_of_scale(
     node.change_connector(
         change_dir, change_layout, layout_type, direction, **line_styles
     )
-    node.node_state = NodeSate.DISPLAY
+    node.node_state = NodeState.DISPLAY
     return anims
 
 
@@ -383,7 +383,7 @@ def animate_of_alter(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
     ]
-    node.node_state = NodeSate.DISPLAY
+    node.node_state = NodeState.DISPLAY
     node.change_connector(
         change_dir, change_layout, layout_type, direction, **line_styles
     )
@@ -450,13 +450,13 @@ def animate_of_node(
     """
     args = (node, pos, direction, line_styles, node_styles, layout_type)
     match node.node_state:
-        case NodeSate.INSERT:
+        case NodeState.INSERT:
             anims = animate_of_create(*args)
-        case NodeSate.DISPLAY:
+        case NodeState.DISPLAY:
             anims = animate_of_display(*args, change_dir, change_layout)
-        case NodeSate.SCALE:
+        case NodeState.SCALE:
             anims = animate_of_scale(*args, change_dir, change_layout)
-        case NodeSate.ALTER:
+        case NodeState.ALTER:
             anims = animate_of_alter(*args, change_dir, change_layout)
     return anims
 
@@ -536,7 +536,7 @@ def animate_of_layout(
 
        from manim import *
        from manim_extensions.mindmap import Node
-       from manim_extensions.mindmap.nodes import NodeSate
+       from manim_extensions.mindmap.nodes import NodeState
        from manim_extensions.mindmap.algorithms import LayoutConfig, LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_layout
 
@@ -544,7 +544,7 @@ def animate_of_layout(
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
-               root.node_state = NodeSate.DISPLAY
+               root.node_state = NodeState.DISPLAY
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                a2 = Node(MathTex(r"\text{A}_2", font_size=36))
                b1 = Node(MathTex(r"\text{B}_1", font_size=36))
@@ -655,15 +655,15 @@ class AbstractLayoutAnimation(AnimationGroup):
         for node in bfs_walker(self.root):
             if node.vmobject not in self.scene.get_mobject_family_members():
                 match node.node_state:
-                    case NodeSate.INSERT:
+                    case NodeState.INSERT:
                         pass
-                    case NodeSate.DISPLAY:
-                        node.node_state = NodeSate.INSERT
-                    case NodeSate.REMOVE:
+                    case NodeState.DISPLAY:
+                        node.node_state = NodeState.INSERT
+                    case NodeState.REMOVE:
                         raise Exception(
                             f"{node.vmobject} is not on current scene,the animation of remove node is not supported"
                         )
-                    case NodeSate.SCALE:
+                    case NodeState.SCALE:
                         raise Exception(
                             f"{node.vmobject} is not on current scene,the animation of scale node is not supported"
                         )
@@ -673,9 +673,9 @@ class AbstractLayoutAnimation(AnimationGroup):
                         )
             else:
                 match node.node_state:
-                    case NodeSate.INSERT:
-                        node.node_state = NodeSate.DISPLAY
-                    case NodeSate.REMOVE:
+                    case NodeState.INSERT:
+                        node.node_state = NodeState.DISPLAY
+                    case NodeState.REMOVE:
                         parent = node.parent
                         if parent is None:
                             remove_nodes.append(node)
@@ -694,7 +694,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                             remove_nodes.append(node)
                         except ValueError:
                             raise ValueError(f"Node {node} is not a child of {parent}")
-                    case NodeSate.SCALE | NodeSate.DISPLAY | NodeSate.ALTER:
+                    case NodeState.SCALE | NodeState.DISPLAY | NodeState.ALTER:
                         pass
         return remove_nodes
 
@@ -924,7 +924,7 @@ class RemoveNode(LayoutAnimation):
         for node in bfs_walker(self.root):
             if node.vmobject not in self.scene.get_mobject_family_members():
                 continue
-            node.node_state = NodeSate.INSERT
+            node.node_state = NodeState.INSERT
             group.add(*node.get_node_and_line_without_updater())
         return group
 

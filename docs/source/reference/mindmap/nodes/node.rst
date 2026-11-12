@@ -14,7 +14,7 @@ Classes
    :nosignatures:
 
    ~Node
-   ~NodeSate
+   ~NodeState
    ~NodeStyle
 
 Functions
@@ -28,5 +28,5 @@ Functions
    :maxdepth: 1
 
    node.Node
-   node.NodeSate
+   node.NodeState
    node.NodeStyle
