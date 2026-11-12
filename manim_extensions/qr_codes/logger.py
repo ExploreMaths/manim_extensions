@@ -11,6 +11,7 @@ One might argue, that a library should do any styling to the logging output, whi
 import logging
 from rich.logging import RichHandler
 
+#: Logging format used by the package logger.
 FORMAT = "%(message)s"
 logging.basicConfig(
     level=logging.INFO,

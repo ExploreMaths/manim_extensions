@@ -18,9 +18,11 @@ Options
 :recursive:  also enumerate every submodule of a package.
 :skip:       space separated names to exclude (decisions recorded in
               the page source).
-:values:     show each constant's value instead of only its name
+:values:     show each constant's full value instead of only its name
               (used by the colour palette, whose constants are
-              uninformative as bare names).
+              uninformative as bare names). Other constants get a
+              one-line ``Value:`` summary: scalars show their repr,
+              containers show their type and number of entries.
 :missing-only:
               emit entries only for names that are NOT documented
               anywhere else. The set of documented names comes from a
@@ -218,6 +220,29 @@ def classify(obj):
     return "data"
 
 
+def summarize_value(obj):
+    """Return a short, RST-safe description of a constant's value.
+
+    Containers are summarised by type and length instead of being expanded
+    into the page: the icon dictionary alone has 10 000 entries and would
+    otherwise produce a 250 KB signature.
+    """
+    if isinstance(obj, dict):
+        return f"``dict`` with {len(obj):,} entries"
+    if isinstance(obj, (list, tuple, set, frozenset)):
+        return f"``{type(obj).__name__}`` with {len(obj):,} items"
+    if isinstance(obj, str):
+        if len(obj) <= 100:
+            return "``" + repr(obj).replace("``", "`") + "``"
+        return f"``str`` with {len(obj):,} characters"
+    if obj is None or isinstance(obj, (bool, int, float, complex)):
+        return f"``{obj!r}``"
+    text = repr(obj)
+    if len(text) <= 100:
+        return "``" + text.replace("``", "`") + "``"
+    return f"``{type(obj).__name__}`` object"
+
+
 class AutoAllDirective(Directive):
     """Expand into autodoc directives for public names of a module."""
 
@@ -293,15 +318,21 @@ class AutoAllDirective(Directive):
                 elif kind == "function":
                     lines += [f".. autofunction:: {key}", ""]
                 elif "values" in self.options:
-                    # Opt-in pages (the colour palette) show the value next
-                    # to the name; every other constants page stays a plain
-                    # name list.
+                    # Opt-in pages (the colour palette) show the full value
+                    # next to the name; every other constants page gets the
+                    # one-line summary below.
                     lines += [f".. autodata:: {key}", ""]
                 else:
-                    # Constants are not expanded by default: show the name
-                    # (which the py domain turns into a reference) and the
-                    # docstring instead of the raw value.
-                    lines += [f".. autodata:: {key}", "   :no-value:", ""]
+                    # Show the name and docstring, plus a one-line value
+                    # summary.  Expanding a dict/list value would put
+                    # thousands of entries into the signature.
+                    lines += [
+                        f".. autodata:: {key}",
+                        "   :no-value:",
+                        "",
+                        f"   :Value: {summarize_value(obj)}",
+                        "",
+                    ]
 
         # legal for every name to be filtered out (skip / missing-only);
         # the directive then simply emits nothing

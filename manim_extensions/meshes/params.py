@@ -22,7 +22,7 @@ from ..utils.deps import require
 
 # map from param name to type and default value
 
-# basic_manim_3d_mesh_default_params
+#: Default parameters for the basic 3-D mesh.
 BM3DM: DefaultParameters = {
     "display_vertices": (bool, False),
     "display_edges": (bool, True),
@@ -39,7 +39,7 @@ BM3DM: DefaultParameters = {
     "pre_function_handle_to_anchor_scale_factor": (float, 0.00001),
 }
 
-# basic_manim_2d_mesh_default_params
+#: Default parameters for the basic 2-D mesh.
 BM2DM: DefaultParameters = {
     "display_vertices": (bool, False),
     "display_edges": (bool, True),

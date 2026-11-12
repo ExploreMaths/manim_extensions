@@ -353,6 +353,7 @@ def setup(app: Sphinx) -> dict:
     return metadata
 
 
+#: Jinja template for rendering a Manim example block.
 TEMPLATE = r"""
 {% if not hide_source %}
 .. raw:: html

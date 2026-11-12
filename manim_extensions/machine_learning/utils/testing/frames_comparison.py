@@ -22,9 +22,11 @@ from typing import Callable
 
 from _pytest.fixtures import FixtureRequest
 
+#: Name of the scene parameter accepted by the test decorator.
 SCENE_PARAMETER_NAME = "scene"
 _tests_root_dir_path = Path(__file__).absolute().parents[2]
 print(f"Tests root path: {_tests_root_dir_path}")
+#: Directory containing the graphical-unit control data.
 PATH_CONTROL_DATA = _tests_root_dir_path / Path("control_data", "graphical_units_data")
 
 

@@ -23,6 +23,10 @@ v1.0.7 :bdg-warning-line:`In Development`
 
 **Fixed**
 
+* Constant entries no longer render as empty blocks: re-exported constants
+  carry a ``#:`` docstring, and ``autoall`` adds a one-line ``Value:``
+  summary (for example, ``SYMBOLS_UNICODE`` is a ``dict`` with 10,083
+  entries) instead of hiding the value entirely.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash

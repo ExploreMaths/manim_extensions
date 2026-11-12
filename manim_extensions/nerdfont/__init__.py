@@ -9,6 +9,9 @@ though the package works with current manim.
 """
 
 from .icons import _install_font_linux, NerdFontIcon
-from .icons_dict import SYMBOLS_UNICODE
+from .icons_dict import SYMBOLS_UNICODE as _SYMBOLS_UNICODE
+
+#: Mapping from Nerd Font icon name to its Unicode codepoint.
+SYMBOLS_UNICODE = _SYMBOLS_UNICODE
 
 __all__ = ["NerdFontIcon", "SYMBOLS_UNICODE", "_install_font_linux"]
