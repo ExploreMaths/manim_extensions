@@ -13,11 +13,11 @@
 
 <p align="center">
   <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/v/manim-extensions?style=flat&logo=python&logoColor=white&label=PyPI%20Version" alt="PyPI Version" /></a>
-  <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/pyversions/manim-extensions?style=flat&logo=python&logoColor=white&label=Python%20Versions" alt="Python Versions" /></a>
+  <a href="https://pypi.org/project/manim-extensions/"><img src="https://img.shields.io/pypi/pyversions/manim-extensions?style=flat&label=Python%20Versions" alt="Python Versions" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" alt="CI" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" alt="Validate" /></a>
   <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white&label=Documentation" alt="Documentation" /></a>
-  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/coverage.json&label=Coverage&logo=pytest&logoColor=white" alt="Coverage" /></a>
+  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/coverage.json&label=Coverage" alt="Coverage" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat&label=License" alt="License" /></a>
 </p>
 
