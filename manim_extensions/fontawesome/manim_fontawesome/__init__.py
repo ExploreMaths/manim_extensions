@@ -4165,13 +4165,13 @@ class Brand:
 
     Examples
     --------
-    .. manim:: BrandDocExample
+    .. manim:: Brand
        :save_last_frame:
 
        from manim import *
        from manim_extensions.fontawesome.manim_fontawesome import brand
 
-       class BrandDocExample(Scene):
+       class Brand(Scene):
            def construct(self):
                self.camera.background_color = BLACK
                self.add(brand.python)
@@ -4192,13 +4192,13 @@ class Regular:
 
     Examples
     --------
-    .. manim:: RegularDocExample
+    .. manim:: Regular
        :save_last_frame:
 
        from manim import *
        from manim_extensions.fontawesome.manim_fontawesome import regular
 
-       class RegularDocExample(Scene):
+       class Regular(Scene):
            def construct(self):
                self.camera.background_color = BLACK
                self.add(regular.heart)
@@ -4219,13 +4219,13 @@ class Solid:
 
     Examples
     --------
-    .. manim:: SolidDocExample
+    .. manim:: Solid
        :save_last_frame:
 
        from manim import *
        from manim_extensions.fontawesome.manim_fontawesome import solid
 
-       class SolidDocExample(Scene):
+       class Solid(Scene):
            def construct(self):
                self.camera.background_color = BLACK
                rocket = solid.rocket

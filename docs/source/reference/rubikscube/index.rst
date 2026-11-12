@@ -40,12 +40,12 @@ Creating a RubiksCube
 After creating the :class:`~manim_extensions.rubikscube.cube.RubiksCube`, it may be necessary to scale it to
 comfortably see the cube in the camera's frame.
 
-.. manim:: FadeInExample
+.. manim:: CubeFadeIn
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class FadeInExample(ThreeDScene):
+   class CubeFadeIn(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -63,12 +63,12 @@ The ``colors`` parameter accepts a list of six colours in the order
 ``[Up, Right, Front, Down, Left, Back]``. The default is
 ``[WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"]``.
 
-.. manim:: ColorExample
+.. manim:: CubeColors
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class ColorExample(ThreeDScene):
+   class CubeColors(ThreeDScene):
        def construct(self):
            cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, PURE_YELLOW, PINK, "#00FF00"]).scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -136,12 +136,12 @@ sides.
 This method works for a cube of any dimensions, as long as a color is
 provided for each :class:`~manim_extensions.rubikscube.cubie.Cubie` face.
 
-.. manim:: StateExample
+.. manim:: CubeState
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class StateExample(ThreeDScene):
+   class CubeState(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            cube.set_state("BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR")
@@ -168,12 +168,12 @@ that can be passed.
 Dimension
 ^^^^^^^^^
 
-.. manim:: TwoDimensionalExample
+.. manim:: TwoDimensionalCube
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class TwoDimensionalExample(ThreeDScene):
+   class TwoDimensionalCube(ThreeDScene):
        def construct(self):
            cube = RubiksCube(2).scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -186,12 +186,12 @@ Dimension
 
 An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on a non-3-dimensional cube:
 
-.. manim:: TwoDimensionalStateExample
+.. manim:: TwoDimensionalCubeState
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class TwoDimensionalStateExample(ThreeDScene):
+   class TwoDimensionalCubeState(ThreeDScene):
        def construct(self):
            cube = RubiksCube(2).scale(0.6)
            cube.set_state("RUFBLLBDRDDBRUUDLFFBFRLU")
@@ -212,13 +212,13 @@ An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on 
    a long time to render. In the future, OpenGL rendering will vastly improve
    this.
 
-.. manim:: TenDimensionalExample
+.. manim:: TenDimensionalCube
    :save_last_frame:
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class TenDimensionalExample(ThreeDScene):
+   class TenDimensionalCube(ThreeDScene):
        def construct(self):
            cube = RubiksCube(10).scale(0.2)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -241,12 +241,12 @@ The ``z_offset`` determines how close/far :class:`~manim_extensions.rubikscube.c
 The default value for all three offsets is ``2.1``. Adjusting these offsets
 changes the "gap" between :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s.
 
-.. manim:: ThreeOffsetExample
+.. manim:: CubieOffsets
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class ThreeOffsetExample(ThreeDScene):
+   class CubieOffsets(ThreeDScene):
        def construct(self):
            cube = RubiksCube(x_offset=3, y_offset=3, z_offset=3).scale(0.5)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -257,12 +257,12 @@ changes the "gap" between :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s.
            self.play(Rotate(cube, 2 * PI, axis=UP, run_time=3))
            self.play(FadeOut(cube))
 
-.. manim:: YOffsetExample
+.. manim:: CubieYOffset
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class YOffsetExample(ThreeDScene):
+   class CubieYOffset(ThreeDScene):
        def construct(self):
            cube = RubiksCube(y_offset=4).scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -323,12 +323,12 @@ So, to access the :class:`~manim_extensions.rubikscube.cubie.Cubie` at coordinat
 ``cube.cubies[0, 0, 0]`` will return it. This holds true no matter the
 dimension of the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 
-.. manim:: IndicateCubieExample
+.. manim:: IndicateCubie
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class IndicateCubieExample(ThreeDScene):
+   class IndicateCubie(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -358,12 +358,12 @@ value of 0 will give you the front face. When
 just one "slice" of a :class:`~manim_extensions.rubikscube.cube.RubiksCube` at a time. This is achievable
 with numpy indexing.
 
-.. manim:: IndicateFaceExample
+.. manim:: IndicateFace
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
 
-   class IndicateFaceExample(ThreeDScene):
+   class IndicateFace(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -398,13 +398,13 @@ cube without using this pre-made animation. While possible, it's not worth it.
 CubeMove animation
 ^^^^^^^^^^^^^^^^^^
 
-.. manim:: CubeMoveExample
+.. manim:: CubeRotation
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
    from manim_extensions.rubikscube.cube_animations import CubeMove
 
-   class CubeMoveExample(ThreeDScene):
+   class CubeRotation(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -449,13 +449,13 @@ with a state string returns the move list directly, e.g.:
 Putting it All Together
 -----------------------
 
-.. manim:: AllTogetherExample
+.. manim:: CubeShowcase
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube
    from manim_extensions.rubikscube.cube_animations import CubeMove
 
-   class AllTogetherExample(ThreeDScene):
+   class CubeShowcase(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,

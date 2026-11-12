@@ -66,7 +66,7 @@ class DecisionTreeEmbedding(VGroup):
 
     Examples
     --------
-    .. manim:: DecisionTreeEmbeddingExample
+    .. manim:: DecisionTreeEmbeddingScene
        :save_last_frame:
 
        from manim import *
@@ -74,7 +74,7 @@ class DecisionTreeEmbedding(VGroup):
        from sklearn.tree import DecisionTreeClassifier
        from manim_extensions.machine_learning.decision_tree.decision_tree_embedding import DecisionTreeEmbedding
 
-       class DecisionTreeEmbeddingExample(Scene):
+       class DecisionTreeEmbeddingScene(Scene):
            def construct(self):
                iris = load_iris()
                points = iris.data[:, :2]

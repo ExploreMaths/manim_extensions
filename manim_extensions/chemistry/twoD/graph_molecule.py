@@ -43,13 +43,13 @@ class SimpleLine(Line):
 
     Examples
     --------
-    .. manim:: SimpleLineExample
+    .. manim:: SimpleLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.twoD.graph_molecule import SimpleLine
 
-       class SimpleLineExample(Scene):
+       class SimpleLineScene(Scene):
            def construct(self):
                line = SimpleLine(ORIGIN, 2 * RIGHT)
                line.scale(3)

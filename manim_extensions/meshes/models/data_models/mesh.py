@@ -76,13 +76,13 @@ class Mesh:
 
     Examples
     --------
-    .. manim:: MeshExample
+    .. manim:: MeshScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.meshes.models.data_models.mesh import Mesh
 
-       class MeshExample(Scene):
+       class MeshScene(Scene):
            def construct(self):
                vertices = [[0, 0, 0], [2, 0, 0], [1, 1.5, 0]]
                faces = [[0, 1, 2]]

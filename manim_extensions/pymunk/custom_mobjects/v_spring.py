@@ -39,13 +39,13 @@ class VSpring(Line):
 
     Examples
     --------
-    .. manim:: VSpringDocExample
+    .. manim:: VSpring
        :save_last_frame:
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VSpringDocExample(Scene):
+       class VSpring(Scene):
            def construct(self):
                springs = VGroup(
                    VSpring(LEFT * 4 + UP * 2, RIGHT * 4 + UP * 2,

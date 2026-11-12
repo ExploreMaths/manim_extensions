@@ -39,13 +39,13 @@ class Row(VGroup):
 
     Examples
     --------
-    .. manim:: RowDocExample
+    .. manim:: RowScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.table import Row
 
-       class RowDocExample(Scene):
+       class RowScene(Scene):
            def construct(self):
                row = Row(["Alice", "25", "Paris"])
                row[1].set_font_color(RED)

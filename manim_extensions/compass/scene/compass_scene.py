@@ -50,12 +50,12 @@ class CompassScene(MovingCameraScene):
 
     Examples
     --------
-    .. manim:: CompassSceneExample
+    .. manim:: CompassSceneUsage
 
        from manim import *
        from manim_extensions.compass import CompassScene
 
-       class CompassSceneExample(CompassScene):
+       class CompassSceneUsage(CompassScene):
            def construct(self):
                self.play(FadeIn(self.compass, self.ruler, self.pencil))
 

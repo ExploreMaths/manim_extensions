@@ -40,13 +40,13 @@ class WeightedLine(Line):
     create your graph, you can pass the edge data in the ``edge_config``
     dictionary.
 
-    .. manim:: WeightedLineDocExample
+    .. manim:: WeightedLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.weighted_line import WeightedLine
 
-       class WeightedLineDocExample(Scene):
+       class WeightedLineScene(Scene):
            def construct(self):
                weighted_line = WeightedLine(
                    0,
@@ -56,13 +56,13 @@ class WeightedLine(Line):
                weighted_line.scale(4)
                self.add(weighted_line)
 
-    .. manim:: WeightedLineGraphDocExample
+    .. manim:: WeightedLineGraph
        :save_last_frame:
 
        from manim import *
        from manim_extensions.weighted_line import WeightedLine
 
-       class WeightedLineGraphDocExample(Scene):
+       class WeightedLineGraph(Scene):
            def construct(self):
                vertices = [1, 2, 3, 4, 5, 6, 7, 8]
                edges = [(1, 7), (1, 8), (2, 3), (2, 4), (2, 5),
@@ -76,14 +76,14 @@ class WeightedLine(Line):
                                         (7, 4): {"stroke_color": RED, "weight": 5}})
                self.add(g)
 
-    .. manim:: WeightedLineNetworkXDocExample
+    .. manim:: WeightedLineNetworkX
        :save_last_frame:
 
        import networkx as nx
        from manim import *
        from manim_extensions.weighted_line import WeightedLine
 
-       class WeightedLineNetworkXDocExample(Scene):
+       class WeightedLineNetworkX(Scene):
            def construct(self):
                G = nx.Graph()
                G.add_nodes_from([1, 2, 3, 4, 5, 6, 7, 8])

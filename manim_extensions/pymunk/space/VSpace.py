@@ -48,12 +48,12 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: VSpaceExample
+    .. manim:: VSpace
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VSpaceExample(SpaceScene):
+       class VSpace(SpaceScene):
            def construct(self):
                # VSpace lives inside SpaceScene as self.vspace; here its
                # collision handler and segment query are exercised directly

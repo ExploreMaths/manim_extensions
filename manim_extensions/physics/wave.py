@@ -46,12 +46,12 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: RadialWaveExample
+    .. manim:: RadialWaveScene
 
        from manim import *
        from manim_extensions.physics.wave import RadialWave
 
-       class RadialWaveExample(ThreeDScene):
+       class RadialWaveScene(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
                wave = RadialWave(
@@ -166,12 +166,12 @@ class LinearWave(RadialWave):
 
     Examples
     --------
-    .. manim:: LinearWaveExample
+    .. manim:: LinearWaveScene
 
        from manim import *
        from manim_extensions.physics.wave import LinearWave
 
-       class LinearWaveExample(ThreeDScene):
+       class LinearWaveScene(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(60 * DEGREES, -45 * DEGREES)
                wave = LinearWave(x_range=(-4, 4), y_range=(-4, 4))
@@ -240,12 +240,12 @@ class StandingWave(ParametricFunction):
 
     Examples
     --------
-    .. manim:: StandingWaveExample
+    .. manim:: StandingWaveScene
 
        from manim import *
        from manim_extensions.physics.wave import StandingWave
 
-       class StandingWaveExample(Scene):
+       class StandingWaveScene(Scene):
            def construct(self):
                wave1 = StandingWave(1)
                wave2 = StandingWave(2)

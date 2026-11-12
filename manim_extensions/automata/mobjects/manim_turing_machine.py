@@ -19,13 +19,13 @@ class ManimTuringMachine(VGroup):
 
     Examples
     --------
-    .. manim:: ManimTuringMachineExample
+    .. manim:: ManimTuringMachineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_turing_machine import ManimTuringMachine
 
-       class ManimTuringMachineExample(Scene):
+       class ManimTuringMachineScene(Scene):
            def construct(self):
                tm = ManimTuringMachine()
                symbols = "0101"

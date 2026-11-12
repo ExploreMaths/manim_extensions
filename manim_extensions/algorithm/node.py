@@ -53,13 +53,13 @@ class NodeConfig:
 
     Examples
     --------
-    .. manim:: NodeConfigExample
+    .. manim:: NodeConfigScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.algorithm.node import Node, NodeConfig
 
-       class NodeConfigExample(Scene):
+       class NodeConfigScene(Scene):
            def construct(self):
                default_node = Node("default")
                NodeConfig.WIDTH = 1.5
@@ -88,13 +88,13 @@ class NodeSolt:
 
     Examples
     --------
-    .. manim:: NodeSoltExample
+    .. manim:: NodeSlot
        :save_last_frame:
 
        from manim import *
        from manim_extensions.algorithm.node import Node, NodeSolt
 
-       class NodeSoltExample(Scene):
+       class NodeSlot(Scene):
            def construct(self):
                a = Node("A")
                b = Node("B").next_to(a, RIGHT, buff=2.5)
@@ -157,13 +157,13 @@ class Node(VMobject):
 
     Examples
     --------
-    .. manim:: NodeExample
+    .. manim:: NodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.algorithm.node import Node
 
-       class NodeExample(Scene):
+       class NodeScene(Scene):
            def construct(self):
                square_node = Node("42")
                circle_node = Node(
@@ -392,12 +392,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: SelectExample
+        .. manim:: Select
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class SelectExample(Scene):
+           class Select(Scene):
                def construct(self):
                    nodes = VGroup(*[Node(str(i)) for i in range(4)]).arrange(RIGHT, buff=0.5)
                    self.add(nodes)
@@ -436,12 +436,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: UnselectExample
+        .. manim:: Unselect
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class UnselectExample(Scene):
+           class Unselect(Scene):
                def construct(self):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
@@ -474,12 +474,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: UpdateValueExample
+        .. manim:: UpdateValue
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class UpdateValueExample(Scene):
+           class UpdateValue(Scene):
                def construct(self):
                    node = Node("0")
                    self.add(node)
@@ -513,12 +513,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: MoveAndOverWriteExample
+        .. manim:: MoveAndOverWrite
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class MoveAndOverWriteExample(Scene):
+           class MoveAndOverWrite(Scene):
                def construct(self):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
@@ -572,12 +572,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: CopyAndOverWriteExample
+        .. manim:: CopyAndOverWrite
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class CopyAndOverWriteExample(Scene):
+           class CopyAndOverWrite(Scene):
                def construct(self):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)
@@ -627,12 +627,12 @@ class Node(VMobject):
 
         Examples
         --------
-        .. manim:: SwapAndOverWriteExample
+        .. manim:: SwapAndOverWrite
 
            from manim import *
            from manim_extensions.algorithm.node import Node
 
-           class SwapAndOverWriteExample(Scene):
+           class SwapAndOverWrite(Scene):
                def construct(self):
                    a = Node("1")
                    b = Node("2").next_to(a, RIGHT)

@@ -23,14 +23,14 @@ class SeqObject(VGroup):
 
     Examples
     --------
-    .. manim:: SeqObjectExample
+    .. manim:: SeqObjectScene
 
        from manim import *
        from manim_extensions.sequence_diagram.seq_action import SeqAction
        from manim_extensions.sequence_diagram.seq_actor import SeqActor
        from manim_extensions.sequence_diagram.seq_object import SeqObject
 
-       class SeqObjectExample(Scene):
+       class SeqObjectScene(Scene):
            def construct(self):
                alice = SeqActor("Alice")
                bob = SeqActor("Bob")

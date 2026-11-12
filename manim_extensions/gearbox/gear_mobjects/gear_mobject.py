@@ -73,13 +73,13 @@ def involute_func(
 
     Examples
     --------
-    .. manim:: InvoluteFuncExample
+    .. manim:: InvoluteFunc
        :save_last_frame:
 
        from manim import *
        from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_func
 
-       class InvoluteFuncExample(Scene):
+       class InvoluteFunc(Scene):
            def construct(self):
                base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi, 50)
@@ -154,7 +154,7 @@ def involute_deriv_func(
 
     Examples
     --------
-    .. manim:: InvoluteDerivFuncExample
+    .. manim:: InvoluteDerivFunc
        :save_last_frame:
 
        from manim import *
@@ -163,7 +163,7 @@ def involute_deriv_func(
            involute_func,
        )
 
-       class InvoluteDerivFuncExample(Scene):
+       class InvoluteDerivFunc(Scene):
            def construct(self):
                base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi / 2, 20)
@@ -241,7 +241,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
 
     Examples
     --------
-    .. manim:: InvoluteHeightFuncExample
+    .. manim:: InvoluteHeightFunc
        :save_last_frame:
 
        from manim import *
@@ -250,7 +250,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
            involute_height_func,
        )
 
-       class InvoluteHeightFuncExample(Scene):
+       class InvoluteHeightFunc(Scene):
            def construct(self):
                base_circle = Circle(radius=1.0, color=GREY_B)
                k_val = np.pi / 4
@@ -288,13 +288,13 @@ def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
 
     Examples
     --------
-    .. manim:: InvolutePointGenExample
+    .. manim:: InvolutePointGen
        :save_last_frame:
 
        from manim import *
        from manim_extensions.gearbox.gear_mobjects.gear_mobject import involute_point_gen
 
-       class InvolutePointGenExample(Scene):
+       class InvolutePointGen(Scene):
            def construct(self):
                base_circle = Circle(radius=1.0, color=GREY_B)
                t = np.linspace(0, np.pi / 2, 10)
@@ -364,12 +364,12 @@ class Gear(VMobject):
 
     Examples
     --------
-    .. manim:: GearDocExample
+    .. manim:: GearScene
 
        from manim import *
        from manim_extensions.gearbox import Gear
 
-       class GearDocExample(Scene):
+       class GearScene(Scene):
            def construct(self):
                gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
                gear2 = Gear(25, stroke_opacity=0, fill_color=RED, fill_opacity=1)
@@ -792,12 +792,12 @@ class Gear(VMobject):
 
         Examples
         --------
-        .. manim:: GearMeshToDocExample
+        .. manim:: GearMeshingScene
 
            from manim import *
            from manim_extensions.gearbox import Gear
 
-           class GearMeshToDocExample(Scene):
+           class GearMeshingScene(Scene):
                def construct(self):
                    # smaller gear
                    gear1 = Gear(
@@ -1050,12 +1050,12 @@ class Rack(VMobject):
 
     Examples
     --------
-    .. manim:: RackExample
+    .. manim:: RackScene
 
        from manim import *
        from manim_extensions.gearbox import Gear, Rack
 
-       class RackExample(Scene):
+       class RackScene(Scene):
            def construct(self):
                gear = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
                rack = Rack(

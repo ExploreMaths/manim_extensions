@@ -31,7 +31,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: VectorLayerDocExample
+    .. manim:: VectorLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -45,7 +45,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class VectorLayerDocExample(Scene):
+       class VectorLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    [

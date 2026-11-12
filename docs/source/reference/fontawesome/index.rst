@@ -29,13 +29,13 @@ Each style is a namespace whose attributes are the corresponding SVG
 icons — attribute access returns a ready-made
 :class:`~manim.mobject.svg.svg_mobject.SVGMobject`:
 
-.. manim:: FontAwesomeHeartExample
+.. manim:: FontAwesomeHeart
    :save_last_frame:
 
    from manim import *
    from manim_extensions.fontawesome import solid, regular, brand
 
-   class FontAwesomeHeartExample(Scene):
+   class FontAwesomeHeart(Scene):
        def construct(self):
            self.camera.background_color = BLACK
            icon = solid.heart          # an SVGMobject, ready to add to a scene
@@ -71,12 +71,12 @@ Gallery
 A wall of solid icons, staggered in and spun like on the
 `Font Awesome homepage <https://fontawesome.com>`_:
 
-.. manim:: FontAwesomeWallExample
+.. manim:: FontAwesomeWall
 
    from manim import *
    from manim_extensions.fontawesome import solid, regular, brand, list_icons
 
-   class FontAwesomeWallExample(Scene):
+   class FontAwesomeWall(Scene):
        def construct(self):
            config.background_color = BLACK  # so icons default to white
            self.camera.background_color = BLACK  # render the frame black

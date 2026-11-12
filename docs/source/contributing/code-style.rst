@@ -134,10 +134,10 @@ Spacing is enforced too: a section header must be **separated from the preceding
     
         Examples
         --------
-        .. manim:: ScaleExample
+        .. manim:: Scale
             :save_last_frame:
     
-            class ScaleExample(Scene):
+            class Scale(Scene):
                 def construct(self):
                     ...
         """

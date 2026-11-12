@@ -42,14 +42,14 @@ class NodeState(Enum):
 
     Examples
     --------
-    .. manim:: NodeStateExample
+    .. manim:: NodeStateScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.nodes.node import NodeState
 
-       class NodeStateExample(Scene):
+       class NodeStateScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
                child = Node(MathTex(r"\text{Child}", font_size=36))
@@ -88,13 +88,13 @@ class NodeStyle:
 
     Examples
     --------
-    .. manim:: NodeStyleExample
+    .. manim:: NodeStyleScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.nodes.node import NodeStyle
 
-       class NodeStyleExample(Scene):
+       class NodeStyleScene(Scene):
            def construct(self):
                style = NodeStyle()
                rows = VGroup()
@@ -260,14 +260,14 @@ class Node:
 
     Examples
     --------
-    .. manim:: NodeDocExample
+    .. manim:: NodeTree
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutType
 
-       class NodeDocExample(Scene):
+       class NodeTree(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36), color=BLUE)
                child = Node(MathTex(r"\text{Child}", font_size=36), color=GREEN)

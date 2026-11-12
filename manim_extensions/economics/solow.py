@@ -66,12 +66,12 @@ class SolowDiagram(EconDiagram):
 
     Examples
     --------
-    .. manim:: SolowDiagramDocExample
+    .. manim:: SolowDiagramScene
 
        from manim import *
        from manim_extensions.economics import SolowDiagram
 
-       class SolowDiagramDocExample(Scene):
+       class SolowDiagramScene(Scene):
            def construct(self):
                diagram = SolowDiagram(s=0.3, alpha=0.5, delta=0.1,
                                       n=0.05, g=0.05, show_production=True)

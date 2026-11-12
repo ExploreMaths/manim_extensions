@@ -34,13 +34,13 @@ class Array(VMobject):
 
     Examples
     --------
-    .. manim:: ArrayExample
+    .. manim:: ArrayScene
 
        from manim import *
        from manim_extensions.algorithm.array import Array
        from manim_extensions.algorithm.node import Node
 
-       class ArrayExample(Scene):
+       class ArrayScene(Scene):
            def construct(self):
                data = [-1, 0, 3, -43.12, " ", "abc"]
                arr = Array(data, total_width=10)

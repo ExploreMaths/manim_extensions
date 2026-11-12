@@ -70,12 +70,12 @@ class Table(VGroup):
     columns can be added and deleted again with animations.  Styling can
     be applied per header, per column or per cell.
 
-    .. manim:: TableDocExample
+    .. manim:: TableScene
 
        from manim import *
        from manim_extensions.table import Table
 
-       class TableDocExample(Scene):
+       class TableScene(Scene):
            def construct(self):
                data = [
                    ["Name", "Age", "City"],
@@ -89,12 +89,12 @@ class Table(VGroup):
                self.play(Circumscribe(table.get_column_by_name("Age")))
                self.wait()
 
-    .. manim:: TableRowOpsDocExample
+    .. manim:: TableRowOps
 
        from manim import *
        from manim_extensions.table import Table
 
-       class TableRowOpsDocExample(Scene):
+       class TableRowOps(Scene):
            def construct(self):
                table = Table([
                    ["Name", "Age", "City"],
@@ -111,12 +111,12 @@ class Table(VGroup):
                self.play(AnimationGroup(*anims, lag_ratio=0.05))
                self.wait()
 
-    .. manim:: TableColumnOpsDocExample
+    .. manim:: TableColumnOps
 
        from manim import *
        from manim_extensions.table import Table
 
-       class TableColumnOpsDocExample(Scene):
+       class TableColumnOps(Scene):
            def construct(self):
                table = Table([
                    ["ID", "Name"],
@@ -145,13 +145,13 @@ class Table(VGroup):
                    self.play(AnimationGroup(*shift_anims, lag_ratio=0.1))
                self.wait()
 
-    .. manim:: TableStylingDocExample
+    .. manim:: TableStyling
        :save_last_frame:
 
        from manim import *
        from manim_extensions.table import Table
 
-       class TableStylingDocExample(Scene):
+       class TableStyling(Scene):
            def construct(self):
                table = Table([
                    ["Product", "Category", "Price"],

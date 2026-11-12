@@ -112,6 +112,13 @@ jobs:
       - name: Check blank-line layout in manim examples
         run: python workflow/validate_example_spacing.py
 
+  validate-example-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that manim examples use descriptive class names
+        run: python workflow/validate_example_names.py
+
   validate-example-layout:
     runs-on: ubuntu-latest
     steps:

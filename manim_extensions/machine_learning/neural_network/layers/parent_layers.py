@@ -43,14 +43,14 @@ class NeuralNetworkLayer(ABC, Group):
 
     Examples
     --------
-    .. manim:: NeuralNetworkLayerExample
+    .. manim:: NeuralNetworkLayerScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
        from manim_extensions.machine_learning.neural_network.layers.parent_layers import NeuralNetworkLayer
 
-       class NeuralNetworkLayerExample(Scene):
+       class NeuralNetworkLayerScene(Scene):
            def construct(self):
                # NeuralNetworkLayer is abstract; FeedForwardLayer is a
                # concrete subclass.
@@ -133,14 +133,14 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: VGroupNeuralNetworkLayerExample
+    .. manim:: VGroupNeuralNetworkLayerScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
        from manim_extensions.machine_learning.neural_network.layers.parent_layers import VGroupNeuralNetworkLayer
 
-       class VGroupNeuralNetworkLayerExample(Scene):
+       class VGroupNeuralNetworkLayerScene(Scene):
            def construct(self):
                # VGroupNeuralNetworkLayer is abstract; FeedForwardLayer is a
                # concrete subclass.
@@ -196,7 +196,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: ConnectiveLayerExample
+    .. manim:: ConnectiveLayerScene
        :save_last_frame:
 
        from manim import *
@@ -204,7 +204,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
        from manim_extensions.machine_learning.neural_network.layers.parent_layers import ConnectiveLayer
 
-       class ConnectiveLayerExample(Scene):
+       class ConnectiveLayerScene(Scene):
            def construct(self):
                # ConnectiveLayer is abstract; FeedForwardToFeedForward is a
                # concrete subclass.
@@ -282,7 +282,7 @@ class BlankConnective(ConnectiveLayer):
 
     Examples
     --------
-    .. manim:: BlankConnectiveExample
+    .. manim:: BlankConnectiveScene
        :save_last_frame:
 
        from manim import *
@@ -290,7 +290,7 @@ class BlankConnective(ConnectiveLayer):
        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
        from manim_extensions.machine_learning.neural_network.layers.parent_layers import BlankConnective
 
-       class BlankConnectiveExample(Scene):
+       class BlankConnectiveScene(Scene):
            def construct(self):
                # BlankConnective is abstract (construct_layer is not
                # implemented); NeuralNetwork uses it for layer pairs without

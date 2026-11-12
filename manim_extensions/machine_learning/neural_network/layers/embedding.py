@@ -49,7 +49,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: EmbeddingLayerDocExample
+    .. manim:: EmbeddingLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -63,7 +63,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class EmbeddingLayerDocExample(Scene):
+       class EmbeddingLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    [

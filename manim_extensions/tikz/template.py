@@ -36,13 +36,13 @@ class TikzTemplate(TexTemplate):
 
     Examples
     --------
-    .. manim:: TikzTemplateExample
+    .. manim:: TikzTemplateScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.tikz.template import TikzTemplate
 
-       class TikzTemplateExample(Scene):
+       class TikzTemplateScene(Scene):
            def construct(self):
                template = TikzTemplate(
                    libraries=["arrows.meta"],

@@ -184,13 +184,13 @@ class NamedFormula(VGroup):
 
     Examples
     --------
-    .. manim:: NamedFormulaExample
+    .. manim:: NamedFormulaScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.twoD.chemical_formula import NamedFormula
 
-       class NamedFormulaExample(Scene):
+       class NamedFormulaScene(Scene):
            def construct(self):
                self.add(NamedFormula("Sodio", "Cloro", "NaCl",
                                      metal_color=BLUE, non_metal_color=GREEN))
@@ -367,13 +367,13 @@ class NamedComplexFormula(VGroup):
 
     Examples
     --------
-    .. manim:: NamedComplexFormulaExample
+    .. manim:: NamedComplexFormulaScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.twoD.chemical_formula import NamedComplexFormula
 
-       class NamedComplexFormulaExample(Scene):
+       class NamedComplexFormulaScene(Scene):
            def construct(self):
                self.add(NamedComplexFormula(
                    {"Cloruro de sodio": BLUE},

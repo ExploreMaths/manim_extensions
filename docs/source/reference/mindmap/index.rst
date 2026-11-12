@@ -55,13 +55,13 @@ objects and animate changes with the animation classes. Every animation takes
 the scene as its first argument and a dictionary mapping parent nodes to the
 nodes to insert:
 
-.. manim:: MindMapExample
+.. manim:: MindMapScene
    :ref_classes: ~manim_extensions.mindmap.nodes.node.Node ~manim_extensions.mindmap.animations.animations.InsertNode
 
    from manim import *
    from manim_extensions.mindmap import Node, InsertNode
 
-   class MindMapExample(Scene):
+   class MindMapScene(Scene):
        def construct(self):
            root = Node(Tex("Volume of a sphere").to_edge(LEFT))
            a1 = Node(Tex("3rd century BC"))

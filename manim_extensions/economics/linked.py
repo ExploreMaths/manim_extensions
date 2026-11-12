@@ -38,12 +38,12 @@ class LinkedISLM_ADAS(VGroup):
 
     Examples
     --------
-    .. manim:: LinkedISLMADASDocExample
+    .. manim:: LinkedISLMADAS
 
        from manim import *
        from manim_extensions.economics import LinkedISLM_ADAS
 
-       class LinkedISLMADASDocExample(Scene):
+       class LinkedISLMADAS(Scene):
            def construct(self):
                linked = LinkedISLM_ADAS(numbered_eq=True, show_arrows=True)
                self.play(Create(linked))

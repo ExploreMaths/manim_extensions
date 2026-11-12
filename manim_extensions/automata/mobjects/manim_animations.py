@@ -34,12 +34,12 @@ class ManimAnimations:
 
     Examples
     --------
-    .. manim:: ManimAnimationsExample
+    .. manim:: ManimAnimationsScene
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
 
-       class ManimAnimationsExample(Scene):
+       class ManimAnimationsScene(Scene):
            def construct(self):
                animations = ManimAnimations()
                state = Circle(radius=1)

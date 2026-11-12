@@ -77,7 +77,7 @@ class NeuralNetwork(Group):
 
     Examples
     --------
-    .. manim:: NeuralNetworkDocExample
+    .. manim:: NeuralNetworkScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -91,7 +91,7 @@ class NeuralNetwork(Group):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class NeuralNetworkDocExample(ThreeDScene):
+       class NeuralNetworkScene(ThreeDScene):
            def construct(self):
                nn = NeuralNetwork(
                    [

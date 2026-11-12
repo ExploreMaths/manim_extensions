@@ -23,14 +23,14 @@ class SigmoidFunction(ActivationFunction):
 
     Examples
     --------
-    .. manim:: SigmoidFunctionDocExample
+    .. manim:: SigmoidFunctionScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.activation_functions import (
            SigmoidFunction,
        )
 
-       class SigmoidFunctionDocExample(Scene):
+       class SigmoidFunctionScene(Scene):
            def construct(self):
                sigmoid = SigmoidFunction(x_range=[-5, 5], y_range=[0, 1])
                sigmoid.scale(4)

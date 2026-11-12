@@ -33,13 +33,13 @@ class Pencil(SVGMobject):
 
     Examples
     --------
-    .. manim:: PencilDocExample
+    .. manim:: PencilScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.compass import Pencil
 
-       class PencilDocExample(Scene):
+       class PencilScene(Scene):
            def construct(self):
                pencil = Pencil(height=3.2)
                self.add(pencil, Dot(pencil.get_nib(), color=RED).scale(1.5))
@@ -85,13 +85,13 @@ class Pencil(SVGMobject):
 
         Examples
         --------
-        .. manim:: MoveNidToDocExample
+        .. manim:: PencilNibAtOrigin
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Pencil
 
-           class MoveNidToDocExample(Scene):
+           class PencilNibAtOrigin(Scene):
                def construct(self):
                    target = Dot(ORIGIN, color=RED).scale(1.5)
                    pencil = Pencil(height=3.2).move_nid_to(ORIGIN)

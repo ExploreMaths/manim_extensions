@@ -91,14 +91,14 @@ class DivideAndConquer:
 
     Examples
     --------
-    .. manim:: DivideAndConquerExample
+    .. manim:: DivideAndConquerScene
 
        from manim import *
        from manim_extensions.meshes.templates import create_coplanar_points
        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
        from manim_extensions.meshes.delaunay.divide_and_conquer import DivideAndConquer
 
-       class DivideAndConquerExample(Scene):
+       class DivideAndConquerScene(Scene):
            def construct(self):
                # the mesh must only consist of vertices and display them and
                # the edges, else the algorithm is not visualized properly

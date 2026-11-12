@@ -32,13 +32,13 @@ class VConstraint(VGroup):
 
     Examples
     --------
-    .. manim:: VConstraintExample
+    .. manim:: VConstraintScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.pymunk.constraints.constraint import VConstraint
 
-       class VConstraintExample(Scene):
+       class VConstraintScene(Scene):
            def construct(self):
                mob_a = Dot(LEFT)
                mob_b = Dot(RIGHT)

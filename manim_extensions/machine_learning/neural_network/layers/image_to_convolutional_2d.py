@@ -41,7 +41,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Examples
     --------
-    .. manim:: RGBImageToConvolutionExample
+    .. manim:: RGBImageToConvolution
 
        import numpy as np
        from manim import *
@@ -51,7 +51,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
            NeuralNetwork,
        )
 
-       class RGBImageToConvolutionExample(ThreeDScene):
+       class RGBImageToConvolution(ThreeDScene):
            def construct(self):
                # Synthesize a small RGB image with one channel per colour
                yy, xx = np.mgrid[0:16, 0:16]

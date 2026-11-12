@@ -42,14 +42,14 @@ class SeqAction(AnimationGroup):
 
     Examples
     --------
-    .. manim:: SeqActionExample
+    .. manim:: SeqActionMessages
 
        from manim import *
        from manim_extensions.sequence_diagram.seq_action import SeqAction
        from manim_extensions.sequence_diagram.seq_actor import SeqActor
        from manim_extensions.sequence_diagram.seq_object import SeqObject
 
-       class SeqActionExample(Scene):
+       class SeqActionMessages(Scene):
            def construct(self):
                alice = SeqActor("Alice")
                bob = SeqActor("Bob")
@@ -62,14 +62,14 @@ class SeqAction(AnimationGroup):
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
 
-    .. manim:: SeqActionDocExample
+    .. manim:: SeqActionCamera
 
        from manim import *
        from manim_extensions.sequence_diagram.seq_action import SeqAction
        from manim_extensions.sequence_diagram.seq_actor import SeqActor
        from manim_extensions.sequence_diagram.seq_object import SeqObject
 
-       class SeqActionDocExample(MovingCameraScene):
+       class SeqActionCamera(MovingCameraScene):
            def construct(self):
                actor_client = SeqActor(name="client")
                actor_delivery = SeqActor(name="delivery")

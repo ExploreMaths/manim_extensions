@@ -94,13 +94,13 @@ class EconDiagram(VGroup):
 
     Examples
     --------
-    .. manim:: EconDiagramDocExample
+    .. manim:: EconDiagramScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.economics import EconDiagram
 
-       class EconDiagramDocExample(Scene):
+       class EconDiagramScene(Scene):
            def construct(self):
                diagram = EconDiagram()
                self.add(diagram)

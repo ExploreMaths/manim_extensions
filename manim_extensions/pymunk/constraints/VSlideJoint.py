@@ -56,12 +56,12 @@ class VSlideJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VSlideJointExample
+    .. manim:: VSlideJoint
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VSlideJointExample(SpaceScene):
+       class VSlideJoint(SpaceScene):
            def construct(self):
                # the motor slowly rotates the arm; the red link keeps the
                # small square between min_dist and max_dist

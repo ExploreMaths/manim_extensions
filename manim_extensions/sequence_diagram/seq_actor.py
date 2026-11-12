@@ -42,12 +42,12 @@ class SeqActor(VGroup):
 
     Examples
     --------
-    .. manim:: SeqActorExample
+    .. manim:: SeqActorScene
 
        from manim import *
        from manim_extensions.sequence_diagram.seq_actor import SeqActor
 
-       class SeqActorExample(Scene):
+       class SeqActorScene(Scene):
            def construct(self):
                alice = SeqActor("Alice").shift(LEFT * 2)
                bob = SeqActor("Bob").shift(RIGHT * 2)

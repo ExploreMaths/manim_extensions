@@ -64,12 +64,12 @@ class ConstantStrokeWidthScene(MovingCameraScene):
     line keeps its on-screen width, the lower one opts out with
     ``fixed_stroke_width=True`` and is drawn three times as thick:
 
-    .. manim:: ConstantStrokeWidthExample
+    .. manim:: ConstantStrokeWidth
 
        from manim import *
        from manim_extensions.scenes import ConstantStrokeWidthScene
 
-       class ConstantStrokeWidthExample(ConstantStrokeWidthScene):
+       class ConstantStrokeWidth(ConstantStrokeWidthScene):
            def construct(self):
                line1 = Line(LEFT, RIGHT, stroke_width=4).shift(0.3 * UP)
                line2 = Line(LEFT, RIGHT, stroke_width=4, fixed_stroke_width=True).shift(0.3 * DOWN)

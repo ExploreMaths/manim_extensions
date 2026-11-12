@@ -98,13 +98,13 @@ class ChineseMathTex(MathTex):
 
     Examples
     --------
-    .. manim:: ChineseMathTexDocExample
+    .. manim:: ChineseMathTexScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ChineseMathTex
 
-       class ChineseMathTexDocExample(Scene):
+       class ChineseMathTexScene(Scene):
            def construct(self):
                formula = ChineseMathTex(
                    r"面积 = \frac{1}{2} \times 底 \times 高",
@@ -209,13 +209,13 @@ class LabelDot(VGroup):
 
     Examples
     --------
-    .. manim:: LabelDotDocExample
+    .. manim:: LabelDotScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import LabelDot
 
-       class LabelDotDocExample(Scene):
+       class LabelDotScene(Scene):
            def construct(self):
                a = LabelDot("A", LEFT * 2.5, label_pos=UP, buff=0.15)
                b = LabelDot("B", RIGHT * 2.5, label_pos=UP, buff=0.15)
@@ -281,13 +281,13 @@ class MathTexLine(VGroup):
 
     Examples
     --------
-    .. manim:: MathTexLineDocExample
+    .. manim:: MathTexLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import MathTexLine
 
-       class MathTexLineDocExample(Scene):
+       class MathTexLineScene(Scene):
            def construct(self):
                line = MathTexLine(MathTex("y = x", font_size=72), direction=UP, color=BLUE)
                line.scale(4)
@@ -329,13 +329,13 @@ class MathTexBrace(VGroup):
 
     Examples
     --------
-    .. manim:: MathTexBraceDocExample
+    .. manim:: MathTexBraceScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import MathTexBrace
 
-       class MathTexBraceDocExample(Scene):
+       class MathTexBraceScene(Scene):
            def construct(self):
                expr = MathTex("1 + 2 + 3 + 4")
                brace = MathTexBrace(expr, MathTex(r"\sum_{i=1}^{4} i"), direction=DOWN)
@@ -376,13 +376,13 @@ class MathTexDoublearrow(VGroup):
 
     Examples
     --------
-    .. manim:: MathTexDoublearrowDocExample
+    .. manim:: MathTexDoubleArrow
        :save_last_frame:
 
        from manim import *
        from manim_extensions import MathTexDoublearrow
 
-       class MathTexDoublearrowDocExample(Scene):
+       class MathTexDoubleArrow(Scene):
            def construct(self):
                lhs = MathTex("(x-1)(x+1)").shift(LEFT * 2.2)
                rhs = MathTex("x^2 - 1").shift(RIGHT * 2.2)
@@ -430,13 +430,13 @@ class PerpendicularLine(Line):
 
     Examples
     --------
-    .. manim:: PerpendicularLineDocExample
+    .. manim:: PerpendicularLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import PerpendicularLine
 
-       class PerpendicularLineDocExample(Scene):
+       class PerpendicularLineScene(Scene):
            def construct(self):
                base = Line(LEFT * 3, RIGHT * 3)
                point = Dot(UP * 1.5, color=RED)
@@ -496,13 +496,13 @@ class ExtendedLine(Line):
 
     Examples
     --------
-    .. manim:: ExtendedLineDocExample
+    .. manim:: ExtendedLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ExtendedLine
 
-       class ExtendedLineDocExample(Scene):
+       class ExtendedLineScene(Scene):
            def construct(self):
                base = Line(LEFT, RIGHT, color=BLUE)
                ends = VGroup(Dot(base.get_start()), Dot(base.get_end()))
@@ -542,13 +542,13 @@ class ShortenedLine(Line):
 
     Examples
     --------
-    .. manim:: ShortenedLineDocExample
+    .. manim:: ShortenedLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ShortenedLine
 
-       class ShortenedLineDocExample(Scene):
+       class ShortenedLineScene(Scene):
            def construct(self):
                base = Line(LEFT * 3, RIGHT * 3, color=BLUE)
                ghost = base.copy().set_stroke(opacity=0.25)
@@ -603,13 +603,13 @@ class PerpendicularSign(VGroup):
 
     Examples
     --------
-    .. manim:: PerpendicularSignDocExample
+    .. manim:: PerpendicularSignScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import PerpendicularLine, PerpendicularSign
 
-       class PerpendicularSignDocExample(Scene):
+       class PerpendicularSignScene(Scene):
            def construct(self):
                base = Line(LEFT * 3, RIGHT * 3)
                perp = PerpendicularLine(UP * 1.5, base, color=YELLOW)
@@ -790,12 +790,12 @@ class FileTree(Code):
 
     Examples
     --------
-    .. manim:: FileTreeDocExample
+    .. manim:: FileTreeScene
 
        from manim import *
        from manim_extensions import FileTree
 
-       class FileTreeDocExample(Scene):
+       class FileTreeScene(Scene):
            def construct(self):
                tree = FileTree({
                    "src": {
@@ -933,14 +933,14 @@ class CropImageMobject(ImageMobject):
 
     Examples
     --------
-    .. manim:: CropImageMobjectDocExample
+    .. manim:: CropImageMobjectScene
        :save_last_frame:
 
        from manim import *
        import numpy as np
        from manim_extensions import CropImageMobject
 
-       class CropImageMobjectDocExample(Scene):
+       class CropImageMobjectScene(Scene):
            def construct(self):
                img = np.zeros((120, 120, 3), dtype=np.uint8)
                img[:] = (60, 120, 220)
@@ -1021,13 +1021,13 @@ class VideoMobject(ImageMobject):
 
     Examples
     --------
-    .. manim:: VideoMobjectDocExample
+    .. manim:: VideoMobjectScene
        :files: 3Blue1Brown.mp4
 
        from manim import *
        from manim_extensions import VideoMobject
 
-       class VideoMobjectDocExample(Scene):
+       class VideoMobjectScene(Scene):
            def construct(self):
                vid = VideoMobject("3Blue1Brown.mp4")
                self.add(vid)
@@ -1279,13 +1279,13 @@ class ColorText(Text):
 
     Examples
     --------
-    .. manim:: ColorTextDocExample
+    .. manim:: ColorTextScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ColorText
 
-       class ColorTextDocExample(Scene):
+       class ColorTextScene(Scene):
            def construct(self):
                rgb = ColorText([150, 60, 200])
                named = ColorText(BLUE, name="BLUE")
@@ -1366,12 +1366,12 @@ class Trail(VGroup):
 
     Examples
     --------
-    .. manim:: TrailDocExample
+    .. manim:: TrailScene
 
        from manim import *
        from manim_extensions import Trail
 
-       class TrailDocExample(Scene):
+       class TrailScene(Scene):
            def construct(self):
                dot = Dot(color=BLUE).scale(1.8).shift(LEFT * 2)
                trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
@@ -1510,13 +1510,13 @@ class ShadowAround(VGroup):
 
     Examples
     --------
-    .. manim:: ShadowAroundDocExample
+    .. manim:: ShadowAroundScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ShadowAround
 
-       class ShadowAroundDocExample(Scene):
+       class ShadowAroundScene(Scene):
            def construct(self):
                out = Circle(radius=1, fill_color=TEAL, fill_opacity=1, stroke_width=0)
                inner = Circle(radius=1, fill_color=TEAL, fill_opacity=1, stroke_width=0)
@@ -1604,12 +1604,12 @@ class ObjectBorder(VGroup):
 
     Examples
     --------
-    .. manim:: ObjectBorderDocExample
+    .. manim:: ObjectBorderScene
 
        from manim import *
        from manim_extensions import ObjectBorder
 
-       class ObjectBorderDocExample(Scene):
+       class ObjectBorderScene(Scene):
            def construct(self):
                t = Text("Hi").scale(5)
                self.add(t, ObjectBorder(t))
@@ -1698,13 +1698,13 @@ class ThreeDVector(VGroup):
 
     Examples
     --------
-    .. manim:: ThreeDVectorDocExample
+    .. manim:: ThreeDVectorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import ThreeDVector
 
-       class ThreeDVectorDocExample(ThreeDScene):
+       class ThreeDVectorScene(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=-60 * DEGREES)
                axes = ThreeDAxes(
@@ -1794,13 +1794,13 @@ class TreeDiagram(VGroup):
 
     Examples
     --------
-    .. manim:: TreeDiagramDocExample
+    .. manim:: TreeDiagramScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import TreeDiagram
 
-       class TreeDiagramDocExample(Scene):
+       class TreeDiagramScene(Scene):
            def construct(self):
                tree = {"A": {"B": {"D", "E"}, "C": {"F", "G"}}}
                diagram = TreeDiagram(tree).shift(LEFT * 2)

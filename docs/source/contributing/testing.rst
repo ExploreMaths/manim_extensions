@@ -56,6 +56,8 @@ Run these locally before opening a PR. Each corresponds to a CI job in ``.github
      - ``python workflow/validate_example_files.py``
    * - Blank-line layout in ``.. manim::`` examples
      - ``python workflow/validate_example_spacing.py``
+   * - Descriptive example class names without ``Example``
+     - ``python workflow/validate_example_names.py``
    * - Example layout (in frame, not too small)
      - ``python workflow/check_example_layout.py``
    * - Cross-references (FQNs, short/ambiguous/unlinked names)

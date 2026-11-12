@@ -25,13 +25,13 @@ class GMAnimationBuilder:
 
     Examples
     --------
-    .. manim:: GMAnimationBuilderDocExample
+    .. manim:: GMAnimationBuilderScene
        :files: dimethylpropane.mol
 
        from manim import *
        from manim_extensions.chemistry import GMAnimationBuilder, GraphMolecule
 
-       class GMAnimationBuilderDocExample(Scene):
+       class GMAnimationBuilderScene(Scene):
            def construct(self):
                molecule = GraphMolecule.molecule_from_file(
                    "dimethylpropane.mol",

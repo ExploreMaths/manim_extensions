@@ -25,6 +25,9 @@ v1.0.7 :bdg-warning-line:`In Development`
   stay together, exactly one blank line separates them from the scene class,
   ``class`` and ``def construct`` are adjacent, and blank lines inside
   ``construct`` are reserved for stage changes.
+* ``workflow/validate_example_names.py`` and its ``validate-example-names``
+  CI job reject ``Example``/``DocExample`` suffixes, non-PascalCase names,
+  and a ``.. manim::`` name that does not match the class in its block.
 
 **Fixed**
 
@@ -56,6 +59,10 @@ v1.0.7 :bdg-warning-line:`In Development`
   are contiguous, the scene class follows one blank line, ``class`` and
   ``def construct`` are adjacent, and blank lines inside ``construct`` mark
   stage changes instead of separating every statement.
+* Every documentation example class now has a descriptive name without an
+  ``Example`` suffix (``BooleanOperations``-style), and generic names such as
+  ``BasicScene``, ``MainScene`` and ``MyQrCodeScene`` were replaced with
+  names that describe the scene.
 * The SVG animations page renders its usage example with ``.. manim::``
   instead of showing it as a plain code block.
 * The chemistry reference page renders its 2-D molecule examples from the

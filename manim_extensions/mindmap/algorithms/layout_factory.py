@@ -24,7 +24,7 @@ class LayoutFactory:
 
     Examples
     --------
-    .. manim:: LayoutFactoryExample
+    .. manim:: LayoutFactoryScene
        :save_last_frame:
 
        from manim import *
@@ -33,7 +33,7 @@ class LayoutFactory:
        from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig, LayoutType
        from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
 
-       class LayoutFactoryExample(Scene):
+       class LayoutFactoryScene(Scene):
            def construct(self):
                data = {
                    "node": Tex("Root"),

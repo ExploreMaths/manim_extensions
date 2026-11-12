@@ -40,13 +40,13 @@ All constructors take the current ``Scene`` as their first argument. Animations
 triggered on an array play automatically through that scene; pass
 ``play_anim=False`` to receive the animation objects and play them yourself.
 
-.. manim:: MainScene
+.. manim:: MArrayUsage
    :ref_classes: MArray
 
    from manim import *
    from manim_extensions.data_structures import MArray
 
-   class MainScene(Scene):
+   class MArrayUsage(Scene):
        def construct(self):
            # Create an array (the scene is the first argument)
            arr = MArray(self, [8, 7, 6, 5, 4], label="Arr")
@@ -206,7 +206,7 @@ Example scenes
 
 Two-pointer technique for a pair sum in a sorted array:
 
-.. manim:: PairSumExample
+.. manim:: PairSum
    :ref_classes: MArray MArrayPointer MVariable
 
    from manim import *
@@ -214,7 +214,7 @@ Two-pointer technique for a pair sum in a sorted array:
        MArray, MArrayPointer, MVariable,
    )
 
-   class PairSumExample(Scene):
+   class PairSum(Scene):
        def is_pair_sum(self, arr, n, val):
            p_i = MArrayPointer(self, arr, 0, "i",
                                mob_arrow_args={"color": GREEN},
@@ -247,7 +247,7 @@ Two-pointer technique for a pair sum in a sorted array:
 
 Sliding-window technique for the maximum sum of ``k`` consecutive elements:
 
-.. manim:: MaxKSumExample
+.. manim:: MaxKSum
    :ref_classes: MArray MArraySlidingWindow MVariable
 
    from manim import *
@@ -255,7 +255,7 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
        MArray, MArraySlidingWindow, MVariable,
    )
 
-   class MaxKSumExample(Scene):
+   class MaxKSum(Scene):
        def max_k_sum(self, arr, k):
            values = arr.fetch_arr()
            n = len(values)

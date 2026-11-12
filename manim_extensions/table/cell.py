@@ -42,13 +42,13 @@ class Cell(VGroup):
 
     Examples
     --------
-    .. manim:: CellDocExample
+    .. manim:: CellScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.table import Cell
 
-       class CellDocExample(Scene):
+       class CellScene(Scene):
            def construct(self):
                cell = Cell("Hello", width=3.5)
                cell.set_background_color(BLUE, opacity=0.2)

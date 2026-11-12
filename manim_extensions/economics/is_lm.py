@@ -47,12 +47,12 @@ class ISLMDiagram(EconDiagram):
 
     Examples
     --------
-    .. manim:: ISLMDiagramDocExample
+    .. manim:: ISLMDiagramScene
 
        from manim import *
        from manim_extensions.economics import ISLMDiagram
 
-       class ISLMDiagramDocExample(Scene):
+       class ISLMDiagramScene(Scene):
            def construct(self):
                diagram = ISLMDiagram(numbered_eq=True)
                self.play(Create(diagram))

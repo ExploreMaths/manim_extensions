@@ -61,14 +61,14 @@ rotates the compass about its needle tip;
 opens (or closes) the two legs symmetrically until the span equals the given
 distance:
 
-.. manim:: CompassDemo
+.. manim:: CompassAnimations
    :ref_classes: Compass MoveNiddleTipTo RotateCompass SplitCompass
 
    from manim import *
    from manim_extensions.compass import (
        Compass, MoveNiddleTipTo, RotateCompass, SplitCompass)
 
-   class CompassDemo(Scene):
+   class CompassAnimations(Scene):
        def construct(self):
            compass = Compass().to_edge(LEFT)
            self.play(MoveNiddleTipTo(compass, ORIGIN))
@@ -112,14 +112,14 @@ animation with Create).
 parks the pencil at a point; it is equivalent to :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilTipTo` and kept
 for readability in construction scenes:
 
-.. manim:: PencilDemo
+.. manim:: PencilAnimations
    :ref_classes: Pencil MovePencilTipTo MovePencilAlongPath DrawPath PutPencilAway
 
    from manim import *
    from manim_extensions.compass import (
        Pencil, MovePencilTipTo, MovePencilAlongPath, DrawPath, PutPencilAway)
 
-   class PencilDemo(Scene):
+   class PencilAnimations(Scene):
        def construct(self):
            pencil = Pencil().to_edge(LEFT)
            # a path for the pencil to trace
@@ -138,13 +138,13 @@ aligns one edge of the ruler between a start and an end point;
 parks the ruler at a point (``is_flat=True`` lays it out horizontally,
 otherwise vertically):
 
-.. manim:: RulerDemo
+.. manim:: RulerAnimations
    :ref_classes: Ruler PutRuler PutRulerAway
 
    from manim import *
    from manim_extensions.compass import Ruler, PutRuler, PutRulerAway
 
-   class RulerDemo(Scene):
+   class RulerAnimations(Scene):
        def construct(self):
            ruler = Ruler().scale(0.7).to_edge(LEFT)
            self.play(PutRuler(ruler, start=LEFT, end=UR * 0.8))

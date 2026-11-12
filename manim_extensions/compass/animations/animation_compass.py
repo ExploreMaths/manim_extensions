@@ -54,12 +54,12 @@ class DrawArc(AnimationGroup):
 
     Examples
     --------
-    .. manim:: DrawArcDocExample
+    .. manim:: DrawArcScene
 
        from manim import *
        from manim_extensions.compass import Compass, DrawArc, PutCompass
 
-       class DrawArcDocExample(Scene):
+       class DrawArcScene(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
                center = Dot(ORIGIN, color=RED)
@@ -88,12 +88,12 @@ class SplitCompass(AnimationGroup):
 
     Examples
     --------
-    .. manim:: SplitCompassDocExample
+    .. manim:: SplitCompassScene
 
        from manim import *
        from manim_extensions.compass import Compass, SplitCompass
 
-       class SplitCompassDocExample(Scene):
+       class SplitCompassScene(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
                self.play(SplitCompass(compass, 2))
@@ -141,12 +141,12 @@ class RotateCompass(Rotate):
 
     Examples
     --------
-    .. manim:: RotateCompassDocExample
+    .. manim:: RotateCompassScene
 
        from manim import *
        from manim_extensions.compass import Compass, RotateCompass
 
-       class RotateCompassDocExample(Scene):
+       class RotateCompassScene(Scene):
            def construct(self):
                compass = Compass().move_niddle_tip_to(ORIGIN)
                pivot = Dot(ORIGIN, color=RED)
@@ -176,12 +176,12 @@ class MoveNiddleTipTo(ApplyMethod):
 
     Examples
     --------
-    .. manim:: MoveNiddleTipToDocExample
+    .. manim:: MoveNeedleTip
 
        from manim import *
        from manim_extensions.compass import Compass, MoveNiddleTipTo
 
-       class MoveNiddleTipToDocExample(Scene):
+       class MoveNeedleTip(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
                target = Dot(2 * RIGHT, color=RED)
@@ -221,12 +221,12 @@ class PutCompass(ApplyMethod):
 
     Examples
     --------
-    .. manim:: PutCompassDocExample
+    .. manim:: PutCompassScene
 
        from manim import *
        from manim_extensions.compass import Compass, PutCompass
 
-       class PutCompassDocExample(Scene):
+       class PutCompassScene(Scene):
            def construct(self):
                compass = Compass().to_edge(LEFT)
                targets = VGroup(
@@ -274,12 +274,12 @@ class PutCompassAway(PutCompass):
 
     Examples
     --------
-    .. manim:: PutCompassAwayDocExample
+    .. manim:: PutCompassAwayScene
 
        from manim import *
        from manim_extensions.compass import Compass, DrawArc, PutCompassAway
 
-       class PutCompassAwayDocExample(Scene):
+       class PutCompassAwayScene(Scene):
            def construct(self):
                compass = Compass().move_niddle_tip_to(ORIGIN)
                arc = Arc(arc_center=ORIGIN, radius=1.5, angle=PI / 2)

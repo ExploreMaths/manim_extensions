@@ -84,14 +84,14 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: ManimMeshExample
+    .. manim:: ManimMeshScene
 
        import numpy as np
        from manim import *
        from manim_extensions.meshes.templates import create_pyramid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
-       class ManimMeshExample(ThreeDScene):
+       class ManimMeshScene(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
                # pyramid built from triangles only
@@ -777,14 +777,14 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: Manim2DMeshExample
+    .. manim:: Manim2DMeshScene
 
        from manim import *
        import numpy as np
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
 
-       class Manim2DMeshExample(Scene):
+       class Manim2DMeshScene(Scene):
            def construct(self):
                vertices = [[0, 0, 0], [1, 0.1, 0], [0.5, 1.05, 0], [1.5, 0.95, 0]]
                mm = Manim2DMesh(Mesh(vertices, []), display_vertices=True)

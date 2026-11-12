@@ -43,7 +43,7 @@ class RemoveLayer(AnimationGroup):
 
     Examples
     --------
-    .. manim:: RemoveLayerExample
+    .. manim:: RemoveLayerScene
        :save_last_frame:
 
        from manim import *
@@ -51,7 +51,7 @@ class RemoveLayer(AnimationGroup):
        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
        from manim_extensions.machine_learning.neural_network.animations.neural_network_transformations import RemoveLayer
 
-       class RemoveLayerExample(Scene):
+       class RemoveLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(4), FeedForwardLayer(2)])
                nn.scale_to_fit_height(6).move_to(ORIGIN)
@@ -256,14 +256,14 @@ class InsertLayer(AnimationGroup):
 
     Examples
     --------
-    .. manim:: InsertLayerExample
+    .. manim:: InsertLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.neural_network import NeuralNetwork
        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
        from manim_extensions.machine_learning.neural_network.animations.neural_network_transformations import InsertLayer
 
-       class InsertLayerExample(Scene):
+       class InsertLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
                nn.scale_to_fit_height(6).move_to(ORIGIN)

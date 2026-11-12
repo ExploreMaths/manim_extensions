@@ -80,12 +80,12 @@ def VMobjectInt(
 
     Examples
     --------
-    .. manim:: VMobjectIntDocExample
+    .. manim:: VMobjectIntScene
 
        from manim import *
        from manim_extensions import VMobjectInt, LabelDot
 
-       class VMobjectIntDocExample(Scene):
+       class VMobjectIntScene(Scene):
            def construct(self):
                circle = Circle(radius=1.5, color=BLUE)
                curve = ParametricFunction(
@@ -407,13 +407,13 @@ def TangentPoint(
 
     Examples
     --------
-    .. manim:: TangentPointDocExample
+    .. manim:: TangentPointScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions import TangentPoint, LabelDot
 
-       class TangentPointDocExample(Scene):
+       class TangentPointScene(Scene):
            def construct(self):
                p1, p2 = [0.5, 1.5, 0], [1.5, 0.5, 0]
                line = Line([-3, 0, 0], [3, 0, 0], color=BLUE)

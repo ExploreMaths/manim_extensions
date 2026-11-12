@@ -49,13 +49,13 @@ class Queue(VMobject):
 
     Examples
     --------
-    .. manim:: QueueExample
+    .. manim:: QueueScene
 
        from manim import *
        from manim_extensions.algorithm.queue import Queue
        from manim_extensions.algorithm.node import Node
 
-       class QueueExample(Scene):
+       class QueueScene(Scene):
            def construct(self):
                q = Queue(capacity=5, init_data=[1, 2, 3], total_width=8)
                self.add(q)
@@ -120,13 +120,13 @@ class Queue(VMobject):
 
         Examples
         --------
-        .. manim:: EnqueueExample
+        .. manim:: Enqueue
 
            from manim import *
            from manim_extensions.algorithm.queue import Queue
            from manim_extensions.algorithm.node import Node
 
-           class EnqueueExample(Scene):
+           class Enqueue(Scene):
                def construct(self):
                    q = Queue(capacity=4, init_data=[1], total_width=8)
                    self.add(q)
@@ -172,12 +172,12 @@ class Queue(VMobject):
 
         Examples
         --------
-        .. manim:: DequeueExample
+        .. manim:: Dequeue
 
            from manim import *
            from manim_extensions.algorithm.queue import Queue
 
-           class DequeueExample(Scene):
+           class Dequeue(Scene):
                def construct(self):
                    q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)
                    self.add(q)

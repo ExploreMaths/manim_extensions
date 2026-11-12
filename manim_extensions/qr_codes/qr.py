@@ -93,13 +93,13 @@ def qr_code(
 
     Examples
     --------
-    .. manim:: QrCodeDocExample
+    .. manim:: QrCode
        :save_last_frame:
 
        from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
-       class QrCodeDocExample(Scene):
+       class QrCode(Scene):
            def construct(self):
                plain = qr_code("https://fishshell.com")
                with_icon = qr_code(
@@ -112,12 +112,12 @@ def qr_code(
                label.to_edge(UP, buff=0.75)
                self.add(group, label)
 
-    .. manim:: QrCodeShapesExample
+    .. manim:: QrCodeShapes
 
        from manim import *
        from manim_extensions.qr_codes.qr import qr_code
 
-       class QrCodeShapesExample(Scene):
+       class QrCodeShapes(Scene):
            def construct(self):
                rust = qr_code("https://www.rust-lang.org/", icon="language-rust",
                               data_shape="circles")

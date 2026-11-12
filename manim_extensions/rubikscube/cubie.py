@@ -36,12 +36,12 @@ class Cubie(VGroup):
 
     Examples
     --------
-    .. manim:: CubieDocExample
+    .. manim:: Cubie
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class CubieDocExample(ThreeDScene):
+       class Cubie(ThreeDScene):
            def construct(self):
                cube = RubiksCube().scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,

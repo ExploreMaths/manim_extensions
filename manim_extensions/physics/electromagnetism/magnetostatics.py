@@ -38,13 +38,13 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: WireExample
+    .. manim:: WireScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.magnetostatics import Wire
 
-       class WireExample(Scene):
+       class WireScene(Scene):
            def construct(self):
                loop = Wire(Circle(2).rotate(PI / 2, UP), current=2)
                label = Text("current = 2 A", font_size=30).next_to(loop, UP)
@@ -77,13 +77,13 @@ class MagneticField(ArrowVectorField):
 
     Examples
     --------
-    .. manim:: MagneticFieldExample
+    .. manim:: MagneticFieldScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.physics import MagneticField, Wire
 
-       class MagneticFieldExample(ThreeDScene):
+       class MagneticFieldScene(ThreeDScene):
            def construct(self):
                wire = Wire(Circle(2).rotate(PI / 2, UP), current=2)
                mag_field = MagneticField(

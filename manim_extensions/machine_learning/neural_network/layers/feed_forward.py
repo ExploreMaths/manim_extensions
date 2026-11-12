@@ -66,7 +66,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: FeedForwardLayerDocExample
+    .. manim:: FeedForwardLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -79,7 +79,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class FeedForwardLayerDocExample(Scene):
+       class FeedForwardLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    [

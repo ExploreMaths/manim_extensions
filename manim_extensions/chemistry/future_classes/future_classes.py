@@ -59,13 +59,13 @@ class Hole(VMobject):
 
     Examples
     --------
-    .. manim:: HoleExample
+    .. manim:: HoleScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import Hole
 
-       class HoleExample(Scene):
+       class HoleScene(Scene):
            def construct(self):
                self.add(Hole().scale(7))
     """
@@ -89,13 +89,13 @@ class Electron(VMobject):
 
     Examples
     --------
-    .. manim:: ElectronExample
+    .. manim:: ElectronScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import Electron
 
-       class ElectronExample(Scene):
+       class ElectronScene(Scene):
            def construct(self):
                self.add(Electron().scale(7))
     """
@@ -133,13 +133,13 @@ class Element(VGroup):
 
     Examples
     --------
-    .. manim:: ElementExample
+    .. manim:: ElementScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import Element
 
-       class ElementExample(Scene):
+       class ElementScene(Scene):
            def construct(self):
                self.add(Element(element="Si", n_electrons=4, n_holes=4))
     """
@@ -292,13 +292,13 @@ class ElementFrame(VGroup):
 
     Examples
     --------
-    .. manim:: ElementFrameExample
+    .. manim:: ElementFrameScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import ElementFrame
 
-       class ElementFrameExample(Scene):
+       class ElementFrameScene(Scene):
            def construct(self):
                self.add(ElementFrame(element_symbol="H", element_name="Hydrogen"))
     """
@@ -336,13 +336,13 @@ class NPNTransistor(VGroup):
 
     Examples
     --------
-    .. manim:: NPNTransistorExample
+    .. manim:: NPNTransistorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import NPNTransistor
 
-       class NPNTransistorExample(Scene):
+       class NPNTransistorScene(Scene):
            def construct(self):
                self.add(NPNTransistor())
     """
@@ -426,13 +426,13 @@ class BatterySchema(VGroup):
 
     Examples
     --------
-    .. manim:: BatterySchemaExample
+    .. manim:: BatterySchemaScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import BatterySchema
 
-       class BatterySchemaExample(Scene):
+       class BatterySchemaScene(Scene):
            def construct(self):
                self.add(BatterySchema())
     """
@@ -616,13 +616,13 @@ class MOSFETTransistor(VGroup):
 
     Examples
     --------
-    .. manim:: MOSFETTransistorExample
+    .. manim:: MOSFETTransistorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import MOSFETTransistor
 
-       class MOSFETTransistorExample(Scene):
+       class MOSFETTransistorScene(Scene):
            def construct(self):
                self.add(MOSFETTransistor())
     """
@@ -767,13 +767,13 @@ class BatterySide(VMobject):
 
     Examples
     --------
-    .. manim:: BatterySideExample
+    .. manim:: BatterySideScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import BatterySide
 
-       class BatterySideExample(Scene):
+       class BatterySideScene(Scene):
            def construct(self):
                terminal = Dot(color=RED).shift(LEFT)
                anchor = Square(side_length=1).shift(RIGHT)

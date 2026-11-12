@@ -57,14 +57,14 @@ class VoltageSource(Source):
 
     Examples
     --------
-    .. manim:: VoltageSourceExample
+    .. manim:: VoltageSourceScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Resistor, VoltageSource
        from manim_extensions.circuit.utils import Circuit
 
-       class VoltageSourceExample(Scene):
+       class VoltageSourceScene(Scene):
            def construct(self):
                circuit = Circuit()
                source = VoltageSource(value=5)
@@ -125,13 +125,13 @@ class CurrentSource(Source):
 
     Examples
     --------
-    .. manim:: CurrentSourceExample
+    .. manim:: CurrentSourceScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import CurrentSource
 
-       class CurrentSourceExample(Scene):
+       class CurrentSourceScene(Scene):
            def construct(self):
                independent = CurrentSource(value=2)
                dependent = CurrentSource(value="2i_x").next_to(
@@ -174,13 +174,13 @@ class Inductor(VMobject):
 
     Examples
     --------
-    .. manim:: InductorExample
+    .. manim:: InductorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Inductor
 
-       class InductorExample(Scene):
+       class InductorScene(Scene):
            def construct(self):
                # a labelled inductor with the label placed on top
                labelled = Inductor(label="0.3", direction=UP)
@@ -306,13 +306,13 @@ class Resistor(VMobject):
 
     Examples
     --------
-    .. manim:: ResistorExample
+    .. manim:: ResistorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Resistor
 
-       class ResistorExample(Scene):
+       class ResistorScene(Scene):
            def construct(self):
                upright = Resistor(label="4.7k")
                rotated = Resistor(label="4.7k").rotate(PI / 4).next_to(
@@ -441,13 +441,13 @@ class Capacitor(VMobject):
 
     Examples
     --------
-    .. manim:: CapacitorExample
+    .. manim:: CapacitorScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Capacitor
 
-       class CapacitorExample(Scene):
+       class CapacitorScene(Scene):
            def construct(self):
                plain = Capacitor(label="100n")
                polarized = Capacitor(label="100n", polarized=True).next_to(
@@ -570,13 +570,13 @@ class Ground(VMobject):
 
     Examples
     --------
-    .. manim:: GroundExample
+    .. manim:: GroundScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Ground
 
-       class GroundExample(Scene):
+       class GroundScene(Scene):
            def construct(self):
                digital = Ground(ground_type="ground", label="D")
                analog = Ground(ground_type="ground", label="A").next_to(
@@ -655,13 +655,13 @@ class Opamp(VMobject):
 
     Examples
     --------
-    .. manim:: OpampExample
+    .. manim:: OpampScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.mobjects import Opamp
 
-       class OpampExample(Scene):
+       class OpampScene(Scene):
            def construct(self):
                positive = Opamp(bias_supply="positive")
                negative = Opamp(bias_supply="negative").next_to(

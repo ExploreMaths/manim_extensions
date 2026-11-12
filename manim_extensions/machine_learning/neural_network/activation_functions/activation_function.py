@@ -53,14 +53,14 @@ class ActivationFunction(ABC, VGroup):
 
     Examples
     --------
-    .. manim:: ActivationFunctionExample
+    .. manim:: ActivationFunctionScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.activation_functions.activation_function import ActivationFunction
        from manim_extensions.machine_learning.neural_network.activation_functions.relu import ReLUFunction
 
-       class ActivationFunctionExample(Scene):
+       class ActivationFunctionScene(Scene):
            def construct(self):
                # ActivationFunction is abstract; ReLUFunction is a concrete
                # subclass.

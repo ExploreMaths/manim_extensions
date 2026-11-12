@@ -52,13 +52,13 @@ class NetworkConnection(VGroup):
 
     Examples
     --------
-    .. manim:: NetworkConnectionExample
+    .. manim:: NetworkConnectionScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.connections import NetworkConnection
 
-       class NetworkConnectionExample(Scene):
+       class NetworkConnectionScene(Scene):
            def construct(self):
                start = Dot(LEFT * 2).scale(1.5)
                end = Dot(RIGHT * 2).scale(1.5)

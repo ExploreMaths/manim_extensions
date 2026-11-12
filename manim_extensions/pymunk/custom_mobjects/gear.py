@@ -34,13 +34,13 @@ class Gear(VMobject):
 
     Examples
     --------
-    .. manim:: PymunkGearDocExample
+    .. manim:: PymunkGear
        :save_last_frame:
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class PymunkGearDocExample(Scene):
+       class PymunkGear(Scene):
            def construct(self):
                gears = VGroup(
                    Gear(num_teeth=8, radius=0.8, color=BLUE),

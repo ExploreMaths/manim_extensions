@@ -63,7 +63,7 @@ class ManimTransition(Transition, VGroup):
 
     Examples
     --------
-    .. manim:: ManimTransitionDocExample
+    .. manim:: ManimTransition
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
@@ -71,7 +71,7 @@ class ManimTransition(Transition, VGroup):
            ManimdeterministicFiniteAutomaton,
        )
 
-       class ManimTransitionDocExample(Scene):
+       class ManimTransition(Scene):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)
@@ -413,13 +413,13 @@ class ManimPushDownAutomatonTransition(ManimTransition):
 
     Examples
     --------
-    .. manim:: ManimPushDownAutomatonTransitionExample
+    .. manim:: ManimPushDownAutomatonTransition
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
 
-       class ManimPushDownAutomatonTransitionExample(Scene):
+       class ManimPushDownAutomatonTransition(Scene):
            def construct(self):
                pda = ManimPushDownAutomaton()
                self.add(pda)

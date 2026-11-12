@@ -296,14 +296,14 @@ class IrisDatasetPlot(VGroup):
 
     Examples
     --------
-    .. manim:: IrisDatasetPlotExample
+    .. manim:: IrisDatasetPlotScene
        :save_last_frame:
 
        from manim import *
        from sklearn.datasets import load_iris
        from manim_extensions.machine_learning.decision_tree.decision_tree_surface import IrisDatasetPlot
 
-       class IrisDatasetPlotExample(Scene):
+       class IrisDatasetPlotScene(Scene):
            def construct(self):
                plot = IrisDatasetPlot(load_iris())
                # VGroup.__init__ is not called by the constructor, so add
@@ -458,7 +458,7 @@ class DecisionTreeSurface(VGroup):
 
     Examples
     --------
-    .. manim:: DecisionTreeSurfaceExample
+    .. manim:: DecisionTreeSurfaceScene
        :save_last_frame:
 
        from manim import *
@@ -466,7 +466,7 @@ class DecisionTreeSurface(VGroup):
        from sklearn.tree import DecisionTreeClassifier
        from manim_extensions.machine_learning.decision_tree.decision_tree_surface import DecisionTreeSurface
 
-       class DecisionTreeSurfaceExample(Scene):
+       class DecisionTreeSurfaceScene(Scene):
            def construct(self):
                iris = load_iris()
                points = iris.data[:, :2]

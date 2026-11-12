@@ -41,7 +41,7 @@ class ImageLayer(NeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: ImageLayerDocExample
+    .. manim:: ImageLayerScene
 
        from manim import *
        import numpy as np
@@ -57,7 +57,7 @@ class ImageLayer(NeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class ImageLayerDocExample(ThreeDScene):
+       class ImageLayerScene(ThreeDScene):
            def construct(self):
                # Synthesize a digit-like image (the upstream example loads an
                # MNIST digit from assets)

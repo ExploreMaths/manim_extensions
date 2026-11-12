@@ -37,14 +37,14 @@ class GrayscaleImageMobject(Group):
 
     Examples
     --------
-    .. manim:: GrayscaleImageMobjectExample
+    .. manim:: GrayscaleImageMobjectScene
        :save_last_frame:
 
        import numpy as np
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.image import GrayscaleImageMobject
 
-       class GrayscaleImageMobjectExample(Scene):
+       class GrayscaleImageMobjectScene(Scene):
            def construct(self):
                gradient = np.linspace(0, 255, 256).reshape(16, 16).astype(np.uint8)
                self.add(GrayscaleImageMobject(gradient))
@@ -153,14 +153,14 @@ class LabeledColorImage(Group):
 
     Examples
     --------
-    .. manim:: LabeledColorImageExample
+    .. manim:: LabeledColorImageScene
        :save_last_frame:
 
        import numpy as np
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.image import LabeledColorImage
 
-       class LabeledColorImageExample(Scene):
+       class LabeledColorImageScene(Scene):
            def construct(self):
                image = ImageMobject(np.zeros((48, 48, 3), dtype=np.uint8)).scale(2.5)
                labeled = LabeledColorImage(image, color=GREEN, label="Cat")

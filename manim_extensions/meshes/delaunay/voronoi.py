@@ -33,7 +33,7 @@ class VoronoiDelaunay:
 
     Examples
     --------
-    .. manim:: VoronoiDelaunayExample
+    .. manim:: VoronoiDelaunayScene
 
        from manim import *
        import numpy as np
@@ -41,7 +41,7 @@ class VoronoiDelaunay:
        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
        from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
 
-       class VoronoiDelaunayExample(Scene):
+       class VoronoiDelaunayScene(Scene):
            def construct(self):
                pts = np.random.RandomState(42).rand(8, 3)
                pts = (pts - 0.5) * 6

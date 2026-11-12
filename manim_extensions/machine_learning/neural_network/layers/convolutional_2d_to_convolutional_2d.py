@@ -89,14 +89,14 @@ class Filters(VGroup):
 
     Examples
     --------
-    .. manim:: FiltersExample
+    .. manim:: FiltersScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d import Filters
 
-       class FiltersExample(Scene):
+       class FiltersScene(Scene):
            def construct(self):
                input_layer = Convolutional2DLayer(1, 5, filter_size=(2, 2))
                output_layer = Convolutional2DLayer(2, 4, filter_size=(2, 2))

@@ -59,13 +59,13 @@ class FeatureMap(VGroup):
 
     Examples
     --------
-    .. manim:: FeatureMapExample
+    .. manim:: FeatureMapScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import FeatureMap
 
-       class FeatureMapExample(Scene):
+       class FeatureMapScene(Scene):
            def construct(self):
                feature_map = FeatureMap(feature_map_size=(4, 4), show_grid_lines=True)
                feature_map.scale_to_fit_height(5).move_to(ORIGIN)
@@ -203,7 +203,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Examples
     --------
-    .. manim:: Convolutional2DLayerDocExample
+    .. manim:: Convolutional2DLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -217,7 +217,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
        config.frame_height = 6.0
        config.frame_width = 6.0
 
-       class Convolutional2DLayerDocExample(ThreeDScene):
+       class Convolutional2DLayerScene(ThreeDScene):
            def construct(self):
                nn = NeuralNetwork(
                    [

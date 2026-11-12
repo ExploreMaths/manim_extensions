@@ -30,14 +30,14 @@ The code is bundled inside ``manim_extensions`` as the
 Usage
 -----
 
-.. manim:: MyQrCodeScene
+.. manim:: QrCodeWithIcon
    :save_last_frame:
    :ref_functions: qr_code
 
    from manim import *
    from manim_extensions.qr_codes.qr import qr_code
 
-   class MyQrCodeScene(Scene):
+   class QrCodeWithIcon(Scene):
        def construct(self):
            qr_code_without_icon = qr_code("https://fishshell.com")
            qr_code_with_icon = qr_code(

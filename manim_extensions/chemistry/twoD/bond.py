@@ -41,7 +41,7 @@ class BaseMBondObject(VGroup):
 
     Examples
     --------
-    .. manim:: BaseMBondObjectExample
+    .. manim:: BaseMBondObjectScene
        :save_last_frame:
 
        import numpy as np
@@ -49,7 +49,7 @@ class BaseMBondObject(VGroup):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import BaseMBondObject, SimpleBond
 
-       class BaseMBondObjectExample(Scene):
+       class BaseMBondObjectScene(Scene):
            def construct(self):
                # BaseMBondObject is abstract: create_line() must be
                # implemented by subclasses such as SimpleBond.
@@ -299,7 +299,7 @@ class SimpleBond(BaseMBondObject):
 
     Examples
     --------
-    .. manim:: SimpleBondExample
+    .. manim:: SimpleBondScene
        :save_last_frame:
 
        import numpy as np
@@ -307,7 +307,7 @@ class SimpleBond(BaseMBondObject):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import SimpleBond
 
-       class SimpleBondExample(Scene):
+       class SimpleBondScene(Scene):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
@@ -413,7 +413,7 @@ class DoubleBond(BaseMBondObject):
 
     Examples
     --------
-    .. manim:: DoubleBondExample
+    .. manim:: DoubleBondScene
        :save_last_frame:
 
        import numpy as np
@@ -421,7 +421,7 @@ class DoubleBond(BaseMBondObject):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import DoubleBond
 
-       class DoubleBondExample(Scene):
+       class DoubleBondScene(Scene):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
@@ -672,7 +672,7 @@ class TripleBond(BaseMBondObject):
 
     Examples
     --------
-    .. manim:: TripleBondExample
+    .. manim:: TripleBondScene
        :save_last_frame:
 
        import numpy as np
@@ -680,7 +680,7 @@ class TripleBond(BaseMBondObject):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import TripleBond
 
-       class TripleBondExample(Scene):
+       class TripleBondScene(Scene):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
@@ -861,7 +861,7 @@ class PlainCramBond(BaseMBondObject):
 
     Examples
     --------
-    .. manim:: PlainCramBondExample
+    .. manim:: PlainCramBondScene
        :save_last_frame:
 
        import numpy as np
@@ -869,7 +869,7 @@ class PlainCramBond(BaseMBondObject):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import PlainCramBond
 
-       class PlainCramBondExample(Scene):
+       class PlainCramBondScene(Scene):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))
@@ -1021,7 +1021,7 @@ class DashedCramBond(BaseMBondObject):
 
     Examples
     --------
-    .. manim:: DashedCramBondExample
+    .. manim:: DashedCramBondScene
        :save_last_frame:
 
        import numpy as np
@@ -1029,7 +1029,7 @@ class DashedCramBond(BaseMBondObject):
        from manim_extensions.chemistry.twoD.atom import MAtomObject
        from manim_extensions.chemistry.twoD.bond import DashedCramBond
 
-       class DashedCramBondExample(Scene):
+       class DashedCramBondScene(Scene):
            def construct(self):
                carbon = MAtomObject(element="C")
                oxygen = MAtomObject(element="O", coords=np.array([1.6, 0, 0]))

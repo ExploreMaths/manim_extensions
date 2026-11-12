@@ -117,13 +117,13 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: LensExample
+    .. manim:: LensScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.optics.lenses import Lens
 
-       class LensExample(Scene):
+       class LensScene(Scene):
            def construct(self):
                convex = Lens(f=2, d=0.4, fill_opacity=0.5, color=BLUE)
                concave = Lens(f=-2, d=0.4, fill_opacity=0.5, color=GREEN)

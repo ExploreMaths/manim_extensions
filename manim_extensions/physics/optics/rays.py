@@ -40,14 +40,14 @@ class Ray(Line):
 
     Examples
     --------
-    .. manim:: RayExample
+    .. manim:: RayScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.optics.lenses import Lens
        from manim_extensions.physics.optics.rays import Ray
 
-       class RayExample(Scene):
+       class RayScene(Scene):
            def construct(self):
                lens_style = {"fill_opacity": 0.5, "color": BLUE}
                a = Lens(-5, 1, **lens_style).shift(LEFT)

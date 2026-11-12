@@ -34,7 +34,7 @@ class GaussianDistribution(VGroup):
 
     Examples
     --------
-    .. manim:: GaussianDistributionDocExample
+    .. manim:: GaussianDistributionScene
        :save_last_frame:
 
        from manim import *
@@ -43,7 +43,7 @@ class GaussianDistribution(VGroup):
            GaussianDistribution,
        )
 
-       class GaussianDistributionDocExample(Scene):
+       class GaussianDistributionScene(Scene):
            def construct(self):
                axes = Axes(
                    x_range=[-3, 3],

@@ -47,12 +47,12 @@ class MindMap(AbstractMap):
 
     Examples
     --------
-    .. manim:: MindMapExample
+    .. manim:: MindMapScene
 
        from manim import *
        from manim_extensions.mindmap import MindMap
 
-       class MindMapExample(Scene):
+       class MindMapScene(Scene):
            def construct(self):
                data = {
                    'node': MathTex(r"\text{Calculus}"),
@@ -160,13 +160,13 @@ class TimeLine(AbstractMap):
 
     Examples
     --------
-    .. manim:: TimeLineDocExample
+    .. manim:: TimeLineScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import TimeLine
 
-       class TimeLineDocExample(Scene):
+       class TimeLineScene(Scene):
            def construct(self):
                data = {
                    'node': MathTex(r"\text{History}"),
@@ -259,13 +259,13 @@ class StandardMap(AbstractMap):
 
     Examples
     --------
-    .. manim:: StandardMapDocExample
+    .. manim:: StandardMapScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import StandardMap
 
-       class StandardMapDocExample(Scene):
+       class StandardMapScene(Scene):
            def construct(self):
                data = {
                    'node': MathTex(r"\text{Root}"),
@@ -362,13 +362,13 @@ class CatalogMap(AbstractMap):
 
     Examples
     --------
-    .. manim:: CatalogMapDocExample
+    .. manim:: CatalogMapScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import CatalogMap
 
-       class CatalogMapDocExample(Scene):
+       class CatalogMapScene(Scene):
            def construct(self):
                data = {
                    'node': MathTex(r"\text{Company}"),

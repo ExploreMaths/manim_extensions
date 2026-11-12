@@ -39,12 +39,12 @@ class SpaceScene(ZoomedScene):
 
     Examples
     --------
-    .. manim:: SpaceSceneExample
+    .. manim:: SpaceSceneUsage
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class SpaceSceneExample(SpaceScene):
+       class SpaceSceneUsage(SpaceScene):
            def construct(self):
                # a floor and three balls driven by the Pymunk physics space
                floor = Line(LEFT * 6, RIGHT * 6, stroke_width=8, color=GREY)

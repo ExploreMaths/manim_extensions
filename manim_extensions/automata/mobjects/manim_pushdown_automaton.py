@@ -58,12 +58,12 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
 
     Examples
     --------
-    .. manim:: ManimPushDownAutomatonExample
+    .. manim:: ManimPushDownAutomatonScene
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import ManimPushDownAutomaton
 
-       class ManimPushDownAutomatonExample(MovingCameraScene):
+       class ManimPushDownAutomatonScene(MovingCameraScene):
            def construct(self):
                # build the PDA from the default JSON template
                pda = ManimPushDownAutomaton()
@@ -341,13 +341,13 @@ class PushDownAutomatonRule:
 
     Examples
     --------
-    .. manim:: PushDownAutomatonRuleExample
+    .. manim:: PushDownAutomatonRuleScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_pushdown_automaton import PushDownAutomatonRule
 
-       class PushDownAutomatonRuleExample(Scene):
+       class PushDownAutomatonRuleScene(Scene):
            def construct(self):
                rule = PushDownAutomatonRule("a", "X", "XY")
                start = Circle(radius=0.5).shift(LEFT * 2)

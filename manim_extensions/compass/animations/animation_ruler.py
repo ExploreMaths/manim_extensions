@@ -36,12 +36,12 @@ class PutRuler(ApplyMethod):
 
     Examples
     --------
-    .. manim:: PutRulerDocExample
+    .. manim:: PutRulerScene
 
        from manim import *
        from manim_extensions.compass import PutRuler, Ruler
 
-       class PutRulerDocExample(Scene):
+       class PutRulerScene(Scene):
            def construct(self):
                ruler = Ruler().to_edge(DOWN)
                start, end = LEFT * 2, RIGHT * 2
@@ -76,12 +76,12 @@ class PutRulerAway(PutRuler):
 
     Examples
     --------
-    .. manim:: PutRulerAwayDocExample
+    .. manim:: PutRulerAwayScene
 
        from manim import *
        from manim_extensions.compass import PutRuler, PutRulerAway, Ruler
 
-       class PutRulerAwayDocExample(Scene):
+       class PutRulerAwayScene(Scene):
            def construct(self):
                ruler = Ruler().to_edge(DOWN)
                self.play(PutRuler(ruler, LEFT * 2, RIGHT * 2))

@@ -68,12 +68,12 @@ class VDampedSpring(VConstraint):
 
     Examples
     --------
-    .. manim:: VDampedSpringExample
+    .. manim:: VDampedSpring
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VDampedSpringExample(SpaceScene):
+       class VDampedSpring(SpaceScene):
            def construct(self):
                # a box hangs from an anchor and bounces on the damped spring
                anchor = Dot(UP * 3)

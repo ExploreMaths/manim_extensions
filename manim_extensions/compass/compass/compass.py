@@ -62,13 +62,13 @@ class Compass(VGroup):
 
     Examples
     --------
-    .. manim:: CompassExample
+    .. manim:: CompassScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.compass import Compass
 
-       class CompassExample(Scene):
+       class CompassScene(Scene):
            def construct(self):
                narrow = Compass(span=1)
                wide = Compass(
@@ -191,13 +191,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: CompassMoveNiddleTipToDocExample
+        .. manim:: CompassMoveNeedleTip
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class CompassMoveNiddleTipToDocExample(Scene):
+           class CompassMoveNeedleTip(Scene):
                def construct(self):
                    target = Dot(ORIGIN, color=RED)
                    compass = Compass().move_niddle_tip_to(ORIGIN)
@@ -220,13 +220,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: RotateAboutNiddleTipDocExample
+        .. manim:: RotateAboutNeedleTip
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class RotateAboutNiddleTipDocExample(Scene):
+           class RotateAboutNeedleTip(Scene):
                def construct(self):
                    pivot = Dot(ORIGIN, color=RED)
                    compass = Compass().move_niddle_tip_to(
@@ -246,13 +246,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: ReverseTipDocExample
+        .. manim:: ReverseTip
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class ReverseTipDocExample(Scene):
+           class ReverseTip(Scene):
                def construct(self):
                    before = Compass()
                    after = Compass().reverse_tip().next_to(before, RIGHT, buff=1.5)
@@ -278,13 +278,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: SplitCompassWithGainAngleDocExample
+        .. manim:: SplitCompassWithGainAngle
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class SplitCompassWithGainAngleDocExample(Scene):
+           class SplitCompassWithGainAngle(Scene):
                def construct(self):
                    closed = Compass()
                    opened = Compass().split_copass_with_gain_angle(
@@ -316,13 +316,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: SplitCompassWithNiddleTipFixedDocExample
+        .. manim:: SplitCompassWithNeedleTipFixed
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class SplitCompassWithNiddleTipFixedDocExample(Scene):
+           class SplitCompassWithNeedleTipFixed(Scene):
                def construct(self):
                    pivot = Dot(ORIGIN, color=RED)
                    compass = Compass().split_compass_with_niddle_tip_fixed(
@@ -394,13 +394,13 @@ class Compass(VGroup):
 
         Examples
         --------
-        .. manim:: SetCompassDocExample
+        .. manim:: SetCompass
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Compass
 
-           class SetCompassDocExample(Scene):
+           class SetCompass(Scene):
                def construct(self):
                    pivot = Dot(ORIGIN, color=RED)
                    compass = Compass().set_compass(PI / 6, PI / 4, ORIGIN)

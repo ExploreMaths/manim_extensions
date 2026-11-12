@@ -47,12 +47,12 @@ class MVariable(MArrayElement):
 
     Examples
     --------
-    .. manim:: MVariableDocExample
+    .. manim:: MVariableScene
 
        from manim import *
        from manim_extensions.data_structures import MVariable
 
-       class MVariableDocExample(Scene):
+       class MVariableScene(Scene):
            def construct(self):
                var = MVariable(self, value=0, index="x", label="count")
                var.to_edge(UP)

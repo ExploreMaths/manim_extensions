@@ -45,13 +45,13 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: TriangleManim2DMeshExample
+    .. manim:: TriangleManim2DMeshScene
 
        from manim import *
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.triangle_mesh import TriangleManim2DMesh
 
-       class TriangleManim2DMeshExample(Scene):
+       class TriangleManim2DMeshScene(Scene):
            def construct(self):
                vertices = [[0, 0, 0], [2, 0, 0], [2, 2, 0], [0, 2, 0]]
                faces = [[0, 1, 2], [0, 2, 3]]

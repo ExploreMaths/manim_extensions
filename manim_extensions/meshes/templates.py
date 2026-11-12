@@ -230,14 +230,14 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
 
     Examples
     --------
-    .. manim:: GridTemplateExample
+    .. manim:: GridTemplate
        :save_last_frame:
 
        from manim import *
        from manim_extensions.meshes.templates import create_grid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
-       class GridTemplateExample(ThreeDScene):
+       class GridTemplate(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
                grid = ManimMesh(create_grid([(0, 2, 3), (0, 2, 3), (0, 2, 3)]))
@@ -247,14 +247,14 @@ def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
     A 4-D grid is projected onto three dimensions, so the tesseract can be
     drawn directly:
 
-    .. manim:: GridTemplateExample4D
+    .. manim:: GridTemplate4D
        :save_last_frame:
 
        from manim import *
        from manim_extensions.meshes.templates import create_grid
        from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 
-       class GridTemplateExample4D(ThreeDScene):
+       class GridTemplate4D(ThreeDScene):
            def construct(self):
                self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
                grid = ManimMesh(

@@ -313,13 +313,13 @@ class ThreeDLine(ThreeDCylinder):
 
         Examples
         --------
-        .. manim:: ParallelLineExample
+        .. manim:: ParallelLine
            :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
 
-            class ParallelLineExample(Scene):
+            class ParallelLine(Scene):
                 def construct(self):
                     line = ThreeDLine(LEFT * 2, RIGHT * 2)
                     # ThreeDLine needs the OpenGL renderer to be drawn directly;
@@ -367,13 +367,13 @@ class ThreeDLine(ThreeDCylinder):
 
         Examples
         --------
-        .. manim:: PerpLineExample
+        .. manim:: PerpLine
            :save_last_frame:
 
             from manim import *
             from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
 
-            class PerpLineExample(Scene):
+            class PerpLine(Scene):
                 def construct(self):
                     line = ThreeDLine(LEFT * 2, RIGHT * 2)
                     # ThreeDLine needs the OpenGL renderer to be drawn directly;

@@ -62,12 +62,12 @@ class ADASDiagram(EconDiagram):
 
     Examples
     --------
-    .. manim:: ADASDiagramDocExample
+    .. manim:: ADASDiagramScene
 
        from manim import *
        from manim_extensions.economics import ADASDiagram
 
-       class ADASDiagramDocExample(Scene):
+       class ADASDiagramScene(Scene):
            def construct(self):
                diagram = ADASDiagram(m=20, v=1, sras_price=4, lras_y=5)
                self.play(Create(diagram))

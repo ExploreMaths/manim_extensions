@@ -796,7 +796,7 @@ class NamedMolecule(VGroup):
 
     Examples
     --------
-    .. manim:: NamedMoleculeDocExample
+    .. manim:: NamedMoleculeScene
        :files: acetone_2d_named.mol
        :save_last_frame:
 
@@ -804,7 +804,7 @@ class NamedMolecule(VGroup):
        from pathlib import Path
        from manim_extensions.chemistry import NamedMolecule
 
-       class NamedMoleculeDocExample(Scene):
+       class NamedMoleculeScene(Scene):
            def construct(self):
                named_molecule = NamedMolecule.from_mol_file(
                    name="Acetone", filename="acetone_2d_named.mol"

@@ -24,14 +24,14 @@ class WrappedTree:
 
     Examples
     --------
-    .. manim:: WrappedTreeExample
+    .. manim:: WrappedTreeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_tidy_tree import WrappedTree
 
-       class WrappedTreeExample(Scene):
+       class WrappedTreeScene(Scene):
            def construct(self):
                root = TreeNode(width=2.0, height=1.0)
                root.add_child(TreeNode(width=1.5, height=0.8))
@@ -140,13 +140,13 @@ class IYLNode:
 
     Examples
     --------
-    .. manim:: IYLNodeExample
+    .. manim:: IYLNodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_tidy_tree import IYLNode
 
-       class IYLNodeExample(Scene):
+       class IYLNodeScene(Scene):
            def construct(self):
                ih = None
                for low, index in [(2.0, 2), (1.0, 1), (0.5, 0)]:
@@ -296,7 +296,7 @@ class TidyTreeLayout(Layout):
 
     Examples
     --------
-    .. manim:: TidyTreeLayoutExample
+    .. manim:: TidyTreeLayoutScene
        :save_last_frame:
 
        from manim import *
@@ -304,7 +304,7 @@ class TidyTreeLayout(Layout):
        from manim_extensions.mindmap.algorithms.alg_tidy_tree import TidyTreeLayout
        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
-       class TidyTreeLayoutExample(Scene):
+       class TidyTreeLayoutScene(Scene):
            def construct(self):
                root = TreeNode(height=0.8, width=1.6)
                for i in range(3):

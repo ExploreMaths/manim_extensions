@@ -273,7 +273,7 @@ class MCMCAxes(Group):
 
     Examples
     --------
-    .. manim:: MCMCAxesDocExample
+    .. manim:: MCMCAxesScene
 
        from manim import *
        import numpy as np
@@ -285,7 +285,7 @@ class MCMCAxes(Group):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class MCMCAxesDocExample(Scene):
+       class MCMCAxesScene(Scene):
            def construct(self):
                # Gaussian mixture likelihood
                def log_prob_fn(x):

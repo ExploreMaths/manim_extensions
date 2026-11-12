@@ -67,7 +67,7 @@ class LeafNode(Group):
 
     Examples
     --------
-    .. manim:: LeafNodeExample
+    .. manim:: LeafNodeScene
        :save_last_frame:
 
        import matplotlib.pyplot as plt
@@ -75,7 +75,7 @@ class LeafNode(Group):
        from manim import *
        from manim_extensions.machine_learning.decision_tree.decision_tree import LeafNode
 
-       class LeafNodeExample(Scene):
+       class LeafNodeScene(Scene):
            def construct(self):
                plt.imsave("leaf_class_0.png", np.ones((16, 16, 3)))
                leaf = LeafNode(
@@ -86,13 +86,13 @@ class LeafNode(Group):
                leaf.scale(10)
                self.add(leaf)
 
-    .. manim:: LeafNodeTextExample
+    .. manim:: LeafNodeText
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.decision_tree.decision_tree import LeafNode
 
-       class LeafNodeTextExample(Scene):
+       class LeafNodeText(Scene):
            def construct(self):
                leaf = LeafNode(
                    class_index=1,
@@ -166,13 +166,13 @@ class SplitNode(VGroup):
 
     Examples
     --------
-    .. manim:: SplitNodeExample
+    .. manim:: SplitNodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.decision_tree.decision_tree import SplitNode
 
-       class SplitNodeExample(Scene):
+       class SplitNodeScene(Scene):
            def construct(self):
                self.add(SplitNode(feature=0, threshold=0.5).scale(2))
     """
@@ -207,7 +207,7 @@ class DecisionTreeDiagram(Group):
 
     Examples
     --------
-    .. manim:: DecisionTreeDiagramDocExample
+    .. manim:: DecisionTreeDiagramScene
        :save_last_frame:
 
        from manim import *
@@ -221,7 +221,7 @@ class DecisionTreeDiagram(Group):
            DecisionTreeDiagram,
        )
 
-       class DecisionTreeDiagramDocExample(Scene):
+       class DecisionTreeDiagramScene(Scene):
            def construct(self):
                iris = load_iris()
                tree = DecisionTreeClassifier(max_depth=2, random_state=0).fit(

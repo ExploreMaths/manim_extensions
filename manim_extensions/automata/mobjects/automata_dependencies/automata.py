@@ -54,7 +54,7 @@ class FiniteStateAutomaton:
 
     Examples
     --------
-    .. manim:: FiniteStateAutomatonExample
+    .. manim:: FiniteStateAutomatonScene
        :save_last_frame:
 
        from manim import *
@@ -63,7 +63,7 @@ class FiniteStateAutomaton:
            automaton_json,
        )
 
-       class FiniteStateAutomatonExample(Scene):
+       class FiniteStateAutomatonScene(Scene):
            def construct(self):
                fa = FiniteStateAutomaton(automaton_json)
                nodes = {}
@@ -287,7 +287,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
 
     Examples
     --------
-    .. manim:: PushDownAutomatonExample
+    .. manim:: PushDownAutomatonScene
        :save_last_frame:
 
        from manim import *
@@ -296,7 +296,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
            automaton_json,
        )
 
-       class PushDownAutomatonExample(Scene):
+       class PushDownAutomatonScene(Scene):
            def construct(self):
                pda = PushDownAutomaton()
                pda.construct_from_json(automaton_json)

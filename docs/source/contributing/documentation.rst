@@ -114,7 +114,7 @@ where a new stage begins.
    from manim import *
    from manim_extensions import ThreeDVector
 
-   class ThreeDVectorExample(ThreeDScene):
+   class ThreeDVectorOverview(ThreeDScene):
        def construct(self):
            self.set_camera_orientation(phi=65 * DEGREES, theta=-50 * DEGREES)
            axes = ThreeDAxes()
@@ -144,6 +144,30 @@ Rules:
 
 ``workflow/validate_example_spacing.py`` enforces this layout for every
 ``.. manim::`` block in CI (``validate-example-spacing``).
+
+Example names
+~~~~~~~~~~~~~
+
+Name every example scene after what it shows, following Manim's own examples
+such as ``BooleanOperations`` and ``SquareToCircle``. The class name is the
+caption readers see, so it should identify the object or action in the video,
+not its role in the documentation.
+
+* Do **not** use an ``Example`` or ``DocExample`` suffix. Prefer
+  :class:`~manim_extensions.nerdfont.icons.NerdFontIcon`, ``CubeState`` or
+  ``MArrayUsage`` over ``NerdfontIconExample``, ``StateExample`` or
+  ``MainScene``.
+* Avoid generic names such as ``Scene``, ``Simple``, ``Basic`` or ``Main``;
+  include the subject instead: ``InteractiveHTMLScene``, ``WeightedLineBasic``
+  or ``NeuralNetworkForwardPass``.
+* The name in ``.. manim::`` must exactly match the class defined in the
+  block. Renaming one without the other leaves the directive pointing at a
+  missing scene.
+* Use PascalCase, with acronyms kept together: ``SVGAnimationUsage``,
+  ``MArrayUsage``, ``RGBImageToConvolution``.
+
+``workflow/validate_example_names.py`` enforces the suffix, PascalCase and
+directive/class match in CI (``validate-example-names``).
 
 Cross-References
 ----------------

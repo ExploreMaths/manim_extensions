@@ -58,13 +58,13 @@ class MAtomObject(VGroup):
 
     Examples
     --------
-    .. manim:: MAtomObjectExample
+    .. manim:: MAtomObjectScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.chemistry.twoD.atom import MAtomObject
 
-       class MAtomObjectExample(Scene):
+       class MAtomObjectScene(Scene):
            def construct(self):
                self.add(MAtomObject(element="O").scale(7))
     """

@@ -56,7 +56,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     Examples
     --------
-    .. manim:: MaxPooling2DLayerDocExample
+    .. manim:: MaxPooling2DLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -70,7 +70,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
        config.frame_height = 6.0
        config.frame_width = 6.0
 
-       class MaxPooling2DLayerDocExample(ThreeDScene):
+       class MaxPooling2DLayerScene(ThreeDScene):
            def construct(self):
                nn = NeuralNetwork(
                    [

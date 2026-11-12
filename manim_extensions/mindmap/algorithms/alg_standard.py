@@ -30,14 +30,14 @@ class TreeNode:
 
     Examples
     --------
-    .. manim:: TreeNodeExample
+    .. manim:: TreeNodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode, StandardLayout
        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
-       class TreeNodeExample(Scene):
+       class TreeNodeScene(Scene):
            def construct(self):
                root = TreeNode(height=0.8, width=1.8)
                for _ in range(3):
@@ -181,14 +181,14 @@ class StandardLayout(Layout):
 
     Examples
     --------
-    .. manim:: StandardLayoutExample
+    .. manim:: StandardLayoutScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode, StandardLayout
        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
-       class StandardLayoutExample(Scene):
+       class StandardLayoutScene(Scene):
            def construct(self):
                root = TreeNode(height=0.8, width=1.6)
                for i in range(4):

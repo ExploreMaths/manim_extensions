@@ -50,7 +50,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: MathOperationLayerDocExample
+    .. manim:: MathOperationLayerScene
 
        from manim import *
        from manim_extensions.machine_learning.neural_network import (
@@ -64,7 +64,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class MathOperationLayerDocExample(Scene):
+       class MathOperationLayerScene(Scene):
            def construct(self):
                nn = NeuralNetwork(
                    {

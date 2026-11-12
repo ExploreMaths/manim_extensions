@@ -101,14 +101,14 @@ built on Manim's ``Graph`` (and thus on ``networkx``), so substructures can be
 selected and animated. Load one from a file and add element or numeric atom
 labels:
 
-.. manim:: GraphMoleculeExample
+.. manim:: GraphMoleculeScene
    :save_last_frame:
    :files: morphine_2d.mol
 
    from manim import *
    from manim_extensions.chemistry import GraphMolecule
 
-   class GraphMoleculeExample(Scene):
+   class GraphMoleculeScene(Scene):
        def construct(self):
            graph_molecule = GraphMolecule.molecule_from_file(
                "morphine_2d.mol", label=True, numeric_label=True)

@@ -35,13 +35,13 @@ Usage
 
 Create a table from a list of rows; the first row is treated as the header.
 
-.. manim:: TableExample
+.. manim:: TableOverview
    :ref_classes: Table
 
    from manim import *
    from manim_extensions.table import Table
 
-   class TableExample(Scene):
+   class TableOverview(Scene):
        def construct(self):
            data = [
                ["Name", "Age", "City"],

@@ -44,13 +44,13 @@ class NodeMobject:
 
     Examples
     --------
-    .. manim:: NodeMobjectExample
+    .. manim:: NodeMobjectScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.mindmap.base import NodeMobject
 
-       class NodeMobjectExample(Scene):
+       class NodeMobjectScene(Scene):
            def construct(self):
                rect = Rectangle(width=2.5, height=1.2, color=BLUE)
                rect.to_edge(LEFT, buff=1.0)
@@ -153,7 +153,7 @@ class AbstractMap(Group):
 
     Examples
     --------
-    .. manim:: AbstractMapExample
+    .. manim:: AbstractMapScene
        :save_last_frame:
 
        from manim import *
@@ -161,7 +161,7 @@ class AbstractMap(Group):
        from manim_extensions.mindmap.mindmap.base import AbstractMap, NodeMobject, generate_tree
        from manim_extensions.mindmap.algorithms import LayoutConfig, TidyTreeLayout
 
-       class AbstractMapExample(Scene):
+       class AbstractMapScene(Scene):
            def construct(self):
                class SimpleMap(AbstractMap):
                    def _set_connectors(self):

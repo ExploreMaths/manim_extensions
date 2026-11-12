@@ -91,7 +91,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     Examples
     --------
-    .. manim:: ManimAutomatonDocExample
+    .. manim:: ManimAutomaton
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import (
@@ -101,7 +101,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
            ManimdeterministicFiniteAutomaton,
        )
 
-       class ManimAutomatonDocExample(Scene):
+       class ManimAutomaton(Scene):
            def construct(self):
                dfa = ManimdeterministicFiniteAutomaton()
                self.add(dfa)

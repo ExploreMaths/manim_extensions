@@ -55,13 +55,13 @@ class Charge(VGroup):
 
     Examples
     --------
-    .. manim:: ChargeExample
+    .. manim:: ChargeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.physics.electromagnetism.electrostatics import Charge
 
-       class ChargeExample(Scene):
+       class ChargeScene(Scene):
            def construct(self):
                positive = Charge(2, LEFT * 2 + UP)
                negative = Charge(-1, RIGHT * 2 + UP)
@@ -135,7 +135,7 @@ class ElectricField(ArrowVectorField):
 
     Examples
     --------
-    .. manim:: ElectricFieldExample
+    .. manim:: ElectricFieldScene
        :save_last_frame:
 
        from manim import *
@@ -143,7 +143,7 @@ class ElectricField(ArrowVectorField):
            Charge, ElectricField,
        )
 
-       class ElectricFieldExample(Scene):
+       class ElectricFieldScene(Scene):
            def construct(self):
                charge1 = Charge(-1, LEFT + DOWN)
                charge2 = Charge(2, RIGHT + DOWN)

@@ -35,12 +35,12 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-    .. manim:: ManimdeterministicFiniteAutomatonExample
+    .. manim:: ManimDeterministicFiniteAutomaton
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimdeterministicFiniteAutomaton
 
-       class ManimdeterministicFiniteAutomatonExample(MovingCameraScene):
+       class ManimDeterministicFiniteAutomaton(MovingCameraScene):
            def construct(self):
                # build the DFA from the default JSON template
                dfa = ManimdeterministicFiniteAutomaton()

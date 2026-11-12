@@ -33,13 +33,13 @@ class CubeMove(Animation):
 
     Examples
     --------
-    .. manim:: CubeMoveExample
+    .. manim:: CubeRotation
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
        from manim_extensions.rubikscube.cube_animations import CubeMove
 
-       class CubeMoveExample(ThreeDScene):
+       class CubeRotation(ThreeDScene):
            def construct(self):
                cube = RubiksCube().scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,

@@ -42,14 +42,14 @@ Usage
 After importing, construct a :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine`
 between two points and pass it a ``weight`` to label:
 
-.. manim:: SimpleExample
+.. manim:: WeightedLineBasic
    :ref_classes: WeightedLine
    :save_last_frame:
 
    from manim import *
    from manim_extensions.weighted_line import WeightedLine
 
-   class SimpleExample(Scene):
+   class WeightedLineBasic(Scene):
        def construct(self):
            weighted_line = WeightedLine(
                0,

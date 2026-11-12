@@ -42,13 +42,13 @@ class Ruler(VGroup):
 
     Examples
     --------
-    .. manim:: RulerExample
+    .. manim:: RulerScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.compass import Ruler
 
-       class RulerExample(Scene):
+       class RulerScene(Scene):
            def construct(self):
                ruler = Ruler()
                start, end = ruler.get_start_and_end()
@@ -157,13 +157,13 @@ class Ruler(VGroup):
 
         Examples
         ----------
-        .. manim:: SetRulerDocExample
+        .. manim:: SetRuler
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Ruler
 
-           class SetRulerDocExample(Scene):
+           class SetRuler(Scene):
                def construct(self):
                    start, end = LEFT * 2 + DOWN, RIGHT * 2 + UP
                    self.add(Dot(start, color=RED), Dot(end, color=RED))
@@ -190,13 +190,13 @@ class Ruler(VGroup):
 
         Examples
         --------
-        .. manim:: PutRulerFlatDocExample
+        .. manim:: PutRulerFlat
            :save_last_frame:
 
            from manim import *
            from manim_extensions.compass import Ruler
 
-           class PutRulerFlatDocExample(Scene):
+           class PutRulerFlat(Scene):
                def construct(self):
                    tilted = Ruler().rotate(PI / 5)
                    flat = Ruler().rotate(PI / 5).put_ruler_flat()

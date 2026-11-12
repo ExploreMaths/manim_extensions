@@ -19,13 +19,13 @@ class ListGroup(Mobject):
 
     Examples
     --------
-    .. manim:: ListGroupExample
+    .. manim:: ListGroupScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.list_group import ListGroup
 
-       class ListGroupExample(Scene):
+       class ListGroupScene(Scene):
            def construct(self):
                self.add(ListGroup(Circle(radius=0.3), Square(side_length=0.6),
                                   Triangle()).scale(3))

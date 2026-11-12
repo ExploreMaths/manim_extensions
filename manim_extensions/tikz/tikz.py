@@ -40,13 +40,13 @@ class Tikz(SVGMobject):
 
     Examples
     --------
-    .. manim:: ManimTikzExample
+    .. manim:: ManimTikz
        :save_last_frame:
 
        from manim import *
        from manim_extensions.tikz import Tikz
 
-       class ManimTikzExample(Scene):
+       class ManimTikz(Scene):
            def construct(self):
                graph = Tikz(
                    r"\node[draw, circle, fill=blue!20] (a) at (0,0) {A};"
@@ -58,13 +58,13 @@ class Tikz(SVGMobject):
                )
                self.add(graph)
 
-    .. manim:: TikzDrawExample
+    .. manim:: TikzDraw
        :save_last_frame:
 
        from manim import *
        from manim_extensions.tikz import Tikz
 
-       class TikzDrawExample(Scene):
+       class TikzDraw(Scene):
            def construct(self):
                square = Tikz(
                    r"\draw[magenta, line width=10mm, fill=blue] (0,0) rectangle(1,1);",

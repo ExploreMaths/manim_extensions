@@ -55,13 +55,13 @@ def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
 
     Examples
     --------
-    .. manim:: FadeoutOfSubtreesDocExample
+    .. manim:: FadeoutOfSubtrees
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.animations.animations import fadeout_of_subtrees
 
-       class FadeoutOfSubtreesDocExample(Scene):
+       class FadeoutOfSubtrees(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -116,14 +116,14 @@ def animate_of_create(
 
     Examples
     --------
-    .. manim:: AnimateOfCreateDocExample
+    .. manim:: AnimateOfCreate
 
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_create
 
-       class AnimateOfCreateDocExample(Scene):
+       class AnimateOfCreate(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
@@ -202,7 +202,7 @@ def animate_of_display(
 
     Examples
     --------
-    .. manim:: AnimateOfDisplayDocExample
+    .. manim:: AnimateOfDisplay
 
        from manim import *
        from manim_extensions.mindmap import Node
@@ -210,7 +210,7 @@ def animate_of_display(
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_display
 
-       class AnimateOfDisplayDocExample(Scene):
+       class AnimateOfDisplay(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT), color=WHITE)
                self.add(root.vmobject, root.surr_rect)
@@ -278,14 +278,14 @@ def animate_of_scale(
 
     Examples
     --------
-    .. manim:: AnimateOfScaleDocExample
+    .. manim:: AnimateOfScale
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_scale
 
-       class AnimateOfScaleDocExample(Scene):
+       class AnimateOfScale(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -353,14 +353,14 @@ def animate_of_alter(
 
     Examples
     --------
-    .. manim:: AnimateOfAlterDocExample
+    .. manim:: AnimateOfAlter
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_alter
 
-       class AnimateOfAlterDocExample(Scene):
+       class AnimateOfAlter(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -428,14 +428,14 @@ def animate_of_node(
 
     Examples
     --------
-    .. manim:: AnimateOfNodeDocExample
+    .. manim:: AnimateOfNode
 
        from manim import *
        from manim_extensions.mindmap import Node
        from manim_extensions.mindmap.algorithms import LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_node
 
-       class AnimateOfNodeDocExample(Scene):
+       class AnimateOfNode(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
@@ -532,7 +532,7 @@ def animate_of_layout(
 
     Examples
     --------
-    .. manim:: AnimateOfLayoutDocExample
+    .. manim:: AnimateOfLayout
 
        from manim import *
        from manim_extensions.mindmap import Node
@@ -540,7 +540,7 @@ def animate_of_layout(
        from manim_extensions.mindmap.algorithms import LayoutConfig, LayoutType
        from manim_extensions.mindmap.animations.animations import animate_of_layout
 
-       class AnimateOfLayoutDocExample(Scene):
+       class AnimateOfLayout(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                self.add(root.vmobject, root.surr_rect)
@@ -609,13 +609,13 @@ class AbstractLayoutAnimation(AnimationGroup):
 
     Examples
     --------
-    .. manim:: AbstractLayoutAnimationDocExample
+    .. manim:: AbstractLayoutAnimationScene
 
        from manim import *
        from manim_extensions.mindmap import Node, bfs_walker
        from manim_extensions.mindmap.animations.animations import AbstractLayoutAnimation
 
-       class AbstractLayoutAnimationDocExample(Scene):
+       class AbstractLayoutAnimationScene(Scene):
            def construct(self):
                class CreateTreeAnimation(AbstractLayoutAnimation):
                    def collect_animations(self):
@@ -753,13 +753,13 @@ class LayoutAnimation(AbstractLayoutAnimation):
 
     Examples
     --------
-    .. manim:: LayoutAnimationDocExample
+    .. manim:: LayoutAnimationScene
 
        from manim import *
        from manim_extensions.mindmap import Node, LayoutAnimation
        from manim_extensions.mindmap.algorithms import LayoutConfig
 
-       class LayoutAnimationDocExample(Scene):
+       class LayoutAnimationScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -843,12 +843,12 @@ class RemoveNode(LayoutAnimation):
 
     Examples
     --------
-    .. manim:: RemoveNodeDocExample
+    .. manim:: RemoveNodeScene
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, RemoveNode
 
-       class RemoveNodeDocExample(Scene):
+       class RemoveNodeScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -948,12 +948,12 @@ class InsertNode(LayoutAnimation):
 
     Examples
     --------
-    .. manim:: InsertNodeDocExample
+    .. manim:: InsertNodeScene
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode
 
-       class InsertNodeDocExample(Scene):
+       class InsertNodeScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -1043,12 +1043,12 @@ class ScaleNode(LayoutAnimation):
 
     Examples
     --------
-    .. manim:: ScaleNodeDocExample
+    .. manim:: ScaleNodeScene
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, ScaleNode
 
-       class ScaleNodeDocExample(Scene):
+       class ScaleNodeScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
@@ -1103,12 +1103,12 @@ class AlterNode(LayoutAnimation):
 
     Examples
     --------
-    .. manim:: AlterNodeDocExample
+    .. manim:: AlterNodeScene
 
        from manim import *
        from manim_extensions.mindmap import Node, InsertNode, AlterNode
 
-       class AlterNodeDocExample(Scene):
+       class AlterNodeScene(Scene):
            def construct(self):
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))

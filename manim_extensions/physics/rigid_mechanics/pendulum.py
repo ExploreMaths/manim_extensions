@@ -54,14 +54,14 @@ class MultiPendulum(VGroup):
 
     Examples
     --------
-    .. manim:: MultiPendulumExample
+    .. manim:: MultiPendulumScene
 
        from manim import *
        from manim_extensions.physics.rigid_mechanics.pendulum import (
            MultiPendulum, SpaceScene,
        )
 
-       class MultiPendulumExample(SpaceScene):
+       class MultiPendulumScene(SpaceScene):
            def construct(self):
                pendulum = MultiPendulum(RIGHT, LEFT)
                self.play(FadeIn(pendulum))
@@ -193,14 +193,14 @@ class Pendulum(MultiPendulum):
 
     Examples
     --------
-    .. manim:: PendulumExample
+    .. manim:: PendulumScene
 
        from manim import *
        from manim_extensions.physics.rigid_mechanics.pendulum import (
            Pendulum, SpaceScene,
        )
 
-       class PendulumExample(SpaceScene):
+       class PendulumScene(SpaceScene):
            def construct(self):
                pendulums = VGroup(
                    *[Pendulum(i) for i in np.linspace(1, 5, 7)]

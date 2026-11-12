@@ -16,14 +16,14 @@ class Layout:
 
     Examples
     --------
-    .. manim:: LayoutExample
+    .. manim:: LayoutScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import Node, bfs_walker
        from manim_extensions.mindmap.algorithms.layout import Layout
 
-       class LayoutExample(Scene):
+       class LayoutScene(Scene):
            def construct(self):
                class HorizontalLayout(Layout):
                    def __init__(self, root):

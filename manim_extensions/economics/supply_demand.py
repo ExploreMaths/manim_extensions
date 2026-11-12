@@ -30,12 +30,12 @@ class SupplyDemandDiagram(EconDiagram):
 
     Examples
     --------
-    .. manim:: SupplyDemandDiagramDocExample
+    .. manim:: SupplyDemandDiagramScene
 
        from manim import *
        from manim_extensions.economics import SupplyDemandDiagram
 
-       class SupplyDemandDiagramDocExample(Scene):
+       class SupplyDemandDiagramScene(Scene):
            def construct(self):
                diagram = SupplyDemandDiagram(
                    demand_func=lambda q: 8 - 0.5 * q,   # inverse demand P(Q)

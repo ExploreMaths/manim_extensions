@@ -42,14 +42,14 @@ class TimelineNode:
 
     Examples
     --------
-    .. manim:: TimelineNodeExample
+    .. manim:: TimelineNodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_time_line import TimelineNode
 
-       class TimelineNodeExample(Scene):
+       class TimelineNodeScene(Scene):
            def construct(self):
                root = TreeNode(width=2.0, height=1.0)
                root.add_child(TreeNode(width=1.5, height=0.8))
@@ -180,14 +180,14 @@ class TimeLineLayout(Layout):
 
     Examples
     --------
-    .. manim:: TimeLineLayoutExample
+    .. manim:: TimeLineLayoutScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_time_line import TimeLineLayout
 
-       class TimeLineLayoutExample(Scene):
+       class TimeLineLayoutScene(Scene):
            def construct(self):
                class StubNode:
                    def __init__(self, width, height):

@@ -57,12 +57,12 @@ class VGrooveJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VGrooveJointExample
+    .. manim:: VGrooveJoint
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VGrooveJointExample(SpaceScene):
+       class VGrooveJoint(SpaceScene):
            def construct(self):
                # the slider is constrained to the yellow groove of the rail
                rail = Line(LEFT * 3, RIGHT * 3, stroke_width=6, color=GREY)

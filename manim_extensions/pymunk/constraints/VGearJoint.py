@@ -54,12 +54,12 @@ class VGearJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VGearJointExample
+    .. manim:: VGearJoint
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VGearJointExample(SpaceScene):
+       class VGearJoint(SpaceScene):
            def construct(self):
                # gear_2 (with the indicator arrow) spins 4x as fast as gear_1
                pivot_1 = Dot(LEFT * 2 + UP)

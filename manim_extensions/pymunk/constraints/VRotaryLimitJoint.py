@@ -49,12 +49,12 @@ class VRotaryLimitJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VRotaryLimitJointExample
+    .. manim:: VRotaryLimitJoint
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VRotaryLimitJointExample(SpaceScene):
+       class VRotaryLimitJoint(SpaceScene):
            def construct(self):
                # gravity pulls the arm down, but the joint stops the
                # rotation at +/- PI/6 (see the yellow arc indicators)

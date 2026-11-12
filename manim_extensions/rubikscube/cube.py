@@ -48,13 +48,13 @@ class RubiksCube(VMobject):
 
     Examples
     --------
-    .. manim:: RubiksCubeDocExample
+    .. manim:: RubiksCubeScene
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
        from manim_extensions.rubikscube.cube_animations import CubeMove
 
-       class RubiksCubeDocExample(ThreeDScene):
+       class RubiksCubeScene(ThreeDScene):
            def construct(self):
                cube = RubiksCube().scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
@@ -69,13 +69,13 @@ class RubiksCube(VMobject):
                    self.play(CubeMove(cube, move), run_time=0.8)
                self.wait()
 
-    .. manim:: RubiksCubeColorsExample
+    .. manim:: RubiksCubeColors
        :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeColorsExample(ThreeDScene):
+       class RubiksCubeColors(ThreeDScene):
            def construct(self):
                # Colors are passed in the order [Up, Right, Front, Down, Left, Back]
                # Default is [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"]
@@ -86,13 +86,13 @@ class RubiksCube(VMobject):
                                 frame_center=cube.get_center())
                self.add(cube)
 
-    .. manim:: RubiksCubeDimExample
+    .. manim:: RubiksCubeDim
        :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeDimExample(ThreeDScene):
+       class RubiksCubeDim(ThreeDScene):
            def construct(self):
                # The first parameter the RubiksCube takes is the dimension
                # (alternatively dim=4). Default dim is 3; much larger cubes
@@ -102,12 +102,12 @@ class RubiksCube(VMobject):
                self.renderer.camera.frame_center = cube.get_center()
                self.add(cube)
 
-    .. manim:: RubiksCubeOffsetExample
+    .. manim:: RubiksCubeOffset
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeOffsetExample(ThreeDScene):
+       class RubiksCubeOffset(ThreeDScene):
            def construct(self):
                # x_offset, y_offset and z_offset control the gap between cubies
                # . Passing all three spreads
@@ -122,13 +122,13 @@ class RubiksCube(VMobject):
                self.play(FadeIn(wide))
                self.wait()
 
-    .. manim:: RubiksCubeSetStateExample
+    .. manim:: RubiksCubeSetState
        :save_last_frame:
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeSetStateExample(ThreeDScene):
+       class RubiksCubeSetState(ThreeDScene):
            def construct(self):
                cube = RubiksCube().scale(0.6)
                # set_state() takes a 54-character string in kociemba facelet
@@ -140,12 +140,12 @@ class RubiksCube(VMobject):
                                 frame_center=cube.get_center())
                self.add(cube)
 
-    .. manim:: RubiksCubeFaceExample
+    .. manim:: RubiksCubeFace
 
        from manim import *
        from manim_extensions.rubikscube import RubiksCube
 
-       class RubiksCubeFaceExample(ThreeDScene):
+       class RubiksCubeFace(ThreeDScene):
            def construct(self):
                cube = RubiksCube().scale(0.6)
                self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,

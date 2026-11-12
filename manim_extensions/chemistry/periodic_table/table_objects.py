@@ -58,7 +58,7 @@ class MElementObject(VGroup):
 
     Examples
     ---------
-    .. manim:: MElementObjectDocExample
+    .. manim:: MElementObjectScene
        :save_last_frame:
 
        import pandas as pd
@@ -66,7 +66,7 @@ class MElementObject(VGroup):
        from manim_extensions.chemistry import MElementObject
        from manim_extensions.chemistry.manim_chemistry_molecule import MC_ELEMENT_DICT
 
-       class MElementObjectDocExample(Scene):
+       class MElementObjectScene(Scene):
            def construct(self):
                data = pd.DataFrame(
                    {

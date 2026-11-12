@@ -93,13 +93,13 @@ class NerdFontIcon(Text):
 
     Examples
     --------
-    .. manim:: NerdFontIconExample
+    .. manim:: NerdFontIconScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.nerdfont import NerdFontIcon
 
-       class NerdFontIconExample(Scene):
+       class NerdFontIconScene(Scene):
            def construct(self):
                icon = NerdFontIcon("heart").scale(8)
                self.add(icon)

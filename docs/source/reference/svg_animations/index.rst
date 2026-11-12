@@ -59,14 +59,14 @@ When later animations introduce more mobjects, just add them to ``vg``. Call
 :meth:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish`
 once the animations are done.
 
-.. manim:: SVGAnimationUsageExample
+.. manim:: SVGAnimationUsage
    :ref_classes: HTMLParsedVMobject
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
    VMobject.set_default(color=BLACK)
 
-   class SVGAnimationUsageExample(Scene):
+   class SVGAnimationUsage(Scene):
        def construct(self):
            self.camera.background_color = WHITE
            ax = Axes().add_coordinates()
@@ -111,8 +111,8 @@ Render the scene with the ``manim`` command, adding the
 ``--disable_caching`` flag — this is important. Besides the MP4 in the
 media folder, an ``.html`` and a ``.js`` file are written next to the scene
 file. Open the HTML file in a browser, open the developer tools console and
-call ``renderSceneExample()`` (replace ``SceneExample`` with your scene's
-name) to play the SVG animation.
+call ``renderInteractiveHTMLScene()`` (replace ``InteractiveHTMLScene`` with
+your scene's name) to play the SVG animation.
 
 Interactive animation
 ^^^^^^^^^^^^^^^^^^^^^
@@ -126,13 +126,13 @@ want to manipulate, and its second is a list of NumPy ``linspace`` arrays,
 one per tracker, giving the values that tracker can take. Add updaters to
 the mobjects that should change when each parameter moves.
 
-.. manim:: SceneExample
+.. manim:: InteractiveHTMLScene
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
    VMobject.set_default(color=BLACK)
 
-   class SceneExample(Scene):
+   class InteractiveHTMLScene(Scene):
        def construct(self):
            self.camera.background_color = WHITE
            b = ManimBanner(dark_theme=False)
@@ -164,7 +164,7 @@ After the animation has played, call ``update(0, 0.5)`` in the console to
 set the first parameter to ``0.5``, ``update(1, 1.2)`` for the second
 parameter, and so on. No range slider is produced automatically, so add
 one to the HTML yourself. The slider only takes effect after
-``renderSceneExample()`` has been run at least once:
+``renderInteractiveHTMLScene()`` has been run at least once:
 
 .. code-block:: html
 

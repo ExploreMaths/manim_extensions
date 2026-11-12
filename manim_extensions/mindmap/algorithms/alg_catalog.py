@@ -51,14 +51,14 @@ class CatalogNode:
 
     Examples
     --------
-    .. manim:: CatalogNodeExample
+    .. manim:: CatalogNodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogNode
 
-       class CatalogNodeExample(Scene):
+       class CatalogNodeScene(Scene):
            def construct(self):
                root = TreeNode(width=2.0, height=1.0)
                root.add_child(TreeNode(width=1.5, height=0.8))
@@ -126,14 +126,14 @@ class CatalogLayout(Layout):
 
     Examples
     --------
-    .. manim:: CatalogLayoutExample
+    .. manim:: CatalogLayoutScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.alg_standard import TreeNode
        from manim_extensions.mindmap.algorithms.alg_catalog import CatalogLayout
 
-       class CatalogLayoutExample(Scene):
+       class CatalogLayoutScene(Scene):
            def construct(self):
                root = TreeNode(height=0.8, width=1.6)
                for _ in range(3):

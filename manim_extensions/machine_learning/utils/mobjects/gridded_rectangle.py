@@ -59,13 +59,13 @@ class GriddedRectangle(VGroup):
 
     Examples
     --------
-    .. manim:: GriddedRectangleExample
+    .. manim:: GriddedRectangleScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.gridded_rectangle import GriddedRectangle
 
-       class GriddedRectangleExample(Scene):
+       class GriddedRectangleScene(Scene):
            def construct(self):
                self.add(GriddedRectangle(show_grid_lines=True))
     """

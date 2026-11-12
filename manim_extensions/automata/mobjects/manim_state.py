@@ -48,13 +48,13 @@ class ManimState(State, VGroup):
 
     Examples
     --------
-    .. manim:: ManimStateExample
+    .. manim:: ManimStateScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_state import ManimState
 
-       class ManimStateExample(Scene):
+       class ManimStateScene(Scene):
            def construct(self):
                style = {}
                initial = ManimState("q0", -4.5, 0, style, initial=True, scaling=1)

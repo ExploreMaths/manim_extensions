@@ -40,14 +40,14 @@ class State:
 
     Examples
     --------
-    .. manim:: StateExample
+    .. manim:: StateScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.automata.mobjects.automata_dependencies.state import State
        from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
 
-       class StateExample(Scene):
+       class StateScene(Scene):
            def construct(self):
                start = State("q0", initial=True)
                end = State("q1", final=True)

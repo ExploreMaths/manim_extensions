@@ -63,13 +63,13 @@ class ArabicTemplate(TexTemplate):
 
     Examples
     --------
-    .. manim:: ArabicTemplateDocExample
+    .. manim:: ArabicTemplateScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.arabic import ArabicTemplate
 
-       class ArabicTemplateDocExample(Scene):
+       class ArabicTemplateScene(Scene):
            def construct(self):
                template = ArabicTemplate()
                label = Tex("مرحبا", tex_template=template, font_size=48)
@@ -113,13 +113,13 @@ class ArabicText(Tex):
 
     Examples
     --------
-    .. manim:: ArabicTextDocExample
+    .. manim:: ArabicTextScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.arabic import ArabicText
 
-       class ArabicTextDocExample(Scene):
+       class ArabicTextScene(Scene):
            def construct(self):
                label = ArabicText("مرحبا", color="arabicblue", font_size=48)
                label.scale(3)

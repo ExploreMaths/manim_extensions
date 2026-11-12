@@ -48,13 +48,13 @@ class Source(VMobject):
 
     Examples
     --------
-    .. manim:: SourceExample
+    .. manim:: SourceScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.utils import Source
 
-       class SourceExample(Scene):
+       class SourceScene(Scene):
            def construct(self):
                markings = VGroup(
                    Line(DOWN * 0.3, UP * 0.3).shift(UP * 0.5),
@@ -179,13 +179,13 @@ class Circuit(VMobject):
 
     Examples
     --------
-    .. manim:: CircuitExample
+    .. manim:: CircuitScene
 
        from manim import *
        from manim_extensions.circuit.mobjects import Ground, Resistor, VoltageSource
        from manim_extensions.circuit.utils import Circuit
 
-       class CircuitExample(Scene):
+       class CircuitScene(Scene):
            def construct(self):
                # Place the components down first. Then, connect with wires later.
                source = VoltageSource(9).shift(LEFT * 3)
@@ -371,13 +371,13 @@ class Node(VMobject):
 
     Examples
     --------
-    .. manim:: NodeExample
+    .. manim:: NodeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.circuit.utils import Node
 
-       class NodeExample(Scene):
+       class NodeScene(Scene):
            def construct(self):
                node = Node()
                node.add_wire([LEFT * 2, RIGHT * 2])

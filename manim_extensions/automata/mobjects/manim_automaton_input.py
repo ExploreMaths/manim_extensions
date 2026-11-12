@@ -35,13 +35,13 @@ class ManimAutomataInput(VGroup):
 
     Examples
     --------
-    .. manim:: ManimAutomataInputExample
+    .. manim:: ManimAutomataInputScene
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_automaton_input import ManimAutomataInput
 
-       class ManimAutomataInputExample(Scene):
+       class ManimAutomataInputScene(Scene):
            def construct(self):
                inp = ManimAutomataInput("0101", animation_style={})
                inp.scale_to_fit_height(2.5).move_to(ORIGIN)
@@ -116,12 +116,12 @@ class Token(MathTex):
 
     Examples
     --------
-    .. manim:: TokenExample
+    .. manim:: TokenScene
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_automaton_input import Token
 
-       class TokenExample(Scene):
+       class TokenScene(Scene):
            def construct(self):
                tokens = [Token(symbol, spacing) for spacing, symbol in enumerate("010")]
                content = VGroup(*tokens)

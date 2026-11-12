@@ -129,13 +129,13 @@ class MArrayElement(VGroup):
 
     Examples
     --------
-    .. manim:: MArrayElementDocExample
+    .. manim:: MArrayElementScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.data_structures import MArrayElement
 
-       class MArrayElementDocExample(Scene):
+       class MArrayElementScene(Scene):
            def construct(self):
                first = MArrayElement(
                    self,
@@ -634,13 +634,13 @@ class MArray(VGroup):
 
     Examples
     --------
-    .. manim:: MArrayDocExample
+    .. manim:: MArrayScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.data_structures import MArray, MArrayDirection
 
-       class MArrayDocExample(Scene):
+       class MArrayScene(Scene):
            def construct(self):
                arr = MArray(self, [3, 1, 4, 1, 5, 9], label="arr")
                hex_arr = MArray(
@@ -663,12 +663,12 @@ class MArray(VGroup):
                group = VGroup(top, bottom).arrange(DOWN, buff=1.5)
                self.add(group)
 
-    .. manim:: MArrayInsertRemoveDocExample
+    .. manim:: MArrayInsertRemove
 
        from manim import *
        from manim_extensions.data_structures import MArray
 
-       class MArrayInsertRemoveDocExample(Scene):
+       class MArrayInsertRemove(Scene):
            def construct(self):
                arr = MArray(self, [5, 3, 8, 1], label="arr")
                self.play(Write(arr))
@@ -1635,14 +1635,14 @@ class MArrayPointer(VGroup):
 
     Examples
     --------
-    .. manim:: MArrayPointerDocExample
+    .. manim:: MArrayPointerScene
 
        from manim import *
        from manim_extensions.data_structures import (
            MArray, MArrayPointer, MArrayDirection
        )
 
-       class MArrayPointerDocExample(Scene):
+       class MArrayPointerScene(Scene):
            def construct(self):
                arr = MArray(self, [10, 20, 30, 40, 50], label="data")
                self.add(arr)
@@ -2110,14 +2110,14 @@ class MArraySlidingWindow(VGroup):
 
     Examples
     --------
-    .. manim:: MArraySlidingWindowDocExample
+    .. manim:: MArraySlidingWindowScene
 
        from manim import *
        from manim_extensions.data_structures import (
            MArray, MArraySlidingWindow, MArrayDirection
        )
 
-       class MArraySlidingWindowDocExample(Scene):
+       class MArraySlidingWindowScene(Scene):
            def construct(self):
                arr = MArray(self, [7, 2, 5, 1, 8], label="nums")
                self.add(arr)

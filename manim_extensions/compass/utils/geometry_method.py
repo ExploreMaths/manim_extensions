@@ -51,13 +51,13 @@ def get_arc(
 
     Examples
     --------
-    .. manim:: GetArcDocExample
+    .. manim:: GetArc
        :save_last_frame:
 
        from manim import *
        from manim_extensions.compass import get_arc
 
-       class GetArcDocExample(Scene):
+       class GetArc(Scene):
            def construct(self):
                arc = get_arc(ORIGIN, 2 * RIGHT, PI / 2)
                self.add(

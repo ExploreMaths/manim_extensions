@@ -99,14 +99,14 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
 
     Examples
     --------
-    .. manim:: SpaceExample
+    .. manim:: Space
 
        from manim import *
        from manim_extensions.physics.rigid_mechanics.rigid_mechanics import (
            SpaceScene,
        )
 
-       class SpaceExample(SpaceScene):
+       class Space(SpaceScene):
            GRAVITY = (0, -5)
            def construct(self):
                ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 3)
@@ -152,14 +152,14 @@ class SpaceScene(Scene):
 
     Examples
     --------
-    .. manim:: SpaceSceneExample
+    .. manim:: SpaceSceneUsage
 
        from manim import *
        from manim_extensions.physics.rigid_mechanics.rigid_mechanics import (
            SpaceScene,
        )
 
-       class SpaceSceneExample(SpaceScene):
+       class SpaceSceneUsage(SpaceScene):
            def construct(self):
                circle = Circle().shift(UP)
                circle.set_fill(RED, 1)

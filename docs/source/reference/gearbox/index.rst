@@ -46,13 +46,13 @@ and ``stroke_opacity=0`` when you do not want the stroke, since the stroke
 increases the gear size by a couple of pixels and gives the feeling of
 interference.
 
-.. manim:: GearMeshExample
+.. manim:: GearMesh
    :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear
 
    from manim import *
    from manim_extensions.gearbox import Gear
 
-   class GearMeshExample(Scene):
+   class GearMesh(Scene):
        def construct(self):
            # small gear
            gear1 = Gear(15, stroke_opacity=0, fill_color=WHITE, fill_opacity=1)
@@ -71,14 +71,14 @@ For ring gears with inner teeth, pass ``inner_teeth=True`` and use the
 ``offset`` and ``bias`` arguments of :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`.mesh_to()
 to control the axial distance and which tooth flank engages:
 
-.. manim:: RingGearMeshExample
+.. manim:: RingGearMesh
    :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear
    :save_last_frame:
 
    from manim import *
    from manim_extensions.gearbox import Gear
 
-   class RingGearMeshExample(Scene):
+   class RingGearMesh(Scene):
        def construct(self):
            gear1 = Gear(12, module=1, profile_shift=0.3, stroke_opacity=0,
                fill_color=WHITE, fill_opacity=1)

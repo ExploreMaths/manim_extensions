@@ -60,12 +60,12 @@ class VPivotJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VPivotJointExample
+    .. manim:: VPivotJointScene
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VPivotJointExample(SpaceScene):
+       class VPivotJointScene(SpaceScene):
            def construct(self):
                # both squares rotate freely around their shared pivot points
                pivot = Dot(ORIGIN)

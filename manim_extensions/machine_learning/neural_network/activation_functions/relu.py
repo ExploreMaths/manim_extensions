@@ -21,7 +21,7 @@ class ReLUFunction(ActivationFunction):
 
     Examples
     --------
-    .. manim:: ReLUFunctionDocExample
+    .. manim:: ReLUFunctionScene
        :save_last_frame:
 
        from manim import *
@@ -29,7 +29,7 @@ class ReLUFunction(ActivationFunction):
            ReLUFunction,
        )
 
-       class ReLUFunctionDocExample(Scene):
+       class ReLUFunctionScene(Scene):
            def construct(self):
                relu = ReLUFunction()
                relu.scale(4)

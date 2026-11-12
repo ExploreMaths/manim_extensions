@@ -45,7 +45,7 @@ class VariationalAutoencoder(Group):
 
     Examples
     --------
-    .. manim:: VariationalAutoencoderDocExample
+    .. manim:: VariationalAutoencoderScene
        :save_last_frame:
 
        from manim import *
@@ -53,7 +53,7 @@ class VariationalAutoencoder(Group):
            VariationalAutoencoder,
        )
 
-       class VariationalAutoencoderDocExample(Scene):
+       class VariationalAutoencoderScene(Scene):
            def construct(self):
                vae = VariationalAutoencoder()
                vae.move_to(ORIGIN)

@@ -45,13 +45,13 @@ class XMark(VGroup):
 
     Examples
     --------
-    .. manim:: XMarkExample
+    .. manim:: XMarkScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.machine_learning.neural_network.animations.dropout import XMark
 
-       class XMarkExample(Scene):
+       class XMarkScene(Scene):
            def construct(self):
                self.add(XMark().scale(15))
     """

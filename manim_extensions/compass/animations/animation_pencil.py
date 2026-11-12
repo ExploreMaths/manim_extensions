@@ -34,12 +34,12 @@ class MovePencilAlongPath(MoveAlongPath):
 
     Examples
     --------
-    .. manim:: MovePencilAlongPathDocExample
+    .. manim:: MovePencilAlongPathScene
 
        from manim import *
        from manim_extensions.compass import MovePencilAlongPath, Pencil
 
-       class MovePencilAlongPathDocExample(Scene):
+       class MovePencilAlongPathScene(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
                path = Line(LEFT * 2, RIGHT * 2, color=GREY)
@@ -75,12 +75,12 @@ class MovePencilTipTo(ApplyMethod):
 
     Examples
     --------
-    .. manim:: MovePencilTipToDocExample
+    .. manim:: MovePencilTip
 
        from manim import *
        from manim_extensions.compass import MovePencilTipTo, Pencil
 
-       class MovePencilTipToDocExample(Scene):
+       class MovePencilTip(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
                target = Dot(ORIGIN, color=RED)
@@ -108,12 +108,12 @@ class DrawPath(AnimationGroup):
 
     Examples
     --------
-    .. manim:: DrawPathDocExample
+    .. manim:: DrawPathScene
 
        from manim import *
        from manim_extensions.compass import DrawPath, Pencil
 
-       class DrawPathDocExample(Scene):
+       class DrawPathScene(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
                path = Square(side_length=2.5)
@@ -140,12 +140,12 @@ class PutPencilAway(MovePencilTipTo):
 
     Examples
     --------
-    .. manim:: PutPencilAwayDocExample
+    .. manim:: PutPencilAwayScene
 
        from manim import *
        from manim_extensions.compass import DrawPath, Pencil, PutPencilAway
 
-       class PutPencilAwayDocExample(Scene):
+       class PutPencilAwayScene(Scene):
            def construct(self):
                pencil = Pencil().to_edge(LEFT)
                line = Line(LEFT, RIGHT)

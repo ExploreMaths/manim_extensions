@@ -38,14 +38,14 @@ All extra keyword arguments are forwarded to
 and the usual ``Text`` options work as expected. Render the scene normally
 with the ``manim`` command.
 
-.. manim:: NerdfontIconExample
+.. manim:: NerdFontIconScene
    :ref_classes: NerdFontIcon
    :save_last_frame:
 
    from manim import *
    from manim_extensions.nerdfont import NerdFontIcon
 
-   class NerdfontIconExample(Scene):
+   class NerdFontIconScene(Scene):
        def construct(self):
            # Set the background color
            self.camera.background_color = "#ece6e2"

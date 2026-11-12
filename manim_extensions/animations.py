@@ -67,12 +67,12 @@ class TypeWriter(Animation):
 
     Examples
     --------
-    .. manim:: TypeWriterDocExample
+    .. manim:: TypeWriterScene
 
        from manim import *
        from manim_extensions import TypeWriter
 
-       class TypeWriterDocExample(Scene):
+       class TypeWriterScene(Scene):
            def construct(self):
                greeting = Text("Dear viewers,").to_edge(UP)
                body = Text("each character appears in turn.").next_to(greeting, DOWN)
@@ -142,12 +142,12 @@ def easeOutBounce(t: float) -> float:
 
     Examples
     --------
-    .. manim:: EaseOutBounceExample
+    .. manim:: EaseOutBounce
 
        from manim import *
        from manim_extensions import easeOutBounce
 
-       class EaseOutBounceExample(Scene):
+       class EaseOutBounce(Scene):
            def construct(self):
                track = Line(LEFT * 3, RIGHT * 3)
                linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
@@ -200,12 +200,12 @@ def easeInBounce(t: float) -> float:
 
     Examples
     --------
-    .. manim:: EaseInBounceExample
+    .. manim:: EaseInBounce
 
        from manim import *
        from manim_extensions import easeInBounce
 
-       class EaseInBounceExample(Scene):
+       class EaseInBounce(Scene):
            def construct(self):
                track = Line(LEFT * 3, RIGHT * 3)
                linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
@@ -248,12 +248,12 @@ def easeInOutBounce(t: float) -> float:
 
     Examples
     --------
-    .. manim:: EaseInOutBounceExample
+    .. manim:: EaseInOutBounce
 
        from manim import *
        from manim_extensions import easeInOutBounce
 
-       class EaseInOutBounceExample(Scene):
+       class EaseInOutBounce(Scene):
            def construct(self):
                track = Line(LEFT * 3, RIGHT * 3)
                linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
@@ -302,12 +302,12 @@ def easeOutElastic(t: float) -> float:
 
     Examples
     --------
-    .. manim:: EaseOutElasticExample
+    .. manim:: EaseOutElastic
 
        from manim import *
        from manim_extensions import easeOutElastic
 
-       class EaseOutElasticExample(Scene):
+       class EaseOutElastic(Scene):
            def construct(self):
                track = Line(LEFT * 3, RIGHT * 3)
                linear_dot = Dot(LEFT * 3 + UP * 1.2, color=GREY_B)
@@ -358,12 +358,12 @@ class WriteRandom(LaggedStart):
 
     Examples
     --------
-    .. manim:: WriteRandomDocExample
+    .. manim:: WriteRandomScene
 
        from manim import *
        from manim_extensions import WriteRandom
 
-       class WriteRandomDocExample(Scene):
+       class WriteRandomScene(Scene):
            def construct(self):
                formula = MathTex(r"\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}")
                self.play(WriteRandom(formula, lag_ratio=0.2))
@@ -401,12 +401,12 @@ class ReversedWrite(LaggedStart):
 
     Examples
     --------
-    .. manim:: ReversedWriteDocExample
+    .. manim:: ReversedWriteScene
 
        from manim import *
        from manim_extensions import ReversedWrite
 
-       class ReversedWriteDocExample(Scene):
+       class ReversedWriteScene(Scene):
            def construct(self):
                normal = Text("Write").shift(UP)
                reversed_mob = Text("ReversedWrite").shift(DOWN)
@@ -444,12 +444,12 @@ class FadeInRandom(LaggedStart):
 
     Examples
     --------
-    .. manim:: FadeInRandomDocExample
+    .. manim:: FadeInRandomScene
 
        from manim import *
        from manim_extensions import FadeInRandom
 
-       class FadeInRandomDocExample(Scene):
+       class FadeInRandomScene(Scene):
            def construct(self):
                mob = MathTex(r"\frac{a+b}{2} \geq \sqrt{ab}").scale(1.5)
                self.play(FadeInRandom(mob))
@@ -486,12 +486,12 @@ class FadeOutRandom(LaggedStart):
 
     Examples
     --------
-    .. manim:: FadeOutRandomDocExample
+    .. manim:: FadeOutRandomScene
 
        from manim import *
        from manim_extensions import FadeOutRandom
 
-       class FadeOutRandomDocExample(Scene):
+       class FadeOutRandomScene(Scene):
            def construct(self):
                mob = Text("Now you see me", weight=BOLD).scale(1.2)
                self.play(FadeIn(mob))
@@ -528,12 +528,12 @@ class GrowRandom(LaggedStart):
 
     Examples
     --------
-    .. manim:: GrowRandomDocExample
+    .. manim:: GrowRandomScene
 
        from manim import *
        from manim_extensions import GrowRandom
 
-       class GrowRandomDocExample(Scene):
+       class GrowRandomScene(Scene):
            def construct(self):
                mob = MathTex(
                    r"\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}"
@@ -579,12 +579,12 @@ class PassingRectangle(Animation):
 
     Examples
     --------
-    .. manim:: PassingRectangleDocExample
+    .. manim:: PassingRectangleScene
 
        from manim import *
        from manim_extensions import PassingRectangle
 
-       class PassingRectangleDocExample(Scene):
+       class PassingRectangleScene(Scene):
            def construct(self):
                text = Text("Highlight", weight=BOLD).scale(1.5)
                self.play(Write(text))
@@ -660,12 +660,12 @@ class LaggedCreation(Animation):
 
     Examples
     --------
-    .. manim:: LaggedCreationDocExample
+    .. manim:: LaggedCreationScene
 
        from manim import *
        from manim_extensions import LaggedCreation
 
-       class LaggedCreationDocExample(Scene):
+       class LaggedCreationScene(Scene):
            def construct(self):
                circle = Circle(radius=1.2, color=BLUE).shift(LEFT * 2)
                square = Square(2.2, color=GREEN).shift(RIGHT * 2)
@@ -754,12 +754,12 @@ class HighLightWithLines(AnimationGroup):
 
     Examples
     --------
-    .. manim:: HighLightWithLinesDocExample
+    .. manim:: HighLightWithLinesScene
 
        from manim import *
        from manim_extensions import HighLightWithLines
 
-       class HighLightWithLinesDocExample(Scene):
+       class HighLightWithLinesScene(Scene):
            def construct(self):
                content = VGroup(
                    Text("Some context above"),
@@ -834,12 +834,12 @@ class UnHighLightWithLines(AnimationGroup):
 
     Examples
     --------
-    .. manim:: UnHighLightWithLinesDocExample
+    .. manim:: UnHighLightWithLinesScene
 
        from manim import *
        from manim_extensions import HighLightWithLines, UnHighLightWithLines
 
-       class UnHighLightWithLinesDocExample(Scene):
+       class UnHighLightWithLinesScene(Scene):
            def construct(self):
                mob = MathTex(r"\Delta = b^2 - 4ac", color=WHITE).scale(1.5)
                self.add(mob)

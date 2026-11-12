@@ -7,14 +7,14 @@ Example Gallery
 The examples below use Manim's ``.. manim::`` directive to render the scene
 inline. Each example demonstrates one of the core extension modules.
 
-.. manim:: LabelDotExample
+.. manim:: LabelDotOverview
    :save_last_frame:
    :ref_classes: LabelDot
 
    from manim import *
    from manim_extensions import LabelDot
 
-   class LabelDotExample(Scene):
+   class LabelDotOverview(Scene):
        def construct(self):
            a = LabelDot("A", [-2, -1, 0], label_pos=DOWN, buff=0.2, color=RED)
            b = LabelDot("B", [1, 2, 0], label_pos=UP, buff=0.2, color=GREEN)
@@ -25,14 +25,14 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(triangle, a, b, c)
 
-.. manim:: MathTexHelpersExample
+.. manim:: MathTexHelpers
    :save_last_frame:
    :ref_classes: MathTexLine MathTexBrace MathTexDoublearrow
 
    from manim import *
    from manim_extensions import MathTexLine, MathTexBrace, MathTexDoublearrow
 
-   class MathTexHelpersExample(Scene):
+   class MathTexHelpers(Scene):
        def construct(self):
            line = Line(LEFT * 3, RIGHT * 3)
            self.add(line)
@@ -42,14 +42,14 @@ inline. Each example demonstrates one of the core extension modules.
            arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0)
            self.add(slope, brace, arrow)
 
-.. manim:: GeometryHelpersExample
+.. manim:: GeometryHelpers
    :save_last_frame:
    :ref_classes: ExtendedLine PerpendicularLine PerpendicularSign
 
    from manim import *
    from manim_extensions import ExtendedLine, PerpendicularLine, PerpendicularSign
 
-   class GeometryHelpersExample(Scene):
+   class GeometryHelpers(Scene):
        def construct(self):
            base = Line(LEFT * 3, RIGHT * 3, color=BLUE)
            ext = ExtendedLine(base, extend_distance=1.0)
@@ -57,7 +57,7 @@ inline. Each example demonstrates one of the core extension modules.
            sign = PerpendicularSign(base, perp, length=0.3, color=WHITE)
            self.add(base, ext, perp, sign)
 
-.. manim:: VMobjectIntExample
+.. manim:: VMobjectIntOverview
    :save_last_frame:
    :ref_classes: LabelDot
    :ref_functions: VMobjectInt
@@ -65,7 +65,7 @@ inline. Each example demonstrates one of the core extension modules.
    from manim import *
    from manim_extensions import VMobjectInt, LabelDot
 
-   class VMobjectIntExample(Scene):
+   class VMobjectIntOverview(Scene):
        def construct(self):
            c1 = Circle(radius=2.5, color=BLUE).shift(LEFT)
            c2 = Circle(radius=2.5, color=GREEN).shift(RIGHT)
@@ -77,13 +77,13 @@ inline. Each example demonstrates one of the core extension modules.
            line = Line(pts[0], pts[1], color=PURE_YELLOW, stroke_width=2)
            self.add(line)
 
-.. manim:: TextAnimationsExample
+.. manim:: TextAnimations
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
 
    from manim import *
    from manim_extensions import TypeWriter, WriteRandom, FadeOutRandom
 
-   class TextAnimationsExample(Scene):
+   class TextAnimations(Scene):
        def construct(self):
            t1 = Text("Hello World").shift(UP * 1.5)
            self.play(TypeWriter(t1, interval=0.08))
@@ -98,28 +98,28 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(WriteRandom(t3))
            self.wait(1)
 
-.. manim:: ColorTextExample
+.. manim:: ColorTextOverview
    :save_last_frame:
    :ref_classes: ColorText
 
    from manim import *
    from manim_extensions import ColorText
 
-   class ColorTextExample(Scene):
+   class ColorTextOverview(Scene):
        def construct(self):
            t1 = ColorText([255, 80, 80]).shift(UP * 2)
            t2 = ColorText([80, 200, 255])
            t3 = ColorText([150, 255, 100]).shift(DOWN * 2)
            self.add(t1, t2, t3)
 
-.. manim:: FileTreeExample
+.. manim:: FileTreeOverview
    :save_last_frame:
    :ref_classes: FileTree
 
    from manim import *
    from manim_extensions import FileTree
 
-   class FileTreeExample(Scene):
+   class FileTreeOverview(Scene):
        def construct(self):
            tree = FileTree({
                "src": {
@@ -135,14 +135,14 @@ inline. Each example demonstrates one of the core extension modules.
            })
            self.add(tree)
 
-.. manim:: TreeDiagramExample
+.. manim:: TreeDiagramOverview
    :save_last_frame:
    :ref_classes: TreeDiagram
 
    from manim import *
    from manim_extensions import TreeDiagram
 
-   class TreeDiagramExample(Scene):
+   class TreeDiagramOverview(Scene):
        def construct(self):
            tree = {
                "Root": {
@@ -155,13 +155,13 @@ inline. Each example demonstrates one of the core extension modules.
            diagram.scale_to_fit_width(9)
            self.add(diagram)
 
-.. manim:: HighlightAnimationsExample
+.. manim:: HighlightAnimations
    :ref_classes: PassingRectangle HighLightWithLines
 
    from manim import *
    from manim_extensions import PassingRectangle, HighLightWithLines
 
-   class HighlightAnimationsExample(Scene):
+   class HighlightAnimations(Scene):
        def construct(self):
            mob = Text("Hello World")
            self.add(mob)
@@ -172,14 +172,14 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(HighLightWithLines(mob, color=GREEN))
            self.wait(1)
 
-.. manim:: DecorationHelpersExample
+.. manim:: DecorationHelpers
    :save_last_frame:
    :ref_classes: ShadowAround ObjectBorder
 
    from manim import *
    from manim_extensions import ShadowAround, ObjectBorder
 
-   class DecorationHelpersExample(Scene):
+   class DecorationHelpers(Scene):
        def construct(self):
            c = Circle(radius=1.4, fill_color=TEAL, fill_opacity=1, stroke_width=0).shift(LEFT * 3)
            shadow = ShadowAround(c, blur_width=0.4, shadow_color=WHITE)
@@ -188,13 +188,13 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(shadow, c)
            self.add(t, border)
 
-.. manim:: TrailExample
+.. manim:: TrailOverview
    :ref_classes: Trail
 
    from manim import *
    from manim_extensions import Trail
 
-   class TrailExample(Scene):
+   class TrailOverview(Scene):
        def construct(self):
            circle = Circle(radius=2.5, color=GREY, stroke_width=1)
            self.add(circle)
@@ -204,28 +204,28 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(trail)
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear), run_time=3)
 
-.. manim:: ChineseMathTexExample
+.. manim:: ChineseMathTexOverview
    :save_last_frame:
    :ref_classes: ChineseMathTex
 
    from manim import *
    from manim_extensions import ChineseMathTex
 
-   class ChineseMathTexExample(Scene):
+   class ChineseMathTexOverview(Scene):
        def construct(self):
            tex1 = ChineseMathTex(r"勾股定理：a^{2} + b^{2} = c^{2}").shift(UP * 1.5)
            tex2 = ChineseMathTex(r"二次方程：x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}").shift(DOWN * 1.5)
            self.add(tex1)
            self.add(tex2)
 
-.. manim:: ThreeDVectorExample
+.. manim:: ThreeDVectorOverview
    :save_last_frame:
    :ref_classes: ThreeDVector
 
    from manim import *
    from manim_extensions import ThreeDVector
 
-   class ThreeDVectorExample(ThreeDScene):
+   class ThreeDVectorOverview(ThreeDScene):
        def construct(self):
            self.set_camera_orientation(phi=65 * DEGREES, theta=-50 * DEGREES)
            axes = ThreeDAxes(
@@ -243,13 +243,13 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(v1, v2, v3)
            self.add_fixed_in_frame_mobjects(l1, l2, l3)
 
-.. manim:: MoreAnimationsExample
+.. manim:: MoreAnimations
    :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation
 
    from manim import *
    from manim_extensions import ReversedWrite, FadeInRandom, GrowRandom, LaggedCreation
 
-   class MoreAnimationsExample(Scene):
+   class MoreAnimations(Scene):
        def construct(self):
            text = Text("Animation")
            self.add(text)
@@ -262,14 +262,14 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(LaggedCreation(box, lag_ratio=0.2))
            self.wait(1)
 
-.. manim:: AlgorithmExample
+.. manim:: Algorithm
    :save_last_frame:
    :ref_classes: manim_extensions.algorithm.node.Node Array Queue
 
    from manim import *
    from manim_extensions.algorithm import Node, Array, Queue
 
-   class AlgorithmExample(Scene):
+   class Algorithm(Scene):
        def construct(self):
            nodes = VGroup(
                Node("1"), Node("2"), Node("3"), Node("4")
@@ -283,7 +283,7 @@ inline. Each example demonstrates one of the core extension modules.
            content.scale_to_fit_height(7).move_to(ORIGIN)
            self.add(content)
 
-.. manim:: CircuitExample
+.. manim:: CircuitScene
    :save_last_frame:
    :ref_classes: VoltageSource Resistor Ground Circuit
 
@@ -291,7 +291,7 @@ inline. Each example demonstrates one of the core extension modules.
    from manim_extensions.circuit import VoltageSource, Resistor, Ground
    from manim_extensions.circuit.utils import Circuit
 
-   class CircuitExample(Scene):
+   class CircuitScene(Scene):
        def construct(self):
            vs = VoltageSource(value=10).shift(LEFT * 3 + UP * 0.5)
            r1 = Resistor(label="10k").next_to(vs, RIGHT, buff=3.0)
@@ -306,7 +306,7 @@ inline. Each example demonstrates one of the core extension modules.
            circuit.scale_to_fit_height(6.5).move_to(ORIGIN)
            self.add(circuit)
 
-.. manim:: CompassExample
+.. manim:: CompassScene
    :ref_classes: ExtendedLine CompassScene DrawPath
    :ref_functions: VMobjectInt
 
@@ -314,7 +314,7 @@ inline. Each example demonstrates one of the core extension modules.
    from manim_extensions import VMobjectInt, ExtendedLine
    from manim_extensions.compass import CompassScene, DrawPath
 
-   class CompassExample(CompassScene):
+   class CompassScene(CompassScene):
        def construct(self):
            self.play(FadeIn(self.pencil, self.ruler))
            self.draw_line(
@@ -350,20 +350,20 @@ inline. Each example demonstrates one of the core extension modules.
            self.put_ruler_aside(run_time=0.5)
            self.wait()
 
-.. manim:: DataStructuresExample
+.. manim:: DataStructures
    :save_last_frame:
    :ref_classes: MArray MVariable
 
    from manim import *
    from manim_extensions.data_structures import MArray, MVariable
 
-   class DataStructuresExample(Scene):
+   class DataStructures(Scene):
        def construct(self):
            arr = MArray(self, [10, 20, 30, 40, 50], label="arr")
            var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5)
            self.add(arr, var)
 
-.. manim:: GearboxExample
+.. manim:: Gearbox
    :save_last_frame:
    :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear Rack
 
@@ -371,7 +371,7 @@ inline. Each example demonstrates one of the core extension modules.
    import numpy as np
    from manim_extensions.gearbox import Gear, Rack
 
-   class GearboxExample(Scene):
+   class Gearbox(Scene):
        def construct(self):
            gear1 = Gear(12, module=0.3, stroke_opacity=0, fill_color=BLUE, fill_opacity=1).shift(LEFT * 3)
            gear2 = Gear(8, module=0.3, stroke_opacity=0, fill_color=RED, fill_opacity=1)
@@ -387,7 +387,7 @@ inline. Each example demonstrates one of the core extension modules.
            content.move_to(ORIGIN)
            self.add(content)
 
-.. manim:: MeshesExample
+.. manim:: Meshes
    :save_last_frame:
    :ref_classes: Mesh Manim2DMesh
 
@@ -396,7 +396,7 @@ inline. Each example demonstrates one of the core extension modules.
    from manim_extensions.meshes.models.data_models.mesh import Mesh
    from manim_extensions.meshes.models.manim_models.basic_mesh import Manim2DMesh
 
-   class MeshesExample(Scene):
+   class Meshes(Scene):
        def construct(self):
            vertices = [[0, 0, 0], [3, 0, 0], [1.5, 3, 0]]
            faces = [[0, 1, 2]]
@@ -408,14 +408,14 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(manim_mesh)
            self.add(v0, v1, v2)
 
-.. manim:: MindMapExample
+.. manim:: MindMapScene
    :save_last_frame:
    :ref_classes: MindMap
 
    from manim import *
    from manim_extensions.mindmap import MindMap
 
-   class MindMapExample(Scene):
+   class MindMapScene(Scene):
        def construct(self):
            data = {
                'node': MathTex(r"\text{Manim Extensions}"),
@@ -448,13 +448,13 @@ inline. Each example demonstrates one of the core extension modules.
            mm.scale_to_fit_width(10)
            self.add(mm)
 
-.. manim:: SequenceDiagramExample
+.. manim:: SequenceDiagram
    :ref_classes: SeqActor SeqObject SeqAction
 
    from manim import *
    from manim_extensions.sequence_diagram import SeqActor, SeqObject, SeqAction
 
-   class SequenceDiagramExample(Scene):
+   class SequenceDiagram(Scene):
        def construct(self):
            client = SeqActor("Client").shift(LEFT * 4)
            server = SeqActor("Server").shift(RIGHT * 4)
@@ -474,14 +474,14 @@ inline. Each example demonstrates one of the core extension modules.
            content = Group(*self.mobjects)
            content.scale_to_fit_height(6).move_to(ORIGIN)
 
-.. manim:: TikzExample
+.. manim:: TikzScene
    :save_last_frame:
    :ref_classes: Tikz
 
    from manim import *
    from manim_extensions.tikz import Tikz
 
-   class TikzExample(Scene):
+   class TikzScene(Scene):
        def construct(self):
            tikz = Tikz(
                r"""
@@ -494,14 +494,14 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(tikz)
 
-.. manim:: PhysicsOpticsExample
+.. manim:: PhysicsOptics
    :save_last_frame:
    :ref_classes: Lens Ray
 
    from manim import *
    from manim_extensions.physics import Lens, Ray
 
-   class PhysicsOpticsExample(Scene):
+   class PhysicsOptics(Scene):
        def construct(self):
            lens = Lens(f=1.5, d=0.4)
            object = Triangle(color=RED).scale(0.45).shift(LEFT * 3 + DOWN * 0.5)
@@ -512,26 +512,26 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(object, lens, rays)
 
-.. manim:: PhysicsWavesExample
+.. manim:: PhysicsWaves
    :save_last_frame:
    :ref_classes: StandingWave
 
    from manim import *
    from manim_extensions.physics import StandingWave
 
-   class PhysicsWavesExample(Scene):
+   class PhysicsWaves(Scene):
        def construct(self):
            wave = StandingWave()
            self.add(wave)
 
-.. manim:: PhysicsEMExample
+.. manim:: PhysicsEM
    :save_last_frame:
    :ref_classes: Charge ElectricField
 
    from manim import *
    from manim_extensions.physics import Charge, ElectricField
 
-   class PhysicsEMExample(Scene):
+   class PhysicsEM(Scene):
        def construct(self):
            c1 = Charge(+1).shift(LEFT)
            c2 = Charge(-1).shift(RIGHT)
@@ -540,26 +540,26 @@ inline. Each example demonstrates one of the core extension modules.
            content.scale_to_fit_width(12).move_to(ORIGIN)
            self.add(content)
 
-.. manim:: PhysicsMechanicsExample
+.. manim:: PhysicsMechanics
    :save_last_frame:
    :ref_classes: Pendulum
 
    from manim import *
    from manim_extensions.physics import Pendulum
 
-   class PhysicsMechanicsExample(Scene):
+   class PhysicsMechanics(Scene):
        def construct(self):
            p = Pendulum(length=3, initial_theta=0.4)
            self.add(p)
 
-.. manim:: AutomataExample
+.. manim:: Automata
    :save_last_frame:
    :ref_classes: ManimdeterministicFiniteAutomaton
 
    from manim import *
    from manim_extensions.automata import ManimdeterministicFiniteAutomaton
 
-   class AutomataExample(Scene):
+   class Automata(Scene):
        def construct(self):
            dfa_json = {
                'structure': {

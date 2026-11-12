@@ -148,16 +148,16 @@ class HTMLParsedVMobject:
     --------
     Render the scene with the ``--disable_caching`` flag. Besides the MP4,
     an HTML and a JS file are written next to the scene file; open the HTML
-    file in a browser and call ``renderHTMLParsedVMobjectDocExample()`` from
+    file in a browser and call ``renderHTMLParsedVMobjectScene()`` from
     the developer console to see the SVG animation.
 
-    .. manim:: HTMLParsedVMobjectDocExample
+    .. manim:: HTMLParsedVMobjectScene
 
        from manim import *
        from manim_extensions.svg_animations import HTMLParsedVMobject
        VMobject.set_default(color=BLACK)
 
-       class HTMLParsedVMobjectDocExample(Scene):
+       class HTMLParsedVMobjectScene(Scene):
            def construct(self):
                self.camera.background_color = WHITE
                ax = Axes().add_coordinates()

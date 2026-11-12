@@ -61,12 +61,12 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-    .. manim:: ManimNondeterministicFiniteAutomatonExample
+    .. manim:: ManimNondeterministicFiniteAutomatonScene
 
        from manim import *
        from manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton import ManimNondeterministicFiniteAutomaton
 
-       class ManimNondeterministicFiniteAutomatonExample(MovingCameraScene):
+       class ManimNondeterministicFiniteAutomatonScene(MovingCameraScene):
            def construct(self):
                # build the NFA from the default JSON template (contains an
                # epsilon transition and multiple branches per symbol)

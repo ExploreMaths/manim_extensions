@@ -45,7 +45,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     Examples
     --------
-    .. manim:: PairedQueryLayerDocExample
+    .. manim:: PairedQueryLayerScene
 
        from manim import *
        import numpy as np
@@ -63,7 +63,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
        config.frame_height = 7.0
        config.frame_width = 7.0
 
-       class PairedQueryLayerDocExample(Scene):
+       class PairedQueryLayerScene(Scene):
            def construct(self):
                # Synthesize digit-like query images
                yy, xx = np.mgrid[0:28, 0:28]

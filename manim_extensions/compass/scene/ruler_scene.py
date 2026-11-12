@@ -29,12 +29,12 @@ class SingleRulerScene(MovingCameraScene):
 
     Examples
     --------
-    .. manim:: SingleRulerSceneExample
+    .. manim:: SingleRulerSceneUsage
        :save_last_frame:
 
        from manim_extensions.compass import SingleRulerScene
 
-       class SingleRulerSceneExample(SingleRulerScene):
+       class SingleRulerSceneUsage(SingleRulerScene):
            def construct(self):
                self.draw_line_with_pencil(LEFT, 3 * UR)
                self.put_ruler_back()

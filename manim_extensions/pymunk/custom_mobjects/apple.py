@@ -17,13 +17,13 @@ class Apple(VMobject):
 
     Examples
     --------
-    .. manim:: AppleDocExample
+    .. manim:: Apple
        :save_last_frame:
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class AppleDocExample(Scene):
+       class Apple(Scene):
            def construct(self):
                apples = VGroup(
                    Apple(color=RED, fill_color=RED, fill_opacity=0.6),

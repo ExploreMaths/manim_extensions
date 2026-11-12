@@ -22,13 +22,13 @@ class LayoutDirection(Enum):
 
     Examples
     --------
-    .. manim:: LayoutDirectionExample
+    .. manim:: LayoutDirectionScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap.algorithms.layout_config import LayoutDirection
 
-       class LayoutDirectionExample(Scene):
+       class LayoutDirectionScene(Scene):
            def construct(self):
                directions = [
                    (RIGHT, LayoutDirection.LeftToRight),
@@ -57,14 +57,14 @@ class LayoutType(Enum):
 
     Examples
     --------
-    .. manim:: LayoutTypeExample
+    .. manim:: LayoutTypeScene
        :save_last_frame:
 
        from manim import *
        from manim_extensions.mindmap import CatalogMap, MindMap, StandardMap, TimeLine
        from manim_extensions.mindmap.algorithms.layout_config import LayoutType
 
-       class LayoutTypeExample(Scene):
+       class LayoutTypeScene(Scene):
            def construct(self):
                data = {
                    "node": MathTex(r"\text{Root}", font_size=48),
@@ -119,7 +119,7 @@ class LayoutConfig:
 
     Examples
     --------
-    .. manim:: LayoutConfigExample
+    .. manim:: LayoutConfigScene
        :save_last_frame:
 
        from manim import *
@@ -128,7 +128,7 @@ class LayoutConfig:
        from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig, LayoutType
        from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
 
-       class LayoutConfigExample(Scene):
+       class LayoutConfigScene(Scene):
            def construct(self):
                config = LayoutConfig(direction=UP, node_spacing=0.8, level_spacing=1.5)
                data = {
