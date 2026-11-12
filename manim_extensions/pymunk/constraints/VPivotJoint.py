@@ -71,12 +71,10 @@ class VPivotJoint(VConstraint):
                pivot = Dot(ORIGIN)
                square = Square().move_to(pivot)
                square2 = Square().move_to(pivot.get_center() + UP * 2).scale(0.5)
-
                constraints = [
                    VPivotJoint(pivot, square),
                    VPivotJoint(square, square2, pivot_world=UP * 3),
                ]
-
                self.play(FadeIn(pivot), FadeIn(square), FadeIn(square2))
                self.add_static_body(pivot)
                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)

@@ -624,7 +624,6 @@ class AbstractLayoutAnimation(AnimationGroup):
                        ] + [
                            Create(node.surr_rect) for node in bfs_walker(self.root)
                        ]
-
                root = Node(MathTex(r"\text{Root}", font_size=36).to_edge(LEFT))
                a1 = Node(MathTex(r"\text{A}_1", font_size=36))
                root.add_child(a1)

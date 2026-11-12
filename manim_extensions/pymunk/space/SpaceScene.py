@@ -55,7 +55,6 @@ class SpaceScene(ZoomedScene):
                    )
                    for i in range(3)
                ])
-
                self.play(FadeIn(floor), FadeIn(balls))
                self.add_static_body(floor)
                self.add_dynamic_body(*balls)

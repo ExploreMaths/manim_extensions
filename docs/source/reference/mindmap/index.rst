@@ -64,7 +64,6 @@ nodes to insert:
    class MindMapExample(Scene):
        def construct(self):
            root = Node(Tex("Volume of a sphere").to_edge(LEFT))
-
            a1 = Node(Tex("3rd century BC"))
            a2 = Node(Tex("3rd century AD"))
            a3 = Node(Tex("5th century AD"))

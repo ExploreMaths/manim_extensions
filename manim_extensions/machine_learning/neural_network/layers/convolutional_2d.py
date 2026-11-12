@@ -211,7 +211,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
            FeedForwardLayer,
            NeuralNetwork,
        )
-
        # Widescreen layout used by the upstream ManimML examples
        config.pixel_height = 1200
        config.pixel_width = 1900

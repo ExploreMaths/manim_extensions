@@ -105,6 +105,13 @@ jobs:
       - name: Check that examples declare their sample files with ':files:'
         run: python workflow/validate_example_files.py
 
+  validate-example-spacing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check blank-line layout in manim examples
+        run: python workflow/validate_example_spacing.py
+
   validate-example-layout:
     runs-on: ubuntu-latest
     steps:

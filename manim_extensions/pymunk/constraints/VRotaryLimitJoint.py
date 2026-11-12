@@ -61,12 +61,10 @@ class VRotaryLimitJoint(VConstraint):
                pivot = Dot(UP * 2)
                arm = Rectangle(width=2.5, height=0.3)
                arm.move_to(pivot.get_center() + DOWN * 1.25)
-
                constraints = [
                    VPivotJoint(pivot, arm, pivot_world=pivot.get_center()),
                    VRotaryLimitJoint(pivot, arm, min_angle=-PI / 6, max_angle=PI / 6),
                ]
-
                self.play(FadeIn(pivot), FadeIn(arm))
                self.add_static_body(pivot)
                self.add_dynamic_body(arm)

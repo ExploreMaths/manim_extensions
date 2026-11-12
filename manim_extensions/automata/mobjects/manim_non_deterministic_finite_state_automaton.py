@@ -80,7 +80,6 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
                # Create an mobject version of the input for the automaton
                automaton_input = nda.construct_automaton_input("01")
                automaton_input.next_to(nda, UP, buff=0.5)
-
                self.play(
                    DrawBorderThenFill(nda),
                    FadeIn(automaton_input),

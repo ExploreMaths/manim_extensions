@@ -59,7 +59,6 @@ the OpenGL renderer (``--renderer=opengl``):
    :ref_classes: Mesh ManimMesh
 
    from manim import *
-
    from manim_extensions.meshes.models.data_models.mesh import Mesh
    from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
 

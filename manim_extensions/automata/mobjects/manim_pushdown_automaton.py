@@ -76,7 +76,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                # Create an mobject version of the input for the automaton
                automaton_input = pda.construct_automaton_input("01")
                automaton_input.next_to(pda, UP, buff=0.5)
-
                self.play(
                    DrawBorderThenFill(pda),
                    FadeIn(automaton_input),
@@ -89,7 +88,6 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                # the stack can also be manipulated directly
                def stack_label():
                    return Text("Stack: " + " ".join(pda.stack), font_size=24)
-
                label = stack_label().to_corner(UR)
                self.play(FadeIn(label))
                pda.push("X")

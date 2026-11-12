@@ -86,7 +86,6 @@ class VDampedSpring(VConstraint):
                    damping=5,
                    connect_line_config={"color": YELLOW},
                )
-
                self.play(FadeIn(anchor), FadeIn(box))
                self.add_static_body(anchor)
                self.add_dynamic_body(box)

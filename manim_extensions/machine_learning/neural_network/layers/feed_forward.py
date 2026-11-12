@@ -73,7 +73,6 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
            FeedForwardLayer,
            NeuralNetwork,
        )
-
        # Widescreen layout used by the upstream ManimML examples
        config.pixel_height = 700
        config.pixel_width = 1900

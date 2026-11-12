@@ -108,7 +108,6 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
 
        class SpaceExample(SpaceScene):
            GRAVITY = (0, -5)
-
            def construct(self):
                ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 3)
                ball = Circle(radius=0.4, stroke_color=BLUE,
@@ -165,18 +164,15 @@ class SpaceScene(Scene):
                circle = Circle().shift(UP)
                circle.set_fill(RED, 1)
                circle.shift(DOWN + RIGHT)
-
                rect = Square().shift(UP)
                rect.rotate(PI / 4)
                rect.set_fill(YELLOW_A, 1)
                rect.shift(UP * 2)
                rect.scale(0.5)
-
                ground = Line([-4, -3.5, 0], [4, -3.5, 0])
                wall1 = Line([-4, -3.5, 0], [-4, 3.5, 0])
                wall2 = Line([4, -3.5, 0], [4, 3.5, 0])
                walls = VGroup(ground, wall1, wall2)
-
                self.play(
                    DrawBorderThenFill(circle),
                    DrawBorderThenFill(rect),

@@ -194,7 +194,6 @@ class TimeLineLayout(Layout):
                        self.width = width
                        self.height = height
                        self.children = []
-
                root = StubNode(width=1.6, height=0.8)
                for _ in range(3):
                    child = StubNode(width=1.4, height=0.7)

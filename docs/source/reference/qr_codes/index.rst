@@ -35,27 +35,21 @@ Usage
    :ref_functions: qr_code
 
    from manim import *
-
    from manim_extensions.qr_codes.qr import qr_code
 
    class MyQrCodeScene(Scene):
-
        def construct(self):
-
            qr_code_without_icon = qr_code("https://fishshell.com")
            qr_code_with_icon = qr_code(
                payload="https://fishshell.com",
                icon="terminal",
                icon_size=6,
            )
-
            qr_code_group = VGroup(
                qr_code_without_icon,
                qr_code_with_icon).arrange(RIGHT, buff=0.75)
-
            label = Text("https://fishshell.com")
            label.to_edge(UP, buff=0.75)
-
            self.add(qr_code_group, label)
 
 See the `example gallery <https://manim-qr-codes.readthedocs.io/en/latest/example-gallery.html>`_

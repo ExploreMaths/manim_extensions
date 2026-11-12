@@ -210,7 +210,6 @@ class Circuit(VMobject):
                circuit.add_wire(
                    source.get_terminals("negative"), r2.get_terminals("right"), invert=True
                )
-
                self.add(circuit)
                self.wait(0.5)
 

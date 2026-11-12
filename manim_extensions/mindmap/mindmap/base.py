@@ -168,7 +168,6 @@ class AbstractMap(Group):
                        for node in bfs_walker(self.root):
                            self.node_data_dict[node.ID] = NodeMobject(
                                node.vmobject, node.surr_rect, None, node.text)
-
                data = {
                    "node": Tex("Root"),
                    "child": [{"node": Tex("A")}, {"node": Tex("B")}],

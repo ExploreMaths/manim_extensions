@@ -53,14 +53,11 @@ through):
    :ref_classes: Lens Ray
 
    from manim import *
-
    from manim_extensions.physics.optics.lenses import Lens
    from manim_extensions.physics.optics.rays import Ray
 
    class LensScene(Scene):
-
        def construct(self):
-
            lens = Lens(-5, 1)
            ray = Ray(LEFT * 0.5, RIGHT, 1, [lens])
            self.add(lens, ray)
@@ -81,13 +78,10 @@ surfaces. :class:`~manim_extensions.physics.wave.LinearWave` accepts
    :ref_classes: LinearWave StandingWave
 
    from manim import *
-
    from manim_extensions.physics.wave import LinearWave, StandingWave
 
    class WaveScene(Scene):
-
        def construct(self):
-
            self.add(LinearWave(wavelength=1, period=1, amplitude=0.2,
                                x_range=(-3.5, 3.5), y_range=(-2, 2)))
            self.add(StandingWave(n=2, length=4, period=1, amplitude=1).shift(UP * 1.2))
@@ -105,15 +99,12 @@ A :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum`
    :ref_classes: Pendulum
 
    from manim import *
-
    from manim_extensions.physics.rigid_mechanics.pendulum import (
        Pendulum,
    )
 
    class PendulumScene(Scene):
-
        def construct(self):
-
            pendulum = Pendulum(length=3.5, initial_theta=0.3).scale(2)
            self.add(pendulum)
 
@@ -134,7 +125,6 @@ draw a current-carrying
    :ref_classes: Charge ElectricField Wire MagneticField
 
    from manim import *
-
    from manim_extensions.physics.electromagnetism.electrostatics import (
        Charge,
        ElectricField,
@@ -145,9 +135,7 @@ draw a current-carrying
    )
 
    class ElectrostaticsScene(Scene):
-
        def construct(self):
-
            charge = Charge(magnitude=1, point=ORIGIN)
            self.add(charge, ElectricField(charge).scale(0.5))
 

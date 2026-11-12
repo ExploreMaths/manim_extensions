@@ -19,12 +19,10 @@ inline. Each example demonstrates one of the core extension modules.
            a = LabelDot("A", [-2, -1, 0], label_pos=DOWN, buff=0.2, color=RED)
            b = LabelDot("B", [1, 2, 0], label_pos=UP, buff=0.2, color=GREEN)
            c = LabelDot("C", [3, -1, 0], label_pos=DOWN, buff=0.2, color=BLUE)
-
            triangle = Polygon(
                a.get_center(), b.get_center(), c.get_center(),
                color=PURE_YELLOW, fill_opacity=0.1
            )
-
            self.add(triangle, a, b, c)
 
 .. manim:: MathTexHelpersExample
@@ -42,7 +40,6 @@ inline. Each example demonstrates one of the core extension modules.
            slope = MathTexLine(MathTex("y = x"), direction=UP, color=BLUE).next_to(line, UP*2, buff=1.0)
            brace = MathTexBrace(line, MathTex(r"\Delta x"), direction=UP)
            arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0)
-
            self.add(slope, brace, arrow)
 
 .. manim:: GeometryHelpersExample
@@ -58,7 +55,6 @@ inline. Each example demonstrates one of the core extension modules.
            ext = ExtendedLine(base, extend_distance=1.0)
            perp = PerpendicularLine(UP * 1.5, base, color=PURE_YELLOW)
            sign = PerpendicularSign(base, perp, length=0.3, color=WHITE)
-
            self.add(base, ext, perp, sign)
 
 .. manim:: VMobjectIntExample
@@ -74,7 +70,6 @@ inline. Each example demonstrates one of the core extension modules.
            c1 = Circle(radius=2.5, color=BLUE).shift(LEFT)
            c2 = Circle(radius=2.5, color=GREEN).shift(RIGHT)
            pts = sorted(VMobjectInt(c1, c2), key=lambda p: p[1])
-
            self.add(c1, c2)
            self.add(LabelDot("P_1", pts[1], label_pos=UP, buff=0.1))
            self.add(LabelDot("P_2", pts[0], label_pos=DOWN, buff=0.1))
@@ -115,7 +110,6 @@ inline. Each example demonstrates one of the core extension modules.
            t1 = ColorText([255, 80, 80]).shift(UP * 2)
            t2 = ColorText([80, 200, 255])
            t3 = ColorText([150, 255, 100]).shift(DOWN * 2)
-
            self.add(t1, t2, t3)
 
 .. manim:: FileTreeExample
@@ -139,7 +133,6 @@ inline. Each example demonstrates one of the core extension modules.
                    "test_main.py": None,
                },
            })
-
            self.add(tree)
 
 .. manim:: TreeDiagramExample
@@ -160,7 +153,6 @@ inline. Each example demonstrates one of the core extension modules.
            }
            diagram = TreeDiagram(tree)
            diagram.scale_to_fit_width(9)
-
            self.add(diagram)
 
 .. manim:: HighlightAnimationsExample
@@ -191,10 +183,8 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            c = Circle(radius=1.4, fill_color=TEAL, fill_opacity=1, stroke_width=0).shift(LEFT * 3)
            shadow = ShadowAround(c, blur_width=0.4, shadow_color=WHITE)
-
            t = Text("Stylized", font_size=40).shift(RIGHT * 3)
            border = ObjectBorder(t)
-
            self.add(shadow, c)
            self.add(t, border)
 
@@ -212,7 +202,6 @@ inline. Each example demonstrates one of the core extension modules.
            dot = Dot(color=BLUE).shift(LEFT * 2.5)
            trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
            self.add(trail)
-
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear), run_time=3)
 
 .. manim:: ChineseMathTexExample
@@ -226,7 +215,6 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            tex1 = ChineseMathTex(r"勾股定理：a^{2} + b^{2} = c^{2}").shift(UP * 1.5)
            tex2 = ChineseMathTex(r"二次方程：x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}").shift(DOWN * 1.5)
-
            self.add(tex1)
            self.add(tex2)
 
@@ -240,7 +228,6 @@ inline. Each example demonstrates one of the core extension modules.
    class ThreeDVectorExample(ThreeDScene):
        def construct(self):
            self.set_camera_orientation(phi=65 * DEGREES, theta=-50 * DEGREES)
-
            axes = ThreeDAxes(
                x_range=[-3, 4], y_range=[-3, 4], z_range=[-2, 3],
                x_length=5, y_length=4, z_length=3,
@@ -250,11 +237,9 @@ inline. Each example demonstrates one of the core extension modules.
            v1 = ThreeDVector([2, 1, 1.5], color=PURE_YELLOW)
            v2 = ThreeDVector([-1, 2, 2], color=RED)
            v3 = ThreeDVector([1, -1, 1], color=GREEN)
-
            l1 = MathTex(r"\mathbf{v}_1", color=PURE_YELLOW).next_to([2, 1, 1.5], UP + RIGHT, buff=0.3)
            l2 = MathTex(r"\mathbf{v}_2", color=RED).next_to([-1, 2, 2], UP + LEFT, buff=0.3)
            l3 = MathTex(r"\mathbf{v}_3", color=GREEN).next_to([1, -1, 1], DOWN + RIGHT, buff=0.3)
-
            self.add(v1, v2, v3)
            self.add_fixed_in_frame_mobjects(l1, l2, l3)
 
@@ -268,7 +253,6 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            text = Text("Animation")
            self.add(text)
-
            self.play(ReversedWrite(text))
            self.wait(0.5)
            self.play(GrowRandom(text))
@@ -291,13 +275,10 @@ inline. Each example demonstrates one of the core extension modules.
                Node("1"), Node("2"), Node("3"), Node("4")
            ).arrange(RIGHT, buff=0.6)
            nodes.scale_to_fit_width(8)
-
            arr = Array([10, 20, 30, 40], total_width=6).next_to(nodes, DOWN, buff=1.2)
            arr.scale_to_fit_width(8)
-
            q = Queue(5, init_data=[1, 2, 3], total_width=6).next_to(arr, DOWN, buff=1.2)
            q.scale_to_fit_width(8)
-
            content = VGroup(nodes, arr, q)
            content.scale_to_fit_height(7).move_to(ORIGIN)
            self.add(content)
@@ -316,15 +297,12 @@ inline. Each example demonstrates one of the core extension modules.
            r1 = Resistor(label="10k").next_to(vs, RIGHT, buff=3.0)
            r2 = Resistor(label="20k").next_to(r1, DOWN, buff=2.2)
            g = Ground().next_to(r2, DOWN, buff=1.3)
-
            circuit = Circuit()
            circuit.add_components(vs, r1, r2, g)
-
            circuit.add_wire(vs.get_terminals("positive"), r1.get_terminals("left"))
            circuit.add_wire(r1.get_terminals("right"), r2.get_terminals("left"))
            circuit.add_wire(r2.get_terminals("right"), g.get_terminals())
            circuit.add_wire(g.get_terminals(), vs.get_terminals("negative"))
-
            circuit.scale_to_fit_height(6.5).move_to(ORIGIN)
            self.add(circuit)
 
@@ -383,7 +361,6 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            arr = MArray(self, [10, 20, 30, 40, 50], label="arr")
            var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5)
-
            self.add(arr, var)
 
 .. manim:: GearboxExample
@@ -399,12 +376,10 @@ inline. Each example demonstrates one of the core extension modules.
            gear1 = Gear(12, module=0.3, stroke_opacity=0, fill_color=BLUE, fill_opacity=1).shift(LEFT * 3)
            gear2 = Gear(8, module=0.3, stroke_opacity=0, fill_color=RED, fill_opacity=1)
            gear2.mesh_to(gear1)
-
            rack = Rack(12, module=gear1.m, stroke_opacity=0, fill_color=GREEN, fill_opacity=0.7)
            rack_width = rack.z * rack.pitch
            rack_center = gear1.get_center() + DOWN * gear1.rp
            rack.shift(np.array([rack_center[0] - rack_width / 2, rack_center[1], 0]))
-
            content = VGroup(gear1, gear2, rack)
            content.scale_to_fit_width(12)
            if content.height > 7:
@@ -427,11 +402,9 @@ inline. Each example demonstrates one of the core extension modules.
            faces = [[0, 1, 2]]
            mesh_data = Mesh(vertices, faces)
            manim_mesh = Manim2DMesh(mesh_data)
-
            v0 = LabelDot("V_0", [0, 0, 0], label_pos=DOWN + LEFT, buff=0.1).set_color(PURE_YELLOW)
            v1 = LabelDot("V_1", [3, 0, 0], label_pos=DOWN + RIGHT, buff=0.1).set_color(PURE_YELLOW)
            v2 = LabelDot("V_2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW)
-
            self.add(manim_mesh)
            self.add(v0, v1, v2)
 
@@ -485,10 +458,8 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            client = SeqActor("Client").shift(LEFT * 4)
            server = SeqActor("Server").shift(RIGHT * 4)
-
            request = SeqObject("HTTP Request")
            response = SeqObject("HTTP Response")
-
            self.play(*SeqAction.introduce_actors(client, server))
            self.wait(0.5)
 
@@ -539,7 +510,6 @@ inline. Each example demonstrates one of the core extension modules.
                Ray(start=LEFT * 3, direction=RIGHT, init_length=5, color=PURE_YELLOW),
                Ray(start=LEFT * 3 + DOWN * 0.5, direction=RIGHT, init_length=5, color=PURE_YELLOW),
            )
-
            self.add(object, lens, rays)
 
 .. manim:: PhysicsWavesExample
@@ -552,7 +522,6 @@ inline. Each example demonstrates one of the core extension modules.
    class PhysicsWavesExample(Scene):
        def construct(self):
            wave = StandingWave()
-
            self.add(wave)
 
 .. manim:: PhysicsEMExample
@@ -567,7 +536,6 @@ inline. Each example demonstrates one of the core extension modules.
            c1 = Charge(+1).shift(LEFT)
            c2 = Charge(-1).shift(RIGHT)
            field = ElectricField(c1, c2)
-
            content = VGroup(c1, c2, field)
            content.scale_to_fit_width(12).move_to(ORIGIN)
            self.add(content)
@@ -582,7 +550,6 @@ inline. Each example demonstrates one of the core extension modules.
    class PhysicsMechanicsExample(Scene):
        def construct(self):
            p = Pendulum(length=3, initial_theta=0.4)
-
            self.add(p)
 
 .. manim:: AutomataExample

@@ -60,9 +60,7 @@ class VSimpleMotor(VConstraint):
                # the motor keeps the wheel spinning at a constant rate
                pivot = Dot(ORIGIN)
                wheel = Square().move_to(pivot)
-
                motor = VSimpleMotor(pivot, wheel, rate=4, max_torque=500)
-
                self.play(FadeIn(pivot), FadeIn(wheel))
                self.add_static_body(pivot)
                self.add_dynamic_body(wheel)

@@ -44,7 +44,6 @@ triggered on an array play automatically through that scene; pass
    :ref_classes: MArray
 
    from manim import *
-
    from manim_extensions.data_structures import MArray
 
    class MainScene(Scene):
@@ -240,7 +239,6 @@ Two-pointer technique for a pair sum in a sorted array:
                    p_j.shift_to_elem(p_j.fetch_index() - 1)
            self.play(pair_sum.fetch_mob_square().animate.set(fill_color=RED))
            return False
-
        def construct(self):
            arr = MArray(self, [2, 3, 5, 8, 9, 10, 11], label="Array")
            arr.shift(UP + LEFT * 2)
@@ -276,7 +274,6 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
                    max_sum.update_value(window_sum.fetch_value())
                    self.play(max_sum.fetch_mob_square().animate.set(fill_color=GREEN))
            return max_sum.fetch_value()
-
        def construct(self):
            arr = MArray(self, [1, 4, 2, 10, 2, 3, 1, 0, 20], label="Array")
            arr.shift(UP * 1.5 + LEFT * 4)

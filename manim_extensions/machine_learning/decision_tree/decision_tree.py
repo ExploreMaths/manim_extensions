@@ -213,12 +213,10 @@ class DecisionTreeDiagram(Group):
        from manim import *
        import tempfile
        from pathlib import Path
-
        import numpy as np
        from PIL import Image as PILImage
        from sklearn.datasets import load_iris
        from sklearn.tree import DecisionTreeClassifier
-
        from manim_extensions.machine_learning.decision_tree.decision_tree import (
            DecisionTreeDiagram,
        )
@@ -229,7 +227,6 @@ class DecisionTreeDiagram(Group):
                tree = DecisionTreeClassifier(max_depth=2, random_state=0).fit(
                    iris.data[:, :2], iris.target
                )
-
                tmp_dir = Path(tempfile.mkdtemp())
                image_paths = []
                for i, color in enumerate([RED, GREEN, BLUE]):
@@ -237,7 +234,6 @@ class DecisionTreeDiagram(Group):
                    rgb = tuple(int(c * 255) for c in color_to_rgb(color))
                    PILImage.new("RGB", (32, 32), rgb).save(path)
                    image_paths.append(str(path))
-
                diagram = DecisionTreeDiagram(
                    tree.tree_,
                    feature_names=["sepal length", "sepal width"],

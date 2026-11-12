@@ -56,7 +56,6 @@ of the body the label is placed on:
                resistor.main_body, UP, buff=0.1
            )
            resistor.add(resistor.label)
-
            components = VGroup(
                resistor,
                Inductor(label="0.3", direction=UP),

@@ -279,7 +279,6 @@ class MCMCAxes(Group):
        import numpy as np
        import scipy.stats
        from manim_extensions.machine_learning.diffusion.mcmc import MCMCAxes
-
        # Square layout used by the upstream ManimML example
        config.pixel_height = 720
        config.pixel_width = 720
@@ -312,7 +311,6 @@ class MCMCAxes(Group):
                true_samples = np.concatenate(
                    (big_gaussian_samples, little_gaussian_samples)
                )
-
                axes = MCMCAxes(
                    x_range=[-5, 5],
                    y_range=[-5, 5],

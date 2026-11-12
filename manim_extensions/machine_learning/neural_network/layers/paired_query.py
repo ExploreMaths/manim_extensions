@@ -57,7 +57,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
        from manim_extensions.machine_learning.utils.mobjects.image import (
            GrayscaleImageMobject,
        )
-
        # Widescreen layout used by the upstream ManimML examples
        config.pixel_height = 700
        config.pixel_width = 1900

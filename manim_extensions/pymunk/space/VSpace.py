@@ -58,7 +58,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                # VSpace lives inside SpaceScene as self.vspace; here its
                # collision handler and segment query are exercised directly
                COLLISION_TYPE = 123
-
                floor = Line(start=LEFT * 5, end=RIGHT * 5, stroke_width=12, color=BLUE)
                floor.to_edge(DOWN, buff=0.1)
                stones = [
@@ -67,18 +66,15 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    )
                    for i in range(5)
                ]
-
                self.play(FadeIn(floor), FadeIn(VGroup(*stones)))
                self.add_static_body(floor)
                self.add_dynamic_body(*stones)
                self.set_collision_type(floor, *stones, collision_type=COLLISION_TYPE)
-
                def post_solve_callback(arbiter, space, data):
                    # log the impulse of each floor impact
                    if arbiter.total_impulse.length > 0.2:
                        print(f"Impact Strength: {arbiter.total_impulse.length:.2f}")
                    return True
-
                self.set_collision_detection_handler(
                    collision_type_a=COLLISION_TYPE,
                    collision_type_b=COLLISION_TYPE,

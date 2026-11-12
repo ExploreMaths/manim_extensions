@@ -20,6 +20,11 @@ v1.0.7 :bdg-warning-line:`In Development`
   path instead of a bare name, or names a file missing from ``examples/``.
 * ``flake8-syntax`` runs ``E9,F63,F7,F82`` in CI, so syntax errors and
   undefined names fail the build as the contributor guide promises.
+* ``workflow/validate_example_spacing.py`` and its
+  ``validate-example-spacing`` CI job enforce the example layout: imports
+  stay together, exactly one blank line separates them from the scene class,
+  ``class`` and ``def construct`` are adjacent, and blank lines inside
+  ``construct`` are reserved for stage changes.
 
 **Fixed**
 
@@ -47,6 +52,10 @@ v1.0.7 :bdg-warning-line:`In Development`
   ``docs/source/contributing/`` — development, code style, documentation,
   testing and licensing, all written in reStructuredText. ``CONTRIBUTING.md``
   is now only a pointer to the hosted guide.
+* All ``.. manim::`` examples now follow one code-spacing convention: imports
+  are contiguous, the scene class follows one blank line, ``class`` and
+  ``def construct`` are adjacent, and blank lines inside ``construct`` mark
+  stage changes instead of separating every statement.
 * The SVG animations page renders its usage example with ``.. manim::``
   instead of showing it as a plain code block.
 * The chemistry reference page renders its 2-D molecule examples from the

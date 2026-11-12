@@ -64,7 +64,6 @@ class VDampedRotarySpring(VConstraint):
                floor.to_edge(DOWN, buff=0.5)
                square_1 = Square().next_to(floor, UP, buff=1)
                square_2 = Square().move_to(square_1.get_center() + RIGHT * 4)
-
                spring = VDampedRotarySpring(
                    square_1,
                    square_2,
@@ -72,7 +71,6 @@ class VDampedRotarySpring(VConstraint):
                    stiffness=100,
                    damping=1,
                )
-
                self.play(FadeIn(floor), FadeIn(square_1), FadeIn(square_2))
                self.add_static_body(floor)
                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)

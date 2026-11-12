@@ -94,7 +94,6 @@ def VMobjectInt(
                    color=RED,
                )
                pts = VMobjectInt(circle, curve)
-
                self.play(Create(circle), Create(curve))
                self.play(
                    LaggedStart(
@@ -419,10 +418,8 @@ def TangentPoint(
                p1, p2 = [0.5, 1.5, 0], [1.5, 0.5, 0]
                line = Line([-3, 0, 0], [3, 0, 0], color=BLUE)
                tangent = TangentPoint(p1, p2, line.get_start(), line.get_end())
-
                circle = Circle.from_three_points(p1, p2, tangent, color=RED)
                radius = DashedLine(circle.get_center(), tangent, color=YELLOW)
-
                self.add(line, circle, Dot(p1, color=BLUE), Dot(p2, color=BLUE))
                self.add(radius, LabelDot("T", tangent, label_pos=UP, buff=0.15))
     """

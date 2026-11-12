@@ -60,12 +60,10 @@ on every frame.
            static_dot = Dot(ORIGIN)
            square = Square().move_to(static_dot)
            square2 = Square().move_to(static_dot.get_center() + UP * 2).scale(0.5)
-
            constraints = [
                VPivotJoint(static_dot, square),
                VPivotJoint(square, square2, pivot_world=UP * 3),
            ]
-
            self.play(FadeIn(static_dot), FadeIn(square), FadeIn(square2))
 
            # register the physics bodies (shapes, mass, angle, ...)

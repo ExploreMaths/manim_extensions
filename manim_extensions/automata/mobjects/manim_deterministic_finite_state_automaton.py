@@ -53,7 +53,6 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
                # Create an mobject version of the input for the automaton
                automaton_input = dfa.construct_automaton_input("11")
                automaton_input.next_to(dfa, UP, buff=0.5)
-
                self.play(
                    DrawBorderThenFill(dfa),
                    FadeIn(automaton_input),

@@ -68,13 +68,11 @@ ManimML pieces together automatically:
    :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer,
        FeedForwardLayer,
        NeuralNetwork,
    )
-
    # Widescreen layout used by the upstream ManimML examples
    config.pixel_height = 700
    config.pixel_width = 1900
@@ -112,11 +110,9 @@ animate the forward pass with
    :ref_classes: FeedForwardLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        FeedForwardLayer, NeuralNetwork,
    )
-
    config.pixel_height = 700
    config.pixel_width = 1900
    config.frame_height = 7.0
@@ -145,13 +141,11 @@ the default stride is 1:
    :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer,
        FeedForwardLayer,
        NeuralNetwork,
    )
-
    config.pixel_height = 700
    config.pixel_width = 1900
    config.frame_height = 7.0
@@ -228,13 +222,11 @@ maps:
    :ref_classes: Convolutional2DLayer MaxPooling2DLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer,
        MaxPooling2DLayer,
        NeuralNetwork,
    )
-
    config.pixel_height = 700
    config.pixel_width = 1900
    config.frame_height = 7.0
@@ -264,13 +256,11 @@ Pass ``activation_function`` to a layer (for example ``"ReLU"`` or
    :ref_classes: Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer,
        FeedForwardLayer,
        NeuralNetwork,
    )
-
    config.pixel_height = 700
    config.pixel_width = 1900
    config.frame_height = 7.0
@@ -300,7 +290,6 @@ reverts the network to its pre-dropout appearance:
    :ref_classes: FeedForwardLayer NeuralNetwork
 
    from manim import *
-
    from manim_extensions.machine_learning.neural_network import (
        FeedForwardLayer,
        NeuralNetwork,
@@ -308,7 +297,6 @@ reverts the network to its pre-dropout appearance:
    from manim_extensions.machine_learning.neural_network.animations.dropout import (
        make_neural_network_dropout_animation,
    )
-
    config.pixel_height = 700
    config.pixel_width = 1900
    config.frame_height = 7.0

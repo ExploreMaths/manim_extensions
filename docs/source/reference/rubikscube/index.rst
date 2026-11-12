@@ -50,7 +50,6 @@ comfortably see the cube in the camera's frame.
            cube = RubiksCube().scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -74,7 +73,6 @@ The ``colors`` parameter accepts a list of six colours in the order
            cube = RubiksCube(colors=[WHITE, ORANGE, DARK_BLUE, PURE_YELLOW, PINK, "#00FF00"]).scale(0.6)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -147,10 +145,8 @@ provided for each :class:`~manim_extensions.rubikscube.cubie.Cubie` face.
        def construct(self):
            cube = RubiksCube().scale(0.6)
            cube.set_state("BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR")
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -180,10 +176,8 @@ Dimension
    class TwoDimensionalExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube(2).scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -201,10 +195,8 @@ An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on 
        def construct(self):
            cube = RubiksCube(2).scale(0.6)
            cube.set_state("RUFBLLBDRDDBRUUDLFFBFRLU")
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -231,7 +223,6 @@ An example of :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` on 
            cube = RubiksCube(10).scale(0.2)
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.add(cube)
 
 Offset
@@ -258,10 +249,8 @@ changes the "gap" between :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s.
    class ThreeOffsetExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube(x_offset=3, y_offset=3, z_offset=3).scale(0.5)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -276,10 +265,8 @@ changes the "gap" between :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s.
    class YOffsetExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube(y_offset=4).scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(FadeIn(cube))
            # spin the cube through a full turn, then fade it back out so the
            # first and last frames match and the animation loops seamlessly
@@ -344,19 +331,15 @@ dimension of the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
    class IndicateCubieExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(
                FadeIn(cube)
            )
            self.wait()
-
            self.play(
                Indicate(cube.cubies[0, 0, 0])
            )
-
            self.wait()
 
 Accessing a Face
@@ -383,19 +366,15 @@ with numpy indexing.
    class IndicateFaceExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(
                FadeIn(cube)
            )
            self.wait()
-
            self.play(
                Indicate(VGroup(*cube.get_face("F")))
            )
-
            self.wait()
 
 Accessing a Cubie Face
@@ -428,19 +407,15 @@ CubeMove animation
    class CubeMoveExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            self.play(
                FadeIn(cube)
            )
            self.wait()
-
            self.play(CubeMove(cube, "F"))
            self.play(CubeMove(cube, "U2"), run_time=2)
            self.play(CubeMove(cube, "R'"))
-
            self.wait()
 
 Solving the Cube
@@ -483,13 +458,10 @@ Putting it All Together
    class AllTogetherExample(ThreeDScene):
        def construct(self):
            cube = RubiksCube().scale(0.6)
-
            self.move_camera(phi=50 * DEGREES, theta=160 * DEGREES,
                             frame_center=cube.get_center())
-
            state = "BBFBUBUDFDDUURDDURLLLDFRBFRLLFFDLUFBDUBBLFFUDLRRRBLURR"
            cube.set_state(state)
-
            self.play(FadeIn(cube))
            self.wait()
 

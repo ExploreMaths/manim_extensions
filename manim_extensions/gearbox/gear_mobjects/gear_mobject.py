@@ -376,7 +376,6 @@ class Gear(VMobject):
                gear1.shift(-gear1.rp * 1.5 * RIGHT)
                gear2.mesh_to(gear1)
                contact = Dot(gear1.get_center() + gear1.rp * RIGHT, color=PURE_YELLOW)
-
                self.add(gear1, gear2, contact)
                self.play(
                    Rotate(gear1, gear1.pitch_angle, rate_func=linear),
@@ -815,7 +814,6 @@ class Gear(VMobject):
                    # mesh with 0.15*module larger distance than default;
                    # bias selects which tooth flank engages when there is offset and play
                    gear2.mesh_to(gear1, offset=0.15, bias=False)
-
                    mesh = VGroup(gear1, gear2)
                    mesh.scale_to_fit_height(6.5).move_to(ORIGIN)
                    self.add(mesh)
@@ -1065,7 +1063,6 @@ class Rack(VMobject):
                )
                gear.shift(RIGHT * gear.rp)
                rack.shift(UP * rack.pitch * 0.5)
-
                self.add(gear, rack)
                self.play(
                    Rotate(gear, gear.pitch_angle),

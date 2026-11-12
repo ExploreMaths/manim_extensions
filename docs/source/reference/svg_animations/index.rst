@@ -64,7 +64,6 @@ once the animations are done.
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
-
    VMobject.set_default(color=BLACK)
 
    class SVGAnimationUsageExample(Scene):
@@ -131,7 +130,6 @@ the mobjects that should change when each parameter moves.
 
    from manim import *
    from manim_extensions.svg_animations import HTMLParsedVMobject
-
    VMobject.set_default(color=BLACK)
 
    class SceneExample(Scene):

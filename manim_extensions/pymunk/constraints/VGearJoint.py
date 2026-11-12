@@ -66,13 +66,11 @@ class VGearJoint(VConstraint):
                pivot_2 = Dot(RIGHT * 2 + UP)
                gear_1 = Square().move_to(pivot_1)
                gear_2 = Square().move_to(pivot_2).scale(0.5)
-
                constraints = [
                    VPinJoint(pivot_1, gear_1),
                    VPinJoint(pivot_2, gear_2),
                    VGearJoint(gear_1, gear_2, ratio=4),
                ]
-
                self.play(FadeIn(pivot_1), FadeIn(pivot_2), FadeIn(gear_1), FadeIn(gear_2))
                self.add_static_body(pivot_1, pivot_2)
                self.add_dynamic_body(gear_1, angular_velocity=PI / 2)

@@ -69,7 +69,6 @@ class VPinJoint(VConstraint):
                static_dot = Dot(ORIGIN)
                square = Square().move_to(static_dot)
                square2 = Square().move_to(static_dot.get_center() + UP * 2).scale(0.5)
-
                constraints = [
                    VPinJoint(static_dot, square),
                    VPinJoint(
@@ -80,7 +79,6 @@ class VPinJoint(VConstraint):
                        connect_line_class=Line,
                    ),
                ]
-
                self.play(FadeIn(static_dot), FadeIn(square), FadeIn(square2))
                self.add_static_body(static_dot)
                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)

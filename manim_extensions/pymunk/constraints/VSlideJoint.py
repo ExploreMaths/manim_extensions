@@ -68,13 +68,11 @@ class VSlideJoint(VConstraint):
                pivot = Dot(ORIGIN)
                arm = Square().scale(1.5).move_to(pivot)
                follower = Square().scale(0.4).move_to(RIGHT * 2)
-
                constraints = [
                    VPinJoint(pivot, arm),
                    VSlideJoint(arm, follower, min_dist=1.0, max_dist=2.5),
                    VSimpleMotor(pivot, arm, rate=PI / 4, max_torque=500),
                ]
-
                self.play(FadeIn(pivot), FadeIn(arm), FadeIn(follower))
                self.add_static_body(pivot)
                self.add_dynamic_body(arm, follower)

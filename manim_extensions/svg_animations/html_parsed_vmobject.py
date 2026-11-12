@@ -155,7 +155,6 @@ class HTMLParsedVMobject:
 
        from manim import *
        from manim_extensions.svg_animations import HTMLParsedVMobject
-
        VMobject.set_default(color=BLACK)
 
        class HTMLParsedVMobjectDocExample(Scene):

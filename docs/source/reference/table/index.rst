@@ -39,7 +39,6 @@ Create a table from a list of rows; the first row is treated as the header.
    :ref_classes: Table
 
    from manim import *
-
    from manim_extensions.table import Table
 
    class TableExample(Scene):

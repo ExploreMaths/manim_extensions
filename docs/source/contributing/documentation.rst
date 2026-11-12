@@ -101,6 +101,50 @@ Example layout
 
 Exceptions for intentional cases can be added to ``workflow/example_layout_exemptions.json``.
 
+Code spacing
+~~~~~~~~~~~~
+
+Example code follows the visual rhythm of Manim's own examples (for instance,
+the official ``BooleanOperations`` example): one compact block of imports, the
+scene class immediately below it, and blank lines inside ``construct`` only
+where a new stage begins.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions import ThreeDVector
+
+   class ThreeDVectorExample(ThreeDScene):
+       def construct(self):
+           self.set_camera_orientation(phi=65 * DEGREES, theta=-50 * DEGREES)
+           axes = ThreeDAxes()
+           self.add(axes)
+
+           v1 = ThreeDVector([2, 1, 1.5], color=PURE_YELLOW)
+           v2 = ThreeDVector([-1, 2, 2], color=RED)
+           self.add(v1, v2)
+
+Rules:
+
+* Imports form a single block. Do **not** put blank lines between ``import``
+  or ``from ... import ...`` statements, including lines inside a
+  parenthesised import.
+* Use exactly **one** blank line between the last top-level statement (the
+  import block, or a top-level ``config`` assignment) and the ``class`` line.
+  Elsewhere at top level, never use more than one blank line.
+* No blank line between ``class ...`` and ``def construct`` when ``construct``
+  is the first class member.
+* Inside ``construct``, a blank line is a stage separator, not a per-statement
+  separator. Use one only when the next line starts a comment, or after a
+  ``self.play`` / ``self.wait`` / ``self.add`` / ``self.remove`` call before a
+  new group of objects or animations. Do not put a blank line between every
+  assignment, between tightly coupled calls such as ``self.play(...)`` and
+  ``self.wait()``, or directly after ``def construct``.
+* Keep at most one consecutive blank line.
+
+``workflow/validate_example_spacing.py`` enforces this layout for every
+``.. manim::`` block in CI (``validate-example-spacing``).
+
 Cross-References
 ----------------
 

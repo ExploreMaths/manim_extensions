@@ -64,7 +64,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
            MaxPooling2DLayer,
            NeuralNetwork,
        )
-
        # Widescreen layout used by the upstream ManimML examples
        config.pixel_height = 1200
        config.pixel_width = 1900
