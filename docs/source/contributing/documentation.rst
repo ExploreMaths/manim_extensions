@@ -64,6 +64,33 @@ The ``.. manim::`` directive renders a live example in the docs. The ``validate_
    * - Static with ``:save_last_frame:``
      - Must **not** use ``self.wait()`` (redundant)
 
+Sample files read by an example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Every executable example that reads a file — both ``.. manim::`` and ``.. nbcell::`` — **MUST** declare it with the ``:files:`` option and use the bare file name in the code:
+
+.. code-block:: rst
+
+   .. manim:: MoleculeScene
+      :files: morphine_2d.mol
+
+      molecule = MMoleculeObject.molecule_from_file("morphine_2d.mol")
+
+.. code-block:: rst
+
+   .. nbcell::
+      :files: acetone_2d.mol
+
+      molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
+
+Rules:
+
+* File names are resolved inside the repository's ``examples/`` tree and copied into the example's working directory, so the code only needs the bare name. Each file is listed as a card under the block, and its contents take part in the media cache hash — editing a sample file re-renders the example.
+* Never build a path in example code: no ``"examples/..."``, ``"../examples/..."``, ``"_static/..."`` and no ``Path(__file__)``. Those break as soon as the working directory changes.
+* Files the example writes itself (``to_csv``, ``imsave``, ``savefig``, ``open(..., "w")``) are generated at run time, need no ``:files:`` entry and are not sample files.
+* Keep new samples inside ``examples/``; the download card links to the file on the ``main`` branch.
+* ``workflow/validate_example_files.py`` enforces all of the above in CI and reports ``missing-files``, ``path-instead-of-files``, ``undeclared-file`` and ``unknown-asset``.
+
 Example layout
 ~~~~~~~~~~~~~~
 
@@ -77,7 +104,7 @@ Exceptions for intentional cases can be added to ``workflow/example_layout_exemp
 Cross-References
 ----------------
 
-Docstrings and ``.rst`` files use Sphinx cross-reference roles to link to other APIs. The following conventions are *advisory*, not hard requirements — please try to follow them so the docs stay consistent; anything that slips through will be cleaned up by the maintainers (we handle formatting on merge).
+Docstrings and ``.rst`` files use Sphinx cross-reference roles to link to other APIs. The conventions below are advisory except where they name a checker: the tilde rules and intersphinx mappings are enforced by ``validate_intersphinx.py``, and short, ambiguous or unlinked names by ``validate_refs.py``. The rest are cleaned up by the maintainers on merge.
 
 * **Module-prefixed targets use a leading** ``~``. Every cross-reference to a fully-qualified object — whether in this project (``manim``, ``manim_extensions``) or a third-party API (``scipy``, ``numpy``, ``pymunk``, ``sklearn``, ...) — is written with a leading ``~`` so Sphinx shows only the last component while the link stays fully qualified:
 
@@ -106,6 +133,30 @@ avoided (``validate_refs.py`` flags them).
       :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`
 
   ``validate_refs.py`` reports bare back-ticked ambiguous class names, and the Sphinx build emits an ``ambiguous inline-code class name`` warning for ambiguous data/function names. Same-name classes *are* allowed in the codebase; references to them just need to be explicit, and the maintainers will fix any that slip through.
+
+* **Classes mentioned in prose are cross-references.** A class name written as a plain word (including its plural, e.g. ``MCAtoms``) leaves the reader with no link. Write it as a ``:class:`` role instead:
+
+  .. code-block:: rst
+
+      :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`
+
+  ``validate_refs.py`` reports these as ``unlinked-class``. Every spelling counts, including names that are also ordinary English words. Code samples, directives, section titles, doctests and back-ticked inline code are skipped, since those are code or already handled by the inline-code check. A plural noun puts an escaped space between the role and the ``s``, since a closing backtick may not be followed directly by a letter:
+
+  .. code-block:: rst
+
+      :class:`~manim_extensions.rubikscube.cubie.Cubie`\ s
+
+  The escaped space disappears when rendered, so the page reads *Cubies* with the link on *Cubie*. In a docstring the containing literal must be raw (``r"""``) so Python keeps the backslash, and converting one means collapsing any doubled backslash to a single one.
+
+  When the word really is an ordinary English word and not the class (``Array of shape (4, 3)``, a ``Source:`` citation, ``Ground-truth``), say so with a comment instead of forcing a link. The comment accepts a comma-separated list, and it covers **only the paragraph that follows it** — every other paragraph in the same file still needs a real cross-reference:
+
+  .. code-block:: rst
+
+      .. unlinked-class-ok Array, Arrays
+
+      Arrays of shape (4, 3) hold the control points.
+
+  A page where every mention of a word is the plain noun can opt out of the whole file by adding the ``-file`` suffix to the marker (same comma-separated list, see the code block above). The same two lines work inside a docstring; in a ``.py`` file the ``#`` comment form with the same list is the equivalent file-wide marker.
 
 You can run ``python workflow/fix_refs.py`` to auto-fix fixable issues if you like.
 

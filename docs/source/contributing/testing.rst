@@ -9,9 +9,9 @@ Running the tests
 -----------------
 
 * Tests live in ``tests/`` and use **pytest**.
-* CI requires **>= 35% coverage** (``--cov-fail-under=35``).
+* CI requires **>= 90% coverage** (``--cov-fail-under=90``).
 * Tests run under ``xvfb-run`` because Manim needs a display.
-* The test matrix covers Python 3.11–3.14.
+* The test matrix covers Python 3.11–3.15.
 
 .. code-block:: bash
 
@@ -42,7 +42,7 @@ Run these locally before opening a PR. Each corresponds to a CI job in ``.github
 
    * - Check
      - Command
-   * - Docstrings (module + function, numpydoc ``Parameters``)
+   * - Docstrings (module + function, raw prefix, numpydoc ``Parameters``)
      - ``python workflow/validate_docstrings.py``
    * - ``__init__`` params in class docstring
      - ``python workflow/validate_param_docs.py``
@@ -52,28 +52,34 @@ Run these locally before opening a PR. Each corresponds to a CI job in ``.github
      - ``python workflow/validate_rst.py``
    * - ``.. manim::`` ``:save_last_frame:`` rules
      - ``python workflow/validate_manim_directives.py``
+   * - Example sample files declared with ``:files:``
+     - ``python workflow/validate_example_files.py``
    * - Example layout (in frame, not too small)
      - ``python workflow/check_example_layout.py``
-   * - Cross-references (FQNs, no broken refs)
+   * - Cross-references (FQNs, short/ambiguous/unlinked names)
      - ``python workflow/validate_refs.py``
+   * - Intersphinx mappings and tilde rules
+     - ``python workflow/validate_intersphinx.py``
    * - No ``from manim import *`` outside ``__init__``
      - ``python workflow/check_redundant_imports.py``
    * - Relative in-package imports
      - ``python workflow/check_relative_imports.py``
    * - API coverage
      - ``python workflow/validate_api_coverage.py``
+   * - Black formatting
+     - ``black --check manim_extensions tests scripts workflow docs``
    * - Unused imports (F401)
      - ``flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples"``
+   * - Syntax / undefined names (E9, F63, F7, F82)
+     - ``flake8 manim_extensions --select E9,F63,F7,F82 --max-line-length=127``
    * - License headers
      - ``python workflow/validate_headers.py``
    * - License declarations (REUSE)
      - ``reuse lint``
-   * - Type annotations on all params
-     - *(CI; ``scripts/check_type_annotations.py``)*
-   * - No quoted type annotations (``node: "Node"``)
-     - *(CI; ``scripts/check_type_annotations.py``)*
+   * - Type annotations on all params / no quoted annotations
+     - ``python scripts/check_type_annotations.py``
    * - Return annotations on documented public functions with return values
-     - *(CI; ``scripts/check_return_annotations.py``)*
+     - ``python scripts/check_return_annotations.py``
    * - Dependencies audit
      - ``pip-audit --desc on``
 

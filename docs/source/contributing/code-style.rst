@@ -6,8 +6,8 @@ Code style
 ==========
 
 The tree is formatted with Black and type-checked convention by convention;
-the checks in ``validate.yml`` and the docstring validators reject anything that
-departs from the rules below.
+most rules below name the checker that rejects a departure, and the three
+review-only rules are listed at the end of the page.
 
 Formatting and line length
 --------------------------
@@ -21,7 +21,7 @@ Formatting and line length
       git config core.hooksPath .githooks
 
   The hook needs Black on your interpreter (``python3 -m pip install black``); without it the hook warns and lets the commit through, and CI still catches the file. ``git commit --no-verify`` bypasses the hook for one commit.
-* flake8 enforces ``E9,F63,F7,F82`` (syntax / undefined names) as hard failures and runs a non-fatal complexity check at ``--max-line-length=127``.
+* flake8 runs as two CI jobs: ``flake8-unused-imports`` fails on ``F401``, and ``flake8-syntax`` fails on ``E9,F63,F7,F82`` (syntax / undefined names) with ``--max-line-length=127``. A local ``flake8 manim_extensions`` also prints the complexity advisory; complexity is not a CI gate.
 
 Type annotations
 ----------------
@@ -88,10 +88,21 @@ Module docstrings
 
 Every ``.py`` file must have a module docstring immediately after any SPDX license header (and before any import). The docstring must open with ``"""`` or ``r"""``.
 
+Raw docstrings and backslashes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A docstring containing a backslash must be a **raw** literal (``r"""``), with the backslash written once. That covers LaTeX inside ``:math:`` terms and reST escapes such as the plural trick described in the cross-reference rules:
+
+.. code-block:: python
+
+    r"""Break-even investment: :math:`(\delta + n + g) \cdot k`"""
+
+In a non-raw literal Python either warns about an invalid escape (``\d`` in 3.12) or needs every backslash doubled, and the two are easy to mix up. When converting an existing docstring to raw, collapse each doubled backslash to a single one in the same edit — a leftover pair renders as two literal characters. Module, class, method and function docstrings all follow this rule, and ``validate_docstrings.py`` rejects a docstring that contains a backslash without the ``r`` prefix (``non-raw-docstring``).
+
 Required docstrings
 ~~~~~~~~~~~~~~~~~~~
 
-Every **public** function, method, and class must have a docstring. This includes ``__init__`` (it is not exempt). The following dunder methods are exempt: ``__repr__``, ``__str__``, ``__len__``, ``__getitem__``, ``__setitem__``, ``__call__``, ``__eq__``, ``__hash__``, ``__enter__``, ``__exit__``, and the rest of the standard dunder set. Inner functions like ``wrapper`` are also exempt.
+Every **public** function, method, and class must have a docstring. ``__init__`` is the opposite case: it must have **no** docstring at all (its parameters and behaviour are documented on the class, see below), and ``validate_docstrings.py`` rejects one. The following dunder methods are exempt: ``__repr__``, ``__str__``, ``__len__``, ``__getitem__``, ``__setitem__``, ``__call__``, ``__eq__``, ``__hash__``, ``__enter__``, ``__exit__``, and the rest of the standard dunder set. Inner functions like ``wrapper`` are also exempt.
 
 numpydoc section format
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -153,7 +164,7 @@ Every parameter listed in the signature must have a corresponding entry in the `
 ``__init__`` parameters go in the **class** docstring
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Constructor parameters are documented in the **class** docstring, **not** in ``__init__``. The ``__init__`` docstring should only be a brief description. This is enforced by ``validate_param_docs.py``.
+Constructor parameters are documented in the **class** docstring, **not** in ``__init__`` — and ``__init__`` must not carry a docstring of its own, not even a one-line summary. A constructor description belongs in the class summary that follows the first line of the class docstring. This is enforced by ``validate_param_docs.py`` (parameters) and ``validate_docstrings.py`` (no ``__init__`` docstring).
 
 .. code-block:: python
 
@@ -258,3 +269,12 @@ Every class that subclasses a Manim mobject (``Mobject``, ``VMobject``, ``VGroup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Any ``.. manim::`` block must appear under a numpydoc ``Examples`` section header. A manim block in the summary or in another section is rejected.
+
+Rules reviewed rather than automated
+------------------------------------
+
+Three conventions above are checked by a human at review time, not by CI:
+the naming table, the ``Literal[...]`` closed-set rule, and the "interactive
+examples use ``.. nbcell::``, not ``>>>``" rule. Every other rule in this
+page names the job or script that fails on a violation, and the full list of
+jobs is in :ref:`validation-checklist`.

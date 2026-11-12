@@ -6,9 +6,9 @@ Development workflow
 ====================
 
 Set up a local checkout, keep the diff focused, and run the automated checks
-before opening a pull request. Every convention linked from this page is
-enforced by a script in CI, so a local run of the same commands is the fastest
-way to a green build.
+before opening a pull request. The conventions marked as enforced are checked
+by a script in CI (the full list is in :ref:`validation-checklist`), so a local
+run of the same commands is the fastest way to a green build.
 
 Getting Started
 ---------------
