@@ -88,6 +88,11 @@ v1.0.7 :bdg-warning-line:`In Development`
   modules need no third-party packages and install with the base package;
   ``all`` now lists only extras that actually declare dependencies, and the
   installation page documents the reduced set.
+* ``validate.yml`` now runs its 22 checks in five dependency-based jobs
+  (static, package, layout, lint and audit), so one job installs the
+  environment once for every check that needs it. ``workflow/run_checks.py``
+  is the local entry point, and the new ``validate_extras.py`` check rejects
+  empty extras or an ``all`` extra that misses a module extra.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

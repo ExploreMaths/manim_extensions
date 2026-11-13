@@ -10,27 +10,16 @@ on:
     branches: ["main"]
 
 jobs:
-  validate-manim-directives:
+  validate-static:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Run manim directive validator
-        run: python workflow/validate_manim_directives.py
+      - name: Install docutils
+        run: pip install docutils
+      - name: Run static checks
+        run: python workflow/run_checks.py --group static
 
-  validate-param-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Run parameter docs validator
-        run: python workflow/validate_param_docs.py
-
-  validate-refs:
+  validate-package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,87 +28,10 @@ jobs:
           install-editable: "true"
       - name: Install optional dependencies referenced in docs
         run: pip install ".[all]"
-      - name: Run reference validator
-        run: python workflow/validate_refs.py
+      - name: Run package and documentation checks
+        run: python workflow/run_checks.py --group package
 
-  validate-intersphinx:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check that external-library cross-references have intersphinx mappings
-        run: python workflow/validate_intersphinx.py
-
-  validate-imports:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Run import style checker
-        run: python workflow/check_redundant_imports.py
-
-  validate-relative-imports:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Check that all in-package imports use relative imports
-        run: python workflow/check_relative_imports.py
-
-  validate-docstrings:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Run module docstring validator
-        run: python workflow/validate_docstrings.py
-
-  validate-doc-sections:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Run docstring section validator
-        run: python workflow/validate_doc_sections.py
-
-  validate-rst:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install docutils
-        run: pip install docutils
-      - name: Validate RST formatting in docs and docstrings
-        run: python workflow/validate_rst.py
-
-  validate-example-files:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check that examples declare their sample files with ':files:'
-        run: python workflow/validate_example_files.py
-
-  validate-example-spacing:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check blank-line layout in manim examples
-        run: python workflow/validate_example_spacing.py
-
-  validate-example-names:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check that manim examples use descriptive class names
-        run: python workflow/validate_example_names.py
-
-  validate-example-layout:
+  validate-layout:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -137,76 +49,18 @@ jobs:
           sudo apt-get install -y -qq dvisvgm
           dvisvgm --version
       - name: Check doc example layout
-        run: python workflow/check_example_layout.py
+        run: python workflow/run_checks.py --group layout
 
-  validate-api-coverage:
+  validate-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ExploreMaths/setup-manim-env@v1
-        with:
-          install-editable: "true"
-      - name: Check API documentation coverage
-        run: python workflow/validate_api_coverage.py
+      - name: Install lint tools
+        run: pip install black flake8 reuse
+      - name: Run lint checks
+        run: python workflow/run_checks.py --group lint
 
-  reuse-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install reuse
-        run: pip install reuse
-      - name: Run reuse lint
-        run: reuse lint
-
-  validate-headers:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check SPDX header blocks
-        run: python workflow/validate_headers.py
-
-  validate-type-annotations:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check type annotations (params annotated, none quoted)
-        run: python scripts/check_type_annotations.py
-
-  validate-return-annotations:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check that documented public functions with return values declare a return annotation
-        run: python scripts/check_return_annotations.py
-
-  black:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Black
-        run: pip install black
-      - name: Check that the tree is Black-formatted
-        run: black --check manim_extensions tests scripts workflow docs
-
-  flake8-unused-imports:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install flake8
-        run: pip install flake8
-      - name: Check unused imports
-        run: flake8 manim_extensions --select F401 --exclude "*__init__.py*,test,examples"
-
-  flake8-syntax:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install flake8
-        run: pip install flake8
-      - name: Check syntax and undefined names
-        run: flake8 manim_extensions --select E9,F63,F7,F82 --max-line-length=127
-
-  pip-audit:
+  validate-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -218,4 +72,4 @@ jobs:
       - name: Install pip-audit
         run: pip install pip-audit
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --desc on
+        run: python workflow/run_checks.py --group audit

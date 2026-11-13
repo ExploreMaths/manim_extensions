@@ -35,13 +35,18 @@ Writing a test
 Validation Checklist
 --------------------
 
-Run these locally before opening a PR. Each corresponds to a CI job in ``.github/workflows/validate.yml``.
+Run these locally before opening a PR. The checker scripts are grouped into
+five CI jobs in ``.github/workflows/validate.yml`` by what they need installed;
+each row below belongs to one of those groups. Run a whole group with
+``python workflow/run_checks.py --group <static|package|layout|lint|audit>``.
 
 .. list-table::
    :header-rows: 1
 
    * - Check
      - Command
+   * - Optional extras are non-empty and listed in ``all``
+     - ``python workflow/validate_extras.py``
    * - Docstrings (module + function, raw prefix, numpydoc ``Parameters``)
      - ``python workflow/validate_docstrings.py``
    * - ``__init__`` params in class docstring
