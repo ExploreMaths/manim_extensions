@@ -48,6 +48,10 @@ v1.0.7 :bdg-warning-line:`In Development`
 * The :class:`~manim_extensions.meshes.exceptions.InvalidRequestException`
   example raises again: it projects a five-dimensional mesh, because
   four-dimensional meshes are now supported.
+* The installation page no longer tells Python 3.13+ users to install
+  ``manim-mobject-svg`` with ``--ignore-requires-python``. Both that plugin
+  and ``manim-nerdfont-icons`` are vendored as package submodules and need
+  no separate installation.
 
 **Changed**
 
@@ -77,6 +81,13 @@ v1.0.7 :bdg-warning-line:`In Development`
 * Documentation examples print structured parser and coordinate results with
   ``pprint``, so nested dictionaries and lists wrap onto readable lines
   instead of one long line.
+* Removed the 14 empty per-module extras (``algorithm``, ``arabic``,
+  ``circuit``, ``compass``, ``data_structures``, ``economics``,
+  ``fontawesome``, ``gearbox``, ``mindmap``, ``mobject_svg``,
+  ``sequence_diagram``, ``table``, ``tikz``, ``weighted_line``). Those
+  modules need no third-party packages and install with the base package;
+  ``all`` now lists only extras that actually declare dependencies, and the
+  installation page documents the reduced set.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

@@ -27,7 +27,7 @@ by default:
 
 .. code-block:: bash
 
-   pip install manim_extensions[all]         # every module at once
+   pip install manim_extensions[all]         # every optional dependency
    pip install manim_extensions[automata]    # xmltodict
    pip install manim_extensions[chemistry]   # pandas, xmltodict, requests
    pip install manim_extensions[dev]         # pytest for running tests
@@ -43,21 +43,14 @@ by default:
 If a feature is used without its extra installed, the error message
 names the exact ``pip install manim_extensions[...]`` command.
 
-Every vendored module also has a same-named extra. The ones below
-declare no additional dependencies (they work with the base install)
-but exist so installs can uniformly request
-``manim_extensions[<module>]``: ``algorithm``, ``arabic``, ``circuit``,
-``compass``, ``data_structures``, ``economics``, ``fontawesome``,
-``gearbox``, ``mindmap``, ``sequence_diagram``, ``table``, ``tikz``,
-``weighted_line``.
+Only modules that need additional packages have a same-named extra.
+Modules that work with the base install deliberately have no extra;
+requesting an empty extra would only add permanent metadata noise.
 
-One lazily-imported plugin is only partially declared in
-``pyproject.toml`` because its PyPI metadata pins an incompatible Python
-version:
-
-- **manim-mobject-svg** (for :class:`~manim_extensions.svg_animations.HTMLParsedVMobject`)
-  is installed automatically on Python < 3.13; on Python 3.13+ install
-  it with ``pip install --ignore-requires-python manim-mobject-svg``.
+Some upstream plugins are vendored instead of installed:
+``manim-mobject-svg`` ships as :mod:`~manim_extensions.mobject_svg` and
+``manim-nerdfont-icons`` as :mod:`~manim_extensions.nerdfont`. They need
+no separate install and no ``--ignore-requires-python`` flag.
 
 Verifying the installation
 --------------------------

@@ -101,29 +101,14 @@ ml = [
     "seaborn>=0.13",
     "tqdm>=4.65",
 ]
-# Every other vendored module also has a same-named extra. They declare no
-# additional dependencies today (the modules work with the base install),
-# but the extras exist so installs can uniformly request
-# manim_extensions[<module>] and gain dependencies transparently if a
-# module ever needs any.
-algorithm = []
-arabic = []
-circuit = []
-compass = []
-data_structures = []
-economics = []
-fontawesome = []
-gearbox = []
-mindmap = []
-mobject_svg = []
-sequence_diagram = []
-table = []
-tikz = []
-weighted_line = []
+# Modules that work with the base install deliberately have no extra. An
+# empty extra would be permanent metadata noise: it can never gain
+# dependencies without changing the module's contract, so request the
+# documented extra only when a module actually has one.
 
 # Everything at once: pip install manim_extensions[all]
 all = [
-    "manim_extensions[algorithm,arabic,automata,chemistry,circuit,compass,data_structures,economics,fontawesome,gearbox,mindmap,mobject_svg,sequence_diagram,table,tikz,weighted_line,physics,rubikscube,meshes,video,qr,svg,ml]",
+    "manim_extensions[automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]",
 ]
 
 [project.urls]

@@ -118,7 +118,7 @@ just `manim` + `numpy`; heavy or niche dependencies are lazy-imported
 and belong to the matching extra:
 
 ```bash
-pip install manim_extensions[all]         # every module at once
+pip install manim_extensions[all]         # every optional dependency
 pip install manim_extensions[automata]    # xmltodict
 pip install manim_extensions[chemistry]   # pandas, xmltodict, requests
 pip install manim_extensions[dev]         # pytest for running tests
@@ -135,12 +135,10 @@ pip install manim_extensions[video]       # opencv (VideoMobject)
 If a feature is used without its extra installed, the error message names
 the exact `pip install manim_extensions[...]` command.
 
-Every vendored module has a same-named extra. The ones below declare no
-additional dependencies (they work with the base install) but exist so
-that installs can uniformly request `manim_extensions[<module>]`:
-`algorithm`, `arabic`, `circuit`, `compass`, `data_structures`,
-`economics`, `fontawesome`, `gearbox`, `mindmap`, `mobject_svg`,
-`sequence_diagram`, `table`, `tikz`, `weighted_line`.
+Only modules that need additional packages have a same-named extra. The
+other vendored modules work with the base install and deliberately have
+no extra; requesting an empty extra would only add permanent metadata
+noise.
 
 ### Why we bundle upstream packages
 
