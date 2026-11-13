@@ -8,7 +8,7 @@ import pytest
 from manim import tempconfig
 
 from manim_extensions.physics.rigid_mechanics.pendulum import MultiPendulum
-from manim_extensions.pymunk.space.SpaceScene import SpaceScene
+from manim_extensions.physics.rigid_mechanics.rigid_mechanics import SpaceScene
 
 
 @pytest.fixture(autouse=True)
@@ -19,9 +19,7 @@ def _config():
 
 @pytest.fixture(scope="module")
 def physics():
-    scene = SpaceScene()
-    scene.construct()
-    return scene
+    return SpaceScene()
 
 
 @pytest.fixture()
@@ -30,9 +28,7 @@ def multi(physics):
         np.array([0.0, -1.0, 0.0]),
         np.array([0.0, -2.0, 0.0]),
     )
-    physics.add_dynamic_body(pendulum.bobs, family_members=True)
-    for bob in pendulum.bobs:
-        bob.spacescene = physics
+    physics.make_rigid_body(*pendulum.bobs)
     return pendulum
 
 
@@ -53,11 +49,11 @@ def test_redraw_rods_from_coordinate_pin(multi):
 
 
 def test_start_swinging_adds_joints(multi, physics):
-    before = len(physics.vspace.space.constraints)
+    before = len(physics.space.space.constraints)
 
     multi.start_swinging()
 
-    assert len(physics.vspace.space.constraints) > before
+    assert len(physics.space.space.constraints) > before
 
 
 def test_end_swinging_calls_stop_rigidity(multi):

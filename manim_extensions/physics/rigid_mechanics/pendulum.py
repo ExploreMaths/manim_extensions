@@ -128,17 +128,7 @@ class MultiPendulum(VGroup):
         else:
             b = mob2.body
         joint = pymunk.PinJoint(a, b)
-        # Physics SpaceScene exposes a Space mobject whose ``space`` is the
-        # pymunk space; the pymunk SpaceScene exposes ``vspace``. Accept
-        # either so custom scenes and test doubles keep working.
-        space = getattr(spacescene, "space", None)
-        if space is not None and hasattr(space, "space"):
-            target = space.space
-        elif space is not None and hasattr(space, "add"):
-            target = space
-        else:
-            target = spacescene.vspace.space
-        target.add(joint)
+        spacescene.space.space.add(joint)
 
     def _redraw_rods(self, mob: Line, pins: list, i: int):
         """Update a rod line to connect the positions of two consecutive pins.
