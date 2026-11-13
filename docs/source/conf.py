@@ -93,7 +93,6 @@ html_theme_options = {
         "font-stack--headings": "Georgia, serif",
         "color-content-foreground": "#000000",
         "color-background-primary": "#ffffff",
-        "color-background-border": "#ffffff",
         "color-sidebar-background": "#f8f9fb",
         "color-foreground-secondary": "#000",
     },
