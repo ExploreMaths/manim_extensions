@@ -28,9 +28,9 @@
   "TrailScene",
   "UnHighLightWithLinesScene",
   "VConstraintScene",
-  "VDampedRotarySpring",
+  "VDampedRotarySpringScene",
   "VPivotJointScene",
-  "VSimpleMotor",
-  "VSlideJoint",
+  "VSimpleMotorScene",
+  "VSlideJointScene",
   "VSpace"
 ]

@@ -50,12 +50,12 @@ class VSimpleMotor(VConstraint):
 
     Examples
     --------
-    .. manim:: VSimpleMotor
+    .. manim:: VSimpleMotorScene
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VSimpleMotor(SpaceScene):
+       class VSimpleMotorScene(SpaceScene):
            def construct(self):
                # the motor keeps the wheel spinning at a constant rate
                pivot = Dot(ORIGIN)

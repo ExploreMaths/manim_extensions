@@ -55,12 +55,12 @@ class VRatchetJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VRatchetJoint
+    .. manim:: VRatchetJointScene
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VRatchetJoint(SpaceScene):
+       class VRatchetJointScene(SpaceScene):
            def construct(self):
                # the driven square can only advance in PI-sized ratchet steps
                pivot_1 = Dot(UP * 2)

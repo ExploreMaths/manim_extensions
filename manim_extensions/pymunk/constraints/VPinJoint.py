@@ -58,12 +58,12 @@ class VPinJoint(VConstraint):
 
     Examples
     --------
-    .. manim:: VPinJoint
+    .. manim:: VPinJointScene
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VPinJoint(SpaceScene):
+       class VPinJointScene(SpaceScene):
            def construct(self):
                # a pin joint acts like a rigid rod between two anchors
                static_dot = Dot(ORIGIN)

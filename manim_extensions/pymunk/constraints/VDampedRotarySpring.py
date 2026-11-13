@@ -51,12 +51,12 @@ class VDampedRotarySpring(VConstraint):
 
     Examples
     --------
-    .. manim:: VDampedRotarySpring
+    .. manim:: VDampedRotarySpringScene
 
        from manim import *
        from manim_extensions.pymunk import *
 
-       class VDampedRotarySpring(SpaceScene):
+       class VDampedRotarySpringScene(SpaceScene):
            def construct(self):
                # the spinning squares are pulled back to rest_angle=PI/4 and
                # their oscillation is damped (watch the arc indicators)
