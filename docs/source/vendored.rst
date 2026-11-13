@@ -1,4 +1,4 @@
-VENDORED PACKAGES
+Vendored Packages
 =================
 
 ``manim_extensions`` aggregates a number of small upstream Manim extension
