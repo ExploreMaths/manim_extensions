@@ -1,0 +1,166 @@
+{
+ "version": 1,
+ "cells": {
+  "dc57288b6c5cfe4afa406c91618148cd": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 125, in __init__\n    conv_vertices = np.array(vertices, dtype=float)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"<string>\", line 2, in <module>\n  File \"manim_extensions/meshes/decorators.py\", line 52, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"manim_extensions/meshes/decorators.py\", line 97, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 133, in __init__\n    raise InvalidMeshException(\nmanim_extensions.meshes.exceptions.InvalidMeshException: Dimensional mismatch for vertices. All vertices should have the same number of dimensions."
+  },
+  "db39d989250c5bcd1831268707bc5999": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 609, in update_vertex\n    raise MeshIndexException(\nmanim_extensions.meshes.exceptions.MeshIndexException: Vertex index 5 out of range for vertices of length 2"
+  },
+  "88772788c2a29086c47f8813c8627d66": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 613, in update_vertex\n    raise InvalidTypeException(\nmanim_extensions.meshes.exceptions.InvalidTypeException: Vertex [[1 1 1]] has incorrect shape, expected 1D-like array."
+  },
+  "461d67428eed917f26e7cab49a80e32e": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"manim_extensions/meshes/decorators.py\", line 52, in wrapper_func\n    return_value = func(*args, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 559, in add_vertices\n    raise InvalidMeshDimensionsException(\nmanim_extensions.meshes.exceptions.InvalidMeshDimensionsException: Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2)."
+  },
+  "5e2285d3f31362bd84628bb5be5eb9d6": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"manim_extensions/meshes/models/manim_models/basic_mesh.py\", line 679, in move_vertices_to\n    raise InvalidShapeException(\nmanim_extensions.meshes.exceptions.InvalidShapeException: Size of new_positions is expected to be 3 but was 2."
+  },
+  "8281d8819dddb5582260e019cdc4034a": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"manim_extensions/meshes/params.py\", line 120, in get_param_or_default\n    return default[value][0](params[value])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: could not convert string to float: 'not a number'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"<string>\", line 2, in <module>\n  File \"manim_extensions/meshes/params.py\", line 122, in get_param_or_default\n    raise BadParameterException(\nmanim_extensions.meshes.exceptions.BadParameterException: Value edges_width does not have correct type <class 'float'> and can not be cast."
+  },
+  "2d88da83807edd0c3903df2b2e1373bd": {
+   "ok": true,
+   "stdout": "The given object is no VarArray"
+  },
+  "6dd1a48dbff83e6a0f0dbfca3e1d20be": {
+   "ok": true,
+   "stdout": "Usage: manim-chemistry [OPTIONS] COMMAND [ARGS]...\n\n  Command-line interface group for chemistry-related commands.\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  pubchem-molecule  Download molecule from pubchem."
+  },
+  "665974ab5e86cb01f294003cb19e274d": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone',).\nRetrieved molecule data for ('acetone',). Saving file(s) to . folder.\nFile ./acetone.sdf is ready!!\nFinished"
+  },
+  "7cc66a3e2a8230fa5a06b9002add16a5": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone', 'morphine').\nRetrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.\nFile ./acetone.sdf is ready!!\nFile ./morphine.sdf is ready!!\nFinished"
+  },
+  "b96aaea93464fb6352bb2a87703a31c6": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('7028',).\nRetrieved molecule data for ('7028',). Saving file(s) to . folder.\nFile ./7028.sdf is ready!!\nFinished"
+  },
+  "8b34b04b1c532b7684142e610fc7db68": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('CC(=O)C',).\nRetrieved molecule data for ('CC(=O)C',). Saving file(s) to . folder.\nFile ./CC__O_C.sdf is ready!!\nFinished"
+  },
+  "d48bbb1c525ac8ffcbc9f9f000aaaf93": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('InChI=1S/C3H6O/c1-3(2)4/h1-2H3',).\nRetrieved molecule data for ('InChI=1S/C3H6O/c1-3(2)4/h1-2H3',). Saving file(s) to . folder.\nFile ./InChI_1S_C3H6O_c1-3_2_4_h1-2H3.sdf is ready!!\nFinished"
+  },
+  "3c072cf5d65819ea3671ade5a7a5627a": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('CSCPPACGZOOCGX-UHFFFAOYSA-N',).\nRetrieved molecule data for ('CSCPPACGZOOCGX-UHFFFAOYSA-N',). Saving file(s) to . folder.\nFile ./CSCPPACGZOOCGX-UHFFFAOYSA-N.sdf is ready!!\nFinished"
+  },
+  "b82f878508219a2e718bae8109d342c4": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone',).\nRetrieved molecule data for ('acetone',). Saving file(s) to . folder.\nFile ./acetone.json is ready!!\nFinished"
+  },
+  "ddd93b87c313888b13bc27161097ad75": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone',).\nRetrieved molecule data for ('acetone',). Saving file(s) to . folder.\nFile ./acetone.sdf is ready!!\nFinished"
+  },
+  "ec21391b25f76e8c51312e328ab3bc58": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone',).\nRetrieved molecule data for ('acetone',). Saving file(s) to molecules folder.\nFile molecules/acetone.sdf is ready!!\nFinished"
+  },
+  "ddcdda0fdf0b38e57805091a835bcdeb": {
+   "ok": true,
+   "stdout": "Retrieving molecule data for ('acetone', 'morphine').\nRetrieved molecule data for ('acetone', 'morphine'). Saving file(s) to . folder.\nFile ./acetone.sdf is ready!!\nFile ./morphine.sdf is ready!!\nFinished"
+  },
+  "7cc18c3ffc98edda0e382c66ad58c856": {
+   "ok": true,
+   "stdout": "still works"
+  },
+  "0ca9677ccf2dd54c8c9b6e799304603a": {
+   "ok": true,
+   "stdout": "This feature requires 'not_installed_package'. Install it with: pip install manim_extensions[physics]"
+  },
+  "e68301c5bda0c09f3074d12b011175e7": {
+   "ok": true,
+   "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"manim_extensions/meshes/models/data_models/mesh.py\", line 402, in get_3d_vertices\n    raise InvalidRequestException(\nmanim_extensions.meshes.exceptions.InvalidRequestException: Can not Broadcast from 5-D Mesh to 3D Mesh."
+  },
+  "090e6a2db80335c322208c9fb848aa74": {
+   "ok": false,
+   "stdout": "",
+   "error": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nNameError: name 'GraphMolecule' is not defined"
+  },
+  "8d353c81c8e4d3980b1f309d62b63ef0": {
+   "ok": true,
+   "stdout": "[ 0.2253  -0.0829   0.28435]"
+  },
+  "e46fcfe60cdccf9c2a296460ae650f88": {
+   "ok": true,
+   "stdout": "[-0.44805  0.10345  0.60255]"
+  },
+  "6c00a6a0a06920b4be9dbed5d8815f3e": {
+   "ok": true,
+   "stdout": "[ 0.2253 -0.0829  0.    ]"
+  },
+  "43cb7b32b4169dbc9b18663894c13014": {
+   "ok": true,
+   "stdout": "[0.67335 0.53955 0.     ]"
+  },
+  "373b527cc047f447dd6a7e541fdf8bd3": {
+   "ok": true,
+   "stdout": "[array([ 0.2253 , -0.0829 ,  0.28435]),\n array([-1.1214 ,  0.2898 ,  0.92075]),\n array([1.1214 , 1.162  , 0.21665])]"
+  },
+  "6bf99085145d321c1547501fa9f514ba": {
+   "ok": true,
+   "stdout": "[array([-0.44805,  0.10345,  0.60255]),\n array([0.67335, 0.53955, 0.2505 ]),\n array([ 0.10735, -0.35215, -0.4248 ])]"
+  },
+  "4f5362c121c12a8ed641e08575598835": {
+   "ok": true,
+   "stdout": "[array([ 0.2253, -0.0829,  0.    ]),\n array([-1.1214,  0.2898,  0.    ]),\n array([1.1214, 1.162 , 0.    ])]"
+  },
+  "3d9a0fa66e4217830fa051a511551483": {
+   "ok": true,
+   "stdout": "[array([0.67335, 0.53955, 0.     ]),\n array([ 0.10735, -0.35215,  0.     ]),\n array([ 0.5685 , -0.62245,  0.     ])]"
+  },
+  "b89a5acc81bdabb85cf4d92b2f6c3ca5": {
+   "ok": true,
+   "stdout": "{1: {'coords': array([2, 2, 0]), 'element': 'C'},\n 2: {'coords': array([2, 2, 0]), 'element': 'O'}}"
+  },
+  "e40d20a9327e8b79418be582dfd5bda7": {
+   "ok": true,
+   "stdout": "{0: {'bond_type': 1, 'from_atom_index': 1, 'to_atom_index': 2},\n 1: {'bond_type': 1, 'from_atom_index': 2, 'to_atom_index': 1}}"
+  },
+  "bb40c920cbe8b49acf95a9153ea51f82": {
+   "ok": true,
+   "stdout": "{1: {'coords': array([0., 0., 0.]), 'element': 'C'},\n 2: {'coords': array([1.2, 0.4, 0.3]), 'element': 'O'}}"
+  },
+  "aebe6b64daff8ee7c7c510c22464305c": {
+   "ok": true,
+   "stdout": "{0: {'bond_type': 2, 'from_atom_index': 1, 'to_atom_index': 2}}"
+  },
+  "de37b242bdf2b7623d3b9a4836ad5198": {
+   "ok": true,
+   "stdout": "{1: {'bond_to': {2: 'C'},\n     'coords': array([3.732, 0.75 , 0.   ]),\n     'element': 'O'},\n 2: {'bond_to': {1: 'O', 3: 'C', 4: 'C'},\n     'coords': array([2.866, 0.25 , 0.   ]),\n     'element': 'C'},\n 3: {'bond_to': {2: 'C', 5: 'H', 6: 'H', 7: 'H'},\n     'coords': array([2.  , 0.75, 0.  ]),\n     'element': 'C'},\n 4: {'bond_to': {2: 'C', 8: 'H', 9: 'H', 10: 'H'},\n     'coords': array([ 2.866, -0.75 ,  0.   ]),\n     'element': 'C'},\n 5: {'bond_to': {3: 'C'},\n     'coords': array([2.31  , 1.2869, 0.    ]),\n     'element': 'H'},\n 6: {'bond_to': {3: 'C'},\n     'coords': array([1.4631, 1.06  , 0.    ]),\n     'element': 'H'},\n 7: {'bond_to': {3: 'C'},\n     'coords': array([1.69  , 0.2131, 0.    ]),\n     'element': 'H'},\n 8: {'bond_to': {4: 'C'},\n     'coords': array([ 2.246, -0.75 ,  0.   ]),\n     'element': 'H'},\n 9: {'bond_to': {4: 'C'},\n     'coords': array([ 2.866, -1.37 ,  0.   ]),\n     'element': 'H'},\n 10: {'bond_to': {4: 'C'},\n      'coords': array([ 3.486, -0.75 ,  0.   ]),\n      'element': 'H'}}"
+  },
+  "938ce26397f9088920eeb858e44095ab": {
+   "ok": true,
+   "stdout": "{1: {'bond_type': '2',\n     'from_atom_index': 2,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 1,\n     'topology': None},\n 2: {'bond_type': '1',\n     'from_atom_index': 3,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 2,\n     'topology': None},\n 3: {'bond_type': '1',\n     'from_atom_index': 4,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 2,\n     'topology': None},\n 4: {'bond_type': '1',\n     'from_atom_index': 5,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 3,\n     'topology': None},\n 5: {'bond_type': '1',\n     'from_atom_index': 6,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 3,\n     'topology': None},\n 6: {'bond_type': '1',\n     'from_atom_index': 7,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 3,\n     'topology': None},\n 7: {'bond_type': '1',\n     'from_atom_index': 8,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 4,\n     'topology': None},\n 8: {'bond_type': '1',\n     'from_atom_index': 9,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 4,\n     'topology': None},\n 9: {'bond_type': '1',\n     'from_atom_index': 10,\n     'reacting_center_status': None,\n     'stereo': None,\n     'to_atom_index': 4,\n     'topology': None}}"
+  },
+  "72cf40bfc33b79c004cd90c09c78685c": {
+   "ok": true,
+   "stdout": "{1: {'bond_to': {2: 'O', 3: 'C'},\n     'coords': array([0., 0., 0.]),\n     'element': 'C'},\n 2: {'bond_to': {1: 'C'}, 'coords': array([1.5, 0. , 0. ]), 'element': 'O'},\n 3: {'bond_to': {1: 'C'}, 'coords': array([-1.,  1.,  0.]), 'element': 'C'}}"
+  },
+  "248c14e87ca09e1b90c7de28a8e29dc5": {
+   "ok": true,
+   "stdout": "{1: {'bond_type': '2',\n     'from_atom_index': 2,\n     'reacting_center_status': None,\n     'stereo': 0,\n     'to_atom_index': 1,\n     'topology': None},\n 2: {'bond_type': '1',\n     'from_atom_index': 3,\n     'reacting_center_status': None,\n     'stereo': 0,\n     'to_atom_index': 1,\n     'topology': None}}"
+  },
+  "4bd879f489406abcef3f788b59715f0e": {
+   "ok": true,
+   "stdout": "{1: {'coords': array([0., 0., 0.]), 'element': 'C'},\n 2: {'coords': array([1.2, 0.4, 0.3]), 'element': 'O'}}"
+  },
+  "9acfc01234da388dc3e60743affcfca8": {
+   "ok": true,
+   "stdout": "{0: {'bond_type': 2, 'from_atom_index': 1, 'to_atom_index': 2},\n 1: {'bond_type': 1, 'from_atom_index': 1, 'to_atom_index': 3}}"
+  }
+ }
+}

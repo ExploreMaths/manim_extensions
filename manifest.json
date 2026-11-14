@@ -1,0 +1,5943 @@
+{
+ "ADASDiagramDocExample-729bb3a1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ADASDiagramDocExample-729bb3a1",
+  "version": 3
+ },
+ "ADASDiagramScene-099e08ee": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ADASDiagramScene-099e08ee"
+ },
+ "ADASQuickStart-2551c4ae": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ADASQuickStart-2551c4ae"
+ },
+ "ADASQuickStart-525463d2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ADASQuickStart-525463d2"
+ },
+ "AbstractLayoutAnimationDocExample-692a25b0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AbstractLayoutAnimationDocExample-692a25b0",
+  "version": 3
+ },
+ "AbstractLayoutAnimationScene-ab32c160": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AbstractLayoutAnimationScene-ab32c160"
+ },
+ "AbstractMapExample-836d8cbf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AbstractMapExample-836d8cbf",
+  "version": 3
+ },
+ "AbstractMapScene-02c69d84": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AbstractMapScene-02c69d84"
+ },
+ "ActivationFunctionExample-0e01ba3a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ActivationFunctionExample-0e01ba3a"
+ },
+ "ActivationFunctionExample-8651d9e2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ActivationFunctionExample-8651d9e2"
+ },
+ "ActivationFunctionScene-20c28d10": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ActivationFunctionScene-20c28d10"
+ },
+ "ActivationScene-46a9d66c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ActivationScene-46a9d66c"
+ },
+ "ActivationScene-a7d0a102": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ActivationScene-a7d0a102"
+ },
+ "Algorithm-34782dbd": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Algorithm-34782dbd"
+ },
+ "AlgorithmExample-9fb69350": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AlgorithmExample-9fb69350"
+ },
+ "AlgorithmExample-a432f839": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AlgorithmExample-a432f839",
+  "version": 3
+ },
+ "AlgorithmLibraryExample-b7da70b9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AlgorithmLibraryExample-b7da70b9",
+  "version": 3
+ },
+ "AllTogetherExample-594658bd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AllTogetherExample-594658bd",
+  "version": 3
+ },
+ "AlterNodeDocExample-0c8e912f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AlterNodeDocExample-0c8e912f",
+  "version": 3
+ },
+ "AlterNodeScene-13128a8a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AlterNodeScene-13128a8a"
+ },
+ "AngryEmoji-00efc91e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AngryEmoji-00efc91e"
+ },
+ "AngryEmoji-30d371ee": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AngryEmoji-30d371ee"
+ },
+ "AnimateOfAlter-ed33e2ed": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlter-ed33e2ed"
+ },
+ "AnimateOfAlterDocExample-02b1a0ea": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlterDocExample-02b1a0ea"
+ },
+ "AnimateOfAlterDocExample-65a49307": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlterDocExample-65a49307",
+  "version": 3
+ },
+ "AnimateOfAlterDocExample-81674e5b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlterDocExample-81674e5b"
+ },
+ "AnimateOfAlterDocExample-a4ec62f2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfAlterDocExample-a4ec62f2"
+ },
+ "AnimateOfCreate-b91f469d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfCreate-b91f469d"
+ },
+ "AnimateOfCreateDocExample-2ecc58dd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfCreateDocExample-2ecc58dd"
+ },
+ "AnimateOfCreateDocExample-61b94b1a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfCreateDocExample-61b94b1a",
+  "version": 3
+ },
+ "AnimateOfDisplay-e21a1814": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplay-e21a1814"
+ },
+ "AnimateOfDisplayDocExample-26ce33cf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-26ce33cf"
+ },
+ "AnimateOfDisplayDocExample-938b9ec3": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-938b9ec3"
+ },
+ "AnimateOfDisplayDocExample-cc1abe9a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-cc1abe9a"
+ },
+ "AnimateOfDisplayDocExample-dd39e449": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-dd39e449",
+  "version": 3
+ },
+ "AnimateOfDisplayDocExample-e9b3596f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfDisplayDocExample-e9b3596f"
+ },
+ "AnimateOfLayout-cbef8e9e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfLayout-cbef8e9e"
+ },
+ "AnimateOfLayoutDocExample-09a91816": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfLayoutDocExample-09a91816"
+ },
+ "AnimateOfLayoutDocExample-9bf2829e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfLayoutDocExample-9bf2829e"
+ },
+ "AnimateOfLayoutDocExample-f4ed04f7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfLayoutDocExample-f4ed04f7",
+  "version": 3
+ },
+ "AnimateOfNode-ed95f1be": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfNode-ed95f1be"
+ },
+ "AnimateOfNodeDocExample-3760c02c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfNodeDocExample-3760c02c",
+  "version": 3
+ },
+ "AnimateOfNodeDocExample-7d36752d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfNodeDocExample-7d36752d"
+ },
+ "AnimateOfScale-849cb359": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfScale-849cb359"
+ },
+ "AnimateOfScaleDocExample-04458eb0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfScaleDocExample-04458eb0"
+ },
+ "AnimateOfScaleDocExample-112ecefd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfScaleDocExample-112ecefd"
+ },
+ "AnimateOfScaleDocExample-9d1dff84": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AnimateOfScaleDocExample-9d1dff84",
+  "version": 3
+ },
+ "ArabicExample-29f491d9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicExample-29f491d9",
+  "version": 3
+ },
+ "ArabicExample-dc82e300": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicExample-dc82e300"
+ },
+ "ArabicGreeting-4a30042e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArabicGreeting-4a30042e"
+ },
+ "ArabicGreeting-59f69ca7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArabicGreeting-59f69ca7"
+ },
+ "ArabicGreeting-dad9459a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArabicGreeting-dad9459a"
+ },
+ "ArabicGreeting-fa65d6ec": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArabicGreeting-fa65d6ec"
+ },
+ "ArabicTemplateDocExample-78d85236": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicTemplateDocExample-78d85236"
+ },
+ "ArabicTemplateScene-90dae3f7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicTemplateScene-90dae3f7"
+ },
+ "ArabicTextDocExample-1774416c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicTextDocExample-1774416c"
+ },
+ "ArabicTextScene-c6e2e12b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ArabicTextScene-c6e2e12b"
+ },
+ "ArrayExample-6b062c43": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArrayExample-6b062c43",
+  "version": 3
+ },
+ "ArrayScene-78b85a8e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ArrayScene-78b85a8e"
+ },
+ "Automata-c9240d43": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Automata-c9240d43"
+ },
+ "AutomataExample-04413437": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AutomataExample-04413437",
+  "version": 3
+ },
+ "AutomataLibraryExample-b6e086d0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "AutomataLibraryExample-b6e086d0",
+  "version": 3
+ },
+ "AutomatonStringAcceptance-ace12620": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "AutomatonStringAcceptance-ace12620"
+ },
+ "BaseMBondObjectExample-3890076a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BaseMBondObjectExample-3890076a"
+ },
+ "BaseMBondObjectExample-6e809755": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BaseMBondObjectExample-6e809755"
+ },
+ "BaseMBondObjectScene-4bb8c389": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BaseMBondObjectScene-4bb8c389"
+ },
+ "BasicCircuitComponents-499878e5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BasicCircuitComponents-499878e5"
+ },
+ "BasicCircuitComponents-4bb66368": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BasicCircuitComponents-4bb66368"
+ },
+ "BasicCircuitComponents-ef976d96": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BasicCircuitComponents-ef976d96"
+ },
+ "BasicScene-5907bda9": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "BasicScene-5907bda9"
+ },
+ "BatterySchemaExample-d699e7c4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BatterySchemaExample-d699e7c4"
+ },
+ "BatterySchemaScene-e729f6e1": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BatterySchemaScene-e729f6e1"
+ },
+ "BatterySideExample-1de3dee9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BatterySideExample-1de3dee9"
+ },
+ "BatterySideExample-43e90ddf": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BatterySideExample-43e90ddf"
+ },
+ "BatterySideScene-f4b5c0db": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BatterySideScene-f4b5c0db"
+ },
+ "BlankConnectiveExample-1015653d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BlankConnectiveExample-1015653d"
+ },
+ "BlankConnectiveExample-a2ee9e17": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BlankConnectiveExample-a2ee9e17"
+ },
+ "BlankConnectiveScene-1055cc62": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BlankConnectiveScene-1055cc62"
+ },
+ "BohrAtomScene-1f035e31": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BohrAtomScene-1f035e31"
+ },
+ "BohrAtomScene-3d79c832": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "BohrAtomScene-3d79c832",
+  "version": 3
+ },
+ "Brand-a61385ec": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Brand-a61385ec"
+ },
+ "BrandDocExample-40636168": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BrandDocExample-40636168"
+ },
+ "BrandDocExample-c99e011c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "BrandDocExample-c99e011c",
+  "version": 3
+ },
+ "CapacitorExample-22a1df85": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CapacitorExample-22a1df85"
+ },
+ "CapacitorExample-5e30beaa": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CapacitorExample-5e30beaa",
+  "version": 3
+ },
+ "CapacitorScene-9bf536a6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CapacitorScene-9bf536a6"
+ },
+ "CatalogLayoutExample-228e7a56": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogLayoutExample-228e7a56",
+  "version": 3
+ },
+ "CatalogLayoutExample-d6f0ff0d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogLayoutExample-d6f0ff0d"
+ },
+ "CatalogLayoutScene-9c3a1040": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogLayoutScene-9c3a1040"
+ },
+ "CatalogMapDocExample-37606ef9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogMapDocExample-37606ef9",
+  "version": 3
+ },
+ "CatalogMapDocExample-c5a2d36b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogMapDocExample-c5a2d36b"
+ },
+ "CatalogMapScene-d3660763": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogMapScene-d3660763"
+ },
+ "CatalogNodeExample-421f5a86": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogNodeExample-421f5a86",
+  "version": 3
+ },
+ "CatalogNodeScene-2a33eae5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CatalogNodeScene-2a33eae5"
+ },
+ "CellDocExample-2c5df388": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CellDocExample-2c5df388"
+ },
+ "CellDocExample-7296a178": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CellDocExample-7296a178"
+ },
+ "CellScene-1b731fb0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CellScene-1b731fb0"
+ },
+ "ChargeExample-707aacd2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ChargeExample-707aacd2",
+  "version": 3
+ },
+ "ChargeExample-a1e61a09": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ChargeExample-a1e61a09"
+ },
+ "ChargeExample-c89f9fe3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChargeExample-c89f9fe3"
+ },
+ "ChargeScene-9209cd8b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChargeScene-9209cd8b"
+ },
+ "ChemistryExample-693aadc6": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChemistryExample-693aadc6",
+  "version": 3
+ },
+ "ChineseMathTexDocExample-a2b1e8a6": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexDocExample-a2b1e8a6",
+  "version": 3
+ },
+ "ChineseMathTexDocExample-cff47972": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexDocExample-cff47972"
+ },
+ "ChineseMathTexExample-7aaf25e1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexExample-7aaf25e1",
+  "version": 3
+ },
+ "ChineseMathTexOverview-c3ab595b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexOverview-c3ab595b"
+ },
+ "ChineseMathTexScene-99ca50c3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ChineseMathTexScene-99ca50c3"
+ },
+ "CircuitExample-62fc530e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CircuitExample-62fc530e",
+  "version": 3
+ },
+ "CircuitExample-660d0c33": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitExample-660d0c33",
+  "version": 3
+ },
+ "CircuitExample-823da5ea": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitExample-823da5ea"
+ },
+ "CircuitLibraryExample-69afcb1d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitLibraryExample-69afcb1d",
+  "version": 3
+ },
+ "CircuitLibraryExample-76a05d82": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitLibraryExample-76a05d82"
+ },
+ "CircuitScene-69da2e37": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CircuitScene-69da2e37"
+ },
+ "CircuitScene-96c436fc": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CircuitScene-96c436fc"
+ },
+ "ClientRaceDatabaseNetwork-da7ac0f7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ClientRaceDatabaseNetwork-da7ac0f7"
+ },
+ "ColorExample-4e960198": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ColorExample-4e960198"
+ },
+ "ColorExample-538dd86c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ColorExample-538dd86c",
+  "version": 3
+ },
+ "ColorTextDocExample-f17e4f64": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextDocExample-f17e4f64",
+  "version": 3
+ },
+ "ColorTextExample-9689a850": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextExample-9689a850",
+  "version": 3
+ },
+ "ColorTextOverview-35703b2e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextOverview-35703b2e"
+ },
+ "ColorTextScene-70cb08ec": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ColorTextScene-70cb08ec"
+ },
+ "CompassAnimations-68d713cb": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassAnimations-68d713cb"
+ },
+ "CompassDemo-361a9043": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassDemo-361a9043"
+ },
+ "CompassExample-0adf699a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassExample-0adf699a",
+  "version": 3
+ },
+ "CompassExample-66694e16": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassExample-66694e16",
+  "version": 3
+ },
+ "CompassExample-84b75cc8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassExample-84b75cc8",
+  "version": 3
+ },
+ "CompassMoveNeedleTip-53ee1023": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassMoveNeedleTip-53ee1023"
+ },
+ "CompassMoveNiddleTipToDocExample-17ebee24": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassMoveNiddleTipToDocExample-17ebee24",
+  "version": 3
+ },
+ "CompassScene-a78aa91c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CompassScene-a78aa91c"
+ },
+ "CompassScene-f0adeb48": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassScene-f0adeb48"
+ },
+ "CompassSceneExample-f99bc3d0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassSceneExample-f99bc3d0",
+  "version": 3
+ },
+ "CompassSceneUsage-f36763b8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CompassSceneUsage-f36763b8"
+ },
+ "ConeScene-0a56ceca": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConeScene-0a56ceca"
+ },
+ "ConeScene-513659a0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConeScene-513659a0"
+ },
+ "ConeScene-fd8b6a2f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConeScene-fd8b6a2f"
+ },
+ "ConnectiveLayerExample-bd5a4ff2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConnectiveLayerExample-bd5a4ff2"
+ },
+ "ConnectiveLayerExample-cfa7bb6d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConnectiveLayerExample-cfa7bb6d"
+ },
+ "ConnectiveLayerScene-e8795de0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConnectiveLayerScene-e8795de0"
+ },
+ "ConstantStrokeWidth-1ae9fdcd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidth-1ae9fdcd"
+ },
+ "ConstantStrokeWidthExample-0118a1d7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidthExample-0118a1d7"
+ },
+ "ConstantStrokeWidthExample-081e2607": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidthExample-081e2607"
+ },
+ "ConstantStrokeWidthExample-7d1f841f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidthExample-7d1f841f"
+ },
+ "ConstantStrokeWidthExample-9c24b4e0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidthExample-9c24b4e0"
+ },
+ "ConstantStrokeWidthExample-c9e57971": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ConstantStrokeWidthExample-c9e57971"
+ },
+ "Convolutional2DLayerDocExample-c6e5d697": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Convolutional2DLayerDocExample-c6e5d697",
+  "version": 3
+ },
+ "Convolutional2DLayerScene-5eac1ca7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Convolutional2DLayerScene-5eac1ca7"
+ },
+ "ConvolutionalScene-288ce171": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ConvolutionalScene-288ce171"
+ },
+ "ConvolutionalScene-4e4fbecf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ConvolutionalScene-4e4fbecf"
+ },
+ "CopyAndOverWrite-073418fc": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CopyAndOverWrite-073418fc"
+ },
+ "CopyAndOverWriteExample-4d1e43c3": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CopyAndOverWriteExample-4d1e43c3",
+  "version": 3
+ },
+ "CreateArabicTemplateDocExample-4d8e189f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTemplateDocExample-4d8e189f",
+  "version": 3
+ },
+ "CreateArabicTemplateDocExample-56100653": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTemplateDocExample-56100653"
+ },
+ "CreateArabicTemplateDocExample-a4066bdf": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTemplateDocExample-a4066bdf"
+ },
+ "CreateArabicTextDocExample-7c125785": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTextDocExample-7c125785",
+  "version": 3
+ },
+ "CreateArabicTextDocExample-db3f6b00": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTextDocExample-db3f6b00"
+ },
+ "CreateArabicTextDocExample-f823f0cf": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CreateArabicTextDocExample-f823f0cf"
+ },
+ "CropImageMobjectDocExample-0b3981a1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CropImageMobjectDocExample-0b3981a1",
+  "version": 3
+ },
+ "CropImageMobjectDocExample-bfae6f72": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CropImageMobjectDocExample-bfae6f72"
+ },
+ "CropImageMobjectScene-50464d11": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CropImageMobjectScene-50464d11"
+ },
+ "CubeColors-e05d4811": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeColors-e05d4811"
+ },
+ "CubeFadeIn-ecf13c56": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeFadeIn-ecf13c56"
+ },
+ "CubeMoveExample-74e4b757": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeMoveExample-74e4b757",
+  "version": 3
+ },
+ "CubeMoveExample-a7bb604c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeMoveExample-a7bb604c",
+  "version": 3
+ },
+ "CubeRotation-30ae53a9": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeRotation-30ae53a9"
+ },
+ "CubeRotation-6a97313c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeRotation-6a97313c"
+ },
+ "CubeShowcase-acb20c80": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeShowcase-acb20c80"
+ },
+ "CubeState-18a0218a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubeState-18a0218a"
+ },
+ "Cubie-13dd10cd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Cubie-13dd10cd"
+ },
+ "CubieDocExample-d5ea92f2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubieDocExample-d5ea92f2",
+  "version": 3
+ },
+ "CubieOffsets-6f4543b3": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubieOffsets-6f4543b3"
+ },
+ "CubieYOffset-9103eafc": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "CubieYOffset-9103eafc"
+ },
+ "CurrentSourceExample-38ee2533": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CurrentSourceExample-38ee2533",
+  "version": 3
+ },
+ "CurrentSourceScene-035a41e8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "CurrentSourceScene-035a41e8"
+ },
+ "DashedCramBondExample-361f938b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DashedCramBondExample-361f938b"
+ },
+ "DashedCramBondExample-d1ef2876": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DashedCramBondExample-d1ef2876"
+ },
+ "DashedCramBondScene-1d0488a0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DashedCramBondScene-1d0488a0"
+ },
+ "DataStructureArrayExample-09ff7632": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructureArrayExample-09ff7632",
+  "version": 3
+ },
+ "DataStructureInsertRemoveExample-d94d1985": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DataStructureInsertRemoveExample-d94d1985",
+  "version": 3
+ },
+ "DataStructurePointerExample-f41df8f2": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructurePointerExample-f41df8f2",
+  "version": 3
+ },
+ "DataStructureSlidingWindowExample-53f8531c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructureSlidingWindowExample-53f8531c",
+  "version": 3
+ },
+ "DataStructureVariableExample-77a3ce35": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DataStructureVariableExample-77a3ce35"
+ },
+ "DataStructureVariableExample-eb63fc6c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DataStructureVariableExample-eb63fc6c",
+  "version": 3
+ },
+ "DataStructures-c662caac": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructures-c662caac"
+ },
+ "DataStructuresExample-3acf2bd1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DataStructuresExample-3acf2bd1",
+  "version": 3
+ },
+ "DecisionTreeDiagramDocExample-034c15b4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeDiagramDocExample-034c15b4"
+ },
+ "DecisionTreeDiagramDocExample-58e947b8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeDiagramDocExample-58e947b8"
+ },
+ "DecisionTreeDiagramDocExample-6cafc935": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeDiagramDocExample-6cafc935",
+  "version": 3
+ },
+ "DecisionTreeDiagramScene-b06fb530": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeDiagramScene-b06fb530"
+ },
+ "DecisionTreeEmbeddingExample-858d41fe": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeEmbeddingExample-858d41fe"
+ },
+ "DecisionTreeEmbeddingScene-8ad14a06": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeEmbeddingScene-8ad14a06"
+ },
+ "DecisionTreeSurfaceExample-6a114179": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeSurfaceExample-6a114179"
+ },
+ "DecisionTreeSurfaceScene-c59e1bd0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecisionTreeSurfaceScene-c59e1bd0"
+ },
+ "DecorationHelpers-709d44f3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecorationHelpers-709d44f3"
+ },
+ "DecorationHelpersExample-a25f3d4d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DecorationHelpersExample-a25f3d4d",
+  "version": 3
+ },
+ "Dequeue-c7a80b5f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Dequeue-c7a80b5f"
+ },
+ "DequeueExample-cc25f778": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DequeueExample-cc25f778",
+  "version": 3
+ },
+ "DivideAndConquerExample-7d22eb0b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DivideAndConquerExample-7d22eb0b",
+  "version": 3
+ },
+ "DivideAndConquerScene-8c1e5192": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DivideAndConquerScene-8c1e5192"
+ },
+ "DoubleBondExample-0b5cbf6d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DoubleBondExample-0b5cbf6d"
+ },
+ "DoubleBondExample-3ca2ce8b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DoubleBondExample-3ca2ce8b"
+ },
+ "DoubleBondScene-5347cb7a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "DoubleBondScene-5347cb7a"
+ },
+ "DrawArcDocExample-d7ec82bc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawArcDocExample-d7ec82bc",
+  "version": 3
+ },
+ "DrawArcScene-7000f45b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawArcScene-7000f45b"
+ },
+ "DrawLineExample-891d4722": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawLineExample-891d4722",
+  "version": 3
+ },
+ "DrawPathDocExample-8611fc97": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawPathDocExample-8611fc97",
+  "version": 3
+ },
+ "DrawPathScene-5b7bc22b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DrawPathScene-5b7bc22b"
+ },
+ "DropoutScene-b6e0ddf0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DropoutScene-b6e0ddf0"
+ },
+ "DropoutScene-eeb6f063": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "DropoutScene-eeb6f063"
+ },
+ "EaseInBounce-33235945": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInBounce-33235945"
+ },
+ "EaseInBounceExample-b5ba2c06": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInBounceExample-b5ba2c06",
+  "version": 3
+ },
+ "EaseInOutBounce-ebcfe1b7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInOutBounce-ebcfe1b7"
+ },
+ "EaseInOutBounceExample-7c41efbc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseInOutBounceExample-7c41efbc",
+  "version": 3
+ },
+ "EaseOutBounce-46ce00d2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutBounce-46ce00d2"
+ },
+ "EaseOutBounceExample-ca21e868": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutBounceExample-ca21e868",
+  "version": 3
+ },
+ "EaseOutElastic-bffb0fc5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutElastic-bffb0fc5"
+ },
+ "EaseOutElasticExample-f8b011ce": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EaseOutElasticExample-f8b011ce",
+  "version": 3
+ },
+ "EconDiagramDocExample-a10c0689": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "EconDiagramDocExample-a10c0689"
+ },
+ "EconDiagramScene-3f613434": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "EconDiagramScene-3f613434"
+ },
+ "EconomicsExample-28296e95": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "EconomicsExample-28296e95",
+  "version": 3
+ },
+ "ElectricFieldExample-93b4cb20": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectricFieldExample-93b4cb20"
+ },
+ "ElectricFieldExample-f783c63f": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectricFieldExample-f783c63f",
+  "version": 3
+ },
+ "ElectricFieldScene-a57b889c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectricFieldScene-a57b889c"
+ },
+ "ElectronExample-10a807e3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectronExample-10a807e3"
+ },
+ "ElectronExample-2d1c6dad": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectronExample-2d1c6dad"
+ },
+ "ElectronScene-c26e1435": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectronScene-c26e1435"
+ },
+ "ElectrostaticsScene-2abe021e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectrostaticsScene-2abe021e"
+ },
+ "ElectrostaticsScene-6de53b8d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectrostaticsScene-6de53b8d"
+ },
+ "ElectrostaticsScene-cb72e7d5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElectrostaticsScene-cb72e7d5"
+ },
+ "ElementExample-902149bd": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElementExample-902149bd"
+ },
+ "ElementFrameExample-09c153ee": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElementFrameExample-09c153ee"
+ },
+ "ElementFrameScene-491ec210": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElementFrameScene-491ec210"
+ },
+ "ElementScene-a09fe1bb": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ElementScene-a09fe1bb"
+ },
+ "EmbeddingLayerDocExample-2685f1f5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EmbeddingLayerDocExample-2685f1f5",
+  "version": 3
+ },
+ "EmbeddingLayerScene-08c46b9c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EmbeddingLayerScene-08c46b9c"
+ },
+ "Enqueue-d79d53d2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Enqueue-d79d53d2"
+ },
+ "EnqueueExample-e2f06393": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "EnqueueExample-e2f06393",
+  "version": 3
+ },
+ "ExtendedLineDocExample-ff1ee2a3": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ExtendedLineDocExample-ff1ee2a3",
+  "version": 3
+ },
+ "ExtendedLineScene-14b7c187": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ExtendedLineScene-14b7c187"
+ },
+ "FadeInExample-a38c1142": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInExample-a38c1142"
+ },
+ "FadeInExample-a51dd186": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInExample-a51dd186",
+  "version": 3
+ },
+ "FadeInRandomDocExample-a2a37d12": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInRandomDocExample-a2a37d12",
+  "version": 3
+ },
+ "FadeInRandomScene-f8073727": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeInRandomScene-f8073727"
+ },
+ "FadeOutRandomDocExample-cb6dd42e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeOutRandomDocExample-cb6dd42e",
+  "version": 3
+ },
+ "FadeOutRandomScene-661fe22d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeOutRandomScene-661fe22d"
+ },
+ "FadeoutOfSubtrees-e206ad9c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeoutOfSubtrees-e206ad9c"
+ },
+ "FadeoutOfSubtreesDocExample-05306942": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeoutOfSubtreesDocExample-05306942",
+  "version": 3
+ },
+ "FadeoutOfSubtreesDocExample-29d06a63": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FadeoutOfSubtreesDocExample-29d06a63"
+ },
+ "FeatureMapExample-38b97c2b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FeatureMapExample-38b97c2b"
+ },
+ "FeatureMapExample-e1f6ae6c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FeatureMapExample-e1f6ae6c"
+ },
+ "FeatureMapScene-41f7e82a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FeatureMapScene-41f7e82a"
+ },
+ "FeedForwardLayerDocExample-ed21b6d7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FeedForwardLayerDocExample-ed21b6d7",
+  "version": 3
+ },
+ "FeedForwardLayerScene-a7e0a2d2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FeedForwardLayerScene-a7e0a2d2"
+ },
+ "FeedForwardScene-0cb15ec0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FeedForwardScene-0cb15ec0"
+ },
+ "FeedForwardScene-e97ffce0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FeedForwardScene-e97ffce0"
+ },
+ "FileTreeDocExample-8eda0339": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FileTreeDocExample-8eda0339"
+ },
+ "FileTreeExample-b60a7de3": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FileTreeExample-b60a7de3"
+ },
+ "FileTreeOverview-225b1f6e": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FileTreeOverview-225b1f6e"
+ },
+ "FileTreeScene-ff6eca57": {
+  "env_tags": {
+   "jetbrains_mono": 1
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FileTreeScene-ff6eca57"
+ },
+ "FiltersExample-20c2357b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiltersExample-20c2357b"
+ },
+ "FiltersExample-9a9963d3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiltersExample-9a9963d3"
+ },
+ "FiltersScene-6a350afd": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiltersScene-6a350afd"
+ },
+ "FiniteStateAutomatonExample-8adcc880": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiniteStateAutomatonExample-8adcc880",
+  "version": 3
+ },
+ "FiniteStateAutomatonScene-f1d9f0ff": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FiniteStateAutomatonScene-f1d9f0ff"
+ },
+ "FontAwesomeHeart-f076e5a1": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeHeart-f076e5a1"
+ },
+ "FontAwesomeHeartExample-bba493f4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeHeartExample-bba493f4"
+ },
+ "FontAwesomeHeartExample-c6c94846": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeHeartExample-c6c94846",
+  "version": 3
+ },
+ "FontAwesomeHeartExample-fdfad2d5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeHeartExample-fdfad2d5"
+ },
+ "FontAwesomeWall-730d8b1b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeWall-730d8b1b"
+ },
+ "FontAwesomeWallExample-b892d43e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeWallExample-b892d43e",
+  "version": 3
+ },
+ "FontAwesomeWallExample-f3709a7c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeWallExample-f3709a7c"
+ },
+ "FontAwesomeWallExample-faebc5cb": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "FontAwesomeWallExample-faebc5cb"
+ },
+ "GMAnimationBuilderDocExample-811f559f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GMAnimationBuilderDocExample-811f559f"
+ },
+ "GMAnimationBuilderDocExample-d94f8102": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GMAnimationBuilderDocExample-d94f8102",
+  "version": 3
+ },
+ "GMAnimationBuilderScene-f1f18a03": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GMAnimationBuilderScene-f1f18a03"
+ },
+ "GaussianDistributionDocExample-f05e8fc1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GaussianDistributionDocExample-f05e8fc1",
+  "version": 3
+ },
+ "GaussianDistributionScene-6a7bb978": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GaussianDistributionScene-6a7bb978"
+ },
+ "GearDocExample-6b684700": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearDocExample-6b684700",
+  "version": 3
+ },
+ "GearDocExample-ef8c49f4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearDocExample-ef8c49f4"
+ },
+ "GearExample-89b7763c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearExample-89b7763c",
+  "version": 3
+ },
+ "GearMesh-1c866526": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMesh-1c866526"
+ },
+ "GearMeshExample-5472ef24": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshExample-5472ef24"
+ },
+ "GearMeshToDocExample-269ba154": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshToDocExample-269ba154"
+ },
+ "GearMeshToDocExample-67f6d8e5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshToDocExample-67f6d8e5"
+ },
+ "GearMeshToDocExample-b23c711a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshToDocExample-b23c711a"
+ },
+ "GearMeshToDocExample-d813732c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshToDocExample-d813732c",
+  "version": 3
+ },
+ "GearMeshingScene-ab0ccfd6": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearMeshingScene-ab0ccfd6"
+ },
+ "GearScene-5ebbc727": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GearScene-5ebbc727"
+ },
+ "Gearbox-7e3cc068": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Gearbox-7e3cc068"
+ },
+ "GearboxExample-1762bbbb": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GearboxExample-1762bbbb"
+ },
+ "GearboxExample-59530bd7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GearboxExample-59530bd7"
+ },
+ "GearboxExample-aec16763": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GearboxExample-aec16763",
+  "version": 3
+ },
+ "GeometryHelpers-148d7663": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GeometryHelpers-148d7663"
+ },
+ "GeometryHelpersExample-13e845eb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GeometryHelpersExample-13e845eb",
+  "version": 3
+ },
+ "GetArc-66f8011c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GetArc-66f8011c"
+ },
+ "GetArcDocExample-f51a823c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GetArcDocExample-f51a823c",
+  "version": 3
+ },
+ "GraphMoleculeExample-87425943": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeExample-87425943"
+ },
+ "GraphMoleculeExample-ddce2bcf": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeExample-ddce2bcf"
+ },
+ "GraphMoleculeFromFile-861b42c7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFile-861b42c7"
+ },
+ "GraphMoleculeFromFile-ada3d42c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFile-ada3d42c",
+  "version": 3
+ },
+ "GraphMoleculeFromFile-ddc89f47": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFile-ddc89f47"
+ },
+ "GraphMoleculeFromFileWithHydrogens-54a47369": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFileWithHydrogens-54a47369"
+ },
+ "GraphMoleculeFromFileWithHydrogens-e9226d98": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromFileWithHydrogens-e9226d98",
+  "version": 3
+ },
+ "GraphMoleculeFromMolecule-378bef2c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromMolecule-378bef2c"
+ },
+ "GraphMoleculeFromMolecule-74a578fb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromMolecule-74a578fb",
+  "version": 3
+ },
+ "GraphMoleculeFromMolecule-e896a867": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromMolecule-e896a867"
+ },
+ "GraphMoleculeFromPubChem-9fa9ea7c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromPubChem-9fa9ea7c",
+  "version": 3
+ },
+ "GraphMoleculeFromPubChemThreeD-dc439000": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromPubChemThreeD-dc439000",
+  "version": 3
+ },
+ "GraphMoleculeFromString-75e2af34": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromString-75e2af34"
+ },
+ "GraphMoleculeFromString-7f773926": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromString-7f773926"
+ },
+ "GraphMoleculeFromString-a7c42084": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromString-a7c42084"
+ },
+ "GraphMoleculeFromStringThreeD-5ae139ca": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromStringThreeD-5ae139ca"
+ },
+ "GraphMoleculeFromStringThreeD-9a57b50c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromStringThreeD-9a57b50c"
+ },
+ "GraphMoleculeFromStringThreeD-a62f20d0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeFromStringThreeD-a62f20d0"
+ },
+ "GraphMoleculeScene-3c13d28a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeScene-3c13d28a"
+ },
+ "GraphMoleculeWithName-01eafd57": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeWithName-01eafd57",
+  "version": 3
+ },
+ "GraphMoleculeWithName-acf308dc": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeWithName-acf308dc"
+ },
+ "GraphMoleculeWithName-eaeec77b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GraphMoleculeWithName-eaeec77b"
+ },
+ "GrayscaleImageMobjectExample-7db23ebd": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GrayscaleImageMobjectExample-7db23ebd"
+ },
+ "GrayscaleImageMobjectScene-58e64012": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GrayscaleImageMobjectScene-58e64012"
+ },
+ "GridTemplate-f5d52828": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GridTemplate-f5d52828"
+ },
+ "GridTemplate4D-e5cdaad1": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GridTemplate4D-e5cdaad1"
+ },
+ "GridTemplateExample-34a5dab5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GridTemplateExample-34a5dab5"
+ },
+ "GridTemplateExample4D-bca17bea": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GridTemplateExample4D-bca17bea"
+ },
+ "GriddedRectangleExample-4f6692a3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GriddedRectangleExample-4f6692a3"
+ },
+ "GriddedRectangleScene-45b57407": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GriddedRectangleScene-45b57407"
+ },
+ "GroundExample-38602b89": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GroundExample-38602b89",
+  "version": 3
+ },
+ "GroundScene-5d932cd5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "GroundScene-5d932cd5"
+ },
+ "GrowRandomDocExample-0bc1d70b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GrowRandomDocExample-0bc1d70b",
+  "version": 3
+ },
+ "GrowRandomScene-ba6f9295": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "GrowRandomScene-ba6f9295"
+ },
+ "HTMLParsedVMobjectDocExample-b8e96d54": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HTMLParsedVMobjectDocExample-b8e96d54",
+  "version": 3
+ },
+ "HTMLParsedVMobjectScene-3aec364a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HTMLParsedVMobjectScene-3aec364a"
+ },
+ "HighLightWithLinesDocExample-9adb27db": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighLightWithLinesDocExample-9adb27db",
+  "version": 3
+ },
+ "HighLightWithLinesScene-314e233e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighLightWithLinesScene-314e233e"
+ },
+ "HighlightAnimations-2f853f87": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighlightAnimations-2f853f87"
+ },
+ "HighlightAnimationsExample-ba1e2cf0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "HighlightAnimationsExample-ba1e2cf0",
+  "version": 3
+ },
+ "HoleExample-87fd135e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "HoleExample-87fd135e"
+ },
+ "HoleExample-e9605f76": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "HoleExample-e9605f76"
+ },
+ "HoleScene-26911a45": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "HoleScene-26911a45"
+ },
+ "ISLMDiagramDocExample-22a86db4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ISLMDiagramDocExample-22a86db4",
+  "version": 3
+ },
+ "ISLMDiagramScene-aa9a3302": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ISLMDiagramScene-aa9a3302"
+ },
+ "IYLNodeExample-bb74f1a8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "IYLNodeExample-bb74f1a8",
+  "version": 3
+ },
+ "IYLNodeScene-6294b312": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "IYLNodeScene-6294b312"
+ },
+ "ImageLayerDocExample-110ec8d6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ImageLayerDocExample-110ec8d6",
+  "version": 3
+ },
+ "ImageLayerScene-f571a177": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ImageLayerScene-f571a177"
+ },
+ "IndicateCubie-682b2eb3": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateCubie-682b2eb3"
+ },
+ "IndicateCubieExample-3ae15903": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateCubieExample-3ae15903",
+  "version": 3
+ },
+ "IndicateFace-55db6caa": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateFace-55db6caa"
+ },
+ "IndicateFaceExample-aa493a89": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "IndicateFaceExample-aa493a89",
+  "version": 3
+ },
+ "InductorExample-849bee8e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InductorExample-849bee8e",
+  "version": 3
+ },
+ "InductorScene-05772e81": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InductorScene-05772e81"
+ },
+ "InnerGearExample-a915ad6c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InnerGearExample-a915ad6c"
+ },
+ "InnerGearExample-b032d66e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InnerGearExample-b032d66e"
+ },
+ "InnerGearExample-dcbe5bdd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InnerGearExample-dcbe5bdd",
+  "version": 3
+ },
+ "InsertLayerExample-54c7622f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertLayerExample-54c7622f"
+ },
+ "InsertLayerExample-8e3ed026": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertLayerExample-8e3ed026"
+ },
+ "InsertLayerScene-cc774598": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertLayerScene-cc774598"
+ },
+ "InsertNodeDocExample-7bb99919": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertNodeDocExample-7bb99919",
+  "version": 3
+ },
+ "InsertNodeScene-1b0d1284": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InsertNodeScene-1b0d1284"
+ },
+ "InteractiveHTMLScene-e4906165": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "InteractiveHTMLScene-e4906165"
+ },
+ "InvoluteDerivFunc-32caed9b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteDerivFunc-32caed9b"
+ },
+ "InvoluteDerivFuncExample-2cc6448b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteDerivFuncExample-2cc6448b",
+  "version": 3
+ },
+ "InvoluteFunc-7bb0ceb7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteFunc-7bb0ceb7"
+ },
+ "InvoluteFuncExample-b0565acb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteFuncExample-b0565acb",
+  "version": 3
+ },
+ "InvoluteHeightFunc-4cde839b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteHeightFunc-4cde839b"
+ },
+ "InvoluteHeightFuncExample-93dfc45d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvoluteHeightFuncExample-93dfc45d",
+  "version": 3
+ },
+ "InvolutePointGen-027358d4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvolutePointGen-027358d4"
+ },
+ "InvolutePointGenExample-752b4880": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "InvolutePointGenExample-752b4880",
+  "version": 3
+ },
+ "IrisDatasetPlotExample-071fb81b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "IrisDatasetPlotExample-071fb81b"
+ },
+ "IrisDatasetPlotScene-ce9b8764": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "IrisDatasetPlotScene-ce9b8764"
+ },
+ "LabelDotDocExample-a6883bdc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotDocExample-a6883bdc",
+  "version": 3
+ },
+ "LabelDotExample-05f5c07e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotExample-05f5c07e",
+  "version": 3
+ },
+ "LabelDotOverview-8c0c04c8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotOverview-8c0c04c8"
+ },
+ "LabelDotScene-ed55b494": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabelDotScene-ed55b494"
+ },
+ "LabeledColorImageExample-74b8bfc2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabeledColorImageExample-74b8bfc2"
+ },
+ "LabeledColorImageExample-7f3afc9a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabeledColorImageExample-7f3afc9a"
+ },
+ "LabeledColorImageScene-3532d6d8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LabeledColorImageScene-3532d6d8"
+ },
+ "LaggedCreationDocExample-152d5428": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LaggedCreationDocExample-152d5428",
+  "version": 3
+ },
+ "LaggedCreationScene-6fb96814": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LaggedCreationScene-6fb96814"
+ },
+ "LayoutAnimationDocExample-06fae8c1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-06fae8c1"
+ },
+ "LayoutAnimationDocExample-21cb223f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-21cb223f"
+ },
+ "LayoutAnimationDocExample-9b79433d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-9b79433d"
+ },
+ "LayoutAnimationDocExample-bc33c6ee": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-bc33c6ee",
+  "version": 3
+ },
+ "LayoutAnimationDocExample-ca0888a0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationDocExample-ca0888a0"
+ },
+ "LayoutAnimationExample-571cd6c5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationExample-571cd6c5",
+  "version": 3
+ },
+ "LayoutAnimationScene-37e69e56": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LayoutAnimationScene-37e69e56"
+ },
+ "LayoutConfigExample-e940ef4a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutConfigExample-e940ef4a",
+  "version": 3
+ },
+ "LayoutConfigScene-d03937c3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutConfigScene-d03937c3"
+ },
+ "LayoutDirectionExample-4211a2a7": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutDirectionExample-4211a2a7",
+  "version": 3
+ },
+ "LayoutDirectionScene-7bda9b38": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutDirectionScene-7bda9b38"
+ },
+ "LayoutExample-1ce10d80": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutExample-1ce10d80",
+  "version": 3
+ },
+ "LayoutFactoryExample-1f290151": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutFactoryExample-1f290151",
+  "version": 3
+ },
+ "LayoutFactoryScene-28ce66a7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutFactoryScene-28ce66a7"
+ },
+ "LayoutScene-3ac2d67f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutScene-3ac2d67f"
+ },
+ "LayoutTypeExample-30c39db0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutTypeExample-30c39db0",
+  "version": 3
+ },
+ "LayoutTypeExample-cfef212d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutTypeExample-cfef212d"
+ },
+ "LayoutTypeScene-2114a893": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LayoutTypeScene-2114a893"
+ },
+ "LeafNodeExample-39aefd1f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LeafNodeExample-39aefd1f"
+ },
+ "LeafNodeExample-f9c162b8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LeafNodeExample-f9c162b8"
+ },
+ "LeafNodeScene-35d8466e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LeafNodeScene-35d8466e"
+ },
+ "LeafNodeText-6b1ccd64": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LeafNodeText-6b1ccd64"
+ },
+ "LeafNodeTextExample-b3be42e8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LeafNodeTextExample-b3be42e8"
+ },
+ "LensExample-e6344df8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensExample-e6344df8",
+  "version": 3
+ },
+ "LensScene-a1513b23": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensScene-a1513b23"
+ },
+ "LensScene-a93b1b20": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensScene-a93b1b20"
+ },
+ "LensScene-ce4a6659": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensScene-ce4a6659"
+ },
+ "LensScene-dd4a8a13": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensScene-dd4a8a13"
+ },
+ "LensScene-e48295d8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "LensScene-e48295d8"
+ },
+ "LinearWaveExample-21500dc7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinearWaveExample-21500dc7",
+  "version": 3
+ },
+ "LinearWaveExample-8b265b3c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinearWaveExample-8b265b3c"
+ },
+ "LinearWaveScene-c909ae46": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinearWaveScene-c909ae46"
+ },
+ "LinkedISLMADAS-21d3d739": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinkedISLMADAS-21d3d739"
+ },
+ "LinkedISLMADASDocExample-1561d021": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "LinkedISLMADASDocExample-1561d021",
+  "version": 3
+ },
+ "ListGroupExample-8b86f67e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ListGroupExample-8b86f67e"
+ },
+ "ListGroupExample-c69a122a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ListGroupExample-c69a122a"
+ },
+ "ListGroupScene-cfc2ca2d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ListGroupScene-cfc2ca2d"
+ },
+ "MArrayDocExample-d8f4bedd": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayDocExample-d8f4bedd",
+  "version": 3
+ },
+ "MArrayElementDocExample-59436824": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayElementDocExample-59436824",
+  "version": 3
+ },
+ "MArrayElementDocExample-93164b59": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayElementDocExample-93164b59"
+ },
+ "MArrayElementScene-5fddec06": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayElementScene-5fddec06"
+ },
+ "MArrayInsertRemove-5cba8201": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayInsertRemove-5cba8201"
+ },
+ "MArrayInsertRemoveDocExample-77864c5c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayInsertRemoveDocExample-77864c5c",
+  "version": 3
+ },
+ "MArrayPointerDocExample-1e815cbe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayPointerDocExample-1e815cbe",
+  "version": 3
+ },
+ "MArrayPointerScene-a61532e4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayPointerScene-a61532e4"
+ },
+ "MArrayScene-35ddb3ce": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MArrayScene-35ddb3ce"
+ },
+ "MArraySlidingWindowDocExample-0c4fae89": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArraySlidingWindowDocExample-0c4fae89",
+  "version": 3
+ },
+ "MArraySlidingWindowDocExample-7e6f5fe0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArraySlidingWindowDocExample-7e6f5fe0"
+ },
+ "MArraySlidingWindowScene-80446347": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArraySlidingWindowScene-80446347"
+ },
+ "MArrayUsage-2d8c64c1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MArrayUsage-2d8c64c1"
+ },
+ "MAtomObjectExample-6c671fac": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MAtomObjectExample-6c671fac"
+ },
+ "MAtomObjectExample-ca7f8c19": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MAtomObjectExample-ca7f8c19"
+ },
+ "MAtomObjectScene-8a59fb6d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MAtomObjectScene-8a59fb6d"
+ },
+ "MCMCAxesDocExample-1031ce27": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MCMCAxesDocExample-1031ce27",
+  "version": 3
+ },
+ "MCMCAxesScene-2ab5a4b0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MCMCAxesScene-2ab5a4b0"
+ },
+ "MElementObjectDocExample-753c5e75": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MElementObjectDocExample-753c5e75",
+  "version": 3
+ },
+ "MElementObjectScene-fb607a47": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MElementObjectScene-fb607a47"
+ },
+ "MLExample-93fbaf68": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MLExample-93fbaf68",
+  "version": 3
+ },
+ "MLExample-f334b38a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MLExample-f334b38a"
+ },
+ "MMoleculeFromFile-744dc218": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromFile-744dc218",
+  "version": 3
+ },
+ "MMoleculeFromFile-9aca0ef3": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromFile-9aca0ef3"
+ },
+ "MMoleculeFromFile-b94412e0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromFile-b94412e0"
+ },
+ "MMoleculeFromPubChem-da654ee4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromPubChem-da654ee4",
+  "version": 3
+ },
+ "MMoleculeFromString-018d4ea2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromString-018d4ea2"
+ },
+ "MMoleculeFromString-63d78950": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeFromString-63d78950"
+ },
+ "MMoleculeObjectFromMolecule-84c5d48e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeObjectFromMolecule-84c5d48e",
+  "version": 3
+ },
+ "MMoleculeObjectFromMolecule-9fd66a5d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeObjectFromMolecule-9fd66a5d"
+ },
+ "MMoleculeObjectFromMolecule-e98e46ff": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeObjectFromMolecule-e98e46ff"
+ },
+ "MMoleculeWithName-49b9e932": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeWithName-49b9e932"
+ },
+ "MMoleculeWithName-80a35d2b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MMoleculeWithName-80a35d2b",
+  "version": 3
+ },
+ "MMoleculeWithName-91459f9c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MMoleculeWithName-91459f9c"
+ },
+ "MOSFETTransistorExample-f3423cd4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MOSFETTransistorExample-f3423cd4"
+ },
+ "MOSFETTransistorScene-6cabac9c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MOSFETTransistorScene-6cabac9c"
+ },
+ "MVariableDocExample-0874e0e6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MVariableDocExample-0874e0e6",
+  "version": 3
+ },
+ "MVariableDocExample-18a3ce80": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MVariableDocExample-18a3ce80"
+ },
+ "MVariableDocExample-7a52201c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MVariableDocExample-7a52201c"
+ },
+ "MVariableScene-0c21e963": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MVariableScene-0c21e963"
+ },
+ "MagneticFieldExample-3b0db982": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldExample-3b0db982"
+ },
+ "MagneticFieldExample-3e122d99": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldExample-3e122d99"
+ },
+ "MagneticFieldExample-93591efb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldExample-93591efb",
+  "version": 3
+ },
+ "MagneticFieldExample-c6e9454a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldExample-c6e9454a"
+ },
+ "MagneticFieldScene-ed71ce80": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MagneticFieldScene-ed71ce80"
+ },
+ "MainScene-9ca3d246": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MainScene-9ca3d246"
+ },
+ "Manim2DMeshExample-3d7c63ea": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Manim2DMeshExample-3d7c63ea"
+ },
+ "Manim2DMeshExample-94717859": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Manim2DMeshExample-94717859",
+  "version": 3
+ },
+ "Manim2DMeshScene-19764a89": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Manim2DMeshScene-19764a89"
+ },
+ "ManimAnimationsExample-74121092": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAnimationsExample-74121092",
+  "version": 3
+ },
+ "ManimAnimationsScene-ba59d224": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAnimationsScene-ba59d224"
+ },
+ "ManimAutomataInputExample-023e02cd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomataInputExample-023e02cd",
+  "version": 3
+ },
+ "ManimAutomataInputExample-4557892a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomataInputExample-4557892a"
+ },
+ "ManimAutomataInputScene-d851fba8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomataInputScene-d851fba8"
+ },
+ "ManimAutomaton-86b220af": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomaton-86b220af"
+ },
+ "ManimAutomatonDocExample-9c4f2d8d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimAutomatonDocExample-9c4f2d8d",
+  "version": 3
+ },
+ "ManimDeterministicFiniteAutomaton-e22f3204": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimDeterministicFiniteAutomaton-e22f3204"
+ },
+ "ManimMeshExample-2da46103": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimMeshExample-2da46103",
+  "version": 3
+ },
+ "ManimMeshExample-53d30fa0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimMeshExample-53d30fa0"
+ },
+ "ManimMeshExample-e12d1fcf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimMeshExample-e12d1fcf"
+ },
+ "ManimMeshScene-5f6c555d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimMeshScene-5f6c555d"
+ },
+ "ManimNondeterministicFiniteAutomatonExample-e35ce57b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimNondeterministicFiniteAutomatonExample-e35ce57b",
+  "version": 3
+ },
+ "ManimNondeterministicFiniteAutomatonScene-a5e04c67": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimNondeterministicFiniteAutomatonScene-a5e04c67"
+ },
+ "ManimPushDownAutomatonExample-8b4b2ea5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonExample-8b4b2ea5",
+  "version": 3
+ },
+ "ManimPushDownAutomatonScene-adb4eaef": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonScene-adb4eaef"
+ },
+ "ManimPushDownAutomatonTransition-35571672": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonTransition-35571672"
+ },
+ "ManimPushDownAutomatonTransitionExample-114c7565": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimPushDownAutomatonTransitionExample-114c7565",
+  "version": 3
+ },
+ "ManimStateExample-2be29765": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimStateExample-2be29765",
+  "version": 3
+ },
+ "ManimStateScene-164ebac9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimStateScene-164ebac9"
+ },
+ "ManimTikz-9bb2a5da": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTikz-9bb2a5da"
+ },
+ "ManimTikzExample-2168f4b9": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTikzExample-2168f4b9",
+  "version": 3
+ },
+ "ManimTransition-cd9e3b6b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimTransition-cd9e3b6b"
+ },
+ "ManimTransitionDocExample-69bfa435": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimTransitionDocExample-69bfa435",
+  "version": 3
+ },
+ "ManimTuringMachineExample-f7e35e6a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTuringMachineExample-f7e35e6a",
+  "version": 3
+ },
+ "ManimTuringMachineScene-2e2da8d2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ManimTuringMachineScene-2e2da8d2"
+ },
+ "ManimdeterministicFiniteAutomatonExample-8418347a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ManimdeterministicFiniteAutomatonExample-8418347a",
+  "version": 3
+ },
+ "MathOperationLayerDocExample-6fbac4ac": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathOperationLayerDocExample-6fbac4ac",
+  "version": 3
+ },
+ "MathOperationLayerScene-dac10246": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathOperationLayerScene-dac10246"
+ },
+ "MathTexBraceDocExample-6ebe54dc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexBraceDocExample-6ebe54dc",
+  "version": 3
+ },
+ "MathTexBraceScene-b3efc23c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexBraceScene-b3efc23c"
+ },
+ "MathTexDoubleArrow-689a7ba8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexDoubleArrow-689a7ba8"
+ },
+ "MathTexDoublearrowDocExample-de99dc2e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexDoublearrowDocExample-de99dc2e",
+  "version": 3
+ },
+ "MathTexHelpers-807d6ff4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexHelpers-807d6ff4"
+ },
+ "MathTexHelpersExample-0145fbce": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexHelpersExample-0145fbce",
+  "version": 3
+ },
+ "MathTexLineDocExample-0110af0e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathTexLineDocExample-0110af0e",
+  "version": 3
+ },
+ "MathTexLineDocExample-12cc03d5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MathTexLineDocExample-12cc03d5"
+ },
+ "MathTexLineDocExample-ea9eb041": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexLineDocExample-ea9eb041"
+ },
+ "MathTexLineScene-031c0504": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MathTexLineScene-031c0504"
+ },
+ "MaxKSum-11a4aad4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxKSum-11a4aad4"
+ },
+ "MaxKSumExample-5295b2bf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxKSumExample-5295b2bf"
+ },
+ "MaxPooling2DLayerDocExample-a8211480": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxPooling2DLayerDocExample-a8211480",
+  "version": 3
+ },
+ "MaxPooling2DLayerScene-0f200701": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxPooling2DLayerScene-0f200701"
+ },
+ "MaxPoolingScene-44f04057": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxPoolingScene-44f04057"
+ },
+ "MaxPoolingScene-8559848d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MaxPoolingScene-8559848d"
+ },
+ "MeshExample-2de563f2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshExample-2de563f2"
+ },
+ "MeshExample-fe2d0f1d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshExample-fe2d0f1d",
+  "version": 3
+ },
+ "MeshScene-b7c95983": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshScene-b7c95983"
+ },
+ "Meshes-07495653": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Meshes-07495653"
+ },
+ "MeshesExample-24fa9b98": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MeshesExample-24fa9b98",
+  "version": 3
+ },
+ "MindMapExample-64ac6a8b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapExample-64ac6a8b",
+  "version": 3
+ },
+ "MindMapExample-f9d3b561": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MindMapExample-f9d3b561",
+  "version": 3
+ },
+ "MindMapExample-fe5d9dc6": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapExample-fe5d9dc6"
+ },
+ "MindMapInsertExample-37e03761": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapInsertExample-37e03761",
+  "version": 3
+ },
+ "MindMapScene-4679b0b1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapScene-4679b0b1"
+ },
+ "MindMapScene-a8890f78": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MindMapScene-a8890f78"
+ },
+ "MindMapScene-ee8c3525": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MindMapScene-ee8c3525"
+ },
+ "MoreAnimations-5e9690d4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoreAnimations-5e9690d4"
+ },
+ "MoreAnimationsExample-a0289ce6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoreAnimationsExample-a0289ce6",
+  "version": 3
+ },
+ "MoveAndOverWrite-7e9cdd69": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveAndOverWrite-7e9cdd69"
+ },
+ "MoveAndOverWriteExample-93a5f1d4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveAndOverWriteExample-93a5f1d4",
+  "version": 3
+ },
+ "MoveNeedleTip-b5a981db": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveNeedleTip-b5a981db"
+ },
+ "MoveNidToDocExample-0bab5928": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MoveNidToDocExample-0bab5928"
+ },
+ "MoveNidToDocExample-a34460ec": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MoveNidToDocExample-a34460ec",
+  "version": 3
+ },
+ "MoveNiddleTipToDocExample-f0c51973": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MoveNiddleTipToDocExample-f0c51973",
+  "version": 3
+ },
+ "MovePencilAlongPathDocExample-c0e11ce1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilAlongPathDocExample-c0e11ce1",
+  "version": 3
+ },
+ "MovePencilAlongPathScene-73256ae1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilAlongPathScene-73256ae1"
+ },
+ "MovePencilTip-517afca3": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilTip-517afca3"
+ },
+ "MovePencilTipToDocExample-55f82b5c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilTipToDocExample-55f82b5c"
+ },
+ "MovePencilTipToDocExample-f1f20f37": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MovePencilTipToDocExample-f1f20f37",
+  "version": 3
+ },
+ "MultiPendulumExample-f2aac9fd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MultiPendulumExample-f2aac9fd",
+  "version": 3
+ },
+ "MultiPendulumScene-a7624995": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "MultiPendulumScene-a7624995"
+ },
+ "MyQrCodeScene-432de6d9": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MyQrCodeScene-432de6d9"
+ },
+ "MyQrCodeScene-a3404a7f": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MyQrCodeScene-a3404a7f"
+ },
+ "MyQrCodeScene-bb82b19c": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "MyQrCodeScene-bb82b19c"
+ },
+ "NPNTransistorExample-99dabe19": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NPNTransistorExample-99dabe19"
+ },
+ "NPNTransistorScene-23186d8c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NPNTransistorScene-23186d8c"
+ },
+ "NamedComplexFormulaExample-0d6582e0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedComplexFormulaExample-0d6582e0"
+ },
+ "NamedComplexFormulaScene-d659371b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedComplexFormulaScene-d659371b"
+ },
+ "NamedFormulaExample-277a88d7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedFormulaExample-277a88d7"
+ },
+ "NamedFormulaScene-77d0ed79": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedFormulaScene-77d0ed79"
+ },
+ "NamedMoleculeDocExample-97a701f0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedMoleculeDocExample-97a701f0"
+ },
+ "NamedMoleculeDocExample-d9ffd5b4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedMoleculeDocExample-d9ffd5b4",
+  "version": 3
+ },
+ "NamedMoleculeScene-a0f3a5a9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NamedMoleculeScene-a0f3a5a9"
+ },
+ "NerdFontIconExample-9096cdb0": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdFontIconExample-9096cdb0"
+ },
+ "NerdFontIconExample-c7e1702c": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdFontIconExample-c7e1702c"
+ },
+ "NerdFontIconScene-8cc78528": {
+  "env_tags": {
+   "fontconfig_nerdfont": 3
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdFontIconScene-8cc78528"
+ },
+ "NerdFontIconScene-b96828db": {
+  "env_tags": {
+   "fontconfig_nerdfont": 3
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdFontIconScene-b96828db"
+ },
+ "NerdfontIconExample-0ee2343c": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-0ee2343c"
+ },
+ "NerdfontIconExample-81ecb9f7": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-81ecb9f7"
+ },
+ "NerdfontIconExample-8283819d": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-8283819d"
+ },
+ "NerdfontIconExample-b90b2451": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-b90b2451"
+ },
+ "NerdfontIconExample-c06a24eb": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-c06a24eb"
+ },
+ "NerdfontIconExample-e0760494": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NerdfontIconExample-e0760494"
+ },
+ "NetworkConnectionExample-3e99c373": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NetworkConnectionExample-3e99c373"
+ },
+ "NetworkConnectionExample-f8d3df3d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NetworkConnectionExample-f8d3df3d"
+ },
+ "NetworkConnectionScene-d4a89165": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NetworkConnectionScene-d4a89165"
+ },
+ "NetworkXGraph-a1f92450": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NetworkXGraph-a1f92450"
+ },
+ "NetworkXGraph-e7a73562": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NetworkXGraph-e7a73562"
+ },
+ "NeuralNetworkDocExample-adc64533": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkDocExample-adc64533",
+  "version": 3
+ },
+ "NeuralNetworkForwardPass-16595485": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkForwardPass-16595485"
+ },
+ "NeuralNetworkLayerExample-545d6b58": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkLayerExample-545d6b58"
+ },
+ "NeuralNetworkLayerExample-a22989ea": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkLayerExample-a22989ea"
+ },
+ "NeuralNetworkLayerScene-d3319e4b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkLayerScene-d3319e4b"
+ },
+ "NeuralNetworkScene-ae54fb49": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "NeuralNetworkScene-ae54fb49"
+ },
+ "NodeConfigExample-d562e6c1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeConfigExample-d562e6c1",
+  "version": 3
+ },
+ "NodeConfigScene-4b736051": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeConfigScene-4b736051"
+ },
+ "NodeDocExample-43e46b8b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeDocExample-43e46b8b"
+ },
+ "NodeDocExample-aa632df8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeDocExample-aa632df8",
+  "version": 3
+ },
+ "NodeExample-34ab85b7": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeExample-34ab85b7",
+  "version": 3
+ },
+ "NodeExample-af3b8288": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeExample-af3b8288",
+  "version": 3
+ },
+ "NodeMobjectExample-3d84bde0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeMobjectExample-3d84bde0",
+  "version": 3
+ },
+ "NodeMobjectScene-e7ff941b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeMobjectScene-e7ff941b"
+ },
+ "NodeSateExample-a5c89b68": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeSateExample-a5c89b68",
+  "version": 3
+ },
+ "NodeScene-80c2b2fc": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeScene-80c2b2fc"
+ },
+ "NodeScene-fa1b54e4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeScene-fa1b54e4"
+ },
+ "NodeSlot-71e0d50e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeSlot-71e0d50e"
+ },
+ "NodeSoltExample-e83146af": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeSoltExample-e83146af",
+  "version": 3
+ },
+ "NodeStateExample-1fb6fb91": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeStateExample-1fb6fb91"
+ },
+ "NodeStateScene-61c55fa6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeStateScene-61c55fa6"
+ },
+ "NodeStyleExample-7e65943c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeStyleExample-7e65943c",
+  "version": 3
+ },
+ "NodeStyleScene-fd35132f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeStyleScene-fd35132f"
+ },
+ "NodeTree-6cfaf1c9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "NodeTree-6cfaf1c9"
+ },
+ "ObjectBorderDocExample-3470a12c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ObjectBorderDocExample-3470a12c",
+  "version": 3
+ },
+ "ObjectBorderDocExample-5c9d7555": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ObjectBorderDocExample-5c9d7555"
+ },
+ "ObjectBorderDocExample-9febbe77": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ObjectBorderDocExample-9febbe77"
+ },
+ "ObjectBorderScene-e88811a7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ObjectBorderScene-e88811a7"
+ },
+ "OpampExample-43f1f03a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "OpampExample-43f1f03a"
+ },
+ "OpampExample-44f09522": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "OpampExample-44f09522",
+  "version": 3
+ },
+ "OpampScene-51e08865": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "OpampScene-51e08865"
+ },
+ "OverwrittenCarbonElement-29bcfaef": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "OverwrittenCarbonElement-29bcfaef"
+ },
+ "OverwrittenCarbonElement-4a12d1b9": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "OverwrittenCarbonElement-4a12d1b9"
+ },
+ "OverwrittenCarbonElement-e83bf5de": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "OverwrittenCarbonElement-e83bf5de",
+  "version": 3
+ },
+ "PairSum-cf663fc7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PairSum-cf663fc7"
+ },
+ "PairSumExample-d5cf447a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PairSumExample-d5cf447a"
+ },
+ "PairedQueryLayerDocExample-e0f9a25f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PairedQueryLayerDocExample-e0f9a25f",
+  "version": 3
+ },
+ "PairedQueryLayerScene-4a51c54b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PairedQueryLayerScene-4a51c54b"
+ },
+ "ParallelLine-44dc1c4d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ParallelLine-44dc1c4d"
+ },
+ "ParallelLineExample-6bde425e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ParallelLineExample-6bde425e"
+ },
+ "ParallelLineExample-746019a7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ParallelLineExample-746019a7",
+  "version": 3
+ },
+ "PassingRectangleDocExample-7e39fe37": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PassingRectangleDocExample-7e39fe37",
+  "version": 3
+ },
+ "PassingRectangleScene-f3887d26": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PassingRectangleScene-f3887d26"
+ },
+ "PencilAnimations-0e9fd217": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PencilAnimations-0e9fd217"
+ },
+ "PencilDemo-ea4d6038": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PencilDemo-ea4d6038"
+ },
+ "PencilDocExample-3814c0ac": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PencilDocExample-3814c0ac",
+  "version": 3
+ },
+ "PencilDocExample-e22aeaf2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PencilDocExample-e22aeaf2"
+ },
+ "PencilNibAtOrigin-b713b417": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PencilNibAtOrigin-b713b417"
+ },
+ "PencilScene-1ac2f13d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PencilScene-1ac2f13d"
+ },
+ "PendulumExample-7b040b19": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PendulumExample-7b040b19",
+  "version": 3
+ },
+ "PendulumExample-9637813e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PendulumExample-9637813e"
+ },
+ "PendulumScene-3cda87f8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PendulumScene-3cda87f8"
+ },
+ "PendulumScene-5c64ed6e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PendulumScene-5c64ed6e"
+ },
+ "PendulumScene-6b8eddd2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PendulumScene-6b8eddd2"
+ },
+ "PendulumScene-756af1ac": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PendulumScene-756af1ac"
+ },
+ "PeriodicTableScene-85145408": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PeriodicTableScene-85145408",
+  "version": 3
+ },
+ "PerpLine-1544865a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpLine-1544865a"
+ },
+ "PerpLineExample-32aadf70": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PerpLineExample-32aadf70",
+  "version": 3
+ },
+ "PerpLineExample-eef537d2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpLineExample-eef537d2"
+ },
+ "PerpendicularLineDocExample-0b15f321": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpendicularLineDocExample-0b15f321"
+ },
+ "PerpendicularLineDocExample-4d922f9e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PerpendicularLineDocExample-4d922f9e",
+  "version": 3
+ },
+ "PerpendicularLineScene-e016f332": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpendicularLineScene-e016f332"
+ },
+ "PerpendicularSignDocExample-44ab78f0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpendicularSignDocExample-44ab78f0",
+  "version": 3
+ },
+ "PerpendicularSignScene-ed1773e2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PerpendicularSignScene-ed1773e2"
+ },
+ "PhysicsEM-2b65e7cc": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsEM-2b65e7cc"
+ },
+ "PhysicsEMExample-0c5496d3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsEMExample-0c5496d3"
+ },
+ "PhysicsEMExample-1178fe56": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsEMExample-1178fe56",
+  "version": 3
+ },
+ "PhysicsLibraryExample-03156f67": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsLibraryExample-03156f67",
+  "version": 3
+ },
+ "PhysicsLibraryExample-923e28d2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsLibraryExample-923e28d2"
+ },
+ "PhysicsMechanics-ec3ec19d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsMechanics-ec3ec19d"
+ },
+ "PhysicsMechanicsExample-a8c2de17": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsMechanicsExample-a8c2de17",
+  "version": 3
+ },
+ "PhysicsOptics-3fa783c4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsOptics-3fa783c4"
+ },
+ "PhysicsOpticsExample-2be6977c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsOpticsExample-2be6977c",
+  "version": 3
+ },
+ "PhysicsWaves-9258a27c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsWaves-9258a27c"
+ },
+ "PhysicsWavesExample-5ee9671b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PhysicsWavesExample-5ee9671b",
+  "version": 3
+ },
+ "PlainCramBondExample-48f42200": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PlainCramBondExample-48f42200"
+ },
+ "PlainCramBondExample-fd0e601f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PlainCramBondExample-fd0e601f"
+ },
+ "PlainCramBondScene-353045a2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PlainCramBondScene-353045a2"
+ },
+ "PushDownAutomatonExample-ac855058": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonExample-ac855058",
+  "version": 3
+ },
+ "PushDownAutomatonRuleExample-977c77fb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonRuleExample-977c77fb",
+  "version": 3
+ },
+ "PushDownAutomatonRuleScene-707b616b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonRuleScene-707b616b"
+ },
+ "PushDownAutomatonScene-a579c25a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PushDownAutomatonScene-a579c25a"
+ },
+ "PutCompassAwayDocExample-cd43b794": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassAwayDocExample-cd43b794",
+  "version": 3
+ },
+ "PutCompassAwayScene-8adefb60": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassAwayScene-8adefb60"
+ },
+ "PutCompassDocExample-6876e025": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassDocExample-6876e025",
+  "version": 3
+ },
+ "PutCompassScene-ece58ea5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutCompassScene-ece58ea5"
+ },
+ "PutPencilAwayDocExample-944cdfbe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutPencilAwayDocExample-944cdfbe",
+  "version": 3
+ },
+ "PutPencilAwayScene-1c96968c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutPencilAwayScene-1c96968c"
+ },
+ "PutRulerAwayDocExample-00ba2457": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerAwayDocExample-00ba2457",
+  "version": 3
+ },
+ "PutRulerAwayScene-662f5865": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerAwayScene-662f5865"
+ },
+ "PutRulerDocExample-433aa4f0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerDocExample-433aa4f0",
+  "version": 3
+ },
+ "PutRulerFlat-ef14853d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PutRulerFlat-ef14853d"
+ },
+ "PutRulerFlatDocExample-11a26899": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PutRulerFlatDocExample-11a26899"
+ },
+ "PutRulerFlatDocExample-2a40cf2c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PutRulerFlatDocExample-2a40cf2c",
+  "version": 3
+ },
+ "PutRulerScene-e791cc0f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "PutRulerScene-e791cc0f"
+ },
+ "PymunkExample-8d8b259e": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "PymunkExample-8d8b259e",
+  "version": 3
+ },
+ "QRCodeExample-3b740849": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QRCodeExample-3b740849",
+  "version": 3
+ },
+ "QrCode-96978501": {
+  "env_tags": {
+   "fontconfig_nerdfont": 3,
+   "jetbrains_mono": 1
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QrCode-96978501"
+ },
+ "QrCodeDocExample-9f89cb9b": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QrCodeDocExample-9f89cb9b"
+ },
+ "QrCodeDocExample-bcdfa53f": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QrCodeDocExample-bcdfa53f"
+ },
+ "QrCodeShapes-44e9421a": {
+  "env_tags": {
+   "fontconfig_nerdfont": 3
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QrCodeShapes-44e9421a"
+ },
+ "QrCodeShapesExample-2f9947bd": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QrCodeShapesExample-2f9947bd"
+ },
+ "QrCodeShapesExample-b60b37c4": {
+  "env_tags": {
+   "fontconfig_nerdfont": 2
+  },
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QrCodeShapesExample-b60b37c4"
+ },
+ "QrCodeWithIcon-766733e7": {
+  "env_tags": {
+   "fontconfig_nerdfont": 3
+  },
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QrCodeWithIcon-766733e7"
+ },
+ "QueueExample-011a8dfe": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QueueExample-011a8dfe",
+  "version": 3
+ },
+ "QueueScene-d54ab762": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QueueScene-d54ab762"
+ },
+ "QuickstartAnimations-03399060": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QuickstartAnimations-03399060",
+  "version": 3
+ },
+ "QuickstartAnnotatedScene-8183287d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QuickstartAnnotatedScene-8183287d",
+  "version": 3
+ },
+ "QuickstartAnnotatedScene-c3eeaa9a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QuickstartAnnotatedScene-c3eeaa9a"
+ },
+ "QuickstartGear-250cf893": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QuickstartGear-250cf893"
+ },
+ "QuickstartGear-6c51686c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "QuickstartGear-6c51686c",
+  "version": 3
+ },
+ "QuickstartGeometry-70389759": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "QuickstartGeometry-70389759",
+  "version": 3
+ },
+ "RGBImageToConvolution-eb9c6244": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RGBImageToConvolution-eb9c6244"
+ },
+ "RGBImageToConvolutionExample-e1bafcce": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RGBImageToConvolutionExample-e1bafcce"
+ },
+ "RGBImageToConvolutionExample-fe5795ed": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RGBImageToConvolutionExample-fe5795ed"
+ },
+ "RackExample-2d62d72f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-2d62d72f"
+ },
+ "RackExample-6f8caf1a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-6f8caf1a",
+  "version": 3
+ },
+ "RackExample-85e977fc": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-85e977fc"
+ },
+ "RackExample-d1d91138": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-d1d91138"
+ },
+ "RackExample-e49da858": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackExample-e49da858"
+ },
+ "RackScene-417e9808": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RackScene-417e9808"
+ },
+ "RadialWaveExample-67ef93b0": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RadialWaveExample-67ef93b0",
+  "version": 3
+ },
+ "RadialWaveExample-9e8337fd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RadialWaveExample-9e8337fd"
+ },
+ "RadialWaveScene-082432ba": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RadialWaveScene-082432ba"
+ },
+ "RayExample-439fe28c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RayExample-439fe28c"
+ },
+ "RayExample-9793fafd": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RayExample-9793fafd",
+  "version": 3
+ },
+ "RayExample-d5577fd0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RayExample-d5577fd0"
+ },
+ "RayScene-d96c7b67": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RayScene-d96c7b67"
+ },
+ "ReLUFunctionDocExample-af8496c6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReLUFunctionDocExample-af8496c6"
+ },
+ "ReLUFunctionDocExample-dc2f6fd4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReLUFunctionDocExample-dc2f6fd4",
+  "version": 3
+ },
+ "ReLUFunctionScene-f025e6b9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReLUFunctionScene-f025e6b9"
+ },
+ "Regular-838b0d53": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Regular-838b0d53"
+ },
+ "RegularDocExample-2b7cbf32": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RegularDocExample-2b7cbf32",
+  "version": 3
+ },
+ "RegularDocExample-e037ae5d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RegularDocExample-e037ae5d"
+ },
+ "RemoveLayerExample-269d112b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RemoveLayerExample-269d112b"
+ },
+ "RemoveLayerExample-c9068713": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RemoveLayerExample-c9068713"
+ },
+ "RemoveLayerScene-9945be0b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RemoveLayerScene-9945be0b"
+ },
+ "RemoveNodeDocExample-a337efbf": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RemoveNodeDocExample-a337efbf",
+  "version": 3
+ },
+ "RemoveNodeDocExample-f4dbb370": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RemoveNodeDocExample-f4dbb370"
+ },
+ "RemoveNodeScene-790221d6": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RemoveNodeScene-790221d6"
+ },
+ "ResistorExample-dee3ca15": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ResistorExample-dee3ca15",
+  "version": 3
+ },
+ "ResistorScene-b346f758": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ResistorScene-b346f758"
+ },
+ "ReverseTip-c76ed32e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReverseTip-c76ed32e"
+ },
+ "ReverseTipDocExample-dbfae4f0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ReverseTipDocExample-dbfae4f0",
+  "version": 3
+ },
+ "ReversedWriteDocExample-fffea6aa": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ReversedWriteDocExample-fffea6aa",
+  "version": 3
+ },
+ "ReversedWriteScene-351aa561": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ReversedWriteScene-351aa561"
+ },
+ "RingGearMesh-5ed2af32": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RingGearMesh-5ed2af32"
+ },
+ "RingGearMeshExample-1d5eaea6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RingGearMeshExample-1d5eaea6"
+ },
+ "RingGearMeshExample-cd9446d5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RingGearMeshExample-cd9446d5"
+ },
+ "RotateAboutNeedleTip-f0849e33": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RotateAboutNeedleTip-f0849e33"
+ },
+ "RotateAboutNiddleTipDocExample-217b065a": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RotateAboutNiddleTipDocExample-217b065a",
+  "version": 3
+ },
+ "RotateCompassDocExample-c56c2110": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RotateCompassDocExample-c56c2110",
+  "version": 3
+ },
+ "RotateCompassScene-636c87ab": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RotateCompassScene-636c87ab"
+ },
+ "RowDocExample-60bb710c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RowDocExample-60bb710c"
+ },
+ "RowScene-1d4781e3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RowScene-1d4781e3"
+ },
+ "RubiksCubeColors-09a90280": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeColors-09a90280"
+ },
+ "RubiksCubeColorsExample-1117a38c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeColorsExample-1117a38c",
+  "version": 3
+ },
+ "RubiksCubeColorsExample-c289e227": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeColorsExample-c289e227"
+ },
+ "RubiksCubeColorsExample-e5dadd8c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeColorsExample-e5dadd8c"
+ },
+ "RubiksCubeDim-386e39c3": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeDim-386e39c3"
+ },
+ "RubiksCubeDimExample-8bafe7cf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeDimExample-8bafe7cf",
+  "version": 3
+ },
+ "RubiksCubeDocExample-90bf98c2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeDocExample-90bf98c2",
+  "version": 3
+ },
+ "RubiksCubeFace-25162ed1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeFace-25162ed1"
+ },
+ "RubiksCubeFaceExample-6bd2c648": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeFaceExample-6bd2c648",
+  "version": 3
+ },
+ "RubiksCubeOffset-e3942e77": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeOffset-e3942e77"
+ },
+ "RubiksCubeOffsetExample-42f54a2a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeOffsetExample-42f54a2a",
+  "version": 3
+ },
+ "RubiksCubeOffsetExample-d54a77c1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeOffsetExample-d54a77c1"
+ },
+ "RubiksCubeScene-897d0f7a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeScene-897d0f7a"
+ },
+ "RubiksCubeSetState-4c6e28a7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeSetState-4c6e28a7"
+ },
+ "RubiksCubeSetStateExample-21908adc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeSetStateExample-21908adc",
+  "version": 3
+ },
+ "RubiksCubeSetStateExample-3e624d44": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RubiksCubeSetStateExample-3e624d44"
+ },
+ "RulerAnimations-ccca41be": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RulerAnimations-ccca41be"
+ },
+ "RulerDemo-63abe241": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RulerDemo-63abe241"
+ },
+ "RulerDemo-6d2b788b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "RulerDemo-6d2b788b"
+ },
+ "RulerExample-b44637a0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RulerExample-b44637a0",
+  "version": 3
+ },
+ "RulerScene-3aefc8bb": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "RulerScene-3aefc8bb"
+ },
+ "SVGAnimationUsage-fad1fadf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SVGAnimationUsage-fad1fadf"
+ },
+ "SVGAnimationUsageExample-cd1a8872": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SVGAnimationUsageExample-cd1a8872"
+ },
+ "ScaleNodeDocExample-61d63aec": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ScaleNodeDocExample-61d63aec"
+ },
+ "ScaleNodeDocExample-75ae28e7": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ScaleNodeDocExample-75ae28e7",
+  "version": 3
+ },
+ "ScaleNodeScene-7b338b99": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ScaleNodeScene-7b338b99"
+ },
+ "SceneExample-d354489e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SceneExample-d354489e"
+ },
+ "Select-ed470237": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Select-ed470237"
+ },
+ "SelectExample-ee780674": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SelectExample-ee780674",
+  "version": 3
+ },
+ "SeqActionCamera-ad44b0c2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionCamera-ad44b0c2"
+ },
+ "SeqActionDocExample-a16a82ff": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionDocExample-a16a82ff"
+ },
+ "SeqActionDocExample-faf0da70": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionDocExample-faf0da70",
+  "version": 3
+ },
+ "SeqActionExample-411b5eb6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionExample-411b5eb6",
+  "version": 3
+ },
+ "SeqActionExample-49de75cc": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionExample-49de75cc"
+ },
+ "SeqActionMessages-8c053ac9": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActionMessages-8c053ac9"
+ },
+ "SeqActorExample-d4b65d2e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActorExample-d4b65d2e",
+  "version": 3
+ },
+ "SeqActorScene-94c2e945": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqActorScene-94c2e945"
+ },
+ "SeqObjectExample-0728619e": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqObjectExample-0728619e"
+ },
+ "SeqObjectExample-e5485f67": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqObjectExample-e5485f67",
+  "version": 3
+ },
+ "SeqObjectScene-ae6c4b4c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SeqObjectScene-ae6c4b4c"
+ },
+ "SequenceDiagram-df1677c4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagram-df1677c4"
+ },
+ "SequenceDiagramExample-2ad277d5": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramExample-2ad277d5",
+  "version": 3
+ },
+ "SequenceDiagramExample-b246a635": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramExample-b246a635"
+ },
+ "SequenceDiagramLibraryExample-ab28a111": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramLibraryExample-ab28a111",
+  "version": 3
+ },
+ "SequenceDiagramLibraryExample-e98edd64": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SequenceDiagramLibraryExample-e98edd64"
+ },
+ "SetCompass-72c9094a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetCompass-72c9094a"
+ },
+ "SetCompassDocExample-fcf76100": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetCompassDocExample-fcf76100",
+  "version": 3
+ },
+ "SetRuler-a49910c6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetRuler-a49910c6"
+ },
+ "SetRulerDocExample-9bac4571": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SetRulerDocExample-9bac4571",
+  "version": 3
+ },
+ "ShadowAroundDocExample-f4513dc4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShadowAroundDocExample-f4513dc4",
+  "version": 3
+ },
+ "ShadowAroundScene-e47aa680": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShadowAroundScene-e47aa680"
+ },
+ "ShortenedLineDocExample-03bf4327": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShortenedLineDocExample-03bf4327",
+  "version": 3
+ },
+ "ShortenedLineScene-4833a8f2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ShortenedLineScene-4833a8f2"
+ },
+ "SigmoidFunctionDocExample-274437ac": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SigmoidFunctionDocExample-274437ac",
+  "version": 3
+ },
+ "SigmoidFunctionDocExample-2cf646d4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SigmoidFunctionDocExample-2cf646d4"
+ },
+ "SigmoidFunctionScene-664d5228": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SigmoidFunctionScene-664d5228"
+ },
+ "SimpleBondExample-0ac39944": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleBondExample-0ac39944"
+ },
+ "SimpleBondExample-cc032e1c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleBondExample-cc032e1c"
+ },
+ "SimpleBondScene-a1467919": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleBondScene-a1467919"
+ },
+ "SimpleExample-514cfc69": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleExample-514cfc69"
+ },
+ "SimpleExample-7e21a7b4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleExample-7e21a7b4"
+ },
+ "SimpleExample-82ce896b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleExample-82ce896b"
+ },
+ "SimpleLineExample-30c41d5d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleLineExample-30c41d5d"
+ },
+ "SimpleLineExample-5cdb203e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleLineExample-5cdb203e"
+ },
+ "SimpleLineScene-7d62d4a2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SimpleLineScene-7d62d4a2"
+ },
+ "SingleRulerSceneExample-7e07d663": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SingleRulerSceneExample-7e07d663"
+ },
+ "SingleRulerSceneUsage-a887bb32": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SingleRulerSceneUsage-a887bb32"
+ },
+ "Solid-ab6276e7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "Solid-ab6276e7"
+ },
+ "SolidDocExample-5a897517": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SolidDocExample-5a897517"
+ },
+ "SolidDocExample-6c76c515": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SolidDocExample-6c76c515",
+  "version": 3
+ },
+ "SolowDiagramDocExample-54a18e80": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SolowDiagramDocExample-54a18e80",
+  "version": 3
+ },
+ "SolowDiagramScene-2d72e19b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SolowDiagramScene-2d72e19b"
+ },
+ "SourceExample-b525d958": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SourceExample-b525d958",
+  "version": 3
+ },
+ "SourceScene-05c967c6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SourceScene-05c967c6"
+ },
+ "Space-46239ddf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Space-46239ddf"
+ },
+ "SpaceExample-5330e48d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceExample-5330e48d",
+  "version": 3
+ },
+ "SpaceSceneExample-1f8e8218": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneExample-1f8e8218",
+  "version": 3
+ },
+ "SpaceSceneExample-657a1b6f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneExample-657a1b6f",
+  "version": 3
+ },
+ "SpaceSceneUsage-a626c955": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneUsage-a626c955"
+ },
+ "SpaceSceneUsage-f40b1c14": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SpaceSceneUsage-f40b1c14"
+ },
+ "SplitCompassDocExample-ba19e840": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SplitCompassDocExample-ba19e840",
+  "version": 3
+ },
+ "SplitCompassScene-1b0f72c1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SplitCompassScene-1b0f72c1"
+ },
+ "SplitCompassWithGainAngle-2e9d4ee7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithGainAngle-2e9d4ee7"
+ },
+ "SplitCompassWithGainAngleDocExample-37c8f6f8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithGainAngleDocExample-37c8f6f8",
+  "version": 3
+ },
+ "SplitCompassWithNeedleTipFixed-becc1ffe": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithNeedleTipFixed-becc1ffe"
+ },
+ "SplitCompassWithNiddleTipFixedDocExample-55ad87c1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitCompassWithNiddleTipFixedDocExample-55ad87c1",
+  "version": 3
+ },
+ "SplitNodeExample-56038a11": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitNodeExample-56038a11"
+ },
+ "SplitNodeExample-aa19b19a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitNodeExample-aa19b19a"
+ },
+ "SplitNodeScene-d627c941": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SplitNodeScene-d627c941"
+ },
+ "StandardLayoutExample-395c736b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardLayoutExample-395c736b",
+  "version": 3
+ },
+ "StandardLayoutScene-8666207f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardLayoutScene-8666207f"
+ },
+ "StandardMapDocExample-51d0f27c": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardMapDocExample-51d0f27c",
+  "version": 3
+ },
+ "StandardMapScene-252bfb67": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StandardMapScene-252bfb67"
+ },
+ "StandingWaveExample-fa30d986": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StandingWaveExample-fa30d986",
+  "version": 3
+ },
+ "StandingWaveScene-0154d4d7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StandingWaveScene-0154d4d7"
+ },
+ "StateExample-2e8e83c0": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StateExample-2e8e83c0",
+  "version": 3
+ },
+ "StateExample-fd4b2b8c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StateExample-fd4b2b8c",
+  "version": 3
+ },
+ "StateExample-fe744dc4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "StateExample-fe744dc4"
+ },
+ "StateScene-f58c52f8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "StateScene-f58c52f8"
+ },
+ "SupplyDemandDiagramDocExample-d3c1764a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SupplyDemandDiagramDocExample-d3c1764a",
+  "version": 3
+ },
+ "SupplyDemandDiagramScene-8b8bb809": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SupplyDemandDiagramScene-8b8bb809"
+ },
+ "SvgExport-ba524fcc": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "SvgExport-ba524fcc"
+ },
+ "SwapAndOverWrite-80580cfd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SwapAndOverWrite-80580cfd"
+ },
+ "SwapAndOverWriteExample-5845e661": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "SwapAndOverWriteExample-5845e661",
+  "version": 3
+ },
+ "TableColumnOps-c3ecc9f1": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableColumnOps-c3ecc9f1"
+ },
+ "TableColumnOpsDocExample-c0eea313": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableColumnOpsDocExample-c0eea313",
+  "version": 3
+ },
+ "TableDocExample-42c25407": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableDocExample-42c25407",
+  "version": 3
+ },
+ "TableExample-12393384": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableExample-12393384",
+  "version": 3
+ },
+ "TableExample-57a62995": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableExample-57a62995"
+ },
+ "TableExample-e87582ff": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableExample-e87582ff"
+ },
+ "TableOverview-5c198f7a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableOverview-5c198f7a"
+ },
+ "TableRowOps-1f9a3e1f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableRowOps-1f9a3e1f"
+ },
+ "TableRowOpsDocExample-bb8e345e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableRowOpsDocExample-bb8e345e",
+  "version": 3
+ },
+ "TableScene-1478b6e8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TableScene-1478b6e8"
+ },
+ "TableStyling-8e364446": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableStyling-8e364446"
+ },
+ "TableStylingDocExample-8239ebce": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TableStylingDocExample-8239ebce",
+  "version": 3
+ },
+ "TangentPointDocExample-b4ee8ca5": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TangentPointDocExample-b4ee8ca5",
+  "version": 3
+ },
+ "TangentPointScene-3c19081c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TangentPointScene-3c19081c"
+ },
+ "TenDimensionalCube-eb4f2caf": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TenDimensionalCube-eb4f2caf"
+ },
+ "TenDimensionalExample-efc0d781": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TenDimensionalExample-efc0d781",
+  "version": 3
+ },
+ "TextAnimations-f0dde92c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TextAnimations-f0dde92c"
+ },
+ "TextAnimationsExample-156303b9": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TextAnimationsExample-156303b9",
+  "version": 3
+ },
+ "ThreeDVectorDocExample-32fb9ab5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorDocExample-32fb9ab5"
+ },
+ "ThreeDVectorDocExample-c7dd47d1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorDocExample-c7dd47d1",
+  "version": 3
+ },
+ "ThreeDVectorExample-a8c4a1d4": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorExample-a8c4a1d4",
+  "version": 3
+ },
+ "ThreeDVectorExample-fb7b6138": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorExample-fb7b6138"
+ },
+ "ThreeDVectorOverview-e7a598b6": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorOverview-e7a598b6"
+ },
+ "ThreeDVectorScene-b9300756": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "ThreeDVectorScene-b9300756"
+ },
+ "ThreeOffsetExample-52bd602d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ThreeOffsetExample-52bd602d",
+  "version": 3
+ },
+ "ThreeOffsetExample-8eea54d4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "ThreeOffsetExample-8eea54d4"
+ },
+ "TidyTreeLayoutExample-ab7768f8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TidyTreeLayoutExample-ab7768f8"
+ },
+ "TidyTreeLayoutExample-c4038f25": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TidyTreeLayoutExample-c4038f25",
+  "version": 3
+ },
+ "TidyTreeLayoutScene-4f551f34": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TidyTreeLayoutScene-4f551f34"
+ },
+ "TikzDraw-8bba1778": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzDraw-8bba1778"
+ },
+ "TikzDrawExample-99bd97b8": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzDrawExample-99bd97b8",
+  "version": 3
+ },
+ "TikzExample-96d0d37f": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzExample-96d0d37f",
+  "version": 3
+ },
+ "TikzLibraryExample-a0eebd99": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzLibraryExample-a0eebd99",
+  "version": 3
+ },
+ "TikzScene-0c4351e5": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzScene-0c4351e5"
+ },
+ "TikzScene-49152e86": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzScene-49152e86"
+ },
+ "TikzScene-999a39ed": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzScene-999a39ed"
+ },
+ "TikzTemplateExample-30aecbd2": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzTemplateExample-30aecbd2",
+  "version": 3
+ },
+ "TikzTemplateScene-98233746": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TikzTemplateScene-98233746"
+ },
+ "TimeLineDocExample-1ab24a2b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineDocExample-1ab24a2b",
+  "version": 3
+ },
+ "TimeLineDocExample-9386e5da": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineDocExample-9386e5da"
+ },
+ "TimeLineLayoutExample-93be1a38": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineLayoutExample-93be1a38",
+  "version": 3
+ },
+ "TimeLineLayoutExample-fb2387c7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineLayoutExample-fb2387c7"
+ },
+ "TimeLineLayoutScene-3ee258e4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineLayoutScene-3ee258e4"
+ },
+ "TimeLineScene-a032dd09": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimeLineScene-a032dd09"
+ },
+ "TimelineNodeExample-52bd1407": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimelineNodeExample-52bd1407",
+  "version": 3
+ },
+ "TimelineNodeScene-a36072e4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TimelineNodeScene-a36072e4"
+ },
+ "TokenExample-3005a050": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TokenExample-3005a050"
+ },
+ "TokenExample-add8ed2a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TokenExample-add8ed2a",
+  "version": 3
+ },
+ "TokenScene-99f39eb8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TokenScene-99f39eb8"
+ },
+ "TrailDocExample-0e72456c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailDocExample-0e72456c",
+  "version": 3
+ },
+ "TrailDocExample-405cacf5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailDocExample-405cacf5"
+ },
+ "TrailExample-14f489dc": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailExample-14f489dc",
+  "version": 3
+ },
+ "TrailOverview-90eed519": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailOverview-90eed519"
+ },
+ "TrailScene-b5d6e6c7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TrailScene-b5d6e6c7"
+ },
+ "TransitionExample-30382caf": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TransitionExample-30382caf",
+  "version": 3
+ },
+ "TransitionScene-cfbe58a8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TransitionScene-cfbe58a8"
+ },
+ "TreeDiagramDocExample-3da43316": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramDocExample-3da43316"
+ },
+ "TreeDiagramDocExample-6788f16b": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramDocExample-6788f16b",
+  "version": 3
+ },
+ "TreeDiagramExample-0afab970": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramExample-0afab970",
+  "version": 3
+ },
+ "TreeDiagramOverview-1f06e712": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramOverview-1f06e712"
+ },
+ "TreeDiagramScene-958e5d6e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeDiagramScene-958e5d6e"
+ },
+ "TreeNodeExample-fb4e5b8b": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeNodeExample-fb4e5b8b",
+  "version": 3
+ },
+ "TreeNodeScene-3f671675": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TreeNodeScene-3f671675"
+ },
+ "TriangleManim2DMeshExample-6b2c5bdb": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TriangleManim2DMeshExample-6b2c5bdb",
+  "version": 3
+ },
+ "TriangleManim2DMeshScene-400c8405": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TriangleManim2DMeshScene-400c8405"
+ },
+ "TripleBondExample-723e3976": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TripleBondExample-723e3976"
+ },
+ "TripleBondExample-e5dcf37c": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TripleBondExample-e5dcf37c"
+ },
+ "TripleBondScene-6360222d": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TripleBondScene-6360222d"
+ },
+ "TwoDMoleculeScene-69391a21": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TwoDMoleculeScene-69391a21"
+ },
+ "TwoDMoleculeScene-b6a9ea66": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "TwoDMoleculeScene-b6a9ea66"
+ },
+ "TwoDimensionalCube-65839b2f": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalCube-65839b2f"
+ },
+ "TwoDimensionalCubeState-0b067fd5": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalCubeState-0b067fd5"
+ },
+ "TwoDimensionalExample-368b23eb": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalExample-368b23eb"
+ },
+ "TwoDimensionalExample-c66e35dd": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalExample-c66e35dd",
+  "version": 3
+ },
+ "TwoDimensionalStateExample-0b47227f": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalStateExample-0b47227f",
+  "version": 3
+ },
+ "TwoDimensionalStateExample-1f3d9f57": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TwoDimensionalStateExample-1f3d9f57"
+ },
+ "TypeWriterDocExample-5210b9f4": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TypeWriterDocExample-5210b9f4",
+  "version": 3
+ },
+ "TypeWriterScene-89b2b5dd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "TypeWriterScene-89b2b5dd"
+ },
+ "UnHighLightWithLinesDocExample-890a4d0e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UnHighLightWithLinesDocExample-890a4d0e",
+  "version": 3
+ },
+ "UnHighLightWithLinesScene-d617f5e8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UnHighLightWithLinesScene-d617f5e8"
+ },
+ "Unselect-fac87c78": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "Unselect-fac87c78"
+ },
+ "UnselectExample-16ea7c45": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UnselectExample-16ea7c45",
+  "version": 3
+ },
+ "UpdateValue-c87d0539": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UpdateValue-c87d0539"
+ },
+ "UpdateValueExample-b66b94a2": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "UpdateValueExample-b66b94a2",
+  "version": 3
+ },
+ "VConstraintExample-165e422f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VConstraintExample-165e422f"
+ },
+ "VConstraintExample-93114a14": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VConstraintExample-93114a14"
+ },
+ "VConstraintScene-db901149": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VConstraintScene-db901149"
+ },
+ "VDampedRotarySpringExample-09d2eab2": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedRotarySpringExample-09d2eab2"
+ },
+ "VDampedRotarySpringExample-3e97f7b6": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedRotarySpringExample-3e97f7b6",
+  "version": 3
+ },
+ "VDampedRotarySpringScene-345f1191": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedRotarySpringScene-345f1191"
+ },
+ "VDampedSpringExample-8988ef1d": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedSpringExample-8988ef1d",
+  "version": 3
+ },
+ "VDampedSpringScene-e8a7c8dd": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VDampedSpringScene-e8a7c8dd"
+ },
+ "VGearJointExample-5240fd71": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGearJointExample-5240fd71",
+  "version": 3
+ },
+ "VGearJointScene-8e618f79": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGearJointScene-8e618f79"
+ },
+ "VGrooveJointExample-6e29a6ea": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGrooveJointExample-6e29a6ea",
+  "version": 3
+ },
+ "VGrooveJointScene-15a11344": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VGrooveJointScene-15a11344"
+ },
+ "VGroupNeuralNetworkLayerExample-3ec8f515": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VGroupNeuralNetworkLayerExample-3ec8f515"
+ },
+ "VGroupNeuralNetworkLayerExample-d4209dd7": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VGroupNeuralNetworkLayerExample-d4209dd7"
+ },
+ "VGroupNeuralNetworkLayerScene-76a5cac4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VGroupNeuralNetworkLayerScene-76a5cac4"
+ },
+ "VMobjectIntDocExample-d6533204": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntDocExample-d6533204",
+  "version": 3
+ },
+ "VMobjectIntExample-c2213290": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntExample-c2213290",
+  "version": 3
+ },
+ "VMobjectIntOverview-18a0749f": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntOverview-18a0749f"
+ },
+ "VMobjectIntScene-3464688a": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VMobjectIntScene-3464688a"
+ },
+ "VPinJointExample-7113f146": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPinJointExample-7113f146",
+  "version": 3
+ },
+ "VPinJointScene-fae36751": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPinJointScene-fae36751"
+ },
+ "VPivotJointExample-c557cc2e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPivotJointExample-c557cc2e",
+  "version": 3
+ },
+ "VPivotJointExample-f706b649": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPivotJointExample-f706b649"
+ },
+ "VPivotJointScene-b9e7715d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPivotJointScene-b9e7715d"
+ },
+ "VPivotJointScene-e1608e82": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VPivotJointScene-e1608e82"
+ },
+ "VRatchetJointExample-37a8e6f3": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRatchetJointExample-37a8e6f3",
+  "version": 3
+ },
+ "VRatchetJointScene-d634cc7c": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRatchetJointScene-d634cc7c"
+ },
+ "VRotaryLimitJointExample-13d720e1": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRotaryLimitJointExample-13d720e1",
+  "version": 3
+ },
+ "VRotaryLimitJointScene-44c2b0e4": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VRotaryLimitJointScene-44c2b0e4"
+ },
+ "VSimpleMotorExample-78219373": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSimpleMotorExample-78219373",
+  "version": 3
+ },
+ "VSimpleMotorScene-e7910ea7": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSimpleMotorScene-e7910ea7"
+ },
+ "VSlideJointExample-9f7fbd4a": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSlideJointExample-9f7fbd4a",
+  "version": 3
+ },
+ "VSlideJointScene-083bff6d": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSlideJointScene-083bff6d"
+ },
+ "VSpace-ad5a6e5b": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSpace-ad5a6e5b"
+ },
+ "VSpaceExample-660e54f0": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSpaceExample-660e54f0"
+ },
+ "VSpaceExample-e06a5c7c": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VSpaceExample-e06a5c7c",
+  "version": 3
+ },
+ "VariationalAutoencoderDocExample-245973c9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VariationalAutoencoderDocExample-245973c9"
+ },
+ "VariationalAutoencoderDocExample-8222b320": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VariationalAutoencoderDocExample-8222b320",
+  "version": 3
+ },
+ "VariationalAutoencoderDocExample-b9ecf04a": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VariationalAutoencoderDocExample-b9ecf04a"
+ },
+ "VariationalAutoencoderScene-ef2ff1e1": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VariationalAutoencoderScene-ef2ff1e1"
+ },
+ "VectorLayerDocExample-f5168e19": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VectorLayerDocExample-f5168e19",
+  "version": 3
+ },
+ "VectorLayerScene-d9213245": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VectorLayerScene-d9213245"
+ },
+ "VideoMobjectDocExample-cd14ad29": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VideoMobjectDocExample-cd14ad29",
+  "version": 3
+ },
+ "VideoMobjectDocExample-dc910fbf": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VideoMobjectDocExample-dc910fbf"
+ },
+ "VideoMobjectScene-85550d72": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VideoMobjectScene-85550d72"
+ },
+ "VoltageSourceExample-0712ed77": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VoltageSourceExample-0712ed77",
+  "version": 3
+ },
+ "VoltageSourceScene-25d15a1b": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "VoltageSourceScene-25d15a1b"
+ },
+ "VoronoiDelaunayExample-d33f1b84": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VoronoiDelaunayExample-d33f1b84",
+  "version": 3
+ },
+ "VoronoiDelaunayScene-8f79a8ba": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "VoronoiDelaunayScene-8f79a8ba"
+ },
+ "WaveScene-2e48c5a8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WaveScene-2e48c5a8"
+ },
+ "WaveScene-421523ea": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WaveScene-421523ea"
+ },
+ "WaveScene-b0a20b7e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WaveScene-b0a20b7e"
+ },
+ "WaveScene-f4b63e42": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WaveScene-f4b63e42"
+ },
+ "WeightedGraph-001c1990": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedGraph-001c1990"
+ },
+ "WeightedGraph-588670b2": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedGraph-588670b2"
+ },
+ "WeightedLineBasic-768f2ea9": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineBasic-768f2ea9"
+ },
+ "WeightedLineDocExample-15b5fd93": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineDocExample-15b5fd93"
+ },
+ "WeightedLineDocExample-ff0c92fb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineDocExample-ff0c92fb",
+  "version": 3
+ },
+ "WeightedLineExample-4b7dfe8d": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineExample-4b7dfe8d",
+  "version": 3
+ },
+ "WeightedLineExample-d301cb36": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineExample-d301cb36"
+ },
+ "WeightedLineGraph-16424092": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineGraph-16424092"
+ },
+ "WeightedLineGraphDocExample-051a0aca": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineGraphDocExample-051a0aca",
+  "version": 3
+ },
+ "WeightedLineNetworkX-9dc26fc0": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineNetworkX-9dc26fc0"
+ },
+ "WeightedLineNetworkXDocExample-51252dfc": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineNetworkXDocExample-51252dfc",
+  "version": 3
+ },
+ "WeightedLineScene-570006a4": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WeightedLineScene-570006a4"
+ },
+ "WireExample-5a9d4deb": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WireExample-5a9d4deb",
+  "version": 3
+ },
+ "WireScene-523c13c8": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WireScene-523c13c8"
+ },
+ "WrappedTreeExample-e92af6f1": {
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WrappedTreeExample-e92af6f1",
+  "version": 3
+ },
+ "WrappedTreeScene-9cb827cb": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "WrappedTreeScene-9cb827cb"
+ },
+ "WriteRandomDocExample-837ac663": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "WriteRandomDocExample-837ac663",
+  "version": 3
+ },
+ "WriteRandomScene-eaac53aa": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "WriteRandomScene-eaac53aa"
+ },
+ "XMarkExample-15f18291": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "XMarkExample-15f18291"
+ },
+ "XMarkExample-f915041e": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "XMarkExample-f915041e"
+ },
+ "XMarkScene-df06d234": {
+  "env_tags": {},
+  "ext": "png",
+  "quality": "high_quality",
+  "sha256": "XMarkScene-df06d234"
+ },
+ "YOffsetExample-2bf7c48e": {
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "YOffsetExample-2bf7c48e",
+  "version": 3
+ },
+ "YOffsetExample-4be776c8": {
+  "env_tags": {},
+  "ext": "mp4",
+  "quality": "high_quality",
+  "sha256": "YOffsetExample-4be776c8"
+ }
+}
