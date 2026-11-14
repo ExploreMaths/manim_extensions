@@ -43,6 +43,9 @@ v1.0.7 :bdg-primary-line:`In Development`
 * Documentation examples render their real output again: the nbcell
   execution cache is read by the directive, the sample molecule files ship
   with the repository, and the chemistry examples run against them.
+* Nerd Font examples render the icon again instead of a
+  ``0F0320``-style tofu box: the media-cache renderer now finds the font at
+  ``<package>/nerdfont`` and installs it before the worker pool starts.
 * ``:output-language: pytb`` examples no longer show CI machine paths or the
   documentation runner's own stack frame.
 * The :class:`~manim_extensions.meshes.exceptions.InvalidRequestException`

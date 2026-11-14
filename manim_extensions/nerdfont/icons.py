@@ -54,17 +54,21 @@ def _install_font_linux():
     if _font_installed or platform.system() != "Linux":
         return
     _font_installed = True
-    try:
-        font_dir = os.path.join(os.path.expanduser("~"), ".local", "share", "fonts")
-        os.makedirs(font_dir, exist_ok=True)
-        dest = os.path.join(font_dir, _FONT_FILENAME)
-        if not os.path.exists(dest):
+    for font_dir in (
+        os.path.join(os.path.expanduser("~"), ".local", "share", "fonts"),
+        os.path.join(os.path.expanduser("~"), ".fonts"),
+    ):
+        try:
+            os.makedirs(font_dir, exist_ok=True)
+            dest = os.path.join(font_dir, _FONT_FILENAME)
             shutil.copy2(_font_path(), dest)
-        # Rebuild the cache even if the file already exists: it may have
-        # landed after the cache for that directory was written.
-        subprocess.run(["fc-cache", "-f", font_dir], capture_output=True)
-    except OSError:
-        pass
+            # Rebuild the cache even if the file already exists: it may have
+            # landed after the cache for that directory was written.
+            subprocess.run(["fc-cache", "-f", font_dir], capture_output=True)
+            if os.path.exists(dest):
+                return
+        except OSError:
+            continue
 
 
 # Install as early as possible: at import time Pango is usually not

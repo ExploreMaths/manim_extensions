@@ -91,8 +91,12 @@ QUALITY_MAP = {
 #                            # (ubuntu-24.04, RTD) fonts registered after
 #                            # Pango's fontmap snapshot are invisible to it
 #                            # and the icon falls back to CJK glyphs
+#   fontconfig_nerdfont = 3  # the font lives at <package>/nerdfont after the
+#                            # top-level move; the previous helper looked in
+#                            # <package>/utils/nerdfont, so cache entries
+#                            # marked with 2 can contain tofu glyphs
 ENV_TAGS = {
-    "fontconfig_nerdfont": 2,
+    "fontconfig_nerdfont": 3,
     "jetbrains_mono": 1,
 }
 
@@ -322,26 +326,34 @@ def render_block(task):
 
 
 def _ensure_nerdfont_installed() -> None:
-    """Copy the vendored Nerd Font into the fontconfig user font dir (Linux).
+    """Copy the vendored Nerd Font into a fontconfig user font dir (Linux).
 
     Stdlib-only and best-effort (no manim import, so ``--check`` stays
     lightweight); mirrors ``_install_font_linux`` in
     ``manim_extensions/nerdfont/icons.py``.
+
+    The font lives at ``<package>/nerdfont``; trying the legacy
+    ``<package>/utils/nerdfont`` location silently missed it and produced
+    tofu glyphs in the media cache.
     """
     if platform.system() != "Linux":
         return
-    try:
-        font_dir = Path.home() / ".local" / "share" / "fonts"
-        font_dir.mkdir(parents=True, exist_ok=True)
-        dest = font_dir / "SymbolsNerdFontMono-Regular.ttf"
-        if not dest.exists():
-            shutil.copy2(
-                SRC / "utils" / "nerdfont" / "SymbolsNerdFontMono-Regular.ttf",
-                dest,
-            )
-        subprocess.run(["fc-cache", "-f", str(font_dir)], capture_output=True)
-    except OSError:
-        pass
+    src = SRC / "nerdfont" / "SymbolsNerdFontMono-Regular.ttf"
+    if not src.is_file():
+        return
+    for font_dir in (
+        Path.home() / ".local" / "share" / "fonts",
+        Path.home() / ".fonts",
+    ):
+        try:
+            font_dir.mkdir(parents=True, exist_ok=True)
+            dest = font_dir / src.name
+            shutil.copy2(src, dest)
+            subprocess.run(["fc-cache", "-f", str(font_dir)], capture_output=True)
+            if dest.is_file():
+                return
+        except OSError:
+            continue
 
 
 def main() -> int:
