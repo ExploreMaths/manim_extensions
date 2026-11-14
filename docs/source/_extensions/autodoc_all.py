@@ -20,9 +20,11 @@ Options
               the page source).
 :values:     show each constant's full value instead of only its name
               (used by the colour palette, whose constants are
-              uninformative as bare names). Other constants get a
-              one-line ``Value:`` summary: scalars show their repr,
-              containers show their type and number of entries.
+              uninformative as bare names). Other constants keep a
+              normal ``= repr`` signature when the value is short;
+              large containers show ``= dict with 10,083 entries``
+              plus a ``查看完整内容`` toggle that reveals the exact
+              value in place.
 :missing-only:
               emit entries only for names that are NOT documented
               anywhere else. The set of documented names comes from a
@@ -55,6 +57,7 @@ Usage::
 
 from __future__ import annotations
 
+import html
 import importlib
 import inspect
 import json
@@ -225,7 +228,8 @@ def summarize_value(obj):
 
     Containers are summarised by type and length instead of being expanded
     into the page: the icon dictionary alone has 10 000 entries and would
-    otherwise produce a 250 KB signature.
+    otherwise produce a 250 KB signature. The HTML renderer strips the
+    double-backtick markup when it needs plain text.
     """
     if isinstance(obj, dict):
         return f"``dict`` with {len(obj):,} entries"
@@ -241,6 +245,35 @@ def summarize_value(obj):
     if len(text) <= 100:
         return "``" + text.replace("``", "`") + "``"
     return f"``{type(obj).__name__}`` object"
+
+
+def constant_value_html(obj):
+    """Emit a summary line with a toggle that reveals the full ``repr``.
+
+    The raw block lives inside the ``autodata`` content, immediately below
+    the constant's docstring, so no page needs hand-written markup. The
+    shared ``constant_values.js`` handles every ``.constant-value`` group.
+    """
+    summary = html.escape(summarize_value(obj).replace("``", ""))
+    full = html.escape(repr(obj), quote=False)
+    return [
+        "   .. raw:: html",
+        "",
+        '      <div class="constant-value">',
+        '        <div class="constant-value-summary">',
+        '          <span class="constant-value-eq">=</span>',
+        f'          <span class="constant-value-summary-text">{summary}</span>',
+        '          <button type="button" class="constant-value-toggle">查看完整内容</button>',
+        "        </div>",
+        '        <div class="constant-value-full" hidden>',
+        '          <div class="constant-value-repr-row">',
+        '            <span class="constant-value-eq">=</span>',
+        f'            <pre class="constant-value-repr">{full}</pre>',
+        "          </div>",
+        '          <button type="button" class="constant-value-close">收起</button>',
+        "        </div>",
+        "      </div>",
+    ]
 
 
 class AutoAllDirective(Directive):
@@ -319,20 +352,26 @@ class AutoAllDirective(Directive):
                     lines += [f".. autofunction:: {key}", ""]
                 elif "values" in self.options:
                     # Opt-in pages (the colour palette) show the full value
-                    # next to the name; every other constants page gets the
-                    # one-line summary below.
+                    # next to the name; every other constants page uses the
+                    # short-repr / expandable-summary branch below.
                     lines += [f".. autodata:: {key}", ""]
                 else:
-                    # Show the name and docstring, plus a one-line value
-                    # summary.  Expanding a dict/list value would put
-                    # thousands of entries into the signature.
-                    lines += [
-                        f".. autodata:: {key}",
-                        "   :no-value:",
-                        "",
-                        f"   :Value: {summarize_value(obj)}",
-                        "",
-                    ]
+                    # Small scalars read naturally in the signature. Large
+                    # containers are hidden behind a toggle: a full dict
+                    # would put thousands of entries into the page, while a
+                    # bare ``dict with 10,083 entries`` loses the value.
+                    full = repr(obj)
+                    if len(full) <= 120 and "\n" not in full:
+                        # Let autodoc emit its normal ``= repr`` signature.
+                        lines += [f".. autodata:: {key}", ""]
+                    else:
+                        lines += [
+                            f".. autodata:: {key}",
+                            "   :no-value:",
+                            "",
+                            *constant_value_html(obj),
+                            "",
+                        ]
 
         # legal for every name to be filtered out (skip / missing-only);
         # the directive then simply emits nothing

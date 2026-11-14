@@ -32,9 +32,11 @@ v1.0.7 :bdg-primary-line:`In Development`
 **Fixed**
 
 * Constant entries no longer render as empty blocks: re-exported constants
-  carry a ``#:`` docstring, and ``autoall`` adds a one-line ``Value:``
-  summary (for example, :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE` is a ``dict`` with 10,083
-  entries) instead of hiding the value entirely.
+  carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
+  ``= repr`` signature. Large containers such as
+  :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE` show
+  ``= dict with 10,083 entries`` with a ``查看完整内容`` button; the button
+  replaces the summary with the exact value, and ``收起`` restores it.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash
