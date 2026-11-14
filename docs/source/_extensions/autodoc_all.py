@@ -23,7 +23,7 @@ Options
               uninformative as bare names). Other constants keep a
               normal ``= repr`` signature when the value is short;
               large containers show ``= dict with 10,083 entries``
-              plus a ``Show full value`` toggle that reveals the exact
+              plus a ``Show`` toggle that reveals the exact
               value in place.
 :missing-only:
               emit entries only for names that are NOT documented
@@ -247,31 +247,23 @@ def summarize_value(obj):
     return f"``{type(obj).__name__}`` object"
 
 
-def constant_value_html(obj):
-    """Emit a summary line with a toggle that reveals the full ``repr``.
+def constant_value_payload_html(obj):
+    """The hidden full value, revealed by the signature button.
 
-    The raw block lives inside the ``autodata`` content, immediately below
-    the constant's docstring, so no page needs hand-written markup. The
-    shared ``constant_values.js`` handles every ``.constant-value`` group.
+    The summary itself is a ``:value:`` option on the generated
+    ``autodatasummary`` directive, so it sits after the constant name in the
+    signature. This raw block only contains the collapsed full ``repr``.
     """
-    summary = html.escape(summarize_value(obj).replace("``", ""))
     full = html.escape(repr(obj), quote=False)
     return [
         "   .. raw:: html",
         "",
-        '      <div class="constant-value">',
-        '        <div class="constant-value-summary">',
+        '      <div class="constant-value-payload" hidden>',
+        '        <span class="constant-value-full-value">',
         '          <span class="constant-value-eq">=</span>',
-        f'          <span class="constant-value-summary-text">{summary}</span>',
-        '          <button type="button" class="constant-value-toggle">Show full value</button>',
-        "        </div>",
-        '        <div class="constant-value-full" hidden>',
-        '          <div class="constant-value-repr-row">',
-        '            <span class="constant-value-eq">=</span>',
-        f'            <pre class="constant-value-repr">{full}</pre>',
-        "          </div>",
-        '          <button type="button" class="constant-value-close">Hide</button>',
-        "        </div>",
+        f'          <span class="constant-value-repr-text">{full}</span>',
+        "        </span>",
+        '        <button type="button" class="constant-value-close">Hide</button>',
         "      </div>",
     ]
 
@@ -365,11 +357,12 @@ class AutoAllDirective(Directive):
                         # Let autodoc emit its normal ``= repr`` signature.
                         lines += [f".. autodata:: {key}", ""]
                     else:
+                        summary = summarize_value(obj).replace("``", "")
                         lines += [
-                            f".. autodata:: {key}",
-                            "   :no-value:",
+                            f".. autodatasummary:: {key}",
+                            f"   :summary: {summary}",
                             "",
-                            *constant_value_html(obj),
+                            *constant_value_payload_html(obj),
                             "",
                         ]
 
@@ -392,6 +385,33 @@ def confdir_of(env):
 
 
 def setup(app):
+    from docutils.parsers.rst import directives as rst_directives
+    from sphinx.ext.autodoc import DataDocumenter
+
+    class SummaryDataDocumenter(DataDocumenter):
+        """``autodatasummary``: a data entry with a compact signature value.
+
+        ``autodata`` cannot take a ``:value:`` option, and its automatic
+        value is the full ``repr``. This variant suppresses that automatic
+        value and adds the supplied summary line instead, so a large dict
+        keeps its place after the constant name without dumping thousands of
+        entries into the signature.
+        """
+
+        objtype = "datasummary"
+        directivetype = "data"
+        option_spec = dict(DataDocumenter.option_spec)
+        option_spec["summary"] = rst_directives.unchanged
+
+        def add_directive_header(self, sig):
+            self.options.no_value = True
+            super().add_directive_header(sig)
+            self.add_line(
+                "   :value: " + self.options.summary,
+                self.get_sourcename(),
+            )
+
+    app.add_autodocumenter(SummaryDataDocumenter)
     app.add_directive("autoall", AutoAllDirective)
     app.add_config_value("autodoc_all_snapshot", DEFAULT_SNAPSHOT, "env")
     return {

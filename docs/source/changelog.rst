@@ -35,8 +35,9 @@ v1.0.7 :bdg-primary-line:`In Development`
   carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
   ``= repr`` signature. Large containers such as
   :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE` show
-  ``= dict with 10,083 entries`` with a ``Show full value`` button; the button
-  replaces the summary with the exact value, and ``Hide`` restores it.
+  ``= dict with 10,083 entries`` with a ``Show`` button; the button
+  replaces the summary with the exact value inline in the signature, and
+  ``Hide`` restores the compact summary.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash
