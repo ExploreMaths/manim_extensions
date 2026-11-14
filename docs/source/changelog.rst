@@ -72,6 +72,10 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Changed**
 
+* The docs build no longer auto-links inline code just because its text
+  exactly matches a project class name. Plain code spans stay plain; an
+  explicit ``:class:`` role is required when a link is intended, so names
+  used as ordinary prose no longer acquire unwanted links.
 * The ``Vendored Packages`` page now gives each package its own heading,
   followed by a linked upstream repository, sync point, status and one
   bullet per local patch — instead of a five-column table whose long patch

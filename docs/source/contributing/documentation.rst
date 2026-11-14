@@ -209,7 +209,7 @@ avoided (``validate_refs.py`` flags them).
 
       :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`
 
-  ``validate_refs.py`` reports bare back-ticked ambiguous class names, and the Sphinx build emits an ``ambiguous inline-code class name`` warning for ambiguous data/function names. Same-name classes *are* allowed in the codebase; references to them just need to be explicit, and the maintainers will fix any that slip through.
+  ``validate_refs.py`` reports bare back-ticked ambiguous class names. Same-name classes *are* allowed in the codebase; references to them just need to be explicit, and the maintainers will fix any that slip through.
 
 * **Classes mentioned in prose are cross-references.** A class name written as a plain word (including its plural, e.g. ``MCAtoms``) leaves the reader with no link. Write it as a ``:class:`` role instead:
 

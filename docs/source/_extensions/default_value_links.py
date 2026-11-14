@@ -21,9 +21,6 @@ import re
 
 from docutils import nodes
 from sphinx.addnodes import desc, desc_annotation, desc_signature
-from sphinx.util import logging
-
-logger = logging.getLogger(__name__)
 
 _CONSTANT_PAGES: dict[str, str] = {
     # manim.constants names -> rst path of the category page (no extension)
@@ -270,119 +267,6 @@ def _in_signature(node) -> bool:
     return False
 
 
-def _in_reference(node) -> bool:
-    """True when the node sits inside an existing cross-reference link.
-
-    An explicit ``:class:`...``` role renders as ``reference > literal``
-    (the link wraps the code), so the literal's children are plain text and
-    a child-level check alone cannot detect it — relinking would nest a
-    second link inside the first.
-    """
-    parent = node.parent
-    while parent is not None:
-        if isinstance(parent, nodes.reference):
-            return True
-        parent = parent.parent
-    return False
-
-
-def _process_prose_literals(app, doctree, docname) -> None:
-    """Link project class/function names written as prose inline code.
-
-    Docstrings and changelog entries write class names as `` ``Code`` `` /
-    `` ``ManimTuringMachine`` ``; without a cross-reference they render as
-    plain inline code.  When the literal text exactly names one py-domain
-    object this build knows (unique suffix match) and that object lives in
-    ``manim_extensions``, turn it into an internal link.  Signatures,
-    default values and already-linked literals are skipped.
-    """
-    try:
-        objects = app.env.domains["py"].data["objects"]
-    except (KeyError, AttributeError):
-        objects = {}
-    # Prose words that are generic numpydoc/section vocabulary: even if a
-    # project object happens to share the name (e.g. Parameters), a bare
-    # ``Parameters`` in prose means the section, not the class.  Never
-    # auto-link these.
-    GENERIC_PROSE_NAMES = {
-        "Parameters",
-        "OtherParameters",
-        "Returns",
-        "Yields",
-        "Receives",
-        "Raises",
-        "Warns",
-        "Attributes",
-        "Methods",
-        "Examples",
-        "Notes",
-        "References",
-        "SeeAlso",
-        "Condition",
-        "Command",
-        "Check",
-        "Checks",
-        "Warning",
-        "Fields",
-        "Modules",
-        "Arguments",
-        "Args",
-        "KeywordArgs",
-    }
-    for node in list(doctree.findall(nodes.literal)):
-        if any(isinstance(c, nodes.reference) for c in node.children):
-            continue
-        if "default_value" in node.get("classes", ()):
-            continue
-        if _in_signature(node) or _in_reference(node):
-            continue
-        text = node.astext().strip()
-        if len(text) < 2 or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", text):
-            # Single letters (e.g. Rubik's cube turn notation U/F/B that
-            # collide with chemical element symbols) are never meant as
-            # object references.
-            continue
-        if text in GENERIC_PROSE_NAMES:
-            continue
-        candidates = [
-            (full, entry)
-            for full, entry in objects.items()
-            if (full == text or full.endswith("." + text))
-            and full.startswith("manim_extensions")
-        ]
-        # Methods, properties and attributes are member names, not
-        # reference targets: a bare ``install`` / ``scale`` / ``text``
-        # in prose is a generic word, not an attempt to link a specific
-        # member.  Only top-level classes, functions and module-level
-        # data participate.
-        matches = [
-            (full, entry)
-            for full, entry in candidates
-            if entry.objtype not in ("method", "property", "attribute")
-        ]
-        if len(matches) > 1:
-            # An inline-code name that names several objects is a doc
-            # smell: the reader cannot tell which object it points to.
-            # Warn so CI (validate_refs) can fail on it; fix by narrowing
-            # the reference (e.g. an explicit :class: with a full path).
-            logger.warning(
-                "ambiguous inline-code class name %r resolves to %s",
-                text,
-                ", ".join(sorted(full for full, _ in matches)),
-                location=docname,
-            )
-            continue
-        if len(matches) != 1:
-            continue
-        full, entry = matches[0]
-        docdir = posixpath.dirname(docname) or "."
-        rel = posixpath.relpath(f"{entry.docname}.html", start=docdir)
-        ref = nodes.reference("", "", internal=True, refuri=f"{rel}#{entry.node_id}")
-        ref += nodes.Text(text)
-        del node[:]
-        node.append(ref)
-
-
 # Keep in sync with ``autodoc_all._VALUE_LINK_RE``: ``<class '...'>``,
 # ``type[...]``, dotted paths and ``ClassName(`` are the spellings used by
 # ``repr`` output.
@@ -514,7 +398,6 @@ def _process_constant_value_payloads(app, doctree, docname) -> None:
 def setup(app):
     app.connect("doctree-resolved", _process_literals)
     app.connect("doctree-resolved", _process_color_codes)
-    app.connect("doctree-resolved", _process_prose_literals)
     app.connect("doctree-resolved", _process_constant_signature_values)
     app.connect("doctree-resolved", _process_constant_value_payloads)
     return {"version": "1.1", "parallel_read_safe": True, "parallel_write_safe": True}
