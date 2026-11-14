@@ -99,6 +99,10 @@ except ImportError:
 
 DEFAULT_SNAPSHOT = "_extensions/api_documented.json"
 
+# Values up to this length stay inline in the signature; longer ones are
+# collapsed behind the summary button.
+INLINE_VALUE_LIMIT = 1000
+
 
 def defining_dotted(module, name, obj):
     """Canonical ``module.name`` used as the snapshot key.
@@ -385,7 +389,7 @@ class AutoAllDirective(Directive):
                     # would put thousands of entries into the page, while a
                     # bare ``dict with 10,083 entries`` loses the value.
                     full = repr(obj)
-                    if len(full) <= 120 and "\n" not in full:
+                    if len(full) <= INLINE_VALUE_LIMIT and "\n" not in full:
                         # Let autodoc emit its normal ``= repr`` signature.
                         lines += [f".. autodata:: {key}", ""]
                     else:

@@ -33,8 +33,8 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 * Constant entries no longer render as empty blocks: re-exported constants
   carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
-  ``= repr`` signature. Large containers such as
-  :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE` show
+  ``= repr`` signature. Values longer than 1,000 characters, such as
+  :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE`, show
   ``= dict with 10,083 entries`` with a ``Show`` button; the button
   replaces the summary with the exact value inline in the signature. Class
   and type names inside the expanded value use the same cross-reference pass
