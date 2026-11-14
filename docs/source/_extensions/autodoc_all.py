@@ -296,7 +296,6 @@ def constant_value_payload_html(obj):
         '          <span class="constant-value-eq">=</span>',
         f'          <span class="constant-value-repr-text">{full}</span>',
         "        </span>",
-        '        <button type="button" class="constant-value-close">Hide</button>',
         "      </div>",
     ]
 
