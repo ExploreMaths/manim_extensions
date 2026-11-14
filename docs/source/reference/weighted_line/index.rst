@@ -113,7 +113,7 @@ Parameters
 ^^^^^^^^^^
 
 - ``weight`` – the weight of the edge to display.
-- ``weight_config`` – a dict of options forwarded to the ``Text`` label
+- ``weight_config`` – a dict of options forwarded to the :class:`~manim.mobject.text.text_mobject.Text` label
   (defaults to a half-size italic white label).
 - ``weight_alpha`` – position along the edge at which to show the weight,
   as a proportion between 0 and 1 (default ``0.5``, the midpoint).

@@ -441,7 +441,7 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
 def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
-    Unlike ``mol_parser``, this function stores atom positions under the
+    Unlike :func:`~manim_extensions.chemistry.utils.utils.mol_parser`, this function stores atom positions under the
     ``"position"`` key and uses ``(atom1, atom2)`` tuples as bond keys,
     which is more convenient for graph traversal.
 

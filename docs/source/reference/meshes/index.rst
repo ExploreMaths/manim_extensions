@@ -73,7 +73,7 @@ the OpenGL renderer (``--renderer=opengl``):
 You can shift (translate) and scale the whole mesh or single vertices, and
 
 most manim coloring functions are available on individual mesh objects.
-Note that ``Rotate`` does not update the wrapped mesh, because it only updates
+Note that :class:`~manim.animation.rotation.Rotate` does not update the wrapped mesh, because it only updates
 a copy of the rotation.
 
 Renderer classes:
@@ -82,7 +82,7 @@ Renderer classes:
   :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` –
   basic renderers for smaller meshes (under roughly 1 000 nodes). They suit 2D
   and small 3D explanatory videos rather than high-resolution rendering;
-  shift / rotate / scale are available, but not every ``Mobject`` method is
+  shift / rotate / scale are available, but not every :class:`~manim.mobject.mobject.Mobject` method is
   re-implemented.
 - :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh` –
   2-D triangle meshes, designed for educational use, with Delaunay-oriented

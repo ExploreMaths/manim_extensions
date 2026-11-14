@@ -8,8 +8,8 @@
 
 Exports :func:`~manim_extensions.mobject_svg.svg.create_svg_from_vmobject`
 and :func:`~manim_extensions.mobject_svg.svg.create_svg_from_vgroup`, and
-registers them on manim's classes as a ``to_svg()`` method on ``VMobject``
-and ``VGroup``, so any mobject can be written to an SVG file.
+registers them on manim's classes as a ``to_svg()`` method on :class:`~manim.mobject.types.vectorized_mobject.VMobject`
+and :class:`~manim.mobject.types.vectorized_mobject.VGroup`, so any mobject can be written to an SVG file.
 
 The upstream package is pure Python and only depends on ``pycairo``, which
 manim already requires, so it is vendored here instead of being declared as

@@ -47,7 +47,7 @@ v1.0.7 :bdg-primary-line:`In Development`
   in full, use the same cross-reference pass as signature defaults.
   Fully-qualified ``<class 'module.Class'>`` spellings are replaced by the
   linked short class name, and ``type[module.Class]`` by ``type[Class]``,
-  so values such as ``SUPPORTED_FORMATS`` keep compact links to their parser
+  so values such as :data:`~manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS` keep compact links to their parser
   classes.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
@@ -140,7 +140,7 @@ v1.0.6 :bdg-success-line:`Latest`
 
 * Added :class:`~manim_extensions.nerdfont.icons.NerdFontIcon` (a class
   replacing the earlier ``nerdfont_icon`` function) for rendering Nerd
-  Font glyphs as ``ImageMobject`` instances.
+  Font glyphs as :class:`~manim.mobject.types.image_mobject.ImageMobject` instances.
 * Added a searchable Icon Gallery page listing every Nerd Font symbol, with
   a live filter that hides the empty state until the first search.
 * Added :class:`~manim_extensions.arabic.text.ArabicTemplate` and
@@ -160,7 +160,7 @@ v1.0.6 :bdg-success-line:`Latest`
   fitted scikit-learn tree with its training points: dataset axes, one dot
   per sample, and the decision-region rectangles from
   :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface`,
-  with ``Create`` / ``Uncreate`` overrides and a split-to-animation map.
+  with :class:`~manim.animation.creation.Create` / :class:`~manim.animation.creation.Uncreate` overrides and a split-to-animation map.
 * Implemented
   :meth:`~manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeContainer.make_unfold_tree_animation`,
   which previously halted with ``NotImplementedError``: it unfolds the tree
@@ -171,7 +171,7 @@ v1.0.6 :bdg-success-line:`Latest`
   archived: :meth:`~manim_extensions.machine_learning.scene.ManimML3DScene.play` forwards to
   :class:`~manim.scene.three_d_scene.ThreeDScene`,
   :class:`~manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer`
-  gains a real ``Create`` override, three-channel images animate onto
+  gains a real :class:`~manim.animation.creation.Create` override, three-channel images animate onto
   convolutional feature maps, :meth:`~manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.modify_edge_colors`
   works, the evaluated point is highlighted in activation animations, leaf
   nodes and tree expansion accept text, :meth:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.replace_layer` and
@@ -280,7 +280,7 @@ v1.0.6 :bdg-success-line:`Latest`
 * Fixed the resistor label to use proper LaTeX math.
 * Fixed the machine-learning example rendering: :class:`~manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject`
   is built with ``RGB`` instead of ``RBG``, matplotlib figures are converted
-  to RGB, and the VAE renders as a ``Group`` that actually shows the
+  to RGB, and the VAE renders as a :class:`~manim.mobject.mobject.Group` that actually shows the
   network.
 * Fixed incomplete cross-references across the reference manual.
 * Fixed the Validate workflow failures around doc sections, unused imports,
@@ -301,7 +301,7 @@ v1.0.6 :bdg-success-line:`Latest`
 * Folded each vendored package's upstream README and Read the Docs content
   into its Reference Manual page and led with API sections instead of a
   Quick Start.
-* Completed every ManimML usage snippet into a standalone ``Scene`` and
+* Completed every ManimML usage snippet into a standalone :class:`~manim.scene.scene.Scene` and
   rendered it with the ``manim`` directive (image-input example stays a
   runnable script because the upstream repository ships no ``digit.jpeg``).
 * Converted every package's ``Usage`` code block into a ``.. manim::``
@@ -365,7 +365,7 @@ v1.0.6 :bdg-success-line:`Latest`
   fails when the figure overflows the frame or covers less than a quarter of
   it in both dimensions.
 * Made the layout probe mirror real rendering: it runs the example's setup
-  before ``construct``, patches the manim 0.22 ``ImageMobject`` render
+  before ``construct``, patches the manim 0.22 :class:`~manim.mobject.types.image_mobject.ImageMobject` render
   regression, installs a modern ``dvisvgm``, and bounds the render job time.
 * Installed every optional extra in the cross-reference job so external
   inventory targets resolve.
@@ -588,10 +588,10 @@ v1.0.4
 
 **Removed**
 
-* Deleted ``Code``, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
+* Deleted :class:`~manim.mobject.text.code_mobject.Code`, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
   from the :mod:`~manim_extensions.algorithm` module (unused code block classes).
 * Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
-  (was only used by the deleted ``Code`` class).
+  (was only used by the deleted :class:`~manim.mobject.text.code_mobject.Code` class).
 
 **Fixed**
 
@@ -624,7 +624,7 @@ v1.0.4
   is absent and those names are not covered by star exports.
 * Fixed ``validate_refs.py`` false positives: separated project class map
   (``manim_extensions``) from installed ``manim`` so that manim-internal names
-  like ``Code`` no longer trigger inline-code suggestions in changelog/docs.
+  like :class:`~manim.mobject.text.code_mobject.Code` no longer trigger inline-code suggestions in changelog/docs.
 * Fixed ``flake8-unused-imports`` CI job by correcting the ``--exclude``
   glob pattern (``*__init__.py*``) so that all ``__init__.py`` files are
   properly excluded from the F401 check.

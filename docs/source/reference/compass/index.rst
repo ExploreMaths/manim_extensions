@@ -102,7 +102,7 @@ Pencil animations
 :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilTipTo`
 moves the pencil so its tip reaches a point;
 :class:`~manim_extensions.compass.animations.animation_pencil.MovePencilAlongPath`
-moves the pencil along a ``VMobject`` path (typically a ``Line`` in
+moves the pencil along a :class:`~manim.mobject.types.vectorized_mobject.VMobject` path (typically a :class:`~manim.mobject.geometry.line.Line` in
 constructions);
 :class:`~manim_extensions.compass.animations.animation_pencil.DrawPath`
 draws the path: the pen tip starts at the path's beginning and the pencil moves

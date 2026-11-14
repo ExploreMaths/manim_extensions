@@ -83,7 +83,7 @@ class FileHandler:
         string
             Raw molecule data as a string (e.g. the contents of a .mol file).
         format
-            Format identifier matching a key in ``SUPPORTED_FORMATS``.
+            Format identifier matching a key in :data:`~manim_extensions.chemistry.utils.file_handler.SUPPORTED_FORMATS`.
 
         Returns
         -------

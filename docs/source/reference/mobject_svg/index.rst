@@ -17,7 +17,7 @@ Mobject SVG
 
 ``manim-mobject-svg`` writes a mobject to an SVG file through a Cairo
 surface. It registers the helpers on manim's classes as a ``to_svg()``
-method on ``VMobject`` and ``VGroup``, so any vectorised mobject can be
+method on :class:`~manim.mobject.types.vectorized_mobject.VMobject` and :class:`~manim.mobject.types.vectorized_mobject.VGroup`, so any vectorised mobject can be
 exported as a standalone SVG.
 
 The code is bundled inside ``manim_extensions`` as the
@@ -31,7 +31,7 @@ its own.
 Features
 --------
 
-- a ``to_svg()`` method registered on ``VMobject`` and ``VGroup``.
+- a ``to_svg()`` method registered on :class:`~manim.mobject.types.vectorized_mobject.VMobject` and :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 - optional cropping and padding around the exported drawing.
 - stroke widths, dashed strokes, gradients and subpaths are preserved.
 - rich display of manim mobjects in Jupyter through ``_repr_svg_``.

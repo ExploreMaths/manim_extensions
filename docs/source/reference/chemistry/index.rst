@@ -97,7 +97,7 @@ Graph molecules
 ^^^^^^^^^^^^^^^
 
 :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` is
-built on Manim's ``Graph`` (and thus on ``networkx``), so substructures can be
+built on Manim's :class:`~manim.mobject.graph.Graph` (and thus on ``networkx``), so substructures can be
 selected and animated. Load one from a file and add element or numeric atom
 labels:
 

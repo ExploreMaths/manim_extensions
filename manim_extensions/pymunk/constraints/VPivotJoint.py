@@ -52,7 +52,7 @@ class VPivotJoint(VConstraint):
         The :class:`~manim.mobject.mobject.Mobject` used to visually represent the pivot point.
     connect_line_class
         The Manim class used to draw the line connecting the anchors to the
-        pivot (e.g., ``Line``). Pass ``None`` to disable the connecting lines.
+        pivot (e.g., :class:`~manim.mobject.geometry.line.Line`). Pass ``None`` to disable the connecting lines.
     connect_line_config
         Configuration dictionary for the styling of the connecting lines.
     **kwargs

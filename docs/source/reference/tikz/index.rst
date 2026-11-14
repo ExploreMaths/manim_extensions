@@ -20,7 +20,7 @@ existing LaTeX/TikZ diagrams can be reused in a scene without manually rebuildin
 all shapes in Python. It adds a :class:`~manim_extensions.tikz.tikz.Tikz`
 subclass of Manim's :class:`~manim.mobject.svg.svg_mobject.SVGMobject`, together
 with a :class:`~manim_extensions.tikz.template.TikzTemplate` subclass of
-Manim's ``TexTemplate`` used behind the scenes. It targets Manim 0.17.0 and
+Manim's :class:`~manim.utils.tex.TexTemplate` used behind the scenes. It targets Manim 0.17.0 and
 above, which renders SVGs through the ``svgelements`` library.
 
 The code is bundled inside ``manim_extensions`` as the

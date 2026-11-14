@@ -27,7 +27,7 @@ Features
 
 - :class:`~manim_extensions.arabic.text.ArabicTemplate` – a Tex template
   configured for Arabic typesetting.
-- :class:`~manim_extensions.arabic.text.ArabicText` – a Manim ``Tex`` mobject
+- :class:`~manim_extensions.arabic.text.ArabicText` – a Manim :class:`~manim.mobject.text.tex_mobject.Tex` mobject
   with proper Arabic shaping.
 
 Requirements

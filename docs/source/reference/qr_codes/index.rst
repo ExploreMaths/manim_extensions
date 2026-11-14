@@ -14,7 +14,7 @@ QR Codes
 
 **License:** MIT
 
-``manim-qr-codes`` generates QR codes as Manim ``VGroup`` objects using the
+``manim-qr-codes`` generates QR codes as Manim :class:`~manim.mobject.types.vectorized_mobject.VGroup` objects using the
 `segno <https://pypi.org/project/segno/>`_ library. An optional Nerd Font
 icon can be placed in the centre of the code.
 

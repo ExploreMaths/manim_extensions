@@ -43,12 +43,12 @@ class VPinJoint(VConstraint):
         it is automatically calculated as the initial distance between anchors.
     anchor_a_appearance
         The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``a_mob``
-        (e.g., a red ``Dot``).
+        (e.g., a red :class:`~manim.mobject.geometry.arc.Dot`).
     anchor_b_appearance
         The :class:`~manim.mobject.mobject.Mobject` used to visually represent the anchor point on ``b_mob``
-        (e.g., a red ``Dot``).
+        (e.g., a red :class:`~manim.mobject.geometry.arc.Dot`).
     connect_line_class
-        The class used to draw the connecting rod (e.g., ``Line``).
+        The class used to draw the connecting rod (e.g., :class:`~manim.mobject.geometry.line.Line`).
         for no visible connection.
     connect_line_config
         A dictionary defining the visual style of the connecting line,

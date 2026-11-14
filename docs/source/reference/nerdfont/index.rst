@@ -35,7 +35,7 @@ the scene. The ``icon`` argument accepts three forms:
 
 All extra keyword arguments are forwarded to
 :class:`~manim.mobject.text.text_mobject.Text`, so ``color``, ``font_size``
-and the usual ``Text`` options work as expected. Render the scene normally
+and the usual :class:`~manim.mobject.text.text_mobject.Text` options work as expected. Render the scene normally
 with the ``manim`` command.
 
 .. manim:: NerdFontIconScene

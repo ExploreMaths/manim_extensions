@@ -43,7 +43,7 @@ class VDampedRotarySpring(VConstraint):
     arc_indicator_config
         A dictionary defining the visual style of the arc indicator, including ``radius``, ``color``, and ``stroke_width``.
     connect_line_class
-        The class used to draw a connecting line between the two objects (e.g., ``Line``). for no visible connection.
+        The class used to draw a connecting line between the two objects (e.g., :class:`~manim.mobject.geometry.line.Line`). for no visible connection.
     connect_line_config
         A dictionary defining the visual style of the connecting line, such as ``color`` and ``stroke_width``.
     **kwargs

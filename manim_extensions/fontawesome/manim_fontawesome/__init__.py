@@ -12,8 +12,10 @@
 
 """Font Awesome icons for Manim.
 
-Access the SVG icons through the three style namespaces ``brand``,
-``regular``, and ``solid``. Every attribute lookup returns an
+Access the SVG icons through the three style namespaces
+:data:`~manim_extensions.fontawesome.manim_fontawesome.brand`,
+:data:`~manim_extensions.fontawesome.manim_fontawesome.regular`, and
+:data:`~manim_extensions.fontawesome.manim_fontawesome.solid`. Every attribute lookup returns an
 :class:`~manim.mobject.svg.svg_mobject.SVGMobject`, so icons can be added,
 arranged, colored, and animated like any other mobject. The full icon list
 is available at https://fontawesome.com/icons (see :data:`~manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION`

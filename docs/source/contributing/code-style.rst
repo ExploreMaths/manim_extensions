@@ -248,7 +248,7 @@ Terminal punctuation
 No default-value descriptions in docstrings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Do not describe parameter/attribute **default values** in the docstring. Default values already appear in the rendered signature (injected by ``sphinx-autodoc-typehints``), so any repetition such as ``Defaults to X``, ``by default X``, ``(default X)``, ``defaults to X``, ``Default is X``, ``By default X``, or ``(the default)`` is redundant and must be omitted. Write plain descriptions that state what the parameter *means*, not what it defaults to. (Ordinary uses of the word "default" that are not default-value descriptions — e.g. "the default colour", "reset to its default appearance", "the default DVI path", ``get_param_or_default`` — are fine to keep.)
+Do not describe parameter/attribute **default values** in the docstring. Default values already appear in the rendered signature (injected by ``sphinx-autodoc-typehints``), so any repetition such as ``Defaults to X``, ``by default X``, ``(default X)``, ``defaults to X``, ``Default is X``, ``By default X``, or ``(the default)`` is redundant and must be omitted. Write plain descriptions that state what the parameter *means*, not what it defaults to. (Ordinary uses of the word "default" that are not default-value descriptions — e.g. "the default colour", "reset to its default appearance", "the default DVI path", :func:`~manim_extensions.meshes.params.get_param_or_default` — are fine to keep.)
 
 Raw docstrings for example code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,7 +263,7 @@ An interactive example (code the reader is meant to run and see output for) must
 Mobject subclasses need a ``.. manim::`` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every class that subclasses a Manim mobject (``Mobject``, ``VMobject``, ``VGroup``, ``Line``, ``Circle``, ``Text``, ...) must include a ``.. manim::`` example block in its **class docstring**. Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
+Every class that subclasses a Manim mobject (:class:`~manim.mobject.mobject.Mobject`, :class:`~manim.mobject.types.vectorized_mobject.VMobject`, :class:`~manim.mobject.types.vectorized_mobject.VGroup`, :class:`~manim.mobject.geometry.line.Line`, :class:`~manim.mobject.geometry.arc.Circle`, :class:`~manim.mobject.text.text_mobject.Text`, ...) must include a ``.. manim::`` example block in its **class docstring**. Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
 
 ``.. manim::`` blocks must live under ``Examples``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -60,7 +60,7 @@ version). The upstream package was published as ``manim-ml``; here it is
 bundled inside ``manim_extensions``. The project is described in the
 `arXiv paper <https://arxiv.org/abs/2306.17108>`_.
 
-Build a scene by extending ``Scene`` (or ``ThreeDScene`` when the network has
+Build a scene by extending :class:`~manim.scene.scene.Scene` (or :class:`~manim.scene.three_d_scene.ThreeDScene` when the network has
 3-D content). Neural networks are composed from a list of layers, which
 ManimML pieces together automatically:
 
