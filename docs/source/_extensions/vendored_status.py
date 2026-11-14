@@ -45,32 +45,40 @@ _registry_cache: dict[str, dict | None] | None = None
 
 
 def _load_registry(registry_path: Path) -> dict[str, dict]:
-    """Parse the VENDORED.md table into {repo_slug: row} mapping."""
+    """Parse the VENDORED.md list into a {repo_slug: entry} mapping."""
     global _registry_cache
     key = str(registry_path.resolve())
     if _registry_cache is not None and key in _registry_cache:
         return _registry_cache[key]
 
     rows: dict[str, dict] = {}
+    fields: dict[str, str] = {}
+    module = ""
+
+    def flush() -> None:
+        if not fields:
+            return
+        upstream = fields.get("Upstream", "")
+        match = re.search(r"github\.com/([\w.-]+/[\w.-]+)", upstream)
+        if not match:
+            return
+        slug = match.group(1)
+        synced = fields.get("Synced", "").strip("`").replace("`", "")
+        rows[slug] = {"module": module.strip("`").replace("`", ""), "synced": synced}
+        quoted = re.search(r"`([^`]+)`", fields.get("Synced", ""))
+        if quoted:
+            rows[slug]["synced"] = quoted.group(1)
+
     if registry_path.exists():
         for line in registry_path.read_text(encoding="utf-8").splitlines():
-            if not line.startswith("|") or "---" in line:
-                continue
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) < 3 or cells[0].startswith("Local module"):
-                continue
-            module, upstream, synced = cells[0], cells[1], cells[2]
-            match = re.search(r"github\.com/([\w.-]+/[\w.-]+)", upstream)
-            if not match:
-                continue
-            slug = match.group(1)
-            rows[slug] = {
-                "module": module.strip("`").replace("`", ""),
-                "synced": synced.strip("`").replace("`", ""),
-            }
-            quoted = re.search(r"`([^`]+)`", synced)
-            if quoted:
-                rows[slug]["synced"] = quoted.group(1)
+            if line.startswith("- **"):
+                flush()
+                fields = {}
+                module = line[4:].strip().strip("*")
+            match = re.match(r"  - \*\*([^:]+):\*\*\s*(.*)", line)
+            if match:
+                fields[match.group(1)] = match.group(2).strip()
+        flush()
     result = rows
     _registry_cache = {key: result}
     return result
@@ -117,6 +125,7 @@ class VendoredStatusDirective(SphinxDirective):
 
         confdir = Path(app.confdir)
         registry_path = (confdir / app.config.vendored_registry_path).resolve()
+        self.state.document.settings.env.note_dependency(str(registry_path))
         registry = _load_registry(registry_path)
         entry = registry.get(slug, {})
         synced = self.options.get("ref", entry.get("synced", "not recorded"))

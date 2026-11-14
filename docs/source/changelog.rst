@@ -72,6 +72,10 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Changed**
 
+* The ``Vendored Packages`` page now presents each package as a grouped
+  entry — upstream, sync point, status, then one bullet per local patch —
+  instead of a five-column table whose long patch column was hard to scan.
+  The vendored-status cache parser reads the same list.
 * Reorganised the contributor guide into topic pages under
   ``docs/source/contributing/`` — development, code style, documentation,
   testing and licensing, all written in reStructuredText. ``CONTRIBUTING.md``

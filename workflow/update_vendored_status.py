@@ -57,24 +57,33 @@ def github_get(path: str) -> dict | list | None:
 
 
 def iter_registry() -> list[tuple[str, str]]:
-    """Return [(repo_slug, synced_ref)] parsed from the VENDORED.md table."""
+    """Return [(repo_slug, synced_ref)] parsed from the VENDORED.md list."""
     entries = []
-    for line in REGISTRY.read_text(encoding="utf-8").splitlines():
-        if not line.startswith("|") or "---" in line:
-            continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 3 or cells[0].startswith("Local module"):
-            continue
-        match = re.search(r"github\.com/([\w.-]+/[\w.-]+)", cells[1])
+    fields: dict[str, str] = {}
+
+    def flush() -> None:
+        if not fields:
+            return
+        upstream = fields.get("Upstream", "")
+        match = re.search(r"github\.com/([\w.-]+/[\w.-]+)", upstream)
         if not match:
-            continue
-        synced = cells[2].strip("`").replace("`", "")
-        # The cell may be a markdown link: [`<sha>`](https://...) — the
+            return
+        synced = fields.get("Synced", "").strip("`").replace("`", "")
+        # The value may be a markdown link: [`<sha>`](https://...) — the
         # first backtick-quoted token is the ref.
-        quoted = re.search(r"`([^`]+)`", cells[2])
+        quoted = re.search(r"`([^`]+)`", fields.get("Synced", ""))
         if quoted:
             synced = quoted.group(1)
         entries.append((match.group(1), "" if synced == "not recorded" else synced))
+
+    for line in REGISTRY.read_text(encoding="utf-8").splitlines():
+        if line.startswith("- **"):
+            flush()
+            fields = {}
+        match = re.match(r"  - \*\*([^:]+):\*\*\s*(.*)", line)
+        if match:
+            fields[match.group(1)] = match.group(2).strip()
+    flush()
     return entries
 
 
