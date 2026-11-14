@@ -45,7 +45,7 @@ _registry_cache: dict[str, dict | None] | None = None
 
 
 def _load_registry(registry_path: Path) -> dict[str, dict]:
-    """Parse the VENDORED.md list into a {repo_slug: entry} mapping."""
+    """Parse the heading-based VENDORED.md list into a {repo_slug: entry} mapping."""
     global _registry_cache
     key = str(registry_path.resolve())
     if _registry_cache is not None and key in _registry_cache:
@@ -71,10 +71,10 @@ def _load_registry(registry_path: Path) -> dict[str, dict]:
 
     if registry_path.exists():
         for line in registry_path.read_text(encoding="utf-8").splitlines():
-            if line.startswith("- **"):
+            if line.startswith("## "):
                 flush()
                 fields = {}
-                module = line[4:].strip().strip("*")
+                module = line[3:].strip().strip("*").strip("`")
             match = re.match(r"  - \*\*([^:]+):\*\*\s*(.*)", line)
             if match:
                 fields[match.group(1)] = match.group(2).strip()

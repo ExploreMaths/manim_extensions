@@ -57,7 +57,7 @@ def github_get(path: str) -> dict | list | None:
 
 
 def iter_registry() -> list[tuple[str, str]]:
-    """Return [(repo_slug, synced_ref)] parsed from the VENDORED.md list."""
+    """Return [(repo_slug, synced_ref)] parsed from the heading-based VENDORED.md list."""
     entries = []
     fields: dict[str, str] = {}
 
@@ -77,7 +77,7 @@ def iter_registry() -> list[tuple[str, str]]:
         entries.append((match.group(1), "" if synced == "not recorded" else synced))
 
     for line in REGISTRY.read_text(encoding="utf-8").splitlines():
-        if line.startswith("- **"):
+        if line.startswith("## "):
             flush()
             fields = {}
         match = re.match(r"  - \*\*([^:]+):\*\*\s*(.*)", line)
