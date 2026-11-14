@@ -151,6 +151,11 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+# pydub imports the stdlib audioop module, which Python 3.12 deprecates;
+# this warning is not from this package and has no upstream fix yet.
+filterwarnings = [
+    "ignore:'audioop' is deprecated:DeprecationWarning",
+]
 
 [tool.mypy]
 strict = true
