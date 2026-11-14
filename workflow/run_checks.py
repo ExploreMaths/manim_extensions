@@ -3,11 +3,30 @@
 
 """Run the repository's validation checks through one entry point.
 
-The checker scripts stay independent; this file only records which group
-each one belongs to and runs them with the same working directory.  CI
-uses the groups so that one job can install one environment and run every
-check that needs it, instead of installing the same environment once per
-script.
+The checker scripts stay independent; this file records which group each
+one belongs to and runs them with one project context.  CI uses the groups
+so that one job can install one environment and run every check that needs
+it, instead of installing the same environment once per script.
+
+The context defaults to this repository, but a vendored copy can point at
+another project:
+
+    python workflow/run_checks.py \
+        --root ../my-project \
+        --package my_pkg \
+        --docs docs/source \
+        --examples examples \
+        --group static
+
+``--root`` also reads ``[tool.manim-doc-checks]`` from the target
+``pyproject.toml``:
+
+    [tool.manim-doc-checks]
+    package = "my_pkg"
+    distribution = "my-pkg"
+    package-dir = "src/my_pkg"
+    docs = "docs/source"
+    examples = "examples"
 
 Usage:
     python workflow/run_checks.py --list
@@ -19,12 +38,46 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import sys
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
-ROOT = Path(__file__).resolve().parent.parent
+SCRIPT_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_PACKAGE = "manim_extensions"
+
+
+@dataclass(frozen=True)
+class Context:
+    """Project paths shared by every checker."""
+
+    root: Path
+    package: str
+    distribution: str
+    package_dir: Path
+    docs: Path
+    examples: Path
+
+    def env(self) -> dict[str, str]:
+        """Environment variables consumed by ``workflow/_context.py``."""
+        values = os.environ.copy()
+        values.update(
+            {
+                "MANIM_DOC_CHECKS_ROOT": str(self.root),
+                "MANIM_DOC_CHECKS_PACKAGE": self.package,
+                "MANIM_DOC_CHECKS_DISTRIBUTION": self.distribution,
+                "MANIM_DOC_CHECKS_PACKAGE_DIR": str(self.package_dir),
+                "MANIM_DOC_CHECKS_DOCS": str(self.docs),
+                "MANIM_DOC_CHECKS_EXAMPLES": str(self.examples),
+            }
+        )
+        return values
+
+
+Command = tuple[str, ...] | Callable[[Context], tuple[str, ...]]
 
 
 @dataclass(frozen=True)
@@ -33,12 +86,49 @@ class Check:
 
     name: str
     group: str
-    command: tuple[str, ...]
+    command: Command
 
 
 def py(script: str) -> tuple[str, ...]:
     """Run a repository script with the active interpreter."""
-    return (sys.executable, script)
+    return (sys.executable, str(SCRIPT_DIR / script))
+
+
+def black_command(ctx: Context) -> tuple[str, ...]:
+    """Black-check the target package and any conventional source trees."""
+    paths = [str(ctx.package_dir)]
+    for name in ("tests", "scripts", "workflow", "docs"):
+        path = ctx.root / name
+        if path.exists():
+            paths.append(str(path))
+    return (sys.executable, "-m", "black", "--check", *paths)
+
+
+def flake8_command(ctx: Context, selection: str) -> tuple[str, ...]:
+    """Flake8-check the target package."""
+    return (
+        sys.executable,
+        "-m",
+        "flake8",
+        str(ctx.package_dir),
+        "--select",
+        selection,
+        "--max-line-length=127",
+    )
+
+
+def flake8_unused_command(ctx: Context) -> tuple[str, ...]:
+    """Flake8-check unused imports, excluding package initialisers."""
+    return (
+        sys.executable,
+        "-m",
+        "flake8",
+        str(ctx.package_dir),
+        "--select",
+        "F401",
+        "--exclude",
+        "*__init__.py*,test,examples",
+    )
 
 
 CHECKS: dict[str, Check] = {
@@ -101,47 +191,12 @@ CHECKS: dict[str, Check] = {
     ),
     # Formatting and repository policy; no package install.
     "reuse-lint": Check("reuse-lint", "lint", ("reuse", "lint")),
-    "black": Check(
-        "black",
-        "lint",
-        (
-            sys.executable,
-            "-m",
-            "black",
-            "--check",
-            "manim_extensions",
-            "tests",
-            "scripts",
-            "workflow",
-            "docs",
-        ),
-    ),
+    "black": Check("black", "lint", black_command),
     "flake8-unused-imports": Check(
-        "flake8-unused-imports",
-        "lint",
-        (
-            sys.executable,
-            "-m",
-            "flake8",
-            "manim_extensions",
-            "--select",
-            "F401",
-            "--exclude",
-            "*__init__.py*,test,examples",
-        ),
+        "flake8-unused-imports", "lint", flake8_unused_command
     ),
     "flake8-syntax": Check(
-        "flake8-syntax",
-        "lint",
-        (
-            sys.executable,
-            "-m",
-            "flake8",
-            "manim_extensions",
-            "--select",
-            "E9,F63,F7,F82",
-            "--max-line-length=127",
-        ),
+        "flake8-syntax", "lint", lambda ctx: flake8_command(ctx, "E9,F63,F7,F82")
     ),
     # Needs the package installed at ``.[all]`` plus pip-audit.
     "pip-audit": Check("pip-audit", "audit", ("pip-audit", "--desc", "on")),
@@ -175,6 +230,30 @@ GROUPS: dict[str, tuple[str, ...]] = {
 }
 
 
+def load_context(args: argparse.Namespace) -> Context:
+    """Resolve CLI flags, target ``pyproject.toml``, and defaults."""
+    root = (args.root or SCRIPT_DIR).resolve()
+    config: dict[str, str] = {}
+    pyproject = root / "pyproject.toml"
+    if pyproject.exists():
+        data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
+        config = data.get("tool", {}).get("manim-doc-checks", {})
+
+    package = args.package or config.get("package") or DEFAULT_PACKAGE
+    distribution = args.distribution or config.get("distribution") or package
+    package_dir = args.package_dir or config.get("package-dir") or package
+    docs = args.docs or config.get("docs") or "docs/source"
+    examples = args.examples or config.get("examples") or "examples"
+    return Context(
+        root=root,
+        package=package,
+        distribution=distribution,
+        package_dir=(root / package_dir).resolve(),
+        docs=(root / docs).resolve(),
+        examples=(root / examples).resolve(),
+    )
+
+
 def selected_names(groups: list[str], checks: list[str], use_all: bool) -> list[str]:
     """Resolve CLI arguments into a deduplicated check order."""
     if use_all:
@@ -186,13 +265,14 @@ def selected_names(groups: list[str], checks: list[str], use_all: bool) -> list[
     return list(dict.fromkeys(names))
 
 
-def run_check(check: Check) -> bool:
-    """Run one check from the repository root and report its result."""
+def run_check(check: Check, ctx: Context) -> bool:
+    """Run one check from the target root and report its result."""
     print(f"\n=== {check.name}", flush=True)
+    command = check.command(ctx) if callable(check.command) else check.command
     try:
-        completed = subprocess.run(check.command, cwd=ROOT, check=False)
+        completed = subprocess.run(command, cwd=ctx.root, env=ctx.env(), check=False)
     except FileNotFoundError:
-        print(f"FAIL {check.name}: command not found: {check.command[0]}", flush=True)
+        print(f"FAIL {check.name}: command not found: {command[0]}", flush=True)
         return False
     if completed.returncode != 0:
         print(f"FAIL {check.name} (exit {completed.returncode})", flush=True)
@@ -208,6 +288,14 @@ def main() -> int:
     parser.add_argument("--group", action="append", choices=sorted(GROUPS), default=[])
     parser.add_argument("--check", nargs="+", choices=sorted(CHECKS), default=[])
     parser.add_argument("--all", action="store_true", help="run every group")
+    parser.add_argument("--root", type=Path, help="target repository root")
+    parser.add_argument("--package", help="target package import name")
+    parser.add_argument("--distribution", help="target distribution name for extras")
+    parser.add_argument(
+        "--package-dir", help="target package directory, relative to root"
+    )
+    parser.add_argument("--docs", help="target Sphinx source directory")
+    parser.add_argument("--examples", help="target examples directory")
     parser.add_argument("--fail-fast", action="store_true")
     args = parser.parse_args()
 
@@ -222,9 +310,10 @@ def main() -> int:
     if not names:
         parser.error("select at least one --group, --check, or --all")
 
+    ctx = load_context(args)
     failures: list[str] = []
     for name in names:
-        if not run_check(CHECKS[name]):
+        if not run_check(CHECKS[name], ctx):
             failures.append(name)
             if args.fail_fast:
                 break

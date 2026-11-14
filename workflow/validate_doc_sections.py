@@ -77,8 +77,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "manim_extensions"
+from _context import ROOT, SRC
+
 EXEMPTIONS_FILE = Path(__file__).resolve().parent / "doc_section_exemptions.json"
 
 SECTION_NAMES = (

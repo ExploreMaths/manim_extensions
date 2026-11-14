@@ -38,10 +38,9 @@ import types
 import typing
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))  # pin the repo package over any installed copy
-SRC = ROOT / "manim_extensions"
-DOCS = ROOT / "docs" / "source"
+from _context import DOCS, PACKAGE, ROOT, SRC
+
+sys.path.insert(0, str(SRC.parent))  # pin the local package over any installed copy
 SNAPSHOT_PATH = DOCS / "_extensions" / "api_documented.json"
 
 sys.path.insert(0, str(DOCS / "_extensions"))
@@ -89,7 +88,7 @@ OPTION_RE = re.compile(r"^\s+:(\w[\w-]*):\s*(.*)$")
 
 
 def iter_modules():
-    for info in pkgutil.walk_packages([str(SRC)], "manim_extensions."):
+    for info in pkgutil.walk_packages([str(SRC)], f"{PACKAGE}."):
         if any(part in DOCS_TOOLS for part in info.name.split(".")):
             continue
         if info.name.endswith(".__main__"):
@@ -196,7 +195,7 @@ def documented_keys():
             )
             continue
         mod = getattr(obj, "__module__", None)
-        if not mod or not mod.startswith("manim_extensions"):
+        if not mod or not mod.startswith(PACKAGE):
             mod = target.rsplit(".", 1)[0]
         keys.add(f"{mod}.{target.rsplit('.', 1)[-1]}")
     return keys, warnings

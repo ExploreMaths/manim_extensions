@@ -57,9 +57,7 @@ import docutils.nodes  # noqa: E402
 import docutils.parsers.rst  # noqa: E402
 import docutils.utils  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
-DOCS = ROOT / "docs" / "source"
-SRC = ROOT / "manim_extensions"
+from _context import DOCS, ROOT, SRC
 
 SKIP_DIR_PARTS = {"fontawesome", "__pycache__", ".git"}
 

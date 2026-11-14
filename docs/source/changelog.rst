@@ -93,6 +93,12 @@ v1.0.7 :bdg-warning-line:`In Development`
   environment once for every check that needs it. ``workflow/run_checks.py``
   is the local entry point, and the new ``validate_extras.py`` check rejects
   empty extras or an ``all`` extra that misses a module extra.
+* ``workflow/run_checks.py`` now accepts ``--root``, ``--package``,
+  ``--package-dir``, ``--docs`` and ``--examples``, or reads the same values
+  from ``[tool.manim-doc-checks]`` in the target ``pyproject.toml``.  A
+  repository can therefore vendor ``workflow/`` and ``scripts/`` and run the
+  checks against its own package and documentation tree without installing a
+  separate distribution.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

@@ -24,8 +24,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "manim_extensions"
+from _context import ROOT, SRC
 
 ARGS_HEADER_RE = re.compile(r"^(?P<indent>[ \t]*)Args:[ \t]*$")
 PARAM_LINE_RE = re.compile(

@@ -19,13 +19,13 @@ from __future__ import annotations
 import re
 import sys
 import tomllib
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from _context import DISTRIBUTION, ROOT
+
 PYPROJECT = ROOT / "pyproject.toml"
 TOOLING_EXTRAS = {"dev", "docs", "all"}
 
-SELF_REFERENCE = re.compile(r"^manim_extensions\[([^\]]+)\]$")
+SELF_REFERENCE = re.compile(rf"^{re.escape(DISTRIBUTION)}\[([^\]]+)\]$")
 
 
 def load_extras() -> dict[str, list[str]]:

@@ -34,7 +34,10 @@ import ast
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "workflow"))
+
+from _context import ROOT as REPO_ROOT  # noqa: E402
+from _context import SRC  # noqa: E402
 
 SKIP_DIR_PARTS = {"fontawesome", "__pycache__", "tests", "docs", "build"}
 
@@ -157,7 +160,7 @@ def scan_file(path: Path) -> list[dict]:
 
 
 def main() -> int:
-    package_dir = REPO_ROOT / "manim_extensions"
+    package_dir = SRC
     all_violations: list[dict] = []
     files_scanned = 0
 

@@ -17,7 +17,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from _context import DOCS, ROOT, SRC
 
 ANIMATION_PATTERNS = [
     re.compile(r"\bself\.play\s*\("),
@@ -190,8 +190,8 @@ def check_file(file_path: Path):
 
 def main():
     targets = [
-        ROOT / "manim_extensions",
-        ROOT / "docs",
+        SRC,
+        DOCS,
     ]
 
     py_files = []

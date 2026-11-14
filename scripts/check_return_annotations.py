@@ -25,7 +25,9 @@ import ast
 import sys
 from pathlib import Path
 
-PACKAGE = Path(__file__).resolve().parent.parent / "manim_extensions"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "workflow"))
+
+from _context import SRC as PACKAGE  # noqa: E402
 
 
 def _ignored_module(rel: str) -> bool:

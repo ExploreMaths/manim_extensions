@@ -34,8 +34,8 @@ import sys
 import traceback
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "workflow"))
+WORKFLOW = Path(__file__).resolve().parent
+sys.path.insert(0, str(WORKFLOW))
 
 # Mirror docs/source/_extensions/manim_image_patch.py: manim 0.21/0.22
 # builds its camera overlay with Image.fromarray(np.zeros((h, w)),

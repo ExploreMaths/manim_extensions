@@ -70,14 +70,19 @@ def parse_file_list(option_input: str) -> list[str]:
     return [token for token in option_input.replace(",", " ").split() if token]
 
 
-def resolve_asset(name: str, root: Path) -> ExampleAsset | None:
+def resolve_asset(
+    name: str, root: Path, asset_root: Path | None = None
+) -> ExampleAsset | None:
     """Find a sample file by bare name inside ``<root>/examples``."""
-    search_root = root / ASSET_DIR
+    search_root = asset_root if asset_root is not None else root / ASSET_DIR
     if not search_root.is_dir():
         return None
     for path in sorted(search_root.rglob(name)):
         if path.is_file():
-            rel_path = path.relative_to(root).as_posix()
+            try:
+                rel_path = path.relative_to(root).as_posix()
+            except ValueError:
+                rel_path = path.name
             return ExampleAsset(
                 name=name,
                 path=path,
@@ -88,9 +93,11 @@ def resolve_asset(name: str, root: Path) -> ExampleAsset | None:
     return None
 
 
-def resolve_assets(names: list[str], root: Path) -> list[ExampleAsset | None]:
+def resolve_assets(
+    names: list[str], root: Path, asset_root: Path | None = None
+) -> list[ExampleAsset | None]:
     """Resolve every requested file name, keeping unresolved ones as ``None``."""
-    return [resolve_asset(name, root) for name in names]
+    return [resolve_asset(name, root, asset_root) for name in names]
 
 
 def copy_assets(assets: list[ExampleAsset | None], workdir: Path) -> None:

@@ -27,7 +27,9 @@ import ast
 import sys
 from pathlib import Path
 
-PACKAGE_NAME = "manim_extensions"
+from _context import PACKAGE, PACKAGE_DIR
+
+PACKAGE_NAME = PACKAGE
 
 # Upstream package names of vendored subpackages -> vendored path parts.
 # Only converted when the importing file lives inside that subtree.
@@ -46,7 +48,7 @@ def file_module_parts(filepath: Path):
     ``["manim_extensions", "pymunk", "space"]``; for an ``__init__.py``
     it returns the parts of the package itself.
     """
-    rel = filepath.relative_to(Path(PACKAGE_NAME))
+    rel = filepath.relative_to(PACKAGE_DIR)
     parts = list(rel.parts[:-1])
     if rel.name != "__init__.py":
         parts.append(rel.stem)
@@ -55,7 +57,7 @@ def file_module_parts(filepath: Path):
 
 def package_parts_of_file(filepath: Path):
     """Parts of the package that the file belongs to."""
-    rel = filepath.relative_to(Path(PACKAGE_NAME))
+    rel = filepath.relative_to(PACKAGE_DIR)
     if rel.name == "__init__.py":
         return [PACKAGE_NAME, *list(rel.parts[:-1])]
     return [PACKAGE_NAME, *list(rel.parts[:-1])]
@@ -74,7 +76,7 @@ def resolve_target(module: str, filepath: Path):
     if top in VENDORED_ALIASES:
         alias_root = VENDORED_ALIASES[top]
         # Only convert when the importing file is inside that subtree.
-        rel_parts = filepath.relative_to(Path(PACKAGE_NAME)).parts
+        rel_parts = filepath.relative_to(PACKAGE_DIR).parts
         if rel_parts[: len(alias_root)] == alias_root:
             return (PACKAGE_NAME, *alias_root, *module.split(".")[1:]), top
     return None, None
@@ -266,7 +268,7 @@ def main():
     )
     args = parser.parse_args()
 
-    root = Path(PACKAGE_NAME)
+    root = PACKAGE_DIR
     if not root.is_dir():
         print(f"ERROR: {PACKAGE_NAME}/ package directory not found.")
         return 1

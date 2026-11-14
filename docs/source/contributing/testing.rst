@@ -40,6 +40,35 @@ five CI jobs in ``.github/workflows/validate.yml`` by what they need installed;
 each row below belongs to one of those groups. Run a whole group with
 ``python workflow/run_checks.py --group <static|package|layout|lint|audit>``.
 
+The entry point defaults to this repository's layout.  A repository that
+vendors ``workflow/`` and ``scripts/`` can point it at its own package and
+documentation tree:
+
+.. code-block:: bash
+
+    python workflow/run_checks.py \
+        --root ../my-project \
+        --package my_pkg \
+        --docs doc/source \
+        --examples assets \
+        --group static
+
+``--package-dir`` is available for a ``src/`` layout.  Instead of passing
+flags on every run, the target can declare its layout in ``pyproject.toml``:
+
+.. code-block:: toml
+
+    [tool.manim-doc-checks]
+    package = "my_pkg"             # import name
+    distribution = "my-pkg"        # distribution name used by ``all``
+    package-dir = "src/my_pkg"     # optional; defaults to ``package``
+    docs = "doc/source"
+    examples = "assets"
+
+A fresh clone of this repository needs no flags: ``python
+workflow/run_checks.py --group static`` scans ``manim_extensions/``,
+``docs/source/`` and ``examples/`` as before.
+
 .. list-table::
    :header-rows: 1
 

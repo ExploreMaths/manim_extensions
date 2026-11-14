@@ -36,7 +36,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from _context import ROOT, SRC
+
 EXEMPTIONS_FILE = Path(__file__).resolve().parent / "param_docs_exemptions.json"
 
 SKIP_FILES = {"__init__.py"}
@@ -251,7 +252,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    targets = args.targets or [str(ROOT / "manim_extensions")]
+    targets = args.targets or [str(SRC)]
     py_files = [fp for fp in collect_files(targets) if fp.name not in SKIP_FILES]
 
     all_issues = {}

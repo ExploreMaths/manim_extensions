@@ -22,10 +22,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "docs" / "source" / "_extensions"))
-
-from manim_files import parse_file_list, resolve_asset  # noqa: E402
+from _context import DOCS, EXAMPLES, ROOT, SRC
+from _example_assets import parse_file_list, resolve_asset
 
 DIRECTIVE_RE = re.compile(r"^(\s*)\.\. (manim|nbcell)::")
 OPTION_RE = re.compile(r"^\s*:([\w-]+):\s*(.*)$")
@@ -62,11 +60,11 @@ WRITE_CALLS = ("to_csv", "to_json", "to_excel", "imsave", "savefig", "savetxt")
 
 def iter_sources():
     """Yield the tracked files that can hold manim/nbcell examples."""
-    for path in sorted((ROOT / "docs" / "source").rglob("*.rst")):
+    for path in sorted(DOCS.rglob("*.rst")):
         if "_build" in path.parts or "_static" in path.parts:
             continue
         yield path
-    for path in sorted((ROOT / "manim_extensions").rglob("*.py")):
+    for path in sorted(SRC.rglob("*.py")):
         if "__pycache__" in path.parts:
             continue
         yield path
@@ -125,7 +123,7 @@ def quoted_names(body):
             continue
         if value.lower().rsplit(".", 1)[-1] not in DATA_EXTENSIONS:
             continue
-        if "/" in value or resolve_asset(Path(value).name, ROOT) is not None:
+        if "/" in value or resolve_asset(Path(value).name, ROOT, EXAMPLES) is not None:
             names.append(value)
     return names
 
@@ -166,7 +164,7 @@ def check_file(path):
                     "and use its bare name"
                 )
         for name in declared:
-            if resolve_asset(name, ROOT) is None:
+            if resolve_asset(name, ROOT, EXAMPLES) is None:
                 errors.append(
                     f"{rel}:{lineno} unknown-asset: ':files:' entry {name!r} "
                     "does not exist under examples/"

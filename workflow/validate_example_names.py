@@ -21,8 +21,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "workflow"))
+WORKFLOW = Path(__file__).resolve().parent
+sys.path.insert(0, str(WORKFLOW))
 
 from render_doc_examples import extract_blocks, iter_source_files  # noqa: E402
 

@@ -24,6 +24,8 @@ import importlib
 import sys
 from pathlib import Path
 
+from _context import DOCS, PACKAGE_DIR, ROOT
+
 STAR_IMPORT_MODULES = ("manim",)
 
 
@@ -195,7 +197,7 @@ def main():
     )
     args = parser.parse_args()
 
-    root = Path(".")
+    root = ROOT
     if args.paths:
         targets = []
         for p in args.paths:
@@ -206,8 +208,8 @@ def main():
                 targets.append(path)
     else:
         targets = []
-        for base in ("manim_extensions", "tests", "workflow", "docs"):
-            b = Path(base)
+        for base in (PACKAGE_DIR, ROOT / "tests", ROOT / "workflow", DOCS):
+            b = base
             if b.exists():
                 targets.extend(sorted(b.rglob("*.py")))
 

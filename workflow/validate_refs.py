@@ -44,14 +44,13 @@ import importlib
 import json
 import re
 import sys
+import tempfile
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent
-SRC = ROOT / "manim_extensions"
-DOCS = ROOT / "docs"
+from _context import DOCS, ROOT, SRC
 
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+if str(SRC.parent) not in sys.path:
+    sys.path.insert(0, str(SRC.parent))
 
 REF_PATTERN = re.compile(r"(:(?:class|meth|func|attr|mod|exc|obj):)`([^`]+)`")
 
@@ -818,8 +817,14 @@ def main() -> int:
     else:
         print("PASS  cross-refs")
 
-    # Still write the JSON report for downstream tooling.
-    json_file = ROOT / "workflow" / "_refs_report.json"
+    # Still write the JSON report for downstream tooling.  A vendored copy
+    # may live in a project without a ``workflow/`` directory, so fall back
+    # to the system temporary directory.
+    report_dir = ROOT / "workflow"
+    if not report_dir.is_dir():
+        report_dir = Path(tempfile.gettempdir()) / "manim-doc-checks"
+    report_dir.mkdir(parents=True, exist_ok=True)
+    json_file = report_dir / "_refs_report.json"
     with open(json_file, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2, default=str)
 

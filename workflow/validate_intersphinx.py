@@ -24,8 +24,9 @@ Four rules are enforced on every explicit Python cross-reference (roles
    context, which silently produces dead links in autodoc output.
 
 3. **Intersphinx coverage.** A reference whose top-level package is not part
-   of this project must be covered by ``intersphinx_mapping`` in
-   ``docs/source/conf.py``; otherwise it renders as plain text with no link
+   of this project must be covered by ``intersphinx_mapping`` in the
+   configured Sphinx ``conf.py``; otherwise it renders as plain text with no
+   link
    (the defect that prompted adding ``pymunk``, ``scipy``, ``scikit-learn``,
    ``segno`` and ``typing_extensions``).
 
@@ -62,8 +63,9 @@ import urllib.request
 import zlib
 from collections import OrderedDict
 
-ROOT = "manim_extensions"
-CONF = "docs/source/conf.py"
+from _context import DOCS, PACKAGE, SRC
+
+CONF = DOCS / "conf.py"
 
 # Inventories are fetched once per run and cached under this directory so
 # repeat local runs and CI retries do not re-download every package.
@@ -229,14 +231,14 @@ def find_xrefs(text: str):
 
 
 def main() -> int:
-    allowed = intersphinx_packages() | PY_STDLIB | {"manim_extensions"}
+    allowed = intersphinx_packages() | PY_STDLIB | {PACKAGE}
     no_tilde: "OrderedDict[str, list]" = OrderedDict()  # any target w/o ~
     not_fq: "OrderedDict[str, list]" = OrderedDict()  # bare name w/o module path
     missing_int: "OrderedDict[str, list]" = OrderedDict()  # unmapped external lib
     not_registered: "OrderedDict[str, list]" = OrderedDict()  # absent from inventory
 
-    py_files = glob.glob(f"{ROOT}/**/*.py", recursive=True)
-    rst_files = glob.glob("docs/source/**/*.rst", recursive=True)
+    py_files = glob.glob(f"{SRC}/**/*.py", recursive=True)
+    rst_files = glob.glob(f"{DOCS}/**/*.rst", recursive=True)
 
     # External inventories keyed by the package name a reference's top-level
     # segment uses (after INTERSPHINX_PKG_ALIAS mapping).
@@ -286,7 +288,7 @@ def main() -> int:
         # Internal (manim_extensions) and stdlib references are resolved
         # elsewhere (validate_refs / python intersphinx), so only mapped
         # third-party packages are checked here.
-        if top in PY_STDLIB or top == "manim_extensions":
+        if top in PY_STDLIB or top == PACKAGE:
             return
         inv = _inventory_for(tgt)
         if inv is not None and tgt not in inv:

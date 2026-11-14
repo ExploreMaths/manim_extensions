@@ -35,7 +35,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from _context import ROOT
 
 # REUSE-IgnoreStart
 COPYRIGHT_RE = re.compile(r"^#\s*SPDX-FileCopyrightText:\s*(.*)$")

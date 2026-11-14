@@ -36,21 +36,27 @@ import time
 import traceback
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-DOCS = ROOT / "docs" / "source"
+from _context import DOCS, EXAMPLES, ROOT, SRC
+
 sys.path.insert(0, str(DOCS / "_extensions"))
 
-from manim_files import (  # noqa: E402
-    copy_assets,
-    example_digest,
-    parse_file_list,
-    resolve_assets,
-)
+try:
+    from manim_files import (  # noqa: E402
+        copy_assets,
+        example_digest,
+        parse_file_list,
+        resolve_assets,
+    )
+except ImportError:  # vendored workflow without the docs extension
+    from _example_assets import (  # noqa: E402
+        copy_assets,
+        example_digest,
+        parse_file_list,
+        resolve_assets,
+    )
 
 # Ensure the source package shadows any stale installed copy in workers.
-sys.path.insert(0, str(ROOT))
-
-SRC = ROOT / "manim_extensions"
+sys.path.insert(0, str(SRC.parent))
 
 # Same exclusions as the docs build: doc-build tooling and testing helpers
 # are never autodoc'd, so their example blocks never render in the docs.
@@ -222,7 +228,7 @@ def extract_blocks(path: Path):
         blocks.append(
             {
                 "class_name": class_name,
-                "assets": resolve_assets(requested, ROOT),
+                "assets": resolve_assets(requested, ROOT, EXAMPLES),
                 "save_last_frame": "save_last_frame" in options,
                 "save_as_gif": "save_as_gif" in options,
                 "quality": QUALITY_MAP.get(options.get("quality", "")),
@@ -438,7 +444,7 @@ def main() -> int:
         link = workdir / "examples"
         if not link.exists():
             try:
-                link.symlink_to(ROOT / "examples")
+                link.symlink_to(EXAMPLES)
             except OSError:
                 pass
         tasks.append(
