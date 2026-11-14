@@ -91,7 +91,7 @@ Renderer classes:
   a faster renderer based on a custom shader that can render large meshes;
   at the moment it is rendering-only.
 
-The bundled ``delaunay`` package provides Delaunay-triangulation helpers:
+The bundled :mod:`~manim_extensions.meshes.delaunay` package provides Delaunay-triangulation helpers:
 Voronoi diagrams, checking the Delaunay criterion, and a divide-and-conquer
 triangulation algorithm.
 
