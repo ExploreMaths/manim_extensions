@@ -20,7 +20,7 @@ rigid mechanics, and electromagnetism in a form that is convenient for lecture
 and demonstration scenes.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.physics`` subpackage.
+:mod:`~manim_extensions.physics` subpackage.
 
 Features
 --------
@@ -36,7 +36,7 @@ Usage
 
 Upstream distributed ``manim-physics`` on PyPI (and advised users not to clone
 the development repository directly); here it is bundled inside
-``manim_extensions.physics``. Import the modules, then construct and add the
+:mod:`~manim_extensions.physics`. Import the modules, then construct and add the
 mobjects like any other Manim object.
 
 Optics

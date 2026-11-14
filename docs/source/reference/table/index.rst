@@ -19,7 +19,7 @@ Community Edition. It supports animated row/column insertion and deletion,
 cell value updates, resizing, and styling.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.table`` subpackage.
+:mod:`~manim_extensions.table` subpackage.
 
 Features
 --------

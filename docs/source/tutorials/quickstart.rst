@@ -51,7 +51,7 @@ Annotated mobjects
 
 :func:`~manim_extensions.geometry.VMobjectInt` and
 :class:`~manim_extensions.mobjects.LabelDot` are useful when you want to label
-key points or show intersections.  ``VMobjectInt`` works with any two
+key points or show intersections.  :func:`~manim_extensions.geometry.VMobjectInt` works with any two
 VMobjects — circles, lines, arcs, function graphs, text, and so on:
 
 .. manim:: QuickstartAnnotatedScene

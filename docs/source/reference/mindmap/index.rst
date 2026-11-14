@@ -19,7 +19,7 @@ MindMap
 
 :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap` brings mind-map, timeline, and catalog / organisation-chart
 diagrams to Manim. It is bundled inside ``manim_extensions`` as the
-``manim_extensions.mindmap`` subpackage.
+:mod:`~manim_extensions.mindmap` subpackage.
 
 Features
 --------
@@ -46,7 +46,7 @@ Usage
 -----
 
 Upstream shipped ``manim-mindmap`` on PyPI; here it is bundled inside
-``manim_extensions.mindmap``. The layout engine is a linear-time tidy-tree
+:mod:`~manim_extensions.mindmap`. The layout engine is a linear-time tidy-tree
 implementation of Walker's algorithm, kept fully separate from the node
 mobjects so the animation layer can be customised.
 

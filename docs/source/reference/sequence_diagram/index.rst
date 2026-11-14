@@ -20,7 +20,7 @@ It is meant for software architecture explanations, API flow demos, and
 message-order visualisations.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.sequence_diagram`` subpackage.
+:mod:`~manim_extensions.sequence_diagram` subpackage.
 
 Features
 --------
@@ -36,7 +36,7 @@ Usage
 
 Upstream shipped ``manim-sequence-diagram`` as a Manim plugin (enabled in
 ``manim.cfg`` under ``[CLI]`` with ``plugins = manim_sequence_diagram``); here
-it is bundled directly inside ``manim_extensions.sequence_diagram``. The API is
+it is bundled directly inside :mod:`~manim_extensions.sequence_diagram`. The API is
 entirely Python-based — upstream notes that a dedicated sequence-diagram
 syntax may be added later.
 

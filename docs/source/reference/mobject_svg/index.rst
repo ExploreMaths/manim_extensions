@@ -21,7 +21,7 @@ method on ``VMobject`` and ``VGroup``, so any vectorised mobject can be
 exported as a standalone SVG.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.mobject_svg`` package. ``pycairo`` is the only external
+:mod:`~manim_extensions.mobject_svg` package. ``pycairo`` is the only external
 dependency and manim already requires it, so no extra is declared.
 
 :mod:`~manim_extensions.svg_animations` uses it to stream frames as SVG

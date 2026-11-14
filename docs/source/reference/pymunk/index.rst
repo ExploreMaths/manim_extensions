@@ -20,7 +20,7 @@ engine with Manim. It provides a physics :class:`~manim_extensions.physics.rigid
 constraint and mobject classes (springs, pin joints, gears, etc.).
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.pymunk`` subpackage.
+:mod:`~manim_extensions.pymunk` subpackage.
 
 .. inheritance-diagram:: manim_extensions.pymunk.custom_mobjects.apple.Apple manim_extensions.pymunk.custom_mobjects.gear.Gear manim_extensions.pymunk.space.SpaceScene.SpaceScene manim_extensions.pymunk.constraints.constraint.VConstraint manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring manim_extensions.pymunk.constraints.VGearJoint.VGearJoint manim_extensions.pymunk.constraints.VGrooveJoint.VGrooveJoint manim_extensions.pymunk.constraints.VPinJoint.VPinJoint manim_extensions.pymunk.constraints.VPivotJoint.VPivotJoint manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint manim_extensions.pymunk.space.VSpace.VSpace manim_extensions.pymunk.custom_mobjects.v_spring.VSpring
    :parts: 1
@@ -42,7 +42,7 @@ Usage
 -----
 
 Upstream shipped ``manim-pymunk`` on PyPI; here it is bundled inside
-``manim_extensions.pymunk``. Write a scene subclassing
+:mod:`~manim_extensions.pymunk`. Write a scene subclassing
 :class:`~manim_extensions.pymunk.space.SpaceScene.SpaceScene`, build ordinary
 Manim mobjects, register them as static or dynamic bodies, optionally set
 collision filters and constraints, and play — the scene steps the Pymunk space

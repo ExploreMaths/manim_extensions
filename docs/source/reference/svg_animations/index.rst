@@ -21,7 +21,7 @@ browser. It is a plugin for Manim Community Edition that renders SVG
 animations directly from Python.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.svg_animations`` subpackage.
+:mod:`~manim_extensions.svg_animations` subpackage.
 
 .. important::
 

@@ -20,7 +20,7 @@ provides algorithmic objects such as nodes, arrays, and queues that can be used
 directly in classroom or tutorial scenes.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.algorithm`` subpackage.
+:mod:`~manim_extensions.algorithm` subpackage.
 
 Features
 --------

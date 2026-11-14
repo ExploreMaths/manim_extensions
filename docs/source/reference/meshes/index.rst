@@ -20,7 +20,7 @@ rendering polygonal and triangular structures, especially for educational
 visualisations of geometry, triangulation, and topology.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.meshes`` subpackage.
+:mod:`~manim_extensions.meshes` subpackage.
 
 Features
 --------

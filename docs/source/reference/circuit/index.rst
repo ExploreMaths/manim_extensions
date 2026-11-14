@@ -19,7 +19,7 @@ Circuit
 basic circuit diagrams can be built and animated directly inside a scene.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.circuit`` subpackage.
+:mod:`~manim_extensions.circuit` subpackage.
 
 Features
 --------

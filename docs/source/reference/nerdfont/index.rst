@@ -8,7 +8,7 @@ Nerd Font Icons
 
 .. vendored-status:: Alexander-Nasuta/manim-nerdfont-icons
 
-``manim_extensions.nerdfont`` is a vendored copy of
+:mod:`~manim_extensions.nerdfont` is a vendored copy of
 ``manim-nerdfont-icons`` (see the vendored-status directive above). It
 provides icons from the `Nerd Fonts <https://www.nerdfonts.com/>`_ project
 for use in Manim. Manim can use any font in principle, and Nerd Font icons

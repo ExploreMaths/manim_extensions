@@ -20,7 +20,7 @@ mechanisms. The geometry is based on the `tec-science involute gear article
 <https://www.tec-science.com/mechanical-power-transmission/involute-gear/geometry-of-involute-gears/>`_.
 The involute geometry computations use SciPy.
 
-The code is bundled inside ``manim_extensions`` as the ``manim_extensions.gearbox``
+The code is bundled inside ``manim_extensions`` as the :mod:`~manim_extensions.gearbox`
 subpackage.
 
 Features

@@ -19,7 +19,7 @@ QR Codes
 icon can be placed in the centre of the code.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.qr_codes`` subpackage.
+:mod:`~manim_extensions.qr_codes` subpackage.
 
 .. important::
 

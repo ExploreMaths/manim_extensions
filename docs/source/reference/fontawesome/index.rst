@@ -20,7 +20,7 @@ into Manim. It bundles 2 000+ SVG icons in three styles — **brand**,
 :class:`~manim.mobject.svg.svg_mobject.SVGMobject` instances.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.fontawesome`` subpackage.
+:mod:`~manim_extensions.fontawesome` subpackage.
 
 Usage
 -----
@@ -44,9 +44,9 @@ icons — attribute access returns a ready-made
 
 Available styles:
 
-- ``solid`` – solid (filled) icons (Font Awesome ``fas`` set).
-- ``regular`` – regular (outline) icons (Font Awesome ``far`` set).
-- ``brand`` – brand / logo icons (Font Awesome ``fab`` set).
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.solid` – solid (filled) icons (Font Awesome ``fas`` set).
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.regular` – regular (outline) icons (Font Awesome ``far`` set).
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.brand` – brand / logo icons (Font Awesome ``fab`` set).
 
 Any bundled icon name works as an attribute on its style namespace — for
 example, the regular-style angry face:

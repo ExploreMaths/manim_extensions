@@ -24,7 +24,7 @@ Manim's ``TexTemplate`` used behind the scenes. It targets Manim 0.17.0 and
 above, which renders SVGs through the ``svgelements`` library.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.tikz`` subpackage.
+:mod:`~manim_extensions.tikz` subpackage.
 
 Features
 --------

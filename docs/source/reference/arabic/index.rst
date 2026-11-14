@@ -20,7 +20,7 @@ take care of the necessary transformations so that Arabic text displays
 correctly in Manim scenes.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.arabic`` subpackage.
+:mod:`~manim_extensions.arabic` subpackage.
 
 Features
 --------

@@ -184,6 +184,15 @@ Docstrings and ``.rst`` files use Sphinx cross-reference roles to link to other 
 Short targets such as ``__mob_index`` or the short name ``scale`` are best
 avoided (``validate_refs.py`` flags them).
 
+* **Module names in prose are cross-references.** Write
+  :mod:`~manim_extensions.chemistry` rather than ``chemistry``; an explicit
+  role keeps the link independent of the auto-linker's ambiguity rules. The
+  same applies to module names that collide with a same-named submodule
+  (:mod:`~manim_extensions.compass`, :mod:`~manim_extensions.mindmap`,
+  :mod:`~manim_extensions.table`, :mod:`~manim_extensions.tikz`,
+  :mod:`~manim_extensions.weighted_line`): point
+  the role at the top-level module.
+
 * **Python builtins are written bare.** A single-identifier target with no module prefix (e.g. the builtin exception ``NotImplementedError``) gets no ``~``: it has no prefix to abbreviate, and the python intersphinx inventory registers builtins by their bare name, so a ``~`` in front of the target resolves to nothing. Write the role without the tilde instead. The ``validate_intersphinx.py`` checker enforces both tilde rules in CI (``validate-intersphinx``).
 
 * **API names should be cross-references, not inline code.** Back-ticked names that look like APIs (e.g. ``add_row``) are better written as proper roles. Built-in types (``int``, ``str``, ``list``, ...) and common exceptions are exempt.
@@ -194,7 +203,7 @@ avoided (``validate_refs.py`` flags them).
 
   Currently mapped external libraries: ``python``, ``numpy``, ``manim``, ``pillow``, ``pymunk``, ``scikit-learn``, ``scipy``, ``segno``, ``typing_extensions``. Note the ``scikit-learn`` mapping key corresponds to the ``sklearn`` import name.
 
-* **Ambiguous names shouldn't appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as ``manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear`` and ``manim_extensions.pymunk.custom_mobjects.gear.Gear``), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Where convenient, disambiguate by writing an explicit role with the full module path:
+* **Ambiguous names shouldn't appear bare.** If a back-ticked name matches several project classes (e.g. the class *Gear* exists both as :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` and :class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear`), the docs extension cannot auto-link it — it stays a plain code span and the reader cannot tell which object is meant. Where convenient, disambiguate by writing an explicit role with the full module path:
 
   .. code-block:: rst
 

@@ -18,7 +18,7 @@ Compass
 :class:`~manim_extensions.compass.compass.compass.Compass` provides compass-and-straightedge construction tools for
 Manim. It includes :class:`~manim_extensions.compass.compass.compass.Compass`, :class:`~manim_extensions.compass.compass.ruler.Ruler` and :class:`~manim_extensions.compass.compass.pencil.Pencil` mobjects plus matching
 animation classes. The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.compass`` subpackage.
+:mod:`~manim_extensions.compass` subpackage.
 
 Features
 --------

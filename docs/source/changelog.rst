@@ -4,7 +4,7 @@
 Changelog
 =========
 
-v1.0.7 :bdg-warning-line:`In Development`
+v1.0.7 :bdg-primary-line:`In Development`
 -----------------------------------------
 
 **Added**
@@ -33,7 +33,7 @@ v1.0.7 :bdg-warning-line:`In Development`
 
 * Constant entries no longer render as empty blocks: re-exported constants
   carry a ``#:`` docstring, and ``autoall`` adds a one-line ``Value:``
-  summary (for example, ``SYMBOLS_UNICODE`` is a ``dict`` with 10,083
+  summary (for example, :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE` is a ``dict`` with 10,083
   entries) instead of hiding the value entirely.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
@@ -81,10 +81,17 @@ v1.0.7 :bdg-warning-line:`In Development`
 * Documentation examples print structured parser and coordinate results with
   ``pprint``, so nested dictionaries and lists wrap onto readable lines
   instead of one long line.
-* Removed the 14 empty per-module extras (``algorithm``, ``arabic``,
-  ``circuit``, ``compass``, ``data_structures``, ``economics``,
-  ``fontawesome``, ``gearbox``, ``mindmap``, ``mobject_svg``,
-  ``sequence_diagram``, ``table``, ``tikz``, ``weighted_line``). Those
+* Module references across the changelog and reference pages now use
+  explicit ``:mod:`` roles instead of relying on the auto-linker, so they
+  stay linked when a module name also names a submodule.
+* Removed the 14 empty per-module extras
+  (:mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.arabic`,
+  :mod:`~manim_extensions.circuit`, :mod:`~manim_extensions.compass`,
+  :mod:`~manim_extensions.data_structures`, :mod:`~manim_extensions.economics`,
+  :mod:`~manim_extensions.fontawesome`, :mod:`~manim_extensions.gearbox`,
+  :mod:`~manim_extensions.mindmap`, :mod:`~manim_extensions.mobject_svg`,
+  :mod:`~manim_extensions.sequence_diagram`, :mod:`~manim_extensions.table`,
+  :mod:`~manim_extensions.tikz`, :mod:`~manim_extensions.weighted_line`). Those
   modules need no third-party packages and install with the base package;
   ``all`` now lists only extras that actually declare dependencies, and the
   installation page documents the reduced set.
@@ -115,7 +122,7 @@ v1.0.6 :bdg-success-line:`Latest`
   ``create_arabic_*`` helper functions, for shaping and rendering Arabic
   text.
 * Added :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`
-  to ``compass`` for single-ruler constructions (one ruler, one pencil, with
+  to :mod:`~manim_extensions.compass` for single-ruler constructions (one ruler, one pencil, with
   a ``draw_line_with_pencil`` method).
 * Added :class:`~manim_extensions.scenes.ConstantStrokeWidthScene`, which
   keeps stroke width constant under camera zoom, and accepted
@@ -152,10 +159,10 @@ v1.0.6 :bdg-success-line:`Latest`
   :func:`~manim_extensions.meshes.templates.create_grid` building a tesseract
   (16 vertices, 24 square faces, 32 edges).
 * Completed the 3D grid templates and mesh flipping for the vendored mesh
-  package, so ``create_grid`` covers the cube and tetrahedral layouts and
+  package, so :func:`~manim_extensions.meshes.templates.create_grid` covers the cube and tetrahedral layouts and
   ``apply_flip`` works on the 3D meshes it produces.
 * Implemented the Rubik's Cube facelet state helpers
-  (``get_cubie_colors_from_state`` and ``get_all_states``), which previously
+  (:func:`~manim_extensions.rubikscube.cube_utils.get_cubie_colors_from_state` and :func:`~manim_extensions.rubikscube.cube_utils.get_all_states`), which previously
   returned ``None``: states now round-trip through
   :meth:`~manim_extensions.rubikscube.cube.RubiksCube.set_state` and malformed input raises ``ValueError``.
 * Added the ``manim-chemistry`` and ``manim-rubikscube`` console commands.
@@ -180,7 +187,7 @@ v1.0.6 :bdg-success-line:`Latest`
   :class:`~manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject`
   works on Python 3.13 and later without ``--ignore-requires-python``.
 * Re-synced 17 vendored packages to their latest upstream commits
-  (``compass`` merged
+  (:mod:`~manim_extensions.compass` merged
   :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene`);
   each page records its upstream repository, sync commit, and local patches
   in ``VENDORED.md``, and the old sync script is gone in favour of manual,
@@ -210,7 +217,7 @@ v1.0.6 :bdg-success-line:`Latest`
   from appending a bogus ``cm`` unit to its threshold text, and scaled its
   doc example so the figure fills the frame.
 * Refined ``Any`` annotations across the package to concrete types.
-* Moved the vendored ``nerdfont`` package from utils to the top level
+* Moved the vendored :mod:`~manim_extensions.nerdfont` package from utils to the top level
   and updated the remaining path references.
 
 **Fixed**
@@ -225,17 +232,17 @@ v1.0.6 :bdg-success-line:`Latest`
   and :meth:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_string`,
   which documented taking the whole MOL block but only accepted its
   pre-split lines.
-* Fixed the ``chemistry`` component mobjects:
+* Fixed the :mod:`~manim_extensions.chemistry` component mobjects:
   :class:`~manim_extensions.chemistry.future_classes.future_classes.Element`
   no longer crashes when subelectron holes are requested without
   electrons, and
   :meth:`~manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals`
   now uses the keyword form of ``rotate`` that current Manim accepts.
-* Fixed the dangling :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` cross-reference in the ``create_grid``
+* Fixed the dangling :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh` cross-reference in the :func:`~manim_extensions.meshes.templates.create_grid`
   docstring.
 * Fixed the type-annotation and doc-example checks that the new ManimML
   surface exposed.
-* Fixed the ``m.`` references left behind in the ``qr_codes`` doc examples.
+* Fixed the ``m.`` references left behind in the :mod:`~manim_extensions.qr_codes` doc examples.
 * Fixed bare direction constants in prose: they now either resolve to
   ``manim.constants`` or stay literal, instead of mis-linking the DOWN constant.
 * Fixed generic numpydoc words being auto-linked as types (``Parameters``
@@ -261,9 +268,9 @@ v1.0.6 :bdg-success-line:`Latest`
 
 **Documentation and hygiene**
 
-* Reorganised the reference manual package by package: ``chemistry``,
-  ``automata``, ``algorithm``, ``data_structures``, ``economics``,
-  ``pymunk``, ``mindmap``, ``machine_learning``, ``table``, and the rest
+* Reorganised the reference manual package by package: :mod:`~manim_extensions.chemistry`,
+  :mod:`~manim_extensions.automata`, :mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.data_structures`, :mod:`~manim_extensions.economics`,
+  :mod:`~manim_extensions.pymunk`, :mod:`~manim_extensions.mindmap`, :mod:`~manim_extensions.machine_learning`, :mod:`~manim_extensions.table`, and the rest
   now use category pages instead of one flat page per module.
 * Folded each vendored package's upstream README and Read the Docs content
   into its Reference Manual page and led with API sections instead of a
@@ -370,20 +377,20 @@ v1.0.5
   surface change (added / removed functions, methods, classes, and
   parameters), and opens a pull request for review.
 * Bundled 10 additional third-party Manim plugins as subpackages:
-  ``arabic``, ``chemistry``, ``economics``, ``fontawesome``,
-  ``machine_learning`` (ManimML), ``pymunk``, ``qr_codes``,
-  ``svg_animations``, ``table``, and ``weighted_line`` — plus
+  :mod:`~manim_extensions.arabic`, :mod:`~manim_extensions.chemistry`, :mod:`~manim_extensions.economics`, :mod:`~manim_extensions.fontawesome`,
+  :mod:`~manim_extensions.machine_learning` (ManimML), :mod:`~manim_extensions.pymunk`, :mod:`~manim_extensions.qr_codes`,
+  :mod:`~manim_extensions.svg_animations`, :mod:`~manim_extensions.table`, and :mod:`~manim_extensions.weighted_line` — plus
   ``manim-nerdfont-icons`` 1.0.2, vendored as
-  ``manim_extensions.nerdfont`` because its PyPI metadata pins
+  :mod:`~manim_extensions.nerdfont` because its PyPI metadata pins
   ``manim>=0.19,<0.20`` (code and font licensed separately, font shipped
   as package data).
 * Added API reference documentation for every bundled package, with a
   single consolidated inheritance graph in the Reference Manual.
-* Added a same-named optional extra for every module (``automata``,
-  ``chemistry``, ``physics``, ``rubikscube``, ``meshes``, ``video``,
+* Added a same-named optional extra for every module (:mod:`~manim_extensions.automata`,
+  :mod:`~manim_extensions.chemistry`, :mod:`~manim_extensions.physics`, :mod:`~manim_extensions.rubikscube`, :mod:`~manim_extensions.meshes`, ``video``,
   ``qr``, ``svg``, ``ml``, ...) and an ``all`` extra; the base install
   is now just ``manim`` + ``numpy``, and every heavier dependency is
-  lazy-imported via the new ``manim_extensions.utils.deps.require``
+  lazy-imported via the new :func:`~manim_extensions.utils.deps.require`
   helper whose error names the exact ``pip install manim_extensions[...]``
   command. A subprocess-based test blocks all optional packages via a
   meta-path finder and asserts the base package and all 250+ submodules
@@ -421,10 +428,10 @@ v1.0.5
   ``tex_to_color_map`` to ``None`` instead of a shared mutable ``{}``,
   so instances no longer risk mutating each other's colour map.
 * Raised the minimum Manim version from ``>=0.19.1`` to ``>=0.21.0`` and
-  migrated the ``table`` module from ``manimlib`` (ManimGL) to Manim
+  migrated the :mod:`~manim_extensions.table` module from ``manimlib`` (ManimGL) to Manim
   Community Edition.
 * Replaced the type-specific geometry intersection helpers with a single
-  generic ``VMobjectInt``.
+  generic :func:`~manim_extensions.geometry.VMobjectInt`.
 * Converted all intra-package absolute imports to relative imports, and
   banned ``from manim import *`` outside ``__init__.py`` across the whole
   repository (165 files converted to explicit imports; the import-style
@@ -454,7 +461,7 @@ v1.0.5
 * Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
   class and the root ``__init__.py`` importing a nonexistent ``ml``
   module — both broke ``import manim_extensions``.
-* Fixed manim's ``utils`` namespace shadowing the package's own utils
+* Fixed Manim's utils namespace shadowing the package's own utils
   submodules.
 * Fixed machine-learning empty-animation groups being unplayable on
   manim >= 0.21, and the pymunk 7 collision-API /
@@ -529,8 +536,8 @@ v1.0.4
 * Updated Python version requirement to ``>=3.11`` across ``pyproject.toml``,
   GitHub Actions workflow, and documentation.
 * Added comprehensive parameter documentation (``Parameters`` sections) to
-  all public classes across ``algorithm``, ``circuit``, ``compass``, ``meshes``,
-  ``mindmap``, ``physics``, and ``rubikscube`` modules, documenting every
+  all public classes across :mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.circuit`, :mod:`~manim_extensions.compass`, :mod:`~manim_extensions.meshes`,
+  :mod:`~manim_extensions.mindmap`, :mod:`~manim_extensions.physics`, and :mod:`~manim_extensions.rubikscube` modules, documenting every
   ``__init__`` parameter in class-level docstrings.
 * Added ``validate.yml`` GitHub Actions workflow with three separate jobs
   (``validate-manim-directives``, ``validate-param-docs``, ``validate-refs``)
@@ -556,7 +563,7 @@ v1.0.4
 **Removed**
 
 * Deleted ``Code``, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
-  from the ``algorithm`` module (unused code block classes).
+  from the :mod:`~manim_extensions.algorithm` module (unused code block classes).
 * Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
   (was only used by the deleted ``Code`` class).
 
@@ -570,7 +577,7 @@ v1.0.4
   by adding PDA-specific default templates and defensive ``.get()`` lookups.
 * Fixed GitHub Actions workflow paths for ``validate_param_docs.py``
   and ``validate_directives.py`` (added ``workflow/`` prefix).
-* Fixed Sphinx cross-references in ``circuit`` and ``mindmap`` modules
+* Fixed Sphinx cross-references in :mod:`~manim_extensions.circuit` and :mod:`~manim_extensions.mindmap` modules
   (LEFT, DOWN, and :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight`
   inline code to proper ``:class:``/``:attr:`` cross-references).
 * Fixed CI test failures for missing ``xmltodict``, invalid escape sequences
@@ -666,4 +673,4 @@ v1.0.0
 
 **Added**
 
-* Initial release with ``mobjects``, ``geometry`` and ``animations`` modules.
+* Initial release with :mod:`~manim_extensions.mobjects`, :mod:`~manim_extensions.geometry` and :mod:`~manim_extensions.animations` modules.

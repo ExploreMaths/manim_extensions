@@ -22,7 +22,7 @@ put weightings on graph edges, so this plugin fills that gap for both
 undirected and directed graphs.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.weighted_line`` subpackage.
+:mod:`~manim_extensions.weighted_line` subpackage.
 
 Features
 --------

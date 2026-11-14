@@ -19,7 +19,7 @@ Data Structures
 structures such as arrays, variables, and indices in algorithm explanations.
 
 The code is bundled inside ``manim_extensions`` as the
-``manim_extensions.data_structures`` subpackage.
+:mod:`~manim_extensions.data_structures` subpackage.
 
 Features
 --------
