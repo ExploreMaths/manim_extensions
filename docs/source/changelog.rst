@@ -44,8 +44,11 @@ v1.0.7 :bdg-primary-line:`In Development`
   ``= dict with 10,083 entries`` with a ``Show`` button; the button
   replaces the summary with the exact value inline in the signature. Class
   and type names inside every constant value, whether it is folded or shown
-  in full, use the same cross-reference pass as signature defaults, so
-  values such as ``SUPPORTED_FORMATS`` keep links to their parser classes.
+  in full, use the same cross-reference pass as signature defaults.
+  Fully-qualified ``<class 'module.Class'>`` spellings are replaced by the
+  linked short class name, and ``type[module.Class]`` by ``type[Class]``,
+  so values such as ``SUPPORTED_FORMATS`` keep compact links to their parser
+  classes.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash

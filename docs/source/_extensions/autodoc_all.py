@@ -253,11 +253,15 @@ def summarize_value(obj):
 
 
 # Class/type references inside a value are written as ``<class
-# 'module.Class'>`` or as ``ClassName(...)``.  Keep those textual tokens in
-# the collapsed value, but wrap them in a marker so ``default_value_links``
-# can resolve them against the Python domain at doctree-resolved time.
+# 'module.Class'>``, ``type[module.Class]`` or ``ClassName(...)``.  Keep the
+# collapsed value's class references, but replace the fully qualified spelling
+# with a marker carrying both the lookup target and the short display text.
+# ``default_value_links`` resolves the target against the Python domain at
+# doctree-resolved time.
 _VALUE_LINK_RE = re.compile(
-    r"(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
+    r"(?P<classrepr><class '(?P<classpath>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)'>)"
+    r"|(?P<typeexpr>type\[(?P<typepath>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)\])"
+    r"|(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
     r"|(?P<call>[A-Z][A-Za-z0-9_]*(?=\())"
 )
 
@@ -271,10 +275,20 @@ def _value_with_link_markers(obj):
         if match.start() > pos:
             parts.append(html.escape(text[pos : match.start()], quote=False))
         token = match.group(0)
-        escaped = html.escape(token, quote=True)
+        target = match.group("classpath") or match.group("typepath") or token
+        short = target.rsplit(".", 1)[-1]
+        if match.group("classrepr"):
+            shown = short
+        elif match.group("typeexpr"):
+            shown = f"type[{short}]"
+        else:
+            shown = token
+        escaped = html.escape(target, quote=True)
+        fallback = html.escape(token, quote=True)
         parts.append(
-            f'<span class="constant-value-ref" data-target="{escaped}">'
-            f"{html.escape(token, quote=False)}</span>"
+            f'<span class="constant-value-ref" data-target="{escaped}" '
+            f'data-fallback="{fallback}">'
+            f"{html.escape(shown, quote=False)}</span>"
         )
         pos = match.end()
     if pos < len(text):

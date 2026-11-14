@@ -370,10 +370,13 @@ def _process_prose_literals(app, doctree, docname) -> None:
         node.append(ref)
 
 
-# Keep in sync with ``autodoc_all._VALUE_LINK_RE``: dotted class/type paths
-# and ``ClassName(`` tokens are the two spellings used by ``repr`` output.
+# Keep in sync with ``autodoc_all._VALUE_LINK_RE``: ``<class '...'>``,
+# ``type[...]``, dotted paths and ``ClassName(`` are the spellings used by
+# ``repr`` output.
 _VALUE_REF_RE = re.compile(
-    r"(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
+    r"(?P<classrepr><class '(?P<classpath>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)'>)"
+    r"|(?P<typeexpr>type\[(?P<typepath>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)\])"
+    r"|(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
     r"|(?P<call>[A-Z][A-Za-z0-9_]*(?=\())"
 )
 
@@ -406,17 +409,25 @@ def _process_constant_signature_values(app, doctree, docname) -> None:
             for match in _VALUE_REF_RE.finditer(text):
                 if match.start() > pos:
                     parts.append(nodes.Text(text[pos : match.start()]))
-                target = match.group(0)
+                token = match.group(0)
+                target = match.group("classpath") or match.group("typepath") or token
+                short = target.rsplit(".", 1)[-1]
+                if match.group("classrepr"):
+                    shown = short
+                elif match.group("typeexpr"):
+                    shown = f"type[{short}]"
+                else:
+                    shown = token
                 resolved = _link_for(target, app, docdir)
                 if resolved is None:
-                    parts.append(nodes.Text(target))
+                    parts.append(nodes.Text(token))
                 else:
                     page, anchor, _kind = resolved
                     rel = posixpath.relpath(f"{page}.html", start=docdir)
                     ref = nodes.reference(
                         "", "", internal=True, refuri=f"{rel}#{anchor}"
                     )
-                    ref += nodes.Text(target)
+                    ref += nodes.Text(shown)
                     parts.append(ref)
                 pos = match.end()
             if pos < len(text):
@@ -425,7 +436,8 @@ def _process_constant_signature_values(app, doctree, docname) -> None:
 
 
 _PAYLOAD_REF_RE = re.compile(
-    r'<span class="constant-value-ref" data-target="([^"]+)">(.*?)</span>'
+    r'<span class="constant-value-ref" data-target="([^"]+)" '
+    r'data-fallback="([^"]*)">(.*?)</span>'
 )
 
 
@@ -445,10 +457,10 @@ def _process_constant_value_payloads(app, doctree, docname) -> None:
             continue
 
         def replace(match: re.Match) -> str:
-            target, shown = match.group(1), match.group(2)
+            target, fallback, shown = match.group(1), match.group(2), match.group(3)
             resolved = _link_for(target, app, docdir)
             if resolved is None:
-                return shown
+                return fallback
             page, anchor, _kind = resolved
             rel = posixpath.relpath(f"{page}.html", start=docdir)
             return f'<a class="reference internal" href="{rel}#{anchor}">{shown}</a>'
