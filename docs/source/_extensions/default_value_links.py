@@ -370,8 +370,44 @@ def _process_prose_literals(app, doctree, docname) -> None:
         node.append(ref)
 
 
+_PAYLOAD_REF_RE = re.compile(
+    r'<span class="constant-value-ref" data-target="([^"]+)">(.*?)</span>'
+)
+
+
+def _process_constant_value_payloads(app, doctree, docname) -> None:
+    """Resolve class/type markers inside expanded constant values.
+
+    Large constants are stored as raw HTML alongside their summary.  Their
+    full value keeps the same class/type tokens as the source spelling; this
+    pass turns those tokens into the same internal references used by
+    signature defaults.  Tokens that do not resolve are restored verbatim,
+    so the rendered value stays exact.
+    """
+    docdir = posixpath.dirname(docname) or "."
+    for node in doctree.findall(nodes.raw):
+        text = node.astext()
+        if "constant-value-ref" not in text:
+            continue
+
+        def replace(match: re.Match) -> str:
+            target, shown = match.group(1), match.group(2)
+            resolved = _link_for(target, app, docdir)
+            if resolved is None:
+                return shown
+            page, anchor, _kind = resolved
+            rel = posixpath.relpath(f"{page}.html", start=docdir)
+            return f'<a class="reference internal" href="{rel}#{anchor}">{shown}</a>'
+
+        new_text = _PAYLOAD_REF_RE.sub(replace, text)
+        if new_text != text:
+            del node[:]
+            node.append(nodes.Text(new_text))
+
+
 def setup(app):
     app.connect("doctree-resolved", _process_literals)
     app.connect("doctree-resolved", _process_color_codes)
     app.connect("doctree-resolved", _process_prose_literals)
+    app.connect("doctree-resolved", _process_constant_value_payloads)
     return {"version": "1.1", "parallel_read_safe": True, "parallel_write_safe": True}

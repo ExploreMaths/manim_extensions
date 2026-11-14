@@ -61,6 +61,7 @@ import html
 import importlib
 import inspect
 import json
+import re
 import pkgutil
 import types
 import typing
@@ -247,14 +248,46 @@ def summarize_value(obj):
     return f"``{type(obj).__name__}`` object"
 
 
+# Class/type references inside a value are written as ``<class
+# 'module.Class'>`` or as ``ClassName(...)``.  Keep those textual tokens in
+# the collapsed value, but wrap them in a marker so ``default_value_links``
+# can resolve them against the Python domain at doctree-resolved time.
+_VALUE_LINK_RE = re.compile(
+    r"(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
+    r"|(?P<call>[A-Z][A-Za-z0-9_]*(?=\())"
+)
+
+
+def _value_with_link_markers(obj):
+    """HTML-escape the full value while marking class/type tokens."""
+    text = repr(obj)
+    parts = []
+    pos = 0
+    for match in _VALUE_LINK_RE.finditer(text):
+        if match.start() > pos:
+            parts.append(html.escape(text[pos : match.start()], quote=False))
+        token = match.group(0)
+        escaped = html.escape(token, quote=True)
+        parts.append(
+            f'<span class="constant-value-ref" data-target="{escaped}">'
+            f"{html.escape(token, quote=False)}</span>"
+        )
+        pos = match.end()
+    if pos < len(text):
+        parts.append(html.escape(text[pos:], quote=False))
+    return "".join(parts)
+
+
 def constant_value_payload_html(obj):
     """The hidden full value, revealed by the signature button.
 
     The summary itself is a ``:value:`` option on the generated
     ``autodatasummary`` directive, so it sits after the constant name in the
-    signature. This raw block only contains the collapsed full ``repr``.
+    signature. This raw block only contains the collapsed full value.
+    ``default_value_links`` turns the marked class/type tokens into real
+    cross-references after all Python objects have been registered.
     """
-    full = html.escape(repr(obj), quote=False)
+    full = _value_with_link_markers(obj)
     return [
         "   .. raw:: html",
         "",
