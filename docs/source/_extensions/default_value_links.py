@@ -142,6 +142,19 @@ def _link_for(name: str, app, docdir: str) -> tuple[str, str, str] | None:
     return None
 
 
+_INTERSPHINX_TYPES = ("py:class", "py:data", "py:function", "py:module", "py:type")
+
+
+def _external_link_for(name: str, app) -> str | None:
+    """Return the intersphinx URL for a class/type outside this project."""
+    inventory = getattr(app.env, "intersphinx_inventory", {})
+    for objtype in _INTERSPHINX_TYPES:
+        entry = inventory.get(objtype, {}).get(name)
+        if entry is not None:
+            return getattr(entry, "uri", None)
+    return None
+
+
 # A constant-looking token inside a default expression: an ALL-CAPS name
 # (``WHITE``, ``PI``) or a dotted name (``NodeConfig.BOX_TYPE``).
 _TOKEN_RE = re.compile(
@@ -394,45 +407,63 @@ def _process_constant_signature_values(app, doctree, docname) -> None:
         parent = sig.parent
         if not isinstance(parent, desc) or parent.get("objtype") != "data":
             continue
-        annotation = next(
-            (child for child in sig.children if isinstance(child, desc_annotation)),
-            None,
-        )
-        if annotation is None:
-            continue
-        for text_node in list(annotation.findall(nodes.Text)):
-            text = text_node.astext()
-            if not _VALUE_REF_RE.search(text):
-                continue
-            parts = []
-            pos = 0
-            for match in _VALUE_REF_RE.finditer(text):
-                if match.start() > pos:
-                    parts.append(nodes.Text(text[pos : match.start()]))
-                token = match.group(0)
-                target = match.group("classpath") or match.group("typepath") or token
-                short = target.rsplit(".", 1)[-1]
-                if match.group("classrepr"):
-                    shown = short
-                elif match.group("typeexpr"):
-                    shown = f"type[{short}]"
-                else:
-                    shown = token
-                resolved = _link_for(target, app, docdir)
-                if resolved is None:
-                    parts.append(nodes.Text(token))
-                else:
-                    page, anchor, _kind = resolved
-                    rel = posixpath.relpath(f"{page}.html", start=docdir)
-                    ref = nodes.reference(
-                        "", "", internal=True, refuri=f"{rel}#{anchor}"
+        # A data signature can carry more than one annotation: type aliases
+        # first get ``: TypeAlias`` and then a separate annotation with the
+        # value, so inspect every annotation instead of only the first.
+        annotations = [
+            child for child in sig.children if isinstance(child, desc_annotation)
+        ]
+        for annotation in annotations:
+            for text_node in list(annotation.findall(nodes.Text)):
+                text = text_node.astext()
+                if not _VALUE_REF_RE.search(text):
+                    continue
+                parts = []
+                pos = 0
+                for match in _VALUE_REF_RE.finditer(text):
+                    if match.start() > pos:
+                        parts.append(nodes.Text(text[pos : match.start()]))
+                    token = match.group(0)
+                    target = (
+                        match.group("classpath") or match.group("typepath") or token
                     )
-                    ref += nodes.Text(shown)
-                    parts.append(ref)
-                pos = match.end()
-            if pos < len(text):
-                parts.append(nodes.Text(text[pos:]))
-            text_node.parent.replace(text_node, parts)
+                    short = target.rsplit(".", 1)[-1]
+                    if match.group("classrepr"):
+                        shown = short
+                        prefix = suffix = ""
+                    elif match.group("typeexpr"):
+                        shown = short
+                        prefix, suffix = "type[", "]"
+                    else:
+                        shown = token
+                        prefix = suffix = ""
+                    resolved = _link_for(target, app, docdir)
+                    if resolved is not None:
+                        page, anchor, _kind = resolved
+                        rel = posixpath.relpath(f"{page}.html", start=docdir)
+                        ref = nodes.reference(
+                            "", "", internal=True, refuri=f"{rel}#{anchor}"
+                        )
+                        ref += nodes.Text(shown)
+                        if prefix:
+                            parts.append(nodes.Text(prefix))
+                        parts.append(ref)
+                        if suffix:
+                            parts.append(nodes.Text(suffix))
+                    elif (external := _external_link_for(target, app)) is not None:
+                        ref = nodes.reference("", "", internal=False, refuri=external)
+                        ref += nodes.Text(shown)
+                        if prefix:
+                            parts.append(nodes.Text(prefix))
+                        parts.append(ref)
+                        if suffix:
+                            parts.append(nodes.Text(suffix))
+                    else:
+                        parts.append(nodes.Text(token))
+                    pos = match.end()
+                if pos < len(text):
+                    parts.append(nodes.Text(text[pos:]))
+                text_node.parent.replace(text_node, parts)
 
 
 _PAYLOAD_REF_RE = re.compile(
@@ -459,11 +490,20 @@ def _process_constant_value_payloads(app, doctree, docname) -> None:
         def replace(match: re.Match) -> str:
             target, fallback, shown = match.group(1), match.group(2), match.group(3)
             resolved = _link_for(target, app, docdir)
-            if resolved is None:
+            if resolved is not None:
+                page, anchor, _kind = resolved
+                rel = posixpath.relpath(f"{page}.html", start=docdir)
+                href = f"{rel}#{anchor}"
+                css_class = "reference internal"
+            else:
+                href = _external_link_for(target, app)
+                css_class = "reference external"
+            if href is None:
                 return fallback
-            page, anchor, _kind = resolved
-            rel = posixpath.relpath(f"{page}.html", start=docdir)
-            return f'<a class="reference internal" href="{rel}#{anchor}">{shown}</a>'
+            if shown.startswith("type[") and shown.endswith("]"):
+                inner = shown[5:-1]
+                return f'type[<a class="{css_class}" href="{href}">{inner}</a>]'
+            return f'<a class="{css_class}" href="{href}">{shown}</a>'
 
         new_text = _PAYLOAD_REF_RE.sub(replace, text)
         if new_text != text:
