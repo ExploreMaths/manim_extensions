@@ -42,4 +42,4 @@ def test_mesh_inner_teeth_gear():
 
     outer.mesh_to(inner)
 
-    assert len(outer.get_points()) > 0
+    assert len(outer.points) > 0

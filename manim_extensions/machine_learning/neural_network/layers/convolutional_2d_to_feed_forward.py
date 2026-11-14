@@ -93,7 +93,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
             # Go through each node
             for node in feed_forward_nodes:
                 line = Line(corner, node, stroke_width=1.0)
-                line.set_z_index(self.output_layer.node_group.get_z_index())
+                line.set_z_index(self.output_layer.node_group.z_index)
                 anim = ShowPassingFlash(
                     line.set_color(self.passing_flash_color), time_width=0.2
                 )

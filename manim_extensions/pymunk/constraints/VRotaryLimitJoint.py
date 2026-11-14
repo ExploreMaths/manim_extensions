@@ -178,7 +178,7 @@ class VRotaryLimitJoint(VConstraint):
             new_arc_a = self.arc_indicator_class(
                 angle=display_angle, **self.arc_indicator_config
             )
-            target_pos_a = p1 - unit_vec * (self.a_mob.get_width() / 2 + buff)
+            target_pos_a = p1 - unit_vec * (self.a_mob.width / 2 + buff)
             new_arc_a.move_to(target_pos_a)
 
             new_arc_a.rotate(
@@ -190,7 +190,7 @@ class VRotaryLimitJoint(VConstraint):
             new_arc_b = self.arc_indicator_class(
                 angle=-display_angle, **self.arc_indicator_config
             )
-            target_pos_b = p2 + unit_vec * (self.b_mob.get_width() / 2 + buff)
+            target_pos_b = p2 + unit_vec * (self.b_mob.width / 2 + buff)
             new_arc_b.move_to(target_pos_b)
 
             new_arc_b.rotate(

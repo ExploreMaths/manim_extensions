@@ -213,9 +213,7 @@ class Cell(VGroup):
         """
         # Calculate current scale factor using HEIGHT (stable during width resize)
         # Width-based calculation fails after Transform morphs the cell
-        scale_factor = (
-            self.get_height() / self.cell_height if self.cell_height > 0 else 1.0
-        )
+        scale_factor = self.height / self.cell_height if self.cell_height > 0 else 1.0
 
         new_cell = Cell(
             value=self.value,

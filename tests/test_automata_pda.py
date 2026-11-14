@@ -59,6 +59,6 @@ class TestPushDownAutomaton:
         pda = ManimPushDownAutomaton()
         initial = pda.get_initial_state()
         assert initial is not None
-        states = pda.get_states()
+        states = pda.states
         assert isinstance(states, list)
         assert initial in states

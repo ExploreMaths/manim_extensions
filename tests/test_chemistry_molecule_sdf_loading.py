@@ -35,7 +35,7 @@ def test_sdf_molecule_has_atoms_and_bonds(molecule):
 
 
 def test_bonds_group_is_built(molecule):
-    assert len(molecule.get_bonds()) == 2
+    assert len(molecule.bonds) == 2
 
 
 def test_position_queries(molecule):

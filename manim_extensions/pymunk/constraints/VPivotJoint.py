@@ -10,7 +10,7 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VPivotJoin
 
 from __future__ import annotations
 
-from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW
+from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, np
 from typing import TYPE_CHECKING
 from . import VConstraint
 
@@ -198,12 +198,16 @@ class VPivotJoint(VConstraint):
             p = self.constraint.anchor_a
             pivot = [p.x, p.y, 0]
             self.pivot_appearance.move_to(pivot)
-            if isinstance(self.pivot_connect_line_a, Line):
+            if isinstance(self.pivot_connect_line_a, Line) and not np.allclose(
+                self.a_mob.get_center(), pivot
+            ):
                 self.pivot_connect_line_a.put_start_and_end_on(
                     self.a_mob.get_center(),
                     pivot,
                 )
-            if isinstance(self.pivot_connect_line_a, Line):
+            if isinstance(self.pivot_connect_line_b, Line) and not np.allclose(
+                self.b_mob.get_center(), pivot
+            ):
                 self.pivot_connect_line_b.put_start_and_end_on(
                     self.b_mob.get_center(),
                     pivot,
@@ -220,5 +224,5 @@ class VPivotJoint(VConstraint):
             self.anchor_a_appearance.move_to(p1)
             self.anchor_b_appearance.move_to(p2)
 
-            if isinstance(self.anchor_connect_line, Line):
+            if isinstance(self.anchor_connect_line, Line) and not np.allclose(p1, p2):
                 self.anchor_connect_line.put_start_and_end_on(p1, p2)

@@ -30,7 +30,7 @@ def _assert_animation_list(value):
 class TestISLMDiagram:
     def test_construct_defaults(self):
         diagram = ISLMDiagram()
-        assert diagram.get_axes() is not None
+        assert diagram.axes is not None
 
     def test_construct_numbered_eq(self):
         diagram = ISLMDiagram(numbered_eq=True)
@@ -48,7 +48,7 @@ class TestISLMDiagram:
 class TestADASDiagram:
     def test_construct_defaults(self):
         diagram = ADASDiagram()
-        assert diagram.get_axes() is not None
+        assert diagram.axes is not None
 
     def test_construct_numbered_eq(self):
         # Regression: numbered_eq must be consumed by ADASDiagram itself.

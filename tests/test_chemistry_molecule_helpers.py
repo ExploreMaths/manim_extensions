@@ -36,7 +36,7 @@ def molecule():
 
 
 def test_get_bonds_returns_vgroup(molecule):
-    bonds = molecule.get_bonds()
+    bonds = molecule.bonds
 
     assert isinstance(bonds, VGroup)
     assert len(bonds) == len(molecule.bonds)

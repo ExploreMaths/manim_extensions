@@ -265,4 +265,4 @@ class GriddedRectangle(VGroup):
         """
         self.color = color
         self.rectangle.set_color(color)
-        self.rectangle.set_stroke_color(color)
+        self.rectangle.set_stroke(color)

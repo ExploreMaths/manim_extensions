@@ -100,4 +100,4 @@ class Gear(VMobject):
             hole = Circle(radius=hole_radius)
             res = Exclusion(res, hole)
 
-        self.set_points(res.get_points())
+        self.set_points(res.points)

@@ -979,7 +979,7 @@ def make_subpaths(group: VMobject) -> VMobject:
         The computed result.
     """
     for mob in group:
-        group.add_subpath(mob.get_points())
+        group.add_subpath(mob.points)
 
     return group
 
@@ -1010,7 +1010,10 @@ def zero(function: Callable) -> Callable[..., float]:
     return wrapper
 
 
-@zero
+_zero = zero.__wrapped__
+
+
+@_zero
 def inverse_smooth(t: float, inflection: float = 10.0) -> float:
     """Return the inverse of the smooth easing function (1 - t smoothed).
 
@@ -1030,7 +1033,7 @@ def inverse_smooth(t: float, inflection: float = 10.0) -> float:
     return smooth(new_t, inflection)
 
 
-@zero
+@_zero
 def inverse_linear(t: float, inflection: float = 10.0) -> float:
     """Return the linear inverse value 1 - t.
 

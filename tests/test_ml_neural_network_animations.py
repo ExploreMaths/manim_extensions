@@ -43,14 +43,16 @@ def test_network_infers_connective_layer():
 
 
 def test_unregistered_pair_falls_back_to_blank_connective():
-    connection = get_connective_layer(Circle(), Circle())
+    with pytest.warns(UserWarning, match="Unrecognized input/output class pair"):
+        connection = get_connective_layer(Circle(), Circle())
 
     assert isinstance(connection, BlankConnective)
     assert len(connection.submobjects) == 0
 
 
 def test_blank_connective_forward_pass_is_empty():
-    connection = get_connective_layer(Circle(), Circle())
+    with pytest.warns(UserWarning, match="Unrecognized input/output class pair"):
+        connection = get_connective_layer(Circle(), Circle())
 
     animation = connection.make_forward_pass_animation(run_time=0.2)
 

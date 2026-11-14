@@ -10,7 +10,7 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VSlideJoin
 
 from __future__ import annotations
 
-from manim import Dot, GREEN_A, Line, Mobject, ORIGIN, RED
+from manim import Dot, GREEN_A, Line, Mobject, ORIGIN, RED, np
 from typing import TYPE_CHECKING
 from . import VConstraint
 
@@ -186,5 +186,5 @@ class VSlideJoint(VConstraint):
         self.anchor_a_appearance.move_to(p1)
         self.anchor_b_appearance.move_to(p2)
 
-        if isinstance(self.indicator_line, Line):
+        if isinstance(self.indicator_line, Line) and not np.allclose(p1, p2):
             self.indicator_line.put_start_and_end_on(p1, p2)

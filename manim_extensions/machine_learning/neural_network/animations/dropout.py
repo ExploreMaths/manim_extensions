@@ -163,7 +163,7 @@ def make_pre_dropout_animation(
         for edge_index, edge in enumerate(edges_to_drop_out):
             """
             def modify_edge(edge):
-                edge.set_stroke_color(dropped_out_color)
+                edge.set_stroke(dropped_out_color)
                 edge.set_stroke_width(0.6)
                 edge.set_stroke_opacity(dropped_out_opacity)
                 return edge

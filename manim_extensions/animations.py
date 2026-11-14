@@ -177,6 +177,9 @@ def easeOutBounce(t: float) -> float:
         return 7.5625 * c * c + 0.984375
 
 
+_ease_out_bounce = easeOutBounce.__wrapped__
+
+
 @deprecated(
     "``easeInBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_bounce` instead.",
 )
@@ -222,7 +225,10 @@ def easeInBounce(t: float) -> float:
                )
                self.wait()
     """
-    return 1 - easeOutBounce(1 - t)
+    return 1 - _ease_out_bounce(1 - t)
+
+
+_ease_in_bounce = easeInBounce.__wrapped__
 
 
 @deprecated(
@@ -271,8 +277,8 @@ def easeInOutBounce(t: float) -> float:
                self.wait()
     """
     if t < 0.5:
-        return easeInBounce(2 * t)
-    return easeOutBounce(2 * t - 1)
+        return _ease_in_bounce(2 * t)
+    return _ease_out_bounce(2 * t - 1)
 
 
 @deprecated(
@@ -726,7 +732,7 @@ class LaggedCreation(Animation):
             left_part = starting_submobject.copy().pointwise_become_partial(
                 starting_submobject, 0, b - 1
             )
-            submobject.append_points(left_part.get_points())
+            submobject.append_points(left_part.points)
         return self
 
 

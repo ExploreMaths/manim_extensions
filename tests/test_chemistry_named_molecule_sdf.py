@@ -34,7 +34,7 @@ def test_named_molecule_has_atoms_and_bonds(named_molecule):
 
 
 def test_get_bonds_group(named_molecule):
-    assert len(named_molecule.get_bonds()) >= 1
+    assert len(named_molecule.bonds) >= 1
 
 
 def test_numbering_returns_self(named_molecule):

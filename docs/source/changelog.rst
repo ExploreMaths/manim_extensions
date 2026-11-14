@@ -31,6 +31,12 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Fixed**
 
+* Deprecation and runtime warnings no longer flood the pytest and CI logs:
+  internal calls to the compatibility rate functions use their unwrapped
+  implementations, Manim mobject getters use properties (``width``,
+  ``height``, ``points``, ``z_index``, ``axes``, ``states``, ``bonds``),
+  stroke updates use ``set_stroke``, and zero-length bonds and pymunk
+  constraint lines skip line updates that would divide by zero or warn.
 * Constant entries no longer render as empty blocks: re-exported constants
   carry a ``#:`` docstring, and ``autoall`` keeps short values as a normal
   ``= repr`` signature. Values longer than 1,000 characters, such as

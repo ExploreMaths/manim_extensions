@@ -50,7 +50,7 @@ def test_atom_and_bond_groups_are_built(mol_data):
         molecule = ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=None)
 
         assert molecule.get_atoms_from_csv() is not None
-        assert molecule.get_bonds() is not None
+        assert molecule.bonds is not None
 
 
 def test_molecule_without_atoms_or_bonds_flag(mol_data):

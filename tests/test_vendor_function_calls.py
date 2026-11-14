@@ -9,6 +9,8 @@ import numpy as np
 import pytest
 from manim import Circle, Line
 
+pytestmark = pytest.mark.filterwarnings("ignore::DeprecationWarning")
+
 CASES = [
     ("manim_extensions.animations:easeInBounce", (1,)),
     ("manim_extensions.animations:easeInOutBounce", (1,)),

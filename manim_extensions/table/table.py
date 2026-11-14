@@ -265,7 +265,7 @@ class Table(VGroup):
                     continue
                 # Create temporary text to measure
                 text = Text(value, font_size=self.font_size)
-                text_width = text.get_width() + self.padding
+                text_width = text.width + self.padding
                 widths[col_idx] = max(widths[col_idx], text_width)
 
         return widths
@@ -532,9 +532,7 @@ class Table(VGroup):
         # Width-based calculation fails after Transform morphs cells
         first_header_cell = self.header_row[0]
         scale_factor = (
-            first_header_cell.get_height() / self.cell_height
-            if self.cell_height > 0
-            else 1.0
+            first_header_cell.height / self.cell_height if self.cell_height > 0 else 1.0
         )
 
         # Check if we need to resize columns (before creating the row)
@@ -561,7 +559,7 @@ class Table(VGroup):
                     target_header = header_cell.get_resized_copy(new_w)
 
                     # Use scaled width for positioning
-                    scaled_w = target_header.get_width()
+                    scaled_w = target_header.width
                     target_x = x_offset + scaled_w / 2
                     target_header.move_to((target_x, header_cell.get_center()[1], 0))
                     resize_animations.append(Transform(header_cell, target_header))
@@ -582,7 +580,7 @@ class Table(VGroup):
                         target_cell = cell.get_resized_copy(new_w)
 
                         # Use scaled width for positioning
-                        scaled_w = target_cell.get_width()
+                        scaled_w = target_cell.width
                         target_x = x_offset + scaled_w / 2
                         target_cell.move_to((target_x, cell.get_center()[1], 0))
                         resize_animations.append(Transform(cell, target_cell))
@@ -619,10 +617,10 @@ class Table(VGroup):
 
         # Calculate y position using actual rendered height
         if len(self.rows) > 0:
-            actual_height = self.rows[-1].get_height()
+            actual_height = self.rows[-1].height
             y_pos = self.rows[-1].get_bottom()[1] - actual_height / 2
         else:
-            actual_height = self.header_row.get_height()
+            actual_height = self.header_row.height
             y_pos = self.header_row.get_bottom()[1] - actual_height / 2
 
         # Position each cell at the correct x based on actual rendered widths
@@ -630,7 +628,7 @@ class Table(VGroup):
         for col_idx in range(len(self.column_widths)):
             cell = new_row.cells[col_idx]
             # Use actual rendered width of the cell
-            cell_width = cell.get_width()
+            cell_width = cell.width
             target_x = x_offset + cell_width / 2
             cell.move_to((target_x, y_pos, 0))
             x_offset += cell_width
@@ -695,7 +693,7 @@ class Table(VGroup):
         rows_to_shift = set(self.rows[data_index:])
 
         # Calculate actual rendered height (accounts for table scaling)
-        actual_height = deleted_row.get_height()
+        actual_height = deleted_row.height
 
         # Start with FadeOut for deleted row
         all_animations: List[TableAnimation] = [FadeOut(deleted_row)]
@@ -721,7 +719,7 @@ class Table(VGroup):
                 table_left = self.header_row.get_left()[0]
 
                 # Calculate actual rendered height (accounts for scale)
-                actual_row_height = self.header_row.get_height()
+                actual_row_height = self.header_row.height
 
                 # Create target cells for header
                 x_offset = table_left
@@ -730,7 +728,7 @@ class Table(VGroup):
                     target_header = header_cell.get_resized_copy(new_w)
 
                     # Use scaled width for positioning
-                    scaled_w = target_header.get_width()
+                    scaled_w = target_header.width
                     target_x = x_offset + scaled_w / 2
                     target_header.move_to((target_x, header_cell.get_center()[1], 0))
                     all_animations.append(Transform(header_cell, target_header))
@@ -755,7 +753,7 @@ class Table(VGroup):
                         target_cell = cell.get_resized_copy(new_w)
 
                         # Use scaled width for positioning
-                        scaled_w = target_cell.get_width()
+                        scaled_w = target_cell.width
                         target_x = x_offset + scaled_w / 2
 
                         # Use the y position AFTER shift would complete
@@ -828,7 +826,7 @@ class Table(VGroup):
             max_text_width = 0
             for text_str in all_text:
                 t = Text(text_str, font_size=self.font_size)
-                max_text_width = max(max_text_width, t.get_width() + self.padding)
+                max_text_width = max(max_text_width, t.width + self.padding)
             new_width = max_text_width
 
         self.column_widths.insert(index, new_width)
@@ -938,7 +936,7 @@ class Table(VGroup):
         deleted_cells.append(header_cell)
 
         # Calculate actual rendered width (accounts for table scaling)
-        actual_width = header_cell.get_width()
+        actual_width = header_cell.width
 
         # Shift remaining cells left
         for cell in self.header_row.cells[index:]:

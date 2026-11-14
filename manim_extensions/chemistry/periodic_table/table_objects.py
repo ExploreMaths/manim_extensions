@@ -127,7 +127,7 @@ class MElementObject(VGroup):
         -------
             The computed result.
         """
-        return frame.get_width() / (1.25 * name_text.get_width())
+        return frame.width / (1.25 * name_text.width)
 
     def max_height_ratio(self, name_text: Mobject) -> Text:
         """Scale down the name text if its height exceeds the 0.3 maximum threshold.
@@ -141,7 +141,7 @@ class MElementObject(VGroup):
         -------
             The computed result.
         """
-        text_height = name_text.get_height()
+        text_height = name_text.height
         if text_height > 0.3:
             ratio = 0.3 / text_height
             name_text.scale(ratio)
@@ -300,7 +300,7 @@ class PeriodicTable(VGroup):
         """
         positions = self.elements_position_dict()
         base_element = MElementObject()
-        mult_array = np.array([base_element.get_width(), -base_element.get_height(), 0])
+        mult_array = np.array([base_element.width, -base_element.height, 0])
 
         table = VGroup()
         for element, position in positions.items():

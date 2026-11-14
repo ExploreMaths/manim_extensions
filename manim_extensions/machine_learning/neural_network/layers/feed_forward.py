@@ -285,7 +285,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         Returns
         -------
             The computed result."""
-        return self.surrounding_rectangle.get_height()
+        return self.surrounding_rectangle.height
 
     def get_center(self) -> Point3D:
         """Return the center point of the surrounding rectangle.

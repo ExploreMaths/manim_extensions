@@ -219,7 +219,7 @@ class VDampedRotarySpring(VConstraint):
             new_arc_a = self.arc_indicator_class(
                 angle=display_angle, **self.arc_indicator_config
             )
-            target_pos_a = pos_a - unit_vec * (self.a_mob.get_width() / 2 + buff)
+            target_pos_a = pos_a - unit_vec * (self.a_mob.width / 2 + buff)
             new_arc_a.move_to(target_pos_a)
             new_arc_a.rotate(
                 line_angle - display_angle / 2 + PI, about_point=target_pos_a
@@ -230,7 +230,7 @@ class VDampedRotarySpring(VConstraint):
             new_arc_b = self.arc_indicator_class(
                 angle=-display_angle, **self.arc_indicator_config
             )
-            target_pos_b = pos_b + unit_vec * (self.b_mob.get_width() / 2 + buff)
+            target_pos_b = pos_b + unit_vec * (self.b_mob.width / 2 + buff)
             new_arc_b.move_to(target_pos_b)
             new_arc_b.rotate(
                 line_angle - (-display_angle) / 2, about_point=target_pos_b

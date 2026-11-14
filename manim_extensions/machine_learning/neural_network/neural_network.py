@@ -263,14 +263,14 @@ class NeuralNetwork(Group):
 
             if layout_direction == "left_to_right":
                 x_shift = (
-                    previous_layer.get_width() / 2
-                    + current_layer.get_width() / 2
+                    previous_layer.width / 2
+                    + current_layer.width / 2
                     + self.layer_spacing
                 )
                 shift_vector = np.array([x_shift, 0, 0])
             elif layout_direction == "top_to_bottom":
                 y_shift = -(
-                    (previous_layer.get_width() / 2 + current_layer.get_width() / 2)
+                    (previous_layer.width / 2 + current_layer.width / 2)
                     + self.layer_spacing
                 )
                 shift_vector = np.array([0, y_shift, 0])
@@ -279,7 +279,7 @@ class NeuralNetwork(Group):
             current_layer.shift(shift_vector)
 
         # After all layers have been placed place their activation functions
-        layer_max_height = max([layer.get_height() for layer in self.input_layers])
+        layer_max_height = max([layer.height for layer in self.input_layers])
         for current_layer in self.input_layers:
             # Place activation function
             if hasattr(current_layer, "activation_function"):
@@ -289,7 +289,7 @@ class NeuralNetwork(Group):
                         [
                             0,
                             layer_max_height / 2
-                            + current_layer.activation_function.get_height() / 2
+                            + current_layer.activation_function.height / 2
                             + 0.5 * self.layer_spacing,
                             0,
                         ]

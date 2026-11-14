@@ -886,6 +886,8 @@ class PlainCramBond(BaseMBondObject):
             A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
         """
         direction = self.to_atom.coords - self.from_atom.coords
+        if np.linalg.norm(direction) == 0:
+            return VGroup()
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
             base_line.copy().rotate(angle=PI / 2).scale(0.3).shift(direction / 2)
@@ -1057,13 +1059,18 @@ class DashedCramBond(BaseMBondObject):
         direction_modulus = (
             direction[0] ** 2 + direction[1] ** 2 + direction[2] ** 2
         ) ** 0.5  # TODO: For sure numpy knows how to do this. Find how.
+        if direction_modulus == 0:
+            return cram_bond
         increase = 0.05 / direction_modulus  # TODO: Change this 0.05 to be an option
         for i in range(
             int(direction_modulus * 5)
         ):  # TODO: Change this 5 to be an option
             cram_bond.add(Line(pivot_line.get_start(), pivot_line.get_end()))
+            pivot_length = pivot_line.get_length()
+            if pivot_length == 0:
+                break
             pivot_line.shift(direction * 0.16 / direction_modulus).scale(
-                1 + increase / pivot_line.get_length()
+                1 + increase / pivot_length
             )  # TODO: Change this 5 to be an option
         return cram_bond
 
@@ -1074,6 +1081,8 @@ class DashedCramBond(BaseMBondObject):
         -------
             The computed result."""
         direction = self.to_atom.coords - self.from_atom.coords
+        if np.linalg.norm(direction) == 0:
+            return VGroup()
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
         return cram_bond

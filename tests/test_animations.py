@@ -28,6 +28,8 @@ class TestTypeWriter:
 
 import pytest
 
+pytestmark = pytest.mark.filterwarnings("ignore::DeprecationWarning")
+
 from manim_extensions.animations import (
     easeInBounce,
     easeOutBounce,

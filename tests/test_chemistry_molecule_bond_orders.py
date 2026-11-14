@@ -51,7 +51,7 @@ M  END
 def test_bond_group_built_for_bond_orders(sdf):
     molecule = Mol.from_sdf_string(sdf)[0]
 
-    bonds = molecule.get_bonds()
+    bonds = molecule.bonds
 
     assert len(bonds) == len(molecule.bonds)
 

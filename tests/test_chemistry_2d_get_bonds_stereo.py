@@ -61,7 +61,7 @@ def test_get_bonds_builds_wedge_and_hash_bonds():
 def test_get_bonds_returns_vgroup_of_all_bonds():
     molecule = MMoleculeObject(atoms_dict=build_atoms(), bonds_dict=build_bonds())
 
-    assert len(molecule.get_bonds()) == len(molecule.bonds_dict[1])
+    assert len(molecule.bonds) == len(molecule.bonds_dict[1])
 
 
 def test_get_atoms_returns_vdict_and_index_map():

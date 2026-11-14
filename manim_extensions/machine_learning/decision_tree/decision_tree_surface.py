@@ -423,7 +423,7 @@ class IrisDatasetPlot(VGroup):
         # x_label
         x_label = (
             Text(labels[0], font=font)
-            .match_y(axes.get_axes()[0])
+            .match_y(axes.x_axis)
             .shift([0.5, -0.75, 0])
             .scale(font_scale)
         )
@@ -431,7 +431,7 @@ class IrisDatasetPlot(VGroup):
         # y_label
         y_label = (
             Text(labels[1], font=font)
-            .match_x(axes.get_axes()[1])
+            .match_x(axes.y_axis)
             .shift([-0.75, 0, 0])
             .rotate(np.pi / 2)
             .scale(font_scale)
