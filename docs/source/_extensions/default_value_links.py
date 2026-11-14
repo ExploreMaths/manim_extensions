@@ -20,7 +20,7 @@ import posixpath
 import re
 
 from docutils import nodes
-from sphinx.addnodes import desc_signature
+from sphinx.addnodes import desc, desc_annotation, desc_signature
 from sphinx.util import logging
 
 logger = logging.getLogger(__name__)
@@ -370,6 +370,60 @@ def _process_prose_literals(app, doctree, docname) -> None:
         node.append(ref)
 
 
+# Keep in sync with ``autodoc_all._VALUE_LINK_RE``: dotted class/type paths
+# and ``ClassName(`` tokens are the two spellings used by ``repr`` output.
+_VALUE_REF_RE = re.compile(
+    r"(?P<dotted>[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+)"
+    r"|(?P<call>[A-Z][A-Za-z0-9_]*(?=\())"
+)
+
+
+def _process_constant_signature_values(app, doctree, docname) -> None:
+    """Link class/type tokens in ordinary ``autodata`` constant values.
+
+    Constants below the folding threshold are rendered by autodoc as plain
+    text inside the ``desc_annotation`` of their data signature.  They never
+    reach the payload HTML, so apply the same dotted/class-name resolution
+    here.  Tokens that do not resolve stay verbatim.
+    """
+    docdir = posixpath.dirname(docname) or "."
+    for sig in doctree.findall(desc_signature):
+        parent = sig.parent
+        if not isinstance(parent, desc) or parent.get("objtype") != "data":
+            continue
+        annotation = next(
+            (child for child in sig.children if isinstance(child, desc_annotation)),
+            None,
+        )
+        if annotation is None:
+            continue
+        for text_node in list(annotation.findall(nodes.Text)):
+            text = text_node.astext()
+            if not _VALUE_REF_RE.search(text):
+                continue
+            parts = []
+            pos = 0
+            for match in _VALUE_REF_RE.finditer(text):
+                if match.start() > pos:
+                    parts.append(nodes.Text(text[pos : match.start()]))
+                target = match.group(0)
+                resolved = _link_for(target, app, docdir)
+                if resolved is None:
+                    parts.append(nodes.Text(target))
+                else:
+                    page, anchor, _kind = resolved
+                    rel = posixpath.relpath(f"{page}.html", start=docdir)
+                    ref = nodes.reference(
+                        "", "", internal=True, refuri=f"{rel}#{anchor}"
+                    )
+                    ref += nodes.Text(target)
+                    parts.append(ref)
+                pos = match.end()
+            if pos < len(text):
+                parts.append(nodes.Text(text[pos:]))
+            text_node.parent.replace(text_node, parts)
+
+
 _PAYLOAD_REF_RE = re.compile(
     r'<span class="constant-value-ref" data-target="([^"]+)">(.*?)</span>'
 )
@@ -409,5 +463,6 @@ def setup(app):
     app.connect("doctree-resolved", _process_literals)
     app.connect("doctree-resolved", _process_color_codes)
     app.connect("doctree-resolved", _process_prose_literals)
+    app.connect("doctree-resolved", _process_constant_signature_values)
     app.connect("doctree-resolved", _process_constant_value_payloads)
     return {"version": "1.1", "parallel_read_safe": True, "parallel_write_safe": True}

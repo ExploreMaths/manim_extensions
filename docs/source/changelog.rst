@@ -43,9 +43,9 @@ v1.0.7 :bdg-primary-line:`In Development`
   :data:`~manim_extensions.nerdfont.SYMBOLS_UNICODE`, show
   ``= dict with 10,083 entries`` with a ``Show`` button; the button
   replaces the summary with the exact value inline in the signature. Class
-  and type names inside the expanded value use the same cross-reference pass
-  as signature defaults, so values such as ``SUPPORTED_FORMATS`` keep links
-  to their parser classes.
+  and type names inside every constant value, whether it is folded or shown
+  in full, use the same cross-reference pass as signature defaults, so
+  values such as ``SUPPORTED_FORMATS`` keep links to their parser classes.
 * Corrected the spelling of the node-state enum to
   :class:`~manim_extensions.mindmap.nodes.node.NodeState`.
 * ``validate_docstrings.py`` rejects a docstring that contains a backslash
