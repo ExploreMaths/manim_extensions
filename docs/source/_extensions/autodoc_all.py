@@ -23,7 +23,7 @@ Options
               uninformative as bare names). Other constants keep a
               normal ``= repr`` signature when the value is short;
               large containers show ``= dict with 10,083 entries``
-              plus a ``查看完整内容`` toggle that reveals the exact
+              plus a ``Show full value`` toggle that reveals the exact
               value in place.
 :missing-only:
               emit entries only for names that are NOT documented
@@ -263,14 +263,14 @@ def constant_value_html(obj):
         '        <div class="constant-value-summary">',
         '          <span class="constant-value-eq">=</span>',
         f'          <span class="constant-value-summary-text">{summary}</span>',
-        '          <button type="button" class="constant-value-toggle">查看完整内容</button>',
+        '          <button type="button" class="constant-value-toggle">Show full value</button>',
         "        </div>",
         '        <div class="constant-value-full" hidden>',
         '          <div class="constant-value-repr-row">',
         '            <span class="constant-value-eq">=</span>',
         f'            <pre class="constant-value-repr">{full}</pre>',
         "          </div>",
-        '          <button type="button" class="constant-value-close">收起</button>',
+        '          <button type="button" class="constant-value-close">Hide</button>',
         "        </div>",
         "      </div>",
     ]
