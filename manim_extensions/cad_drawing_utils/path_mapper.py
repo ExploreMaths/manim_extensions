@@ -600,6 +600,22 @@ class DashDotMobject(DashedLineMobject):
         Size multiplier for the dots.
     **kwargs
         Keyword arguments forwarded to the dashed group.
+
+    Examples
+    --------
+    .. manim:: DashDotMobjectScene
+       :save_last_frame:
+
+        from manim import Scene, VMobject, LEFT, UP, RIGHT, DOWN, BLUE
+        from manim_extensions.cad_drawing_utils.path_mapper import DashDotMobject
+
+        class DashDotMobjectScene(Scene):
+            def construct(self):
+                path = VMobject().set_points_smoothly(
+                    [LEFT * 3, UP * 2, RIGHT * 3, DOWN * 2]
+                )
+                path.set_stroke(BLUE, 4)
+                self.add(DashDotMobject(path, num_dashes=8, dashed_ratio=0.45))
     """
 
     def __init__(

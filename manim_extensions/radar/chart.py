@@ -1395,7 +1395,7 @@ class RadarChart(VGroup):
         Parameters
         ----------
         k
-            Ring level, starting at 1.
+            Radar ring level, starting at 1.
         i
             Axis index, wrapped modulo the axis count.
 
