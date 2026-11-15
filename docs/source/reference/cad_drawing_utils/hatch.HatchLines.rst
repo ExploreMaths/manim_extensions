@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Angle_Dimension_3point
-======================
+HatchLines
+===========
 
-.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_3point
+.. autoclass:: manim_extensions.cad_drawing_utils.hatch.HatchLines
    :show-inheritance:

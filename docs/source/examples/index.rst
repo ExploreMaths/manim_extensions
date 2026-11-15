@@ -60,16 +60,16 @@ inline. Each example demonstrates one of the core extension modules.
 .. manim:: VMobjectIntOverview
    :save_last_frame:
    :ref_classes: LabelDot
-   :ref_functions: VMobjectInt
+   :ref_functions: vmobject_int
 
    from manim import *
-   from manim_extensions import VMobjectInt, LabelDot
+   from manim_extensions import vmobject_int, LabelDot
 
    class VMobjectIntOverview(Scene):
        def construct(self):
            c1 = Circle(radius=2.5, color=BLUE).shift(LEFT)
            c2 = Circle(radius=2.5, color=GREEN).shift(RIGHT)
-           pts = sorted(VMobjectInt(c1, c2), key=lambda p: p[1])
+           pts = sorted(vmobject_int(c1, c2), key=lambda p: p[1])
            self.add(c1, c2)
            self.add(LabelDot("P_1", pts[1], label_pos=UP, buff=0.1))
            self.add(LabelDot("P_2", pts[0], label_pos=DOWN, buff=0.1))
@@ -309,10 +309,10 @@ inline. Each example demonstrates one of the core extension modules.
 
 .. manim:: CompassScene
    :ref_classes: ExtendedLine CompassScene DrawPath
-   :ref_functions: VMobjectInt
+   :ref_functions: vmobject_int
 
    from manim import *
-   from manim_extensions import VMobjectInt, ExtendedLine
+   from manim_extensions import vmobject_int, ExtendedLine
    from manim_extensions.compass import CompassScene, DrawPath
 
    class CompassScene(CompassScene):
@@ -342,7 +342,7 @@ inline. Each example demonstrates one of the core extension modules.
                angle=PI
            )
            self.play(FadeOut(self.compass))
-           pts = VMobjectInt(arc1, arc2)
+           pts = vmobject_int(arc1, arc2)
            base_line = Line(pts[0], pts[1], color=PURE_YELLOW)
            perp = ExtendedLine(base_line, extend_distance=0.5)
            self.set_ruler(start=perp.get_start(), end=perp.get_end(), with_pencil=True)

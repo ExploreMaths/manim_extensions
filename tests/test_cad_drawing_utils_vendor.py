@@ -8,8 +8,8 @@ import pytest
 from manim import LEFT, RIGHT
 
 from manim_extensions.cad_drawing_utils import (
-    Linear_Dimension,
-    Round_Corners,
+    LinearDimension,
+    round_corners,
     angle_between_vectors_signed,
     utils,
 )
@@ -27,10 +27,10 @@ def test_utils_submodule_is_rebound():
 
 
 def test_round_corners_is_exposed():
-    assert callable(Round_Corners)
+    assert callable(round_corners)
 
 
 def test_linear_dimension_keeps_endpoints():
-    dimension = Linear_Dimension(LEFT, RIGHT)
+    dimension = LinearDimension(LEFT, RIGHT)
     assert np.allclose(dimension.start, LEFT)
     assert np.allclose(dimension.end, RIGHT)

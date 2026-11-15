@@ -806,7 +806,7 @@ class BatterySide(VMobject):
 # Useful functions
 
 
-def arrange_in_1D_boundary(mobs: VGroup, boundary: list = [LEFT, RIGHT]):
+def arrange_in_1d_boundary(mobs: VGroup, boundary: list = [LEFT, RIGHT]):
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
     Parameters
@@ -841,7 +841,7 @@ def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VG
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
         group = VGroup(mobs, mobs)
-    arrange_in_1D_boundary(group, boundary)
+    arrange_in_1d_boundary(group, boundary)
     return group
 
 
@@ -901,7 +901,7 @@ def get_element_by_data(element: dict) -> Element:
     )
 
 
-def randomly_distributed_in_2D(
+def randomly_distributed_in_2d(
     mobs: VGroup, left: int = 1, right: int = 1, down: int = 1, up: int = 1
 ) -> VGroup:
     """Randomly shift mobjects within the specified 2D bounding rectangle.
@@ -956,12 +956,12 @@ def arrange_copies_in_rectangle(
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
-    arrange_in_1D_boundary(mobs, vertical_boundary)
+    arrange_in_1d_boundary(mobs, vertical_boundary)
     copies_group = VGroup(mobs)
     for i in range(n_copies):
         copies_group.add(mobs.copy())
 
-    arrange_in_1D_boundary(copies_group, horizontal_boundary)
+    arrange_in_1d_boundary(copies_group, horizontal_boundary)
 
     return copies_group
 

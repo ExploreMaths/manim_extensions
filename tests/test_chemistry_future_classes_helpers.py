@@ -13,7 +13,7 @@ from manim_extensions.chemistry.future_classes.future_classes import (
     duplicate_and_rearrange,
     get_element_by_data,
     make_subpaths,
-    randomly_distributed_in_2D,
+    randomly_distributed_in_2d,
 )
 
 
@@ -53,7 +53,7 @@ def test_randomly_distributed_in_2d_shifts_mobs():
     mobs = VGroup(Dot(), Dot())
     before = mobs.copy()
 
-    randomly_distributed_in_2D(mobs, left=1, right=1, down=1, up=1)
+    randomly_distributed_in_2d(mobs, left=1, right=1, down=1, up=1)
 
     assert not np.allclose(mobs.get_center(), before.get_center())
 

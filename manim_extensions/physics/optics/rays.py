@@ -107,11 +107,11 @@ class Ray(Line):
                 self.points = self.points[:-nppcc]
                 self.add_line_to(intersects[1])
             self.end = intersects[1]
-            i_ang = angle_of_vector(self.end - lens.C[0])
+            i_ang = angle_of_vector(self.end - lens.c[0])
             i_ang -= angle_of_vector(self.start - self.end)
             r_ang = snell(i_ang, lens.n)
             r_ang *= -1 if lens.f > 0 else 1
-            ref_ray = rotate_vector(lens.C[0] - self.end, r_ang)
+            ref_ray = rotate_vector(lens.c[0] - self.end, r_ang)
             intersects = intersection(
                 lens,
                 Line(
@@ -123,12 +123,12 @@ class Ray(Line):
             self.add_line_to(intersects[1])
             self.start = self.end
             self.end = intersects[1]
-            i_ang = angle_of_vector(self.end - lens.C[1])
+            i_ang = angle_of_vector(self.end - lens.c[1])
             i_ang -= angle_of_vector(self.start - self.end)
             if np.abs(np.sin(i_ang)) < 1 / lens.n:
                 r_ang = antisnell(i_ang, lens.n)
                 r_ang *= -1 if lens.f < 0 else 1
-                ref_ray = rotate_vector(lens.C[1] - self.end, r_ang)
+                ref_ray = rotate_vector(lens.c[1] - self.end, r_ang)
                 ref_ray *= -1 if lens.f > 0 else 1
                 self.add_line_to(self.end + ref_ray * self.init_length)
                 self.start = self.end

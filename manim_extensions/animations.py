@@ -120,9 +120,9 @@ import random
 
 
 @deprecated(
-    "``easeOutBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_bounce` instead.",
+    "``ease_out_bounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_bounce` instead.",
 )
-def easeOutBounce(t: float) -> float:
+def ease_out_bounce(t: float) -> float:
     """Bounce easing that starts fast and bounces as it approaches ``1``.
 
     .. note::
@@ -145,7 +145,7 @@ def easeOutBounce(t: float) -> float:
     .. manim:: EaseOutBounce
 
        from manim import *
-       from manim_extensions import easeOutBounce
+       from manim_extensions import ease_out_bounce
 
        class EaseOutBounce(Scene):
            def construct(self):
@@ -154,12 +154,12 @@ def easeOutBounce(t: float) -> float:
                eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
                labels = VGroup(
                    Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
-                   Text("easeOutBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+                   Text("ease_out_bounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
                )
                self.add(track, linear_dot, eased_dot, labels)
                self.play(
                    linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
-                   eased_dot.animate(rate_func=easeOutBounce).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=ease_out_bounce).shift(RIGHT * 6),
                    run_time=3,
                )
                self.wait()
@@ -177,13 +177,13 @@ def easeOutBounce(t: float) -> float:
         return 7.5625 * c * c + 0.984375
 
 
-_ease_out_bounce = easeOutBounce.__wrapped__
+_ease_out_bounce = ease_out_bounce.__wrapped__
 
 
 @deprecated(
-    "``easeInBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_bounce` instead.",
+    "``ease_in_bounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_bounce` instead.",
 )
-def easeInBounce(t: float) -> float:
+def ease_in_bounce(t: float) -> float:
     """Bounce easing that accelerates into the bounce.
 
     .. note::
@@ -206,7 +206,7 @@ def easeInBounce(t: float) -> float:
     .. manim:: EaseInBounce
 
        from manim import *
-       from manim_extensions import easeInBounce
+       from manim_extensions import ease_in_bounce
 
        class EaseInBounce(Scene):
            def construct(self):
@@ -215,12 +215,12 @@ def easeInBounce(t: float) -> float:
                eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
                labels = VGroup(
                    Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
-                   Text("easeInBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+                   Text("ease_in_bounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
                )
                self.add(track, linear_dot, eased_dot, labels)
                self.play(
                    linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
-                   eased_dot.animate(rate_func=easeInBounce).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=ease_in_bounce).shift(RIGHT * 6),
                    run_time=3,
                )
                self.wait()
@@ -228,13 +228,13 @@ def easeInBounce(t: float) -> float:
     return 1 - _ease_out_bounce(1 - t)
 
 
-_ease_in_bounce = easeInBounce.__wrapped__
+_ease_in_bounce = ease_in_bounce.__wrapped__
 
 
 @deprecated(
-    "``easeInOutBounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_out_bounce` instead.",
+    "``ease_in_out_bounce`` is deprecated; use :func:`manim.utils.rate_functions.ease_in_out_bounce` instead.",
 )
-def easeInOutBounce(t: float) -> float:
+def ease_in_out_bounce(t: float) -> float:
     """Mirrored ease-in/out bounce.
 
     .. note::
@@ -257,7 +257,7 @@ def easeInOutBounce(t: float) -> float:
     .. manim:: EaseInOutBounce
 
        from manim import *
-       from manim_extensions import easeInOutBounce
+       from manim_extensions import ease_in_out_bounce
 
        class EaseInOutBounce(Scene):
            def construct(self):
@@ -266,12 +266,12 @@ def easeInOutBounce(t: float) -> float:
                eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
                labels = VGroup(
                    Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
-                   Text("easeInOutBounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
+                   Text("ease_in_out_bounce", font_size=24).next_to(eased_dot, UP, buff=0.15),
                )
                self.add(track, linear_dot, eased_dot, labels)
                self.play(
                    linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
-                   eased_dot.animate(rate_func=easeInOutBounce).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=ease_in_out_bounce).shift(RIGHT * 6),
                    run_time=3,
                )
                self.wait()
@@ -282,9 +282,9 @@ def easeInOutBounce(t: float) -> float:
 
 
 @deprecated(
-    "``easeOutElastic`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_elastic` instead.",
+    "``ease_out_elastic`` is deprecated; use :func:`manim.utils.rate_functions.ease_out_elastic` instead.",
 )
-def easeOutElastic(t: float) -> float:
+def ease_out_elastic(t: float) -> float:
     """Elastic easing that overshoots and oscillates towards ``1``.
 
     .. note::
@@ -311,7 +311,7 @@ def easeOutElastic(t: float) -> float:
     .. manim:: EaseOutElastic
 
        from manim import *
-       from manim_extensions import easeOutElastic
+       from manim_extensions import ease_out_elastic
 
        class EaseOutElastic(Scene):
            def construct(self):
@@ -320,12 +320,12 @@ def easeOutElastic(t: float) -> float:
                eased_dot = Dot(LEFT * 3 + DOWN * 1.2, color=YELLOW)
                labels = VGroup(
                    Text("linear", font_size=24).next_to(linear_dot, UP, buff=0.15),
-                   Text("easeOutElastic", font_size=24).next_to(eased_dot, UP, buff=0.15),
+                   Text("ease_out_elastic", font_size=24).next_to(eased_dot, UP, buff=0.15),
                )
                self.add(track, linear_dot, eased_dot, labels)
                self.play(
                    linear_dot.animate(rate_func=linear).shift(RIGHT * 6),
-                   eased_dot.animate(rate_func=easeOutElastic).shift(RIGHT * 6),
+                   eased_dot.animate(rate_func=ease_out_elastic).shift(RIGHT * 6),
                    run_time=3,
                )
                self.wait()

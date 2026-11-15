@@ -16,7 +16,7 @@ from manim_extensions.chemistry.future_classes.future_classes import (
     Hole,
     MOSFETTransistor,
     NPNTransistor,
-    arrange_in_1D_boundary,
+    arrange_in_1d_boundary,
 )
 
 
@@ -151,7 +151,7 @@ def test_battery_side_connects_terminal_to_anchor():
 @pytest.mark.parametrize("boundary", [[LEFT, RIGHT], [DOWN, UP]])
 def test_arrange_in_1d_boundary(boundary):
     mobs = VGroup(Electron(), Electron(), Electron())
-    arrange_in_1D_boundary(mobs, boundary=boundary)
+    arrange_in_1d_boundary(mobs, boundary=boundary)
 
     assert len(mobs) == 3
     assert not np.allclose(mobs[0].get_center(), mobs[-1].get_center())

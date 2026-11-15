@@ -424,7 +424,7 @@ class HyperboloidOneSheet:
 
 
 # ---------------- 节拍骨架(图曲面通用) ----------------
-class _GraphSurfaceScene(ThreeDScene):
+class GraphSurfaceScene(ThreeDScene):
     """Shared beat skeleton for graph and closed surfaces.
 
     Subclasses provide a ``style`` configuration and implement the hooks
@@ -871,7 +871,7 @@ class _GraphSurfaceScene(ThreeDScene):
 
 
 # ---------------- 三个曲面场景 ----------------
-class GaussianSurfaceScene(_GraphSurfaceScene):
+class GaussianSurfaceScene(GraphSurfaceScene):
     """GaussianSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
@@ -982,7 +982,7 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
         return 68.0, -40.0, 0.95
 
 
-class SaddleSurfaceScene(_GraphSurfaceScene):
+class SaddleSurfaceScene(GraphSurfaceScene):
     """SaddleSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
@@ -1090,7 +1090,7 @@ class SaddleSurfaceScene(_GraphSurfaceScene):
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 1.3  # 鞍点:HUD 标签
 
 
-class ParaboloidSurfaceScene(_GraphSurfaceScene):
+class ParaboloidSurfaceScene(GraphSurfaceScene):
     """ParaboloidSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
@@ -1171,7 +1171,7 @@ class ParaboloidSurfaceScene(_GraphSurfaceScene):
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 0.6  # 顶点:HUD 标签
 
 
-class EllipsoidSurfaceScene(_GraphSurfaceScene):
+class EllipsoidSurfaceScene(GraphSurfaceScene):
     """Ellipsoid scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
@@ -1322,7 +1322,7 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         return 0.0, 0.0, c, rf"(0,\,0,\,{_fmt(c)})", False, c + 0.75
 
 
-class TorusSurfaceScene(_GraphSurfaceScene):
+class TorusSurfaceScene(GraphSurfaceScene):
     """Torus scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
@@ -1474,7 +1474,7 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         return 0.0, 0.0, r, rf"(0,\,0,\,{_fmt(r)})", False, r + 0.75
 
 
-class HyperboloidOneSheetScene(_GraphSurfaceScene):
+class HyperboloidOneSheetScene(GraphSurfaceScene):
     """One-sheet hyperboloid scene with an inflated formation."""
 
     uses_flat = False

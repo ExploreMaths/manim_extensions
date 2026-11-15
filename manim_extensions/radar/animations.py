@@ -81,7 +81,7 @@ def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.nd
     return np.vstack([pts, pts[:1]])
 
 
-class _Ring(Polygon):
+class Ring(Polygon):
     """A ring whose radius, stroke width and opacity change every frame.
 
     Parameters
@@ -100,11 +100,11 @@ class _Ring(Polygon):
         :save_last_frame:
 
        from manim import *
-       from manim_extensions.radar.animations import _Ring
+       from manim_extensions.radar.animations import Ring
 
        class RingScene(Scene):
            def construct(self):
-               ring = _Ring(ORIGIN, "#E868C8", stroke_width=4.5)
+               ring = Ring(ORIGIN, "#E868C8", stroke_width=4.5)
                self.add(ring)
                ring.restyle(2.0, 1.0, 0.5)
     """
@@ -215,7 +215,7 @@ class Shockwave(Animation):
             (width_start, width_end) if expand else (width_end, width_start)
         )
         super().__init__(
-            _Ring(np.asarray(center, dtype=float), color, stroke_width=width_start),
+            Ring(np.asarray(center, dtype=float), color, stroke_width=width_start),
             run_time=run_time,
             rate_func=rate_func,
             **kwargs,
@@ -355,7 +355,7 @@ class RadarMorph(Animation):
         self.fade_name = fade_name
         self.name_shift = name_shift
         self.stagger = cfg.stagger if stagger is None else float(stagger)
-        self._ring: Optional[_Ring] = None
+        self._ring: Optional[Ring] = None
         self._cam: Optional[dict] = None
         self._legend_path: Optional[str] = None
         super().__init__(
@@ -436,7 +436,7 @@ class RadarMorph(Animation):
             )
 
         if self.shockwave:
-            self._ring = _Ring(
+            self._ring = Ring(
                 chart._anchor[0].get_center(),
                 self.shock_color or self.slots[0]["end_color"],
                 stroke_width=4.5,
@@ -728,7 +728,7 @@ class RadarReveal(Animation):
         self.with_shockwave = (
             chart.config.shockwave if with_shockwave is None else with_shockwave
         )
-        self._ring: Optional[_Ring] = None
+        self._ring: Optional[Ring] = None
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
@@ -741,7 +741,7 @@ class RadarReveal(Animation):
         chart._values = list(chart._series[0].values)
         chart._opacity = 0.0
         if self.with_shockwave:
-            self._ring = _Ring(
+            self._ring = Ring(
                 chart._anchor[0].get_center(), chart._series[0].color, stroke_width=4.5
             )
             chart.add(self._ring)
@@ -830,7 +830,7 @@ class RadarBurstIn(Animation):
         self.with_shockwave = (
             chart.config.shockwave if with_shockwave is None else with_shockwave
         )
-        self._ring: Optional[_Ring] = None
+        self._ring: Optional[Ring] = None
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
@@ -843,7 +843,7 @@ class RadarBurstIn(Animation):
         chart._values = list(chart._series[0].values)
         chart._opacity = 0.0
         if self.with_shockwave:
-            self._ring = _Ring(
+            self._ring = Ring(
                 chart._anchor[0].get_center(), chart._series[0].color, stroke_width=4.5
             )
             chart.add(self._ring)

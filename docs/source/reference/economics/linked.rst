@@ -12,10 +12,10 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~LinkedISLM_ADAS
+   ~LinkedISLMADAS
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   linked.LinkedISLM_ADAS
+   linked.LinkedISLMADAS

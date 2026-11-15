@@ -19,6 +19,13 @@ jobs:
       - name: Run static checks
         run: python workflow/run_checks.py --group static
 
+  validate-naming:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check class and function names
+        run: python workflow/validate_naming.py
+
   validate-package:
     runs-on: ubuntu-latest
     steps:

@@ -74,7 +74,7 @@ def _load_pymunk() -> pymunk:
     return cast("pymunk", require("physics", "pymunk"))
 
 
-class _PhysicsAttributes(Protocol):
+class PhysicsAttributes(Protocol):
     """Structural type of a mobject augmented with pymunk body attributes.
 
     The attributes are attached dynamically by

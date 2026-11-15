@@ -63,7 +63,7 @@ _MONO_FONTS = (
 )
 
 
-class _Series:
+class Series:
     """One dataset: its polygon family, its live tween state, its numbers.
 
     Parameters
@@ -498,7 +498,7 @@ class RadarChart(VGroup):
         self._poly_layers = VGroup()
         self.gap_group: Optional[VGroup] = None
         self._gap_spec: Optional[dict] = None
-        self._series: List[_Series] = []
+        self._series: List[Series] = []
         self.add(self._poly_layers)
 
         # ---- axis names & value numbers ------------------------------------
@@ -671,7 +671,7 @@ class RadarChart(VGroup):
                 s.color = color
                 s.rim = rim
             else:
-                s = _Series(self, i, d, color, rim, primary=(i == 0))
+                s = Series(self, i, d, color, rim, primary=(i == 0))
                 self._poly_layers.add(s.group)
                 self._series.append(s)
 
@@ -777,7 +777,7 @@ class RadarChart(VGroup):
             d = datasets[i]
             color = self._resolve_color(d.color, i)
             rim = 1.0 if (d.rim or d.emphasis == "rim" or self.config.rim) else 0.0
-            s = _Series(self, i, d, color, rim, primary=(i == 0))
+            s = Series(self, i, d, color, rim, primary=(i == 0))
             if i > 0 or len(self._series):
                 s.opacity = 0.0
                 s.opacity_target = 1.0
@@ -1691,7 +1691,7 @@ class RadarChart(VGroup):
 
         self._sweep_local = points
 
-    def _polygon_local_for(self, series: _Series, scale: float = 1.0) -> np.ndarray:
+    def _polygon_local_for(self, series: Series, scale: float = 1.0) -> np.ndarray:
         """Build one dataset's closed polygon in the local frame.
 
         Parameters
@@ -1960,7 +1960,7 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     def _paint_series(
         self,
-        s: _Series,
+        s: Series,
         a: Any,
         u: Any,
         v: Any,
@@ -2546,7 +2546,7 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     # overflow (OverflowRadarChart) — every dataset gets the full treatment
     # ------------------------------------------------------------------
-    def _ensure_series_fx(self, s: _Series) -> VGroup:
+    def _ensure_series_fx(self, s: Series) -> VGroup:
         """Return the overflow effects container for one dataset.
 
         Parameters
@@ -2564,7 +2564,7 @@ class RadarChart(VGroup):
             self._overflow_fx.add(s.fx_group)
         return s.fx_group
 
-    def _ensure_dash_pool(self, s: _Series, j: int) -> VGroup:
+    def _ensure_dash_pool(self, s: Series, j: int) -> VGroup:
         """Return dashed-track slots for a dataset and axis.
 
         Parameters
@@ -2590,7 +2590,7 @@ class RadarChart(VGroup):
             s.fx_group.add(pool)
         return s.dash_pool[j]
 
-    def _ensure_breach(self, s: _Series, j: int) -> VGroup:
+    def _ensure_breach(self, s: Series, j: int) -> VGroup:
         """Return the ring-breach glow for a dataset and axis.
 
         Parameters
@@ -2761,7 +2761,7 @@ class RadarChart(VGroup):
                     if not (len(self._series) > 1):
                         self.value_numbers[j].hide()
 
-    def _hide_overflow(self, s: _Series, j: int) -> None:
+    def _hide_overflow(self, s: Series, j: int) -> None:
         """Switch off a dataset's overflow decorations on one axis.
 
         Parameters

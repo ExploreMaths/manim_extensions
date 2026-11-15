@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Pointer_To_Mob
-==============
+BezierHandlebars
+=================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.Pointer_To_Mob
+.. autoclass:: manim_extensions.cad_drawing_utils.utils.BezierHandlebars
    :show-inheritance:

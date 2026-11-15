@@ -13,7 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~Bezier_Handlebars
+   ~BezierHandlebars
 
 Functions
 ---------
@@ -25,4 +25,4 @@ Functions
    :hidden:
    :maxdepth: 1
 
-   utils.Bezier_Handlebars
+   utils.BezierHandlebars

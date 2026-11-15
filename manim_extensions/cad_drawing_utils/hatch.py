@@ -21,7 +21,7 @@ from manim import (
 from scipy.optimize import root
 
 
-class Hatch_lines(VGroup):
+class HatchLines(VGroup):
     """Hatch lines clipped to the interior of a target mobject.
 
     Parameters
@@ -41,12 +41,12 @@ class Hatch_lines(VGroup):
        :save_last_frame:
 
        from manim import Circle, Scene
-       from manim_extensions.cad_drawing_utils import Hatch_lines
+       from manim_extensions.cad_drawing_utils import HatchLines
 
        class HatchLinesScene(Scene):
            def construct(self):
                target = Circle(radius=1)
-               hatch = Hatch_lines(target, angle=0.5, offset=0.3)
+               hatch = HatchLines(target, angle=0.5, offset=0.3)
                self.add(target, hatch)
     """
 

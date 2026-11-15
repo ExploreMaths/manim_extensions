@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Curve_Warp
-==========
+AngleDimensionMob
+===================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.path_mapper.Curve_Warp
+.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.AngleDimensionMob
    :show-inheritance:

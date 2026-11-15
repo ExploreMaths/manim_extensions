@@ -16,7 +16,7 @@ from manim import (
     VMobject,
 )
 
-__all__ = ["angle_between_vectors_signed", "Bezier_Handlebars"]
+__all__ = ["angle_between_vectors_signed", "BezierHandlebars"]
 
 
 def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
@@ -39,7 +39,7 @@ def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
     return np.arctan2(sval, cval)
 
 
-class Bezier_Handlebars(VDict):
+class BezierHandlebars(VDict):
     """
     Creates circles (dots) and lines on the points of another mobject.
     Used for visualizing bezier control points and handles, helps debugging.

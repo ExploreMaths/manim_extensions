@@ -30,7 +30,7 @@ from manim_extensions.three_d import (
     torus_surface_scene,
 )
 from manim_extensions.three_d.core import (
-    _GraphSurfaceScene,
+    GraphSurfaceScene,
     _fmt,
     _ramp_color,
     _radius_for_level,
@@ -142,7 +142,7 @@ def test_plan_timeline_short_budget_drops_optional_beats():
 
 
 def test_graph_base_hooks_require_override():
-    base = _GraphSurfaceScene()
+    base = GraphSurfaceScene()
     with pytest.raises(NotImplementedError):
         base._geometry(None)
     with pytest.raises(NotImplementedError):

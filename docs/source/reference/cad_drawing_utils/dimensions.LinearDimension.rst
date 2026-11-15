@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Linear_Dimension
+LinearDimension
 ================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.Linear_Dimension
+.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.LinearDimension
    :show-inheritance:

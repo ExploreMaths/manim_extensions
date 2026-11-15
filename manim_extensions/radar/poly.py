@@ -499,7 +499,7 @@ class PolyRadarChart(VGroup):
         An animation that performs the rotation.
         """
 
-        class _Spin(Animation):
+        class Spin(Animation):
             """Rotate a poly chart by a fixed angular delta.
 
             Parameters
@@ -544,7 +544,7 @@ class PolyRadarChart(VGroup):
         )
         delta = -math.radians(self.theta) - az
         delta = (delta + math.pi) % (2 * math.pi) - math.pi
-        return _Spin(self, delta, run_time=run_time)
+        return Spin(self, delta, run_time=run_time)
 
     def set_values(self, values: Any) -> None:
         """Replace the data values and rebuild the geometry.

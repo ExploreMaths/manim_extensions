@@ -13,7 +13,7 @@ import pytest
 from manim_extensions.economics import (
     ADASDiagram,
     ISLMDiagram,
-    LinkedISLM_ADAS,
+    LinkedISLMADAS,
     SolowDiagram,
     SupplyDemandDiagram,
 )
@@ -82,25 +82,25 @@ class TestADASDiagram:
 
 class TestLinkedISLMADAS:
     def test_construct_with_numbered_eq(self):
-        # Regression: LinkedISLM_ADAS forwards numbered_eq to both diagrams.
-        linked = LinkedISLM_ADAS(numbered_eq=True, show_arrows=True)
+        # Regression: LinkedISLMADAS forwards numbered_eq to both diagrams.
+        linked = LinkedISLMADAS(numbered_eq=True, show_arrows=True)
         assert linked.is_lm is not None
         assert linked.ad_as is not None
 
     def test_monetary_expansion(self):
-        linked = LinkedISLM_ADAS()
+        linked = LinkedISLMADAS()
         _assert_animation_list(linked.monetary_expansion(ms=3))
 
     def test_monetary_contraction(self):
-        linked = LinkedISLM_ADAS()
+        linked = LinkedISLMADAS()
         _assert_animation_list(linked.monetary_contraction(ms=1))
 
     def test_fiscal_expansion(self):
-        linked = LinkedISLM_ADAS()
+        linked = LinkedISLMADAS()
         _assert_animation_list(linked.fiscal_expansion(a=12))
 
     def test_fiscal_contraction(self):
-        linked = LinkedISLM_ADAS()
+        linked = LinkedISLMADAS()
         _assert_animation_list(linked.fiscal_contraction(a=7))
 
 

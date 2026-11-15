@@ -48,7 +48,7 @@ solid_dir = svg_dir / "solid"
 FONT_AWESOME_VERSION = "6.5.1"
 
 
-class _Brand(Enum):
+class BrandEnum(Enum):
     """Bundled brand-style icon paths."""
 
     hotjar = os.fspath(brand_dir / "hotjar.svg")
@@ -1022,7 +1022,7 @@ class _Brand(Enum):
     viber = os.fspath(brand_dir / "viber.svg")
 
 
-class _Regular(Enum):
+class RegularEnum(Enum):
     """Bundled regular-style icon paths."""
 
     calendar_plus = os.fspath(regular_dir / "calendar-plus.svg")
@@ -1352,7 +1352,7 @@ class _Regular(Enum):
     paste = os.fspath(regular_dir / "paste.svg")
 
 
-class _Solid(Enum):
+class SolidEnum(Enum):
     """Bundled solid-style icon paths."""
 
     folder_tree = os.fspath(solid_dir / "folder-tree.svg")
@@ -4208,7 +4208,7 @@ class Brand:
         -------
         The requested brand icon.
         """
-        return _get_svg_object(_Brand.__members__[name].value)
+        return _get_svg_object(BrandEnum.__members__[name].value)
 
 
 class Regular:
@@ -4246,7 +4246,7 @@ class Regular:
         -------
         The requested regular icon.
         """
-        return _get_svg_object(_Regular.__members__[name].value)
+        return _get_svg_object(RegularEnum.__members__[name].value)
 
 
 class Solid:
@@ -4286,7 +4286,7 @@ class Solid:
         -------
         The requested solid icon.
         """
-        return _get_svg_object(_Solid.__members__[name].value)
+        return _get_svg_object(SolidEnum.__members__[name].value)
 
 
 # patched: added list_icons() — upstream offers no public way to enumerate
@@ -4304,7 +4304,7 @@ def list_icons(style: str = "solid") -> list[str]:
         Icon names in definition order; use ``getattr(solid, name)``
         (or the matching namespace) to obtain the icon mobject.
     """
-    enums = {"solid": _Solid, "regular": _Regular, "brand": _Brand}
+    enums = {"solid": SolidEnum, "regular": RegularEnum, "brand": BrandEnum}
     return list(enums[style].__members__)
 
 

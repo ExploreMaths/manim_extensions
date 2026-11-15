@@ -47,19 +47,19 @@ from base Manim in blue.
    manim_extensions.circuit.mobjects.Capacitor
    manim_extensions.circuit.mobjects.Ground
    manim_extensions.circuit.mobjects.Opamp
-   manim_extensions.cad_drawing_utils.dimensions.Pointer_Label_Free
-   manim_extensions.cad_drawing_utils.dimensions.Pointer_To_Mob
-   manim_extensions.cad_drawing_utils.dimensions.Linear_Dimension
-   manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_3point
-   manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_Mob
-   manim_extensions.cad_drawing_utils.dimensions.CAD_ArrowHead
-   manim_extensions.cad_drawing_utils.hatch.Hatch_lines
-   manim_extensions.cad_drawing_utils.path_mapper.Path_mapper
-   manim_extensions.cad_drawing_utils.path_mapper.Dashed_line_mobject
-   manim_extensions.cad_drawing_utils.path_mapper.DashDot_mobject
-   manim_extensions.cad_drawing_utils.path_mapper.Path_Offset_Mobject
-   manim_extensions.cad_drawing_utils.path_mapper.Curve_Warp
-   manim_extensions.cad_drawing_utils.utils.Bezier_Handlebars
+   manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree
+   manim_extensions.cad_drawing_utils.dimensions.PointerToMob
+   manim_extensions.cad_drawing_utils.dimensions.LinearDimension
+   manim_extensions.cad_drawing_utils.dimensions.AngleDimension3Point
+   manim_extensions.cad_drawing_utils.dimensions.AngleDimensionMob
+   manim_extensions.cad_drawing_utils.dimensions.CADArrowHead
+   manim_extensions.cad_drawing_utils.hatch.HatchLines
+   manim_extensions.cad_drawing_utils.path_mapper.PathMapper
+   manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject
+   manim_extensions.cad_drawing_utils.path_mapper.DashDotMobject
+   manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject
+   manim_extensions.cad_drawing_utils.path_mapper.CurveWarp
+   manim_extensions.cad_drawing_utils.utils.BezierHandlebars
    manim_extensions.radar.animations.Shockwave
    manim_extensions.radar.animations.RadarMorph
    manim_extensions.radar.animations.RadarReveal

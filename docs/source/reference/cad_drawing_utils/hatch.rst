@@ -13,7 +13,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~Hatch_lines
+   ~HatchLines
 
 Functions
 ---------
@@ -25,4 +25,4 @@ Functions
    :hidden:
    :maxdepth: 1
 
-   hatch.Hatch_lines
+   hatch.HatchLines

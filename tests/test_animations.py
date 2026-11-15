@@ -31,10 +31,10 @@ import pytest
 pytestmark = pytest.mark.filterwarnings("ignore::DeprecationWarning")
 
 from manim_extensions.animations import (
-    easeInBounce,
-    easeOutBounce,
-    easeInOutBounce,
-    easeOutElastic,
+    ease_in_bounce,
+    ease_out_bounce,
+    ease_in_out_bounce,
+    ease_out_elastic,
     WriteRandom,
     ReversedWrite,
     FadeInRandom,
@@ -49,17 +49,17 @@ from manim_extensions.animations import (
 
 class TestRateFunctions:
     def test_bounce_within_unit_range(self):
-        for f in (easeInBounce, easeOutBounce, easeInOutBounce):
+        for f in (ease_in_bounce, ease_out_bounce, ease_in_out_bounce):
             for t in (0.0, 0.25, 0.5, 0.75, 1.0):
                 v = f(t)
                 assert 0.0 <= v <= 1.0
 
     def test_elastic_endpoints(self):
-        assert easeOutElastic(0.0) == 0.0
-        assert easeOutElastic(1.0) == 1.0
+        assert ease_out_elastic(0.0) == 0.0
+        assert ease_out_elastic(1.0) == 1.0
 
     def test_inverse_bounce(self):
-        assert easeInBounce(0.5) == pytest.approx(1.0 - easeOutBounce(0.5))
+        assert ease_in_bounce(0.5) == pytest.approx(1.0 - ease_out_bounce(0.5))
 
 
 _RANDOM_ANIMS = [WriteRandom, ReversedWrite, FadeInRandom, FadeOutRandom, GrowRandom]

@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Angle_Dimension_Mob
-===================
+AngleDimension3Point
+======================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_Mob
+.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.AngleDimension3Point
    :show-inheritance:

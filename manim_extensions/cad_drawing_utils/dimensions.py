@@ -32,7 +32,7 @@ from .round_corners import *
 from .path_mapper import *
 
 
-class Pointer_Label_Free(VDict):
+class PointerLabelFree(VDict):
     """A labelled pointer that is not attached to a mobject.
 
     Parameters
@@ -90,7 +90,7 @@ class Pointer_Label_Free(VDict):
             ]
         )
         self.add({"line": dim_line})
-        self.add({"arrow": CAD_ArrowHead(self["line"], anchor_point=0, **kwargs)})
+        self.add({"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
         self["arrow"].arrowhead.rotate(PI, about_point=ORIGIN)
         self["arrow"].add_updater(self["arrow"].default_updater)
         self["arrow"].update()
@@ -133,7 +133,7 @@ class Pointer_Label_Free(VDict):
         )
 
 
-class Pointer_To_Mob(Pointer_Label_Free):
+class PointerToMob(PointerLabelFree):
     """A labelled pointer attached to a point on a mobject.
 
     Parameters
@@ -207,7 +207,7 @@ class Pointer_To_Mob(Pointer_Label_Free):
         super().update_point(point, offset)
 
 
-class Linear_Dimension(VDict):
+class LinearDimension(VDict):
     """A linear dimension with arrows and a measurement label.
 
     Parameters
@@ -275,10 +275,10 @@ class Linear_Dimension(VDict):
                 end=endpoint - self.arrow_offset * ext_dir,
                 **kwargs,
             )
-            arrow1 = CAD_ArrowHead(
+            arrow1 = CADArrowHead(
                 main_line, anchor_point=1, arrow_size=tip_len, reversed_arrow=False
             )
-            arrow2 = CAD_ArrowHead(
+            arrow2 = CADArrowHead(
                 main_line, anchor_point=0, arrow_size=tip_len, reversed_arrow=True
             )
         else:
@@ -286,12 +286,12 @@ class Linear_Dimension(VDict):
             main_line = Line(
                 start=startpoint - extension, end=endpoint + extension, **kwargs
             )
-            arrow1 = CAD_ArrowHead(
+            arrow1 = CADArrowHead(
                 main_line, anchor_point=1, arrow_size=tip_len, reversed_arrow=True
             )
             arrow1.arrowhead.shift(-np.linalg.norm(extension) * RIGHT)
             arrow1.default_updater(0)
-            arrow2 = CAD_ArrowHead(
+            arrow2 = CADArrowHead(
                 main_line, anchor_point=0, arrow_size=tip_len, reversed_arrow=False
             )
             arrow2.arrowhead.shift(np.linalg.norm(extension) * RIGHT)
@@ -352,7 +352,7 @@ class Linear_Dimension(VDict):
         self.add({"text": textmob})
 
 
-class Angle_Dimension_3point(VDict):
+class AngleDimension3Point(VDict):
     """An angular dimension defined by three points.
 
     Parameters
@@ -430,10 +430,10 @@ class Angle_Dimension_3point(VDict):
             else:
                 self.arrow_offset = DEFAULT_STROKE_WIDTH * 1 / 100
 
-            arrow1 = CAD_ArrowHead(
+            arrow1 = CADArrowHead(
                 base_arc, anchor_point=1, arrow_size=tip_len, reversed_arrow=False
             )
-            arrow2 = CAD_ArrowHead(
+            arrow2 = CADArrowHead(
                 base_arc, anchor_point=0, arrow_size=tip_len, reversed_arrow=True
             )
 
@@ -455,12 +455,12 @@ class Angle_Dimension_3point(VDict):
                 arc_center=arc_center,
                 **kwargs,
             )
-            arrow1 = CAD_ArrowHead(
+            arrow1 = CADArrowHead(
                 base_arc, anchor_point=1, arrow_size=tip_len, reversed_arrow=True
             )
             arrow1.arrowhead.shift(extension * RIGHT)
             arrow1.default_updater(0)
-            arrow2 = CAD_ArrowHead(
+            arrow2 = CADArrowHead(
                 base_arc, anchor_point=0, arrow_size=tip_len, reversed_arrow=False
             )
             arrow2.arrowhead.shift(-extension * RIGHT)
@@ -494,7 +494,7 @@ class Angle_Dimension_3point(VDict):
         self.add({"text": textmob})
 
 
-class Angle_Dimension_Mob(Angle_Dimension_3point):
+class AngleDimensionMob(AngleDimension3Point):
     """An angular dimension measured between two mobject points.
 
     Parameters
@@ -538,7 +538,7 @@ class Angle_Dimension_Mob(Angle_Dimension_3point):
         super().__init__(start, end, center.flatten(), **kwargs)
 
 
-class CAD_ArrowHead(Curve_Warp):
+class CADArrowHead(CurveWarp):
     """An arrow head that follows a target curve.
 
     Parameters

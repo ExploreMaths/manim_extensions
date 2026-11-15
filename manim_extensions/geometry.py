@@ -4,7 +4,7 @@
 """Geometric helper functions for Manim scenes.
 
 This module provides intersection routines that operate directly on Manim
-mobjects.  :func:`~manim_extensions.geometry.VMobjectInt` works with any two
+mobjects.  :func:`~manim_extensions.geometry.vmobject_int` works with any two
 :class:`~manim.mobject.types.vectorized_mobject.VMobject` instances (circles,
 lines, arcs, polygons, parametric curves, text, groups, ...) by intersecting
 their cubic Bézier outlines, so no type-specific cases are needed.
@@ -18,7 +18,7 @@ import numpy as np
 from manim.typing import CubicBezierPoints, Point3D, PointNDLike
 
 
-def VMobjectInt(
+def vmobject_int(
     vmob1: VMobject,
     vmob2: VMobject,
     tolerance: float = 1e-6,
@@ -83,7 +83,7 @@ def VMobjectInt(
     .. manim:: VMobjectIntScene
 
        from manim import *
-       from manim_extensions import VMobjectInt, LabelDot
+       from manim_extensions import vmobject_int, LabelDot
 
        class VMobjectIntScene(Scene):
            def construct(self):
@@ -93,7 +93,7 @@ def VMobjectInt(
                    t_range=[-2.5, 2.5],
                    color=RED,
                )
-               pts = VMobjectInt(circle, curve)
+               pts = vmobject_int(circle, curve)
                self.play(Create(circle), Create(curve))
                self.play(
                    LaggedStart(
@@ -377,7 +377,7 @@ def VMobjectInt(
     return points
 
 
-def TangentPoint(
+def tangent_point(
     p1: PointNDLike,
     p2: PointNDLike,
     line_start: PointNDLike,
@@ -411,13 +411,13 @@ def TangentPoint(
        :save_last_frame:
 
        from manim import *
-       from manim_extensions import TangentPoint, LabelDot
+       from manim_extensions import tangent_point, LabelDot
 
        class TangentPointScene(Scene):
            def construct(self):
                p1, p2 = [0.5, 1.5, 0], [1.5, 0.5, 0]
                line = Line([-3, 0, 0], [3, 0, 0], color=BLUE)
-               tangent = TangentPoint(p1, p2, line.get_start(), line.get_end())
+               tangent = tangent_point(p1, p2, line.get_start(), line.get_end())
                circle = Circle.from_three_points(p1, p2, tangent, color=RED)
                radius = DashedLine(circle.get_center(), tangent, color=YELLOW)
                self.add(line, circle, Dot(p1, color=BLUE), Dot(p2, color=BLUE))

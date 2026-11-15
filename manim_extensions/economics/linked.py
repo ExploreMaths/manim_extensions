@@ -12,7 +12,7 @@ from .ad_as import ADASDiagram
 from .is_lm import ISLMDiagram
 
 
-class LinkedISLM_ADAS(VGroup):
+class LinkedISLMADAS(VGroup):
     """Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.
 
     A policy change (monetary or fiscal) shifts curves in both diagrams
@@ -41,11 +41,11 @@ class LinkedISLM_ADAS(VGroup):
     .. manim:: LinkedISLMADAS
 
        from manim import *
-       from manim_extensions.economics import LinkedISLM_ADAS
+       from manim_extensions.economics import LinkedISLMADAS
 
        class LinkedISLMADAS(Scene):
            def construct(self):
-               linked = LinkedISLM_ADAS(numbered_eq=True, show_arrows=True)
+               linked = LinkedISLMADAS(numbered_eq=True, show_arrows=True)
                self.play(Create(linked))
                self.wait()
 

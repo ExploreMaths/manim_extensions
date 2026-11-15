@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Path_mapper
-===========
+PathOffsetMobject
+===================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.path_mapper.Path_mapper
+.. autoclass:: manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject
    :show-inheritance:

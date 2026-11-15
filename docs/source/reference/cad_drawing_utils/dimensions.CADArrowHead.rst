@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-DashDot_mobject
-===============
+CADArrowHead
+=============
 
-.. autoclass:: manim_extensions.cad_drawing_utils.path_mapper.DashDot_mobject
+.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.CADArrowHead
    :show-inheritance:

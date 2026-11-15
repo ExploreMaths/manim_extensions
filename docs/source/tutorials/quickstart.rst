@@ -41,30 +41,30 @@ Import the public API directly from ``manim_extensions``:
        ExtendedLine,
        PerpendicularLine,
        PerpendicularSign,
-       VMobjectInt,
-       TangentPoint,
+       vmobject_int,
+       tangent_point,
        TypeWriter,
    )
 
 Annotated mobjects
 ------------------
 
-:func:`~manim_extensions.geometry.VMobjectInt` and
+:func:`~manim_extensions.geometry.vmobject_int` and
 :class:`~manim_extensions.mobjects.LabelDot` are useful when you want to label
-key points or show intersections.  :func:`~manim_extensions.geometry.VMobjectInt` works with any two
+key points or show intersections.  :func:`~manim_extensions.geometry.vmobject_int` works with any two
 VMobjects — circles, lines, arcs, function graphs, text, and so on:
 
 .. manim:: QuickstartAnnotatedScene
    :save_last_frame:
 
    from manim import *
-   from manim_extensions import VMobjectInt, LabelDot
+   from manim_extensions import vmobject_int, LabelDot
 
    class QuickstartAnnotatedScene(Scene):
        def construct(self):
            c1 = Circle(radius=2, color=BLUE).shift(LEFT)
            c2 = Circle(radius=2, color=GREEN).shift(RIGHT)
-           pts = sorted(VMobjectInt(c1, c2), key=lambda p: p[1])
+           pts = sorted(vmobject_int(c1, c2), key=lambda p: p[1])
            self.add(c1, c2)
            self.add(LabelDot("P_1", pts[1], label_pos=UP, buff=0.1))
            self.add(LabelDot("P_2", pts[0], label_pos=DOWN, buff=0.1))
@@ -73,8 +73,8 @@ Geometry helpers
 ----------------
 
 The geometry module provides helpers that return plain points, such as
-:func:`~manim_extensions.geometry.VMobjectInt` for intersection points of
-arbitrary VMobjects and :func:`~manim_extensions.geometry.TangentPoint` for
+:func:`~manim_extensions.geometry.vmobject_int` for intersection points of
+arbitrary VMobjects and :func:`~manim_extensions.geometry.tangent_point` for
 circle tangent points, so you can use the results with any Manim mobject:
 
 .. manim:: QuickstartGeometry

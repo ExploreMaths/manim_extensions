@@ -13,20 +13,20 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~Pointer_Label_Free
-   ~Pointer_To_Mob
-   ~Linear_Dimension
-   ~Angle_Dimension_3point
-   ~Angle_Dimension_Mob
-   ~CAD_ArrowHead
+   ~PointerLabelFree
+   ~PointerToMob
+   ~LinearDimension
+   ~AngleDimension3Point
+   ~AngleDimensionMob
+   ~CADArrowHead
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   dimensions.Pointer_Label_Free
-   dimensions.Pointer_To_Mob
-   dimensions.Linear_Dimension
-   dimensions.Angle_Dimension_3point
-   dimensions.Angle_Dimension_Mob
-   dimensions.CAD_ArrowHead
+   dimensions.PointerLabelFree
+   dimensions.PointerToMob
+   dimensions.LinearDimension
+   dimensions.AngleDimension3Point
+   dimensions.AngleDimensionMob
+   dimensions.CADArrowHead

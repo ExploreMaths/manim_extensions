@@ -37,8 +37,8 @@ Additional mobjects and helpers built directly on top of Manim:
   rounded-corner cropping via an alpha mask.
 * :class:`~manim_extensions.mobjects.VideoMobject` – video playback mobject
   built on OpenCV.
-* :func:`~manim_extensions.geometry.VMobjectInt`,
-  :func:`~manim_extensions.geometry.TangentPoint` – geometry utilities
+* :func:`~manim_extensions.geometry.vmobject_int`,
+  :func:`~manim_extensions.geometry.tangent_point` – geometry utilities
   for intersecting arbitrary VMobjects and finding circle tangent points.
 * :class:`~manim_extensions.animations.TypeWriter` – ready-to-use
   animations.

@@ -13,18 +13,18 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~Path_mapper
-   ~Dashed_line_mobject
-   ~DashDot_mobject
-   ~Path_Offset_Mobject
-   ~Curve_Warp
+   ~PathMapper
+   ~DashedLineMobject
+   ~DashDotMobject
+   ~PathOffsetMobject
+   ~CurveWarp
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   path_mapper.Path_mapper
-   path_mapper.Dashed_line_mobject
-   path_mapper.DashDot_mobject
-   path_mapper.Path_Offset_Mobject
-   path_mapper.Curve_Warp
+   path_mapper.PathMapper
+   path_mapper.DashedLineMobject
+   path_mapper.DashDotMobject
+   path_mapper.PathOffsetMobject
+   path_mapper.CurveWarp

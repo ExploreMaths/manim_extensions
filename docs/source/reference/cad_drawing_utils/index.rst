@@ -24,12 +24,12 @@ The code is bundled inside ``manim_extensions`` as the
 Features
 --------
 
-- :class:`~manim_extensions.cad_drawing_utils.dimensions.Linear_Dimension` and
+- :class:`~manim_extensions.cad_drawing_utils.dimensions.LinearDimension` and
   angular dimension mobjects.
-- :class:`~manim_extensions.cad_drawing_utils.hatch.Hatch_lines` hatching.
-- :class:`~manim_extensions.cad_drawing_utils.path_mapper.Path_mapper` and dashed-path mobjects.
+- :class:`~manim_extensions.cad_drawing_utils.hatch.HatchLines` hatching.
+- :class:`~manim_extensions.cad_drawing_utils.path_mapper.PathMapper` and dashed-path mobjects.
 - round and chamfer corner helpers for Bezier paths.
-- :class:`~manim_extensions.cad_drawing_utils.utils.Bezier_Handlebars` for editing control points.
+- :class:`~manim_extensions.cad_drawing_utils.utils.BezierHandlebars` for editing control points.
 
 Usage
 -----
@@ -37,16 +37,16 @@ Usage
 Add a linear dimension to a line:
 
 .. manim:: LinearDimensionDemo
-   :ref_classes: Linear_Dimension
+   :ref_classes: LinearDimension
 
    from manim import *
-   from manim_extensions.cad_drawing_utils import Linear_Dimension
+   from manim_extensions.cad_drawing_utils import LinearDimension
 
    class LinearDimensionDemo(Scene):
        def construct(self):
            line = Line(LEFT * 3, RIGHT * 3)
            self.add(line)
-           dimension = Linear_Dimension(LEFT * 3, RIGHT * 3, text="6")
+           dimension = LinearDimension(LEFT * 3, RIGHT * 3, text="6")
            self.play(Create(dimension))
 
 Modules

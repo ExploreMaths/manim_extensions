@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Hatch_lines
-===========
+PointerLabelFree
+==================
 
-.. autoclass:: manim_extensions.cad_drawing_utils.hatch.Hatch_lines
+.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree
    :show-inheritance:

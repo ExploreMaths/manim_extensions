@@ -20,7 +20,7 @@ including supply-demand, AD-AS, IS-LM, and Solow growth models.
 The code is bundled inside ``manim_extensions`` as the
 :mod:`~manim_extensions.economics` subpackage.
 
-.. inheritance-diagram:: manim_extensions.economics.base.EconDiagram manim_extensions.economics.supply_demand.SupplyDemandDiagram manim_extensions.economics.ad_as.ADASDiagram manim_extensions.economics.is_lm.ISLMDiagram manim_extensions.economics.linked.LinkedISLM_ADAS manim_extensions.economics.solow.SolowDiagram
+.. inheritance-diagram:: manim_extensions.economics.base.EconDiagram manim_extensions.economics.supply_demand.SupplyDemandDiagram manim_extensions.economics.ad_as.ADASDiagram manim_extensions.economics.is_lm.ISLMDiagram manim_extensions.economics.linked.LinkedISLMADAS manim_extensions.economics.solow.SolowDiagram
    :parts: 1
    :private-bases:
 
@@ -34,7 +34,7 @@ Features
 - :class:`~manim_extensions.economics.ad_as.ADASDiagram` – aggregate-demand /
   aggregate-supply diagram.
 - :class:`~manim_extensions.economics.is_lm.ISLMDiagram` – IS-LM model diagram.
-- :class:`~manim_extensions.economics.linked.LinkedISLM_ADAS` – linked IS-LM
+- :class:`~manim_extensions.economics.linked.LinkedISLMADAS` – linked IS-LM
   and AD-AS diagrams.
 - :class:`~manim_extensions.economics.solow.SolowDiagram` – Solow growth
   model diagram.
@@ -236,12 +236,12 @@ the golden-rule capital level where consumption is maximised:
 Linked IS-LM and AD-AS
 ^^^^^^^^^^^^^^^^^^^^^^
 
-:class:`~manim_extensions.economics.linked.LinkedISLM_ADAS` places an IS-LM
+:class:`~manim_extensions.economics.linked.LinkedISLMADAS` places an IS-LM
 and an AD-AS diagram side by side so that they shift simultaneously:
 
 .. code-block:: python
 
-   linked = LinkedISLM_ADAS(
+   linked = LinkedISLMADAS(
        numbered_eq=True,
        show_arrows=True,
        spacing=1.0,

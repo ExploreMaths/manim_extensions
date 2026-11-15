@@ -20,7 +20,7 @@ from manim import (
 )
 
 
-class Path_mapper(VMobject):
+class PathMapper(VMobject):
     """Map arc length and proportion along an arbitrary path.
 
     Parameters
@@ -38,12 +38,12 @@ class Path_mapper(VMobject):
        :save_last_frame:
 
         from manim import Scene, Circle
-        from manim_extensions.cad_drawing_utils.path_mapper import Path_mapper
+        from manim_extensions.cad_drawing_utils.path_mapper import PathMapper
 
         class PathMapperScene(Scene):
             def construct(self):
                 path = Circle(radius=2)
-                mapper = Path_mapper(path)
+                mapper = PathMapper(path)
                 dot = Dot(mapper.point_from_proportion(0.25))
                 self.add(path, dot)
     """
@@ -226,7 +226,7 @@ class Path_mapper(VMobject):
                     mob1 = round_corners(
                         Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5
                     )
-                    path_mapper = Path_mapper(mob1)
+                    path_mapper = PathMapper(mob1)
                     mob2 = mob1.copy()
                     mob1.shift(LEFT * 2.5)
                     mob2.shift(RIGHT * 2.5)
@@ -450,7 +450,7 @@ class Path_mapper(VMobject):
 # DashedVMobject
 
 
-class Dashed_line_mobject(VDict):
+class DashedLineMobject(VDict):
     """A dashed copy of a target mobject.
 
     Parameters
@@ -476,7 +476,7 @@ class Dashed_line_mobject(VDict):
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
-        self.path = Path_mapper(
+        self.path = PathMapper(
             target_mobject, num_of_path_points=10 * target_mobject.get_num_curves()
         )
         # self.path.add_updater(lambda mob: mob.generate_length_map())
@@ -583,7 +583,7 @@ class Dashed_line_mobject(VDict):
         return VGroup(*ret)
 
 
-class DashDot_mobject(Dashed_line_mobject):
+class DashDotMobject(DashedLineMobject):
     """A dash-dot copy of a target mobject.
 
     Parameters
@@ -657,7 +657,7 @@ class DashDot_mobject(Dashed_line_mobject):
         self["dots"] = dots
 
 
-class Path_Offset_Mobject(VMobject):
+class PathOffsetMobject(VMobject):
     """Offset a path along its normal vectors by a scalar function.
 
     Parameters
@@ -681,12 +681,12 @@ class Path_Offset_Mobject(VMobject):
        :save_last_frame:
 
         from manim import Scene, Circle
-        from manim_extensions.cad_drawing_utils.path_mapper import Path_Offset_Mobject
+        from manim_extensions.cad_drawing_utils.path_mapper import PathOffsetMobject
 
         class PathOffsetScene(Scene):
             def construct(self):
                 base = Circle(radius=2)
-                offset = Path_Offset_Mobject(base, lambda t: 0.3)
+                offset = PathOffsetMobject(base, lambda t: 0.3)
                 self.add(base, offset)
     """
 
@@ -701,7 +701,7 @@ class Path_Offset_Mobject(VMobject):
     ) -> None:
         super().__init__(**kwargs)
         self.ofs_func_kwargs = ofs_func_kwargs
-        self.PM = Path_mapper(target_mobject)
+        self.PM = PathMapper(target_mobject)
         self.PM.add_updater(lambda mob: mob.generate_length_map())
         self.discontinuities = discontinuities
 
@@ -786,7 +786,7 @@ class Path_Offset_Mobject(VMobject):
         )
         for point in bez_point:
             self.ref_curve.append_points(point)
-        self.ref_curve_path = Path_mapper(self.ref_curve)
+        self.ref_curve_path = PathMapper(self.ref_curve)
 
     def generate_offset_func_points(self, Smoothing: Any = True) -> Any:
         """Sample the offset function and build Bezier control points.
@@ -874,7 +874,7 @@ class Path_Offset_Mobject(VMobject):
         self.points = self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
 
 
-class Curve_Warp(VMobject):
+class CurveWarp(VMobject):
     """Wrap a source path onto another curve at an anchor point.
 
     Parameters
@@ -894,13 +894,13 @@ class Curve_Warp(VMobject):
        :save_last_frame:
 
         from manim import Scene, Circle, Line
-        from manim_extensions.cad_drawing_utils.path_mapper import Curve_Warp
+        from manim_extensions.cad_drawing_utils.path_mapper import CurveWarp
 
         class CurveWarpScene(Scene):
             def construct(self):
                 source = Line(LEFT, RIGHT)
                 guide = Circle(radius=2)
-                warped = Curve_Warp(source, guide)
+                warped = CurveWarp(source, guide)
                 self.add(guide, warped)
     """
 
@@ -914,7 +914,7 @@ class Curve_Warp(VMobject):
 
         self.warp_curve = warp_curve
         self.warp_source = warp_source
-        self.PM = Path_mapper(self.warp_curve)
+        self.PM = PathMapper(self.warp_curve)
         self.anchor_point = anchor_point
         super().__init__(**kwargs)
         self.match_style(warp_source)

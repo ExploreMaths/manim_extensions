@@ -58,7 +58,7 @@ MobProps = dict[str, Any]
 """Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
 
 
-class _UpdateIndices(Protocol):
+class UpdateIndices(Protocol):
     """Callable protocol for the index-updating function returned by element removal."""
 
     def __call__(
@@ -936,7 +936,7 @@ class MArray(VGroup):
         update_anim_args: MobProps = {},
         removal_anim_target: MArrayElementComp | None = None,
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
-    ) -> tuple[Succession, _UpdateIndices]:
+    ) -> tuple[Succession, UpdateIndices]:
         r"""Removes the element from the array at the specified index.
 
         Parameters
@@ -1562,7 +1562,7 @@ class MArray(VGroup):
         update_anim_target: MArrayElementComp = MArrayElementComp.INDEX,
         play_anim: bool = True,
         play_anim_args: MobProps = {},
-    ) -> tuple[Succession, _UpdateIndices]:
+    ) -> tuple[Succession, UpdateIndices]:
         r"""Removes the element from the array at the specified index.
 
         Parameters

@@ -457,7 +457,7 @@ v1.0.5
   migrated the :mod:`~manim_extensions.table` module from ``manimlib`` (ManimGL) to Manim
   Community Edition.
 * Replaced the type-specific geometry intersection helpers with a single
-  generic :func:`~manim_extensions.geometry.VMobjectInt`.
+  generic :func:`~manim_extensions.geometry.vmobject_int`.
 * Converted all intra-package absolute imports to relative imports, and
   banned ``from manim import *`` outside ``__init__.py`` across the whole
   repository (165 files converted to explicit imports; the import-style
@@ -519,7 +519,7 @@ v1.0.5
   :func:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_func`
   and related functions.
 * Fixed missing closing parentheses in four docstring manim example
-  blocks (MCMCAxes, MultiPendulum, GMAnimationBuilder, VMobjectInt)
+  blocks (MCMCAxes, MultiPendulum, GMAnimationBuilder, vmobject_int)
   that caused the docs-cache render workflow to fail.
 * Fixed misplaced type annotations that caused ``NameError`` in five
   files (algorithm/array.py, chemistry/utils/utils.py,

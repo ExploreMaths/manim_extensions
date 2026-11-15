@@ -12,10 +12,10 @@ from manim import Circle, Line
 pytestmark = pytest.mark.filterwarnings("ignore::DeprecationWarning")
 
 CASES = [
-    ("manim_extensions.animations:easeInBounce", (1,)),
-    ("manim_extensions.animations:easeInOutBounce", (1,)),
-    ("manim_extensions.animations:easeOutBounce", (1,)),
-    ("manim_extensions.animations:easeOutElastic", (1,)),
+    ("manim_extensions.animations:ease_in_bounce", (1,)),
+    ("manim_extensions.animations:ease_in_out_bounce", (1,)),
+    ("manim_extensions.animations:ease_out_bounce", (1,)),
+    ("manim_extensions.animations:ease_out_elastic", (1,)),
     (
         "manim_extensions.chemistry.future_classes.future_classes:add_over_rectangular_surface",
         (),

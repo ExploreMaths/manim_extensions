@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Pointer_Label_Free
-==================
+PathMapper
+===========
 
-.. autoclass:: manim_extensions.cad_drawing_utils.dimensions.Pointer_Label_Free
+.. autoclass:: manim_extensions.cad_drawing_utils.path_mapper.PathMapper
    :show-inheritance:
