@@ -62,7 +62,7 @@ opens (or closes) the two legs symmetrically until the span equals the given
 distance:
 
 .. manim:: CompassAnimations
-   :ref_classes: Compass MoveNiddleTipTo RotateCompass SplitCompass
+   :ref_classes: MoveNiddleTipTo RotateCompass SplitCompass
 
    from manim import *
    from manim_extensions.compass import (

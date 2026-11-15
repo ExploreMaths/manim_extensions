@@ -40,6 +40,7 @@ dependencies = [
 
 [project.scripts]
 manim-chemistry = "manim_extensions.chemistry.cli:cli"
+manim-radar = "manim_extensions.radar.cli:main"
 manim-rubikscube = "manim_extensions.rubikscube.__main__:main"
 
 [project.optional-dependencies]
@@ -60,6 +61,10 @@ docs = [
 # automata: JSON/XML template parsing
 automata = [
     "xmltodict>=0.13",
+]
+# code_blocks: syntax tokenization for CodeBlock
+code_blocks = [
+    "tokenize-all-code>=1.0.18",
 ]
 # chemistry: element data, periodic table, PubChem API
 chemistry = [
@@ -107,7 +112,7 @@ ml = [
 
 # Everything at once: pip install manim_extensions[all]
 all = [
-    "manim_extensions[automata,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]",
+    "manim_extensions[automata,code_blocks,chemistry,physics,rubikscube,meshes,video,qr,svg,ml]",
 ]
 
 [project.urls]
@@ -141,6 +146,12 @@ exclude = ["tests*"]
 ]
 # REUSE license sidecar files
 "manim_extensions.pymunk" = ["custom_mobjects/*.license", "utils/*.license"]
+# Vendored package licenses
+"manim_extensions.straightedge_compass" = ["LICENSE"]
+"manim_extensions.cad_drawing_utils" = ["LICENSE"]
+"manim_extensions.radar" = ["LICENSE"]
+"manim_extensions.three_d" = ["LICENSE"]
+"manim_extensions.code_blocks" = ["LICENSE"]
 
 [tool.black]
 line-length = 88

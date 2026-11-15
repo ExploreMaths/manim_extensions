@@ -17,6 +17,7 @@ one is recorded). On 2026-10-25 all vendored packages that were behind
 upstream were re-synced to the latest upstream commit, so the recorded
 sync points for those packages now exactly match their upstream HEAD. -->
 
+
 ## `manim_extensions/algorithm`
   - **Upstream:** [sinianluoye/manim-algorithm](https://github.com/sinianluoye/manim-algorithm)
   - **Synced:** [`5d69236739e80facf3a98540a58785e901784a77`](https://github.com/sinianluoye/manim-algorithm/commit/5d69236739e80facf3a98540a58785e901784a77)
@@ -52,6 +53,15 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - removed the unused `ManimAutomataCLI.non_deterministic_finite_automata_path_builder_callback` stub, which only raised `NotImplementedError`
     - documented module-level constants with ``#:`` docstrings
 
+## `manim_extensions/cad_drawing_utils`
+  - **Upstream:** [GarryBGoode/Manim_CAD_Drawing_utils](https://github.com/GarryBGoode/Manim_CAD_Drawing_utils)
+  - **Synced:** [`8c665e1b5dd8123dc7c0d44bcc57f7ce39984714`](https://github.com/GarryBGoode/Manim_CAD_Drawing_utils/commit/8c665e1b5dd8123dc7c0d44bcc57f7ce39984714)
+  - **Status:** vendored from PyPI 0.0.5 (upstream HEAD, 2026-02-03)
+  - **Local patches:**
+    - SPDX header; explicit public exports; rebinding of the `utils` submodule
+    - package version corrected to 0.0.5
+    - Black formatting applied to the vendored sources
+
 ## `manim_extensions/chemistry`
   - **Upstream:** [UnMolDeQuimica/manim-Chemistry](https://github.com/UnMolDeQuimica/manim-Chemistry)
   - **Synced:** [`c03147d4f9374cd75b58257962210e9020895d15`](https://github.com/UnMolDeQuimica/manim-Chemistry/commit/c03147d4f9374cd75b58257962210e9020895d15)
@@ -69,6 +79,15 @@ sync points for those packages now exactly match their upstream HEAD. -->
   - **Status:** synced (upstream HEAD, 2026-10-25 re-sync)
   - **Local patches:**
     - import/doc style normalization (commit `712865f`)
+
+## `manim_extensions/code_blocks`
+  - **Upstream:** [CasualCodersProjects/manim-code-blocks](https://github.com/CasualCodersProjects/manim-code-blocks)
+  - **Synced:** [`0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297`](https://github.com/CasualCodersProjects/manim-code-blocks/commit/0eb9e5d6b5ccf12fe480ddcaa8744eab9d912297)
+  - **Status:** vendored from PyPI 1.0.14 (upstream HEAD, 2024-02-20)
+  - **Local patches:**
+    - SPDX header; bundled the GitHub language colour table; removed the import-time `urlopen` request
+    - lazy-loads `tokenize-all-code` through the `code_blocks` extra
+    - Black formatting applied to the vendored sources
 
 ## `manim_extensions/compass`
   - **Upstream:** [jj-math/manim-compass](https://github.com/jj-math/manim-compass)
@@ -197,6 +216,15 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - import/doc style normalization
     - `qr.py` uses the vendored `nerdfont` instead of the manim-nerdfont-icons package and lazy-imports segno (`qr` extra)
 
+## `manim_extensions/radar`
+  - **Upstream:** [FTZ-OPUS/manim-radar](https://github.com/FTZ-OPUS/manim-radar)
+  - **Synced:** [`59bc6cf170c590104f5676b2435f2cb1d0c06c7b`](https://github.com/FTZ-OPUS/manim-radar/commit/59bc6cf170c590104f5676b2435f2cb1d0c06c7b)
+  - **Status:** vendored from PyPI 0.1.2 (upstream HEAD, 2026-09-21)
+  - **Local patches:**
+    - SPDX header; CLI import path normalized to `manim_extensions.radar`
+    - console script exposed as `manim-radar`
+    - Black formatting applied to the vendored sources
+
 ## `manim_extensions/rubikscube`
   - **Upstream:** [WampyCakes/manim-rubikscube](https://github.com/WampyCakes/manim-rubikscube)
   - **Synced:** [`e117d42eb4b7484957440a4c9d67ab183bb06e0a`](https://github.com/WampyCakes/manim-rubikscube/commit/e117d42eb4b7484957440a4c9d67ab183bb06e0a)
@@ -215,6 +243,14 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - import/doc style normalization (commit `712865f`)
     - documented module-level constants with ``#:`` docstrings
 
+## `manim_extensions/straightedge_compass`
+  - **Upstream:** [manim-straightedge-compass](https://pypi.org/project/manim-straightedge-compass/)
+  - **Synced:** PyPI 0.1.1
+  - **Status:** vendored from PyPI (no public GitHub repository)
+  - **Local patches:**
+    - SPDX header; package references normalized to `manim_extensions.straightedge_compass`
+    - Black formatting applied to the vendored sources
+
 ## `manim_extensions/svg_animations`
   - **Upstream:** [MathItYT/manim-svg-animations](https://github.com/MathItYT/manim-svg-animations)
   - **Synced:** [`da696ce5693d6cb57d97553a8f7534b8dbe5ace5`](https://github.com/MathItYT/manim-svg-animations/commit/da696ce5693d6cb57d97553a8f7534b8dbe5ace5)
@@ -231,6 +267,15 @@ sync points for those packages now exactly match their upstream HEAD. -->
   - **Local patches:**
     - import/doc style normalization (commit `712865f`)
     - documented module-level constants with ``#:`` docstrings
+
+## `manim_extensions/three_d`
+  - **Upstream:** [FTZ-OPUS/manim-3d](https://github.com/FTZ-OPUS/manim-3d)
+  - **Synced:** [`334f65549691c8c90cb0e9c30855b1e2cb4bd896`](https://github.com/FTZ-OPUS/manim-3d/commit/334f65549691c8c90cb0e9c30855b1e2cb4bd896)
+  - **Status:** vendored from PyPI 0.1.1 (tag `v0.1.1`)
+  - **Local patches:**
+    - SPDX header; CJK subtitles resolve through `manim_extensions.mobjects.DEFAULT_CJK_FONT` instead of the macOS-only `PingFang SC`
+    - package version corrected to 0.1.1
+    - Black formatting applied to the vendored sources
 
 ## `manim_extensions/tikz`
   - **Upstream:** [ralphieraccoon/manim-tikz](https://github.com/ralphieraccoon/manim-tikz)

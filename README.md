@@ -41,8 +41,10 @@
 | `manim_extensions.animations` | Animations and easing functions (Basic) |
 | `manim_extensions.arabic`     | Arabic text support |
 | `manim_extensions.automata`   | Automata visualisation helpers |
+| `manim_extensions.cad_drawing_utils` | CAD dimension, hatch, and path helpers |
 | `manim_extensions.chemistry`  | Chemistry visualisation (periodic table, molecules) |
 | `manim_extensions.circuit`    | Circuit diagram animations |
+| `manim_extensions.code_blocks` | Syntax-highlighted code blocks |
 | `manim_extensions.compass`    | Compass, ruler, pencil, and construction animations |
 | `manim_extensions.data_structures` | Data structure animations |
 | `manim_extensions.economics`  | Economics diagrams |
@@ -57,10 +59,13 @@
 | `manim_extensions.physics`    | Physics simulation helpers |
 | `manim_extensions.pymunk`     | Pymunk physics engine integration |
 | `manim_extensions.qr_codes`   | QR code generation |
+| `manim_extensions.radar` | Animated radar charts |
 | `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
 | `manim_extensions.sequence_diagram` | Sequence diagram animations |
+| `manim_extensions.straightedge_compass` | Straightedge-and-compass construction animations |
 | `manim_extensions.svg_animations` | HTML/SVG animation export |
 | `manim_extensions.table`      | Animated tables |
+| `manim_extensions.three_d` | 3D surface scene presets |
 | `manim_extensions.tikz`       | TikZ import helpers |
 | `manim_extensions.weighted_line` | Weighted line graphs |
 
@@ -69,11 +74,14 @@
 The following third-party Manim plugins are bundled directly as subpackages
 inside `manim_extensions`:
 
+- `manim-3d` → `manim_extensions.three_d`
 - `manim-algorithm` → `manim_extensions.algorithm`
 - `manim-arabic` → `manim_extensions.arabic`
 - `manim-automata` → `manim_extensions.automata`
+- `manim-CAD_Drawing_Utils` → `manim_extensions.cad_drawing_utils`
 - `manim-Chemistry` → `manim_extensions.chemistry`
 - `manim-circuit` → `manim_extensions.circuit`
+- `manim-code-blocks-redux` → `manim_extensions.code_blocks`
 - `manim-data-structures` → `manim_extensions.data_structures`
 - `manim_ec` → `manim_extensions.economics`
 - `manim-fontawesome` → `manim_extensions.fontawesome`
@@ -85,8 +93,10 @@ inside `manim_extensions`:
 - `manim-physics` → `manim_extensions.physics`
 - `manim-pymunk` → `manim_extensions.pymunk`
 - `manim-qr-codes` → `manim_extensions.qr_codes`
+- `manim-radar` → `manim_extensions.radar`
 - `manim-rubikscube` → `manim_extensions.rubikscube`
 - `manim-sequence-diagram` → `manim_extensions.sequence_diagram`
+- `manim-straightedge-compass` → `manim_extensions.straightedge_compass`
 - `manim-svg-animations` → `manim_extensions.svg_animations`
 - `manim-table` → `manim_extensions.table`
 - `manim-tikz` → `manim_extensions.tikz`
@@ -120,6 +130,7 @@ and belong to the matching extra:
 ```bash
 pip install manim_extensions[all]         # every optional dependency
 pip install manim_extensions[automata]    # xmltodict
+pip install manim_extensions[code_blocks]  # tokenize-all-code
 pip install manim_extensions[chemistry]   # pandas, xmltodict, requests
 pip install manim_extensions[dev]         # pytest for running tests
 pip install manim_extensions[docs]        # sphinx + furo for building docs

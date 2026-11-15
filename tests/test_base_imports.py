@@ -26,7 +26,7 @@ import sys
 BLOCKED = frozenset({
     "pymunk", "shapely", "kociemba", "trimesh",
     "cv2", "pandas", "matplotlib", "seaborn", "sklearn",
-    "segno", "svgpathtools", "xmltodict", "requests",
+    "segno", "svgpathtools", "xmltodict", "requests", "tokenize_all",
     "docutils", "sphinx",
 })
 
@@ -89,7 +89,8 @@ for name, extra in [("pymunk", "physics"), ("shapely", "physics"),
                     ("kociemba", "rubikscube"), ("trimesh", "meshes"),
                     ("cv2", "video"), ("pandas", "chemistry"),
                     ("segno", "qr"), ("svgpathtools", "svg"),
-                    ("xmltodict", "automata"), ("requests", "chemistry")]:
+                    ("xmltodict", "automata"), ("requests", "chemistry"),
+                    ("tokenize_all", "code_blocks")]:
     try:
         require(extra, name)
     except ImportError as exc:

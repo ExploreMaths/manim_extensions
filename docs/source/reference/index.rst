@@ -47,6 +47,60 @@ from base Manim in blue.
    manim_extensions.circuit.mobjects.Capacitor
    manim_extensions.circuit.mobjects.Ground
    manim_extensions.circuit.mobjects.Opamp
+   manim_extensions.straightedge_compass.compass.Compass
+   manim_extensions.straightedge_compass.compass.CompassDrawArc
+   manim_extensions.straightedge_compass.marks.MarkedPoint
+   manim_extensions.straightedge_compass.scene.EuclidScene
+   manim_extensions.straightedge_compass.straightedge.Straightedge
+   manim_extensions.straightedge_compass.straightedge.PencilTip
+   manim_extensions.straightedge_compass.straightedge.RulerDraw
+   manim_extensions.cad_drawing_utils.dimensions.Pointer_Label_Free
+   manim_extensions.cad_drawing_utils.dimensions.Pointer_To_Mob
+   manim_extensions.cad_drawing_utils.dimensions.Linear_Dimension
+   manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_3point
+   manim_extensions.cad_drawing_utils.dimensions.Angle_Dimension_Mob
+   manim_extensions.cad_drawing_utils.dimensions.CAD_ArrowHead
+   manim_extensions.cad_drawing_utils.hatch.Hatch_lines
+   manim_extensions.cad_drawing_utils.path_mapper.Path_mapper
+   manim_extensions.cad_drawing_utils.path_mapper.Dashed_line_mobject
+   manim_extensions.cad_drawing_utils.path_mapper.DashDot_mobject
+   manim_extensions.cad_drawing_utils.path_mapper.Path_Offset_Mobject
+   manim_extensions.cad_drawing_utils.path_mapper.Curve_Warp
+   manim_extensions.cad_drawing_utils.utils.Bezier_Handlebars
+   manim_extensions.radar.animations.Shockwave
+   manim_extensions.radar.animations.RadarMorph
+   manim_extensions.radar.animations.RadarReveal
+   manim_extensions.radar.animations.RadarBurstIn
+   manim_extensions.radar.animations.RadarFade
+   manim_extensions.radar.animations.GlitchFlash
+   manim_extensions.radar.backdrop.DeepSpace
+   manim_extensions.radar.camera.CameraRig
+   manim_extensions.radar.chart.RadarChart
+   manim_extensions.radar.config.RadarConfig
+   manim_extensions.radar.data.RadarData
+   manim_extensions.radar.legacy.RadarV1Scene
+   manim_extensions.radar.legacy.RadarV2Scene
+   manim_extensions.radar.numbers.RollingNumber
+   manim_extensions.radar.overflow.OverflowRadarChart
+   manim_extensions.radar.poly.PolyRadarChart
+   manim_extensions.radar.poly.PolyMorph
+   manim_extensions.radar.reel.RadarReel
+   manim_extensions.radar.theme.RadarTheme
+   manim_extensions.three_d.core.GaussianSurface
+   manim_extensions.three_d.core.SaddleSurface
+   manim_extensions.three_d.core.ParaboloidSurface
+   manim_extensions.three_d.core.EllipsoidSurface
+   manim_extensions.three_d.core.TorusSurface
+   manim_extensions.three_d.core.HyperboloidOneSheet
+   manim_extensions.three_d.core.GaussianSurfaceScene
+   manim_extensions.three_d.core.SaddleSurfaceScene
+   manim_extensions.three_d.core.ParaboloidSurfaceScene
+   manim_extensions.three_d.core.EllipsoidSurfaceScene
+   manim_extensions.three_d.core.TorusSurfaceScene
+   manim_extensions.three_d.core.HyperboloidOneSheetScene
+   manim_extensions.code_blocks.manim_code_blocks.Theme
+   manim_extensions.code_blocks.manim_code_blocks.ProgrammingLanguage
+   manim_extensions.code_blocks.manim_code_blocks.CodeBlock
    manim_extensions.data_structures.m_array.MArrayElement
    manim_extensions.data_structures.m_array.MArray
    manim_extensions.data_structures.m_array.MArrayPointer
@@ -120,7 +174,9 @@ Module Index
    basic/index
    chemistry/index
    circuit/index
+   cad_drawing_utils/index
    compass/index
+   code_blocks/index
    data_structures/index
    economics/index
    fontawesome/index
@@ -133,10 +189,13 @@ Module Index
    physics/index
    pymunk/index
    qr_codes/index
+   radar/index
    rubikscube/index
    sequence_diagram/index
+   straightedge_compass/index
    svg_animations/index
    table/index
+   three_d/index
    tikz/index
    utils/index
    weighted_line/index
@@ -145,8 +204,10 @@ Module Index
 * :vendorstatus:`arabic`
 * :vendorstatus:`automata`
 * :vendorstatus:`basic`
+* :vendorstatus:`cad_drawing_utils`
 * :vendorstatus:`chemistry`
 * :vendorstatus:`circuit`
+* :vendorstatus:`code_blocks`
 * :vendorstatus:`compass`
 * :vendorstatus:`data_structures`
 * :vendorstatus:`economics`
@@ -160,10 +221,13 @@ Module Index
 * :vendorstatus:`physics`
 * :vendorstatus:`pymunk`
 * :vendorstatus:`qr_codes`
+* :vendorstatus:`radar`
 * :vendorstatus:`rubikscube`
 * :vendorstatus:`sequence_diagram`
+* :vendorstatus:`straightedge_compass`
 * :vendorstatus:`svg_animations`
 * :vendorstatus:`table`
+* :vendorstatus:`three_d`
 * :vendorstatus:`tikz`
 * :vendorstatus:`utils`
 * :vendorstatus:`weighted_line`

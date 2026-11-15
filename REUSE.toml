@@ -205,6 +205,42 @@ SPDX-FileCopyrightText = ["2023 Mutable Learning", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 source = "https://github.com/mutable-learning/manim-weighted-line"
 
+
+# Straightedge and compass - based on manim-straightedge-compass
+[[annotations]]
+path = "manim_extensions/straightedge_compass/**"
+SPDX-FileCopyrightText = ["2026 manim-straightedge-compass contributors", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://pypi.org/project/manim-straightedge-compass/"
+
+# CAD drawing utilities - based on manim-CAD_Drawing_utils
+[[annotations]]
+path = "manim_extensions/cad_drawing_utils/**"
+SPDX-FileCopyrightText = ["2020 GarryBGoode", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/GarryBGoode/Manim_CAD_Drawing_utils"
+
+# Radar charts - based on manim-radar
+[[annotations]]
+path = "manim_extensions/radar/**"
+SPDX-FileCopyrightText = ["2026 FTZ-OPUS", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/FTZ-OPUS/manim-radar"
+
+# 3D surface scenes - based on manim-3d
+[[annotations]]
+path = "manim_extensions/three_d/**"
+SPDX-FileCopyrightText = ["2026 FTZ-OPUS", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/FTZ-OPUS/manim-3d"
+
+# Code blocks - based on manim-code-blocks-redux
+[[annotations]]
+path = "manim_extensions/code_blocks/**"
+SPDX-FileCopyrightText = ["2024 Casual Coders", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+source = "https://github.com/CasualCodersProjects/manim-code-blocks"
+
 # ==================== Basic ====================
 # manim_extensions root
 [[annotations]]
@@ -358,6 +394,32 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = "docs/source/reference/basic/**/*.rst"
 SPDX-FileCopyrightText = ["2020 manim-kindergarten", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+
+[[annotations]]
+path = "docs/source/reference/straightedge_compass/**/*.rst"
+SPDX-FileCopyrightText = ["2026 manim-straightedge-compass contributors", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/cad_drawing_utils/**/*.rst"
+SPDX-FileCopyrightText = ["2020 GarryBGoode", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/radar/**/*.rst"
+SPDX-FileCopyrightText = ["2026 FTZ-OPUS", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/three_d/**/*.rst"
+SPDX-FileCopyrightText = ["2026 FTZ-OPUS", "2026 ExploreMaths"]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/source/reference/code_blocks/**/*.rst"
+SPDX-FileCopyrightText = ["2024 Casual Coders", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
 # ==================== Workflow and Tests ====================
