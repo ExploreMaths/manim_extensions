@@ -41,7 +41,17 @@ class ListGroup(Mobject):
     def __getitem__(  # list indexing may return a single item or a slice
         self, indices: int | slice
     ) -> Mobject | list[Mobject]:
-        """Traditional list indexing."""
+        """Return an item or a slice of items.
+
+        Parameters
+        ----------
+        indices
+            Item index or slice.
+
+        Returns
+        -------
+        The selected mobject or list of mobjects.
+        """
         return self.items[indices]
 
     def insert(  # intentionally returns None instead of the group
@@ -182,7 +192,12 @@ class ListGroup(Mobject):
         return -1
 
     def __len__(self) -> int:
-        """Length of items."""
+        """Return the number of items.
+
+        Returns
+        -------
+        The item count.
+        """
         return len(self.items)
 
     def set_z_index(  # intentionally returns None instead of the group
@@ -201,14 +216,37 @@ class ListGroup(Mobject):
             item.set_z_index(z_index_value, family=True)
 
     def __iter__(self) -> Iterator[Mobject]:
+        """Reset the cursor and return this group as an iterator.
+
+        Returns
+        -------
+        This group as an iterator.
+        """
         self.current_index = -1
         return self
 
     def __next__(self) -> Mobject:
+        """Return the next item or raise ``StopIteration`` at the end.
+
+        Returns
+        -------
+        The next mobject.
+
+        Raises
+        ------
+        StopIteration
+            When every item has been consumed.
+        """
         self.current_index += 1
         if self.current_index < len(self.items):
             return self.items[self.current_index]
         raise StopIteration
 
     def __repr__(self) -> str:
+        """Return a representation listing the contained items.
+
+        Returns
+        -------
+        The group representation.
+        """
         return f"ListGroup({self.items})"

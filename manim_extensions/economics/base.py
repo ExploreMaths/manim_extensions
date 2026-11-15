@@ -233,7 +233,18 @@ class EconDiagram(VGroup):
     _SUBSCRIPTS: str = "₁₂₃₄₅₆₇₈₉"
 
     def _sub(self, n: int) -> str:
-        """Return a unicode subscript for n (1-indexed)."""
+        """Return a unicode subscript for a one-based number.
+
+        Parameters
+        ----------
+        n
+            One-based subscript number.
+
+        Returns
+        -------
+        The unicode subscript character, or the plain number when out of
+        range.
+        """
         if 1 <= n <= 9:
             return self._SUBSCRIPTS[n - 1]
         return str(n)
@@ -248,9 +259,24 @@ class EconDiagram(VGroup):
     ) -> tuple[VGroup | None, VGroup | None]:
         """Build equilibrium geometry and labels separately.
 
-        Returns (geometry_group, labels_group) or (None, None).
-        geometry_group contains the dot and dashed lines.
-        labels_group contains the axis text labels.
+        Parameters
+        ----------
+        curve_a
+            Name of the first stored curve.
+        curve_b
+            Name of the second stored curve.
+        label_x
+            Label placed below the x-axis.
+        label_y
+            Label placed left of the y-axis.
+        subscript
+            Optional one-based subscript number.
+
+        Returns
+        -------
+        A geometry group with the dot and dashed lines, and a labels group
+        with the axis text, or ``(None, None)`` when the curves do not
+        intersect.
         """
         func_a = self._curve_funcs[curve_a]
         func_b = self._curve_funcs[curve_b]
@@ -295,7 +321,26 @@ class EconDiagram(VGroup):
         label_y: str = "",
         subscript: int | None = None,
     ) -> VGroup | None:
-        """Build a combined equilibrium VGroup (geometry + labels)."""
+        """Build a combined equilibrium group with geometry and labels.
+
+        Parameters
+        ----------
+        curve_a
+            Name of the first stored curve.
+        curve_b
+            Name of the second stored curve.
+        label_x
+            Label placed below the x-axis.
+        label_y
+            Label placed left of the y-axis.
+        subscript
+            Optional one-based subscript number.
+
+        Returns
+        -------
+        The combined marker group, or ``None`` when the curves do not
+        intersect.
+        """
         geom, labels = self._build_eq_parts(
             curve_a, curve_b, label_x, label_y, subscript
         )
@@ -352,7 +397,13 @@ class EconDiagram(VGroup):
         return eq_group
 
     def _get_eq_coords(self) -> tuple[float, float] | None:
-        """Return (x, y) of the current equilibrium, or None."""
+        """Return the current equilibrium coordinates.
+
+        Returns
+        -------
+        The equilibrium x and y values, or ``None`` when no equilibrium is
+        stored or the curves do not intersect.
+        """
         if not self._eq_curve_names:
             return None
         a, b = self._eq_curve_names
@@ -367,7 +418,23 @@ class EconDiagram(VGroup):
     def _make_single_arrow(
         start: Point3D, end: Point3D, color: ManimColor | str, tip_size: float = 0.08
     ) -> VGroup:
-        """Create a line with a small triangle at the end only."""
+        """Create a line with a small triangular tip at the end.
+
+        Parameters
+        ----------
+        start
+            Start point.
+        end
+            End point and tip position.
+        color
+            Colour of the shaft and tip.
+        tip_size
+            Length of the triangular tip.
+
+        Returns
+        -------
+        A group containing the shaft and the tip.
+        """
         direction = end - start
         norm = np.linalg.norm(direction)
         if norm < 1e-6:
@@ -393,9 +460,20 @@ class EconDiagram(VGroup):
         new_xy: tuple[float, float],
         arrow_color: ManimColor | str = WHITE,
     ) -> VGroup:
-        """Build arrows near the axes between old and new equilibrium values.
+        """Build arrows near the axes between two equilibrium positions.
 
-        Returns a VGroup with up to two arrows (x-axis and y-axis).
+        Parameters
+        ----------
+        old_xy
+            Previous equilibrium coordinates.
+        new_xy
+            New equilibrium coordinates.
+        arrow_color
+            Colour of the arrows.
+
+        Returns
+        -------
+        A group with up to two arrows, one per moving axis value.
         """
         old_x, old_y = old_xy
         new_x, new_y = new_xy

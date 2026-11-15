@@ -360,7 +360,22 @@ class IrisDatasetPlot(VGroup):
         points: Point2D_Array,
         targets: VectorND,
         class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN],
-    ):
+    ) -> VGroup:
+        """Create one coloured dot per data point.
+
+        Parameters
+        ----------
+        points
+            Two-dimensional coordinates of the samples.
+        targets
+            Class index of every sample.
+        class_colors
+            Colour used for each class.
+
+        Returns
+        -------
+        The group of coloured dots.
+        """
         point_group = VGroup()
         for point_index, point in enumerate(points):
             # draw the dot
@@ -373,7 +388,22 @@ class IrisDatasetPlot(VGroup):
 
     def _make_legend(
         self, class_colors: list[ManimColor], feature_labels: list[str], axes: VGroup
-    ):
+    ) -> VGroup:
+        """Build the class legend placed below the axes.
+
+        Parameters
+        ----------
+        class_colors
+            Colours assigned to the classes.
+        feature_labels
+            Names of the plotted features.
+        axes
+            Axes group the legend is aligned with.
+
+        Returns
+        -------
+        The assembled legend group.
+        """
         legend_group = VGroup()
         # Make Text
         setosa = Text("Setosa", color=BLUE)
@@ -401,7 +431,24 @@ class IrisDatasetPlot(VGroup):
         labels: list[str],
         font: str = "Source Han Sans",
         font_scale: float = 0.75,
-    ):
+    ) -> VGroup:
+        """Build labelled axes sized to the data points.
+
+        Parameters
+        ----------
+        points
+            Samples used to derive the axis ranges.
+        labels
+            Axis labels.
+        font
+            Font family for the labels.
+        font_scale
+            Scale factor applied to the label text.
+
+        Returns
+        -------
+        The assembled axes group.
+        """
         axes_group = VGroup()
         # make the axes
         x_range = [

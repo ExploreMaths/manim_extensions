@@ -7,6 +7,7 @@
 from typing import Self
 
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     FadeIn,
@@ -147,7 +148,18 @@ class ImageLayer(NeuralNetworkLayer):
         return image_layer
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Fade in the image when configured, otherwise wait.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        The animation used to introduce the layer.
+        """
         debug_mode = False
         if debug_mode:
             return FadeIn(SurroundingRectangle(self.image_mobject))

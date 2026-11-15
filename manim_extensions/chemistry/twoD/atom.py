@@ -69,10 +69,22 @@ class MAtomObject(VGroup):
                self.add(MAtomObject(element="O").scale(7))
     """
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Return a description of the atom.
+
+        Returns
+        -------
+        A human-readable description naming the atom's element.
+        """
         return f"MAtomObject of element {self.element}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """Return the same description as ``__str__``.
+
+        Returns
+        -------
+        A human-readable description naming the atom's element.
+        """
         return f"MAtomObject of element {self.element}"
 
     def __init__(

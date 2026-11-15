@@ -113,11 +113,23 @@ class NeuralNetworkLayer(ABC, Group):
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
+        """Return a zero-duration wait for a layer without geometry.
+
+        Returns
+        -------
+        An animation that does nothing.
+        """
         # A zero-duration Wait: connective layers have no visible geometry to
         # create, and manim >= 0.21 raises when playing an empty Succession.
         return Wait(run_time=0)
 
     def __repr__(self) -> str:
+        """Return the class name of the layer.
+
+        Returns
+        -------
+        The class name.
+        """
         return f"{type(self).__name__}"
 
 
@@ -172,6 +184,12 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
+        """Delegate creation to the parent layer implementation.
+
+        Returns
+        -------
+        The parent layer's creation animation.
+        """
         return super()._create_override()
 
 
@@ -257,9 +275,21 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
+        """Delegate creation to the parent layer implementation.
+
+        Returns
+        -------
+        The parent layer's creation animation.
+        """
         return super()._create_override()
 
     def __repr__(self) -> str:
+        """Return the layer class name together with its connected layers.
+
+        Returns
+        -------
+        A representation including the input and output layer classes.
+        """
         return (
             f"{self.__class__.__name__}("
             + f"input_layer={self.input_layer.__class__.__name__},"
@@ -356,4 +386,10 @@ class BlankConnective(ConnectiveLayer):
 
     @override_animation(Create)
     def _create_override(self) -> Animation:
+        """Delegate creation to the parent layer implementation.
+
+        Returns
+        -------
+        The parent layer's creation animation.
+        """
         return super()._create_override()

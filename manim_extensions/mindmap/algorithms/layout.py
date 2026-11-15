@@ -41,6 +41,7 @@ class Layout:
                    node.vmobject.move_to([node.x, node.y, 0])
                    node.surr_rect.move_to([node.x, node.y, 0])
                    mobjects.add(node.vmobject, node.surr_rect)
+               mobjects.scale(1.5).move_to(ORIGIN)
                self.add(mobjects)
     """
 

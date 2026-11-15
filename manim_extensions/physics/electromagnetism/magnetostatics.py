@@ -116,7 +116,7 @@ class MagneticField(ArrowVectorField):
         p: Point3D,
         dls: Iterable[tuple[Point3D, Vector3D]],
         currents: Iterable[float],
-    ):
+    ) -> np.ndarray:
         """Compute the magnetic field vector at a point using the Biot-Savart law.
 
         Parameters

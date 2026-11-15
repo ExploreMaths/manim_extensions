@@ -87,7 +87,11 @@ class ConstantStrokeWidthScene(MovingCameraScene):
 
     @staticmethod
     def _install_stroke_width_parameter() -> None:
+        """Patch mobject constructors to accept ``fixed_stroke_width``."""
+
         def _wrap(original_init: Any) -> Any:
+            """Wrap a mobject constructor to extract ``fixed_stroke_width``."""
+
             @functools.wraps(original_init)
             def patched_init(self: Any, *args: Any, **kwargs: Any) -> None:
                 """Accept ``fixed_stroke_width`` as a constructor keyword."""
@@ -108,7 +112,12 @@ class ConstantStrokeWidthScene(MovingCameraScene):
             setattr(mobject_class, "_stroke_width_init_patched", True)
 
     def _camera_stroke_scale(self) -> float:
-        """Return the factor by which strokes must be scaled at the current zoom."""
+        """Return the factor by which strokes must be scaled at the current zoom.
+
+        Returns
+        -------
+        The stroke scaling factor for the camera height.
+        """
         height = getattr(self.camera, "frame_height", None)
         if height is None:
             get_height = getattr(self.camera, "get_height", None)
@@ -122,6 +131,15 @@ class ConstantStrokeWidthScene(MovingCameraScene):
 
     @staticmethod
     def _scale_stroke_width(member: Any, factor: float) -> None:
+        """Scale the stroke width of one mobject member.
+
+        Parameters
+        ----------
+        member
+            Mobject whose stroke is adjusted.
+        factor
+            Multiplier applied to the stroke width.
+        """
         if getattr(member, "is_fixed_in_frame", 0.0):
             return
         if getattr(member, "fixed_stroke_width", False):
@@ -132,12 +150,28 @@ class ConstantStrokeWidthScene(MovingCameraScene):
         member.stroke_width = width * factor
 
     def _scale_family_stroke_widths(self, mobject: Any, factor: float) -> None:
+        """Scale stroke widths across the whole mobject family.
+
+        Parameters
+        ----------
+        mobject
+            Root of the family whose strokes are adjusted.
+        factor
+            Multiplier applied to every stroke width.
+        """
         get_family = getattr(mobject, "get_family", None)
         family = get_family() if get_family is not None else [mobject]
         for member in family:
             self._scale_stroke_width(member, factor)
 
     def _update_stroke_scale(self, dt: float) -> None:
+        """Rescale all strokes after a camera zoom change.
+
+        Parameters
+        ----------
+        dt
+            Time elapsed since the previous updater call.
+        """
         scale = self._camera_stroke_scale()
         if scale == self._stroke_scale:
             return

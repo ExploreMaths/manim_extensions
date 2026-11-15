@@ -155,5 +155,10 @@ class State:
         return None
 
     def __str__(self) -> str:
-        """Internal __str__ hook."""
+        """Return a readable representation of the state.
+
+        Returns
+        -------
+        The state identifier and name.
+        """
         return "State id: {self.id}, name: {self.name}".format(self=self)

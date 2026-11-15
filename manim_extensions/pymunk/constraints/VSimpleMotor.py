@@ -67,6 +67,7 @@ class VSimpleMotor(VConstraint):
                self.add_shapes_filter(pivot, wheel, group=2)
                self.add_constraints(motor)
                self.wait(4)
+               Group(*self.mobjects).scale(0.12).move_to(ORIGIN)
 
     """
 

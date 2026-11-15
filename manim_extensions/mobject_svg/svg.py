@@ -49,6 +49,11 @@ def _get_cairo_context(
         Optional cropped width in manim units; falls back to the frame width.
     height
         Optional cropped height in manim units; falls back to the frame height.
+
+    Yields
+    ------
+    cairo.Context
+        The SVG context used to draw the mobject.
     """
     from manim import config
 

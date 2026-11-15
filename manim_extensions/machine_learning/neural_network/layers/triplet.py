@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Self
 
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     DOWN,
@@ -174,7 +175,13 @@ class TripletLayer(NeuralNetworkLayer):
         return assets
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
+        """Fade in the triplet assets.
+
+        Returns
+        -------
+        The fade-in animation for the triplet assets.
+        """
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(

@@ -203,7 +203,13 @@ class AbstractMap(Group):
             self._set_node_position(child)
 
     def _set_connectors(self):
-        """Set connection lines."""
+        """Set connection lines.
+
+        Raises
+        ------
+        NotImplementedError
+            Always, because subclasses must implement this method.
+        """
         raise NotImplementedError
 
     def get_node_component(self, ID: str) -> NodeMobject:
@@ -336,6 +342,10 @@ class AbstractMap(Group):
         ----------
         ID
             Id parameter for this operation.
+
+        Returns
+        -------
+        The original node with that ID, or ``None`` when it is absent.
         """
         for node in dfs_walker(self.root):
             if node.ID == ID:
@@ -349,6 +359,10 @@ class AbstractMap(Group):
         ----------
         level
             Level parameter for this operation.
+
+        Returns
+        -------
+        The connector style dictionary for that level.
         """
         return self.node_style.get_line_style(level=level)
 

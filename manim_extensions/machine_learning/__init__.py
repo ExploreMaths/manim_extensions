@@ -19,6 +19,11 @@ class ManimMLConfig:
 
     Holds the active :class:`~manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme` and the default 3D camera
     orientation used by neural-network scenes.
+
+    Parameters
+    ----------
+    default_color_scheme
+        Colour scheme applied to the machine learning visualisations.
     """
 
     def __init__(self, default_color_scheme: ColorScheme = dark_mode):

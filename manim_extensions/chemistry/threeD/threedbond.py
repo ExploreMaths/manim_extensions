@@ -128,6 +128,7 @@ class ThreeDCylinder(OpenGLSurface):
         self.base_bottom.shift(self.u_range[0] * IN)
 
     def _rotate_to_direction(self):
+        """Orient the bond along its target direction."""
         x, y, z = self.direction
 
         r = np.sqrt(x**2 + y**2 + z**2)
@@ -419,10 +420,22 @@ class ThreeDBond(OpenGLGroup):
         Additional keyword arguments passed to OpenGLGroup.
     """
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Return a description of the bonded atoms.
+
+        Returns
+        -------
+        A human-readable description of the two bonded atoms.
+        """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """Return the same description as ``__str__``.
+
+        Returns
+        -------
+        A human-readable description of the two bonded atoms.
+        """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
     def __init__(

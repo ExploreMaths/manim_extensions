@@ -107,8 +107,8 @@ class ChineseMathTex(MathTex):
        class ChineseMathTexScene(Scene):
            def construct(self):
                formula = ChineseMathTex(
-                   r"面积 = \frac{1}{2} \times 底 \times 高",
-                   tex_to_color_map={"底": BLUE, "高": YELLOW},
+                   r"Area = \frac{1}{2} \times base \times height",
+                   tex_to_color_map={"base": BLUE, "height": YELLOW},
                ).scale(2)
                self.add(formula)
 
@@ -222,7 +222,9 @@ class LabelDot(VGroup):
                direction = b.get_center() - a.get_center()
                edge_a = a.get_boundary_point(direction)
                edge_b = b.get_boundary_point(-direction)
-               self.add(a, b, Line(edge_a, edge_b))
+               link = Line(edge_a, edge_b)
+               self.add(a, b, link)
+               VGroup(a, b, link).scale(1.9).move_to(ORIGIN)
     """
 
     def __init__(
@@ -507,7 +509,9 @@ class ExtendedLine(Line):
                base = Line(LEFT, RIGHT, color=BLUE)
                ends = VGroup(Dot(base.get_start()), Dot(base.get_end()))
                extended = ExtendedLine(base, extend_distance=1.0)
+               dots = VGroup(ends)
                self.add(extended, ends)
+               VGroup(extended, dots).scale(2.3).move_to(ORIGIN)
     """
 
     def __init__(self, line: Line, extend_distance: float):
@@ -554,6 +558,7 @@ class ShortenedLine(Line):
                ghost = base.copy().set_stroke(opacity=0.25)
                shortened = ShortenedLine(base, shorten_distance=1.0)
                self.add(ghost, shortened)
+               VGroup(ghost, shortened).scale(1.7).move_to(ORIGIN)
     """
 
     def __init__(self, line: Line, shorten_distance: float):
@@ -694,6 +699,10 @@ class PerpendicularSign(VGroup):
             The geometric object involved in the operation.
         point
             The point used by the operation.
+
+        Returns
+        -------
+        The two unit direction vectors toward the line endpoints.
         """
         start = line.get_start()
         end = line.get_end()
@@ -732,6 +741,10 @@ class PerpendicularSign(VGroup):
             Desired corner direction; pairs pointing toward it are favoured.
             When ``None`` the pair pointing toward the nearer endpoints is
             selected.
+
+        Returns
+        -------
+        The chosen direction from each pair.
         """
         candidates = []
         for d1 in dirs1:
@@ -1258,7 +1271,7 @@ class ColorText(Text):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ColorText.py``).
-       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
+       Original author: `@TonyCrane <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -1380,6 +1393,7 @@ class Trail(VGroup):
                self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear))
                trail.stop_trace()
                self.play(dot.animate.shift(RIGHT * 1.5))
+               VGroup(trail, dot).scale(8.0).move_to(ORIGIN)
     """
 
     def __init__(
@@ -1677,7 +1691,7 @@ class ThreeDVector(VGroup):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/mobjects/ThreeDVector.py``).
-       Original author: `@魔与方 <https://github.com/moyufang>`_ (`Bilibili <https://space.bilibili.com/443084043/>`_).
+       Original author: `@moyufang <https://github.com/moyufang>`_ (`Bilibili <https://space.bilibili.com/443084043/>`_).
 
     Parameters
     ----------
@@ -1839,7 +1853,7 @@ class TreeDiagram(VGroup):
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
         return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
 
-    def _generate(self, tree: dict):
+    def _generate(self, tree: dict) -> VGroup:
         """Recursively build the tree diagram mobject.
 
         Parameters

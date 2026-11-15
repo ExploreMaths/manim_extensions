@@ -20,12 +20,19 @@ __all__ = ["angle_between_vectors_signed", "Bezier_Handlebars"]
 
 
 def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
-    """
-    Get signed angle between vectors according to right hand rule.
+    """Return the signed angle between two vectors.
 
-    :param v1: first vector
-    :param v2: second vector
-    :return: angle of rotation that rotates v1 to be co-linear with v2. Range: -PI...+PI
+    Parameters
+    ----------
+    v1
+        First vector.
+    v2
+        Second vector.
+
+    Returns
+    -------
+    The rotation angle that aligns ``v1`` with ``v2``, in the range
+    minus pi to pi.
     """
     cval = np.dot(v1, v2)
     sval = (np.cross(v1, v2))[2]
@@ -36,6 +43,13 @@ class Bezier_Handlebars(VDict):
     """
     Creates circles (dots) and lines on the points of another mobject.
     Used for visualizing bezier control points and handles, helps debugging.
+
+    Parameters
+    ----------
+    target_mobject
+        Mobject whose control points and handles are visualised.
+    **kwargs
+        Keyword arguments forwarded to the vector dictionary.
     """
 
     def __init__(self, target_mobject: VMobject, **kwargs) -> None:
@@ -45,7 +59,17 @@ class Bezier_Handlebars(VDict):
         self.generate_lines()
 
     def generate_circles(self, r: Any) -> Any:
-        """generate_circles."""
+        """Create a dot at every control point.
+
+        Parameters
+        ----------
+        r
+            Radius of the dots.
+
+        Returns
+        -------
+        ``None``; the dots are stored under the ``"dots"`` key.
+        """
         DotGroup = VGroup(
             *[
                 Circle(
@@ -62,12 +86,22 @@ class Bezier_Handlebars(VDict):
         self["dots"] = DotGroup
 
     def move_circles(self) -> Any:
-        """move_circles."""
+        """Move the dots onto the current control points.
+
+        Returns
+        -------
+        ``None``; the dots are moved in place.
+        """
         for zipthing in zip(self["dots"], self.target.points):
             zipthing[0].move_to(zipthing[1])
 
     def generate_lines(self) -> Any:
-        """generate_lines."""
+        """Draw the two Bezier handles for every curve.
+
+        Returns
+        -------
+        ``None``; the handles are stored under the ``"lines"`` key.
+        """
         pointlist = zip(
             self.target.points[0::4, :],
             self.target.points[1::4, :],
@@ -88,7 +122,12 @@ class Bezier_Handlebars(VDict):
         self["lines"] = LineGroup
 
     def move_lines(self) -> Any:
-        """move_lines."""
+        """Update the handle lines to match the current control points.
+
+        Returns
+        -------
+        ``None``; the lines are repositioned in place.
+        """
         pointlist = zip(
             self.target.points[0::4, :],
             self.target.points[1::4, :],

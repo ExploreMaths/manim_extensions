@@ -6,3 +6,8 @@ ManimMLConfig
 
 .. autoclass:: manim_extensions.machine_learning.ManimMLConfig
    :show-inheritance:
+
+Global configuration instance
+-----------------------------
+
+.. autodata:: manim_extensions.machine_learning.config

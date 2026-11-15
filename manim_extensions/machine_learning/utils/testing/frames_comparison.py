@@ -69,6 +69,7 @@ def frames_comparison(
     """
 
     def decorator_maker(tested_scene_construct: Callable):
+        """Validate the test signature and build the pytest wrapper."""
         if (
             SCENE_PARAMETER_NAME
             not in inspect.getfullargspec(tested_scene_construct).args
@@ -92,6 +93,7 @@ def frames_comparison(
         @functools.wraps(tested_scene_construct)
         # The "request" parameter is meant to be used as a fixture by pytest. See below.
         def wrapper(*args, request: FixtureRequest, tmp_path: str, **kwargs):
+            """Run the wrapped test with pytest fixtures and parametrization."""
             # Wraps the test_function to a construct method, to "freeze" the eventual additional arguments (parametrizations fixtures).
             construct = functools.partial(tested_scene_construct, *args, **kwargs)
 
@@ -188,6 +190,12 @@ def _make_test_comparing_frames(
         The renderer base class.
     show_diff
         Whether to visually show the diff (see ``--show_diff``).
+    is_set_test_data_test
+        Whether the test writes reference frames instead of comparing.
+    last_frame
+        Whether only the last frame is compared.
+    size_frame
+        Frame size used when writing reference frames.
 
     Returns
     -------
@@ -207,6 +215,7 @@ def _make_test_comparing_frames(
     testRenderer = _make_test_renderer_class(renderer_class)
 
     def real_test():
+        """Render the test scene and compare its frames."""
         with frames_tester.testing():
             sceneTested = _make_test_scene_class(
                 base_scene=base_scene,
@@ -235,6 +244,28 @@ def _make_test_comparing_frames(
 def _control_data_path(
     test_file_path: str | None, module_name: str, test_name: str, setting_test: bool
 ) -> Path:
+    """Return the control-frame path for a test, creating it when setting.
+
+    Parameters
+    ----------
+    test_file_path
+        Path of the test file; the module directory is used when omitted.
+    module_name
+        Module that owns the test.
+    test_name
+        Name of the test.
+    setting_test
+        Whether control frames are being generated.
+
+    Returns
+    -------
+    Path of the stored control frame.
+
+    Raises
+    ------
+    Exception
+        When a control frame is required but missing.
+    """
     if test_file_path is None:
         # For some reason, path to test file containing @frames_comparison could not
         # be determined. Use local directory instead.
@@ -257,6 +288,17 @@ def _control_data_path(
 
 
 def _config_test(last_frame: bool) -> ManimConfig:
+    """Load the graphical-test config for single- or multi-frame tests.
+
+    Parameters
+    ----------
+    last_frame
+        Whether only the final frame is compared.
+
+    Returns
+    -------
+    The digested Manim configuration.
+    """
     return ManimConfig().digest_file(
         str(
             Path(__file__).parent

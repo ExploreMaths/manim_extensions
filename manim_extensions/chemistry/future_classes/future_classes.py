@@ -39,7 +39,7 @@ from manim import (
     np,
     smooth,
 )
-from typing import Callable, Self
+from typing import Any, Callable, Self
 
 from ...utils.deprecation import deprecated
 from manim.typing import Point3D, Vector3D, VectorND
@@ -1001,7 +1001,8 @@ def zero(function: Callable) -> Callable[..., float]:
     """
 
     @wraps(function)
-    def wrapper(t: VectorND | None, *args, **kwargs):
+    def wrapper(t: VectorND | None, *args, **kwargs) -> Any:
+        """Clamp the curve parameter to the unit interval."""
         if 0 <= t <= 1:
             return function(t, *args, **kwargs)
         else:

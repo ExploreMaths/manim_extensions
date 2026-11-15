@@ -175,6 +175,10 @@ class CatalogLayout(Layout):
         ----------
         layer_index
             Layer depth whose spacing rule should be selected.
+
+        Returns
+        -------
+        The horizontal spacing for that layer.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
 
@@ -185,6 +189,10 @@ class CatalogLayout(Layout):
         ----------
         layer_index
             Layer depth whose vertical spacing rule should be selected.
+
+        Returns
+        -------
+        The vertical spacing for that layer.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
 
@@ -260,6 +268,10 @@ class CatalogLayout(Layout):
         ----------
         node
             Root node of the subtree whose horizontal bounds should be computed.
+
+        Returns
+        -------
+        The left and right boundaries of the subtree.
         """
         left = node.left
         right = node.left + node.width
@@ -276,6 +288,10 @@ class CatalogLayout(Layout):
         ----------
         node
             Root node of the subtree whose width should be measured.
+
+        Returns
+        -------
+        The maximum horizontal span of the subtree.
         """
         min_l, max_r = self._get_node_boundaries_horizontal(node)
         return max_r - min_l

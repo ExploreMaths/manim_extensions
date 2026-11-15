@@ -20,14 +20,25 @@ __all__ = ["DeepSpace", "set_scene_background"]
 
 
 def set_scene_background(theme: Union[str, RadarTheme, None] = "midnight") -> str:
-    """Set Manim's global background colour to the theme background.
+    """Set Manim's global background colour to a theme background.
 
-    Returns the colour that was applied. Handy at the top of a scene file::
+    Parameters
+    ----------
+    theme
+        The theme name, theme object, or ``None`` for the default theme.
+
+    Returns
+    -------
+    The colour that was applied.
+
+    Examples
+    --------
+    Handy at the top of a scene file::
 
         from manim_extensions.radar import set_scene_background
         set_scene_background("midnight")
-
     """
+
     th = get_theme(theme)
     config.background_color = th.background
     return th.background
@@ -44,8 +55,54 @@ class DeepSpace(VGroup):
     * **nebula** – big soft blobs that breathe in the chart's current colour
     * **stars** – three-layer glowing dots that drift and twinkle
 
-    Use :meth:`~manim_extensions.fontawesome.manim_fontawesome._Solid.link` to make the nebula / stars follow a chart's colour, and
-    :meth:`~manim_extensions.radar.backdrop.DeepSpace.set_fade` to dim everything (used for the black "gap" moment).
+    Use :meth:`~manim_extensions.radar.backdrop.DeepSpace.link` to make the
+    nebula and stars follow a chart's colour, and
+    :meth:`~manim_extensions.radar.backdrop.DeepSpace.set_fade` to dim
+    everything for the black gap moment.
+
+    Parameters
+    ----------
+    theme
+        The theme name, theme object, or ``None`` for the default theme.
+    center
+        Two-dimensional centre of the radial glow.
+    glow
+        Whether to draw the radial glow.
+    glow_layers
+        Number of concentric circles used for the glow.
+    vignette
+        Whether to darken the frame corners.
+    vignette_layers
+        Number of stacked vignette rings.
+    nebula
+        Whether to draw soft colour blobs.
+    nebula_count
+        Number of nebula blobs.
+    stars
+        Whether to draw the star field.
+    star_count
+        Number of stars.
+    star_region
+        Bounds ``(x_min, x_max, y_min, y_max)`` for the star field.
+    seed
+        Random seed for reproducible star placement.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+
+    Examples
+    --------
+    .. manim:: DeepSpaceScene
+        :save_last_frame:
+
+       from manim import *
+       from manim_extensions.radar.backdrop import DeepSpace
+
+       class DeepSpaceScene(Scene):
+           def construct(self):
+               backdrop = DeepSpace()
+               backdrop.install(self)
+               Group(*self.mobjects).scale(0.3).move_to(ORIGIN)
     """
 
     def __init__(
@@ -167,30 +224,83 @@ class DeepSpace(VGroup):
 
     # ------------------------------------------------------------------
     def link(self, chart: Any) -> DeepSpace:
-        """Follow ``chart``'s current colour (call once, e.g. in ``construct``)."""
+        """Make the backdrop follow a chart's current colour.
+
+        Parameters
+        ----------
+        chart
+            Chart whose colour drives the tint.
+
+        Returns
+        -------
+        This backdrop, allowing calls to be chained.
+        """
+
         self._linked = chart
         chart.add_updater(lambda m, dt: self.set_tint(m.current_color))
         self.set_tint(chart.current_color)
         return self
 
     def set_tint(self, color: Any) -> DeepSpace:
-        """Recolour the nebula and the star halos."""
+        """Recolour the nebula and star halos.
+
+        Parameters
+        ----------
+        color
+            New tint colour.
+
+        Returns
+        -------
+        This backdrop, allowing calls to be chained.
+        """
+
         self._tint = ManimColor(color)
         return self
 
     def set_fade(self, value: float) -> DeepSpace:
-        """Global brightness of the backdrop, ``1`` = full, ``0`` = almost black."""
+        """Set the global brightness of the backdrop.
+
+        Parameters
+        ----------
+        value
+            Brightness from 0 for almost black to 1 for full.
+
+        Returns
+        -------
+        This backdrop, allowing calls to be chained.
+        """
+
         self._fade = float(np.clip(value, 0.0, 1.0))
         return self
 
     def install(self, scene: Any) -> DeepSpace:
-        """Add the backdrop to a scene (``backdrop.install(self)``)."""
+        """Add the backdrop to a scene.
+
+        Parameters
+        ----------
+        scene
+            Scene that receives the backdrop.
+
+        Returns
+        -------
+        This backdrop, allowing calls to be chained.
+        """
+
         scene.add(self)
         return self
 
     # ------------------------------------------------------------------
     def _refresh(self, mob: VGroup, dt: float) -> None:
-        """_refresh."""
+        """Advance the backdrop animation.
+
+        Parameters
+        ----------
+        mob
+            Mobject carrying the updater.
+        dt
+            Time step in seconds.
+        """
+
         self._time += dt
         t = self._time
         f = self._fade

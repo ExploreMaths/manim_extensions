@@ -75,11 +75,27 @@ def replica_datasets(
     max_value: float = REPLICA_MAX,
     hold_scale: float = 1.0,
 ) -> list[RadarData]:
-    """Turn :data:`~manim_extensions.radar.legacy.REPLICA_TIMELINE` into a list of :class:`~manim_extensions.radar.data.RadarData`.
+    """Convert the legacy timeline into snapshots.
 
-    Holds are derived from the original timestamps so that the whole reel keeps
+    Parameters
+    ----------
+    axes
+        Axis labels.
+    transition_time
+        Morph duration used for the reel.
+    max_value
+        Full scale of the replica.
+    hold_scale
+        Multiplier applied to each derived hold.
+
+    Returns
+    -------
+    One snapshot per timeline entry.
+
+    Holds are derived from the original timestamps so the whole reel keeps
     its original pace.
     """
+
     out: list[RadarData] = []
     n = len(REPLICA_TIMELINE)
     for i, seg in enumerate(REPLICA_TIMELINE):

@@ -10,6 +10,7 @@ from __future__ import annotations
 import numpy as np
 
 from manim import (
+    Animation,
     AnimationGroup,
     Camera,
     Create,
@@ -123,7 +124,13 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return edges
 
     @override_animation(FadeOut)
-    def _fadeout_animation(self):
+    def _fadeout_animation(self) -> AnimationGroup:
+        """Fade out every connection edge.
+
+        Returns
+        -------
+        The grouped fade-out animation for all edges.
+        """
         animations = []
 
         for edge in self.edges:
@@ -268,7 +275,18 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Create every connection edge.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        The grouped edge creation animation.
+        """
         animations = []
 
         for edge in self.edges:

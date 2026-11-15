@@ -369,11 +369,21 @@ class Node(VMobject):
         return self.box.point_from_proportion(proportion)
 
     def __str__(self) -> str:
-        """Return a compact readable representation of the node."""
+        """Return a compact readable representation of the node.
+
+        Returns
+        -------
+        The textual node representation.
+        """
         return f"Node({repr(self.value)})"
 
     def __repr__(self) -> str:
-        """Return the same value as ``__str__`` for debugging output."""
+        """Return the same representation as ``__str__``.
+
+        Returns
+        -------
+        The textual node representation.
+        """
         return self.__str__()
 
     class Select(Succession):

@@ -83,8 +83,13 @@ class VariationalAutoencoder(Group):
         # network as subcontent.
         self.submobjects.extend([self.neural_network])
 
-    def _construct_neural_network(self):
-        """Makes the VAE encoder, embedding layer, and decoder."""
+    def _construct_neural_network(self) -> tuple[NeuralNetwork, EmbeddingLayer]:
+        """Makes the VAE encoder, embedding layer, and decoder.
+
+        Returns
+        -------
+        The assembled neural network and its embedding layer.
+        """
         embedding_layer = EmbeddingLayer()
 
         neural_network = NeuralNetwork(
@@ -100,7 +105,13 @@ class VariationalAutoencoder(Group):
         return neural_network, embedding_layer
 
     @override_animation(Create)
-    def _create_vae(self):
+    def _create_vae(self) -> Create:
+        """Create the neural network when the VAE appears.
+
+        Returns
+        -------
+        The creation animation for the neural network.
+        """
         return Create(self.neural_network)
 
     def make_triplet_forward_pass(

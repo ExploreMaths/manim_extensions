@@ -40,6 +40,12 @@ _font_installed = False
 
 
 def _font_path() -> str:
+    """Return the bundled Nerd Font file path.
+
+    Returns
+    -------
+    Absolute path of the font file.
+    """
     return str(pkg_resources.files("manim_extensions.nerdfont") / _FONT_FILENAME)
 
 

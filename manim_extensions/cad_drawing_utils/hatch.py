@@ -22,7 +22,33 @@ from scipy.optimize import root
 
 
 class Hatch_lines(VGroup):
-    """Hatch_lines."""
+    """Hatch lines clipped to the interior of a target mobject.
+
+    Parameters
+    ----------
+    target_mobject
+        Mobject whose interior is hatched.
+    angle
+        Angle of the hatch lines.
+    offset
+        Spacing between adjacent hatch lines.
+    **kwargs
+        Keyword arguments forwarded to each line.
+
+    Examples
+    --------
+    .. manim:: HatchLinesScene
+       :save_last_frame:
+
+       from manim import Circle, Scene
+       from manim_extensions.cad_drawing_utils import Hatch_lines
+
+       class HatchLinesScene(Scene):
+           def construct(self):
+               target = Circle(radius=1)
+               hatch = Hatch_lines(target, angle=0.5, offset=0.3)
+               self.add(target, hatch)
+    """
 
     def __init__(
         self, target_mobject: Mobject, angle: Any = PI / 6, offset: Any = 0.3, **kwargs
@@ -62,10 +88,20 @@ class Hatch_lines(VGroup):
 
 
 def curve_intersection(vmob1: VMobject, vmob2: VMobject) -> Any:
-    """Intersection points of 2 VMobjects.
-    Finds all intersections of 2 vmobjects, as long as there is only 1 interesection per bezier subcurve.
-    Self intersections are not found."""
+    """Find intersection points of two vector mobjects.
 
+    Parameters
+    ----------
+    vmob1
+        First mobject.
+    vmob2
+        Second mobject.
+
+    Returns
+    -------
+    The intersection indices: parameter values for each mobject and
+    matching curve indices.
+    """
     intersect_indx_1 = np.array([])
     intersect_indx_2 = np.array([])
     for i in range(vmob1.get_num_curves()):

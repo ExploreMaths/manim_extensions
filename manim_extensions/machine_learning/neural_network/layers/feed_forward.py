@@ -10,6 +10,7 @@ This module provides the feed forward layer class for neural network visualizati
 from __future__ import annotations
 
 from manim import (
+    Animation,
     AnimationGroup,
     ApplyMethod,
     Circle,
@@ -268,7 +269,18 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                 return succession
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Create the surrounding rectangle and all nodes.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        The grouped creation animation.
+        """
         animations = []
 
         animations.append(Create(self.surrounding_rectangle))

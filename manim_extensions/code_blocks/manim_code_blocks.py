@@ -40,7 +40,15 @@ from ..utils.deps import require
 
 
 class Theme:
-    """A theme used to syntax highlight a :class:`~manim_extensions.code_blocks.manim_code_blocks.CodeBlock`."""
+    """A theme used to syntax highlight a :class:`~manim_extensions.code_blocks.manim_code_blocks.CodeBlock`.
+
+    Parameters
+    ----------
+    colors
+        Mapping from hex colours to the token types drawn in that colour.
+    group_matchers
+        Colours cycled through for matched bracket groups.
+    """
 
     colors: dict[str, list[str | Callable]]
     """
@@ -56,7 +64,17 @@ class Theme:
         self.group_matchers = group_matchers
 
     def color_for(self, token: Any) -> str:
-        """Returns the color for the given token as specified by this theme, or `"#FFFFFF"` if none is specified."""
+        """Return the theme colour assigned to a token.
+
+        Parameters
+        ----------
+        token
+            The token whose type selects the colour.
+
+        Returns
+        -------
+        The matching hex colour, or white when no rule matches.
+        """
         for key, value in self.colors.items():
             if token.type in value:
                 return key
@@ -104,7 +122,15 @@ module works offline and does not need to parse a network response.
 
 
 class ProgrammingLanguage(abstract):
-    """A programming language used to render `CodeBlocks`."""
+    """A programming language used to render `CodeBlocks`.
+
+    Parameters
+    ----------
+    name
+        Display name of the language.
+    tokenize_name
+        Tokenizer attribute name; defaults to ``name``.
+    """
 
     name: str
     """The name of the programming language. The name is displayed on the title card above the code block."""
@@ -129,7 +155,12 @@ class ProgrammingLanguage(abstract):
 
     @property
     def language(self) -> Any:
-        """The ``tokenize-all-code`` tokenizer, imported on first use."""
+        """Return the tokenizer for this language.
+
+        Returns
+        -------
+        The tokenizer object, importing ``tokenize-all-code`` on first use.
+        """
         tokenize_all = require("code_blocks", "tokenize_all")
         language = getattr(tokenize_all, self._tokenize_name, None)
         if language is None:
@@ -140,6 +171,33 @@ class ProgrammingLanguage(abstract):
 class CodeBlock(VGroup):
     """
     A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.
+
+    Parameters
+    ----------
+    text
+        The source code shown in the block.
+    language
+        Language used for syntax highlighting.
+    theme
+        Colour theme applied to the tokens.
+    font
+        Font family used for the code.
+    **kwargs
+        Keyword arguments forwarded to the markup text.
+
+    Examples
+    --------
+    .. manim:: CodeBlockScene
+       :save_last_frame:
+
+       from manim import Scene
+       from manim_extensions.code_blocks import CodeBlock
+
+       class CodeBlockScene(Scene):
+           def construct(self):
+               block = CodeBlock('print("Hello World!")')
+               block.scale(2.5)
+               self.add(block)
     """
 
     code: MarkupText
@@ -266,6 +324,16 @@ class CodeBlock(VGroup):
         self.play(*python.create())
         ```
         By default the animation will :class:`~manim.animation.fading.FadeIn` the `background` and `title_background`, and :class:`~manim.animation.creation.AddTextLetterByLetter` the `code` and `title`.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to each animation.
+
+        Returns
+        -------
+        A tuple of animations that create the block, including the title
+        animations when a title is present.
         """
         if getattr(self, "title", None) and getattr(self, "title_background", None):
             return (
@@ -288,6 +356,16 @@ class CodeBlock(VGroup):
         self.play(*python.uncreate())
         ```
         By default the animation will :class:`~manim.animation.fading.FadeOut` the `background` and `title_background`, and :class:`~manim.animation.creation.Uncreate` the `code` and `title`.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to each animation.
+
+        Returns
+        -------
+        A tuple of animations that remove the block, including the title
+        animations when a title is present.
         """
         if getattr(self, "title", None) and getattr(self, "title_background", None):
             return (

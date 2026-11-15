@@ -30,6 +30,12 @@ class Element:
     """
 
     def __repr__(self) -> str:
+        """Return a readable representation of the element.
+
+        Returns
+        -------
+        Text identifying the element.
+        """
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 
     def __init__(

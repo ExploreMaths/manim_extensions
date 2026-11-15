@@ -28,7 +28,7 @@ from ..manim_chemistry_molecule import MCMolecule
 from ..molecule import AbstractMolecule
 from manim.typing import Point3D, Vector3D, VectorND
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class SimpleLine(Line):
@@ -52,7 +52,7 @@ class SimpleLine(Line):
        class SimpleLineScene(Scene):
            def construct(self):
                line = SimpleLine(ORIGIN, 2 * RIGHT)
-               line.scale(3)
+               line.scale(4.7)
                self.add(line)
     """
 
@@ -61,6 +61,12 @@ class SimpleLine(Line):
         self.sheen_direction = self._get_unit_vector()
 
     def _get_unit_vector(self) -> Vector3D:
+        """Return the unit vector from the start to the end point.
+
+        Returns
+        -------
+        Normalised direction vector.
+        """
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
@@ -102,6 +108,12 @@ class DoubleLine(ArcBetweenPoints):
         self.add(other_arc)
 
     def _get_unit_vector(self) -> Vector3D:
+        """Return the unit vector from the start to the end point.
+
+        Returns
+        -------
+        Normalised direction vector.
+        """
         vector = self.end - self.start
 
         return vector / np.linalg.norm(vector)
@@ -248,7 +260,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                molecule = GraphMolecule.molecule_from_string(
                    Path("acetone_2d.mol").read_text(), format="mol", ignore_hydrogens=False
                )
-               molecule.scale(2)
+               molecule.scale(3.4)
                self.play(Write(molecule))
                self.play(Rotate(molecule, PI / 2, axis=RIGHT))
                self.wait()
@@ -291,6 +303,15 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.bonds = self.edges
 
     def _populate_edge_dict(self, edges: list[tuple[int, int]], _: VectorND | None):
+        """Create a bond mobject for every edge.
+
+        Parameters
+        ----------
+        edges
+            Pairs of vertex indices that should be connected.
+        _
+            Unused parameter kept for the graph interface.
+        """
         self.edges = {}
 
         for u, v in edges:
@@ -677,8 +698,8 @@ class GraphMolecule(Graph, AbstractMolecule):
             return atom.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            _logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -747,7 +768,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             return bond.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Bond tuple {bond_index} is not valid for molecule {self}")
+            _logger.warning(f"Bond tuple {bond_index} is not valid for molecule {self}")
             raise key_error
 
         except Exception as exception:
@@ -782,8 +803,8 @@ class GraphMolecule(Graph, AbstractMolecule):
             bond = self.bonds[bond_tuple]
 
         except KeyError as key_error:
-            logger.warning(f"Bond index {bond_tuple} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(f"Bond index {bond_tuple} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()

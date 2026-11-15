@@ -284,6 +284,7 @@ class Node:
                self.add(connectors, root.vmobject, root.surr_rect,
                          child.vmobject, child.surr_rect,
                          leaf.vmobject, leaf.surr_rect)
+               Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
     """
 
     def __init__(
@@ -370,6 +371,17 @@ class Node:
         ----------
         direction
             The direction of the operation.
+        **kwargs
+            Keyword arguments forwarded to the connector line.
+
+        Returns
+        -------
+        The connector line from the parent to this node.
+
+        Raises
+        ------
+        ValueError
+            If this node is the root and has no parent.
         """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")
@@ -393,6 +405,15 @@ class Node:
         ----------
         kwargs
             Kwargs processed by this operation.
+
+        Returns
+        -------
+        The connector line from the parent or previous neighbour.
+
+        Raises
+        ------
+        ValueError
+            If this node is the root and has no parent.
         """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")
@@ -422,6 +443,15 @@ class Node:
         ----------
         kwargs
             Kwargs processed by this operation.
+
+        Returns
+        -------
+        The stepped connector line from the parent to this node.
+
+        Raises
+        ------
+        ValueError
+            If this node is the root and has no parent.
         """
         if self.parent is None:
             raise ValueError("root node has no parent to connect to")

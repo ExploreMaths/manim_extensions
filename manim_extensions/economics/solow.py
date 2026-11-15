@@ -7,6 +7,8 @@ This module provides the Solow growth model diagram.
 
 """
 
+from typing import Callable
+
 from manim import (
     AnimationGroup,
     BLUE,
@@ -144,27 +146,86 @@ class SolowDiagram(EconDiagram):
             )
 
     @staticmethod
-    def _make_prod_func(alpha: float):
-        r""":math:`y = k^\alpha`"""
+    def _make_prod_func(alpha: float) -> Callable[[float], float]:
+        r""":math:`y = k^\alpha`
+
+        Parameters
+        ----------
+        alpha
+            Capital share in the production function.
+
+        Returns
+        -------
+        A function mapping capital to output.
+        """
         return lambda k: k**alpha
 
     @staticmethod
-    def _make_savings_func(s: float, alpha: float):
-        r""":math:`sf(k) = s \cdot k^\alpha`"""
+    def _make_savings_func(s: float, alpha: float) -> Callable[[float], float]:
+        r""":math:`sf(k) = s \cdot k^\alpha`
+
+        Parameters
+        ----------
+        s
+            Savings rate.
+        alpha
+            Capital share in the production function.
+
+        Returns
+        -------
+        A function mapping capital to savings per worker.
+        """
         return lambda k: s * (k**alpha)
 
     @staticmethod
-    def _make_breakeven_func(delta: float, n: float | None, g: float):
-        r""":math:`(\delta + n + g) \cdot k`"""
+    def _make_breakeven_func(
+        delta: float, n: float | None, g: float
+    ) -> Callable[[float], float]:
+        r""":math:`(\delta + n + g) \cdot k`
+
+        Parameters
+        ----------
+        delta
+            Depreciation rate.
+        n
+            Population growth rate; ``None`` is treated as zero.
+        g
+            Technological growth rate.
+
+        Returns
+        -------
+        A function mapping capital to break-even investment.
+        """
         rate = delta + n + g
         return lambda k: rate * k
 
     @property
-    def _shares_visible(self):
+    def _shares_visible(self) -> bool:
+        """Return whether the share annotation is currently shown.
+
+        Returns
+        -------
+        ``True`` when the share annotation is present.
+        """
         return hasattr(self, "_shares_group") and self._shares_group is not None
 
-    def _shift_with_shares(self, curve_anim: AnimationGroup, run_time: float):
-        """Bundle a curve shift with a shares update if shares are visible."""
+    def _shift_with_shares(
+        self, curve_anim: AnimationGroup, run_time: float
+    ) -> AnimationGroup:
+        """Bundle a curve shift with a shares update when shares are visible.
+
+        Parameters
+        ----------
+        curve_anim
+            Animation that shifts the curve.
+        run_time
+            Duration of the shares replacement.
+
+        Returns
+        -------
+        The curve animation alone, or a group that also replaces the share
+        annotation.
+        """
         if not self._shares_visible:
             return curve_anim
 
@@ -337,8 +398,13 @@ class SolowDiagram(EconDiagram):
 
     # ---- Consumption / Investment shares ----
 
-    def _steady_state_k(self):
-        r"""Compute steady-state capital: :math:`sf(k^*) = (\delta+n+g)k^*`."""
+    def _steady_state_k(self) -> float | None:
+        r"""Compute steady-state capital: :math:`sf(k^*) = (\delta+n+g)k^*`.
+
+        Returns
+        -------
+        The steady-state capital level, or ``None`` without an intersection.
+        """
         from .base import find_intersection
 
         sf = self._make_savings_func(self._s, self._alpha)
@@ -347,8 +413,22 @@ class SolowDiagram(EconDiagram):
 
     def _build_shares(
         self, k: float, c_color: ManimColor = ORANGE, i_color: ManimColor = YELLOW
-    ):
-        """Build the share annotation VGroup at capital level k."""
+    ) -> VGroup:
+        """Build the share annotation group at a capital level.
+
+        Parameters
+        ----------
+        k
+            Capital level where the annotation is drawn.
+        c_color
+            Colour of the consumption brace.
+        i_color
+            Colour of the investment brace.
+
+        Returns
+        -------
+        The group with the stem, braces, and share labels.
+        """
         prod = self._make_prod_func(self._alpha)
         sav = self._make_savings_func(self._s, self._alpha)
 
@@ -480,10 +560,14 @@ class SolowDiagram(EconDiagram):
 
     # ---- Golden rule ----
 
-    def _golden_rule_k(self):
+    def _golden_rule_k(self) -> float:
         r"""Compute golden-rule capital: :math:`MPK = \delta + n + g`.
 
         :math:`f'(k) = \alpha k^{\alpha-1} = \delta+n+g \to k_{\mathrm{gold}} = (\alpha/(\delta+n+g))^{1/(1-\alpha)}`
+
+        Returns
+        -------
+        The golden-rule capital level.
         """
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))

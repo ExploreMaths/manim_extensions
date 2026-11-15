@@ -63,7 +63,16 @@ class RadarData:
     meta: dict = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        """__post_init__."""
+        """Validate the snapshot and freeze its sequences.
+
+        Raises
+        ------
+        ValueError
+            If axes and values differ in length, fewer than three axes are
+            supplied, a value is negative, the emphasis name is unknown, or
+            the full scale is not positive.
+        """
+
         axes = tuple(self.axes)
         values = tuple(float(v) for v in self.values)
         object.__setattr__(self, "axes", axes)
@@ -88,28 +97,53 @@ class RadarData:
     # ------------------------------------------------------------------
     @property
     def n_axes(self) -> int:
-        """Number of axes of this snapshot."""
+        """Return the number of axes in this snapshot.
+
+        Returns
+        -------
+        Number of axis labels.
+        """
+
         return len(self.axes)
 
     @property
     def overflow_suffix(self) -> str:
-        """``"+"`` when any value exceeds the full scale, else an empty string."""
+        """Report whether any value exceeds the full scale.
+
+        Returns
+        -------
+        ``"+"`` when a value overflows, otherwise an empty string.
+        """
+
         return "+" if max(self.values) > self.full_scale else ""
 
     @property
     def full_scale(self) -> float:
-        """Full-scale value (``max_value`` if given, else ``ceil(max(values))``)."""
+        """Return the full-scale value of this snapshot.
+
+        Returns
+        -------
+        ``max_value`` when supplied, otherwise the ceiling of the largest
+        value with a floor of one.
+        """
+
         if self.max_value is not None:
             return float(self.max_value)
         return float(max(1.0, math.ceil(max(self.values))))
 
     def scale_for(self, levels: int = 5) -> float:
-        """Full scale snapped so the grid labels come out as round numbers.
+        """Snap the full scale so grid labels are round numbers.
 
-        ``levels`` grid rings divide the scale, so a scale of ``levels * k``
-        labels every ring with an integer. Values above it render with the
-        overflow suffix (``10+``).
+        Parameters
+        ----------
+        levels
+            Number of grid rings; the scale becomes a multiple of this value.
+
+        Returns
+        -------
+        A scale that labels every ring with an integer.
         """
+
         if self.max_value is not None:
             return float(self.max_value)
         levels = max(1, int(levels))
@@ -121,29 +155,94 @@ class RadarData:
         return float(levels)
 
     def ratios(self, scale: Optional[float] = None) -> list[float]:
-        """Values as fractions of the full scale (``1.0`` = outer ring)."""
+        """Express values as fractions of the full scale.
+
+        Parameters
+        ----------
+        scale
+            Optional explicit scale; defaults to :attr:`~manim_extensions.radar.data.RadarData.full_scale`.
+
+        Returns
+        -------
+        One fraction per axis, where 1.0 is the outer ring.
+        """
+
         sc = float(scale if scale is not None else self.full_scale) or 1.0
         return [v / sc for v in self.values]
 
     def radius_values(
         self, radius: float, scale: Optional[float] = None
     ) -> list[float]:
-        """Values converted to scene-unit radii for a chart of ``radius``."""
+        """Convert values to scene-unit radii.
+
+        Parameters
+        ----------
+        radius
+            Scene-unit radius of the outer ring.
+        scale
+            Optional explicit scale; defaults to :attr:`~manim_extensions.radar.data.RadarData.full_scale`.
+
+        Returns
+        -------
+        One radius per axis.
+        """
+
         return [r * radius for r in self.ratios(scale)]
 
     def color_or(self, fallback: Union[str, ManimColor]) -> ManimColor:
-        """``color`` if set, else ``fallback``."""
+        """Resolve the polygon colour for this snapshot.
+
+        Parameters
+        ----------
+        fallback
+            Colour used when :attr:`~manim_extensions.radar.data.RadarData.color` is unset.
+
+        Returns
+        -------
+        The snapshot colour or the fallback as a Manim colour.
+        """
+
         return ManimColor(self.color) if self.color else ManimColor(fallback)
 
     def with_values(self, values: Sequence[float], **changes) -> RadarData:
-        """Copy of this snapshot with new ``values`` (and optional other tweaks)."""
+        """Copy this snapshot with new values and optional other changes.
+
+        Parameters
+        ----------
+        values
+            Replacement values, one per axis.
+        changes
+            Additional dataclass fields to replace.
+
+        Returns
+        -------
+        A new validated snapshot.
+        """
+
         return replace(self, values=tuple(float(v) for v in values), **changes)
 
     def renamed(self, name: Optional[str]) -> RadarData:
-        """Copy of this snapshot with another ``name``."""
+        """Copy this snapshot with another dataset name.
+
+        Parameters
+        ----------
+        name
+            Replacement name, or ``None`` to clear it.
+
+        Returns
+        -------
+        A new validated snapshot.
+        """
+
         return replace(self, name=name)
 
     def __repr__(self) -> str:  # pragma: no cover - cosmetic
-        """__repr__."""
+        """Return a compact debug representation.
+
+        Returns
+        -------
+        A short string naming the axis count, optional name and values.
+        """
+
         label = f" name={self.name!r}" if self.name else ""
         return f"RadarData(axes={len(self.axes)}d{label}, values={tuple(self.values)})"

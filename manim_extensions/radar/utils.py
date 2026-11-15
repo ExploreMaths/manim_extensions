@@ -26,7 +26,18 @@ __all__ = [
 
 
 def unit_vector(degrees: float) -> np.ndarray:
-    """``(cos, sin, 0)`` for an angle given in degrees."""
+    """Return a unit vector for an angle in degrees.
+
+    Parameters
+    ----------
+    degrees
+        Angle measured counter-clockwise from the positive x axis.
+
+    Returns
+    -------
+    Cosine and sine of the angle, with a zero z component.
+    """
+
     r = math.radians(degrees)
     return np.array([math.cos(r), math.sin(r), 0.0])
 
@@ -34,10 +45,20 @@ def unit_vector(degrees: float) -> np.ndarray:
 def axis_angles(
     count: int, start: float = 90.0, clockwise: bool = False
 ) -> list[float]:
-    """Evenly spaced axis angles (degrees).
+    """Build evenly spaced axis angles in degrees.
 
-    ``start`` is the angle of the first axis, ``clockwise`` flips the direction
-    so that datasets read the other way round.
+    Parameters
+    ----------
+    count
+        Number of axes.
+    start
+        Angle of the first axis in degrees.
+    clockwise
+        Whether axes run clockwise instead of counter-clockwise.
+
+    Returns
+    -------
+    One angle in degrees for each axis.
     """
     step = 360.0 / count
     sign = -1.0 if clockwise else 1.0
@@ -45,17 +66,56 @@ def axis_angles(
 
 
 def mix(a: ParsableManimColor, b: ParsableManimColor, t: float) -> ManimColor:
-    """Linear colour mix, ``t=0`` -> ``a``, ``t=1`` -> ``b``."""
+    """Blend two colours linearly.
+
+    Parameters
+    ----------
+    a
+        Colour at ``t=0``.
+    b
+        Colour at ``t=1``.
+    t
+        Blend factor, clipped to the range 0 to 1.
+
+    Returns
+    -------
+    The blended colour.
+    """
+
     return interpolate_color(ManimColor(a), ManimColor(b), float(np.clip(t, 0.0, 1.0)))
 
 
 def lighten(color: ParsableManimColor, amount: float = 0.08) -> ManimColor:
-    """Push a colour towards white by ``amount``."""
+    """Push a colour towards white.
+
+    Parameters
+    ----------
+    color
+        Base colour.
+    amount
+        Blend amount towards white.
+
+    Returns
+    -------
+    The lightened colour.
+    """
+
     return mix(color, WHITE, amount)
 
 
 def ease_in_out_cubic(t: float) -> float:
-    """Cubic ease-in-out (Manim only ships smooth/linear/rush_* out of the box)."""
+    """Apply a cubic ease-in-out curve.
+
+    Parameters
+    ----------
+    t
+        Normalized time, clipped to the range 0 to 1.
+
+    Returns
+    -------
+    Eased progress in the range 0 to 1.
+    """
+
     t = float(np.clip(t, 0.0, 1.0))
     if t < 0.5:
         return 4.0 * t * t * t
@@ -63,7 +123,20 @@ def ease_in_out_cubic(t: float) -> float:
 
 
 def ease_out_back(t: float, overshoot: float = 1.2) -> float:
-    """Ease-out with a small overshoot — nice for value tweens."""
+    """Apply an ease-out curve with a controllable overshoot.
+
+    Parameters
+    ----------
+    t
+        Normalized time, clipped to the range 0 to 1.
+    overshoot
+        Back constant controlling how far the curve overshoots.
+
+    Returns
+    -------
+    Eased progress.
+    """
+
     t = float(np.clip(t, 0.0, 1.0))
     c1 = overshoot
     c3 = c1 + 1.0
@@ -71,10 +144,21 @@ def ease_out_back(t: float, overshoot: float = 1.2) -> float:
 
 
 def ease_out_overshoot(t: float, fraction: float = 0.16) -> float:
-    """Ease-out whose peak overshoots the target by ``fraction`` of the span.
+    """Apply an ease-out whose peak overshoots by a fraction of the span.
 
-    Used by the ``burst`` transition: values stab *past* their target and
-    settle back, so overflowing spikes visibly pierce the outer ring.
+    Used by the burst transition so overflowing spikes visibly pierce the
+    outer ring before settling.
+
+    Parameters
+    ----------
+    t
+        Normalized time, clipped to the range 0 to 1.
+    fraction
+        Peak overshoot as a fraction of the total span.
+
+    Returns
+    -------
+    Eased progress, temporarily above 1 near the peak.
     """
     t = float(np.clip(t, 0.0, 1.0))
     p = min(0.9, max(1e-4, float(fraction)))
@@ -97,10 +181,21 @@ _FONT_CACHE: dict[tuple, Optional[str]] = {}
 def pick_font(
     candidates: Sequence[str], default: Optional[str] = None
 ) -> Optional[str]:
-    """Return the first font of ``candidates`` installed on this machine.
+    """Return the first installed font from a candidate list.
 
-    Lets the library look right on macOS / Windows / Linux without hard-coding a
-    platform specific family. Falls back to ``default`` when nothing matches.
+    This lets the library look right on macOS, Windows and Linux without
+    hard-coding a platform-specific family.
+
+    Parameters
+    ----------
+    candidates
+        Font families to test in order.
+    default
+        Name returned when none of the candidates is installed.
+
+    Returns
+    -------
+    The selected family name, or ``None`` when nothing matches.
     """
     key = tuple(candidates) + (default,)
     if key in _FONT_CACHE:
@@ -122,12 +217,34 @@ def pick_font(
 
 
 def closed(points: np.ndarray) -> np.ndarray:
-    """Append the first point again so a polygon path is closed."""
+    """Close a polygon path by appending its first point.
+
+    Parameters
+    ----------
+    points
+        Open polygon points.
+
+    Returns
+    -------
+    The polygon with its first point repeated at the end.
+    """
+
     return np.vstack([points, points[:1]])
 
 
 def as_points(values: Iterable) -> np.ndarray:
-    """Coerce a sequence of 2D/3D points into an ``(n, 3)`` float array."""
+    """Coerce 2D or 3D points into a float array with three columns.
+
+    Parameters
+    ----------
+    values
+        Iterable of points, each with two or three coordinates.
+
+    Returns
+    -------
+    A float array with one row per point and a zero z where needed.
+    """
+
     return np.array(
         [
             np.pad(np.asarray(v, dtype=float), (0, 3 - np.asarray(v).size))

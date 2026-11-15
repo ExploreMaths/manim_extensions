@@ -351,7 +351,7 @@ class WriteRandom(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @贝多芬).
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @beethoven).
 
     Parameters
     ----------
@@ -394,7 +394,7 @@ class ReversedWrite(LaggedStart):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/RandomScene.py``).
-       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @贝多芬).
+       Original author: `widcardw <https://github.com/widcardw>`_ (`Bilibili <https://space.bilibili.com/31976300/>`_, `site <https://widcard.win/>`_) (style popularised by @beethoven).
 
     Parameters
     ----------
@@ -499,7 +499,7 @@ class FadeOutRandom(LaggedStart):
 
        class FadeOutRandomScene(Scene):
            def construct(self):
-               mob = Text("Now you see me", weight=BOLD).scale(1.2)
+               mob = Text("Now you see me", weight=BOLD).scale(1.56)
                self.play(FadeIn(mob))
                self.play(FadeOutRandom(mob))
     """
@@ -543,7 +543,7 @@ class GrowRandom(LaggedStart):
            def construct(self):
                mob = MathTex(
                    r"\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}"
-               ).scale(1.3)
+               ).scale(2.7)
                self.play(GrowRandom(mob))
                self.wait()
     """
@@ -568,7 +568,7 @@ class PassingRectangle(Animation):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
+       Original author: `@TonyCrane <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -651,7 +651,7 @@ class LaggedCreation(Animation):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
+       Original author: `@TonyCrane <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -743,7 +743,7 @@ class HighLightWithLines(AnimationGroup):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
+       Original author: `@TonyCrane <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------
@@ -823,7 +823,7 @@ class UnHighLightWithLines(AnimationGroup):
 
        Adapted from `manim_sandbox
        <https://github.com/manim-kindergarten/manim_sandbox>`_ (``utils/animations/paperclip.py``).
-       Original author: `@鹤翔万里 <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
+       Original author: `@TonyCrane <https://github.com/TonyCrane>`_ (`Bilibili <https://space.bilibili.com/171431343/>`_, `site <https://blog.tonycrane.cc/>`_).
 
     Parameters
     ----------

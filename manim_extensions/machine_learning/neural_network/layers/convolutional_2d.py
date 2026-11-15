@@ -12,6 +12,7 @@ from __future__ import annotations
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from manim import (
+    Animation,
     AnimationGroup,
     ApplyMethod,
     BLUE,
@@ -479,5 +480,16 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.shift(target_center - layer_center)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Fade in the feature maps.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        The fade-in animation.
+        """
         return FadeIn(self.feature_maps)

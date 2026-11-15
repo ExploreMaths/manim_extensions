@@ -442,7 +442,7 @@ class DivideAndConquer:
         merged_indices.extend(indices_right)
         return merged_indices
 
-    def _find_base_lr(self, indices_left: List, indices_right: List):
+    def _find_base_lr(self, indices_left: List, indices_right: List) -> tuple[int, int]:
         """Find the initial base edge connecting the left and right vertex sets.
 
         The method identifies the rightmost vertex of the left hull and the
@@ -568,7 +568,9 @@ class DivideAndConquer:
         vert_indices = list(range(len(self.triangle_mesh.mesh.vertices)))
         self._divide_and_conquer_recursive(vert_indices, speed)
 
-    def _divide_and_conquer_recursive(self, vert_indices: List, speed: float = 1.0):
+    def _divide_and_conquer_recursive(
+        self, vert_indices: List, speed: float = 1.0
+    ) -> list[int]:
         """Internal recursive implementation of the divide-and-conquer algorithm.
 
         Base cases (<= 3 vertices) are triangulated directly; otherwise the

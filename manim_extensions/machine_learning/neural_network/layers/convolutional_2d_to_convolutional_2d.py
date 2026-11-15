@@ -10,6 +10,7 @@ from __future__ import annotations
 import numpy as np
 
 from manim import (
+    Animation,
     AnimationGroup,
     ApplyFunction,
     ApplyMethod,
@@ -345,7 +346,7 @@ class Filters(VGroup):
         return connective_lines
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
         """
         NOTE This create override animation
         is a workaround to make sure that the filter
@@ -356,6 +357,15 @@ class Filters(VGroup):
         instead of just when the filters were supposed to appear.
         I think this is a bug with :class:`~manim.animation.composition.Succession` in the core
         Manim Community Library.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to the animation.
+
+        Returns
+        -------
+        The deferred filter-creation animation.
         """
 
         def add_content(object: Mobject) -> Mobject:
@@ -713,5 +723,16 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Return an empty succession for the connective layer.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        An empty succession.
+        """
         return Succession()

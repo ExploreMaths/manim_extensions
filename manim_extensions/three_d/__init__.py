@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 # -*- coding: utf-8 -*-
-"""manim-3d —— Manim 三维几何与动画。闭式管面与图曲面预设,几行代码出片。"""
+"""Manim 3D geometry and animation utilities with tube surfaces and graph surfaces."""
 
 from __future__ import annotations
 from .core import (

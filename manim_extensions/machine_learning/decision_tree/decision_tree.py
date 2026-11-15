@@ -124,7 +124,13 @@ class LeafNode(Group):
             self._construct_text_node(class_index)
 
     def _construct_text_node(self, class_index: int):
-        """Make a text node."""
+        """Build a text leaf node.
+
+        Parameters
+        ----------
+        class_index
+            Index of the represented class.
+        """
         if self.class_names is None:
             label = str(class_index)
         else:
@@ -136,7 +142,13 @@ class LeafNode(Group):
         self.add(node)
 
     def _construct_image_node(self, class_index: int):
-        """Make an image node."""
+        """Build an image leaf node.
+
+        Parameters
+        ----------
+        class_index
+            Index of the represented class.
+        """
         # Get image
         image_path = self.class_image_paths[class_index]
         pil_image = Image.open(image_path)
@@ -268,8 +280,18 @@ class DecisionTreeDiagram(Group):
     def _make_node(
         self,
         node_index: int,
-    ):
-        """Create a split or leaf node mobject for the given tree node index."""
+    ) -> SplitNode | LeafNode:
+        """Create a split or leaf node for a tree node.
+
+        Parameters
+        ----------
+        node_index
+            Index of the node in the underlying tree.
+
+        Returns
+        -------
+        The node mobject representing the tree node.
+        """
         is_split_node = (
             self.tree.children_left[node_index] != self.tree.children_right[node_index]
         )
@@ -290,8 +312,24 @@ class DecisionTreeDiagram(Group):
             )
         return node
 
-    def _make_connection(self, top: Mobject, bottom: Mobject, is_leaf: bool = False):
-        """Make a connection from top to bottom."""
+    def _make_connection(
+        self, top: Mobject, bottom: Mobject, is_leaf: bool = False
+    ) -> Line:
+        """Connect two nodes with a vertical line.
+
+        Parameters
+        ----------
+        top
+            Upper node.
+        bottom
+            Lower node.
+        is_leaf
+            Whether the lower node is a leaf.
+
+        Returns
+        -------
+        The connecting line.
+        """
         top_node_bottom_location = top.get_center()
         top_node_bottom_location[1] -= top.height / 2
         bottom_node_top_location = bottom.get_center()
@@ -301,8 +339,14 @@ class DecisionTreeDiagram(Group):
 
         return line
 
-    def _make_tree(self):
-        """Construct the tree diagram."""
+    def _make_tree(self) -> tuple[Group, dict[int, Mobject], dict[str, Line]]:
+        """Construct the tree diagram.
+
+        Returns
+        -------
+        The scaled tree group, a node map keyed by node index, and a connection
+        map keyed by ``"parent,child"`` pairs.
+        """
         tree_group = Group()
         max_depth = self.tree.max_depth
         # Make the root node

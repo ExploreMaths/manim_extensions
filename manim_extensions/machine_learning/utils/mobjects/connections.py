@@ -189,7 +189,19 @@ class NetworkConnection(VGroup):
     def _override_passing_flash(
         self, run_time: float = 1.0, time_width: float = 0.2
     ) -> Animation:
-        """Passing flash animation."""
+        """Show a passing flash along the connection.
+
+        Parameters
+        ----------
+        run_time
+            Duration of the flash.
+        time_width
+            Width of the visible flash segment.
+
+        Returns
+        -------
+        The passing flash animation along the appropriate arrow.
+        """
         if self.arc_direction == "straight":
             return ShowPassingFlash(
                 self.straight_arrow.copy().set_color(self.active_color),

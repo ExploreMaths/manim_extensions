@@ -30,7 +30,21 @@ __all__ = [
 
 
 def Round_Corner_Param(radius: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
-    """Round_Corner_Param."""
+    """Fit a tangent arc between two adjoining Bezier curves.
+
+    Parameters
+    ----------
+    radius
+        Target radius of the arc.
+    curve_points_1
+        Control points of the curve before the corner.
+    curve_points_2
+        Control points of the curve after the corner.
+
+    Returns
+    -------
+    The arc parameters and the two curve parameters where they are cut.
+    """
     bez_func_1 = bezier(curve_points_1)
     diff_func_1 = bezier((curve_points_1[1:, :] - curve_points_1[:-1, :]) / 3)
     bez_func_2 = bezier(curve_points_2)
@@ -82,7 +96,19 @@ def Round_Corner_Param(radius: Any, curve_points_1: Any, curve_points_2: Any) ->
 
 
 def Round_Corners(mob: VMobject, radius: Any = 0.2) -> Any:
-    """Round_Corners."""
+    """Replace every sharp corner of a mobject with a tangent arc.
+
+    Parameters
+    ----------
+    mob
+        Mobject whose corners are rounded in place.
+    radius
+        Target corner radius.
+
+    Returns
+    -------
+    The same mobject with rounded corners.
+    """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
         ind1 = i % mob.get_num_curves()
@@ -114,8 +140,23 @@ def Round_Corners(mob: VMobject, radius: Any = 0.2) -> Any:
 
 
 def Chamfer_Corner_Param(offset: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
+    """Compute the cut points for a chamfered corner.
+
+    Parameters
+    ----------
+    offset
+        Chamfer length, either one value or one value per curve.
+    curve_points_1
+        Control points of the curve before the corner.
+    curve_points_2
+        Control points of the curve after the corner.
+
+    Returns
+    -------
+    The chamfer line endpoints and the curve parameters where they are
+    cut.
+    """
     # this is ugly, I know, don't judge
-    """Chamfer_Corner_Param."""
     if hasattr(offset, "iter"):
         ofs = [offset[0], offset[1]]
     else:
@@ -146,7 +187,19 @@ def Chamfer_Corner_Param(offset: Any, curve_points_1: Any, curve_points_2: Any) 
 
 
 def Chamfer_Corners(mob: VMobject, offset: Any = 0.2) -> Any:
-    """Chamfer_Corners."""
+    """Replace every sharp corner of a mobject with a straight chamfer.
+
+    Parameters
+    ----------
+    mob
+        Mobject whose corners are chamfered in place.
+    offset
+        Chamfer length along each adjoining curve.
+
+    Returns
+    -------
+    The same mobject with chamfered corners.
+    """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
         ind1 = i % mob.get_num_curves()

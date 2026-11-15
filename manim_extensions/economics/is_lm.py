@@ -7,6 +7,8 @@ This module provides the IS-LM model diagram.
 
 """
 
+from typing import Callable
+
 from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
 
@@ -115,17 +117,55 @@ class ISLMDiagram(EconDiagram):
             )
 
     @staticmethod
-    def _make_is_func(a: float, b: float):
-        """r = a/b - Y/b"""
+    def _make_is_func(a: float, b: float) -> Callable[[float], float]:
+        """Build the IS curve.
+
+        Parameters
+        ----------
+        a
+            Autonomous spending.
+        b
+            Interest-rate sensitivity of investment.
+
+        Returns
+        -------
+        A function mapping output to the IS interest rate.
+        """
         return lambda y: a / b - y / b
 
     @staticmethod
-    def _make_lm_func(ms: float, k: float, h: float):
-        """r = (k*Y - Ms) / h"""
+    def _make_lm_func(ms: float, k: float, h: float) -> Callable[[float], float]:
+        """Build the LM curve.
+
+        Parameters
+        ----------
+        ms
+            Money supply.
+        k
+            Income sensitivity of money demand.
+        h
+            Interest-rate sensitivity of money demand.
+
+        Returns
+        -------
+        A function mapping output to the LM interest rate.
+        """
         return lambda y: (k * y - ms) / h
 
-    def _clamp_is(self, a: float, b: float):
-        """X range so IS (r = a/b - Y/b) stays within visible y range."""
+    def _clamp_is(self, a: float, b: float) -> list[float]:
+        """Return an x range that keeps the IS curve on screen.
+
+        Parameters
+        ----------
+        a
+            Autonomous spending.
+        b
+            Interest-rate sensitivity of investment.
+
+        Returns
+        -------
+        The visible output range as ``[lower, upper]``.
+        """
         # r = a/b - Y/b => Y = a - b*r
         x_at_ymax = a - b * self._y_max
         x_at_ymin = a - b * self._y_min
@@ -133,8 +173,22 @@ class ISLMDiagram(EconDiagram):
         hi = min(x_at_ymin, self._x_max)
         return [lo, hi]
 
-    def _clamp_lm(self, ms: float, k: float, h: float):
-        """X range so LM (r = (kY - Ms)/h) stays within visible y range."""
+    def _clamp_lm(self, ms: float, k: float, h: float) -> list[float]:
+        """Return an x range that keeps the LM curve on screen.
+
+        Parameters
+        ----------
+        ms
+            Money supply.
+        k
+            Income sensitivity of money demand.
+        h
+            Interest-rate sensitivity of money demand.
+
+        Returns
+        -------
+        The visible output range as ``[lower, upper]``.
+        """
         # r = (kY - Ms)/h => Y = (h*r + Ms) / k
         x_at_ymin = (h * self._y_min + ms) / k
         x_at_ymax = (h * self._y_max + ms) / k

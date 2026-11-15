@@ -62,10 +62,22 @@ class BaseMBondObject(VGroup):
                self.add(content)
     """
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Return a description of the bonded atoms.
+
+        Returns
+        -------
+        A human-readable description of the two bonded atoms.
+        """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """Return the same description as ``__str__``.
+
+        Returns
+        -------
+        A human-readable description of the two bonded atoms.
+        """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
     def __init__(

@@ -49,6 +49,7 @@ FONT_AWESOME_VERSION = "6.5.1"
 
 
 class _Brand(Enum):
+    """Bundled brand-style icon paths."""
 
     hotjar = os.fspath(brand_dir / "hotjar.svg")
 
@@ -1022,6 +1023,7 @@ class _Brand(Enum):
 
 
 class _Regular(Enum):
+    """Bundled regular-style icon paths."""
 
     calendar_plus = os.fspath(regular_dir / "calendar-plus.svg")
 
@@ -1351,6 +1353,7 @@ class _Regular(Enum):
 
 
 class _Solid(Enum):
+    """Bundled solid-style icon paths."""
 
     folder_tree = os.fspath(solid_dir / "folder-tree.svg")
 
@@ -4155,7 +4158,18 @@ class _Solid(Enum):
     users_line = os.fspath(solid_dir / "users-line.svg")
 
 
-def _get_svg_object(fp: str):
+def _get_svg_object(fp: str) -> SVGMobject:
+    """Load an SVG file as a white mobject.
+
+    Parameters
+    ----------
+    fp
+        Filesystem path of the SVG file.
+
+    Returns
+    -------
+    The icon as a white SVG mobject.
+    """
     return SVGMobject(fp).set_color(WHITE)
 
 
@@ -4182,7 +4196,18 @@ class Brand:
     def __init__(self):
         pass
 
-    def __getattr__(self, name) -> SVGMobject:
+    def __getattr__(self, name: str) -> SVGMobject:
+        """Return the brand icon with the given name.
+
+        Parameters
+        ----------
+        name
+            Attribute name matching an icon in the brand set.
+
+        Returns
+        -------
+        The requested brand icon.
+        """
         return _get_svg_object(_Brand.__members__[name].value)
 
 
@@ -4209,7 +4234,18 @@ class Regular:
     def __init__(self):
         pass
 
-    def __getattr__(self, name) -> SVGMobject:
+    def __getattr__(self, name: str) -> SVGMobject:
+        """Return the regular icon with the given name.
+
+        Parameters
+        ----------
+        name
+            Attribute name matching an icon in the regular set.
+
+        Returns
+        -------
+        The requested regular icon.
+        """
         return _get_svg_object(_Regular.__members__[name].value)
 
 
@@ -4238,13 +4274,24 @@ class Solid:
     def __init__(self):
         pass
 
-    def __getattr__(self, name) -> SVGMobject:
+    def __getattr__(self, name: str) -> SVGMobject:
+        """Return the solid icon with the given name.
+
+        Parameters
+        ----------
+        name
+            Attribute name matching an icon in the solid set.
+
+        Returns
+        -------
+        The requested solid icon.
+        """
         return _get_svg_object(_Solid.__members__[name].value)
 
 
 # patched: added list_icons() — upstream offers no public way to enumerate
 #          icon names, which gallery-style scenes need.
-def list_icons(style="solid"):
+def list_icons(style: str = "solid") -> list[str]:
     """Return the names of every bundled icon for ``style``.
 
     Parameters

@@ -64,7 +64,19 @@ class _UpdateIndices(Protocol):
     def __call__(
         self, play_anim: bool = ..., play_anim_args: MobProps = ...
     ) -> List[Animation]:
-        """Updates the indices of the elements after a removal and returns the update animations."""
+        """Update the indices of elements after a removal.
+
+        Parameters
+        ----------
+        play_anim
+            Whether the update should be played as an animation.
+        play_anim_args
+            Keyword arguments for the update animation.
+
+        Returns
+        -------
+        The animations that update the remaining element indices.
+        """
         ...
 
 
@@ -293,7 +305,17 @@ class MArrayElement(VGroup):
             self.add(self.__mob_label)
 
     def __deepcopy__(self, memo: dict[int, object]) -> Self:
-        """Deepcopy that excludes attributes specified in ``exclude_list``."""
+        """Deep-copy the object while excluding scene references.
+
+        Parameters
+        ----------
+        memo
+            Identity map used by the copy machinery.
+
+        Returns
+        -------
+        The copied object with non-scene attributes deep-copied.
+        """
 
         exclude_list = ["_MArrayElement__scene"]
 
@@ -710,7 +732,12 @@ class MArray(VGroup):
 
         Returns
         -------
-            Sum of ``side_length`` of all :class:`~manim.mobject.geometry.polygram.Square` present inside :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr` in the specified range.
+        Sum of ``side_length`` values of all element squares in the range.
+
+        Raises
+        ------
+        Exception
+            If either index falls outside the array bounds.
         """
 
         if (
@@ -934,6 +961,11 @@ class MArray(VGroup):
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
         :data:`~typing.Callable`\[[:class:`~bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
+
+        Raises
+        ------
+        Exception
+            If the index falls outside the array bounds.
         """
 
         if index < 0 or index > len(self.__mob_arr):
@@ -1045,6 +1077,8 @@ class MArray(VGroup):
             If ``True``, doesn't display indices.
         arr_dir
             Specifies the growth direction of the array.
+        switch_index_pos
+            If ``True``, swaps the index and value positions.
         arr_label_pos
             Specifies the position of :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` w.r.t :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
         arr_label_gap
@@ -1114,7 +1148,17 @@ class MArray(VGroup):
             self.add(self.__mob_arr_label)
 
     def __deepcopy__(self, memo: dict[int, object]) -> Self:
-        """Deepcopy that excludes attributes specified in ``exclude_list``."""
+        """Deep-copy the object while excluding scene references.
+
+        Parameters
+        ----------
+        memo
+            Identity map used by the copy machinery.
+
+        Returns
+        -------
+        The copied object with non-scene attributes deep-copied.
+        """
 
         exclude_list = ["_MArray__scene"]
 
@@ -1776,6 +1820,11 @@ class MArrayPointer(VGroup):
             Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_arrow` and :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__mob_label`.
         pointer_pos
             Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArrayPointer.__arr`.
+
+        Raises
+        ------
+        Exception
+            If the index falls outside the array bounds.
         """
 
         self.__mob_arrow_props: MobProps = {"color": GOLD_D}
@@ -1860,7 +1909,17 @@ class MArrayPointer(VGroup):
         )
 
     def __deepcopy__(self, memo: dict[int, object]) -> Self:
-        """Deepcopy that excludes attributes specified in ``exclude_list``."""
+        """Deep-copy the object while excluding scene references.
+
+        Parameters
+        ----------
+        memo
+            Identity map used by the copy machinery.
+
+        Returns
+        -------
+        The copied object with non-scene attributes deep-copied.
+        """
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
 
@@ -2292,6 +2351,11 @@ class MArraySlidingWindow(VGroup):
             Specifies the distance between :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label` and :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         label_pos
             Specifies the position of the pointer w.r.t to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
+
+        Raises
+        ------
+        Exception
+            If the index is outside the array or the window exceeds its bounds.
         """
 
         self.__mob_window_props: MobProps = {"color": RED_D, "stroke_width": 10}
@@ -2337,7 +2401,7 @@ class MArraySlidingWindow(VGroup):
 
         Parameters
         ----------
-        init_arrow
+        init_window
             If ``True``, instantiates a :class:`~manim.mobject.geometry.polygram.Rectangle` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window`.
         init_label
             If ``True``, instantiates a :class:`~manim.mobject.text.text_mobject.Text` and assigns it to :attr:`~manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label`.
@@ -2362,7 +2426,17 @@ class MArraySlidingWindow(VGroup):
         self.__pos_mobs(True, True)
 
     def __deepcopy__(self, memo: dict[int, object]) -> Self:
-        """Deepcopy that excludes attributes specified in ``exclude_list``."""
+        """Deep-copy the object while excluding scene references.
+
+        Parameters
+        ----------
+        memo
+            Identity map used by the copy machinery.
+
+        Returns
+        -------
+        The copied object with non-scene attributes deep-copied.
+        """
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]
 

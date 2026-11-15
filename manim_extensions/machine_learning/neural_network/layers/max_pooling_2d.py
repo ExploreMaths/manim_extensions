@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 from manim import (
+    Animation,
     AnimationGroup,
     BLUE,
     Create,
@@ -147,8 +148,20 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
     def _make_output_feature_maps(
         self, num_input_feature_maps: int, input_feature_map_size: int
-    ):
-        """Makes a set of output feature maps."""
+    ) -> VGroup:
+        """Build the output feature map rectangles.
+
+        Parameters
+        ----------
+        num_input_feature_maps
+            Number of feature maps produced.
+        input_feature_map_size
+            Size of each input feature map.
+
+        Returns
+        -------
+        The group of output feature map rectangles.
+        """
         # Compute the size of the feature maps
         output_feature_map_size = (
             input_feature_map_size[0] / self.kernel_size,
@@ -197,8 +210,13 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return AnimationGroup()
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
         """Create animation for the MaxPooling operation.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to the animation.
 
         Returns
         -------

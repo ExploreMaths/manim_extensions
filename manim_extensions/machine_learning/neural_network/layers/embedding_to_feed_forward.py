@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     Dot,
@@ -126,7 +127,18 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Return a zero-duration wait for an invisible layer.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        An animation that does nothing.
+        """
         # Nothing to create visually; manim >= 0.21 raises on empty groups,
         # so return a zero-duration Wait instead.
         return Wait(run_time=0)

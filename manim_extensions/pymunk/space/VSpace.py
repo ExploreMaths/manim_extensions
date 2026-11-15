@@ -91,6 +91,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    self.play(Create(Line(start_pt, end_pt, color=RED)))
                    self.add(Dot(hit_point, color=YELLOW, radius=0.1))
                self.wait(3)
+               Group(*self.mobjects).scale(0.16).move_to(ORIGIN)
 
     """
 
@@ -329,7 +330,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Dict[object, object] | None = None,
-    ):
+    ) -> pymunk.CollisionHandler:
         """Registers a wildcard collision handler for a specific collision type.
 
         This handler triggers whenever a shape with ``collision_type_a`` collides
@@ -395,7 +396,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
         data: Dict[object, object] | None = None,
-    ):
+    ) -> pymunk.CollisionHandler:
         """Registers a collision handler between two specific collision types.
 
         This method defines custom callback logic for when a shape of type A
@@ -952,7 +953,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
 
     def __concave2convex_refined(
         self, mob: Mobject, n_divisions: int, tolerance: float
-    ):
+    ) -> list[list[tuple[float, float]]]:
         """Decomposes a concave polygon into multiple convex polygons for physics processing.
 
         Since Pymunk and most physics engines only support convex shapes for collision

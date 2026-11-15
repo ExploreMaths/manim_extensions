@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 
-from manim import AnimationGroup, Create, Text, Write, override_animation
+from manim import Animation, AnimationGroup, Create, Text, Write, override_animation
 import random
 
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
@@ -123,6 +123,11 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         return AnimationGroup()
 
     @override_animation(Create)
-    def _create_override(self):
-        """Create animation."""
+    def _create_override(self) -> Animation:
+        """Create animation.
+
+        Returns
+        -------
+        The write animation for the vector label.
+        """
         return Write(self.vector_label)

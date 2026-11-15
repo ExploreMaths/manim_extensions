@@ -55,6 +55,7 @@ class TikzTemplate(TexTemplate):
                    r"\end{tikzpicture}",
                    tex_template=template,
                )
+               tex.scale(2.1)
                self.add(tex)
     """
 

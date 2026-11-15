@@ -254,7 +254,20 @@ class NeuralNetwork(Group):
         layout: str = "linear",
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom",
     ):
-        """Creates the neural network."""
+        """Position the layers of the network.
+
+        Parameters
+        ----------
+        layout
+            Layout mode for the network.
+        layout_direction
+            Direction in which layers are arranged.
+
+        Raises
+        ------
+        Exception
+            If an unsupported layout mode is requested.
+        """
         # Default: Linear layout
         for layer_index in range(1, len(self.input_layers)):
             previous_layer = self.input_layers[layer_index - 1]
@@ -301,8 +314,13 @@ class NeuralNetwork(Group):
                     current_layer.activation_function.shift(up_movement)
                     self.add(current_layer.activation_function)
 
-    def _construct_connective_layers(self):
-        """Draws connecting lines between layers."""
+    def _construct_connective_layers(self) -> tuple[ListGroup, ListGroup]:
+        """Draws connecting lines between layers.
+
+        Returns
+        -------
+        The connective layers and the combined list of all layers.
+        """
         connective_layers = ListGroup()
         all_layers = ListGroup()
         for layer_index in range(len(self.input_layers) - 1):
@@ -512,7 +530,8 @@ class NeuralNetwork(Group):
             # Layers without an activation function (e.g. Convolutional2DLayer)
             # return an empty AnimationGroup; manim raises when playing empty
             # groups, so only keep non-empty animations.
-            def _is_empty(animation: Animation):
+            def _is_empty(animation: Animation) -> bool:
+                """Return whether an animation group contains no animations."""
                 return (
                     isinstance(animation, AnimationGroup)
                     and len(animation.animations) == 0
@@ -547,8 +566,19 @@ class NeuralNetwork(Group):
             return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
-        """Overrides Create animation."""
+    def _create_override(self, **kwargs) -> Animation:
+        """Create the network with a single guarded pass.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to the creation animations.
+
+        Returns
+        -------
+        The animation that reveals the network, or an empty wait when it has
+        already been created.
+        """
         # Stop the neural network from being created twice
         if self.created:
             # manim >= 0.21 raises when playing an empty AnimationGroup.
@@ -645,8 +675,18 @@ class NeuralNetwork(Group):
 
         return layers_to_return
 
-    def __repr__(self, metadata: str = ["z_index", "title_text"]):
-        """Print string representation of layers."""
+    def __repr__(self, metadata: str = ["z_index", "title_text"]) -> str:
+        """Return a layer-by-layer representation.
+
+        Parameters
+        ----------
+        metadata
+            Layer attributes included in the representation.
+
+        Returns
+        -------
+        The textual representation of all layers.
+        """
         inner_string = ""
         for layer in self.all_layers:
             inner_string += f"{repr(layer)}("

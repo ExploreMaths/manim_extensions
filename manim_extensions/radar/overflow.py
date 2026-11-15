@@ -2,10 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""The overflow chart (越界雷达图): :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
+"""The overflow radar chart: :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
 
-Values above the full scale are no longer clamped to a ``"10+"`` read-out —
-they stab beyond the outer ring as filled spikes, with a dashed track along
+Values above the full scale are no longer clamped to a ``"10+"`` read-out.
+They stab beyond the outer ring as filled spikes, with a dashed track along
 the spoke, a glowing breach where the polygon pierces the ring, and burst
 transitions whose overshoot makes the escape visible.
 """
@@ -37,6 +37,52 @@ class OverflowRadarChart(RadarChart):
 
         chart = OverflowRadarChart(datasets=[holder, basic], max_value=10)
 
+    Parameters
+    ----------
+    data
+        Optional snapshot built elsewhere.
+    axes
+        Axis labels.
+    values
+        Values for one dataset.
+    datasets
+        Multiple datasets for comparison mode.
+    name
+        Dataset name.
+    color
+        Dataset colour.
+    max_value
+        Full scale of the outer ring.
+    compare_numbers
+        Number placement mode in comparison mode.
+    legend
+        Whether to draw a legend.
+    style
+        Style preset name or configuration.
+    theme
+        The theme name or theme object.
+    config
+        Complete configuration overriding the style preset.
+    radius
+        Outer-ring radius.
+    position
+        Chart centre in scene coordinates.
+    title
+        Chart title.
+    levels
+        Number of grid rings.
+    numbers
+        Read-out mode.
+    sweep
+        Whether to draw the sweep highlight.
+    rim
+        Whether to draw the emphasis outline.
+    opacity
+        Chart opacity.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim_extensions.radar.chart.RadarChart`.
+
     Examples
     --------
     ::
@@ -48,6 +94,8 @@ class OverflowRadarChart(RadarChart):
         )
         self.play(chart.burst_in())                       # stab out of the ring
         self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))    # burst to new spikes
+
+    The second command morphs the chart into a new set of spikes.
     """
 
     def __init__(
@@ -108,13 +156,38 @@ class OverflowRadarChart(RadarChart):
 
     # ------------------------------------------------------------------
     def morph_to(self, data: Any, **kwargs) -> Any:
-        """Morph with the ``"burst"`` transition unless told otherwise.
+        """Morph with the burst transition unless told otherwise.
 
-        Pass ``transition=`` explicitly (e.g. ``"smooth"``) to opt out.
+        Parameters
+        ----------
+        data
+            Destination snapshot or list of snapshots.
+        kwargs
+            Further keyword arguments forwarded to
+            :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`.
+
+        Returns
+        -------
+        The morph animation.
         """
+
         kwargs.setdefault("transition", "burst")
         return super().morph_to(data, **kwargs)
 
     def burst_in(self, run_time: float = 1.1, **kwargs) -> Any:
-        """Entrance: values stab out of the centre and overshoot their target."""
+        """Play the overflow entrance.
+
+        Parameters
+        ----------
+        run_time
+            Duration of the entrance.
+        kwargs
+            Further keyword arguments forwarded to
+            :class:`~manim_extensions.radar.animations.RadarBurstIn`.
+
+        Returns
+        -------
+        The entrance animation.
+        """
+
         return RadarBurstIn(self, run_time=run_time, **kwargs)

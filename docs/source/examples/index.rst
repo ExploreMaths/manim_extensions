@@ -261,6 +261,7 @@ inline. Each example demonstrates one of the core extension modules.
            box = SurroundingRectangle(text, color=BLUE)
            self.play(LaggedCreation(box, lag_ratio=0.2))
            self.wait(1)
+           Group(*self.mobjects).scale(2.5).move_to(ORIGIN)
 
 .. manim:: Algorithm
    :save_last_frame:
@@ -550,6 +551,7 @@ inline. Each example demonstrates one of the core extension modules.
    class PhysicsMechanics(Scene):
        def construct(self):
            p = Pendulum(length=3, initial_theta=0.4)
+           p.scale(1.7)
            self.add(p)
 
 .. manim:: Automata

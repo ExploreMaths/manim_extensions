@@ -5,6 +5,8 @@
 
 """Logger utility for Pymunk physics simulations."""
 
+from __future__ import annotations
+
 __all__ = ["manim_pymunk_logger"]
 import logging
 import threading
@@ -18,7 +20,20 @@ class SingletonLogger:
     _instance_lock = threading.Lock()
     _instance = None
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs) -> SingletonLogger:
+        """Return the process-wide singleton logger instance.
+
+        Parameters
+        ----------
+        *args
+            Ignored constructor arguments.
+        **kwargs
+            Ignored constructor keyword arguments.
+
+        Returns
+        -------
+        The process-wide singleton logger instance.
+        """
         # Double-checked locking for thread safety
         if not cls._instance:
             with cls._instance_lock:

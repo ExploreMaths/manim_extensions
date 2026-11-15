@@ -114,6 +114,7 @@ A wall of solid icons, staggered in and spun like on the
                config.frame_height / icons.height,
            )
            icons.scale(cover)
+           icons.scale(0.92)
            self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.01))
            self.play(LaggedStart(
                *[

@@ -55,7 +55,22 @@ TRANSITIONS = {
 # small helpers
 # ---------------------------------------------------------------------------
 def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.ndarray:
-    """A circle as a closed polygon, so its stroke can be restyled freely."""
+    """Build a closed polygonal approximation of a circle.
+
+    Parameters
+    ----------
+    center
+        World-space circle centre.
+    radius
+        Circle radius.
+    segments
+        Number of sides in the approximation.
+
+    Returns
+    -------
+    Closed polygon points.
+    """
+
     angles = np.linspace(0.0, 2.0 * math.pi, segments, endpoint=False)
     pts = np.array(
         [
@@ -67,7 +82,32 @@ def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.nd
 
 
 class _Ring(Polygon):
-    """A ring whose radius / stroke width / opacity change per frame."""
+    """A ring whose radius, stroke width and opacity change every frame.
+
+    Parameters
+    ----------
+    center
+        World-space centre of the ring.
+    color
+        Stroke colour.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.mobject.geometry.polygram.Polygon`.
+
+    Examples
+    --------
+    .. manim:: RingScene
+        :save_last_frame:
+
+       from manim import *
+       from manim_extensions.radar.animations import _Ring
+
+       class RingScene(Scene):
+           def construct(self):
+               ring = _Ring(ORIGIN, "#E868C8", stroke_width=4.5)
+               self.add(ring)
+               ring.restyle(2.0, 1.0, 0.5)
+    """
 
     def __init__(self, center: Any, color: Any, **kwargs) -> None:
         center = np.asarray(center, dtype=float)
@@ -76,7 +116,18 @@ class _Ring(Polygon):
         self.ring_color = ManimColor(color)
 
     def restyle(self, radius: float, width: float, opacity: float) -> None:
-        """restyle."""
+        """Resize and restyle the ring.
+
+        Parameters
+        ----------
+        radius
+            New radius.
+        width
+            New stroke width, clamped to a visible minimum.
+        opacity
+            New stroke opacity in the range 0 to 1.
+        """
+
         self.set_points_as_corners(_ring_points(self.ring_center, radius))
         self.set_stroke(
             color=self.ring_color,
@@ -86,7 +137,20 @@ class _Ring(Polygon):
 
 
 def _flicker(alpha: float, steps: int = 6) -> float:
-    """1 / 0.25 alternating opacity used by the glitch entrance."""
+    """Alternate between dim and full opacity for a glitch effect.
+
+    Parameters
+    ----------
+    alpha
+        Animation progress in the range 0 to 1.
+    steps
+        Number of alternations across the animation.
+
+    Returns
+    -------
+    Either 0.25 or 1.0.
+    """
+
     return 0.25 if int(alpha * steps) % 2 == 0 else 1.0
 
 
@@ -97,6 +161,30 @@ class Shockwave(Animation):
     """An expanding (or imploding) ring.
 
     Cheap on its own, and a great way to cover a shape change.
+
+    Parameters
+    ----------
+    center
+        Centre of the ring; defaults to the origin.
+    color
+        Stroke colour.
+    radius_start
+        Initial ring radius.
+    radius_end
+        Final ring radius.
+    width_start
+        Initial stroke width.
+    width_end
+        Final stroke width.
+    expand
+        Whether the ring grows instead of collapsing.
+    run_time
+        Duration of the animation.
+    rate_func
+        Easing function.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
 
     Examples
     --------
@@ -134,7 +222,13 @@ class Shockwave(Animation):
         )
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Restyle the ring for the current animation progress.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         k = self.rate_func(alpha)
         self.mobject.restyle(
             self._r0 + (self._r1 - self._r0) * k,
@@ -161,6 +255,50 @@ class RadarMorph(Animation):
 
     Usually you do not instantiate this directly — call
     :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`.
+
+    Parameters
+    ----------
+    chart
+        Chart to morph.
+    target
+        Destination snapshot, or a list of snapshots for comparison mode.
+    transition
+        Named transition preset.
+    run_time
+        Duration; defaults to the chart configuration.
+    rate_func
+        Easing function.
+    dip
+        Whether values dip before rising.
+    dip_ratio
+        Relative depth of the dip.
+    shockwave
+        Whether to emit a shockwave ring.
+    shock_color
+        Colour of that ring.
+    stepped
+        Whether values move in integer steps.
+    dim
+        Whether to dim the grid during the morph.
+    glitch
+        Whether to add a chromatic glitch.
+    burst
+        Whether to overshoot the target before settling.
+    colors
+        Whether target colours are blended into the chart.
+    rim
+        Optional rim strength override.
+    opacity
+        Optional chart opacity target.
+    fade_name
+        Whether the nameplate crossfades to the target name.
+    name_shift
+        Vertical travel of the nameplate crossfade.
+    stagger
+        Per-dataset delay in comparison mode.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
     """
 
     def __init__(
@@ -318,7 +456,14 @@ class RadarMorph(Animation):
         self._cam = self._prepare_camera()
 
     def _prepare_camera(self) -> Optional[dict]:
-        """Auto micro-push target for burst morphs (needs an attached rig)."""
+        """Compute the automatic micro-push target for a burst morph.
+
+        Returns
+        -------
+        Camera target when a rig is attached and a spike overflows,
+        otherwise ``None``.
+        """
+
         chart = self.chart
         if not self.burst or chart._rig is None:
             return None
@@ -360,7 +505,14 @@ class RadarMorph(Animation):
         )
 
     def _update_camera(self, alpha: float) -> None:
-        """_update_camera."""
+        """Advance the automatic camera push during a burst morph.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
+
         cam = self._cam
         if cam is None or cam["restored"]:
             return
@@ -395,7 +547,13 @@ class RadarMorph(Animation):
 
     # ------------------------------------------------------------------
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Blend values, colours, rims, opacity and effects for one frame.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         a = self.rate_func(alpha)
         chart = self.chart
         cfg = chart.config
@@ -510,7 +668,13 @@ class RadarMorph(Animation):
             chart._end_name_swap()
 
     def clean_up_from_scene(self, scene: Any) -> None:
-        """clean_up_from_scene."""
+        """Remove temporary morph effects from the scene.
+
+        Parameters
+        ----------
+        scene
+            Scene being cleaned up.
+        """
         self._drop_ring()
         super().clean_up_from_scene(scene)
 
@@ -528,7 +692,24 @@ class RadarMorph(Animation):
 # intro / outro
 # ---------------------------------------------------------------------------
 class RadarReveal(Animation):
-    """Grow the chart out of its centre while fading in (every dataset)."""
+    """Grow the chart out of its centre while fading in every dataset.
+
+    Parameters
+    ----------
+    chart
+        Chart to reveal.
+    run_time
+        Duration of the animation.
+    rate_func
+        Easing function.
+    from_values
+        Initial values for dataset 0; others start at zero.
+    with_shockwave
+        Whether to emit a shockwave ring during the reveal.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
+    """
 
     def __init__(
         self,
@@ -566,7 +747,13 @@ class RadarReveal(Animation):
             chart.add(self._ring)
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Advance the animation for the given progress.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         a = self.rate_func(alpha)
         chart = self.chart
         for i, s in enumerate(chart._series):
@@ -591,7 +778,13 @@ class RadarReveal(Animation):
             self._ring = None
 
     def clean_up_from_scene(self, scene: Any) -> None:
-        """clean_up_from_scene."""
+        """Remove temporary rings and call the base cleanup.
+
+        Parameters
+        ----------
+        scene
+            Scene being cleaned up.
+        """
         if self._ring is not None:
             try:
                 self.chart.remove(self._ring)
@@ -608,6 +801,19 @@ class RadarBurstIn(Animation):
 
         self.play(chart.burst_in())
 
+    Parameters
+    ----------
+    chart
+        Overflow chart to reveal.
+    run_time
+        Duration of the animation.
+    rate_func
+        Easing function.
+    with_shockwave
+        Whether to emit a shockwave ring during the entrance.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
     """
 
     def __init__(
@@ -643,7 +849,13 @@ class RadarBurstIn(Animation):
             chart.add(self._ring)
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Advance the animation for the given progress.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         a = self.rate_func(alpha)
         chart = self.chart
         f = ease_out_overshoot(a, self.overshoot)
@@ -668,7 +880,13 @@ class RadarBurstIn(Animation):
             self._ring = None
 
     def clean_up_from_scene(self, scene: Any) -> None:
-        """clean_up_from_scene."""
+        """Remove temporary rings and call the base cleanup.
+
+        Parameters
+        ----------
+        scene
+            Scene being cleaned up.
+        """
         if self._ring is not None:
             try:
                 self.chart.remove(self._ring)
@@ -679,7 +897,22 @@ class RadarBurstIn(Animation):
 
 
 class RadarFade(Animation):
-    """Fade the whole chart (dims every layer, not only the group opacity)."""
+    """Fade the whole chart, including every painted layer.
+
+    Parameters
+    ----------
+    chart
+        Chart to fade.
+    to
+        Target opacity in the range 0 to 1.
+    run_time
+        Duration of the animation.
+    rate_func
+        Easing function.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
+    """
 
     def __init__(
         self,
@@ -699,7 +932,13 @@ class RadarFade(Animation):
         self.start = float(self.chart._opacity)
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Advance the animation for the given progress.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         a = self.rate_func(alpha)
         self.chart._opacity = self.start + (self.to - self.start) * a
 
@@ -709,13 +948,29 @@ class RadarFade(Animation):
 
 
 class GlitchFlash(Animation):
-    """Chromatic split + scan bars — the "glitch back in" entrance.
+    """Chromatic split and scan bars for a glitch-style entrance.
 
     Typical use::
 
         self.play(chart.disappear())   # fade to black
         self.wait(1.5)
         self.play(chart.glitch_in())   # snap back on
+
+    Parameters
+    ----------
+    chart
+        Chart to bring back.
+    run_time
+        Duration of the animation.
+    rate_func
+        Easing function.
+    bars
+        Whether to draw horizontal scan bars.
+    flickers
+        Number of opacity flickers during the entrance.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
     """
 
     def __init__(
@@ -764,7 +1019,13 @@ class GlitchFlash(Animation):
             chart.add(self._bars)
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Advance the animation for the given progress.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
         a = self.rate_func(alpha)
         chart = self.chart
         chart.set_glitch(max(0.0, 1.0 - a / 0.6))
@@ -789,7 +1050,13 @@ class GlitchFlash(Animation):
             self._bars = None
 
     def clean_up_from_scene(self, scene: Any) -> None:
-        """clean_up_from_scene."""
+        """Remove temporary rings and call the base cleanup.
+
+        Parameters
+        ----------
+        scene
+            Scene being cleaned up.
+        """
         if self._bars is not None:
             try:
                 self.chart.remove(self._bars)

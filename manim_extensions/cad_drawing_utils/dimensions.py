@@ -33,7 +33,21 @@ from .path_mapper import *
 
 
 class Pointer_Label_Free(VDict):
-    """Pointer_Label_Free."""
+    """A labelled pointer that is not attached to a mobject.
+
+    Parameters
+    ----------
+    point
+        Anchor point of the pointer.
+    text
+        Label text or a mobject used as the label.
+    offset_vector
+        Direction and length of the leader line.
+    pointer_offset
+        Extra gap between the anchor and the arrow tip.
+    **kwargs
+        Keyword arguments forwarded to the text mobject.
+    """
 
     def __init__(
         self,
@@ -89,7 +103,19 @@ class Pointer_Label_Free(VDict):
         )
 
     def update_point(self, point: Any, offset_vector: Any = (RIGHT + DOWN)) -> Any:
-        """update_point."""
+        """Move the pointer to a new anchor point.
+
+        Parameters
+        ----------
+        point
+            New anchor point.
+        offset_vector
+            Direction and length of the leader line.
+
+        Returns
+        -------
+        ``None``; the line and text positions are updated in place.
+        """
         self["line"].set_points_as_corners(
             [
                 point + normalize(offset_vector) * self.pointer_offset,
@@ -108,7 +134,23 @@ class Pointer_Label_Free(VDict):
 
 
 class Pointer_To_Mob(Pointer_Label_Free):
-    """Pointer_To_Mob."""
+    """A labelled pointer attached to a point on a mobject.
+
+    Parameters
+    ----------
+    mob
+        Mobject to point at.
+    proportion
+        Normalized position along the mobject.
+    text
+        Label text or a mobject used as the label.
+    dist
+        Distance of the label from the anchor.
+    pointer_offset
+        Extra gap between the anchor and the arrow tip.
+    **kwargs
+        Keyword arguments forwarded to the label and leader line.
+    """
 
     def __init__(
         self,
@@ -138,7 +180,21 @@ class Pointer_To_Mob(Pointer_Label_Free):
         )
 
     def update_mob(self, mob: Any, proportion: Any, dist: Any = 1) -> Any:
-        """update_mob."""
+        """Follow a point on a mobject and update the pointer.
+
+        Parameters
+        ----------
+        mob
+            Mobject to point at.
+        proportion
+            Normalized position along the mobject.
+        dist
+            Distance of the label from the point.
+
+        Returns
+        -------
+        ``None``; the pointer is repositioned in place.
+        """
         point = mob.point_from_proportion(proportion)
         # if the mob center and point happens to be the same, it causes problems
         # it can happen if all the mob is 1 point
@@ -152,7 +208,30 @@ class Pointer_To_Mob(Pointer_Label_Free):
 
 
 class Linear_Dimension(VDict):
-    """Linear_Dimension."""
+    """A linear dimension with arrows and a measurement label.
+
+    Parameters
+    ----------
+    start
+        First measured point.
+    end
+        Second measured point.
+    text
+        Measurement label; a distance label is generated when omitted.
+    direction
+        Direction of the dimension line; derived from the points when
+        zero.
+    outside_arrow
+        Whether the arrow heads point outward.
+    offset
+        Distance of the dimension line from the measured points.
+    ext_line_offset
+        Length of the extension lines.
+    tip_len
+        Length of the arrow tips.
+    **kwargs
+        Keyword arguments forwarded to the dimension components.
+    """
 
     def __init__(
         self,
@@ -274,7 +353,29 @@ class Linear_Dimension(VDict):
 
 
 class Angle_Dimension_3point(VDict):
-    """Angle_Dimension_3point."""
+    """An angular dimension defined by three points.
+
+    Parameters
+    ----------
+    start
+        First point on the angle.
+    end
+        Second point on the angle.
+    arc_center
+        Vertex of the angle.
+    offset
+        Radius of the dimension arc.
+    text
+        Measurement label; an angle label is generated when omitted.
+    outside_arrow
+        Whether the arrow heads point outward.
+    ext_line_offset
+        Length of the extension lines.
+    tip_len
+        Length of the arrow tips.
+    **kwargs
+        Keyword arguments forwarded to the dimension components.
+    """
 
     def __init__(
         self,
@@ -394,7 +495,19 @@ class Angle_Dimension_3point(VDict):
 
 
 class Angle_Dimension_Mob(Angle_Dimension_3point):
-    """Angle_Dimension_Mob."""
+    """An angular dimension measured between two mobject points.
+
+    Parameters
+    ----------
+    Mob
+        Mobject that defines the angle.
+    start_proportion
+        Normalized position of the first point.
+    end_proportion
+        Normalized position of the second point.
+    **kwargs
+        Keyword arguments forwarded to the parent dimension.
+    """
 
     def __init__(
         self, Mob: Mobject, start_proportion: Any, end_proportion: Any, **kwargs
@@ -426,7 +539,21 @@ class Angle_Dimension_Mob(Angle_Dimension_3point):
 
 
 class CAD_ArrowHead(Curve_Warp):
-    """CAD_ArrowHead."""
+    """An arrow head that follows a target curve.
+
+    Parameters
+    ----------
+    target_curve
+        Curve along which the arrow head travels.
+    anchor_point
+        Proportion of the curve where the arrow is anchored.
+    arrow_size
+        Width of the arrow head.
+    reversed_arrow
+        Whether the arrow points backwards.
+    **kwargs
+        Keyword arguments forwarded to the curve warp.
+    """
 
     def __init__(
         self,
@@ -452,19 +579,44 @@ class CAD_ArrowHead(Curve_Warp):
         )
 
     def default_updater(self, mob: Any) -> Any:
-        """default_updater."""
+        """Refresh the arrow geometry after the target curve changes.
+
+        Parameters
+        ----------
+        mob
+            Target curve supplied by the updater.
+
+        Returns
+        -------
+        ``None``; the arrow points are regenerated in place.
+        """
         self.PM.generate_length_map()
         self.generate_points()
 
     def get_tip_pos(self) -> Any:
-        """By convention, the tip of the arrow should be the right-most point of the shape, unless it's reversed"""
+        """Return the x coordinate of the arrow tip.
+
+        Returns
+        -------
+        The horizontal position of the tip along the target curve.
+        """
         if self.__reversed_arrow:
             return self.arrowhead.get_critical_point(LEFT)[0]
         else:
             return self.arrowhead.get_critical_point(RIGHT)[0]
 
     def set_arrow_size(self, arrow_size: Any) -> Any:
-        """set_arrow_size."""
+        """Resize the arrow head while keeping its tip fixed.
+
+        Parameters
+        ----------
+        arrow_size
+            Target width of the arrow head.
+
+        Returns
+        -------
+        ``None``; the arrow head is scaled in place.
+        """
         act_size = (
             self.arrowhead.get_critical_point(RIGHT)
             - self.arrowhead.get_critical_point(LEFT)
@@ -475,17 +627,37 @@ class CAD_ArrowHead(Curve_Warp):
             self.arrowhead.shift(+self.get_tip_pos() * RIGHT)
 
     def flip_arrow(self) -> Any:
-        """flip_arrow."""
+        """Flip the arrow head horizontally.
+
+        Returns
+        -------
+        ``None``; the arrow head is flipped in place.
+        """
         self.arrowhead.flip()
 
     @property
     def reversed_arrow(self) -> Any:
-        """reversed_arrow."""
+        """Whether the arrow points backwards.
+
+        Returns
+        -------
+        The current reversed state.
+        """
         return self.__reversed_arrow
 
     @reversed_arrow.setter
     def reversed_arrow(self, rev: Any) -> Any:
-        """reversed_arrow."""
+        """Set whether the arrow points backwards.
+
+        Parameters
+        ----------
+        rev
+            New reversed state.
+
+        Returns
+        -------
+        ``None``; the arrow is flipped when the state changes.
+        """
         if rev != self.__reversed_arrow:
             self.flip_arrow()
         self.__reversed_arrow = rev

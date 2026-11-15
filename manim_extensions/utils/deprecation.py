@@ -26,7 +26,17 @@ _RST_MARKUP_RE = re.compile(r":[\w:]+:`([^`]+)`|``([^`]+)``|`([^`]+)`")
 
 
 def _strip_rst(text: str) -> str:
-    """Return ``text`` with RST inline markup removed."""
+    """Remove RST inline markup from a string.
+
+    Parameters
+    ----------
+    text
+        Text that may contain RST roles or literal markers.
+
+    Returns
+    -------
+    The text with markup removed and the inner content preserved.
+    """
     return _RST_MARKUP_RE.sub(lambda m: m.group(1) or m.group(2) or m.group(3), text)
 
 
@@ -64,6 +74,7 @@ def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
     outer = _deprecated(_strip_rst(msg), *args, **kwargs)
 
     def wrapper(obj: T) -> T:
+        """Apply the deprecation decorator and restore the RST message."""
         decorated = outer(obj)
         # Restore the RST version for Sphinx (typing_extensions stored the
         # stripped one).

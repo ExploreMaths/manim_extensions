@@ -122,7 +122,14 @@ class VPinJoint(VConstraint):
         self.__check_data()
 
     def __check_data(self):
-        """Verify the validity of constraint parameters."""
+        """Verify the validity of constraint parameters.
+
+        Raises
+        ------
+        ValueError
+            If a mobject is missing or both mobjects share the same
+            location.
+        """
         if self.a_mob is None or self.b_mob is None:
             raise ValueError(
                 "Constraints cannot be created without both a_mob and b_mob."

@@ -3,26 +3,30 @@
 # SPDX-License-Identifier: MIT
 
 # -*- coding: utf-8 -*-
-""":class:`~manim_extensions.radar.poly.PolyRadarChart` —— 正十二面体立体雷达图（12 轴标满，面板模式）。
+""":class:`~manim_extensions.radar.poly.PolyRadarChart` — a dodecahedral radar.
 
-12 个数据轴 = 十二面体 12 块五边形面板的中心方向。
-满量程 = 数据球顶到自己面板的中心；越界 = 球刺穿面板鼓出外壳。
-数据点连成"内芯二十面体"（十二面体的对偶），随数据实时变形。
+The twelve data axes point along the centres of the twelve pentagonal faces.
+At full scale the value sphere sits exactly on its panel centre; an overflowing
+value pushes the sphere through the panel and out of the shell. The data
+spheres are joined into an inner icosahedron, the dual of the dodecahedron,
+which deforms with the values.
 
-用法（ThreeDScene 内）::
+Typical use inside a :class:`~manim.scene.three_d_scene.ThreeDScene`::
 
     from manim_extensions.radar import PolyRadarChart, PolyMorph
 
-    poly = PolyRadarChart(stats_names, values, spin_rate=7)   # 慢速自旋
+    poly = PolyRadarChart(stats_names, values, spin_rate=7)
     self.add(poly)
-    poly.grow_in(self)                       # 骨架由内向外生长（可跳过：
-                                             #   grow=False 直接出现）
-    self.play(PolyMorph(poly, new_values))   # 立体变形（球滑动+棱面跟随）
-    poly.spin_to(axis_index)                 # 把某轴转到正对镜头
+    poly.grow_in(self)
+    self.play(PolyMorph(poly, new_values))
 
-架构要点：多面体不持有相机对象（渲染缓存会 pickle 整个对象家族）；
-环绕运动 = 内容绕自身竖轴自旋（theta 为普通浮点属性）；标签用
-look-at billboard（世界 up 投影），任意自转角度下水平可读。
+    poly.spin_to(axis_index)                 # face the chosen axis forward
+
+Architecture notes: the polyhedron never stores a camera object, because
+Manim pickles the whole object family when caching a render. Orbiting is
+therefore implemented as the content spinning around its own vertical axis,
+with ``theta`` a plain float attribute. Labels use look-at billboards
+projected onto world up, so they stay readable at any rotation angle.
 """
 
 from __future__ import annotations
@@ -76,7 +80,18 @@ _DODECA_RAW = [
 
 
 def _unit(v: Any) -> Any:
-    """_unit."""
+    """Normalize a vector to unit length.
+
+    Parameters
+    ----------
+    v
+        Input vector.
+
+    Returns
+    -------
+    A unit-length copy of the vector.
+    """
+
     v = np.asarray(v, dtype=float)
     return v / np.linalg.norm(v)
 
@@ -155,18 +170,50 @@ LABEL_C = "#EAF2FF"
 
 
 class PolyRadarChart(VGroup):
-    """正十二面体立体雷达（12 轴标满，面板模式）。
+    """A twelve-axis radar drawn on a rotating dodecahedron.
 
-    参数
-    ----
-    spin_rate:
-        自转速度（度/秒）。默认 7（缓慢环绕）；炫酷特效可临时调高，
-        但快速旋转易视觉疲劳，不建议长开。
-    grow:
-        True（默认）= 骨架从隐藏状态开始，用 :meth:`~manim_extensions.radar.poly.PolyRadarChart.grow_in` 逐层生长；
-        False = 构造时骨架直接完整出现（跳过生长动画）。
+    Parameters
+    ----------
+    axes_names
+        Twelve axis labels.
+    values
+        One value per axis.
+    max_value
+        Full-scale value.
+    radius
+        Circumscribed radius of the dodecahedron.
+    skins
+        Nested shell scale factors.
+    spin_rate
+        Rotation speed in degrees per second.
+    grow
+        Whether the skeleton waits for :meth:`~manim_extensions.radar.poly.PolyRadarChart.grow_in` instead of appearing
+        fully built.
+    cam_pos
+        Camera position used to orient the billboard labels.
+    center
+        World-space centre and rotation axis.
+    sphere_color
+        Default colour of the value spheres.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
-    其余：radius 外接半径、skins 嵌套壳比例、max_value 满量程。
+    Examples
+    --------
+    .. manim:: PolyRadarScene
+        :save_last_frame:
+
+       from manim import *
+       from manim_extensions.radar.poly import PolyRadarChart
+
+       class PolyRadarScene(ThreeDScene):
+           def construct(self):
+               chart = PolyRadarChart(
+                   [str(i) for i in range(12)],
+                   [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],
+               )
+               self.add(chart)
     """
 
     def __init__(
@@ -299,7 +346,13 @@ class PolyRadarChart(VGroup):
 
     # ------------------------------------------------------------------
     def _data_triangles(self) -> Any:
-        """内芯二十面体的 20 个三角面 = 每个十二面体顶点周围的 3 个面法向。"""
+        """Group the dodecahedron faces around each inner vertex.
+
+        Returns
+        -------
+        Twenty face-index triples, one per dodecahedron vertex.
+        """
+
         tris = []
         for v in range(20):
             fs = [fi for fi, face in enumerate(DODECA_FACES) if v in face]
@@ -307,7 +360,20 @@ class PolyRadarChart(VGroup):
         return tris
 
     def _world(self, i: int, extra: float = 0.0) -> np.ndarray:
-        """轴 i 的数据球世界坐标（含自转）。"""
+        """Compute the rotated world position of an axis marker.
+
+        Parameters
+        ----------
+        i
+            Axis index.
+        extra
+            Additional radial offset.
+
+        Returns
+        -------
+        The world-space position of the marker.
+        """
+
         local = np.array(FACE_NORMAL_DIRS[i]) * (
             self.inr * float(self._frac[i]) + extra
         )
@@ -337,7 +403,16 @@ class PolyRadarChart(VGroup):
             self.labels[i].set_color(OVERFLOW_C if self._frac[i] > 1.0 else LABEL_C)
 
     def _tick(self, m: VGroup, dt: float) -> None:
-        """自旋 + 标签 billboard（绑定方法，可序列化）。"""
+        """Advance the automatic rotation.
+
+        Parameters
+        ----------
+        m
+            Mobject carrying the updater.
+        dt
+            Time step in seconds.
+        """
+
         if self.spin_rate:
             delta = self.spin_rate * dt
             self.rotate(delta, axis=Z_AXIS, about_point=self.center)
@@ -345,16 +420,28 @@ class PolyRadarChart(VGroup):
         # 标签朝向由 _billboard（become+look-at）负责，见 _attach_billboards
 
     def _attach_billboards(self) -> None:
-        """标签 look-at billboard：抵消自转（Rz(-θ)）+ 面向固定相机（Ry(φ)）。
+        """Orient each label towards the camera and keep it upright.
 
-        become 重置标签的点的世界坐标（不继承父级烘焙的旋转），
-        因此朝向 = Ry(φ)（面向固定相机），位置跟随自转与数据球。
+        The updater cancels the chart rotation and applies a fixed camera
+        tilt, so labels stay readable while their anchors spin with the
+        data spheres.
         """
+
         self._label_base = [lab.copy().move_to(ORIGIN) for lab in self.labels]
         Rbill = rotation_matrix(75 * DEGREES, Y_AXIS)[:3, :3]
 
         def upd(m: VGroup, dt: float = 0.0) -> None:
-            """upd."""
+            """Re-orient the labels after the chart rotates.
+
+            Parameters
+            ----------
+            m
+                Label group carrying the updater.
+            dt
+                Time step in seconds; unused because orientation depends on
+                the absolute rotation angle.
+            """
+
             th = math.radians(self.theta)
             M = rotation_matrix(-th, Z_AXIS)[:3, :3] @ Rbill
             for k, lab in enumerate(m):
@@ -368,7 +455,20 @@ class PolyRadarChart(VGroup):
 
     # ------------------------------------------------------------------
     def grow_in(self, scene: Any, run_time: float = 0.45) -> PolyRadarChart:
-        """骨架由内向外逐层生长（grow=True 时用；grow=False 无效）。"""
+        """Animate the skeleton growing from the inner shell outwards.
+
+        Parameters
+        ----------
+        scene
+            Scene used to play the growth.
+        run_time
+            Duration of each shell animation.
+
+        Returns
+        -------
+        This chart, allowing calls to be chained.
+        """
+
         if not self.grow:
             return self
         for s in sorted(self.skin_parts):
@@ -385,10 +485,33 @@ class PolyRadarChart(VGroup):
         return self
 
     def spin_to(self, axis_index: int, run_time: float = 1.2) -> Any:
-        """转动自转角，把轴 axis_index 的面板转到正对镜头（theta=0）。"""
+        """Rotate so one panel faces the camera.
+
+        Parameters
+        ----------
+        axis_index
+            Axis whose panel should end up facing the viewer.
+        run_time
+            Duration of the spin.
+
+        Returns
+        -------
+        An animation that performs the rotation.
+        """
 
         class _Spin(Animation):
-            """_Spin."""
+            """Rotate a poly chart by a fixed angular delta.
+
+            Parameters
+            ----------
+            poly
+                Chart to rotate.
+            delta
+                Rotation in radians.
+            kw
+                Further keyword arguments forwarded to
+                :class:`~manim.animation.animation.Animation`.
+            """
 
             def __init__(self, poly: Any, delta: Any, **kw) -> None:
                 self.poly = poly
@@ -424,13 +547,31 @@ class PolyRadarChart(VGroup):
         return _Spin(self, delta, run_time=run_time)
 
     def set_values(self, values: Any) -> None:
-        """set_values."""
+        """Replace the data values and rebuild the geometry.
+
+        Parameters
+        ----------
+        values
+            New value per axis.
+        """
+
         self._frac = np.array(values, dtype=float) / self.max_value
         self._rebuild()
 
 
 class PolyMorph(Animation):
-    """立体变形：数据球沿各自面板方向滑动，棱面实时跟随。"""
+    """Morph the data spheres along their panel directions.
+
+    Parameters
+    ----------
+    poly
+        Chart to morph.
+    target_values
+        Destination value per axis.
+    kwargs
+        Further keyword arguments forwarded to
+        :class:`~manim.animation.animation.Animation`.
+    """
 
     def __init__(self, poly: PolyRadarChart, target_values: Any, **kwargs) -> None:
         self.poly = poly
@@ -442,5 +583,12 @@ class PolyMorph(Animation):
         self.start = self.poly._frac.copy()
 
     def interpolate_mobject(self, alpha: float) -> None:
-        """interpolate_mobject."""
+        """Blend the geometry towards the target values.
+
+        Parameters
+        ----------
+        alpha
+            Raw animation progress in the range 0 to 1.
+        """
+
         self.poly._frac = self.start + (self.target - self.start) * alpha

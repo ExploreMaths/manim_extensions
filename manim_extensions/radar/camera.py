@@ -22,7 +22,13 @@ __all__ = ["CameraRig"]
 
 
 class CameraRig:
-    """Small fluent wrapper around a :class:`~manim.scene.moving_camera_scene.MovingCameraScene` camera frame.
+    """Small fluent wrapper around a moving-camera frame.
+
+    Parameters
+    ----------
+    scene
+        A :class:`~manim.scene.moving_camera_scene.MovingCameraScene`
+        whose camera owns a frame.
 
     Examples
     --------
@@ -51,10 +57,24 @@ class CameraRig:
     def push_in(
         self, target: Any = None, factor: float = 1.35, run_time: float = 1.0, **kwargs
     ) -> Any:
-        """Zoom the camera towards ``target`` (a chart, a point, anything).
+        """Zoom the camera towards a target.
 
-        Returns an animation — ``self.play(rig.push_in(chart))``.
+        Parameters
+        ----------
+        target
+            Chart, point, or mobject to centre on.
+        factor
+            Zoom factor greater than one.
+        run_time
+            Duration of the move.
+        kwargs
+            Reserved for call-site compatibility.
+
+        Returns
+        -------
+        An animation that performs the push.
         """
+
         self._zoom *= float(factor)
         anim = self.frame.animate.scale(1.0 / float(factor))
         if target is not None:
@@ -68,10 +88,25 @@ class CameraRig:
         run_time: float = 1.0,
         **kwargs,
     ) -> Any:
-        """Zoom back out. Without ``factor`` the camera returns to the default
-        full frame (undoing every previous push/focus) and recentres on
-        ``target`` (default: the scene origin — pass your chart if it lives
-        elsewhere)."""
+        """Zoom back out towards the default frame or a target.
+
+        Parameters
+        ----------
+        factor
+            Zoom-out factor; when omitted, the camera returns to the full
+            default frame and every previous push is undone.
+        target
+            Point to recentre on; defaults to the scene origin.
+        run_time
+            Duration of the move.
+        kwargs
+            Reserved for call-site compatibility.
+
+        Returns
+        -------
+        An animation that performs the pull-out.
+        """
+
         if factor is None:
             k = self._zoom
             self._zoom = 1.0
@@ -88,7 +123,24 @@ class CameraRig:
     def focus_point(
         self, point: Any, factor: float = 1.5, run_time: float = 0.9, **kwargs
     ) -> Any:
-        """Pan to ``point`` and zoom in by ``factor`` in one move."""
+        """Pan to a point and zoom in during one move.
+
+        Parameters
+        ----------
+        point
+            World-space point to centre on.
+        factor
+            Zoom factor greater than one.
+        run_time
+            Duration of the move.
+        kwargs
+            Reserved for call-site compatibility.
+
+        Returns
+        -------
+        An animation that pans and zooms.
+        """
+
         self._zoom *= float(factor)
         return self._timed(
             self.frame.animate.scale(1.0 / float(factor)).move_to(point), run_time
@@ -97,7 +149,22 @@ class CameraRig:
     def micro_push(
         self, direction: Any, amount: float = 0.08, run_time: float = 0.35
     ) -> Any:
-        """A quick breath towards ``direction`` and back (burst accent)."""
+        """Make a quick camera breath towards a direction and back.
+
+        Parameters
+        ----------
+        direction
+            Direction of the push; only the first two components are used.
+        amount
+            Relative push amount.
+        run_time
+            Duration of the move.
+
+        Returns
+        -------
+        An animation that performs the micro-push.
+        """
+
         direction = np.asarray(direction, dtype=float)
         if direction.ndim == 1 and direction.size >= 2:
             direction = np.array([direction[0], direction[1], 0.0])
@@ -112,7 +179,20 @@ class CameraRig:
     # ------------------------------------------------------------------
     @staticmethod
     def _timed(anim: Any, run_time: float) -> Any:
-        """_timed."""
+        """Attach a run time to an animation.
+
+        Parameters
+        ----------
+        anim
+            Animation to adjust.
+        run_time
+            Desired duration.
+
+        Returns
+        -------
+        The same animation with the requested run time.
+        """
+
         if hasattr(anim, "set_run_time"):
             return anim.set_run_time(run_time)
         return anim.run_time(run_time)

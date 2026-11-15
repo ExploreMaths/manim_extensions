@@ -114,3 +114,10 @@ Choosing a destination folder
    :prompt-in: "$"
 
    manim-chemistry pubchem-molecule --name acetone --output_folder molecules
+
+API reference
+-------------
+
+.. autofunction:: manim_extensions.chemistry.cli.cli
+
+.. autofunction:: manim_extensions.chemistry.cli.pubchem_molecule

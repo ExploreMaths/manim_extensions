@@ -112,5 +112,10 @@ class Array(VMobject):
         return self.array[key]
 
     def __len__(self) -> int:
-        """Return the number of elements stored in the array."""
+        """Return the number of stored elements.
+
+        Returns
+        -------
+        The element count.
+        """
         return len(self.array)

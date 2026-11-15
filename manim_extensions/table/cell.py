@@ -52,6 +52,7 @@ class Cell(VGroup):
            def construct(self):
                cell = Cell("Hello", width=3.5)
                cell.set_background_color(BLUE, opacity=0.2)
+               cell.scale(2.6)
                self.add(cell)
     """
 

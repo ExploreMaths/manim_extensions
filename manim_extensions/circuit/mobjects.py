@@ -583,12 +583,9 @@ class Ground(VMobject):
                    digital, RIGHT, buff=1.5
                )
                earth = Ground(ground_type="earth").next_to(analog, RIGHT, buff=1.5)
-               self.add(
-                   digital,
-                   analog,
-                   earth,
-                   Dot(digital.get_terminals(), color=RED),
-               )
+               terminals = Dot(digital.get_terminals(), color=RED)
+               self.add(digital, analog, earth, terminals)
+               VGroup(digital, analog, earth, terminals).scale(2.0).move_to(ORIGIN)
     """
 
     def __init__(

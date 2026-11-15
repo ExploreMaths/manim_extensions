@@ -103,6 +103,7 @@ Animations
    class QuickstartAnimations(Scene):
        def construct(self):
            text = Text("Hello Extensions").shift(DOWN * 2)
+           text.scale(1.6)
            self.play(TypeWriter(text, interval=0.1))
 
 Bundled plugins

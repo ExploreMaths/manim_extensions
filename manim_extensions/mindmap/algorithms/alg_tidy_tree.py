@@ -344,7 +344,7 @@ class TidyTreeLayout(Layout):
         self.level_spacing = level_spacing
         self.wt = None
 
-    def _is_horizontal(self, direction: str):
+    def _is_horizontal(self, direction: str) -> bool:
         """Check whether the given layout direction is horizontal.
 
         Parameters

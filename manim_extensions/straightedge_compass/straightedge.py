@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""The straightedge (直尺): an unmarked-in-principle ruler body (drawn with
+"""The straightedge: an unmarked-in-principle ruler body (drawn with
 decorative tick marks only for visual flavour) along whose edge a pencil
 slides to draw a straight segment."""
 
@@ -39,6 +39,30 @@ class Straightedge(VGroup):
 
     Use :meth:`~manim_extensions.straightedge_compass.straightedge.Straightedge.pose` to align the edge with two points, then play
     :class:`~manim_extensions.straightedge_compass.straightedge.RulerDraw` to run a pencil along it.
+
+    Parameters
+    ----------
+    ruler_length
+        Length of the ruler.
+    ruler_width
+        Width of the ruler body.
+    **kwargs
+        Keyword arguments forwarded to the vector group.
+
+    Examples
+    --------
+    .. manim:: StraightedgeScene
+       :save_last_frame:
+
+       from manim import Scene
+       from manim_extensions.straightedge_compass import Straightedge
+
+       class StraightedgeScene(Scene):
+           def construct(self):
+               ruler = Straightedge()
+               ruler.pose([-2, 0, 0], [2, 0, 0])
+               ruler.scale(1.4)
+               self.add(ruler)
     """
 
     def __init__(
@@ -54,8 +78,13 @@ class Straightedge(VGroup):
         self.become(self._canonical())
 
     def _canonical(self) -> VGroup:
-        """Build the ruler in its home pose: working edge along y = 0,
-        centred on the origin, body occupying y in [0, ruler_width]."""
+        """Build the ruler in its home pose.
+
+        Returns
+        -------
+        A group with the body, tick marks, and working edge aligned
+        horizontally through the origin.
+        """
         body = Rectangle(
             width=self.ruler_length,
             height=self.ruler_width,
@@ -94,11 +123,18 @@ class Straightedge(VGroup):
         return VGroup(body, ticks, edge)
 
     def pose(self, p1: Any, p2: Any) -> Any:
-        """Align the working edge with the infinite line through p1, p2.
+        """Align the working edge with the line through two points.
 
-        The edge passes through both points and extends past them; the ruler
-        body sits on the left-normal side of the p1 -> p2 direction.
-        Animatable via ``ruler.animate.pose(...)``.
+        Parameters
+        ----------
+        p1
+            First point on the line.
+        p2
+            Second point on the line.
+
+        Returns
+        -------
+        This ruler, allowing the call to be chained or animated.
         """
         p1, p2 = as_point(p1), as_point(p2)
         mid = (p1 + p2) / 2.0
@@ -111,7 +147,29 @@ class Straightedge(VGroup):
 
 
 class PencilTip(VGroup):
-    """A small pencil that rides along the ruler edge while drawing."""
+    """A small pencil that rides along the ruler edge while drawing.
+
+    Parameters
+    ----------
+    point
+        Initial position of the pencil tip.
+    **kwargs
+        Keyword arguments forwarded to the vector group.
+
+    Examples
+    --------
+    .. manim:: PencilTipScene
+       :save_last_frame:
+
+       from manim import Scene
+       from manim_extensions.straightedge_compass import PencilTip
+
+       class PencilTipScene(Scene):
+           def construct(self):
+               tip = PencilTip([0, 0, 0])
+               tip.scale(16.0)
+               self.add(tip)
+    """
 
     def __init__(self, point: Any = ORIGIN, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -132,7 +190,23 @@ class PencilTip(VGroup):
 
 class RulerDraw(Animation):
     """Slide a :class:`~manim_extensions.straightedge_compass.straightedge.PencilTip` from ``p1`` to ``p2`` while the target
-    :class:`~manim.mobject.geometry.line.Line` grows underneath it."""
+    :class:`~manim.mobject.geometry.line.Line` grows underneath it.
+
+    Parameters
+    ----------
+    line
+        Line that grows during the animation.
+    tip
+        The pencil that slides along the line.
+    p1
+        Start point of the line.
+    p2
+        End point of the line.
+    run_time
+        Duration of the animation.
+    **kwargs
+        Keyword arguments forwarded to the animation.
+    """
 
     def __init__(
         self,
@@ -152,7 +226,17 @@ class RulerDraw(Animation):
         self.tip.move_to(self.p1)
 
     def interpolate_mobject(self, alpha: float) -> Any:
-        """interpolate_mobject."""
+        """Slide the pencil and grow the line.
+
+        Parameters
+        ----------
+        alpha
+            Animation progress between zero and one.
+
+        Returns
+        -------
+        ``None``; the line and pencil are updated in place.
+        """
         pos = self.p1 + alpha * (self.p2 - self.p1)
         self.line.set_points_as_corners([self.p1, pos])
         self.tip.move_to(pos)

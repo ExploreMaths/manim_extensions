@@ -15,7 +15,7 @@ from manim import Mobject, VGroup
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pymunk import Space
+    from pymunk import Body, Space
 
 
 class VConstraint(VGroup):
@@ -43,7 +43,7 @@ class VConstraint(VGroup):
                mob_a = Dot(LEFT)
                mob_b = Dot(RIGHT)
                content = VGroup(mob_a, mob_b, VConstraint(mob_a, mob_b))
-               content.scale_to_fit_width(6).move_to(ORIGIN)
+               content.scale_to_fit_width(9.2).move_to(ORIGIN)
                self.add(content)
     """
 
@@ -61,7 +61,7 @@ class VConstraint(VGroup):
         """
         pass
 
-    def _get_bodies(self, error_msg: str = None):
+    def _get_bodies(self, error_msg: str = None) -> tuple[Body, Body]:
         """Extract pymunk bodies from the two connected mobjects and validate them.
 
         Parameters
@@ -95,6 +95,11 @@ class VConstraint(VGroup):
         and registering the per-frame updater.
 
         This is a common final step called at the end of every ``install`` method.
+
+        Parameters
+        ----------
+        space
+            The Pymunk space to add the constraint to.
         """
         space.add(self.constraint)
         self.add_updater(self.mob_updater)

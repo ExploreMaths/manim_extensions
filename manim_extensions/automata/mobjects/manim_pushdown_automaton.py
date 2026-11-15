@@ -384,7 +384,12 @@ class PushDownAutomatonRule:
                 self.push.append(push_item)
 
     def __str__(self) -> str:
-        """Internal __str__ hook."""
+        """Return the transition in read, pop, and push notation.
+
+        Returns
+        -------
+        The textual transition.
+        """
         formatted_push_string = "".join(str(x) for x in self.push)
         return f"{self.read_symbol},{self.pop};{formatted_push_string}"
 

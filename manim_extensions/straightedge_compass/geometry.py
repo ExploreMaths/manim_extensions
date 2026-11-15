@@ -20,12 +20,34 @@ import numpy as np
 
 
 def P(x: float, y: float) -> np.ndarray:
-    """Shorthand for a 2D point lifted into manim's 3D coordinate system."""
+    """Lift a 2D point into Manim's 3D coordinate system.
+
+    Parameters
+    ----------
+    x
+        Horizontal coordinate.
+    y
+        Vertical coordinate.
+
+    Returns
+    -------
+    The point with ``z`` set to zero.
+    """
     return np.array([float(x), float(y), 0.0])
 
 
 def as_point(q: Any) -> np.ndarray:
-    """as_point."""
+    """Normalize a coordinate sequence into a 3D point.
+
+    Parameters
+    ----------
+    q
+        A 2D or 3D coordinate sequence.
+
+    Returns
+    -------
+    The point as a float array of shape ``(3,)``.
+    """
     q = np.asarray(q, dtype=float)
     if q.shape == (2,):
         q = np.array([q[0], q[1], 0.0])
@@ -33,23 +55,74 @@ def as_point(q: Any) -> np.ndarray:
 
 
 def distance(a: np.ndarray, b: np.ndarray) -> float:
-    """distance."""
+    """Return the planar distance between two points.
+
+    Parameters
+    ----------
+    a
+        First point.
+    b
+        Second point.
+
+    Returns
+    -------
+    The Euclidean distance in the xy plane.
+    """
     return float(np.linalg.norm(as_point(a)[:2] - as_point(b)[:2]))
 
 
 def midpoint(a: np.ndarray, b: np.ndarray) -> np.ndarray:
-    """midpoint."""
+    """Return the midpoint of two points.
+
+    Parameters
+    ----------
+    a
+        First point.
+    b
+        Second point.
+
+    Returns
+    -------
+    The point halfway between them.
+    """
     return (as_point(a) + as_point(b)) / 2.0
 
 
 def angle_of(a: np.ndarray, b: np.ndarray) -> float:
-    """Direction angle of the vector from ``a`` to ``b`` (radians)."""
+    """Return the direction angle from ``a`` to ``b``.
+
+    Parameters
+    ----------
+    a
+        Start point.
+    b
+        End point.
+
+    Returns
+    -------
+    The angle in radians.
+    """
     d = as_point(b)[:2] - as_point(a)[:2]
     return float(np.arctan2(d[1], d[0]))
 
 
 def unit(v: np.ndarray) -> np.ndarray:
-    """unit."""
+    """Return the unit vector in the direction of ``v``.
+
+    Parameters
+    ----------
+    v
+        Direction vector.
+
+    Returns
+    -------
+    The normalized vector.
+
+    Raises
+    ------
+    ValueError
+        If the vector has zero length.
+    """
     v = as_point(v)
     n = np.linalg.norm(v[:2])
     if n < 1e-12:
@@ -58,14 +131,40 @@ def unit(v: np.ndarray) -> np.ndarray:
 
 
 def rotate_vec(v: np.ndarray, angle: float) -> np.ndarray:
-    """rotate_vec."""
+    """Rotate a vector counter-clockwise.
+
+    Parameters
+    ----------
+    v
+        Vector to rotate.
+    angle
+        Rotation angle in radians.
+
+    Returns
+    -------
+    The rotated vector.
+    """
     c, s = np.cos(angle), np.sin(angle)
     x, y = v[0], v[1]
     return np.array([c * x - s * y, s * x + c * y, 0.0])
 
 
 def point_on(center: np.ndarray, radius: float, angle: float) -> np.ndarray:
-    """point_on."""
+    """Return the point on a circle at a given angle.
+
+    Parameters
+    ----------
+    center
+        Circle centre.
+    radius
+        Circle radius.
+    angle
+        Angle in radians.
+
+    Returns
+    -------
+    The point on the circumference.
+    """
     return as_point(center) + radius * P(np.cos(angle), np.sin(angle))
 
 
@@ -77,9 +176,24 @@ def point_on(center: np.ndarray, radius: float, angle: float) -> np.ndarray:
 def circle_circle_intersection(
     c1: Any, r1: Any, c2: Any, r2: Any, tol: float = 1e-8
 ) -> Any:
-    """Intersections of circle ``(c1, r1)`` and circle ``(c2, r2)``.
+    """Compute the intersections of two circles.
 
-    Returns a list of 0, 1 or 2 points.
+    Parameters
+    ----------
+    c1
+        Centre of the first circle.
+    r1
+        Radius of the first circle.
+    c2
+        Centre of the second circle.
+    r2
+        Radius of the second circle.
+    tol
+        Distance tolerance for degenerate cases.
+
+    Returns
+    -------
+    A list containing zero, one, or two intersection points.
     """
     c1, c2 = as_point(c1), as_point(c2)
     d = distance(c1, c2)
@@ -103,7 +217,25 @@ def circle_circle_intersection(
 def line_line_intersection(
     p1: Any, p2: Any, p3: Any, p4: Any, tol: float = 1e-8
 ) -> Any:
-    """Intersection of the infinite lines p1p2 and p3p4, or ``None``."""
+    """Compute the intersection of two infinite lines.
+
+    Parameters
+    ----------
+    p1
+        First point on the first line.
+    p2
+        Second point on the first line.
+    p3
+        First point on the second line.
+    p4
+        Second point on the second line.
+    tol
+        Determinant tolerance for parallel lines.
+
+    Returns
+    -------
+    The intersection point, or ``None`` when the lines are parallel.
+    """
     p1, p2, p3, p4 = map(as_point, (p1, p2, p3, p4))
     d1 = p2 - p1
     d2 = p4 - p3
@@ -118,8 +250,25 @@ def line_line_intersection(
 def circle_line_intersection(
     center: Any, radius: Any, p1: Any, p2: Any, tol: float = 1e-8
 ) -> Any:
-    """Intersections of circle ``(center, radius)`` with the infinite line
-    through ``p1`` and ``p2``. Returns a list of 0, 1 or 2 points."""
+    """Compute the intersections of a circle and an infinite line.
+
+    Parameters
+    ----------
+    center
+        Circle centre.
+    radius
+        Circle radius.
+    p1
+        First point on the line.
+    p2
+        Second point on the line.
+    tol
+        Distance tolerance for degenerate cases.
+
+    Returns
+    -------
+    A list containing zero, one, or two intersection points.
+    """
     center, p1, p2 = as_point(center), as_point(p1), as_point(p2)
     d = unit(p2 - p1)
     t0 = float(np.dot(center - p1, d))
@@ -139,27 +288,84 @@ def circle_line_intersection(
 
 
 def uppermost(points: Any) -> Any:
-    """Return the point with the largest y coordinate."""
+    """Return the point with the largest y coordinate.
+
+    Parameters
+    ----------
+    points
+        Collection of candidate points.
+
+    Returns
+    -------
+    The highest point in the collection.
+    """
     return max(points, key=lambda q: as_point(q)[1])
 
 
 def lowermost(points: Any) -> Any:
-    """lowermost."""
+    """Return the point with the smallest y coordinate.
+
+    Parameters
+    ----------
+    points
+        Collection of candidate points.
+
+    Returns
+    -------
+    The lowest point in the collection.
+    """
     return min(points, key=lambda q: as_point(q)[1])
 
 
 def leftmost(points: Any) -> Any:
-    """leftmost."""
+    """Return the point with the smallest x coordinate.
+
+    Parameters
+    ----------
+    points
+        Collection of candidate points.
+
+    Returns
+    -------
+    The leftmost point in the collection.
+    """
     return min(points, key=lambda q: as_point(q)[0])
 
 
 def rightmost(points: Any) -> Any:
-    """rightmost."""
+    """Return the point with the largest x coordinate.
+
+    Parameters
+    ----------
+    points
+        Collection of candidate points.
+
+    Returns
+    -------
+    The rightmost point in the collection.
+    """
     return max(points, key=lambda q: as_point(q)[0])
 
 
 def other(items: Any, given: Any) -> Any:
-    """From a two-element collection, return the element not equal to ``given``."""
+    """Return the element of a two-element collection that is not ``given``.
+
+    Parameters
+    ----------
+    items
+        Two-element collection of points.
+    given
+        Point to exclude.
+
+    Returns
+    -------
+    The remaining point.
+
+    Raises
+    ------
+    ValueError
+        If no other point can be found.
+    """
     for q in items:
         if not np.allclose(as_point(q)[:2], as_point(given)[:2], atol=1e-7):
             return q

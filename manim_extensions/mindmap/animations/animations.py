@@ -629,6 +629,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                root.add_child(a1)
                self.play(CreateTreeAnimation(self, root))
                self.wait()
+               Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
     """
 
     def __init__(
@@ -649,7 +650,20 @@ class AbstractLayoutAnimation(AnimationGroup):
         super().__init__(*anims, **kwargs)
 
     def _check_node_state(self) -> List[Node]:
-        """Check the state of each node and return the nodes to be removed."""
+        """Check the state of each node and return the nodes to be removed.
+
+        Returns
+        -------
+        The nodes that should be removed from the scene.
+
+        Raises
+        ------
+        Exception
+            If a node is not on the scene when it is removed, scaled, or
+            altered.
+        ValueError
+            If a node scheduled for removal is not a child of its parent.
+        """
         remove_nodes = []
         for node in bfs_walker(self.root):
             if node.vmobject not in self.scene.get_mobject_family_members():
@@ -1115,6 +1129,7 @@ class AlterNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1]}))
                self.play(AlterNode(self, {a1: MathTex(r"\text{A}_1 \to \text{Altered}", font_size=36)}))
                self.wait()
+               Group(*self.mobjects).scale(2.2).move_to(ORIGIN)
     """
 
     def __init__(

@@ -76,6 +76,7 @@ class VDampedRotarySpring(VConstraint):
                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
                self.add_constraints(spring)
                self.wait(5)
+               Group(*self.mobjects).scale(0.07).move_to(ORIGIN)
 
     """
 
@@ -112,7 +113,14 @@ class VDampedRotarySpring(VConstraint):
         self.__check_data()
 
     def __check_data(self):
-        """Verify the validity of constraint parameters."""
+        """Verify the validity of constraint parameters.
+
+        Raises
+        ------
+        ValueError
+            If a mobject is missing or both mobjects share the same
+            location.
+        """
 
         if self.a_mob is None or self.b_mob is None:
             raise ValueError(

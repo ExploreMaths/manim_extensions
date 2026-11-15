@@ -76,6 +76,7 @@ on every frame.
            # add the visual constraints, then step the simulation
            self.add_constraints(*constraints)
            self.wait(3)
+           Group(*self.mobjects).scale(0.8).move_to(ORIGIN)
 
 .. important::
 

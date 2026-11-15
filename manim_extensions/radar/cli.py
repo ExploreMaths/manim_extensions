@@ -8,7 +8,7 @@ manim-radar --version
 manim-radar themes                 # list colour themes
 manim-radar styles                 # list style presets
 manim-radar template my_chart.py   # write a starter scene
-manim-radar demo --render          # render the bundled demo reel
+manim-radar demo --render          # render the bundled demo reel.
 """
 
 from __future__ import annotations
@@ -54,7 +54,13 @@ DEMO_COMMAND = "manim -qh examples/legacy_v2.py RadarV2Scene"
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """build_parser."""
+    """Build the command-line argument parser.
+
+    Returns
+    -------
+    The configured parser.
+    """
+
     parser = argparse.ArgumentParser(
         prog="manim-radar", description="Animated radar charts for Manim."
     )
@@ -85,7 +91,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Any = None) -> int:
-    """main."""
+    """Run the command-line interface.
+
+    Parameters
+    ----------
+    argv
+        Argument list; defaults to ``sys.argv``.
+
+    Returns
+    -------
+    A process exit code.
+    """
+
     args = build_parser().parse_args(argv)
 
     if args.command == "themes":

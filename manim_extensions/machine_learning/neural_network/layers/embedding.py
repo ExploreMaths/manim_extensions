@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 from manim import (
+    Animation,
     AnimationGroup,
     Axes,
     Create,
@@ -51,7 +52,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     --------
     .. manim:: EmbeddingLayerScene
 
-       from manim import *
+
        from manim_extensions.machine_learning.neural_network import (
            EmbeddingLayer,
            FeedForwardLayer,
@@ -325,7 +326,18 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
+    def _create_override(self, **kwargs) -> Animation:
+        """Reveal the point cloud point by point.
+
+        Parameters
+        ----------
+        **kwargs
+            Ignored extra animation options.
+
+        Returns
+        -------
+        The staggered growth animation.
+        """
         # Plot each point at once
         point_animations = []
         for point in self.point_cloud:

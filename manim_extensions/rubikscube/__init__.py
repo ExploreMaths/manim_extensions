@@ -31,7 +31,8 @@ def _install_grouped_depth_sorting() -> None:
         return
     _orig = ThreeDCamera.get_mobjects_to_display
 
-    def _grouped(self, *args, **kwargs):
+    def _grouped(self, *args, **kwargs) -> list[Mobject]:
+        """Return camera-visible mobjects sorted by rotated depth."""
         mobjects = _orig(self, *args, **kwargs)
         rot_matrix = self.get_rotation_matrix()
 

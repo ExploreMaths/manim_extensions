@@ -27,6 +27,31 @@ __all__ = ["RadarReel"]
 class RadarReel:
     """Play a whole list of snapshots with a single command.
 
+    Parameters
+    ----------
+    chart
+        Chart that plays the snapshots.
+    datasets
+        Snapshots or comparison steps to play.
+    hold
+        Default pause after each snapshot in seconds.
+    transition
+        Default transition name.
+    run_time
+        Default morph duration.
+    intro
+        Whether to play the chart intro, or a duration for it.
+    outro
+        Whether to play the chart outro, or a duration for it.
+    backdrop
+        Whether to add a deep-space backdrop, or an existing one.
+    gap_hold
+        Pause used by the gap emphasis.
+    auto_color
+        Whether unlabelled datasets receive palette colours.
+    verbose
+        Whether to print the summary before playing.
+
     Examples
     --------
     ::
@@ -34,19 +59,17 @@ class RadarReel:
         chart = RadarChart(axes=SIX_AXES, values=[...], title="Six axes")
         RadarReel(chart, [d1, d2, d3, d4], hold=0.6, backdrop=True).play_on(self)
 
-    Comparison reel (0.1.1) — each step is a list of datasets::
+    A comparison reel passes a list of datasets per step::
 
         RadarReel(chart, [
             [holder_a, basic_a],
             [holder_b, basic_b],
         ], hold=0.8).play_on(self)
 
-    Per-snapshot overrides come from :class:`~manim_extensions.radar.data.RadarData`:
-    ``hold``, ``transition``, ``emphasis`` (``"zoom"`` / ``"gap"`` / ``"rim"``)
-    and ``color``. In a comparison step they are read from the *first*
-    dataset of the list. Snapshots without an explicit colour get one from
-    the theme palette, in order (by position, so dataset 0 is always the
-    same colour).
+    Per-snapshot overrides come from
+    :class:`~manim_extensions.radar.data.RadarData`: ``hold``, ``transition``,
+    ``emphasis`` (``"zoom"`` / ``"gap"`` / ``"rim"``) and ``color``. In a
+    comparison step they are read from the first dataset of the list.
     """
 
     def __init__(
@@ -91,7 +114,18 @@ class RadarReel:
 
     # ------------------------------------------------------------------
     def _normalize_step(self, item: Any) -> List[RadarData]:
-        """_normalize_step."""
+        """Turn one reel entry into a list of snapshots.
+
+        Parameters
+        ----------
+        item
+            Snapshot, value list, mapping, or list of such entries.
+
+        Returns
+        -------
+        Normalized snapshots for one step.
+        """
+
         if isinstance(item, (list, tuple)) and not (
             item and isinstance(item[0], (int, float))
         ):
@@ -113,13 +147,20 @@ class RadarReel:
     def _with_palette_colors(
         self, step: List[RadarData], step_index: int
     ) -> List[RadarData]:
-        """Colour unlabeled datasets from the theme palette.
+        """Assign palette colours to unlabelled datasets.
 
-        A lone dataset takes the *step* colour (0.1.0 behaviour: consecutive
-        snapshots cycle through the palette). In a comparison step, colour
-        follows the dataset's position, so the same dataset keeps its colour
-        across the whole reel.
+        Parameters
+        ----------
+        step
+            Snapshots in one reel step.
+        step_index
+            Position of the step, used for single-dataset colouring.
+
+        Returns
+        -------
+        The step with colours filled in.
         """
+
         out = []
         for i, d in enumerate(step):
             color_index = step_index if len(step) == 1 else i
@@ -134,7 +175,13 @@ class RadarReel:
     # ------------------------------------------------------------------
     @property
     def total_time(self) -> float:
-        """Rough duration of the reel in seconds."""
+        """Estimate the duration of the reel.
+
+        Returns
+        -------
+        Approximate total play time in seconds.
+        """
+
         default_rt = self.run_time or self.chart.config.morph_run_time
         total = 0.0
         for step in self.steps:
@@ -145,7 +192,13 @@ class RadarReel:
         return total
 
     def summary(self) -> str:
-        """Human readable description of what :meth:`~manim_extensions.radar.reel.RadarReel.play_on` will do."""
+        """Describe what :meth:`~manim_extensions.radar.reel.RadarReel.play_on` will do.
+
+        Returns
+        -------
+        A multi-line human-readable summary.
+        """
+
         lines = [
             f"RadarReel · {len(self.steps)} snapshots · "
             f"~{self.total_time:.1f}s · style={self.chart.config.title or '-'}"
@@ -166,7 +219,18 @@ class RadarReel:
 
     # ------------------------------------------------------------------
     def play_on(self, scene: Scene) -> RadarReel:
-        """Play the whole sequence on ``scene``."""
+        """Play the whole sequence on a scene.
+
+        Parameters
+        ----------
+        scene
+            Scene that receives the chart and animations.
+
+        Returns
+        -------
+        This reel, allowing calls to be chained.
+        """
+
         chart = self.chart
         if self.verbose:
             print(self.summary())
@@ -229,7 +293,14 @@ class RadarReel:
 
     # ------------------------------------------------------------------
     def _install_backdrop(self, scene: Scene) -> None:
-        """_install_backdrop."""
+        """Attach and link the optional deep-space backdrop.
+
+        Parameters
+        ----------
+        scene
+            Scene that receives the backdrop.
+        """
+
         spec = self.backdrop_spec
         if spec is False or spec is None:
             return
@@ -243,7 +314,18 @@ class RadarReel:
         self.backdrop.link(self.chart)
 
     def _fade_backdrop(self, scene: Scene, to: float, run_time: float) -> None:
-        """_fade_backdrop."""
+        """Animate the backdrop brightness.
+
+        Parameters
+        ----------
+        scene
+            Scene that plays the animation.
+        to
+            Target brightness.
+        run_time
+            Duration of the fade.
+        """
+
         if self.backdrop is None:
             return
         start = self.backdrop._fade

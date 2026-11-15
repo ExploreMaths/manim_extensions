@@ -63,6 +63,7 @@ class SpaceScene(ZoomedScene):
                    balls[0], impulse=(4, 2, 0), point=tuple(balls[0].get_center())
                )
                self.wait(5)
+               Group(*self.mobjects).scale(0.08).move_to(ORIGIN)
     """
 
     def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):

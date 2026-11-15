@@ -285,6 +285,17 @@ rendering_times_file_path = Path("../rendering_times.csv")
 
 
 def _write_rendering_stats(scene_name: str, run_time: float, file_name: str):
+    """Append one rendering-time row to the statistics CSV.
+
+    Parameters
+    ----------
+    scene_name
+        Name of the rendered scene.
+    run_time
+        Rendering duration in seconds.
+    file_name
+        The source file that contains the example.
+    """
     with rendering_times_file_path.open("a") as file:
         csv.writer(file).writerow(
             [
@@ -296,6 +307,13 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str):
 
 
 def _log_rendering_times(*args):
+    """Print a summary of the collected rendering times.
+
+    Parameters
+    ----------
+    *args
+        Ignored Sphinx event arguments.
+    """
     if rendering_times_file_path.exists():
         with rendering_times_file_path.open() as file:
             data = list(csv.reader(file))
@@ -322,6 +340,13 @@ def _log_rendering_times(*args):
 
 
 def _delete_rendering_times(*args):
+    """Remove the rendering-time CSV if it exists.
+
+    Parameters
+    ----------
+    *args
+        Ignored Sphinx event arguments.
+    """
     if rendering_times_file_path.exists():
         rendering_times_file_path.unlink()
 

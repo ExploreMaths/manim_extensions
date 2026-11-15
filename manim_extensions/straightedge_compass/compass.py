@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""The compass (圆规): a V-shaped drafting tool that pivots around its needle
+"""The compass: a V-shaped drafting tool that pivots around its needle
 tip while the pencil leg sweeps out an arc."""
 
 from __future__ import annotations
@@ -39,6 +39,32 @@ class Compass(VGroup):
     The needle tip sits at the centre of the circle; the pencil tip is one
     radius away.  Call :meth:`~manim_extensions.straightedge_compass.compass.Compass.pose` (also usable with ``.animate``) to place
     the tool, then play a :class:`~manim_extensions.straightedge_compass.compass.CompassDrawArc` animation to draw.
+
+    Parameters
+    ----------
+    radius
+        Opening of the compass.
+    start_angle
+        Orientation of the pencil leg.
+    center
+        Needle position.
+    leg_width
+        Stroke width of the compass legs.
+    **kwargs
+        Keyword arguments forwarded to the vector group.
+
+    Examples
+    --------
+    .. manim:: CompassScene
+       :save_last_frame:
+
+       from manim import Scene
+       from manim_extensions.straightedge_compass import Compass
+
+       class CompassScene(Scene):
+           def construct(self):
+               compass = Compass(radius=1.5, center=[0, 0, 0])
+               self.add(compass)
     """
 
     def __init__(
@@ -92,7 +118,22 @@ class Compass(VGroup):
     # -- geometry ------------------------------------------------------------
 
     def _layout(self, center: Any, radius: Any, theta: Any) -> Any:
-        """_layout."""
+        """Compute the compass joint and tip positions.
+
+        Parameters
+        ----------
+        center
+            Needle position.
+        radius
+            The compass opening.
+        theta
+            Orientation of the pencil leg.
+
+        Returns
+        -------
+        The needle, pencil tip, hinge, handle end, and two pencil-body
+        corners.
+        """
         r = float(np.clip(radius, 0.05, 2 * LEG_LENGTH - 0.05))
         h = np.sqrt(max(LEG_LENGTH**2 - (r / 2.0) ** 2, 1e-6))
         n = as_point(center)
@@ -118,8 +159,21 @@ class Compass(VGroup):
         return n_t, p_t, h_t, handle_end, b1, b2
 
     def pose(self, center: Any, radius: float = None, start_angle: float = 0.0) -> Any:
-        """Move the needle to ``center``, open to ``radius``, and orient the
-        pencil at ``start_angle``.  Animatable via ``compass.animate.pose``."""
+        """Place the compass at a centre, opening, and orientation.
+
+        Parameters
+        ----------
+        center
+            Needle position.
+        radius
+            The compass opening; the current radius is kept when omitted.
+        start_angle
+            Orientation of the pencil leg.
+
+        Returns
+        -------
+        This compass, allowing the call to be chained or animated.
+        """
         if radius is not None:
             self.radius = float(radius)
         self.center = as_point(center)
@@ -138,7 +192,17 @@ class Compass(VGroup):
         return self
 
     def pencil_point(self, theta: float = None) -> Any:
-        """World position of the pencil tip at sweep angle ``theta``."""
+        """Return the world position of the pencil tip.
+
+        Parameters
+        ----------
+        theta
+            Sweep angle; the current start angle is used when omitted.
+
+        Returns
+        -------
+        The pencil tip coordinates.
+        """
         if theta is None:
             theta = self.start_angle
         return self.center + self.radius * P(np.cos(theta), np.sin(theta))
@@ -146,14 +210,38 @@ class Compass(VGroup):
     # -- animation helpers ---------------------------------------------------
 
     def rotated_copy(self, theta: float) -> Compass:
-        """Return a copy rotated so the pencil sits at absolute angle theta."""
+        """Return a copy rotated to an absolute pencil angle.
+
+        Parameters
+        ----------
+        theta
+            Absolute orientation of the pencil leg.
+
+        Returns
+        -------
+        The rotated compass copy.
+        """
         return self.copy().pose(self.center, self.radius, theta)
 
 
 class CompassDrawArc(Animation):
     """Sweep the compass pencil leg around the needle while an :class:`~manim.mobject.geometry.arc.Arc` grows
     on the paper.  The finished arc is part of the animation's mobject group,
-    so it stays on screen afterwards."""
+    so it stays on screen afterwards.
+
+    Parameters
+    ----------
+    compass
+        The compass whose pencil sweeps the arc.
+    arc
+        Arc that grows under the pencil.
+    sweep
+        Sweep angle in radians.
+    run_time
+        Duration of the animation.
+    **kwargs
+        Keyword arguments forwarded to the animation.
+    """
 
     def __init__(
         self, compass: Compass, arc: Arc, sweep: float, run_time: float = 2.2, **kwargs
@@ -171,7 +259,17 @@ class CompassDrawArc(Animation):
         super().__init__(group, run_time=run_time, **kwargs)
 
     def interpolate_mobject(self, alpha: float) -> Any:
-        """interpolate_mobject."""
+        """Advance the compass sweep and grow the arc.
+
+        Parameters
+        ----------
+        alpha
+            Animation progress between zero and one.
+
+        Returns
+        -------
+        ``None``; the compass and arc are updated in place.
+        """
         theta = self.start + alpha * self.sweep
         # rotate the whole rigid compass about the needle tip
         self.compass.pose(self.center, self.radius, theta)

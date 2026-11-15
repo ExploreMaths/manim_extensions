@@ -622,7 +622,7 @@ class Gear(VMobject):
                 diff = ucut_val - invo_val
                 return diff[0:2]
 
-            def _solve_undercut_intersection():
+            def _solve_undercut_intersection() -> np.ndarray:
                 """Find the intersection of undercut and involute curves robustly."""
                 candidates = [
                     np.array([0.01, 0.05]),

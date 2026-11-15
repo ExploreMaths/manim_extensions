@@ -17,7 +17,39 @@ LABEL_COLOR = "#F2F5F9"
 
 
 class MarkedPoint(VGroup):
-    """A coloured dot with an optional math label."""
+    """A coloured dot with an optional math label.
+
+    Parameters
+    ----------
+    point
+        Position of the dot.
+    label
+        Optional math label placed beside the dot.
+    direction
+        Offset direction of the label.
+    color
+        Colour of the dot.
+    radius
+        Radius of the dot.
+    font_size
+        Font size of the label.
+    **kwargs
+        Keyword arguments forwarded to the vector group.
+
+    Examples
+    --------
+    .. manim:: MarkedPointScene
+       :save_last_frame:
+
+       from manim import Scene
+       from manim_extensions.straightedge_compass import MarkedPoint
+
+       class MarkedPointScene(Scene):
+           def construct(self):
+               point = MarkedPoint([0, 0, 0], label="A")
+               point.scale(9.3)
+               self.add(point)
+    """
 
     def __init__(
         self,
@@ -49,5 +81,10 @@ class MarkedPoint(VGroup):
 
     @property
     def point(self) -> Any:
-        """point."""
+        """Return the marked point position.
+
+        Returns
+        -------
+        The centre of the dot.
+        """
         return self.dot.get_center()

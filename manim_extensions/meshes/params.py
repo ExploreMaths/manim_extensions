@@ -62,6 +62,12 @@ BM2DM: DefaultParameters = {
 # ``render_primitive`` to ``moderngl.TRIANGLES``, so building it at import
 # time would require the optional "meshes" extra just to import this module.
 def _build_oglm() -> DefaultParameters:
+    """Build the OpenGL mesh defaults on first access.
+
+    Returns
+    -------
+    The default parameter mapping.
+    """
     moderngl = require("meshes", "moderngl")
     return {
         "color": (ManimColor, ManimColor(GREY)),
@@ -74,6 +80,22 @@ def _build_oglm() -> DefaultParameters:
 
 
 def __getattr__(name: str) -> DefaultParameters:
+    """Lazily provide ``OGLM`` without importing moderngl at module load.
+
+    Parameters
+    ----------
+    name
+        Attribute requested from the module.
+
+    Returns
+    -------
+    The default parameters for ``OGLM``.
+
+    Raises
+    ------
+    AttributeError
+        When the attribute is not provided by this module.
+    """
     # PEP 562: build OGLM on first attribute access so that importing this
     # module does not require the optional moderngl dependency.
     if name == "OGLM":

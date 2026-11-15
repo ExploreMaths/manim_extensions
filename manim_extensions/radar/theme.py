@@ -80,17 +80,50 @@ class RadarTheme:
 
     # ---- helpers ---------------------------------------------------------
     def axis_color(self, index: int) -> ManimColor:
-        """Colour assigned to axis ``index``."""
+        """Return the colour assigned to one axis.
+
+        Parameters
+        ----------
+        index
+            Axis index; wraps around the axis colour list.
+
+        Returns
+        -------
+        The axis colour.
+        """
+
         cols = list(self.axis_colors)
         return ManimColor(cols[index % len(cols)])
 
     def dataset_color(self, index: int) -> ManimColor:
-        """Colour assigned to the ``index``-th dataset."""
+        """Return the colour assigned to one dataset.
+
+        Parameters
+        ----------
+        index
+            Dataset index; wraps around the palette.
+
+        Returns
+        -------
+        The dataset colour.
+        """
+
         cols = list(self.palette)
         return ManimColor(cols[index % len(cols)])
 
     def evolved(self, **changes) -> RadarTheme:
-        """Return a copy of this theme with a few fields replaced."""
+        """Return a copy of this theme with selected fields replaced.
+
+        Parameters
+        ----------
+        changes
+            Dataclass fields to override.
+
+        Returns
+        -------
+        A new theme instance.
+        """
+
         return replace(self, **changes)
 
 
@@ -178,12 +211,36 @@ THEMES: dict[str, RadarTheme] = {
 
 
 def theme_names() -> list[str]:
-    """Names of all bundled themes."""
+    """List all bundled theme names.
+
+    Returns
+    -------
+    The names in registration order.
+    """
+
     return list(THEMES)
 
 
 def get_theme(theme: Union[str, RadarTheme, None]) -> RadarTheme:
-    """Resolve ``"midnight"`` / a :class:`~manim_extensions.radar.theme.RadarTheme` / ``None`` to a theme."""
+    """Resolve a theme name, theme object, or ``None`` to a theme.
+
+    Parameters
+    ----------
+    theme
+        The theme name, existing theme, or ``None`` for the default theme.
+
+    Returns
+    -------
+    The resolved theme.
+
+    Raises
+    ------
+    KeyError
+        If the theme name is unknown.
+    TypeError
+        If the value is neither a string, a theme, nor ``None``.
+    """
+
     if theme is None:
         return THEMES["midnight"]
     if isinstance(theme, RadarTheme):

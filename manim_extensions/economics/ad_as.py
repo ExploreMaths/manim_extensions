@@ -7,6 +7,8 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 
 """
 
+from typing import Callable
+
 from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram
 
@@ -130,38 +132,77 @@ class ADASDiagram(EconDiagram):
             )
 
     @staticmethod
-    def _make_ad_func(m: float, v: float):
-        """P = MV / Y (quantity theory of money)."""
+    def _make_ad_func(m: float, v: float) -> Callable[[float], float]:
+        """Build the aggregate demand curve.
+
+        Parameters
+        ----------
+        m
+            Money supply.
+        v
+            Velocity of money.
+
+        Returns
+        -------
+        A function mapping output to the aggregate price level.
+        """
         mv = m * v
         return lambda y: mv / y
 
     @staticmethod
-    def _ad_x_min(m: float, v: float, y_max: float):
-        """Minimum x so AD stays within the visible y range."""
+    def _ad_x_min(m: float, v: float, y_max: float) -> float:
+        """Return the smallest output level that keeps AD on screen.
+
+        Parameters
+        ----------
+        m
+            Money supply.
+        v
+            Velocity of money.
+        y_max
+            Upper limit of the visible price range.
+
+        Returns
+        -------
+        The smallest output level that keeps the curve visible.
+        """
         # P = MV/Y ≤ y_max  →  Y ≥ MV/y_max
         return max((m * v) / y_max, 0.1)
 
     @staticmethod
     def _make_sras_func(
         price: float, slope: float | None = None, y_bar: float | None = None
-    ):
-        """SRAS curve.
+    ) -> Callable[[float], float]:
+        """Build the short-run aggregate supply curve.
 
-        Flat when slope is None: P = price.
-        Upward-sloping: P = Pᵉ + slope·(Y − Ȳ), where price = Pᵉ and
-        y_bar = Ȳ (potential output).
+        Parameters
+        ----------
+        price
+            Price level, or the expected price when the curve slopes.
+        slope
+            Slope of the curve; a flat curve is produced when omitted.
+        y_bar
+            Potential output used as the slope pivot.
+
+        Returns
+        -------
+        A function mapping output to the short-run price level.
         """
         if slope is None:
             return lambda y: price
         return lambda y: price + slope * (y - y_bar)
 
     @property
-    def _lr_price(self):
+    def _lr_price(self) -> float:
         """Long-run equilibrium expected price Pᵉ.
 
         In long-run equilibrium expectations are correct: Pᵉ = P = MV/Ȳ.
         For the sloped SRAS P = Pᵉ + slope·(Y − Ȳ), at Y = Ȳ the
         deviation term vanishes, so Pᵉ = MV/Ȳ regardless of slope.
+
+        Returns
+        -------
+        The long-run equilibrium expected price level.
         """
         return (self._m * self._v) / self._lras_y
 
@@ -314,7 +355,17 @@ class ADASDiagram(EconDiagram):
     # ---- Demand shocks ----
 
     def _append_long_run(self, anims: list, lr_run_time: float, show_arrows: bool):
-        """Helper: clear old arrows then append long-run adjustment."""
+        """Append the long-run adjustment to an animation list.
+
+        Parameters
+        ----------
+        anims
+            Animation list that is extended in place.
+        lr_run_time
+            Duration of the long-run adjustment.
+        show_arrows
+            Whether the adjustment draws guide arrows.
+        """
         clear = self.clear_arrows()
         if clear is not None:
             anims.append(clear)

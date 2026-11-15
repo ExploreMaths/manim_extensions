@@ -44,7 +44,7 @@ from .bond import (
 )
 from manim.typing import Point3D
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class MMoleculeObject(VGroup, AbstractMolecule):
@@ -533,8 +533,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             return atom.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            _logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -602,7 +602,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             return bond.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
             raise key_error
 
         except Exception as exception:
@@ -637,8 +637,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             bond = self.bonds[bond_index]
 
         except KeyError as key_error:
-            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()
@@ -1114,8 +1114,8 @@ class NamedMolecule(VGroup):
             return atom.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            _logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -1183,8 +1183,8 @@ class NamedMolecule(VGroup):
             return bond.get_center()
 
         except KeyError as key_error:
-            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -1219,8 +1219,8 @@ class NamedMolecule(VGroup):
             bond = self.bonds[bond_index]
 
         except KeyError as key_error:
-            logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
+            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()

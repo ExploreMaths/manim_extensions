@@ -119,11 +119,19 @@ class MultidimensionalGaussianPosterior:
         else:
             self.mu = mu
 
-    def __call__(self, x: int):
-        """
-        Call multivariate normal posterior.
-        """
+    def __call__(self, x: int) -> float:
+        """Evaluate the log density of the posterior.
 
+        Parameters
+        ----------
+        x
+            Point at which to evaluate the density.
+
+        Returns
+        -------
+        The log posterior density at ``x``, or a large negative value when the
+        point falls outside the supported range.
+        """
         if np.all(x < 500) and np.all(x > -500):
             return scipy.stats.multivariate_normal(mean=self.mu, cov=self.var).logpdf(x)
         else:
@@ -371,8 +379,18 @@ class MCMCAxes(Group):
         self.add(self.axes)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs):
-        """Overrides Create animation."""
+    def _create_override(self, **kwargs) -> AnimationGroup:
+        """Create the axes with a guarded animation.
+
+        Parameters
+        ----------
+        **kwargs
+            Keyword arguments forwarded to the creation animation.
+
+        Returns
+        -------
+        The animation group that draws the axes.
+        """
         return AnimationGroup(Create(self.axes))
 
     def visualize_gaussian_proposal_about_point(

@@ -4,27 +4,39 @@
 # patched: use the package-wide CJK font resolver instead of the macOS-only PingFang SC
 
 # -*- coding: utf-8 -*-
-"""manim_extensions.three_d —— Manim 三维几何与动画库(闭式管面与图曲面预设)。
+"""Three-dimensional geometry and animation presets for Manim.
 
-六件已封装:高斯曲面 / 马鞍面 / 抛物面 / 椭球面 / 圆环面 / 单叶双曲面。
-目标是"几行代码出片":
-节拍(标题/坐标轴/成型/等高线/环绕/翻面/标注/收尾)的时长与去留全部参数化,
-总时长按权重配速——压到 10 秒动画主线一个不少,放不下时自动按优先级砍可选拍。
+The package ships six ready-made surfaces: Gaussian, saddle, paraboloid,
+ellipsoid, torus, and one-sheet hyperboloid. The goal is a complete scene
+from a few lines of code. The beats (title, axes, formation, contours,
+orbit, flip, annotation, outro) are fully parameterized, and the total
+duration is allocated by weight. A ten-second animation can keep every
+essential beat; optional beats are dropped by priority when time runs out.
 
-用法(见 examples/demo_*.py):
+Typical use::
 
-    from manim_extensions.three_d import gaussian_surface_scene, saddle_surface_scene, paraboloid_surface_scene
+    from manim_extensions.three_d import (
+        gaussian_surface_scene,
+        saddle_surface_scene,
+        paraboloid_surface_scene,
+    )
 
-    class GaussianSurface(gaussian_surface_scene(captions=(...), duration=12)): pass
-    class SaddleSurface(saddle_surface_scene(captions=(...))): pass
-    class ParaboloidSurface(paraboloid_surface_scene(pace="fast", name="ParaboloidFast")): pass
+    class GaussianSurface(gaussian_surface_scene(captions=(...), duration=12)):
+        pass
 
-    # ~/venvs/manim/bin/manim -qh demo_saddle.py SaddleSurface
+    class SaddleSurface(saddle_surface_scene(captions=(...))):
+        pass
 
-约定:duration 指"内容预算"(不含字幕换行,每次换行另加 ~0.9s 随配速缩放);
-每拍时间 = 参考时长 × (duration/45) 再夹进 [下限, 参考×上限倍率],
-压不下时按可砍优先级(等高线→平面→标注→环绕→翻面)自动砍拍并打印。
-字幕槽按曲面各自的节拍序列对位(见各 Scene 的 _caption_slots)。
+    class ParaboloidSurface(paraboloid_surface_scene(pace="fast", name="ParaboloidFast")):
+        pass
+
+Conventions: ``duration`` is the content budget excluding caption swaps,
+each of which adds roughly 0.9 seconds scaled by the pace. Beat durations
+start from their reference length times ``duration / 45`` and are clamped
+to their minimum and maximum. When the budget cannot fit everything, beats
+are dropped in priority order (contours, flat plane, annotation, orbit,
+flip) and the choice is printed. Caption slots follow each surface's beat
+sequence through ``_caption_slots``.
 """
 
 from __future__ import annotations
@@ -139,12 +151,27 @@ PACE = {"fast": 10.0, "normal": 24.0, "full": 45.0}
 
 
 def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
-    """把 duration 分配到启用的节拍。
+    """Distribute a duration across the enabled beats.
 
-    等比缩放,每拍夹在 [下限, 参考×上限倍率] 内,迭代到收敛;
-    全体顶到下限仍放不下 → 按优先级砍可选拍重排;全体顶到上限还不够填 → 接受偏短。
-    返回 (节拍时长dict, 被砍节拍list)。
+    Parameters
+    ----------
+    duration
+        Total content budget in seconds.
+    enabled
+        Names of beats that should be scheduled.
+
+    Returns
+    -------
+    A mapping from beat name to duration, and the names of dropped beats.
+
+    Durations are scaled proportionally, clamped between each beat's
+    minimum and reference times the cap multiplier, and iterated until they
+    converge. If every optional beat can be removed and the budget still
+    does not fit, optional beats are dropped by priority. If every beat
+    reaches its maximum before the budget is filled, the shorter result is
+    accepted.
     """
+
     active = [b for b in BEATS if b[0] in enabled]
     dropped = []
     while True:
@@ -174,7 +201,20 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
 
 
 def _ramp_color(ramp: Any, t: float) -> Any:
-    """色带取色:t∈[0,1] 为色带位置。"""
+    """Sample a colour ramp at a normalized position.
+
+    Parameters
+    ----------
+    ramp
+        Sequence of ``(colour, position)`` stops.
+    t
+        Position in the range 0 to 1.
+
+    Returns
+    -------
+    The interpolated colour at that position.
+    """
+
     t = min(max(t, 0.0), 1.0)
     for (c1, v1), (c2, v2) in zip(ramp, ramp[1:]):
         if v1 <= t <= v2:
@@ -185,7 +225,25 @@ def _ramp_color(ramp: Any, t: float) -> Any:
 
 
 def _radius_for_level(f: Any, d_max: float, c: float, n: int = 60) -> Optional[float]:
-    """解 f(r,0)=c 的最近根(沿 +x 二分;径向单调曲面精确,其他近似)。"""
+    """Find the nearest radius where the surface reaches a level.
+
+    Parameters
+    ----------
+    f
+        Surface height function.
+    d_max
+        Outer search radius.
+    c
+        Target height.
+    n
+        Number of bisection steps.
+
+    Returns
+    -------
+    The radius of the nearest root along the positive x direction, or
+    ``None`` when the surface never reaches the target.
+    """
+
     lo, hi = 0.0, d_max
     if f(hi, 0.0) > c:
         return None
@@ -199,14 +257,26 @@ def _radius_for_level(f: Any, d_max: float, c: float, n: int = 60) -> Optional[f
 
 
 def _fmt(v: float) -> str:
-    """0.00→0, 1.50→1.5:坐标标注去尾零。"""
+    """Format a coordinate label without trailing zeros.
+
+    Parameters
+    ----------
+    v
+        Coordinate value.
+
+    Returns
+    -------
+    The value rounded to two decimals, with trailing zeros and a trailing
+    decimal point removed.
+    """
+
     return f"{v:.2f}".rstrip("0").rstrip(".")
 
 
 # ---------------- 配置 ----------------
 @dataclass
 class GaussianSurface:
-    """高斯曲面(泛化为任意 z=f(x,y) 图曲面)的全部可调参数。"""
+    """Tunable parameters for a Gaussian surface, generalized to z=f(x, y)."""
 
     func: Optional[Callable] = None  # z=f(x,y);None=内置高斯
     func_tex: Optional[str] = None  # 角落公式;None=自定义函数且不显示公式
@@ -228,7 +298,13 @@ class GaussianSurface:
     zoom: float = 0.95
 
     def resolve(self) -> Any:
-        """返回 (f, tex):函数补默认,公式补默认。"""
+        """Resolve the surface function and its displayed formula.
+
+        Returns
+        -------
+        The height function and the formula string, with defaults filled in.
+        """
+
         if self.func is None:
             f = lambda x, y: float(np.exp(-(x * x + y * y)))
             tex = r"z = e^{-x^{2}-y^{2}}" if self.func_tex is None else self.func_tex
@@ -240,7 +316,7 @@ class GaussianSurface:
 
 @dataclass
 class SaddleSurface:
-    """马鞍面 z = x² - y²(双曲抛物面),几何固定、呈现全参数化。"""
+    """Tunable presentation for the fixed saddle surface z = x² - y²."""
 
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
@@ -262,7 +338,7 @@ class SaddleSurface:
 
 @dataclass
 class ParaboloidSurface:
-    """抛物面 z = x² + y²(椭圆抛物面),几何固定、呈现全参数化。"""
+    """Tunable presentation for the fixed paraboloid z = x² + y²."""
 
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
@@ -284,7 +360,7 @@ class ParaboloidSurface:
 
 @dataclass
 class EllipsoidSurface:
-    """椭球面 x²/a²+y²/b²+z²/c²=1 —— 闭曲面(参数曲面模式首个成员)。"""
+    """Configuration for an ellipsoid, the first closed parametric surface."""
 
     semi_axes: tuple = (2.4, 1.6, 1.2)  # (a, b, c) 半轴
     resolution: tuple = (44, 56)  # 经纬网格密度
@@ -305,7 +381,7 @@ class EllipsoidSurface:
 
 @dataclass
 class TorusSurface:
-    """圆环面 (√(x²+y²)−R)²+z²=r² —— 闭曲面,参考图比例 R:r=4:1。"""
+    """Configuration for a torus with a 4:1 major-to-minor radius ratio."""
 
     major_radius: float = 2.0  # 环半径 R(管中心圆)
     minor_radius: float = 0.5  # 管半径 r
@@ -327,7 +403,7 @@ class TorusSurface:
 
 @dataclass
 class HyperboloidOneSheet:
-    """单叶双曲面 x²+y²−z²=1 —— 闭式管面(参数曲面),腰圆为签名特征。"""
+    """Configuration for a one-sheet hyperboloid, recognizable by its waist."""
 
     waist_radius: float = 1.0  # 腰圆半径 a(=b)
     z_extent: float = 1.5  # 上下截断高度 ±h
@@ -349,10 +425,13 @@ class HyperboloidOneSheet:
 
 # ---------------- 节拍骨架(图曲面通用) ----------------
 class _GraphSurfaceScene(ThreeDScene):
-    """子类提供 style(配置)与钩子:_geometry/_contours/_feature/_caption_slots。
+    """Shared beat skeleton for graph and closed surfaces.
 
-    图曲面(高斯/马鞍/抛物面)直接用;闭曲面(椭球等)设 uses_flat=False:
-    无"平面起步"拍,成型拍改为 GrowFromCenter 充气,坐标轴三轴等比缩放防畸变。
+    Subclasses provide a ``style`` configuration and implement the hooks
+    ``_geometry``, ``_contours``, ``_feature``, and ``_caption_slots``. Graph
+    surfaces use the flat start beat; closed surfaces set ``uses_flat=False``
+    so the formation beat inflates the surface with ``GrowFromCenter`` and
+    the axes scale uniformly to avoid distortion.
     """
 
     style = None
@@ -360,27 +439,110 @@ class _GraphSurfaceScene(ThreeDScene):
 
     # ---- 钩子 ----
     def _geometry(self, cfg: Any) -> Any:
-        """-> (f 归一化函数, tex 公式, zmin_n, ax_z_lo, ax_z_hi)"""
+        """Return the surface geometry description.
+
+        Parameters
+        ----------
+        cfg
+            Surface configuration.
+
+        Returns
+        -------
+        A tuple containing the normalized height function, formula string,
+        normalized minimum height, and low and high axis limits.
+
+        Raises
+        ------
+        NotImplementedError
+            Always, because subclasses must implement this hook.
+        """
         raise NotImplementedError
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """-> (等高线 VGroup, 是否跟随曲面翻面)"""
+        """Build contour lines for the surface.
+
+        Parameters
+        ----------
+        cfg
+            Surface configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Normalized height function.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height.
+
+        Returns
+        -------
+        A contour group and a flag telling whether it rotates with the
+        surface.
+
+        Raises
+        ------
+        NotImplementedError
+            Always, because subclasses must implement this hook.
+        """
         raise NotImplementedError
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """-> (px, py, pz, tag_tex, 用HUD标签, 虚线起点z)"""
+        """Describe the annotated feature point.
+
+        Parameters
+        ----------
+        cfg
+            Surface configuration.
+        f
+            Normalized height function.
+
+        Returns
+        -------
+        The point coordinates, tag formula, HUD flag, and dashed-stem
+        starting height.
+
+        Raises
+        ------
+        NotImplementedError
+            Always, because subclasses must implement this hook.
+        """
         raise NotImplementedError
 
     def _caption_slots(self) -> Any:
-        """字幕槽位序列(位置对位)。"""
+        """List the caption slots used by this scene.
+
+        Returns
+        -------
+        Slot names in beat order.
+        """
         return ["title", "axes", "flat", "rings", "orbit", "flip", "outro"]
 
     def _annotate_camera(self) -> Any:
-        """标注拍相机角度 (phi, theta, zoom)。"""
+        """Return the camera angle used for the annotation beat.
+
+        Returns
+        -------
+        The ``(phi, theta, zoom)`` triple.
+        """
         return 66.0, -40.0, 0.95
 
     def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
-        """图曲面默认轴:x/y 等长,z 按高度范围。"""
+        """Build the default graph-surface axes.
+
+        Parameters
+        ----------
+        cfg
+            Surface configuration.
+        ax_z_lo
+            Lower z axis limit.
+        ax_z_hi
+            Upper z axis limit.
+
+        Returns
+        -------
+        The configured axes.
+        """
+
         d0, d1 = cfg.domain
         axes = ThreeDAxes(
             x_range=[d0 - 0.4, d1 + 0.4, 1],
@@ -393,7 +555,26 @@ class _GraphSurfaceScene(ThreeDScene):
         return axes.set_stroke(opacity=0.55)
 
     def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """图曲面默认:z=f(x,y) 图,色带铺满 [zmin_n, height]。"""
+        """Build the default graph surface z=f(x, y).
+
+        Parameters
+        ----------
+        cfg
+            Surface configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Normalized height function.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height.
+
+        Returns
+        -------
+        The coloured surface mobject.
+        """
+
         d0, d1 = cfg.domain
         s = Surface(
             lambda u, v: axes.c2p(u, v, f(u, v)),
@@ -414,7 +595,13 @@ class _GraphSurfaceScene(ThreeDScene):
 
     # ---- 主流程 ----
     def construct(self) -> Any:
-        """construct."""
+        """Build and play the full surface presentation.
+
+        Returns
+        -------
+        ``None``; the method plays the scene beats.
+        """
+
         cfg = self.style
         ramp = RAMPS[cfg.colors] if isinstance(cfg.colors, str) else list(cfg.colors)
         f_n, func_tex, zmin_n, ax_z_lo, ax_z_hi = self._geometry(cfg)
@@ -474,7 +661,19 @@ class _GraphSurfaceScene(ThreeDScene):
             return g
 
         def swap_caption(text: str, tex: Optional[str] = None) -> Any:
-            """换字幕不用 Transform:旧行整行淡出,新行整行淡入。"""
+            """Crossfade the caption line without a Transform.
+
+            Parameters
+            ----------
+            text
+                New caption text.
+            tex
+                Optional formula appended to the caption.
+
+            Returns
+            ``None`` after playing the fade.
+            """
+
             nonlocal cur_cap
             new_cap = make_cap(text, tex)
             self.remove(new_cap)  # 摘下防提前露字,由 FadeIn 加回
@@ -676,7 +875,19 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
     """GaussianSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Sample the Gaussian surface and derive its display range.
+
+        Parameters
+        ----------
+        cfg
+            Gaussian surface configuration.
+
+        Returns
+        -------
+        The normalized height function, formula string, normalized minimum
+        height, and low and high z axis limits.
+        """
+
         f_raw, tex = cfg.resolve()
         n = 160
         gx = np.linspace(cfg.domain[0], cfg.domain[1], n)
@@ -690,7 +901,26 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
         return f, tex, zmin * scale, min(0.0, zmin * scale), cfg.height * 1.5
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the floor-projected contour rings.
+
+        Parameters
+        ----------
+        cfg
+            Gaussian surface configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Normalized height function.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height.
+
+        Returns
+        -------
+        The contour group and ``False`` because these rings stay on the
+        floor and do not rotate with the surface.
+        """
         g = VGroup()
         for c in [0.8, 0.55, 0.33, 0.15, 0.045]:
             r = _radius_for_level(f, cfg.domain[1], c)
@@ -708,8 +938,21 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
         return g, False  # 地板投影,不随翻面
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Locate the peak of the sampled Gaussian surface.
+
+        Parameters
+        ----------
+        cfg
+            Gaussian surface configuration.
+        f
+            Normalized height function.
+
+        Returns
+        -------
+        The peak coordinates, tag formula, HUD flag, and stem start height.
+        """
         iy, ix = np.unravel_index(int(self._zs.argmax()), self._zs.shape)
+
         px, py = float(self._gx[ix]), float(self._gx[iy])
         return (
             px,
@@ -721,11 +964,21 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
         )
 
     def _caption_slots(self) -> Any:
-        """_caption_slots."""
+        """List the caption slots used by the Gaussian scene.
+
+        Returns
+        -------
+        Slot names in beat order.
+        """
         return ["title", "axes", "flat", "orbit", "flip", "outro"]
 
     def _annotate_camera(self) -> Any:
-        """_annotate_camera."""
+        """Return the camera angle used for the Gaussian annotation.
+
+        Returns
+        -------
+        The ``(phi, theta, zoom)`` triple.
+        """
         return 68.0, -40.0, 0.95
 
 
@@ -733,14 +986,45 @@ class SaddleSurfaceScene(_GraphSurfaceScene):
     """SaddleSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Return the fixed saddle geometry and its display range.
+
+        Parameters
+        ----------
+        cfg
+            Saddle surface configuration.
+
+        Returns
+        -------
+        The height function, formula string, normalized minimum height, and
+        low and high z axis limits.
+        """
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x - y * y) * scale
         return f, r"z = x^{2} - y^{2}", -cfg.height, -cfg.height * 1.3, cfg.height * 1.3
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the saddle contour family and its asymptotes.
+
+        Parameters
+        ----------
+        cfg
+            Saddle surface configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Normalized height function.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height.
+
+        Returns
+        -------
+        The contour group and ``False`` because the contours stay on the
+        floor.
+        """
+
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
@@ -789,7 +1073,20 @@ class SaddleSurfaceScene(_GraphSurfaceScene):
         return g, False  # 地板等高线,不随翻面
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Return the saddle point annotation.
+
+        Parameters
+        ----------
+        cfg
+            Saddle surface configuration.
+        f
+            Normalized height function.
+
+        Returns
+        -------
+        The origin coordinates, tag formula, HUD flag, and stem start
+        height.
+        """
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 1.3  # 鞍点:HUD 标签
 
 
@@ -797,14 +1094,45 @@ class ParaboloidSurfaceScene(_GraphSurfaceScene):
     """ParaboloidSurfaceScene."""
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Return the fixed paraboloid geometry and its display range.
+
+        Parameters
+        ----------
+        cfg
+            Paraboloid surface configuration.
+
+        Returns
+        -------
+        The height function, formula string, normalized minimum height, and
+        low and high z axis limits.
+        """
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x + y * y) * scale
         return f, r"z = x^{2} + y^{2}", 0.0, -cfg.height * 0.6, cfg.height * 1.3
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the concentric rings painted on the paraboloid.
+
+        Parameters
+        ----------
+        cfg
+            Paraboloid surface configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Normalized height function.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height.
+
+        Returns
+        -------
+        The contour group and ``True`` because these rings follow the
+        surface when it flips.
+        """
+
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
@@ -826,17 +1154,41 @@ class ParaboloidSurfaceScene(_GraphSurfaceScene):
         return g, True  # 贴在曲面上,翻面必须跟着转
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Return the paraboloid vertex annotation.
+
+        Parameters
+        ----------
+        cfg
+            Paraboloid surface configuration.
+        f
+            Normalized height function.
+
+        Returns
+        -------
+        The origin coordinates, tag formula, HUD flag, and stem start
+        height.
+        """
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 0.6  # 顶点:HUD 标签
 
 
 class EllipsoidSurfaceScene(_GraphSurfaceScene):
-    """椭球面:闭曲面。uses_flat=False → 充气成型;坐标轴三轴等比缩放防畸变。"""
+    """Ellipsoid scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Return the ellipsoid formula and display range.
+
+        Parameters
+        ----------
+        cfg
+            Ellipsoid configuration.
+
+        Returns
+        -------
+        A placeholder height function, the formula string, normalized
+        minimum height, and low and high z axis limits.
+        """
         a, b, c = cfg.semi_axes
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
         tex = (
@@ -847,7 +1199,21 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         return f, tex, -c, -c - 0.5, c + 0.9
 
     def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
-        """三轴等比缩放:x 轴定标,y/z 同比例,否则闭曲面会 visibly 畸变。"""
+        """Scale the axes uniformly so the ellipsoid does not distort.
+
+        Parameters
+        ----------
+        cfg
+            Ellipsoid configuration.
+        ax_z_lo
+            Lower z axis limit.
+        ax_z_hi
+            Upper z axis limit.
+
+        Returns
+        -------
+        The uniformly scaled axes.
+        """
         a, b, c = cfg.semi_axes
         k = 7.2 / (2 * (a + 0.4))
         axes = ThreeDAxes(
@@ -861,7 +1227,25 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         return axes.set_stroke(opacity=0.55)
 
     def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_make_surface."""
+        """Build the parametric ellipsoid surface.
+
+        Parameters
+        ----------
+        cfg
+            Ellipsoid configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused for closed surfaces.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The coloured ellipsoid surface.
+        """
         a, b, c = cfg.semi_axes
         s = Surface(
             lambda u, v: axes.c2p(
@@ -881,7 +1265,26 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         return s
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the latitude rings painted on the ellipsoid.
+
+        Parameters
+        ----------
+        cfg
+            Ellipsoid configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused here.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The contour group and ``True`` because the rings rotate with the
+        surface.
+        """
         a, b, c = cfg.semi_axes
         g = VGroup()
         for h in [0.66, 0.33, 0.0, -0.33, -0.66]:  # z/c 高度比例
@@ -901,26 +1304,63 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         return g, True  # 贴面环,翻面随转
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Return the ellipsoid apex annotation.
+
+        Parameters
+        ----------
+        cfg
+            Ellipsoid configuration.
+        f
+            Normalized height function, unused here.
+
+        Returns
+        -------
+        The apex coordinates, tag formula, HUD flag, and stem start height.
+        """
         a, b, c = cfg.semi_axes
         # 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)
         return 0.0, 0.0, c, rf"(0,\,0,\,{_fmt(c)})", False, c + 0.75
 
 
 class TorusSurfaceScene(_GraphSurfaceScene):
-    """圆环面:闭曲面。充气成型;坐标轴三轴等比缩放;按管截面高度上彩虹色。"""
+    """Torus scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Return the torus formula and display range.
+
+        Parameters
+        ----------
+        cfg
+            Torus configuration.
+
+        Returns
+        -------
+        A placeholder height function, the formula string, normalized
+        minimum height, and low and high z axis limits.
+        """
         R, r = cfg.major_radius, cfg.minor_radius
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
         tex = rf"(\sqrt{{x^{{2}}+y^{{2}}}} - {_fmt(R)})^{{2}} + z^{{2}} = {_fmt(r * r)}"
         return f, tex, -r, -r - 0.4, r + 0.9
 
     def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
-        """_make_axes."""
+        """Scale the axes uniformly for the torus.
+
+        Parameters
+        ----------
+        cfg
+            Torus configuration.
+        ax_z_lo
+            Lower z axis limit.
+        ax_z_hi
+            Upper z axis limit.
+
+        Returns
+        -------
+        The uniformly scaled axes.
+        """
         R, r = cfg.major_radius, cfg.minor_radius
         outer = R + r
         k = 7.2 / (2 * (outer + 0.4))  # x 定标,y/z 同比例防畸变
@@ -935,7 +1375,25 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         return axes.set_stroke(opacity=0.55)
 
     def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_make_surface."""
+        """Build the parametric torus surface.
+
+        Parameters
+        ----------
+        cfg
+            Torus configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused for closed surfaces.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The coloured torus surface.
+        """
         R, r = cfg.major_radius, cfg.minor_radius
         s = Surface(
             lambda u, v: axes.c2p(
@@ -957,7 +1415,26 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         return s
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the horizontal rings cut from the torus.
+
+        Parameters
+        ----------
+        cfg
+            Torus configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused here.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The contour group and ``True`` because the rings rotate with the
+        surface.
+        """
         R, r = cfg.major_radius, cfg.minor_radius
         g = VGroup()
         for z_lv in [0.6, 0.0, -0.6]:  # 管截面高度比例(×r)
@@ -979,19 +1456,42 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         return g, True  # 贴面环,翻面随转
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Return the torus apex annotation.
+
+        Parameters
+        ----------
+        cfg
+            Torus configuration.
+        f
+            Normalized height function, unused here.
+
+        Returns
+        -------
+        The apex coordinates, tag formula, HUD flag, and stem start height.
+        """
         R, r = cfg.major_radius, cfg.minor_radius
         # 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)
         return 0.0, 0.0, r, rf"(0,\,0,\,{_fmt(r)})", False, r + 0.75
 
 
 class HyperboloidOneSheetScene(_GraphSurfaceScene):
-    """单叶双曲面:闭式管面。充气成型;坐标轴三轴等比缩放;按高度对称铺彩虹。"""
+    """One-sheet hyperboloid scene with an inflated formation."""
 
     uses_flat = False
 
     def _geometry(self, cfg: Any) -> Any:
-        """_geometry."""
+        """Return the hyperboloid formula and display range.
+
+        Parameters
+        ----------
+        cfg
+            Hyperboloid configuration.
+
+        Returns
+        -------
+        A placeholder height function, the formula string, normalized
+        minimum height, and low and high z axis limits.
+        """
         a, h = cfg.waist_radius, cfg.z_extent
         f = lambda x, y: 0.0  # 闭式管面不经图构造,占位
         rhs = "1" if abs(a * a - 1.0) < 1e-9 else _fmt(a * a)
@@ -999,7 +1499,21 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         return f, tex, -h, -h - 0.4, h + 0.4
 
     def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
-        """_make_axes."""
+        """Scale the axes uniformly for the hyperboloid.
+
+        Parameters
+        ----------
+        cfg
+            Hyperboloid configuration.
+        ax_z_lo
+            Lower z axis limit.
+        ax_z_hi
+            Upper z axis limit.
+
+        Returns
+        -------
+        The uniformly scaled axes.
+        """
         a, h = cfg.waist_radius, cfg.z_extent
         max_r = (a * a + h * h) ** 0.5  # 端口半径
         k = 7.2 / (2 * (max_r + 0.4))  # x 定标,y/z 同比例防畸变
@@ -1014,7 +1528,25 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         return axes.set_stroke(opacity=0.55)
 
     def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_make_surface."""
+        """Build the parametric one-sheet hyperboloid surface.
+
+        Parameters
+        ----------
+        cfg
+            Hyperboloid configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused for closed surfaces.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The coloured hyperboloid surface.
+        """
         a, h = cfg.waist_radius, cfg.z_extent
         s = Surface(
             lambda u, v: axes.c2p(
@@ -1036,7 +1568,26 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         return s
 
     def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """_contours."""
+        """Build the horizontal circle family of the hyperboloid.
+
+        Parameters
+        ----------
+        cfg
+            Hyperboloid configuration.
+        axes
+            Axes used for world-space projection.
+        f
+            Placeholder height function, unused here.
+        ramp
+            Colour ramp.
+        zmin_n
+            Normalized minimum height, unused here.
+
+        Returns
+        -------
+        The contour group and ``True`` because the rings rotate with the
+        surface.
+        """
         a, h = cfg.waist_radius, cfg.z_extent
         g = VGroup()
         for z_lv in [1.0, 0.5, 0.0, -0.5, -1.0]:  # 水平圆族(0 = 腰圆)
@@ -1057,7 +1608,20 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         return g, True  # 贴面环,翻面随转
 
     def _feature(self, cfg: Any, f: Any) -> Any:
-        """_feature."""
+        """Return the waist point annotation.
+
+        Parameters
+        ----------
+        cfg
+            Hyperboloid configuration.
+        f
+            Normalized height function, unused here.
+
+        Returns
+        -------
+        The waist point coordinates, tag formula, HUD flag, and stem start
+        height.
+        """
         a, h = cfg.waist_radius, cfg.z_extent
         # 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签
         return a, 0.0, 0.0, rf"({_fmt(a)},\,0,\,0)", True, 0.0
@@ -1067,21 +1631,58 @@ _name_seq: dict = {}
 
 
 def _scene_name(base: str) -> str:
-    """_scene_name."""
+    """Generate a unique scene class name.
+
+    Parameters
+    ----------
+    base
+        Base class name.
+
+    Returns
+    -------
+    The base name on its first use, followed by an increasing suffix
+    afterwards.
+    """
     n = _name_seq.get(base, 0) + 1
     _name_seq[base] = n
     return base if n == 1 else f"{base}{n}"
 
 
 def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
-    """_make_factory."""
+    """Build a public factory that returns a configured scene class.
+
+    Parameters
+    ----------
+    cfg_cls
+        Configuration dataclass.
+    scene_cls
+        Scene class to subclass.
+    base_name
+        Default scene class name.
+
+    Returns
+    -------
+    A callable that accepts an optional class name and configuration
+    keyword arguments and returns the new scene class.
+    """
 
     def factory(name: Optional[str] = None, **kw) -> Any:
-        """factory."""
+        """Create a scene class for this surface.
+
+        Parameters
+        ----------
+        name
+            Optional class name; a unique default is generated when
+            omitted.
+
+        Returns
+        -------
+        A new Scene subclass carrying the supplied configuration.
+        """
         cfg = cfg_cls(**kw)
         return type(name or _scene_name(base_name), (scene_cls,), {"style": cfg})
 
-    factory.__doc__ = f"工厂:返回配置好的 {base_name} Scene 类。"
+    factory.__doc__ = f"Factory returning a configured {base_name} Scene class."
     return factory
 
 

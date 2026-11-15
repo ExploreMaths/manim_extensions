@@ -65,7 +65,12 @@ __all__ = [
 
 
 def _load_pymunk() -> pymunk:
-    """Import pymunk lazily, as it belongs to the ``physics`` extra."""
+    """Import pymunk lazily, as it belongs to the ``physics`` extra.
+
+    Returns
+    -------
+    The imported pymunk module.
+    """
     return cast("pymunk", require("physics", "pymunk"))
 
 
@@ -119,6 +124,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                self.wait(2)
                self.space.space.gravity = (0, 5)
                self.wait(3)
+               Group(*self.mobjects).scale(0.2).move_to(ORIGIN)
     """
 
     def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):

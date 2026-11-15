@@ -49,6 +49,7 @@ class Row(VGroup):
            def construct(self):
                row = Row(["Alice", "25", "Paris"])
                row[1].set_font_color(RED)
+               row.scale(2.0)
                self.add(row)
     """
 
@@ -100,19 +101,65 @@ class Row(VGroup):
             self.add(cell)
 
     @overload
-    def __getitem__(self, index: int) -> Cell: ...
+    def __getitem__(self, index: int) -> Cell:
+        """Return the cell at the given index.
+
+        Parameters
+        ----------
+        index
+            The cell index.
+
+        Returns
+        -------
+        The selected cell.
+        """
+        ...
+
     @overload
-    def __getitem__(self, index: slice) -> List[Cell]: ...
+    def __getitem__(self, index: slice) -> List[Cell]:
+        """Return the cells selected by the slice.
+
+        Parameters
+        ----------
+        index
+            The cell slice.
+
+        Returns
+        -------
+        The selected cells.
+        """
+        ...
+
     def __getitem__(self, index: int | slice) -> Cell | List[Cell]:
-        """Get a cell by index."""
+        """Return a cell or a slice of cells.
+
+        Parameters
+        ----------
+        index
+            The cell index or slice.
+
+        Returns
+        -------
+        The selected cell or list of cells.
+        """
         return self.cells[index]
 
     def __len__(self) -> int:
-        """Return number of cells in this row."""
+        """Return the number of cells in this row.
+
+        Returns
+        -------
+        The cell count.
+        """
         return len(self.cells)
 
     def __iter__(self) -> Iterator[Cell]:
-        """Iterate over cells."""
+        """Iterate over the cells.
+
+        Returns
+        -------
+        An iterator over the cells.
+        """
         return iter(self.cells)
 
     def get_cell(self, index: int) -> Cell:

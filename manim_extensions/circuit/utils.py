@@ -256,6 +256,10 @@ class Circuit(VMobject):
             Whether the wire may be drawn diagonally.
         invert
             Whether to invert the bend direction when turning.
+
+        Returns
+        -------
+        The wire path as a list of points.
         """
         if (
             not math.isclose(end1[0], end2[0]) and not math.isclose(end1[1], end2[1])

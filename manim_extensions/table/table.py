@@ -364,15 +364,56 @@ class Table(VGroup):
         return list(self.header_values)
 
     def __len__(self) -> int:
-        """Return number of data rows (not including header)."""
+        """Return the number of data rows.
+
+        Returns
+        -------
+        The data row count, excluding the header.
+        """
         return len(self.rows)
 
     @overload
-    def __getitem__(self, index: int) -> Row: ...
+    def __getitem__(self, index: int) -> Row:
+        """Return the data row at the given index.
+
+        Parameters
+        ----------
+        index
+            Row index.
+
+        Returns
+        -------
+        The selected row.
+        """
+        ...
+
     @overload
-    def __getitem__(self, index: slice) -> List[Row]: ...
+    def __getitem__(self, index: slice) -> List[Row]:
+        """Return the data rows selected by the slice.
+
+        Parameters
+        ----------
+        index
+            Row slice.
+
+        Returns
+        -------
+        The selected rows.
+        """
+        ...
+
     def __getitem__(self, index: int | slice) -> Row | List[Row]:
-        """Get a data row by index (0-indexed, not including header)."""
+        """Return a data row or a slice of rows.
+
+        Parameters
+        ----------
+        index
+            Row index or slice, excluding the header.
+
+        Returns
+        -------
+        The selected row or list of rows.
+        """
         return self.rows[index]
 
     # -------------------------------------------------------------------------

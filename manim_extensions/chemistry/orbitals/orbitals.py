@@ -15,12 +15,14 @@ from manim.typing import Point3D, VectorND, MatrixMN
 
 if hasattr(spe, "sph_harm_y"):
     # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
-    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND):
+    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
+        """Return the spherical harmonic with the new scipy argument order."""
         return spe.sph_harm_y(l, m, polar, azimuthal)
 
 else:
     # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
-    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND):
+    def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
+        """Return the spherical harmonic with the legacy scipy argument order."""
         return spe.sph_harm(m, l, azimuthal, polar)
 
 

@@ -204,7 +204,23 @@ class RadarConfig:
 
     # ------------------------------------------------------------------
     def evolved(self, **changes) -> RadarConfig:
-        """Return a copy with a few fields replaced (``None`` values ignored)."""
+        """Return a copy with selected fields replaced.
+
+        Parameters
+        ----------
+        changes
+            Dataclass fields to override; ``None`` values are ignored.
+
+        Returns
+        -------
+        A new configuration.
+
+        Raises
+        ------
+        TypeError
+            If an unknown field name is supplied.
+        """
+
         clean = {k: v for k, v in changes.items() if v is not None}
         unknown = set(clean) - set(self.__dataclass_fields__)
         if unknown:
@@ -214,7 +230,19 @@ class RadarConfig:
         return replace(self, **clean)
 
     def validated(self) -> RadarConfig:
-        """Sanity-check the numbers; raises ``ValueError`` on nonsense."""
+        """Check that the numeric fields are usable.
+
+        Returns
+        -------
+        This configuration.
+
+        Raises
+        ------
+        ValueError
+            If the radius, grid levels, number mode, comparison mode, dip
+            ratio, or morph duration is invalid.
+        """
+
         if self.radius <= 0:
             raise ValueError("radius must be > 0")
         if self.levels < 1:
@@ -301,12 +329,36 @@ STYLES: dict[str, RadarConfig] = {
 
 
 def style_names() -> list[str]:
-    """Names of all bundled styles."""
+    """List all bundled style names.
+
+    Returns
+    -------
+    The names in registration order.
+    """
+
     return list(STYLES)
 
 
 def get_style(style: Union[str, RadarConfig, None]) -> RadarConfig:
-    """Resolve ``"neo"`` / a :class:`~manim_extensions.radar.config.RadarConfig` / ``None`` to a config."""
+    """Resolve a style name, configuration, or ``None`` to a copy.
+
+    Parameters
+    ----------
+    style
+        Style name, existing configuration, or ``None`` for the default.
+
+    Returns
+    -------
+    A defensive copy of the resolved configuration.
+
+    Raises
+    ------
+    KeyError
+        If the style name is unknown.
+    TypeError
+        If the value is neither a string, a configuration, nor ``None``.
+    """
+
     if style is None:
         return replace(STYLES["neo"])
     if isinstance(style, RadarConfig):

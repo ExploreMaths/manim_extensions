@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     Dot,
@@ -125,7 +126,13 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self):
+    def _create_override(self) -> Animation:
+        """Return a zero-duration wait for an invisible layer.
+
+        Returns
+        -------
+        A zero-duration wait animation.
+        """
         # Nothing to create visually; manim >= 0.21 raises on empty groups,
         # so return a zero-duration Wait instead.
         return Wait(run_time=0)
