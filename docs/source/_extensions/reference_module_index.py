@@ -94,14 +94,19 @@ def _package_entry(app, docname: str, package: str) -> nodes.Node | None:
     if not index_rst.is_file():
         return None
     title, slug = _read_package(index_rst)
-    ref = make_refnode(
-        app.builder,
-        docname,
-        f"reference/{package}/index",
-        None,
-        nodes.Text(title),
-        title,
-    )
+    try:
+        ref: nodes.Node = make_refnode(
+            app.builder,
+            docname,
+            f"reference/{package}/index",
+            None,
+            nodes.Text(title),
+            title,
+        )
+    except NotImplementedError:
+        # Non-HTML builders (for example the coverage builder) do not
+        # implement URI generation; plain text keeps the role usable there.
+        ref = nodes.Text(title)
     app.env.note_dependency(str(index_rst))
     if slug not in _lagging_slugs(app):
         return ref
