@@ -34,7 +34,9 @@ CJK_RE = re.compile(
 
 def iter_docstrings(node, prefix=""):
     """Yield ``(qualname, lineno, docstring)`` for every documented node."""
-    if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+    if isinstance(
+        node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)
+    ):
         doc = ast.get_docstring(node, clean=False)
         if doc is not None:
             name = prefix.rstrip(".") or "<module>"
