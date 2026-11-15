@@ -152,6 +152,11 @@ CHECKS: dict[str, Check] = {
     "validate-headers": Check(
         "validate-headers", "static", py("workflow/validate_headers.py")
     ),
+    "validate-english-docstrings": Check(
+        "validate-english-docstrings",
+        "static",
+        py("workflow/validate_english_docstrings.py"),
+    ),
     "validate-type-annotations": Check(
         "validate-type-annotations", "static", py("scripts/check_type_annotations.py")
     ),
@@ -211,6 +216,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
         "validate-example-spacing",
         "validate-example-names",
         "validate-headers",
+        "validate-english-docstrings",
         "validate-type-annotations",
         "validate-return-annotations",
     ),
