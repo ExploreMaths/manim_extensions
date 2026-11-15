@@ -14,6 +14,12 @@ Classes
 
    ~ADASDiagram
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.economics.ad_as
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

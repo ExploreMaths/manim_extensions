@@ -17,6 +17,12 @@ Classes
    ~SimpleLine
    ~TripleLine
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.chemistry.twoD.graph_molecule
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

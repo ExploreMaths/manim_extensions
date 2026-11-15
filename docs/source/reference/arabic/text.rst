@@ -18,6 +18,12 @@ Classes
    ~ArabicTemplate
    ~ArabicText
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.arabic.text
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

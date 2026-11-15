@@ -1,17 +1,17 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Verify every public constant, function, and class is API-documented,
-and maintain the snapshot that ``autodoc_all``'s ``:missing-only:`` mode
-filters against.
+"""Verify every constant, function, and class is API-documented,
+including private module-level names, and maintain the snapshot that
+``autodoc_all``'s ``:missing-only:`` mode filters against.
 
-Scans the whole ``manim_extensions`` package for public names (same
-rules as the ``autodoc_all`` extension: ``__all__`` when defined, else
-names defined in the module itself), then resolves every
+Scans the whole ``manim_extensions`` package for names (same rules as the
+``autodoc_all`` extension: ``__all__`` when defined, else names defined in
+the module itself, including private names), then resolves every
 ``autoclass`` / ``autofunction`` / ``autodata`` / ``autoall`` directive
 in ``docs/source`` and matches by canonical defining-module dotted name.
 
-A public name counts as documented when either
+A name counts as documented when either
   * an explicit autodoc directive reaches it,
   * an ``.. autoall::`` block without ``:missing-only:`` enumerates it
     (its full expansion is injected into the docs at build time), or
@@ -22,6 +22,10 @@ The snapshot (documented names only) is what ``:missing-only:`` blocks
 filter against at Sphinx build time:
 
     python workflow/validate_api_coverage.py --write-snapshot
+
+A percentage can be written as a shields.io endpoint badge:
+
+    python workflow/validate_api_coverage.py --badge .github/badges/docs-coverage.json
 
 Usage:
     python workflow/validate_api_coverage.py              # check
@@ -39,6 +43,7 @@ import typing
 from pathlib import Path
 
 from _context import DOCS, PACKAGE, ROOT, SRC
+from coverage_badge import build_badge
 
 sys.path.insert(0, str(SRC.parent))  # pin the local package over any installed copy
 SNAPSHOT_PATH = DOCS / "_extensions" / "api_documented.json"
@@ -136,17 +141,13 @@ def autoall_expansion_keys(target, options):
         return keys, warnings
     want = {
         t.strip()
-        for t in (options.get("types") or "class function data").split(",")
+        for t in (options.get("types") or "class,function,data").split(",")
         if t.strip()
     }
     skip = set((options.get("skip") or "").split())
     modules = iter_package_modules(obj) if "recursive" in options else iter([obj])
     for mod in modules:
         for name, member in public_names(mod):
-            # Private members are shown in the docs (``private-members``),
-            # but coverage is still only required for the public API.
-            if name.startswith("_"):
-                continue
             if classify(member) not in want or name in skip:
                 continue
             keys.add(defining_dotted(mod, name, member))
@@ -199,6 +200,11 @@ def main():
         action="store_true",
         help=f"write the documented-names snapshot to {SNAPSHOT_PATH.relative_to(ROOT)}",
     )
+    parser.add_argument(
+        "--badge",
+        default=None,
+        help="write a shields.io endpoint badge JSON for the coverage percentage",
+    )
     args = parser.parse_args()
 
     explicit, warnings = documented_keys()
@@ -240,10 +246,6 @@ def main():
     missing = []
     for module in iter_modules():
         for name, obj in public_names(module):
-            # Private members are displayed but are not part of the covered
-            # public API (see docs/source/conf.py ``private-members``).
-            if name.startswith("_"):
-                continue
             # Type variables and type aliases are not documented data; they
             # never appear on Constants pages (autodoc_all.classify excludes
             # them).
@@ -262,13 +264,30 @@ def main():
             if key not in covered and key not in IGNORED_PUBLIC_NAMES:
                 missing.append(f"{module.__name__}.{name}")
 
+    covered_count = total - len(missing)
+    percent = 100.0 * covered_count / total if total else 100.0
+    if args.badge:
+        out = Path(args.badge)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(
+            json.dumps(build_badge(percent, "Docs Coverage"), indent=2) + "\n",
+            encoding="utf-8",
+        )
+        print(f"Wrote {out}: {percent:.1f}%")
+
     if missing:
-        print(f"FAIL  api-coverage  {len(missing)} issue(s)\n")
+        print(
+            f"FAIL  api-coverage  {percent:.1f}% "
+            f"({covered_count}/{total} names documented)\n"
+        )
         for dotted in sorted(missing):
-            print(f"  -:-  undocumented-public: {dotted}")
+            print(f"  -:-  undocumented-api: {dotted}")
         print(f"\nTotal: {len(missing)} issue(s)")
         return 1
-    print(f"PASS  api-coverage  {total} public name(s) checked")
+    print(
+        f"PASS  api-coverage  {percent:.1f}% "
+        f"({covered_count}/{total} names checked)"
+    )
     return 0
 
 

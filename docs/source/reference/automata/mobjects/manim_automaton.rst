@@ -15,6 +15,12 @@ Classes
 
    ~ManimAutomaton
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.automata.mobjects.manim_automaton
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

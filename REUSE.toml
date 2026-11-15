@@ -206,13 +206,6 @@ SPDX-License-Identifier = "MIT"
 source = "https://github.com/mutable-learning/manim-weighted-line"
 
 
-# Straightedge and compass - based on manim-straightedge-compass
-[[annotations]]
-path = "manim_extensions/straightedge_compass/**"
-SPDX-FileCopyrightText = ["2026 manim-straightedge-compass contributors", "2026 ExploreMaths"]
-SPDX-License-Identifier = "MIT"
-source = "https://pypi.org/project/manim-straightedge-compass/"
-
 # CAD drawing utilities - based on manim-CAD_Drawing_utils
 [[annotations]]
 path = "manim_extensions/cad_drawing_utils/**"
@@ -396,11 +389,6 @@ path = "docs/source/reference/basic/**/*.rst"
 SPDX-FileCopyrightText = ["2020 manim-kindergarten", "2026 ExploreMaths"]
 SPDX-License-Identifier = "MIT"
 
-
-[[annotations]]
-path = "docs/source/reference/straightedge_compass/**/*.rst"
-SPDX-FileCopyrightText = ["2026 manim-straightedge-compass contributors", "2026 ExploreMaths"]
-SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "docs/source/reference/cad_drawing_utils/**/*.rst"

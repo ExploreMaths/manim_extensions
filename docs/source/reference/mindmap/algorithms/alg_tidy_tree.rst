@@ -15,6 +15,12 @@ Classes
 
    ~TidyTreeLayout
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_tidy_tree
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

@@ -19,6 +19,12 @@ Classes
    ~RemoveNode
    ~ScaleNode
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.mindmap.animations.animations
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

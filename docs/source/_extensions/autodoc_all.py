@@ -161,29 +161,29 @@ def _is_dunder(name):
 
 
 def public_names(module):
-    """Return ``(name, object)`` pairs for the module's documented API.
+    """Return ``(name, object)`` pairs for every name in *module*.
 
-    Order: ``__all__`` wins when defined (author order); otherwise names
-    appear in **source definition order** (from :func:`_defined_top_level_names`),
-    followed by any qualifying names discovered via ``dir()`` that are not in
-    the source (dynamically created or re-exported with a matching
-    ``__module__``). Submodules are never included. Private names (a single
-    leading underscore) are kept; dunder names are still skipped.
+    ``__all__`` entries come first when defined, then every name bound at the
+    module's top level in **source definition order** (from
+    :func:`_defined_top_level_names`) that ``__all__`` did not already list,
+    followed by qualifying names discovered via ``dir()`` (dynamically
+    created or re-exported with a matching ``__module__``). The reference
+    manual and API coverage therefore see the whole module surface, including
+    private names, not only the public export list. Submodules are never
+    included; dunder names are still skipped.
     """
-    if hasattr(module, "__all__"):
-        candidates = list(module.__all__)
-    else:
-        defined = _defined_top_level_names(module)
-        defined_set = set(defined)
-        candidates = list(defined)
-        for n in dir(module):
-            if _is_dunder(n) or n in defined_set:
-                continue
-            obj = getattr(module, n, None)
-            if obj is None or isinstance(obj, types.ModuleType):
-                continue
-            if getattr(obj, "__module__", None) == module.__name__:
-                candidates.append(n)
+    candidates = list(getattr(module, "__all__", ()))
+    defined = _defined_top_level_names(module)
+    defined_set = set(defined)
+    candidates.extend(n for n in defined if n not in candidates)
+    for n in dir(module):
+        if _is_dunder(n) or n in defined_set or n in candidates:
+            continue
+        obj = getattr(module, n, None)
+        if obj is None or isinstance(obj, types.ModuleType):
+            continue
+        if getattr(obj, "__module__", None) == module.__name__:
+            candidates.append(n)
 
     out = []
     seen: set[str] = set()

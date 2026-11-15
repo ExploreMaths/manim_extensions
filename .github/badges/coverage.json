@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "label": "coverage",
+  "label": "PyTest Coverage",
   "message": "94.4%",
   "color": "brightgreen"
 }

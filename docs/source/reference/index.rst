@@ -47,13 +47,6 @@ from base Manim in blue.
    manim_extensions.circuit.mobjects.Capacitor
    manim_extensions.circuit.mobjects.Ground
    manim_extensions.circuit.mobjects.Opamp
-   manim_extensions.straightedge_compass.compass.Compass
-   manim_extensions.straightedge_compass.compass.CompassDrawArc
-   manim_extensions.straightedge_compass.marks.MarkedPoint
-   manim_extensions.straightedge_compass.scene.EuclidScene
-   manim_extensions.straightedge_compass.straightedge.Straightedge
-   manim_extensions.straightedge_compass.straightedge.PencilTip
-   manim_extensions.straightedge_compass.straightedge.RulerDraw
    manim_extensions.cad_drawing_utils.dimensions.Pointer_Label_Free
    manim_extensions.cad_drawing_utils.dimensions.Pointer_To_Mob
    manim_extensions.cad_drawing_utils.dimensions.Linear_Dimension
@@ -193,7 +186,6 @@ Module Index
    radar/index
    rubikscube/index
    sequence_diagram/index
-   straightedge_compass/index
    svg_animations/index
    table/index
    three_d/index
@@ -225,7 +217,6 @@ Module Index
 * :vendorstatus:`radar`
 * :vendorstatus:`rubikscube`
 * :vendorstatus:`sequence_diagram`
-* :vendorstatus:`straightedge_compass`
 * :vendorstatus:`svg_animations`
 * :vendorstatus:`table`
 * :vendorstatus:`three_d`

@@ -9,3 +9,9 @@ Functions
 
 .. autoall:: manim_extensions.mobject_svg.svg
    :types: function
+
+Internal API
+------------
+
+.. autoall:: manim_extensions.mobject_svg.svg
+   :missing-only:

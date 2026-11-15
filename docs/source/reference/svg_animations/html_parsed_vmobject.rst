@@ -20,6 +20,12 @@ Constants
 .. autoall:: manim_extensions.svg_animations.html_parsed_vmobject
    :types: data
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.svg_animations.html_parsed_vmobject
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

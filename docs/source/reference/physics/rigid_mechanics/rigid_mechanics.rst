@@ -22,6 +22,12 @@ Functions
 .. autoall:: manim_extensions.physics.rigid_mechanics.rigid_mechanics
    :types: function
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.physics.rigid_mechanics.rigid_mechanics
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

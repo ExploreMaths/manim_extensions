@@ -15,6 +15,12 @@ Classes
 
    ~StandardLayout
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.mindmap.algorithms.alg_standard
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

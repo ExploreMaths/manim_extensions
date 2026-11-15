@@ -81,6 +81,12 @@ Constants
 .. autoall:: manim_extensions.nerdfont
    :types: data
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.nerdfont
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

@@ -63,21 +63,22 @@ jobs:
         run: |
           xvfb-run -a pytest tests/ -v --cov=manim_extensions --cov-report=term-missing --cov-report=json:coverage.json --cov-fail-under=90
 
-      # The badge JSON is committed so shields.io can read it straight from
-      # raw.githubusercontent.com; only one matrix leg writes it, and only on
-      # main, so the other legs and PRs never race for the same file.
-      - name: Refresh the coverage badge
+      # Both badge JSONs are committed so shields.io can read them straight
+      # from raw.githubusercontent.com; only one matrix leg writes them, and
+      # only on main, so the other legs and PRs never race for the same file.
+      - name: Refresh the coverage badges
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.python-version == '3.12'
         run: |
           python workflow/coverage_badge.py coverage.json
-          if git diff --quiet -- .github/badges/coverage.json; then
-            echo "coverage badge unchanged"
+          python workflow/validate_api_coverage.py --badge .github/badges/docs-coverage.json
+          if git diff --quiet -- .github/badges/coverage.json .github/badges/docs-coverage.json; then
+            echo "coverage badges unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/badges/coverage.json
-          git commit -m "Refresh the coverage badge"
+          git add .github/badges/coverage.json .github/badges/docs-coverage.json
+          git commit -m "Refresh the coverage badges"
           # Another leg or a bot commit may land first; rebase before pushing.
           git pull --rebase --autostash -q origin main || true
           git push || echo "coverage badge push skipped (concurrent update)"

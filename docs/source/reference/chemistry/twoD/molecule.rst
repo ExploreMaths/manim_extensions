@@ -15,6 +15,12 @@ Classes
    ~MMoleculeObject
    ~NamedMolecule
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.chemistry.twoD.molecule
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

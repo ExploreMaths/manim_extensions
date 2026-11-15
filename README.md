@@ -17,7 +17,8 @@
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml/badge.svg" alt="CI" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml"><img src="https://github.com/ExploreMaths/manim_extensions/actions/workflows/validate.yml/badge.svg" alt="Validate" /></a>
   <a href="https://manim-extensions.readthedocs.io/en/latest/"><img src="https://img.shields.io/readthedocs/manim-extensions/latest?style=flat&logo=readthedocs&logoColor=white&label=Documentation" alt="Documentation" /></a>
-  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/coverage.json&label=Coverage" alt="Coverage" /></a>
+  <a href="https://github.com/ExploreMaths/manim_extensions/actions/workflows/python-package.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/coverage.json&label=PyTest%20Coverage" alt="PyTest Coverage" /></a>
+  <a href="https://manim-extensions.readthedocs.io/en/latest/reference/index.html"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ExploreMaths/manim_extensions/main/.github/badges/docs-coverage.json&label=Docs%20Coverage" alt="Docs Coverage" /></a>
   <a href="https://github.com/ExploreMaths/manim_extensions/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat&label=License" alt="License" /></a>
 </p>
 
@@ -62,7 +63,6 @@
 | `manim_extensions.radar` | Animated radar charts |
 | `manim_extensions.rubikscube` | Rubik's Cube animation toolkit |
 | `manim_extensions.sequence_diagram` | Sequence diagram animations |
-| `manim_extensions.straightedge_compass` | Straightedge-and-compass construction animations |
 | `manim_extensions.svg_animations` | HTML/SVG animation export |
 | `manim_extensions.table`      | Animated tables |
 | `manim_extensions.three_d` | 3D surface scene presets |
@@ -96,7 +96,6 @@ inside `manim_extensions`:
 - `manim-radar` → `manim_extensions.radar`
 - `manim-rubikscube` → `manim_extensions.rubikscube`
 - `manim-sequence-diagram` → `manim_extensions.sequence_diagram`
-- `manim-straightedge-compass` → `manim_extensions.straightedge_compass`
 - `manim-svg-animations` → `manim_extensions.svg_animations`
 - `manim-table` → `manim_extensions.table`
 - `manim-tikz` → `manim_extensions.tikz`

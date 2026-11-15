@@ -185,13 +185,6 @@ Modules
    ~scene
    ~utils
 
-Functions
----------
-
-.. autofunction:: manim_extensions.compass.utils.geometry_method.get_distance
-.. autofunction:: manim_extensions.compass.utils.geometry_method.get_vecs_angle
-.. autofunction:: manim_extensions.compass.utils.geometry_method.is_counter_clockwise
-
 .. toctree::
    :hidden:
    :maxdepth: 1

@@ -25,6 +25,12 @@ Classes
    ~MArrayPointer
    ~MArraySlidingWindow
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.data_structures.m_array
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

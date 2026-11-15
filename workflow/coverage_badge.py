@@ -28,11 +28,11 @@ def pick_color(percent):
     return "red"
 
 
-def build_badge(percent):
+def build_badge(percent, label="PyTest Coverage"):
     """Return the shields.io endpoint payload for a coverage percentage."""
     return {
         "schemaVersion": 1,
-        "label": "coverage",
+        "label": label,
         "message": f"{percent:.1f}%",
         "color": pick_color(percent),
     }
@@ -53,9 +53,14 @@ def main():
         default=".github/badges/coverage.json",
         help="badge JSON to write (default: .github/badges/coverage.json)",
     )
+    parser.add_argument(
+        "--label",
+        default="PyTest Coverage",
+        help="badge label (default: PyTest Coverage)",
+    )
     args = parser.parse_args()
 
-    badge = build_badge(read_percent(args.report))
+    badge = build_badge(read_percent(args.report), args.label)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     # Keep the file stable so a run without a change leaves git untouched.

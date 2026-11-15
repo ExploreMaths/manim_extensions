@@ -17,6 +17,12 @@ Classes
    ~OrbitalNegative
    ~OrbitalPositive
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.chemistry.orbitals.orbitals
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

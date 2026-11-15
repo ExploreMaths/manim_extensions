@@ -500,6 +500,12 @@ Modules
    ~cube_utils
    ~cubie
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.rubikscube
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

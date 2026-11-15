@@ -12,3 +12,9 @@ Functions
 
 .. autoall:: manim_extensions.radar.utils
    :types: function
+
+Internal API
+------------
+
+.. autoall:: manim_extensions.radar.utils
+   :missing-only:

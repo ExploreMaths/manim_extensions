@@ -243,14 +243,6 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - import/doc style normalization (commit `712865f`)
     - documented module-level constants with ``#:`` docstrings
 
-## `manim_extensions/straightedge_compass`
-  - **Upstream:** [manim-straightedge-compass](https://pypi.org/project/manim-straightedge-compass/)
-  - **Synced:** PyPI 0.1.1
-  - **Status:** vendored from PyPI (no public GitHub repository)
-  - **Local patches:**
-    - SPDX header; package references normalized to `manim_extensions.straightedge_compass`
-    - Black formatting applied to the vendored sources
-
 ## `manim_extensions/svg_animations`
   - **Upstream:** [MathItYT/manim-svg-animations](https://github.com/MathItYT/manim-svg-animations)
   - **Synced:** [`da696ce5693d6cb57d97553a8f7534b8dbe5ace5`](https://github.com/MathItYT/manim-svg-animations/commit/da696ce5693d6cb57d97553a8f7534b8dbe5ace5)

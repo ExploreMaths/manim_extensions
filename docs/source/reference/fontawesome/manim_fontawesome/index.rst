@@ -18,6 +18,12 @@ Constants
 .. autoall:: manim_extensions.fontawesome.manim_fontawesome
    :types: data
 
+Internal API
+------------
+
+.. autoall:: manim_extensions.fontawesome.manim_fontawesome
+   :missing-only:
+
 .. toctree::
    :hidden:
    :maxdepth: 1
