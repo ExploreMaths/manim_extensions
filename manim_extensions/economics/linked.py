@@ -38,12 +38,12 @@ class LinkedISLMADAS(VGroup):
 
     Examples
     --------
-    .. manim:: LinkedISLMADAS
+    .. manim:: LinkedISLMADASScene
 
        from manim import *
        from manim_extensions.economics import LinkedISLMADAS
 
-       class LinkedISLMADAS(Scene):
+       class LinkedISLMADASScene(Scene):
            def construct(self):
                linked = LinkedISLMADAS(numbered_eq=True, show_arrows=True)
                self.play(Create(linked))
