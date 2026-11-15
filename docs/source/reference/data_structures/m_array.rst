@@ -11,6 +11,7 @@ Indexed array visualization: elements, pointers, and sliding windows.
 
 .. inheritance-diagram:: manim_extensions.data_structures.m_array.MArrayElement manim_extensions.data_structures.m_array.MArray manim_extensions.data_structures.m_array.MArrayPointer manim_extensions.data_structures.m_array.MArraySlidingWindow
    :parts: 1
+   :private-bases:
 
 
 Classes

@@ -22,6 +22,7 @@ The code is bundled inside ``manim_extensions`` as the
 
 .. inheritance-diagram:: manim_extensions.economics.base.EconDiagram manim_extensions.economics.supply_demand.SupplyDemandDiagram manim_extensions.economics.ad_as.ADASDiagram manim_extensions.economics.is_lm.ISLMDiagram manim_extensions.economics.linked.LinkedISLM_ADAS manim_extensions.economics.solow.SolowDiagram
    :parts: 1
+   :private-bases:
 
 Features
 --------

@@ -158,6 +158,7 @@ from base Manim in blue.
    manim_extensions.weighted_line.weighted_line.WeightedLine
    manim_extensions.nerdfont.icons.NerdFontIcon
    :parts: 1
+   :private-bases:
    :top-classes: manim.mobject.mobject.Mobject, manim.animation.animation.Animation, manim.mobject.types.vectorized_mobject.VMobject, manim.mobject.types.vectorized_mobject.SVGMobject, manim.mobject.geometry.line.Line, manim.animation.composition.AnimationGroup
 
 Module Index

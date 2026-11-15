@@ -11,6 +11,7 @@ This module provides scene classes that extend Manim's built-in
 
 .. inheritance-diagram:: manim_extensions.scenes
    :parts: 1
+   :private-bases:
 
 
 Classes

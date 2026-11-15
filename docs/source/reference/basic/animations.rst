@@ -12,6 +12,7 @@ inside a :class:`~manim.scene.scene.Scene`.
 
 .. inheritance-diagram:: manim_extensions.animations
    :parts: 1
+   :private-bases:
 
 
 Classes
