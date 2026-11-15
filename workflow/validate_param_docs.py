@@ -29,14 +29,11 @@ If no directory is given, scans ``manim_extensions/`` by default.
 
 import argparse
 import ast
-import json
 import re
 import sys
 from pathlib import Path
 
 from _context import ROOT, SRC
-
-EXEMPTIONS_FILE = Path(__file__).resolve().parent / "param_docs_exemptions.json"
 
 SKIP_FILES: set[str] = set()
 
@@ -199,14 +196,6 @@ def check_file(file_path: Path) -> list:
     return issues
 
 
-def load_exemptions() -> dict:
-    """Load the exemptions JSON; return {relative_path: set(qualnames)}."""
-    if not EXEMPTIONS_FILE.exists():
-        return {}
-    data = json.loads(EXEMPTIONS_FILE.read_text(encoding="utf-8"))
-    return {path: set(names) for path, names in data.items()}
-
-
 def collect_files(targets: list) -> list:
     """Resolve CLI targets to a sorted list of Python files."""
     py_files = []
@@ -223,18 +212,12 @@ def main() -> int:
     """Main validation function."""
     parser = argparse.ArgumentParser(
         description="Validate that __init__ parameters are documented in the "
-        "class docstring; optionally (re)write the exemptions file."
+        "class docstring."
     )
     parser.add_argument(
         "targets",
         nargs="*",
         help="Files or directories to scan (default: manim_extensions/)",
-    )
-    parser.add_argument(
-        "--write-exemptions",
-        action="store_true",
-        help="Write ALL current violations to the exemptions file. "
-        "This blesses the current state — review the diff carefully.",
     )
     args = parser.parse_args()
 
@@ -247,35 +230,11 @@ def main() -> int:
         if issues:
             all_issues[fp] = issues
 
-    if args.write_exemptions:
-        data = {}
+    if all_issues:
+        total_issues = sum(len(v) for v in all_issues.values())
+        print(f"FAIL  param-docs  {total_issues} issue(s)\n")
         for fp, issues in all_issues.items():
             rel = fp.resolve().relative_to(ROOT).as_posix()
-            data[rel] = sorted({i["class_name"] for i in issues})
-        EXEMPTIONS_FILE.write_text(
-            json.dumps(data, indent=2, sort_keys=True) + "\n",
-            encoding="utf-8",
-        )
-        total = sum(len(v) for v in data.values())
-        print(
-            f"Wrote {total} exempted classes for {len(data)} files to "
-            f"{EXEMPTIONS_FILE.name}. Review the diff before committing!"
-        )
-        return 0
-
-    exemptions = load_exemptions()
-    unexempted = {}
-    for fp, issues in all_issues.items():
-        rel = fp.resolve().relative_to(ROOT).as_posix()
-        exempt = exemptions.get(rel, set())
-        leftover = [i for i in issues if i["class_name"] not in exempt]
-        if leftover:
-            unexempted[rel] = leftover
-
-    if unexempted:
-        total_issues = sum(len(v) for v in unexempted.values())
-        print(f"FAIL  param-docs  {total_issues} issue(s)\n")
-        for rel, issues in unexempted.items():
             for issue in issues:
                 stype = (
                     issue["type"]

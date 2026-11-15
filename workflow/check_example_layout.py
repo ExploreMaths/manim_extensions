@@ -13,22 +13,18 @@ camera frame:
 - ``TOO_SMALL``: content covers less than 25% of the frame in both
   dimensions (it renders as an unusably tiny figure).
 
-Intentional cases (full-bleed backgrounds, deliberately tiny demos) are
-listed in ``workflow/example_layout_exemptions.json`` as a flat list of
-scene class names. Examples whose code renders nested scenes are skipped
-entirely; probe errors (an example that cannot run headlessly) are
+Every doc example is probed. Examples whose code renders nested scenes are
+skipped entirely; probe errors (an example that cannot run headlessly) are
 reported as warnings and do not fail the check — renderability itself is
 enforced by the docs media pipeline.
 
 Usage:
     python workflow/check_example_layout.py [--workers N]
-    python workflow/check_example_layout.py --write-exemptions
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import multiprocessing
 import sys
 import traceback
@@ -55,8 +51,6 @@ def _patched_fromarray(obj, mode=None):
 
 
 _PILImage.fromarray = _patched_fromarray
-
-EXEMPTIONS_FILE = Path(__file__).resolve().parent / "example_layout_exemptions.json"
 
 # A margin of 5% of the frame size is allowed before content counts as
 # cut off (thin strokes at the exact edge are fine).
@@ -209,12 +203,6 @@ def main() -> int:
     """Main check function."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument(
-        "--write-exemptions",
-        action="store_true",
-        help="Write ALL currently flagged scene names to the exemptions "
-        "file. Review the result before committing!",
-    )
     args = parser.parse_args()
 
     import render_doc_examples as rde
@@ -265,22 +253,9 @@ def main() -> int:
         if kind:
             flagged.append((kind, class_name, source, m))
 
-    if args.write_exemptions:
-        EXEMPTIONS_FILE.write_text(
-            json.dumps(sorted({c for _k, c, _s, _m in flagged}), indent=2) + "\n",
-            encoding="utf-8",
-        )
-        print(f"Wrote {len(flagged)} exempted names to {EXEMPTIONS_FILE.name}.")
-        return 0
+    remaining_errors = errors
 
-    exemptions = set()
-    if EXEMPTIONS_FILE.exists():
-        exemptions = set(json.loads(EXEMPTIONS_FILE.read_text(encoding="utf-8")))
-
-    unexempted = [f for f in flagged if f[1] not in exemptions]
-    remaining_errors = [e for e in errors if e[0] not in exemptions]
-
-    for kind, class_name, source, m in sorted(unexempted):
+    for kind, class_name, source, m in sorted(flagged):
         cover_w = m["width"] / m["frame_width"]
         cover_h = m["height"] / m["frame_height"]
         detail = (
@@ -294,12 +269,9 @@ def main() -> int:
         first = err.strip().splitlines()[-1] if err.strip() else "?"
         print(f"  WARN probe error (not counted) {class_name} ({source}): " f"{first}")
 
-    total = len(unexempted)
+    total = len(flagged)
     if total:
-        print(
-            f"\nTotal: {total} layout issue(s) "
-            f"({len(flagged) - len(unexempted)} exempted)"
-        )
+        print(f"\nTotal: {total} layout issue(s)")
         return 1
     print("All doc examples are in frame and at a reasonable scale.")
     return 0

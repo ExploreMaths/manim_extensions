@@ -55,9 +55,9 @@ This script checks that public functions, methods, and classes in
 6d. The docstring closing triple-quote must be indented to the same column
    as the opening triple-quote; a closing quote flush at column 0 is
    rejected.
-7. Mobject subclasses (including indirect subclasses within the same file)
-   must include a ``.. manim::`` example block in the class docstring.
-   Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
+7. Every public class docstring must carry an ``Examples`` section.
+   Mobject subclasses must also include a ``.. manim::`` block in that
+   section.
 
 Every class and function is checked, including private members. Only
 non-package directories such as ``tests/`` and ``workflow/`` are out of
@@ -69,14 +69,11 @@ Usage:
 
 import argparse
 import ast
-import json
 import re
 import sys
 from pathlib import Path
 
 from _context import ROOT, SRC
-
-EXEMPTIONS_FILE = Path(__file__).resolve().parent / "doc_section_exemptions.json"
 
 SECTION_NAMES = (
     "Parameters",
@@ -1438,14 +1435,6 @@ def check_file(filepath: Path) -> list:
     return violations
 
 
-def load_exemptions() -> dict:
-    """Load the exemptions JSON; return {relative_path: set(qualnames)}."""
-    if not EXEMPTIONS_FILE.exists():
-        return {}
-    data = json.loads(EXEMPTIONS_FILE.read_text(encoding="utf-8"))
-    return {path: set(names) for path, names in data.items()}
-
-
 def iter_py_files():
     """Yield all Python files under manim_extensions, skipping caches."""
     for path in sorted(SRC.rglob("*.py")):
@@ -1457,18 +1446,10 @@ def iter_py_files():
 def main() -> int:
     """Main validation function."""
     parser = argparse.ArgumentParser(
-        description="Validate numpydoc sections and manim examples; "
-        "optionally (re)write the exemptions file."
-    )
-    parser.add_argument(
-        "--write-exemptions",
-        action="store_true",
-        help="Write ALL current violations to the exemptions file. "
-        "This blesses the current state — review the diff carefully.",
+        description="Validate numpydoc sections and manim examples."
     )
     args = parser.parse_args()
 
-    exemptions = load_exemptions()
     all_violations = {}
 
     for filepath in iter_py_files():
@@ -1476,34 +1457,11 @@ def main() -> int:
         if violations:
             all_violations[filepath] = violations
 
-    if args.write_exemptions:
-        data = {}
-        for filepath, violations in all_violations.items():
-            rel = filepath.relative_to(ROOT).as_posix()
-            names = sorted({v["qualname"] for v in violations})
-            data[rel] = names
-        EXEMPTIONS_FILE.write_text(
-            json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
-        total = sum(len(v) for v in data.values())
-        print(
-            f"Wrote {total} exempted names for {len(data)} files to "
-            f"{EXEMPTIONS_FILE.name}. Review the diff before committing!"
-        )
-        return 0
-
-    unexempted = {}
-    for filepath, violations in all_violations.items():
-        rel = filepath.relative_to(ROOT).as_posix()
-        exempt = exemptions.get(rel, set())
-        leftover = [v for v in violations if v["qualname"] not in exempt]
-        if leftover:
-            unexempted[rel] = leftover
-
-    total = sum(len(v) for v in unexempted.values())
+    total = sum(len(v) for v in all_violations.values())
     if total:
         print(f"FAIL  doc-sections  {total} issue(s)\n")
-        for rel, violations in sorted(unexempted.items()):
+        for filepath, violations in sorted(all_violations.items()):
+            rel = filepath.relative_to(ROOT).as_posix()
             for v in violations:
                 print(
                     f"  {rel}:{v['line']}  missing-section: {v['qualname']}: {v['message']}"
