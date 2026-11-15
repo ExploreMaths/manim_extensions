@@ -41,7 +41,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     covariance
         Covariance matrix of the Gaussian point cloud.
     dist_theme
-        Theme of the latent distribution visualization.
+        Colour theme of the latent distribution visualization.
     paired_query_mode
         Whether the embedding shows positive/negative query images.
     **kwargs
