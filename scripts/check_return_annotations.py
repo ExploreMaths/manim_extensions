@@ -31,8 +31,6 @@ from _context import SRC as PACKAGE  # noqa: E402
 
 
 def _ignored_module(rel: str) -> bool:
-    if "fontawesome" in rel:
-        return True
     if "/test" in rel or rel.startswith("test") or "_test.py" in rel or "tests" in rel:
         return True
     return False
@@ -88,11 +86,6 @@ def main() -> int:
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             name = node.name
-            if name.startswith("_"):
-                continue
-            doc = ast.get_docstring(node)
-            if doc is None:
-                continue
             if node.returns is not None:
                 continue
             if not _has_value_return(node):

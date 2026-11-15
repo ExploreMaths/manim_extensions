@@ -51,83 +51,7 @@ SKIP_PATTERNS = [
 # Dunder methods that are conventionally left undocumented.
 # ``__init__`` is special-cased: it must NOT have a docstring, so its
 # description lives in the class docstring instead.
-SKIP_DUNDER = {
-    "__repr__",
-    "__str__",
-    "__len__",
-    "__getitem__",
-    "__setitem__",
-    "__delitem__",
-    "__enter__",
-    "__exit__",
-    "__call__",
-    "__eq__",
-    "__ne__",
-    "__lt__",
-    "__le__",
-    "__gt__",
-    "__ge__",
-    "__add__",
-    "__sub__",
-    "__mul__",
-    "__truediv__",
-    "__contains__",
-    "__iter__",
-    "__next__",
-    "__hash__",
-    "__getattr__",
-    "__setattr__",
-    "__delattr__",
-    "__new__",
-    "__bool__",
-    "__abs__",
-    "__pos__",
-    "__neg__",
-    "__invert__",
-    "__int__",
-    "__float__",
-    "__complex__",
-    "__round__",
-    "__trunc__",
-    "__floor__",
-    "__ceil__",
-    "__index__",
-    "__format__",
-    "__sizeof__",
-    "__class_getitem__",
-    "__init_subclass__",
-    "__set_name__",
-    "__copy__",
-    "__deepcopy__",
-    "__reduce__",
-    "__reduce_ex__",
-    "__getstate__",
-    "__setstate__",
-    "__getattribute__",
-    "__dir__",
-    "__subclasshook__",
-    "__instancecheck__",
-    "__missing__",
-    "__del__",
-    "__post_init__",
-    "__abstractmethods__",
-    "__parameters__",
-    "__orig_bases__",
-    "__type_params__",
-    "__slots__",
-    "__mro_entries__",
-    "__annotations__",
-    "__dict__",
-    "__module__",
-}
-
 # Decorator/protocol inner functions where docstrings are optional.
-SKIP_NAMES = {
-    "wrapper",
-    "decorator_maker",
-    "real_test",
-}
-
 SPDX_PATTERNS = [  # REUSE-IgnoreStart
     "# SPDX-FileCopyrightText:",
     "# SPDX-License-Identifier:",
@@ -320,18 +244,6 @@ def check_function_docstrings(filepath):
             # Constructors are documented by the class docstring, not by
             # their own docstring (see check_init_docstrings).
             if name == "__init__":
-                continue
-
-            # Skip private members (starting with _) except __init__
-            if name.startswith("_") and name != "__init__":
-                # Skip dunder methods in SKIP_DUNDER
-                if name in SKIP_DUNDER:
-                    continue
-                # Skip other private methods
-                if name != "__init__":
-                    continue
-
-            if name in SKIP_NAMES:
                 continue
 
             if not ast.get_docstring(node):

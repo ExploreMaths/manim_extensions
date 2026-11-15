@@ -59,15 +59,12 @@ This script checks that public functions, methods, and classes in
    must include a ``.. manim::`` example block in the class docstring.
    Pure ``Enum``/``ABC`` classes and non-mobject helpers are exempt.
 
-Violations may be exempted via ``workflow/doc_section_exemptions.json``,
-which maps a repository-relative file path to a list of qualified names
-(e.g. ``"ClassName"``, ``"ClassName.method"``, ``"function"``). This is
-intended mainly for vendored subpackages that are kept in sync with
-upstream projects.
+Every class and function is checked, including private members. Only
+non-package directories such as ``tests/`` and ``workflow/`` are out of
+scope.
 
 Usage:
     python validate_doc_sections.py
-    python validate_doc_sections.py --write-exemptions
 """
 
 import argparse
@@ -92,83 +89,7 @@ SECTION_NAMES = (
 )
 
 # Dunder methods that are conventionally left undocumented.
-SKIP_DUNDER = {
-    "__repr__",
-    "__str__",
-    "__len__",
-    "__getitem__",
-    "__setitem__",
-    "__delitem__",
-    "__enter__",
-    "__exit__",
-    "__call__",
-    "__eq__",
-    "__ne__",
-    "__lt__",
-    "__le__",
-    "__gt__",
-    "__ge__",
-    "__add__",
-    "__sub__",
-    "__mul__",
-    "__truediv__",
-    "__contains__",
-    "__iter__",
-    "__next__",
-    "__hash__",
-    "__getattr__",
-    "__setattr__",
-    "__delattr__",
-    "__new__",
-    "__bool__",
-    "__abs__",
-    "__pos__",
-    "__neg__",
-    "__invert__",
-    "__int__",
-    "__float__",
-    "__complex__",
-    "__round__",
-    "__trunc__",
-    "__floor__",
-    "__ceil__",
-    "__index__",
-    "__format__",
-    "__sizeof__",
-    "__class_getitem__",
-    "__init_subclass__",
-    "__set_name__",
-    "__copy__",
-    "__deepcopy__",
-    "__reduce__",
-    "__reduce_ex__",
-    "__getstate__",
-    "__setstate__",
-    "__getattribute__",
-    "__dir__",
-    "__subclasshook__",
-    "__instancecheck__",
-    "__missing__",
-    "__del__",
-    "__post_init__",
-    "__abstractmethods__",
-    "__parameters__",
-    "__orig_bases__",
-    "__type_params__",
-    "__slots__",
-    "__mro_entries__",
-    "__annotations__",
-    "__dict__",
-    "__module__",
-}
-
 # Decorator/protocol inner functions where docstrings are optional.
-SKIP_NAMES = {
-    "wrapper",
-    "decorator_maker",
-    "real_test",
-}
-
 # Base class names that indicate an mobject (renderable) subclass.
 MOBJECT_BASE_NAMES = {
     "Mobject",
@@ -1308,8 +1229,6 @@ def check_file(filepath: Path) -> list:
     def visit_body(body, prefix, in_class):
         for node in body:
             if isinstance(node, ast.ClassDef):
-                if node.name.startswith("_"):
-                    continue
                 check_class(node, prefix)
                 visit_body(node.body, f"{prefix}{node.name}.", True)
             elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -1320,12 +1239,6 @@ def check_file(filepath: Path) -> list:
 
     def check_function(node, prefix, is_method):
         name = node.name
-        if name in SKIP_NAMES:
-            return
-        if name.startswith("_") and name != "__init__":
-            return
-        if name in SKIP_DUNDER:
-            return
         doc = ast.get_docstring(node)
         if doc is None:
             return  # missing docstrings are enforced by validate_docstrings.py

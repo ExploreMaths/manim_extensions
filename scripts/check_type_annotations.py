@@ -39,7 +39,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "workflow"))
 from _context import ROOT as REPO_ROOT  # noqa: E402
 from _context import SRC  # noqa: E402
 
-SKIP_DIR_PARTS = {"fontawesome", "__pycache__", "tests", "docs", "build"}
+SKIP_DIR_PARTS = {"__pycache__", "tests", "docs", "build"}
 
 
 def should_skip(path: Path) -> bool:

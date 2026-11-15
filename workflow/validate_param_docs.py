@@ -17,14 +17,12 @@ classes. Numpydoc sections are detected by their ``----------`` underline, so
 free-form description lines (e.g. "A Manim color") cannot be mistaken for
 section headers.
 
-Violations may be exempted via ``workflow/param_docs_exemptions.json``, which
-maps a repository-relative file path to a list of qualified class names. This
-is intended mainly for vendored subpackages that are kept in sync with
-upstream projects.
+Every class is checked, including private classes and ``__init__.py``.
+Only non-package directories such as ``tests/`` and ``workflow/`` are out of
+scope.
 
 Usage:
     python validate_param_docs.py [directory ...]
-    python validate_param_docs.py --write-exemptions
 
 If no directory is given, scans ``manim_extensions/`` by default.
 """
@@ -40,15 +38,7 @@ from _context import ROOT, SRC
 
 EXEMPTIONS_FILE = Path(__file__).resolve().parent / "param_docs_exemptions.json"
 
-SKIP_FILES = {"__init__.py"}
-
-SKIP_CLASSES = {"ABC"}
-
-KNOWN_NO_PARAMS = {
-    "ManimAnimations",
-    "ManimTuringMachine",
-    "PushDownAutomatonRule",
-}
+SKIP_FILES: set[str] = set()
 
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
 BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
@@ -171,10 +161,6 @@ def check_file(file_path: Path) -> list:
 
     def check_class(node: ast.ClassDef, prefix: str) -> None:
         class_name = node.name
-        if class_name in SKIP_CLASSES or class_name in KNOWN_NO_PARAMS:
-            return
-        if class_name.startswith("_"):
-            return
         qualname = f"{prefix}{class_name}"
         init = find_init(node)
         if init is None:

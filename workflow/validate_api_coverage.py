@@ -56,29 +56,7 @@ DOCS_TOOLS = {"docbuild", "testing", "custom_mobjects", "__pycache__"}
 
 # Public names deliberately excluded from the API docs (recorded
 # decisions; keep in sync with :skip: options in the rst sources).
-IGNORED_PUBLIC_NAMES = {
-    # Module-level singleton instance (manim_extensions.machine_learning);
-    # skipped via ":skip: config" in reference/machine_learning/constants.rst.
-    "manim_extensions.machine_learning.config",
-    # Internal logging plumbing of the qr_codes package; not user-facing.
-    "manim_extensions.qr_codes.logger.FORMAT",
-    "manim_extensions.qr_codes.logger.log",  # Module-level loggers (chemistry parsers/molecule builders);
-    # skipped via ":skip: logger" in reference/chemistry/constants.rst.
-    "manim_extensions.chemistry.twoD.graph_molecule.logger",
-    "manim_extensions.chemistry.twoD.molecule.logger",
-    # Build-machine specific asset directory paths (fontawesome);
-    # skipped via ":skip:" in reference/fontawesome/constants.rst.
-    "manim_extensions.fontawesome.manim_fontawesome.svg_dir",
-    "manim_extensions.fontawesome.manim_fontawesome.brand_dir",
-    "manim_extensions.fontawesome.manim_fontawesome.regular_dir",
-    "manim_extensions.fontawesome.manim_fontawesome.solid_dir",
-    # Click command/group objects of the chemistry CLI; they are
-    # documented as prose in reference/chemistry/index.rst ("Command-line
-    # interface") rather than through autodoc, and are skipped via
-    # ":skip: cli pubchem_molecule" in reference/chemistry/constants.rst.
-    "manim_extensions.chemistry.cli.cli",
-    "manim_extensions.chemistry.cli.pubchem_molecule",
-}
+IGNORED_PUBLIC_NAMES: set[str] = set()
 
 DIRECTIVE_RE = re.compile(
     r"^\.\.\s+(autoclass|autofunction|autodata|autoall)::\s+(\S+)\s*$",
