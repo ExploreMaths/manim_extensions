@@ -6,6 +6,7 @@
 constructions into short, declarative animations."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Scene,
@@ -59,7 +60,8 @@ class EuclidScene(Scene):
     default_arc_time = 2.4
     default_segment_time = 1.3
 
-    def setup(self):
+    def setup(self) -> Any:
+        """setup."""
         super().setup()
         self.compass = Compass()
         self.ruler = Straightedge()
@@ -68,7 +70,7 @@ class EuclidScene(Scene):
 
     # ------------------------------------------------------------------ marks
 
-    def intro(self, title: str, font_size: int = 30):
+    def intro(self, title: str, font_size: int = 30) -> Any:
         """Write a Chinese/English title, then shrink it to the top-left
         corner so the construction has the whole stage."""
         text = Text(title, font_size=font_size, color="#D7DEE5")
@@ -82,14 +84,14 @@ class EuclidScene(Scene):
 
     def mark_point(
         self,
-        point,
+        point: Any,
         label: str = None,
-        direction=0.42 * UP,
-        color=POINT_COLOR,
+        direction: Any = 0.42 * UP,
+        color: Any = POINT_COLOR,
         radius: float = 0.06,
         font_size: int = 34,
         run_time: float = 0.35,
-    ):
+    ) -> Any:
         """Drop a coloured marker (and optional label) on a point."""
         point = as_point(point)
         marked = MarkedPoint(point, label, direction, color, radius, font_size)
@@ -100,7 +102,8 @@ class EuclidScene(Scene):
 
     # ---------------------------------------------------------------- compass
 
-    def _bring_compass(self, center, radius, start_angle):
+    def _bring_compass(self, center: Any, radius: Any, start_angle: Any) -> Any:
+        """_bring_compass."""
         center = as_point(center)
         if self._compass_away:
             self.compass.pose(center + OFFSCREEN, radius, start_angle)
@@ -116,7 +119,8 @@ class EuclidScene(Scene):
                 run_time=self.tool_travel_time * 0.7,
             )
 
-    def _retire_compass(self):
+    def _retire_compass(self) -> Any:
+        """_retire_compass."""
         c = self.compass.center
         self.play(
             self.compass.animate.pose(
@@ -129,15 +133,15 @@ class EuclidScene(Scene):
 
     def draw_arc(
         self,
-        center,
+        center: Any,
         radius: float,
         start_angle: float = 0.0,
         angle: float = TAU,
-        color=CONSTRUCTION_COLOR,
+        color: Any = CONSTRUCTION_COLOR,
         stroke_width: float = 2.0,
         run_time: float = None,
         keep_compass: bool = False,
-    ):
+    ) -> Any:
         """Sweep an arc with the compass and leave it on the paper."""
         center = as_point(center)
         if run_time is None:
@@ -163,14 +167,14 @@ class EuclidScene(Scene):
 
     def draw_circle(
         self,
-        center,
-        through=None,
+        center: Any,
+        through: Any = None,
         radius: float = None,
-        color=CONSTRUCTION_COLOR,
+        color: Any = CONSTRUCTION_COLOR,
         stroke_width: float = 2.0,
         run_time: float = None,
         start_angle: float = 0.0,
-    ):
+    ) -> Any:
         """Draw a full circle, either with explicit radius or radius equal to
         the distance ``center -> through`` (compass picks up that length)."""
         if radius is None:
@@ -189,7 +193,8 @@ class EuclidScene(Scene):
 
     # ------------------------------------------------------------ straightedge
 
-    def _bring_ruler(self, p1, p2):
+    def _bring_ruler(self, p1: Any, p2: Any) -> Any:
+        """_bring_ruler."""
         p1, p2 = as_point(p1), as_point(p2)
         if self._ruler_away:
             self.ruler.pose(p1 + OFFSCREEN, p2 + OFFSCREEN)
@@ -201,7 +206,8 @@ class EuclidScene(Scene):
                 self.ruler.animate.pose(p1, p2), run_time=self.tool_travel_time * 0.7
             )
 
-    def _retire_ruler(self):
+    def _retire_ruler(self) -> Any:
+        """_retire_ruler."""
         p1, p2 = self._ruler_endpoints
         self.play(
             self.ruler.animate.pose(p1 + OFFSCREEN, p2 + OFFSCREEN),
@@ -210,20 +216,20 @@ class EuclidScene(Scene):
         self.remove(self.ruler)
         self._ruler_away = True
 
-    def retire_ruler(self):
+    def retire_ruler(self) -> Any:
         """Send the ruler offstage after a run of keep_ruler segments."""
         self._retire_ruler()
 
     def draw_segment(
         self,
-        p1,
-        p2,
-        color=RESULT_COLOR,
+        p1: Any,
+        p2: Any,
+        color: Any = RESULT_COLOR,
         stroke_width: float = 4,
         run_time: float = None,
         keep_ruler: bool = False,
         tip_fade: float = 0.25,
-    ):
+    ) -> Any:
         """Lay the ruler along p1p2 and draw the segment with a pencil.
 
         Pass ``keep_ruler=True`` for consecutive segments: the ruler stays on
@@ -250,7 +256,7 @@ class EuclidScene(Scene):
 
     # --------------------------------------------------------------- utilities
 
-    def flash_points(self, *points, color=RESULT_COLOR):
+    def flash_points(self, *points, color: Any = RESULT_COLOR) -> Any:
         """Briefly emphasise already-computed points."""
         dots = [MarkedPoint(as_point(q), color=color, radius=0.08).dot for q in points]
         for d in dots:

@@ -13,7 +13,7 @@ keeps its colour across the whole reel.
 from __future__ import annotations
 
 from dataclasses import replace
-from typing import Iterable, List, Optional, Union
+from typing import Any, Iterable, List, Optional, Union
 
 from manim import Scene, UpdateFromAlphaFunc
 
@@ -90,7 +90,8 @@ class RadarReel:
         self.datasets = [d for step in self.steps for d in step]
 
     # ------------------------------------------------------------------
-    def _normalize_step(self, item) -> List[RadarData]:
+    def _normalize_step(self, item: Any) -> List[RadarData]:
+        """_normalize_step."""
         if isinstance(item, (list, tuple)) and not (
             item and isinstance(item[0], (int, float))
         ):
@@ -164,7 +165,7 @@ class RadarReel:
         return "\n".join(lines)
 
     # ------------------------------------------------------------------
-    def play_on(self, scene: Scene) -> "RadarReel":
+    def play_on(self, scene: Scene) -> RadarReel:
         """Play the whole sequence on ``scene``."""
         chart = self.chart
         if self.verbose:
@@ -228,6 +229,7 @@ class RadarReel:
 
     # ------------------------------------------------------------------
     def _install_backdrop(self, scene: Scene) -> None:
+        """_install_backdrop."""
         spec = self.backdrop_spec
         if spec is False or spec is None:
             return
@@ -241,6 +243,7 @@ class RadarReel:
         self.backdrop.link(self.chart)
 
     def _fade_backdrop(self, scene: Scene, to: float, run_time: float) -> None:
+        """_fade_backdrop."""
         if self.backdrop is None:
             return
         start = self.backdrop._fade

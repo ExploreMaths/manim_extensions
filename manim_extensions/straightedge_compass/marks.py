@@ -5,6 +5,7 @@
 """Point markers and labels."""
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 from manim import Dot, MathTex, VGroup, UP
@@ -20,14 +21,14 @@ class MarkedPoint(VGroup):
 
     def __init__(
         self,
-        point,
+        point: Any,
         label: str = None,
-        direction=0.42 * UP,
-        color=POINT_COLOR,
+        direction: Any = 0.42 * UP,
+        color: Any = POINT_COLOR,
         radius: float = 0.06,
         font_size: int = 34,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         point = as_point(point)
         self.dot = Dot(point, radius=radius, color=color, z_index=15)
@@ -47,5 +48,6 @@ class MarkedPoint(VGroup):
             self.add(self.label_mob)
 
     @property
-    def point(self):
+    def point(self) -> Any:
+        """point."""
         return self.dot.get_center()

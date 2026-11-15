@@ -75,7 +75,7 @@ def replica_datasets(
     max_value: float = REPLICA_MAX,
     hold_scale: float = 1.0,
 ) -> list[RadarData]:
-    """Turn :data:`REPLICA_TIMELINE` into a list of :class:`~manim_extensions.radar.data.RadarData`.
+    """Turn :data:`~manim_extensions.radar.legacy.REPLICA_TIMELINE` into a list of :class:`~manim_extensions.radar.data.RadarData`.
 
     Holds are derived from the original timestamps so that the whole reel keeps
     its original pace.
@@ -116,6 +116,7 @@ class RadarV1Scene(Scene):
     title: Optional[str] = None
 
     def construct(self) -> None:
+        """construct."""
         chart = RadarChart(
             replica_datasets()[0],
             style=self.style,
@@ -143,6 +144,7 @@ class RadarV2Scene(Scene):
     title: Optional[str] = "六维能力 · 雷达图鉴"
 
     def construct(self) -> None:
+        """construct."""
         from .backdrop import set_scene_background
 
         set_scene_background(self.theme)

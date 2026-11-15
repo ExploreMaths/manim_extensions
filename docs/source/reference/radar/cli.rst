@@ -12,3 +12,9 @@ Functions
 
 .. autoall:: manim_extensions.radar.cli
    :types: function
+
+Constants
+---------
+
+.. autoall:: manim_extensions.radar.cli
+   :types: data

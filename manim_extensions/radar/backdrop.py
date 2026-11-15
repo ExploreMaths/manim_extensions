@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Sequence, Union
+from typing import Any, Sequence, Union
 
 import numpy as np
 from manim import Circle, ManimColor, VGroup, WHITE, config
@@ -166,30 +166,31 @@ class DeepSpace(VGroup):
         self.add_updater(self._refresh)
 
     # ------------------------------------------------------------------
-    def link(self, chart) -> "DeepSpace":
+    def link(self, chart: Any) -> DeepSpace:
         """Follow ``chart``'s current colour (call once, e.g. in ``construct``)."""
         self._linked = chart
         chart.add_updater(lambda m, dt: self.set_tint(m.current_color))
         self.set_tint(chart.current_color)
         return self
 
-    def set_tint(self, color) -> "DeepSpace":
+    def set_tint(self, color: Any) -> DeepSpace:
         """Recolour the nebula and the star halos."""
         self._tint = ManimColor(color)
         return self
 
-    def set_fade(self, value: float) -> "DeepSpace":
+    def set_fade(self, value: float) -> DeepSpace:
         """Global brightness of the backdrop, ``1`` = full, ``0`` = almost black."""
         self._fade = float(np.clip(value, 0.0, 1.0))
         return self
 
-    def install(self, scene) -> "DeepSpace":
+    def install(self, scene: Any) -> DeepSpace:
         """Add the backdrop to a scene (``backdrop.install(self)``)."""
         scene.add(self)
         return self
 
     # ------------------------------------------------------------------
     def _refresh(self, mob: VGroup, dt: float) -> None:
+        """_refresh."""
         self._time += dt
         t = self._time
         f = self._fade

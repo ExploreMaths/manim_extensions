@@ -203,7 +203,7 @@ class RadarConfig:
     text_kwargs: dict = field(default_factory=dict)
 
     # ------------------------------------------------------------------
-    def evolved(self, **changes) -> "RadarConfig":
+    def evolved(self, **changes) -> RadarConfig:
         """Return a copy with a few fields replaced (``None`` values ignored)."""
         clean = {k: v for k, v in changes.items() if v is not None}
         unknown = set(clean) - set(self.__dataclass_fields__)
@@ -213,7 +213,7 @@ class RadarConfig:
             )
         return replace(self, **clean)
 
-    def validated(self) -> "RadarConfig":
+    def validated(self) -> RadarConfig:
         """Sanity-check the numbers; raises ``ValueError`` on nonsense."""
         if self.radius <= 0:
             raise ValueError("radius must be > 0")
@@ -297,6 +297,7 @@ STYLES: dict[str, RadarConfig] = {
         morph_run_time=1.1,
     ),
 }
+"""Bundled radar style presets keyed by style name."""
 
 
 def style_names() -> list[str]:

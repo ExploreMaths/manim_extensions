@@ -42,7 +42,8 @@ Create a complete Gaussian-surface scene with the fast pace:
 
    from manim_extensions.three_d import gaussian_surface_scene
 
-   ThreeDDemo = gaussian_surface_scene(pace="fast")
+   class ThreeDDemo(gaussian_surface_scene(pace="fast")):
+       pass
 
 Modules
 -------
@@ -51,6 +52,12 @@ Modules
    :nosignatures:
 
    ~core
+
+Constants
+---------
+
+.. autoall:: manim_extensions.three_d
+   :types: data
 
 .. toctree::
    :hidden:

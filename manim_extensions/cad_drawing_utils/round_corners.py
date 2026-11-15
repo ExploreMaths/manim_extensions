@@ -2,8 +2,21 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""round_corners module."""
+
+from __future__ import annotations
+from typing import Any
 import numpy as np
-from manim import *
+from manim import (
+    Arc,
+    Line,
+    PI,
+    VMobject,
+    bezier,
+    normalize,
+    partial_bezier_points,
+    rotate_vector,
+)
 from scipy.optimize import fsolve
 from scipy.optimize import root
 from .utils import angle_between_vectors_signed
@@ -16,17 +29,20 @@ __all__ = [
 ]
 
 
-def Round_Corner_Param(radius, curve_points_1, curve_points_2):
+def Round_Corner_Param(radius: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
+    """Round_Corner_Param."""
     bez_func_1 = bezier(curve_points_1)
     diff_func_1 = bezier((curve_points_1[1:, :] - curve_points_1[:-1, :]) / 3)
     bez_func_2 = bezier(curve_points_2)
     diff_func_2 = bezier((curve_points_2[1:, :] - curve_points_2[:-1, :]) / 3)
 
-    def find_crossing(p1, p2, n1, n2):
+    def find_crossing(p1: Any, p2: Any, n1: Any, n2: Any) -> Any:
+        """find_crossing."""
         t = fsolve(lambda t: p1[:2] + n1[:2] * t[0] - (p2[:2] + n2[:2] * t[1]), [0, 0])
         return t, p1 + n1 * t[0]
 
-    def rad_cost_func(t):
+    def rad_cost_func(t: Any) -> Any:
+        """rad_cost_func."""
         angle_sign = np.sign(
             angle_between_vectors_signed(diff_func_1(t[0]), diff_func_2(t[1]))
         )
@@ -65,7 +81,8 @@ def Round_Corner_Param(radius, curve_points_1, curve_points_2):
     return out_param, k
 
 
-def Round_Corners(mob: VMobject, radius=0.2):
+def Round_Corners(mob: VMobject, radius: Any = 0.2) -> Any:
+    """Round_Corners."""
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
         ind1 = i % mob.get_num_curves()
@@ -96,8 +113,9 @@ def Round_Corners(mob: VMobject, radius=0.2):
     return mob
 
 
-def Chamfer_Corner_Param(offset, curve_points_1, curve_points_2):
+def Chamfer_Corner_Param(offset: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
     # this is ugly, I know, don't judge
+    """Chamfer_Corner_Param."""
     if hasattr(offset, "iter"):
         ofs = [offset[0], offset[1]]
     else:
@@ -106,7 +124,8 @@ def Chamfer_Corner_Param(offset, curve_points_1, curve_points_2):
     bez_func_2 = bezier(curve_points_2)
 
     # copied from vectorized mobject length stuff
-    def get_norms_and_refs(curve):
+    def get_norms_and_refs(curve: Any) -> Any:
+        """get_norms_and_refs."""
         sample_points = 10
         refs = np.linspace(0, 1, sample_points)
         points = np.array([curve(a) for a in np.linspace(0, 1, sample_points)])
@@ -126,7 +145,8 @@ def Chamfer_Corner_Param(offset, curve_points_1, curve_points_2):
     return param, [a1, a2]
 
 
-def Chamfer_Corners(mob: VMobject, offset=0.2):
+def Chamfer_Corners(mob: VMobject, offset: Any = 0.2) -> Any:
+    """Chamfer_Corners."""
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
         ind1 = i % mob.get_num_curves()

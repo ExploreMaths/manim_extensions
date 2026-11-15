@@ -25,10 +25,24 @@
 look-at billboard（世界 up 投影），任意自转角度下水平可读。
 """
 
+from __future__ import annotations
+from typing import Any
 import math
 
 import numpy as np
-from manim import *
+from manim import (
+    Animation,
+    Create,
+    DEGREES,
+    FadeIn,
+    Line,
+    ORIGIN,
+    Polygon,
+    Text,
+    VGroup,
+    Y_AXIS,
+    Z_AXIS,
+)
 from manim.mobject.three_d.three_dimensions import Dot3D
 from manim.utils.space_ops import rotation_matrix
 
@@ -61,7 +75,8 @@ _DODECA_RAW = [
 ]
 
 
-def _unit(v):
+def _unit(v: Any) -> Any:
+    """_unit."""
     v = np.asarray(v, dtype=float)
     return v / np.linalg.norm(v)
 
@@ -74,6 +89,7 @@ _pair_d = {
     (i, j): float(np.linalg.norm(DODECA_VERTICES[i] - DODECA_VERTICES[j]))
     for i, j in combinations(range(20), 2)
 }
+"""Cached pairwise distances between dodecahedron vertices."""
 EDGE_LEN = min(_pair_d.values())
 DODECA_EDGES = [e for e, d in _pair_d.items() if d < EDGE_LEN * 1.5]
 
@@ -155,19 +171,19 @@ class PolyRadarChart(VGroup):
 
     def __init__(
         self,
-        axes_names,
-        values,
+        axes_names: Any,
+        values: Any,
         *,
-        max_value=10.0,
-        radius=2.6,
-        skins=(0.4, 0.7, 1.0),
-        spin_rate=7.0,
-        grow=True,
-        cam_pos=(0.0, 0.0, 20.0),
-        center=(0.0, -0.15, 0.0),
-        sphere_color=DYE_C,
+        max_value: Any = 10.0,
+        radius: Any = 2.6,
+        skins: Any = (0.4, 0.7, 1.0),
+        spin_rate: Any = 7.0,
+        grow: Any = True,
+        cam_pos: Any = (0.0, 0.0, 20.0),
+        center: Any = (0.0, -0.15, 0.0),
+        sphere_color: Any = DYE_C,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         self.axes_names = list(axes_names)
         if len(self.axes_names) != 12:
@@ -282,7 +298,7 @@ class PolyRadarChart(VGroup):
         self.add_updater(self._tick)
 
     # ------------------------------------------------------------------
-    def _data_triangles(self):
+    def _data_triangles(self) -> Any:
         """内芯二十面体的 20 个三角面 = 每个十二面体顶点周围的 3 个面法向。"""
         tris = []
         for v in range(20):
@@ -306,6 +322,7 @@ class PolyRadarChart(VGroup):
         return self.center + Rz @ local
 
     def _rebuild(self) -> None:
+        """_rebuild."""
         pos = [self._world(i) for i in range(12)]
         for i in range(12):
             self.spheres[i].move_to(pos[i])
@@ -337,6 +354,7 @@ class PolyRadarChart(VGroup):
         Rbill = rotation_matrix(75 * DEGREES, Y_AXIS)[:3, :3]
 
         def upd(m: VGroup, dt: float = 0.0) -> None:
+            """upd."""
             th = math.radians(self.theta)
             M = rotation_matrix(-th, Z_AXIS)[:3, :3] @ Rbill
             for k, lab in enumerate(m):
@@ -349,7 +367,7 @@ class PolyRadarChart(VGroup):
         self.labels.add_updater(upd)
 
     # ------------------------------------------------------------------
-    def grow_in(self, scene, run_time: float = 0.45) -> "PolyRadarChart":
+    def grow_in(self, scene: Any, run_time: float = 0.45) -> PolyRadarChart:
         """骨架由内向外逐层生长（grow=True 时用；grow=False 无效）。"""
         if not self.grow:
             return self
@@ -366,19 +384,23 @@ class PolyRadarChart(VGroup):
             scene.play(*anims, run_time=run_time)
         return self
 
-    def spin_to(self, axis_index: int, run_time: float = 1.2):
+    def spin_to(self, axis_index: int, run_time: float = 1.2) -> Any:
         """转动自转角，把轴 axis_index 的面板转到正对镜头（theta=0）。"""
 
         class _Spin(Animation):
-            def __init__(self, poly, delta, **kw):
+            """_Spin."""
+
+            def __init__(self, poly: Any, delta: Any, **kw) -> None:
                 self.poly = poly
                 self.delta = delta
                 super().__init__(poly, **kw)
 
             def begin(self) -> None:
+                """begin."""
                 self.t0 = self.poly.theta
 
             def interpolate_mobject(self, alpha: float) -> None:
+                """interpolate_mobject."""
                 new = self.t0 + self.delta * alpha
                 self.poly.rotate(
                     new - self.poly.theta, axis=Z_AXIS, about_point=self.poly.center
@@ -386,6 +408,7 @@ class PolyRadarChart(VGroup):
                 self.poly.theta = new
 
             def finish(self) -> None:
+                """finish."""
                 self.poly.rotate(
                     self.t0 + self.delta - self.poly.theta,
                     axis=Z_AXIS,
@@ -400,7 +423,8 @@ class PolyRadarChart(VGroup):
         delta = (delta + math.pi) % (2 * math.pi) - math.pi
         return _Spin(self, delta, run_time=run_time)
 
-    def set_values(self, values) -> None:
+    def set_values(self, values: Any) -> None:
+        """set_values."""
         self._frac = np.array(values, dtype=float) / self.max_value
         self._rebuild()
 
@@ -408,13 +432,15 @@ class PolyRadarChart(VGroup):
 class PolyMorph(Animation):
     """立体变形：数据球沿各自面板方向滑动，棱面实时跟随。"""
 
-    def __init__(self, poly: PolyRadarChart, target_values, **kwargs) -> None:
+    def __init__(self, poly: PolyRadarChart, target_values: Any, **kwargs) -> None:
         self.poly = poly
         self.target = np.array(target_values, dtype=float) / poly.max_value
         super().__init__(poly, **kwargs)
 
     def begin(self) -> None:
+        """begin."""
         self.start = self.poly._frac.copy()
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         self.poly._frac = self.start + (self.target - self.start) * alpha

@@ -38,7 +38,6 @@ Reveal a radar chart built from four axes:
 
 .. manim:: RadarChartDemo
    :ref_classes: RadarChart
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.radar import RadarChart
@@ -72,6 +71,12 @@ Modules
    ~reel
    ~theme
    ~utils
+
+Constants
+---------
+
+.. autoall:: manim_extensions.radar
+   :types: data
 
 .. toctree::
    :hidden:

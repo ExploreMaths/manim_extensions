@@ -17,6 +17,12 @@ Classes
    ~PencilTip
    ~RulerDraw
 
+Constants
+---------
+
+.. autoall:: manim_extensions.straightedge_compass.straightedge
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

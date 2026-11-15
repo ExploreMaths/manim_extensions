@@ -41,15 +41,26 @@ Render a Python code block:
 
 .. manim:: CodeBlockDemo
    :ref_classes: CodeBlock
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.code_blocks import CodeBlock, Python
 
    class CodeBlockDemo(Scene):
        def construct(self):
-           block = CodeBlock('print("hello")', language=Python)
+           block = CodeBlock('print("hello")', language=Python).scale(2.0)
            self.play(*block.create())
+
+Classes
+-------
+
+.. autoall:: manim_extensions.code_blocks
+   :types: class
+
+Constants
+---------
+
+.. autoall:: manim_extensions.code_blocks
+   :types: data
 
 Modules
 -------

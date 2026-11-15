@@ -2,15 +2,27 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""utils module."""
+
+from __future__ import annotations
+from typing import Any
 import numpy as np
-from manim import *
+from manim import (
+    Circle,
+    Line,
+    TEAL,
+    VDict,
+    VGroup,
+    VMobject,
+)
 
 __all__ = ["angle_between_vectors_signed", "Bezier_Handlebars"]
 
 
-def angle_between_vectors_signed(v1, v2):
+def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
     """
     Get signed angle between vectors according to right hand rule.
+
     :param v1: first vector
     :param v2: second vector
     :return: angle of rotation that rotates v1 to be co-linear with v2. Range: -PI...+PI
@@ -26,13 +38,14 @@ class Bezier_Handlebars(VDict):
     Used for visualizing bezier control points and handles, helps debugging.
     """
 
-    def __init__(self, target_mobject: VMobject, **kwargs):
+    def __init__(self, target_mobject: VMobject, **kwargs) -> None:
         super().__init__(**kwargs)
         self.target = target_mobject
         self.generate_circles(0.03)
         self.generate_lines()
 
-    def generate_circles(self, r):
+    def generate_circles(self, r: Any) -> Any:
+        """generate_circles."""
         DotGroup = VGroup(
             *[
                 Circle(
@@ -48,11 +61,13 @@ class Bezier_Handlebars(VDict):
         )
         self["dots"] = DotGroup
 
-    def move_circles(self):
+    def move_circles(self) -> Any:
+        """move_circles."""
         for zipthing in zip(self["dots"], self.target.points):
             zipthing[0].move_to(zipthing[1])
 
-    def generate_lines(self):
+    def generate_lines(self) -> Any:
+        """generate_lines."""
         pointlist = zip(
             self.target.points[0::4, :],
             self.target.points[1::4, :],
@@ -72,7 +87,8 @@ class Bezier_Handlebars(VDict):
         )
         self["lines"] = LineGroup
 
-    def move_lines(self):
+    def move_lines(self) -> Any:
+        """move_lines."""
         pointlist = zip(
             self.target.points[0::4, :],
             self.target.points[1::4, :],

@@ -32,6 +32,12 @@ Functions
 .. autoall:: manim_extensions.three_d.core
    :types: function
 
+Constants
+---------
+
+.. autoall:: manim_extensions.three_d.core
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

@@ -6,6 +6,7 @@
 tip while the pencil leg sweeps out an arc."""
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 from manim import (
@@ -44,10 +45,10 @@ class Compass(VGroup):
         self,
         radius: float = 1.5,
         start_angle: float = 0.0,
-        center=ORIGIN,
+        center: Any = ORIGIN,
         leg_width: float = 7.0,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         self.radius = float(radius)
         self.start_angle = float(start_angle)
@@ -90,7 +91,8 @@ class Compass(VGroup):
 
     # -- geometry ------------------------------------------------------------
 
-    def _layout(self, center, radius, theta):
+    def _layout(self, center: Any, radius: Any, theta: Any) -> Any:
+        """_layout."""
         r = float(np.clip(radius, 0.05, 2 * LEG_LENGTH - 0.05))
         h = np.sqrt(max(LEG_LENGTH**2 - (r / 2.0) ** 2, 1e-6))
         n = as_point(center)
@@ -98,7 +100,8 @@ class Compass(VGroup):
         pencil = P(r, 0)
         hinge = P(r / 2.0, h)
 
-        def tr(q):
+        def tr(q: Any) -> Any:
+            """tr."""
             c, s = np.cos(theta), np.sin(theta)
             rot = P(c * q[0] - s * q[1], s * q[0] + c * q[1])
             return n + rot
@@ -114,7 +117,7 @@ class Compass(VGroup):
         b2 = p_t + 0.30 * leg_dir - 0.075 * perp
         return n_t, p_t, h_t, handle_end, b1, b2
 
-    def pose(self, center, radius: float = None, start_angle: float = 0.0):
+    def pose(self, center: Any, radius: float = None, start_angle: float = 0.0) -> Any:
         """Move the needle to ``center``, open to ``radius``, and orient the
         pencil at ``start_angle``.  Animatable via ``compass.animate.pose``."""
         if radius is not None:
@@ -134,7 +137,7 @@ class Compass(VGroup):
         self.pencil_body.set_points_as_corners([p_t, b1, b2])
         return self
 
-    def pencil_point(self, theta: float = None):
+    def pencil_point(self, theta: float = None) -> Any:
         """World position of the pencil tip at sweep angle ``theta``."""
         if theta is None:
             theta = self.start_angle
@@ -142,7 +145,7 @@ class Compass(VGroup):
 
     # -- animation helpers ---------------------------------------------------
 
-    def rotated_copy(self, theta: float) -> "Compass":
+    def rotated_copy(self, theta: float) -> Compass:
         """Return a copy rotated so the pencil sits at absolute angle theta."""
         return self.copy().pose(self.center, self.radius, theta)
 
@@ -154,7 +157,7 @@ class CompassDrawArc(Animation):
 
     def __init__(
         self, compass: Compass, arc: Arc, sweep: float, run_time: float = 2.2, **kwargs
-    ):
+    ) -> None:
         self.compass = compass
         self.arc = arc
         self.sweep = float(sweep)
@@ -167,7 +170,8 @@ class CompassDrawArc(Animation):
         group = VGroup(compass, arc)
         super().__init__(group, run_time=run_time, **kwargs)
 
-    def interpolate_mobject(self, alpha: float):
+    def interpolate_mobject(self, alpha: float) -> Any:
+        """interpolate_mobject."""
         theta = self.start + alpha * self.sweep
         # rotate the whole rigid compass about the needle tip
         self.compass.pose(self.center, self.radius, theta)

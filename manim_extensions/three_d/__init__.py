@@ -5,6 +5,7 @@
 # -*- coding: utf-8 -*-
 """manim-3d —— Manim 三维几何与动画。闭式管面与图曲面预设,几行代码出片。"""
 
+from __future__ import annotations
 from .core import (
     GaussianSurface,
     SaddleSurface,

@@ -2,13 +2,31 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""hatch module."""
+
+from __future__ import annotations
+from typing import Any
 import numpy as np
-from manim import *
+from manim import (
+    DOWN,
+    LEFT,
+    Line,
+    Mobject,
+    PI,
+    RIGHT,
+    UP,
+    VGroup,
+    VMobject,
+)
 from scipy.optimize import root
 
 
 class Hatch_lines(VGroup):
-    def __init__(self, target_mobject: Mobject, angle=PI / 6, offset=0.3, **kwargs):
+    """Hatch_lines."""
+
+    def __init__(
+        self, target_mobject: Mobject, angle: Any = PI / 6, offset: Any = 0.3, **kwargs
+    ) -> None:
         super().__init__(**kwargs)
         self.target = target_mobject
         target_size_xy = [
@@ -43,7 +61,7 @@ class Hatch_lines(VGroup):
                     self.add(line_loc2)
 
 
-def curve_intersection(vmob1: VMobject, vmob2: VMobject):
+def curve_intersection(vmob1: VMobject, vmob2: VMobject) -> Any:
     """Intersection points of 2 VMobjects.
     Finds all intersections of 2 vmobjects, as long as there is only 1 interesection per bezier subcurve.
     Self intersections are not found."""

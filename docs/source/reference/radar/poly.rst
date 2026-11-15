@@ -16,6 +16,12 @@ Classes
    ~PolyRadarChart
    ~PolyMorph
 
+Constants
+---------
+
+.. autoall:: manim_extensions.radar.poly
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

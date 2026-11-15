@@ -38,7 +38,6 @@ Add a linear dimension to a line:
 
 .. manim:: LinearDimensionDemo
    :ref_classes: Linear_Dimension
-   :save_last_frame:
 
    from manim import *
    from manim_extensions.cad_drawing_utils import Linear_Dimension

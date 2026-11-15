@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 from manim import DOWN, LEFT, RIGHT, UP, Text, VGroup
@@ -69,6 +69,7 @@ class RollingNumber(VGroup):
         return f"{text}{extra}"
 
     def _key_limit(self) -> int:
+        """_key_limit."""
         return max(1, int(math.ceil(self.max_value)) + 1)
 
     def set_max_value(self, value: float) -> None:
@@ -93,7 +94,7 @@ class RollingNumber(VGroup):
         for txt in self._cache.values():
             txt.set_opacity(0)
 
-    def set_live_color(self, color) -> None:
+    def set_live_color(self, color: Any) -> None:
         """Recolour the cached glyphs (cheap: only called on a colour change)."""
         col = str(color)
         if getattr(self, "_live_color", None) == col:

@@ -10,6 +10,7 @@ rendering anything.
 """
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 
@@ -23,7 +24,8 @@ def P(x: float, y: float) -> np.ndarray:
     return np.array([float(x), float(y), 0.0])
 
 
-def as_point(q) -> np.ndarray:
+def as_point(q: Any) -> np.ndarray:
+    """as_point."""
     q = np.asarray(q, dtype=float)
     if q.shape == (2,):
         q = np.array([q[0], q[1], 0.0])
@@ -31,10 +33,12 @@ def as_point(q) -> np.ndarray:
 
 
 def distance(a: np.ndarray, b: np.ndarray) -> float:
+    """distance."""
     return float(np.linalg.norm(as_point(a)[:2] - as_point(b)[:2]))
 
 
 def midpoint(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """midpoint."""
     return (as_point(a) + as_point(b)) / 2.0
 
 
@@ -45,6 +49,7 @@ def angle_of(a: np.ndarray, b: np.ndarray) -> float:
 
 
 def unit(v: np.ndarray) -> np.ndarray:
+    """unit."""
     v = as_point(v)
     n = np.linalg.norm(v[:2])
     if n < 1e-12:
@@ -53,12 +58,14 @@ def unit(v: np.ndarray) -> np.ndarray:
 
 
 def rotate_vec(v: np.ndarray, angle: float) -> np.ndarray:
+    """rotate_vec."""
     c, s = np.cos(angle), np.sin(angle)
     x, y = v[0], v[1]
     return np.array([c * x - s * y, s * x + c * y, 0.0])
 
 
 def point_on(center: np.ndarray, radius: float, angle: float) -> np.ndarray:
+    """point_on."""
     return as_point(center) + radius * P(np.cos(angle), np.sin(angle))
 
 
@@ -67,7 +74,9 @@ def point_on(center: np.ndarray, radius: float, angle: float) -> np.ndarray:
 # ---------------------------------------------------------------------------
 
 
-def circle_circle_intersection(c1, r1, c2, r2, tol: float = 1e-8):
+def circle_circle_intersection(
+    c1: Any, r1: Any, c2: Any, r2: Any, tol: float = 1e-8
+) -> Any:
     """Intersections of circle ``(c1, r1)`` and circle ``(c2, r2)``.
 
     Returns a list of 0, 1 or 2 points.
@@ -91,7 +100,9 @@ def circle_circle_intersection(c1, r1, c2, r2, tol: float = 1e-8):
     return [p0 + h * n, p0 - h * n]
 
 
-def line_line_intersection(p1, p2, p3, p4, tol: float = 1e-8):
+def line_line_intersection(
+    p1: Any, p2: Any, p3: Any, p4: Any, tol: float = 1e-8
+) -> Any:
     """Intersection of the infinite lines p1p2 and p3p4, or ``None``."""
     p1, p2, p3, p4 = map(as_point, (p1, p2, p3, p4))
     d1 = p2 - p1
@@ -104,7 +115,9 @@ def line_line_intersection(p1, p2, p3, p4, tol: float = 1e-8):
     return p1 + s * d1
 
 
-def circle_line_intersection(center, radius, p1, p2, tol: float = 1e-8):
+def circle_line_intersection(
+    center: Any, radius: Any, p1: Any, p2: Any, tol: float = 1e-8
+) -> Any:
     """Intersections of circle ``(center, radius)`` with the infinite line
     through ``p1`` and ``p2``. Returns a list of 0, 1 or 2 points."""
     center, p1, p2 = as_point(center), as_point(p1), as_point(p2)
@@ -125,24 +138,27 @@ def circle_line_intersection(center, radius, p1, p2, tol: float = 1e-8):
 # ---------------------------------------------------------------------------
 
 
-def uppermost(points):
+def uppermost(points: Any) -> Any:
     """Return the point with the largest y coordinate."""
     return max(points, key=lambda q: as_point(q)[1])
 
 
-def lowermost(points):
+def lowermost(points: Any) -> Any:
+    """lowermost."""
     return min(points, key=lambda q: as_point(q)[1])
 
 
-def leftmost(points):
+def leftmost(points: Any) -> Any:
+    """leftmost."""
     return min(points, key=lambda q: as_point(q)[0])
 
 
-def rightmost(points):
+def rightmost(points: Any) -> Any:
+    """rightmost."""
     return max(points, key=lambda q: as_point(q)[0])
 
 
-def other(items, given):
+def other(items: Any, given: Any) -> Any:
     """From a two-element collection, return the element not equal to ``given``."""
     for q in items:
         if not np.allclose(as_point(q)[:2], as_point(given)[:2], atol=1e-7):

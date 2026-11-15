@@ -41,18 +41,17 @@ Draw a segment and circle through two marked points:
 
 .. manim:: StraightedgeCompassDemo
    :ref_classes: EuclidScene MarkedPoint
-   :save_last_frame:
 
    from manim_extensions.straightedge_compass import EuclidScene, P
 
    class StraightedgeCompassDemo(EuclidScene):
        def construct(self):
-           a = P(-2, -1)
-           b = P(2, -1)
+           a = P(-1.5, 0)
+           b = P(1.5, 0)
            self.mark_point(a, "A")
            self.mark_point(b, "B")
-           self.draw_segment(a, b)
-           self.draw_circle(a, through=b)
+           self.draw_segment(a, b, keep_ruler=True)
+           self.draw_arc(a, 3, keep_compass=True)
            self.flash_points(a, b)
 
 Modules
@@ -66,6 +65,12 @@ Modules
    ~marks
    ~scene
    ~straightedge
+
+Constants
+---------
+
+.. autoall:: manim_extensions.straightedge_compass
+   :types: data
 
 .. toctree::
    :hidden:

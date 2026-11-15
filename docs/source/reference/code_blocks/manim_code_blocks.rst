@@ -13,9 +13,30 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~Theme
-   ~ProgrammingLanguage
+   ~C
+   ~CSharp
    ~CodeBlock
+   ~Cpp
+   ~Fortran
+   ~Go
+   ~Haskell
+   ~Java
+   ~JavaScript
+   ~Lua
+   ~OneDark
+   ~ProgrammingLanguage
+   ~Python
+   ~Ruby
+   ~Rust
+   ~SQL
+   ~Theme
+   ~TypeScript
+
+Constants
+---------
+
+.. autoall:: manim_extensions.code_blocks.manim_code_blocks
+   :types: data
 
 .. toctree::
    :hidden:

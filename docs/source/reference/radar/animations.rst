@@ -20,6 +20,12 @@ Classes
    ~RadarFade
    ~GlitchFlash
 
+Constants
+---------
+
+.. autoall:: manim_extensions.radar.animations
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

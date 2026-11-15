@@ -27,12 +27,50 @@
 字幕槽按曲面各自的节拍序列对位(见各 Scene 的 _caption_slots)。
 """
 
-from manim import *
+from __future__ import annotations
+from manim import (
+    BLUE,
+    Create,
+    DEGREES,
+    DOWN,
+    DashedLine,
+    DashedVMobject,
+    Dot3D,
+    FadeIn,
+    FadeOut,
+    GREEN,
+    GrowFromCenter,
+    LaggedStart,
+    ManimColor,
+    MathTex,
+    ORANGE,
+    ORIGIN,
+    PI,
+    ParametricFunction,
+    RED,
+    RIGHT,
+    Rotate,
+    Surface,
+    TAU,
+    TEAL,
+    Text,
+    ThreeDAxes,
+    ThreeDScene,
+    Transform,
+    UP,
+    UR,
+    VGroup,
+    WHITE,
+    Write,
+    YELLOW,
+    interpolate_color,
+    smooth,
+)
 
-from manim_extensions.mobjects import DEFAULT_CJK_FONT
+from ..mobjects import DEFAULT_CJK_FONT
 import numpy as np
 from dataclasses import dataclass
-from typing import Callable, Optional, Sequence
+from typing import Any, Callable, Optional, Sequence
 
 __all__ = [
     "GaussianSurface",
@@ -135,7 +173,7 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
         dropped.append(victim[0])
 
 
-def _ramp_color(ramp, t: float):
+def _ramp_color(ramp: Any, t: float) -> Any:
     """色带取色:t∈[0,1] 为色带位置。"""
     t = min(max(t, 0.0), 1.0)
     for (c1, v1), (c2, v2) in zip(ramp, ramp[1:]):
@@ -146,7 +184,7 @@ def _ramp_color(ramp, t: float):
     return ManimColor(ramp[-1][0])
 
 
-def _radius_for_level(f, d_max: float, c: float, n: int = 60) -> Optional[float]:
+def _radius_for_level(f: Any, d_max: float, c: float, n: int = 60) -> Optional[float]:
     """解 f(r,0)=c 的最近根(沿 +x 二分;径向单调曲面精确,其他近似)。"""
     lo, hi = 0.0, d_max
     if f(hi, 0.0) > c:
@@ -189,7 +227,7 @@ class GaussianSurface:
     camera_theta: float = -55.0
     zoom: float = 0.95
 
-    def resolve(self):
+    def resolve(self) -> Any:
         """返回 (f, tex):函数补默认,公式补默认。"""
         if self.func is None:
             f = lambda x, y: float(np.exp(-(x * x + y * y)))
@@ -321,27 +359,27 @@ class _GraphSurfaceScene(ThreeDScene):
     uses_flat = True
 
     # ---- 钩子 ----
-    def _geometry(self, cfg):
+    def _geometry(self, cfg: Any) -> Any:
         """-> (f 归一化函数, tex 公式, zmin_n, ax_z_lo, ax_z_hi)"""
         raise NotImplementedError
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
         """-> (等高线 VGroup, 是否跟随曲面翻面)"""
         raise NotImplementedError
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
         """-> (px, py, pz, tag_tex, 用HUD标签, 虚线起点z)"""
         raise NotImplementedError
 
-    def _caption_slots(self):
+    def _caption_slots(self) -> Any:
         """字幕槽位序列(位置对位)。"""
         return ["title", "axes", "flat", "rings", "orbit", "flip", "outro"]
 
-    def _annotate_camera(self):
+    def _annotate_camera(self) -> Any:
         """标注拍相机角度 (phi, theta, zoom)。"""
         return 66.0, -40.0, 0.95
 
-    def _make_axes(self, cfg, ax_z_lo, ax_z_hi):
+    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
         """图曲面默认轴:x/y 等长,z 按高度范围。"""
         d0, d1 = cfg.domain
         axes = ThreeDAxes(
@@ -354,7 +392,7 @@ class _GraphSurfaceScene(ThreeDScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg, axes, f, ramp, zmin_n):
+    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
         """图曲面默认:z=f(x,y) 图,色带铺满 [zmin_n, height]。"""
         d0, d1 = cfg.domain
         s = Surface(
@@ -375,7 +413,8 @@ class _GraphSurfaceScene(ThreeDScene):
         return s
 
     # ---- 主流程 ----
-    def construct(self):
+    def construct(self) -> Any:
+        """construct."""
         cfg = self.style
         ramp = RAMPS[cfg.colors] if isinstance(cfg.colors, str) else list(cfg.colors)
         f_n, func_tex, zmin_n, ax_z_lo, ax_z_hi = self._geometry(cfg)
@@ -420,6 +459,7 @@ class _GraphSurfaceScene(ThreeDScene):
         cur_cap = None
 
         def make_cap(text: str, tex: Optional[str] = None, live: bool = True) -> VGroup:
+            """make_cap."""
             if tex:
                 text = f"{text} ·" if not text.rstrip().endswith("·") else text.rstrip()
             parts = [Text(text, font=DEFAULT_CJK_FONT, font_size=42, color="#e8d9a0")]
@@ -433,7 +473,7 @@ class _GraphSurfaceScene(ThreeDScene):
                 )  # 注册即入场,调用方须 self.remove 摘下
             return g
 
-        def swap_caption(text: str, tex: Optional[str] = None):
+        def swap_caption(text: str, tex: Optional[str] = None) -> Any:
             """换字幕不用 Transform:旧行整行淡出,新行整行淡入。"""
             nonlocal cur_cap
             new_cap = make_cap(text, tex)
@@ -633,7 +673,10 @@ class _GraphSurfaceScene(ThreeDScene):
 
 # ---------------- 三个曲面场景 ----------------
 class GaussianSurfaceScene(_GraphSurfaceScene):
-    def _geometry(self, cfg):
+    """GaussianSurfaceScene."""
+
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         f_raw, tex = cfg.resolve()
         n = 160
         gx = np.linspace(cfg.domain[0], cfg.domain[1], n)
@@ -646,7 +689,8 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
         f = lambda x, y: f_raw(x, y) * scale
         return f, tex, zmin * scale, min(0.0, zmin * scale), cfg.height * 1.5
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         g = VGroup()
         for c in [0.8, 0.55, 0.33, 0.15, 0.045]:
             r = _radius_for_level(f, cfg.domain[1], c)
@@ -663,7 +707,8 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
             )
         return g, False  # 地板投影,不随翻面
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         iy, ix = np.unravel_index(int(self._zs.argmax()), self._zs.shape)
         px, py = float(self._gx[ix]), float(self._gx[iy])
         return (
@@ -675,21 +720,27 @@ class GaussianSurfaceScene(_GraphSurfaceScene):
             self._stem_z0,
         )
 
-    def _caption_slots(self):
+    def _caption_slots(self) -> Any:
+        """_caption_slots."""
         return ["title", "axes", "flat", "orbit", "flip", "outro"]
 
-    def _annotate_camera(self):
+    def _annotate_camera(self) -> Any:
+        """_annotate_camera."""
         return 68.0, -40.0, 0.95
 
 
 class SaddleSurfaceScene(_GraphSurfaceScene):
-    def _geometry(self, cfg):
+    """SaddleSurfaceScene."""
+
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x - y * y) * scale
         return f, r"z = x^{2} - y^{2}", -cfg.height, -cfg.height * 1.3, cfg.height * 1.3
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
@@ -737,18 +788,23 @@ class SaddleSurfaceScene(_GraphSurfaceScene):
                     )
         return g, False  # 地板等高线,不随翻面
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 1.3  # 鞍点:HUD 标签
 
 
 class ParaboloidSurfaceScene(_GraphSurfaceScene):
-    def _geometry(self, cfg):
+    """ParaboloidSurfaceScene."""
+
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x + y * y) * scale
         return f, r"z = x^{2} + y^{2}", 0.0, -cfg.height * 0.6, cfg.height * 1.3
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
@@ -769,7 +825,8 @@ class ParaboloidSurfaceScene(_GraphSurfaceScene):
             )
         return g, True  # 贴在曲面上,翻面必须跟着转
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 0.6  # 顶点:HUD 标签
 
 
@@ -778,7 +835,8 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg):
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         a, b, c = cfg.semi_axes
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
         tex = (
@@ -788,7 +846,7 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         )
         return f, tex, -c, -c - 0.5, c + 0.9
 
-    def _make_axes(self, cfg, ax_z_lo, ax_z_hi):
+    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
         """三轴等比缩放:x 轴定标,y/z 同比例,否则闭曲面会 visibly 畸变。"""
         a, b, c = cfg.semi_axes
         k = 7.2 / (2 * (a + 0.4))
@@ -802,7 +860,8 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg, axes, f, ramp, zmin_n):
+    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_make_surface."""
         a, b, c = cfg.semi_axes
         s = Surface(
             lambda u, v: axes.c2p(
@@ -821,7 +880,8 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         a, b, c = cfg.semi_axes
         g = VGroup()
         for h in [0.66, 0.33, 0.0, -0.33, -0.66]:  # z/c 高度比例
@@ -840,7 +900,8 @@ class EllipsoidSurfaceScene(_GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         a, b, c = cfg.semi_axes
         # 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)
         return 0.0, 0.0, c, rf"(0,\,0,\,{_fmt(c)})", False, c + 0.75
@@ -851,13 +912,15 @@ class TorusSurfaceScene(_GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg):
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         R, r = cfg.major_radius, cfg.minor_radius
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
         tex = rf"(\sqrt{{x^{{2}}+y^{{2}}}} - {_fmt(R)})^{{2}} + z^{{2}} = {_fmt(r * r)}"
         return f, tex, -r, -r - 0.4, r + 0.9
 
-    def _make_axes(self, cfg, ax_z_lo, ax_z_hi):
+    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+        """_make_axes."""
         R, r = cfg.major_radius, cfg.minor_radius
         outer = R + r
         k = 7.2 / (2 * (outer + 0.4))  # x 定标,y/z 同比例防畸变
@@ -871,7 +934,8 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg, axes, f, ramp, zmin_n):
+    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_make_surface."""
         R, r = cfg.major_radius, cfg.minor_radius
         s = Surface(
             lambda u, v: axes.c2p(
@@ -892,7 +956,8 @@ class TorusSurfaceScene(_GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         R, r = cfg.major_radius, cfg.minor_radius
         g = VGroup()
         for z_lv in [0.6, 0.0, -0.6]:  # 管截面高度比例(×r)
@@ -913,7 +978,8 @@ class TorusSurfaceScene(_GraphSurfaceScene):
                 )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         R, r = cfg.major_radius, cfg.minor_radius
         # 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)
         return 0.0, 0.0, r, rf"(0,\,0,\,{_fmt(r)})", False, r + 0.75
@@ -924,14 +990,16 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg):
+    def _geometry(self, cfg: Any) -> Any:
+        """_geometry."""
         a, h = cfg.waist_radius, cfg.z_extent
         f = lambda x, y: 0.0  # 闭式管面不经图构造,占位
         rhs = "1" if abs(a * a - 1.0) < 1e-9 else _fmt(a * a)
         tex = rf"x^{{2}} + y^{{2}} - z^{{2}} = {rhs}"
         return f, tex, -h, -h - 0.4, h + 0.4
 
-    def _make_axes(self, cfg, ax_z_lo, ax_z_hi):
+    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+        """_make_axes."""
         a, h = cfg.waist_radius, cfg.z_extent
         max_r = (a * a + h * h) ** 0.5  # 端口半径
         k = 7.2 / (2 * (max_r + 0.4))  # x 定标,y/z 同比例防畸变
@@ -945,7 +1013,8 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg, axes, f, ramp, zmin_n):
+    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_make_surface."""
         a, h = cfg.waist_radius, cfg.z_extent
         s = Surface(
             lambda u, v: axes.c2p(
@@ -966,7 +1035,8 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg, axes, f, ramp, zmin_n):
+    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+        """_contours."""
         a, h = cfg.waist_radius, cfg.z_extent
         g = VGroup()
         for z_lv in [1.0, 0.5, 0.0, -0.5, -1.0]:  # 水平圆族(0 = 腰圆)
@@ -986,7 +1056,8 @@ class HyperboloidOneSheetScene(_GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg, f):
+    def _feature(self, cfg: Any, f: Any) -> Any:
+        """_feature."""
         a, h = cfg.waist_radius, cfg.z_extent
         # 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签
         return a, 0.0, 0.0, rf"({_fmt(a)},\,0,\,0)", True, 0.0
@@ -996,13 +1067,17 @@ _name_seq: dict = {}
 
 
 def _scene_name(base: str) -> str:
+    """_scene_name."""
     n = _name_seq.get(base, 0) + 1
     _name_seq[base] = n
     return base if n == 1 else f"{base}{n}"
 
 
-def _make_factory(cfg_cls, scene_cls, base_name):
-    def factory(name: Optional[str] = None, **kw):
+def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
+    """_make_factory."""
+
+    def factory(name: Optional[str] = None, **kw) -> Any:
+        """factory."""
         cfg = cfg_cls(**kw)
         return type(name or _scene_name(base_name), (scene_cls,), {"style": cfg})
 

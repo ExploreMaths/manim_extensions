@@ -15,6 +15,12 @@ Classes
 
    ~MarkedPoint
 
+Constants
+---------
+
+.. autoall:: manim_extensions.straightedge_compass.marks
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

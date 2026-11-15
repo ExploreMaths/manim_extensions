@@ -14,7 +14,7 @@ scales the chart instead — same idea, zero setup.
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 
@@ -37,7 +37,7 @@ class CameraRig:
                 self.play(rig.pull_out())
     """
 
-    def __init__(self, scene) -> None:
+    def __init__(self, scene: Any) -> None:
         frame = getattr(getattr(scene, "camera", None), "frame", None)
         if frame is None:
             raise TypeError(
@@ -49,8 +49,8 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     def push_in(
-        self, target=None, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ):
+        self, target: Any = None, factor: float = 1.35, run_time: float = 1.0, **kwargs
+    ) -> Any:
         """Zoom the camera towards ``target`` (a chart, a point, anything).
 
         Returns an animation — ``self.play(rig.push_in(chart))``.
@@ -64,10 +64,10 @@ class CameraRig:
     def pull_out(
         self,
         factor: Optional[float] = None,
-        target=None,
+        target: Any = None,
         run_time: float = 1.0,
         **kwargs,
-    ):
+    ) -> Any:
         """Zoom back out. Without ``factor`` the camera returns to the default
         full frame (undoing every previous push/focus) and recentres on
         ``target`` (default: the scene origin — pass your chart if it lives
@@ -85,14 +85,18 @@ class CameraRig:
             anim = anim.move_to(np.zeros(3))
         return self._timed(anim, run_time)
 
-    def focus_point(self, point, factor: float = 1.5, run_time: float = 0.9, **kwargs):
+    def focus_point(
+        self, point: Any, factor: float = 1.5, run_time: float = 0.9, **kwargs
+    ) -> Any:
         """Pan to ``point`` and zoom in by ``factor`` in one move."""
         self._zoom *= float(factor)
         return self._timed(
             self.frame.animate.scale(1.0 / float(factor)).move_to(point), run_time
         )
 
-    def micro_push(self, direction, amount: float = 0.08, run_time: float = 0.35):
+    def micro_push(
+        self, direction: Any, amount: float = 0.08, run_time: float = 0.35
+    ) -> Any:
         """A quick breath towards ``direction`` and back (burst accent)."""
         direction = np.asarray(direction, dtype=float)
         if direction.ndim == 1 and direction.size >= 2:
@@ -107,7 +111,8 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     @staticmethod
-    def _timed(anim, run_time: float):
+    def _timed(anim: Any, run_time: float) -> Any:
+        """_timed."""
         if hasattr(anim, "set_run_time"):
             return anim.set_run_time(run_time)
         return anim.run_time(run_time)

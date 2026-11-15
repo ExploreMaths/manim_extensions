@@ -21,6 +21,12 @@ Functions
 .. autoall:: manim_extensions.radar.theme
    :types: function
 
+Constants
+---------
+
+.. autoall:: manim_extensions.radar.theme
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

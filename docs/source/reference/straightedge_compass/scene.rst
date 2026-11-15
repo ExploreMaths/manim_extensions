@@ -15,6 +15,12 @@ Classes
 
    ~EuclidScene
 
+Constants
+---------
+
+.. autoall:: manim_extensions.straightedge_compass.scene
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

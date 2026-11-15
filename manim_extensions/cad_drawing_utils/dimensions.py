@@ -2,16 +2,47 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from manim import *
+"""dimensions module."""
+
+from __future__ import annotations
+from typing import Any
+from manim import (
+    Arc,
+    DEFAULT_ARROW_TIP_LENGTH,
+    DEFAULT_STROKE_WIDTH,
+    DEGREES,
+    DOWN,
+    LEFT,
+    Line,
+    Mobject,
+    ORIGIN,
+    PI,
+    RIGHT,
+    Text,
+    UP,
+    VDict,
+    VMobject,
+    angle_of_vector,
+    normalize,
+    rotate_vector,
+)
+import numpy as np
 from .utils import angle_between_vectors_signed
 from .round_corners import *
 from .path_mapper import *
 
 
 class Pointer_Label_Free(VDict):
+    """Pointer_Label_Free."""
+
     def __init__(
-        self, point, text: str, offset_vector=(RIGHT + DOWN), pointer_offset=0, **kwargs
-    ):
+        self,
+        point: Any,
+        text: str,
+        offset_vector: Any = (RIGHT + DOWN),
+        pointer_offset: Any = 0,
+        **kwargs,
+    ) -> None:
         text_buff = 0.1
         if not "stroke_width" in kwargs:
             kwargs["stroke_width"] = DEFAULT_STROKE_WIDTH
@@ -57,7 +88,8 @@ class Pointer_Label_Free(VDict):
             aligned_edge=LEFT * np.sign(offset_vector[0]),
         )
 
-    def update_point(self, point, offset_vector=(RIGHT + DOWN)):
+    def update_point(self, point: Any, offset_vector: Any = (RIGHT + DOWN)) -> Any:
+        """update_point."""
         self["line"].set_points_as_corners(
             [
                 point + normalize(offset_vector) * self.pointer_offset,
@@ -76,9 +108,17 @@ class Pointer_Label_Free(VDict):
 
 
 class Pointer_To_Mob(Pointer_Label_Free):
+    """Pointer_To_Mob."""
+
     def __init__(
-        self, mob: Mobject, proportion, text: str, dist=1, pointer_offset=0, **kwargs
-    ):
+        self,
+        mob: Mobject,
+        proportion: Any,
+        text: str,
+        dist: Any = 1,
+        pointer_offset: Any = 0,
+        **kwargs,
+    ) -> None:
         point = mob.point_from_proportion(proportion)
 
         # if the mob center and point happens to be the same, it causes problems
@@ -97,7 +137,8 @@ class Pointer_To_Mob(Pointer_Label_Free):
             point, text, offset_vector=offset, pointer_offset=pointer_offset, **kwargs
         )
 
-    def update_mob(self, mob, proportion, dist=1):
+    def update_mob(self, mob: Any, proportion: Any, dist: Any = 1) -> Any:
+        """update_mob."""
         point = mob.point_from_proportion(proportion)
         # if the mob center and point happens to be the same, it causes problems
         # it can happen if all the mob is 1 point
@@ -111,18 +152,20 @@ class Pointer_To_Mob(Pointer_Label_Free):
 
 
 class Linear_Dimension(VDict):
+    """Linear_Dimension."""
+
     def __init__(
         self,
-        start,
-        end,
-        text=None,
-        direction=ORIGIN,
-        outside_arrow=False,
-        offset=2,
-        ext_line_offset=0,
-        tip_len=DEFAULT_ARROW_TIP_LENGTH,
+        start: Any,
+        end: Any,
+        text: Any = None,
+        direction: Any = ORIGIN,
+        outside_arrow: Any = False,
+        offset: Any = 2,
+        ext_line_offset: Any = 0,
+        tip_len: Any = DEFAULT_ARROW_TIP_LENGTH,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         self.start = start
         self.end = end
@@ -231,18 +274,20 @@ class Linear_Dimension(VDict):
 
 
 class Angle_Dimension_3point(VDict):
+    """Angle_Dimension_3point."""
+
     def __init__(
         self,
-        start,
-        end,
-        arc_center,
-        offset=2,
-        text=None,
-        outside_arrow=False,
-        ext_line_offset=0,
-        tip_len=DEFAULT_ARROW_TIP_LENGTH,
+        start: Any,
+        end: Any,
+        arc_center: Any,
+        offset: Any = 2,
+        text: Any = None,
+        outside_arrow: Any = False,
+        ext_line_offset: Any = 0,
+        tip_len: Any = DEFAULT_ARROW_TIP_LENGTH,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
 
         if not "stroke_width" in kwargs:
@@ -349,7 +394,11 @@ class Angle_Dimension_3point(VDict):
 
 
 class Angle_Dimension_Mob(Angle_Dimension_3point):
-    def __init__(self, Mob: Mobject, start_proportion, end_proportion, **kwargs):
+    """Angle_Dimension_Mob."""
+
+    def __init__(
+        self, Mob: Mobject, start_proportion: Any, end_proportion: Any, **kwargs
+    ) -> None:
         start = Mob.point_from_proportion(start_proportion)
         end = Mob.point_from_proportion(end_proportion)
         start_diff_points = np.clip(
@@ -377,14 +426,16 @@ class Angle_Dimension_Mob(Angle_Dimension_3point):
 
 
 class CAD_ArrowHead(Curve_Warp):
+    """CAD_ArrowHead."""
+
     def __init__(
         self,
         target_curve: VMobject,
-        anchor_point=1,
-        arrow_size=DEFAULT_ARROW_TIP_LENGTH,
-        reversed_arrow=False,
+        anchor_point: Any = 1,
+        arrow_size: Any = DEFAULT_ARROW_TIP_LENGTH,
+        reversed_arrow: Any = False,
         **kwargs,
-    ):
+    ) -> None:
 
         # set default value
         self.__reversed_arrow = False
@@ -400,18 +451,20 @@ class CAD_ArrowHead(Curve_Warp):
             self.arrowhead, target_curve, anchor_point=anchor_point, **kwargs
         )
 
-    def default_updater(self, mob):
+    def default_updater(self, mob: Any) -> Any:
+        """default_updater."""
         self.PM.generate_length_map()
         self.generate_points()
 
-    def get_tip_pos(self):
+    def get_tip_pos(self) -> Any:
         """By convention, the tip of the arrow should be the right-most point of the shape, unless it's reversed"""
         if self.__reversed_arrow:
             return self.arrowhead.get_critical_point(LEFT)[0]
         else:
             return self.arrowhead.get_critical_point(RIGHT)[0]
 
-    def set_arrow_size(self, arrow_size):
+    def set_arrow_size(self, arrow_size: Any) -> Any:
+        """set_arrow_size."""
         act_size = (
             self.arrowhead.get_critical_point(RIGHT)
             - self.arrowhead.get_critical_point(LEFT)
@@ -421,15 +474,18 @@ class CAD_ArrowHead(Curve_Warp):
             self.arrowhead.points *= arrow_size / act_size
             self.arrowhead.shift(+self.get_tip_pos() * RIGHT)
 
-    def flip_arrow(self):
+    def flip_arrow(self) -> Any:
+        """flip_arrow."""
         self.arrowhead.flip()
 
     @property
-    def reversed_arrow(self):
+    def reversed_arrow(self) -> Any:
+        """reversed_arrow."""
         return self.__reversed_arrow
 
     @reversed_arrow.setter
-    def reversed_arrow(self, rev):
+    def reversed_arrow(self, rev: Any) -> Any:
+        """reversed_arrow."""
         if rev != self.__reversed_arrow:
             self.flip_arrow()
         self.__reversed_arrow = rev

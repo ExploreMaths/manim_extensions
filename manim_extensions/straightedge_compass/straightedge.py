@@ -7,6 +7,7 @@ decorative tick marks only for visual flavour) along whose edge a pencil
 slides to draw a straight segment."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     VGroup,
@@ -45,7 +46,7 @@ class Straightedge(VGroup):
         ruler_length: float = RULER_LENGTH,
         ruler_width: float = RULER_WIDTH,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         # names deliberately avoid Mobject.width / .length properties
         self.ruler_length = float(ruler_length)
@@ -92,7 +93,7 @@ class Straightedge(VGroup):
             x += step
         return VGroup(body, ticks, edge)
 
-    def pose(self, p1, p2):
+    def pose(self, p1: Any, p2: Any) -> Any:
         """Align the working edge with the infinite line through p1, p2.
 
         The edge passes through both points and extends past them; the ruler
@@ -112,7 +113,7 @@ class Straightedge(VGroup):
 class PencilTip(VGroup):
     """A small pencil that rides along the ruler edge while drawing."""
 
-    def __init__(self, point=ORIGIN, **kwargs):
+    def __init__(self, point: Any = ORIGIN, **kwargs) -> None:
         super().__init__(**kwargs)
         lead = Dot(ORIGIN, radius=0.05, color=PENCIL_LEAD, z_index=20)
         body = Polygon(
@@ -134,8 +135,14 @@ class RulerDraw(Animation):
     :class:`~manim.mobject.geometry.line.Line` grows underneath it."""
 
     def __init__(
-        self, line: Line, tip: PencilTip, p1, p2, run_time: float = 1.4, **kwargs
-    ):
+        self,
+        line: Line,
+        tip: PencilTip,
+        p1: Any,
+        p2: Any,
+        run_time: float = 1.4,
+        **kwargs,
+    ) -> None:
         self.line = line
         self.tip = tip
         self.p1 = as_point(p1)
@@ -144,7 +151,8 @@ class RulerDraw(Animation):
         self.line.set_points_as_corners([self.p1, self.p1])
         self.tip.move_to(self.p1)
 
-    def interpolate_mobject(self, alpha: float):
+    def interpolate_mobject(self, alpha: float) -> Any:
+        """interpolate_mobject."""
         pos = self.p1 + alpha * (self.p2 - self.p1)
         self.line.set_points_as_corners([self.p1, pos])
         self.tip.move_to(pos)

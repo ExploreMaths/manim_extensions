@@ -16,6 +16,12 @@ Classes
    ~Compass
    ~CompassDrawArc
 
+Constants
+---------
+
+.. autoall:: manim_extensions.straightedge_compass.compass
+   :types: data
+
 .. toctree::
    :hidden:
    :maxdepth: 1

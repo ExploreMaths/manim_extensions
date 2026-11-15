@@ -1,1 +1,70 @@
-{}
+{
+  "manim_extensions/cad_drawing_utils/dimensions.py": [
+    "Angle_Dimension_3point",
+    "Angle_Dimension_Mob",
+    "CAD_ArrowHead",
+    "Linear_Dimension",
+    "Pointer_Label_Free",
+    "Pointer_To_Mob"
+  ],
+  "manim_extensions/cad_drawing_utils/hatch.py": [
+    "Hatch_lines"
+  ],
+  "manim_extensions/cad_drawing_utils/path_mapper.py": [
+    "Curve_Warp",
+    "DashDot_mobject",
+    "Dashed_line_mobject",
+    "Path_Offset_Mobject",
+    "Path_mapper"
+  ],
+  "manim_extensions/cad_drawing_utils/utils.py": [
+    "Bezier_Handlebars"
+  ],
+  "manim_extensions/code_blocks/manim_code_blocks.py": [
+    "CodeBlock",
+    "ProgrammingLanguage",
+    "Theme"
+  ],
+  "manim_extensions/radar/animations.py": [
+    "GlitchFlash",
+    "RadarBurstIn",
+    "RadarFade",
+    "RadarMorph",
+    "RadarReveal",
+    "Shockwave"
+  ],
+  "manim_extensions/radar/backdrop.py": [
+    "DeepSpace"
+  ],
+  "manim_extensions/radar/camera.py": [
+    "CameraRig"
+  ],
+  "manim_extensions/radar/chart.py": [
+    "RadarChart"
+  ],
+  "manim_extensions/radar/numbers.py": [
+    "RollingNumber"
+  ],
+  "manim_extensions/radar/overflow.py": [
+    "OverflowRadarChart"
+  ],
+  "manim_extensions/radar/poly.py": [
+    "PolyMorph",
+    "PolyRadarChart"
+  ],
+  "manim_extensions/radar/reel.py": [
+    "RadarReel"
+  ],
+  "manim_extensions/straightedge_compass/compass.py": [
+    "Compass",
+    "CompassDrawArc"
+  ],
+  "manim_extensions/straightedge_compass/marks.py": [
+    "MarkedPoint"
+  ],
+  "manim_extensions/straightedge_compass/straightedge.py": [
+    "PencilTip",
+    "RulerDraw",
+    "Straightedge"
+  ]
+}

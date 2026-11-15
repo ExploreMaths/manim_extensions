@@ -63,6 +63,7 @@ class RadarData:
     meta: dict = field(default_factory=dict)
 
     def __post_init__(self) -> None:
+        """__post_init__."""
         axes = tuple(self.axes)
         values = tuple(float(v) for v in self.values)
         object.__setattr__(self, "axes", axes)
@@ -134,14 +135,15 @@ class RadarData:
         """``color`` if set, else ``fallback``."""
         return ManimColor(self.color) if self.color else ManimColor(fallback)
 
-    def with_values(self, values: Sequence[float], **changes) -> "RadarData":
+    def with_values(self, values: Sequence[float], **changes) -> RadarData:
         """Copy of this snapshot with new ``values`` (and optional other tweaks)."""
         return replace(self, values=tuple(float(v) for v in values), **changes)
 
-    def renamed(self, name: Optional[str]) -> "RadarData":
+    def renamed(self, name: Optional[str]) -> RadarData:
         """Copy of this snapshot with another ``name``."""
         return replace(self, name=name)
 
     def __repr__(self) -> str:  # pragma: no cover - cosmetic
+        """__repr__."""
         label = f" name={self.name!r}" if self.name else ""
         return f"RadarData(axes={len(self.axes)}d{label}, values={tuple(self.values)})"

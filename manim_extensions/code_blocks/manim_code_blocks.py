@@ -1,8 +1,10 @@
 # SPDX-FileCopyrightText: 2024 Casual Coders
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 # patched: bundled GitHub language colours locally, removed the import-time
 # patched: network request, and made tokenize-all-code a lazy optional extra
+
 # unlinked-class-ok: CodeBlock
 
 """A syntax-highlighted code block for Manim.
@@ -19,9 +21,22 @@ import re as regex
 from abc import ABC as abstract
 from typing import Any, Callable
 
-from manim import *
+from manim import (
+    AddTextLetterByLetter,
+    BackgroundRectangle,
+    DOWN,
+    FadeIn,
+    FadeOut,
+    GRAY_C,
+    LEFT,
+    MarkupText,
+    UP,
+    Uncreate,
+    VGroup,
+)
+import numpy as np
 
-from manim_extensions.utils.deps import require
+from ..utils.deps import require
 
 
 class Theme:
@@ -36,10 +51,7 @@ class Theme:
 
     def __init__(
         self, colors: dict[str, list[str | Callable]], group_matchers: list[str]
-    ):
-        """
-        Creates a new :class:`~manim_extensions.code_blocks.manim_code_blocks.Theme` with the specified `colors`. See the `colors` field for specification.
-        """
+    ) -> None:
         self.colors = colors
         self.group_matchers = group_matchers
 
@@ -107,7 +119,7 @@ class ProgrammingLanguage(abstract):
     The `TokenizableLanguage` of the language, imported on first access.
     """
 
-    def __init__(self, name: str, tokenize_name: str | None = None):
+    def __init__(self, name: str, tokenize_name: str | None = None) -> None:
         self.name = name
         self._tokenize_name = tokenize_name if tokenize_name else name
         self.color = language_colors.get(name, {}).get("color", "#FFFFFF")
@@ -116,7 +128,7 @@ class ProgrammingLanguage(abstract):
             print(f"Warning: no color found for {name}")
 
     @property
-    def language(self):
+    def language(self) -> Any:
         """The ``tokenize-all-code`` tokenizer, imported on first use."""
         tokenize_all = require("code_blocks", "tokenize_all")
         language = getattr(tokenize_all, self._tokenize_name, None)
@@ -153,22 +165,7 @@ class CodeBlock(VGroup):
         theme: Theme = OneDark,
         font: str = "consolas",
         **kwargs: object,
-    ):
-        """
-        Creates a new :class:`~manim_extensions.code_blocks.manim_code_blocks.CodeBlock`.
-
-        ### Parameters
-        - `text [str]`:
-            - The source code to render.
-        - `language [ProgrammingLanguage]`:
-            - The programming language to use when rendering the code. The language determines the text and color of the title of the code block, as well as the syntax highlighting of the code block.
-        - `theme [Theme]`:
-            - The theme to highlight the code in. `OneDark` by default.
-        - `font [str]`:
-            - The font to render the code in. `Consolas` by default.
-        - `**kwargs [Any]`:
-            - Additional arguments passed to :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
-        """
+    ) -> None:
 
         if language:
             lines = text.split("\n")
@@ -259,7 +256,7 @@ class CodeBlock(VGroup):
     def create(
         self, **kwargs
     ) -> tuple[FadeIn, AddTextLetterByLetter, FadeIn, AddTextLetterByLetter]:
-        """
+        r"""
         Return a tuple of animations for creating the code block. Use such as:\n
         ```
         python = CodeBlock('print("Hello World!")', language = Python)
@@ -280,7 +277,7 @@ class CodeBlock(VGroup):
             AddTextLetterByLetter(self.code, **kwargs),
         )
 
-    def uncreate(self, **kwargs):
+    def uncreate(self, **kwargs) -> Any:
         """
         Return a tuple of animations for uncreating the code block. Use such as:
         ```

@@ -12,6 +12,7 @@ manim-radar demo --render          # render the bundled demo reel
 """
 
 from __future__ import annotations
+from typing import Any
 
 import argparse
 import os
@@ -53,6 +54,7 @@ DEMO_COMMAND = "manim -qh examples/legacy_v2.py RadarV2Scene"
 
 
 def build_parser() -> argparse.ArgumentParser:
+    """build_parser."""
     parser = argparse.ArgumentParser(
         prog="manim-radar", description="Animated radar charts for Manim."
     )
@@ -82,7 +84,8 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv=None) -> int:
+def main(argv: Any = None) -> int:
+    """main."""
     args = build_parser().parse_args(argv)
 
     if args.command == "themes":

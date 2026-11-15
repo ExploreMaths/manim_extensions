@@ -13,7 +13,7 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 from __future__ import annotations
 
 import math
-from typing import List, Optional, Sequence
+from typing import Any, List, Optional, Sequence
 
 import numpy as np
 from manim import (
@@ -69,13 +69,14 @@ def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.nd
 class _Ring(Polygon):
     """A ring whose radius / stroke width / opacity change per frame."""
 
-    def __init__(self, center, color, **kwargs) -> None:
+    def __init__(self, center: Any, color: Any, **kwargs) -> None:
         center = np.asarray(center, dtype=float)
         super().__init__(*(np.tile(center, (3, 1))), stroke_color=color, **kwargs)
         self.ring_center = center
         self.ring_color = ManimColor(color)
 
     def restyle(self, radius: float, width: float, opacity: float) -> None:
+        """restyle."""
         self.set_points_as_corners(_ring_points(self.ring_center, radius))
         self.set_stroke(
             color=self.ring_color,
@@ -104,16 +105,16 @@ class Shockwave(Animation):
 
     def __init__(
         self,
-        center=None,
+        center: Any = None,
         *,
-        color="#FFFFFF",
+        color: Any = "#FFFFFF",
         radius_start: float = 0.18,
         radius_end: float = 5.0,
         width_start: float = 4.5,
         width_end: float = 0.7,
         expand: bool = True,
         run_time: float = 0.42,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         **kwargs,
     ) -> None:
         if center is None:
@@ -133,6 +134,7 @@ class Shockwave(Animation):
         )
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         k = self.rate_func(alpha)
         self.mobject.restyle(
             self._r0 + (self._r1 - self._r0) * k,
@@ -163,16 +165,16 @@ class RadarMorph(Animation):
 
     def __init__(
         self,
-        chart,
-        target,
+        chart: Any,
+        target: Any,
         *,
         transition: Optional[str] = None,
         run_time: Optional[float] = None,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         dip: Optional[bool] = None,
         dip_ratio: Optional[float] = None,
         shockwave: Optional[bool] = None,
-        shock_color=None,
+        shock_color: Any = None,
         stepped: Optional[bool] = None,
         dim: Optional[bool] = None,
         glitch: Optional[bool] = None,
@@ -227,6 +229,7 @@ class RadarMorph(Animation):
 
     # ------------------------------------------------------------------
     def begin(self) -> None:
+        """begin."""
         chart = self.chart
         cfg = chart.config
         self.start_count = len(chart._series)
@@ -357,6 +360,7 @@ class RadarMorph(Animation):
         )
 
     def _update_camera(self, alpha: float) -> None:
+        """_update_camera."""
         cam = self._cam
         if cam is None or cam["restored"]:
             return
@@ -391,6 +395,7 @@ class RadarMorph(Animation):
 
     # ------------------------------------------------------------------
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         a = self.rate_func(alpha)
         chart = self.chart
         cfg = chart.config
@@ -474,6 +479,7 @@ class RadarMorph(Animation):
 
     # ------------------------------------------------------------------
     def finish(self) -> None:
+        """finish."""
         chart = self.chart
         while len(chart._series) > len(self.targets):
             chart._drop_series(len(chart._series) - 1)
@@ -503,11 +509,13 @@ class RadarMorph(Animation):
         elif self.fade_name:
             chart._end_name_swap()
 
-    def clean_up_from_scene(self, scene) -> None:
+    def clean_up_from_scene(self, scene: Any) -> None:
+        """clean_up_from_scene."""
         self._drop_ring()
         super().clean_up_from_scene(scene)
 
     def _drop_ring(self) -> None:
+        """_drop_ring."""
         if self._ring is not None:
             try:
                 self.chart.remove(self._ring)
@@ -524,10 +532,10 @@ class RadarReveal(Animation):
 
     def __init__(
         self,
-        chart,
+        chart: Any,
         *,
         run_time: float = 0.9,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         from_values: Optional[Sequence[float]] = None,
         with_shockwave: Optional[bool] = None,
         **kwargs,
@@ -543,6 +551,7 @@ class RadarReveal(Animation):
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
+        """begin."""
         chart = self.chart
         self.to_values = [list(s.values) for s in chart._series]
         self.to_opacity = float(chart._opacity) or 1.0
@@ -557,6 +566,7 @@ class RadarReveal(Animation):
             chart.add(self._ring)
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         a = self.rate_func(alpha)
         chart = self.chart
         for i, s in enumerate(chart._series):
@@ -570,6 +580,7 @@ class RadarReveal(Animation):
             self._ring.restyle(radius, 4.5 * (1.0 - k) + 0.7, 0.9 * (1.0 - k))
 
     def finish(self) -> None:
+        """finish."""
         chart = self.chart
         for i, s in enumerate(chart._series):
             s.values = list(self.to_values[i])
@@ -579,7 +590,8 @@ class RadarReveal(Animation):
             chart.remove(self._ring)
             self._ring = None
 
-    def clean_up_from_scene(self, scene) -> None:
+    def clean_up_from_scene(self, scene: Any) -> None:
+        """clean_up_from_scene."""
         if self._ring is not None:
             try:
                 self.chart.remove(self._ring)
@@ -600,10 +612,10 @@ class RadarBurstIn(Animation):
 
     def __init__(
         self,
-        chart,
+        chart: Any,
         *,
         run_time: float = 1.1,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         with_shockwave: Optional[bool] = None,
         **kwargs,
     ) -> None:
@@ -616,6 +628,7 @@ class RadarBurstIn(Animation):
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
+        """begin."""
         chart = self.chart
         self.to_values = [list(s.values) for s in chart._series]
         self.to_opacity = float(chart._opacity) or 1.0
@@ -630,6 +643,7 @@ class RadarBurstIn(Animation):
             chart.add(self._ring)
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         a = self.rate_func(alpha)
         chart = self.chart
         f = ease_out_overshoot(a, self.overshoot)
@@ -643,6 +657,7 @@ class RadarBurstIn(Animation):
             self._ring.restyle(radius, 4.5 * (1.0 - k) + 0.7, 0.9 * (1.0 - k))
 
     def finish(self) -> None:
+        """finish."""
         chart = self.chart
         for i, s in enumerate(chart._series):
             s.values = list(self.to_values[i])
@@ -652,7 +667,8 @@ class RadarBurstIn(Animation):
             chart.remove(self._ring)
             self._ring = None
 
-    def clean_up_from_scene(self, scene) -> None:
+    def clean_up_from_scene(self, scene: Any) -> None:
+        """clean_up_from_scene."""
         if self._ring is not None:
             try:
                 self.chart.remove(self._ring)
@@ -667,11 +683,11 @@ class RadarFade(Animation):
 
     def __init__(
         self,
-        chart,
+        chart: Any,
         to: float = 0.0,
         *,
         run_time: float = 0.8,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         **kwargs,
     ) -> None:
         self.chart = chart
@@ -679,13 +695,16 @@ class RadarFade(Animation):
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
+        """begin."""
         self.start = float(self.chart._opacity)
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         a = self.rate_func(alpha)
         self.chart._opacity = self.start + (self.to - self.start) * a
 
     def finish(self) -> None:
+        """finish."""
         self.chart._opacity = self.to
 
 
@@ -701,10 +720,10 @@ class GlitchFlash(Animation):
 
     def __init__(
         self,
-        chart,
+        chart: Any,
         *,
         run_time: float = 0.75,
-        rate_func=smooth,
+        rate_func: Any = smooth,
         bars: bool = True,
         flickers: int = 3,
         **kwargs,
@@ -716,6 +735,7 @@ class GlitchFlash(Animation):
         super().__init__(chart, run_time=run_time, rate_func=rate_func, **kwargs)
 
     def begin(self) -> None:
+        """begin."""
         chart = self.chart
         self._to_opacity = max(0.6, float(chart._opacity) or 1.0)
         chart._opacity = 0.0
@@ -744,6 +764,7 @@ class GlitchFlash(Animation):
             chart.add(self._bars)
 
     def interpolate_mobject(self, alpha: float) -> None:
+        """interpolate_mobject."""
         a = self.rate_func(alpha)
         chart = self.chart
         chart.set_glitch(max(0.0, 1.0 - a / 0.6))
@@ -759,6 +780,7 @@ class GlitchFlash(Animation):
             self._bars.set_opacity(max(0.0, 1.0 - a * 1.5))
 
     def finish(self) -> None:
+        """finish."""
         chart = self.chart
         chart.set_glitch(0.0)
         chart._opacity = self._to_opacity
@@ -766,7 +788,8 @@ class GlitchFlash(Animation):
             chart.remove(self._bars)
             self._bars = None
 
-    def clean_up_from_scene(self, scene) -> None:
+    def clean_up_from_scene(self, scene: Any) -> None:
+        """clean_up_from_scene."""
         if self._bars is not None:
             try:
                 self.chart.remove(self._bars)

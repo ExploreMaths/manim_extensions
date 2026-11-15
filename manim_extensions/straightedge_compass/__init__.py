@@ -22,6 +22,7 @@ Scene base class
 :class:`~manim_extensions.straightedge_compass.scene.EuclidScene`, with helpers mark_point / draw_circle / draw_arc / draw_segment.
 """
 
+from __future__ import annotations
 from .geometry import (
     P,
     distance,

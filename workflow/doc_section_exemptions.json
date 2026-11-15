@@ -1,1 +1,245 @@
-{}
+{
+  "manim_extensions/cad_drawing_utils/dimensions.py": [
+    "CAD_ArrowHead.default_updater",
+    "CAD_ArrowHead.flip_arrow",
+    "CAD_ArrowHead.get_tip_pos",
+    "CAD_ArrowHead.reversed_arrow",
+    "CAD_ArrowHead.set_arrow_size",
+    "Pointer_Label_Free.update_point",
+    "Pointer_To_Mob.update_mob"
+  ],
+  "manim_extensions/cad_drawing_utils/hatch.py": [
+    "Hatch_lines",
+    "curve_intersection"
+  ],
+  "manim_extensions/cad_drawing_utils/path_mapper.py": [
+    "Curve_Warp",
+    "Curve_Warp.generate_points",
+    "Dashed_line_mobject.generate_dash_mobjects",
+    "Dashed_line_mobject.generate_dash_pattern_dash_distributed",
+    "Dashed_line_mobject.generate_dash_pattern_metric",
+    "Path_Offset_Mobject",
+    "Path_Offset_Mobject.default_updater",
+    "Path_Offset_Mobject.generate_bezier_points",
+    "Path_Offset_Mobject.generate_normal_vectors",
+    "Path_Offset_Mobject.generate_offset_func_points",
+    "Path_Offset_Mobject.generate_offset_paths",
+    "Path_Offset_Mobject.generate_ref_curve",
+    "Path_Offset_Mobject.set_ofs_function_kwargs",
+    "Path_mapper",
+    "Path_mapper.alpha_from_length",
+    "Path_mapper.calc_len_bezier_quad",
+    "Path_mapper.calc_len_with_quads",
+    "Path_mapper.cubic_to_quads",
+    "Path_mapper.equalize_alpha",
+    "Path_mapper.equalize_rate_func",
+    "Path_mapper.generate_length_map",
+    "Path_mapper.get_bezier_index_from_length",
+    "Path_mapper.get_curvature",
+    "Path_mapper.get_curvature_vector",
+    "Path_mapper.get_length_between_points",
+    "Path_mapper.get_length_between_points_tuple",
+    "Path_mapper.get_length_between_points_wrapped",
+    "Path_mapper.get_normal_unit_vector",
+    "Path_mapper.get_path_length",
+    "Path_mapper.get_tangent_angle",
+    "Path_mapper.get_tangent_unit_vector",
+    "Path_mapper.length_from_alpha",
+    "Path_mapper.point_from_proportion"
+  ],
+  "manim_extensions/cad_drawing_utils/round_corners.py": [
+    "Chamfer_Corner_Param",
+    "Chamfer_Corners",
+    "Round_Corner_Param",
+    "Round_Corners"
+  ],
+  "manim_extensions/cad_drawing_utils/utils.py": [
+    "Bezier_Handlebars.generate_circles",
+    "Bezier_Handlebars.generate_lines",
+    "Bezier_Handlebars.move_circles",
+    "Bezier_Handlebars.move_lines",
+    "angle_between_vectors_signed"
+  ],
+  "manim_extensions/code_blocks/manim_code_blocks.py": [
+    "CodeBlock",
+    "CodeBlock.create",
+    "CodeBlock.uncreate",
+    "ProgrammingLanguage.language",
+    "Theme.color_for"
+  ],
+  "manim_extensions/radar/animations.py": [
+    "GlitchFlash",
+    "GlitchFlash.clean_up_from_scene",
+    "GlitchFlash.interpolate_mobject",
+    "RadarBurstIn.clean_up_from_scene",
+    "RadarBurstIn.interpolate_mobject",
+    "RadarFade.interpolate_mobject",
+    "RadarMorph.clean_up_from_scene",
+    "RadarMorph.interpolate_mobject",
+    "RadarReveal.clean_up_from_scene",
+    "RadarReveal.interpolate_mobject",
+    "Shockwave.interpolate_mobject"
+  ],
+  "manim_extensions/radar/backdrop.py": [
+    "DeepSpace",
+    "DeepSpace.install",
+    "DeepSpace.link",
+    "DeepSpace.set_fade",
+    "DeepSpace.set_tint",
+    "set_scene_background"
+  ],
+  "manim_extensions/radar/camera.py": [
+    "CameraRig.focus_point",
+    "CameraRig.micro_push",
+    "CameraRig.pull_out",
+    "CameraRig.push_in"
+  ],
+  "manim_extensions/radar/chart.py": [
+    "RadarChart",
+    "RadarChart.attach_backdrop",
+    "RadarChart.attach_camera",
+    "RadarChart.axis_count",
+    "RadarChart.clear_gap",
+    "RadarChart.compare",
+    "RadarChart.current_color",
+    "RadarChart.data",
+    "RadarChart.datasets",
+    "RadarChart.disappear",
+    "RadarChart.focus",
+    "RadarChart.full_scale",
+    "RadarChart.get_center",
+    "RadarChart.glitch_in",
+    "RadarChart.highlight_gap",
+    "RadarChart.morph_to",
+    "RadarChart.pull_out",
+    "RadarChart.push_in",
+    "RadarChart.reveal",
+    "RadarChart.set_glitch",
+    "RadarChart.set_main_color",
+    "RadarChart.set_opacity",
+    "RadarChart.set_radius",
+    "RadarChart.set_rim",
+    "RadarChart.set_values",
+    "RadarChart.shockwave",
+    "RadarChart.trace_web",
+    "RadarChart.unfocus",
+    "RadarChart.values"
+  ],
+  "manim_extensions/radar/cli.py": [
+    "<module>",
+    "build_parser",
+    "main"
+  ],
+  "manim_extensions/radar/config.py": [
+    "RadarConfig.evolved",
+    "RadarConfig.validated",
+    "get_style",
+    "style_names"
+  ],
+  "manim_extensions/radar/data.py": [
+    "RadarData.color_or",
+    "RadarData.full_scale",
+    "RadarData.n_axes",
+    "RadarData.overflow_suffix",
+    "RadarData.radius_values",
+    "RadarData.ratios",
+    "RadarData.renamed",
+    "RadarData.scale_for",
+    "RadarData.with_values"
+  ],
+  "manim_extensions/radar/legacy.py": [
+    "replica_datasets"
+  ],
+  "manim_extensions/radar/numbers.py": [
+    "RollingNumber",
+    "RollingNumber.label_for",
+    "RollingNumber.render",
+    "RollingNumber.set_live_color",
+    "RollingNumber.set_max_value"
+  ],
+  "manim_extensions/radar/overflow.py": [
+    "OverflowRadarChart",
+    "OverflowRadarChart.burst_in",
+    "OverflowRadarChart.morph_to"
+  ],
+  "manim_extensions/radar/poly.py": [
+    "PolyMorph.interpolate_mobject",
+    "PolyRadarChart",
+    "PolyRadarChart.grow_in",
+    "PolyRadarChart.set_values",
+    "PolyRadarChart.spin_to"
+  ],
+  "manim_extensions/radar/reel.py": [
+    "RadarReel.play_on",
+    "RadarReel.summary",
+    "RadarReel.total_time"
+  ],
+  "manim_extensions/radar/theme.py": [
+    "RadarTheme.axis_color",
+    "RadarTheme.dataset_color",
+    "RadarTheme.evolved",
+    "get_theme",
+    "theme_names"
+  ],
+  "manim_extensions/radar/utils.py": [
+    "as_points",
+    "axis_angles",
+    "closed",
+    "ease_in_out_cubic",
+    "ease_out_back",
+    "ease_out_overshoot",
+    "lighten",
+    "mix",
+    "pick_font",
+    "unit_vector"
+  ],
+  "manim_extensions/straightedge_compass/compass.py": [
+    "Compass",
+    "Compass.pencil_point",
+    "Compass.pose",
+    "Compass.rotated_copy",
+    "CompassDrawArc.interpolate_mobject"
+  ],
+  "manim_extensions/straightedge_compass/geometry.py": [
+    "P",
+    "angle_of",
+    "as_point",
+    "circle_circle_intersection",
+    "circle_line_intersection",
+    "distance",
+    "leftmost",
+    "line_line_intersection",
+    "lowermost",
+    "midpoint",
+    "other",
+    "point_on",
+    "rightmost",
+    "rotate_vec",
+    "unit",
+    "uppermost"
+  ],
+  "manim_extensions/straightedge_compass/marks.py": [
+    "MarkedPoint",
+    "MarkedPoint.point"
+  ],
+  "manim_extensions/straightedge_compass/scene.py": [
+    "EuclidScene.draw_arc",
+    "EuclidScene.draw_circle",
+    "EuclidScene.draw_segment",
+    "EuclidScene.flash_points",
+    "EuclidScene.intro",
+    "EuclidScene.mark_point",
+    "EuclidScene.retire_ruler",
+    "EuclidScene.setup"
+  ],
+  "manim_extensions/straightedge_compass/straightedge.py": [
+    "PencilTip",
+    "RulerDraw.interpolate_mobject",
+    "Straightedge",
+    "Straightedge.pose"
+  ],
+  "manim_extensions/three_d/core.py": [
+    "GaussianSurface.resolve",
+    "plan_timeline"
+  ]
+}
