@@ -178,7 +178,7 @@ def test_scene_names_and_factories():
         assert isinstance(built.style, cfg_cls)
         named = factory(name="MyScene")
         assert named.__name__ == "MyScene"
-        assert "工厂" in factory.__doc__
+        assert "Factory" in factory.__doc__
 
 
 # ------------------------------------------------------------- graph scenes

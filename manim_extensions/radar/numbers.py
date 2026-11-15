@@ -189,13 +189,14 @@ class RollingNumber(VGroup):
 
         key = int(np.clip(key, 0, self._key_limit()))
         if key not in self._cache:
-            txt = Text(
-                self.label_for(key),
-                font=self.font,
-                weight=self.weight,
-                font_size=self.size,
-                color=self.color,
-            )
+            text_kwargs = {
+                "weight": self.weight,
+                "font_size": self.size,
+                "color": self.color,
+            }
+            if self.font is not None:
+                text_kwargs["font"] = self.font
+            txt = Text(self.label_for(key), **text_kwargs)
             txt.set_opacity(0)
             self._cache[key] = txt
             self.add(txt)
