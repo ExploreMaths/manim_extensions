@@ -72,7 +72,7 @@ OneDark = Theme(
         "#56B6C2": ["symbol"],  # Cyan
         "#D19A66": ["number", "keyword literal"],  # Orange
         "#E5C07B": ["class name"],  # Yellow
-        GRAY_C: ["comment"],  # Gray
+        str(GRAY_C): ["comment"],  # Gray
     },
     group_matchers=["#D19A66", "#C678DD", "#56B6C2"],  # Orange  # Purple  # Cyan
 )
@@ -213,7 +213,10 @@ class CodeBlock(VGroup):
 
             finished_text = "".join(finished)
         else:
-            finished_text = '<span foreground="#FFFFFF">' + text + "</span>"
+            safe_text = regex.sub("&", "&amp;", text)
+            safe_text = regex.sub("<", "&lt;", safe_text)
+            safe_text = regex.sub(">", "&gt;", safe_text)
+            finished_text = '<span foreground="#FFFFFF">' + safe_text + "</span>"
 
         markup = MarkupText(
             f'<span font="{font}">' + finished_text + "</span>", z_index=3
