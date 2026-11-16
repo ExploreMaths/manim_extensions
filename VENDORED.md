@@ -262,8 +262,8 @@ sync points for those packages now exactly match their upstream HEAD. -->
 
 ## `manim_extensions/three_d`
   - **Upstream:** [FTZ-OPUS/manim-3d](https://github.com/FTZ-OPUS/manim-3d)
-  - **Synced:** [`334f65549691c8c90cb0e9c30855b1e2cb4bd896`](https://github.com/FTZ-OPUS/manim-3d/commit/334f65549691c8c90cb0e9c30855b1e2cb4bd896)
-  - **Status:** vendored from PyPI 0.1.1 (tag `v0.1.1`)
+  - **Synced:** [`d9f7dd8685587dbc8c8ce54a92a8f9253f8ec8a6`](https://github.com/FTZ-OPUS/manim-3d/commit/d9f7dd8685587dbc8c8ce54a92a8f9253f8ec8a6)
+  - **Status:** vendored from PyPI 0.1.1 (tag `v0.1.1`); upstream commits after 334f655 are README/demo media only
   - **Local patches:**
     - SPDX header; CJK subtitles resolve through `manim_extensions.mobjects.DEFAULT_CJK_FONT` instead of the macOS-only `PingFang SC`
     - package version corrected to 0.1.1
