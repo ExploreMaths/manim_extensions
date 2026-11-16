@@ -159,6 +159,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Mirrors the system packages that .readthedocs.yaml used to install.
+      - name: Install RTD system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ffmpeg fonts-jetbrains-mono fonts-noto-cjk fonts-hosny-amiri \
+            graphviz libcairo2-dev libpango1.0-dev libffi-dev pkg-config
+
       - name: Fetch the complete media cache
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -178,6 +186,12 @@ jobs:
 
       - name: Install docs dependencies
         run: pip install ".[docs]"
+
+      # The old RTD pre_build installed the vendored Nerd Font before Sphinx
+      # started. Pango (>= 1.52) snapshots fonts at initialization, so this
+      # must happen before the build step.
+      - name: Install vendored Nerd Font
+        run: python -c "import manim_extensions.nerdfont as nf; nf._install_font_linux()"
 
       - name: Build prebuilt HTML
         env:
