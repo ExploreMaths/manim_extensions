@@ -1,0 +1,146 @@
+.. SPDX-FileCopyrightText: 2026 ExploreMaths
+.. SPDX-License-Identifier: MIT
+
+Font Awesome
+============
+
+.. module:: manim_extensions.fontawesome
+
+.. vendored-status:: naveen521kk/manim-fontawesome
+
+**Original author:** `Naveen M K <https://github.com/naveen521kk>`_
+
+**Source repository:** `GitHub <https://github.com/naveen521kk/manim-fontawesome>`_
+
+**License:** BSD-3-Clause
+
+``manim-fontawesome`` brings `Font Awesome <https://fontawesome.com>`_ icons
+into Manim. It bundles 2 000+ SVG icons in three styles — **brand**,
+**regular**, and **solid** — and exposes them as Manim
+:class:`~manim.mobject.svg.svg_mobject.SVGMobject` instances.
+
+The code is bundled inside ``manim_extensions`` as the
+:mod:`~manim_extensions.fontawesome` subpackage.
+
+Usage
+-----
+
+Each style is a namespace whose attributes are the corresponding SVG
+icons — attribute access returns a ready-made
+:class:`~manim.mobject.svg.svg_mobject.SVGMobject`:
+
+.. manim:: FontAwesomeHeart
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.fontawesome import solid, regular, brand
+
+   class FontAwesomeHeart(Scene):
+       def construct(self):
+           self.camera.background_color = BLACK
+           icon = solid.heart          # an SVGMobject, ready to add to a scene
+           icon.set_color(RED)
+           self.add(icon)
+
+Available styles:
+
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.solid` – solid (filled) icons (Font Awesome ``fas`` set).
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.regular` – regular (outline) icons (Font Awesome ``far`` set).
+- :data:`~manim_extensions.fontawesome.manim_fontawesome.brand` – brand / logo icons (Font Awesome ``fab`` set).
+
+Any bundled icon name works as an attribute on its style namespace — for
+example, the regular-style angry face:
+
+.. manim:: AngryEmoji
+   :save_last_frame:
+
+   from manim import *
+   from manim_extensions.fontawesome import regular
+
+   class AngryEmoji(Scene):
+       def construct(self):
+           self.camera.background_color = BLACK
+           self.add(regular.face_angry)
+
+The variable :data:`~manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION` reports the bundled Font Awesome
+version string.
+
+Gallery
+-------
+
+A wall of solid icons, staggered in and spun like on the
+`Font Awesome homepage <https://fontawesome.com>`_:
+
+.. manim:: FontAwesomeWall
+
+   from manim import *
+   from manim_extensions.fontawesome import solid, regular, brand, list_icons
+
+   class FontAwesomeWall(Scene):
+       def construct(self):
+           config.background_color = BLACK  # so icons default to white
+           self.camera.background_color = BLACK  # render the frame black
+           # near-square glyphs only — wide glyphs rotated sideways by the
+           # tilt below would tower over their neighbours
+           pools = {}
+           for namespace, style in [(solid, "solid"), (regular, "regular"),
+                                    (brand, "brand")]:
+               pools[style] = [
+                   name for name in list_icons(style)
+                   if 0.8 <= getattr(namespace, name).width
+                            / getattr(namespace, name).height <= 1.25
+               ]
+           # alternate the three styles round-robin so the wall mixes
+           # filled, outline, and brand glyphs instead of one monotone set
+           namespaces = {"solid": solid, "regular": regular, "brand": brand}
+           styles = ["solid", "regular", "brand"]
+           names = []
+           for i in range(240):
+               style = styles[i % len(styles)]
+               names.append((namespaces[style], pools[style][i // len(styles)]))
+           icons = VGroup(*[getattr(ns, n) for ns, n in names])
+           # fixed per-icon tilt from the golden angle — fully
+           # deterministic, so every build shows the same wall
+           for i, icon in enumerate(icons):
+               icon.rotate(i * 137.5 * DEGREES)
+           icons.arrange_in_grid(rows=12, cols=20, buff=0.35)
+           # shrink the glyphs in place (positions unchanged) so the gaps
+           # open up — scaling the whole group would shrink the gaps too
+           for icon in icons:
+               icon.scale(0.75)
+           # scale until the grid covers the whole frame (full bleed)
+           cover = max(
+               config.frame_width / icons.width,
+               config.frame_height / icons.height,
+           )
+           icons.scale(cover)
+           icons.scale(0.92)
+           self.play(LaggedStartMap(FadeIn, icons, lag_ratio=0.01))
+           self.play(LaggedStart(
+               *[
+                   Rotate(icon, angle=TAU, about_point=icon.get_center())
+                   for icon in icons
+               ],
+               lag_ratio=0.01,
+           ))
+           self.wait()
+
+Modules
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~manim_fontawesome
+
+Constants
+---------
+
+.. autodata:: manim_extensions.fontawesome.FONT_AWESOME_VERSION
+   :no-value:
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   manim_fontawesome/index

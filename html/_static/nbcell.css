@@ -1,0 +1,177 @@
+/* Notebook-style code cells (nbcell directive).
+ *
+ * Layout (flex rows with In/Out prompt columns) follows nbsphinx's
+ * nbsphinx-code-cells.css (https://github.com/spatialaudio/nbsphinx, MIT).
+ * The code areas themselves are styled by the theme like any default code
+ * block -- no custom borders, padding, or font tweaks here. */
+
+/* neutralize theme styling on the prompt column only */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    background: none;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    /* Fallback width; nbcell_directive injects a per-document <style>
+       that sets width to fit the widest In/Out prompt (see
+       _adjust_prompt_width). This keeps single-digit counters tight
+       while still fitting multi-digit ones. */
+    width: 7ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area: just the flexible content column; the theme styles
+ * the code block inside exactly like a default one */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* kill default block margins inside cells so prompts and content align */
+div.nbinput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] {
+    margin: 0;
+}
+
+/* outputs stay plain text (no code-block background or pygments colors) */
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* outputs: no inner padding at all, so the Out prompt sits flush with the
+ * first output line and the text keeps no side margins */
+div.nboutput.container div.output_area pre {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+div.nboutput.container div.prompt {
+    padding-top: 0;
+}
+
+/* a bit of breathing room between the input and output rows */
+div.nboutput.container {
+    margin-top: 0.4em;
+}
+
+/* hide copy button on prompts and on nbcell outputs */
+.prompt .copybtn,
+div.nboutput.container .copybtn {
+    display: none;
+}
+
+/* Sample files attached to a cell (``:files:``). The cards sit between the
+ * input and the output, indented to the code column by the per-document
+ * padding-left that nbcell_directive injects next to the prompt width. */
+div.nbcell-files.container {
+    /* Same single gap value the manim examples use, so the gaps above,
+       between two cards and below stay equal. */
+    --manim-file-gap: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+div.nbcell-files .manim-example-files {
+    /* One gap value for every side: code -> cards, cards -> cards,
+       cards -> output. */
+    padding: 0;
+    margin: var(--manim-file-gap) 0;
+}
+
+@media (max-width: 540px) {
+    /* Prompt column is stacked above the code here, so drop the indent.
+       Doubling the class outranks the injected style of equal specificity. */
+    div.nbcell-files.container.container {
+        padding-left: 0;
+    }
+}

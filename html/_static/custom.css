@@ -1,0 +1,552 @@
+.sidebar-brand img {
+    width: 208px !important;
+    height: auto !important;
+}
+
+.sd-badge {
+    font-size: 0.45em !important;
+    vertical-align: middle;
+    margin-top: -0.45em;
+    border-radius: 100rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    span.nc {
+        text-decoration: none !important;
+    }
+}
+
+.admonition-manim-example {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admonition-manim-example p.admonition-title {
+    font-weight: 600;
+    font-size: 0.925rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.admonition-manim-example .highlight-python {
+    margin: 0;
+}
+
+.admonition-manim-example .highlight {
+    border-radius: 0;
+    border: none;
+    /* Long code lines must scroll inside the block instead of widening the
+       admonition, otherwise the file cards below overflow on narrow screens. */
+    min-width: 0;
+}
+
+/* Example cards nest pre inside the admonition container whose em chain
+   shrinks text; leaving pre at the inherited size renders ~11.6px, too
+   small. 15px keeps the example code close to the plain code-block size
+   (14.3px furo default) while staying legible inside the card. */
+.admonition-manim-example .highlight pre {
+    font-size: 15px;
+}
+
+.manim-video {
+    width: 100%;
+    padding: 8px 0;
+    outline: 0;
+}
+
+.admonition-manim-example .manim-video {
+    padding: 0;
+}
+
+.admonition-manim-example img {
+    margin-bottom: 0;
+}
+
+.admonition-manim-example p:last-child {
+    margin-top: 0;
+    padding-left: 0.5rem;
+    padding-bottom: 0.15rem;
+    font-size: 15px;
+}
+
+.admonition-manim-example .copybtn {
+    margin-right: 6px;
+    font-size: 18px;
+}
+
+.admonition-manim-example .copybtn:hover {
+    cursor: pointer;
+}
+
+p.rubric{
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.sig-param{
+    color: var(--color-content-foreground);
+}
+
+dl.c .field-list dt, dl.cpp .field-list dt, dl.js .field-list dt, dl.py .field-list dt {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: var(--font-size--normal);
+}
+
+h4, h5, h6{
+    text-transform: none;
+}
+
+code.literal {
+    /* Inline code keeps Furo/Sphinx defaults: the theme's inline-code font
+       size and its default background (previously shrunk to 95%). */
+    font-size: var(--font-size--small--2);
+    background-color: var(--color-inline-code-background);
+}
+
+/* yikes-ish attempt at bugfix for navbar on some browsers */
+.sidebar-tree a.internal.reference {
+    display: table-cell;
+}
+
+.content h2 {
+    line-height: 1.5;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content h3 {
+    line-height: 1.5;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Inheritance diagrams: center and keep them inside the content column,
+   with a subtle rounded corner so they blend with both color schemes. */
+.graphviz {
+    text-align: center;
+}
+
+.graphviz object.inheritance {
+    display: inline-block;
+    max-width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.inheritance-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-content-foreground);
+}
+
+.inheritance-legend .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.inheritance-legend .legend-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.inheritance-legend .manim-swatch {
+    background-color: var(--color-admonition-title-background--seealso);
+    border-color: var(--color-admonition-title--seealso);
+}
+
+.inheritance-legend .extensions-swatch {
+    background-color: var(--color-admonition-title-background--important);
+    border-color: var(--color-admonition-title--important);
+}
+
+.inheritance-legend .python-swatch {
+    background-color: #F5F5F5;
+    border-color: #9E9E9E;
+}
+
+.inheritance-legend .legend-label {
+    font-weight: 500;
+}
+/* Italicize resolved type spans inside numpydoc parameter types
+   (the | and , separators are plain text and stay untouched). */
+.sphinx_autodoc_typehints-type code {
+    font-style: italic;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 100%;
+    font-family: inherit;
+}
+
+/* Render napoleon section rubrics (Examples, ...) with the same
+   bold-with-colon look as the Parameters/Returns field-list headings. */
+p.rubric {
+    font-weight: bold;
+}
+p.rubric::after {
+    content: ":";
+}
+/* furo de-boldens and uppercases rubrics inside field-list <dd>
+   (exactly where napoleon puts Examples); restore the heading look. */
+dd p.rubric {
+    font-weight: bold;
+}
+dd p.rubric::after {
+    content: ":";
+}
+/* Inline-code links, plain references and signature types all use Furo's
+   native link colors end to end — no custom link, hover or visited color
+   is written here or in conf.py's css_variables.  Coloring is limited to
+   the inheritance diagram (inheritance_colors.py light fills +
+   responsiveSvg.js dark adaptation + the legend swatches below).  This
+   comment exists so nobody re-adds a body[data-theme="dark"] override
+   that ties with Furo's generated inline <style> and loses by source
+   order. */
+/* Python-standard-library cross-references inside autodoc attribute and
+   property blocks (dl.py.attribute, dl.py.property): keep them unstyled —
+   plain inherited text colour, no underline, in both colour schemes and on
+   hover.  Scoped to docs.python.org so third-party type links (numpy.ndarray,
+   manim's Dot, …) keep their normal link styling. */
+dl.py.attribute a.reference[href^="https://docs.python.org"],
+dl.py.property a.reference[href^="https://docs.python.org"],
+dl.py.attribute a.reference[href^="https://docs.python.org"] code,
+dl.py.property a.reference[href^="https://docs.python.org"] code,
+dl.py.attribute a.reference[href^="https://docs.python.org"]:hover,
+dl.py.property a.reference[href^="https://docs.python.org"]:hover,
+dl.py.attribute a.reference[href^="https://docs.python.org"] code:hover,
+dl.py.property a.reference[href^="https://docs.python.org"] code:hover {
+    color: inherit;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* Dark theme: manim / manim_extensions legend swatches use Furo's own
+   admonition variables (--color-admonition-title-background--seealso /
+   --color-admonition-title-background--important), which Furo keeps
+   theme-independent — the rgba tint blends with the dark page background
+   exactly like Furo's admonitions do.  Only the Python swatch needs an
+   explicit dark fill (its light fill is plain white). */
+body[data-theme="dark"] .inheritance-legend .python-swatch {
+    background-color: #26282B;
+    border-color: #D0D0D0;
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .inheritance-legend .python-swatch {
+        background-color: #26282B;
+        border-color: #D0D0D0;
+    }
+}
+
+/* Inheritance diagrams (graphviz SVG): light/dark adaptation is handled
+   entirely by responsiveSvg.js, which injects an inline <style> into the
+   SVG (background + edge/arrow colors per theme).  A CSS ``filter`` on
+   div.graphviz must NOT be used here: it either has no effect on the
+   <object>-embedded SVG (Chromium) or, where it does apply, inverts the
+   already-dark-adapted colors and turns the diagram into a light canvas
+   with dark arrows (double adaptation). */
+
+/* Parameter-list default values in the description (e.g. "color
+   (ParsableManimColor | None) – ..."): sphinx-autodoc-typehints >= 3.17
+   wraps None/True/False in <span class="highlight
+   sphinx_autodoc_typehints-value"> with a pygments .kc token whose green
+   overrides the link color, so only the None link turns green.  Re-inherit
+   the surrounding color (the intersphinx link color, like float/bool and
+   like stable). */
+html body .highlight.sphinx_autodoc_typehints-value {
+    color: inherit;
+}
+/* None/True/False are intersphinx links to the Python docs: keep them
+   in the link color (native blue) with the link hover color, overriding
+   the pygments .kc/.py green and the inherited body text color. */
+html body .highlight.sphinx_autodoc_typehints-value a,
+html body .highlight.sphinx_autodoc_typehints-value a code.xref,
+html body .highlight.sphinx_autodoc_typehints-value a .kc,
+html body .highlight.sphinx_autodoc_typehints-value a .pre {
+    color: var(--color-link);
+    font-weight: normal;
+}
+html body .highlight.sphinx_autodoc_typehints-value a:hover,
+html body .highlight.sphinx_autodoc_typehints-value a:hover code.xref,
+html body .highlight.sphinx_autodoc_typehints-value a:hover .kc,
+html body .highlight.sphinx_autodoc_typehints-value a:hover .pre {
+    color: var(--color-link--hover);
+}
+/* String/number/operator tokens inside typehints values (e.g. the
+   Literal['complete', ...] strings): strip the pygments gold and the
+   furo code.literal border/background so they read like plain text in
+   the parameter description, matching stable.  The None link rules above
+   keep their higher specificity, so None stays link-colored. */
+html body .highlight.sphinx_autodoc_typehints-value code,
+html body .highlight.sphinx_autodoc_typehints-value code .s1,
+html body .highlight.sphinx_autodoc_typehints-value code .s2,
+html body .highlight.sphinx_autodoc_typehints-value code .kc,
+html body .highlight.sphinx_autodoc_typehints-value code .m,
+html body .highlight.sphinx_autodoc_typehints-value code .n,
+html body .highlight.sphinx_autodoc_typehints-value code .o {
+    color: inherit;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+
+/* Python builtin / standard-library links (dict, str, float, None, Protocol,
+   ...) never take the link colour: they read as plain text in the
+   surrounding colour with no underline, in every context — parameter and
+   return type spans, attribute and property blocks, signature types,
+   ``Bases:`` lines, and inline references written in docstrings (e.g. the
+   ``Attributes`` sections).  Third-party type links (numpy, pillow, manim,
+   pymunk, …) keep their native link look everywhere.  The selector is
+   deliberately more specific than Furo's ``a`` / ``a.reference`` /
+   ``code.xref`` rules so no later theme rule can re-colour it. */
+html body a[href^="https://docs.python.org"],
+html body a[href^="https://docs.python.org"] code,
+html body a[href^="https://docs.python.org"] code.xref,
+html body a[href^="https://docs.python.org"] .pre,
+html body a[href^="https://docs.python.org"] .kc,
+html body a[href^="https://docs.python.org"]:hover,
+html body a[href^="https://docs.python.org"] code:hover,
+html body a[href^="https://docs.python.org"] code.xref:hover,
+html body a[href^="https://docs.python.org"] .pre:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Parameter type spans (sphinx-autodoc-typehints wraps the type links of
+   a Parameters entry, e.g. "(str)" or "(ParsableManimColor | None)"):
+   strip the furo inline-code border and background so types read as
+   plain text next to the value spans, but keep the link colours (Python
+   links inherit body colour via the rule above; numpy/pillow/manim links
+   stay link-blue). */
+html body .sphinx_autodoc_typehints-type code,
+html body .sphinx_autodoc_typehints-type a code.xref {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+/* Class/function/method signatures (dt.sig blocks): inline code inside a
+   signature keeps no background so parameter names, types and default
+   values read as plain text on the signature's fill. */
+html body dt.sig code,
+html body dt.sig code.literal {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* Signature default-value links rendered as inline code (e.g. "font
+   = DEFAULT_CJK_FONT" in a signature): plain text links without the
+   inline-code background and border.  Scoped to the signature default
+   value only — inline code xrefs elsewhere keep the theme's default
+   code-literal look. */
+html body .sig .default_value a,
+html body .sig .default_value a code {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+/* Auto-listed attribute members (autodoc "members" collects inherited
+   public attributes — e.g. FileTree.code — and renders them after the
+   class docstring): keep the block flush top-level like the
+   Parameters/Returns field-list headings — no indent, not nested under
+   the example/highlight blocks.  Furo's .sig rule hangs the first line
+   with ``text-indent: -2.5em`` + ``padding-left: 3em``; clearing the
+   padding is not enough, the negative text-indent still pushes the
+   attribute name left of the Attributes rubric heading, so zero it too. */
+dl.py.attribute {
+    margin-left: 0;
+    padding-left: 0;
+}
+dl.py.attribute > dt.sig,
+dl.py.property > dt.sig {
+    padding-left: 0;
+    margin-left: 0;
+    text-indent: 0;
+}
+p.rubric {
+    margin-left: 0;
+}
+/* Attribute/property signature types (e.g. FileTree.code : VMobject,
+   Array.values : List[NodeValue]): Python builtin type links (str, dict,
+   List, ...) must match the bold look of the other signature types — the
+   global "python links inherit body colour" rule strips boldness; restore
+   it inside the attribute/property signature list. */
+dl.py.attribute > dt.sig a[href^="https://docs.python.org"],
+dl.py.attribute > dt.sig a[href^="https://docs.python.org"] .pre,
+dl.py.property > dt.sig a[href^="https://docs.python.org"],
+dl.py.property > dt.sig a[href^="https://docs.python.org"] .pre {
+    font-weight: inherit;
+}
+
+/* Attributes rendered as a simple bulleted list: each autodoc
+   attribute/property entry keeps its own dt + dd block, prefixed by the
+   native list marker (disc — same rendering as Parameters' list items).
+   A block with exactly one entry drops the bullet — the
+   attributes-single.js script detects that case and removes the marker. */
+/* Attributes rendered exactly like the Parameters list items: the
+   native list marker of a list-item is anchored to the *li* box, not
+   the ul box — li sits at ul left-edge + 1.2em (ul padding).  So the
+   attribute/property dl must place its box at the same column as the
+   li box: ul left-edge = field-list dd (2rem) − ul margin (1.2rem),
+   i.e. parent + 0.8rem, then +1.2em for the ul padding.  Box, marker
+   and text then land pixel-identical at any font size.  A block with
+   exactly one entry drops the bullet (attributes-single.js). */
+dl.py.attribute {
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 0.3rem 0 0.3rem calc(1.2em + 0.8rem);
+    padding-left: 0;
+}
+dl.py.attribute.attributes-single {
+    list-style-type: none;
+}
+dl.py.attribute > dt.sig a.headerlink,
+dl.py.property > dt.sig a.headerlink {
+    display: none;
+}
+
+/* Vendored out-of-sync package entry: wrap the link and warning icon in a
+   warning-title-background inline code-like badge (Furo warning colours). */
+.lagging-badge {
+    background-color: var(--color-admonition-title-background--warning);
+    border-radius: 0.25rem;
+    padding: 0.05em 0.4em;
+}
+.module-index .lagging-badge a {
+    text-decoration: none;
+}
+.module-index .lagging-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.3rem;
+    background-color: var(--color-admonition-title--warning);
+    -webkit-mask-image: var(--icon-warning);
+    mask-image: var(--icon-warning);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    vertical-align: middle;
+}
+
+/* Sample files used by a ``.. manim::`` example, shown as attachment rows
+   below the example's source block, two files per line.  All five gaps --
+   above the cards, left, right, between two cards, and below the cards --
+   come from the single --manim-file-gap value so they stay equal. */
+.admonition-manim-example {
+    --manim-file-gap: 0.9rem;
+}
+
+.manim-example-files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--manim-file-gap);
+    /* Padding instead of side margins: as a stretched flex item the side
+       margins collapse and the cards end up flush with the border. */
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 var(--manim-file-gap) var(--manim-file-gap);
+    margin: var(--manim-file-gap) 0 0;
+}
+
+.manim-file-row {
+    flex: 1 1 19rem;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--color-background-border);
+    border-radius: 0.6rem;
+    background: var(--color-background-secondary);
+}
+
+/* Phone-sized viewports: one file per line instead of two. */
+@media (max-width: 48em) {
+    .manim-file-row {
+        flex-basis: 100%;
+    }
+}
+
+.manim-file-badge {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 0.32rem;
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.manim-file-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.manim-file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-foreground-primary);
+    font-weight: 600;
+}
+
+.manim-file-size {
+    color: var(--color-foreground-muted);
+    font-size: 0.72em;
+}
+
+.manim-file-actions {
+    display: flex;
+    gap: 0.28rem;
+    flex: 0 0 auto;
+}
+
+.manim-file-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border: 1px solid var(--color-background-border);
+    border-radius: 50%;
+    color: var(--color-foreground-secondary);
+    text-decoration: none !important;
+}
+
+.manim-file-action:hover {
+    color: var(--color-foreground-primary);
+    border-color: var(--color-foreground-muted);
+}
+
+.manim-file-action svg {
+    width: 0.95rem;
+    height: 0.95rem;
+}
