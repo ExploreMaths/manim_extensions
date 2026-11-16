@@ -158,7 +158,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        The animation used to introduce the layer.
+            The animation used to introduce the layer.
         """
         debug_mode = False
         if debug_mode:

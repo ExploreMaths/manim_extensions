@@ -259,7 +259,7 @@ def _control_data_path(
 
     Returns
     -------
-    Path of the stored control frame.
+        Path of the stored control frame.
 
     Raises
     ------
@@ -297,7 +297,7 @@ def _config_test(last_frame: bool) -> ManimConfig:
 
     Returns
     -------
-    The digested Manim configuration.
+        The digested Manim configuration.
     """
     return ManimConfig().digest_file(
         str(

@@ -291,7 +291,7 @@ class DecisionTreeDiagram(Group):
 
         Returns
         -------
-        The node mobject representing the tree node.
+            The node mobject representing the tree node.
         """
         is_split_node = (
             self.tree.children_left[node_index] != self.tree.children_right[node_index]
@@ -329,7 +329,7 @@ class DecisionTreeDiagram(Group):
 
         Returns
         -------
-        The connecting line.
+            The connecting line.
         """
         top_node_bottom_location = top.get_center()
         top_node_bottom_location[1] -= top.height / 2
@@ -345,8 +345,8 @@ class DecisionTreeDiagram(Group):
 
         Returns
         -------
-        The scaled tree group, a node map keyed by node index, and a connection
-        map keyed by ``"parent,child"`` pairs.
+            The scaled tree group, a node map keyed by node index, and a connection
+            map keyed by ``"parent,child"`` pairs.
         """
         tree_group = Group()
         max_depth = self.tree.max_depth

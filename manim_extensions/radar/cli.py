@@ -58,7 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     Returns
     -------
-    The configured parser.
+        The configured parser.
     """
 
     parser = argparse.ArgumentParser(
@@ -100,7 +100,7 @@ def main(argv: Any = None) -> int:
 
     Returns
     -------
-    A process exit code.
+        A process exit code.
     """
 
     args = build_parser().parse_args(argv)

@@ -129,7 +129,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping output to the IS interest rate.
+            A function mapping output to the IS interest rate.
         """
         return lambda y: a / b - y / b
 
@@ -148,7 +148,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping output to the LM interest rate.
+            A function mapping output to the LM interest rate.
         """
         return lambda y: (k * y - ms) / h
 
@@ -164,7 +164,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        The visible output range as ``[lower, upper]``.
+            The visible output range as ``[lower, upper]``.
         """
         # r = a/b - Y/b => Y = a - b*r
         x_at_ymax = a - b * self._y_max
@@ -187,7 +187,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-        The visible output range as ``[lower, upper]``.
+            The visible output range as ``[lower, upper]``.
         """
         # r = (kY - Ms)/h => Y = (h*r + Ms) / k
         x_at_ymin = (h * self._y_min + ms) / k

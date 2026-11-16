@@ -702,7 +702,7 @@ class PerpendicularSign(VGroup):
 
         Returns
         -------
-        The two unit direction vectors toward the line endpoints.
+            The two unit direction vectors toward the line endpoints.
         """
         start = line.get_start()
         end = line.get_end()
@@ -744,7 +744,7 @@ class PerpendicularSign(VGroup):
 
         Returns
         -------
-        The chosen direction from each pair.
+            The chosen direction from each pair.
         """
         candidates = []
         for d1 in dirs1:
@@ -1082,7 +1082,7 @@ class VideoMobject(ImageMobject):
 
         Returns
         -------
-        The video duration in seconds divided by the playback rate.
+            The video duration in seconds divided by the playback rate.
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 

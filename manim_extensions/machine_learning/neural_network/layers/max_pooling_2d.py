@@ -160,7 +160,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        The group of output feature map rectangles.
+            The group of output feature map rectangles.
         """
         # Compute the size of the feature maps
         output_feature_map_size = (

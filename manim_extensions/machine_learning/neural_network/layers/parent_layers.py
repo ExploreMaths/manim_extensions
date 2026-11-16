@@ -117,7 +117,7 @@ class NeuralNetworkLayer(ABC, Group):
 
         Returns
         -------
-        An animation that does nothing.
+            An animation that does nothing.
         """
         # A zero-duration Wait: connective layers have no visible geometry to
         # create, and manim >= 0.21 raises when playing an empty Succession.
@@ -128,7 +128,7 @@ class NeuralNetworkLayer(ABC, Group):
 
         Returns
         -------
-        The class name.
+            The class name.
         """
         return f"{type(self).__name__}"
 
@@ -188,7 +188,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        The parent layer's creation animation.
+            The parent layer's creation animation.
         """
         return super()._create_override()
 
@@ -279,7 +279,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        The parent layer's creation animation.
+            The parent layer's creation animation.
         """
         return super()._create_override()
 
@@ -288,7 +288,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        A representation including the input and output layer classes.
+            A representation including the input and output layer classes.
         """
         return (
             f"{self.__class__.__name__}("
@@ -390,6 +390,6 @@ class BlankConnective(ConnectiveLayer):
 
         Returns
         -------
-        The parent layer's creation animation.
+            The parent layer's creation animation.
         """
         return super()._create_override()

@@ -61,7 +61,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        ``None``; the length and alpha tables are stored on the instance.
+            ``None``; the length and alpha tables are stored on the instance.
         """
         norms = np.array(0)
         for k in range(self.path.get_num_curves()):
@@ -82,7 +82,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        Six control points forming two consecutive quadratic segments.
+            Six control points forming two consecutive quadratic segments.
         """
         # based on https://ttnghia.github.io/pdf/QuadraticApproximation.pdf
         q_points = np.empty((0, 3))
@@ -109,7 +109,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The arc length.
+            The arc length.
         """
 
         a = points[0, :]
@@ -137,7 +137,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The summed length of all quadratic segments.
+            The summed length of all quadratic segments.
         """
         L = 0
         for k in range(self.path.get_num_curves()):
@@ -153,7 +153,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The cumulative length at the final sample.
+            The cumulative length at the final sample.
         """
         return self.pathdata_lengths[-1]
 
@@ -167,7 +167,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        A proportion, or a list of proportions for iterable input.
+            A proportion, or a list of proportions for iterable input.
         """
         if hasattr(s, "__iter__"):
             return [np.interp(t, self.pathdata_lengths, self.pathdata_alpha) for t in s]
@@ -184,7 +184,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        An arc length, or a list of arc lengths for iterable input.
+            An arc length, or a list of arc lengths for iterable input.
         """
         if hasattr(a, "__iter__"):
             return [np.interp(t, self.pathdata_alpha, self.pathdata_lengths) for t in a]
@@ -201,7 +201,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The length-based proportion at the same path position.
+            The length-based proportion at the same path position.
         """
         return self.alpha_from_length(a * self.get_path_length())
 
@@ -215,27 +215,27 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        A callable rate function that compensates for path length.
+            A callable rate function that compensates for path length.
 
-        Example:
+            Example:
 
-        .. code-block:: python
+            .. code-block:: python
 
-            class TestPathMapperAnim(Scene):
-                def construct(self):
-                    mob1 = round_corners(
-                        Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5
-                    )
-                    path_mapper = PathMapper(mob1)
-                    mob2 = mob1.copy()
-                    mob1.shift(LEFT * 2.5)
-                    mob2.shift(RIGHT * 2.5)
-                    self.play(
-                        Create(mob1, rate_func=path_mapper.equalize_rate_func(smooth)),
-                        Create(mob2),
-                        run_time=5,
-                    )
-                    self.wait()
+                class TestPathMapperAnim(Scene):
+                    def construct(self):
+                        mob1 = round_corners(
+                            Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5
+                        )
+                        path_mapper = PathMapper(mob1)
+                        mob2 = mob1.copy()
+                        mob1.shift(LEFT * 2.5)
+                        mob2.shift(RIGHT * 2.5)
+                        self.play(
+                            Create(mob1, rate_func=path_mapper.equalize_rate_func(smooth)),
+                            Create(mob2),
+                            run_time=5,
+                        )
+                        self.wait()
         """
 
         def eq_func(t: float) -> Any:
@@ -257,8 +257,8 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The point coordinates, or a stacked array of points for iterable
-        input.
+            The point coordinates, or a stacked array of points for iterable
+            input.
         """
         if hasattr(alpha, "__iter__"):
             values = self.alpha_from_length(alpha * self.get_path_length())
@@ -295,7 +295,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The signed length from ``a`` to ``b``.
+            The signed length from ``a`` to ``b``.
         """
         return self.length_from_alpha(b) - self.length_from_alpha(a)
 
@@ -311,8 +311,8 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The distance wrapped into the range minus half the path length to
-        plus half the path length.
+            The distance wrapped into the range minus half the path length to
+            plus half the path length.
         """
         AB = self.get_length_between_points(b, a)
         L = self.get_path_length()
@@ -330,7 +330,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        A tuple of the shorter and longer absolute lengths.
+            A tuple of the shorter and longer absolute lengths.
         """
 
         AB = abs(self.get_length_between_points(b, a))
@@ -350,7 +350,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The curve index and the local parameter within that curve.
+            The curve index and the local parameter within that curve.
         """
         a = self.alpha_from_length(s)
         nc = self.path.get_num_curves()
@@ -371,7 +371,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The normalized tangent direction.
+            The normalized tangent direction.
         """
         # diff_bez_points = 1/3*(self.path.points[1:,:]-self.path.points[:-1,:])
         indx, bz_a = self.get_bezier_index_from_length(s)
@@ -391,7 +391,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The tangent direction as an angle in radians.
+            The tangent direction as an angle in radians.
         """
         tv = self.get_tangent_unit_vector(s)
         return angle_of_vector(tv)
@@ -406,7 +406,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The tangent rotated ninety degrees counter-clockwise.
+            The tangent rotated ninety degrees counter-clockwise.
         """
         tv = self.get_tangent_unit_vector(s)
         return rotate_vector(tv, PI / 2)
@@ -421,7 +421,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The curvature vector from the first and second derivatives.
+            The curvature vector from the first and second derivatives.
         """
         indx, bz_a = self.get_bezier_index_from_length(s)
         points = self.path.get_nth_curve_points(indx)
@@ -442,7 +442,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-        The magnitude of the curvature vector.
+            The magnitude of the curvature vector.
         """
         return np.linalg.norm(self.get_curvature_vector(s))
 
@@ -507,7 +507,7 @@ class DashedLineMobject(VDict):
 
         Returns
         -------
-        Start and end lengths of the dashes.
+            Start and end lengths of the dashes.
         """
         period = dash_len + space_len
         n = num_dashes
@@ -545,7 +545,7 @@ class DashedLineMobject(VDict):
 
         Returns
         -------
-        Start and end lengths of the dashes.
+            Start and end lengths of the dashes.
         """
         full_len = self.path.get_path_length()
         period = full_len / num_dashes
@@ -571,7 +571,7 @@ class DashedLineMobject(VDict):
 
         Returns
         -------
-        A group containing one partial path per dash.
+            A group containing one partial path per dash.
         """
         ref_mob = self.path.path
         a_list = self.path.alpha_from_length(dash_starts)
@@ -747,7 +747,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        ``None``; the arguments are stored on the instance.
+            ``None``; the arguments are stored on the instance.
         """
         self.ofs_func_kwargs = ofs_func_kwargs
 
@@ -767,7 +767,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        A list of four-point control sets, one per interval.
+            A list of four-point control sets, one per interval.
         """
         # generate bezier 4-lets with numerical difference
         out_data = []
@@ -794,7 +794,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        ``None``; the curve and its path mapper are stored on the instance.
+            ``None``; the curve and its path mapper are stored on the instance.
         """
         self.ref_curve = VMobject()
         bez_point = self.generate_bezier_points(
@@ -814,7 +814,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        A list of four-point control sets for the offset curve.
+            A list of four-point control sets for the offset curve.
         """
         points = self.generate_bezier_points(
             lambda t: self.ofs_func(t, **self.ofs_func_kwargs),
@@ -828,7 +828,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        A list of four-vector sets, one per sampled Bezier curve.
+            A list of four-vector sets, one per sampled Bezier curve.
         """
         s_range = self.t_range * self.PM.get_path_length()
         # generate normal vectors from tangent angles and turning them 90°
@@ -853,7 +853,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        The point array of the offset path.
+            The point array of the offset path.
         """
         if gen_ref_curve:
             self.generate_ref_curve()
@@ -885,7 +885,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-        ``None``; the points are replaced in place.
+            ``None``; the points are replaced in place.
         """
         self.points = self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
 
@@ -940,7 +940,7 @@ class CurveWarp(VMobject):
 
         Returns
         -------
-        ``None``; the mapped points are stored on the instance.
+            ``None``; the mapped points are stored on the instance.
         """
         s0 = self.PM.length_from_alpha(self.anchor_point)
         x_points = self.warp_source.points[:, 0] + s0

@@ -159,6 +159,6 @@ class State:
 
         Returns
         -------
-        The state identifier and name.
+            The state identifier and name.
         """
         return "State id: {self.id}, name: {self.name}".format(self=self)

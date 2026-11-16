@@ -32,7 +32,7 @@ class SingletonLogger:
 
         Returns
         -------
-        The process-wide singleton logger instance.
+            The process-wide singleton logger instance.
         """
         # Double-checked locking for thread safety
         if not cls._instance:

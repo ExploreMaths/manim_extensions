@@ -156,7 +156,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping capital to output.
+            A function mapping capital to output.
         """
         return lambda k: k**alpha
 
@@ -173,7 +173,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping capital to savings per worker.
+            A function mapping capital to savings per worker.
         """
         return lambda k: s * (k**alpha)
 
@@ -194,7 +194,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping capital to break-even investment.
+            A function mapping capital to break-even investment.
         """
         rate = delta + n + g
         return lambda k: rate * k
@@ -205,7 +205,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        ``True`` when the share annotation is present.
+            ``True`` when the share annotation is present.
         """
         return hasattr(self, "_shares_group") and self._shares_group is not None
 
@@ -223,8 +223,8 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        The curve animation alone, or a group that also replaces the share
-        annotation.
+            The curve animation alone, or a group that also replaces the share
+            annotation.
         """
         if not self._shares_visible:
             return curve_anim
@@ -403,7 +403,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        The steady-state capital level, or ``None`` without an intersection.
+            The steady-state capital level, or ``None`` without an intersection.
         """
         from .base import find_intersection
 
@@ -427,7 +427,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        The group with the stem, braces, and share labels.
+            The group with the stem, braces, and share labels.
         """
         prod = self._make_prod_func(self._alpha)
         sav = self._make_savings_func(self._s, self._alpha)
@@ -567,7 +567,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-        The golden-rule capital level.
+            The golden-rule capital level.
         """
         rate = self._delta + self._n + self._g
         return (self._alpha / rate) ** (1 / (1 - self._alpha))

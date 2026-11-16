@@ -65,7 +65,7 @@ class SimpleLine(Line):
 
         Returns
         -------
-        Normalised direction vector.
+            Normalised direction vector.
         """
         vector = self.end - self.start
 
@@ -112,7 +112,7 @@ class DoubleLine(ArcBetweenPoints):
 
         Returns
         -------
-        Normalised direction vector.
+            Normalised direction vector.
         """
         vector = self.end - self.start
 

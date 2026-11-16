@@ -89,7 +89,7 @@ class RadarTheme:
 
         Returns
         -------
-        The axis colour.
+            The axis colour.
         """
 
         cols = list(self.axis_colors)
@@ -105,7 +105,7 @@ class RadarTheme:
 
         Returns
         -------
-        The dataset colour.
+            The dataset colour.
         """
 
         cols = list(self.palette)
@@ -121,7 +121,7 @@ class RadarTheme:
 
         Returns
         -------
-        A new theme instance.
+            A new theme instance.
         """
 
         return replace(self, **changes)
@@ -215,7 +215,7 @@ def theme_names() -> list[str]:
 
     Returns
     -------
-    The names in registration order.
+        The names in registration order.
     """
 
     return list(THEMES)
@@ -231,7 +231,7 @@ def get_theme(theme: Union[str, RadarTheme, None]) -> RadarTheme:
 
     Returns
     -------
-    The resolved theme.
+        The resolved theme.
 
     Raises
     ------

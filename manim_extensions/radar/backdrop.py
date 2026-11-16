@@ -29,7 +29,7 @@ def set_scene_background(theme: Union[str, RadarTheme, None] = "midnight") -> st
 
     Returns
     -------
-    The colour that was applied.
+        The colour that was applied.
 
     Examples
     --------
@@ -233,7 +233,7 @@ class DeepSpace(VGroup):
 
         Returns
         -------
-        This backdrop, allowing calls to be chained.
+            This backdrop, allowing calls to be chained.
         """
 
         self._linked = chart
@@ -251,7 +251,7 @@ class DeepSpace(VGroup):
 
         Returns
         -------
-        This backdrop, allowing calls to be chained.
+            This backdrop, allowing calls to be chained.
         """
 
         self._tint = ManimColor(color)
@@ -267,7 +267,7 @@ class DeepSpace(VGroup):
 
         Returns
         -------
-        This backdrop, allowing calls to be chained.
+            This backdrop, allowing calls to be chained.
         """
 
         self._fade = float(np.clip(value, 0.0, 1.0))
@@ -283,7 +283,7 @@ class DeepSpace(VGroup):
 
         Returns
         -------
-        This backdrop, allowing calls to be chained.
+            This backdrop, allowing calls to be chained.
         """
 
         scene.add(self)

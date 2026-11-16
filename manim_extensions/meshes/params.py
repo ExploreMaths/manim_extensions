@@ -66,7 +66,7 @@ def _build_oglm() -> DefaultParameters:
 
     Returns
     -------
-    The default parameter mapping.
+        The default parameter mapping.
     """
     moderngl = require("meshes", "moderngl")
     return {
@@ -89,7 +89,7 @@ def __getattr__(name: str) -> DefaultParameters:
 
     Returns
     -------
-    The default parameters for ``OGLM``.
+        The default parameters for ``OGLM``.
 
     Raises
     ------

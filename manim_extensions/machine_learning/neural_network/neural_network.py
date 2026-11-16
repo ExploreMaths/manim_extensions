@@ -319,7 +319,7 @@ class NeuralNetwork(Group):
 
         Returns
         -------
-        The connective layers and the combined list of all layers.
+            The connective layers and the combined list of all layers.
         """
         connective_layers = ListGroup()
         all_layers = ListGroup()
@@ -576,8 +576,8 @@ class NeuralNetwork(Group):
 
         Returns
         -------
-        The animation that reveals the network, or an empty wait when it has
-        already been created.
+            The animation that reveals the network, or an empty wait when it has
+            already been created.
         """
         # Stop the neural network from being created twice
         if self.created:
@@ -685,7 +685,7 @@ class NeuralNetwork(Group):
 
         Returns
         -------
-        The textual representation of all layers.
+            The textual representation of all layers.
         """
         inner_string = ""
         for layer in self.all_layers:

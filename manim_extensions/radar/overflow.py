@@ -168,7 +168,7 @@ class OverflowRadarChart(RadarChart):
 
         Returns
         -------
-        The morph animation.
+            The morph animation.
         """
 
         kwargs.setdefault("transition", "burst")
@@ -187,7 +187,7 @@ class OverflowRadarChart(RadarChart):
 
         Returns
         -------
-        The entrance animation.
+            The entrance animation.
         """
 
         return RadarBurstIn(self, run_time=run_time, **kwargs)

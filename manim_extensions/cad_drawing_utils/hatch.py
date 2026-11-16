@@ -99,8 +99,8 @@ def curve_intersection(vmob1: VMobject, vmob2: VMobject) -> Any:
 
     Returns
     -------
-    The intersection indices: parameter values for each mobject and
-    matching curve indices.
+        The intersection indices: parameter values for each mobject and
+        matching curve indices.
     """
     intersect_indx_1 = np.array([])
     intersect_indx_2 = np.array([])

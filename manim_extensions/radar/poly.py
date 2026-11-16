@@ -89,7 +89,7 @@ def _unit(v: Any) -> Any:
 
     Returns
     -------
-    A unit-length copy of the vector.
+        A unit-length copy of the vector.
     """
 
     v = np.asarray(v, dtype=float)
@@ -350,7 +350,7 @@ class PolyRadarChart(VGroup):
 
         Returns
         -------
-        Twenty face-index triples, one per dodecahedron vertex.
+            Twenty face-index triples, one per dodecahedron vertex.
         """
 
         tris = []
@@ -371,7 +371,7 @@ class PolyRadarChart(VGroup):
 
         Returns
         -------
-        The world-space position of the marker.
+            The world-space position of the marker.
         """
 
         local = np.array(FACE_NORMAL_DIRS[i]) * (
@@ -466,7 +466,7 @@ class PolyRadarChart(VGroup):
 
         Returns
         -------
-        This chart, allowing calls to be chained.
+            This chart, allowing calls to be chained.
         """
 
         if not self.grow:
@@ -496,7 +496,7 @@ class PolyRadarChart(VGroup):
 
         Returns
         -------
-        An animation that performs the rotation.
+            An animation that performs the rotation.
         """
 
         class Spin(Animation):

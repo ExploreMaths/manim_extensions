@@ -373,7 +373,7 @@ class Node(VMobject):
 
         Returns
         -------
-        The textual node representation.
+            The textual node representation.
         """
         return f"Node({repr(self.value)})"
 
@@ -382,7 +382,7 @@ class Node(VMobject):
 
         Returns
         -------
-        The textual node representation.
+            The textual node representation.
         """
         return self.__str__()
 

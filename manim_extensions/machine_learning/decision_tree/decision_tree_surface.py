@@ -374,7 +374,7 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-        The group of coloured dots.
+            The group of coloured dots.
         """
         point_group = VGroup()
         for point_index, point in enumerate(points):
@@ -402,7 +402,7 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-        The assembled legend group.
+            The assembled legend group.
         """
         legend_group = VGroup()
         # Make Text
@@ -447,7 +447,7 @@ class IrisDatasetPlot(VGroup):
 
         Returns
         -------
-        The assembled axes group.
+            The assembled axes group.
         """
         axes_group = VGroup()
         # make the axes

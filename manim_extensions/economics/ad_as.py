@@ -143,7 +143,7 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping output to the aggregate price level.
+            A function mapping output to the aggregate price level.
         """
         mv = m * v
         return lambda y: mv / y
@@ -163,7 +163,7 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        The smallest output level that keeps the curve visible.
+            The smallest output level that keeps the curve visible.
         """
         # P = MV/Y ≤ y_max  →  Y ≥ MV/y_max
         return max((m * v) / y_max, 0.1)
@@ -185,7 +185,7 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        A function mapping output to the short-run price level.
+            A function mapping output to the short-run price level.
         """
         if slope is None:
             return lambda y: price
@@ -203,7 +203,7 @@ class ADASDiagram(EconDiagram):
 
         Returns
         -------
-        The long-run equilibrium expected price level.
+            The long-run equilibrium expected price level.
         """
         return (self._m * self._v) / self._lras_y
 

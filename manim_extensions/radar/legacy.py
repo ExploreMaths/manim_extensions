@@ -90,10 +90,10 @@ def replica_datasets(
 
     Returns
     -------
-    One snapshot per timeline entry.
+        One snapshot per timeline entry.
 
-    Holds are derived from the original timestamps so the whole reel keeps
-    its original pace.
+        Holds are derived from the original timestamps so the whole reel keeps
+        its original pace.
     """
 
     out: list[RadarData] = []

@@ -55,6 +55,10 @@ This script checks that public functions, methods, and classes in
 6d. The docstring closing triple-quote must be indented to the same column
    as the opening triple-quote; a closing quote flush at column 0 is
    rejected.
+6e. The body of a ``Returns``/``Yields`` section must be indented below the
+   section header. A prose description left at the header's indent is
+   not parsed as the return description by napoleon and renders as a
+   loose paragraph under the section.
 7. Every public class docstring must carry an ``Examples`` section.
    Mobject subclasses must also include a ``.. manim::`` block in that
    section.
@@ -991,6 +995,54 @@ def check_description_indent(doc, qualname, lineno, violations):
         )
 
 
+def check_return_body_indent(doc, qualname, lineno, violations):
+    """Returns/Yields descriptions must be indented below the header.
+
+    When the first non-blank line under the underline sits at the same
+    indent as the section header and is prose (rather than a named entry),
+    napoleon treats it as a loose paragraph instead of the return
+    description. The project style therefore requires the body to be
+    indented one level below the header.
+    """
+    lines = doc.splitlines()
+    for name, hpos in section_positions(doc):
+        if name not in ("Returns", "Yields"):
+            continue
+        header_indent = len(lines[hpos]) - len(lines[hpos].lstrip(" \t"))
+        j = hpos + 2
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        if j >= len(lines):
+            continue
+        stripped = lines[j].strip()
+        if (
+            j + 1 < len(lines)
+            and SECTION_UNDERLINE_RE.match(lines[j + 1].strip() or "")
+            and (len(lines[j]) - len(lines[j].lstrip(" \t")) <= header_indent)
+        ):
+            continue  # next section header: the section body is empty
+        if stripped.startswith(".. "):
+            continue
+        body_indent = len(lines[j]) - len(lines[j].lstrip(" \t"))
+        if body_indent > header_indent:
+            continue
+        if (
+            (PARAM_ENTRY_RE.match(stripped) and not _prose_after_colon(stripped))
+            or BARE_ENTRY_RE.match(stripped)
+            or is_return_type_line(stripped)
+        ):
+            continue  # a legitimate named/entry line at the entry indent
+        violations.append(
+            {
+                "line": lineno,
+                "qualname": qualname,
+                "type": "RETURNS_BODY_NOT_INDENTED",
+                "message": f"'{name}' description '{stripped[:50]}' is not "
+                f"indented below the section header",
+            }
+        )
+
+
 def annotation_is_none(node: ast.expr | None) -> bool:
     """Return True when the return annotation is None or absent."""
     if node is None:
@@ -1217,6 +1269,7 @@ def check_file(filepath: Path) -> list:
         check_inline_sections(module_doc, "<module>", 1)
         check_description_style(module_doc, "<module>", 1, violations)
         check_description_indent(module_doc, "<module>", 1, violations)
+        check_return_body_indent(module_doc, "<module>", 1, violations)
         check_summary_period(module_doc, "<module>", 1, violations)
         check_terminal_punctuation(module_doc, "<module>", 1, violations)
         check_section_spacing(module_doc, "<module>", 1, violations)
@@ -1243,6 +1296,7 @@ def check_file(filepath: Path) -> list:
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)
+        check_return_body_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
@@ -1412,6 +1466,7 @@ def check_file(filepath: Path) -> list:
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)
+        check_return_body_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)

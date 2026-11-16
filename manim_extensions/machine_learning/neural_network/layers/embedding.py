@@ -336,7 +336,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        The staggered growth animation.
+            The staggered growth animation.
         """
         # Plot each point at once
         point_animations = []

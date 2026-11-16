@@ -114,7 +114,7 @@ class PointerLabelFree(VDict):
 
         Returns
         -------
-        ``None``; the line and text positions are updated in place.
+            ``None``; the line and text positions are updated in place.
         """
         self["line"].set_points_as_corners(
             [
@@ -193,7 +193,7 @@ class PointerToMob(PointerLabelFree):
 
         Returns
         -------
-        ``None``; the pointer is repositioned in place.
+            ``None``; the pointer is repositioned in place.
         """
         point = mob.point_from_proportion(proportion)
         # if the mob center and point happens to be the same, it causes problems
@@ -588,7 +588,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        ``None``; the arrow points are regenerated in place.
+            ``None``; the arrow points are regenerated in place.
         """
         self.PM.generate_length_map()
         self.generate_points()
@@ -598,7 +598,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        The horizontal position of the tip along the target curve.
+            The horizontal position of the tip along the target curve.
         """
         if self.__reversed_arrow:
             return self.arrowhead.get_critical_point(LEFT)[0]
@@ -615,7 +615,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        ``None``; the arrow head is scaled in place.
+            ``None``; the arrow head is scaled in place.
         """
         act_size = (
             self.arrowhead.get_critical_point(RIGHT)
@@ -631,7 +631,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        ``None``; the arrow head is flipped in place.
+            ``None``; the arrow head is flipped in place.
         """
         self.arrowhead.flip()
 
@@ -641,7 +641,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        The current reversed state.
+            The current reversed state.
         """
         return self.__reversed_arrow
 
@@ -656,7 +656,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-        ``None``; the arrow is flipped when the state changes.
+            ``None``; the arrow is flipped when the state changes.
         """
         if rev != self.__reversed_arrow:
             self.flip_arrow()

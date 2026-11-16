@@ -180,7 +180,7 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        The fade-in animation for the triplet assets.
+            The fade-in animation for the triplet assets.
         """
         return FadeIn(self.assets)
 

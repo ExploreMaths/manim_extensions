@@ -43,7 +43,7 @@ def round_corner_param(radius: Any, curve_points_1: Any, curve_points_2: Any) ->
 
     Returns
     -------
-    The arc parameters and the two curve parameters where they are cut.
+        The arc parameters and the two curve parameters where they are cut.
     """
     bez_func_1 = bezier(curve_points_1)
     diff_func_1 = bezier((curve_points_1[1:, :] - curve_points_1[:-1, :]) / 3)
@@ -107,7 +107,7 @@ def round_corners(mob: VMobject, radius: Any = 0.2) -> Any:
 
     Returns
     -------
-    The same mobject with rounded corners.
+        The same mobject with rounded corners.
     """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
@@ -153,8 +153,8 @@ def chamfer_corner_param(offset: Any, curve_points_1: Any, curve_points_2: Any) 
 
     Returns
     -------
-    The chamfer line endpoints and the curve parameters where they are
-    cut.
+        The chamfer line endpoints and the curve parameters where they are
+        cut.
     """
     # this is ugly, I know, don't judge
     if hasattr(offset, "iter"):
@@ -198,7 +198,7 @@ def chamfer_corners(mob: VMobject, offset: Any = 0.2) -> Any:
 
     Returns
     -------
-    The same mobject with chamfered corners.
+        The same mobject with chamfered corners.
     """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:

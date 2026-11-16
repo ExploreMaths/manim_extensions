@@ -365,7 +365,7 @@ class Filters(VGroup):
 
         Returns
         -------
-        The deferred filter-creation animation.
+            The deferred filter-creation animation.
         """
 
         def add_content(object: Mobject) -> Mobject:
@@ -733,6 +733,6 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-        An empty succession.
+            An empty succession.
         """
         return Succession()

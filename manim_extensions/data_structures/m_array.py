@@ -75,7 +75,7 @@ class UpdateIndices(Protocol):
 
         Returns
         -------
-        The animations that update the remaining element indices.
+            The animations that update the remaining element indices.
         """
         ...
 
@@ -314,7 +314,7 @@ class MArrayElement(VGroup):
 
         Returns
         -------
-        The copied object with non-scene attributes deep-copied.
+            The copied object with non-scene attributes deep-copied.
         """
 
         exclude_list = ["_MArrayElement__scene"]
@@ -732,7 +732,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        Sum of ``side_length`` values of all element squares in the range.
+            Sum of ``side_length`` values of all element squares in the range.
 
         Raises
         ------
@@ -1157,7 +1157,7 @@ class MArray(VGroup):
 
         Returns
         -------
-        The copied object with non-scene attributes deep-copied.
+            The copied object with non-scene attributes deep-copied.
         """
 
         exclude_list = ["_MArray__scene"]
@@ -1918,7 +1918,7 @@ class MArrayPointer(VGroup):
 
         Returns
         -------
-        The copied object with non-scene attributes deep-copied.
+            The copied object with non-scene attributes deep-copied.
         """
 
         exclude_list = ["_MArrayPointer__scene", "_MArrayPointer__arr"]
@@ -2435,7 +2435,7 @@ class MArraySlidingWindow(VGroup):
 
         Returns
         -------
-        The copied object with non-scene attributes deep-copied.
+            The copied object with non-scene attributes deep-copied.
         """
 
         exclude_list = ["_MArraySlidingWindow__scene", "_MArraySlidingWindow__arr"]

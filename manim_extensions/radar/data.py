@@ -101,7 +101,7 @@ class RadarData:
 
         Returns
         -------
-        Number of axis labels.
+            Number of axis labels.
         """
 
         return len(self.axes)
@@ -112,7 +112,7 @@ class RadarData:
 
         Returns
         -------
-        ``"+"`` when a value overflows, otherwise an empty string.
+            ``"+"`` when a value overflows, otherwise an empty string.
         """
 
         return "+" if max(self.values) > self.full_scale else ""
@@ -123,8 +123,8 @@ class RadarData:
 
         Returns
         -------
-        ``max_value`` when supplied, otherwise the ceiling of the largest
-        value with a floor of one.
+            ``max_value`` when supplied, otherwise the ceiling of the largest
+            value with a floor of one.
         """
 
         if self.max_value is not None:
@@ -141,7 +141,7 @@ class RadarData:
 
         Returns
         -------
-        A scale that labels every ring with an integer.
+            A scale that labels every ring with an integer.
         """
 
         if self.max_value is not None:
@@ -164,7 +164,7 @@ class RadarData:
 
         Returns
         -------
-        One fraction per axis, where 1.0 is the outer ring.
+            One fraction per axis, where 1.0 is the outer ring.
         """
 
         sc = float(scale if scale is not None else self.full_scale) or 1.0
@@ -184,7 +184,7 @@ class RadarData:
 
         Returns
         -------
-        One radius per axis.
+            One radius per axis.
         """
 
         return [r * radius for r in self.ratios(scale)]
@@ -199,7 +199,7 @@ class RadarData:
 
         Returns
         -------
-        The snapshot colour or the fallback as a Manim colour.
+            The snapshot colour or the fallback as a Manim colour.
         """
 
         return ManimColor(self.color) if self.color else ManimColor(fallback)
@@ -216,7 +216,7 @@ class RadarData:
 
         Returns
         -------
-        A new validated snapshot.
+            A new validated snapshot.
         """
 
         return replace(self, values=tuple(float(v) for v in values), **changes)
@@ -231,7 +231,7 @@ class RadarData:
 
         Returns
         -------
-        A new validated snapshot.
+            A new validated snapshot.
         """
 
         return replace(self, name=name)
@@ -241,7 +241,7 @@ class RadarData:
 
         Returns
         -------
-        A short string naming the axis count, optional name and values.
+            A short string naming the axis count, optional name and values.
         """
 
         label = f" name={self.name!r}" if self.name else ""

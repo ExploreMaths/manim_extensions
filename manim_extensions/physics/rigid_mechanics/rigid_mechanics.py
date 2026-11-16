@@ -69,7 +69,7 @@ def _load_pymunk() -> pymunk:
 
     Returns
     -------
-    The imported pymunk module.
+        The imported pymunk module.
     """
     return cast("pymunk", require("physics", "pymunk"))
 

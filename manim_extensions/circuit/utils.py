@@ -259,7 +259,7 @@ class Circuit(VMobject):
 
         Returns
         -------
-        The wire path as a list of points.
+            The wire path as a list of points.
         """
         if (
             not math.isclose(end1[0], end2[0]) and not math.isclose(end1[1], end2[1])

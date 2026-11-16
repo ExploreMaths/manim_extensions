@@ -111,7 +111,7 @@ class Row(VGroup):
 
         Returns
         -------
-        The selected cell.
+            The selected cell.
         """
         ...
 
@@ -126,7 +126,7 @@ class Row(VGroup):
 
         Returns
         -------
-        The selected cells.
+            The selected cells.
         """
         ...
 
@@ -140,7 +140,7 @@ class Row(VGroup):
 
         Returns
         -------
-        The selected cell or list of cells.
+            The selected cell or list of cells.
         """
         return self.cells[index]
 
@@ -149,7 +149,7 @@ class Row(VGroup):
 
         Returns
         -------
-        The cell count.
+            The cell count.
         """
         return len(self.cells)
 
@@ -158,7 +158,7 @@ class Row(VGroup):
 
         Returns
         -------
-        An iterator over the cells.
+            An iterator over the cells.
         """
         return iter(self.cells)
 

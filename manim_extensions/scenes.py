@@ -116,7 +116,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
 
         Returns
         -------
-        The stroke scaling factor for the camera height.
+            The stroke scaling factor for the camera height.
         """
         height = getattr(self.camera, "frame_height", None)
         if height is None:

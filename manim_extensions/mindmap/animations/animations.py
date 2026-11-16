@@ -654,7 +654,7 @@ class AbstractLayoutAnimation(AnimationGroup):
 
         Returns
         -------
-        The nodes that should be removed from the scene.
+            The nodes that should be removed from the scene.
 
         Raises
         ------

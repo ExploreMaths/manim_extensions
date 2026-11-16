@@ -490,6 +490,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-        The fade-in animation.
+            The fade-in animation.
         """
         return FadeIn(self.feature_maps)

@@ -592,7 +592,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Snapshot whose axis layout matches this chart.
+            Snapshot whose axis layout matches this chart.
 
         Raises
         ------
@@ -725,7 +725,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Pairs of resolved colour and display label.
+            Pairs of resolved colour and display label.
         """
         out = []
         for i, d in enumerate(datasets):
@@ -811,7 +811,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
 
         Raises
         ------
@@ -846,7 +846,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
 
         Raises
         ------
@@ -867,7 +867,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self._focus = None
@@ -907,7 +907,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
 
         Raises
         ------
@@ -942,7 +942,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self._gap_spec = None
@@ -961,7 +961,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Data object backing dataset 0.
+            Data object backing dataset 0.
         """
 
         return self._series[0].data
@@ -972,7 +972,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        One snapshot per visible dataset.
+            One snapshot per visible dataset.
         """
 
         return [s.data for s in self._series]
@@ -983,7 +983,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        One value per axis for dataset 0.
+            One value per axis for dataset 0.
         """
 
         return list(self._series[0].values)
@@ -994,7 +994,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Value represented by the outermost grid ring.
+            Value represented by the outermost grid ring.
         """
 
         return self._scale
@@ -1005,7 +1005,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Count of spokes in the radar grid.
+            Count of spokes in the radar grid.
         """
 
         return self._n
@@ -1018,7 +1018,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        World-space centre of the radar grid.
+            World-space centre of the radar grid.
         """
 
         return self._anchor[0].get_center()
@@ -1029,7 +1029,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Current polygon colour of dataset 0.
+            Current polygon colour of dataset 0.
         """
 
         return ManimColor(self._series[0].color)
@@ -1051,7 +1051,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
 
         Raises
         ------
@@ -1104,7 +1104,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self._series[0].color = ManimColor(color)
@@ -1120,7 +1120,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self._series[0].rim = float(np.clip(amount, 0.0, 1.0))
@@ -1136,7 +1136,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self._glitch = float(np.clip(amount, 0.0, 1.0))
@@ -1155,7 +1155,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
         self._opacity = float(np.clip(value, 0.0, 1.0))
         return self
@@ -1170,7 +1170,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
 
         self.config = self.config.evolved(radius=float(radius)).validated()
@@ -1199,7 +1199,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A Manim animation builder for ``self.play``.
+            A Manim animation builder for ``self.play``.
         """
         center = self._anchor[0].get_center()
         builder = self.animate.scale(float(factor), about_point=center, **kwargs)
@@ -1219,7 +1219,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A Manim animation builder for ``self.play``.
+            A Manim animation builder for ``self.play``.
         """
 
         center = self._anchor[0].get_center()
@@ -1239,7 +1239,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The same chart, allowing calls to be chained.
+            The same chart, allowing calls to be chained.
         """
         self._rig = rig
         return self
@@ -1275,8 +1275,8 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The :class:`~manim_extensions.radar.animations.RadarMorph`
-        animation for ``self.play``.
+            The :class:`~manim_extensions.radar.animations.RadarMorph`
+            animation for ``self.play``.
         """
         from .animations import RadarMorph
 
@@ -1305,7 +1305,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A radar reveal animation for ``self.play``.
+            A radar reveal animation for ``self.play``.
         """
 
         from .animations import RadarReveal
@@ -1324,7 +1324,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A radar fade animation for ``self.play``.
+            A radar fade animation for ``self.play``.
         """
 
         from .animations import RadarFade
@@ -1343,7 +1343,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A glitch flash animation for ``self.play``.
+            A glitch flash animation for ``self.play``.
         """
 
         from .animations import GlitchFlash
@@ -1360,7 +1360,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A shockwave animation for ``self.play``.
+            A shockwave animation for ``self.play``.
         """
 
         from .animations import Shockwave
@@ -1401,7 +1401,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        World-space corner point.
+            World-space corner point.
         """
 
         ang = self._angles[i % self.axis_count]
@@ -1422,7 +1422,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        A :class:`~manim.animation.creation.Create` animation for the web.
+            A :class:`~manim.animation.creation.Create` animation for the web.
         """
 
         self.set_opacity(0.0)  # 数据层隐藏，蛛网描好后 reveal 恢复
@@ -1447,7 +1447,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        The created backdrop mobject.
+            The created backdrop mobject.
         """
 
         from .backdrop import DeepSpace
@@ -1470,7 +1470,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Targets that share this chart's axis layout.
+            Targets that share this chart's axis layout.
 
         Raises
         ------
@@ -1507,7 +1507,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Snapshot suitable for the morph animation.
+            Snapshot suitable for the morph animation.
         """
 
         if isinstance(data, RadarData):
@@ -1532,7 +1532,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Resolved, optionally brightened, dataset colour.
+            Resolved, optionally brightened, dataset colour.
         """
 
         base = ManimColor(color) if color else self.theme.dataset_color(index)
@@ -1548,7 +1548,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Styled name mobject with the theme gradient.
+            Styled name mobject with the theme gradient.
         """
 
         cfg = self.config
@@ -1574,7 +1574,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Styled title mobject with the theme gradient.
+            Styled title mobject with the theme gradient.
         """
 
         cfg = self.config
@@ -1602,7 +1602,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Local-space point with zero z coordinate.
+            Local-space point with zero z coordinate.
         """
 
         r = math.radians(angle)
@@ -1668,7 +1668,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Closed path in the local frame.
+            Closed path in the local frame.
         """
 
         half = math.radians(angle_deg) / 2.0
@@ -1703,7 +1703,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Closed polygon path.
+            Closed polygon path.
         """
 
         R = self.config.radius * scale
@@ -1726,7 +1726,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Closed polygon path for dataset 0.
+            Closed polygon path for dataset 0.
         """
 
         return self._polygon_local_for(self._series[0], scale)
@@ -1736,7 +1736,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Origin, unit x direction and unit y direction.
+            Origin, unit x direction and unit y direction.
         """
 
         a = self._anchor[0].get_center()
@@ -1761,7 +1761,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        World-space points.
+            World-space points.
         """
 
         local = np.atleast_2d(local)
@@ -1945,7 +1945,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Candidate height and whether it fits inside the frame.
+            Candidate height and whether it fits inside the frame.
         """
 
         cfg = self.config
@@ -2129,7 +2129,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        One rolling number per axis.
+            One rolling number per axis.
         """
 
         s = self._series[index]
@@ -2165,7 +2165,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        ``"left"``, ``"right"`` or ``"center"``.
+            ``"left"``, ``"right"`` or ``"center"``.
         """
 
         dx = float(direction[0])
@@ -2238,7 +2238,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Wrapped legend content, empty when legends are disabled.
+            Wrapped legend content, empty when legends are disabled.
         """
 
         cfg = self.config
@@ -2311,7 +2311,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Clamped legend height.
+            Clamped legend height.
         """
 
         cfg = self.config
@@ -2456,7 +2456,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Intersection point when the segments cross, otherwise ``None``.
+            Intersection point when the segments cross, otherwise ``None``.
         """
 
         d1, d2 = p1 - p0, q1 - q0
@@ -2556,7 +2556,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Container in the chart's overflow layer.
+            Container in the chart's overflow layer.
         """
 
         if s.fx_group is None:
@@ -2576,7 +2576,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Pool of reusable dash segments.
+            Pool of reusable dash segments.
         """
 
         self._ensure_series_fx(s)
@@ -2602,7 +2602,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Concentric glow circles.
+            Concentric glow circles.
         """
 
         self._ensure_series_fx(s)
@@ -2636,7 +2636,7 @@ class RadarChart(VGroup):
 
         Returns
         -------
-        Read-out that can display values beyond the full scale.
+            Read-out that can display values beyond the full scale.
         """
 
         s = self._series[series_index]

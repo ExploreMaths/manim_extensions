@@ -242,8 +242,8 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        The unicode subscript character, or the plain number when out of
-        range.
+            The unicode subscript character, or the plain number when out of
+            range.
         """
         if 1 <= n <= 9:
             return self._SUBSCRIPTS[n - 1]
@@ -274,9 +274,9 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        A geometry group with the dot and dashed lines, and a labels group
-        with the axis text, or ``(None, None)`` when the curves do not
-        intersect.
+            A geometry group with the dot and dashed lines, and a labels group
+            with the axis text, or ``(None, None)`` when the curves do not
+            intersect.
         """
         func_a = self._curve_funcs[curve_a]
         func_b = self._curve_funcs[curve_b]
@@ -338,8 +338,8 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        The combined marker group, or ``None`` when the curves do not
-        intersect.
+            The combined marker group, or ``None`` when the curves do not
+            intersect.
         """
         geom, labels = self._build_eq_parts(
             curve_a, curve_b, label_x, label_y, subscript
@@ -401,8 +401,8 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        The equilibrium x and y values, or ``None`` when no equilibrium is
-        stored or the curves do not intersect.
+            The equilibrium x and y values, or ``None`` when no equilibrium is
+            stored or the curves do not intersect.
         """
         if not self._eq_curve_names:
             return None
@@ -433,7 +433,7 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        A group containing the shaft and the tip.
+            A group containing the shaft and the tip.
         """
         direction = end - start
         norm = np.linalg.norm(direction)
@@ -473,7 +473,7 @@ class EconDiagram(VGroup):
 
         Returns
         -------
-        A group with up to two arrows, one per moving axis value.
+            A group with up to two arrows, one per moving axis value.
         """
         old_x, old_y = old_xy
         new_x, new_y = new_xy

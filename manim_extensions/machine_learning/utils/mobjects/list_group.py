@@ -50,7 +50,7 @@ class ListGroup(Mobject):
 
         Returns
         -------
-        The selected mobject or list of mobjects.
+            The selected mobject or list of mobjects.
         """
         return self.items[indices]
 
@@ -196,7 +196,7 @@ class ListGroup(Mobject):
 
         Returns
         -------
-        The item count.
+            The item count.
         """
         return len(self.items)
 
@@ -220,7 +220,7 @@ class ListGroup(Mobject):
 
         Returns
         -------
-        This group as an iterator.
+            This group as an iterator.
         """
         self.current_index = -1
         return self
@@ -230,7 +230,7 @@ class ListGroup(Mobject):
 
         Returns
         -------
-        The next mobject.
+            The next mobject.
 
         Raises
         ------
@@ -247,6 +247,6 @@ class ListGroup(Mobject):
 
         Returns
         -------
-        The group representation.
+            The group representation.
         """
         return f"ListGroup({self.items})"

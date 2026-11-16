@@ -129,8 +129,8 @@ class MultidimensionalGaussianPosterior:
 
         Returns
         -------
-        The log posterior density at ``x``, or a large negative value when the
-        point falls outside the supported range.
+            The log posterior density at ``x``, or a large negative value when the
+            point falls outside the supported range.
         """
         if np.all(x < 500) and np.all(x > -500):
             return scipy.stats.multivariate_normal(mean=self.mu, cov=self.var).logpdf(x)
@@ -389,7 +389,7 @@ class MCMCAxes(Group):
 
         Returns
         -------
-        The animation group that draws the axes.
+            The animation group that draws the axes.
         """
         return AnimationGroup(Create(self.axes))
 

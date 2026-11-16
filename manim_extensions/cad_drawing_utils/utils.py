@@ -31,8 +31,8 @@ def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
 
     Returns
     -------
-    The rotation angle that aligns ``v1`` with ``v2``, in the range
-    minus pi to pi.
+        The rotation angle that aligns ``v1`` with ``v2``, in the range
+        minus pi to pi.
     """
     cval = np.dot(v1, v2)
     sval = (np.cross(v1, v2))[2]
@@ -68,7 +68,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-        ``None``; the dots are stored under the ``"dots"`` key.
+            ``None``; the dots are stored under the ``"dots"`` key.
         """
         DotGroup = VGroup(
             *[
@@ -90,7 +90,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-        ``None``; the dots are moved in place.
+            ``None``; the dots are moved in place.
         """
         for zipthing in zip(self["dots"], self.target.points):
             zipthing[0].move_to(zipthing[1])
@@ -100,7 +100,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-        ``None``; the handles are stored under the ``"lines"`` key.
+            ``None``; the handles are stored under the ``"lines"`` key.
         """
         pointlist = zip(
             self.target.points[0::4, :],
@@ -126,7 +126,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-        ``None``; the lines are repositioned in place.
+            ``None``; the lines are repositioned in place.
         """
         pointlist = zip(
             self.target.points[0::4, :],

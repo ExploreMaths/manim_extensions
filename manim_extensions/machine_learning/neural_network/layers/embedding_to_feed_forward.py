@@ -137,7 +137,7 @@ class EmbeddingToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        An animation that does nothing.
+            An animation that does nothing.
         """
         # Nothing to create visually; manim >= 0.21 raises on empty groups,
         # so return a zero-duration Wait instead.

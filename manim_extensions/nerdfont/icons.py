@@ -44,7 +44,7 @@ def _font_path() -> str:
 
     Returns
     -------
-    Absolute path of the font file.
+        Absolute path of the font file.
     """
     return str(pkg_resources.files("manim_extensions.nerdfont") / _FONT_FILENAME)
 

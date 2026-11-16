@@ -345,7 +345,7 @@ class AbstractMap(Group):
 
         Returns
         -------
-        The original node with that ID, or ``None`` when it is absent.
+            The original node with that ID, or ``None`` when it is absent.
         """
         for node in dfs_walker(self.root):
             if node.ID == ID:
@@ -362,7 +362,7 @@ class AbstractMap(Group):
 
         Returns
         -------
-        The connector style dictionary for that level.
+            The connector style dictionary for that level.
         """
         return self.node_style.get_line_style(level=level)
 

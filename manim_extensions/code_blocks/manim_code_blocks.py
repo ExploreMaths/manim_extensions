@@ -73,7 +73,7 @@ class Theme:
 
         Returns
         -------
-        The matching hex colour, or white when no rule matches.
+            The matching hex colour, or white when no rule matches.
         """
         for key, value in self.colors.items():
             if token.type in value:
@@ -159,7 +159,7 @@ class ProgrammingLanguage(abstract):
 
         Returns
         -------
-        The tokenizer object, importing ``tokenize-all-code`` on first use.
+            The tokenizer object, importing ``tokenize-all-code`` on first use.
         """
         tokenize_all = require("code_blocks", "tokenize_all")
         language = getattr(tokenize_all, self._tokenize_name, None)
@@ -332,8 +332,8 @@ class CodeBlock(VGroup):
 
         Returns
         -------
-        A tuple of animations that create the block, including the title
-        animations when a title is present.
+            A tuple of animations that create the block, including the title
+            animations when a title is present.
         """
         if getattr(self, "title", None) and getattr(self, "title_background", None):
             return (
@@ -364,8 +364,8 @@ class CodeBlock(VGroup):
 
         Returns
         -------
-        A tuple of animations that remove the block, including the title
-        animations when a title is present.
+            A tuple of animations that remove the block, including the title
+            animations when a title is present.
         """
         if getattr(self, "title", None) and getattr(self, "title_background", None):
             return (

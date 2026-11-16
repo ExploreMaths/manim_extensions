@@ -118,7 +118,7 @@ class BaseParser(ABC):
 
         Returns
         -------
-        The parsed atoms data and bonds data.
+            The parsed atoms data and bonds data.
 
         Raises
         ------
@@ -143,7 +143,7 @@ class BaseParser(ABC):
 
         Returns
         -------
-        The parsed atoms data.
+            The parsed atoms data.
         """
 
         return self.atoms_data
@@ -154,7 +154,7 @@ class BaseParser(ABC):
 
         Returns
         -------
-        The parsed bonds data.
+            The parsed bonds data.
         """
 
         return self.bonds_data

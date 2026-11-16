@@ -34,7 +34,7 @@ class Element:
 
         Returns
         -------
-        Text identifying the element.
+            Text identifying the element.
         """
         return f"Element {self.atomic_number}: {self.name} ({self.symbol})"
 

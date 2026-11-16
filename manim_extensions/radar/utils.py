@@ -35,7 +35,7 @@ def unit_vector(degrees: float) -> np.ndarray:
 
     Returns
     -------
-    Cosine and sine of the angle, with a zero z component.
+        Cosine and sine of the angle, with a zero z component.
     """
 
     r = math.radians(degrees)
@@ -58,7 +58,7 @@ def axis_angles(
 
     Returns
     -------
-    One angle in degrees for each axis.
+        One angle in degrees for each axis.
     """
     step = 360.0 / count
     sign = -1.0 if clockwise else 1.0
@@ -79,7 +79,7 @@ def mix(a: ParsableManimColor, b: ParsableManimColor, t: float) -> ManimColor:
 
     Returns
     -------
-    The blended colour.
+        The blended colour.
     """
 
     return interpolate_color(ManimColor(a), ManimColor(b), float(np.clip(t, 0.0, 1.0)))
@@ -97,7 +97,7 @@ def lighten(color: ParsableManimColor, amount: float = 0.08) -> ManimColor:
 
     Returns
     -------
-    The lightened colour.
+        The lightened colour.
     """
 
     return mix(color, WHITE, amount)
@@ -113,7 +113,7 @@ def ease_in_out_cubic(t: float) -> float:
 
     Returns
     -------
-    Eased progress in the range 0 to 1.
+        Eased progress in the range 0 to 1.
     """
 
     t = float(np.clip(t, 0.0, 1.0))
@@ -134,7 +134,7 @@ def ease_out_back(t: float, overshoot: float = 1.2) -> float:
 
     Returns
     -------
-    Eased progress.
+        Eased progress.
     """
 
     t = float(np.clip(t, 0.0, 1.0))
@@ -158,7 +158,7 @@ def ease_out_overshoot(t: float, fraction: float = 0.16) -> float:
 
     Returns
     -------
-    Eased progress, temporarily above 1 near the peak.
+        Eased progress, temporarily above 1 near the peak.
     """
     t = float(np.clip(t, 0.0, 1.0))
     p = min(0.9, max(1e-4, float(fraction)))
@@ -195,7 +195,7 @@ def pick_font(
 
     Returns
     -------
-    The selected family name, or ``None`` when nothing matches.
+        The selected family name, or ``None`` when nothing matches.
     """
     key = tuple(candidates) + (default,)
     if key in _FONT_CACHE:
@@ -226,7 +226,7 @@ def closed(points: np.ndarray) -> np.ndarray:
 
     Returns
     -------
-    The polygon with its first point repeated at the end.
+        The polygon with its first point repeated at the end.
     """
 
     return np.vstack([points, points[:1]])
@@ -242,7 +242,7 @@ def as_points(values: Iterable) -> np.ndarray:
 
     Returns
     -------
-    A float array with one row per point and a zero z where needed.
+        A float array with one row per point and a zero z where needed.
     """
 
     return np.array(

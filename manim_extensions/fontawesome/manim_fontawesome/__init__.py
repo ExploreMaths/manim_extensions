@@ -4168,7 +4168,7 @@ def _get_svg_object(fp: str) -> SVGMobject:
 
     Returns
     -------
-    The icon as a white SVG mobject.
+        The icon as a white SVG mobject.
     """
     return SVGMobject(fp).set_color(WHITE)
 
@@ -4206,7 +4206,7 @@ class Brand:
 
         Returns
         -------
-        The requested brand icon.
+            The requested brand icon.
         """
         return _get_svg_object(BrandEnum.__members__[name].value)
 
@@ -4244,7 +4244,7 @@ class Regular:
 
         Returns
         -------
-        The requested regular icon.
+            The requested regular icon.
         """
         return _get_svg_object(RegularEnum.__members__[name].value)
 
@@ -4284,7 +4284,7 @@ class Solid:
 
         Returns
         -------
-        The requested solid icon.
+            The requested solid icon.
         """
         return _get_svg_object(SolidEnum.__members__[name].value)
 

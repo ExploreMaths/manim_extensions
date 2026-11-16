@@ -116,6 +116,6 @@ class Array(VMobject):
 
         Returns
         -------
-        The element count.
+            The element count.
         """
         return len(self.array)

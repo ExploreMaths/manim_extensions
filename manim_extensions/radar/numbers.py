@@ -103,7 +103,7 @@ class RollingNumber(VGroup):
 
         Returns
         -------
-        The formatted label.
+            The formatted label.
         """
 
         v = float(value)
@@ -124,7 +124,7 @@ class RollingNumber(VGroup):
 
         Returns
         -------
-        The cache key limit derived from the full scale.
+            The cache key limit derived from the full scale.
         """
 
         return max(1, int(math.ceil(self.max_value)) + 1)
@@ -184,7 +184,7 @@ class RollingNumber(VGroup):
 
         Returns
         -------
-        The cached text mobject for that value.
+            The cached text mobject for that value.
         """
 
         key = int(np.clip(key, 0, self._key_limit()))

@@ -88,7 +88,7 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-        The assembled neural network and its embedding layer.
+            The assembled neural network and its embedding layer.
         """
         embedding_layer = EmbeddingLayer()
 
@@ -110,7 +110,7 @@ class VariationalAutoencoder(Group):
 
         Returns
         -------
-        The creation animation for the neural network.
+            The creation animation for the neural network.
         """
         return Create(self.neural_network)
 

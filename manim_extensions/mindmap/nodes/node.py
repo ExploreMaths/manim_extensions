@@ -376,7 +376,7 @@ class Node:
 
         Returns
         -------
-        The connector line from the parent to this node.
+            The connector line from the parent to this node.
 
         Raises
         ------
@@ -408,7 +408,7 @@ class Node:
 
         Returns
         -------
-        The connector line from the parent or previous neighbour.
+            The connector line from the parent or previous neighbour.
 
         Raises
         ------
@@ -446,7 +446,7 @@ class Node:
 
         Returns
         -------
-        The stepped connector line from the parent to this node.
+            The stepped connector line from the parent to this node.
 
         Raises
         ------

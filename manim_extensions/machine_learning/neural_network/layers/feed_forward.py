@@ -279,7 +279,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        The grouped creation animation.
+            The grouped creation animation.
         """
         animations = []
 

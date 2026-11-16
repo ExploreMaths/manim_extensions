@@ -197,7 +197,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-        The fade-in animation for the query assets.
+            The fade-in animation for the query assets.
         """
         return FadeIn(self.assets)
 

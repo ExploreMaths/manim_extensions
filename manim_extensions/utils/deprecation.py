@@ -35,7 +35,7 @@ def _strip_rst(text: str) -> str:
 
     Returns
     -------
-    The text with markup removed and the inner content preserved.
+        The text with markup removed and the inner content preserved.
     """
     return _RST_MARKUP_RE.sub(lambda m: m.group(1) or m.group(2) or m.group(3), text)
 

@@ -200,7 +200,7 @@ class NetworkConnection(VGroup):
 
         Returns
         -------
-        The passing flash animation along the appropriate arrow.
+            The passing flash animation along the appropriate arrow.
         """
         if self.arc_direction == "straight":
             return ShowPassingFlash(

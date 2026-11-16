@@ -97,6 +97,7 @@ __all__ = [
     "ellipsoid_surface_scene",
     "torus_surface_scene",
     "hyperboloid_one_sheet_scene",
+    "GraphSurfaceScene",
     "GaussianSurfaceScene",
     "SaddleSurfaceScene",
     "ParaboloidSurfaceScene",
@@ -162,14 +163,14 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
 
     Returns
     -------
-    A mapping from beat name to duration, and the names of dropped beats.
+        A mapping from beat name to duration, and the names of dropped beats.
 
-    Durations are scaled proportionally, clamped between each beat's
-    minimum and reference times the cap multiplier, and iterated until they
-    converge. If every optional beat can be removed and the budget still
-    does not fit, optional beats are dropped by priority. If every beat
-    reaches its maximum before the budget is filled, the shorter result is
-    accepted.
+        Durations are scaled proportionally, clamped between each beat's
+        minimum and reference times the cap multiplier, and iterated until they
+        converge. If every optional beat can be removed and the budget still
+        does not fit, optional beats are dropped by priority. If every beat
+        reaches its maximum before the budget is filled, the shorter result is
+        accepted.
     """
 
     active = [b for b in BEATS if b[0] in enabled]
@@ -212,7 +213,7 @@ def _ramp_color(ramp: Any, t: float) -> Any:
 
     Returns
     -------
-    The interpolated colour at that position.
+        The interpolated colour at that position.
     """
 
     t = min(max(t, 0.0), 1.0)
@@ -240,8 +241,8 @@ def _radius_for_level(f: Any, d_max: float, c: float, n: int = 60) -> Optional[f
 
     Returns
     -------
-    The radius of the nearest root along the positive x direction, or
-    ``None`` when the surface never reaches the target.
+        The radius of the nearest root along the positive x direction, or
+        ``None`` when the surface never reaches the target.
     """
 
     lo, hi = 0.0, d_max
@@ -266,8 +267,8 @@ def _fmt(v: float) -> str:
 
     Returns
     -------
-    The value rounded to two decimals, with trailing zeros and a trailing
-    decimal point removed.
+        The value rounded to two decimals, with trailing zeros and a trailing
+        decimal point removed.
     """
 
     return f"{v:.2f}".rstrip("0").rstrip(".")
@@ -302,7 +303,7 @@ class GaussianSurface:
 
         Returns
         -------
-        The height function and the formula string, with defaults filled in.
+            The height function and the formula string, with defaults filled in.
         """
 
         if self.func is None:
@@ -432,6 +433,29 @@ class GraphSurfaceScene(ThreeDScene):
     surfaces use the flat start beat; closed surfaces set ``uses_flat=False``
     so the formation beat inflates the surface with ``GrowFromCenter`` and
     the axes scale uniformly to avoid distortion.
+
+    Examples
+    --------
+    Subclass the scene and implement the four hooks:
+
+    .. code-block:: python
+
+        from manim_extensions.three_d import GraphSurfaceScene, SaddleSurface
+
+        class CustomSurfaceScene(GraphSurfaceScene):
+            style = SaddleSurface()
+
+            def _geometry(self, cfg):
+                ...
+
+            def _contours(self, cfg, axes, f, ramp, zmin_n):
+                ...
+
+            def _feature(self, cfg, f):
+                ...
+
+            def _caption_slots(self):
+                return ["title", "outro"]
     """
 
     style = None
@@ -448,8 +472,8 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        A tuple containing the normalized height function, formula string,
-        normalized minimum height, and low and high axis limits.
+            A tuple containing the normalized height function, formula string,
+            normalized minimum height, and low and high axis limits.
 
         Raises
         ------
@@ -476,8 +500,8 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        A contour group and a flag telling whether it rotates with the
-        surface.
+            A contour group and a flag telling whether it rotates with the
+            surface.
 
         Raises
         ------
@@ -498,8 +522,8 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        The point coordinates, tag formula, HUD flag, and dashed-stem
-        starting height.
+            The point coordinates, tag formula, HUD flag, and dashed-stem
+            starting height.
 
         Raises
         ------
@@ -513,7 +537,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        Slot names in beat order.
+            Slot names in beat order.
         """
         return ["title", "axes", "flat", "rings", "orbit", "flip", "outro"]
 
@@ -522,7 +546,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        The ``(phi, theta, zoom)`` triple.
+            The ``(phi, theta, zoom)`` triple.
         """
         return 66.0, -40.0, 0.95
 
@@ -540,7 +564,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        The configured axes.
+            The configured axes.
         """
 
         d0, d1 = cfg.domain
@@ -572,7 +596,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        The coloured surface mobject.
+            The coloured surface mobject.
         """
 
         d0, d1 = cfg.domain
@@ -599,7 +623,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-        ``None``; the method plays the scene beats.
+            ``None``; the method plays the scene beats.
         """
 
         cfg = self.style
@@ -671,7 +695,8 @@ class GraphSurfaceScene(ThreeDScene):
                 Optional formula appended to the caption.
 
             Returns
-            ``None`` after playing the fade.
+            -------
+                ``None`` after playing the fade.
             """
 
             nonlocal cur_cap
@@ -884,8 +909,8 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The normalized height function, formula string, normalized minimum
-        height, and low and high z axis limits.
+            The normalized height function, formula string, normalized minimum
+            height, and low and high z axis limits.
         """
 
         f_raw, tex = cfg.resolve()
@@ -918,8 +943,8 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``False`` because these rings stay on the
-        floor and do not rotate with the surface.
+            The contour group and ``False`` because these rings stay on the
+            floor and do not rotate with the surface.
         """
         g = VGroup()
         for c in [0.8, 0.55, 0.33, 0.15, 0.045]:
@@ -949,7 +974,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The peak coordinates, tag formula, HUD flag, and stem start height.
+            The peak coordinates, tag formula, HUD flag, and stem start height.
         """
         iy, ix = np.unravel_index(int(self._zs.argmax()), self._zs.shape)
 
@@ -968,7 +993,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        Slot names in beat order.
+            Slot names in beat order.
         """
         return ["title", "axes", "flat", "orbit", "flip", "outro"]
 
@@ -977,7 +1002,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The ``(phi, theta, zoom)`` triple.
+            The ``(phi, theta, zoom)`` triple.
         """
         return 68.0, -40.0, 0.95
 
@@ -995,8 +1020,8 @@ class SaddleSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The height function, formula string, normalized minimum height, and
-        low and high z axis limits.
+            The height function, formula string, normalized minimum height, and
+            low and high z axis limits.
         """
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
@@ -1021,8 +1046,8 @@ class SaddleSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``False`` because the contours stay on the
-        floor.
+            The contour group and ``False`` because the contours stay on the
+            floor.
         """
 
         d1 = cfg.domain[1]
@@ -1084,8 +1109,8 @@ class SaddleSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The origin coordinates, tag formula, HUD flag, and stem start
-        height.
+            The origin coordinates, tag formula, HUD flag, and stem start
+            height.
         """
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 1.3  # 鞍点:HUD 标签
 
@@ -1103,8 +1128,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The height function, formula string, normalized minimum height, and
-        low and high z axis limits.
+            The height function, formula string, normalized minimum height, and
+            low and high z axis limits.
         """
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
@@ -1129,8 +1154,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``True`` because these rings follow the
-        surface when it flips.
+            The contour group and ``True`` because these rings follow the
+            surface when it flips.
         """
 
         d1 = cfg.domain[1]
@@ -1165,8 +1190,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The origin coordinates, tag formula, HUD flag, and stem start
-        height.
+            The origin coordinates, tag formula, HUD flag, and stem start
+            height.
         """
         return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 0.6  # 顶点:HUD 标签
 
@@ -1186,8 +1211,8 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        A placeholder height function, the formula string, normalized
-        minimum height, and low and high z axis limits.
+            A placeholder height function, the formula string, normalized
+            minimum height, and low and high z axis limits.
         """
         a, b, c = cfg.semi_axes
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
@@ -1212,7 +1237,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The uniformly scaled axes.
+            The uniformly scaled axes.
         """
         a, b, c = cfg.semi_axes
         k = 7.2 / (2 * (a + 0.4))
@@ -1244,7 +1269,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The coloured ellipsoid surface.
+            The coloured ellipsoid surface.
         """
         a, b, c = cfg.semi_axes
         s = Surface(
@@ -1282,8 +1307,8 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``True`` because the rings rotate with the
-        surface.
+            The contour group and ``True`` because the rings rotate with the
+            surface.
         """
         a, b, c = cfg.semi_axes
         g = VGroup()
@@ -1315,7 +1340,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The apex coordinates, tag formula, HUD flag, and stem start height.
+            The apex coordinates, tag formula, HUD flag, and stem start height.
         """
         a, b, c = cfg.semi_axes
         # 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)
@@ -1337,8 +1362,8 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        A placeholder height function, the formula string, normalized
-        minimum height, and low and high z axis limits.
+            A placeholder height function, the formula string, normalized
+            minimum height, and low and high z axis limits.
         """
         R, r = cfg.major_radius, cfg.minor_radius
         f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
@@ -1359,7 +1384,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The uniformly scaled axes.
+            The uniformly scaled axes.
         """
         R, r = cfg.major_radius, cfg.minor_radius
         outer = R + r
@@ -1392,7 +1417,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The coloured torus surface.
+            The coloured torus surface.
         """
         R, r = cfg.major_radius, cfg.minor_radius
         s = Surface(
@@ -1432,8 +1457,8 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``True`` because the rings rotate with the
-        surface.
+            The contour group and ``True`` because the rings rotate with the
+            surface.
         """
         R, r = cfg.major_radius, cfg.minor_radius
         g = VGroup()
@@ -1467,7 +1492,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
         Returns
         -------
-        The apex coordinates, tag formula, HUD flag, and stem start height.
+            The apex coordinates, tag formula, HUD flag, and stem start height.
         """
         R, r = cfg.major_radius, cfg.minor_radius
         # 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)
@@ -1489,8 +1514,8 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
         Returns
         -------
-        A placeholder height function, the formula string, normalized
-        minimum height, and low and high z axis limits.
+            A placeholder height function, the formula string, normalized
+            minimum height, and low and high z axis limits.
         """
         a, h = cfg.waist_radius, cfg.z_extent
         f = lambda x, y: 0.0  # 闭式管面不经图构造,占位
@@ -1512,7 +1537,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
         Returns
         -------
-        The uniformly scaled axes.
+            The uniformly scaled axes.
         """
         a, h = cfg.waist_radius, cfg.z_extent
         max_r = (a * a + h * h) ** 0.5  # 端口半径
@@ -1545,7 +1570,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
         Returns
         -------
-        The coloured hyperboloid surface.
+            The coloured hyperboloid surface.
         """
         a, h = cfg.waist_radius, cfg.z_extent
         s = Surface(
@@ -1585,8 +1610,8 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
         Returns
         -------
-        The contour group and ``True`` because the rings rotate with the
-        surface.
+            The contour group and ``True`` because the rings rotate with the
+            surface.
         """
         a, h = cfg.waist_radius, cfg.z_extent
         g = VGroup()
@@ -1619,8 +1644,8 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
         Returns
         -------
-        The waist point coordinates, tag formula, HUD flag, and stem start
-        height.
+            The waist point coordinates, tag formula, HUD flag, and stem start
+            height.
         """
         a, h = cfg.waist_radius, cfg.z_extent
         # 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签
@@ -1640,8 +1665,8 @@ def _scene_name(base: str) -> str:
 
     Returns
     -------
-    The base name on its first use, followed by an increasing suffix
-    afterwards.
+        The base name on its first use, followed by an increasing suffix
+        afterwards.
     """
     n = _name_seq.get(base, 0) + 1
     _name_seq[base] = n
@@ -1662,8 +1687,8 @@ def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
 
     Returns
     -------
-    A callable that accepts an optional class name and configuration
-    keyword arguments and returns the new scene class.
+        A callable that accepts an optional class name and configuration
+        keyword arguments and returns the new scene class.
     """
 
     def factory(name: Optional[str] = None, **kw) -> Any:
@@ -1677,7 +1702,7 @@ def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
 
         Returns
         -------
-        A new Scene subclass carrying the supplied configuration.
+            A new Scene subclass carrying the supplied configuration.
         """
         cfg = cfg_cls(**kw)
         return type(name or _scene_name(base_name), (scene_cls,), {"style": cfg})

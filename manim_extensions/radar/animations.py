@@ -68,7 +68,7 @@ def _ring_points(center: np.ndarray, radius: float, segments: int = 64) -> np.nd
 
     Returns
     -------
-    Closed polygon points.
+        Closed polygon points.
     """
 
     angles = np.linspace(0.0, 2.0 * math.pi, segments, endpoint=False)
@@ -148,7 +148,7 @@ def _flicker(alpha: float, steps: int = 6) -> float:
 
     Returns
     -------
-    Either 0.25 or 1.0.
+        Either 0.25 or 1.0.
     """
 
     return 0.25 if int(alpha * steps) % 2 == 0 else 1.0
@@ -460,8 +460,8 @@ class RadarMorph(Animation):
 
         Returns
         -------
-        Camera target when a rig is attached and a spike overflows,
-        otherwise ``None``.
+            Camera target when a rig is attached and a spike overflows,
+            otherwise ``None``.
         """
 
         chart = self.chart

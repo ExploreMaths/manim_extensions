@@ -74,7 +74,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        A human-readable description naming the atom's element.
+            A human-readable description naming the atom's element.
         """
         return f"MAtomObject of element {self.element}"
 
@@ -83,7 +83,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-        A human-readable description naming the atom's element.
+            A human-readable description naming the atom's element.
         """
         return f"MAtomObject of element {self.element}"
 

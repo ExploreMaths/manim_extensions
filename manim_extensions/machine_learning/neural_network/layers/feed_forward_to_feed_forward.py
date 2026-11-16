@@ -129,7 +129,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        The grouped fade-out animation for all edges.
+            The grouped fade-out animation for all edges.
         """
         animations = []
 
@@ -285,7 +285,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-        The grouped edge creation animation.
+            The grouped edge creation animation.
         """
         animations = []
 

@@ -123,7 +123,7 @@ class RadarReel:
 
         Returns
         -------
-        Normalized snapshots for one step.
+            Normalized snapshots for one step.
         """
 
         if isinstance(item, (list, tuple)) and not (
@@ -158,7 +158,7 @@ class RadarReel:
 
         Returns
         -------
-        The step with colours filled in.
+            The step with colours filled in.
         """
 
         out = []
@@ -179,7 +179,7 @@ class RadarReel:
 
         Returns
         -------
-        Approximate total play time in seconds.
+            Approximate total play time in seconds.
         """
 
         default_rt = self.run_time or self.chart.config.morph_run_time
@@ -196,7 +196,7 @@ class RadarReel:
 
         Returns
         -------
-        A multi-line human-readable summary.
+            A multi-line human-readable summary.
         """
 
         lines = [
@@ -228,7 +228,7 @@ class RadarReel:
 
         Returns
         -------
-        This reel, allowing calls to be chained.
+            This reel, allowing calls to be chained.
         """
 
         chart = self.chart

@@ -213,7 +213,7 @@ class RadarConfig:
 
         Returns
         -------
-        A new configuration.
+            A new configuration.
 
         Raises
         ------
@@ -234,7 +234,7 @@ class RadarConfig:
 
         Returns
         -------
-        This configuration.
+            This configuration.
 
         Raises
         ------
@@ -333,7 +333,7 @@ def style_names() -> list[str]:
 
     Returns
     -------
-    The names in registration order.
+        The names in registration order.
     """
 
     return list(STYLES)
@@ -349,7 +349,7 @@ def get_style(style: Union[str, RadarConfig, None]) -> RadarConfig:
 
     Returns
     -------
-    A defensive copy of the resolved configuration.
+        A defensive copy of the resolved configuration.
 
     Raises
     ------

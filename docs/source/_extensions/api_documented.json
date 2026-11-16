@@ -1094,6 +1094,7 @@
  "manim_extensions.three_d.core.EllipsoidSurfaceScene",
  "manim_extensions.three_d.core.GaussianSurface",
  "manim_extensions.three_d.core.GaussianSurfaceScene",
+ "manim_extensions.three_d.core.GraphSurfaceScene",
  "manim_extensions.three_d.core.HyperboloidOneSheet",
  "manim_extensions.three_d.core.HyperboloidOneSheetScene",
  "manim_extensions.three_d.core.PACE",

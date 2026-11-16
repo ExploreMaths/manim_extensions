@@ -425,7 +425,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-        A human-readable description of the two bonded atoms.
+            A human-readable description of the two bonded atoms.
         """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 
@@ -434,7 +434,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-        A human-readable description of the two bonded atoms.
+            A human-readable description of the two bonded atoms.
         """
         return f"MBondObject bonding {self.from_atom} with {self.to_atom}"
 

@@ -178,7 +178,7 @@ class CatalogLayout(Layout):
 
         Returns
         -------
-        The horizontal spacing for that layer.
+            The horizontal spacing for that layer.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
 
@@ -192,7 +192,7 @@ class CatalogLayout(Layout):
 
         Returns
         -------
-        The vertical spacing for that layer.
+            The vertical spacing for that layer.
         """
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
 
@@ -271,7 +271,7 @@ class CatalogLayout(Layout):
 
         Returns
         -------
-        The left and right boundaries of the subtree.
+            The left and right boundaries of the subtree.
         """
         left = node.left
         right = node.left + node.width
@@ -291,7 +291,7 @@ class CatalogLayout(Layout):
 
         Returns
         -------
-        The maximum horizontal span of the subtree.
+            The maximum horizontal span of the subtree.
         """
         min_l, max_r = self._get_node_boundaries_horizontal(node)
         return max_r - min_l

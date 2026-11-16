@@ -368,7 +368,7 @@ class Table(VGroup):
 
         Returns
         -------
-        The data row count, excluding the header.
+            The data row count, excluding the header.
         """
         return len(self.rows)
 
@@ -383,7 +383,7 @@ class Table(VGroup):
 
         Returns
         -------
-        The selected row.
+            The selected row.
         """
         ...
 
@@ -398,7 +398,7 @@ class Table(VGroup):
 
         Returns
         -------
-        The selected rows.
+            The selected rows.
         """
         ...
 
@@ -412,7 +412,7 @@ class Table(VGroup):
 
         Returns
         -------
-        The selected row or list of rows.
+            The selected row or list of rows.
         """
         return self.rows[index]
 

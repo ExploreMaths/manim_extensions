@@ -72,7 +72,7 @@ class CameraRig:
 
         Returns
         -------
-        An animation that performs the push.
+            An animation that performs the push.
         """
 
         self._zoom *= float(factor)
@@ -104,7 +104,7 @@ class CameraRig:
 
         Returns
         -------
-        An animation that performs the pull-out.
+            An animation that performs the pull-out.
         """
 
         if factor is None:
@@ -138,7 +138,7 @@ class CameraRig:
 
         Returns
         -------
-        An animation that pans and zooms.
+            An animation that pans and zooms.
         """
 
         self._zoom *= float(factor)
@@ -162,7 +162,7 @@ class CameraRig:
 
         Returns
         -------
-        An animation that performs the micro-push.
+            An animation that performs the micro-push.
         """
 
         direction = np.asarray(direction, dtype=float)
@@ -190,7 +190,7 @@ class CameraRig:
 
         Returns
         -------
-        The same animation with the requested run time.
+            The same animation with the requested run time.
         """
 
         if hasattr(anim, "set_run_time"):

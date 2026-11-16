@@ -128,6 +128,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-        The write animation for the vector label.
+            The write animation for the vector label.
         """
         return Write(self.vector_label)
