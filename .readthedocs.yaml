@@ -27,6 +27,11 @@ build:
       # .github/workflows/docs-cache.yml). Examples missing from the cache
       # still render normally as a fallback.
       - git clone --depth 1 --branch rtd-cache https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-cache || true
+      # Fail fast when the media cache is incomplete.  Without this guard a
+      # cache miss silently falls back to rendering every Manim example, which
+      # can burn the whole RTD build timeout before producing any error.
+      - python workflow/render_doc_examples.py --out /tmp/rtd-cache --quality high --check
+      - python workflow/execute_nbcell_examples.py --check --cache /tmp/rtd-cache/_nbcell_cache.json
       # Copy the vendored-status caches (refreshed into the rtd-cache branch
       # by the workflows) into the docs tree: the latest
       # _vendored_status_cache.json plus any frozen per-release snapshots
