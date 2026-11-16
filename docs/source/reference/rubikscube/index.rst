@@ -319,7 +319,7 @@ For Reference: If facing the Rubik's Cube, X goes Front to Back, Y goes
 Right to Left, Z goes Down to Up. Each coordinate starts at 0 and goes to
 ``(Dimension - 1)``.
 
-So, to access the :class:`~manim_extensions.rubikscube.cubie.Cubie` at coordinates X=0, Y=0, Z=0,
+So, to access the :class:`~manim_extensions.rubikscube.cubie.Cubie` at coordinates :math:`X=0, Y=0, Z=0`,
 ``cube.cubies[0, 0, 0]`` will return it. This holds true no matter the
 dimension of the :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 

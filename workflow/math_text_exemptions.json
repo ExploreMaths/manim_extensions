@@ -1,0 +1,28 @@
+{
+  "exemptions": [
+    {
+      "path": "docs/source/changelog.rst",
+      "text": "P_{i+1}",
+      "kind": "inline",
+      "reason": "Literal code label used to illustrate a docstring rename; not a displayed formula."
+    },
+    {
+      "path": "docs/source/changelog.rst",
+      "text": "d <= 1e-9",
+      "kind": "inline",
+      "reason": "Literal code guard shown in a changelog entry; the sentence describes the guard, not a formula."
+    },
+    {
+      "path": "manim_extensions/economics/linked.py",
+      "text": "ms * 4",
+      "kind": "inline",
+      "reason": "Code expression used as the default fallback value of the ``m`` parameter."
+    },
+    {
+      "path": "manim_extensions/economics/linked.py",
+      "text": "a * 2",
+      "kind": "inline",
+      "reason": "Code expression used as the default fallback value of the ``m`` parameter."
+    }
+  ]
+}

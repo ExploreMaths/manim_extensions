@@ -20,9 +20,9 @@ class SupplyDemandDiagram(EconDiagram):
     Parameters
     ----------
     demand_func
-        Demand function ``P = D(Q)``.
+        Demand function :math:`P = D(Q)`.
     supply_func
-        Supply function ``P = S(Q)``.
+        Supply function :math:`P = S(Q)`.
     show_equilibrium
         If True, mark the supply–demand intersection as the equilibrium.
     **kwargs

@@ -159,9 +159,10 @@ class ManimTransition(Transition, VGroup):
         return animation_function(self.arrow, color=color)
 
     def calculate_circle_vertices(self) -> tuple[Point3D, Point3D]:
-        """Calculate two vertices on the source state's circle for arrow endpoints.
+        r"""Calculate two vertices on the source state's circle for arrow endpoints.
 
-        The vertices are placed at angles ``PI/4`` and ``3*PI/4`` on the circle.
+        The vertices are placed at angles :math:`\pi/4` and :math:`3\pi/4`
+        on the circle.
 
         Returns
         -------

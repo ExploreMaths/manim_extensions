@@ -97,9 +97,9 @@ AD-AS
 
 :class:`~manim_extensions.economics.ad_as.ADASDiagram` renders the AD-AS model
 with demand/supply shocks and long-run adjustment. Aggregate demand is derived
-from the quantity theory, ``P = MV/Y``. Short-run aggregate supply is flat by
+from the quantity theory, :math:`P = MV/Y`. Short-run aggregate supply is flat by
 default (Keynesian); pass ``sras_slope`` for the upward-sloping Mankiw
-formulation ``P = Pe + slope * (Y - Y_bar)``:
+formulation :math:`P = P^{e} + \text{slope} \cdot (Y - \bar{Y})`:
 
 .. code-block:: python
 
@@ -180,8 +180,8 @@ Solow growth model
 ^^^^^^^^^^^^^^^^^^
 
 :class:`~manim_extensions.economics.solow.SolowDiagram` renders the Solow
-growth model, ``y = k^a``, savings ``s f(k)``, and break-even
-``(d + n + g) k``:
+growth model, :math:`y = k^{\alpha}`, savings :math:`s f(k)`, and break-even
+:math:`(d + n + g) k`:
 
 .. code-block:: python
 

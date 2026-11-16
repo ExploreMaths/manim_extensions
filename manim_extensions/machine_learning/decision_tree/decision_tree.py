@@ -167,14 +167,15 @@ class LeafNode(Group):
 
 
 class SplitNode(VGroup):
-    """Node for splitting decision in tree.
+    r"""Node for splitting decision in tree.
 
     Parameters
     ----------
     feature
         Name of the feature used for the split.
     threshold
-        Threshold value of the split; the node text shows ``feature <= threshold``.
+        Threshold value of the split; the node text shows
+        :math:`\mathit{feature} \leq \mathit{threshold}`.
 
     Examples
     --------

@@ -180,7 +180,7 @@ v1.0.6 :bdg-success-line:`Latest`
   default behaviour.
 * Extended the mesh data model and
   :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh`
-  to four dimensions: central projection (``scale = d / (d - w)``), rotations
+  to four dimensions: central projection (:math:`scale = d / (d - w)`), rotations
   in the ``(2, 4)`` plane, flips with 4D semantics, and
   :func:`~manim_extensions.meshes.templates.create_grid` building a tesseract
   (16 vertices, 24 square faces, 32 edges).

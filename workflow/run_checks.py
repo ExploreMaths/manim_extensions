@@ -165,6 +165,9 @@ CHECKS: dict[str, Check] = {
         "static",
         py("scripts/check_return_annotations.py"),
     ),
+    "validate-math-text": Check(
+        "validate-math-text", "text", py("workflow/validate_math_text.py")
+    ),
     # Needs the package installed at ``.[all]``.
     "validate-manim-directives": Check(
         "validate-manim-directives",
@@ -208,6 +211,7 @@ CHECKS: dict[str, Check] = {
 }
 
 GROUPS: dict[str, tuple[str, ...]] = {
+    "text": ("validate-math-text",),
     "static": (
         "validate-extras",
         "validate-rst",

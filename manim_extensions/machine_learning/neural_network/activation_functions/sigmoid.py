@@ -48,7 +48,7 @@ class SigmoidFunction(ActivationFunction):
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: float) -> float:
-        """Return 1 / (1 + exp(-x_val)), the sigmoid of the input value.
+        r"""Return :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.
 
         Parameters
         ----------

@@ -26,6 +26,13 @@ jobs:
       - name: Check class and function names
         run: python workflow/validate_naming.py
 
+  validate-math-text:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that mathematical notation uses LaTeX roles
+        run: python workflow/run_checks.py --group text
+
   validate-package:
     runs-on: ubuntu-latest
     steps:

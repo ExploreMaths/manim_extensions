@@ -71,9 +71,9 @@ def mix(a: ParsableManimColor, b: ParsableManimColor, t: float) -> ManimColor:
     Parameters
     ----------
     a
-        Colour at ``t=0``.
+        Colour at :math:`t=0`.
     b
-        Colour at ``t=1``.
+        Colour at :math:`t=1`.
     t
         Blend factor, clipped to the range 0 to 1.
 

@@ -220,7 +220,7 @@ class LinkedISLMADAS(VGroup):
         Parameters
         ----------
         sras_price
-            New expected price level Pᵉ for SRAS (higher than current).
+            New expected price level :math:`P^{e}` for SRAS (higher than current).
         long_run
             If True, append the long-run self-correction of SRAS.
 
@@ -240,7 +240,7 @@ class LinkedISLMADAS(VGroup):
         Parameters
         ----------
         sras_price
-            New expected price level Pᵉ for SRAS (lower than current).
+            New expected price level :math:`P^{e}` for SRAS (lower than current).
         long_run
             If True, append the long-run self-correction of SRAS.
 

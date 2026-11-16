@@ -276,7 +276,7 @@ def _fmt(v: float) -> str:
 # ---------------- 配置 ----------------
 @dataclass
 class GaussianSurface:
-    """Tunable parameters for a Gaussian surface, generalized to z=f(x, y)."""
+    """Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""
 
     func: Optional[Callable] = None  # z=f(x,y);None=内置高斯
     func_tex: Optional[str] = None  # 角落公式;None=自定义函数且不显示公式
@@ -316,7 +316,7 @@ class GaussianSurface:
 
 @dataclass
 class SaddleSurface:
-    """Tunable presentation for the fixed saddle surface z = x² - y²."""
+    """Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`."""
 
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
@@ -338,7 +338,7 @@ class SaddleSurface:
 
 @dataclass
 class ParaboloidSurface:
-    """Tunable presentation for the fixed paraboloid z = x² + y²."""
+    """Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`."""
 
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
@@ -555,7 +555,7 @@ class GraphSurfaceScene(ThreeDScene):
         return axes.set_stroke(opacity=0.55)
 
     def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
-        """Build the default graph surface z=f(x, y).
+        """Build the default graph surface :math:`z=f(x, y)`.
 
         Parameters
         ----------

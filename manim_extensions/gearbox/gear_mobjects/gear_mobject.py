@@ -323,21 +323,22 @@ def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
 
 
 class Gear(VMobject):
-    """A Manim mobject representing an involute gear.
+    r"""A Manim mobject representing an involute gear.
 
     The gear is constructed from involute curves and can mesh with other
     :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` objects (or :class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Rack` objects) using Gear.mesh_to.
 
     Two gears mesh correctly when they share the same ``module`` and ``alpha``
     (pressure angle). The pitch-circle radius of a gear is
-    ``module * num_of_teeth / 2``.
+    :math:`module \times num\_of\_teeth / 2`.
 
     Parameters
     ----------
     num_of_teeth
         Number of gear teeth.
     module
-        Standard size scaling parameter. ``diameter = module * num_of_teeth``.
+        Standard size scaling parameter.
+        :math:`diameter = module \times num\_of\_teeth`.
 
     alpha
         Pressure angle in degrees. Affects tooth curvature. Suggested values

@@ -17,24 +17,23 @@ _LR_RUN_TIME = 2
 
 
 class ADASDiagram(EconDiagram):
-    """Aggregate Demand — Aggregate Supply diagram.
+    r"""Aggregate Demand — Aggregate Supply diagram.
 
-    AD is derived from the quantity theory of money: MV = PY, so P = MV/Y.
+    AD is derived from the quantity theory of money: :math:`MV = PY`, so
+    :math:`P = MV/Y`.
 
     SRAS comes in two flavours controlled by ``sras_slope``:
 
     * ``sras_slope=None`` — flat/horizontal Keynesian SRAS at
       ``sras_price``.
     * ``sras_slope=<positive number>`` — upward-sloping SRAS using the
-      Mankiw formulation::
+      Mankiw formulation :math:`P = P^{e} + \text{slope} \cdot (Y - \bar{Y})`.
 
-          P = Pᵉ + slope · (Y − Ȳ)
-
-      where *Pᵉ* is the expected price level (``sras_price``), *Ȳ* is
-      potential output (``lras_y``), and ``slope`` captures the cost
-      structure ``(1−s)a/s``.  Shifts in SRAS correspond to changes in
-      *Pᵉ*: when firms revise expectations the curve shifts up/down
-      while keeping the same slope.
+      Here :math:`P^{e}` is the expected price level (``sras_price``),
+      :math:`\bar{Y}` is potential output (``lras_y``), and ``slope``
+      captures the cost structure :math:`(1-s)a/s`.  Shifts in SRAS
+      correspond to changes in :math:`P^{e}`: when firms revise
+      expectations the curve shifts up/down while keeping the same slope.
 
     LRAS is a vertical line at potential output.
 
@@ -45,10 +44,10 @@ class ADASDiagram(EconDiagram):
     v
         Velocity of money.
     sras_price
-        Short-run price level / expected price Pᵉ.
+        Short-run price level / expected price :math:`P^{e}`.
     sras_slope
         SRAS slope.  ``None`` → flat.  Positive → upward-sloping
-        ``P = Pᵉ + slope·(Y − Ȳ)``.
+        :math:`P = P^{e} + \text{slope} \cdot (Y - \bar{Y})`.
     lras_y
         Potential output / natural rate of output.
     show_equilibrium
@@ -194,11 +193,13 @@ class ADASDiagram(EconDiagram):
 
     @property
     def _lr_price(self) -> float:
-        """Long-run equilibrium expected price Pᵉ.
+        r"""Long-run equilibrium expected price :math:`P^{e}`.
 
-        In long-run equilibrium expectations are correct: Pᵉ = P = MV/Ȳ.
-        For the sloped SRAS P = Pᵉ + slope·(Y − Ȳ), at Y = Ȳ the
-        deviation term vanishes, so Pᵉ = MV/Ȳ regardless of slope.
+        In long-run equilibrium expectations are correct:
+        :math:`P^{e} = P = MV/\bar{Y}`.  For the sloped SRAS
+        :math:`P = P^{e} + \text{slope} \cdot (Y - \bar{Y})`, at
+        :math:`Y = \bar{Y}` the deviation term vanishes, so
+        :math:`P^{e} = MV/\bar{Y}` regardless of slope.
 
         Returns
         -------
@@ -254,12 +255,12 @@ class ADASDiagram(EconDiagram):
         run_time: float = 1,
         show_arrows: bool = False,
     ) -> AnimationGroup | list[AnimationGroup]:
-        """Animate SRAS shifting to a new expected price Pᵉ and/or slope.
+        """Animate SRAS shifting to a new expected price :math:`P^{e}` and/or slope.
 
         Parameters
         ----------
         sras_price
-            New expected price level Pᵉ. If ``None``, keeps the current
+            New expected price level :math:`P^{e}`. If ``None``, keeps the current
             value.
         sras_slope
             New SRAS slope; ``None`` keeps the curve flat. If ``None``,
@@ -328,7 +329,7 @@ class ADASDiagram(EconDiagram):
     def long_run_adjust(
         self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False
     ) -> AnimationGroup:
-        """SRAS slowly shifts to restore long-run equilibrium.
+        r"""SRAS slowly shifts to restore long-run equilibrium.
 
         Parameters
         ----------
@@ -340,8 +341,9 @@ class ADASDiagram(EconDiagram):
             equilibrium change.
 
             After a shock moves output away from LRAS, SRAS gradually adjusts
-            to P = MV / Y_potential, bringing the economy back to potential output.
-            The animation is slow (2s) to show the gradual adjustment.
+            to :math:`P = MV / Y_{\text{potential}}`, bringing the economy
+            back to potential output.  The animation is slow (2s) to show the
+            gradual adjustment.
 
         Returns
         -------
@@ -467,7 +469,7 @@ class ADASDiagram(EconDiagram):
         Parameters
         ----------
         sras_price
-            New expected price level Pᵉ for SRAS (higher than current).
+            New expected price level :math:`P^{e}` for SRAS (higher than current).
         long_run
             If True, append the long-run self-correction of SRAS.
         lr_run_time
@@ -502,7 +504,7 @@ class ADASDiagram(EconDiagram):
         Parameters
         ----------
         sras_price
-            New expected price level Pᵉ for SRAS (lower than current).
+            New expected price level :math:`P^{e}` for SRAS (lower than current).
         long_run
             If True, append the long-run self-correction of SRAS.
         lr_run_time

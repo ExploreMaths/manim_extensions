@@ -62,7 +62,7 @@ class SolowDiagram(EconDiagram):
     numbered_eq
         If True, label equilibria with subscripts that increment on each shift.
     show_production
-        If True, also draw the production function f(k).
+        If True, also draw the production function :math:`f(k)`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.economics.base.EconDiagram`.
 
@@ -280,7 +280,7 @@ class SolowDiagram(EconDiagram):
         run_time: float = 1,
         show_arrows: bool = False,
     ) -> AnimationGroup:
-        r"""Animate break-even line shifting due to changes in :math:`\delta`, n, or g.
+        r"""Animate break-even line shifting due to changes in :math:`\delta`, :math:`n`, or :math:`g`.
 
         Parameters
         ----------
