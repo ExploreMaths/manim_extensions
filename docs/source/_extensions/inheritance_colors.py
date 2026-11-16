@@ -15,13 +15,13 @@ rgba tints over the dark SVG background.
 Large diagrams are also rewritten into a bidirectional layout: some
 disconnected components grow left-to-right, others grow right-to-left, while
 the arrow still points at the child.  A parent never emits children on both
-sides.  Components are packed into columns so standalone classes no longer
-form one tall strip.
+sides.  The whole graph therefore reads as one continuous layout instead of
+separate packed blocks; classes with no inheritance edge are omitted because
+they carry no relationship to draw.
 """
 
 from __future__ import annotations
 
-import math
 import re
 from collections import defaultdict
 
@@ -68,7 +68,7 @@ def _component_groups(children: dict[str, list[str]]) -> list[set[str]]:
 
 
 def _make_bidirectional(dot: str) -> str:
-    """Orient whole components left-to-right or right-to-left, then pack them."""
+    """Orient whole components left-to-right or right-to-left in one layout."""
     lines = dot.split("\n")
     children: dict[str, list[str]] = defaultdict(list)
     for line in lines:
@@ -78,6 +78,21 @@ def _make_bidirectional(dot: str) -> str:
 
     if not children:
         return dot
+
+    node_re = re.compile(r'^\s*"([^"]+)" \[')
+    lines = [line for line in lines if not line.strip().startswith("pack")]
+    linked = set(children)
+    for child_list in children.values():
+        linked.update(child_list)
+
+    # A class with no inheritance edge cannot be part of an inheritance graph.
+    # Leaving those nodes in produces the tall strip of unrelated classes; drop
+    # them so the remaining components can share one continuous layout.
+    lines = [
+        line
+        for line in lines
+        if not (node_re.match(line) and node_re.match(line).group(1) not in linked)
+    ]
 
     groups = _component_groups(children)
     groups.sort(key=lambda group: (-len(group), min(group)))
@@ -102,19 +117,6 @@ def _make_bidirectional(dot: str) -> str:
             result.append(f'  "{child}" -> "{parent}" [{attrs}];')
         else:
             result.append(line)
-
-    components = len(groups)
-    if components > 1:
-        # More components than this turns labels into unreadable noise; three
-        # columns keep standalone classes close to their current visual size.
-        columns = min(3, max(2, math.ceil(math.sqrt(components))))
-        for index, line in enumerate(result):
-            if line.startswith("digraph "):
-                result[index + 1 : index + 1] = [
-                    "  pack=true;",
-                    f'  packmode="array_c{columns}";',
-                ]
-                break
 
     return "\n".join(result)
 
