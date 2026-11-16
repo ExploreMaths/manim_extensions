@@ -1482,7 +1482,7 @@
 <li><p><strong>pen_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the arc.</p></li>
 <li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Central angle of the arc.</p></li>
 <li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Colour of the arc.</p></li>
-<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Other keyword arguments for the arc.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Other keyword arguments for the arc.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -1535,7 +1535,8 @@ centred at <code class="docutils literal notranslate"><span class="pre">niddle_p
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.compass.utils.geometry_method.is_counter_clockwise">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.utils.geometry_method.</span></span><span class="sig-name descname"><span class="pre">is_counter_clockwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/utils/geometry_method.html#is_counter_clockwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.utils.geometry_method.is_counter_clockwise" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Return whether <code class="docutils literal notranslate"><span class="pre">vector_end</span></code> is counter-clockwise from <code class="docutils literal notranslate"><span class="pre">vector_start</span></code>.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vector_start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting vector used as the reference direction for the orientation test.</p></li>

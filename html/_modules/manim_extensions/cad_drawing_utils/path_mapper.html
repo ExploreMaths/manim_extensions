@@ -1461,10 +1461,11 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""path_mapper module."""</span>
+<span class="sd">"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Circle</span><span class="p">,</span>
@@ -1510,7 +1511,7 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">path_source</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">num_of_path_points</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">path_source</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">num_of_path_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_of_path_points</span> <span class="o">=</span> <span class="n">num_of_path_points</span>
@@ -1519,7 +1520,7 @@
 
 <div class="viewcode-block" id="PathMapper.generate_length_map">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.generate_length_map">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_length_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_length_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rebuild the cumulative length table for the path.</span>
 
 <span class="sd">        Returns</span>
@@ -1538,7 +1539,7 @@
 
 <div class="viewcode-block" id="PathMapper.cubic_to_quads">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.cubic_to_quads">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">cubic_to_quads</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cubic_points</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cubic_to_quads</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cubic_points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Approximate one cubic Bezier segment with two quadratic ones.</span>
 
 <span class="sd">        Parameters</span>
@@ -1568,7 +1569,7 @@
 
 <div class="viewcode-block" id="PathMapper.calc_len_bezier_quad">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.calc_len_bezier_quad">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">calc_len_bezier_quad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_len_bezier_quad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute the exact arc length of a quadratic Bezier segment.</span>
 
 <span class="sd">        Parameters</span>
@@ -1604,7 +1605,7 @@
 
 <div class="viewcode-block" id="PathMapper.calc_len_with_quads">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.calc_len_with_quads">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">calc_len_with_quads</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_len_with_quads</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Estimate the path length from quadratic approximations.</span>
 
 <span class="sd">        Returns</span>
@@ -1623,7 +1624,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_path_length">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_path_length">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_path_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_path_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the total length of the path.</span>
 
 <span class="sd">        Returns</span>
@@ -1635,7 +1636,7 @@
 
 <div class="viewcode-block" id="PathMapper.alpha_from_length">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.alpha_from_length">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">alpha_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alpha_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Convert arc length to normalized path proportion.</span>
 
 <span class="sd">        Parameters</span>
@@ -1655,7 +1656,7 @@
 
 <div class="viewcode-block" id="PathMapper.length_from_alpha">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.length_from_alpha">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Convert normalized path proportion to arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1675,7 +1676,7 @@
 
 <div class="viewcode-block" id="PathMapper.equalize_alpha">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.equalize_alpha">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Invert the alpha behaviour by mapping through path length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1692,7 +1693,7 @@
 
 <div class="viewcode-block" id="PathMapper.equalize_rate_func">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.equalize_rate_func">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_rate_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_rate_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Wrap a rate function so motion follows constant arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1725,8 +1726,18 @@
 <span class="sd">                        self.wait()</span>
 <span class="sd">        """</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">eq_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">"""eq_func."""</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">eq_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">            </span><span class="sd">"""Map a rate-function output through the path length table.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            t</span>
+<span class="sd">                Normalized animation time supplied by Manim.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The path proportion whose arc length matches ``rate_func(t)``.</span>
+<span class="sd">            """</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">equalize_alpha</span><span class="p">(</span><span class="n">rate_func</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">eq_func</span></div>
@@ -1776,7 +1787,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_length_between_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_length_between_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the signed arc length between two path positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -1795,7 +1806,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_length_between_points_wrapped">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_length_between_points_wrapped">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the shortest wrapped distance between two positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -1817,7 +1828,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_length_between_points_tuple">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_length_between_points_tuple">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return both absolute lengths between two positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -1842,7 +1853,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_bezier_index_from_length">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_bezier_index_from_length">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_bezier_index_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_bezier_index_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Locate the Bezier curve containing an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1866,7 +1877,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_tangent_unit_vector">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_tangent_unit_vector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_tangent_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tangent_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unit tangent vector at an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1889,7 +1900,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_tangent_angle">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_tangent_angle">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_tangent_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tangent_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the tangent angle at an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1907,7 +1918,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_normal_unit_vector">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_normal_unit_vector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_normal_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_normal_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unit normal vector at an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1925,7 +1936,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_curvature_vector">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_curvature_vector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_curvature_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_curvature_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the curvature vector at an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1949,7 +1960,7 @@
 
 <div class="viewcode-block" id="PathMapper.get_curvature">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_curvature">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the scalar curvature at an arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1991,9 +2002,9 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">target_mobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
-        <span class="n">num_dashes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="n">dashed_ratio</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="n">dash_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">num_dashes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">dashed_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">dash_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2013,8 +2024,8 @@
 <div class="viewcode-block" id="DashedLineMobject.generate_dash_pattern_metric">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.DashedLineMobject.html#manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject.generate_dash_pattern_metric">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_dash_pattern_metric</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">dash_len</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">space_len</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">num_dashes</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">dash_len</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">space_len</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">num_dashes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Build a dash pattern in metric curve-length space.</span>
 
 <span class="sd">        Parameters</span>
@@ -2056,8 +2067,8 @@
 <div class="viewcode-block" id="DashedLineMobject.generate_dash_pattern_dash_distributed">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.DashedLineMobject.html#manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject.generate_dash_pattern_dash_distributed">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_dash_pattern_dash_distributed</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">num_dashes</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">dash_ratio</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">num_dashes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dash_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Distribute dashes evenly along the whole path.</span>
 
 <span class="sd">        Parameters</span>
@@ -2087,8 +2098,8 @@
 <div class="viewcode-block" id="DashedLineMobject.generate_dash_mobjects">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.DashedLineMobject.html#manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject.generate_dash_mobjects">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_dash_mobjects</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">dash_starts</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dash_ends</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">dash_starts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">dash_ends</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create mobjects for each dash interval.</span>
 
 <span class="sd">        Parameters</span>
@@ -2154,10 +2165,10 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">target_mobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
-        <span class="n">num_dashes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="n">dashed_ratio</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span>
-        <span class="n">dash_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="n">dot_scale</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">num_dashes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">dashed_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span>
+        <span class="n">dash_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">dot_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2244,11 +2255,11 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">target_mobject</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">ofs_func</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">ofs_func_kwargs</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="n">num_of_samples</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="n">discontinuities</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">target_mobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
+        <span class="n">ofs_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">ofs_func_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="n">num_of_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">discontinuities</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2275,7 +2286,7 @@
     <span class="c1"># this can be useful in lambdas for updaters</span>
 <div class="viewcode-block" id="PathOffsetMobject.set_ofs_function_kwargs">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.set_ofs_function_kwargs">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_ofs_function_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ofs_func_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ofs_function_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ofs_func_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace the keyword arguments passed to the offset function.</span>
 
 <span class="sd">        Parameters</span>
@@ -2293,8 +2304,8 @@
 <div class="viewcode-block" id="PathOffsetMobject.generate_bezier_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_bezier_points">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_bezier_points</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">input_func</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">t_range</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">input_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Sample a function and build cubic Bezier control points.</span>
 
 <span class="sd">        Parameters</span>
@@ -2333,7 +2344,7 @@
 
 <div class="viewcode-block" id="PathOffsetMobject.generate_ref_curve">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_ref_curve">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_ref_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_ref_curve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the sampled reference curve from the source path.</span>
 
 <span class="sd">        Returns</span>
@@ -2351,7 +2362,7 @@
 
 <div class="viewcode-block" id="PathOffsetMobject.generate_offset_func_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_offset_func_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_offset_func_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_offset_func_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Sample the offset function and build Bezier control points.</span>
 
 <span class="sd">        Parameters</span>
@@ -2373,7 +2384,7 @@
 
 <div class="viewcode-block" id="PathOffsetMobject.generate_normal_vectors">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_normal_vectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_normal_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_normal_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Build normal vectors at every sampled path position.</span>
 
 <span class="sd">        Returns</span>
@@ -2393,8 +2404,8 @@
 <div class="viewcode-block" id="PathOffsetMobject.generate_offset_paths">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_offset_paths">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_offset_paths</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">gen_ofs_point</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">gen_ofs_point</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the offset path points.</span>
 
 <span class="sd">        Parameters</span>
@@ -2428,8 +2439,8 @@
 <div class="viewcode-block" id="PathOffsetMobject.default_updater">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.default_updater">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">default_updater</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">gen_ofs_point</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">gen_ofs_point</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Refresh the offset path points for an updater callback.</span>
 
 <span class="sd">        Parameters</span>
@@ -2484,7 +2495,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">warp_source</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
         <span class="n">warp_curve</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
-        <span class="n">anchor_point</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">anchor_point</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
@@ -2497,7 +2508,7 @@
 
 <div class="viewcode-block" id="CurveWarp.generate_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.CurveWarp.html#manim_extensions.cad_drawing_utils.path_mapper.CurveWarp.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Map the source path points onto the warp curve.</span>
 
 <span class="sd">        Returns</span>

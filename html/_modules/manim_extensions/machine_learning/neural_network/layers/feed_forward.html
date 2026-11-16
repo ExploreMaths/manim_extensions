@@ -1640,7 +1640,7 @@
 <div class="viewcode-block" id="FeedForwardLayer.construct_activation_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.construct_activation_function">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Construct the activation function."""</span>
+<span class="w">        </span><span class="sd">"""Build the activation-function plot for this feed-forward layer."""</span>
         <span class="c1"># Add the activation function</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Check if it is a string</span>
@@ -1713,7 +1713,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The animation that runs the forward pass.</span>
 <span class="sd">        """</span>
         <span class="c1"># Check if dropout is a thing</span>
         <span class="k">if</span> <span class="s2">"dropout_node_indices"</span> <span class="ow">in</span> <span class="n">layer_args</span><span class="p">:</span>
@@ -1774,7 +1774,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The height of the surrounding shape."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_rectangle</span><span class="o">.</span><span class="n">height</span></div>
 
 
@@ -1785,7 +1785,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The center point of the surrounding shape."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_rectangle</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span></div>
 
 
@@ -1796,7 +1796,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The leftmost point of the surrounding shape."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_rectangle</span><span class="o">.</span><span class="n">get_left</span><span class="p">()</span></div>
 
 
@@ -1807,7 +1807,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The rightmost point of the surrounding shape."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_rectangle</span><span class="o">.</span><span class="n">get_right</span><span class="p">()</span></div>
 
 

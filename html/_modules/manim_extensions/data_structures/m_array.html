@@ -1501,7 +1501,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.mobject</span><span class="w"> </span><span class="kn">import</span> <span class="n">_AnimationBuilder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MethodType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Any</span><span class="p">,</span>
     <span class="n">Callable</span><span class="p">,</span>
     <span class="n">ClassVar</span><span class="p">,</span>
     <span class="n">List</span><span class="p">,</span>
@@ -1513,7 +1512,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.m_enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">MArrayDirection</span><span class="p">,</span> <span class="n">MArrayElementComp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 
-<span class="n">MobProps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="n">MobProps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span>
 <span class="sd">"""Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""</span>
 
 
@@ -1804,7 +1803,7 @@
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">next_to_mob</span><span class="p">:</span> <span class="n">MArrayElement</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">next_to_dir</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2693,7 +2692,7 @@
         <span class="n">mob_square_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_value_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_index_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3494,7 +3493,7 @@
         <span class="n">pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span> <span class="o">=</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">,</span>
         <span class="n">mob_arrow_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -4040,7 +4039,7 @@
         <span class="n">label_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span> <span class="o">=</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">,</span>
         <span class="n">mob_window_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

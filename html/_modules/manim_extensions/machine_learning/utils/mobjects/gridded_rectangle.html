@@ -1547,7 +1547,7 @@
         <span class="n">fill_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="n">show_grid_lines</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">dotted_lines</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># Fields</span>
@@ -1703,6 +1703,7 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/gridded_rectangle.GriddedRectangle.html#manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.get_center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the center point of the rectangle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1715,6 +1716,7 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/gridded_rectangle.GriddedRectangle.html#manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.get_normal_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_normal_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the out-of-plane normal vector of the rectangle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

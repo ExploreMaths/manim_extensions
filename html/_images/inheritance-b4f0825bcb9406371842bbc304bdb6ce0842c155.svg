@@ -2224,7 +2224,7 @@
 
 <ns0:g id="node68" class="node">
 <ns0:title>GaussianSurfaceScene</ns0:title>
-<ns0:g id="a_node68"><ns0:a ns1:href="../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene" ns1:title="GaussianSurfaceScene." target="_top">
+<ns0:g id="a_node68"><ns0:a ns1:href="../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene" ns1:title="Animated demo of the Gaussian surface :math:`z=e^{-x^2-y^2}`." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="130.58,-2838.95 12.38,-2838.95 12.38,-2819 130.58,-2819 130.58,-2838.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="71.48" y="-2825.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GaussianSurfaceScene</ns0:text>
 </ns0:a>
@@ -2521,7 +2521,7 @@
 
 <ns0:g id="node125" class="node">
 <ns0:title>ParaboloidSurfaceScene</ns0:title>
-<ns0:g id="a_node125"><ns0:a ns1:href="../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene" ns1:title="ParaboloidSurfaceScene." target="_top">
+<ns0:g id="a_node125"><ns0:a ns1:href="../reference/three_d/core.ParaboloidSurfaceScene.html#manim_extensions.three_d.core.ParaboloidSurfaceScene" ns1:title="Animated demo of the paraboloid :math:`z=x^2+y^2`." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="133.58,-2776.95 9.38,-2776.95 9.38,-2757 133.58,-2757 133.58,-2776.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="71.48" y="-2763.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ParaboloidSurfaceScene</ns0:text>
 </ns0:a>
@@ -2674,7 +2674,7 @@
 
 <ns0:g id="node159" class="node">
 <ns0:title>SaddleSurfaceScene</ns0:title>
-<ns0:g id="a_node159"><ns0:a ns1:href="../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene" ns1:title="SaddleSurfaceScene." target="_top">
+<ns0:g id="a_node159"><ns0:a ns1:href="../reference/three_d/core.SaddleSurfaceScene.html#manim_extensions.three_d.core.SaddleSurfaceScene" ns1:title="Animated demo of the saddle surface :math:`z=x^2-y^2`." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="124.58,-2745.95 18.38,-2745.95 18.38,-2726 124.58,-2726 124.58,-2745.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="71.48" y="-2732.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SaddleSurfaceScene</ns0:text>
 </ns0:a>

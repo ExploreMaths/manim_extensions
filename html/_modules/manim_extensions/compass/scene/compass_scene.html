@@ -1535,7 +1535,7 @@
 <div class="viewcode-block" id="CompassScene.setup">
 <a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.setup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">""":class:`~manim_extensions.compass.scene.compass_scene.CompassScene`.setup example."""</span>
+<span class="w">        </span><span class="sd">"""Arrange the compass, ruler and pencil around the canvas edges."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">(</span><span class="n">span</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ruler</span> <span class="o">=</span> <span class="n">Ruler</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span> <span class="o">=</span> <span class="n">Pencil</span><span class="p">()</span><span class="o">.</span><span class="n">to_corner</span><span class="p">(</span><span class="n">UR</span><span class="p">)</span></div>
@@ -1567,7 +1567,7 @@
         <span class="n">angle_or_arc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Arc</span><span class="p">,</span>
         <span class="n">arc</span><span class="p">:</span> <span class="n">Arc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">added_anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Rotate the compass about its needle tip.</span>
 

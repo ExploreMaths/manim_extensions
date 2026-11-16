@@ -1673,7 +1673,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The bond's index when the atom is part of it, otherwise ``None``.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_is_in_bond</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
@@ -1697,7 +1697,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The updated list of bond indices.</span>
 <span class="sd">        """</span>
         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bond_index_by_atom</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
 
@@ -1723,7 +1723,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The unit vector perpendicular to the bond direction in the xy plane.</span>
 <span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="n">point_b</span> <span class="o">-</span> <span class="n">point_a</span>
         <span class="k">if</span> <span class="n">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">direction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -1739,7 +1739,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Provide the geometry used when no bond subtype is selected.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1748,7 +1750,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Provide the geometry used when the bond is drawn shorter on both ends.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1757,7 +1761,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Provide the geometry used when the bond is shortened at the from-atom end.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1766,7 +1772,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Provide the geometry used when the bond is shortened at the to-atom end.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1775,7 +1783,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Provide the geometry used when the bond is drawn longer.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1784,7 +1794,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        To be implemented in every bond subclass.</span>
+<span class="sd">        Assemble the bond's line components for the selected subtype.</span>
+
+<span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
 
@@ -1797,7 +1809,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The direction vector of the bond.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1914,7 +1926,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The bond line based on the configured subtype."""</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
@@ -2132,7 +2144,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The direction vector of the bond.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2189,7 +2201,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The double bond VGroup based on the configured subtype."""</span>
         <span class="n">from_surroundings</span><span class="p">,</span> <span class="n">to_surroundings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_surroundings</span><span class="p">()</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
@@ -2404,7 +2416,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The triple bond VGroup based on the configured subtype."""</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
@@ -2428,7 +2440,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The direction vector of the bond.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2591,7 +2603,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The plain cram bond polygon based on the configured subtype."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_subtype</span><span class="p">()</span>
 
@@ -2612,7 +2624,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The direction vector of the bond.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2698,7 +2710,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The full-length dashed cram bond between both atoms.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">VGroup</span><span class="p">()</span>
@@ -2714,7 +2727,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The shortened dashed cram bond with buffer space at both ends.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span>
         <span class="n">base_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
         <span class="n">cram_bond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_dashed_cram_bond</span><span class="p">(</span><span class="n">base_line</span><span class="o">=</span><span class="n">base_line</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
@@ -2729,7 +2743,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The dashed cram bond shortened at the from-atom end.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span>
         <span class="n">base_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">+</span> <span class="n">direction</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
         <span class="n">cram_bond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_dashed_cram_bond</span><span class="p">(</span><span class="n">base_line</span><span class="o">=</span><span class="n">base_line</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
@@ -2744,7 +2759,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The dashed cram bond shortened at the to-atom end.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span>
         <span class="n">base_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">+</span> <span class="n">direction</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">)</span>
         <span class="n">cram_bond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_dashed_cram_bond</span><span class="p">(</span><span class="n">base_line</span><span class="o">=</span><span class="n">base_line</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
@@ -2759,7 +2775,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The degenerate zero-length dashed cram bond at the from atom.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span>
         <span class="n">base_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
         <span class="n">cram_bond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_dashed_cram_bond</span><span class="p">(</span><span class="n">base_line</span><span class="o">=</span><span class="n">base_line</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
@@ -2774,7 +2791,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The dashed cram bond VGroup based on the configured subtype."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_subtype</span><span class="p">()</span>
 
@@ -2797,7 +2814,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The direction vector of the bond.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>

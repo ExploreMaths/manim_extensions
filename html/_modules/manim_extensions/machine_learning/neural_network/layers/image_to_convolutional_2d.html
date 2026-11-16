@@ -1565,10 +1565,6 @@
 <span class="sd">            The layer following this connective layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -1592,7 +1588,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The animation that runs the forward pass.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1695,7 +1691,7 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                The computed result."""</span>
+<span class="sd">                The image mobject scaled to the target feature-map size."""</span>
             <span class="n">max_width_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">target_feature_map</span><span class="o">.</span><span class="n">untransformed_width</span> <span class="o">/</span> <span class="n">max_width_height</span>
             <span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>

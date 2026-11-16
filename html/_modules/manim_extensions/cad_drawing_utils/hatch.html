@@ -1461,10 +1461,10 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""hatch module."""</span>
+<span class="sd">"""Hatch-line and intersection helpers for CAD drawings.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DOWN</span><span class="p">,</span>
@@ -1512,7 +1512,7 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">target_mobject</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">target_mobject</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target_mobject</span>
@@ -1551,7 +1551,9 @@
 
 <div class="viewcode-block" id="curve_intersection">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/hatch.html#manim_extensions.cad_drawing_utils.hatch.curve_intersection">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">curve_intersection</span><span class="p">(</span><span class="n">vmob1</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">vmob2</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">curve_intersection</span><span class="p">(</span>
+    <span class="n">vmob1</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">vmob2</span><span class="p">:</span> <span class="n">VMobject</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Find intersection points of two vector mobjects.</span>
 
 <span class="sd">    Parameters</span>

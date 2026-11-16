@@ -1472,7 +1472,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParsableManimColor</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1482,11 +1485,16 @@
     <span class="n">ManimColor</span><span class="p">,</span>
     <span class="n">Polygon</span><span class="p">,</span>
     <span class="n">Rectangle</span><span class="p">,</span>
+    <span class="n">Scene</span><span class="p">,</span>
     <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">smooth</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ease_in_out_cubic</span><span class="p">,</span> <span class="n">ease_out_overshoot</span><span class="p">,</span> <span class="n">mix</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarData</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"RadarMorph"</span><span class="p">,</span>
@@ -1568,7 +1576,9 @@
 <span class="sd">               ring.restyle(2.0, 1.0, 0.5)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="n">stroke_color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_center</span> <span class="o">=</span> <span class="n">center</span>
@@ -1654,16 +1664,16 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">center</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span><span class="p">,</span>
         <span class="n">radius_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.18</span><span class="p">,</span>
         <span class="n">radius_end</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
         <span class="n">width_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4.5</span><span class="p">,</span>
         <span class="n">width_end</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="n">expand</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.42</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">center</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1770,16 +1780,16 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">target</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">"RadarData"</span><span class="p">],</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">transition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="n">dip</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dip_ratio</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">shockwave</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">shock_color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">shock_color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ParsableManimColor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">stepped</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">glitch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1836,7 +1846,7 @@
 <div class="viewcode-block" id="RadarMorph.begin">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""begin."""</span>
+<span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">)</span>
@@ -2121,7 +2131,7 @@
 <div class="viewcode-block" id="RadarMorph.finish">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""finish."""</span>
+<span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">):</span>
             <span class="n">chart</span><span class="o">.</span><span class="n">_drop_series</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -2154,7 +2164,7 @@
 
 <div class="viewcode-block" id="RadarMorph.clean_up_from_scene">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.clean_up_from_scene">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary morph effects from the scene.</span>
 
 <span class="sd">        Parameters</span>
@@ -2169,7 +2179,7 @@
 <div class="viewcode-block" id="RadarMorph._drop_ring">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._drop_ring">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_drop_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""_drop_ring."""</span>
+<span class="w">        </span><span class="sd">"""Remove the transient shockwave ring from the chart, if present."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ring</span><span class="p">)</span>
@@ -2207,10 +2217,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="n">from_values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">with_shockwave</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -2228,7 +2238,7 @@
 <div class="viewcode-block" id="RadarReveal.begin">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""begin."""</span>
+<span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_opacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1.0</span>
@@ -2269,7 +2279,7 @@
 <div class="viewcode-block" id="RadarReveal.finish">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""finish."""</span>
+<span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">):</span>
             <span class="n">s</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -2282,7 +2292,7 @@
 
 <div class="viewcode-block" id="RadarReveal.clean_up_from_scene">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.clean_up_from_scene">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 
 <span class="sd">        Parameters</span>
@@ -2327,10 +2337,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="n">with_shockwave</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2345,7 +2355,7 @@
 <div class="viewcode-block" id="RadarBurstIn.begin">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""begin."""</span>
+<span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_opacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1.0</span>
@@ -2386,7 +2396,7 @@
 <div class="viewcode-block" id="RadarBurstIn.finish">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""finish."""</span>
+<span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">):</span>
             <span class="n">s</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -2399,7 +2409,7 @@
 
 <div class="viewcode-block" id="RadarBurstIn.clean_up_from_scene">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 
 <span class="sd">        Parameters</span>
@@ -2440,11 +2450,11 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
         <span class="n">to</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chart</span> <span class="o">=</span> <span class="n">chart</span>
@@ -2454,7 +2464,7 @@
 <div class="viewcode-block" id="RadarFade.begin">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""begin."""</span>
+<span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span></div>
 
 
@@ -2475,7 +2485,7 @@
 <div class="viewcode-block" id="RadarFade.finish">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""finish."""</span>
+<span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to</span></div>
 </div>
 
@@ -2511,10 +2521,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
-        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
+        <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
         <span class="n">bars</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">flickers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -2528,7 +2538,7 @@
 <div class="viewcode-block" id="GlitchFlash.begin">
 <a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""begin."""</span>
+<span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_to_opacity</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -2585,7 +2595,7 @@
 <div class="viewcode-block" id="GlitchFlash.finish">
 <a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""finish."""</span>
+<span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">set_glitch</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_opacity</span>
@@ -2596,7 +2606,7 @@
 
 <div class="viewcode-block" id="GlitchFlash.clean_up_from_scene">
 <a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 
 <span class="sd">        Parameters</span>

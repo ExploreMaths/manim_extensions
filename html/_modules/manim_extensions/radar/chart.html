@@ -1473,7 +1473,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">replace</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1488,16 +1488,43 @@
     <span class="n">ManimColor</span><span class="p">,</span>
     <span class="n">Polygon</span><span class="p">,</span>
     <span class="n">RoundedRectangle</span><span class="p">,</span>
+    <span class="n">Animation</span><span class="p">,</span>
+    <span class="n">Mobject</span><span class="p">,</span>
+    <span class="n">Scene</span><span class="p">,</span>
     <span class="n">Text</span><span class="p">,</span>
     <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">config</span> <span class="k">as</span> <span class="n">manim_config</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParsableManimColor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarConfig</span><span class="p">,</span> <span class="n">get_style</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarData</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">RollingNumber</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.theme</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarTheme</span><span class="p">,</span> <span class="n">get_theme</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">lighten</span><span class="p">,</span> <span class="n">mix</span><span class="p">,</span> <span class="n">pick_font</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.camera</span><span class="w"> </span><span class="kn">import</span> <span class="n">CameraRig</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_AnimationBuilder</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Minimal interface of Manim's ``self.animate`` animation builder."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_run_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"_AnimationBuilder"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Set the duration of the pending animation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        run_time</span>
+<span class="sd">            Duration in seconds.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The same builder, allowing calls to be chained.</span>
+<span class="sd">        """</span>
+
+
+<span class="n">RadarInput</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RadarData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
+<span class="n">RadarInputList</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RadarInput</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarInput</span><span class="p">]]</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"RadarChart"</span><span class="p">]</span>
 
@@ -1546,7 +1573,7 @@
         <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">RadarData</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span>
         <span class="n">rim</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">primary</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2044,7 +2071,7 @@
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart._coerce_item">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_item">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">RadarInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert one constructor-level dataset into a validated snapshot.</span>
 
 <span class="sd">        Parameters</span>
@@ -2184,7 +2211,7 @@
 
 <div class="viewcode-block" id="RadarChart._legend_pairs">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._legend_pairs">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_legend_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_legend_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ManimColor</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Build legend rows for the supplied snapshots.</span>
 
 <span class="sd">        Parameters</span>
@@ -2367,7 +2394,7 @@
         <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ParsableManimColor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.32</span><span class="p">,</span>
         <span class="n">side</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"both"</span><span class="p">,</span>
         <span class="n">live</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -2599,13 +2626,13 @@
 
 <div class="viewcode-block" id="RadarChart.set_main_color">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_main_color">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_main_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarChart</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_main_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarChart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Snap the first dataset's polygon colour without animating.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        color</span>
-<span class="sd">            Any colour accepted by :class:`~manim.utils.color.core.ManimColor`.</span>
+<span class="sd">            A colour accepted by :class:`~manim.utils.color.core.ManimColor`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2701,7 +2728,9 @@
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.push_in">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.push_in">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">push_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">push_in</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Zoom the chart up about its own centre.</span>
 
 <span class="sd">        This works in any scene because only the chart moves. For a true</span>
@@ -2728,7 +2757,9 @@
 
 <div class="viewcode-block" id="RadarChart.pull_out">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.pull_out">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">pull_out</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pull_out</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale the chart back down about its own centre.</span>
 
 <span class="sd">        Parameters</span>
@@ -2752,7 +2783,7 @@
 
 <div class="viewcode-block" id="RadarChart.attach_camera">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.attach_camera">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">attach_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rig</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarChart</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rig</span><span class="p">:</span> <span class="n">CameraRig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarChart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach a camera rig for coupled camera moves.</span>
 
 <span class="sd">        Once attached, ``transition="burst"`` morphs automatically push the</span>
@@ -2778,13 +2809,13 @@
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">max_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Morph this chart into one or more target snapshots.</span>
 
 <span class="sd">        Parameters</span>
@@ -2825,7 +2856,7 @@
 
 <div class="viewcode-block" id="RadarChart.reveal">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.reveal">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reveal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reveal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the intro animation that grows out of the centre.</span>
 
 <span class="sd">        Parameters</span>
@@ -2847,7 +2878,7 @@
 
 <div class="viewcode-block" id="RadarChart.disappear">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.disappear">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">disappear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disappear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the outro animation that fades the whole chart out.</span>
 
 <span class="sd">        Parameters</span>
@@ -2869,7 +2900,7 @@
 
 <div class="viewcode-block" id="RadarChart.glitch_in">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.glitch_in">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">glitch_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">glitch_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a glitchy entrance animation.</span>
 
 <span class="sd">        Parameters</span>
@@ -2891,7 +2922,7 @@
 
 <div class="viewcode-block" id="RadarChart.shockwave">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.shockwave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">shockwave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shockwave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a single shockwave ring centred on the chart.</span>
 
 <span class="sd">        Parameters</span>
@@ -2959,7 +2990,7 @@
 
 <div class="viewcode-block" id="RadarChart.trace_web">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.trace_web">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">trace_web</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trace_web</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Trace the rainbow web before revealing the data.</span>
 
 <span class="sd">        The data layer is hidden when this starts and is restored by</span>
@@ -2985,7 +3016,9 @@
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.attach_backdrop">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.attach_backdrop">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">attach_backdrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach_backdrop</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RadarTheme</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add a deep-space backdrop behind the chart.</span>
 
 <span class="sd">        Parameters</span>
@@ -3016,7 +3049,7 @@
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart._coerce_dataset_list">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_dataset_list">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_dataset_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_dataset_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Normalise morph input into validated target snapshots.</span>
 
 <span class="sd">        Parameters</span>
@@ -3056,7 +3089,7 @@
 
 <div class="viewcode-block" id="RadarChart._coerce_data">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_data">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert one morph target into a snapshot.</span>
 
 <span class="sd">        Parameters</span>
@@ -3320,7 +3353,7 @@
 
 <div class="viewcode-block" id="RadarChart._frame">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._frame">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the current local frame basis.</span>
 
 <span class="sd">        Returns</span>
@@ -3337,7 +3370,9 @@
 <div class="viewcode-block" id="RadarChart._to_world">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._to_world">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_to_world</span><span class="p">(</span><span class="n">local</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_to_world</span><span class="p">(</span>
+        <span class="n">local</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Map local points into world space.</span>
 
 <span class="sd">        Parameters</span>
@@ -3526,8 +3561,8 @@
 <div class="viewcode-block" id="RadarChart._slot_y">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._slot_y">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_slot_y</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Choose the vertical slot for a label above the chart.</span>
 
 <span class="sd">        Parameters</span>
@@ -3562,13 +3597,13 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_series</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span>
-        <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">u</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">unit</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">op</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">multi</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">pulse</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">op</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">multi</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">pulse</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Paint one dataset's polygons, edges, dots and rim.</span>
 
@@ -3786,7 +3821,7 @@
 <div class="viewcode-block" id="RadarChart._paint_compare_numbers">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_compare_numbers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_compare_numbers</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place comparison read-outs for the datasets selected by config.</span>
 
@@ -4013,7 +4048,7 @@
 <div class="viewcode-block" id="RadarChart._paint_legend">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_legend">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_legend</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">multi</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">multi</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Position and tint the current, incoming and outgoing legend.</span>
 
@@ -4040,8 +4075,18 @@
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_legend_row_y</span><span class="p">(</span><span class="n">label_top</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">)</span>
         <span class="n">base</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">y</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">paint</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">"""paint."""</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">paint</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VGroup</span><span class="p">],</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">            </span><span class="sd">"""Place and fade one legend row at the current layout slot.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            content</span>
+<span class="sd">                Legend row group to position.</span>
+<span class="sd">            alpha</span>
+<span class="sd">                Row opacity multiplier.</span>
+<span class="sd">            dy</span>
+<span class="sd">                Vertical offset from the row's base slot.</span>
+<span class="sd">            """</span>
             <span class="k">if</span> <span class="n">content</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
                 <span class="k">return</span>
             <span class="n">content</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span>
@@ -4074,7 +4119,9 @@
 <div class="viewcode-block" id="RadarChart._seg_intersect">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._seg_intersect">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_seg_intersect</span><span class="p">(</span><span class="n">p0</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">q0</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_seg_intersect</span><span class="p">(</span>
+        <span class="n">p0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">q0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Find the intersection of two line segments.</span>
 
 <span class="sd">        Parameters</span>
@@ -4105,7 +4152,9 @@
 
 <div class="viewcode-block" id="RadarChart._paint_gap">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_gap">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_paint_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_paint_gap</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Paint the difference lobes between the highlighted datasets.</span>
 
 <span class="sd">        Parameters</span>
@@ -4312,7 +4361,9 @@
 
 <div class="viewcode-block" id="RadarChart._paint_overflow">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_overflow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_paint_overflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_paint_overflow</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Paint overflow tracks, breach glows and unclamped read-outs.</span>
 
 <span class="sd">        Parameters</span>

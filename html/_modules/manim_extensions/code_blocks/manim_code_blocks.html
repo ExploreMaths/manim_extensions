@@ -1478,9 +1478,10 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">regex</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span> <span class="k">as</span> <span class="n">abstract</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Animation</span><span class="p">,</span>
     <span class="n">AddTextLetterByLetter</span><span class="p">,</span>
     <span class="n">BackgroundRectangle</span><span class="p">,</span>
     <span class="n">DOWN</span><span class="p">,</span>
@@ -1526,7 +1527,7 @@
 
 <div class="viewcode-block" id="Theme.color_for">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.Theme.html#manim_extensions.code_blocks.manim_code_blocks.Theme.color_for">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">color_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">color_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the theme colour assigned to a token.</span>
 
 <span class="sd">        Parameters</span>
@@ -1607,7 +1608,7 @@
 <span class="sd">    The color of the programming language. The color is used when displaying the name in the title card above the code block. by default, the official GitHub language colors are used for supported languages, see https://github.com/ozh/github-colors/blob/master/colors.json.</span>
 <span class="sd">    """</span>
 
-    <span class="n">language</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">language</span><span class="p">:</span> <span class="nb">object</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The `TokenizableLanguage` of the language, imported on first access.</span>
 <span class="sd">    """</span>
@@ -1621,7 +1622,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Warning: no color found for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">language</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the tokenizer for this language.</span>
 
 <span class="sd">        Returns</span>
@@ -1823,7 +1824,7 @@
 
 <div class="viewcode-block" id="CodeBlock.uncreate">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">uncreate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">uncreate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return a tuple of animations for uncreating the code block. Use such as:</span>
 <span class="sd">        ```</span>

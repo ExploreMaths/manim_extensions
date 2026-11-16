@@ -1467,12 +1467,17 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParsableManimColor</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">WHITE</span><span class="p">,</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">WHITE</span><span class="p">,</span> <span class="n">config</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.theme</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarTheme</span><span class="p">,</span> <span class="n">get_theme</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">mix</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"DeepSpace"</span><span class="p">,</span> <span class="s2">"set_scene_background"</span><span class="p">]</span>
@@ -1689,7 +1694,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="DeepSpace.link">
 <a class="viewcode-back" href="../../../reference/radar/backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace.link">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chart</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Make the backdrop follow a chart's current colour.</span>
 
 <span class="sd">        Parameters</span>
@@ -1710,7 +1715,7 @@
 
 <div class="viewcode-block" id="DeepSpace.set_tint">
 <a class="viewcode-back" href="../../../reference/radar/backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace.set_tint">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_tint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_tint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recolour the nebula and star halos.</span>
 
 <span class="sd">        Parameters</span>
@@ -1748,7 +1753,7 @@
 
 <div class="viewcode-block" id="DeepSpace.install">
 <a class="viewcode-back" href="../../../reference/radar/backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace.install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeepSpace</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add the backdrop to a scene.</span>
 
 <span class="sd">        Parameters</span>

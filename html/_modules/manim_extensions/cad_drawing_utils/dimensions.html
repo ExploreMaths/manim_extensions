@@ -1461,10 +1461,11 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""dimensions module."""</span>
+<span class="sd">"""CAD dimension mobjects: linear and angular dimensions with arrows and labels.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Arc</span><span class="p">,</span>
     <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
@@ -1512,10 +1513,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">point</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(</span><span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">),</span>
-        <span class="n">pointer_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">,</span>
+        <span class="n">pointer_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">text_buff</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -1565,7 +1566,7 @@
 
 <div class="viewcode-block" id="PointerLabelFree.update_point">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.PointerLabelFree.html#manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree.update_point">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">(</span><span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the pointer to a new anchor point.</span>
 
 <span class="sd">        Parameters</span>
@@ -1622,10 +1623,10 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">proportion</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">dist</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">pointer_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">pointer_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span>
@@ -1648,7 +1649,7 @@
 
 <div class="viewcode-block" id="PointerToMob.update_mob">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.PointerToMob.html#manim_extensions.cad_drawing_utils.dimensions.PointerToMob.update_mob">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_mob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">proportion</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_mob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Follow a point on a mobject and update the pointer.</span>
 
 <span class="sd">        Parameters</span>
@@ -1708,14 +1709,14 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">end</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">direction</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
-        <span class="n">outside_arrow</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">ext_line_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">tip_len</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
+        <span class="n">outside_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">ext_line_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">tip_len</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1855,14 +1856,14 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">end</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">arc_center</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">text</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">outside_arrow</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">ext_line_offset</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">tip_len</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">arc_center</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">outside_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">ext_line_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">tip_len</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1989,7 +1990,7 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">Mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">start_proportion</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">end_proportion</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">Mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">start_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">Mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">start_proportion</span><span class="p">)</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">Mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">end_proportion</span><span class="p">)</span>
@@ -2040,9 +2041,9 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">target_curve</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
-        <span class="n">anchor_point</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">arrow_size</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
-        <span class="n">reversed_arrow</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">anchor_point</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">arrow_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
+        <span class="n">reversed_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
@@ -2062,7 +2063,7 @@
 
 <div class="viewcode-block" id="CADArrowHead.default_updater">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.CADArrowHead.html#manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.default_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">default_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">default_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Refresh the arrow geometry after the target curve changes.</span>
 
 <span class="sd">        Parameters</span>
@@ -2080,7 +2081,7 @@
 
 <div class="viewcode-block" id="CADArrowHead.get_tip_pos">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.CADArrowHead.html#manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.get_tip_pos">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_tip_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tip_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the x coordinate of the arrow tip.</span>
 
 <span class="sd">        Returns</span>
@@ -2095,7 +2096,7 @@
 
 <div class="viewcode-block" id="CADArrowHead.set_arrow_size">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.CADArrowHead.html#manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.set_arrow_size">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_arrow_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arrow_size</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_arrow_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arrow_size</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resize the arrow head while keeping its tip fixed.</span>
 
 <span class="sd">        Parameters</span>
@@ -2119,7 +2120,7 @@
 
 <div class="viewcode-block" id="CADArrowHead.flip_arrow">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.CADArrowHead.html#manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.flip_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">flip_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flip_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Flip the arrow head horizontally.</span>
 
 <span class="sd">        Returns</span>
@@ -2130,7 +2131,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reversed_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reversed_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Whether the arrow points backwards.</span>
 
 <span class="sd">        Returns</span>
@@ -2140,7 +2141,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span>
 
     <span class="nd">@reversed_arrow</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reversed_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reversed_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set whether the arrow points backwards.</span>
 
 <span class="sd">        Parameters</span>

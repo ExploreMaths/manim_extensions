@@ -1783,7 +1783,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The formula string with HTML subscript tags around trailing numbers.</span>
 <span class="sd">        """</span>
         <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"([^\d\s]+)(\d+)"</span>
         <span class="n">replacement</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\1&lt;sub&gt;\2&lt;/sub&gt;"</span>
@@ -1803,7 +1803,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The formula string with HTML superscript tags around charge notation.</span>
 <span class="sd">        """</span>
         <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(\w*?)\^\{([^}]+)\}"</span><span class="p">)</span>
         <span class="n">substitution</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\1&lt;sup&gt;\2&lt;/sup&gt;"</span>
@@ -1824,7 +1824,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The formula string with subscripts and superscripts formatted.</span>
 <span class="sd">        """</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_tags_around_numbers</span><span class="p">(</span><span class="n">formula_part</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_tags_around_charges</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>

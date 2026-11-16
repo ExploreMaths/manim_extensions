@@ -1637,7 +1637,7 @@ derived from it together with the atoms’ representations.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The computed result.</p>
+<dd class="field-odd"><p>The bond’s index when the atom is part of it, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1657,7 +1657,7 @@ derived from it together with the atoms’ representations.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The computed result.</p>
+<dd class="field-odd"><p>The updated list of bond indices.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1677,7 +1677,7 @@ derived from it together with the atoms’ representations.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The computed result.</p>
+<dd class="field-odd"><p>The unit vector perpendicular to the bond direction in the xy plane.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1685,37 +1685,43 @@ derived from it together with the atoms’ representations.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.no_subtype">
 <span class="sig-name descname"><span class="pre">no_subtype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.no_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.no_subtype" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Provide the geometry used when no bond subtype is selected.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_subtype">
 <span class="sig-name descname"><span class="pre">shorter_subtype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.shorter_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_subtype" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Provide the geometry used when the bond is drawn shorter on both ends.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_from_subtype">
 <span class="sig-name descname"><span class="pre">shorter_from_subtype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.shorter_from_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_from_subtype" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Provide the geometry used when the bond is shortened at the from-atom end.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_to_subtype">
 <span class="sig-name descname"><span class="pre">shorter_to_subtype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.shorter_to_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_to_subtype" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Provide the geometry used when the bond is shortened at the to-atom end.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.longer_subtype">
 <span class="sig-name descname"><span class="pre">longer_subtype</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.longer_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.longer_subtype" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Provide the geometry used when the bond is drawn longer.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.bond.BaseMBondObject.create_line">
 <span class="sig-name descname"><span class="pre">create_line</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/bond.html#BaseMBondObject.create_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.bond.BaseMBondObject.create_line" title="Link to this definition">¶</a></dt>
-<dd><p>To be implemented in every bond subclass.</p>
+<dd><p>Assemble the bond’s line components for the selected subtype.</p>
+<p>Bond subclasses override this hook and return their concrete mobject.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1727,7 +1733,7 @@ derived from it together with the atoms’ representations.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The computed result.</p>
+<dd class="field-even"><p>The direction vector of the bond.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Re-raised when the underlying line vector lookup fails.</p>

@@ -1588,7 +1588,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The scale factor needed to fit the element name inside the frame.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">frame</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">name_text</span><span class="o">.</span><span class="n">width</span><span class="p">)</span></div>
 
@@ -1605,7 +1605,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The name text, scaled down when it exceeds the maximum height.</span>
 <span class="sd">        """</span>
         <span class="n">text_height</span> <span class="o">=</span> <span class="n">name_text</span><span class="o">.</span><span class="n">height</span>
         <span class="k">if</span> <span class="n">text_height</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
@@ -1622,7 +1622,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The gradient-filled rectangle forming the element tile background."""</span>
         <span class="n">frame_rectangle</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Rectangle</span><span class="p">(</span>
                 <span class="n">height</span><span class="o">=</span><span class="mf">2.8</span><span class="p">,</span>

@@ -1461,11 +1461,12 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""utils module."""</span>
+<span class="sd">"""Small vector and construction helpers shared by the CAD drawing utilities.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector3D</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Circle</span><span class="p">,</span>
     <span class="n">Line</span><span class="p">,</span>
@@ -1480,7 +1481,7 @@
 
 <div class="viewcode-block" id="angle_between_vectors_signed">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/utils.html#manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">angle_between_vectors_signed</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">angle_between_vectors_signed</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return the signed angle between two vectors.</span>
 
 <span class="sd">    Parameters</span>
@@ -1524,7 +1525,7 @@
 
 <div class="viewcode-block" id="BezierHandlebars.generate_circles">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/utils.BezierHandlebars.html#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a dot at every control point.</span>
 
 <span class="sd">        Parameters</span>
@@ -1554,7 +1555,7 @@
 
 <div class="viewcode-block" id="BezierHandlebars.move_circles">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/utils.BezierHandlebars.html#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_circles">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the dots onto the current control points.</span>
 
 <span class="sd">        Returns</span>
@@ -1567,7 +1568,7 @@
 
 <div class="viewcode-block" id="BezierHandlebars.generate_lines">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/utils.BezierHandlebars.html#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_lines">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Draw the two Bezier handles for every curve.</span>
 
 <span class="sd">        Returns</span>
@@ -1596,7 +1597,7 @@
 
 <div class="viewcode-block" id="BezierHandlebars.move_lines">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/utils.BezierHandlebars.html#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.move_lines">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the handle lines to match the current control points.</span>
 
 <span class="sd">        Returns</span>

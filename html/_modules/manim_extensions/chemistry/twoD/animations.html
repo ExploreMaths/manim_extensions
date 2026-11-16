@@ -1543,7 +1543,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The bond edge connecting the two atom indices.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1575,7 +1575,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The animations rotating the atoms around the bond axis.</span>
 <span class="sd">        """</span>
         <span class="n">bond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds_from_atoms</span><span class="p">(</span><span class="n">atom_a</span><span class="o">=</span><span class="n">atom_a</span><span class="p">,</span> <span class="n">atom_b</span><span class="o">=</span><span class="n">atom_b</span><span class="p">)</span>
         <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">bond</span><span class="p">]</span><span class="o">.</span><span class="n">sheen_direction</span>

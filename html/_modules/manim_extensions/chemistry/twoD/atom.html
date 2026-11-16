@@ -1651,7 +1651,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The created atom label, or ``None`` when the representation has no label."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> <span class="s2">"skeleton"</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">MarkupText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span></div>
 
@@ -1710,7 +1710,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The same atom after renaming.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">new_element</span>
         <span class="n">renamed_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_copy</span><span class="p">()</span>
@@ -1735,7 +1735,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The copy of this atom with explicit hydrogens enabled."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">explicit_hydrogens</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_copy</span><span class="p">()</span></div>

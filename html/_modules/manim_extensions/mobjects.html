@@ -1710,6 +1710,8 @@
 <a class="viewcode-back" href="../../reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot.get_center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the center of the underlying dot.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The center of the underlying dot.</span>
@@ -1721,6 +1723,8 @@
 <a class="viewcode-back" href="../../reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot.get_boundary_point">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_boundary_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3DLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return a point on the dot boundary in the given direction.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        direction</span>
@@ -1934,7 +1938,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">point</span><span class="p">:</span> <span class="n">Point3DLike</span> <span class="o">|</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">line</span><span class="p">:</span> <span class="n">Line</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -2122,7 +2126,7 @@
         <span class="n">line2</span><span class="p">:</span> <span class="n">Line</span><span class="p">,</span>
         <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
         <span class="n">corner_direction</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -2483,7 +2487,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">filename_or_array</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">PixelArray</span> <span class="o">|</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span>
         <span class="n">corner_radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename_or_array</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename_or_array</span><span class="p">)</span>
@@ -2566,7 +2570,7 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span>
     <span class="p">):</span>
         <span class="n">cv2</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"video"</span><span class="p">,</span> <span class="s2">"cv2"</span><span class="p">)</span>
 

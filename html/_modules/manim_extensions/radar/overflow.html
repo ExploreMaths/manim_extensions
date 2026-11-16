@@ -1471,10 +1471,12 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Animation</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarBurstIn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span><span class="p">,</span> <span class="n">RadarInputList</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarConfig</span><span class="p">,</span> <span class="n">get_style</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarData</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.theme</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarTheme</span>
@@ -1618,7 +1620,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="OverflowRadarChart.morph_to">
 <a class="viewcode-back" href="../../../reference/radar/overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart.morph_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Morph with the burst transition unless told otherwise.</span>
 
 <span class="sd">        Parameters</span>
@@ -1640,7 +1642,7 @@
 
 <div class="viewcode-block" id="OverflowRadarChart.burst_in">
 <a class="viewcode-back" href="../../../reference/radar/overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart.burst_in">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">burst_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">burst_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Play the overflow entrance.</span>
 
 <span class="sd">        Parameters</span>

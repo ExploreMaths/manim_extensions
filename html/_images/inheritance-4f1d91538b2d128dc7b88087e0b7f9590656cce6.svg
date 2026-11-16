@@ -759,7 +759,7 @@
 
 <ns0:g id="node41" class="node">
 <ns0:title>LabeledColorImage</ns0:title>
-<ns0:g id="a_node41"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/image.LabeledColorImage.html#manim_extensions.machine_learning.utils.mobjects.image.LabeledColorImage" ns1:title="Labeled Color Image." target="_top">
+<ns0:g id="a_node41"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/image.LabeledColorImage.html#manim_extensions.machine_learning.utils.mobjects.image.LabeledColorImage" ns1:title="An image with a colored frame and a text label above it." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="399.35,-116.95 297.65,-116.95 297.65,-97 399.35,-97 399.35,-116.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-103.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">LabeledColorImage</ns0:text>
 </ns0:a>
@@ -924,7 +924,7 @@
 
 <ns0:g id="node54" class="node">
 <ns0:title>PairedQueryLayer</ns0:title>
-<ns0:g id="a_node54"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer" ns1:title="Paired Query Layer." target="_top">
+<ns0:g id="a_node54"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer" ns1:title="A layer showing a positive and a negative query example side by side." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="551.92,-302.95 458.47,-302.95 458.47,-283 551.92,-283 551.92,-302.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-289.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PairedQueryLayer</ns0:text>
 </ns0:a>

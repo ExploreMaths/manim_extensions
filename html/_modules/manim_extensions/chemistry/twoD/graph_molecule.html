@@ -1595,7 +1595,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result."""</span>
+<span class="sd">            The direction vector of the bond."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_unit_vector</span><span class="p">()</span></div>
 
 
@@ -1823,7 +1823,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The bond class for a given edge tuple based on its bond type.</span>
 <span class="sd">        """</span>
         <span class="n">bond_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges_dict</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span><span class="o">.</span><span class="n">bond_type</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_bond_type</span><span class="p">(</span><span class="n">bond_type</span><span class="p">)</span></div>
@@ -1841,7 +1841,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The bond mobject class for the given bond order (1=single, 2=double, 3=triple).</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1870,7 +1870,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The layout dict mapping each atom index to its 3D coordinates.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">vertex</span><span class="o">.</span><span class="n">coords</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">vertices_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
 
@@ -1946,7 +1946,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The label text mobjects for each atom, either numeric or element symbols.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">numeric_label</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span>

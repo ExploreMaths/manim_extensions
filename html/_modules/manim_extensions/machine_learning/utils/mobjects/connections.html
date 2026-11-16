@@ -1563,7 +1563,7 @@
 <div class="viewcode-block" id="NetworkConnection.make_mobjects">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/connections.NetworkConnection.html#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.make_mobjects">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_mobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Makes the submobjects."""</span>
+<span class="w">        </span><span class="sd">"""Build the arrow or arc that connects the two mobjects."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_mobject</span><span class="o">.</span><span class="n">get_center</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_mobject</span><span class="o">.</span><span class="n">get_center</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">left_mobject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_mobject</span>
             <span class="n">right_mobject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_mobject</span>

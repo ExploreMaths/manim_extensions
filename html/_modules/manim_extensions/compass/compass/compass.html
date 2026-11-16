@@ -1548,7 +1548,7 @@
         <span class="n">leg_length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.1</span><span class="p">,</span>
         <span class="n">leg_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span>
         <span class="n">r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">stroke_width</span><span class="o">=</span><span class="n">stroke_width</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">head_color</span> <span class="o">=</span> <span class="n">head_color</span>
@@ -1609,6 +1609,7 @@
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.get_niddle_tip">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_niddle_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the coordinates of the compass needle tip.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1621,6 +1622,7 @@
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.get_pen_tip">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_pen_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the coordinates of the pen tip.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1633,6 +1635,7 @@
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.get_niddle2pen_vec">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_niddle2pen_vec</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the unit vector from the needle tip to the pen tip.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

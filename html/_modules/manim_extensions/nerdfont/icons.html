@@ -1576,7 +1576,7 @@
 <span class="sd">               self.add(icon)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
         <span class="n">font_path</span> <span class="o">=</span> <span class="n">_font_path</span><span class="p">()</span>
         <span class="n">_install_font_linux</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">register_font</span><span class="p">(</span><span class="n">font_path</span><span class="p">):</span>

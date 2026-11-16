@@ -1582,7 +1582,7 @@
 <div class="viewcode-block" id="MindMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.MindMap.html#manim_extensions.mindmap.mindmap.mindmap.MindMap._set_connectors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Set connection lines."""</span>
+<span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">get_connector</span><span class="p">(</span>
@@ -1688,7 +1688,7 @@
 <div class="viewcode-block" id="TimeLine._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.TimeLine.html#manim_extensions.mindmap.mindmap.mindmap.TimeLine._set_connectors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Set connection lines."""</span>
+<span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">get_connector</span><span class="p">(</span>
@@ -1798,7 +1798,7 @@
 <div class="viewcode-block" id="StandardMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.StandardMap.html#manim_extensions.mindmap.mindmap.mindmap.StandardMap._set_connectors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Set connection lines."""</span>
+<span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">get_connector</span><span class="p">(</span>
@@ -1908,7 +1908,7 @@
 <div class="viewcode-block" id="CatalogMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.CatalogMap.html#manim_extensions.mindmap.mindmap.mindmap.CatalogMap._set_connectors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Set connection lines."""</span>
+<span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">get_connector</span><span class="p">(</span>

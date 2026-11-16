@@ -1617,6 +1617,7 @@
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_node_style">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the box style configured for a hierarchy level.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2093,6 +2094,7 @@
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_children">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the direct children of this node.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2105,6 +2107,7 @@
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_descendants">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return all descendants of this node in depth-first order.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2189,6 +2192,7 @@
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_root">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the root of the tree containing this node.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

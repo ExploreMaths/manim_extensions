@@ -1526,7 +1526,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The lowercase file extension without the leading dot.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span></div>
 
@@ -1535,6 +1535,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.parsed_atoms_bonds_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parsed_atoms_bonds_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the parsed atom and bond dictionaries.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

@@ -1572,7 +1572,7 @@
 <div class="viewcode-block" id="GrayscaleImageMobject.scale">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/image.GrayscaleImageMobject.html#manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject.scale">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span>  <span class="c1"># intentionally returns None instead of the group</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Scales the image mobject.</span>
 
@@ -1610,7 +1610,10 @@
 <div class="viewcode-block" id="LabeledColorImage">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/image.LabeledColorImage.html#manim_extensions.machine_learning.utils.mobjects.image.LabeledColorImage">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LabeledColorImage</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Labeled Color Image.</span>
+<span class="w">    </span><span class="sd">"""An image with a colored frame and a text label above it.</span>
+
+<span class="sd">    The frame and label are grouped with the image so the whole card can be</span>
+<span class="sd">    positioned, scaled or animated as one mobject.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

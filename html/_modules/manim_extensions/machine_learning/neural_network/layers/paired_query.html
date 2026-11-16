@@ -1488,7 +1488,11 @@
 <div class="viewcode-block" id="PairedQueryLayer">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PairedQueryLayer</span><span class="p">(</span><span class="n">NeuralNetworkLayer</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Paired Query Layer.</span>
+<span class="w">    </span><span class="sd">"""A layer showing a positive and a negative query example side by side.</span>
+
+<span class="sd">    The pair is framed and labelled as one input row; spacing, stroke width</span>
+<span class="sd">    and font size are configurable so the layer can align with neighbouring</span>
+<span class="sd">    network layers.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1585,10 +1589,6 @@
 <span class="sd">            The layer following this layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -1614,7 +1614,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The computed result.</span>
+<span class="sd">            The layer built from the supplied image paths.</span>
 <span class="sd">        """</span>
         <span class="c1"># Load images from path</span>
         <span class="k">if</span> <span class="n">grayscale</span><span class="p">:</span>
