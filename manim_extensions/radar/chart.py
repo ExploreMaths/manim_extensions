@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import replace
-from typing import TYPE_CHECKING, List, Optional, Protocol, Sequence, Union
+from typing import TYPE_CHECKING, List, Optional, Sequence, Union
 
 import numpy as np
 from manim import (
@@ -38,6 +38,7 @@ from manim import (
 )
 
 from manim.utils.color import ParsableManimColor
+from .animation_builder import AnimationBuilder
 from .config import RadarConfig, get_style
 from .data import RadarData
 from .numbers import RollingNumber
@@ -46,22 +47,6 @@ from .utils import lighten, mix, pick_font
 
 if TYPE_CHECKING:
     from .camera import CameraRig
-
-class _AnimationBuilder(Protocol):
-    """Minimal interface of Manim's ``self.animate`` animation builder."""
-
-    def set_run_time(self, run_time: float) -> "_AnimationBuilder":
-        """Set the duration of the pending animation.
-
-        Parameters
-        ----------
-        run_time
-            Duration in seconds.
-
-        Returns
-        -------
-            The same builder, allowing calls to be chained.
-        """
 
 
 RadarInput = Union[RadarData, dict, Sequence[float]]
@@ -1210,7 +1195,7 @@ class RadarChart(VGroup):
     # ==================================================================
     def push_in(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ) -> _AnimationBuilder:
+    ) -> AnimationBuilder:
         """Zoom the chart up about its own centre.
 
         This works in any scene because only the chart moves. For a true
@@ -1236,7 +1221,7 @@ class RadarChart(VGroup):
 
     def pull_out(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ) -> _AnimationBuilder:
+    ) -> AnimationBuilder:
         """Scale the chart back down about its own centre.
 
         Parameters

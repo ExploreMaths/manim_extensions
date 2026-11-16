@@ -997,6 +997,7 @@
  "manim_extensions.radar.STYLES",
  "manim_extensions.radar.THEMES",
  "manim_extensions.radar.TRANSITIONS",
+ "manim_extensions.radar.animation_builder.AnimationBuilder",
  "manim_extensions.radar.animations.GlitchFlash",
  "manim_extensions.radar.animations.RadarBurstIn",
  "manim_extensions.radar.animations.RadarFade",

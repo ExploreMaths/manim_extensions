@@ -59,7 +59,7 @@ def round_corner_param(
     ) -> tuple[np.ndarray, Vector3D]:
         """Intersect two offset lines and return their parameters.
 
-        The two lines are ``p1 + t * n1`` and ``p2 + s * n2``. The first two
+        The two lines are :math:`p_1 + t n_1` and :math:`p_2 + s n_2`. The first two
         components are solved because the construction is planar.
 
         Parameters

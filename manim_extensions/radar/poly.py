@@ -526,7 +526,7 @@ class PolyRadarChart(VGroup):
                 self.t0 = self.poly.theta
 
             def interpolate_mobject(self, alpha: float) -> None:
-                """Rotate the chart from the recorded angle by ``delta * alpha``."""
+                r"""Rotate the chart from the recorded angle by :math:`\delta \alpha`."""
                 new = self.t0 + self.delta * alpha
                 self.poly.rotate(
                     new - self.poly.theta, axis=Z_AXIS, about_point=self.poly.center
