@@ -1526,7 +1526,7 @@ diagram. The mesh must already have been added to <code class="docutils literal 
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.create_voronoi">
 <span class="sig-name descname"><span class="pre">create_voronoi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/voronoi.html#VoronoiDelaunay.create_voronoi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.create_voronoi" title="Link to this definition">¶</a></dt>
 <dd><p>Build the Voronoi diagram for the mesh vertices and return it as Manim groups.</p>
-<p>The diagram is constructed from the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.Voronoi.html#scipy.spatial.Voronoi" title="(in SciPy v1.18.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Voronoi</span></code></a>
+<p>The diagram is constructed from the <code class="xref py py-class docutils literal notranslate"><span class="pre">Voronoi</span></code>
 computation stored in <cite>voronoi</cite>.  Both finite and infinite
 ridge segments are converted to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>
 objects, and Voronoi vertices become <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Dot.html#manim.mobject.geometry.arc.Dot" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a>
@@ -1540,7 +1540,7 @@ objects.</p>
 <li><p>A pair of <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>
 containers holding the Voronoi vertices (dots) and the connecting
 ridge lines, respectively.</p></li>
-<li><p><em>.. note::</em> – Based on the logic in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.voronoi_plot_2d.html#scipy.spatial.voronoi_plot_2d" title="(in SciPy v1.18.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">voronoi_plot_2d()</span></code></a>.</p></li>
+<li><p><em>.. note::</em> – Based on the logic in <code class="xref py py-func docutils literal notranslate"><span class="pre">voronoi_plot_2d()</span></code>.</p></li>
 </ul>
 </p>
 </dd>

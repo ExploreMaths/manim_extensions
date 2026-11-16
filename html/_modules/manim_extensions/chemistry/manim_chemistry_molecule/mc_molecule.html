@@ -1854,8 +1854,7 @@
 <div class="viewcode-block" id="MCMolecule.remove_carbon_hydrogens">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.remove_carbon_hydrogens">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_carbon_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Remove all hydrogen atoms that are bonded only to carbon atoms.</span>
-<span class="sd">        """</span>
+<span class="w">        </span><span class="sd">"""Remove all hydrogen atoms that are bonded only to carbon atoms."""</span>
         <span class="n">atoms_to_be_removed</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms_by_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">!=</span> <span class="s2">"H"</span><span class="p">:</span>
@@ -1875,8 +1874,7 @@
 <div class="viewcode-block" id="MCMolecule.remove_all_hydrogens">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.remove_all_hydrogens">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_all_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Remove every hydrogen atom from the molecule.</span>
-<span class="sd">        """</span>
+<span class="w">        </span><span class="sd">"""Remove every hydrogen atom from the molecule."""</span>
         <span class="n">atoms_to_be_removed</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms_by_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>

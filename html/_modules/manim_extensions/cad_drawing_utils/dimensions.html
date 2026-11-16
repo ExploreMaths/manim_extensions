@@ -1465,8 +1465,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""CAD dimension mobjects: linear and angular dimensions with arrows and labels.</span>
-<span class="sd">"""</span>
+<span class="sd">"""CAD dimension mobjects: linear and angular dimensions with arrows and labels."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
@@ -1570,7 +1569,9 @@
 
 <div class="viewcode-block" id="PointerLabelFree.update_point">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/dimensions.PointerLabelFree.html#manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree.update_point">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the pointer to a new anchor point.</span>
 
 <span class="sd">        Parameters</span>

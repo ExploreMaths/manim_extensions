@@ -1580,9 +1580,7 @@
 <span class="sd">               ring.restyle(2.0, 1.0, 0.5)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="n">stroke_color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_center</span> <span class="o">=</span> <span class="n">center</span>
@@ -1784,8 +1782,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
-        <span class="n">target</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">"RadarData"</span><span class="p">],</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">],</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">transition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2221,7 +2219,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
         <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
@@ -2341,7 +2339,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span>
         <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>
@@ -2454,7 +2452,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
         <span class="n">to</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
@@ -2525,7 +2523,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">chart</span><span class="p">:</span> <span class="s2">"RadarChart"</span><span class="p">,</span>
+        <span class="n">chart</span><span class="p">:</span> <span class="n">RadarChart</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
         <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">smooth</span><span class="p">,</span>

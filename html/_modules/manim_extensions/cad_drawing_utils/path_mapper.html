@@ -1465,8 +1465,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths.</span>
-<span class="sd">"""</span>
+<span class="sd">"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
@@ -1697,7 +1696,9 @@
 
 <div class="viewcode-block" id="PathMapper.equalize_rate_func">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.equalize_rate_func">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_rate_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equalize_rate_func</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Wrap a rate function so motion follows constant arc length.</span>
 
 <span class="sd">        Parameters</span>
@@ -1832,7 +1833,9 @@
 
 <div class="viewcode-block" id="PathMapper.get_length_between_points_tuple">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.get_length_between_points_tuple">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_length_between_points_tuple</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return both absolute lengths between two positions.</span>
 
 <span class="sd">        Parameters</span>
@@ -2308,7 +2311,10 @@
 <div class="viewcode-block" id="PathOffsetMobject.generate_bezier_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_bezier_points">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_bezier_points</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">input_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">input_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+        <span class="n">t_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Sample a function and build cubic Bezier control points.</span>
 
@@ -2366,7 +2372,9 @@
 
 <div class="viewcode-block" id="PathOffsetMobject.generate_offset_func_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_offset_func_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_offset_func_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_offset_func_points</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Sample the offset function and build Bezier control points.</span>
 
 <span class="sd">        Parameters</span>

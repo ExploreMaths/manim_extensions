@@ -1485,7 +1485,6 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.animation_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnimationBuilder</span>
 
-
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"CameraRig"</span><span class="p">]</span>
 
 
@@ -1527,7 +1526,11 @@
 <div class="viewcode-block" id="CameraRig.push_in">
 <a class="viewcode-back" href="../../../reference/radar/camera.CameraRig.html#manim_extensions.radar.camera.CameraRig.push_in">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push_in</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span>
+        <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationBuilder</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Zoom the camera towards a target.</span>
 

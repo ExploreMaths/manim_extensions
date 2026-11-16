@@ -2200,7 +2200,9 @@
 
 <div class="viewcode-block" id="RadarChart._legend_pairs">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._legend_pairs">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_legend_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ManimColor</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_legend_pairs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ManimColor</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Build legend rows for the supplied snapshots.</span>
 
 <span class="sd">        Parameters</span>
@@ -4037,7 +4039,13 @@
 <div class="viewcode-block" id="RadarChart._paint_legend">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_legend">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_legend</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">multi</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">op</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">multi</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Position and tint the current, incoming and outgoing legend.</span>
 
