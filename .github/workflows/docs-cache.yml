@@ -181,7 +181,8 @@ jobs:
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: "3.12"
-          install-full-deps: "true"
+          # The old RTD build did not install the full TeX stack either; the
+          # explicit apt packages above cover its documented system deps.
           install-editable: "true"
 
       - name: Install docs dependencies
