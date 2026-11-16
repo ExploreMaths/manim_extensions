@@ -29,7 +29,7 @@ from manim.utils.color import ParsableManimColor
 __all__ = [
     "Compass",
 ]
-from typing import Any, Self
+from typing import Self
 
 import numpy as np
 

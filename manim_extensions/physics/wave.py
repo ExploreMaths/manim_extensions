@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import numpy as np
 from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface
-from typing import Any, Iterable
+from typing import Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.typing import Point3D
 

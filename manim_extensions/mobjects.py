@@ -57,7 +57,7 @@ from manim import (
 from manim.typing import Point3D, Vector3DLike, Point3DLike, Vector3D, PixelArray
 import numpy as np
 import platform
-from typing import Any, Callable, Self
+from typing import Callable, Self
 
 from PIL import Image, ImageChops, ImageDraw
 

@@ -4,8 +4,6 @@
 
 """Debug utilities for algorithm visualization."""
 
-from typing import Any
-
 from manim import DOWN, Dot, Integer, Paragraph, VGroup
 
 

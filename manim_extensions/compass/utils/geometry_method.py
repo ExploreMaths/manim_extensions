@@ -10,7 +10,6 @@ This module provides geometry utility functions for compass operations.
 
 # unlinked-class-ok: Source
 
-from typing import Any
 
 from manim import Arc, PURE_YELLOW, RIGHT
 from manim.typing import Point3D, Vector3D

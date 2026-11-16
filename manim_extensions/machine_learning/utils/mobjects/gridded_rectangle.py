@@ -4,8 +4,6 @@
 
 """Gridded rectangle visualization utility."""
 
-from typing import Any
-
 from manim import (
     DOWN,
     DashedVMobject,

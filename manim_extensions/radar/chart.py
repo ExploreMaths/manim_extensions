@@ -727,7 +727,9 @@ class RadarChart(VGroup):
             self._name_text = self._make_name_text(datasets[0].name)
             self._name_holder.add(self._name_text)
 
-    def _legend_pairs(self, datasets: Sequence[RadarData]) -> List[tuple[ManimColor, str]]:
+    def _legend_pairs(
+        self, datasets: Sequence[RadarData]
+    ) -> List[tuple[ManimColor, str]]:
         """Build legend rows for the supplied snapshots.
 
         Parameters
@@ -2402,7 +2404,13 @@ class RadarChart(VGroup):
         self._legend_old_dy = 0.0
 
     def _paint_legend(
-        self, a: np.ndarray, v: np.ndarray, label_top: float, frame_limit: float, op: float, multi: bool
+        self,
+        a: np.ndarray,
+        v: np.ndarray,
+        label_top: float,
+        frame_limit: float,
+        op: float,
+        multi: bool,
     ) -> None:
         """Position and tint the current, incoming and outgoing legend.
 

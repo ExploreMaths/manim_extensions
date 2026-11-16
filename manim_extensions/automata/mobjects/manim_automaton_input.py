@@ -9,7 +9,6 @@ This module provides the :class:`~manim_extensions.automata.mobjects.manim_autom
 """
 
 from manim import Animation, MathTex, VGroup
-from typing import Any
 
 import itertools
 

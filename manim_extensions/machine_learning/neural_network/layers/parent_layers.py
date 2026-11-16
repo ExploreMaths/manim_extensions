@@ -11,7 +11,6 @@ This module provides abstract base classes for neural network layer visualizatio
 
 from __future__ import annotations
 
-from typing import Any
 
 from manim import (
     Animation,

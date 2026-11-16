@@ -4,8 +4,6 @@
 
 """Custom animations for Manim."""
 
-from typing import Any
-
 from .utils.deprecation import deprecated
 
 from manim import (

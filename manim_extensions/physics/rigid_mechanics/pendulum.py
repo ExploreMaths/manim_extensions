@@ -3,8 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-r"""Pendulum systems and their motion visualisations.
-"""
+r"""Pendulum systems and their motion visualisations."""
 
 from __future__ import annotations
 

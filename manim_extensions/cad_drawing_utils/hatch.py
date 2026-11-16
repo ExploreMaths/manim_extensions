@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Hatch-line and intersection helpers for CAD drawings.
-"""
+"""Hatch-line and intersection helpers for CAD drawings."""
 
 from __future__ import annotations
 import numpy as np
@@ -51,7 +50,11 @@ class HatchLines(VGroup):
     """
 
     def __init__(
-        self, target_mobject: Mobject, angle: float = PI / 6, offset: float = 0.3, **kwargs
+        self,
+        target_mobject: Mobject,
+        angle: float = PI / 6,
+        offset: float = 0.3,
+        **kwargs,
     ) -> None:
         super().__init__(**kwargs)
         self.target = target_mobject

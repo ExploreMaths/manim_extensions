@@ -579,7 +579,8 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            The schema :class:`~manim.mobject.types.vectorized_mobject.VGroup` corresponding to the configured layout type."""
+            The schema :class:`~manim.mobject.types.vectorized_mobject.VGroup` corresponding to the configured layout type.
+        """
         schema_options = {
             "horizontal": self.horizontal_schema(),
             "corner": self.corner_schema(),

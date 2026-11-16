@@ -24,7 +24,7 @@ from manim import (
     VGroup,
     normalize,
 )
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 from .automata_dependencies.automata import Transition
 
 from .manim_state import ManimState

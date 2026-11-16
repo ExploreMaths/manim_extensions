@@ -228,7 +228,7 @@ class DeepSpace(VGroup):
         self.add_updater(self._refresh)
 
     # ------------------------------------------------------------------
-    def link(self, chart: "RadarChart") -> DeepSpace:
+    def link(self, chart: RadarChart) -> DeepSpace:
         """Make the backdrop follow a chart's current colour.
 
         Parameters

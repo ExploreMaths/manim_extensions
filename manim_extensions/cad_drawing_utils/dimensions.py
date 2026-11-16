@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""CAD dimension mobjects: linear and angular dimensions with arrows and labels.
-"""
+"""CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
 from manim.typing import Point3D, Vector3D
@@ -103,7 +102,9 @@ class PointerLabelFree(VDict):
             aligned_edge=LEFT * np.sign(offset_vector[0]),
         )
 
-    def update_point(self, point: Point3D, offset_vector: Vector3D = RIGHT + DOWN) -> None:
+    def update_point(
+        self, point: Point3D, offset_vector: Vector3D = RIGHT + DOWN
+    ) -> None:
         """Move the pointer to a new anchor point.
 
         Parameters

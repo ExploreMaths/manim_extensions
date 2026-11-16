@@ -29,7 +29,6 @@ from manim import (
 from manim.typing import Point3D
 
 __all__ = ["CompassScene"]
-from typing import Any
 
 
 from ..compass import Compass, Ruler, Pencil

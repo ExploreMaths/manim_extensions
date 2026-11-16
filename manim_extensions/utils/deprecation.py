@@ -14,7 +14,7 @@ readable on the console.
 from __future__ import annotations
 
 import re
-from typing import Any, Callable, TypeVar
+from typing import Callable, TypeVar
 
 from typing_extensions import deprecated as _deprecated
 

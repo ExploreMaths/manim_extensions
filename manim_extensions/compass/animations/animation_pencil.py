@@ -8,8 +8,6 @@ This module provides animations for pencil manipulations.
 
 """
 
-from typing import Any
-
 from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, VMobject
 from manim.typing import Point3D
 

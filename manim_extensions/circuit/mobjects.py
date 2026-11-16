@@ -8,7 +8,7 @@ This module provides circuit component visualizations.
 
 """
 
-from typing import Any, Literal, Self
+from typing import Literal, Self
 
 import numpy as np
 from manim import (

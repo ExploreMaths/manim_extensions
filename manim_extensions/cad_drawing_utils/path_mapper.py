@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths.
-"""
+"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
 from typing import Callable, Sequence
@@ -206,7 +205,9 @@ class PathMapper(VMobject):
         """
         return self.alpha_from_length(a * self.get_path_length())
 
-    def equalize_rate_func(self, rate_func: Callable[[float], float]) -> Callable[[float], float]:
+    def equalize_rate_func(
+        self, rate_func: Callable[[float], float]
+    ) -> Callable[[float], float]:
         """Wrap a rate function so motion follows constant arc length.
 
         Parameters
@@ -329,7 +330,9 @@ class PathMapper(VMobject):
         L = self.get_path_length()
         return (AB % L - L / 2) % L - L / 2
 
-    def get_length_between_points_tuple(self, b: float, a: float) -> tuple[float, float]:
+    def get_length_between_points_tuple(
+        self, b: float, a: float
+    ) -> tuple[float, float]:
         """Return both absolute lengths between two positions.
 
         Parameters
@@ -763,7 +766,10 @@ class PathOffsetMobject(VMobject):
         self.ofs_func_kwargs = ofs_func_kwargs
 
     def generate_bezier_points(
-        self, input_func: Callable[[float], np.ndarray], t_range: np.ndarray, Smoothing: bool = True
+        self,
+        input_func: Callable[[float], np.ndarray],
+        t_range: np.ndarray,
+        Smoothing: bool = True,
     ) -> list[list[np.ndarray]]:
         """Sample a function and build cubic Bezier control points.
 
@@ -815,7 +821,9 @@ class PathOffsetMobject(VMobject):
             self.ref_curve.append_points(point)
         self.ref_curve_path = PathMapper(self.ref_curve)
 
-    def generate_offset_func_points(self, Smoothing: bool = True) -> list[list[np.ndarray]]:
+    def generate_offset_func_points(
+        self, Smoothing: bool = True
+    ) -> list[list[np.ndarray]]:
         """Sample the offset function and build Bezier control points.
 
         Parameters

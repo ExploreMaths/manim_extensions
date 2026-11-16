@@ -7,7 +7,6 @@
 from __future__ import annotations
 
 from manim import Animation, Indicate, Scene, Text
-from typing import Any
 
 from .m_array import MArrayElement, MobProps
 

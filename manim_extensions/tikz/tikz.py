@@ -13,7 +13,7 @@ from manim.utils.tex_file_writing import tex_to_svg_file
 from .template import TikzTemplate
 
 from pathlib import Path
-from typing import Any, List
+from typing import List
 
 
 class Tikz(SVGMobject):

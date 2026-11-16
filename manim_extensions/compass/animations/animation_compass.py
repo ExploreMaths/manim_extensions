@@ -32,7 +32,6 @@ __all__ = [
     "PutCompass",
     "PutCompassAway",
 ]
-from typing import Any
 
 import numpy as np
 

@@ -14,7 +14,7 @@ Cell - A single table cell with optional border.
 # Manim Community Edition (manim CE) wildcard import for mobjects and constants
 from manim import BOLD, Line, Rectangle, Text, VGroup
 from manim.utils.color import ParsableManimColor
-from typing import Any, Self
+from typing import Self
 import numpy as np
 
 

@@ -12,7 +12,6 @@ This module provides animations for ruler manipulations.
 
 __all__ = ["PutRuler", "PutRulerAway"]
 
-from typing import Any
 
 from manim import ApplyMethod, DOWN, LEFT, RIGHT, UP
 from manim.typing import Point3D

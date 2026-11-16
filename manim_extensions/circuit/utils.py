@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-from typing import Any, Literal, Self
+from typing import Literal, Self
 
 import numpy as np
 from manim import (

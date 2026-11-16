@@ -6,7 +6,6 @@
 
 # unlinked-class-ok: Source
 
-from typing import Any
 
 import numpy as np
 from manim import Axes, Ellipse, ManimColor, ORANGE, VGroup

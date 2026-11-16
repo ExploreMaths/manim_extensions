@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Exceptions raised while validating mesh topology and geometry.
-"""
+"""Exceptions raised while validating mesh topology and geometry."""
 
 # unlinked-class-ok: Mesh
 

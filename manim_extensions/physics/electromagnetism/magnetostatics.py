@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Magnetostatics visualisations, including field lines and current elements.
-"""
+"""Magnetostatics visualisations, including field lines and current elements."""
 
 from __future__ import annotations
 from manim import ArrowVectorField, VMobject

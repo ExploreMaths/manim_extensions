@@ -9,7 +9,7 @@ This module provides the :class:`~manim_extensions.table.row.Row` class for tabl
 
 from manim import RIGHT, VGroup
 from .cell import Cell
-from typing import Any, Iterator, List, overload
+from typing import Iterator, List, overload
 
 
 class Row(VGroup):

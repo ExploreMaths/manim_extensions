@@ -14,7 +14,7 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import Any, List, overload, Self
+from typing import List, overload, Self
 
 #: Animation produced by the mutation methods: either a real Animation
 #: (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.

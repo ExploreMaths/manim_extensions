@@ -4,7 +4,7 @@
 
 """Image mobject utilities for neural network visualization."""
 
-from typing import Any, Self
+from typing import Self
 
 import numpy as np
 from manim import (

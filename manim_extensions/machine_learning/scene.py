@@ -9,8 +9,6 @@ This module provides custom scene classes for machine learning visualizations.
 
 """
 
-from typing import Any
-
 from manim import ThreeDScene
 
 

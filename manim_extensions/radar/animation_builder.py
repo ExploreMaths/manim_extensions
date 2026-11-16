@@ -27,7 +27,7 @@ class AnimationBuilder(Protocol):
         builder.set_run_time(0.8)
     """
 
-    def set_run_time(self, run_time: float) -> "AnimationBuilder":
+    def set_run_time(self, run_time: float) -> AnimationBuilder:
         """Set the duration of the pending animation.
 
         Parameters

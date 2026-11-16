@@ -534,9 +534,7 @@ class GraphSurfaceScene(ThreeDScene):
         """
         raise NotImplementedError
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Describe the annotated feature point.
 
         Parameters
@@ -1024,9 +1022,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
             )
         return g, False  # 地板投影,不随翻面
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Locate the peak of the sampled Gaussian surface.
 
         Parameters
@@ -1173,9 +1169,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                     )
         return g, False  # 地板等高线,不随翻面
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the saddle point annotation.
 
         Parameters
@@ -1269,9 +1263,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             )
         return g, True  # 贴在曲面上,翻面必须跟着转
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the paraboloid vertex annotation.
 
         Parameters
@@ -1437,9 +1429,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the ellipsoid apex annotation.
 
         Parameters
@@ -1607,9 +1597,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
                 )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the torus apex annotation.
 
         Parameters
@@ -1777,9 +1765,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(
-        self, cfg: SurfaceConfig, f: SurfaceFunction
-    ) -> FeatureSpec:
+    def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the waist point annotation.
 
         Parameters

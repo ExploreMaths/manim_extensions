@@ -8,7 +8,7 @@ This module provides QR code generation functionality with customization options
 
 """
 
-from typing import Any, Literal
+from typing import Literal
 from types import ModuleType
 
 from manim import Circle, DOWN, ManimColor, ORIGIN, RIGHT, Rectangle, VGroup, WHITE

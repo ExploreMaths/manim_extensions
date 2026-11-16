@@ -93,9 +93,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
             """Wrap a mobject constructor to extract ``fixed_stroke_width``."""
 
             @functools.wraps(original_init)
-            def patched_init(
-                self: object, *args: object, **kwargs: object
-            ) -> None:
+            def patched_init(self: object, *args: object, **kwargs: object) -> None:
                 """Accept ``fixed_stroke_width`` as a constructor keyword."""
                 sentinel = object()
                 fixed = kwargs.pop("fixed_stroke_width", sentinel)

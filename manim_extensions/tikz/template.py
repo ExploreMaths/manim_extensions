@@ -9,7 +9,7 @@ This module provides the TikZ template class for rendering TikZ diagrams.
 """
 
 from manim import TexTemplate
-from typing import Any, List
+from typing import List
 
 
 class TikzTemplate(TexTemplate):

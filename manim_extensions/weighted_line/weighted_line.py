@@ -8,7 +8,6 @@ This module provides the :class:`~manim_extensions.weighted_line.weighted_line.W
 """
 
 from manim import DEFAULT_FONT_SIZE, ITALIC, Line, SMALL_BUFF, Text, WHITE, config
-from typing import Any
 
 
 class WeightedLine(Line):

@@ -117,9 +117,7 @@ class Ring(Polygon):
                ring.restyle(2.0, 1.0, 0.5)
     """
 
-    def __init__(
-        self, center: Point3D, color: ParsableManimColor, **kwargs
-    ) -> None:
+    def __init__(self, center: Point3D, color: ParsableManimColor, **kwargs) -> None:
         center = np.asarray(center, dtype=float)
         super().__init__(*(np.tile(center, (3, 1))), stroke_color=color, **kwargs)
         self.ring_center = center
@@ -313,8 +311,8 @@ class RadarMorph(Animation):
 
     def __init__(
         self,
-        chart: "RadarChart",
-        target: Sequence["RadarData"],
+        chart: RadarChart,
+        target: Sequence[RadarData],
         *,
         transition: Optional[str] = None,
         run_time: Optional[float] = None,
@@ -723,7 +721,7 @@ class RadarReveal(Animation):
 
     def __init__(
         self,
-        chart: "RadarChart",
+        chart: RadarChart,
         *,
         run_time: float = 0.9,
         rate_func: Callable[[float], float] = smooth,
@@ -828,7 +826,7 @@ class RadarBurstIn(Animation):
 
     def __init__(
         self,
-        chart: "RadarChart",
+        chart: RadarChart,
         *,
         run_time: float = 1.1,
         rate_func: Callable[[float], float] = smooth,
@@ -926,7 +924,7 @@ class RadarFade(Animation):
 
     def __init__(
         self,
-        chart: "RadarChart",
+        chart: RadarChart,
         to: float = 0.0,
         *,
         run_time: float = 0.8,
@@ -985,7 +983,7 @@ class GlitchFlash(Animation):
 
     def __init__(
         self,
-        chart: "RadarChart",
+        chart: RadarChart,
         *,
         run_time: float = 0.75,
         rate_func: Callable[[float], float] = smooth,

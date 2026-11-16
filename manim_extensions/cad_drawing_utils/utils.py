@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Small vector and construction helpers shared by the CAD drawing utilities.
-"""
+"""Small vector and construction helpers shared by the CAD drawing utilities."""
 
 from __future__ import annotations
 import numpy as np

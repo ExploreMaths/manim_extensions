@@ -22,7 +22,6 @@ from manim.typing import Point3D, Vector3D
 
 from .animation_builder import AnimationBuilder
 
-
 __all__ = ["CameraRig"]
 
 
@@ -60,7 +59,11 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     def push_in(
-        self, target: Mobject | Point3D | None = None, factor: float = 1.35, run_time: float = 1.0, **kwargs
+        self,
+        target: Mobject | Point3D | None = None,
+        factor: float = 1.35,
+        run_time: float = 1.0,
+        **kwargs,
     ) -> AnimationBuilder:
         """Zoom the camera towards a target.
 

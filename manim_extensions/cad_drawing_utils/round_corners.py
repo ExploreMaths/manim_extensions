@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Fit tangent arcs and chamfers between adjoining Bezier curves.
-"""
+"""Fit tangent arcs and chamfers between adjoining Bezier curves."""
 
 from __future__ import annotations
 from typing import Callable, Sequence

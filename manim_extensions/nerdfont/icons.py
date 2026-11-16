@@ -31,7 +31,6 @@ import os
 import platform
 import shutil
 import subprocess
-from typing import Any
 
 from .icons_dict import SYMBOLS_UNICODE
 

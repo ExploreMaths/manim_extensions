@@ -8,7 +8,7 @@ This module provides ruler visualization for geometry.
 
 """
 
-from typing import Any, Self
+from typing import Self
 
 from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
 from manim.typing import Point3D, Vector3D
