@@ -58,6 +58,7 @@ Modules
    :nosignatures:
 
    ~animations
+   ~animation_builder
    ~backdrop
    ~camera
    ~chart
@@ -83,6 +84,7 @@ Constants
    :maxdepth: 1
 
    animations
+   animation_builder
    backdrop
    camera
    chart
