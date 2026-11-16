@@ -1191,8 +1191,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
     """Animated demo of the paraboloid :math:`z=x^2+y^2`.
 
     The scene raises the bowl, paints concentric level rings on the surface,
-    orbits and flips it, and annotates the vertex at the origin. Ring radii
-    are derived from the configured height so the contour spacing remains
+    orbits and flips it, and annotates the vertex at the origin. The radii
+    of the concentric rings are derived from the configured height so the contour spacing remains
     stable when the presentation is resized.
     """
 

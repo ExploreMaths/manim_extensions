@@ -2445,7 +2445,7 @@ class RadarChart(VGroup):
             content
                 Legend row group to position.
             alpha
-                Row opacity multiplier.
+                Opacity multiplier for the row.
             dy
                 Vertical offset from the row's base slot.
             """
