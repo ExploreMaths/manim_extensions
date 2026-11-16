@@ -1,0 +1,449 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="663pt" height="508pt" viewBox="0.00 0.00 663.00 508.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 503.95)">
+<ns0:title>inheritanceb9d8d99aa0</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>AbstractImageMobject</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.image_mobject.AbstractImageMobject.html#manim.mobject.types.image_mobject.AbstractImageMobject" ns1:title="Automatically filters out black pixels" target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="185.65,-390.95 68.2,-390.95 68.2,-371 185.65,-371 185.65,-390.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="126.93" y="-377.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">AbstractImageMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node10" class="node">
+<ns0:title>ImageMobject</ns0:title>
+<ns0:g id="a_node10"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.image_mobject.ImageMobject.html#manim.mobject.types.image_mobject.ImageMobject" ns1:title="Displays an Image from a numpy array or a file." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="290.6,-468.95 213.65,-468.95 213.65,-449 290.6,-449 290.6,-468.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.13" y="-455.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">ImageMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>AbstractImageMobject-&gt;ImageMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M143.53,-390.85C165.56,-404.8 205.83,-430.3 230.37,-445.83" />
+<ns0:polygon fill="black" stroke="black" points="229.21,-447.17 234.37,-448.37 231.08,-444.21 229.21,-447.17" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Mobject</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" ns1:title="Mathematical Object: base class for objects that can be displayed on screen." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="46.2,-281.95 0,-281.95 0,-262 46.2,-262 46.2,-281.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="23.1" y="-268.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Mobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Mobject-&gt;AbstractImageMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M33.14,-281.65C51.13,-300.91 91.52,-344.14 112.58,-366.69" />
+<ns0:polygon fill="black" stroke="black" points="111.04,-367.6 115.73,-370.06 113.59,-365.21 111.04,-367.6" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>VMobject</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" ns1:title="A vectorized mobject." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="153.4,-266.95 100.45,-266.95 100.45,-247 153.4,-247 153.4,-266.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="126.93" y="-253.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge28" class="edge">
+<ns0:title>Mobject-&gt;VMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M46.19,-268.72C60.34,-266.64 78.92,-263.9 94.58,-261.59" />
+<ns0:polygon fill="black" stroke="black" points="94.46,-263.38 99.15,-260.92 93.95,-259.92 94.46,-263.38" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>ChineseMathTex</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../reference/basic/mobjects.ChineseMathTex.html#manim_extensions.mobjects.ChineseMathTex" ns1:title="A :class:`~manim.mobject.text.tex_mobject.MathTex` subclass that supports Chinese characters." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="654.95,-19.95 567.5,-19.95 567.5,0 654.95,0 654.95,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="611.23" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ChineseMathTex</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>MathTex</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.MathTex.html#manim.mobject.text.tex_mobject.MathTex" ns1:title="A string compiled with LaTeX in math mode." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="522.62,-19.95 474.18,-19.95 474.18,0 522.62,0 522.62,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="498.4" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">MathTex</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>MathTex-&gt;ChineseMathTex</ns0:title>
+<ns0:path fill="none" stroke="black" d="M522.36,-9.98C533.69,-9.98 547.81,-9.98 561.39,-9.98" />
+<ns0:polygon fill="black" stroke="black" points="561.07,-11.73 566.07,-9.98 561.07,-8.23 561.07,-11.73" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>Code</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.text.code_mobject.Code.html#manim.mobject.text.code_mobject.Code" ns1:title="A highlighted source code listing." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="268.1,-360.95 236.15,-360.95 236.15,-341 268.1,-341 268.1,-360.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.13" y="-347.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Code</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node13" class="node">
+<ns0:title>FileTree</ns0:title>
+<ns0:g id="a_node13"><ns0:a ns1:href="../reference/basic/mobjects.FileTree.html#manim_extensions.mobjects.FileTree" ns1:title="An ASCII file tree generated from a nested dictionary." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="396.3,-437.95 351.6,-437.95 351.6,-418 396.3,-418 396.3,-437.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-424.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FileTree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>Code-&gt;FileTree</ns0:title>
+<ns0:path fill="none" stroke="black" d="M260.97,-360.7C272.31,-374.14 294.58,-398.28 318.6,-411.98 326.78,-416.64 336.45,-420.05 345.34,-422.5" />
+<ns0:polygon fill="black" stroke="black" points="344.91,-424.19 350.18,-423.74 345.77,-420.8 344.91,-424.19" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>VMobject-&gt;Code</ns0:title>
+<ns0:path fill="none" stroke="black" d="M140.65,-266.68C162.69,-283.5 208.03,-318.09 233.23,-337.32" />
+<ns0:polygon fill="black" stroke="black" points="232.05,-338.62 237.09,-340.26 234.17,-335.84 232.05,-338.62" />
+</ns0:g>
+
+<ns0:g id="node15" class="node">
+<ns0:title>VGroup</ns0:title>
+<ns0:g id="a_node15"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" ns1:title="A group of vectorized mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="273.73,-266.95 230.53,-266.95 230.53,-247 273.73,-247 273.73,-266.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.13" y="-253.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge27" class="edge">
+<ns0:title>VMobject-&gt;VGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M153.15,-256.98C173.95,-256.98 203.37,-256.98 224.53,-256.98" />
+<ns0:polygon fill="black" stroke="black" points="224.3,-258.73 229.3,-256.98 224.3,-255.23 224.3,-258.73" />
+</ns0:g>
+
+<ns0:g id="node16" class="node">
+<ns0:title>TipableVMobject</ns0:title>
+<ns0:g id="a_node16"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.TipableVMobject.html#manim.mobject.geometry.arc.TipableVMobject" ns1:title="Meant for shared functionality between Arc and Line." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="296.6,-165.95 207.65,-165.95 207.65,-146 296.6,-146 296.6,-165.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.13" y="-152.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">TipableVMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge24" class="edge">
+<ns0:title>VMobject-&gt;TipableVMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M139.74,-247.29C161.76,-229.24 209.13,-190.4 234.42,-169.67" />
+<ns0:polygon fill="black" stroke="black" points="235.24,-171.26 238,-166.74 233.02,-168.55 235.24,-171.26" />
+</ns0:g>
+
+<ns0:g id="node24" class="node">
+<ns0:title>SVGMobject</ns0:title>
+<ns0:g id="a_node24"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.svg.svg_mobject.SVGMobject.html#manim.mobject.svg.svg_mobject.SVGMobject" ns1:title="A vectorized mobject created from importing an SVG file." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="285.35,-50.95 218.9,-50.95 218.9,-31 285.35,-31 285.35,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.13" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">SVGMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge18" class="edge">
+<ns0:title>VMobject-&gt;SVGMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M133.54,-247.13C153.1,-212.84 218.37,-98.4 242.26,-56.51" />
+<ns0:polygon fill="black" stroke="black" points="243.77,-57.4 244.73,-52.19 240.73,-55.67 243.77,-57.4" />
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>ColorText</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../reference/basic/mobjects.ColorText.html#manim_extensions.mobjects.ColorText" ns1:title="A :class:`~manim.mobject.text.text_mobject.Text` that renders a colour as a code snippet." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="524.88,-50.95 471.93,-50.95 471.93,-31 524.88,-31 524.88,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="498.4" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ColorText</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>Text</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" ns1:title="Display (non-LaTeX) text rendered using `Pango &lt;https://pango.org/&gt;`_." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="387.68,-50.95 360.23,-50.95 360.23,-31 387.68,-31 387.68,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Text</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>Text-&gt;ColorText</ns0:title>
+<ns0:path fill="none" stroke="black" d="M387.59,-40.98C405.96,-40.98 440.6,-40.98 466.08,-40.98" />
+<ns0:polygon fill="black" stroke="black" points="465.83,-42.73 470.83,-40.98 465.83,-39.23 465.83,-42.73" />
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>CropImageMobject</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="../reference/basic/mobjects.CropImageMobject.html#manim_extensions.mobjects.CropImageMobject" ns1:title="An :class:`~manim.mobject.types.image_mobject.ImageMobject` with rounded-corner" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="423.68,-499.95 324.23,-499.95 324.23,-480 423.68,-480 423.68,-499.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-486.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">CropImageMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>ImageMobject-&gt;CropImageMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M290.38,-468.61C302.43,-471.73 315.9,-475.22 328.42,-478.45" />
+<ns0:polygon fill="black" stroke="black" points="327.73,-480.08 333.01,-479.64 328.61,-476.7 327.73,-480.08" />
+</ns0:g>
+
+<ns0:g id="node30" class="node">
+<ns0:title>VideoMobject</ns0:title>
+<ns0:g id="a_node30"><ns0:a ns1:href="../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject" ns1:title="An :class:`~manim.mobject.types.image_mobject.ImageMobject` that plays a video" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="410.93,-468.95 336.98,-468.95 336.98,-449 410.93,-449 410.93,-468.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-455.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">VideoMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge29" class="edge">
+<ns0:title>ImageMobject-&gt;VideoMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M290.38,-458.98C303.25,-458.98 317.76,-458.98 330.98,-458.98" />
+<ns0:polygon fill="black" stroke="black" points="330.84,-460.73 335.84,-458.98 330.84,-457.23 330.84,-460.73" />
+</ns0:g>
+
+<ns0:g id="node11" class="node">
+<ns0:title>ExtendedLine</ns0:title>
+<ns0:g id="a_node11"><ns0:a ns1:href="../reference/basic/mobjects.ExtendedLine.html#manim_extensions.mobjects.ExtendedLine" ns1:title="A line segment extended at both ends." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="535,-143.95 461.8,-143.95 461.8,-124 535,-124 535,-143.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="498.4" y="-130.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ExtendedLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node12" class="node">
+<ns0:title>Line</ns0:title>
+<ns0:g id="a_node12"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" ns1:title="A straight or curved line segment between two points or mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="387.68,-96.95 360.23,-96.95 360.23,-77 387.68,-77 387.68,-96.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-83.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Line</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>Line-&gt;ExtendedLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M387.44,-89.48C398.72,-92.02 415.61,-96.49 429.3,-102.97 440,-108.04 440.73,-112.66 451.3,-117.97 453.91,-119.29 456.65,-120.53 459.43,-121.71" />
+<ns0:polygon fill="black" stroke="black" points="458.51,-123.23 463.8,-123.47 459.81,-119.98 458.51,-123.23" />
+</ns0:g>
+
+<ns0:g id="node22" class="node">
+<ns0:title>PerpendicularLine</ns0:title>
+<ns0:g id="a_node22"><ns0:a ns1:href="../reference/basic/mobjects.PerpendicularLine.html#manim_extensions.mobjects.PerpendicularLine" ns1:title="A perpendicular line segment from a point to a given line." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="545.5,-112.95 451.3,-112.95 451.3,-93 545.5,-93 545.5,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="498.4" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PerpendicularLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge16" class="edge">
+<ns0:title>Line-&gt;PerpendicularLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M387.59,-88.63C401.27,-90.41 423.99,-93.38 445.22,-96.16" />
+<ns0:polygon fill="black" stroke="black" points="444.77,-97.86 449.95,-96.78 445.22,-94.39 444.77,-97.86" />
+</ns0:g>
+
+<ns0:g id="node26" class="node">
+<ns0:title>ShortenedLine</ns0:title>
+<ns0:g id="a_node26"><ns0:a ns1:href="../reference/basic/mobjects.ShortenedLine.html#manim_extensions.mobjects.ShortenedLine" ns1:title="A line segment shortened at both ends." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="536.88,-81.95 459.93,-81.95 459.93,-62 536.88,-62 536.88,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="498.4" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ShortenedLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge20" class="edge">
+<ns0:title>Line-&gt;ShortenedLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M387.59,-85.43C403.13,-83.52 430.32,-80.19 453.75,-77.32" />
+<ns0:polygon fill="black" stroke="black" points="453.68,-79.09 458.43,-76.75 453.26,-75.62 453.68,-79.09" />
+</ns0:g>
+
+<ns0:g id="node14" class="node">
+<ns0:title>LabelDot</ns0:title>
+<ns0:g id="a_node14"><ns0:a ns1:href="../reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot" ns1:title="A dot with a :class:`~manim.mobject.text.tex_mobject.MathTex` label." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="399.3,-406.95 348.6,-406.95 348.6,-387 399.3,-387 399.3,-406.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-393.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">LabelDot</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge9" class="edge">
+<ns0:title>VGroup-&gt;LabelDot</ns0:title>
+<ns0:path fill="none" stroke="black" d="M258.63,-266.62C267.04,-281.43 283.47,-310.69 296.6,-335.98 306.86,-355.73 301.59,-366.61 318.6,-380.98 325.44,-386.75 334.28,-390.44 342.84,-392.8" />
+<ns0:polygon fill="black" stroke="black" points="341.95,-394.38 347.23,-393.87 342.78,-390.98 341.95,-394.38" />
+</ns0:g>
+
+<ns0:g id="node18" class="node">
+<ns0:title>MathTexBrace</ns0:title>
+<ns0:g id="a_node18"><ns0:a ns1:href="../reference/basic/mobjects.MathTexBrace.html#manim_extensions.mobjects.MathTexBrace" ns1:title="A brace with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="412.05,-375.95 335.85,-375.95 335.85,-356 412.05,-356 412.05,-375.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-362.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MathTexBrace</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge12" class="edge">
+<ns0:title>VGroup-&gt;MathTexBrace</ns0:title>
+<ns0:path fill="none" stroke="black" d="M257.31,-266.77C265.92,-285.76 287.46,-327.66 318.6,-349.98 322.09,-352.48 325.97,-354.59 330.01,-356.38" />
+<ns0:polygon fill="black" stroke="black" points="329.31,-357.98 334.6,-358.21 330.61,-354.73 329.31,-357.98" />
+</ns0:g>
+
+<ns0:g id="node19" class="node">
+<ns0:title>MathTexDoublearrow</ns0:title>
+<ns0:g id="a_node19"><ns0:a ns1:href="../reference/basic/mobjects.MathTexDoublearrow.html#manim_extensions.mobjects.MathTexDoublearrow" ns1:title="A double arrow with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="429.3,-344.95 318.6,-344.95 318.6,-325 429.3,-325 429.3,-344.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-331.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MathTexDoublearrow</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge13" class="edge">
+<ns0:title>VGroup-&gt;MathTexDoublearrow</ns0:title>
+<ns0:path fill="none" stroke="black" d="M260.93,-266.86C272.23,-280.53 294.45,-305.08 318.6,-318.98 320.85,-320.27 323.22,-321.47 325.66,-322.58" />
+<ns0:polygon fill="black" stroke="black" points="324.75,-324.1 330.04,-324.42 326.11,-320.87 324.75,-324.1" />
+</ns0:g>
+
+<ns0:g id="node20" class="node">
+<ns0:title>MathTexLine</ns0:title>
+<ns0:g id="a_node20"><ns0:a ns1:href="../reference/basic/mobjects.MathTexLine.html#manim_extensions.mobjects.MathTexLine" ns1:title="A line segment paired with a :class:`~manim.mobject.text.tex_mobject.MathTex` formula." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="408.3,-313.95 339.6,-313.95 339.6,-294 408.3,-294 408.3,-313.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-300.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MathTexLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge14" class="edge">
+<ns0:title>VGroup-&gt;MathTexLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M271.98,-266.86C284.88,-273.39 302.5,-281.84 318.6,-287.98 323.42,-289.81 328.55,-291.57 333.66,-293.2" />
+<ns0:polygon fill="black" stroke="black" points="332.88,-294.79 338.18,-294.61 333.92,-291.45 332.88,-294.79" />
+</ns0:g>
+
+<ns0:g id="node21" class="node">
+<ns0:title>ObjectBorder</ns0:title>
+<ns0:g id="a_node21"><ns0:a ns1:href="../reference/basic/mobjects.ObjectBorder.html#manim_extensions.mobjects.ObjectBorder" ns1:title="A border (and optional corner markers) that surrounds a mobject." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="409.43,-282.95 338.48,-282.95 338.48,-263 409.43,-263 409.43,-282.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-269.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ObjectBorder</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge15" class="edge">
+<ns0:title>VGroup-&gt;ObjectBorder</ns0:title>
+<ns0:path fill="none" stroke="black" d="M273.72,-259.73C289.78,-261.87 312.59,-264.92 332.29,-267.55" />
+<ns0:polygon fill="black" stroke="black" points="331.88,-269.26 337.07,-268.18 332.34,-265.79 331.88,-269.26" />
+</ns0:g>
+
+<ns0:g id="node23" class="node">
+<ns0:title>PerpendicularSign</ns0:title>
+<ns0:g id="a_node23"><ns0:a ns1:href="../reference/basic/mobjects.PerpendicularSign.html#manim_extensions.mobjects.PerpendicularSign" ns1:title="A right&#8209;angle (perpendicular) sign." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="421.43,-251.95 326.48,-251.95 326.48,-232 421.43,-232 421.43,-251.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-238.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PerpendicularSign</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge17" class="edge">
+<ns0:title>VGroup-&gt;PerpendicularSign</ns0:title>
+<ns0:path fill="none" stroke="black" d="M273.72,-254.4C286.66,-252.78 303.96,-250.61 320.5,-248.54" />
+<ns0:polygon fill="black" stroke="black" points="320.3,-250.33 325.05,-247.97 319.87,-246.86 320.3,-250.33" />
+</ns0:g>
+
+<ns0:g id="node25" class="node">
+<ns0:title>ShadowAround</ns0:title>
+<ns0:g id="a_node25"><ns0:a ns1:href="../reference/basic/mobjects.ShadowAround.html#manim_extensions.mobjects.ShadowAround" ns1:title="A soft, blurred shadow surrounding the outline of a mobject." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="413.93,-220.95 333.98,-220.95 333.98,-201 413.93,-201 413.93,-220.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-207.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ShadowAround</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge19" class="edge">
+<ns0:title>VGroup-&gt;ShadowAround</ns0:title>
+<ns0:path fill="none" stroke="black" d="M272.87,-247.03C285.7,-240.79 302.91,-232.85 318.6,-226.97 322.44,-225.54 326.47,-224.15 330.52,-222.82" />
+<ns0:polygon fill="black" stroke="black" points="330.78,-224.58 335.02,-221.39 329.72,-221.24 330.78,-224.58" />
+</ns0:g>
+
+<ns0:g id="node27" class="node">
+<ns0:title>ThreeDVector</ns0:title>
+<ns0:g id="a_node27"><ns0:a ns1:href="../reference/basic/mobjects.ThreeDVector.html#manim_extensions.mobjects.ThreeDVector" ns1:title="A 3D vector drawn as a cylindrical body with a conical tip." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="410.55,-189.95 337.35,-189.95 337.35,-170 410.55,-170 410.55,-189.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-176.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDVector</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge23" class="edge">
+<ns0:title>VGroup-&gt;ThreeDVector</ns0:title>
+<ns0:path fill="none" stroke="black" d="M260.97,-247.25C272.31,-233.81 294.58,-209.67 318.6,-195.97 322.59,-193.7 326.94,-191.72 331.38,-190" />
+<ns0:polygon fill="black" stroke="black" points="331.92,-191.67 336.04,-188.34 330.75,-188.37 331.92,-191.67" />
+</ns0:g>
+
+<ns0:g id="node28" class="node">
+<ns0:title>Trail</ns0:title>
+<ns0:g id="a_node28"><ns0:a ns1:href="../reference/basic/mobjects.Trail.html#manim_extensions.mobjects.Trail" ns1:title="A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="387.68,-158.95 360.23,-158.95 360.23,-139 387.68,-139 387.68,-158.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-145.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Trail</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge25" class="edge">
+<ns0:title>VGroup-&gt;Trail</ns0:title>
+<ns0:path fill="none" stroke="black" d="M257.34,-247.28C266,-228.5 287.63,-187.05 318.6,-164.97 329.04,-157.53 342.95,-153.52 354.08,-151.37" />
+<ns0:polygon fill="black" stroke="black" points="354.14,-153.14 358.78,-150.57 353.55,-149.69 354.14,-153.14" />
+</ns0:g>
+
+<ns0:g id="node29" class="node">
+<ns0:title>TreeDiagram</ns0:title>
+<ns0:g id="a_node29"><ns0:a ns1:href="../reference/basic/mobjects.TreeDiagram.html#manim_extensions.mobjects.TreeDiagram" ns1:title="A recursive tree diagram built from a nested dictionary." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="408.68,-127.95 339.23,-127.95 339.23,-108 408.68,-108 408.68,-127.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-114.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">TreeDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge26" class="edge">
+<ns0:title>VGroup-&gt;TreeDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M258.02,-247.28C272.38,-218.95 313.65,-138.01 318.6,-133.97 322.97,-130.41 328.1,-127.65 333.44,-125.49" />
+<ns0:polygon fill="black" stroke="black" points="333.75,-127.24 337.86,-123.9 332.57,-123.95 333.75,-127.24" />
+</ns0:g>
+
+<ns0:g id="edge10" class="edge">
+<ns0:title>TipableVMobject-&gt;Line</ns0:title>
+<ns0:path fill="none" stroke="black" d="M262.45,-146.38C274.43,-134.57 296.33,-114.67 318.6,-102.97 329.71,-97.14 343.24,-93.15 354.02,-90.61" />
+<ns0:polygon fill="black" stroke="black" points="354.35,-92.33 358.85,-89.54 353.59,-88.92 354.35,-92.33" />
+</ns0:g>
+
+<ns0:g id="node17" class="node">
+<ns0:title>SingleStringMathTex</ns0:title>
+<ns0:g id="a_node17"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.SingleStringMathTex.html#manim.mobject.text.tex_mobject.SingleStringMathTex" ns1:title="Elementary building block for rendering text with LaTeX." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="427.43,-19.95 320.48,-19.95 320.48,0 427.43,0 427.43,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="373.95" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">SingleStringMathTex</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge11" class="edge">
+<ns0:title>SingleStringMathTex-&gt;MathTex</ns0:title>
+<ns0:path fill="none" stroke="black" d="M427.24,-9.98C441.29,-9.98 456,-9.98 468.29,-9.98" />
+<ns0:polygon fill="black" stroke="black" points="467.97,-11.73 472.97,-9.98 467.97,-8.23 467.97,-11.73" />
+</ns0:g>
+
+<ns0:g id="edge22" class="edge">
+<ns0:title>SVGMobject-&gt;Text</ns0:title>
+<ns0:path fill="none" stroke="black" d="M285.24,-40.98C307.22,-40.98 335.61,-40.98 354.05,-40.98" />
+<ns0:polygon fill="black" stroke="black" points="353.84,-42.73 358.84,-40.98 353.84,-39.23 353.84,-42.73" />
+</ns0:g>
+
+<ns0:g id="edge21" class="edge">
+<ns0:title>SVGMobject-&gt;SingleStringMathTex</ns0:title>
+<ns0:path fill="none" stroke="black" d="M285.24,-32.67C298.58,-29.22 314.29,-25.15 328.7,-21.42" />
+<ns0:polygon fill="black" stroke="black" points="328.92,-23.17 333.32,-20.23 328.04,-19.79 328.92,-23.17" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

@@ -1,0 +1,905 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="738pt" height="857pt" viewBox="0.00 0.00 738.00 857.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 852.95)">
+<ns0:title>inheritance1cd3c298ae</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="Helper class that provides a standard way to create an ABC using" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0" points="55.95,-66.95 28.5,-66.95 28.5,-47 55.95,-47 55.95,-66.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="42.23" y="-53.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>BaseParser</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../reference/chemistry/utils/parsers/base_parser.BaseParser.html#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser" ns1:title="Initializes the parser given a file name." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="179.28,-66.95 118.08,-66.95 118.08,-47 179.28,-47 179.28,-66.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="148.68" y="-53.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BaseParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>ABC-&gt;BaseParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M55.62,-56.97C69.41,-56.97 92.31,-56.97 111.83,-56.97" />
+<ns0:polygon fill="black" stroke="black" points="111.78,-58.73 116.78,-56.98 111.78,-55.23 111.78,-58.73" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>ASNTParser</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../reference/chemistry/utils/parsers/asnt_parser.ASNTParser.html#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser" ns1:title="Parse ASNT chemical files." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="290.6,-112.95 227.15,-112.95 227.15,-93 290.6,-93 290.6,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ASNTParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>BaseParser-&gt;ASNTParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M169.1,-66.82C181.49,-72.94 197.97,-80.8 212.9,-86.97 216.06,-88.28 219.37,-89.58 222.7,-90.85" />
+<ns0:polygon fill="black" stroke="black" points="221.96,-92.44 227.26,-92.55 223.18,-89.16 221.96,-92.44" />
+</ns0:g>
+
+<ns0:g id="node28" class="node">
+<ns0:title>JSONParser</ns0:title>
+<ns0:g id="a_node28"><ns0:a ns1:href="../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser" ns1:title="Parses JSON files." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="289.48,-81.95 228.28,-81.95 228.28,-62 289.48,-62 289.48,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">JSONParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge22" class="edge">
+<ns0:title>BaseParser-&gt;JSONParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M179.24,-61.07C192.48,-62.91 208.21,-65.09 222.1,-67.02" />
+<ns0:polygon fill="black" stroke="black" points="221.65,-68.72 226.85,-67.67 222.13,-65.25 221.65,-68.72" />
+</ns0:g>
+
+<ns0:g id="node36" class="node">
+<ns0:title>MolParser</ns0:title>
+<ns0:g id="a_node36"><ns0:a ns1:href="../reference/chemistry/utils/parsers/mol_parser.MolParser.html#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser" ns1:title="Parses mol files." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="286.48,-50.95 231.28,-50.95 231.28,-31 286.48,-31 286.48,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MolParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge30" class="edge">
+<ns0:title>BaseParser-&gt;MolParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M179.24,-52.6C193.48,-50.5 210.59,-47.97 225.21,-45.81" />
+<ns0:polygon fill="black" stroke="black" points="225.11,-47.59 229.81,-45.13 224.6,-44.13 225.11,-47.59" />
+</ns0:g>
+
+<ns0:g id="node61" class="node">
+<ns0:title>XMLParser</ns0:title>
+<ns0:g id="a_node61"><ns0:a ns1:href="../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser" ns1:title="Parses mol files." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="287.98,-19.95 229.78,-19.95 229.78,0 287.98,0 287.98,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">XMLParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge59" class="edge">
+<ns0:title>BaseParser-&gt;XMLParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M168.5,-47.04C180.94,-40.65 197.69,-32.38 212.9,-25.97 216.51,-24.45 220.32,-22.95 224.13,-21.51" />
+<ns0:polygon fill="black" stroke="black" points="224.59,-23.2 228.67,-19.82 223.38,-19.92 224.59,-23.2" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>AbstractMolecule</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../reference/chemistry/molecule/abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule" ns1:title="Abstract molecule class used as a template to create" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="304.85,-267.95 212.9,-267.95 212.9,-248 304.85,-248 304.85,-267.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-254.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">AbstractMolecule</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node25" class="node">
+<ns0:title>GraphMolecule</ns0:title>
+<ns0:g id="a_node25"><ns0:a ns1:href="../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" ns1:title="Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="562.75,-558.95 482.05,-558.95 482.05,-539 562.75,-539 562.75,-558.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-545.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GraphMolecule</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge20" class="edge">
+<ns0:title>AbstractMolecule-&gt;GraphMolecule</ns0:title>
+<ns0:path fill="none" stroke="black" d="M270.88,-267.69C283.49,-278.29 305.24,-294.96 326.85,-303.98 379.34,-325.87 410.12,-290.1 452.55,-327.98 468.44,-342.16 505.24,-484.45 517.41,-532.91" />
+<ns0:polygon fill="black" stroke="black" points="515.68,-533.21 518.59,-537.63 519.08,-532.36 515.68,-533.21" />
+</ns0:g>
+
+<ns0:g id="node32" class="node">
+<ns0:title>MMoleculeObject</ns0:title>
+<ns0:g id="a_node32"><ns0:a ns1:href="../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject" ns1:title="Represents a molecule in a similar fashion as it is done in academia." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="435.68,-267.95 343.72,-267.95 343.72,-248 435.68,-248 435.68,-267.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-254.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MMoleculeObject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge27" class="edge">
+<ns0:title>AbstractMolecule-&gt;MMoleculeObject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M304.57,-257.98C315.26,-257.98 326.76,-257.98 337.71,-257.98" />
+<ns0:polygon fill="black" stroke="black" points="337.57,-259.73 342.57,-257.98 337.57,-256.23 337.57,-259.73" />
+</ns0:g>
+
+<ns0:g id="node58" class="node">
+<ns0:title>ThreeDMolecule</ns0:title>
+<ns0:g id="a_node58"><ns0:a ns1:href="../reference/chemistry/threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" ns1:title="Draws a 3D :class:`~manim_extensions.chemistry.molecule.molecule.Molecule`." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="433.05,-236.95 346.35,-236.95 346.35,-217 433.05,-217 433.05,-236.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-223.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDMolecule</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge53" class="edge">
+<ns0:title>AbstractMolecule-&gt;ThreeDMolecule</ns0:title>
+<ns0:path fill="none" stroke="black" d="M300.99,-248.08C313.89,-244.98 328.23,-241.53 341.51,-238.33" />
+<ns0:polygon fill="black" stroke="black" points="341.61,-240.11 346.06,-237.24 340.79,-236.7 341.61,-240.11" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>Arc</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" ns1:title="A circular arc." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="401.18,-755.95 378.22,-755.95 378.22,-736 401.18,-736 401.18,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Arc</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>ArcBetweenPoints</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.ArcBetweenPoints.html#manim.mobject.geometry.arc.ArcBetweenPoints" ns1:title="Inherits from Arc and additionally takes 2 points between which the arc is spanned." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="570.25,-755.95 474.55,-755.95 474.55,-736 570.25,-736 570.25,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">ArcBetweenPoints</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>Arc-&gt;ArcBetweenPoints</ns0:title>
+<ns0:path fill="none" stroke="black" d="M400.96,-745.98C415.49,-745.98 443.12,-745.98 468.25,-745.98" />
+<ns0:polygon fill="black" stroke="black" points="468.06,-747.73 473.06,-745.98 468.06,-744.23 468.06,-747.73" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>TipableVMobject</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.TipableVMobject.html#manim.mobject.geometry.arc.TipableVMobject" ns1:title="Meant for shared functionality between Arc and Line." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="303.35,-755.95 214.4,-755.95 214.4,-736 303.35,-736 303.35,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">TipableVMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>TipableVMobject-&gt;Arc</ns0:title>
+<ns0:path fill="none" stroke="black" d="M303.13,-745.98C326.75,-745.98 354.64,-745.98 372,-745.98" />
+<ns0:polygon fill="black" stroke="black" points="371.81,-747.73 376.81,-745.98 371.81,-744.23 371.81,-747.73" />
+</ns0:g>
+
+<ns0:g id="node29" class="node">
+<ns0:title>Line</ns0:title>
+<ns0:g id="a_node29"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" ns1:title="A straight or curved line segment between two points or mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="403.43,-786.95 375.97,-786.95 375.97,-767 403.43,-767 403.43,-786.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-773.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Line</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge23" class="edge">
+<ns0:title>TipableVMobject-&gt;Line</ns0:title>
+<ns0:path fill="none" stroke="black" d="M300.99,-755.87C324.21,-761.46 352.09,-768.17 370.09,-772.5" />
+<ns0:polygon fill="black" stroke="black" points="369.5,-774.16 374.77,-773.62 370.32,-770.75 369.5,-774.16" />
+</ns0:g>
+
+<ns0:g id="node19" class="node">
+<ns0:title>DoubleLine</ns0:title>
+<ns0:g id="a_node19"><ns0:a ns1:href="../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine" ns1:title="Two arcs between the same points, used as a double bond." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="654.2,-755.95 592.25,-755.95 592.25,-736 654.2,-736 654.2,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="623.22" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DoubleLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge13" class="edge">
+<ns0:title>ArcBetweenPoints-&gt;DoubleLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M570.21,-745.98C575.54,-745.98 580.91,-745.98 586.08,-745.98" />
+<ns0:polygon fill="black" stroke="black" points="585.97,-747.73 590.97,-745.98 585.97,-744.23 585.97,-747.73" />
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>BaseMBondObject</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject" ns1:title="Abstract base class for 2D chemical bond mobjects between two atoms." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="437.93,-298.95 341.47,-298.95 341.47,-279 437.93,-279 437.93,-298.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-285.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BaseMBondObject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node17" class="node">
+<ns0:title>DashedCramBond</ns0:title>
+<ns0:g id="a_node17"><ns0:a ns1:href="../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond" ns1:title="A dashed wedge bond representing stereochemistry (going into the page)." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="569.88,-298.95 474.92,-298.95 474.92,-279 569.88,-279 569.88,-298.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-285.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DashedCramBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge11" class="edge">
+<ns0:title>BaseMBondObject-&gt;DashedCramBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M437.89,-288.98C447.94,-288.98 458.61,-288.98 468.85,-288.98" />
+<ns0:polygon fill="black" stroke="black" points="468.65,-290.73 473.65,-288.98 468.65,-287.23 468.65,-290.73" />
+</ns0:g>
+
+<ns0:g id="node18" class="node">
+<ns0:title>DoubleBond</ns0:title>
+<ns0:g id="a_node18"><ns0:a ns1:href="../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond" ns1:title="A double bond between two atoms." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="555.62,-267.95 489.17,-267.95 489.17,-248 555.62,-248 555.62,-267.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-254.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DoubleBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge12" class="edge">
+<ns0:title>BaseMBondObject-&gt;DoubleBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M432.41,-279.08C448.64,-275.23 467.11,-270.85 483,-267.08" />
+<ns0:polygon fill="black" stroke="black" points="483.25,-268.82 487.71,-265.97 482.44,-265.42 483.25,-268.82" />
+</ns0:g>
+
+<ns0:g id="node50" class="node">
+<ns0:title>PlainCramBond</ns0:title>
+<ns0:g id="a_node50"><ns0:a ns1:href="../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond" ns1:title="A filled triangular wedge bond representing stereochemistry (coming out of the page)." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="563.5,-236.95 481.3,-236.95 481.3,-217 563.5,-217 563.5,-236.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-223.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PlainCramBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge43" class="edge">
+<ns0:title>BaseMBondObject-&gt;PlainCramBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M437.79,-280.49C443.01,-278.49 448.05,-276.02 452.55,-272.98 466.24,-263.7 461.22,-252.76 474.55,-242.97 476.04,-241.88 477.62,-240.85 479.25,-239.89" />
+<ns0:polygon fill="black" stroke="black" points="480.02,-241.46 483.64,-237.59 478.4,-238.36 480.02,-241.46" />
+</ns0:g>
+
+<ns0:g id="node52" class="node">
+<ns0:title>SimpleBond</ns0:title>
+<ns0:g id="a_node52"><ns0:a ns1:href="../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond" ns1:title="A single-line chemical bond between two atoms." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="555.25,-360.95 489.55,-360.95 489.55,-341 555.25,-341 555.25,-360.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-347.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SimpleBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge46" class="edge">
+<ns0:title>BaseMBondObject-&gt;SimpleBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M434.44,-298.84C440.8,-301.27 447.05,-304.27 452.55,-307.98 465.39,-316.62 461.85,-326.13 474.55,-334.98 477.61,-337.1 480.97,-338.97 484.45,-340.6" />
+<ns0:polygon fill="black" stroke="black" points="483.3,-342.01 488.59,-342.38 484.68,-338.8 483.3,-342.01" />
+</ns0:g>
+
+<ns0:g id="node59" class="node">
+<ns0:title>TripleBond</ns0:title>
+<ns0:g id="a_node59"><ns0:a ns1:href="../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond" ns1:title="A triple bond between two atoms." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="551.5,-329.95 493.3,-329.95 493.3,-310 551.5,-310 551.5,-329.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-316.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">TripleBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge55" class="edge">
+<ns0:title>BaseMBondObject-&gt;TripleBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M432.41,-298.87C450.25,-303.1 470.79,-307.97 487.64,-311.97" />
+<ns0:polygon fill="black" stroke="black" points="486.93,-313.6 492.2,-313.05 487.74,-310.19 486.93,-313.6" />
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>VGroup</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" ns1:title="A group of vectorized mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="280.48,-522.95 237.28,-522.95 237.28,-503 280.48,-503 280.48,-522.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-509.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>VGroup-&gt;BaseMBondObject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.1,-510.56C289.01,-508.44 298.81,-504.45 304.85,-496.98 352.43,-438.04 286.05,-391.79 326.85,-327.98 334.14,-316.58 346.07,-307.91 357.53,-301.68" />
+<ns0:polygon fill="black" stroke="black" points="358.1,-303.35 361.74,-299.5 356.5,-300.24 358.1,-303.35" />
+</ns0:g>
+
+<ns0:g id="node10" class="node">
+<ns0:title>BatterySchema</ns0:title>
+<ns0:g id="a_node10"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.BatterySchema.html#manim_extensions.chemistry.future_classes.future_classes.BatterySchema" ns1:title="A battery schema attached to a mobject." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="430.8,-507.95 348.6,-507.95 348.6,-488 430.8,-488 430.8,-507.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-494.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BatterySchema</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>VGroup-&gt;BatterySchema</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.29,-510.6C296.95,-508.66 321.13,-505.84 342.43,-503.36" />
+<ns0:polygon fill="black" stroke="black" points="342.38,-505.13 347.14,-502.81 341.97,-501.65 342.38,-505.13" />
+</ns0:g>
+
+<ns0:g id="node13" class="node">
+<ns0:title>BohrAtom</ns0:title>
+<ns0:g id="a_node13"><ns0:a ns1:href="../reference/chemistry/bohr_atom/bohr_atom.BohrAtom.html#manim_extensions.chemistry.bohr_atom.bohr_atom.BohrAtom" ns1:title="Creates a Bohr like diagram." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="417.68,-476.95 361.72,-476.95 361.72,-457 417.68,-457 417.68,-476.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-463.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BohrAtom</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>VGroup-&gt;BohrAtom</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.42,-506.75C288.23,-504.11 297.11,-500.76 304.85,-496.98 315.26,-491.89 316.22,-487.59 326.85,-482.98 335.95,-479.02 346.23,-475.88 355.77,-473.46" />
+<ns0:polygon fill="black" stroke="black" points="355.99,-475.21 360.44,-472.33 355.17,-471.81 355.99,-475.21" />
+</ns0:g>
+
+<ns0:g id="node21" class="node">
+<ns0:title>Element</ns0:title>
+<ns0:g id="a_node21"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" ns1:title="A chemical element with a labeled central atom surrounded by electrons and holes." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="413.55,-445.95 365.85,-445.95 365.85,-426 413.55,-426 413.55,-445.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-432.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Element</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge15" class="edge">
+<ns0:title>VGroup-&gt;Element</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.44,-509.22C288.79,-506.86 298.05,-503.05 304.85,-496.98 321.46,-482.15 309.6,-466.05 326.85,-451.98 336.13,-444.4 348.59,-440.37 359.89,-438.24" />
+<ns0:polygon fill="black" stroke="black" points="359.88,-440.01 364.53,-437.48 359.31,-436.56 359.88,-440.01" />
+</ns0:g>
+
+<ns0:g id="node22" class="node">
+<ns0:title>ElementFrame</ns0:title>
+<ns0:g id="a_node22"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.ElementFrame.html#manim_extensions.chemistry.future_classes.future_classes.ElementFrame" ns1:title="A frame displaying an element symbol and its name." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="428.93,-414.95 350.47,-414.95 350.47,-395 428.93,-395 428.93,-414.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-401.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ElementFrame</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge16" class="edge">
+<ns0:title>VGroup-&gt;ElementFrame</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.06,-510.02C288.75,-507.78 298.37,-503.85 304.85,-496.98 328.96,-471.38 301.63,-445.48 326.85,-420.98 331.78,-416.18 337.96,-412.77 344.48,-410.36" />
+<ns0:polygon fill="black" stroke="black" points="344.88,-412.07 349.1,-408.87 343.8,-408.73 344.88,-412.07" />
+</ns0:g>
+
+<ns0:g id="node30" class="node">
+<ns0:title>MAtomObject</ns0:title>
+<ns0:g id="a_node30"><ns0:a ns1:href="../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" ns1:title="A 2D visual representation of an atom in a chemical molecule." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="426.68,-383.95 352.72,-383.95 352.72,-364 426.68,-364 426.68,-383.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-370.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MAtomObject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge24" class="edge">
+<ns0:title>VGroup-&gt;MAtomObject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.31,-510.25C289.05,-508.06 298.65,-504.1 304.85,-496.98 336.71,-460.34 293.39,-425.16 326.85,-389.98 332.16,-384.39 339.15,-380.65 346.52,-378.18" />
+<ns0:polygon fill="black" stroke="black" points="346.99,-379.87 351.31,-376.8 346.02,-376.5 346.99,-379.87" />
+</ns0:g>
+
+<ns0:g id="node31" class="node">
+<ns0:title>MElementObject</ns0:title>
+<ns0:g id="a_node31"><ns0:a ns1:href="../reference/chemistry/periodic_table/table_objects.MElementObject.html#manim_extensions.chemistry.periodic_table.table_objects.MElementObject" ns1:title="A visual representation of a single periodic table element." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="433.8,-352.95 345.6,-352.95 345.6,-333 433.8,-333 433.8,-352.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-339.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MElementObject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge25" class="edge">
+<ns0:title>VGroup-&gt;MElementObject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.46,-510.37C289.23,-508.21 298.81,-504.24 304.85,-496.98 344.55,-449.22 285.07,-404.93 326.85,-358.98 330.5,-354.96 335.01,-351.9 339.91,-349.57" />
+<ns0:polygon fill="black" stroke="black" points="340.46,-351.24 344.43,-347.73 339.14,-348 340.46,-351.24" />
+</ns0:g>
+
+<ns0:g id="edge26" class="edge">
+<ns0:title>VGroup-&gt;MMoleculeObject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.2,-510.65C289.14,-508.54 298.93,-504.55 304.85,-496.98 335.53,-457.75 294.47,-311.8 326.85,-273.98 330.05,-270.24 333.99,-267.32 338.32,-265.05" />
+<ns0:polygon fill="black" stroke="black" points="338.77,-266.76 342.61,-263.11 337.33,-263.57 338.77,-266.76" />
+</ns0:g>
+
+<ns0:g id="node33" class="node">
+<ns0:title>MOSFETTransistor</ns0:title>
+<ns0:g id="a_node33"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.MOSFETTransistor.html#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor" ns1:title="A MOSFET transistor diagram with optional holes and battery." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="437.18,-693.95 342.22,-693.95 342.22,-674 437.18,-674 437.18,-693.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-680.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MOSFETTransistor</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge28" class="edge">
+<ns0:title>VGroup-&gt;MOSFETTransistor</ns0:title>
+<ns0:path fill="none" stroke="black" d="M261.11,-522.7C265.12,-550.03 280.31,-628.13 326.85,-667.98 329.84,-670.53 333.18,-672.69 336.73,-674.5" />
+<ns0:polygon fill="black" stroke="black" points="335.79,-676 341.06,-676.46 337.23,-672.81 335.79,-676" />
+</ns0:g>
+
+<ns0:g id="node37" class="node">
+<ns0:title>NPNTransistor</ns0:title>
+<ns0:g id="a_node37"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.NPNTransistor.html#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor" ns1:title="An NPN transistor diagram with n and p regions, electrons and holes." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="427.43,-662.95 351.97,-662.95 351.97,-643 427.43,-643 427.43,-662.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-649.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NPNTransistor</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge31" class="edge">
+<ns0:title>VGroup-&gt;NPNTransistor</ns0:title>
+<ns0:path fill="none" stroke="black" d="M262.27,-522.78C268.54,-546.32 287.75,-606.35 326.85,-636.98 332.51,-641.41 339.27,-644.62 346.22,-646.95" />
+<ns0:polygon fill="black" stroke="black" points="345.33,-648.51 350.62,-648.27 346.33,-645.16 345.33,-648.51" />
+</ns0:g>
+
+<ns0:g id="node38" class="node">
+<ns0:title>NamedComplexFormula</ns0:title>
+<ns0:g id="a_node38"><ns0:a ns1:href="../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula" ns1:title="Complex formula build with two dicts." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="452.55,-631.95 326.85,-631.95 326.85,-612 452.55,-612 452.55,-631.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-618.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NamedComplexFormula</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge32" class="edge">
+<ns0:title>VGroup-&gt;NamedComplexFormula</ns0:title>
+<ns0:path fill="none" stroke="black" d="M264.15,-522.86C272.96,-542.01 294.99,-584.18 326.85,-605.98 328.59,-607.16 330.41,-608.27 332.29,-609.29" />
+<ns0:polygon fill="black" stroke="black" points="331.48,-610.83 336.74,-611.44 333.01,-607.69 331.48,-610.83" />
+</ns0:g>
+
+<ns0:g id="node39" class="node">
+<ns0:title>NamedFormula</ns0:title>
+<ns0:g id="a_node39"><ns0:a ns1:href="../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedFormula" ns1:title="A chemical formula together with its name." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="430.8,-600.95 348.6,-600.95 348.6,-581 430.8,-581 430.8,-600.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-587.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NamedFormula</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge33" class="edge">
+<ns0:title>VGroup-&gt;NamedFormula</ns0:title>
+<ns0:path fill="none" stroke="black" d="M267.46,-522.51C278.88,-536.2 301.82,-561.3 326.85,-574.98 331.78,-577.67 337.19,-579.92 342.68,-581.81" />
+<ns0:polygon fill="black" stroke="black" points="341.92,-583.4 347.22,-583.25 342.98,-580.07 341.92,-583.4" />
+</ns0:g>
+
+<ns0:g id="node40" class="node">
+<ns0:title>NamedMolecule</ns0:title>
+<ns0:g id="a_node40"><ns0:a ns1:href="../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule" ns1:title="A molecule together with its name." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="433.05,-569.95 346.35,-569.95 346.35,-550 433.05,-550 433.05,-569.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-556.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NamedMolecule</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge34" class="edge">
+<ns0:title>VGroup-&gt;NamedMolecule</ns0:title>
+<ns0:path fill="none" stroke="black" d="M278.83,-522.87C292.04,-529.48 310.2,-538.02 326.85,-543.98 331.16,-545.52 335.68,-546.97 340.25,-548.34" />
+<ns0:polygon fill="black" stroke="black" points="339.73,-550.01 345.02,-549.72 340.7,-546.65 339.73,-550.01" />
+</ns0:g>
+
+<ns0:g id="node49" class="node">
+<ns0:title>PeriodicTable</ns0:title>
+<ns0:g id="a_node49"><ns0:a ns1:href="../reference/chemistry/periodic_table/table_objects.PeriodicTable.html#manim_extensions.chemistry.periodic_table.table_objects.PeriodicTable" ns1:title="Draws a periodic table using the data using a configuration from a csv file." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="425.55,-538.95 353.85,-538.95 353.85,-519 425.55,-519 425.55,-538.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-525.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PeriodicTable</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge42" class="edge">
+<ns0:title>VGroup-&gt;PeriodicTable</ns0:title>
+<ns0:path fill="none" stroke="black" d="M280.29,-515.51C298.38,-517.76 325.35,-521.11 347.86,-523.9" />
+<ns0:polygon fill="black" stroke="black" points="347.4,-525.61 352.58,-524.49 347.83,-522.14 347.4,-525.61" />
+</ns0:g>
+
+<ns0:g id="node11" class="node">
+<ns0:title>BatterySide</ns0:title>
+<ns0:g id="a_node11"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.BatterySide.html#manim_extensions.chemistry.future_classes.future_classes.BatterySide" ns1:title="A line connecting a battery terminal to an anchor mobject." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="290.98,-693.95 226.78,-693.95 226.78,-674 290.98,-674 290.98,-693.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-680.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BatterySide</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node12" class="node">
+<ns0:title>VMobject</ns0:title>
+<ns0:g id="a_node12"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" ns1:title="A vectorized mobject." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="175.15,-724.95 122.2,-724.95 122.2,-705 175.15,-705 175.15,-724.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="148.68" y="-711.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge54" class="edge">
+<ns0:title>VMobject-&gt;TipableVMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M175.04,-722.24C187.61,-725.84 203.1,-730.28 217.27,-734.34" />
+<ns0:polygon fill="black" stroke="black" points="216.5,-735.94 221.79,-735.64 217.47,-732.58 216.5,-735.94" />
+</ns0:g>
+
+<ns0:g id="edge57" class="edge">
+<ns0:title>VMobject-&gt;VGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M154.89,-705.23C172.36,-672.63 228.82,-567.22 249.87,-527.92" />
+<ns0:polygon fill="black" stroke="black" points="251.18,-529.19 251.99,-523.95 248.09,-527.54 251.18,-529.19" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>VMobject-&gt;BatterySide</ns0:title>
+<ns0:path fill="none" stroke="black" d="M175.04,-707.71C188.72,-703.79 205.84,-698.88 220.97,-694.55" />
+<ns0:polygon fill="black" stroke="black" points="221.09,-696.33 225.42,-693.27 220.13,-692.97 221.09,-696.33" />
+</ns0:g>
+
+<ns0:g id="node20" class="node">
+<ns0:title>Electron</ns0:title>
+<ns0:g id="a_node20"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.Electron.html#manim_extensions.chemistry.future_classes.future_classes.Electron" ns1:title="A filled circle representing an electron." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="282.35,-491.95 235.4,-491.95 235.4,-472 282.35,-472 282.35,-491.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-478.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Electron</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge14" class="edge">
+<ns0:title>VMobject-&gt;Electron</ns0:title>
+<ns0:path fill="none" stroke="black" d="M149.56,-705.25C149.71,-671.73 154.74,-559.63 212.9,-497.98 217.52,-493.08 223.72,-489.68 230.05,-487.32" />
+<ns0:polygon fill="black" stroke="black" points="230.2,-489.12 234.42,-485.9 229.12,-485.79 230.2,-489.12" />
+</ns0:g>
+
+<ns0:g id="node23" class="node">
+<ns0:title>GenericGraph</ns0:title>
+<ns0:g id="a_node23"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.graph.GenericGraph.html#manim.mobject.graph.GenericGraph" ns1:title="Abstract base class for graphs (that is, a collection of vertices" target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="295.85,-724.95 221.9,-724.95 221.9,-705 295.85,-705 295.85,-724.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-711.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">GenericGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge17" class="edge">
+<ns0:title>VMobject-&gt;GenericGraph</ns0:title>
+<ns0:path fill="none" stroke="black" d="M175.04,-714.98C187.18,-714.98 202.03,-714.98 215.78,-714.98" />
+<ns0:polygon fill="black" stroke="black" points="215.5,-716.73 220.5,-714.98 215.5,-713.23 215.5,-716.73" />
+</ns0:g>
+
+<ns0:g id="node26" class="node">
+<ns0:title>Hole</ns0:title>
+<ns0:g id="a_node26"><ns0:a ns1:href="../reference/chemistry/future_classes/future_classes.Hole.html#manim_extensions.chemistry.future_classes.future_classes.Hole" ns1:title="A dashed circle representing a hole (absence of an electron)." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="273.73,-786.95 244.03,-786.95 244.03,-767 273.73,-767 273.73,-786.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-773.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Hole</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge21" class="edge">
+<ns0:title>VMobject-&gt;Hole</ns0:title>
+<ns0:path fill="none" stroke="black" d="M161.12,-724.88C173.3,-735.02 193.45,-750.72 212.9,-760.98 220.84,-765.17 230.12,-768.68 238.18,-771.33" />
+<ns0:polygon fill="black" stroke="black" points="237.33,-772.89 242.62,-772.73 238.38,-769.56 237.33,-772.89" />
+</ns0:g>
+
+<ns0:g id="node34" class="node">
+<ns0:title>SVGMobject</ns0:title>
+<ns0:g id="a_node34"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.svg.svg_mobject.SVGMobject.html#manim.mobject.svg.svg_mobject.SVGMobject" ns1:title="A vectorized mobject created from importing an SVG file." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="292.1,-817.95 225.65,-817.95 225.65,-798 292.1,-798 292.1,-817.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-804.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">SVGMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge45" class="edge">
+<ns0:title>VMobject-&gt;SVGMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M155.37,-724.95C165.13,-741.21 186.58,-773.48 212.9,-791.98 215.11,-793.53 217.49,-794.95 219.96,-796.24" />
+<ns0:polygon fill="black" stroke="black" points="219.2,-797.82 224.47,-798.38 220.7,-794.65 219.2,-797.82" />
+</ns0:g>
+
+<ns0:g id="node14" class="node">
+<ns0:title>ChemicalFormula</ns0:title>
+<ns0:g id="a_node14"><ns0:a ns1:href="../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula" ns1:title="Mostly useful for simple compounds like binary salts or oxoanions." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="568.75,-817.95 476.05,-817.95 476.05,-798 568.75,-798 568.75,-817.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-804.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ChemicalFormula</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node15" class="node">
+<ns0:title>MarkupText</ns0:title>
+<ns0:g id="a_node15"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.MarkupText.html#manim.mobject.text.text_mobject.MarkupText" ns1:title="Display (non-LaTeX) text rendered using `Pango &lt;https://pango.org/&gt;`_." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="421.43,-817.95 357.97,-817.95 357.97,-798 421.43,-798 421.43,-817.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-804.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">MarkupText</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge9" class="edge">
+<ns0:title>MarkupText-&gt;ChemicalFormula</ns0:title>
+<ns0:path fill="none" stroke="black" d="M421.34,-807.98C435.73,-807.98 453.28,-807.98 469.64,-807.98" />
+<ns0:polygon fill="black" stroke="black" points="469.57,-809.73 474.57,-807.98 469.57,-806.23 469.57,-809.73" />
+</ns0:g>
+
+<ns0:g id="node16" class="node">
+<ns0:title>ComplexFormula</ns0:title>
+<ns0:g id="a_node16"><ns0:a ns1:href="../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula" ns1:title="Allows the creation of more complex molecular formulas" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="567.62,-848.95 477.17,-848.95 477.17,-829 567.62,-829 567.62,-848.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-835.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ComplexFormula</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge10" class="edge">
+<ns0:title>MarkupText-&gt;ComplexFormula</ns0:title>
+<ns0:path fill="none" stroke="black" d="M421.34,-815.24C436.8,-818.91 455.9,-823.44 473.26,-827.56" />
+<ns0:polygon fill="black" stroke="black" points="472.83,-829.25 478.1,-828.7 473.64,-825.85 472.83,-829.25" />
+</ns0:g>
+
+<ns0:g id="node60" class="node">
+<ns0:title>TripleLine</ns0:title>
+<ns0:g id="a_node60"><ns0:a ns1:href="../reference/chemistry/twoD/graph_molecule.TripleLine.html#manim_extensions.chemistry.twoD.graph_molecule.TripleLine" ns1:title="A double line with an added middle line, used as a triple bond." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="729.9,-755.95 676.2,-755.95 676.2,-736 729.9,-736 729.9,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="703.05" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">TripleLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge56" class="edge">
+<ns0:title>DoubleLine-&gt;TripleLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M654.09,-745.98C659.39,-745.98 664.93,-745.98 670.28,-745.98" />
+<ns0:polygon fill="black" stroke="black" points="669.93,-747.73 674.93,-745.98 669.93,-744.23 669.93,-747.73" />
+</ns0:g>
+
+<ns0:g id="node24" class="node">
+<ns0:title>Graph</ns0:title>
+<ns0:g id="a_node24"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.graph.Graph.html#manim.mobject.graph.Graph" ns1:title="An undirected graph (vertices connected with edges)." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="407.93,-724.95 371.47,-724.95 371.47,-705 407.93,-705 407.93,-724.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-711.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Graph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge18" class="edge">
+<ns0:title>GenericGraph-&gt;Graph</ns0:title>
+<ns0:path fill="none" stroke="black" d="M295.76,-714.98C317.87,-714.98 345.6,-714.98 364.99,-714.98" />
+<ns0:polygon fill="black" stroke="black" points="364.97,-716.73 369.97,-714.98 364.97,-713.23 364.97,-716.73" />
+</ns0:g>
+
+<ns0:g id="edge19" class="edge">
+<ns0:title>Graph-&gt;GraphMolecule</ns0:title>
+<ns0:path fill="none" stroke="black" d="M407.71,-714.46C421.26,-713.21 439.96,-709.51 452.55,-698.98 495.04,-663.41 512.62,-595.99 518.68,-565.13" />
+<ns0:polygon fill="black" stroke="black" points="520.39,-565.51 519.59,-560.27 516.95,-564.87 520.39,-565.51" />
+</ns0:g>
+
+<ns0:g id="node27" class="node">
+<ns0:title>IncorrectFormat</ns0:title>
+<ns0:g id="a_node27"><ns0:a ns1:href="../reference/chemistry/utils/file_handler.IncorrectFormat.html#manim_extensions.chemistry.utils.file_handler.IncorrectFormat" ns1:title="Raised when a file has an unsupported or unrecognized format." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="84.45,-755.95 0,-755.95 0,-736 84.45,-736 84.45,-755.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="42.23" y="-742.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">IncorrectFormat</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node53" class="node">
+<ns0:title>SimpleLine</ns0:title>
+<ns0:g id="a_node53"><ns0:a ns1:href="../reference/chemistry/twoD/graph_molecule.SimpleLine.html#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine" ns1:title="A line with a ``sheen_direction`` attribute, used as a single bond." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="553,-786.95 491.8,-786.95 491.8,-767 553,-767 553,-786.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-773.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SimpleLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge47" class="edge">
+<ns0:title>Line-&gt;SimpleLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M403.23,-776.98C421.98,-776.98 458.06,-776.98 485.44,-776.98" />
+<ns0:polygon fill="black" stroke="black" points="485.33,-778.73 490.33,-776.98 485.33,-775.23 485.33,-778.73" />
+</ns0:g>
+
+<ns0:g id="edge29" class="edge">
+<ns0:title>SVGMobject-&gt;MarkupText</ns0:title>
+<ns0:path fill="none" stroke="black" d="M292.05,-807.98C310.26,-807.98 333.11,-807.98 352.01,-807.98" />
+<ns0:polygon fill="black" stroke="black" points="351.75,-809.73 356.75,-807.98 351.75,-806.23 351.75,-809.73" />
+</ns0:g>
+
+<ns0:g id="node35" class="node">
+<ns0:title>Mobject</ns0:title>
+<ns0:g id="a_node35"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" ns1:title="Mathematical Object: base class for objects that can be displayed on screen." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="65.33,-724.95 19.13,-724.95 19.13,-705 65.33,-705 65.33,-724.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="42.23" y="-711.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Mobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge58" class="edge">
+<ns0:title>Mobject-&gt;VMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M65.12,-714.98C79.91,-714.98 99.66,-714.98 116.13,-714.98" />
+<ns0:polygon fill="black" stroke="black" points="115.99,-716.73 120.99,-714.98 115.99,-713.23 115.99,-716.73" />
+</ns0:g>
+
+<ns0:g id="node51" class="node">
+<ns0:title>SDFParser</ns0:title>
+<ns0:g id="a_node51"><ns0:a ns1:href="../reference/chemistry/utils/parsers/sdf_parser.SDFParser.html#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser" ns1:title="Parses sdf files." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="418.05,-50.95 361.35,-50.95 361.35,-31 418.05,-31 418.05,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SDFParser</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge44" class="edge">
+<ns0:title>MolParser-&gt;SDFParser</ns0:title>
+<ns0:path fill="none" stroke="black" d="M286.26,-40.97C306.14,-40.97 333.55,-40.97 355.01,-40.97" />
+<ns0:polygon fill="black" stroke="black" points="354.95,-42.73 359.95,-40.98 354.95,-39.23 354.95,-42.73" />
+</ns0:g>
+
+<ns0:g id="node41" class="node">
+<ns0:title>OpenGLGroup</ns0:title>
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="296.23,-205.95 221.53,-205.95 221.53,-186 296.23,-186 296.23,-205.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-192.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">OpenGLGroup</ns0:text>
+</ns0:g>
+
+<ns0:g id="node55" class="node">
+<ns0:title>ThreeDBond</ns0:title>
+<ns0:g id="a_node55"><ns0:a ns1:href="../reference/chemistry/threeD/threedbond.ThreeDBond.html#manim_extensions.chemistry.threeD.threedbond.ThreeDBond" ns1:title="Used to create a tridimensional bond." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="423.3,-205.95 356.1,-205.95 356.1,-186 423.3,-186 423.3,-205.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-192.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDBond</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge49" class="edge">
+<ns0:title>OpenGLGroup-&gt;ThreeDBond</ns0:title>
+<ns0:path fill="none" stroke="black" d="M296.1,-195.97C312.94,-195.97 332.97,-195.97 350.09,-195.97" />
+<ns0:polygon fill="black" stroke="black" points="349.74,-197.73 354.74,-195.98 349.74,-194.23 349.74,-197.73" />
+</ns0:g>
+
+<ns0:g id="edge52" class="edge">
+<ns0:title>OpenGLGroup-&gt;ThreeDMolecule</ns0:title>
+<ns0:path fill="none" stroke="black" d="M296.1,-204.69C310.04,-208.05 326.17,-211.93 341.02,-215.5" />
+<ns0:polygon fill="black" stroke="black" points="340.55,-217.19 345.82,-216.66 341.37,-213.79 340.55,-217.19" />
+</ns0:g>
+
+<ns0:g id="node42" class="node">
+<ns0:title>OpenGLMobject</ns0:title>
+<ns0:g id="a_node42"><ns0:a ns1:title="Mathematical Object: base class for objects that can be displayed on screen.">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="190.9,-174.95 106.45,-174.95 106.45,-155 190.9,-155 190.9,-174.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="148.68" y="-161.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">OpenGLMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge35" class="edge">
+<ns0:title>OpenGLMobject-&gt;OpenGLGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M184.21,-174.87C194.75,-177.89 206.44,-181.24 217.34,-184.36" />
+<ns0:polygon fill="black" stroke="black" points="216.56,-185.96 221.84,-185.65 217.52,-182.59 216.56,-185.96" />
+</ns0:g>
+
+<ns0:g id="node44" class="node">
+<ns0:title>OpenGLSurface</ns0:title>
+<ns0:g id="a_node44"><ns0:a ns1:title="Creates a Surface.">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="299.98,-143.95 217.78,-143.95 217.78,-124 299.98,-124 299.98,-143.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="258.88" y="-130.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">OpenGLSurface</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge37" class="edge">
+<ns0:title>OpenGLMobject-&gt;OpenGLSurface</ns0:title>
+<ns0:path fill="none" stroke="black" d="M184.21,-155.08C194.75,-152.06 206.44,-148.71 217.34,-145.59" />
+<ns0:polygon fill="black" stroke="black" points="217.52,-147.36 221.84,-144.3 216.56,-143.99 217.52,-147.36" />
+</ns0:g>
+
+<ns0:g id="node43" class="node">
+<ns0:title>OpenGLSphere</ns0:title>
+<ns0:g id="a_node43"><ns0:a ns1:href="../reference/chemistry/threeD/utils.OpenGLSphere.html#manim_extensions.chemistry.threeD.utils.OpenGLSphere" ns1:title="A sphere rendered as an OpenGL surface." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="429.3,-81.95 350.1,-81.95 350.1,-62 429.3,-62 429.3,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">OpenGLSphere</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node54" class="node">
+<ns0:title>ThreeDAtom</ns0:title>
+<ns0:g id="a_node54"><ns0:a ns1:href="../reference/chemistry/threeD/threedatom.ThreeDAtom.html#manim_extensions.chemistry.threeD.threedatom.ThreeDAtom" ns1:title="Used to draw a sphere which represents an atom." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="556.75,-81.95 488.05,-81.95 488.05,-62 556.75,-62 556.75,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDAtom</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge48" class="edge">
+<ns0:title>OpenGLSphere-&gt;ThreeDAtom</ns0:title>
+<ns0:path fill="none" stroke="black" d="M429.21,-71.97C445.83,-71.97 465.25,-71.97 481.97,-71.97" />
+<ns0:polygon fill="black" stroke="black" points="481.96,-73.73 486.96,-71.98 481.96,-70.23 481.96,-73.73" />
+</ns0:g>
+
+<ns0:g id="edge36" class="edge">
+<ns0:title>OpenGLSurface-&gt;OpenGLSphere</ns0:title>
+<ns0:path fill="none" stroke="black" d="M294.38,-124.16C298.08,-122.4 301.66,-120.35 304.85,-117.97 318.11,-108.1 313.16,-97.25 326.85,-87.97 332.08,-84.43 338.05,-81.67 344.17,-79.52" />
+<ns0:polygon fill="black" stroke="black" points="344.64,-81.21 348.87,-78.03 343.58,-77.87 344.64,-81.21" />
+</ns0:g>
+
+<ns0:g id="node45" class="node">
+<ns0:title>Orbital</ns0:title>
+<ns0:g id="a_node45"><ns0:a ns1:href="../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.orbitals.orbitals.Orbital" ns1:title="Uses positive and negative orbitals to create" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="409.8,-174.95 369.6,-174.95 369.6,-155 409.8,-155 409.8,-174.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-161.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Orbital</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge38" class="edge">
+<ns0:title>OpenGLSurface-&gt;Orbital</ns0:title>
+<ns0:path fill="none" stroke="black" d="M299.93,-143.61C320.9,-148.66 345.91,-154.68 364.03,-159.04" />
+<ns0:polygon fill="black" stroke="black" points="363.15,-160.63 368.42,-160.1 363.97,-157.22 363.15,-160.63" />
+</ns0:g>
+
+<ns0:g id="node46" class="node">
+<ns0:title>OrbitalBase</ns0:title>
+<ns0:g id="a_node46"><ns0:a ns1:href="../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase" ns1:title="Base class for implementing atomic orbitals." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="421.8,-143.95 357.6,-143.95 357.6,-124 421.8,-124 421.8,-143.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-130.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">OrbitalBase</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge39" class="edge">
+<ns0:title>OpenGLSurface-&gt;OrbitalBase</ns0:title>
+<ns0:path fill="none" stroke="black" d="M299.93,-133.97C316.36,-133.97 335.27,-133.97 351.41,-133.97" />
+<ns0:polygon fill="black" stroke="black" points="351.16,-135.73 356.16,-133.98 351.16,-132.23 351.16,-135.73" />
+</ns0:g>
+
+<ns0:g id="node56" class="node">
+<ns0:title>ThreeDCylinder</ns0:title>
+<ns0:g id="a_node56"><ns0:a ns1:href="../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder" ns1:title="Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="431.18,-112.95 348.22,-112.95 348.22,-93 431.18,-93 431.18,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="389.7" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDCylinder</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge50" class="edge">
+<ns0:title>OpenGLSurface-&gt;ThreeDCylinder</ns0:title>
+<ns0:path fill="none" stroke="black" d="M299.93,-124.34C313.25,-121.13 328.21,-117.53 341.99,-114.22" />
+<ns0:polygon fill="black" stroke="black" points="342.3,-115.94 346.75,-113.07 341.48,-112.54 342.3,-115.94" />
+</ns0:g>
+
+<ns0:g id="node47" class="node">
+<ns0:title>OrbitalNegative</ns0:title>
+<ns0:g id="a_node47"><ns0:a ns1:href="../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalNegative" ns1:title="Calculates the negative values of the orbital." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="564.62,-143.95 480.17,-143.95 480.17,-124 564.62,-124 564.62,-143.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-130.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">OrbitalNegative</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge40" class="edge">
+<ns0:title>OrbitalBase-&gt;OrbitalNegative</ns0:title>
+<ns0:path fill="none" stroke="black" d="M421.67,-133.97C437.27,-133.97 456.52,-133.97 473.94,-133.97" />
+<ns0:polygon fill="black" stroke="black" points="473.75,-135.73 478.75,-133.98 473.75,-132.23 473.75,-135.73" />
+</ns0:g>
+
+<ns0:g id="node48" class="node">
+<ns0:title>OrbitalPositive</ns0:title>
+<ns0:g id="a_node48"><ns0:a ns1:href="../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalPositive" ns1:title="Calculates the positive values of the orbital." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="562,-174.95 482.8,-174.95 482.8,-155 562,-155 562,-174.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-161.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">OrbitalPositive</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge41" class="edge">
+<ns0:title>OrbitalBase-&gt;OrbitalPositive</ns0:title>
+<ns0:path fill="none" stroke="black" d="M421.67,-141.32C438.22,-145.25 458.88,-150.15 477.1,-154.47" />
+<ns0:polygon fill="black" stroke="black" points="476.43,-156.11 481.7,-155.56 477.24,-152.7 476.43,-156.11" />
+</ns0:g>
+
+<ns0:g id="node57" class="node">
+<ns0:title>ThreeDLine</ns0:title>
+<ns0:g id="a_node57"><ns0:a ns1:href="../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine" ns1:title="Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="553.75,-112.95 491.05,-112.95 491.05,-93 553.75,-93 553.75,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="522.4" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDLine</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge51" class="edge">
+<ns0:title>ThreeDCylinder-&gt;ThreeDLine</ns0:title>
+<ns0:path fill="none" stroke="black" d="M430.98,-102.97C448.2,-102.97 468.15,-102.97 484.92,-102.97" />
+<ns0:polygon fill="black" stroke="black" points="484.91,-104.73 489.91,-102.98 484.91,-101.23 484.91,-104.73" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

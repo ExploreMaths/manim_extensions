@@ -1484,32 +1484,8 @@
 including supply-demand, AD-AS, IS-LM, and Solow growth models.</p>
 <p>The code is bundled inside <code class="docutils literal notranslate"><span class="pre">manim_extensions</span></code> as the
 <a class="reference internal" href="#module-manim_extensions.economics" title="manim_extensions.economics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">economics</span></code></a> subpackage.</p>
-digraph inheritance30e42676f6 {
-bgcolor=transparent;
-concentrate=true;
-nodesep=0.15;
-rankdir=LR;
-ranksep=0.3;
-size=&quot;&quot;;
-splines=spline;
-  &quot;ADASDiagram&quot; [URL=&quot;ad_as.ADASDiagram.html#manim_extensions.economics.ad_as.ADASDiagram&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Aggregate Demand — Aggregate Supply diagram.&quot;,width=0.05];
-  &quot;EconDiagram&quot; -&gt; &quot;ADASDiagram&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;EconDiagram&quot; [URL=&quot;base.EconDiagram.html#manim_extensions.economics.base.EconDiagram&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Base class for economics diagrams built on manim Axes.&quot;,width=0.05];
-  &quot;VGroup&quot; -&gt; &quot;EconDiagram&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ISLMDiagram&quot; [URL=&quot;is_lm.ISLMDiagram.html#manim_extensions.economics.is_lm.ISLMDiagram&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;IS-LM model diagram.&quot;,width=0.05];
-  &quot;EconDiagram&quot; -&gt; &quot;ISLMDiagram&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;LinkedISLMADAS&quot; [URL=&quot;linked.LinkedISLMADAS.html#manim_extensions.economics.linked.LinkedISLMADAS&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.&quot;,width=0.05];
-  &quot;VGroup&quot; -&gt; &quot;LinkedISLMADAS&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;Mobject&quot; [URL=&quot;https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject&quot;,fillcolor=&quot;#DAE8FF&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#448AFF&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Mathematical Object: base class for objects that can be displayed on screen.&quot;,width=0.05];
-  &quot;SolowDiagram&quot; [URL=&quot;solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Solow growth model diagram.&quot;,width=0.05];
-  &quot;EconDiagram&quot; -&gt; &quot;SolowDiagram&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;SupplyDemandDiagram&quot; [URL=&quot;supply_demand.SupplyDemandDiagram.html#manim_extensions.economics.supply_demand.SupplyDemandDiagram&quot;,fillcolor=&quot;#CCF2ED&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#00BFA5&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A supply-and-demand diagram.&quot;,width=0.05];
-  &quot;EconDiagram&quot; -&gt; &quot;SupplyDemandDiagram&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;VGroup&quot; [URL=&quot;https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup&quot;,fillcolor=&quot;#DAE8FF&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#448AFF&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A group of vectorized mobjects.&quot;,width=0.05];
-  &quot;VMobject&quot; -&gt; &quot;VGroup&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;VMobject&quot; [URL=&quot;https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject&quot;,fillcolor=&quot;#DAE8FF&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontcolor=&quot;#448AFF&quot;fontsize=10,height=0.05,margin=0.05,penwidth=0,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A vectorized mobject.&quot;,width=0.05];
-  &quot;Mobject&quot; -&gt; &quot;VMobject&quot; [arrowsize=0.5,penwidth=1,style=&quot;setlinewidth(0.5)&quot;];
-}
+<div class="graphviz"><object data="../../_images/inheritance-b5ba3ae7af7f7e961eb53860b816887b0756d0f0.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of manim_extensions.economics.base.EconDiagram, manim_extensions.economics.supply_demand.SupplyDemandDiagram, manim_extensions.economics.ad_as.ADASDiagram, manim_extensions.economics.is_lm.ISLMDiagram, manim_extensions.economics.linked.LinkedISLMADAS, manim_extensions.economics.solow.SolowDiagram</p></object></div>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h2>
 <ul class="simple">

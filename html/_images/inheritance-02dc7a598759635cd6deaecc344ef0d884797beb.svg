@@ -1,0 +1,104 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="331pt" height="121pt" viewBox="0.00 0.00 331.00 121.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 116.95)">
+<ns0:title>inheritance3851f03b66</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>MArray</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray" ns1:title="A class that represents an array." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="286.8,-112.95 244.35,-112.95 244.35,-93 286.8,-93 286.8,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="265.57" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MArray</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>VGroup</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" ns1:title="A group of vectorized mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="186.35,-65.95 143.15,-65.95 143.15,-46 186.35,-46 186.35,-65.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="164.75" y="-52.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>VGroup-&gt;MArray</ns0:title>
+<ns0:path fill="none" stroke="black" d="M176.97,-65.85C185.18,-72.62 196.84,-81.37 208.35,-86.97 217.71,-91.53 228.59,-95 238.27,-97.53" />
+<ns0:polygon fill="black" stroke="black" points="237.69,-99.19 242.97,-98.69 238.53,-95.79 237.69,-99.19" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>MArrayElement</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement" ns1:title="A class that represents an array element." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="307.05,-81.95 224.1,-81.95 224.1,-62 307.05,-62 307.05,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="265.57" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MArrayElement</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>VGroup-&gt;MArrayElement</ns0:title>
+<ns0:path fill="none" stroke="black" d="M186.23,-59.29C195.48,-60.79 206.83,-62.63 217.98,-64.43" />
+<ns0:polygon fill="black" stroke="black" points="217.43,-66.12 222.65,-65.19 217.99,-62.66 217.43,-66.12" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>MArrayPointer</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer" ns1:title="A class that represents a pointer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="304.05,-50.95 227.1,-50.95 227.1,-31 304.05,-31 304.05,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="265.57" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MArrayPointer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>VGroup-&gt;MArrayPointer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M186.23,-52.87C196.34,-51.33 208.94,-49.42 221.07,-47.58" />
+<ns0:polygon fill="black" stroke="black" points="221.17,-49.33 225.85,-46.85 220.65,-45.87 221.17,-49.33" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>MArraySlidingWindow</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow" ns1:title="A class that represents a sliding window." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="322.8,-19.95 208.35,-19.95 208.35,0 322.8,0 322.8,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="265.57" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MArraySlidingWindow</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>VGroup-&gt;MArraySlidingWindow</ns0:title>
+<ns0:path fill="none" stroke="black" d="M177.38,-46.16C185.59,-39.65 197.08,-31.35 208.35,-25.98 211.33,-24.55 214.45,-23.24 217.64,-22.02" />
+<ns0:polygon fill="black" stroke="black" points="217.9,-23.78 222.02,-20.44 216.72,-20.49 217.9,-23.78" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>Mobject</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" ns1:title="Mathematical Object: base class for objects that can be displayed on screen." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="46.2,-65.95 0,-65.95 0,-46 46.2,-46 46.2,-65.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="23.1" y="-52.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Mobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>VMobject</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" ns1:title="A vectorized mobject." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="121.15,-65.95 68.2,-65.95 68.2,-46 121.15,-46 121.15,-65.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="94.68" y="-52.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>Mobject-&gt;VMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M46.11,-55.98C51.26,-55.98 56.85,-55.98 62.32,-55.98" />
+<ns0:polygon fill="black" stroke="black" points="62.14,-57.73 67.14,-55.98 62.14,-54.23 62.14,-57.73" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>VMobject-&gt;VGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M121.02,-55.98C126.23,-55.98 131.73,-55.98 136.99,-55.98" />
+<ns0:polygon fill="black" stroke="black" points="136.97,-57.73 141.97,-55.98 136.97,-54.23 136.97,-57.73" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

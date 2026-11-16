@@ -1,0 +1,1030 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="1156pt" height="683pt" viewBox="0.00 0.00 1156.00 683.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 678.95)">
+<ns0:title>inheritance8480ca7d14</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="Helper class that provides a standard way to create an ABC using" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0" points="185.27,-317.95 157.82,-317.95 157.82,-298 185.27,-298 185.27,-317.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-304.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>ActivationFunction</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../reference/machine_learning/neural_network/activation_functions/activation_function.ActivationFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction" ns1:title="Abstract parent class for defining activation functions." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="554.17,-364.95 456.22,-364.95 456.22,-345 554.17,-345 554.17,-364.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-351.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ActivationFunction</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>ABC-&gt;ActivationFunction</ns0:title>
+<ns0:path fill="none" stroke="black" d="M349.5,-339.98C383,-342.93 420.55,-346.56 450.26,-349.51" />
+<ns0:polygon fill="black" stroke="black" points="449.83,-351.23 454.98,-349.98 450.17,-347.74 449.83,-351.23" />
+</ns0:g>
+
+<ns0:g id="node10" class="node">
+<ns0:title>ThreeDLayer</ns0:title>
+<ns0:g id="a_node10"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/parent_layers.ThreeDLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.ThreeDLayer" ns1:title="Abstract class for 3D layers." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="539.92,-333.95 470.47,-333.95 470.47,-314 539.92,-314 539.92,-333.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-320.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ThreeDLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge61" class="edge">
+<ns0:title>ABC-&gt;ThreeDLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M185.17,-311.12C213.81,-318.07 285.98,-334.56 347.5,-339.98" />
+<ns0:path fill="none" stroke="black" d="M349.5,-339.98C388.71,-343.43 433.43,-337.76 464.67,-332.24" />
+<ns0:polygon fill="black" stroke="black" points="464.63,-334.02 469.24,-331.41 464.01,-330.58 464.63,-334.02" />
+</ns0:g>
+
+<ns0:g id="node36" class="node">
+<ns0:title>NeuralNetworkLayer</ns0:title>
+<ns0:g id="a_node36"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" ns1:title="Abstract Neural Network Layer class." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="402.35,-271.95 294.65,-271.95 294.65,-252 402.35,-252 402.35,-271.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-258.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NeuralNetworkLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge51" class="edge">
+<ns0:title>ABC-&gt;NeuralNetworkLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M185.13,-304.67C209.53,-298.25 264.29,-283.85 303.47,-273.55" />
+<ns0:polygon fill="black" stroke="black" points="303.76,-275.28 308.16,-272.32 302.87,-271.9 303.76,-275.28" />
+</ns0:g>
+
+<ns0:g id="node57" class="node">
+<ns0:title>ReLUFunction</ns0:title>
+<ns0:g id="a_node57"><ns0:a ns1:href="../reference/machine_learning/neural_network/activation_functions/relu.ReLUFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction" ns1:title="Rectified Linear Unit Activation Function." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="714.25,-387.95 640.3,-387.95 640.3,-368 714.25,-368 714.25,-387.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-374.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ReLUFunction</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge56" class="edge">
+<ns0:title>ActivationFunction-&gt;ReLUFunction</ns0:title>
+<ns0:path fill="none" stroke="black" d="M554.03,-361.44C579.19,-364.85 609.77,-368.98 634.05,-372.26" />
+<ns0:polygon fill="black" stroke="black" points="633.71,-373.98 638.9,-372.92 634.18,-370.52 633.71,-373.98" />
+</ns0:g>
+
+<ns0:g id="node59" class="node">
+<ns0:title>SigmoidFunction</ns0:title>
+<ns0:g id="a_node59"><ns0:a ns1:href="../reference/machine_learning/neural_network/activation_functions/sigmoid.SigmoidFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction" ns1:title="Sigmoid Activation Function." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="721.37,-418.95 633.17,-418.95 633.17,-399 721.37,-399 721.37,-418.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-405.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SigmoidFunction</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge58" class="edge">
+<ns0:title>ActivationFunction-&gt;SigmoidFunction</ns0:title>
+<ns0:path fill="none" stroke="black" d="M554.05,-361.9C562.02,-364.13 569.98,-367.08 577.05,-370.98 589.16,-377.65 586.88,-386.41 599.05,-392.98 607.65,-397.62 617.46,-400.91 627.13,-403.25" />
+<ns0:polygon fill="black" stroke="black" points="626.71,-404.95 631.97,-404.33 627.47,-401.54 626.71,-404.95" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>VGroup</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" ns1:title="A group of vectorized mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="370.1,-503.95 326.9,-503.95 326.9,-484 370.1,-484 370.1,-503.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-490.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>VGroup-&gt;ActivationFunction</ns0:title>
+<ns0:path fill="none" stroke="black" d="M353.22,-484.14C362.66,-460.53 389.97,-400.48 433.35,-370.98 438.51,-367.46 444.33,-364.71 450.35,-362.56" />
+<ns0:polygon fill="black" stroke="black" points="450.76,-364.26 454.98,-361.06 449.69,-360.93 450.76,-364.26" />
+</ns0:g>
+
+<ns0:g id="node16" class="node">
+<ns0:title>DecisionTreeEmbedding</ns0:title>
+<ns0:g id="a_node16"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree_embedding.DecisionTreeEmbedding.html#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding" ns1:title="Two-dimensional embedding of a dataset plus the decision areas of a fitted tree." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="567.3,-519.95 443.1,-519.95 443.1,-500 567.3,-500 567.3,-519.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-506.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DecisionTreeEmbedding</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge15" class="edge">
+<ns0:title>VGroup-&gt;DecisionTreeEmbedding</ns0:title>
+<ns0:path fill="none" stroke="black" d="M370.04,-496.1C387.17,-497.87 412.58,-500.5 436.69,-502.99" />
+<ns0:polygon fill="black" stroke="black" points="436.46,-504.73 441.61,-503.5 436.82,-501.25 436.46,-504.73" />
+</ns0:g>
+
+<ns0:g id="node17" class="node">
+<ns0:title>DecisionTreeSurface</ns0:title>
+<ns0:g id="a_node17"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree_surface.DecisionTreeSurface.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.DecisionTreeSurface" ns1:title="Colored decision surface of a fitted decision tree." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="558.3,-488.95 452.1,-488.95 452.1,-469 558.3,-469 558.3,-488.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-475.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DecisionTreeSurface</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge16" class="edge">
+<ns0:title>VGroup-&gt;DecisionTreeSurface</ns0:title>
+<ns0:path fill="none" stroke="black" d="M370.04,-491.98C389.37,-490.11 419.24,-487.21 445.9,-484.63" />
+<ns0:polygon fill="black" stroke="black" points="445.92,-486.38 450.73,-484.16 445.59,-482.9 445.92,-486.38" />
+</ns0:g>
+
+<ns0:g id="node20" class="node">
+<ns0:title>FeatureMap</ns0:title>
+<ns0:g id="a_node20"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d.FeatureMap.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.FeatureMap" ns1:title="Class for making a feature map." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="537.67,-457.95 472.72,-457.95 472.72,-438 537.67,-438 537.67,-457.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-444.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeatureMap</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge19" class="edge">
+<ns0:title>VGroup-&gt;FeatureMap</ns0:title>
+<ns0:path fill="none" stroke="black" d="M369.95,-485.87C386.79,-479.39 411.38,-470.36 433.35,-463.98 444.08,-460.86 455.87,-457.98 466.7,-455.55" />
+<ns0:polygon fill="black" stroke="black" points="466.97,-457.28 471.47,-454.5 466.21,-453.87 466.97,-457.28" />
+</ns0:g>
+
+<ns0:g id="node29" class="node">
+<ns0:title>Filters</ns0:title>
+<ns0:g id="a_node29"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.Filters.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Filters" ns1:title="Group for showing a collection of filters connecting two layers." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="523.8,-426.95 486.6,-426.95 486.6,-407 523.8,-407 523.8,-426.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-413.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Filters</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge27" class="edge">
+<ns0:title>VGroup-&gt;Filters</ns0:title>
+<ns0:path fill="none" stroke="black" d="M359.98,-484.12C375.03,-470.53 404.16,-446.2 433.35,-432.98 448.29,-426.2 466.34,-422.18 480.48,-419.87" />
+<ns0:polygon fill="black" stroke="black" points="480.51,-421.63 485.18,-419.15 479.98,-418.17 480.51,-421.63" />
+</ns0:g>
+
+<ns0:g id="node30" class="node">
+<ns0:title>GaussianDistribution</ns0:title>
+<ns0:g id="a_node30"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/probability.GaussianDistribution.html#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution" ns1:title="Object for drawing a Gaussian distribution." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="559.8,-395.95 450.6,-395.95 450.6,-376 559.8,-376 559.8,-395.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-382.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GaussianDistribution</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge28" class="edge">
+<ns0:title>VGroup-&gt;GaussianDistribution</ns0:title>
+<ns0:path fill="none" stroke="black" d="M355.5,-484.11C367.64,-465.02 397.11,-423.06 433.35,-401.98 436.94,-399.89 440.78,-398.07 444.74,-396.49" />
+<ns0:polygon fill="black" stroke="black" points="445.1,-398.22 449.2,-394.87 443.9,-394.94 445.1,-398.22" />
+</ns0:g>
+
+<ns0:g id="node33" class="node">
+<ns0:title>GriddedRectangle</ns0:title>
+<ns0:g id="a_node33"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/gridded_rectangle.GriddedRectangle.html#manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle" ns1:title="Rectangle object with grid lines." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="552.3,-674.95 458.1,-674.95 458.1,-655 552.3,-655 552.3,-674.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-661.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GriddedRectangle</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge30" class="edge">
+<ns0:title>VGroup-&gt;GriddedRectangle</ns0:title>
+<ns0:path fill="none" stroke="black" d="M369.95,-493.79C383.64,-494.83 400.99,-498.56 411.35,-509.98 453.4,-556.28 390.59,-603.33 433.35,-648.98 438.54,-654.51 445.2,-658.33 452.35,-660.93" />
+<ns0:polygon fill="black" stroke="black" points="451.72,-662.57 457.02,-662.39 452.77,-659.22 451.72,-662.57" />
+</ns0:g>
+
+<ns0:g id="node40" class="node">
+<ns0:title>IrisDatasetPlot</ns0:title>
+<ns0:g id="a_node40"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree_surface.IrisDatasetPlot.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot" ns1:title="Plot of the first two features of the Iris dataset." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="544.8,-643.95 465.6,-643.95 465.6,-624 544.8,-624 544.8,-643.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-630.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">IrisDatasetPlot</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge37" class="edge">
+<ns0:title>VGroup-&gt;IrisDatasetPlot</ns0:title>
+<ns0:path fill="none" stroke="black" d="M370.09,-493.96C383.66,-495.09 400.81,-498.87 411.35,-509.98 445.07,-545.51 399.08,-582.97 433.35,-617.98 440.3,-625.07 449.67,-629.32 459.33,-631.79" />
+<ns0:polygon fill="black" stroke="black" points="458.96,-633.5 464.21,-632.85 459.7,-630.08 458.96,-633.5" />
+</ns0:g>
+
+<ns0:g id="node51" class="node">
+<ns0:title>NetworkConnection</ns0:title>
+<ns0:g id="a_node51"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/connections.NetworkConnection.html#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection" ns1:title="This class allows for creating connections" target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="556.8,-612.95 453.6,-612.95 453.6,-593 556.8,-593 556.8,-612.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-599.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NetworkConnection</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge48" class="edge">
+<ns0:title>VGroup-&gt;NetworkConnection</ns0:title>
+<ns0:path fill="none" stroke="black" d="M369.82,-494.23C383.27,-495.47 400.39,-499.29 411.35,-509.98 436.83,-534.82 407.49,-562.52 433.35,-586.98 437.59,-590.98 442.61,-594.06 447.99,-596.42" />
+<ns0:polygon fill="black" stroke="black" points="447.25,-598.01 452.54,-598.17 448.5,-594.74 447.25,-598.01" />
+</ns0:g>
+
+<ns0:g id="node61" class="node">
+<ns0:title>SplitNode</ns0:title>
+<ns0:g id="a_node61"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree.SplitNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.SplitNode" ns1:title="Node for splitting decision in tree." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="532.42,-581.95 477.97,-581.95 477.97,-562 532.42,-562 532.42,-581.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-568.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SplitNode</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge60" class="edge">
+<ns0:title>VGroup-&gt;SplitNode</ns0:title>
+<ns0:path fill="none" stroke="black" d="M369.85,-494.91C382.98,-496.47 399.71,-500.39 411.35,-509.98 428.84,-524.38 415.63,-541.84 433.35,-555.98 444.19,-564.63 458.8,-568.8 471.93,-570.74" />
+<ns0:polygon fill="black" stroke="black" points="471.56,-572.46 476.74,-571.34 471.99,-568.98 471.56,-572.46" />
+</ns0:g>
+
+<ns0:g id="node67" class="node">
+<ns0:title>XMark</ns0:title>
+<ns0:g id="a_node67"><ns0:a ns1:href="../reference/machine_learning/neural_network/animations/dropout.XMark.html#manim_extensions.machine_learning.neural_network.animations.dropout.XMark" ns1:title="X-shaped mark used to indicate dropped-out nodes." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="524.55,-550.95 485.85,-550.95 485.85,-531 524.55,-531 524.55,-550.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-537.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">XMark</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge70" class="edge">
+<ns0:title>VGroup-&gt;XMark</ns0:title>
+<ns0:path fill="none" stroke="black" d="M369.87,-497.4C382.23,-499.92 398.12,-503.97 411.35,-509.98 422.13,-514.86 422.5,-520.25 433.35,-524.98 448.19,-531.43 465.96,-535.43 479.99,-537.82" />
+<ns0:polygon fill="black" stroke="black" points="479.44,-539.51 484.65,-538.57 479.99,-536.05 479.44,-539.51" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>Animation</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" ns1:title="An animation." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="57.45,-549.95 0,-549.95 0,-530 57.45,-530 57.45,-549.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="28.72" y="-536.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Animation</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>AnimationGroup</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" ns1:title="Plays a group or series of :class:`~.Animation`." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="214.9,-549.95 128.2,-549.95 128.2,-530 214.9,-530 214.9,-549.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-536.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">AnimationGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>Animation-&gt;AnimationGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M57.21,-539.98C75.64,-539.98 100.42,-539.98 122.11,-539.98" />
+<ns0:polygon fill="black" stroke="black" points="121.92,-541.73 126.92,-539.98 121.92,-538.23 121.92,-541.73" />
+</ns0:g>
+
+<ns0:g id="node39" class="node">
+<ns0:title>InsertLayer</ns0:title>
+<ns0:g id="a_node39"><ns0:a ns1:href="../reference/machine_learning/neural_network/animations/neural_network_transformations.InsertLayer.html#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer" ns1:title="Animation for inserting layer at given index." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="379.48,-565.95 317.52,-565.95 317.52,-546 379.48,-546 379.48,-565.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-552.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">InsertLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge36" class="edge">
+<ns0:title>AnimationGroup-&gt;InsertLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M214.45,-543.81C244.06,-546.51 283.32,-550.11 311.51,-552.68" />
+<ns0:polygon fill="black" stroke="black" points="311.06,-554.4 316.2,-553.11 311.38,-550.91 311.06,-554.4" />
+</ns0:g>
+
+<ns0:g id="node58" class="node">
+<ns0:title>RemoveLayer</ns0:title>
+<ns0:g id="a_node58"><ns0:a ns1:href="../reference/machine_learning/neural_network/animations/neural_network_transformations.RemoveLayer.html#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer" ns1:title="Animation for removing a layer from a neural network." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="385.85,-534.95 311.15,-534.95 311.15,-515 385.85,-515 385.85,-534.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-521.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">RemoveLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge57" class="edge">
+<ns0:title>AnimationGroup-&gt;RemoveLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M214.45,-536.38C241.78,-534.04 277.34,-530.99 304.82,-528.63" />
+<ns0:polygon fill="black" stroke="black" points="304.93,-530.38 309.76,-528.21 304.63,-526.89 304.93,-530.38" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>BlankConnective</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/parent_layers.BlankConnective.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective" ns1:title="Connective layer to be used when the given pair of layers is undefined." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="912.2,-112.95 822.5,-112.95 822.5,-93 912.2,-93 912.2,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BlankConnective</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>ConnectiveLayer</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/parent_layers.ConnectiveLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer" ns1:title="Forward pass animation for a given pair of layers." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="721.75,-209.95 632.8,-209.95 632.8,-190 721.75,-190 721.75,-209.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-196.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ConnectiveLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>ConnectiveLayer-&gt;BlankConnective</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.53,-198.89C733.71,-196.64 746.17,-192.23 755.5,-183.98 778.34,-163.76 754.4,-138.89 777.5,-118.98 788.21,-109.75 802.4,-105.04 816.29,-102.8" />
+<ns0:polygon fill="black" stroke="black" points="816.42,-104.55 821.14,-102.15 815.95,-101.08 816.42,-104.55" />
+</ns0:g>
+
+<ns0:g id="node11" class="node">
+<ns0:title>Convolutional2DToConvolutional2D</ns0:title>
+<ns0:g id="a_node11"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D" ns1:title="Connective layer between two convolutional 2D layers." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="957.2,-329.95 777.5,-329.95 777.5,-310 957.2,-310 957.2,-329.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-316.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Convolutional2DToConvolutional2D</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>ConnectiveLayer-&gt;Convolutional2DToConvolutional2D</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.56,-200.52C733.88,-202.73 746.41,-207.25 755.5,-215.98 784.58,-243.9 748.06,-276.44 777.5,-303.98 778.44,-304.86 779.42,-305.7 780.42,-306.51" />
+<ns0:polygon fill="black" stroke="black" points="779.34,-307.88 784.43,-309.34 781.36,-305.02 779.34,-307.88" />
+</ns0:g>
+
+<ns0:g id="node12" class="node">
+<ns0:title>Convolutional2DToFeedForward</ns0:title>
+<ns0:g id="a_node12"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d_to_feed_forward.Convolutional2DToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward.Convolutional2DToFeedForward" ns1:title="Connective layer between a convolutional 2D layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="947.82,-391.95 786.87,-391.95 786.87,-372 947.82,-372 947.82,-391.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-378.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Convolutional2DToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge10" class="edge">
+<ns0:title>ConnectiveLayer-&gt;Convolutional2DToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.71,-199.91C734.18,-202.07 746.76,-206.71 755.5,-215.98 801.73,-265 730.64,-317.56 777.5,-365.98 778.83,-367.35 780.23,-368.63 781.7,-369.82" />
+<ns0:polygon fill="black" stroke="black" points="780.6,-371.18 785.69,-372.65 782.63,-368.33 780.6,-371.18" />
+</ns0:g>
+
+<ns0:g id="node13" class="node">
+<ns0:title>Convolutional2DToMaxPooling2D</ns0:title>
+<ns0:g id="a_node13"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d_to_max_pooling_2d.Convolutional2DToMaxPooling2D.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_max_pooling_2d.Convolutional2DToMaxPooling2D" ns1:title="Connective layer between a convolutional 2D layer and a max pooling 2D layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="951.95,-360.95 782.75,-360.95 782.75,-341 951.95,-341 951.95,-360.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-347.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Convolutional2DToMaxPooling2D</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge12" class="edge">
+<ns0:title>ConnectiveLayer-&gt;Convolutional2DToMaxPooling2D</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.5,-200.11C733.97,-202.28 746.59,-206.87 755.5,-215.98 793.12,-254.41 739.38,-297.03 777.5,-334.98 778.37,-335.85 779.28,-336.68 780.21,-337.47" />
+<ns0:polygon fill="black" stroke="black" points="778.84,-338.63 783.88,-340.24 780.94,-335.83 778.84,-338.63" />
+</ns0:g>
+
+<ns0:g id="node19" class="node">
+<ns0:title>EmbeddingToFeedForward</ns0:title>
+<ns0:g id="a_node19"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward" ns1:title="Connective layer between an embedding layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="934.7,-81.95 800,-81.95 800,-62 934.7,-62 934.7,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">EmbeddingToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge18" class="edge">
+<ns0:title>ConnectiveLayer-&gt;EmbeddingToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.67,-199.54C734,-197.33 746.5,-192.79 755.5,-183.98 786.77,-153.35 745.83,-118.19 777.5,-87.98 782.36,-83.34 788.09,-79.8 794.25,-77.13" />
+<ns0:polygon fill="black" stroke="black" points="794.57,-78.89 798.61,-75.46 793.32,-75.62 794.57,-78.89" />
+</ns0:g>
+
+<ns0:g id="node24" class="node">
+<ns0:title>FeedForwardToEmbedding</ns0:title>
+<ns0:g id="a_node24"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward_to_embedding.FeedForwardToEmbedding.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_embedding.FeedForwardToEmbedding" ns1:title="Connective layer between a feed-forward layer and an embedding layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="934.7,-50.95 800,-50.95 800,-31 934.7,-31 934.7,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardToEmbedding</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge22" class="edge">
+<ns0:title>ConnectiveLayer-&gt;FeedForwardToEmbedding</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.56,-199.9C734.03,-197.74 746.64,-193.13 755.5,-183.98 795.34,-142.81 737.13,-97.62 777.5,-56.98 782.32,-52.12 788.08,-48.46 794.32,-45.72" />
+<ns0:polygon fill="black" stroke="black" points="794.72,-47.44 798.75,-44 793.46,-44.18 794.72,-47.44" />
+</ns0:g>
+
+<ns0:g id="node25" class="node">
+<ns0:title>FeedForwardToFeedForward</ns0:title>
+<ns0:g id="a_node25"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward" ns1:title="Layer for connecting FeedForward layer to :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="938.45,-19.95 796.25,-19.95 796.25,0 938.45,0 938.45,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge23" class="edge">
+<ns0:title>ConnectiveLayer-&gt;FeedForwardToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.75,-200.08C734.23,-197.92 746.8,-193.27 755.5,-183.98 803.95,-132.22 728.37,-77.1 777.5,-25.98 781.32,-21.99 785.78,-18.81 790.62,-16.27" />
+<ns0:polygon fill="black" stroke="black" points="791.27,-17.89 795.08,-14.21 789.81,-14.71 791.27,-17.89" />
+</ns0:g>
+
+<ns0:g id="node26" class="node">
+<ns0:title>FeedForwardToImage</ns0:title>
+<ns0:g id="a_node26"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward_to_image.FeedForwardToImage.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage" ns1:title="Connective layer between a feed-forward layer and an image layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="922.7,-298.95 812,-298.95 812,-279 922.7,-279 922.7,-298.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-285.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardToImage</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge24" class="edge">
+<ns0:title>ConnectiveLayer-&gt;FeedForwardToImage</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.72,-201.38C733.77,-203.66 746.1,-208 755.5,-215.98 776.21,-233.54 756.56,-255.68 777.5,-272.98 785.68,-279.73 795.75,-284.04 806.14,-286.71" />
+<ns0:polygon fill="black" stroke="black" points="805.54,-288.37 810.8,-287.77 806.31,-284.95 805.54,-288.37" />
+</ns0:g>
+
+<ns0:g id="node27" class="node">
+<ns0:title>FeedForwardToMathOperation</ns0:title>
+<ns0:g id="a_node27"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward_to_math_operation.FeedForwardToMathOperation.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation" ns1:title="Connective layer between a feed-forward layer and a math operation layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="943.7,-267.95 791,-267.95 791,-248 943.7,-248 943.7,-267.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-254.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardToMathOperation</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge25" class="edge">
+<ns0:title>ConnectiveLayer-&gt;FeedForwardToMathOperation</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.42,-203.73C733.06,-206.09 745.26,-209.89 755.5,-215.98 768.51,-223.71 764.39,-234.41 777.5,-241.98 780.08,-243.46 782.77,-244.82 785.53,-246.05" />
+<ns0:polygon fill="black" stroke="black" points="784.61,-247.57 789.9,-247.85 785.93,-244.33 784.61,-247.57" />
+</ns0:g>
+
+<ns0:g id="node28" class="node">
+<ns0:title>FeedForwardToVector</ns0:title>
+<ns0:g id="a_node28"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward_to_vector.FeedForwardToVector.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_vector.FeedForwardToVector" ns1:title="Connective layer between a feed-forward layer and a vector layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="922.7,-236.95 812,-236.95 812,-217 922.7,-217 922.7,-236.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-223.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardToVector</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge26" class="edge">
+<ns0:title>ConnectiveLayer-&gt;FeedForwardToVector</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.42,-206.17C746.53,-209.77 778.56,-214.37 806.12,-218.33" />
+<ns0:polygon fill="black" stroke="black" points="805.59,-220.02 810.79,-219 806.09,-216.56 805.59,-220.02" />
+</ns0:g>
+
+<ns0:g id="node38" class="node">
+<ns0:title>ImageToFeedForward</ns0:title>
+<ns0:g id="a_node38"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/image_to_feed_forward.ImageToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.image_to_feed_forward.ImageToFeedForward" ns1:title="Connective layer between an image layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="922.7,-205.95 812,-205.95 812,-186 922.7,-186 922.7,-205.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-192.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ImageToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge35" class="edge">
+<ns0:title>ConnectiveLayer-&gt;ImageToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.42,-199.06C746.53,-198.52 778.56,-197.84 806.12,-197.26" />
+<ns0:polygon fill="black" stroke="black" points="805.82,-199.01 810.78,-197.16 805.74,-195.51 805.82,-199.01" />
+</ns0:g>
+
+<ns0:g id="node55" class="node">
+<ns0:title>PairedQueryToFeedForward</ns0:title>
+<ns0:g id="a_node55"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/paired_query_to_feed_forward.PairedQueryToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.paired_query_to_feed_forward.PairedQueryToFeedForward" ns1:title="Connective layer between a paired query layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="936.95,-174.95 797.75,-174.95 797.75,-155 936.95,-155 936.95,-174.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-161.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PairedQueryToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge54" class="edge">
+<ns0:title>ConnectiveLayer-&gt;PairedQueryToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.73,-191.55C739.07,-188.21 759.22,-184.37 777.5,-180.98 786.26,-179.35 795.52,-177.65 804.62,-176" />
+<ns0:polygon fill="black" stroke="black" points="804.78,-177.75 809.39,-175.14 804.16,-174.31 804.78,-177.75" />
+</ns0:g>
+
+<ns0:g id="node63" class="node">
+<ns0:title>TripletToFeedForward</ns0:title>
+<ns0:g id="a_node63"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/triplet_to_feed_forward.TripletToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward.TripletToFeedForward" ns1:title="Connective layer between a triplet layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="922.32,-143.95 812.37,-143.95 812.37,-124 922.32,-124 922.32,-143.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="867.35" y="-130.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">TripletToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge64" class="edge">
+<ns0:title>ConnectiveLayer-&gt;TripletToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M721.55,-197.14C733.33,-194.8 745.56,-190.78 755.5,-183.98 770.35,-173.81 762.52,-159.95 777.5,-149.98 786.04,-144.29 796.01,-140.47 806.13,-137.93" />
+<ns0:polygon fill="black" stroke="black" points="806.47,-139.64 810.97,-136.84 805.7,-136.23 806.47,-139.64" />
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>VGroupNeuralNetworkLayer</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/parent_layers.VGroupNeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer" ns1:title="Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="577.05,-240.95 433.35,-240.95 433.35,-221 577.05,-221 577.05,-240.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-227.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">VGroupNeuralNetworkLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;ConnectiveLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M560.48,-221.08C581.71,-217.21 605.9,-212.8 626.66,-209.02" />
+<ns0:polygon fill="black" stroke="black" points="626.89,-210.76 631.5,-208.14 626.26,-207.31 626.89,-210.76" />
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>Convolutional2DLayer</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer" ns1:title="Handles rendering a convolutional layer for a nn." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="734.87,-271.95 619.67,-271.95 619.67,-252 734.87,-252 734.87,-271.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-258.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">Convolutional2DLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;Convolutional2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M560.48,-240.87C578.04,-244.07 597.61,-247.64 615.6,-250.92" />
+<ns0:polygon fill="black" stroke="black" points="614.91,-252.57 620.15,-251.74 615.54,-249.13 614.91,-252.57" />
+</ns0:g>
+
+<ns0:g id="node18" class="node">
+<ns0:title>EmbeddingLayer</ns0:title>
+<ns0:g id="a_node18"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/embedding.EmbeddingLayer.html#manim_extensions.machine_learning.neural_network.layers.embedding.EmbeddingLayer" ns1:title=":class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` embedding object that can show probability distributions." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="721.75,-178.95 632.8,-178.95 632.8,-159 721.75,-159 721.75,-178.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-165.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">EmbeddingLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge17" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;EmbeddingLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M565.54,-221.05C569.58,-219.33 573.46,-217.32 577.05,-214.98 590.88,-205.91 585.14,-193.91 599.05,-184.98 607.27,-179.69 616.91,-176.11 626.54,-173.69" />
+<ns0:polygon fill="black" stroke="black" points="626.88,-175.41 631.37,-172.6 626.11,-172 626.88,-175.41" />
+</ns0:g>
+
+<ns0:g id="node21" class="node">
+<ns0:title>FeedForwardLayer</ns0:title>
+<ns0:g id="a_node21"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" ns1:title="Handles rendering a layer for a neural network." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="725.5,-147.95 629.05,-147.95 629.05,-128 725.5,-128 725.5,-147.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-134.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge20" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;FeedForwardLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M568.39,-221.07C571.49,-219.33 574.4,-217.31 577.05,-214.98 598.65,-195.9 577.28,-172.86 599.05,-153.98 605.86,-148.07 614.27,-144.14 623.01,-141.57" />
+<ns0:polygon fill="black" stroke="black" points="623.23,-143.32 627.63,-140.37 622.35,-139.93 623.23,-143.32" />
+</ns0:g>
+
+<ns0:g id="node37" class="node">
+<ns0:title>ImageToConvolutional2DLayer</ns0:title>
+<ns0:g id="a_node37"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/image_to_convolutional_2d.ImageToConvolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.image_to_convolutional_2d.ImageToConvolutional2DLayer" ns1:title="Connective layer between an image layer and a convolutional 2D layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="755.5,-333.95 599.05,-333.95 599.05,-314 755.5,-314 755.5,-333.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-320.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ImageToConvolutional2DLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge33" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;ImageToConvolutional2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M568.39,-240.88C571.49,-242.62 574.4,-244.64 577.05,-246.98 598.65,-266.05 577.28,-289.09 599.05,-307.98 600.14,-308.92 601.28,-309.82 602.45,-310.67" />
+<ns0:polygon fill="black" stroke="black" points="601.36,-312.05 606.52,-313.27 603.25,-309.1 601.36,-312.05" />
+</ns0:g>
+
+<ns0:g id="node47" class="node">
+<ns0:title>MathOperationLayer</ns0:title>
+<ns0:g id="a_node47"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/math_operation_layer.MathOperationLayer.html#manim_extensions.machine_learning.neural_network.layers.math_operation_layer.MathOperationLayer" ns1:title="Handles rendering a layer for a neural network." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="730.75,-116.95 623.8,-116.95 623.8,-97 730.75,-97 730.75,-116.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-103.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MathOperationLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge43" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;MathOperationLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M569.36,-221.02C572.13,-219.28 574.72,-217.28 577.05,-214.98 606.96,-185.44 568.87,-152.25 599.05,-122.98 604.42,-117.76 611.03,-114.05 618.09,-111.42" />
+<ns0:polygon fill="black" stroke="black" points="618.45,-113.15 622.67,-109.94 617.37,-109.82 618.45,-113.15" />
+</ns0:g>
+
+<ns0:g id="node48" class="node">
+<ns0:title>MaxPooling2DLayer</ns0:title>
+<ns0:g id="a_node48"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer" ns1:title="Max pooling layer for :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer`." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="729.62,-302.95 624.92,-302.95 624.92,-283 729.62,-283 729.62,-302.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-289.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MaxPooling2DLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge44" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;MaxPooling2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M565.54,-240.9C569.58,-242.62 573.46,-244.63 577.05,-246.98 590.88,-256.04 585.14,-268.04 599.05,-276.98 605.17,-280.91 612.07,-283.9 619.18,-286.16" />
+<ns0:polygon fill="black" stroke="black" points="618.43,-287.77 623.72,-287.48 619.41,-284.41 618.43,-287.77" />
+</ns0:g>
+
+<ns0:g id="node66" class="node">
+<ns0:title>VectorLayer</ns0:title>
+<ns0:g id="a_node66"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/vector.VectorLayer.html#manim_extensions.machine_learning.neural_network.layers.vector.VectorLayer" ns1:title="Shows a vector." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="709.75,-240.95 644.8,-240.95 644.8,-221 709.75,-221 709.75,-240.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="677.27" y="-227.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">VectorLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge69" class="edge">
+<ns0:title>VGroupNeuralNetworkLayer-&gt;VectorLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M576.85,-230.98C597.98,-230.98 620.34,-230.98 638.49,-230.98" />
+<ns0:polygon fill="black" stroke="black" points="638.46,-232.73 643.46,-230.98 638.46,-229.23 638.46,-232.73" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>ThreeDLayer-&gt;Convolutional2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M539.87,-321.35C552.33,-319.15 566.08,-315.16 577.05,-307.98 590.88,-298.91 585.14,-286.91 599.05,-277.98 603.6,-275.05 608.59,-272.64 613.77,-270.67" />
+<ns0:polygon fill="black" stroke="black" points="614.34,-272.33 618.5,-269.04 613.2,-269.02 614.34,-272.33" />
+</ns0:g>
+
+<ns0:g id="edge9" class="edge">
+<ns0:title>ThreeDLayer-&gt;Convolutional2DToConvolutional2D</ns0:title>
+<ns0:path fill="none" stroke="black" d="M539.89,-330.95C574.07,-337.64 628.59,-347.26 676.27,-350.98" />
+<ns0:path fill="none" stroke="black" d="M678.27,-350.98C684.64,-351.47 751.6,-340.12 803.83,-331.01" />
+<ns0:polygon fill="black" stroke="black" points="804.01,-332.76 808.63,-330.17 803.4,-329.31 804.01,-332.76" />
+</ns0:g>
+
+<ns0:g id="edge11" class="edge">
+<ns0:title>ThreeDLayer-&gt;Convolutional2DToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M678.27,-350.98C690.65,-351.94 753.16,-362.43 802.76,-370.94" />
+<ns0:polygon fill="black" stroke="black" points="802.33,-372.64 807.56,-371.77 802.93,-369.19 802.33,-372.64" />
+</ns0:g>
+
+<ns0:g id="edge13" class="edge">
+<ns0:title>ThreeDLayer-&gt;Convolutional2DToMaxPooling2D</ns0:title>
+<ns0:path fill="none" stroke="black" d="M678.27,-350.98C710.32,-353.47 745.53,-354.05 776.73,-353.81" />
+<ns0:polygon fill="black" stroke="black" points="776.42,-355.57 781.4,-353.77 776.39,-352.07 776.42,-355.57" />
+</ns0:g>
+
+<ns0:g id="edge34" class="edge">
+<ns0:title>ThreeDLayer-&gt;ImageToConvolutional2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M539.8,-323.98C555.11,-323.98 573.98,-323.98 592.75,-323.98" />
+<ns0:polygon fill="black" stroke="black" points="592.59,-325.73 597.59,-323.98 592.59,-322.23 592.59,-325.73" />
+</ns0:g>
+
+<ns0:g id="edge45" class="edge">
+<ns0:title>ThreeDLayer-&gt;MaxPooling2DLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M539.8,-317.85C562.3,-313.75 592.48,-308.25 618.75,-303.46" />
+<ns0:polygon fill="black" stroke="black" points="618.89,-305.21 623.49,-302.6 618.26,-301.77 618.89,-305.21" />
+</ns0:g>
+
+<ns0:g id="node49" class="node">
+<ns0:title>MaxPooling2DToConvolutional2D</ns0:title>
+<ns0:g id="a_node49"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d.MaxPooling2DToConvolutional2D" ns1:title="Connective layer between a max pooling 2D layer and a convolutional 2D layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="1148.4,-329.95 979.2,-329.95 979.2,-310 1148.4,-310 1148.4,-329.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="1063.8" y="-316.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MaxPooling2DToConvolutional2D</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge46" class="edge">
+<ns0:title>Convolutional2DToConvolutional2D-&gt;MaxPooling2DToConvolutional2D</ns0:title>
+<ns0:path fill="none" stroke="black" d="M957.04,-319.98C962.37,-319.98 967.73,-319.98 973.06,-319.98" />
+<ns0:polygon fill="black" stroke="black" points="972.79,-321.73 977.79,-319.98 972.79,-318.23 972.79,-321.73" />
+</ns0:g>
+
+<ns0:g id="node50" class="node">
+<ns0:title>MaxPooling2DToFeedForward</ns0:title>
+<ns0:g id="a_node50"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/max_pooling_2d_to_feed_forward.MaxPooling2DToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_feed_forward.MaxPooling2DToFeedForward" ns1:title="Connective layer between a max pooling 2D layer and a feed-forward layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="1139.02,-391.95 988.57,-391.95 988.57,-372 1139.02,-372 1139.02,-391.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="1063.8" y="-378.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MaxPooling2DToFeedForward</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge47" class="edge">
+<ns0:title>Convolutional2DToFeedForward-&gt;MaxPooling2DToFeedForward</ns0:title>
+<ns0:path fill="none" stroke="black" d="M947.72,-381.98C959.15,-381.98 970.92,-381.98 982.37,-381.98" />
+<ns0:polygon fill="black" stroke="black" points="982.18,-383.73 987.18,-381.98 982.18,-380.23 982.18,-383.73" />
+</ns0:g>
+
+<ns0:g id="node14" class="node">
+<ns0:title>DecisionTreeDiagram</ns0:title>
+<ns0:g id="a_node14"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree.DecisionTreeDiagram.html#manim_extensions.machine_learning.decision_tree.decision_tree.DecisionTreeDiagram" ns1:title="Decision Tree Diagram Class for Manim." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="404.23,-54.95 292.77,-54.95 292.77,-35 404.23,-35 404.23,-54.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-41.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">DecisionTreeDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node15" class="node">
+<ns0:title>Group</ns0:title>
+<ns0:g id="a_node15"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Group.html#manim.mobject.mobject.Group" ns1:title="Groups together multiple :class:`Mobjects &lt;.Mobject&gt;`." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="189.77,-178.95 153.32,-178.95 153.32,-159 189.77,-159 189.77,-178.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-165.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Group</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge14" class="edge">
+<ns0:title>Group-&gt;DecisionTreeDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.75,-171.1C210.12,-172.6 243.77,-171.68 263.65,-152.98 294.27,-124.17 256.2,-90.98 285.65,-60.98 286.52,-60.08 287.44,-59.24 288.39,-58.44" />
+<ns0:polygon fill="black" stroke="black" points="289.18,-60.04 292.22,-55.7 287.14,-57.19 289.18,-60.04" />
+</ns0:g>
+
+<ns0:g id="node23" class="node">
+<ns0:title>NeuralNetwork</ns0:title>
+<ns0:g id="a_node23"><ns0:a ns1:href="../reference/machine_learning/neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" ns1:title="Neural Network Visualization Container Class." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="388.85,-240.95 308.15,-240.95 308.15,-221 388.85,-221 388.85,-240.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-227.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NeuralNetwork</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge49" class="edge">
+<ns0:title>Group-&gt;NeuralNetwork</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.53,-176.71C211.43,-186.49 250.84,-203.45 285.65,-214.98 290.99,-216.74 296.63,-218.44 302.26,-220.02" />
+<ns0:polygon fill="black" stroke="black" points="301.59,-221.65 306.88,-221.29 302.52,-218.27 301.59,-221.65" />
+</ns0:g>
+
+<ns0:g id="node32" class="node">
+<ns0:title>GrayscaleImageMobject</ns0:title>
+<ns0:g id="a_node32"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/image.GrayscaleImageMobject.html#manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject" ns1:title="Mobject for creating images in Manim from numpy arrays." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="411.35,-147.95 285.65,-147.95 285.65,-128 411.35,-128 411.35,-147.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-134.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GrayscaleImageMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge29" class="edge">
+<ns0:title>Group-&gt;GrayscaleImageMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.68,-165.98C207.99,-162.78 237.88,-157.54 263.65,-152.98 270.82,-151.7 278.33,-150.37 285.78,-149.04" />
+<ns0:polygon fill="black" stroke="black" points="285.92,-150.79 290.54,-148.19 285.31,-147.35 285.92,-150.79" />
+</ns0:g>
+
+<ns0:g id="edge52" class="edge">
+<ns0:title>Group-&gt;NeuralNetworkLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M183.95,-178.75C203.49,-195.01 245.19,-227.64 285.65,-245.98 288.81,-247.41 292.12,-248.73 295.49,-249.94" />
+<ns0:polygon fill="black" stroke="black" points="294.89,-251.58 300.19,-251.53 296.01,-248.27 294.89,-251.58" />
+</ns0:g>
+
+<ns0:g id="node41" class="node">
+<ns0:title>LabeledColorImage</ns0:title>
+<ns0:g id="a_node41"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/image.LabeledColorImage.html#manim_extensions.machine_learning.utils.mobjects.image.LabeledColorImage" ns1:title="Labeled Color Image." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="399.35,-116.95 297.65,-116.95 297.65,-97 399.35,-97 399.35,-116.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-103.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">LabeledColorImage</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge38" class="edge">
+<ns0:title>Group-&gt;LabeledColorImage</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.67,-169.65C209.04,-169.62 240.87,-167.13 263.65,-152.98 277.69,-144.25 271.96,-132.25 285.65,-122.98 287.77,-121.54 290.01,-120.23 292.32,-119.04" />
+<ns0:polygon fill="black" stroke="black" points="292.69,-120.8 296.49,-117.11 291.22,-117.63 292.69,-120.8" />
+</ns0:g>
+
+<ns0:g id="node42" class="node">
+<ns0:title>LeafNode</ns0:title>
+<ns0:g id="a_node42"><ns0:a ns1:href="../reference/machine_learning/decision_tree/decision_tree.LeafNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode" ns1:title="Leaf node in tree." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="375.35,-85.95 321.65,-85.95 321.65,-66 375.35,-66 375.35,-85.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-72.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">LeafNode</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge39" class="edge">
+<ns0:title>Group-&gt;LeafNode</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.77,-170.74C209.83,-171.82 242.88,-170.44 263.65,-152.98 285.71,-134.42 264.35,-111.38 285.65,-91.98 293.81,-84.54 304.96,-80.47 315.56,-78.27" />
+<ns0:polygon fill="black" stroke="black" points="315.59,-80.04 320.21,-77.44 314.98,-76.6 315.59,-80.04" />
+</ns0:g>
+
+<ns0:g id="node44" class="node">
+<ns0:title>MCMCAxes</ns0:title>
+<ns0:g id="a_node44"><ns0:a ns1:href="../reference/machine_learning/diffusion/mcmc.MCMCAxes.html#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes" ns1:title="Container object for visualizing MCMC on a 2D axis." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="379.48,-209.95 317.52,-209.95 317.52,-190 379.48,-190 379.48,-209.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-196.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">MCMCAxes</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge41" class="edge">
+<ns0:title>Group-&gt;MCMCAxes</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.64,-172C217.68,-176.97 274.05,-186.96 311.28,-193.56" />
+<ns0:polygon fill="black" stroke="black" points="310.82,-195.25 316.05,-194.4 311.43,-191.81 310.82,-195.25" />
+</ns0:g>
+
+<ns0:g id="node65" class="node">
+<ns0:title>VariationalAutoencoder</ns0:title>
+<ns0:g id="a_node65"><ns0:a ns1:href="../reference/machine_learning/neural_network/architectures/variational_autoencoder.VariationalAutoencoder.html#manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder.VariationalAutoencoder" ns1:title="Variational Autoencoder Manim Visualization." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="409.1,-178.95 287.9,-178.95 287.9,-159 409.1,-159 409.1,-178.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-165.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">VariationalAutoencoder</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge68" class="edge">
+<ns0:title>Group-&gt;VariationalAutoencoder</ns0:title>
+<ns0:path fill="none" stroke="black" d="M189.64,-168.98C211.01,-168.98 248.83,-168.98 282.09,-168.98" />
+<ns0:polygon fill="black" stroke="black" points="281.73,-170.73 286.73,-168.98 281.73,-167.23 281.73,-170.73" />
+</ns0:g>
+
+<ns0:g id="node22" class="node">
+<ns0:title>FeedForwardNeuralNetwork</ns0:title>
+<ns0:g id="a_node22"><ns0:a ns1:href="../reference/machine_learning/neural_network/architectures/feed_forward.FeedForwardNeuralNetwork.html#manim_extensions.machine_learning.neural_network.architectures.feed_forward.FeedForwardNeuralNetwork" ns1:title=":class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` with just feed forward layers." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="576.67,-178.95 433.72,-178.95 433.72,-159 576.67,-159 576.67,-178.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-165.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">FeedForwardNeuralNetwork</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge21" class="edge">
+<ns0:title>NeuralNetwork-&gt;FeedForwardNeuralNetwork</ns0:title>
+<ns0:path fill="none" stroke="black" d="M388.53,-225.19C396.52,-222.86 404.56,-219.58 411.35,-214.98 425.04,-205.7 419.52,-194.04 433.35,-184.98 435.26,-183.73 437.24,-182.57 439.3,-181.51" />
+<ns0:polygon fill="black" stroke="black" points="439.7,-183.25 443.49,-179.54 438.22,-180.08 439.7,-183.25" />
+</ns0:g>
+
+<ns0:g id="node31" class="node">
+<ns0:title>Generic</ns0:title>
+<ns0:g id="a_node31"><ns0:a ns1:href="https://docs.python.org/3/library/typing.html#typing.Generic" ns1:title="Abstract base class for generic types." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0" points="51.07,-596.95 6.37,-596.95 6.37,-577 51.07,-577 51.07,-596.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="28.72" y="-583.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Generic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node56" class="node">
+<ns0:title>Protocol</ns0:title>
+<ns0:g id="a_node56"><ns0:a ns1:href="https://docs.python.org/3/library/typing.html#typing.Protocol" ns1:title="Base class for protocol classes." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0" points="195.02,-596.95 148.07,-596.95 148.07,-577 195.02,-577 195.02,-596.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-583.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Protocol</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge55" class="edge">
+<ns0:title>Generic-&gt;Protocol</ns0:title>
+<ns0:path fill="none" stroke="black" d="M50.81,-586.98C75.1,-586.98 115.14,-586.98 142.16,-586.98" />
+<ns0:polygon fill="black" stroke="black" points="141.88,-588.73 146.88,-586.98 141.88,-585.23 141.88,-588.73" />
+</ns0:g>
+
+<ns0:g id="node34" class="node">
+<ns0:title>Mobject</ns0:title>
+<ns0:g id="a_node34"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" ns1:title="Mathematical Object: base class for objects that can be displayed on screen." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="51.82,-178.95 5.62,-178.95 5.62,-159 51.82,-159 51.82,-178.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="28.72" y="-165.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Mobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge31" class="edge">
+<ns0:title>Mobject-&gt;Group</ns0:title>
+<ns0:path fill="none" stroke="black" d="M51.73,-168.98C77.69,-168.98 120.66,-168.98 147.19,-168.98" />
+<ns0:polygon fill="black" stroke="black" points="147.05,-170.73 152.05,-168.98 147.05,-167.23 147.05,-170.73" />
+</ns0:g>
+
+<ns0:g id="node43" class="node">
+<ns0:title>ListGroup</ns0:title>
+<ns0:g id="a_node43"><ns0:a ns1:href="../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup" ns1:title="Indexable Group with traditional list operations." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="198.4,-147.95 144.7,-147.95 144.7,-128 198.4,-128 198.4,-147.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-134.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ListGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge40" class="edge">
+<ns0:title>Mobject-&gt;ListGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M51.36,-161.84C60.03,-159.14 70.15,-156.19 79.45,-153.98 98.93,-149.34 121.04,-145.43 138.61,-142.63" />
+<ns0:polygon fill="black" stroke="black" points="138.69,-144.39 143.36,-141.88 138.15,-140.93 138.69,-144.39" />
+</ns0:g>
+
+<ns0:g id="node64" class="node">
+<ns0:title>VMobject</ns0:title>
+<ns0:g id="a_node64"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" ns1:title="A vectorized mobject." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="198.02,-410.95 145.07,-410.95 145.07,-391 198.02,-391 198.02,-410.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-397.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge67" class="edge">
+<ns0:title>Mobject-&gt;VMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M31,-178.79C34.72,-204.44 47.37,-274.8 79.45,-322.98 97.78,-350.5 128.42,-373.89 149.05,-387.68" />
+<ns0:polygon fill="black" stroke="black" points="147.92,-389.04 153.06,-390.32 149.84,-386.11 147.92,-389.04" />
+</ns0:g>
+
+<ns0:g id="node35" class="node">
+<ns0:title>ImageLayer</ns0:title>
+<ns0:g id="a_node35"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer" ns1:title="Single Image Layer for Neural Network." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="537.67,-209.95 472.72,-209.95 472.72,-190 537.67,-190 537.67,-209.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-196.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ImageLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge66" class="edge">
+<ns0:title>NeuralNetworkLayer-&gt;VGroupNeuralNetworkLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M398.87,-252.08C414.56,-248.94 432.03,-245.44 448.16,-242.21" />
+<ns0:polygon fill="black" stroke="black" points="448.46,-243.93 453.02,-241.23 447.77,-240.5 448.46,-243.93" />
+</ns0:g>
+
+<ns0:g id="edge32" class="edge">
+<ns0:title>NeuralNetworkLayer-&gt;ImageLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M400.08,-252.07C404.05,-250.35 407.86,-248.34 411.35,-245.98 425.04,-236.7 419.52,-225.04 433.35,-215.98 443.23,-209.5 455.36,-205.62 466.78,-203.31" />
+<ns0:polygon fill="black" stroke="black" points="466.93,-205.06 471.54,-202.45 466.31,-201.62 466.93,-205.06" />
+</ns0:g>
+
+<ns0:g id="node54" class="node">
+<ns0:title>PairedQueryLayer</ns0:title>
+<ns0:g id="a_node54"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer" ns1:title="Paired Query Layer." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="551.92,-302.95 458.47,-302.95 458.47,-283 551.92,-283 551.92,-302.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-289.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">PairedQueryLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge53" class="edge">
+<ns0:title>NeuralNetworkLayer-&gt;PairedQueryLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M398.87,-271.87C415.96,-275.29 435.16,-279.14 452.43,-282.6" />
+<ns0:polygon fill="black" stroke="black" points="451.98,-284.29 457.22,-283.56 452.66,-280.86 451.98,-284.29" />
+</ns0:g>
+
+<ns0:g id="node62" class="node">
+<ns0:title>TripletLayer</ns0:title>
+<ns0:g id="a_node62"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/triplet.TripletLayer.html#manim_extensions.machine_learning.neural_network.layers.triplet.TripletLayer" ns1:title="Shows triplet images." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="537.3,-271.95 473.1,-271.95 473.1,-252 537.3,-252 537.3,-271.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="505.2" y="-258.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">TripletLayer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge63" class="edge">
+<ns0:title>NeuralNetworkLayer-&gt;TripletLayer</ns0:title>
+<ns0:path fill="none" stroke="black" d="M402.31,-261.98C423.54,-261.98 447.52,-261.98 466.89,-261.98" />
+<ns0:polygon fill="black" stroke="black" points="466.75,-263.73 471.75,-261.98 466.75,-260.23 466.75,-263.73" />
+</ns0:g>
+
+<ns0:g id="node45" class="node">
+<ns0:title>ManimML3DScene</ns0:title>
+<ns0:g id="a_node45"><ns0:a ns1:href="../reference/machine_learning/scene.ManimML3DScene.html#manim_extensions.machine_learning.scene.ManimML3DScene" ns1:title="This is a wrapper class for the Manim ThreeDScene." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="397.48,-658.95 299.52,-658.95 299.52,-639 397.48,-639 397.48,-658.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-645.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ManimML3DScene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node46" class="node">
+<ns0:title>ThreeDScene</ns0:title>
+<ns0:g id="a_node46"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene" ns1:title="This is a Scene, with special configurations and properties that" target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="207.4,-658.95 135.7,-658.95 135.7,-639 207.4,-639 207.4,-658.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-645.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">ThreeDScene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge42" class="edge">
+<ns0:title>ThreeDScene-&gt;ManimML3DScene</ns0:title>
+<ns0:path fill="none" stroke="black" d="M207.11,-648.98C231.74,-648.98 265.33,-648.98 293.48,-648.98" />
+<ns0:polygon fill="black" stroke="black" points="293.25,-650.73 298.25,-648.98 293.25,-647.23 293.25,-650.73" />
+</ns0:g>
+
+<ns0:g id="node52" class="node">
+<ns0:title>NeuralNetworkEmbeddingTestScene</ns0:title>
+<ns0:g id="a_node52"><ns0:a ns1:href="../reference/machine_learning/neural_network/layers/embedding.NeuralNetworkEmbeddingTestScene.html#manim_extensions.machine_learning.neural_network.layers.embedding.NeuralNetworkEmbeddingTestScene" ns1:title="Test scene for verifying the embedding layer visualization." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="263.65,-627.95 79.45,-627.95 79.45,-608 263.65,-608 263.65,-627.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="171.55" y="-614.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">NeuralNetworkEmbeddingTestScene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node53" class="node">
+<ns0:title>Scene</ns0:title>
+<ns0:g id="a_node53"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" ns1:title="A Scene is the canvas of your animation." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="46.95,-642.95 10.5,-642.95 10.5,-623 46.95,-623 46.95,-642.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="28.72" y="-629.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Scene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge62" class="edge">
+<ns0:title>Scene-&gt;ThreeDScene</ns0:title>
+<ns0:path fill="none" stroke="black" d="M46.71,-634.9C67.03,-637.21 101.74,-641.16 129.26,-644.28" />
+<ns0:polygon fill="black" stroke="black" points="129.06,-646.02 134.22,-644.85 129.45,-642.54 129.06,-646.02" />
+</ns0:g>
+
+<ns0:g id="edge50" class="edge">
+<ns0:title>Scene-&gt;NeuralNetworkEmbeddingTestScene</ns0:title>
+<ns0:path fill="none" stroke="black" d="M46.71,-631.17C54.04,-630.38 63.25,-629.4 73.31,-628.33" />
+<ns0:polygon fill="black" stroke="black" points="73.39,-630.08 78.17,-627.81 73.02,-626.6 73.39,-630.08" />
+</ns0:g>
+
+<ns0:g id="node60" class="node">
+<ns0:title>SklearnTree</ns0:title>
+<ns0:g id="a_node60"><ns0:a ns1:href="../reference/machine_learning/decision_tree/helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" ns1:title="Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="380.6,-596.95 316.4,-596.95 316.4,-577 380.6,-577 380.6,-596.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="348.5" y="-583.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SklearnTree</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge59" class="edge">
+<ns0:title>Protocol-&gt;SklearnTree</ns0:title>
+<ns0:path fill="none" stroke="black" d="M194.71,-586.98C223.79,-586.98 275.26,-586.98 310.35,-586.98" />
+<ns0:polygon fill="black" stroke="black" points="310.19,-588.73 315.19,-586.98 310.19,-585.23 310.19,-588.73" />
+</ns0:g>
+
+<ns0:g id="edge65" class="edge">
+<ns0:title>VMobject-&gt;VGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M191.27,-410.93C223.24,-427.92 288.28,-462.5 323.52,-481.23" />
+<ns0:polygon fill="black" stroke="black" points="322.34,-482.58 327.58,-483.38 323.98,-479.49 322.34,-482.58" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

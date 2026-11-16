@@ -1,0 +1,134 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="451pt" height="121pt" viewBox="0.00 0.00 451.00 121.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 116.95)">
+<ns0:title>inheritance30e42676f6</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ADASDiagram</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../reference/economics/ad_as.ADASDiagram.html#manim_extensions.economics.ad_as.ADASDiagram" ns1:title="Aggregate Demand &#8212; Aggregate Supply diagram." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="419.12,-112.95 342.92,-112.95 342.92,-93 419.12,-93 419.12,-112.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="381.02" y="-99.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ADASDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>EconDiagram</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../reference/economics/base.EconDiagram.html#manim_extensions.economics.base.EconDiagram" ns1:title="Base class for economics diagrams built on manim Axes." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="289.05,-65.95 216.6,-65.95 216.6,-46 289.05,-46 289.05,-65.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.83" y="-52.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">EconDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>EconDiagram-&gt;ADASDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M272.34,-65.87C285.24,-72.48 303,-81.03 319.3,-86.97 324.98,-89.05 331.06,-90.98 337.08,-92.72" />
+<ns0:polygon fill="black" stroke="black" points="336.34,-94.33 341.62,-94 337.28,-90.96 336.34,-94.33" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>ISLMDiagram</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../reference/economics/is_lm.ISLMDiagram.html#manim_extensions.economics.is_lm.ISLMDiagram" ns1:title="IS-LM model diagram." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="417.25,-81.95 344.8,-81.95 344.8,-62 417.25,-62 417.25,-81.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="381.02" y="-68.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ISLMDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>EconDiagram-&gt;ISLMDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M288.98,-60.43C304.43,-62.39 322.69,-64.71 338.78,-66.75" />
+<ns0:polygon fill="black" stroke="black" points="338.38,-68.46 343.56,-67.35 338.82,-64.99 338.38,-68.46" />
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>SolowDiagram</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram" ns1:title="Solow growth model diagram." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="420.25,-50.95 341.8,-50.95 341.8,-31 420.25,-31 420.25,-50.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="381.02" y="-37.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SolowDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>EconDiagram-&gt;SolowDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M288.98,-51.8C303.4,-50.08 320.26,-48.08 335.53,-46.26" />
+<ns0:polygon fill="black" stroke="black" points="335.7,-48.01 340.46,-45.68 335.29,-44.53 335.7,-48.01" />
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>SupplyDemandDiagram</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="../reference/economics/supply_demand.SupplyDemandDiagram.html#manim_extensions.economics.supply_demand.SupplyDemandDiagram" ns1:title="A supply-and-demand diagram." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="442.75,-19.95 319.3,-19.95 319.3,0 442.75,0 442.75,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="381.02" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SupplyDemandDiagram</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>EconDiagram-&gt;SupplyDemandDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M283.19,-46.15C287.98,-44.27 292.83,-42.19 297.3,-39.98 307.69,-34.83 308.68,-30.62 319.3,-25.98 322.63,-24.52 326.12,-23.17 329.67,-21.93" />
+<ns0:polygon fill="black" stroke="black" points="330.06,-23.64 334.26,-20.41 328.96,-20.32 330.06,-23.64" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>VGroup</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" ns1:title="A group of vectorized mobjects." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="186.35,-49.95 143.15,-49.95 143.15,-30 186.35,-30 186.35,-49.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="164.75" y="-36.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VGroup</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>VGroup-&gt;EconDiagram</ns0:title>
+<ns0:path fill="none" stroke="black" d="M186.15,-43.77C193.44,-45.12 201.94,-46.7 210.36,-48.27" />
+<ns0:polygon fill="black" stroke="black" points="210.04,-49.99 215.27,-49.18 210.68,-46.55 210.04,-49.99" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>LinkedISLMADAS</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../reference/economics/linked.LinkedISLMADAS.html#manim_extensions.economics.linked.LinkedISLMADAS" ns1:title="Side-by-side IS-LM and AD-AS diagrams with linked policy shifts." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="297.3,-34.95 208.35,-34.95 208.35,-15 297.3,-15 297.3,-34.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="252.83" y="-21.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">LinkedISLMADAS</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>VGroup-&gt;LinkedISLMADAS</ns0:title>
+<ns0:path fill="none" stroke="black" d="M186.15,-36.42C191.11,-35.55 196.64,-34.59 202.32,-33.6" />
+<ns0:polygon fill="black" stroke="black" points="202.41,-35.36 207.04,-32.78 201.81,-31.91 202.41,-35.36" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>Mobject</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" ns1:title="Mathematical Object: base class for objects that can be displayed on screen." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="46.2,-49.95 0,-49.95 0,-30 46.2,-30 46.2,-49.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="23.1" y="-36.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Mobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>VMobject</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" ns1:title="A vectorized mobject." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="121.15,-49.95 68.2,-49.95 68.2,-30 121.15,-30 121.15,-49.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="94.68" y="-36.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">VMobject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>Mobject-&gt;VMobject</ns0:title>
+<ns0:path fill="none" stroke="black" d="M46.11,-39.98C51.26,-39.98 56.85,-39.98 62.32,-39.98" />
+<ns0:polygon fill="black" stroke="black" points="62.14,-41.73 67.14,-39.98 62.14,-38.23 62.14,-41.73" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>VMobject-&gt;VGroup</ns0:title>
+<ns0:path fill="none" stroke="black" d="M121.02,-39.98C126.23,-39.98 131.73,-39.98 136.99,-39.98" />
+<ns0:polygon fill="black" stroke="black" points="136.97,-41.73 141.97,-39.98 136.97,-38.23 136.97,-41.73" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

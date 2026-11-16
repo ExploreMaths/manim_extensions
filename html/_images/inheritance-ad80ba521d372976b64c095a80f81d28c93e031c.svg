@@ -1,0 +1,44 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="338pt" height="28pt" viewBox="0.00 0.00 338.00 28.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23.95)">
+<ns0:title>inheritance642fdd4c18</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ConstantStrokeWidthScene</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../reference/basic/scenes.ConstantStrokeWidthScene.html#manim_extensions.scenes.ConstantStrokeWidthScene" ns1:title="A scene whose strokes keep a constant on-screen width while zooming." target="_top">
+<ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="330.35,-19.95 191.15,-19.95 191.15,0 330.35,0 330.35,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="260.75" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">ConstantStrokeWidthScene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>MovingCameraScene</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.scene.moving_camera_scene.MovingCameraScene.html#manim.scene.moving_camera_scene.MovingCameraScene" ns1:title="This is a Scene, with special configurations and properties that" target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="169.15,-19.95 58.45,-19.95 58.45,0 169.15,0 169.15,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="113.8" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">MovingCameraScene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>MovingCameraScene-&gt;ConstantStrokeWidthScene</ns0:title>
+<ns0:path fill="none" stroke="black" d="M168.77,-9.98C174.1,-9.98 179.56,-9.98 185.04,-9.98" />
+<ns0:polygon fill="black" stroke="black" points="184.97,-11.73 189.97,-9.98 184.97,-8.23 184.97,-11.73" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>Scene</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" ns1:title="A Scene is the canvas of your animation." target="_top">
+<ns0:polygon fill="#dae8ff" stroke="black" stroke-width="0" points="36.45,-19.95 0,-19.95 0,0 36.45,0 36.45,-19.95" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="18.23" y="-6.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#448aff">Scene</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>Scene-&gt;MovingCameraScene</ns0:title>
+<ns0:path fill="none" stroke="black" d="M36.39,-9.98C41.12,-9.98 46.53,-9.98 52.24,-9.98" />
+<ns0:polygon fill="black" stroke="black" points="52.03,-11.73 57.03,-9.98 52.03,-8.23 52.03,-11.73" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>
