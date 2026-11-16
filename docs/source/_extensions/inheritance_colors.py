@@ -12,10 +12,11 @@ these variables theme-independent, so light and dark share the same
 values; the dark canvas look comes from responsiveSvg.js re-applying the
 rgba tints over the dark SVG background.
 
-Large diagrams are also rewritten into a bidirectional layout: each parent
-keeps some children on its right and moves the rest to its left, with the
-arrow still pointing at the child.  Disconnected components are packed into
-columns so a handful of standalone classes no longer form one tall strip.
+Large diagrams are also rewritten into a bidirectional layout: some
+disconnected components grow left-to-right, others grow right-to-left, while
+the arrow still points at the child.  A parent never emits children on both
+sides.  Components are packed into columns so standalone classes no longer
+form one tall strip.
 """
 
 from __future__ import annotations
@@ -23,7 +24,6 @@ from __future__ import annotations
 import math
 import re
 from collections import defaultdict
-from functools import lru_cache
 
 from sphinx.ext.inheritance_diagram import InheritanceGraph
 
@@ -41,8 +41,8 @@ _REFERENCE_MANUAL_GRAPH_THRESHOLD = 100
 _EDGE_RE = re.compile(r'^\s*"([^"]+)" -> "([^"]+)" \[(.*)\];\s*$')
 
 
-def _connected_components(children: dict[str, list[str]]) -> int:
-    """Count undirected components in the generated inheritance graph."""
+def _component_groups(children: dict[str, list[str]]) -> list[set[str]]:
+    """Return undirected components of the generated inheritance graph."""
     neighbours: dict[str, set[str]] = defaultdict(set)
     for parent, child_list in children.items():
         for child in child_list:
@@ -50,23 +50,25 @@ def _connected_components(children: dict[str, list[str]]) -> int:
             neighbours[child].add(parent)
 
     seen: set[str] = set()
-    count = 0
+    groups: list[set[str]] = []
     for start in neighbours:
         if start in seen:
             continue
-        count += 1
+        group: set[str] = set()
         stack = [start]
         while stack:
             node = stack.pop()
             if node in seen:
                 continue
             seen.add(node)
+            group.add(node)
             stack.extend(neighbours[node])
-    return count
+        groups.append(group)
+    return groups
 
 
 def _make_bidirectional(dot: str) -> str:
-    """Split children around each parent and pack disconnected components."""
+    """Orient whole components left-to-right or right-to-left, then pack them."""
     lines = dot.split("\n")
     children: dict[str, list[str]] = defaultdict(list)
     for line in lines:
@@ -77,36 +79,16 @@ def _make_bidirectional(dot: str) -> str:
     if not children:
         return dot
 
-    @lru_cache(maxsize=None)
-    def descendant_count(node: str) -> int:
-        seen: set[str] = set()
-        stack = list(children[node])
-        while stack:
-            item = stack.pop()
-            if item in seen:
-                continue
-            seen.add(item)
-            stack.extend(children[item])
-        return len(seen)
+    groups = _component_groups(children)
+    groups.sort(key=lambda group: (-len(group), min(group)))
 
-    # Assign a stable side to each node.  A child shared by several parents
-    # keeps whichever side it got first; the remaining edges simply follow it.
-    side: dict[str, str] = {}
-    for parent in sorted(children, key=lambda item: -len(children[item])):
-        ordered = sorted(
-            children[parent], key=lambda child: (-descendant_count(child), child)
-        )
-        left_weight = right_weight = 0
-        for child in ordered:
-            weight = descendant_count(child) + 1
-            current = side.get(child)
-            if current is None:
-                current = "left" if left_weight <= right_weight else "right"
-                side[child] = current
-            if current == "left":
-                left_weight += weight
-            else:
-                right_weight += weight
+    # Alternate the growth direction between components.  Every edge inside a
+    # component follows that component's direction, so a parent still has all
+    # of its children on one side instead of radiating in both directions.
+    reversed_nodes: set[str] = set()
+    for index, group in enumerate(groups):
+        if index % 2:
+            reversed_nodes.update(group)
 
     result: list[str] = []
     for line in lines:
@@ -115,13 +97,13 @@ def _make_bidirectional(dot: str) -> str:
             result.append(line)
             continue
         parent, child, attrs = match.groups()
-        if side.get(child) == "left":
+        if parent in reversed_nodes:
             attrs = f"{attrs}, dir=back" if attrs else "dir=back"
             result.append(f'  "{child}" -> "{parent}" [{attrs}];')
         else:
             result.append(line)
 
-    components = _connected_components(children)
+    components = len(groups)
     if components > 1:
         # More components than this turns labels into unreadable noise; three
         # columns keep standalone classes close to their current visual size.
