@@ -42,14 +42,18 @@ def is_star_import(node):
 
 
 def get_star_exports(module_name):
-    """Names a 'from <module_name> import *' would bind."""
+    """Names a ``from <module_name> import *`` may bind.
+
+    Every public attribute is considered, plus any explicitly listed
+    ``__all__`` names.  Scoping this to ``__all__`` alone misses public
+    names that a module defines but does not re-export.
+    """
     try:
         mod = importlib.import_module(module_name)
     except Exception:
         return set()
-    names = set(getattr(mod, "__all__", None) or [])
-    if not names:
-        names = {n for n in dir(mod) if not n.startswith("_")}
+    names = {n for n in dir(mod) if not n.startswith("_")}
+    names.update(getattr(mod, "__all__", None) or ())
     return names
 
 

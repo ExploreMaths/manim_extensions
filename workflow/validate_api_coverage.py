@@ -5,11 +5,11 @@
 including private module-level names, and maintain the snapshot that
 ``autodoc_all``'s ``:missing-only:`` mode filters against.
 
-Scans the whole ``manim_extensions`` package for names (same rules as the
-``autodoc_all`` extension: ``__all__`` when defined, else names defined in
-the module itself, including private names), then resolves every
-``autoclass`` / ``autofunction`` / ``autodata`` / ``autoall`` directive
-in ``docs/source`` and matches by canonical defining-module dotted name.
+Scans the whole ``manim_extensions`` package for every name bound at a
+module's top level (plus ``__all__`` entries), including private names,
+then resolves every ``autoclass`` / ``autofunction`` / ``autodata`` /
+``autoall`` directive in ``docs/source`` and matches by canonical
+defining-module dotted name.
 
 A name counts as documented when either
   * an explicit autodoc directive reaches it,
