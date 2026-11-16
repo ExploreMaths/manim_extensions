@@ -1,18 +1,17 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-name: Docs cache
+name: Docs cache and build
 
-# Pre-render every .. manim:: doc example and push the media tree to the
-# `rtd-cache` branch. Read the Docs fetches that branch before building so
-# the Sphinx build reuses the media instead of rendering hundreds of
-# examples (which used to time the RTD build out). Rendering is
-# content-hash based, so unchanged examples are skipped on re-runs.
+# Pre-render every .. manim:: doc example into the `rtd-cache` branch, then
+# build the Sphinx HTML on GitHub and publish it to the `rtd-html` branch.
+# Read the Docs only copies that commit's prebuilt HTML into its output
+# directory, so the RTD build no longer runs Sphinx or renders examples.
+# Rendering is content-hash based, so unchanged examples are skipped.
 #
-# The same branch also carries the vendored-status cache: the `render`
-# job refreshes it on every push (so the RTD build always sees fresh
-# data), and the `vendored-cache` job refreshes it daily between pushes
-# without triggering a Read the Docs build.
+# The rtd-cache branch also carries the vendored-status cache: the `render`
+# job refreshes it on every push and the `vendored-cache` job refreshes it
+# daily between pushes without triggering a Read the Docs build.
 
 on:
   push:
@@ -149,12 +148,75 @@ jobs:
             echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Trigger a Read the Docs build. Branch pushes: only after fresh media
-      # is on the rtd-cache branch (no point rebuilding otherwise). Tag
-      # pushes: always — the tagged docs version must be built even when
-      # the media cache is unchanged. Without the secret this is a no-op.
+  docs:
+    needs: render
+    if: ${{ github.event_name != 'schedule' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: docs-build
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the complete media cache
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          rm -rf /tmp/rtd-cache
+          git clone --depth 1 --branch rtd-cache \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            /tmp/rtd-cache
+          python workflow/render_doc_examples.py --out /tmp/rtd-cache --quality high --check
+          python workflow/execute_nbcell_examples.py --check --cache /tmp/rtd-cache/_nbcell_cache.json
+
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          python-version: "3.12"
+          install-full-deps: "true"
+          install-editable: "true"
+
+      - name: Install docs dependencies
+        run: pip install ".[docs]"
+
+      - name: Build prebuilt HTML
+        env:
+          READTHEDOCS: "True"
+        run: |
+          cp /tmp/rtd-cache/_vendored_status_cache*.json docs/source/ 2>/dev/null || true
+          cp /tmp/rtd-cache/_nbcell_cache.json docs/source/_extensions/_nbcell_cache.json
+          python -m sphinx -T -j auto -b html -D language=en docs/source _build/html
+
+      - name: Publish prebuilt docs to rtd-html
+        id: publish
+        run: |
+          set -e
+          PUBLISH_DIR="$RUNNER_TEMP/rtd-html-publish"
+          HTML_DIR="$RUNNER_TEMP/rtd-html-publish-html"
+          rm -rf "$PUBLISH_DIR" "$HTML_DIR"
+          cp -a _build/html "$HTML_DIR"
+          mkdir -p "$PUBLISH_DIR"
+          cd "$PUBLISH_DIR"
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth 1 origin rtd-html; then
+            git checkout -B rtd-html FETCH_HEAD
+          else
+            git checkout -B rtd-html
+          fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$HTML_DIR" ./html
+          printf '%s\n' "$GITHUB_SHA" > commit
+          git add -A
+          git commit -q -m "docs html: $GITHUB_SHA"
+          git push -f origin HEAD:rtd-html
+
+      # Trigger a Read the Docs build only after the prebuilt HTML is on the
+      # rtd-html branch. Branch pushes always rebuild; tag pushes also sync the
+      # RTD version list first. Without the secret this is a no-op.
       - name: Trigger Read the Docs build
-        if: ${{ steps.push.outputs.pushed == 'true' || github.ref_type == 'tag' || inputs.rtd_only }}
         env:
           RTD_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
           RTD_PROJECT: manim-extensions
@@ -166,9 +228,6 @@ jobs:
           BASE="https://app.readthedocs.org/api/v3/projects/$RTD_PROJECT"
           if [ "${{ github.ref_type }}" = "tag" ]; then
             TAG="$GITHUB_REF_NAME"
-            # Without the push webhook RTD never sees the new tag, so ask it
-            # to sync versions from the repo first, then resolve the slug
-            # (RTD slugifies tag names) and build that version.
             curl -sf -X POST -H "Authorization: Token $RTD_TOKEN" "$BASE/versions/" \
               || echo "WARNING: version sync call failed, continuing anyway"
             SLUG=$(curl -sf -H "Authorization: Token $RTD_TOKEN" "$BASE/versions/?limit=100" \
